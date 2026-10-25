@@ -1,28 +1,28 @@
 {
   "status": "pre_results_manuscript",
-  "built_at_utc": "2026-10-25T22:49:50.326010+00:00",
+  "built_at_utc": "2026-10-25T23:05:30.681117+00:00",
   "pandoc": "pandoc 3.1.11.1",
-  "word_count_approximate": 19684,
+  "word_count_approximate": 30066,
   "artifacts": {
     "thesis.md": {
-      "bytes": 147599,
-      "sha256": "8265ca3cae1ad3eccdf7091c266cf26ed584f4cfd0bf9ec841c06f30b4f08079"
+      "bytes": 226537,
+      "sha256": "5ba3f13fb205519b800cb990afd71690caaa6a3883d6934a235387240754bc58"
     },
     "thesis.pdf": {
-      "bytes": 490712,
-      "sha256": "c7903031407114fe55cf5d9d71d6ca5079b74cc18f9dcc4018d34bf526705cd0"
+      "bytes": 622592,
+      "sha256": "d0cd33c2857e802e4b1350e3f5465b4beab5a02bc493ebf1d14f22da1591b25c"
     },
     "thesis.docx": {
-      "bytes": 329206,
-      "sha256": "9ad80e6984948509d0f74585dfafce2c2c6f6f0695e6fcebd93e0a23c77019b0"
+      "bytes": 389453,
+      "sha256": "2975e7b25ef1b7679cec09e207fffe5b8e4c96022bc40f42a39b85db08dd5e4a"
     },
     "thesis.html": {
-      "bytes": 572907,
-      "sha256": "256c79837dd61c326f87840b8007329ebeca2554a840eb416a2af5673099b1ec"
+      "bytes": 731355,
+      "sha256": "2bdc0828293bc77f2bd5aad79119a69bd454bcd51dad560b0025a6b19f36de23"
     },
     "references.bib": {
-      "bytes": 12648,
-      "sha256": "dbc49283ef7ea00d756beede39ed82dd9e8dfa8b8edbb2e92db32eed5b2e7750"
+      "bytes": 22936,
+      "sha256": "ba5d5c095d403518152a3fa42b6cfd5732d41bf15ef5b5b915ac18ea28b6e9b2"
     },
     "model-catalog.csv": {
       "bytes": 10418,
@@ -37,40 +37,40 @@
       "sha256": "57a1551839b40c3f65c413d3554a8dd4cc5e4a8e1961edb8924eae1a8aa410e8"
     },
     "frontmatter.md": {
-      "bytes": 5051,
-      "sha256": "f9e0a302771cd006e69a50748019e7a777abcfd4167fe32a15cfe1342758debd"
+      "bytes": 5189,
+      "sha256": "676baee8aa30cd75ceefd6b692408e08437f294b65ccdb8ea780fe73d69d8150"
     },
     "introduction.md": {
-      "bytes": 8687,
-      "sha256": "a70693ee98fd379777be9e109bff19f0582eb309593a747ae5e0cf1d8da02ff8"
+      "bytes": 11027,
+      "sha256": "7651cffb2e9a0e2588135bcad4d5a5fb8201f2f5c0c7a1da9603b50283b1ba92"
     },
     "literature.md": {
-      "bytes": 31920,
-      "sha256": "fa1ab44a2b694e636cf179c004192888d09c8762dc24a47d9e64abd96cd2fede"
+      "bytes": 32746,
+      "sha256": "caa993f59c24b35bd8f4619709350a1976d73a8dfe288b0630d99653d9a8abdd"
     },
     "system-design.md": {
-      "bytes": 14116,
-      "sha256": "432cb13aa92be496ad9570b388001254fa52495109f84c5e9334bf1007fe95a3"
+      "bytes": 16462,
+      "sha256": "9e56da4423527ab688618b7f416522ab7ef9d238b9ac94d9bc2b70915c785d33"
     },
     "model-landscape.md": {
-      "bytes": 18559,
-      "sha256": "2620b23320fd257cf573ec587e57090f6fff4bdb2842d6fa8d77c27f14f54c1b"
+      "bytes": 19354,
+      "sha256": "184fc30293d75d28f1f4e226602c8b48f4ad9f474288cb31e2d38d93b1c6b2c2"
     },
     "accuracy-context.md": {
       "bytes": 6296,
       "sha256": "6d7f2b9f39b646c8afaf0bfb4d31a01d32169975f73f1f21658252bf0b479d9f"
     },
     "methodology.md": {
-      "bytes": 38280,
-      "sha256": "4bcfaf6d8df7e2dd16354bee0f14d724f350673ccc028dacd2b2fa17924c735b"
+      "bytes": 36774,
+      "sha256": "78c2a8334238eb7f8f57bc1526eb1c053edfe7ed67eed722b80f360b3cd16163"
     },
     "analysis-plan.md": {
-      "bytes": 11485,
-      "sha256": "86a71ca96d886977f01d6d93fd3e79b094eef7780bc2c7011724adf3bd13c355"
+      "bytes": 13535,
+      "sha256": "40ceb001e75cc6f751695e9a7dc64f878434de7814add0b2b5c52bf93d8a9351"
     },
     "reproducibility-and-limits.md": {
-      "bytes": 13152,
-      "sha256": "a26af21d425991816bcd92706ec085d7254f69ec5b54d7a9e7215c38d96e8f5a"
+      "bytes": 14914,
+      "sha256": "af27d6d2549bb2892e17efba1cb00c97d735274a31d024c8a1d80dd6708bdb8c"
     },
     "layout.tex": {
       "bytes": 371,
@@ -81,16 +81,16 @@
       "sha256": "a2068f91a39375a913ef2b8db4759395350a4c2bf5415e7e2ce8b62acdcff505"
     },
     "figures/architecture.dot": {
-      "bytes": 1947,
-      "sha256": "78120b27772b3ae6e8ab9c6fb2521c5ca938cb718e877f5e959dd1ae1af0fb9c"
+      "bytes": 2058,
+      "sha256": "eb29c92e44715c149ace2bfe0d42f8c66c97dcfc6578460026a1de1243fe0694"
     },
     "figures/architecture.png": {
-      "bytes": 260405,
-      "sha256": "b40afa425d0bc5955a59a934ae6f6c81b9c7e8ceca1bd66d883b7c8c6398133a"
+      "bytes": 284905,
+      "sha256": "98791477e41ce78451dce8a7698419436cb8b65aea0263cf2314c55e8d56d9b3"
     },
     "figures/architecture.svg": {
-      "bytes": 12198,
-      "sha256": "9f9828a7f451203363702148d1bec3b167eee7c96299bdd06080f2dcfffb8f3f"
+      "bytes": 13449,
+      "sha256": "81259c6beac7123cc69f0ea32613fa347dc94077799a008cd10206f806c634c2"
     },
     "evidence-audit.json": {
       "bytes": 4465,
@@ -100,9 +100,61 @@
       "bytes": 5603,
       "sha256": "8e66d17e2b954e55521231a66c42df88278264110b0038ec588c79a26aa9e05c"
     },
+    "task-economics.md": {
+      "bytes": 12856,
+      "sha256": "10ae43ca509c5658377ec784b3650c3e35595663a407080705ca561ae606f313"
+    },
+    "task-price-comparisons.csv": {
+      "bytes": 2769,
+      "sha256": "25a02d26206728f106faad51dd38e5eee3440107903ea1e3956db3bc1e87a576"
+    },
+    "task-price-scenarios.csv": {
+      "bytes": 5162,
+      "sha256": "88ab1b36e8dde9173b75e32314ca14a10d92f6b08e76dc295ba1e98842118b44"
+    },
+    "task-economics-sources.json": {
+      "bytes": 6929,
+      "sha256": "a8197750a33f151609b9132ba6adc297eb558f9478d1533bacf95ffbfbcfc515"
+    },
+    "task-price-checks.json": {
+      "bytes": 550,
+      "sha256": "cff826b3d0eb46f8cd2b55a6169df339bc4ebfa8c2ca8149d45ea20d7e1ab673"
+    },
+    "browser-domain.md": {
+      "bytes": 19762,
+      "sha256": "7c20544c833ae4cbd7838c08812f0ff03e9d5fbbde40f28180cd7f0162f9808a"
+    },
+    "browser-sources.json": {
+      "bytes": 36686,
+      "sha256": "bf57777c8589cd50c72d427dfd82d91f15d78906bf6ee077592c22db76711a67"
+    },
+    "adaptation-and-switching.md": {
+      "bytes": 17158,
+      "sha256": "83c76861c5a368d3c055d6f2caac5765d584a9a6f2e45420e09a7ce4370e136e"
+    },
+    "adaptation-sources.json": {
+      "bytes": 15159,
+      "sha256": "0073680736161f1c24597e1a05df68482b215321752fd187d93ee6525345e41e"
+    },
+    "ensemble-methodology.md": {
+      "bytes": 20407,
+      "sha256": "d6bed93b7bb62ecf12b245a2df94aac4ae83c552362a571cc6adcdcef3ab370e"
+    },
+    "ensemble-methods-sources.json": {
+      "bytes": 9250,
+      "sha256": "f1de0898c7e6c76149e3ae5f0ff656df990d80843ee86c429ba3d96178a53001"
+    },
+    "portfolio-review.json": {
+      "bytes": 8660,
+      "sha256": "5609dd74e94a4f223fa30b78438be033c5b44d7efd9bfda60784e8fe001b7344"
+    },
+    "../../scripts/build_task_price_table.py": {
+      "bytes": 6467,
+      "sha256": "792b2e6bc01280e018a2c67d7a0d95797b56026dc0260644da9619b185b4caa4"
+    },
     "../../scripts/build_thesis.sh": {
-      "bytes": 3032,
-      "sha256": "2ffeabc9801b64c3dadb66d590ba0e162d34603b25784601ebf5893677d0c0f8"
+      "bytes": 3543,
+      "sha256": "9258b863c721f5d75ac2acac3d9d984dff163f0ad723339428f609e10f025c48"
     }
   }
 }

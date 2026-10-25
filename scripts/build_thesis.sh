@@ -16,7 +16,9 @@ python - <<'PY'
 from pathlib import Path
 chapters = [
     'frontmatter.md', 'introduction.md', 'literature.md', 'system-design.md',
-    'model-landscape.md', 'accuracy-context.md', 'methodology.md', 'analysis-plan.md',
+    'model-landscape.md', 'accuracy-context.md', 'task-economics.md',
+    'browser-domain.md', 'adaptation-and-switching.md', 'ensemble-methodology.md',
+    'methodology.md', 'analysis-plan.md',
     'reproducibility-and-limits.md',
 ]
 text = '\n\n'.join(Path(p).read_text().rstrip() for p in chapters)
@@ -46,7 +48,11 @@ names = ['thesis.md', 'thesis.pdf', 'thesis.docx', 'thesis.html', 'references.bi
          'analysis-plan.md', 'reproducibility-and-limits.md', 'layout.tex',
          'style.css', 'figures/architecture.dot', 'figures/architecture.png',
          'figures/architecture.svg', 'evidence-audit.json', 'evidence-audit-details.json',
-         '../../scripts/build_thesis.sh']
+         'task-economics.md', 'task-price-comparisons.csv', 'task-price-scenarios.csv',
+         'task-economics-sources.json', 'task-price-checks.json', 'browser-domain.md',
+         'browser-sources.json', 'adaptation-and-switching.md', 'adaptation-sources.json',
+         'ensemble-methodology.md', 'ensemble-methods-sources.json', 'portfolio-review.json',
+         '../../scripts/build_task_price_table.py', '../../scripts/build_thesis.sh']
 report = {
     'status': 'pre_results_manuscript',
     'built_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),

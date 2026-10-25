@@ -1,0 +1,591 @@
+{
+  "as_of_utc": "2026-10-25",
+  "review_scope": "Targeted inspection of official repository documentation and model cards; not an exhaustive GUI-model search or independent benchmark rerun",
+  "sources": [
+    {
+      "repository": "ServiceNow/BrowserGym",
+      "retrieved_at_utc": "2026-10-25T22:53:44.048406+00:00",
+      "commit": "4ccc72332ab9882bc9aed87264dbf60b16e426f0",
+      "license_metadata": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "description": "🌎💪 BrowserGym, a Gym environment for web task automation",
+      "default_branch": "main",
+      "url": "https://raw.githubusercontent.com/ServiceNow/BrowserGym/4ccc72332ab9882bc9aed87264dbf60b16e426f0/README.md",
+      "sha256": "7b685115ef822989fac9093518d16c46f0202736d005eed56e7f9fc36b43f3ee",
+      "bytes": 12750,
+      "selected_excerpts": []
+    },
+    {
+      "repository": "ServiceNow/AgentLab",
+      "retrieved_at_utc": "2026-10-25T22:53:44.049057+00:00",
+      "commit": "8488c564eea0525aaff5dea189bb03a9b529546e",
+      "license_metadata": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "description": "AgentLab: An open-source framework for developing, testing, and benchmarking web agents on diverse tasks, designed for scalability and reproducibility.",
+      "default_branch": "main",
+      "url": "https://raw.githubusercontent.com/ServiceNow/AgentLab/8488c564eea0525aaff5dea189bb03a9b529546e/README.md",
+      "sha256": "ca312434db1db852f96fb49bbc0a61f6a93cffe6c0dd3aa2b7ac814681ccc19e",
+      "bytes": 17447,
+      "selected_excerpts": [
+        "| [WebArena-Verified](https://github.com/ServiceNow/webarena-verified) | [setup](https://github.com/ServiceNow/BrowserGym/blob/main/browsergym/webarena_verified/README.md) | 812 | None | 30 | yes | self hosted | soon |",
+        "| [WorkArena](https://github.com/ServiceNow/WorkArena) L1 | [setup](https://github.com/ServiceNow/WorkArena?tab=readme-ov-file#getting-started) | 33 | High | 30 | no | demo instance | soon |",
+        "| [WorkArena](https://github.com/ServiceNow/WorkArena) L2 | [setup](https://github.com/ServiceNow/WorkArena?tab=readme-ov-file#getting-started) | 341 | High | 50 | no | demo instance | soon |",
+        "| [WorkArena](https://github.com/ServiceNow/WorkArena) L3 | [setup](https://github.com/ServiceNow/WorkArena?tab=readme-ov-file#getting-started) | 341 | High | 50 | no | demo instance | soon |",
+        "| [VisualWebArena](https://github.com/web-arena-x/visualwebarena) | [setup](https://github.com/ServiceNow/BrowserGym/blob/main/browsergym/visualwebarena/README.md) | 910 | None | 30 | yes | self hosted (docker) | soon |",
+        "| [OSWorld](https://os-world.github.io/) | [setup](https://github.com/ServiceNow/AgentLab/blob/main/src/agentlab/benchmarks/osworld.md) | 369 | None | - | - | self hosted  | soon |",
+        "⚠️ **Note for (Visual)WebArena**: These benchmarks have task dependencies designed to minimize",
+        "state, making task 201 impossible. To address this, the Ray backend accounts for task dependencies,",
+        "⚠️ **Instance Reset for (Visual)WebArena**: Before evaluating an agent, the instance is"
+      ]
+    },
+    {
+      "repository": "ServiceNow/WorkArena",
+      "retrieved_at_utc": "2026-10-25T22:53:44.049440+00:00",
+      "commit": "e885130962f61fb64ac305497996a46cfc7d18f0",
+      "license_metadata": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "description": "WorkArena: How Capable are Web Agents at Solving Common Knowledge Work Tasks?",
+      "default_branch": "main",
+      "url": "https://raw.githubusercontent.com/ServiceNow/WorkArena/e885130962f61fb64ac305497996a46cfc7d18f0/README.md",
+      "sha256": "834a48f0346036a0fc591a36f9eb6f513b44a2777a66afa0917f28fc63f29334",
+      "bytes": 9290,
+      "selected_excerpts": [
+        "To setup WorkArena, you will need to gain access to ServiceNow instances and install our Python package locally. Follow the steps below to achieve this.",
+        "2. Fill the form, accept the terms to gain access to the gated repository and wait for approval.",
+        "3. Ensure that the machine where you will run WorkArena is [authenticated with Hugging Face](https://huggingface.co/docs/hub/en/datasets-polars-auth) (e.g., via huggingface-cli login or the HUGGING_FACE_HUB_TOKEN environment variable).",
+        "At the moment, WorkArena-L1 includes `19,912` unique instances drawn from `33` tasks that cover the main components of the ServiceNow user interface, otherwise referred to as \"atomic\" tasks. WorkArena++ contains 682 tasks, each one sampling among thousands of potential configurations. WorkArena++ uses the atomic components presented in WorkArena, and composes them into real-world use cases evaluating planning, reasoning, and memorizing abilities of agents. "
+      ]
+    },
+    {
+      "repository": "web-arena-x/webarena",
+      "retrieved_at_utc": "2026-10-25T22:53:44.049885+00:00",
+      "commit": "dce04686a56253aefba7b18a4fa0937cf1dc987b",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "description": "Code repo for \"WebArena: A Realistic Web Environment for Building Autonomous Agents\"",
+      "default_branch": "main",
+      "url": "https://raw.githubusercontent.com/web-arena-x/webarena/dce04686a56253aefba7b18a4fa0937cf1dc987b/README.md",
+      "sha256": "081c826497f9b7da4952771ee128c2215ec3532379db0fe9f7fcbd899d9c9287",
+      "bytes": 9717,
+      "selected_excerpts": [
+        "> This repository hosts the *canonical* implementation of WebArena to reproduce the results reported in the paper. The web navigation infrastructure has been significantly enhanced by [AgentLab](https://github.com/ServiceNow/AgentLab/), introducing several key features: (1) support for parallel experiments using [BrowserGym](https://github.com/ServiceNow/BrowserGym), (2) integration of popular web navigation benchmarks (e.g., VisualWebArena) within a unified framework, (3) unified leaderboard reporting, and (4) improved handling of environment edge cases. We strongly recommend using this framework for your experiments.",
+        "> To ensure the correct evaluation, please setup your own WebArena websites following step 1 and step 2. The demo sites are only for browsing purpose to help you better understand the content. After evaluating the 812 examples, reset the environment to the initial state following the instructions [here](./environment_docker/README.md#environment-reset)."
+      ]
+    },
+    {
+      "repository": "web-arena-x/visualwebarena",
+      "retrieved_at_utc": "2026-10-25T22:53:44.050455+00:00",
+      "commit": "89f5af29305c3d1e9f97ce4421462060a70c9a03",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "description": "VisualWebArena is a benchmark for multimodal agents.",
+      "default_branch": "main",
+      "url": "https://raw.githubusercontent.com/web-arena-x/visualwebarena/89f5af29305c3d1e9f97ce4421462060a70c9a03/README.md",
+      "sha256": "182529c2fce1e41f3a2162727205c54da8b3d2381b2273d726170ee9d8cf65cc",
+      "bytes": 9673,
+      "selected_excerpts": [
+        "- [03/08/2024]: Added the [agent trajectories](https://drive.google.com/file/d/1-tKz5ByWa1-jwtejiFgxli8fZcBPZgAE/view?usp=sharing) of our GPT-4V + SoM agent on the full set of 910 VWA tasks.",
+        "To facilitate analysis and evals, we have also released the trajectories of the GPT-4V + SoM agent on the full set of 910 VWA tasks [here](https://drive.google.com/file/d/1-tKz5ByWa1-jwtejiFgxli8fZcBPZgAE/view?usp=sharing). It consists of .html files that record the agent's observations and output at each step of the trajectory.",
+        "We collected human trajectories on 233 tasks (one from each template type) and the Playwright recording files are provided [here](https://drive.google.com/drive/folders/1S_fDzB1VUTwUphWPKZ0DdjJOAXjGz94g). These are the same tasks reported in our paper (with a human success rate of ~89%). You can view the HTML pages, actions, etc., by running `playwright show-trace <example_id>.zip`. The `example_id` follows the same structure as the examples from the corresponding site in `config_files/`."
+      ]
+    },
+    {
+      "repository": "ServiceNow/webarena-verified",
+      "retrieved_at_utc": "2026-10-25T22:54:24.910930+00:00",
+      "commit": "6473f72db5dcefc97b5725b59e734504edc28a21",
+      "url": "https://raw.githubusercontent.com/ServiceNow/webarena-verified/6473f72db5dcefc97b5725b59e734504edc28a21/README.md",
+      "sha256": "8f343078ba55263182f86ec54497958a1174d90cb8ce7573cedcc29f5c8e6b50",
+      "bytes": 10834,
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "selected_excerpts": [
+        "WebArena-Verified is the verified release of the WebArena benchmark. It distributes a curated, version-controlled dataset of web tasks together with deterministic evaluators that operate on agent responses and captured network traces. The project is designed for reproducible benchmarking of web agents and provides tooling for both single-task debugging and batch evaluation.",
+        "- **Offline evaluation**: Evaluate agent runs without requiring live web environments using network trace replay",
+        "- **Deterministic scoring**: Removed LLM-as-a-judge evaluation and substring matching in favor of type-aware normalization and structural comparison",
+        "- **WebArena-Verified Hard subset**: A difficulty-prioritized 258-task subset for cost-effective evaluation"
+      ]
+    },
+    {
+      "repository": "xlang-ai/OSWorld",
+      "retrieved_at_utc": "2026-10-25T22:53:44.050861+00:00",
+      "commit": "044bc33901cb893808e3f91ebc9a17ed8e54b44c",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "description": "[NeurIPS 2024] OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments",
+      "default_branch": "main",
+      "url": "https://raw.githubusercontent.com/xlang-ai/OSWorld/044bc33901cb893808e3f91ebc9a17ed8e54b44c/README.md",
+      "sha256": "f5171d847a3331334dfc198c5fb8d6b4ad398298d53651fa43bd627f7b6c2bb6",
+      "bytes": 17596,
+      "selected_excerpts": [
+        "- 2025-07-28: Introducing **OSWorld-Verified**! We have made major updates, fixed several issues reported by the community, with more support for AWS (can reduce evaluation time to within 1 hour through parallelization!), and making the benchmark signals more effective. Check out more in the [report](https://xlang.ai/blog/osworld-verified). We have run new model results in the latest version and updated them on the [official website](https://os-world.github.io/). Please compare your OSWorld results with the new benchmark results when running the latest version.",
+        "> * **Google Account Tasks**: Some tasks require Google account access and OAuth2.0 configuration. Please refer to [Setup Guideline - Google Account Setup](SETUP_GUIDELINE.md#1-google-account-setup) for detailed setup instructions.",
+        "> * **Impact of Missing Configuration**: If these configurations are not properly set up, the corresponding tasks will fail to execute correctly, leading to lower evaluation scores.",
+        "## Acknowledgement for OSWorld-Verified"
+      ]
+    },
+    {
+      "repository": "browser-use/browser-use",
+      "retrieved_at_utc": "2026-10-25T22:53:45.336449+00:00",
+      "commit": "3df5806a0d097a1546d92c49bcf1b28c9972c3bd",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "description": "Open-source Python library for AI browser agents, plus Browser Use Cloud: stealth browsers and a hosted agent API.",
+      "default_branch": "main",
+      "url": "https://raw.githubusercontent.com/browser-use/browser-use/3df5806a0d097a1546d92c49bcf1b28c9972c3bd/README.md",
+      "sha256": "21a31ea5601d3cd6622bff2ea62b26c2d4f40cdb5805810e38a3fb37db241c11",
+      "bytes": 19732,
+      "selected_excerpts": [
+        "> **AI agents and crawlers:** read [browser-use.com/llms.txt](https://browser-use.com/llms.txt) for the product map (open source, Browser Harness, Cloud browsers, Agents API, pricing) and [docs.browser-use.com/llms.txt](https://docs.browser-use.com/llms.txt) for the documentation index. Browser Use is the open-source browser agent (Python and TypeScript), a $0.02 per browser-hour cloud browser with stealth, CAPTCHA solving and residential proxies, and a hosted agent API.",
+        "    # llm = ChatBrowserUse(model='bu-2-0')  # Use BU2 instead; requires BROWSER_USE_API_KEY",
+        "Cloud browsers cost $0.02 per browser-hour plus network traffic ([pricing](https://browser-use.com/pricing)), and add stealth, residential proxies, CAPTCHA solving, and a live view URL. Same code, no other changes.",
+        "This [very hard benchmark](https://github.com/browser-use/benchmark) targets the hardest browser tasks. On easier tasks, even smaller models can achieve very high success rates. Results shown are from a 60-task subset of BU Bench V2.",
+        "We recommend **BU2**, our model optimized for browser automation: `ChatBrowserUse(model='bu-2-0')`. It uses `BROWSER_USE_API_KEY`; `ChatBrowserUse()` currently selects the same model.",
+        "llm = ChatBrowserUse(model='anthropic/claude-sonnet-4-6')  # or 'google/gemini-3-pro'",
+        "        llm=ChatBrowserUse(model='bu-2-0'),"
+      ]
+    },
+    {
+      "repository": "browser-use/benchmark",
+      "retrieved_at_utc": "2026-10-25T22:54:24.911601+00:00",
+      "commit": "77b4df339fe8fc293fb48896cfa1c73dd743af42",
+      "url": "https://raw.githubusercontent.com/browser-use/benchmark/77b4df339fe8fc293fb48896cfa1c73dd743af42/README.md",
+      "sha256": "849a8da2e5e5c972ae5ab6f46620c740b3c2440add259650fa08cb4dfd9917aa",
+      "bytes": 21945,
+      "license_metadata": null,
+      "selected_excerpts": [
+        "## Benchmark scores — historical 60-task results",
+        "These results use the earlier 60-task set. They are not results for the current 200-task V2.1 dataset. Compare model scores only on the same task set and revision.",
+        "step references, and deterministic integrity checks are unchanged. Historical scores",
+        "**200 web tasks scored against weighted findings rubrics — the default task set.**",
+        "(`2026-09-25-reuters-playback`), following the CAPTCHA-alignment update and"
+      ]
+    },
+    {
+      "repository": "microsoft/playwright",
+      "retrieved_at_utc": "2026-10-25T22:53:45.399796+00:00",
+      "commit": "a2b65a057a78204d8411b068e1e28d0db23db44b",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "description": "Playwright is a framework for Web Testing and Automation. It allows testing Chromium, Firefox and WebKit with a single API. ",
+      "default_branch": "main",
+      "url": "https://raw.githubusercontent.com/microsoft/playwright/a2b65a057a78204d8411b068e1e28d0db23db44b/README.md",
+      "sha256": "99cadec371946eb05c2b809f5627d002ed0cd39db0ee1fe3cc76a06efec29431",
+      "bytes": 11282,
+      "selected_excerpts": [
+        "[![npm version](https://img.shields.io/npm/v/playwright.svg)](https://www.npmjs.com/package/playwright) <!-- GEN:chromium-version-badge -->[![Chromium version](https://img.shields.io/badge/chromium-157.0.8103.15-blue.svg?logo=google-chrome)](https://www.chromium.org/Home)<!-- GEN:stop --> <!-- GEN:firefox-version-badge -->[![Firefox version](https://img.shields.io/badge/firefox-158.0-blue.svg?logo=firefoxbrowser)](https://www.mozilla.org/en-US/firefox/new/)<!-- GEN:stop --> <!-- GEN:webkit-version-badge -->[![WebKit version](https://img.shields.io/badge/webkit-27.2-blue.svg?logo=safari)](https://webkit.org/)<!-- GEN:stop --> [![Join Discord](https://img.shields.io/badge/join-discord-informational)](https://aka.ms/playwright/discord)",
+        "Playwright is a framework for web automation and testing. It drives Chromium, Firefox, and WebKit with a single API — in your tests, in your scripts, and as a tool for AI agents.",
+        "Playwright Test is a full-featured test runner built for end-to-end testing. It runs tests across Chromium, Firefox, and WebKit with full browser isolation, auto-waiting, and web-first assertions.",
+        "| Chromium<sup>1</sup> <!-- GEN:chromium-version -->157.0.8103.15<!-- GEN:stop --> | :white_check_mark: | :white_check_mark: | :white_check_mark: |",
+        "| WebKit <!-- GEN:webkit-version -->27.2<!-- GEN:stop --> | :white_check_mark: | :white_check_mark: | :white_check_mark: |",
+        "| Firefox <!-- GEN:firefox-version -->158.0<!-- GEN:stop --> | :white_check_mark: | :white_check_mark: | :white_check_mark: |"
+      ]
+    },
+    {
+      "repository": "bytedance/UI-TARS",
+      "retrieved_at_utc": "2026-10-25T22:53:45.417912+00:00",
+      "commit": "582f3a7ea5d285ee8ed9e2e84048d1ab01453c49",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "description": "Pioneering Automated GUI Interaction with Native Agents",
+      "default_branch": "main",
+      "url": "https://raw.githubusercontent.com/bytedance/UI-TARS/582f3a7ea5d285ee8ed9e2e84048d1ab01453c49/README.md",
+      "sha256": "0c4feb17b657c0c9a71d7e0c5e2142abbd19bb5cff22e6cd3b6b082644c98ee7",
+      "bytes": 14638,
+      "selected_excerpts": [
+        "- 🌟 2025.09.04: We’re excited to announce the release the **UI-TARS-2**, which is a major upgrade from UI-TARS-1.5, featuring with enhanced capabilities in GUI, Game, Code and Tool Use. It is an \"All In One\" Agent model, enabling seamless integration of multiple abilities for complex tasks. Please check our new [technical report](https://arxiv.org/abs/2509.02544) for more details. Refer to more fantastic showcases at our [website](https://seed-tars.com/showcase/ui-tars-2/).",
+        "- 🌟 2025.04.16: We shared the latest progress of the UI-TARS-1.5 model in our [blog](https://seed-tars.com/1.5), which excels in playing games and performing GUI tasks, and we open-sourced the [UI-TARS-1.5-7B](https://huggingface.co/ByteDance-Seed/UI-TARS-1.5-7B).",
+        "| Computer Use       | [OSWorld](https://arxiv.org/abs/2404.07972)             | 24.6                | 27.5               | **42.5**        |",
+        "| GUI Grounding      | [ScreenSpotPro](https://arxiv.org/pdf/2504.07981v1) | 38.1                | 49.6               | **61.6**        |"
+      ]
+    },
+    {
+      "repository": "bytedance/UI-TARS-desktop",
+      "retrieved_at_utc": "2026-10-25T22:53:45.432654+00:00",
+      "commit": "3ac2cb8d946d78d5ff92ad17b318eaafa18c178c",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "description": "The Open-Source Multimodal AI Agent Stack: Connecting Cutting-Edge AI Models and Agent Infra",
+      "default_branch": "main",
+      "url": "https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/3ac2cb8d946d78d5ff92ad17b318eaafa18c178c/README.md",
+      "sha256": "0f05aa4f447d43439f6b3f4ab179cbe1e59d170eaf6c0684fa9c2eb0872e5985",
+      "bytes": 16262,
+      "selected_excerpts": []
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL",
+      "retrieved_at_utc": "2026-10-25T22:53:45.511500+00:00",
+      "commit": "96588727e44c78b25ba03ea03b8e12f7e64fd0da",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "description": "Qwen3-VL is the multimodal large language model series developed by Qwen team, Alibaba Cloud.",
+      "default_branch": "main",
+      "url": "https://raw.githubusercontent.com/QwenLM/Qwen3-VL/96588727e44c78b25ba03ea03b8e12f7e64fd0da/README.md",
+      "sha256": "fc21106258c51e0b91a652eef12f5925becb146ea8b8c79a4251ac2e89a2f1ac",
+      "bytes": 52828,
+      "selected_excerpts": [
+        "* 2025.10.15: We have released the **Qwen3-VL-4B** ([Instruct](https://huggingface.co/Qwen/Qwen3-VL-4B-Instruct)/[Thinking](https://huggingface.co/Qwen/Qwen3-VL-4B-Thinking)) and **Qwen3-VL-8B** ([Instruct](https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct)/[Thinking](https://huggingface.co/Qwen/Qwen3-VL-8B-Thinking)). Enjoy it!",
+        "* 2025.10.4: We have released the [Qwen3-VL-30B-A3B-Instruct](https://huggingface.co/Qwen/Qwen3-VL-30B-A3B-Instruct) and [Qwen3-VL-30B-A3B-Thinking](https://huggingface.co/Qwen/Qwen3-VL-30B-A3B-Thinking). We have also released the FP8 version of the Qwen3-VL models — available in our [HuggingFace collection](https://huggingface.co/collections/Qwen/qwen3-vl-68d2a7c1b8a8afce4ebd2dbe) and [ModelScope collection](https://modelscope.cn/collections/Qwen3-VL-5c7a94c8cb144b)."
+      ]
+    },
+    {
+      "model_id": "ByteDance-Seed/UI-TARS-1.5-7B",
+      "retrieved_at_utc": "2026-10-25T22:55:12.430942+00:00",
+      "revision": "683d002dd99d8f95104d31e70391a39348857f4e",
+      "url": "https://huggingface.co/ByteDance-Seed/UI-TARS-1.5-7B/raw/683d002dd99d8f95104d31e70391a39348857f4e/README.md",
+      "sha256": "fd6ebdc23c119b356e12876c964597d2920e3a2878424a6b5a5b8706e6bc23c4",
+      "bytes": 8370,
+      "card_metadata": {
+        "license": "apache-2.0",
+        "language": [
+          "en"
+        ],
+        "pipeline_tag": "image-text-to-text",
+        "tags": [
+          "multimodal",
+          "gui"
+        ],
+        "library_name": "transformers"
+      },
+      "selected_excerpts": [
+        "license: apache-2.0",
+        "| Computer Use       | [OSWorld](https://arxiv.org/abs/2404.07972)             | 24.6                | 27.5               | **42.5**        |",
+        "| GUI Grounding      | [ScreenSpotPro](https://arxiv.org/pdf/2504.07981v1) | 38.1                | 49.6               | **61.6**        |"
+      ]
+    },
+    {
+      "model_id": "Qwen/Qwen3.5-4B",
+      "retrieved_at_utc": "2026-10-25T22:55:12.431537+00:00",
+      "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-4B/raw/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a/README.md",
+      "sha256": "1406be1b6b8fd8a6545870da516912804756593628a1d0fb0a7965211e82a7bb",
+      "bytes": 77661,
+      "card_metadata": {
+        "library_name": "transformers",
+        "license": "apache-2.0",
+        "license_link": "https://huggingface.co/Qwen/Qwen3.5-4B/blob/main/LICENSE",
+        "pipeline_tag": "image-text-to-text",
+        "base_model": [
+          "Qwen/Qwen3.5-4B-Base"
+        ]
+      },
+      "selected_excerpts": [],
+      "evidence_note": "Vendor model card. Same pinned revisions as main market catalog. GUI/browser scores inspected in HTML table; model-column ordering checked. These are not controlled TTGL comparisons."
+    },
+    {
+      "model_id": "Qwen/Qwen3.5-9B",
+      "retrieved_at_utc": "2026-10-25T22:55:12.432051+00:00",
+      "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-9B/raw/c202236235762e1c871ad0ccb60c8ee5ba337b9a/README.md",
+      "sha256": "c5f5a8c2dddab69cfbf05279235aa5fddb137939a06539c4c7637aa900fef6d0",
+      "bytes": 77643,
+      "card_metadata": {
+        "library_name": "transformers",
+        "license": "apache-2.0",
+        "license_link": "https://huggingface.co/Qwen/Qwen3.5-9B/blob/main/LICENSE",
+        "pipeline_tag": "image-text-to-text",
+        "base_model": [
+          "Qwen/Qwen3.5-9B-Base"
+        ]
+      },
+      "selected_excerpts": [],
+      "evidence_note": "Vendor model card. Same pinned revisions as main market catalog. GUI/browser scores inspected in HTML table; model-column ordering checked. These are not controlled TTGL comparisons."
+    },
+    {
+      "model_id": "Qwen/Qwen3.8-27B",
+      "retrieved_at_utc": "2026-10-25T22:55:12.432595+00:00",
+      "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/README.md",
+      "sha256": "57e4bdb258ee1a7d2635c5174ebd4e56abe392505cdb5f8bbb356b0dc4293641",
+      "bytes": 65012,
+      "card_metadata": {
+        "library_name": "transformers",
+        "license": "apache-2.0",
+        "pipeline_tag": "image-text-to-text"
+      },
+      "selected_excerpts": [],
+      "evidence_note": "Vendor model card. Same pinned revisions as main market catalog. GUI/browser scores inspected in HTML table; model-column ordering checked. These are not controlled TTGL comparisons."
+    },
+    {
+      "dataset_id": "SWE-bench/SWE-bench_Multilingual",
+      "retrieved_at_utc": "2026-10-25T22:59:59.155979+00:00",
+      "revision": "846e647b9f33c0b51b739d005d13d85493c9af09",
+      "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual/raw/846e647b9f33c0b51b739d005d13d85493c9af09/README.md",
+      "sha256": "c8b96ca94b43344556c610bcc4e836ef6b5472e2e1f9ca561aebd5cc011e3a14",
+      "bytes": 4306,
+      "card_metadata": {
+        "language": [
+          "en"
+        ],
+        "license": "mit",
+        "size_categories": [
+          "n<1K"
+        ],
+        "dataset_info": {
+          "features": [
+            {
+              "name": "base_commit",
+              "dtype": "string"
+            },
+            {
+              "name": "created_at",
+              "dtype": "string"
+            },
+            {
+              "name": "eval_type",
+              "dtype": "string"
+            },
+            {
+              "name": "image",
+              "dtype": "string"
+            },
+            {
+              "name": "instance_id",
+              "dtype": "string"
+            },
+            {
+              "name": "log_parser",
+              "dtype": "string"
+            },
+            {
+              "name": "repo",
+              "dtype": "string"
+            },
+            {
+              "name": "version",
+              "dtype": "string"
+            },
+            {
+              "name": "patch",
+              "dtype": "string"
+            },
+            {
+              "name": "test_patch",
+              "dtype": "string"
+            },
+            {
+              "name": "eval_script",
+              "dtype": "string"
+            },
+            {
+              "name": "problem_statement",
+              "dtype": "string"
+            },
+            {
+              "name": "hints_text",
+              "dtype": "string"
+            },
+            {
+              "name": "FAIL_TO_PASS",
+              "list": "string"
+            },
+            {
+              "name": "PASS_TO_PASS",
+              "list": "string"
+            }
+          ],
+          "splits": [
+            {
+              "name": "test",
+              "num_bytes": 4234946,
+              "num_examples": 300
+            }
+          ],
+          "download_size": 1875846,
+          "dataset_size": 4234946
+        },
+        "configs": [
+          {
+            "config_name": "default",
+            "data_files": [
+              {
+                "split": "test",
+                "path": "data/test-*"
+              }
+            ]
+          }
+        ]
+      },
+      "selected_excerpts": [
+        "  - name: FAIL_TO_PASS",
+        "  - name: PASS_TO_PASS",
+        "SWE-bench Multilingual is a dataset that tests systems' ability to resolve real-world GitHub issues across a broad range of programming languages. The original SWE-bench is Python-only; this dataset extends the same task format to **9 languages** drawn from **41 popular repositories**.",
+        "The dataset collects 300 test Issue-Pull Request pairs. Evaluation is performed by unit test verification, using post-PR behavior as the reference solution.",
+        "FAIL_TO_PASS: (list[str]) - The set of tests resolved by the PR and tied to the issue resolution.",
+        "PASS_TO_PASS: (list[str]) - Tests that should pass before and after the PR application.",
+        "Note that `FAIL_TO_PASS` and `PASS_TO_PASS` are stored as **lists of strings** in this dataset, whereas other SWE-bench datasets store them as JSON-encoded strings. There is no `environment_setup_commit` field — environment setup is determined by the repository and `version`."
+      ]
+    },
+    {
+      "repository": "SALT-NLP/Design2Code",
+      "retrieved_at_utc": "2026-10-25T22:59:59.156596+00:00",
+      "commit": "60dc8d4ac6d5ae16db53a133f25535fc0f5b0c11",
+      "url": "https://raw.githubusercontent.com/SALT-NLP/Design2Code/60dc8d4ac6d5ae16db53a133f25535fc0f5b0c11/index.html",
+      "sha256": "4210e199c7fb5a8bdfef1cd6fe240c4bd15d75621bc8decb312cceb285775b13",
+      "bytes": 15972,
+      "license_metadata": null,
+      "selected_excerpts": [
+        "            Generative AI has made rapid advancements in recent years, achieving unprecedented capabilities in multimodal understanding and code generation. This enabled a brand new paradigm of front-end development, where multimodal LLMs can potentially <strong>convert visual designs into code implementations directly</strong>, thus automating the front-end engineering pipeline. In this work, we provide the first systematic study on this visual design to code implementation task (dubbed as Design2Code). We manually curate a benchmark of 484 real-world webpages as test cases and develop a set of automatic evaluation metrics to assess how well current multimodal LLMs can generate the code implementations that directly render into the given reference webpages, given the screenshots as input. We develop a suit of multimodal prompting methods and show their effectiveness on GPT-4V and Gemini Vision Pro. We also finetune an <strong>open-source Design2Code-18B model that successfully matches the performance of Gemini Pro Vision</strong>. Both human evaluation and automatic metrics show that GPT-4V is the clear winner on this task, where annotators think GPT-4V generated webpages can replace the original reference webpages in <strong>49%</strong> cases in terms of visual appearance and content; and perhaps surprisingly, in <strong>64%</strong> cases GPT-4V generated webpages are considered better than even the original reference webpages. Our fine-grained break-down metrics indicate that open-source models mostly lag in recalling visual elements from the input webpages and in generating correct layout designs, while aspects like text content and coloring can be drastically improved with proper finetuning."
+      ]
+    },
+    {
+      "repository": "NoviScl/Design2Code",
+      "commit": "7a575e4c33f417c4be5c64072b8f5798de0d0f99",
+      "url": "https://raw.githubusercontent.com/NoviScl/Design2Code/7a575e4c33f417c4be5c64072b8f5798de0d0f99/README.md",
+      "sha256": "f5fb1276b2aef72fbb0b0583d8948f5f1da55fd6ee9f66aa79eeabfe884c4bfc",
+      "bytes": 8856,
+      "retrieved_at_utc": "2026-10-25T23:00:31.041039+00:00",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "selected_excerpts": [
+        "- The **Design2Code** benchmark dataset for the task of converting visual design (screenshot) into code implementation, which consists of 484 real-world webpages from C4 (examples shown below).",
+        "Taking screenshots and running evaluations also need to install browsers",
+        "After you unzip it into `testset_final/`, the folder should include 484 pairs of screenshots (`xx.png`) and corresponding HTML code (`xx.html`). We also include the placeholder image file `rick.jpg` which is used in the HTML codes.",
+        "The downloaded folder includes 80 pairs of screenshots (`xx.png`) and corresponding HTML code (`xx.html`). We also include the placeholder image file `rick.jpg` which is used in the HTML codes.",
+        "In case you want to take screenshots of webpages by yourself, you can do so by running:",
+        "python3 data_utils/screenshot.py ",
+        "where we assume each directory in the dict contains the predictions of the corresponding model/method (i.e., each directory should contain 484 predicted HTML files for the full test set, or for some subset that you sampled for yourself). The script will compute scores for all automatic metrics for all examples in each directory and store the results in a dictionary, with the following format:"
+      ]
+    }
+  ],
+  "model_claims": [
+    {
+      "model_id": "Qwen/Qwen3.5-4B",
+      "benchmark": "OSWorld-Verified",
+      "score_percent": 35.6,
+      "source_key": "Qwen__Qwen3.5-4B",
+      "evidence_type": "vendor_reported",
+      "harness_limits": "Complete per-benchmark run protocol not established in inspected card"
+    },
+    {
+      "model_id": "Qwen/Qwen3.5-9B",
+      "benchmark": "OSWorld-Verified",
+      "score_percent": 41.8,
+      "source_key": "Qwen__Qwen3.5-4B",
+      "evidence_type": "vendor_reported",
+      "harness_limits": "Shared card comparison; complete per-benchmark run protocol not established"
+    },
+    {
+      "model_id": "Qwen/Qwen3.8-27B",
+      "benchmark": "WebArena-Verified",
+      "score_percent": 64.8,
+      "source_key": "Qwen__Qwen3.8-27B",
+      "evidence_type": "vendor_reported",
+      "harness_limits": "Official WebArena-Verified grader under OSWorld scaffold; exact harness commit, task count and action budget not established in inspected footnote"
+    },
+    {
+      "model_id": "Qwen/Qwen3.8-27B",
+      "benchmark": "OSWorld-Verified",
+      "score_percent": 84.3,
+      "source_key": "Qwen__Qwen3.8-27B",
+      "evidence_type": "vendor_reported",
+      "harness_limits": "Not a browser-only score; complete comparable run protocol not established"
+    },
+    {
+      "model_id": "ByteDance-Seed/UI-TARS-1.5-7B",
+      "benchmark": "OSWorld",
+      "score_percent": 27.5,
+      "source_key": "ByteDance-Seed__UI-TARS-1.5-7B",
+      "evidence_type": "vendor_reported_scale_comparison",
+      "harness_limits": "Historical OSWorld, not current OSWorld-Verified; explicitly 7B column, not headline UI-TARS-1.5 model"
+    },
+    {
+      "model_id": "ByteDance-Seed/UI-TARS-1.5-7B",
+      "benchmark": "ScreenSpotPro",
+      "score_percent": 49.6,
+      "source_key": "ByteDance-Seed__UI-TARS-1.5-7B",
+      "evidence_type": "vendor_reported_scale_comparison",
+      "harness_limits": "Grounding task, not multi-step browser success; explicitly 7B column"
+    }
+  ],
+  "catalog_query": {
+    "url": "https://huggingface.co/api/models?author=ByteDance-Seed&search=UI-TARS&limit=100",
+    "sha256": "ffb4f01f48e763ddd5cc899994eb465cefe301bd8b2f8e9d40928a75f60a53c0",
+    "identifiers": [
+      "ByteDance-Seed/UI-TARS-7B-DPO",
+      "ByteDance-Seed/UI-TARS-1.5-7B",
+      "ByteDance-Seed/UI-TARS-2B-SFT",
+      "ByteDance-Seed/UI-TARS-7B-SFT",
+      "ByteDance-Seed/UI-TARS-72B-SFT",
+      "ByteDance-Seed/UI-TARS-72B-DPO"
+    ],
+    "limitation": "Returned catalog is not proof no other model exists; UI-TARS-2 weights were not established by these inspected official sources",
+    "retrieved_on_utc": "2026-10-25"
+  },
+  "unused_failed_lookups": [
+    {
+      "repository": "browser-art/browser-art",
+      "retrieved_at_utc": "2026-10-25T22:53:45.533482+00:00",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "repository": "browser-art/BrowserART",
+      "retrieved_at_utc": "2026-10-25T22:54:24.912086+00:00",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ]
+}

@@ -1,0 +1,291 @@
+{
+  "as_of_utc": "2026-10-25",
+  "scope": "Adapter compatibility, shared-base serving, KV cache validity and desktop/cloud adaptation; no training or inference experiment performed.",
+  "review_method": "Pinned official documentation/source inspection; targeted full-text inspection of S-LoRA v3, Punica v1 and aLoRA v3. Historical throughput improvements are not used as TTGL predictions.",
+  "limits": [
+    "Current repository commits identify inspected source revisions, not certified end-to-end compatibility for the proposed models.",
+    "No model weights downloaded, customer data used, resources provisioned, or paid inference/training performed.",
+    "Cross-base adapter portability is not assumed; aLoRA cache reuse applies to compatible pre-invocation computation on its shared base."
+  ],
+  "sources": [
+    {
+      "repo": "huggingface/peft",
+      "path": "docs/source/developer_guides/lora.md",
+      "revision": "7d6315ae910bf62b6044a7ca917bccf5881f5e43",
+      "url": "https://raw.githubusercontent.com/huggingface/peft/7d6315ae910bf62b6044a7ca917bccf5881f5e43/docs/source/developer_guides/lora.md",
+      "retrieved_at_utc": "2026-10-25T22:54:35.266952+00:00",
+      "status": "not_retrieved",
+      "error": "HTTP Error 404: Not Found",
+      "evidence_class": "primary_project_documentation_or_source"
+    },
+    {
+      "repo": "huggingface/peft",
+      "path": "docs/source/developer_guides/checkpoint.md",
+      "revision": "7d6315ae910bf62b6044a7ca917bccf5881f5e43",
+      "url": "https://raw.githubusercontent.com/huggingface/peft/7d6315ae910bf62b6044a7ca917bccf5881f5e43/docs/source/developer_guides/checkpoint.md",
+      "retrieved_at_utc": "2026-10-25T22:54:35.267361+00:00",
+      "status": "retrieved",
+      "sha256": "9fff92a556da5c5ae28eaa2e3f645a89d7b9382986c1b043a8f6ceacb286d6c2",
+      "bytes": 13951,
+      "evidence_class": "primary_project_documentation_or_source",
+      "selected_excerpts": [
+        "  \"base_model_name_or_path\": \"bert-base-uncased\",",
+        "- information about the base model like `\"base_model_name_or_path\": \"bert-base-uncased\"`",
+        "  \"base_model_name_or_path\": \"bert-base-uncased\","
+      ]
+    },
+    {
+      "repo": "vllm-project/vllm",
+      "path": "docs/features/lora.md",
+      "revision": "237d2ffd08044b52625453af59f1e47b9802d4ff",
+      "url": "https://raw.githubusercontent.com/vllm-project/vllm/237d2ffd08044b52625453af59f1e47b9802d4ff/docs/features/lora.md",
+      "retrieved_at_utc": "2026-10-25T22:54:35.267771+00:00",
+      "status": "retrieved",
+      "sha256": "990b564b6b7d19d81d056f1b97d0df7716c373e754ec7391735c45a5bd8a5441",
+      "bytes": 21330,
+      "evidence_class": "primary_project_documentation_or_source",
+      "selected_excerpts": [
+        "LoRA adapters can be used with any vLLM model that implements [SupportsLoRA][vllm.model_executor.models.interfaces.SupportsLoRA].",
+        "`--lora-modules {name}={path} {name}={path}` to specify each LoRA module when we kick off the server:",
+        "    --lora-modules sql-lora=jeeejeee/llama32-3b-text2sql-spider"
+      ]
+    },
+    {
+      "repo": "vllm-project/vllm",
+      "path": "docs/features/automatic_prefix_caching.md",
+      "revision": "237d2ffd08044b52625453af59f1e47b9802d4ff",
+      "url": "https://raw.githubusercontent.com/vllm-project/vllm/237d2ffd08044b52625453af59f1e47b9802d4ff/docs/features/automatic_prefix_caching.md",
+      "retrieved_at_utc": "2026-10-25T22:54:35.268350+00:00",
+      "status": "retrieved",
+      "sha256": "56af436bf0c5c714bcd929a731358db495b1a872180a1089a161c0eb1973beb1",
+      "bytes": 3679,
+      "evidence_class": "primary_project_documentation_or_source",
+      "selected_excerpts": []
+    },
+    {
+      "repo": "vllm-project/vllm",
+      "path": "docs/design/prefix_caching.md",
+      "revision": "237d2ffd08044b52625453af59f1e47b9802d4ff",
+      "url": "https://raw.githubusercontent.com/vllm-project/vllm/237d2ffd08044b52625453af59f1e47b9802d4ff/docs/design/prefix_caching.md",
+      "retrieved_at_utc": "2026-10-25T22:54:35.268780+00:00",
+      "status": "retrieved",
+      "sha256": "67ee4e2b7bc23d40e9b366e4a9053ae4ecd0925ddef51f412ac5c16b9dc83a61",
+      "bytes": 13916,
+      "evidence_class": "primary_project_documentation_or_source",
+      "selected_excerpts": [
+        "* Extra hashes: Other values required to make this block unique, such as LoRA IDs, multi-modality input hashes (see the example below), and cache salts to isolate caches in multi-tenant environments."
+      ]
+    },
+    {
+      "repo": "S-LoRA/S-LoRA",
+      "path": "README.md",
+      "revision": "c1ddf488781ea7f551cd0bb07bfd097124c93411",
+      "url": "https://raw.githubusercontent.com/S-LoRA/S-LoRA/c1ddf488781ea7f551cd0bb07bfd097124c93411/README.md",
+      "retrieved_at_utc": "2026-10-25T22:54:35.269098+00:00",
+      "status": "retrieved",
+      "sha256": "3dd96cac5bf7a5863881f9fcbdb83b8321f6204f9ece3cc14900ea9ef462cf16",
+      "bytes": 7145,
+      "evidence_class": "primary_project_documentation_or_source",
+      "selected_excerpts": [
+        "Unified Paging. Unified Paging uses a unified memory pool to manage dynamic",
+        "- Unified Paging: To reduce memory fragmentation and increase batch size, S-LoRA introduces a unified memory pool. This pool manages dynamic adapter weights and KV cache tensors by a unified paging mechanism.",
+        "S-LoRA-no-unify-mem: S-LoRA without the Unified Paging."
+      ]
+    },
+    {
+      "repo": "punica-ai/punica",
+      "path": "README.md",
+      "revision": "591b59899f0a20760821785d06b331c8a2e5cb86",
+      "url": "https://raw.githubusercontent.com/punica-ai/punica/591b59899f0a20760821785d06b331c8a2e5cb86/README.md",
+      "retrieved_at_utc": "2026-10-25T22:54:35.271060+00:00",
+      "status": "retrieved",
+      "sha256": "a4c5dc40028221d0985bcecbb61423e4b50ffaa666a5e214c9a34806ba4bd04d",
+      "bytes": 4556,
+      "evidence_class": "primary_project_documentation_or_source",
+      "selected_excerpts": []
+    },
+    {
+      "repo": "ml-explore/mlx-lm",
+      "path": "README.md",
+      "revision": "4cfc6478473b0668ede3eb0cc93f2a9181a15052",
+      "url": "https://raw.githubusercontent.com/ml-explore/mlx-lm/4cfc6478473b0668ede3eb0cc93f2a9181a15052/README.md",
+      "retrieved_at_utc": "2026-10-25T22:54:35.271863+00:00",
+      "status": "retrieved",
+      "sha256": "fc4dc67d70ca364ef8c2f94e84d170072d3c5f4fdfd2aa7a7be7a38a6b3d0008",
+      "bytes": 8569,
+      "evidence_class": "primary_project_documentation_or_source",
+      "selected_excerpts": []
+    },
+    {
+      "repo": "ml-explore/mlx-lm",
+      "path": "mlx_lm/LORA.md",
+      "revision": "4cfc6478473b0668ede3eb0cc93f2a9181a15052",
+      "url": "https://raw.githubusercontent.com/ml-explore/mlx-lm/4cfc6478473b0668ede3eb0cc93f2a9181a15052/mlx_lm/LORA.md",
+      "retrieved_at_utc": "2026-10-25T22:54:35.524135+00:00",
+      "status": "retrieved",
+      "sha256": "305fec69ccbde4c5b8f2c752ab889258bfa7192f2ec7e2b767ad641c57021852",
+      "bytes": 13741,
+      "evidence_class": "primary_project_documentation_or_source",
+      "selected_excerpts": [
+        "To fine-tune the full model weights, add the `--fine-tune-type full` flag."
+      ]
+    },
+    {
+      "repo": "ggml-org/llama.cpp",
+      "path": "examples/server/README.md",
+      "revision": "48c9f08b7b25766324282b7605177e2f2be755bb",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/48c9f08b7b25766324282b7605177e2f2be755bb/examples/server/README.md",
+      "retrieved_at_utc": "2026-10-25T22:54:35.534619+00:00",
+      "status": "not_retrieved",
+      "error": "HTTP Error 404: Not Found",
+      "evidence_class": "primary_project_documentation_or_source"
+    },
+    {
+      "repo": "huggingface/peft",
+      "path": "docs/source/package_reference/lora.md",
+      "revision": "7d6315ae910bf62b6044a7ca917bccf5881f5e43",
+      "url": "https://raw.githubusercontent.com/huggingface/peft/7d6315ae910bf62b6044a7ca917bccf5881f5e43/docs/source/package_reference/lora.md",
+      "retrieved_at_utc": "2026-10-25T22:55:01.524072+00:00",
+      "status": "retrieved",
+      "sha256": "fcd796dbc49b6ff252a8de3a87c02acb9c07e8f39d1ed5e773bd6d8602b74dcb",
+      "bytes": 75226,
+      "evidence_class": "primary_project_documentation_or_source",
+      "selected_excerpts": [
+        "This technique scans for the last occurrence of an invocation sequence (`alora_invocation_tokens`) in each input (this can be as short as 1 token). It activates the adapter weights on tokens starting with the beginning of the invocation sequence. Any inputs af",
+        "config = LoraConfig(alora_invocation_tokens=alora_invocation_tokens, task_type=\"CAUSAL_LM\", ...)",
+        "alora_invocation_tokens` is a list of integer token ids. Given a desired invocation string, this can be obtained as:"
+      ]
+    },
+    {
+      "repo": "huggingface/peft",
+      "path": "examples/alora_finetuning/README.md",
+      "revision": "7d6315ae910bf62b6044a7ca917bccf5881f5e43",
+      "url": "https://raw.githubusercontent.com/huggingface/peft/7d6315ae910bf62b6044a7ca917bccf5881f5e43/examples/alora_finetuning/README.md",
+      "retrieved_at_utc": "2026-10-25T22:55:01.524498+00:00",
+      "status": "retrieved",
+      "sha256": "33f0948600c27659413481caf903e6f54c26dc5202c45a8182ada44f87ee8126",
+      "bytes": 3030,
+      "evidence_class": "primary_project_documentation_or_source",
+      "selected_excerpts": [
+        "    alora_invocation_tokens=invocation_tokens,",
+        "    --lora_r 32 \\",
+        "    --lora_alpha 32 \\"
+      ]
+    },
+    {
+      "repo": "huggingface/peft",
+      "path": "src/peft/tuners/lora/config.py",
+      "revision": "7d6315ae910bf62b6044a7ca917bccf5881f5e43",
+      "url": "https://raw.githubusercontent.com/huggingface/peft/7d6315ae910bf62b6044a7ca917bccf5881f5e43/src/peft/tuners/lora/config.py",
+      "retrieved_at_utc": "2026-10-25T22:55:01.524963+00:00",
+      "status": "retrieved",
+      "sha256": "8af5cf06b8d81ca7d9065c427e727be16e8273b4396be2c831477acff4ed3507",
+      "bytes": 78994,
+      "evidence_class": "primary_project_documentation_or_source",
+      "selected_excerpts": [
+        "        alora_invocation_tokens (`List[int]`):",
+        "            alora_invocation_tokens being the tokenized invocation string for the adapter (must be present in all model",
+        "            the alora_invocation_tokens. When used in a CausalLM, this means that the KV cache prior to invocation is"
+      ]
+    },
+    {
+      "repo": "huggingface/peft",
+      "path": "docs/source/package_reference/hotswap.md",
+      "revision": "7d6315ae910bf62b6044a7ca917bccf5881f5e43",
+      "url": "https://raw.githubusercontent.com/huggingface/peft/7d6315ae910bf62b6044a7ca917bccf5881f5e43/docs/source/package_reference/hotswap.md",
+      "retrieved_at_utc": "2026-10-25T22:55:01.525309+00:00",
+      "status": "retrieved",
+      "sha256": "08ab2c1f30696d61876a8da1fa22a2d600032a8edd77cae3ed9f4540b6153b15",
+      "bytes": 3382,
+      "evidence_class": "primary_project_documentation_or_source",
+      "selected_excerpts": [
+        "- The adapter that is being swapped in must target the same layers as the previous adapter or a subset of those layers. It cannot target new layers. Therefore, if possible, start with the adapter that targets most layers."
+      ]
+    },
+    {
+      "repo": "ggml-org/llama.cpp",
+      "path": "tools/server/README.md",
+      "revision": "48c9f08b7b25766324282b7605177e2f2be755bb",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/48c9f08b7b25766324282b7605177e2f2be755bb/tools/server/README.md",
+      "retrieved_at_utc": "2026-10-25T22:55:01.525759+00:00",
+      "status": "retrieved",
+      "sha256": "009af291f69adaa041be4e79f1550e5f36bcaf3a929373091a7e4ac9b7bbac0c",
+      "bytes": 126663,
+      "evidence_class": "primary_project_documentation_or_source",
+      "selected_excerpts": [
+        "| `--lora FNAME` | path to LoRA adapter (use comma-separated values to load multiple adapters) |",
+        "| `--lora-scaled FNAME:SCALE,...` | path to LoRA adapter with user defined scaling (format: FNAME:SCALE,...)<br/>note: use comma-separated values |",
+        "| `--lora-init-without-apply` | load LoRA adapters without applying them (apply later via POST /lora-adapters) (default: disabled) |"
+      ]
+    },
+    {
+      "repo": "ggml-org/llama.cpp",
+      "path": "tools/export-lora/README.md",
+      "revision": "48c9f08b7b25766324282b7605177e2f2be755bb",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/48c9f08b7b25766324282b7605177e2f2be755bb/tools/export-lora/README.md",
+      "retrieved_at_utc": "2026-10-25T22:55:01.528952+00:00",
+      "status": "retrieved",
+      "sha256": "ae4514f0366c02ff61aa7b2b6a07b79b5b24d210d6cdbfee455adb60b150d6ac",
+      "bytes": 1028,
+      "evidence_class": "primary_project_documentation_or_source",
+      "selected_excerpts": [
+        "         --lora FNAME                   path to LoRA adapter (use comma-separated values to load multiple adapters)",
+        "         --lora-scaled FNAME:SCALE,...  path to LoRA adapter with user defined scaling (format: FNAME:SCALE,...)",
+        "    --lora lora-open-llama-3b-v2-english2tokipona-chat-LATEST.gguf"
+      ]
+    },
+    {
+      "key": "slora_paper",
+      "url": "https://arxiv.org/html/2311.03285v3",
+      "retrieved_at_utc": "2026-10-25T22:55:23.025225+00:00",
+      "status": "retrieved",
+      "sha256": "646b8cb3a0787a24f323b192ce30810e32cc614a2dcd56fecafc11b60862530c",
+      "bytes": 227201,
+      "evidence_class": "primary_paper"
+    },
+    {
+      "key": "punica_paper",
+      "url": "https://arxiv.org/html/2310.18547v4",
+      "retrieved_at_utc": "2026-10-25T22:55:23.025779+00:00",
+      "status": "not_retrieved",
+      "error": "HTTP Error 404: Not Found",
+      "evidence_class": "primary_paper"
+    },
+    {
+      "key": "alora_paper",
+      "url": "https://arxiv.org/html/2504.12397v3",
+      "retrieved_at_utc": "2026-10-25T22:55:23.026166+00:00",
+      "status": "retrieved",
+      "sha256": "7b4103ce148b280fdce90d07b043306ee20e2c693e36fe6c9ea4a68039bdfca9",
+      "bytes": 303863,
+      "evidence_class": "primary_paper"
+    },
+    {
+      "key": "punica_abstract",
+      "url": "https://arxiv.org/abs/2310.18547",
+      "retrieved_at_utc": "2026-10-25T22:55:50.704573+00:00",
+      "status": "retrieved",
+      "sha256": "2ebf45ae140525e7b386f480f6bc309bd2308879ce96570eb2a1bd0858b45e1b",
+      "bytes": 40959,
+      "evidence_class": "primary_paper"
+    },
+    {
+      "key": "punica_paper_v2",
+      "url": "https://arxiv.org/html/2310.18547v2",
+      "retrieved_at_utc": "2026-10-25T22:55:50.935976+00:00",
+      "status": "not_retrieved",
+      "error": "HTTP Error 404: Not Found",
+      "evidence_class": "primary_paper"
+    },
+    {
+      "key": "punica_paper_pdf",
+      "url": "https://arxiv.org/pdf/2310.18547",
+      "retrieved_at_utc": "2026-10-25T22:56:44.230704+00:00",
+      "status": "retrieved",
+      "sha256": "1d015550e7c3c13fc2574fd2cdfa48b343a5b6d02f2bf8607c2e568d7a619944",
+      "bytes": 866772,
+      "evidence_class": "primary_paper",
+      "observed_document_version": "arXiv:2310.18547v1; 28 October 2023"
+    }
+  ]
+}

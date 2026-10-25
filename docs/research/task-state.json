@@ -82,6 +82,41 @@
       "title": "Freeze repository-level run manifests and execute funded paired SWE evaluation",
       "status": "pending_integration_credentials_and_costed_resource_plan",
       "study_scope": "prospective_repository_level_software_engineering"
+    },
+    {
+      "id": "local-15",
+      "title": "Expand thesis and ADR to cost-aware specialist model portfolios",
+      "status": "completed",
+      "study_scope": "prospective_cross_domain_portfolio",
+      "artifact": "docs/thesis/ensemble-methodology.md"
+    },
+    {
+      "id": "local-16",
+      "title": "Review browser, frontend and multilingual benchmark designs",
+      "status": "completed",
+      "study_scope": "prospective_cross_domain_portfolio",
+      "artifact": "docs/thesis/browser-domain.md"
+    },
+    {
+      "id": "local-17",
+      "title": "Add attributable task prices and reproducible cost scenarios",
+      "status": "completed",
+      "study_scope": "prospective_cross_domain_portfolio",
+      "artifact": "docs/thesis/task-economics.md"
+    },
+    {
+      "id": "local-18",
+      "title": "Specify per-customer adaptation and cache-aware switching study",
+      "status": "completed",
+      "study_scope": "prospective_cross_domain_portfolio",
+      "artifact": "docs/thesis/adaptation-and-switching.md"
+    },
+    {
+      "id": "local-19",
+      "title": "Integrate browser harness and multi-model router using existing frameworks",
+      "status": "planned",
+      "study_scope": "prospective_cross_domain_portfolio",
+      "artifact": "docs/adr/0004-specialist-model-portfolio.md"
     }
   ],
   "runpod_budget": {
@@ -93,7 +128,7 @@
     "actual_spend_usd": 0,
     "status": "blocked_missing_api_key_and_runtime_access"
   },
-  "updated_at_utc": "2026-10-25T22:48:28.350551+00:00",
+  "updated_at_utc": "2026-10-25T23:03:54.360355+00:00",
   "evidence": {
     "results": "results/routing-pilot-001",
     "reproduction": "results/reproduction-verification.json",
@@ -104,6 +139,10 @@
     "pre_results_thesis": "docs/thesis/thesis.pdf",
     "thesis_sources": "docs/thesis/README.md",
     "thesis_evidence_audit": "docs/thesis/evidence-audit.json",
-    "repository_level_swe_results": "not_run"
+    "repository_level_swe_results": "not_run",
+    "portfolio_and_browser_results": "not_run",
+    "portfolio_protocol": "docs/thesis/ensemble-methodology.md",
+    "task_price_evidence": "docs/thesis/task-price-checks.json",
+    "portfolio_evidence_review": "docs/thesis/portfolio-review.json"
   }
 }

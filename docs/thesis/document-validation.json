@@ -1,22 +1,24 @@
 {
   "status": "passed",
-  "scope": "document_and_source_consistency_not_model_performance",
-  "pages": 59,
-  "approximate_words": 19684,
-  "bibliography_entries": 26,
-  "cited_entries": 26,
-  "manifest_hashes_verified": 25,
+  "scope": "document_source_and_price_arithmetic_not_model_performance",
+  "pages": 91,
+  "approximate_words": 30066,
+  "bibliography_entries": 46,
+  "cited_entries": 46,
+  "manifest_hashes_verified": 38,
   "missing_local_links": [],
   "docx_zip_xml_and_equations": "passed",
   "html_embedded_figure_and_mathml": "passed",
   "historical_replay_values_excluded": true,
   "pdf_words_outside_generous_margins": [],
   "reviewed_layouts": [
-    "table_of_contents",
-    "architecture",
-    "pricing_table",
-    "historical_accuracy_table",
-    "experimental_arms"
+    "title",
+    "portfolio_architecture",
+    "historical_task_costs",
+    "browser_domain",
+    "ensemble_methodology"
   ],
-  "research_results": "not_run"
+  "price_arithmetic_and_unknown_rate_checks": "passed",
+  "historical_cost_rows_recomputed": 6,
+  "portfolio_and_browser_results": "not_run"
 }

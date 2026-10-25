@@ -1,0 +1,16 @@
+{
+  "historical_rows": 6,
+  "illustrative_rows": 16,
+  "source_sha256": {
+    "accuracy-context-sources.json": "57a1551839b40c3f65c413d3554a8dd4cc5e4a8e1961edb8924eae1a8aa410e8",
+    "model-catalog.csv": "ed14ac603bae83d91b1bd425134ef538b9b2fe196baa01ac6e00916bbb674fbd"
+  },
+  "upstream_verification": {
+    "status": "passed",
+    "sha256": "83cd949a9582f4dd68b0a07148cd86ff0eae6a05b0f2d2298a8f3717baf89d2d",
+    "rows": 6,
+    "task_records_checked": 3000,
+    "model_inference": false
+  },
+  "unknown_positive_token_rate_remains_unknown": true
+}

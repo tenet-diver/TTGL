@@ -16,6 +16,8 @@ The research repository contains reusable components, but not all proposed empir
 
 In particular, an old Transformers or serving-engine pin must not be assumed to support a newly released hybrid-attention or mixture-of-experts architecture. Each selected checkpoint requires a capability preflight: tokenizer/template agreement, generation, stop behavior, output extraction, context limits, model precision and intended adapter targets. A change made to satisfy that preflight is recorded before the relevant run.
 
+Additional portfolio, browser-domain and customer-adapter experiments are designed but have no TTGL performance results. The task-price tables are attributed historical observations or explicitly hypothetical arithmetic, not measurements of these new systems. Supporting document and arithmetic checks validate transcription and calculations only.
+
 ## Reproducibility package
 
 The experiment package will include immutable source references, configuration files, data split manifests, environment specifications, policy parameters and execution commands. Each released result is linked to a code revision and dependency lock. Raw artifacts are retained unchanged, and derived artifacts identify their source hashes. A rerun is written to a new directory so it cannot silently overwrite contradictory evidence.
@@ -44,7 +46,7 @@ The research also considers distributional effects of the objective. Maximizing 
 
 ## Construct validity
 
-Benchmark resolution is a narrow operational definition of software-engineering accuracy. It measures whether the final patch satisfies specified tests under a particular evaluator. It does not fully measure code readability, maintainability, security, user satisfaction or long-term regressions. A no-tools LLM, a single-model agent and a routed agent are different systems; comparisons must name the system-level intervention.
+Benchmark resolution is a narrow operational definition of software-engineering accuracy. It measures whether the final patch satisfies specified tests under a particular evaluator. It does not fully measure code readability, maintainability, security, user satisfaction or long-term regressions. A no-tools LLM, a single-model agent and a portfolio-routed agent are different systems; comparisons must name the system-level intervention.
 
 “Confidence” has several meanings: token likelihood, a model's verbal self-assessment, a classifier's predicted success probability and a policy's estimate of utility. Treating them interchangeably weakens the causal argument. The thesis defines the prediction target and evaluates calibration for that target. Speculative-decoding acceptance is not reused as a proof of task correctness.
 
@@ -62,9 +64,11 @@ Distillation adds the risk that the student is evaluated on targets or task fami
 
 Public benchmarks represent a limited set of repositories, languages and issue types. Repeated use by model developers may make them easier than novel customer work. A temporal task split helps only if the chosen model did not see the relevant tasks during its training or post-training; a recent benchmark date alone does not establish that fact.
 
-The study therefore combines a stable benchmark with a prespecified repository-unseen analysis and, if resources permit, an external benchmark using its own pinned harness. Scores from the external benchmark are reported separately. Failure to reproduce a ranking across benchmarks is a result about transfer, not a reason to silently choose the more favorable benchmark.
+The study therefore combines a stable software-engineering benchmark with a prespecified repository-unseen analysis and, if resources permit, external multilingual/frontend evaluations and a separate browser-domain study using their own pinned harnesses. Scores from the external benchmark are reported separately. Failure to reproduce a ranking across benchmarks is a result about transfer, not a reason to silently choose the more favorable benchmark.
 
 Local hardware is another source of variation. GPU memory capacity, memory bandwidth, CPU support, quantization kernels and thermal limits affect latency and practical model choice. A single 80 GB cloud GPU is useful for training and controlled inference but is not evidence about ordinary laptops. The final product claim requires separate device measurements or a clearly restricted hardware scope.
+
+Portfolio breadth creates additional external-validity limits. A router fitted to a few eligible models is not evidence about every free or open-weight release. A dataset dominated by one language cannot establish language specialization, and browser navigation scores cannot establish frontend implementation quality. A customer adapter evaluated on its own training templates cannot establish transfer to new customer workflows. New release epochs and new customer cohorts require fresh development and held-out evidence.
 
 ## Resource and completion boundaries
 
@@ -85,8 +89,12 @@ No empirical results chapter is included in this draft. After execution, it will
 | Local-only agent | Pending | Pending | Pending | Pending | Pending |
 | Open-weight remote-only agent | Pending | Pending | Pending | Pending | Pending |
 | Closed-model remote-only agent | Pending | Pending | Pending | Pending | Pending |
-| Dual-model policy | Pending | Pending | Pending | Pending | Pending |
+| Restricted two-model policy | Pending | Pending | Pending | Pending | Pending |
+| Frozen multi-model portfolio | Pending | Pending | Pending | Pending | Pending |
+| Development-selected domain lookup | Pending | Pending | Pending | Pending | Pending |
 | Random policy matched on calibration cost | Pending | Pending | Pending | Pending | Pending |
+
+Produce this table separately for each benchmark/domain, deployment scenario and portfolio epoch. The fixed primary reference is chosen on development data. Add explicit columns or linked manifests for adapter identity, cold/warm state and cost boundary; no historical accuracy score is inserted into an unrun condition.
 
 ## Routing and student diagnostics {.unnumbered}
 
@@ -95,10 +103,13 @@ No empirical results chapter is included in this draft. After execution, it will
 | Local coverage | Tasks completed without remote model assistance | Pending |
 | Calibration | Predicted versus observed task/continuation success | Pending |
 | Routing gain | Paired utility difference at comparable cost | Pending |
+| Specialist contribution | Remove-one-model ablation and added maintenance cost | Pending |
+| Switching effect | Task-level versus actual phase/call handoff | Pending |
+| Portfolio refresh | Frozen epoch versus development-selected new epoch | Pending |
 | Student effect | Base versus adapted student under the same harness | Pending |
 | Router adaptation effect | Frozen versus recalibrated router after student update | Pending |
 | Amortization | Training cost relative to measured eligible savings | Pending |
 
 ## Run manifest checklist {.unnumbered}
 
-Required fields are task, repository and base commit; benchmark revision; harness commit; image digest; condition; model, adapter and tokenizer revisions; decoding configuration; seed where supported; routing features and decision; context, tool, iteration and time limits; usage categories; actual billed rates; final patch; evaluator output; failure class; start and end timestamps; resource cleanup; artifact hashes; and analysis-code revision. Unknown values remain explicitly unknown.
+Required fields are task, repository and base commit; benchmark revision; harness commit; image digest; condition; portfolio epoch and eligibility set; model, adapter and tokenizer revisions; decoding configuration; seed where supported; routing features and decision; context, tool, iteration and time limits; usage categories; actual billed rates; final patch; evaluator output; failure class; start and end timestamps; resource cleanup; artifact hashes; and analysis-code revision. Unknown values remain explicitly unknown.

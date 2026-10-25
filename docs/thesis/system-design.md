@@ -2,53 +2,55 @@
 
 ## Design principles
 
-The system follows a reuse-first principle. Existing software supplies the agent loop, repository tools, local inference, provider API adaptation, training and benchmark execution. Custom components are introduced only for the research question: recording the decision state, applying a routing policy, measuring costs and joining outcomes to immutable task identifiers. This separation helps avoid comparing an extensively engineered dual system against an artificially weak baseline.
+The system follows a reuse-first principle. Existing software supplies the agent loop, repository tools, local inference, provider API adaptation, training and benchmark execution. Custom components are introduced only for the research question: recording the decision state, applying a routing policy, measuring costs and joining outcomes to immutable task identifiers. This separation helps avoid comparing an extensively engineered portfolio system against an artificially weak baseline.
 
-The proposed repository-level harness is mini-SWE-agent, subject to a pinned-version integration check. Its command-oriented interface allows the same repository interaction pattern to be used with multiple model providers. Ollama or llama.cpp is a candidate local deployment runtime; the actual supported model architecture, quantization, chat template and tool behavior must be verified together. A hosted endpoint can initially provide the remote model. Transformers, PEFT and TRL provide the student-training stack. Choosing these components is a design decision, not a claim that all combinations have passed compatibility tests.
+The proposed repository-level harness is mini-SWE-agent, subject to a pinned-version integration check. Its command-oriented interface allows the same repository interaction pattern to be used with multiple model providers. Ollama or llama.cpp is a candidate local deployment runtime; the actual supported model architecture, quantization, chat template and tool behavior must be verified together. AgentLab/BrowserGym is the browser-domain scaffold candidate. Managed endpoints or vLLM can supply remote configurations, including small models and compatible customer adapters. Transformers, PEFT and TRL provide the student-training stack. Choosing these components is a design decision, not a claim that all combinations have passed compatibility tests.
 
 The experiment separates four concerns: the policy determines which model to use; the model proposes an action; the harness determines whether and how that action may execute; and the evaluator assesses the final artifact in an independent environment. A model switch does not grant new tool permissions. Tests used by the agent for development are distinguished from hidden benchmark checks used for final scoring.
 
 ![Proposed architecture and evidence flow. Arrows indicate interfaces, not measured performance.](figures/architecture.png){width=95%}
 
-## State and action spaces
+## Model registry, state and eligible actions
 
-Let task $i$ be an issue description paired with a repository at a fixed base commit. At decision step $t$, the observable state is
+The model registry records each candidate's domain and modality support, checkpoint or service revision, license, tokenizer/template, precision, inference settings, endpoint, measured resource requirements and compatible adapter identity. It distinguishes capabilities documented by a provider from capabilities verified in the common harness. A customer preference for a provider, an offline-only mode or a device memory limit changes the eligible set before the router scores it.
 
-$$
-s_{it}=(x_i, h_{it}, w_{it}, b_{it}, d_i),
-$$
-
-where $x_i$ contains the task and permitted repository context, $h_{it}$ is the interaction history, $w_{it}$ records workspace changes and available verification evidence, $b_{it}$ is the remaining budget, and $d_i$ describes the eligible deployment configuration. The router receives a documented feature function $\phi(s_{it})$. It cannot access hidden evaluation tests, reference patches, future tool results or the eventual resolution label.
-
-The minimal action set is $\mathcal{A}=\{L,R,\mathrm{stop}\}$, where $L$ and $R$ request local or remote continuation. A sequential extension may include an explicit verification action $V$. Its benefit and cost must be assessed as an action; verification is not a free source of confidence. The initial confirmatory policy is kept simple enough to attribute differences to routing. Richer orchestration, parallel branches and multiple simultaneous agents are separate experiments.
-
-A policy $\pi(a\mid s)$ chooses an action subject to hard constraints. These include user/provider permissions, model capability, context capacity and remaining budget. Confidence cannot override a prohibition on sending a repository to a remote provider. When no permitted action fits the remaining budget, the task terminates with a recorded unresolved or budget-exhausted outcome rather than silently changing the experimental conditions.
-
-## Estimating benefit rather than asking for confidence
-
-Let $p_m(x)$ be the conditional probability that a bounded run with model $m$ resolves the task under the common harness. A pre-call router can estimate
+Let task $i$ describe an issue or browser objective in a pinned environment. At decision step $t$, the observable state is
 
 $$
-\Delta p(x)=p_R(x)-p_L(x).
+s_{it}=(x_i,h_{it},w_{it},b_{it},d_i,m_{t-1},e),
 $$
 
-It may prefer remote execution when the expected benefit exceeds an incremental-cost penalty:
+where $x_i$ contains permitted task context, $h_{it}$ is interaction history, $w_{it}$ is the observable workspace or browser state, $b_{it}$ is remaining budget, $d_i$ records deployment and customer constraints, $m_{t-1}$ identifies the current configuration, and $e$ identifies the frozen portfolio epoch. The router receives a declared feature function $\phi(s_{it})$. It cannot access hidden evaluation tests, reference patches, future tool results or eventual success labels.
+
+The eligible model configurations are $\mathcal M_e(s)\subseteq\{m_1,\ldots,m_K\}$. The action set contains those configurations and a stop action. Verification may be an explicit action in a secondary sequential experiment and carries its own resource cost. The initial treatment selects one model configuration for the complete attempt. Parallel voting, multiple simultaneous agents and weight merging are separate interventions, not necessary features of this portfolio.
+
+A policy $\pi(m\mid s,\lambda)$ chooses an eligible action subject to permissions, context capacity and budget. It records whether a candidate was excluded by capability, price, memory, availability or customer policy. No candidate fitting the remaining constraints yields a recorded unresolved or budget-exhausted outcome. An undocumented fallback must not silently change the experimental condition.
+
+## Expected utility and customer price sensitivity
+
+For configuration $m$, let $p_m(s)$ be the probability of successful task completion under a bounded continuation, $c_m(s)$ its expected remaining economic cost, and $\ell_m(s)$ its expected remaining latency. The quality definition belongs to the domain evaluator. A simple proposed decision rule is
 
 $$
-\widehat{\Delta p}(x) > \lambda\,\widehat{\Delta C}(x),
+m^*(s)=\operatorname*{arg\,max}_{m\in\mathcal M_e(s)}
+\left[\widehat p_m(s)-\lambda\widehat c_m(s)
+-\eta\widehat\ell_m(s)-\widehat\kappa(m_{t-1},m,s)\right].
 $$
 
-with $\lambda$ chosen using development data according to the prespecified cost or quality constraint. This expression does not assert that resolution and cost are perfectly predictable. It defines a decision objective and exposes the quantities requiring calibration. A small classifier, an embedding-based predictor or an existing routing model can instantiate it; a separate generative router is not required by the architecture.
+Here $\lambda$ expresses the cost penalty, $\eta$ expresses latency preference, and $\kappa$ expresses any additional handoff penalty in the same utility units. Monetary and time components of handoff are included either in $c_m,\ell_m$ or in $\kappa$, never twice. Quality loss from summarization or state transfer should be reflected in continuation success estimates. These are quantities to measure and calibrate; the notation is not evidence that they are known accurately.
 
-The local-failure comparator ranks by $1-\widehat p_L(x)$. It is informative because it tests the intuitive hypothesis that local uncertainty is enough. The benefit predictor instead asks whether remote execution is expected to change the outcome. The latter objective can direct remote resources toward tasks with a realistic chance of improvement rather than those that are simply difficult. If the product values particular classes of requests, their utility weights must be declared before evaluation rather than inferred after seeing which tasks the policy serves.
+The product can expose a price-per-task budget or an accepted quality target rather than an uninterpretable numerical $\lambda$. Development data map that preference to a calibrated policy. Both an expected-spend target and a hard attempt cap are recorded: an expectation alone is not a guarantee about any individual bill. Higher price sensitivity may favor a hosted small model, a local model or an inexpensive specialist, depending on the complete costs. Neither size nor location fixes the choice.
 
-Calibration is an empirical relationship between predictions and outcomes. A statement such as “I am 90% confident” is not accepted as a calibrated probability. Token log probabilities, hidden-state features and self-evaluation outputs are candidate features, not correctness guarantees. Their acquisition overhead is recorded, and a feature is excluded if it requires information unavailable at the policy's decision point.
+The earlier two-model rule is a special case. With candidates $L$ and $R$ and equal nonfinancial constraints, choosing $R$ requires its expected success improvement over $L$ to justify its incremental cost. A local-failure score $1-\widehat p_L$ is an informative comparator, but it does not identify which of several alternatives can help. For a larger pool, success and cost estimates must be assessed per candidate and on the tasks where the policy selects it.
+
+Task features can include permitted issue/context embeddings, programming languages, frontend/backend indicators, browser modality and resource availability. These labels can overlap, and a task can require several capabilities. A domain label is a useful low-cost baseline rather than a reason to assume one model is universally best for that domain. Features requiring a model call or repository analysis incur acquisition cost.
+
+Calibration is an empirical relationship between predictions and outcomes. Verbal confidence, token likelihood and self-evaluation are candidate features, not correctness guarantees. Outcome-informed selection over all candidates measures diagnostic headroom; it does not demonstrate that the deployed router reaches the union of their capabilities. New models acquire development evidence and a versioned router/calibration update before joining a test epoch. This does not require retraining every generator, and retraining the router alone does not prove that a new candidate is useful.
 
 ## Sequential delegation and state continuity
 
-A local-first cascade differs from pre-call selection. It first pays for a local attempt, observes its permitted evidence and then decides whether to escalate. If the local attempt changes files, the remote continuation must receive a well-defined state: base commit, current patch, task objective, executed commands, outcomes and remaining budget. Unfinished tools are completed or cancelled before switching. The system does not attempt to transfer incompatible key–value caches or opaque provider reasoning representations.
+A sequential handoff differs from task-level selection. It first pays for work by one configuration, observes permitted evidence and then decides whether another should continue. If the first attempt changes files, the continuation receives a well-defined state: base commit, current patch, task objective, executed commands, outcomes and remaining budget. A browser handoff additionally preserves the authenticated session, tabs, navigation state and side-effect record through the shared browser environment; session state is distinct from a model cache. Unfinished tools are completed or cancelled before switching. The system does not attempt to transfer incompatible key–value caches or opaque provider reasoning representations.
 
-The cost of an unsuccessful local attempt remains part of the dual system's cost. Remote repair can also require extra context, and its probability of success may differ from starting remotely. The thesis therefore distinguishes $p_R(x)$ from $p_R(s_{it})$ after local work. Assuming that the same remote-only outcome can simply be substituted after any local failure would erase a central system effect.
+All work before handoff remains part of the portfolio's cost. A continuation can require extra context and have different success probability from a fresh attempt. The study distinguishes $p_m(x)$ from $p_m(s_{it})$ after another configuration has acted. Substituting an archived standalone outcome for that continuation would erase a central system effect. The default is to retain a model for an entire attempt; phase-level switching and a minimum net-benefit margin are tested before unrestricted per-call switching. The adaptation and switching chapter defines cache and adapter compatibility boundaries.
 
 For paired comparisons, every experimental condition starts from the same immutable repository snapshot. Workspaces, generated files and cached agent conclusions are isolated by task, seed and condition. Dependency caches may be shared only when they do not expose solutions or mutable task state. Replaying a tool event is not equivalent to re-executing it: external side effects, generated dependencies and process state require explicit treatment.
 
@@ -88,7 +90,7 @@ RLAIF describes the use of AI-generated feedback. It is distinct from using exec
 
 ## Adaptation and routing as separate interventions
 
-An adapted student changes the distribution of errors on which the router was trained. The experiment evaluates both a frozen router with the adapted student and a newly calibrated router fitted without final-test labels. This forms a factorial distinction between student capability and routing adaptation. Otherwise, an apparent gain in local coverage could be attributed incorrectly to the language model when it arose from threshold changes.
+An adapted portfolio member changes the distribution of errors on which the router was trained. The experiment evaluates both a frozen router with the adapted student and a newly calibrated router fitted without final-test labels. This forms a factorial distinction between student capability and routing adaptation. Otherwise, an apparent gain in inexpensive-model coverage could be attributed incorrectly to the generator when it arose from changed allocation. A customer may share verified examples across compatible training pipelines while retaining a separate adapter artifact for each selected base revision.
 
 Model/adapter releases are immutable artifacts with hashes, base revision, tokenizer revision and training provenance. The exact deployed artifact—including quantization or adapter merging—is reevaluated. Training-time loss alone is not a software-engineering outcome, and improvements before export do not guarantee the same behavior in a local runtime.
 

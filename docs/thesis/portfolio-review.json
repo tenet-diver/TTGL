@@ -1,0 +1,125 @@
+{
+  "scope": "Read-only portfolio chapter review; no model experiments",
+  "source_checks": [
+    {
+      "url": "https://raw.githubusercontent.com/huggingface/peft/7d6315ae910bf62b6044a7ca917bccf5881f5e43/docs/source/package_reference/lora.md",
+      "hash_match": true,
+      "relevant_lines": [
+        "Below is a diagram that explains the intuition of LoRA adapter merging:",
+        "> On a quantized model, unmerging is not exact: merging re-quantizes the base weight, and repeated merge and unmerge cycles can accumulate rounding error. See [Merging adapters into quantized weights](../developer_guides/quantization#merging-adapters-into-quantized-weights).",
+        "> If several adapters are active and only some of them are merged, the adapters that are not merged are silently not applied. This behavior will change in PEFT v1.0. See [Merging only some of the active adapters](../developer_guides/troubleshooting#merging-only-some-of-the-active-adapters).",
+        "The [`~LoraModel.add_weighted_adapter`] function is useful for merging multiple LoRAs into a new adapter based on a user provided weighting scheme in the `weights` parameter. Below is an end-to-end example.",
+        "### Activated LoRA (aLoRA)",
+        "Activated LoRA (aLoRA) is a low rank adapter architecture for causal LMs that reuses the existing base model KV cache for more efficient inference. This approach is best suited for inference pipelines which rely on the base model for most tasks/generations, but use aLoRA adapter(s) to perform specialized task(s) within the chain. For example, checking or correcting generated outputs of the base model. In these settings, inference times can be sped up by an order of magnitude or more. For more information on aLoRA and many example use cases, see the aLoRA [paper](https://huggingface.co/papers/2504.12397).",
+        "This technique scans for the last occurrence of an invocation sequence (`alora_invocation_tokens`) in each input (this can be as short as 1 token). It activates the adapter weights on tokens starting with the beginning of the invocation sequence. Any inputs after the invocation sequence are also adapted, and all generated tokens will use the adapted weights. Weights on prior tokens are left un-adapted, making the cache for those tokens interchangeable with base model cache due to the causal attention mask in causal LMs. Usage is very similar to standard LoRA. The key difference is that the invocation sequence must be specified when the adapter is created:",
+        "config = LoraConfig(alora_invocation_tokens=alora_invocation_tokens, task_type=\"CAUSAL_LM\", ...)",
+        "alora_invocation_tokens` is a list of integer token ids. Given a desired invocation string, this can be obtained as:",
+        "alora_invocation_tokens = tokenizer.encode(invocation_string, add_special_tokens=False).",
+        "* aLoRA is only supported for `task_type=CAUSAL_LM` tasks due to its focus on cache reuse.",
+        "* Since the weights are adapted on fewer tokens, often (not always) aLoRA requires higher rank (`r`) than LoRA. `r=32` can be a good starting point.",
+        "* aLoRA weights cannot be merged into the base model by definition, since the adapter weights are selectively applied to a subset of tokens. Attempts to merge will throw errors.",
+        "You must add the `alora_invocation_tokens` sequence because it is not added automatically. We recommend activating the adapter weights early (at the start of any adapter-specific prompting), but after any long inputs, to maximize model performance without compromising cache reuse. As with any model,",
+        "After deciding on an invocation string, get the model tokenizer and obtain `alora_invocation_tokens` as",
+        "alora_invocation_tokens = tokenizer.encode(invocation_string, add_special_tokens=False)."
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/vllm-project/vllm/237d2ffd08044b52625453af59f1e47b9802d4ff/docs/design/prefix_caching.md",
+      "hash_match": true,
+      "relevant_lines": [
+        "* Extra hashes: Other values required to make this block unique, such as LoRA IDs, multi-modality input hashes (see the example below), and cache salts to isolate caches in multi-tenant environments.",
+        "To improve privacy in shared environments, vLLM supports isolating prefix cache reuse through optional per-request salting. By including a `cache_salt` in the request, this value is injected into the hash of the first block, ensuring that only requests with the same salt can reuse cached KV blocks. This prevents timing-based attacks where an adversary could infer cached content by observing latency differences. This offers protection without compromising performance.",
+        "  \"cache_salt\": \"your-cache-salt\""
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/browser-use/browser-use/3df5806a0d097a1546d92c49bcf1b28c9972c3bd/README.md",
+      "hash_match": true,
+      "relevant_lines": [
+        "The open-source browser agent. Run it locally with any LLM, or on [Browser Use Cloud](https://cloud.browser-use.com): stealth browsers from $0.02/hour, top score (90.5%) on [Stealth Bench V2](https://browser-use.com/benchmarks/browsers).",
+        "> **AI agents and crawlers:** read [browser-use.com/llms.txt](https://browser-use.com/llms.txt) for the product map (open source, Browser Harness, Cloud browsers, Agents API, pricing) and [docs.browser-use.com/llms.txt](https://docs.browser-use.com/llms.txt) for the documentation index. Browser Use is the open-source browser agent (Python and TypeScript), a $0.02 per browser-hour cloud browser with stealth, CAPTCHA solving and residential proxies, and a hosted agent API.",
+        "Cloud browsers cost $0.02 per browser-hour plus network traffic ([pricing](https://browser-use.com/pricing)), and add stealth, residential proxies, CAPTCHA solving, and a live view URL. Same code, no other changes."
+      ]
+    },
+    {
+      "all_bib_files": [
+        "adaptation-references.bib",
+        "browser-references.bib",
+        "ensemble-references.bib",
+        "references.bib"
+      ],
+      "bibkeys": 46,
+      "cited": 46,
+      "missing": [],
+      "duplicates": []
+    },
+    {
+      "historical_cost_recalculation": [
+        {
+          "model": "MiniMax M2.5 (high)",
+          "n": 500,
+          "successes": 379,
+          "assigned_cost": 0.073289987844,
+          "success_cost": 0.09668863831662268,
+          "source_cost_matches": true
+        },
+        {
+          "model": "Claude 4.6 Opus",
+          "n": 500,
+          "successes": 378,
+          "assigned_cost": 0.5515226445,
+          "success_cost": 0.7295273075396825,
+          "source_cost_matches": true
+        },
+        {
+          "model": "GLM 5 (high)",
+          "n": 500,
+          "successes": 364,
+          "assigned_cost": 0.53438913622,
+          "success_cost": 0.7340510112912088,
+          "source_cost_matches": true
+        },
+        {
+          "model": "GPT 5.2 (high)",
+          "n": 500,
+          "successes": 364,
+          "assigned_cost": 0.4735670177,
+          "success_cost": 0.6505041451923077,
+          "source_cost_matches": true
+        },
+        {
+          "model": "Claude 4.5 Sonnet (high)",
+          "n": 500,
+          "successes": 357,
+          "assigned_cost": 0.6578964984000001,
+          "success_cost": 0.9214236672268908,
+          "source_cost_matches": true
+        },
+        {
+          "model": "Kimi K2.5 (high)",
+          "n": 500,
+          "successes": 354,
+          "assigned_cost": 0.14655374074400002,
+          "success_cost": 0.206996808960452,
+          "source_cost_matches": true
+        }
+      ]
+    }
+  ],
+  "material_issues": [],
+  "minor_edits": [
+    "Restricted-pair arm R retains word Primary; relabel within pair.",
+    "Explicitly align SWE development split prose with ensemble train/calibration/model-selection partitions."
+  ],
+  "confirmed_boundaries": [
+    "Primary SWE comparison is P vs development-selected S*. Browser is external replication.",
+    "Oracle/union successes explicitly nondeployable; no frontier achieved claim.",
+    "Ordinary LoRA and KV caches remain base/configuration-specific; aLoRA prefix exception limited.",
+    "API billing and self-hosted GPU costs not double-counted; historical and hypothetical task prices separated from unmeasured TTGL outcomes."
+  ],
+  "integration_resolution": {
+    "restricted_reference_label": "corrected",
+    "three_way_development_partition": "aligned",
+    "bibliography": "46 entries consolidated into references.bib; prior review filenames record pre-consolidation state"
+  }
+}

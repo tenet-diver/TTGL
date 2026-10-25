@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "review_date_utc": "2026-10-25",
+  "scope": "Targeted extension of narrative literature review for multi-model portfolios; not exhaustive database search or an empirical replication.",
+  "selection_path": "RouterBench exact-title lookup; GraphRouter and BEST-Route located through GitHub repository search; LLMRouter discovered through official GraphRouter documentation.",
+  "excluded_discovery": "An initially guessed GraphRouter arXiv identifier resolved to an unrelated mammography paper and was excluded. Only title-verified records are included below.",
+  "primary_papers": [
+    {
+      "id": "routerbench_abs",
+      "url": "https://arxiv.org/abs/2403.12031",
+      "sha256": "1ad818fa091f801a5fc0f27363c8fdfc2b288238cba3a1a95c4f824599d9b475",
+      "bytes": 43962,
+      "retrieved_at_utc": "2026-10-25T22:54:02.805345+00:00",
+      "title": [
+        "RouterBench: A Benchmark for Multi-LLM Routing System"
+      ],
+      "resolved_version": "2403.12031v2",
+      "versioned_reference_url": "https://arxiv.org/abs/2403.12031v2",
+      "inspection_scope": "Sections 1, 3 and benchmark-construction overview; cost/performance formulation, task-independent mixtures and limitations of precomputed outcomes.",
+      "source_class": "primary_paper_metadata"
+    },
+    {
+      "id": "routerbench_pdf",
+      "url": "https://arxiv.org/pdf/2403.12031",
+      "sha256": "1df05ba3e75ad24c3f8e00039a4a35704eb0f8df44088616f8244936e0a9aa01",
+      "bytes": 1878517,
+      "retrieved_at_utc": "2026-10-25T22:54:03.133240+00:00",
+      "resolved_version": "2403.12031v2",
+      "versioned_reference_url": "https://arxiv.org/abs/2403.12031v2",
+      "inspection_scope": "Sections 1, 3 and benchmark-construction overview; cost/performance formulation, task-independent mixtures and limitations of precomputed outcomes.",
+      "source_class": "primary_paper_pdf"
+    },
+    {
+      "id": "graphrouter_abs",
+      "url": "https://arxiv.org/abs/2410.03834",
+      "sha256": "f55ee2d5dad40409aba28e2ab355944d9597915430559b8c669662809995ac4d",
+      "bytes": 43745,
+      "retrieved_at_utc": "2026-10-25T22:54:40.732684+00:00",
+      "title": [
+        "GraphRouter: A Graph-based Router for LLM Selections"
+      ],
+      "authors": [
+        "Feng, Tao",
+        "Shen, Yanzhen",
+        "You, Jiaxuan"
+      ],
+      "resolved_version": "2410.03834v2",
+      "versioned_reference_url": "https://arxiv.org/abs/2410.03834v2",
+      "inspection_scope": "Sections 1, 2.3 and 3; heterogeneous graph, cost/performance features, descriptions and auxiliary few-shot data for unseen candidate admission.",
+      "source_class": "primary_paper_metadata"
+    },
+    {
+      "id": "graphrouter_pdf",
+      "url": "https://arxiv.org/pdf/2410.03834",
+      "sha256": "99b4763fa3fa25a59c9de83a96144f1a77dab4a49e47e26abe23b13a88aeac20",
+      "bytes": 778781,
+      "retrieved_at_utc": "2026-10-25T22:54:40.784445+00:00",
+      "resolved_version": "2410.03834v2",
+      "versioned_reference_url": "https://arxiv.org/abs/2410.03834v2",
+      "inspection_scope": "Sections 1, 2.3 and 3; heterogeneous graph, cost/performance features, descriptions and auxiliary few-shot data for unseen candidate admission.",
+      "source_class": "primary_paper_pdf"
+    },
+    {
+      "id": "bestroute_abs",
+      "url": "https://arxiv.org/abs/2506.22716",
+      "sha256": "7c8f702aa7ca8c8f13490c15f7821e0e08382262e66af34e89cc69868cb91615",
+      "bytes": 43664,
+      "retrieved_at_utc": "2026-10-25T22:54:40.703645+00:00",
+      "title": [
+        "BEST-Route: Adaptive LLM Routing with Test-Time Optimal Compute"
+      ],
+      "authors": [
+        "Ding, Dujian",
+        "Mallick, Ankur",
+        "Zhang, Shaokun",
+        "Wang, Chi",
+        "Madrigal, Daniel",
+        "Garcia, Mirian Del Carmen Hipolito",
+        "Xia, Menglin",
+        "Lakshmanan, Laks V. S.",
+        "Wu, Qingyun",
+        "R\u00fchle, Victor"
+      ],
+      "resolved_version": "2506.22716v1",
+      "versioned_reference_url": "https://arxiv.org/abs/2506.22716v1",
+      "inspection_scope": "Sections 1, 2 and 3; model-plus-sample-count selection, reward-based quality evaluation and USD inference accounting.",
+      "source_class": "primary_paper_metadata"
+    },
+    {
+      "id": "bestroute_pdf",
+      "url": "https://arxiv.org/pdf/2506.22716",
+      "sha256": "9746346dc6e6552ccdd20158a0eb4b01e927a3cb46242ebaf3d36a9d3b611d9c",
+      "bytes": 1183436,
+      "retrieved_at_utc": "2026-10-25T22:54:41.028126+00:00",
+      "resolved_version": "2506.22716v1",
+      "versioned_reference_url": "https://arxiv.org/abs/2506.22716v1",
+      "inspection_scope": "Sections 1, 2 and 3; model-plus-sample-count selection, reward-based quality evaluation and USD inference accounting.",
+      "source_class": "primary_paper_pdf"
+    },
+    {
+      "id": "llmrouter_abs",
+      "url": "https://arxiv.org/abs/2608.06867",
+      "bytes": 43183,
+      "sha256": "5c8e88a0379f3a783900cd99b7661ed242a22587686562f221af4c71745fa192",
+      "retrieved_at_utc": "2026-10-25T22:55:51.426539+00:00",
+      "title": [
+        "LLMRouter: Unified Infrastructure for Developing, Evaluating, and Deploying LLM Routers"
+      ],
+      "authors": [
+        "Feng, Tao",
+        "Yu, Fangxu",
+        "Zhang, Haozhen",
+        "Dai, Zhongjie",
+        "Yuan, Liangqi",
+        "Lei, Zijie",
+        "Zhang, Weizhi",
+        "Zhu, Kunlun",
+        "Yue, Haodong",
+        "Xuan, Keyang",
+        "Liu, Ge",
+        "You, Jiaxuan"
+      ],
+      "resolved_version": "2608.06867v1",
+      "versioned_reference_url": "https://arxiv.org/abs/2608.06867v1",
+      "inspection_scope": "Sections 1 and 2 plus official implementation README; sequential formulation, context/model encoders, decision and learning components.",
+      "source_class": "primary_paper_metadata"
+    },
+    {
+      "id": "llmrouter_pdf",
+      "url": "https://arxiv.org/pdf/2608.06867",
+      "bytes": 3132243,
+      "sha256": "2da60abf0bc4c73ae95365850f92eca90e13c37d56822c1f98873901eb157878",
+      "retrieved_at_utc": "2026-10-25T22:55:51.762601+00:00",
+      "resolved_version": "2608.06867v1",
+      "versioned_reference_url": "https://arxiv.org/abs/2608.06867v1",
+      "inspection_scope": "Sections 1 and 2 plus official implementation README; sequential formulation, context/model encoders, decision and learning components.",
+      "source_class": "primary_paper_pdf"
+    }
+  ],
+  "official_repositories": [
+    {
+      "repo": "ulab-uiuc/GraphRouter",
+      "commit": "0edfb8758d45acd93c8029354867ffb49bb8a97f",
+      "url": "https://raw.githubusercontent.com/ulab-uiuc/GraphRouter/0edfb8758d45acd93c8029354867ffb49bb8a97f/README.md",
+      "sha256": "bbd3ed1bb90af0e05941ddff49fc0ef45560b74a7d2b773867e13a339305ce12",
+      "retrieved_at_utc": "2026-10-25T22:54:13.792224+00:00",
+      "arxiv": [
+        "http://arxiv.org/abs/2410.03834",
+        "http://arxiv.org/abs/2410.03834",
+        "https://arxiv.org/pdf/2507.10540"
+      ],
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "source_class": "official_repository_documentation"
+    },
+    {
+      "repo": "microsoft/best-route-llm",
+      "commit": "b13c5bdaaf9a87af7587a9a83afc9b7219c2509d",
+      "url": "https://raw.githubusercontent.com/microsoft/best-route-llm/b13c5bdaaf9a87af7587a9a83afc9b7219c2509d/README.md",
+      "sha256": "e35be3325c915ceddbb358ff5ba5c246855ac7ab73dcff22b0fcf12e8911ffc4",
+      "retrieved_at_utc": "2026-10-25T22:54:13.997821+00:00",
+      "arxiv": [
+        "https://arxiv.org/abs/2404.14618",
+        "https://arxiv.org/abs/2506.22716"
+      ],
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "source_class": "official_repository_documentation"
+    },
+    {
+      "repo": "withmartian/routerbench",
+      "commit": "cc67d1008bd8f3cf1e8040cc3ba4034d31b93c0c",
+      "url": "https://raw.githubusercontent.com/withmartian/routerbench/cc67d1008bd8f3cf1e8040cc3ba4034d31b93c0c/README.md",
+      "sha256": "592561dd58ee3d0e0b3e6b1ec7831bc8c980870f8ca1b71fff90a5c69b8787f2",
+      "retrieved_at_utc": "2026-10-25T22:54:13.585869+00:00",
+      "arxiv": [
+        "https://arxiv.org/abs/2403.12031"
+      ],
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "source_class": "official_repository_documentation"
+    },
+    {
+      "repo": "ulab-uiuc/LLMRouter",
+      "commit": "c65ee0122bc9e84f71d571fcdec4a948481b6e88",
+      "url": "https://raw.githubusercontent.com/ulab-uiuc/LLMRouter/c65ee0122bc9e84f71d571fcdec4a948481b6e88/README.md",
+      "sha256": "4339e4f801c72f3fde4c9a36e5fe5fc137913b83c5fd40489e9d562eceb7ac8a",
+      "bytes": 45216,
+      "retrieved_at_utc": "2026-10-25T22:54:42.114641+00:00",
+      "source_class": "official_repository_documentation"
+    }
+  ],
+  "observed_results_reused_as_thesis_results": false,
+  "deployment_compatibility_tested": false
+}

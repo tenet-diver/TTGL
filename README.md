@@ -2,9 +2,9 @@
 
 A reproducible study of confidence-aware routing from a local coding model to a stronger remote model, followed by verified teacher-output distillation.
 
-## Software-engineering thesis
+## We Gotta Combine! — pre-results thesis
 
-The [pre-results master's thesis](docs/thesis/README.md) specifies the next study: dual-model versus single-model agents under a common harness, router quality and accuracy–cost tradeoffs, current open-weight and closed-model comparisons, and verified distillation. Read the [PDF](docs/thesis/thesis.pdf), [Word document](docs/thesis/thesis.docx), or [HTML](docs/thesis/thesis.html). The dated market review includes source and pricing limitations. Repository-level experiments and their results remain pending.
+The [master's thesis](docs/thesis/README.md) studies cost-aware routing among specialist open-weight models across software engineering and browser tasks. It includes [published dollars per task and per success](docs/thesis/task-economics.md), customer-specific adaptation, model-pool updates, and the cost of switching models. The primary portfolio comparison uses a common within-domain harness; the earlier two-model setup remains a restricted pilot. Read the [PDF](docs/thesis/thesis.pdf), [Word document](docs/thesis/thesis.docx), or [HTML](docs/thesis/thesis.html). New portfolio experiments and their results remain pending.
 
 ## Earlier coding-problem replay
 

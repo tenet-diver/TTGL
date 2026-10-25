@@ -1,0 +1,180 @@
+{
+  "as_of_utc": "2026-10-25",
+  "scope": "Historical benchmark-reported task costs and illustrative current-catalog token arithmetic; no TTGL performance outcomes",
+  "historical_cost_semantics": "Site mainResults.js labels instance_cost as Average cost per task instance; all 500 per-instance cost values sum to reported cost; sum/500 agrees with instance_cost for each selected record. Does not establish invoiced charges or full infrastructure cost.",
+  "sources": [
+    {
+      "path": "build.py",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench.github.io/193160a463a435d05cf44a1fa9dc5eac832113c3/build.py",
+      "sha256": "bc970591a0c765ad9169f5b65fae08ab3890d9c4ea6069090bdcd3fbfab7c2f2",
+      "bytes": 6254,
+      "retrieved_at_utc": "2026-10-25T22:54:35.337617+00:00"
+    },
+    {
+      "path": "templates/_leaderboard_table.html",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench.github.io/193160a463a435d05cf44a1fa9dc5eac832113c3/templates/_leaderboard_table.html",
+      "sha256": "9315cd1b366f9a0a4e7e83be38e194c4d749b87e5feaca07d38db4bde4535d7d",
+      "bytes": 11070,
+      "retrieved_at_utc": "2026-10-25T22:54:35.601837+00:00"
+    },
+    {
+      "path": "js/charts/resolvedVsAvgCostChart.js",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench.github.io/193160a463a435d05cf44a1fa9dc5eac832113c3/js/charts/resolvedVsAvgCostChart.js",
+      "sha256": "20331005e38e249168c991c11c2f8520bed61f488e970dcd0abb987edee4f9d0",
+      "bytes": 6192,
+      "retrieved_at_utc": "2026-10-25T22:54:35.920574+00:00"
+    },
+    {
+      "path": "js/charts/cumulativeCostChart.js",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench.github.io/193160a463a435d05cf44a1fa9dc5eac832113c3/js/charts/cumulativeCostChart.js",
+      "sha256": "db68d3576630f943eb10c2427d568028e2a5bcd1b581ffa69f6389381b8a6325",
+      "bytes": 5628,
+      "retrieved_at_utc": "2026-10-25T22:54:36.200598+00:00"
+    },
+    {
+      "path": "data/combine_per_instance_details.py",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench.github.io/193160a463a435d05cf44a1fa9dc5eac832113c3/data/combine_per_instance_details.py",
+      "sha256": "08d2bb821ce69c997edfc62684fa0679e4516af7312b01be146cee3183601aad",
+      "bytes": 5460,
+      "retrieved_at_utc": "2026-10-25T22:54:49.209040+00:00"
+    },
+    {
+      "path": "js/charts/scatterChart.js",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench.github.io/193160a463a435d05cf44a1fa9dc5eac832113c3/js/charts/scatterChart.js",
+      "sha256": "f8c562163d04b884ff082704f25fde131959305a267d3e3ea0f2b489d867cd76",
+      "bytes": 4627,
+      "retrieved_at_utc": "2026-10-25T22:54:49.434835+00:00"
+    },
+    {
+      "path": "js/analysis.js",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench.github.io/193160a463a435d05cf44a1fa9dc5eac832113c3/js/analysis.js",
+      "sha256": "ed1ec892344cda939803e02df92c5b85e6efdfccdb1b1b261be5733cf0a0cc02",
+      "bytes": 28761,
+      "retrieved_at_utc": "2026-10-25T22:55:01.331409+00:00"
+    },
+    {
+      "path": "js/mainResults.js",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench.github.io/193160a463a435d05cf44a1fa9dc5eac832113c3/js/mainResults.js",
+      "sha256": "f8afd60f7b6d3aeba34db407fb7f04faadd18c0474c147ffa013baebccfea616",
+      "bytes": 25315,
+      "retrieved_at_utc": "2026-10-25T22:55:01.607382+00:00"
+    },
+    {
+      "path": "data/leaderboards.json",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench.github.io/193160a463a435d05cf44a1fa9dc5eac832113c3/data/leaderboards.json",
+      "sha256": "83cd949a9582f4dd68b0a07148cd86ff0eae6a05b0f2d2298a8f3717baf89d2d",
+      "retrieved_at_utc": "2026-10-25T22:58:17.605720+00:00",
+      "verified_by": "scripts/build_task_price_table.py --verify-upstream"
+    }
+  ],
+  "per_instance_consistency_checks": [
+    {
+      "folder": "20260217_mini-v2.0.0_minimax-2-5-high",
+      "keys": [
+        "api_calls",
+        "cost",
+        "resolved"
+      ],
+      "n": 500,
+      "details_cost_total": 36.644993922,
+      "reported_total": 36.644993922,
+      "reported_mean": 0.073289987844,
+      "resolved": 379,
+      "invalid_cost_entries": 0
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_claude-4-6-opus",
+      "keys": [
+        "api_calls",
+        "cost",
+        "resolved"
+      ],
+      "n": 500,
+      "details_cost_total": 275.76132225,
+      "reported_total": 275.76132225,
+      "reported_mean": 0.5515226445,
+      "resolved": 378,
+      "invalid_cost_entries": 0
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_glm-5-high",
+      "keys": [
+        "api_calls",
+        "cost",
+        "resolved"
+      ],
+      "n": 500,
+      "details_cost_total": 267.19456811,
+      "reported_total": 267.19456811,
+      "reported_mean": 0.53438913622,
+      "resolved": 364,
+      "invalid_cost_entries": 0
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_gpt-5-2-high",
+      "keys": [
+        "api_calls",
+        "cost",
+        "resolved"
+      ],
+      "n": 500,
+      "details_cost_total": 236.78350885,
+      "reported_total": 236.78350885,
+      "reported_mean": 0.4735670177,
+      "resolved": 364,
+      "invalid_cost_entries": 0
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_claude-4-5-sonnet-high",
+      "keys": [
+        "api_calls",
+        "cost",
+        "resolved"
+      ],
+      "n": 500,
+      "details_cost_total": 328.9482492,
+      "reported_total": 328.9482492,
+      "reported_mean": 0.6578964984000001,
+      "resolved": 357,
+      "invalid_cost_entries": 0
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_kimi-k2-5-high",
+      "keys": [
+        "api_calls",
+        "cost",
+        "resolved"
+      ],
+      "n": 500,
+      "details_cost_total": 73.276870372,
+      "reported_total": 73.276870372,
+      "reported_mean": 0.14655374074400002,
+      "resolved": 354,
+      "invalid_cost_entries": 0
+    }
+  ],
+  "input_hashes": {
+    "accuracy-context-sources.json": "57a1551839b40c3f65c413d3554a8dd4cc5e4a8e1961edb8924eae1a8aa410e8",
+    "model-catalog.csv": "ed14ac603bae83d91b1bd425134ef538b9b2fe196baa01ac6e00916bbb674fbd",
+    "market-sources.json": "bea81181986fa2295e20a8e8bb04cd4a1587e93242bec43613c9ce3d3c688d45"
+  },
+  "scenarios": {
+    "A_short_text_episode": {
+      "uncached_input_tokens": 20000,
+      "cache_read_tokens": 0,
+      "output_tokens": 4000
+    },
+    "B_long_text_episode": {
+      "uncached_input_tokens": 100000,
+      "cache_read_tokens": 400000,
+      "output_tokens": 20000
+    }
+  },
+  "limitations": [
+    "All token volumes hypothetical, not observed model traces",
+    "Direct-provider current prices remain unverified secondary observations",
+    "Historical cost records are not verified invoices or all-infrastructure estimates",
+    "No new model inference or model-quality result",
+    "Missing cache price is unknown whenever cache-read count is positive"
+  ]
+}
