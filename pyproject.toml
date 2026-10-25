@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ttgl-research"
+version = "0.1.0"
+description = "Reproducible experiments in confidence-aware coding-model routing and distillation"
+requires-python = ">=3.12"
+dependencies = [
+  "numpy==2.5.4",
+  "scipy==1.18.1",
+  "pandas==3.1.0",
+  "scikit-learn==1.9.1",
+  "matplotlib==3.11.2",
+  "requests==2.34.2",
+]
+
+[project.optional-dependencies]
+test = ["pytest==9.1.1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

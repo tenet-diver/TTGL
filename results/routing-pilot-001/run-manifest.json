@@ -1,0 +1,30 @@
+{
+  "protocol_sha256": "aa58ce4cb81d0d8a1a1a8ca9b0016877503b88ddf2c3ffce8dbec31481efc8de",
+  "amendment_sha256": "60eff351a96f3e2d8d5f33673fb244c36ad7e6a12026e1fc01c7272eebea5c43",
+  "split_manifest_sha256": "4751f5e1947e214d3cf5edf363a94b6f4184bb2d96c3677d76681a65fa21b57b",
+  "code_sha256": "fb34ce60f93a668d7224ec1e2f58a77eba243536b39997092e64655230cfc122",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.41",
+  "packages": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "pandas": "3.1.0",
+    "scikit-learn": "1.9.1",
+    "matplotlib": "3.11.2"
+  },
+  "analysis_wall_seconds": 0.8327773859999752,
+  "input_sha256": {
+    "train": "d798541993468a19999fb0b796bc157797fdb0d46bbeeaa48eba10d5807667ef",
+    "calibration": "596a9023bffdcb800fab5b54e6f03a61776c551cbeabefa8283e230644e45fe3",
+    "test": "92977b19c2a39c8ec3c60cd1d328e82e3d988b370c429a67314d3b130e750055"
+  },
+  "files": {
+    "fitted-router.joblib": "8e8162f9e4745d4748819539a65f3615303742f2fa83aca53de6261c664f618d",
+    "policies.csv": "f8d4743ce3849559342913de5eb257b17b02fc07a9e3b170f4ec8d41196e4a82",
+    "predictions.csv": "f65e9c50caf37675a788de2f249510ca892d212f762c1e4df255665c033092f1",
+    "routing-and-calibration.png": "8aaa483e04a7122f72e06d4c11ad9c5d605d8711f3c1e4b0ed1e157d4e659acd",
+    "routing-and-calibration.svg": "4da9e118a9f7b87099ccb38f27c96f9721066639f217312ec7593a0e0fd38d1b",
+    "subgroups.csv": "8a86bbf54777ef7e18032b3f0dd4d21cf62f27abed2efb47763cb72cba25fd1a",
+    "summary.json": "db173a24e8c1e28a05653d80a3495920c9c410703d3f3e38c165466acf940ed1"
+  }
+}

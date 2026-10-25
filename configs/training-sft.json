@@ -1,0 +1,29 @@
+{
+  "model_id": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+  "model_revision": "main",
+  "source_metadata": "data/raw/livecodebench/DeepSeek-V3.json",
+  "source_sha256": "88548117b84bf567fdadb159cfc65f9c0a6bf7da8b2fe5679829c95334abd661",
+  "seed": 1729,
+  "max_length": 4096,
+  "num_train_epochs": 2,
+  "per_device_train_batch_size": 1,
+  "gradient_accumulation_steps": 16,
+  "learning_rate": 0.0001,
+  "warmup_ratio": 0.1,
+  "internal_validation_fraction": 0.1,
+  "lora": {
+    "r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
+    "bias": "none"
+  },
+  "package_versions": {
+    "torch": "2.8.0",
+    "transformers": "4.56.2",
+    "trl": "0.23.1",
+    "peft": "0.17.1",
+    "accelerate": "1.10.1",
+    "datasets": "4.1.1"
+  }
+}

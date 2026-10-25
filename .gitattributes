@@ -1,0 +1,5 @@
+# Markdown hard breaks and standard CSV CRLF are intentional.
+*.md whitespace=-blank-at-eol
+*.csv whitespace=cr-at-eol
+# Preserve generated research figures exactly as recorded by their hashes.
+results/**/*.svg -whitespace

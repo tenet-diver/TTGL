@@ -1,0 +1,9 @@
+{
+  "protocol_sha256": "aa58ce4cb81d0d8a1a1a8ca9b0016877503b88ddf2c3ffce8dbec31481efc8de",
+  "split_manifest_sha256": "4751f5e1947e214d3cf5edf363a94b6f4184bb2d96c3677d76681a65fa21b57b",
+  "frozen_at_utc": "2026-10-25T22:06:39.752952+00:00",
+  "outcome_summary_inspected_before_freeze": false,
+  "registration_scope": "local timestamped freeze, not external preregistration",
+  "amendment_sha256": "60eff351a96f3e2d8d5f33673fb244c36ad7e6a12026e1fc01c7272eebea5c43",
+  "amendment_frozen_at_utc": "2026-10-25T22:08:39.452525+00:00"
+}

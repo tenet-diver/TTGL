@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "destination": "https://fastestswarm.atlassian.net",
+  "project_name": "Fastest",
+  "jira_sync_status": "blocked_no_atlassian_mcp_tools_or_authentication",
+  "note": "Local work item IDs below are not Jira issue keys. No remote issues have been created.",
+  "tasks": [
+    {
+      "id": "local-01",
+      "title": "Review literature and establish research gap",
+      "status": "completed"
+    },
+    {
+      "id": "local-02",
+      "title": "Freeze hypotheses, splits and analysis protocol",
+      "status": "completed"
+    },
+    {
+      "id": "local-03",
+      "title": "Acquire and audit paired coding benchmark outcomes",
+      "status": "completed"
+    },
+    {
+      "id": "local-04",
+      "title": "Implement calibrated routing and statistical evaluation",
+      "status": "completed"
+    },
+    {
+      "id": "local-05",
+      "title": "Run replay experiments and record results",
+      "status": "completed"
+    },
+    {
+      "id": "local-06",
+      "title": "Implement and locally validate GPU SFT and inference pipelines",
+      "status": "completed"
+    },
+    {
+      "id": "local-07",
+      "title": "Connect Runpod and execute GPU pilot within budget",
+      "status": "blocked_missing_credentials_and_runtime_network"
+    },
+    {
+      "id": "local-08",
+      "title": "Write reproducibility report and limitations",
+      "status": "completed"
+    },
+    {
+      "id": "local-09",
+      "title": "Sync work items to Fastest Jira and results to Confluence",
+      "status": "blocked_no_atlassian_mcp_tools_or_authentication"
+    }
+  ],
+  "runpod_budget": {
+    "max_total_usd": 100,
+    "provider": "Runpod",
+    "gpu_count": 1,
+    "memory_gb": 80,
+    "provisioned": false,
+    "actual_spend_usd": 0,
+    "status": "blocked_missing_api_key_and_runtime_access"
+  },
+  "updated_at_utc": "2026-10-25T22:16:16.651704+00:00",
+  "evidence": {
+    "results": "results/routing-pilot-001",
+    "reproduction": "results/reproduction-verification.json",
+    "tests": "results/unit-tests.xml",
+    "gpu_training_status": "prepared_not_trained",
+    "confluence_published": false,
+    "jira_issues_created": false
+  }
+}

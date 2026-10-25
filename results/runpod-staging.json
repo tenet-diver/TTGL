@@ -1,0 +1,9 @@
+{
+  "path": "artifacts/runpod/ttgl-training-source-final.tar.gz",
+  "sha256": "10c7a01237433df75833087f8918f6152a12cef7123c2440b7b5f8e8439eddd3",
+  "bytes": 4156610,
+  "includes_customer_secrets": false,
+  "contains_training_examples_and_raw_public_metadata_source": true,
+  "gpu_run_status": "not_started",
+  "budget_total_usd": 100
+}

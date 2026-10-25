@@ -1,0 +1,14 @@
+{
+  "verified_at_utc": "2026-10-25T22:13:01.979033+00:00",
+  "fresh_upstream_download": true,
+  "new_data_and_results_directories": true,
+  "exact_metric_file_match": {
+    "summary.json": true,
+    "predictions.csv": true,
+    "policies.csv": true,
+    "subgroups.csv": true
+  },
+  "source_sha256": "fb34ce60f93a668d7224ec1e2f58a77eba243536b39997092e64655230cfc122",
+  "original_run": "routing-pilot-001",
+  "note": "SVG/PNG, joblib and runtime timings are not claimed byte-identical."
+}

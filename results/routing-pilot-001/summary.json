@@ -1,0 +1,123 @@
+{
+  "experiment_type": "published_output_replay_not_fresh_inference",
+  "n_tasks": {
+    "train": 429,
+    "calibration": 142,
+    "test": 142
+  },
+  "n_test_contest_groups": 34,
+  "n_samples_per_model_per_task": 10,
+  "seed": 1729,
+  "local_model": "Qwen2.5-Coder-Ins-7B",
+  "remote_model": "DeepSeek-V3",
+  "local_test_pass_at_1": {
+    "estimate": 0.17323943661971833,
+    "ci95": [
+      0.12366180479825517,
+      0.2263603757867456
+    ],
+    "one_sided_lower95": 0.12985074626865672
+  },
+  "remote_test_pass_at_1": {
+    "estimate": 0.39366197183098595,
+    "ci95": [
+      0.326566985645933,
+      0.460614346590909
+    ],
+    "one_sided_lower95": 0.33688218258711045
+  },
+  "primary_benefit_minus_expected_random_at_half_budget": {
+    "estimate": 0.01584507042253521,
+    "ci95": [
+      -0.015817430025445292,
+      0.04436698761291716
+    ],
+    "one_sided_lower95": -0.010157060681254234
+  },
+  "primary_positive_two_sided95": false,
+  "exploratory_benefit_minus_remote_at_half_budget": {
+    "estimate": -0.09436619718309858,
+    "ci95": [
+      -0.13877627170271092,
+      -0.058165686274509826
+    ],
+    "one_sided_lower95": -0.13305244042309164
+  },
+  "exploratory_noninferiority_margin": -0.05,
+  "exploratory_noninferiority_supported": false,
+  "fixed_model_conditional_cluster_bootstrap_repeats": 2000,
+  "calibration": {
+    "local_sample_brier_raw": 0.2074291362851176,
+    "local_sample_brier_platt": 0.13666299233348886,
+    "remote_sample_brier_raw": 0.29686025308612,
+    "remote_sample_brier_platt": 0.24958280687884082,
+    "local_ece_ten_equal_width_bins": 0.06778426995496342,
+    "remote_ece_ten_equal_width_bins": 0.20453673237291858,
+    "local_reliability": [
+      {
+        "n_tasks": 29,
+        "predicted": 0.09825235190767413,
+        "observed": 0.048275862068965524
+      },
+      {
+        "n_tasks": 28,
+        "predicted": 0.15401918565727485,
+        "observed": 0.08214285714285714
+      },
+      {
+        "n_tasks": 28,
+        "predicted": 0.21681282568955154,
+        "observed": 0.10357142857142856
+      },
+      {
+        "n_tasks": 28,
+        "predicted": 0.2972593758228949,
+        "observed": 0.35
+      },
+      {
+        "n_tasks": 29,
+        "predicted": 0.40268748303238666,
+        "observed": 0.2827586206896551
+      }
+    ],
+    "remote_reliability": [
+      {
+        "n_tasks": 29,
+        "predicted": 0.39102689667805585,
+        "observed": 0.14137931034482756
+      },
+      {
+        "n_tasks": 28,
+        "predicted": 0.5232210507680791,
+        "observed": 0.27499999999999997
+      },
+      {
+        "n_tasks": 28,
+        "predicted": 0.6131968297118833,
+        "observed": 0.4071428571428571
+      },
+      {
+        "n_tasks": 28,
+        "predicted": 0.6955824036839606,
+        "observed": 0.3678571428571429
+      },
+      {
+        "n_tasks": 29,
+        "predicted": 0.7692561391965853,
+        "observed": 0.7724137931034483
+      }
+    ]
+  },
+  "test_outcome_joint_counts": {
+    "remote_mean_above_local": 48,
+    "local_mean_above_remote": 3,
+    "equal_means": 91
+  },
+  "interpretation_limits": [
+    "No measured inference latency, energy, GPU spend, or token costs.",
+    "Uncertainty resamples contest groups conditional on fitted policies and published sample means.",
+    "Historical benchmark contamination and generation settings limit causal/generalization claims.",
+    "Oracle uses test outcomes and is not deployable.",
+    "No LoRA, logits distillation, RLAIF or new agent execution measured in this run."
+  ]
+}

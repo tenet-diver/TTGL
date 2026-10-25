@@ -1,0 +1,23 @@
+{
+  "core_suite": {
+    "passed": 38,
+    "skipped": 1,
+    "subtests_passed": 2,
+    "evidence": "unit-tests.xml"
+  },
+  "sft_integration": {
+    "passed": 1,
+    "runtime_seconds": 8.5,
+    "warnings": 2,
+    "fixture": "tiny randomly initialized Qwen2 architecture; not pretrained model",
+    "checks": [
+      "prompt tokens masked from completion loss",
+      "two actual optimizer steps",
+      "LoRA parameters updated",
+      "adapter save/reload preserves logits"
+    ],
+    "environment": "/workspace/.tools/ttgl-training-test",
+    "command": "PYTHONPATH=src python -m pytest tests/test_sft_integration.py -q"
+  },
+  "real_student_training_completed": false
+}
