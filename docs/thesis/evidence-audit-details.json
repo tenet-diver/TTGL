@@ -1,0 +1,124 @@
+{
+  "historical": [
+    {
+      "folder": "20260217_mini-v2.0.0_minimax-2-5-high",
+      "n": 500,
+      "k": 379,
+      "pct": 75.8,
+      "published": 75.8,
+      "register_matches": true,
+      "harness": "2.0.0",
+      "attempt_tags": [
+        "Model: minimax-m2.5",
+        "Org: Minimax",
+        "System: Attempts - 1",
+        "Mini: 2.0.0"
+      ]
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_claude-4-6-opus",
+      "n": 500,
+      "k": 378,
+      "pct": 75.6,
+      "published": 75.6,
+      "register_matches": true,
+      "harness": "2.0.0",
+      "attempt_tags": [
+        "Model: claude-opus-4-6",
+        "Org: Anthropic",
+        "System: Attempts - 1",
+        "Mini: 2.0.0"
+      ]
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_glm-5-high",
+      "n": 500,
+      "k": 364,
+      "pct": 72.8,
+      "published": 72.8,
+      "register_matches": true,
+      "harness": "2.0.0",
+      "attempt_tags": [
+        "Model: glm-5",
+        "Org: Z-AI",
+        "System: Attempts - 1",
+        "Mini: 2.0.0"
+      ]
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_gpt-5-2-high",
+      "n": 500,
+      "k": 364,
+      "pct": 72.8,
+      "published": 72.8,
+      "register_matches": true,
+      "harness": "2.0.0",
+      "attempt_tags": [
+        "Model: gpt-5-2",
+        "Org: OpenAI",
+        "System: Attempts - 1",
+        "Mini: 2.0.0"
+      ]
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_claude-4-5-sonnet-high",
+      "n": 500,
+      "k": 357,
+      "pct": 71.39999999999999,
+      "published": 71.4,
+      "register_matches": true,
+      "harness": "2.0.0",
+      "attempt_tags": [
+        "Model: claude-sonnet-4-5-20250929",
+        "Org: Anthropic",
+        "System: Attempts - 1",
+        "Mini: 2.0.0"
+      ]
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_kimi-k2-5-high",
+      "n": 500,
+      "k": 354,
+      "pct": 70.8,
+      "published": 70.8,
+      "register_matches": true,
+      "harness": "2.0.0",
+      "attempt_tags": [
+        "Model: kimi-k2.5",
+        "Org: Moonshot AI",
+        "System: Attempts - 1",
+        "Mini: 2.0.0"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "key": "qwen38_27b_card",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/README.md",
+      "hash_matches": true,
+      "relevant_lines": [
+        "<td class=\"benchmark-cell\" style=\"padding:7px 7px;padding-left:20px;border-bottom:1px solid rgba(128, 128, 128, 0.15);\"><div class=\"benchmark-capability\" style=\"font-size:15px;font-weight:600;line-height:1.22;color:#171717\">Agentic coding</div><div class=\"benchmark-name\" style=\"margin-top:4px;font-size:11px;font-weight:400;line-height:1.2;color:#6B6B6B\">SWE-bench Pro</div></td>",
+        "<td class=\"benchmark-cell\" style=\"padding:7px 7px;padding-left:20px;border-bottom:1px solid rgba(128, 128, 128, 0.15);\"><div class=\"benchmark-capability\" style=\"font-size:15px;font-weight:600;line-height:1.22;color:#171717\">Agentic coding</div><div class=\"benchmark-name\" style=\"margin-top:4px;font-size:11px;font-weight:400;line-height:1.2;color:#6B6B6B\">DeepSWE 1.1</div></td>",
+        "<td style=\"padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15);background:rgba(10, 46, 254, 0.08);vertical-align:middle;font-size:15px;line-height:1.2;\"><strong>42.2</strong></td>",
+        "<td style=\"padding:7px 7px;text-align:center;border-bottom:1px solid rgba(128, 128, 128, 0.15);vertical-align:middle;font-size:15px;line-height:1.2;\">77.0</td>",
+        "<li>SWE-bench Pro: Except for Opus4.6 Max, which uses the officially reported score, all models are evaluated with the Claude Code harness at temp=1.0, top_p=0.95, and a 256K context window. Problematic tasks were corrected, and all baseline models were re-evaluated on the refined benchmark.</li>",
+        "<li>NL2Repo-Bench: Evaluated with the Claude Code harness. To prevent reward hacking, we disable Bash commands that attempt to access the specific repository, such as pip download, pip install, and git clone.</li>",
+        "<li>DeepSWE 1.1: Evaluated with the Claude Code harness at temp=1.0, top_p=0.95, and a 256K context window.</li>",
+        "<li>QwenSWEBench: In-house coding benchmark for evaluating models' software engineering capabilities. Evaluated with the Claude Code harness. Reporting avg@3 with an 8-hour timeout, max_tokens=32,768, temperature=1.0, and a 256K context window.</li>",
+        "<li>Vision2Web: Scores are averaged across the frontend, webpage, and website categories. Evaluations use the Claude Code harness and are judged by <code>gpt-5.4-2026-03-05</code>.</li>",
+        "<li>SWE-MM: Scores are evaluated on the Claude Code harness using the public dev split of SWE-bench Multimodal, with the modifications described in Appendix 8.3 of the Claude Opus 4.7 system card.</li>"
+      ]
+    },
+    {
+      "key": "deepseek41_1017_card",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017/raw/1bae0e1088993b9b82de08f59de5be5a34e42170/README.md",
+      "hash_matches": true,
+      "relevant_lines": [
+        "    <img alt=\"License\" src=\"https://img.shields.io/badge/License-MIT-f5de53?&color=f5de53\" style=\"display: inline-block; vertical-align: middle;\"/>",
+        "| DeepSWE v1.1 | 77.0 | 74.2 | 67.5 | 66.9 | 73.0 | 74.0 |",
+        "*\u2020 denotes the text-only subset of HLE. We use the Claude Code harness for Terminal-Bench 4.0 and the Mini-SWE-V2 harness for DeepSWE v1.1.*",
+        "This repository and the model weights are licensed under the [MIT License](LICENSE)."
+      ]
+    }
+  ]
+}

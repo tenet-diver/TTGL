@@ -1,0 +1,32 @@
+digraph TTGL {
+  graph [rankdir=TB, bgcolor="white", pad="0.25", nodesep="0.30", ranksep="0.35", fontname="DejaVu Sans"];
+  node [shape=box, style="rounded,filled", fillcolor="#edf3fa", color="#34516e", fontname="DejaVu Sans", fontsize=11, margin="0.15,0.12"];
+  edge [color="#506879", fontname="DejaVu Sans", fontsize=9];
+  issue [label="Issue + pinned repository\nSame initial state for each condition"];
+  harness [label="Common agent harness\nTools, workspace, stopping rules"];
+  router [label="Policy / router\nPrimary: one choice per attempt\nExtension: bounded escalation", fillcolor="#d9e9f8"];
+  local [label="Local open-weight model\nPinned runtime and precision"];
+  remote [label="Eligible remote model\nPinned provider / version"];
+  action [label="Proposed action\nHarness-controlled execution"];
+  patch [label="Final patch + complete trace"];
+  grader [label="Independent benchmark evaluator\nHidden checks isolated from agent", fillcolor="#e6f0df"];
+  records [label="Evidence and cost record\nAll calls, failures, timing, hashes", fillcolor="#f3eadb"];
+  train [label="Optional offline adaptation\nVerified development data only", fillcolor="#efe5f4"];
+  holdout [label="Separate calibration and final test\nNo training on held-out outcomes", fillcolor="#efe5f4"];
+  {rank=same; local; remote;}
+  {rank=same; records; grader;}
+  {rank=same; train; holdout;}
+  issue -> harness -> router;
+  router -> local [label="local"];
+  router -> remote [label="delegate"];
+  local -> action;
+  remote -> action;
+  action -> harness [label="visible tool evidence", constraint=false];
+  action -> patch -> grader;
+  grader -> records;
+  router -> records [style=dashed, label="decision and usage", constraint=false];
+  train -> local [style=dashed, label="evaluated adapter release", constraint=false];
+  train -> holdout [style=dashed, label="independent evaluation"];
+  records -> train [style=invis];
+  grader -> holdout [style=invis];
+}

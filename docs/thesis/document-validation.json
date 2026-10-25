@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "scope": "document_and_source_consistency_not_model_performance",
+  "pages": 59,
+  "approximate_words": 19684,
+  "bibliography_entries": 26,
+  "cited_entries": 26,
+  "manifest_hashes_verified": 25,
+  "missing_local_links": [],
+  "docx_zip_xml_and_equations": "passed",
+  "html_embedded_figure_and_mathml": "passed",
+  "historical_replay_values_excluded": true,
+  "pdf_words_outside_generous_margins": [],
+  "reviewed_layouts": [
+    "table_of_contents",
+    "architecture",
+    "pricing_table",
+    "historical_accuracy_table",
+    "experimental_arms"
+  ],
+  "research_results": "not_run"
+}

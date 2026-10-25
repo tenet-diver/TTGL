@@ -1,0 +1,9 @@
+% Give two-digit section numbers enough space in the table of contents.
+\usepackage{tocloft}
+\setlength{\cftsecnumwidth}{3em}
+\setlength{\cftsubsecnumwidth}{4em}
+% Tables use a standard 10-point body within the 11-point manuscript.
+\usepackage{etoolbox}
+\AtBeginEnvironment{longtable}{\small}
+% Keep long revision-pinned URLs within the text block.
+\emergencystretch=3em

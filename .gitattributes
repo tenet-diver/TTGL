@@ -3,3 +3,4 @@
 *.csv whitespace=cr-at-eol
 # Preserve generated research figures exactly as recorded by their hashes.
 results/**/*.svg -whitespace
+docs/thesis/figures/*.svg -whitespace

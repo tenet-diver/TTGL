@@ -49,6 +49,39 @@
       "id": "local-09",
       "title": "Sync work items to Fastest Jira and results to Confluence",
       "status": "blocked_no_atlassian_mcp_tools_or_authentication"
+    },
+    {
+      "id": "local-10",
+      "title": "Write pre-results master thesis for repository-level software engineering",
+      "status": "completed",
+      "study_scope": "prospective_repository_level_software_engineering",
+      "artifact": "docs/thesis/README.md"
+    },
+    {
+      "id": "local-11",
+      "title": "Specify dual-model and single-model controlled SWE evaluation",
+      "status": "completed",
+      "study_scope": "prospective_repository_level_software_engineering",
+      "artifact": "docs/thesis/README.md"
+    },
+    {
+      "id": "local-12",
+      "title": "Review current model releases, accuracy evidence and pricing",
+      "status": "completed",
+      "study_scope": "prospective_repository_level_software_engineering",
+      "artifact": "docs/thesis/README.md"
+    },
+    {
+      "id": "local-13",
+      "title": "Integrate common mini-SWE-agent harness and current-model compatibility checks",
+      "status": "planned",
+      "study_scope": "prospective_repository_level_software_engineering"
+    },
+    {
+      "id": "local-14",
+      "title": "Freeze repository-level run manifests and execute funded paired SWE evaluation",
+      "status": "pending_integration_credentials_and_costed_resource_plan",
+      "study_scope": "prospective_repository_level_software_engineering"
     }
   ],
   "runpod_budget": {
@@ -60,13 +93,17 @@
     "actual_spend_usd": 0,
     "status": "blocked_missing_api_key_and_runtime_access"
   },
-  "updated_at_utc": "2026-10-25T22:16:16.651704+00:00",
+  "updated_at_utc": "2026-10-25T22:48:28.350551+00:00",
   "evidence": {
     "results": "results/routing-pilot-001",
     "reproduction": "results/reproduction-verification.json",
     "tests": "results/unit-tests.xml",
     "gpu_training_status": "prepared_not_trained",
     "confluence_published": false,
-    "jira_issues_created": false
+    "jira_issues_created": false,
+    "pre_results_thesis": "docs/thesis/thesis.pdf",
+    "thesis_sources": "docs/thesis/README.md",
+    "thesis_evidence_audit": "docs/thesis/evidence-audit.json",
+    "repository_level_swe_results": "not_run"
   }
 }

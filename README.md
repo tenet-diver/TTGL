@@ -2,6 +2,12 @@
 
 A reproducible study of confidence-aware routing from a local coding model to a stronger remote model, followed by verified teacher-output distillation.
 
+## Software-engineering thesis
+
+The [pre-results master's thesis](docs/thesis/README.md) specifies the next study: dual-model versus single-model agents under a common harness, router quality and accuracy–cost tradeoffs, current open-weight and closed-model comparisons, and verified distillation. Read the [PDF](docs/thesis/thesis.pdf), [Word document](docs/thesis/thesis.docx), or [HTML](docs/thesis/thesis.html). The dated market review includes source and pricing limitations. Repository-level experiments and their results remain pending.
+
+## Earlier coding-problem replay
+
 The first experiment is complete: published LiveCodeBench outcomes for **713 paired tasks** support a chronological routing replay. At a 50% remote-call budget the learned router achieved **29.93% pass@1**, versus **28.35%** for expected random routing. The difference, **+1.58 percentage points (95% CI −1.58 to +4.44)**, is inconclusive. Remote-only achieved **39.37%**. These are replay results, not fresh model inference or trained-student improvements.
 
 ## Study documents

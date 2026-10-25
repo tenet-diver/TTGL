@@ -1,0 +1,350 @@
+{
+  "site_repo_commit": "193160a463a435d05cf44a1fa9dc5eac832113c3",
+  "leaderboards_url": "https://raw.githubusercontent.com/SWE-bench/swe-bench.github.io/193160a463a435d05cf44a1fa9dc5eac832113c3/data/leaderboards.json",
+  "leaderboards_sha256": "83cd949a9582f4dd68b0a07148cd86ff0eae6a05b0f2d2298a8f3717baf89d2d",
+  "experiments_tree_commit": "40f164d5b8f1d249bf95a6df8b74b577fd8e519d",
+  "as_of_utc": "2026-10-25",
+  "coverage": {
+    "boards_searched": {
+      "Multilingual": 13,
+      "Test": 24,
+      "Verified": 180,
+      "Lite": 84,
+      "Multimodal": 22
+    },
+    "latest_target_identity_matches": [],
+    "target_patterns": [
+      "gpt6.1sol",
+      "claudesonnet5.5",
+      "claudeopus5.5",
+      "gemini3.1pro"
+    ],
+    "experiments_tree_truncated": false
+  },
+  "selected_historical_leaderboard_entries": [
+    {
+      "agent": "mini-SWE-agent",
+      "agent_org": "SWE-agent",
+      "checked": null,
+      "cost": 36.644993922,
+      "date": "2026-02-17",
+      "folder": "20260217_mini-v2.0.0_minimax-2-5-high",
+      "instance_calls": 60.45,
+      "instance_cost": 0.073289987844,
+      "logo": [
+        "img/logos/20260217_mini-v2.0.0_minimax-2-5-high.png",
+        "img/mini-icon.svg"
+      ],
+      "logs": null,
+      "mini-swe-agent_version": "2.0.0",
+      "model_display": "MiniMax M2.5",
+      "model_org": "Minimax",
+      "model_release_date": 20260212,
+      "name": "MiniMax M2.5 (high)",
+      "os_model": true,
+      "os_system": true,
+      "reasoning_effort": "high",
+      "resolved": 75.8,
+      "site": "https://www.minimax.io",
+      "tags": [
+        "Model: minimax-m2.5",
+        "Org: Minimax",
+        "System: Attempts - 1",
+        "Mini: 2.0.0"
+      ],
+      "trajs": "s3://swe-bench-submissions/bash-only/20260217_mini-v2.0.0_minimax-2-5-high/trajs",
+      "trajs_docent": "https://docent.transluce.org/dashboard/5b77e003-7328-4003-879e-9b55dd3a0b6f",
+      "warning": null,
+      "per_instance_count": 500,
+      "count_resolved_from_published_details": 379
+    },
+    {
+      "agent": "mini-SWE-agent",
+      "agent_org": "SWE-agent",
+      "checked": null,
+      "cost": 275.76132225,
+      "date": "2026-02-17",
+      "folder": "20260217_mini-v2.0.0_claude-4-6-opus",
+      "instance_calls": 28.932,
+      "instance_cost": 0.5515226445,
+      "logo": [
+        "img/logos/20260217_mini-v2.0.0_claude-4-6-opus.jpg",
+        "img/mini-icon.svg"
+      ],
+      "logs": "s3://swe-bench-submissions/bash-only/20260217_mini-v2.0.0_claude-4-6-opus/logs",
+      "mini-swe-agent_version": "2.0.0",
+      "model_display": "Claude 4.6 Opus",
+      "model_org": "Anthropic",
+      "model_release_date": 20260205,
+      "name": "Claude 4.6 Opus",
+      "os_model": false,
+      "os_system": true,
+      "reasoning_effort": null,
+      "resolved": 75.6,
+      "site": "https://www.anthropic.com/claude",
+      "tags": [
+        "Model: claude-opus-4-6",
+        "Org: Anthropic",
+        "System: Attempts - 1",
+        "Mini: 2.0.0"
+      ],
+      "trajs": "s3://swe-bench-submissions/bash-only/20260217_mini-v2.0.0_claude-4-6-opus/trajs",
+      "trajs_docent": "https://docent.transluce.org/dashboard/9243cc78-d399-402f-be97-e366ff63282c",
+      "warning": null,
+      "per_instance_count": 500,
+      "count_resolved_from_published_details": 378
+    },
+    {
+      "agent": "mini-SWE-agent",
+      "agent_org": "SWE-agent",
+      "checked": null,
+      "cost": 267.19456811,
+      "date": "2026-02-17",
+      "folder": "20260217_mini-v2.0.0_glm-5-high",
+      "instance_calls": 76.176,
+      "instance_cost": 0.53438913622,
+      "logo": [
+        "img/logos/20260217_mini-v2.0.0_glm-5-high.svg",
+        "img/mini-icon.svg"
+      ],
+      "logs": null,
+      "mini-swe-agent_version": "2.0.0",
+      "model_display": "GLM 5",
+      "model_org": "Z-AI",
+      "model_release_date": 20260211,
+      "name": "GLM 5 (high)",
+      "os_model": true,
+      "os_system": true,
+      "reasoning_effort": "high",
+      "resolved": 72.8,
+      "site": "https://z.ai",
+      "tags": [
+        "Model: glm-5",
+        "Org: Z-AI",
+        "System: Attempts - 1",
+        "Mini: 2.0.0"
+      ],
+      "trajs": "s3://swe-bench-submissions/bash-only/20260217_mini-v2.0.0_glm-5-high/trajs",
+      "trajs_docent": "https://docent.transluce.org/dashboard/5fc22eb4-1f44-405e-9dff-40a61f9f6ef6",
+      "warning": null,
+      "per_instance_count": 500,
+      "count_resolved_from_published_details": 364
+    },
+    {
+      "agent": "mini-SWE-agent",
+      "agent_org": "SWE-agent",
+      "checked": null,
+      "cost": 236.78350885,
+      "date": "2026-02-17",
+      "folder": "20260217_mini-v2.0.0_gpt-5-2-high",
+      "instance_calls": 35.046,
+      "instance_cost": 0.4735670177,
+      "logo": [
+        "img/logos/20260217_mini-v2.0.0_gpt-5-2-high.svg",
+        "img/mini-icon.svg"
+      ],
+      "logs": null,
+      "mini-swe-agent_version": "2.0.0",
+      "model_display": "GPT 5.2",
+      "model_org": "OpenAI",
+      "model_release_date": 20251211,
+      "name": "GPT 5.2 (high)",
+      "os_model": false,
+      "os_system": true,
+      "reasoning_effort": "high",
+      "resolved": 72.8,
+      "site": "https://platform.openai.com",
+      "tags": [
+        "Model: gpt-5-2",
+        "Org: OpenAI",
+        "System: Attempts - 1",
+        "Mini: 2.0.0"
+      ],
+      "trajs": "s3://swe-bench-submissions/bash-only/20260217_mini-v2.0.0_gpt-5-2-high/trajs",
+      "trajs_docent": "https://docent.transluce.org/dashboard/c2c7f5be-2c1a-472f-a34a-92e9e1df4f01",
+      "warning": null,
+      "per_instance_count": 500,
+      "count_resolved_from_published_details": 364
+    },
+    {
+      "agent": "mini-SWE-agent",
+      "agent_org": "SWE-agent",
+      "checked": null,
+      "cost": 328.9482492,
+      "date": "2026-02-17",
+      "folder": "20260217_mini-v2.0.0_claude-4-5-sonnet-high",
+      "instance_calls": 48.3,
+      "instance_cost": 0.6578964984000001,
+      "logo": [
+        "img/logos/20260217_mini-v2.0.0_claude-4-5-sonnet-high.jpg",
+        "img/mini-icon.svg"
+      ],
+      "logs": null,
+      "mini-swe-agent_version": "2.0.0",
+      "model_display": "Claude 4.5 Sonnet",
+      "model_org": "Anthropic",
+      "model_release_date": 20250929,
+      "name": "Claude 4.5 Sonnet (high)",
+      "os_model": false,
+      "os_system": true,
+      "reasoning_effort": "high",
+      "resolved": 71.4,
+      "site": "https://www.anthropic.com/claude",
+      "tags": [
+        "Model: claude-sonnet-4-5-20250929",
+        "Org: Anthropic",
+        "System: Attempts - 1",
+        "Mini: 2.0.0"
+      ],
+      "trajs": "s3://swe-bench-submissions/bash-only/20260217_mini-v2.0.0_claude-4-5-sonnet-high/trajs",
+      "trajs_docent": "https://docent.transluce.org/dashboard/737e5dd2-8555-435a-9fbd-1c6907c972f1",
+      "warning": null,
+      "per_instance_count": 500,
+      "count_resolved_from_published_details": 357
+    },
+    {
+      "agent": "mini-SWE-agent",
+      "agent_org": "SWE-agent",
+      "checked": null,
+      "cost": 73.276870372,
+      "date": "2026-02-17",
+      "folder": "20260217_mini-v2.0.0_kimi-k2-5-high",
+      "instance_calls": 51.178,
+      "instance_cost": 0.14655374074400002,
+      "logo": [
+        "img/logos/20260217_mini-v2.0.0_kimi-k2-5-high.jpg",
+        "img/mini-icon.svg"
+      ],
+      "logs": null,
+      "mini-swe-agent_version": "2.0.0",
+      "model_display": "Kimi K2.5",
+      "model_org": "Moonshot AI",
+      "model_release_date": 20260127,
+      "name": "Kimi K2.5 (high)",
+      "os_model": true,
+      "os_system": true,
+      "reasoning_effort": "high",
+      "resolved": 70.8,
+      "site": "https://moonshotai.github.io/Kimi-K2/",
+      "tags": [
+        "Model: kimi-k2.5",
+        "Org: Moonshot AI",
+        "System: Attempts - 1",
+        "Mini: 2.0.0"
+      ],
+      "trajs": "s3://swe-bench-submissions/bash-only/20260217_mini-v2.0.0_kimi-k2-5-high/trajs",
+      "trajs_docent": "https://docent.transluce.org/dashboard/c4f6e550-6e49-436e-96fa-3aafd9a0c936",
+      "warning": null,
+      "per_instance_count": 500,
+      "count_resolved_from_published_details": 354
+    }
+  ],
+  "selected_pinned_submission_sources": [
+    {
+      "folder": "20260217_mini-v2.0.0_claude-4-6-opus",
+      "file": "metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_claude-4-6-opus/metadata.yaml",
+      "sha256": "57c9de0e30a7299338f659f0526e8e6bceb6e4e59e7c5a533528f3b7c3017264",
+      "text": "assets:\n  logs: s3://swe-bench-submissions/bash-only/20260217_mini-v2.0.0_claude-4-6-opus/logs\n  trajs: s3://swe-bench-submissions/bash-only/20260217_mini-v2.0.0_claude-4-6-opus/trajs\n  trajs_docent: https://docent.transluce.org/dashboard/9243cc78-d399-402f-be97-e366ff63282c\ninfo:\n  model_release_date: 20260205\n  logo:\n  - https://pbs.twimg.com/profile_images/1798110641414443008/XP8gyBaY_400x400.jpg\n  mini-swe-agent_version: 2.0.0\n  name: Claude 4.6 Opus\n  resolved: 75.6\n  site: https://www.anthropic.com/claude\n  cost: 275.76132225\n  instance_cost: 0.5515226445\n  instance_calls: 28.932\ntags:\n  checked: null\n  model:\n  - claude-opus-4-6\n  org: Anthropic\n  os_model: false\n  os_system: true\n  system:\n    attempts: 1\n  agent: mini-SWE-agent\n  agent_org: SWE-agent\n  model_display: Claude 4.6 Opus\n  model_org: Anthropic\n"
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_claude-4-6-opus",
+      "file": "README.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_claude-4-6-opus/README.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_gpt-5-2-high",
+      "file": "metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_gpt-5-2-high/metadata.yaml",
+      "sha256": "969a7c91b351fd0ac9ce47fddec706a9babbc15a84bc2022dd6f138461858d75",
+      "text": "assets:\n  logs: null\n  trajs: s3://swe-bench-submissions/bash-only/20260217_mini-v2.0.0_gpt-5-2-high/trajs\n  trajs_docent: https://docent.transluce.org/dashboard/c2c7f5be-2c1a-472f-a34a-92e9e1df4f01\ninfo:\n  model_release_date: 20251211\n  logo:\n  - https://upload.wikimedia.org/wikipedia/commons/6/66/OpenAI_logo_2025_%28symbol%29.svg\n  mini-swe-agent_version: 2.0.0\n  name: GPT 5.2 (high)\n  resolved: 72.8\n  site: https://platform.openai.com\n  cost: 236.78350885\n  instance_cost: 0.4735670177\n  instance_calls: 35.046\ntags:\n  checked: null\n  model:\n  - gpt-5-2\n  org: OpenAI\n  os_model: false\n  os_system: true\n  system:\n    attempts: 1\n  agent: mini-SWE-agent\n  agent_org: SWE-agent\n  model_display: GPT 5.2\n  model_org: OpenAI\n  reasoning_effort: high\n"
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_gpt-5-2-high",
+      "file": "README.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_gpt-5-2-high/README.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_claude-4-5-sonnet-high",
+      "file": "metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_claude-4-5-sonnet-high/metadata.yaml",
+      "sha256": "a158a82473a28ec37c2639d5d309dbba23cd4f75d22763c9b5e67b4b5830d308",
+      "text": "assets:\n  logs: null\n  trajs: s3://swe-bench-submissions/bash-only/20260217_mini-v2.0.0_claude-4-5-sonnet-high/trajs\n  trajs_docent: https://docent.transluce.org/dashboard/737e5dd2-8555-435a-9fbd-1c6907c972f1\ninfo:\n  model_release_date: 20250929\n  logo:\n  - https://pbs.twimg.com/profile_images/1798110641414443008/XP8gyBaY_400x400.jpg\n  mini-swe-agent_version: 2.0.0\n  name: Claude 4.5 Sonnet (high)\n  resolved: 71.4\n  site: https://www.anthropic.com/claude\n  cost: 328.9482492\n  instance_cost: 0.6578964984000001\n  instance_calls: 48.3\ntags:\n  checked: null\n  model:\n  - claude-sonnet-4-5-20250929\n  org: Anthropic\n  os_model: false\n  os_system: true\n  system:\n    attempts: 1\n  agent: mini-SWE-agent\n  agent_org: SWE-agent\n  model_display: Claude 4.5 Sonnet\n  model_org: Anthropic\n  reasoning_effort: high\n"
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_claude-4-5-sonnet-high",
+      "file": "README.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_claude-4-5-sonnet-high/README.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_glm-5-high",
+      "file": "metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_glm-5-high/metadata.yaml",
+      "sha256": "51caca169f8ea93795ea15d67cdb3c78740612dbc4040a5d30cbf65e0d660013",
+      "text": "assets:\n  logs: null\n  trajs: s3://swe-bench-submissions/bash-only/20260217_mini-v2.0.0_glm-5-high/trajs\n  trajs_docent: https://docent.transluce.org/dashboard/5fc22eb4-1f44-405e-9dff-40a61f9f6ef6\ninfo:\n  model_release_date: 20260211\n  logo:\n  - https://z-cdn.chatglm.cn/z-blog/z-icon.svg\n  mini-swe-agent_version: 2.0.0\n  name: GLM 5 (high)\n  resolved: 72.8\n  site: https://z.ai\n  cost: 267.19456811\n  instance_cost: 0.53438913622\n  instance_calls: 76.176\ntags:\n  checked: null\n  model:\n  - glm-5\n  org: Z-AI\n  os_model: true\n  os_system: true\n  system:\n    attempts: 1\n  agent: mini-SWE-agent\n  agent_org: SWE-agent\n  model_display: GLM 5\n  model_org: Z-AI\n  reasoning_effort: high\n"
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_glm-5-high",
+      "file": "README.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_glm-5-high/README.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_kimi-k2-5-high",
+      "file": "metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_kimi-k2-5-high/metadata.yaml",
+      "sha256": "205dab6b9d0851bc1080baf7af7e845ea95b4908997a29095c6b7bb2c2b70484",
+      "text": "assets:\n  logs: null\n  trajs: s3://swe-bench-submissions/bash-only/20260217_mini-v2.0.0_kimi-k2-5-high/trajs\n  trajs_docent: https://docent.transluce.org/dashboard/c4f6e550-6e49-436e-96fa-3aafd9a0c936\ninfo:\n  model_release_date: 20260127\n  logo:\n  - https://avatars.githubusercontent.com/u/129152888?s=200&v=4\n  mini-swe-agent_version: 2.0.0\n  name: Kimi K2.5 (high)\n  resolved: 70.8\n  site: https://moonshotai.github.io/Kimi-K2/\n  cost: 73.276870372\n  instance_cost: 0.14655374074400002\n  instance_calls: 51.178\ntags:\n  checked: null\n  model:\n  - kimi-k2.5\n  org: Moonshot AI\n  os_model: true\n  os_system: true\n  system:\n    attempts: 1\n  agent: mini-SWE-agent\n  agent_org: SWE-agent\n  model_display: Kimi K2.5\n  model_org: Moonshot AI\n  reasoning_effort: high\n"
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_kimi-k2-5-high",
+      "file": "README.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_kimi-k2-5-high/README.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_minimax-2-5-high",
+      "file": "metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_minimax-2-5-high/metadata.yaml",
+      "sha256": "9d11723206b90a1a3dc02b0a3c2c3870e8c487b756c36aff13120ad397e7abbc",
+      "text": "assets:\n  logs: null\n  trajs: s3://swe-bench-submissions/bash-only/20260217_mini-v2.0.0_minimax-2-5-high/trajs\n  trajs_docent: https://docent.transluce.org/dashboard/5b77e003-7328-4003-879e-9b55dd3a0b6f\ninfo:\n  model_release_date: 20260212\n  logo:\n  - https://filecdn.minimax.chat/public/58eca777-e31f-448a-9823-e2220e49b426.png\n  mini-swe-agent_version: 2.0.0\n  name: MiniMax M2.5 (high)\n  resolved: 75.8\n  site: https://www.minimax.io\n  cost: 36.644993922\n  instance_cost: 0.073289987844\n  instance_calls: 60.45\ntags:\n  checked: null\n  model:\n  - minimax-m2.5\n  org: Minimax\n  os_model: true\n  os_system: true\n  system:\n    attempts: 1\n  agent: mini-SWE-agent\n  agent_org: SWE-agent\n  model_display: MiniMax M2.5\n  model_org: Minimax\n  reasoning_effort: high\n"
+    },
+    {
+      "folder": "20260217_mini-v2.0.0_minimax-2-5-high",
+      "file": "README.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_minimax-2-5-high/README.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "folder": "20260226_mini-v2.0.0_gemini-3-pro-high",
+      "file": "metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260226_mini-v2.0.0_gemini-3-pro-high/metadata.yaml",
+      "sha256": "ea89e3be751dad7ecfeb1c535118dd87f2560826455dc3304c384bfd98ec10eb",
+      "text": "assets:\n  logs: s3://swe-bench-submissions/bash-only/20260226_mini-v2.0.0_gemini-3-pro-high/logs\n  trajs: s3://swe-bench-submissions/bash-only/20260226_mini-v2.0.0_gemini-3-pro-high/trajs\n  trajs_docent: https://docent.transluce.org/dashboard/cf47db93-89ae-4f15-984d-e117c77cb96d\ninfo:\n  model_release_date: 20251118\n  logo:\n  - https://upload.wikimedia.org/wikipedia/commons/8/8f/Google-gemini-icon.svg\n  mini-swe-agent_version: 2.0.0\n  name: Gemini 3 Pro\n  resolved: 69.6\n  site: https://ai.google.dev/gemini-api/docs/models\n  cost: 480.0099282\n  instance_cost: 0.9600198564\n  instance_calls: 51.282\ntags:\n  checked: null\n  model:\n  - gemini-3-pro-preview\n  org: Google DeepMind\n  os_model: false\n  os_system: true\n  system:\n    attempts: 1\n  agent: mini-SWE-agent\n  agent_org: SWE-agent\n  model_display: Gemini 3 Pro\n  model_org: Google DeepMind\n  reasoning_effort: high\n"
+    },
+    {
+      "folder": "20260226_mini-v2.0.0_gemini-3-pro-high",
+      "file": "README.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260226_mini-v2.0.0_gemini-3-pro-high/README.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "folder": "20260901_mini-v2.4.2_gemini-3-5-flash",
+      "file": "metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260901_mini-v2.4.2_gemini-3-5-flash/metadata.yaml",
+      "sha256": "f952e0e14fc11be7467a9cbebb70040a92d4e1e66bd6fdb909cf575d894e064d",
+      "text": "info:\n  model_release_date: 20260519\n  logo:\n  - https://upload.wikimedia.org/wikipedia/commons/8/8f/Google-gemini-icon.svg\n  mini-swe-agent_version: 2.4.2\n  name: Gemini 3.5 Flash\n  resolved: 71.8\n  site: https://ai.google.dev/gemini-api/docs/models\n  instance_calls: 39.03\n  commit: 2f6637a2557da1f7b5f2b583ab7090a077bbeed2\ntags:\n  checked: null\n  model:\n  - gemini-3-5-flash\n  org: Google DeepMind\n  os_model: false\n  os_system: true\n  system:\n    attempts: 1\n  agent: mini-SWE-agent\n  agent_org: SWE-agent\n  model_display: Gemini 3.5 Flash\n  model_org: Google DeepMind\n  reasoning_effort: medium\nassets:\n  repo: https://github.com/john-b-yang/20260901_mini-v2.4.2_gemini-3-5-flash\n  logs: https://github.com/john-b-yang/20260901_mini-v2.4.2_gemini-3-5-flash/tree/main/logs\n  trajs: https://github.com/john-b-yang/20260901_mini-v2.4.2_gemini-3-5-flash/tree/main/trajs\n"
+    },
+    {
+      "folder": "20260901_mini-v2.4.2_gemini-3-5-flash",
+      "file": "README.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260901_mini-v2.4.2_gemini-3-5-flash/README.md",
+      "sha256": "3a834e4f40f9ece01ac0a47bada4a1751b7c219ae5166d8ca0b96f4f17bacc1c",
+      "text": "# Gemini 3.5 Flash + mini-SWE-agent\n\n[mini-SWE-agent](https://mini-swe-agent.com) 2.4.2 run on SWE-bench Verified with\nGemini 3.5 Flash, using mini's bundled `swebench.yaml` config unchanged.\n\n| | |\n| --- | --- |\n| Resolved | 359 / 500 (71.80%) |\n| Attempted | 441 (59 instances produced no patch) |\n| Mean API calls | 39.03 per instance |\n| Attempts per instance | 1 |\n\nVerdicts were re-derived from each instance's recorded test output by\n`swebench submit package`, and match the evaluation report.\n"
+    }
+  ],
+  "classification": "External published benchmark records; not TTGL outcomes; no new model inference performed"
+}

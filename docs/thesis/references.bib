@@ -1,0 +1,253 @@
+% Focused narrative review, sources inspected 2026-10-25.
+% Thesis sources: see literature.md for evidence levels; paper and software versions are distinct.
+
+@inproceedings{guo2017calibration,
+  title={On Calibration of Modern Neural Networks},
+  author={Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},
+  booktitle={Proceedings of the 34th International Conference on Machine Learning},
+  year={2017},
+  url={https://arxiv.org/abs/1706.04599},
+  note={Primary paper arXiv:1706.04599v2 sections 1--2 and 4.2 inspected, alongside author repository}
+}
+
+@inproceedings{geifman2019selectivenet,
+  title={SelectiveNet: A Deep Neural Network with an Integrated Reject Option},
+  author={Geifman, Yonatan and El-Yaniv, Ran},
+  booktitle={Proceedings of the 36th International Conference on Machine Learning},
+  year={2019},
+  url={https://proceedings.mlr.press/v97/geifman19a.html},
+  note={Primary paper arXiv:1901.09192v4 definitions and problem formulation inspected, alongside author repository}
+}
+
+@inproceedings{mozannar2020defer,
+  title={Consistent Estimators for Learning to Defer to an Expert},
+  author={Mozannar, Hussein and Sontag, David},
+  booktitle={Proceedings of the 37th International Conference on Machine Learning},
+  year={2020},
+  eprint={2006.01862},
+  archivePrefix={arXiv},
+  url={https://arxiv.org/abs/2006.01862},
+  note={Primary paper arXiv:2006.01862 sections 1--4 inspected; system loss and imperfect-expert formulation checked}
+}
+
+@article{chen2024frugalgpt,
+  title={FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance},
+  author={Chen, Lingjiao and Zaharia, Matei and Zou, James},
+  journal={Transactions on Machine Learning Research},
+  year={2024},
+  url={https://openreview.net/forum?id=cSimKw5p6R},
+  note={Primary preprint arXiv:2305.05176v1 sections 1--3 inspected; repository gives the 2024 journal citation; journal-version equivalence not assumed}
+}
+
+@inproceedings{ong2024routellm,
+  title={RouteLLM: Learning to Route LLMs with Preference Data},
+  author={Ong, Isaac and Almahairi, Amjad and Wu, Vincent and Chiang, Wei-Lin and Wu, Tianhao and Gonzalez, Joseph E. and Kadous, M. Waleed and Stoica, Ion},
+  booktitle={International Conference on Learning Representations},
+  year={2025},
+  eprint={2406.18665},
+  archivePrefix={arXiv},
+  url={https://arxiv.org/abs/2406.18665},
+  note={Primary paper arXiv:2406.18665v4 sections 1--4 inspected; ICLR 2025 version, originally posted in 2024; repository interface inspected}
+}
+
+@inproceedings{leviathan2023speculative,
+  title={Fast Inference from Transformers via Speculative Decoding},
+  author={Leviathan, Yaniv and Kalman, Matan and Matias, Yossi},
+  booktitle={Proceedings of the 40th International Conference on Machine Learning},
+  volume={202},
+  pages={19274--19286},
+  year={2023},
+  url={https://proceedings.mlr.press/v202/leviathan23a.html},
+  note={Primary paper arXiv:2211.17192v2 sections 1--3 inspected; sampling-distribution preservation distinguished from task correctness}
+}
+
+@article{mamou2024dynamic,
+  title={Dynamic Speculation Lookahead Accelerates Speculative Decoding of Large Language Models},
+  author={Mamou, Jonathan and Pereg, Oren and Korat, Daniel and Berchansky, Moshe and Timor, Nadav and Wasserblat, Moshe and Schwartz, Roy},
+  journal={arXiv preprint arXiv:2405.04304},
+  year={2024},
+  url={https://arxiv.org/abs/2405.04304},
+  note={Primary paper arXiv:2405.04304v5 sections 1--4 and primary Hugging Face/Intel implementation article inspected; title follows the retrieved paper}
+}
+
+@misc{deepinfer2026,
+  title={DeepInfer: High-performance, large-scale inference framework for DeepSeek models},
+  author={{DeepSeek-AI}},
+  year={2026},
+  howpublished={Source code and documentation},
+  url={https://github.com/deepseek-ai/DeepInfer/tree/553741557a57df44a46fb3ab72b6aafeaf945337},
+  note={Pinned source inspected; not a peer-reviewed performance result}
+}
+
+@misc{hinton2015distillation,
+  title={Distilling the Knowledge in a Neural Network},
+  author={Hinton, Geoffrey and Vinyals, Oriol and Dean, Jeff},
+  year={2015},
+  eprint={1503.02531},
+  archivePrefix={arXiv},
+  url={https://arxiv.org/abs/1503.02531},
+  note={Primary paper arXiv:1503.02531v1 sections 1--2.1 inspected; soft targets, temperature and logit matching distinguished}
+}
+
+@misc{hu2021lora,
+  title={LoRA: Low-Rank Adaptation of Large Language Models},
+  author={Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},
+  year={2021},
+  eprint={2106.09685},
+  archivePrefix={arXiv},
+  url={https://arxiv.org/abs/2106.09685},
+  note={Primary paper arXiv:2106.09685v2 sections 1--3 inspected; citation uses the retrieved preprint year}
+}
+
+@article{dettmers2023qlora,
+  title={QLoRA: Efficient Finetuning of Quantized LLMs},
+  author={Dettmers, Tim and Pagnoni, Artidoro and Holtzman, Ari and Zettlemoyer, Luke},
+  journal={arXiv preprint arXiv:2305.14314},
+  year={2023},
+  url={https://arxiv.org/abs/2305.14314},
+  note={Primary paper arXiv:2305.14314v1 introduction and method background inspected, alongside author repository}
+}
+
+@inproceedings{rafailov2023dpo,
+  title={Direct Preference Optimization: Your Language Model is Secretly a Reward Model},
+  author={Rafailov, Rafael and Sharma, Archit and Mitchell, Eric and Ermon, Stefano and Manning, Christopher D. and Finn, Chelsea},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2023},
+  url={https://arxiv.org/abs/2305.18290},
+  note={Primary paper arXiv:2305.18290v3 sections 1--3 inspected, alongside author reference implementation}
+}
+
+@misc{bai2022constitutional,
+  title={Constitutional AI: Harmlessness from AI Feedback},
+  author={Bai, Yuntao and others},
+  year={2022},
+  eprint={2212.08073},
+  archivePrefix={arXiv},
+  url={https://arxiv.org/abs/2212.08073},
+  note={Primary paper arXiv:2212.08073v1 introduction and sections 3.1 and 4.1 inspected; author list abbreviated}
+}
+
+@article{shao2024deepseekmath,
+  title={DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models},
+  author={Shao, Zhihong and Wang, Peiyi and Zhu, Qihao and Xu, Runxin and Song, Junxiao and Zhang, Mingchuan and Li, Y. K. and Wu, Y. and Guo, Daya},
+  journal={arXiv preprint arXiv:2402.03300},
+  year={2024},
+  url={https://arxiv.org/abs/2402.03300},
+  note={Official repository inspected; author initials follow its citation}
+}
+
+@misc{deepseek2025r1,
+  title={DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning},
+  author={{DeepSeek-AI}},
+  year={2025},
+  eprint={2501.12948},
+  archivePrefix={arXiv},
+  url={https://github.com/deepseek-ai/DeepSeek-R1/blob/main/DeepSeek_R1.pdf},
+  note={Official author PDF retrieved; relevant methodology and discussion sections read}
+}
+
+@misc{chen2021humaneval,
+  title={Evaluating Large Language Models Trained on Code},
+  author={Chen, Mark and others},
+  year={2021},
+  eprint={2107.03374},
+  archivePrefix={arXiv},
+  url={https://arxiv.org/abs/2107.03374},
+  note={Official HumanEval evaluation repository inspected; abbreviated author list}
+}
+
+@inproceedings{liu2023evalplus,
+  title={Is Your Code Generated by ChatGPT Really Correct? Rigorous Evaluation of Large Language Models for Code Generation},
+  author={Liu, Jiawei and Xia, Chunqiu Steven and Wang, Yuyao and Zhang, Lingming},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2023},
+  url={https://openreview.net/forum?id=1qvx610Cu7},
+  note={Official repository, dataset version history and supplied citation inspected}
+}
+
+@misc{jain2024livecodebench,
+  title={LiveCodeBench: Holistic and Contamination Free Evaluation of Large Language Models for Code},
+  author={Jain, Naman and Han, King and Gu, Alex and Li, Wen-Ding and Yan, Fanjia and Zhang, Tianjun and Wang, Sida and Solar-Lezama, Armando and Sen, Koushik and Stoica, Ion},
+  year={2024},
+  url={https://github.com/LiveCodeBench/LiveCodeBench},
+  note={Official repository and supplied citation inspected; title does not imply every future model is contamination-free}
+}
+
+@article{zhuo2024bigcodebench,
+  title={BigCodeBench: Benchmarking Code Generation with Diverse Function Calls and Complex Instructions},
+  author={Zhuo, Terry Yue and Vu, Minh Chien and Chim, Jenny and Hu, Han and Yu, Wenhao and Widyasari, Ratnadira and Yusuf, Imam Nur Bani and Zhan, Haolan and He, Junda and Paul, Indraneil and others},
+  journal={arXiv preprint arXiv:2406.15877},
+  year={2024},
+  url={https://arxiv.org/abs/2406.15877},
+  note={Official README, output artifact schema and supplied citation inspected}
+}
+
+@inproceedings{jimenez2024swebench,
+  title={SWE-bench: Can Language Models Resolve Real-world GitHub Issues?},
+  author={Jimenez, Carlos E. and Yang, John and Wettig, Alexander and Yao, Shunyu and Pei, Kexin and Press, Ofir and Narasimhan, Karthik R.},
+  booktitle={International Conference on Learning Representations},
+  year={2024},
+  url={https://openreview.net/forum?id=VTF8yNQM66},
+  note={Primary paper arXiv:2310.06770v3 introduction and task definition inspected, alongside current official evaluation documentation}
+}
+
+
+@inproceedings{yang2024sweagent,
+  title={{SWE}-agent: Agent-Computer Interfaces Enable Automated Software Engineering},
+  author={Yang, John and Jimenez, Carlos E. and Wettig, Alexander and Lieret, Kilian and Yao, Shunyu and Narasimhan, Karthik R. and Press, Ofir},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2024},
+  eprint={2405.15793},
+  archivePrefix={arXiv},
+  url={https://arxiv.org/abs/2405.15793},
+  note={Primary paper arXiv:2405.15793v3 introduction and agent-computer interface definition inspected; current README inspected at commit 3ea751c087f32b16e039a2233dd6eefecef325d5}
+}
+
+@misc{minisweagent2026,
+  title={mini-SWE-agent: The Minimal AI Software Engineering Agent, Version 2 Documentation},
+  author={{SWE-agent Team}},
+  year={2026},
+  howpublished={Versioned software documentation},
+  url={https://github.com/SWE-agent/mini-swe-agent/blob/04d809ceab9df28f9adaed044884180159172930/README.md},
+  urldate={2026-10-25},
+  note={Current version-2 README inspected; year identifies documentation access context, not a new paper publication}
+}
+
+@misc{swebenchverified2024,
+  title={SWE-bench Verified and Evaluation Documentation},
+  author={{SWE-bench Team}},
+  year={2024},
+  howpublished={Official project documentation},
+  url={https://github.com/SWE-bench/SWE-bench/blob/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/README.md},
+  urldate={2026-10-25},
+  note={Verified release dated 2024-08-13 in the project documentation; inspected revision also describes current v5 evaluation and cache behavior. OpenAI's linked original report was not accessible}
+}
+
+@article{deng2025swebenchpro,
+  title={SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?},
+  author={Deng, Xiang and Da, Jeff and Pan, Edwin and He, Yannis Yiming and Ide, Charles and Garg, Kanak and Lauffer, Niklas and Park, Andrew and Pasari, Nitin and Rane, Chetan and Sampath, Karmini and Krishnan, Maya and Kundurthy, Srivatsa and Hendryx, Sean and Wang, Zifan and Bharadwaj, Vijay and Holm, Jeff and Aluri, Raja and Zhang, Chen Bo Calvin and Jacobson, Noah and Liu, Bing and Kenstler, Brad},
+  journal={arXiv preprint arXiv:2509.16941},
+  year={2025},
+  url={https://arxiv.org/abs/2509.16941},
+  note={Primary paper arXiv:2509.16941v2 introduction and benchmark construction overview inspected; author list corrected from the paper; current V2 dataset separately cited}
+}
+
+@misc{swebenchpro2026,
+  title={SWE-bench Pro V2: Validated Public Split and Locked Evaluation Protocol},
+  author={{Scale AI}},
+  year={2026},
+  howpublished={Versioned benchmark documentation},
+  url={https://github.com/scaleapi/SWE-bench_Pro-os/blob/66f92766bba642462d4bbe5479e83f91f9211862/v2/README.md},
+  urldate={2026-10-25},
+  note={V2 documentation inspected directly; year denotes inspected documentation context and does not replace the original 2025 paper citation}
+}
+
+@misc{wang2025openhands,
+  title={The OpenHands Software Agent SDK: A Composable and Extensible Foundation for Production Agents},
+  author={Wang, Xingyao and Rosenberg, Simon and Michelini, Juan and Smith, Calvin and Tran, Hoang and Nyst, Engel and Malhotra, Rohit and Zhou, Xuhui and Chen, Valerie and Brennan, Robert and Neubig, Graham},
+  year={2025},
+  eprint={2511.03690},
+  archivePrefix={arXiv},
+  url={https://arxiv.org/abs/2511.03690},
+  note={Official SDK README and supplied citation inspected at commit ce5716a3c0a955a85bb0cc4dcfaa94d5fefcda50; original full text not retrieved}
+}

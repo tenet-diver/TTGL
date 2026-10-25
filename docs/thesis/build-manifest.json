@@ -1,0 +1,108 @@
+{
+  "status": "pre_results_manuscript",
+  "built_at_utc": "2026-10-25T22:49:50.326010+00:00",
+  "pandoc": "pandoc 3.1.11.1",
+  "word_count_approximate": 19684,
+  "artifacts": {
+    "thesis.md": {
+      "bytes": 147599,
+      "sha256": "8265ca3cae1ad3eccdf7091c266cf26ed584f4cfd0bf9ec841c06f30b4f08079"
+    },
+    "thesis.pdf": {
+      "bytes": 490712,
+      "sha256": "c7903031407114fe55cf5d9d71d6ca5079b74cc18f9dcc4018d34bf526705cd0"
+    },
+    "thesis.docx": {
+      "bytes": 329206,
+      "sha256": "9ad80e6984948509d0f74585dfafce2c2c6f6f0695e6fcebd93e0a23c77019b0"
+    },
+    "thesis.html": {
+      "bytes": 572907,
+      "sha256": "256c79837dd61c326f87840b8007329ebeca2554a840eb416a2af5673099b1ec"
+    },
+    "references.bib": {
+      "bytes": 12648,
+      "sha256": "dbc49283ef7ea00d756beede39ed82dd9e8dfa8b8edbb2e92db32eed5b2e7750"
+    },
+    "model-catalog.csv": {
+      "bytes": 10418,
+      "sha256": "ed14ac603bae83d91b1bd425134ef538b9b2fe196baa01ac6e00916bbb674fbd"
+    },
+    "market-sources.json": {
+      "bytes": 61666,
+      "sha256": "bea81181986fa2295e20a8e8bb04cd4a1587e93242bec43613c9ce3d3c688d45"
+    },
+    "accuracy-context-sources.json": {
+      "bytes": 21013,
+      "sha256": "57a1551839b40c3f65c413d3554a8dd4cc5e4a8e1961edb8924eae1a8aa410e8"
+    },
+    "frontmatter.md": {
+      "bytes": 5051,
+      "sha256": "f9e0a302771cd006e69a50748019e7a777abcfd4167fe32a15cfe1342758debd"
+    },
+    "introduction.md": {
+      "bytes": 8687,
+      "sha256": "a70693ee98fd379777be9e109bff19f0582eb309593a747ae5e0cf1d8da02ff8"
+    },
+    "literature.md": {
+      "bytes": 31920,
+      "sha256": "fa1ab44a2b694e636cf179c004192888d09c8762dc24a47d9e64abd96cd2fede"
+    },
+    "system-design.md": {
+      "bytes": 14116,
+      "sha256": "432cb13aa92be496ad9570b388001254fa52495109f84c5e9334bf1007fe95a3"
+    },
+    "model-landscape.md": {
+      "bytes": 18559,
+      "sha256": "2620b23320fd257cf573ec587e57090f6fff4bdb2842d6fa8d77c27f14f54c1b"
+    },
+    "accuracy-context.md": {
+      "bytes": 6296,
+      "sha256": "6d7f2b9f39b646c8afaf0bfb4d31a01d32169975f73f1f21658252bf0b479d9f"
+    },
+    "methodology.md": {
+      "bytes": 38280,
+      "sha256": "4bcfaf6d8df7e2dd16354bee0f14d724f350673ccc028dacd2b2fa17924c735b"
+    },
+    "analysis-plan.md": {
+      "bytes": 11485,
+      "sha256": "86a71ca96d886977f01d6d93fd3e79b094eef7780bc2c7011724adf3bd13c355"
+    },
+    "reproducibility-and-limits.md": {
+      "bytes": 13152,
+      "sha256": "a26af21d425991816bcd92706ec085d7254f69ec5b54d7a9e7215c38d96e8f5a"
+    },
+    "layout.tex": {
+      "bytes": 371,
+      "sha256": "2ba3bf55ccffefe9e0642546f842baa606654196c74c5fed5fdfa3437c756b61"
+    },
+    "style.css": {
+      "bytes": 840,
+      "sha256": "a2068f91a39375a913ef2b8db4759395350a4c2bf5415e7e2ce8b62acdcff505"
+    },
+    "figures/architecture.dot": {
+      "bytes": 1947,
+      "sha256": "78120b27772b3ae6e8ab9c6fb2521c5ca938cb718e877f5e959dd1ae1af0fb9c"
+    },
+    "figures/architecture.png": {
+      "bytes": 260405,
+      "sha256": "b40afa425d0bc5955a59a934ae6f6c81b9c7e8ceca1bd66d883b7c8c6398133a"
+    },
+    "figures/architecture.svg": {
+      "bytes": 12198,
+      "sha256": "9f9828a7f451203363702148d1bec3b167eee7c96299bdd06080f2dcfffb8f3f"
+    },
+    "evidence-audit.json": {
+      "bytes": 4465,
+      "sha256": "535430a7dce9e7ea50e5c58d77bd4713a4fe2b6293b48d8515c886d8c93706c3"
+    },
+    "evidence-audit-details.json": {
+      "bytes": 5603,
+      "sha256": "8e66d17e2b954e55521231a66c42df88278264110b0038ec588c79a26aa9e05c"
+    },
+    "../../scripts/build_thesis.sh": {
+      "bytes": 3032,
+      "sha256": "2ffeabc9801b64c3dadb66d590ba0e162d34603b25784601ebf5893677d0c0f8"
+    }
+  }
+}

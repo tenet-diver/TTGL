@@ -1,0 +1,120 @@
+[
+  {
+    "name": "qwen_release",
+    "bytes": 14334,
+    "hash_match": true,
+    "relevant_lines": [
+      "- 2026-08-14: Qwen3.8-27B is now available on [Hugging Face Hub](https://huggingface.co/collections/Qwen/qwen38) and [ModelScope](https://www.modelscope.cn/collections/Qwen/Qwen38). Read more on the model card.",
+      "- 2026-08-12: Qwen3.8-2.4T-A95B is now available on [Hugging Face Hub](https://huggingface.co/collections/Qwen/qwen38) and [ModelScope](https://www.modelscope.cn/collections/Qwen/Qwen38). Read more on the model card.",
+      "- 2026-03-02: Qwen3.5-9B, Qwen3.5-4B, Qwen3.5-2B, and Qwen3.5-0.8B are now available on [Hugging Face Hub](https://huggingface.co/collections/Qwen/qwen35) and [ModelScope](https://www.modelscope.cn/collections/Qwen/Qwen35)!",
+      "- 2026-02-24: Qwen3.5-122B-A10B, Qwen3.5-35B-A3B, and Qwen3.5-27B are released. Check out the model cards on [Hugging Face Hub](https://huggingface.co/collections/Qwen/qwen35) or [ModelScope](https://www.modelscope.cn/collections/Qwen/Qwen35) for more information!",
+      "- 2026-02-16: We release Qwen3.5. The first release includes a 397B-A17B MoE model. Read more on our [release blog](https://qwen.ai/blog?id=qwen3.5). More sizes are coming & Happy Chinese New Year!",
+      "- [\ud83e\udd17Hugging Face Hub](https://huggingface.co/Qwen): Most LLM frameworks and applications support downloading model files from Hugging Face Hub automatically by specifying the model ID, e.g., `Qwen/Qwen3.8-27B`, `Qwen/Qwen3.6-35B-A3B`, and `Qwen/Qwen3.5-397B-A17B`.",
+      "For detailed results, please check out the [Qwen3.8-2.4T-A95B Model Card](https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B) and the [Qwen3.8-27B Model Card](https://huggingface.co/Qwen/Qwen3.8-27B).",
+      "![Qwen3.5-9B and Qwen3.5-4B Benchmark Results](https://qianwen-res.oss-accelerate.aliyuncs.com/Qwen3.5/Figures/qwen3.5_small_size_score.png)",
+      "transformers serve Qwen/Qwen3.8-27B --port 8000 --continuous-batching",
+      "sglang serve --model-path Qwen/Qwen3.8-27B --port 8000 --tp-size 4 --context-length 262144 --reasoning-parser qwen3 --tool-call-parser qwen3_coder"
+    ]
+  },
+  {
+    "name": "litellm_prices",
+    "bytes": 3031004,
+    "hash_match": true,
+    "price_checks": [
+      {
+        "key": "nebius/Qwen/Qwen3.8-27B",
+        "present": true,
+        "input": 0.44999999999999996,
+        "output": 3.0,
+        "cache": 0.0,
+        "table_input": "0.45",
+        "table_output": "3.0",
+        "table_cache": ""
+      },
+      {
+        "key": "tencent/deepseek-v4.1-flash",
+        "present": true,
+        "input": 0.3,
+        "output": 1.2,
+        "cache": 0.006,
+        "table_input": "0.3",
+        "table_output": "1.2",
+        "table_cache": "0.006"
+      },
+      {
+        "key": "zai/glm-5.3-flash",
+        "present": true,
+        "input": 0.15,
+        "output": 0.5,
+        "cache": 0.03,
+        "table_input": "0.15",
+        "table_output": "0.5",
+        "table_cache": "0.03"
+      },
+      {
+        "key": "moonshot/kimi-k3",
+        "present": true,
+        "input": 3.0,
+        "output": 15.0,
+        "cache": 0.3,
+        "table_input": "3.0",
+        "table_output": "15.0",
+        "table_cache": "0.3"
+      },
+      {
+        "key": "gpt-6.1-sol",
+        "present": true,
+        "input": 2.0,
+        "output": 10.0,
+        "cache": 0.09999999999999999,
+        "table_input": "2.0",
+        "table_output": "10.0",
+        "table_cache": "0.1"
+      },
+      {
+        "key": "gpt-6-luna",
+        "present": true,
+        "input": 0.09999999999999999,
+        "output": 0.5,
+        "cache": 0.01,
+        "table_input": "0.1",
+        "table_output": "0.5",
+        "table_cache": "0.01"
+      },
+      {
+        "key": "claude-sonnet-5-5",
+        "present": true,
+        "input": 2.0,
+        "output": 10.0,
+        "cache": 0.09999999999999999,
+        "table_input": "2.0",
+        "table_output": "10.0",
+        "table_cache": "0.1"
+      },
+      {
+        "key": "claude-opus-5-5",
+        "present": true,
+        "input": 4.0,
+        "output": 20.0,
+        "cache": 0.19999999999999998,
+        "table_input": "4.0",
+        "table_output": "20.0",
+        "table_cache": "0.2"
+      }
+    ]
+  },
+  {
+    "name": "swe_board",
+    "bytes": 4091442,
+    "hash_match": true,
+    "structure": {
+      "leaderboards": "list"
+    }
+  },
+  {
+    "bibliography_keys": 26,
+    "cited_keys": 26,
+    "missing": [],
+    "unused": []
+  }
+]
