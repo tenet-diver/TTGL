@@ -15,7 +15,8 @@ dot -Tsvg figures/architecture.dot -o figures/architecture.svg
 python - <<'PY'
 from pathlib import Path
 chapters = [
-    'frontmatter.md', 'introduction.md', 'literature.md', 'system-design.md',
+    'frontmatter.md', 'introduction.md', 'literature.md', 'agent-learning-evidence.md',
+    'system-design.md', 'personal-controller.md', 'longitudinal-learning.md',
     'model-landscape.md', 'accuracy-context.md', 'task-economics.md',
     'browser-domain.md', 'adaptation-and-switching.md', 'ensemble-methodology.md',
     'methodology.md', 'analysis-plan.md',
@@ -52,6 +53,9 @@ names = ['thesis.md', 'thesis.pdf', 'thesis.docx', 'thesis.html', 'references.bi
          'task-economics-sources.json', 'task-price-checks.json', 'browser-domain.md',
          'browser-sources.json', 'adaptation-and-switching.md', 'adaptation-sources.json',
          'ensemble-methodology.md', 'ensemble-methods-sources.json', 'portfolio-review.json',
+         'agent-learning-evidence.md', 'agent-learning-sources.json',
+         'personal-controller.md', 'controller-sources.json', 'personal-review.json',
+         'longitudinal-learning.md', 'longitudinal-plan.json',
          '../../scripts/build_task_price_table.py', '../../scripts/build_thesis.sh']
 report = {
     'status': 'pre_results_manuscript',

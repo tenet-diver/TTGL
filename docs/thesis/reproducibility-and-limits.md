@@ -16,7 +16,7 @@ The research repository contains reusable components, but not all proposed empir
 
 In particular, an old Transformers or serving-engine pin must not be assumed to support a newly released hybrid-attention or mixture-of-experts architecture. Each selected checkpoint requires a capability preflight: tokenizer/template agreement, generation, stop behavior, output extraction, context limits, model precision and intended adapter targets. A change made to satisfy that preflight is recorded before the relevant run.
 
-Additional portfolio, browser-domain and customer-adapter experiments are designed but have no TTGL performance results. The task-price tables are attributed historical observations or explicitly hypothetical arithmetic, not measurements of these new systems. Supporting document and arithmetic checks validate transcription and calculations only.
+The portfolio, personal-controller, longitudinal-learning, browser-domain and customer-adapter experiments are designed but have no TTGL performance results. The task-price tables are attributed historical observations or explicitly hypothetical arithmetic, not measurements of these new systems. Supporting document and arithmetic checks validate transcription and calculations only.
 
 ## Reproducibility package
 
@@ -46,7 +46,7 @@ The research also considers distributional effects of the objective. Maximizing 
 
 ## Construct validity
 
-Benchmark resolution is a narrow operational definition of software-engineering accuracy. It measures whether the final patch satisfies specified tests under a particular evaluator. It does not fully measure code readability, maintainability, security, user satisfaction or long-term regressions. A no-tools LLM, a single-model agent and a portfolio-routed agent are different systems; comparisons must name the system-level intervention.
+Benchmark resolution is a narrow operational definition of software-engineering accuracy. It measures whether the final patch satisfies specified tests under a particular evaluator. It does not fully measure code readability, maintainability, security, user satisfaction or long-term regressions. A no-tools LLM, a single-model agent, a portfolio selector and a personal controller consulting experts are different systems; comparisons must name the intervention. Equal personal information and tools are required to attribute a benefit to cooperation rather than privileged memory access. Mandatory user constraints are fixed and feasible before outcomes, and their accepted-task metric remains distinct from official benchmark resolution.
 
 “Confidence” has several meanings: token likelihood, a model's verbal self-assessment, a classifier's predicted success probability and a policy's estimate of utility. Treating them interchangeably weakens the causal argument. The thesis defines the prediction target and evaluates calibration for that target. Speculative-decoding acceptance is not reused as a proof of task correctness.
 
@@ -70,6 +70,8 @@ Local hardware is another source of variation. GPU memory capacity, memory bandw
 
 Portfolio breadth creates additional external-validity limits. A router fitted to a few eligible models is not evidence about every free or open-weight release. A dataset dominated by one language cannot establish language specialization, and browser navigation scores cannot establish frontend implementation quality. A customer adapter evaluated on its own training templates cannot establish transfer to new customer workflows. New release epochs and new customer cohorts require fresh development and held-out evidence.
 
+Personal access and ownership are additional constructs. Measured local capability, memory demand, cost, editable state and portable artifacts support bounded technical claims. They do not establish societal democratization, universal hardware support or that everyone can afford training. Gains in useful cooperation and gains in independent local capability are reported separately. A controller's confident integration of a flawed expert output remains a failure even if the expert was a larger model.
+
 ## Resource and completion boundaries
 
 The user has authorized a Runpod experiment ceiling of US$100 for one 80 GB GPU. The pilot must reserve resources for startup, model download, artifact export and verified cleanup. A timeout on a training process does not stop GPU billing. Provisioned resources are tracked and terminated through the provider, with removal confirmed. Additional provider APIs and a full multi-model study require their own resource plan; they are not silently treated as covered by that GPU budget.
@@ -84,13 +86,16 @@ No empirical results chapter is included in this draft. After execution, it will
 
 ## Main system comparison {.unnumbered}
 
-| Condition | Tasks attempted | Resolution | Total cost per issue | Cost per resolved issue | Uncertainty |
+| Condition | Tasks attempted | Named success endpoint | Total cost per task | Cost per success | Uncertainty |
 | -------------------------- | ----------- | ----------- | ---------------- | ---------------- | -------------- |
 | Local-only agent | Pending | Pending | Pending | Pending | Pending |
 | Open-weight remote-only agent | Pending | Pending | Pending | Pending | Pending |
 | Closed-model remote-only agent | Pending | Pending | Pending | Pending | Pending |
 | Restricted two-model policy | Pending | Pending | Pending | Pending | Pending |
 | Frozen multi-model portfolio | Pending | Pending | Pending | Pending | Pending |
+| Personal controller plus expert | Pending | Pending | Pending | Pending | Pending |
+| Strong agent with matched personal context | Pending | Pending | Pending | Pending | Pending |
+| Adapted student at registered round | Pending | Pending | Pending | Pending | Pending |
 | Development-selected domain lookup | Pending | Pending | Pending | Pending | Pending |
 | Random policy matched on calibration cost | Pending | Pending | Pending | Pending | Pending |
 
@@ -107,9 +112,12 @@ Produce this table separately for each benchmark/domain, deployment scenario and
 | Switching effect | Task-level versus actual phase/call handoff | Pending |
 | Portfolio refresh | Frozen epoch versus development-selected new epoch | Pending |
 | Student effect | Base versus adapted student under the same harness | Pending |
+| Collaboration effect | Cooperative versus matched-context strong agent | Pending |
+| Local autonomy | Verified local-only successes / all assigned tasks | Pending |
+| Learning exposure | Arrivals, accepted traces, target tokens and compute | Pending |
 | Router adaptation effect | Frozen versus recalibrated router after student update | Pending |
 | Amortization | Training cost relative to measured eligible savings | Pending |
 
 ## Run manifest checklist {.unnumbered}
 
-Required fields are task, repository and base commit; benchmark revision; harness commit; image digest; condition; portfolio epoch and eligibility set; model, adapter and tokenizer revisions; decoding configuration; seed where supported; routing features and decision; context, tool, iteration and time limits; usage categories; actual billed rates; final patch; evaluator output; failure class; start and end timestamps; resource cleanup; artifact hashes; and analysis-code revision. Unknown values remain explicitly unknown.
+Required fields are task, repository and base commit; benchmark revision; harness commit; image digest; condition; study identifier, learning round and replicate; personal-memory snapshot; portfolio epoch and eligibility set; model, adapter and tokenizer revisions; decoding configuration; seed where supported; routing features and decision; context, tool, iteration and time limits; usage categories; actual billed rates; final patch; evaluator output; failure class; start and end timestamps; resource cleanup; artifact hashes; and analysis-code revision. Unknown values remain explicitly unknown.

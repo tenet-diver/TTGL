@@ -1,26 +1,31 @@
 # We Gotta Combine!
 
-**Cost-Aware Routing of Open-Weight Specialist Models Across Software Engineering and Browser Tasks**
+**Personal AI Through Open-Model Collaboration and Continual Distillation**
 
-Read the [PDF](thesis.pdf), edit the [Word document](thesis.docx), or open the [standalone HTML](thesis.html). The [assembled Markdown](thesis.md) is generated from the chapter files. This is a pre-results master's thesis: the proposed TTGL portfolio, browser and customer-adaptation experiments have no performance results yet.
+Read the [PDF](thesis.pdf), edit the [Word document](thesis.docx), or open the [standalone HTML](thesis.html). The [assembled Markdown](thesis.md) is generated from the chapter files. This is a pre-results master's thesis: the proposed cooperative and longitudinal studies have no TTGL performance results yet.
 
-The assistant selects among multiple eligible specialist configurations according to expected success, total task cost, latency and customer constraints. Small models may run locally or remotely. Task-level selection is the default; phase and per-call switching are separate experiments. Customer adaptation uses compatible base-specific artifacts, not an assumed universally portable LoRA. The original two-model design is retained as a restricted baseline and integration pilot.
+The central objective is to democratize useful AI through an affordable personal model that works locally, collaborates with open-model experts and learns from verified experience. Its role includes personal memory, task interpretation, context selection, expert requests, verification and integration. Independent local capability and better cooperation are separate outcomes; reducing expert calls is useful only when quality is retained. Routing supplies one component of this architecture.
 
-## Chapters and evidence
+## Core chapters
 
-- [Introduction](introduction.md), [foundations](literature.md), [46-entry bibliography](references.bib), and [portfolio system design](system-design.md).
-- [Current model and pricing review](model-landscape.md), [model catalog](model-catalog.csv), and [pinned market evidence](market-sources.json), reviewed 25 October 2026. Direct-provider price observations are explicitly secondary and need confirmation before spending.
-- [Published historical accuracy](accuracy-context.md) and [source records](accuracy-context-sources.json).
-- [Task-level economics](task-economics.md), [historical dollars per task/success](task-price-comparisons.csv), [illustrative current-rate scenarios](task-price-scenarios.csv), [economic sources](task-economics-sources.json), and [arithmetic/source checks](task-price-checks.json). Historical records, hypothetical scenarios and future measured costs are separate evidence classes.
-- [Browser, frontend and language evaluation](browser-domain.md) and [browser source register](browser-sources.json).
-- [Customer adaptation, deployment and switching](adaptation-and-switching.md) and [source register](adaptation-sources.json).
-- [Controlling ensemble protocol](ensemble-methodology.md), [routing research sources](ensemble-methods-sources.json), [detailed SWE procedures and restricted-pair pilot](methodology.md), and [analysis plan](analysis-plan.md).
-- [Reproducibility, limitations and empty reporting templates](reproducibility-and-limits.md), [original evidence check](evidence-audit.json), [detailed checks](evidence-audit-details.json), [portfolio review](portfolio-review.json), [document validation](document-validation.json), and [artifact hashes](build-manifest.json).
-- [Architecture decision](../adr/0004-specialist-model-portfolio.md) and [local work-item state](../research/task-state.json).
+- [Introduction and research questions](introduction.md), [foundations](literature.md), and [54-entry bibliography](references.bib).
+- [Evidence for agent learning](agent-learning-evidence.md) and [primary-source register](agent-learning-sources.json), including published improvements, regressions and plateaus.
+- [Personal-agent system design](system-design.md), [cooperative controller and controlled experiment](personal-controller.md), and [controller/memory sources](controller-sources.json).
+- [Learning through usage and distillation](longitudinal-learning.md), with a [machine-readable prospective plan](longitudinal-plan.json). Rounds track cumulative arrivals, verification yield, target tokens and compute; final tests remain sealed during learning.
+- [Analysis and study hierarchy](analysis-plan.md), [reproducibility and empty reporting templates](reproducibility-and-limits.md), [source/design audit](personal-review.json), [document validation](document-validation.json), and [artifact hashes](build-manifest.json).
 
-The primary confirmatory comparison is a frozen open-weight portfolio against a strong fixed configuration selected on development data, under one software-engineering harness. Browser tasks are a separate replication; frontend rendering, functional frontend behavior and browser navigation have distinct outcomes. Published cross-harness claims cannot establish the combined model frontier. New releases enter versioned development evaluations before router recalibration; final-test results cannot select the next winner.
+Study 1 is the current primary cooperation experiment: a study-unadapted small controller plus one strong expert versus that same strong model acting directly, with equal personal context, tools and resource caps. Accepted task success includes benchmark resolution and feasible mandatory user constraints. Study 0 supplies flat-routing controls. Study 2 is a separate proposed longitudinal experiment, distinguishing standalone learning, allocation changes and learned collaboration. Their hypotheses cannot substitute for one another after seeing results.
 
-The earlier LiveCodeBench replay remains in `docs/research/` and `results/`; its measurements do not populate this manuscript. Latest-model integration, the expanded agent runner and empirical execution remain pending. The US$100 authorization covers one 80 GB Runpod GPU experiment and associated Runpod costs; it does not fund the full cross-domain matrix or additional API spending. Author, institution and supervisor details remain for the author to complete. Results and result-dependent conclusions will be written after evaluation.
+## Supporting studies and economic evidence
+
+- [Model and price landscape](model-landscape.md), [model catalog](model-catalog.csv), and [market sources](market-sources.json), reviewed 25 October 2026. Direct-provider price observations are secondary where vendor confirmation was unavailable.
+- [Historical benchmark accuracy](accuracy-context.md) and [source records](accuracy-context-sources.json).
+- [Task-level economics](task-economics.md), [historical dollars per task/success](task-price-comparisons.csv), [illustrative token-price scenarios](task-price-scenarios.csv), [economic sources](task-economics-sources.json), and [arithmetic/source checks](task-price-checks.json).
+- [Browser, frontend and language evaluation](browser-domain.md), [browser sources](browser-sources.json), [adaptation and switching](adaptation-and-switching.md), and [adaptation sources](adaptation-sources.json).
+- [Enabling portfolio protocol](ensemble-methodology.md), [routing sources](ensemble-methods-sources.json), [detailed repository procedures](methodology.md), and [prior portfolio review](portfolio-review.json).
+- [Personal-agent ADR](../adr/0005-personal-agent-and-learning.md), [portfolio ADR](../adr/0004-specialist-model-portfolio.md), and [local work-item state](../research/task-state.json).
+
+Historical figures and hypothetical prices do not populate the unrun studies' result tables. The earlier LiveCodeBench replay remains separately documented in `docs/research/` and `results/`. Latest-model integration, the cooperative runner, repeated training and device measurements remain pending. The US$100 authorization covers one 80 GB Runpod GPU feasibility experiment and associated Runpod costs; it does not fund the full program or additional API spending. Author, institution and supervisor details remain for the author. Results and result-dependent conclusions will be written after evaluation.
 
 ## Rebuild
 
@@ -31,4 +36,4 @@ python scripts/build_task_price_table.py --verify-upstream
 bash scripts/build_thesis.sh
 ```
 
-The first command checks the pinned public leaderboard and regenerates task-cost CSVs; it makes no model calls. Omit `--verify-upstream` for offline arithmetic regeneration, which records that fresh upstream verification was not requested. The second command builds the architecture illustration, assembled Markdown, A4 PDF, DOCX, self-contained HTML with MathML and artifact hashes. Edit individual chapters rather than generated `thesis.md`. Timestamps and generator metadata can change binary hashes between otherwise equivalent builds. Neither command provisions GPU resources.
+The first command checks a pinned public leaderboard and regenerates task-cost CSVs; it makes no model calls. Omit `--verify-upstream` for offline arithmetic regeneration, which records that fresh upstream verification was not requested. The second builds the architecture illustration, assembled Markdown, A4 PDF, DOCX, standalone HTML with MathML and artifact hashes. Edit individual chapters rather than generated `thesis.md`. Timestamps can change binary hashes between otherwise equivalent builds. Neither command provisions GPU resources.

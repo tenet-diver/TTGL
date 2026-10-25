@@ -1,0 +1,246 @@
+{
+  "cutoff": "2026-10-25",
+  "scope": "Targeted review of four primary papers and official implementation documentation; no new model training or performance evaluation.",
+  "primary_papers_reviewed": 4,
+  "claims": [
+    {
+      "source": "swegym_pdf_v2",
+      "locator": "Section 4.2 and Table 3",
+      "claim": "Qwen2.5-Coder-7B with OpenHands CodeActAgent 2.1: SWE-bench Verified resolution increased from 1.8% to 10.6% after training on 491 successful teacher trajectories. Historical author-reported outcomes."
+    },
+    {
+      "source": "swegym_pdf_v2",
+      "locator": "Section 4.2",
+      "claim": "The 32B self-generated trajectory mixture reduced SWE-bench Lite resolution from 15.3% to 8.7%; improvement is not guaranteed."
+    },
+    {
+      "source": "swegym_pdf_v2",
+      "locator": "Section 4.3 and Table 4",
+      "claim": "MoatlessTools 7B iterations: 7.0%, 9.0%, 10.0%; 32B: 19.0%, 19.7%, 19.7%. These are a separate constrained scaffold and endpoint."
+    },
+    {
+      "source": "swesmith_pdf_v2",
+      "locator": "Sections 2 and 4.1",
+      "claim": "Build environments before tasks; validate introduced faults against passing tests. Generation strategy and problem description affect training signal."
+    },
+    {
+      "source": "dagger_pdf",
+      "locator": "Section 3 and Algorithm 3.1",
+      "claim": "Aggregate expert labels on learner-visited states; guarantees depend on specific imitation-learning assumptions."
+    },
+    {
+      "source": "agenttuning_pdf_v2",
+      "locator": "Section 3.4 and Table 5",
+      "claim": "Agent-only data harms held-out/general performance in the reported ablation; small-model mixed-training held-out gains were close to the general-only baseline."
+    }
+  ],
+  "records": [
+    {
+      "id": "swegym_repo",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106089+00:00",
+      "url": "https://api.github.com/repos/SWE-Gym/SWE-Gym",
+      "bytes": 6186,
+      "sha256": "6758ae6926dcd5366fc8be0eb963c916f7b2f4404e6684b4ea0e8b8d688281d8",
+      "full_name": "SWE-Gym/SWE-Gym",
+      "default_branch": "main",
+      "description": "Code for Paper: Training Software Engineering Agents and Verifiers with SWE-Gym [ICML 2025]",
+      "updated_at": "2026-10-21T11:24:50Z",
+      "pushed_at": "2025-07-29T17:38:25Z",
+      "html_url": "https://github.com/SWE-Gym/SWE-Gym",
+      "review_scope": "Discovery metadata or source retrieval; not used as independent empirical evidence."
+    },
+    {
+      "id": "swesmith_repo",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106101+00:00",
+      "url": "https://api.github.com/repos/SWE-bench/SWE-smith",
+      "bytes": 6386,
+      "sha256": "c0e68f11b02cf4412f890f70ecf62da42bf108a283e130f6213d9b03ca9759c1",
+      "full_name": "SWE-bench/SWE-smith",
+      "default_branch": "main",
+      "description": "[NeurIPS 2025 D&B Spotlight] Scaling Data for SWE-agents",
+      "updated_at": "2026-10-23T18:26:26Z",
+      "pushed_at": "2026-10-19T20:21:28Z",
+      "html_url": "https://github.com/SWE-bench/SWE-smith",
+      "review_scope": "Discovery metadata or source retrieval; not used as independent empirical evidence."
+    },
+    {
+      "id": "openhands_repo",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106104+00:00",
+      "url": "https://api.github.com/repos/All-Hands-AI/OpenHands",
+      "bytes": 6432,
+      "sha256": "0c56da7cce10b4a2c375d106dbdf7f6a9caac5903ca454d091ab28e2c337a769",
+      "full_name": "OpenHands/OpenHands",
+      "default_branch": "main",
+      "description": "\ud83d\ude4c OpenHands: AI-Driven Development",
+      "updated_at": "2026-10-25T23:13:44Z",
+      "pushed_at": "2026-10-25T23:04:30Z",
+      "html_url": "https://github.com/OpenHands/OpenHands",
+      "review_scope": "Discovery metadata or source retrieval; not used as independent empirical evidence."
+    },
+    {
+      "id": "swegym_abs",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106105+00:00",
+      "url": "https://arxiv.org/abs/2412.21139",
+      "bytes": 41735,
+      "sha256": "626df0fe1862028126cd6e5ed95807959aff8d6d8425be690402d9b049a2467f",
+      "title": "[2412.21139] Training Software Engineering Agents and Verifiers with SWE-Gym",
+      "review_scope": "Discovery metadata or source retrieval; not used as independent empirical evidence."
+    },
+    {
+      "id": "swesmith_abs",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106108+00:00",
+      "url": "https://arxiv.org/abs/2504.21798",
+      "bytes": 43865,
+      "sha256": "5d488188827c0b7eafe017a89a3b19babc3d120e6727998881ea5804361c056e",
+      "title": "[2504.21798] SWE-smith: Scaling Data for Software Engineering Agents",
+      "review_scope": "Discovery metadata or source retrieval; not used as independent empirical evidence."
+    },
+    {
+      "id": "dagger_abs",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106110+00:00",
+      "url": "https://arxiv.org/abs/1011.0686",
+      "bytes": 43628,
+      "sha256": "948ff2ded3742d12bc44e5c340a82c5fd9fbc9b9f850de8d90c151a9c500a05a",
+      "title": "[1011.0686] A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning",
+      "review_scope": "Discovery metadata or source retrieval; not used as independent empirical evidence."
+    },
+    {
+      "id": "swegym_commit",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106159+00:00",
+      "url": "https://api.github.com/repos/SWE-Gym/SWE-Gym/commits/main",
+      "bytes": 6274,
+      "sha256": "1149ba11284c8d7013fbe299049fbf83625fb5c6d4996663e11b49fc8c287492",
+      "commit": "b681068ca20628c6987b7416cc4cf03f06b77ba5",
+      "review_scope": "Discovery metadata or source retrieval; not used as independent empirical evidence."
+    },
+    {
+      "id": "swesmith_commit",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106162+00:00",
+      "url": "https://api.github.com/repos/SWE-bench/SWE-smith/commits/main",
+      "bytes": 126248,
+      "sha256": "db3ac7dfc2eff9a3da44a80b454b66a22a05e69a80812820273eebc7a8ab5754",
+      "commit": "9b74ac08118a85c39c356802f7961893af73e07f",
+      "review_scope": "Discovery metadata or source retrieval; not used as independent empirical evidence."
+    },
+    {
+      "id": "swegym_pdf",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106163+00:00",
+      "url": "https://arxiv.org/pdf/2412.21139v3",
+      "error": "HTTP Error 404: Not Found",
+      "review_scope": "Discovery metadata or source retrieval; not used as independent empirical evidence."
+    },
+    {
+      "id": "swesmith_pdf",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106164+00:00",
+      "url": "https://arxiv.org/pdf/2504.21798v4",
+      "error": "HTTP Error 404: Not Found",
+      "review_scope": "Discovery metadata or source retrieval; not used as independent empirical evidence."
+    },
+    {
+      "id": "dagger_pdf",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106166+00:00",
+      "url": "https://arxiv.org/pdf/1011.0686v3",
+      "bytes": 551229,
+      "sha256": "12b032cfd451b8ace4b18145dbe24382d2cbe2eda6b562331bc86799bbaafd5e",
+      "review_scope": "Primary sections 1\u20134 and Algorithm 3.1 inspected: learner-induced state distributions, expert queries, aggregation and no-regret assumptions."
+    },
+    {
+      "id": "agenttuning_abs",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106167+00:00",
+      "url": "https://arxiv.org/abs/2310.12823",
+      "bytes": 44090,
+      "sha256": "f6f1dc2ee3a19dffb1b1725a085947f4a0a479a754fd0521756777d036b1b141",
+      "title": "[2310.12823] AgentTuning: Enabling Generalized Agent Abilities for LLMs",
+      "review_scope": "Discovery metadata or source retrieval; not used as independent empirical evidence."
+    },
+    {
+      "id": "agenttuning_repo",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106168+00:00",
+      "url": "https://api.github.com/repos/THUDM/AgentTuning",
+      "bytes": 6087,
+      "sha256": "08ce250f861afc19c66e20017e5d2027bd85b80577d0e6e1d8e9d0c70c2b52d5",
+      "review_scope": "Discovery metadata or source retrieval; not used as independent empirical evidence."
+    },
+    {
+      "id": "swegym_pdf_v2",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106196+00:00",
+      "url": "https://arxiv.org/pdf/2412.21139v2",
+      "bytes": 589198,
+      "sha256": "5c35e277544323fcc4ce8929e208bb8cc32efbbd40b8069c7daa084548d79396",
+      "review_scope": "Primary sections 3\u20135 and Tables 3\u20134 inspected: successful teacher trajectories, 7B improvement, 32B on-policy regression and MoatlessTools iteration plateau."
+    },
+    {
+      "id": "swesmith_pdf_v2",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106198+00:00",
+      "url": "https://arxiv.org/pdf/2504.21798v2",
+      "bytes": 3613659,
+      "sha256": "6752df853569104ae2e55cc1bee09dc3f6b335f7eeae300b6e9fee911f3f2897",
+      "review_scope": "Primary sections 2, 4 and 4.1 inspected: environment construction, synthetic bug validation, trajectory filtering, and generation/issue-description ablations."
+    },
+    {
+      "id": "agenttuning_pdf_v2",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106199+00:00",
+      "url": "https://arxiv.org/pdf/2310.12823v2",
+      "bytes": 3213656,
+      "sha256": "cfa44212334a351d0f5e71ea191ccace19539326886dfb3e4e52d2e58e22cd90",
+      "review_scope": "Primary sections 2 and 3.4 inspected: filtered trajectories, general-instruction mixture, retention and model-size limits."
+    },
+    {
+      "id": "swegym_readme",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106200+00:00",
+      "url": "https://raw.githubusercontent.com/SWE-Gym/SWE-Gym/b681068ca20628c6987b7416cc4cf03f06b77ba5/README.md",
+      "bytes": 6312,
+      "sha256": "97df54c2ecfe311fc1b8e4eed345fdeffbbb1d93dc4adf82a8252e1145bc825a",
+      "review_scope": "Official environment/dataset and reproduction links inspected."
+    },
+    {
+      "id": "swesmith_readme",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106202+00:00",
+      "url": "https://raw.githubusercontent.com/SWE-bench/SWE-smith/9b74ac08118a85c39c356802f7961893af73e07f/README.md",
+      "bytes": 5217,
+      "sha256": "058ccfb4465b3d067ac53eae9db43d55dfdaf180fcae438880901e3b192584b7",
+      "review_scope": "Official current toolkit scope,MITstatement,LinuxDockerrequirement and training resources inspected."
+    },
+    {
+      "id": "agenttuning_commit",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106203+00:00",
+      "url": "https://api.github.com/repos/THUDM/AgentTuning/commits/main",
+      "bytes": 5037,
+      "sha256": "e01a5312c48aa1b5f6cb02617f684c018f714ab11efb65ebf0acb9fd5f42f92c",
+      "commit": "e33a45d7eab2b63cac4d1956da1e6377fca9fcc7",
+      "review_scope": "Discovery metadata or source retrieval; not used as independent empirical evidence."
+    },
+    {
+      "id": "swegym_training_docs",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106225+00:00",
+      "url": "https://raw.githubusercontent.com/SWE-Gym/SWE-Gym/b681068ca20628c6987b7416cc4cf03f06b77ba5/docs/OpenHands.md",
+      "bytes": 5648,
+      "sha256": "3544e15b90b59e1deca587f43218c3297f03e0e419d9958a0cf77078621c2a92",
+      "review_scope": "Pinned historical OpenHands fork and reproduction instructions inspected; version-drift warning and multi-GPU recipe do not certify current pilot feasibility."
+    },
+    {
+      "id": "swesmith_tree",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106227+00:00",
+      "url": "https://api.github.com/repos/SWE-bench/SWE-smith/git/trees/9b74ac08118a85c39c356802f7961893af73e07f?recursive=1",
+      "bytes": 104901,
+      "sha256": "c9bf625cd23c03c5cf55bb166e3b7fa73934ccbf6b79091ad314b2e5acd7f9ba",
+      "review_scope": "Discovery metadata or source retrieval; not used as independent empirical evidence."
+    },
+    {
+      "id": "agenttuning_readme",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106228+00:00",
+      "url": "https://raw.githubusercontent.com/THUDM/AgentTuning/e33a45d7eab2b63cac4d1956da1e6377fca9fcc7/README.md",
+      "bytes": 7083,
+      "sha256": "ad3e0550e3f0ee4c426f89c60de6ec8d2a99292f37ec33619b3cc11352899ee2",
+      "review_scope": "Official repository identity,release and implementation documentation inspected."
+    },
+    {
+      "id": "swesmith_training_docs",
+      "retrieved_at_utc": "2026-10-25T23:19:48.106246+00:00",
+      "url": "https://raw.githubusercontent.com/SWE-bench/SWE-smith/9b74ac08118a85c39c356802f7961893af73e07f/docs/guides/train_swe_agent.md",
+      "bytes": 4412,
+      "sha256": "6710119ff5f5ad2358ef378453be0e15d110bc71e8fc6617b2df991cdbd9b9bd",
+      "review_scope": "Expert trajectory generation, verification, conversion to SFT and evaluation workflow inspected; explicitly centered on SWE-agent."
+    }
+  ]
+}

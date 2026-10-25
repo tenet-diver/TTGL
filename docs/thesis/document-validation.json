@@ -1,24 +1,22 @@
 {
   "status": "passed",
-  "scope": "document_source_and_price_arithmetic_not_model_performance",
-  "pages": 91,
-  "approximate_words": 30066,
-  "bibliography_entries": 46,
-  "cited_entries": 46,
-  "manifest_hashes_verified": 38,
+  "scope": "document_source_and_protocol_consistency_not_model_performance",
+  "pages": 112,
+  "approximate_words": 37767,
+  "bibliography_entries": 54,
+  "cited_entries": 54,
+  "manifest_hashes_verified": 45,
   "missing_local_links": [],
   "docx_zip_xml_and_equations": "passed",
   "html_embedded_figure_and_mathml": "passed",
   "historical_replay_values_excluded": true,
   "pdf_words_outside_generous_margins": [],
   "reviewed_layouts": [
-    "title",
-    "portfolio_architecture",
-    "historical_task_costs",
-    "browser_domain",
-    "ensemble_methodology"
+    "personal_controller_architecture",
+    "cooperative_arms",
+    "longitudinal_evaluation"
   ],
-  "price_arithmetic_and_unknown_rate_checks": "passed",
-  "historical_cost_rows_recomputed": 6,
-  "portfolio_and_browser_results": "not_run"
+  "longitudinal_rounds_and_replicate_plan": "consistent",
+  "primary_study": "fixed-model cooperation with matched personal context",
+  "cooperative_and_longitudinal_results": "not_run"
 }

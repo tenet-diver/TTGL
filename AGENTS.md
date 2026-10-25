@@ -11,3 +11,7 @@
 - Optimize expected task success against full per-task cost, latency and customer price sensitivity. Evaluate task-level selection before frequent switching, accounting for state handoff, model loading and KV-cache recomputation.
 - Customer adaptation may use a separate compatible adapter per base model, or an adapted model deployed on a desktop. Do not assume arbitrary LoRA adapters transfer across different base models.
 - Working thesis title: "We Gotta Combine!" The combined model frontier is a research objective, not an established result.
+
+- Central mission: democratize AI by turning the open-source model ecosystem into an affordable, user-controlled personal agent. The small personal model should learn from verified use and collaborate deeply with larger external models, including planning, delegation, context selection, verification and integration. Routing alone is an enabling component.
+- Evaluate both increasing independent local capability and improved collaboration with experts over repeated usage/distillation rounds. Reduced large-model use is valuable only when quality is retained; collaboration may also improve while expert use remains necessary.
+- Keep durable user memory and preferences distinct from model weights. Compare cooperative systems with large-model controls given the same personal context; do not attribute a memory advantage to cooperation.

@@ -1,0 +1,72 @@
+{
+  "scope": "Read-only personal cooperative-controller and longitudinal-learning review; no model runs",
+  "source_checks": [
+    {
+      "name": "swegym_pdf_v2",
+      "url": "https://arxiv.org/pdf/2412.21139v2",
+      "hash_matches": true,
+      "local_path": "/tmp/ttgl-personal-audit-swegym_pdf_v2.pdf"
+    },
+    {
+      "name": "agenttuning_pdf_v2",
+      "url": "https://arxiv.org/pdf/2310.12823v2",
+      "hash_matches": true,
+      "local_path": "/tmp/ttgl-personal-audit-agenttuning_pdf_v2.pdf"
+    },
+    {
+      "name": "migration",
+      "url": "https://raw.githubusercontent.com/letta-ai/letta/8816d3a8516893bfdc0fa14bfb1235226012e295/README.md",
+      "hash_matches": true,
+      "local_path": "/tmp/ttgl-personal-audit-migration.md"
+    }
+  ],
+  "checked_claims": [
+    "SWE-Gym Table3:7B Verified1.8% to10.6%,491 teacher trajectories",
+    "SWE-Gym Section4.2:32B Lite15.3% to8.7% with868 on-policy plus original teacher trajectories",
+    "SWE-Gym Table4:Moatless7B7/9/10%,32B19/19.7/19.7%;negligible further iterations reported",
+    "AgentTuning Table5:7B/13B mixed heldout outcomes close to general-only,agent-only retention/generalizationpoor",
+    "Letta migrationREADME points active source to letta-code and retiresV1 onarchive"
+  ],
+  "issues_sent_to_parent": [
+    {
+      "severity": "material_notation",
+      "issue": "Verified local completion coverage formula lacks replicate dimension despite threeattempts; use mean of replicate products per task, and consistent exposure aggregation",
+      "status": "fixed in chapter and JSON"
+    },
+    {
+      "severity": "design_clarification",
+      "issue": "Study1 fixed weights should explicitly exclude study/customer adaptation unique to C; put adaptedcontroller intoStudy2/namedextraarm",
+      "status": "fixed in personal-controller chapter"
+    }
+  ],
+  "bib_check": {
+    "total_keys": 54,
+    "cited": 54,
+    "missing": [],
+    "duplicates": []
+  },
+  "limits": [
+    "No executed modelperformance assessed; review covers manuscript design and citedevidence."
+  ],
+  "final_hierarchy_review": {
+    "status": "coherent_with_two_residual_wording_fixes_sent",
+    "confirmed": [
+      "Study1 C versus B is sole current primary",
+      "Study0 andStudy2 displayedbounds are within-study proposedprotocols,notalternateStudy1 success",
+      "Study1 uses study-unadaptedS0 with matchedpersonalcontext",
+      "Longitudinal coverage averages3replicateswithseparateroundindex"
+    ],
+    "needed_fixes": [
+      "Qualify methodology rawresolution primarywording;Study1acceptedendpointincludesmandatoryconstraints;alignintro",
+      "Clarify ensemble oneattemptperreplicate repeated3times,notoneattemptpercondition"
+    ]
+  },
+  "integration_resolution": {
+    "local_coverage": "Three-replicate mean added in chapter and machine-readable plan.",
+    "unadapted_controller": "Study1 explicitly uses S0 without unique study/customer adaptation.",
+    "hierarchy": "Study1 sole current primary; Study0 and Study2 separate proposed scopes.",
+    "endpoint": "Functional benchmark resolution distinguished from Study1 accepted success.",
+    "attempts": "One attempt per replicate, three repeats, without best-of-many selection.",
+    "bibliography": "54 references consolidated after the recorded audit."
+  }
+}

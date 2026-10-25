@@ -117,6 +117,41 @@
       "status": "planned",
       "study_scope": "prospective_cross_domain_portfolio",
       "artifact": "docs/adr/0004-specialist-model-portfolio.md"
+    },
+    {
+      "id": "local-20",
+      "title": "Center personal-agent mission and cooperative architecture in thesis and ADR",
+      "status": "completed",
+      "study_scope": "prospective_personal_agent_cooperation_and_learning",
+      "artifact": "docs/adr/0005-personal-agent-and-learning.md"
+    },
+    {
+      "id": "local-21",
+      "title": "Design controlled small-controller and strong-expert cooperation study",
+      "status": "completed",
+      "study_scope": "prospective_personal_agent_cooperation_and_learning",
+      "artifact": "docs/thesis/personal-controller.md"
+    },
+    {
+      "id": "local-22",
+      "title": "Specify longitudinal agent learning, local capability and collaboration controls",
+      "status": "completed",
+      "study_scope": "prospective_personal_agent_cooperation_and_learning",
+      "artifact": "docs/thesis/longitudinal-learning.md"
+    },
+    {
+      "id": "local-23",
+      "title": "Review verified agent-learning evidence including regressions and plateaus",
+      "status": "completed",
+      "study_scope": "prospective_personal_agent_cooperation_and_learning",
+      "artifact": "docs/thesis/agent-learning-evidence.md"
+    },
+    {
+      "id": "local-24",
+      "title": "Implement bounded expert tool and matched-context cooperative-agent harness",
+      "status": "planned",
+      "study_scope": "prospective_personal_agent_cooperation_and_learning",
+      "artifact": "docs/thesis/personal-controller.md"
     }
   ],
   "runpod_budget": {
@@ -128,7 +163,7 @@
     "actual_spend_usd": 0,
     "status": "blocked_missing_api_key_and_runtime_access"
   },
-  "updated_at_utc": "2026-10-25T23:03:54.360355+00:00",
+  "updated_at_utc": "2026-10-25T23:28:08.249074+00:00",
   "evidence": {
     "results": "results/routing-pilot-001",
     "reproduction": "results/reproduction-verification.json",
@@ -143,6 +178,10 @@
     "portfolio_and_browser_results": "not_run",
     "portfolio_protocol": "docs/thesis/ensemble-methodology.md",
     "task_price_evidence": "docs/thesis/task-price-checks.json",
-    "portfolio_evidence_review": "docs/thesis/portfolio-review.json"
+    "portfolio_evidence_review": "docs/thesis/portfolio-review.json",
+    "cooperative_and_longitudinal_results": "not_run",
+    "cooperative_protocol": "docs/thesis/personal-controller.md",
+    "longitudinal_protocol": "docs/thesis/longitudinal-plan.json",
+    "personal_agent_audit": "docs/thesis/personal-review.json"
   }
 }

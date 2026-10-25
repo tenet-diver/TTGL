@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "status": "prospective_design_not_executed_not_external_preregistration",
+  "scope": "longitudinal_local_capability_and_collaboration_learning",
+  "relationship": "One study within the cooperative personal-agent thesis; not the sole success criterion.",
+  "primary_student": {
+    "size_class": "4B",
+    "base_revision": "resolve_and_freeze_before_acquisition",
+    "deployment": "same validated local configuration across primary rounds"
+  },
+  "exploratory_sizes": [
+    "2B",
+    "9B"
+  ],
+  "rounds": [
+    {
+      "round": 0,
+      "cumulative_eligible_task_arrivals": 0
+    },
+    {
+      "round": 1,
+      "cumulative_eligible_task_arrivals": 250
+    },
+    {
+      "round": 2,
+      "cumulative_eligible_task_arrivals": 1000
+    },
+    {
+      "round": 3,
+      "cumulative_eligible_task_arrivals": 4000
+    }
+  ],
+  "acquisition": {
+    "primary": "shared frozen acquisition policy and arrival stream across controls",
+    "random_component_proposed_fraction": 0.2,
+    "milestone_unit": "eligible distinct task arrivals, not successful demonstrations",
+    "secondary": "actual adaptive closed-loop acquisition with selection and cost logging",
+    "teacher_pool": "frozen revisions and inference settings within experiment"
+  },
+  "training_targets": [
+    "local investigation, actions, editing, testing and recovery",
+    "expert selection, context packaging, request formulation, verification and integration"
+  ],
+  "factorial": [
+    "S0 alone",
+    "Sr alone",
+    "S0 with frozen router",
+    "S0 with separately recalibrated router",
+    "Sr with frozen router",
+    "Sr with separately recalibrated router"
+  ],
+  "cadence_controls": [
+    "incremental continuation",
+    "restart from original base on accumulated corpus",
+    "one-shot final training with matched target-token exposure and compute where feasible"
+  ],
+  "test_policy": {
+    "sealed_panel": "Evaluate all frozen checkpoints once after acquisition and analysis choices are locked; unavailable during learning.",
+    "monitoring": "Fresh prospective panels; any panel used for updates becomes development history.",
+    "repeats_per_task_condition": 3,
+    "dependence": "paired task records and repository-aware uncertainty"
+  },
+  "local_capability_confirmatory_chain": [
+    {
+      "order": 1,
+      "contrast": "standalone S3 minus standalone S0 resolution",
+      "criterion": "lower one-sided 95% confidence bound > 0"
+    },
+    {
+      "order": 2,
+      "contrast": "adapted routed final system minus H overall resolution",
+      "H": "S*, strongest eligible fixed teacher configuration selected on development model-selection partition",
+      "criterion": "lower one-sided 95% confidence bound > -0.05",
+      "margin_status": "proposed engineering tolerance; accept before freeze"
+    },
+    {
+      "order": 3,
+      "contrast": "verified local completion coverage at final adapted condition minus frozen-student/separately-recalibrated-router control",
+      "criterion": "lower one-sided 95% confidence bound > 0"
+    }
+  ],
+  "verified_local_coverage": {
+    "definition": "mean over all assigned tasks of mean over three replicates of success * local_only",
+    "local_only_excludes": [
+      "external generation",
+      "external planning",
+      "external embeddings",
+      "external judging or verification assistance during attempt"
+    ],
+    "independent_out_of_band_grading": "not model assistance",
+    "strict_offline_execution": "separate metric including operational tool dependencies",
+    "indices": {
+      "i": "task",
+      "r": "learning round",
+      "k": "replicate"
+    }
+  },
+  "secondary_required_for_broad_narrative": [
+    "large-expert-assisted task fraction",
+    "expert calls, tokens, GPU time and expenditure",
+    "lifecycle cost and amortization",
+    "device memory, latency, energy where measured, and offline functionality",
+    "forgetting and task/language diversity"
+  ],
+  "hardware_target_system_memory_gib": [
+    8,
+    16,
+    32
+  ],
+  "funding_boundary": "US$100 Runpod approval supports bounded integration only, not the full four-round study or additional API charges.",
+  "stopping": "If final milestone is unfunded or incomplete, do not substitute an earlier favorable round.",
+  "quality_claims": "No monotonic improvement, universal device fit, achieved frontier or measured democratization claim.",
+  "expert_exposure_aggregation": "mean within-task replicate fraction with any large-expert assistance; not any-assistance across the three-attempt bundle",
+  "confirmatory_scope": "Proposed within-Study-2 chain; current program primary is fixed-model Study 1. Separate registration/resources and multiplicity allocation required for additional confirmatory claims."
+}

@@ -1,35 +1,32 @@
 digraph TTGL {
-  graph [rankdir=TB, bgcolor="white", pad="0.25", nodesep="0.30", ranksep="0.35", fontname="DejaVu Sans"];
+  graph [rankdir=TB, bgcolor="white", pad="0.25", nodesep="0.35", ranksep="0.40", fontname="DejaVu Sans"];
   node [shape=box, style="rounded,filled", fillcolor="#edf3fa", color="#34516e", fontname="DejaVu Sans", fontsize=11, margin="0.15,0.12"];
   edge [color="#506879", fontname="DejaVu Sans", fontsize=9];
-  issue [label="Task + pinned environment\nCode or browser objective"];
-  harness [label="Common harness within each domain\nWorkspace / browser state and tools"];
-  router [label="Portfolio policy + customer budget\nPrimary: one choice per attempt\nExtension: bounded phase handoff", fillcolor="#d9e9f8"];
-  local [label="Compact generalist\nLocal or remote"];
-  remote [label="Larger generalist\nLocal or remote"];
-  specialist [label="Domain specialist(s)\nCode, vision or browser"];
-  action [label="Proposed action\nHarness-controlled execution"];
-  patch [label="Final artifact / task state + trace"];
-  grader [label="Independent benchmark evaluator\nHidden checks isolated from agent", fillcolor="#e6f0df"];
-  records [label="Evidence and cost record\nAll calls, failures, timing, hashes", fillcolor="#f3eadb"];
-  train [label="Versioned pool + optional adaptation\nCompatible adapter per customer/base", fillcolor="#efe5f4"];
-  holdout [label="Separate calibration and final test\nNo training on held-out outcomes", fillcolor="#efe5f4"];
-  {rank=same; local; remote; specialist;}
-  {rank=same; records; grader;}
-  {rank=same; train; holdout;}
-  issue -> harness -> router;
-  router -> local;
-  router -> remote;
-  router -> specialist;
-  local -> action;
-  remote -> action;
-  specialist -> action;
-  action -> harness [label="visible tool evidence", constraint=false];
-  action -> patch -> grader;
-  grader -> records;
-  router -> records [style=dashed, label="decision and usage", constraint=false];
-  train -> router [style=dashed, label="validated configurations", constraint=false];
-  train -> holdout [style=dashed, label="independent evaluation"];
-  records -> train [style=invis];
-  grader -> holdout [style=invis];
+  task [label="User task + explicit constraints"];
+  memory [label="Editable personal memory\nPreferences, project state, provenance", fillcolor="#efe5f4"];
+  personal [label="Small personal controller\nGoal, work state and remaining budget", fillcolor="#d9e9f8"];
+  tools [label="Local tools\nInspect, edit, execute, test"];
+  experts [label="Eligible external expert(s)\nPlan advice, patch, critique or subtask"];
+  verify [label="Check and integrate\nObservable results + executable evidence"];
+  result [label="Final artifact + complete task trace"];
+  grader [label="Independent sealed evaluation\nNo final-test feedback to learning", fillcolor="#e6f0df"];
+  train [label="Verified development experience\nLocal skills + collaboration learning", fillcolor="#efe5f4"];
+  record [label="Cost and provenance ledger\nAll calls, failures and learning costs", fillcolor="#f3eadb"];
+  {rank=same; task; memory;}
+  {rank=same; tools; experts;}
+  {rank=same; train; result;}
+  {rank=same; grader; record;}
+  task -> personal;
+  memory -> personal [label="permitted context"];
+  personal -> tools [label="act locally"];
+  personal -> experts [label="bounded request"];
+  tools -> verify;
+  experts -> verify [label="artifact / advice"];
+  verify -> personal [label="next action", constraint=false];
+  verify -> result;
+  verify -> train [style=dashed, label="development only"];
+  train -> personal [style=dashed, label="validated new version", constraint=false];
+  result -> grader;
+  result -> record;
+  train -> record [style=dashed, constraint=false];
 }

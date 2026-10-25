@@ -2,9 +2,9 @@
 
 A reproducible study of confidence-aware routing from a local coding model to a stronger remote model, followed by verified teacher-output distillation.
 
-## We Gotta Combine! — pre-results thesis
+## We Gotta Combine! — personal AI that collaborates and learns
 
-The [master's thesis](docs/thesis/README.md) studies cost-aware routing among specialist open-weight models across software engineering and browser tasks. It includes [published dollars per task and per success](docs/thesis/task-economics.md), customer-specific adaptation, model-pool updates, and the cost of switching models. The primary portfolio comparison uses a common within-domain harness; the earlier two-model setup remains a restricted pilot. Read the [PDF](docs/thesis/thesis.pdf), [Word document](docs/thesis/thesis.docx), or [HTML](docs/thesis/thesis.html). New portfolio experiments and their results remain pending.
+The [pre-results thesis](docs/thesis/README.md) studies a compact personal agent that uses open-model experts, verifies and integrates their work, and learns from repeated use. It separates better cooperation from increasing independent local capability. Read the [PDF](docs/thesis/thesis.pdf), [Word document](docs/thesis/thesis.docx), [cooperative architecture](docs/thesis/personal-controller.md), or [longitudinal learning plan](docs/thesis/longitudinal-learning.md). Portfolio routing, customer adaptation, browser tasks and [per-task economics](docs/thesis/task-economics.md) remain supporting parts of the design. The new empirical studies are unrun.
 
 ## Earlier coding-problem replay
 

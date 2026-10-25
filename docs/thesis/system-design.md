@@ -1,8 +1,18 @@
-# System design and formalization
+# Personal-agent system design and formalization
+
+## Personal controller and expert collaboration
+
+The personal agent maintains the user's task contract, relevant memory, work state and remaining budget. Its compact controller can execute local tools, consult an eligible expert, delegate a bounded subtask, inspect or challenge a proposal, verify an artifact and integrate it. A model-selection score supplies one decision inside this loop. The user's persistent agent identity need not move to whichever external model supplies a difficult answer.
+
+The controller does not need to invent every high-level plan alone. It can request a planning proposal or a critical review, compare it with the task contract and test the proposed changes. A stronger model can take over a bounded phase when the local controller cannot reliably coordinate it. This prevents “small model as brain” from becoming an assumption that a small planner must always supervise capabilities it cannot assess. The experiment measures that bottleneck and compares reversed roles.
+
+Memory and learned parameters have different update cycles. Editable facts, project state, user corrections and explicit preferences enter a versioned store with provenance. Learned adapters capture stable behavior only after development evidence supports adaptation. A remote expert receives the relevant permitted task packet; it does not automatically receive all memory. The integration contract records requested output, constraints, tests, budget and the expert's result. Both the large-only control and the cooperative condition receive the same permitted personal information in the causal study.
+
+The design uses two complementary feedback loops. The execution loop checks and integrates help during a task. The learning loop collects verified development traces, adapts the student or policy, and evaluates a new version before deployment. Teacher consultation, independent local success and customer correction can all supply data under declared provenance rules. No final evaluation outcome is fed into that learning loop.
 
 ## Design principles
 
-The system follows a reuse-first principle. Existing software supplies the agent loop, repository tools, local inference, provider API adaptation, training and benchmark execution. Custom components are introduced only for the research question: recording the decision state, applying a routing policy, measuring costs and joining outcomes to immutable task identifiers. This separation helps avoid comparing an extensively engineered portfolio system against an artificially weak baseline.
+The system follows a reuse-first principle. Existing software supplies the agent loop, repository tools, local inference, provider API adaptation, training and benchmark execution. Custom components are introduced only for the research question: recording the decision state, applying a routing policy, measuring costs and joining outcomes to immutable task identifiers. This separation helps avoid comparing an extensively engineered personal agent against an artificially weak baseline. The personal-controller chapter specifies the shared-context cooperative controls.
 
 The proposed repository-level harness is mini-SWE-agent, subject to a pinned-version integration check. Its command-oriented interface allows the same repository interaction pattern to be used with multiple model providers. Ollama or llama.cpp is a candidate local deployment runtime; the actual supported model architecture, quantization, chat template and tool behavior must be verified together. AgentLab/BrowserGym is the browser-domain scaffold candidate. Managed endpoints or vLLM can supply remote configurations, including small models and compatible customer adapters. Transformers, PEFT and TRL provide the student-training stack. Choosing these components is a design decision, not a claim that all combinations have passed compatibility tests.
 
@@ -10,7 +20,7 @@ The experiment separates four concerns: the policy determines which model to use
 
 ![Proposed architecture and evidence flow. Arrows indicate interfaces, not measured performance.](figures/architecture.png){width=95%}
 
-## Model registry, state and eligible actions
+## Portfolio subroutine: registry, state and eligible actions
 
 The model registry records each candidate's domain and modality support, checkpoint or service revision, license, tokenizer/template, precision, inference settings, endpoint, measured resource requirements and compatible adapter identity. It distinguishes capabilities documented by a provider from capabilities verified in the common harness. A customer preference for a provider, an offline-only mode or a device memory limit changes the eligible set before the router scores it.
 
@@ -22,9 +32,9 @@ $$
 
 where $x_i$ contains permitted task context, $h_{it}$ is interaction history, $w_{it}$ is the observable workspace or browser state, $b_{it}$ is remaining budget, $d_i$ records deployment and customer constraints, $m_{t-1}$ identifies the current configuration, and $e$ identifies the frozen portfolio epoch. The router receives a declared feature function $\phi(s_{it})$. It cannot access hidden evaluation tests, reference patches, future tool results or eventual success labels.
 
-The eligible model configurations are $\mathcal M_e(s)\subseteq\{m_1,\ldots,m_K\}$. The action set contains those configurations and a stop action. Verification may be an explicit action in a secondary sequential experiment and carries its own resource cost. The initial treatment selects one model configuration for the complete attempt. Parallel voting, multiple simultaneous agents and weight merging are separate interventions, not necessary features of this portfolio.
+The eligible model configurations are $\mathcal M_e(s)\subseteq\{m_1,\ldots,m_K\}$. The action set contains those configurations and a stop action. Verification may be an explicit action in a secondary sequential experiment and carries its own resource cost. The enabling flat-routing treatment selects one model configuration for the complete attempt. The cooperative treatment instead keeps the personal controller active while experts provide bounded contributions; an expert call does not necessarily replace the controller. Parallel voting, multiple simultaneous agents and weight merging are separate interventions, not necessary features of this portfolio.
 
-A policy $\pi(m\mid s,\lambda)$ chooses an eligible action subject to permissions, context capacity and budget. It records whether a candidate was excluded by capability, price, memory, availability or customer policy. No candidate fitting the remaining constraints yields a recorded unresolved or budget-exhausted outcome. An undocumented fallback must not silently change the experimental condition.
+Within the routing subroutine, a policy $\pi(m\mid s,\lambda)$ chooses an eligible configuration subject to permissions, context capacity and budget. It records whether a candidate was excluded by capability, price, memory, availability or customer policy. No candidate fitting the remaining constraints yields a recorded unresolved or budget-exhausted outcome. An undocumented fallback must not silently change the experimental condition.
 
 ## Expected utility and customer price sensitivity
 
@@ -50,7 +60,7 @@ Calibration is an empirical relationship between predictions and outcomes. Verba
 
 A sequential handoff differs from task-level selection. It first pays for work by one configuration, observes permitted evidence and then decides whether another should continue. If the first attempt changes files, the continuation receives a well-defined state: base commit, current patch, task objective, executed commands, outcomes and remaining budget. A browser handoff additionally preserves the authenticated session, tabs, navigation state and side-effect record through the shared browser environment; session state is distinct from a model cache. Unfinished tools are completed or cancelled before switching. The system does not attempt to transfer incompatible key–value caches or opaque provider reasoning representations.
 
-All work before handoff remains part of the portfolio's cost. A continuation can require extra context and have different success probability from a fresh attempt. The study distinguishes $p_m(x)$ from $p_m(s_{it})$ after another configuration has acted. Substituting an archived standalone outcome for that continuation would erase a central system effect. The default is to retain a model for an entire attempt; phase-level switching and a minimum net-benefit margin are tested before unrestricted per-call switching. The adaptation and switching chapter defines cache and adapter compatibility boundaries.
+All work before handoff remains part of the portfolio's cost. A continuation can require extra context and have different success probability from a fresh attempt. The study distinguishes $p_m(x)$ from $p_m(s_{it})$ after another configuration has acted. Substituting an archived standalone outcome for that continuation would erase a central system effect. Flat-routing controls retain a model for an entire attempt. In the cooperative system, the personal controller can retain its own context while an expert handles a separate bounded request. Transferring control of an ongoing phase is a different intervention, with a minimum net-benefit margin tested before unrestricted per-call switching. The adaptation and switching chapter defines cache and adapter compatibility boundaries.
 
 For paired comparisons, every experimental condition starts from the same immutable repository snapshot. Workspaces, generated files and cached agent conclusions are isolated by task, seed and condition. Dependency caches may be shared only when they do not expose solutions or mutable task state. Replaying a tool event is not equivalent to re-executing it: external side effects, generated dependencies and process state require explicit treatment.
 
@@ -88,7 +98,7 @@ Temperature $\tau$, mixture coefficient $\alpha$, context $c_t$, vocabulary mapp
 
 RLAIF describes the use of AI-generated feedback. It is distinct from using executable tests as a verifiable reward. DPO on teacher-ranked pairs is one possible preference-learning arm; DPO on pass/fail pairs is verifier-based preference learning. Online reinforcement learning adds generation and reward-computation costs and is a separate extension. The experiment does not relabel ordinary supervised fine-tuning as RLAIF.
 
-## Adaptation and routing as separate interventions
+## Adaptation, memory and control as separate interventions
 
 An adapted portfolio member changes the distribution of errors on which the router was trained. The experiment evaluates both a frozen router with the adapted student and a newly calibrated router fitted without final-test labels. This forms a factorial distinction between student capability and routing adaptation. Otherwise, an apparent gain in inexpensive-model coverage could be attributed incorrectly to the generator when it arose from changed allocation. A customer may share verified examples across compatible training pipelines while retaining a separate adapter artifact for each selected base revision.
 
@@ -123,3 +133,9 @@ Distillation adds an amortization question. If training and data generation cost
 Every run records task and repository identifiers, base commit, dataset/harness revisions, container image digest, condition, model/adapter revision, decoding settings, seed where supported, resource limits, prompts/tool traces under the retention policy, output patch, evaluator logs and billed usage. Cached and uncached scenarios are identified separately. A run manifest links these records through hashes and identifies whether a stage was prepared, started, completed, failed or unrun.
 
 This evidence structure serves both scientific reproducibility and task continuity. Jira tickets can index work and Confluence can host the manuscript, but neither substitutes for run manifests and versioned artifacts. If external tools are unavailable, local state records remain explicitly pending synchronization and must not invent issue keys, page IDs or completed runs.
+
+## Learning toward accessible personal capability
+
+The open expert pool is both a source of help and a potential teacher. The longitudinal experiment separates a student's increasing standalone capability from its ability to select, question, verify and integrate expert contributions. Code completion alone does not train all of those agent decisions. Observable collaboration traces must preserve causal action order and the boundary between student actions and tool or expert observations.
+
+A stable personal memory, a changed router and a trained student can each improve a product while producing different scientific explanations. Their versions and training inputs are recorded independently. Deployment can favor one compact local model plus occasional external assistance even when a larger cloud portfolio achieves the best absolute benchmark score. The decision depends on measured task usefulness, device feasibility, user constraints and total cost.
