@@ -468,3 +468,38 @@ image size and no deletion. Its events are retained in
 prompt, evaluator, or solver time limit changes. The native grader's image-list
 helper explicitly warns against concurrent use, so grader/worker runs remain
 serial. A cold pull or a long official test run is not a stalled model call.
+
+### Compact candidate amendment and current queues
+
+Before any v2 development grades, the documented context-only instruction-file
+calibration reduced Sol input from10,481 to6,393tokens and the published-rate
+scenario from0.021812 to0.013786USD. Both elementary arithmetic answers were
+correct and neither used tools. These two draws establish neither task-quality
+retention nor a complete-task saving. Sources and raw counters are committed in
+`results/compact-expert-calibration-001`.
+
+A third frozen development candidate, `compact-001`, uses the same adaptive
+controller and unchanged acting agents; only context-only specialist/router
+instructions are compacted. Its backend/source/system hashes are separately
+bound, positive preflights pass, and permission/tool invariance tests pass.
+The active registration is `selection-protocol-002.json`; the older two-candidate
+registration remains historical. Total planned scored assignments are now
+72original+36development+36held-out (before any held-out environment exclusions).
+
+The old WAITING `ttgl_queue_fallback_and_controls.py` and
+`ttgl_queue_selected_heldout.py` processes were terminated before starting any
+model calls or controls. Their replacements are
+`/tmp/ttgl_queue_three_candidate_controls.py` (fallback then compact and their
+analyses, then held-out controls) and
+`/tmp/ttgl_queue_selected_heldout_002.py` (all three analyses, registered selection,
+readiness, selected normal/compact driver and held-out run). The adaptive queue,
+original/adaptive finalizer and held-out public-validation queue remain active.
+Check current processes and logs rather than restarting old waiting scripts.
+
+All three development caches were seeded with27 archived exact-program official
+reports before scored inference. Source snapshots, invariant checks and receipts
+are committed. No model attempt, state or usage was reused. Every actual hit
+still requires identical patch/image/full grading dataset/timeout and native
+report hashes. Independent model attempts remain mandatory. This changes grading
+work, not the inference-cost endpoint. The new seed script rejects incompatible
+settings and modified reports in behavior tests.
