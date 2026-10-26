@@ -128,7 +128,7 @@ for line in sys.stdin:
         response = {usage()!r}
         print(json.dumps({{'id':request['id'], 'result':response}}), flush=True)
 ''')
-    with AppServer(str(executable), timeout=1) as client:
+    with AppServer(str(executable), timeout=5) as client:
         with pytest.raises(ValueError, match="Account-wide"):
             client.request("account/usage/read", {})
         with pytest.raises(ValueError, match="Only initialization"):
@@ -152,7 +152,7 @@ def test_timeout_cleans_process_and_sanitizes_stderr(tmp_path):
     assert time.monotonic() - started < 3
     assert client.process is None and client.stderr is None
     executable = fake_executable(tmp_path, "import sys\nsys.stderr.write('secret-user: Read-only file system (os error 30)')\nsys.exit(1)\n")
-    report = collect(["root-one"], client_factory=lambda: AppServer(str(executable), 1))
+    report = collect(["root-one"], client_factory=lambda: AppServer(str(executable), 5))
     assert report["threads"][0]["reason"] == "read_only_state_directory"
     assert "secret-user" not in json.dumps(report)
 

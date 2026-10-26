@@ -136,6 +136,12 @@ class AppServer:
                 os.killpg(self.process.pid, signal.SIGTERM)
             except ProcessLookupError:
                 pass
+            except PermissionError:
+                # Darwin can return EPERM for a process group after its leader
+                # has exited. Do not turn an observed startup failure into a
+                # collector crash; a live owned process must still be killable.
+                if self.process.poll() is None:
+                    raise
             try:
                 self.process.wait(timeout=1)
             except subprocess.TimeoutExpired:
@@ -144,6 +150,9 @@ class AppServer:
                 os.killpg(self.process.pid, signal.SIGKILL)
             except ProcessLookupError:
                 pass
+            except PermissionError:
+                if self.process.poll() is None:
+                    raise
             self.process.wait()
             for stream in (self.process.stdin, self.process.stdout):
                 if stream is not None:

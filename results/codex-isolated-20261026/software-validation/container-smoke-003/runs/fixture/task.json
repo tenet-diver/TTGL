@@ -1,0 +1,9 @@
+{
+  "task_id": "fixture",
+  "workspace": "/Users/rustameynaliyev/Developer/TTGL/artifacts/container-smoke-003/workspace",
+  "memory": [],
+  "allowed_paths": [
+    "."
+  ],
+  "prompt": "Use the worker shell tool to read value.txt, then write answer.txt with twice that integer. Execute a Python assertion that answer.txt is 42. Verify /ttgl and /var/run/docker.sock are absent. Return complete and summarize the checks."
+}

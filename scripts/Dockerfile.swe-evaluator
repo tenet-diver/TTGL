@@ -1,0 +1,9 @@
+# Build with verified harness.tar.gz and requirements.lock in the context.
+FROM docker:20.10.23-cli@sha256:a464827b7d394e266e51f76e58602296f2a60a26b7fae3d9d995df1d67690a32 AS dockercli
+FROM python:3.12-slim@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704
+COPY requirements.lock /opt/requirements.lock
+RUN pip install --no-cache-dir -r /opt/requirements.lock
+COPY harness.tar.gz /opt/harness.tar.gz
+RUN pip install --no-cache-dir --no-deps /opt/harness.tar.gz
+COPY --from=dockercli /usr/local/bin/docker /usr/local/bin/docker
+ENTRYPOINT ["swebench"]

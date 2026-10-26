@@ -15,6 +15,7 @@ import random
 import re
 import subprocess
 import sys
+import time
 from datetime import datetime, timezone
 
 import numpy as np
@@ -69,7 +70,9 @@ def read_tasks(path: Path) -> dict:
 def initialize(tasks_path: Path, output: Path, workspaces: Path, *, small_model: str,
                large_model: str, timeout_seconds: float = 900, seed: int = 1729,
                reasoning_effort: str = "medium", max_turns: int = 6,
-               max_expert_calls: int = 2, conditions: tuple[str, ...] = ARMS) -> dict:
+               max_expert_calls: int = 2, conditions: tuple[str, ...] = ARMS,
+               worker_environment: str | None = None, isolation: str | None = None,
+               assignment_ordering: str = 'shuffled') -> dict:
     data = read_tasks(tasks_path)
     output, workspaces = output.resolve(), workspaces.resolve()
     if output == workspaces or output.is_relative_to(workspaces) or workspaces.is_relative_to(output):
@@ -87,7 +90,17 @@ def initialize(tasks_path: Path, output: Path, workspaces: Path, *, small_model:
         raise ValueError("Choose new study and worker directories; existing directories are not reset")
     assignments = [{"instance_id": row["instance_id"], "arm": arm}
                    for row in data["tasks"] for arm in conditions]
-    random.Random(seed).shuffle(assignments)
+    rng = random.Random(seed)
+    if assignment_ordering == 'shuffled':
+        rng.shuffle(assignments)
+    elif assignment_ordering == 'task_blocked':
+        assignments = []
+        for row in data['tasks']:
+            arms = list(conditions)
+            rng.shuffle(arms)
+            assignments.extend({'instance_id': row['instance_id'], 'arm': arm} for arm in arms)
+    else:
+        raise ValueError('Unsupported assignment ordering')
     design = {
         "schema_version": 1, "created_at": datetime.now(timezone.utc).isoformat(),
         "dataset_id": data["dataset_id"], "dataset_revision": data["dataset_revision"],
@@ -95,14 +108,15 @@ def initialize(tasks_path: Path, output: Path, workspaces: Path, *, small_model:
         "task_ids": [row["instance_id"] for row in data["tasks"]],
         "arms": list(conditions), "reference": "large", "seed": seed,
         "assignment_order": assignments, "workspace_root": str(workspaces),
+        "assignment_ordering": assignment_ordering,
         "config": {"small_model": small_model, "large_model": large_model,
                    "timeout_seconds": timeout_seconds, "reasoning_effort": reasoning_effort,
                    "max_turns": max_turns, "max_expert_calls": max_expert_calls},
         "source_sha256": {"personal": digest(Path(personal.__file__)),
                           "benchmark": digest(Path(__file__))},
-        "worker_environment": "Host Codex tools; dependencies must be provisioned before running",
+        "worker_environment": worker_environment or "Host Codex tools; dependencies must be provisioned before running",
         "model_identity": "Requested provider identifiers; immutable model revision not observed by this adapter",
-        "isolation": "Independent shallow checkouts; not a hardened cross-role read boundary",
+        "isolation": isolation or "Independent shallow checkouts; not a hardened cross-role read boundary",
         "evaluation": "Independent official SWE-bench harness reports only",
         "economic_endpoint": "API-equivalent model cost; subscription credits and deployment cost separate",
     }
@@ -193,7 +207,7 @@ def export_patch(task: dict, workspace: Path) -> str:
     return git(workspace, "diff", "--binary", "--no-ext-diff", task["base_commit"], "--", ".")
 
 
-def run_study(study: Path, *, resume: bool = False, backend=None) -> None:
+def run_study(study: Path, *, resume: bool = False, backend=None, worker_runtime=None) -> None:
     study = study.resolve()
     design, data = load_design(study)
     preflight_path = study / "preflight.json"
@@ -205,6 +219,7 @@ def run_study(study: Path, *, resume: bool = False, backend=None) -> None:
     lookup = {row["instance_id"]: row for row in data["tasks"]}
     with personal._run_lock(study):
         for assignment in design["assignment_order"]:
+            assignment_started = time.monotonic()
             task_id, arm = assignment["instance_id"], assignment["arm"]
             task = lookup[task_id]
             output = study / "runs" / arm / task_id
@@ -235,16 +250,24 @@ def run_study(study: Path, *, resume: bool = False, backend=None) -> None:
                     "Report unavailable test dependencies honestly.",
             }
             output.parent.mkdir(parents=True, exist_ok=True)
+            if worker_runtime is not None:
+                worker_runtime.prepare(task, workspace, output)
+            preparation_seconds = time.monotonic() - assignment_started
             manifest = personal.run_task(metadata, output, condition=arm, backend=backend,
                                          resume=output.exists(), **design["config"])
-            patch = export_patch(task, workspace)
+            patch = (export_patch(task, workspace) if worker_runtime is None else
+                     worker_runtime.export_patch(task, workspace))
             write_new(finished, {
                 "instance_id": task_id, "model_name_or_path": f"ttgl-{arm}", "model_patch": patch,
                 "manifest_sha256": digest(output / "manifest.json"),
                 "patch_sha256": hashlib.sha256(patch.encode()).hexdigest(),
                 "status": manifest["status"],
+                "preparation_seconds": preparation_seconds,
+                "assignment_wall_seconds": time.monotonic() - assignment_started,
             })
             export_predictions(study, design)
+            if worker_runtime is not None:
+                worker_runtime.close()
             if any(manifest["usage"].get(key) is None for key in ("input_tokens", "cached_input_tokens", "output_tokens")):
                 raise RuntimeError("Assigned trial has incomplete metering; artifacts retained. Reconcile before continuing.")
         export_predictions(study, design)

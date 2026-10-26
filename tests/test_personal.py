@@ -2,6 +2,7 @@ import json
 import os
 from pathlib import Path
 import signal
+import subprocess
 import time
 
 import pytest
@@ -517,7 +518,7 @@ def test_codex_subprocess_timeout_stops_owned_process_group(tmp_path):
     assert response.usage["input_tokens"] is None
 
 
-def test_timeout_kills_child_even_when_parent_exits_on_term(tmp_path):
+def test_timeout_kills_child_even_when_parent_exits_on_term(tmp_path, monkeypatch):
     fake = tmp_path / "fake-codex"
     child_pid = tmp_path / "child.pid"
     child_code = "import signal,time; signal.signal(signal.SIGTERM, signal.SIG_IGN); time.sleep(30)"
@@ -528,6 +529,18 @@ def test_timeout_kills_child_even_when_parent_exits_on_term(tmp_path):
         "time.sleep(30)\n"
     )
     fake.chmod(0o700)
+    # Synchronize the fixture's startup before exercising the timeout. macOS
+    # can spend longer than the tested deadline validating a new executable.
+    real_popen = subprocess.Popen
+    def ready_popen(*args, **kwargs):
+        process = real_popen(*args, **kwargs)
+        for _ in range(100):
+            if child_pid.exists() or process.poll() is not None:
+                break
+            time.sleep(0.05)
+        assert child_pid.exists(), 'Fixture failed to start its child'
+        return process
+    monkeypatch.setattr('ttgl.personal.subprocess.Popen', ready_popen)
     response = CodexBackend(str(fake)).complete(Request("r1", "model", "controller", "prompt",
                                                        tmp_path, ACTION_SCHEMA, 0.2))
     assert response.status == "timeout"
@@ -536,8 +549,9 @@ def test_timeout_kills_child_even_when_parent_exits_on_term(tmp_path):
         # A terminated orphan can remain a zombie until the container's init
         # reaps it; it is no longer executing or consuming model resources.
         for _ in range(100):
-            status_path = Path(f"/proc/{pid}/status")
-            if not status_path.exists() or "\nState:\tZ" in status_path.read_text():
+            observed = subprocess.run(['ps', '-p', str(pid), '-o', 'stat='],
+                                      capture_output=True, text=True)
+            if observed.returncode or observed.stdout.strip().startswith('Z'):
                 break
             time.sleep(0.01)
         else:
@@ -561,7 +575,7 @@ def test_codex_subprocess_accepts_documented_jsonl_protocol(tmp_path):
                     "\n".join(f"print({json.dumps(json.dumps(event))})" for event in events) + "\n")
     fake.chmod(0o700)
     response = CodexBackend(str(fake)).complete(Request("r1", "model", "controller", "prompt",
-                                                       tmp_path, ACTION_SCHEMA, 2))
+                                                       tmp_path, ACTION_SCHEMA, 10))
     assert response.status == "completed"
     assert response.thread_id == "test-thread"
     assert response.usage["input_tokens"] == 10

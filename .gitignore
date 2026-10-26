@@ -7,3 +7,5 @@ data/raw/
 data/processed/
 artifacts/
 .coverage
+node_modules/
+results/**/.lock

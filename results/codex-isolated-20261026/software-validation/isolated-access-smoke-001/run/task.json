@@ -1,0 +1,9 @@
+{
+  "task_id": "isolated-access",
+  "workspace": "/Users/rustameynaliyev/Developer/TTGL/artifacts/isolated-access-smoke-001/workspace",
+  "memory": [],
+  "allowed_paths": [
+    "."
+  ],
+  "prompt": "Do not use tools. Complete with summary TTGL isolated access."
+}
