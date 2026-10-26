@@ -1,0 +1,25 @@
+{
+  "instance_id": "psf__requests-5414",
+  "controls": {
+    "base": {
+      "returncode": 0,
+      "elapsed_seconds": 234.93801763094962,
+      "report": "logs/ttgl-desktop-controls-002-base-psf__requests-5414/base-control/psf__requests-5414/report.json",
+      "resolved": false,
+      "report_sha256": "7bfec9c061e8c88671ff3b24c13f943fa05c21657e5eb4a683346d12d4076dcc"
+    },
+    "gold": {
+      "returncode": 0,
+      "elapsed_seconds": 55.683852302026935,
+      "report": "logs/ttgl-desktop-controls-002-gold-psf__requests-5414/gold/psf__requests-5414/report.json",
+      "resolved": true,
+      "report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0"
+    }
+  },
+  "image": {
+    "reference": "swebench/sweb.eval.x86_64.psf_1776_requests-5414@sha256:71c78211f16803c111ed1807ded20f8defd5f6917fb958ace4e076d5ea7d8b10",
+    "image_id": "sha256:ff5caf954ad336865c3614fa0157f383a8e80c40ec802625347d119e3e33965e",
+    "size_bytes": 2686402306
+  },
+  "eligible": true
+}

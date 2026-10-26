@@ -1,0 +1,322 @@
+{
+  "tasks": [
+    {
+      "instance_id": "scikit-learn__scikit-learn-14141",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 74.95752773701679,
+          "report": "logs/ttgl-desktop-controls-002-base-scikit-learn__scikit-learn-14141/base-control/scikit-learn__scikit-learn-14141/report.json",
+          "resolved": false,
+          "report_sha256": "7525825badb7f623365cdb9850a606ae4c06fc6a1c07fd6317cdd90428f0f5e6"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 76.77536360104568,
+          "report": "logs/ttgl-desktop-controls-002-gold-scikit-learn__scikit-learn-14141/gold/scikit-learn__scikit-learn-14141/report.json",
+          "resolved": true,
+          "report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.scikit-learn_1776_scikit-learn-14141@sha256:c0f6a733154dad51cb8f617ca2ea09d095a6f56a1576740c2d43f9020294f2e0",
+        "image_id": "sha256:b66d524a1b44b0ed09a517d06fcdf5326ff47e64a0cb847a683ba95b8540137d",
+        "size_bytes": 3746967642
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "django__django-13297",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 270.2391585339792,
+          "report": "logs/ttgl-desktop-controls-002-base-django__django-13297/base-control/django__django-13297/report.json",
+          "resolved": false,
+          "report_sha256": "8184f6fc9895053bf1cfa20d887a8397c44440ee453b6142bb0438304284f7e9"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 106.29097615601495,
+          "report": "logs/ttgl-desktop-controls-002-gold-django__django-13297/gold/django__django-13297/report.json",
+          "resolved": true,
+          "report_sha256": "880ffaefa81e80d2c225e2de289e292483cf2a17eafe11c7b0bd0f4610392737"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.django_1776_django-13297@sha256:1dca304a4ccd9f39df8794fb807c04a4076b5f35aff7d192dc5e0a14f8bf6f43",
+        "image_id": "sha256:ca66a7eeb804ce23b06420dd501f6e5fe4149dc62b3efe9ef6a56049852db755",
+        "size_bytes": 2882157014
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "pydata__xarray-3095",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 537.878990131896,
+          "report": "logs/ttgl-desktop-controls-002-base-pydata__xarray-3095/base-control/pydata__xarray-3095/report.json",
+          "resolved": false,
+          "report_sha256": "8f51624c910971c7df224d81d68c320178ca65fc7e81a41e7b21911ed3c7d411"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 80.98335582599975,
+          "report": "logs/ttgl-desktop-controls-002-gold-pydata__xarray-3095/gold/pydata__xarray-3095/report.json",
+          "resolved": true,
+          "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.pydata_1776_xarray-3095@sha256:ad5af107b0b590bb5002ed8b66226a625d34741b6e7fa008c04c481745a2d2eb",
+        "image_id": "sha256:4e682920ccfb9f1707a53a0609ef10120b04c25744ad0a5da2a57640d0491f00",
+        "size_bytes": 5098149242
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "django__django-15037",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 183.9848176339874,
+          "report": "logs/ttgl-desktop-controls-002-base-django__django-15037/base-control/django__django-15037/report.json",
+          "resolved": false,
+          "report_sha256": "9c404ab7c929b20391d0a3c97917d964f168c80985f11cb10f5ca90710f73d27"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 83.73033577692695,
+          "report": "logs/ttgl-desktop-controls-002-gold-django__django-15037/gold/django__django-15037/report.json",
+          "resolved": true,
+          "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.django_1776_django-15037@sha256:4a75865ed731741f5b3c52483f71fd538bd86933d8339298279e68d87804bc13",
+        "image_id": "sha256:1a016025bfbddd6e8bce37805238019a57bba016eab7fac5c2df58d0476bd55b",
+        "size_bytes": 3006232876
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "psf__requests-5414",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 234.93801763094962,
+          "report": "logs/ttgl-desktop-controls-002-base-psf__requests-5414/base-control/psf__requests-5414/report.json",
+          "resolved": false,
+          "report_sha256": "7bfec9c061e8c88671ff3b24c13f943fa05c21657e5eb4a683346d12d4076dcc"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 55.683852302026935,
+          "report": "logs/ttgl-desktop-controls-002-gold-psf__requests-5414/gold/psf__requests-5414/report.json",
+          "resolved": true,
+          "report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.psf_1776_requests-5414@sha256:71c78211f16803c111ed1807ded20f8defd5f6917fb958ace4e076d5ea7d8b10",
+        "image_id": "sha256:ff5caf954ad336865c3614fa0157f383a8e80c40ec802625347d119e3e33965e",
+        "size_bytes": 2686402306
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "sympy__sympy-17139",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 969.0418709280202,
+          "report": "logs/ttgl-desktop-controls-002-base-sympy__sympy-17139/base-control/sympy__sympy-17139/report.json",
+          "resolved": false,
+          "report_sha256": "d988e5eb19765958e6b8e48397f49141481c8eba10d81cffa7f19891d46d11e2"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 401.1658614319749,
+          "report": "logs/ttgl-desktop-controls-002-gold-sympy__sympy-17139/gold/sympy__sympy-17139/report.json",
+          "resolved": true,
+          "report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.sympy_1776_sympy-17139@sha256:9a8111742e0548816d920a27ba259ebde7647f4e46e7522c61647990dd35713c",
+        "image_id": "sha256:05bd322eebbc03124d5701f89047cf0c91c6905c87506c581cd40d8540bb9a48",
+        "size_bytes": 2762021648
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "astropy__astropy-12907",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 553.38621250703,
+          "report": "logs/ttgl-desktop-controls-002-base-astropy__astropy-12907/base-control/astropy__astropy-12907/report.json",
+          "resolved": false,
+          "report_sha256": "f19729c25925fb28e263144205ad6b49a074b48a876fb4b54c4c5089abbd901e"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 406.3052402540343,
+          "report": "logs/ttgl-desktop-controls-002-gold-astropy__astropy-12907/gold/astropy__astropy-12907/report.json",
+          "resolved": true,
+          "report_sha256": "c0d4229660a6e54df069a5393d311ea4aac0522b2ecfec053cad28e915b0bc6d"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.astropy_1776_astropy-12907@sha256:e082963099ed7d5a5f75a0be46e338be36faae33b2cba5289a9ddbd505997f1f",
+        "image_id": "sha256:9b1cabf7bcd83a28469f67e3852d8e2207e90d45aa71f436bb7e600bdee8bae2",
+        "size_bytes": 2890932774
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "mwaskom__seaborn-3069",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 421.7007214250043,
+          "report": "logs/ttgl-desktop-controls-002-base-mwaskom__seaborn-3069/base-control/mwaskom__seaborn-3069/report.json",
+          "resolved": false,
+          "report_sha256": "2d5a3a4e2366198556fb778a3b69bc0f6aced24d3d807bafec1f161e2c4b5d50"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 171.4494696869515,
+          "report": "logs/ttgl-desktop-controls-002-gold-mwaskom__seaborn-3069/gold/mwaskom__seaborn-3069/report.json",
+          "resolved": true,
+          "report_sha256": "dbd2c652efcca1ab64b1b894f230fa29ddbf7549105efe4999e9768b8fba456f"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.mwaskom_1776_seaborn-3069@sha256:10f78850ebb5de5a4bdb70099159131fa819601dc885955d7be6f1009b23b4ea",
+        "image_id": "sha256:f0eff75310a1b33ffcdcdaeb2c0e1f67af9711d82cb79cb9a84fc5640d6a2d07",
+        "size_bytes": 3220928599
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "django__django-17084",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 176.7442780350102,
+          "report": "logs/ttgl-desktop-controls-002-base-django__django-17084/base-control/django__django-17084/report.json",
+          "resolved": false,
+          "report_sha256": "e1544e91dd16af961f9703b825f8cc917dc9019fb68a322731e0c6a0342be130"
+        },
+        "gold": {
+          "returncode": 1,
+          "elapsed_seconds": 128.50914348394144,
+          "report": "logs/ttgl-desktop-controls-002-gold-django__django-17084/gold/django__django-17084/report.json",
+          "resolved": true,
+          "report_sha256": "d79f0f0a6b03d63c5249956ab76cc17849545c3de8458f4d61664c90de8963ea"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.django_1776_django-17084@sha256:5a200d1c5ac1dec314fa7c4e9933db8314f030d2579ffb0ac4f4891f7eb77169",
+        "image_id": "sha256:2552f759129d4573ca1e94dd32fc039fca0f1acccab96f2f34d9cd0fdc62eb90",
+        "size_bytes": 3074784338
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "django__django-13121",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 442.3690639989218,
+          "report": "logs/ttgl-desktop-controls-002-base-django__django-13121/base-control/django__django-13121/report.json",
+          "resolved": false,
+          "report_sha256": "8e129078c6066be1c901e49f6af3f5c85b916a48755cf67cf1c883023b8ab8c1"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 161.34688153502066,
+          "report": "logs/ttgl-desktop-controls-002-gold-django__django-13121/gold/django__django-13121/report.json",
+          "resolved": true,
+          "report_sha256": "b316cf481ed6d3e12ab7d6308a0ed5ce2027d6b36c5a3f11c48c2c4aeb25718f"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.django_1776_django-13121@sha256:435fa9739e9d7142814efc5cd79871a275919523a825c212adf74dd08736f43f",
+        "image_id": "sha256:0d90a24e1b072387c47732366ddbb160d6b8acf956f8388e835a444861e9c568",
+        "size_bytes": 2880527579
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "pydata__xarray-7229",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 359.2572069730377,
+          "report": "logs/ttgl-desktop-controls-002-base-pydata__xarray-7229/base-control/pydata__xarray-7229/report.json",
+          "resolved": false,
+          "infra_failure": false,
+          "report_sha256": "751be2eb314cc6bdd95e35b87deea990a2a23ee2957d76137c6ae845164f94fb"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 98.47377680998761,
+          "report": "logs/ttgl-desktop-controls-002-gold-pydata__xarray-7229/gold/pydata__xarray-7229/report.json",
+          "resolved": true,
+          "infra_failure": false,
+          "report_sha256": "f2d9bb91dadcf8b68991ba553b50cf9bf88264d5e59e85deade5e5c82d9446c2"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.pydata_1776_xarray-7229@sha256:ff7d2a1c6f69491a593147a1356df8469f0d67b75d2583b19fe28bf776abb88e",
+        "image_id": "sha256:b2db3a6ab994cd3873198d9d37835e476178d4a6c0612afd37c6e378f32aaa5a",
+        "size_bytes": 4671461201
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-9230",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 283.7963942750357,
+          "report": "logs/ttgl-desktop-controls-002-base-sphinx-doc__sphinx-9230/base-control/sphinx-doc__sphinx-9230/report.json",
+          "resolved": false,
+          "infra_failure": false,
+          "report_sha256": "5041ee88e4238ce83baf84e4703e2e88a53800455b1d10be7e0a5f2b131d2c9b"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 183.76644591696095,
+          "report": "logs/ttgl-desktop-controls-002-gold-sphinx-doc__sphinx-9230/gold/sphinx-doc__sphinx-9230/report.json",
+          "resolved": true,
+          "infra_failure": false,
+          "report_sha256": "a574a2e0197fd007fc9526fdc6b331565d7f493802db8e4c185cbbde90311382"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-9230@sha256:2a18fa57b69c646bf0e1916f1df157a62de80ca8b55325738f9c9eeff9c38c86",
+        "image_id": "sha256:d379dcc96158e93133a465d02a206e554e948a48c38d19a17e18fcced167b933",
+        "size_bytes": 2811016760
+      },
+      "eligible": true
+    }
+  ],
+  "eligible": [
+    "scikit-learn__scikit-learn-14141",
+    "django__django-13297",
+    "pydata__xarray-3095",
+    "django__django-15037",
+    "psf__requests-5414",
+    "sympy__sympy-17139",
+    "astropy__astropy-12907",
+    "mwaskom__seaborn-3069",
+    "django__django-17084",
+    "django__django-13121",
+    "pydata__xarray-7229",
+    "sphinx-doc__sphinx-9230"
+  ]
+}

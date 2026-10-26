@@ -1,0 +1,7 @@
+diff --git a/.ttgl_control b/.ttgl_control
+new file mode 100644
+index 0000000..85c3040
+--- /dev/null
++++ b/.ttgl_control
+@@ -0,0 +1 @@
++base control

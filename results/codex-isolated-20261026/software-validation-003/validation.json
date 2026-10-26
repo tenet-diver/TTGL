@@ -1,0 +1,21 @@
+{
+  "status": "passed_before_scored_inference",
+  "passed": 142,
+  "skipped": 1,
+  "subtests_passed": 2,
+  "skip_reason": "Optional torch GPU-training integration unavailable",
+  "real_docker_integration_enabled": true,
+  "source_sha256": {
+    "src/ttgl/isolated.py": "e4d7f9cebb88802a78e0d9a3dbdf697d28bf5c4899b054792c60ac310b2cb7e3",
+    "src/ttgl/personal.py": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826",
+    "src/ttgl/evaluation.py": "8bca9f41db8532fde7bed4f9686ecf1a74f7b97421605df0b79a575d2fbefb13",
+    "src/ttgl/benchmark.py": "76facfc3e2b26dd3ffe7f2453da31e53e2c6b4161b8eb86b39a003b9d8d53b42",
+    "src/ttgl/subscription.py": "3136cf39293105846374fcfe8c01103feec6530d349873faeb744443ef907751",
+    "scripts/run_isolated_swe.py": "997a3f3fb289f7dbb77b5a32cf23aee2a277a0461f44f4f024f7d5f201e2b484",
+    "scripts/run_swe_controls.py": "e29ea51ee64cd5a3e24778eb8b4d63a518cfc8821d79be18b1add3bec4bb1c27",
+    "scripts/finalize_isolated_swe.py": "0930005013ec418df2176661cf2ef8218b457d2bdd7dec2652042a0255ac7638",
+    "tools/worker-mcp/server.mjs": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "tools/worker-mcp/package-lock.json": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "tools/worker-dependencies.json": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d"
+  }
+}

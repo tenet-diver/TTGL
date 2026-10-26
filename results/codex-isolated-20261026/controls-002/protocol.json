@@ -1,0 +1,11 @@
+{
+  "tasks_sha256": "e6a43141699e22a0dca4f61fac701c677ee4da74fdb13aca81f451b4a4826f58",
+  "private_dataset_sha256": "a72128a492173036bc89622f20645d704971e8d8e322160eddc79e172f588d09",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "script_sha256": "2de6b6dc376c9190eafdf0af1f8ff4057364f83c10519103f60a8e7eafb4b51a",
+  "timeout_seconds": 600,
+  "workers": 1,
+  "eligibility_rule": "gold resolved=true and base resolved=false, with no infrastructure failure",
+  "selection": "all frozen tasks; no replacement based on model outcomes",
+  "inference_calls": 0
+}

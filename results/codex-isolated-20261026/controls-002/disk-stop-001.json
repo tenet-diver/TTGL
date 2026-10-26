@@ -1,0 +1,8 @@
+{
+  "status": "stopped_between_tasks",
+  "completed_control_pairs": 10,
+  "scored_model_calls": 0,
+  "reason": "Host free space below original 10 GiB reserve",
+  "original_stdout_sha256": "432fc73e5a27730a8d77f6cffa39488ea3bbb995f1d732cd36201bad3f7866f8",
+  "resume": "Explicit verified resume of untouched tasks; completed native reports unchanged"
+}

@@ -1,0 +1,25 @@
+{
+  "instance_id": "mwaskom__seaborn-3069",
+  "controls": {
+    "base": {
+      "returncode": 0,
+      "elapsed_seconds": 421.7007214250043,
+      "report": "logs/ttgl-desktop-controls-002-base-mwaskom__seaborn-3069/base-control/mwaskom__seaborn-3069/report.json",
+      "resolved": false,
+      "report_sha256": "2d5a3a4e2366198556fb778a3b69bc0f6aced24d3d807bafec1f161e2c4b5d50"
+    },
+    "gold": {
+      "returncode": 0,
+      "elapsed_seconds": 171.4494696869515,
+      "report": "logs/ttgl-desktop-controls-002-gold-mwaskom__seaborn-3069/gold/mwaskom__seaborn-3069/report.json",
+      "resolved": true,
+      "report_sha256": "dbd2c652efcca1ab64b1b894f230fa29ddbf7549105efe4999e9768b8fba456f"
+    }
+  },
+  "image": {
+    "reference": "swebench/sweb.eval.x86_64.mwaskom_1776_seaborn-3069@sha256:10f78850ebb5de5a4bdb70099159131fa819601dc885955d7be6f1009b23b4ea",
+    "image_id": "sha256:f0eff75310a1b33ffcdcdaeb2c0e1f67af9711d82cb79cb9a84fc5640d6a2d07",
+    "size_bytes": 3220928599
+  },
+  "eligible": true
+}

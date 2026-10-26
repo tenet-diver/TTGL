@@ -1,0 +1,25 @@
+{
+  "instance_id": "sympy__sympy-17139",
+  "controls": {
+    "base": {
+      "returncode": 0,
+      "elapsed_seconds": 969.0418709280202,
+      "report": "logs/ttgl-desktop-controls-002-base-sympy__sympy-17139/base-control/sympy__sympy-17139/report.json",
+      "resolved": false,
+      "report_sha256": "d988e5eb19765958e6b8e48397f49141481c8eba10d81cffa7f19891d46d11e2"
+    },
+    "gold": {
+      "returncode": 0,
+      "elapsed_seconds": 401.1658614319749,
+      "report": "logs/ttgl-desktop-controls-002-gold-sympy__sympy-17139/gold/sympy__sympy-17139/report.json",
+      "resolved": true,
+      "report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a"
+    }
+  },
+  "image": {
+    "reference": "swebench/sweb.eval.x86_64.sympy_1776_sympy-17139@sha256:9a8111742e0548816d920a27ba259ebde7647f4e46e7522c61647990dd35713c",
+    "image_id": "sha256:05bd322eebbc03124d5701f89047cf0c91c6905c87506c581cd40d8540bb9a48",
+    "size_bytes": 2762021648
+  },
+  "eligible": true
+}

@@ -20,3 +20,5 @@ results/codex-isolated-20261026/software-validation-002/*.log -whitespace
 results/codex-isolated-20261026/software-validation-002/*.xml -whitespace
 # Keep captured public smoke and control process output byte-identical.
 results/codex-isolated-20261026/**/*.stdout.txt -whitespace
+# Pytest section separators in immutable logs are not merge-conflict markers.
+results/codex-isolated-20261026/**/logs/**/test_output.txt conflict-marker-size=1000000

@@ -1,0 +1,44 @@
+{
+    "total_instances": 1,
+    "submitted_instances": 12,
+    "completed_instances": 1,
+    "resolved_instances": 0,
+    "unresolved_instances": 1,
+    "infra_failure_instances": 0,
+    "ambiguous_failure_instances": 0,
+    "empty_patch_instances": 0,
+    "error_instances": 0,
+    "completed_ids": [
+        "astropy__astropy-12907"
+    ],
+    "incomplete_ids": [],
+    "empty_patch_ids": [],
+    "submitted_ids": [
+        "astropy__astropy-12907",
+        "django__django-13121",
+        "django__django-13297",
+        "django__django-15037",
+        "django__django-17084",
+        "mwaskom__seaborn-3069",
+        "psf__requests-5414",
+        "pydata__xarray-3095",
+        "pydata__xarray-7229",
+        "scikit-learn__scikit-learn-14141",
+        "sphinx-doc__sphinx-9230",
+        "sympy__sympy-17139"
+    ],
+    "resolved_ids": [],
+    "unresolved_ids": [
+        "astropy__astropy-12907"
+    ],
+    "infra_failure_ids": [],
+    "ambiguous_failure_ids": [],
+    "failure_reasons": {},
+    "error_ids": [],
+    "schema_version": 2,
+    "unstopped_instances": 0,
+    "unstopped_containers": [],
+    "unremoved_images": [
+        "swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest"
+    ]
+}

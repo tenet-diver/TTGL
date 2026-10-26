@@ -1,0 +1,27 @@
+{
+  "instance_id": "pydata__xarray-7229",
+  "controls": {
+    "base": {
+      "returncode": 0,
+      "elapsed_seconds": 359.2572069730377,
+      "report": "logs/ttgl-desktop-controls-002-base-pydata__xarray-7229/base-control/pydata__xarray-7229/report.json",
+      "resolved": false,
+      "infra_failure": false,
+      "report_sha256": "751be2eb314cc6bdd95e35b87deea990a2a23ee2957d76137c6ae845164f94fb"
+    },
+    "gold": {
+      "returncode": 0,
+      "elapsed_seconds": 98.47377680998761,
+      "report": "logs/ttgl-desktop-controls-002-gold-pydata__xarray-7229/gold/pydata__xarray-7229/report.json",
+      "resolved": true,
+      "infra_failure": false,
+      "report_sha256": "f2d9bb91dadcf8b68991ba553b50cf9bf88264d5e59e85deade5e5c82d9446c2"
+    }
+  },
+  "image": {
+    "reference": "swebench/sweb.eval.x86_64.pydata_1776_xarray-7229@sha256:ff7d2a1c6f69491a593147a1356df8469f0d67b75d2583b19fe28bf776abb88e",
+    "image_id": "sha256:b2db3a6ab994cd3873198d9d37835e476178d4a6c0612afd37c6e378f32aaa5a",
+    "size_bytes": 4671461201
+  },
+  "eligible": true
+}

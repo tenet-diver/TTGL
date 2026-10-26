@@ -1,0 +1,11 @@
+{
+  "status": "all_original_controls_valid",
+  "tasks": 12,
+  "base_expected_failures": 12,
+  "reference_passes": 12,
+  "infra_failures": 0,
+  "report_hashes_verified": 24,
+  "scored_model_calls": 0,
+  "nonzero_wrapper_exits_with_valid_reports": 1,
+  "summary_sha256": "76306597778e4f574249700f462dc33b78d25382fcd395a3f887a850c587ecae"
+}
