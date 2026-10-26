@@ -1,0 +1,154 @@
+2026-10-26 19:56:29,382 - INFO - Creating container for django__django-13297...
+2026-10-26 19:56:29,524 - INFO - Container for django__django-13297 created: f6357daa2d151aa5d675978cf5c51369b6e594d35e58fffb1765a17f1b188e19
+2026-10-26 19:56:30,269 - INFO - Container for django__django-13297 started: f6357daa2d151aa5d675978cf5c51369b6e594d35e58fffb1765a17f1b188e19
+2026-10-26 19:56:30,289 - INFO - Intermediate patch for django__django-13297 written to logs/evaluation/ttgl-large-django__django-13297-3bea84e9-dec33f3eb37d/ttgl-large/django__django-13297/patch.diff, now applying to container...
+2026-10-26 19:56:31,055 - INFO - >>>>> Applied Patch:
+Checking patch django/views/generic/base.py...
+Checking patch docs/releases/3.1.1.txt...
+Checking patch tests/generic_views/test_base.py...
+Applied patch django/views/generic/base.py cleanly.
+Applied patch docs/releases/3.1.1.txt cleanly.
+Applied patch tests/generic_views/test_base.py cleanly.
+
+2026-10-26 19:56:33,449 - INFO - Git diff before:
+diff --git a/django/views/generic/base.py b/django/views/generic/base.py
+index ea5baca08d..7e5c06874d 100644
+--- a/django/views/generic/base.py
++++ b/django/views/generic/base.py
+@@ -11,7 +11,7 @@ from django.template.response import TemplateResponse
+ from django.urls import reverse
+ from django.utils.decorators import classonlymethod
+ from django.utils.deprecation import RemovedInDjango40Warning
+-from django.utils.functional import SimpleLazyObject
++from django.utils.functional import lazy
+ 
+ logger = logging.getLogger('django.request')
+ 
+@@ -169,7 +169,6 @@ def _wrap_url_kwargs_with_deprecation_warning(url_kwargs):
+     context_kwargs = {}
+     for key, value in url_kwargs.items():
+         # Bind into function closure.
+-        @SimpleLazyObject
+         def access_value(key=key, value=value):
+             warnings.warn(
+                 'TemplateView passing URL kwargs to the context is '
+@@ -178,7 +177,7 @@ def _wrap_url_kwargs_with_deprecation_warning(url_kwargs):
+                 RemovedInDjango40Warning, stacklevel=2,
+             )
+             return value
+-        context_kwargs[key] = access_value
++        context_kwargs[key] = lazy(access_value, type(value))()
+     return context_kwargs
+ 
+ 
+diff --git a/docs/releases/3.1.1.txt b/docs/releases/3.1.1.txt
+index 6aa091bb82..4bd93d3545 100644
+--- a/docs/releases/3.1.1.txt
++++ b/docs/releases/3.1.1.txt
+@@ -25,3 +25,7 @@ Bugfixes
+   :meth:`~django.db.models.query.QuerySet.select_for_update()`. When using
+   related fields pointing to a proxy model in the ``of`` argument, the
+   corresponding model was not locked (:ticket:`31866`).
++
++* Fixed a regression in Django 3.1 that caused database queries using URL keyword
++  arguments in :meth:`TemplateView.get_context_data()
++  <django.views.generic.base.ContextMixin.get_context_data>` to crash.
+diff --git a/tests/generic_views/test_base.py b/tests/generic_views/test_base.py
+index d498d23a68..4a1a441962 100644
+--- a/tests/generic_views/test_base.py
++++ b/tests/generic_views/test_base.py
+@@ -2,8 +2,9 @@ import time
+ 
+ from django.core.exceptions import ImproperlyConfigured
+ from django.http import HttpResponse
++from django.shortcuts import get_object_or_404
+ from django.test import (
+-    RequestFactory, SimpleTestCase, ignore_warnings, override_settings,
++    RequestFactory, SimpleTestCase, TestCase, ignore_warnings, override_settings,
+ )
+ from django.test.utils import require_jinja2
+ from django.urls import resolve
+@@ -11,6 +12,7 @@ from django.utils.deprecation import RemovedInDjango40Warning
+ from django.views.generic import RedirectView, TemplateView, View
+ 
+ from . import views
++from .models import Author
+ 
+ 
+ class SimpleView(View):
+@@ -603,3 +605,21 @@ class DeprecationTests(SimpleTestCase):
+             str(response.context['foo2'])
+         self.assertEqual(response.context['key'], 'value')
+         self.assertIsInstance(response.context['view'], View)
++
++
++class TemplateViewQueryTest(TestCase):
++    @ignore_warnings(category=RemovedInDjango40Warning)
++    def test_url_kwargs_in_database_lookup(self):
++        class AuthorView(TemplateView):
++            template_name = 'generic_views/about.html'
++
++            def get_context_data(self, **kwargs):
++                return {'author': get_object_or_404(Author, **kwargs)}
++
++        author = Author.objects.create(name='Author', slug='author')
++        request = RequestFactory().get('/author/')
++        for kwargs in ({'slug': author.slug}, {'pk': author.pk}):
++            with self.subTest(kwargs=kwargs):
++                response = AuthorView.as_view()(request, **kwargs)
++                self.assertEqual(response.status_code, 200)
++                self.assertEqual(response.context_data['author'], author)
+2026-10-26 19:56:33,467 - INFO - Eval script for django__django-13297 written to logs/evaluation/ttgl-large-django__django-13297-3bea84e9-dec33f3eb37d/ttgl-large/django__django-13297/eval.sh; copying to container...
+2026-10-26 19:56:56,709 - INFO - Test runtime: 22.50 seconds
+2026-10-26 19:56:56,729 - INFO - Test output for django__django-13297 written to logs/evaluation/ttgl-large-django__django-13297-3bea84e9-dec33f3eb37d/ttgl-large/django__django-13297/test_output.txt
+2026-10-26 19:56:56,979 - INFO - Git diff after:
+diff --git a/django/views/generic/base.py b/django/views/generic/base.py
+index ea5baca08d..7e5c06874d 100644
+--- a/django/views/generic/base.py
++++ b/django/views/generic/base.py
+@@ -11,7 +11,7 @@ from django.template.response import TemplateResponse
+ from django.urls import reverse
+ from django.utils.decorators import classonlymethod
+ from django.utils.deprecation import RemovedInDjango40Warning
+-from django.utils.functional import SimpleLazyObject
++from django.utils.functional import lazy
+ 
+ logger = logging.getLogger('django.request')
+ 
+@@ -169,7 +169,6 @@ def _wrap_url_kwargs_with_deprecation_warning(url_kwargs):
+     context_kwargs = {}
+     for key, value in url_kwargs.items():
+         # Bind into function closure.
+-        @SimpleLazyObject
+         def access_value(key=key, value=value):
+             warnings.warn(
+                 'TemplateView passing URL kwargs to the context is '
+@@ -178,7 +177,7 @@ def _wrap_url_kwargs_with_deprecation_warning(url_kwargs):
+                 RemovedInDjango40Warning, stacklevel=2,
+             )
+             return value
+-        context_kwargs[key] = access_value
++        context_kwargs[key] = lazy(access_value, type(value))()
+     return context_kwargs
+ 
+ 
+diff --git a/docs/releases/3.1.1.txt b/docs/releases/3.1.1.txt
+index 6aa091bb82..4bd93d3545 100644
+--- a/docs/releases/3.1.1.txt
++++ b/docs/releases/3.1.1.txt
+@@ -25,3 +25,7 @@ Bugfixes
+   :meth:`~django.db.models.query.QuerySet.select_for_update()`. When using
+   related fields pointing to a proxy model in the ``of`` argument, the
+   corresponding model was not locked (:ticket:`31866`).
++
++* Fixed a regression in Django 3.1 that caused database queries using URL keyword
++  arguments in :meth:`TemplateView.get_context_data()
++  <django.views.generic.base.ContextMixin.get_context_data>` to crash.
+2026-10-26 19:56:56,986 - INFO - Git diff changed after running eval script
+2026-10-26 19:56:56,989 - INFO - Grading answer for django__django-13297...
+2026-10-26 19:56:57,005 - INFO - report: {'django__django-13297': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': True, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': ['test_template_params_filtering (generic_views.test_base.DeprecationTests)'], 'failure': []}, 'PASS_TO_PASS': {'success': ['test_get_context_data_super (generic_views.test_base.GetContextDataTest)', 'test_object_at_custom_name_in_context_data (generic_views.test_base.GetContextDataTest)', 'test_object_in_get_context_data (generic_views.test_base.GetContextDataTest)', 'test_overwrite_queryset (generic_views.test_base.UseMultipleObjectMixinTest)', 'test_use_queryset_from_view (generic_views.test_base.UseMultipleObjectMixinTest)', 'test_template_mixin_without_template (generic_views.test_base.SingleObjectTemplateResponseMixinTest)', 'test_args_kwargs_request_on_self (generic_views.test_base.ViewTest)', 'test_calling_more_than_once (generic_views.test_base.ViewTest)', 'test_class_attributes (generic_views.test_base.ViewTest)', 'test_direct_instantiation (generic_views.test_base.ViewTest)', 'test_dispatch_decoration (generic_views.test_base.ViewTest)', 'test_get_and_head (generic_views.test_base.ViewTest)', 'test_get_and_post (generic_views.test_base.ViewTest)', 'test_get_only (generic_views.test_base.ViewTest)', 'test_head_no_get (generic_views.test_base.ViewTest)', 'test_invalid_keyword_argument (generic_views.test_base.ViewTest)', 'test_no_init_args (generic_views.test_base.ViewTest)', 'test_no_init_kwargs (generic_views.test_base.ViewTest)', 'test_not_calling_parent_setup_error (generic_views.test_base.ViewTest)', 'test_options (generic_views.test_base.ViewTest)', 'test_options_for_get_and_post_view (generic_views.test_base.ViewTest)', 'test_options_for_get_view (generic_views.test_base.ViewTest)', 'test_options_for_post_view (generic_views.test_base.ViewTest)', 'test_overridden_setup (generic_views.test_base.ViewTest)', 'test_pathological_http_method (generic_views.test_base.ViewTest)', 'test_setup_adds_args_kwargs_request (generic_views.test_base.ViewTest)', 'test_setup_get_and_head (generic_views.test_base.ViewTest)', 'Default is a temporary redirect', 'test_direct_instantiation (generic_views.test_base.RedirectViewTest)', 'GET arguments can be included in the redirected URL', 'GET arguments can be URL-encoded when included in the redirected URL', 'Named pattern parameter should reverse to the matching pattern', 'test_named_url_pattern_using_args (generic_views.test_base.RedirectViewTest)', 'Without any configuration, returns HTTP 410 GONE', 'Redirection URLs can be parameterized', 'Permanent redirects are an option', 'regression for #16705', 'Temporary redirects are an option', 'A template view can be customized to return extra context.', 'A generic template view passes kwargs as context.', 'test_template_params_warning (generic_views.test_base.DeprecationTests)', 'test_cached_views (generic_views.test_base.TemplateViewTest)', 'test_content_type (generic_views.test_base.TemplateViewTest)', 'test_extra_context (generic_views.test_base.TemplateViewTest)', 'test_get (generic_views.test_base.TemplateViewTest)', 'test_get_generic_template (generic_views.test_base.TemplateViewTest)', 'test_get_template_attribute (generic_views.test_base.TemplateViewTest)', 'test_head (generic_views.test_base.TemplateViewTest)', 'test_resolve_login_required_view (generic_views.test_base.TemplateViewTest)', 'test_resolve_view (generic_views.test_base.TemplateViewTest)', 'test_template_engine (generic_views.test_base.TemplateViewTest)', 'test_template_name_required (generic_views.test_base.TemplateViewTest)'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for django__django-13297: resolved: True
+2026-10-26 19:56:57,047 - INFO - Attempting to stop container sweb.eval.django__django-13297.ttgl-large-django__django-13297-3bea84e9-dec33f3eb37d...
+2026-10-26 19:57:12,452 - INFO - Container sweb.eval.django__django-13297.ttgl-large-django__django-13297-3bea84e9-dec33f3eb37d stopped successfully.
+2026-10-26 19:57:12,455 - INFO - Attempting to remove container sweb.eval.django__django-13297.ttgl-large-django__django-13297-3bea84e9-dec33f3eb37d...
+2026-10-26 19:57:12,588 - INFO - Container sweb.eval.django__django-13297.ttgl-large-django__django-13297-3bea84e9-dec33f3eb37d removed successfully.

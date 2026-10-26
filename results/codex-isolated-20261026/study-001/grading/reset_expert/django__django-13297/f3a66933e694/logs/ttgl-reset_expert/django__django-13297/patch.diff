@@ -1,0 +1,68 @@
+diff --git a/django/views/generic/base.py b/django/views/generic/base.py
+index ea5baca..f1add29 100644
+--- a/django/views/generic/base.py
++++ b/django/views/generic/base.py
+@@ -11,7 +11,6 @@ from django.template.response import TemplateResponse
+ from django.urls import reverse
+ from django.utils.decorators import classonlymethod
+ from django.utils.deprecation import RemovedInDjango40Warning
+-from django.utils.functional import SimpleLazyObject
+ 
+ logger = logging.getLogger('django.request')
+ 
+@@ -159,27 +158,15 @@ class TemplateView(TemplateResponseMixin, ContextMixin, View):
+     def get(self, request, *args, **kwargs):
+         # RemovedInDjango40Warning: when the deprecation ends, replace with:
+         #   context = self.get_context_data()
+-        context_kwargs = _wrap_url_kwargs_with_deprecation_warning(kwargs)
+-        context = self.get_context_data(**context_kwargs)
+-        return self.render_to_response(context)
+-
+-
+-# RemovedInDjango40Warning
+-def _wrap_url_kwargs_with_deprecation_warning(url_kwargs):
+-    context_kwargs = {}
+-    for key, value in url_kwargs.items():
+-        # Bind into function closure.
+-        @SimpleLazyObject
+-        def access_value(key=key, value=value):
++        for key in kwargs:
+             warnings.warn(
+                 'TemplateView passing URL kwargs to the context is '
+                 'deprecated. Reference %s in your template through '
+                 'view.kwargs instead.' % key,
+                 RemovedInDjango40Warning, stacklevel=2,
+             )
+-            return value
+-        context_kwargs[key] = access_value
+-    return context_kwargs
++        context = self.get_context_data(**kwargs)
++        return self.render_to_response(context)
+ 
+ 
+ class RedirectView(View):
+diff --git a/tests/generic_views/test_base.py b/tests/generic_views/test_base.py
+index d498d23..5c3bb0a 100644
+--- a/tests/generic_views/test_base.py
++++ b/tests/generic_views/test_base.py
+@@ -591,15 +591,14 @@ class DeprecationTests(SimpleTestCase):
+         self.assertIsInstance(response.context['view'], View)
+ 
+     def test_template_params_warning(self):
+-        response = self.client.get('/template/custom/bar1/bar2/')
+-        self.assertEqual(response.status_code, 200)
+         msg = (
+             'TemplateView passing URL kwargs to the context is deprecated. '
+             'Reference %s in your template through view.kwargs instead.'
+         )
+-        with self.assertRaisesMessage(RemovedInDjango40Warning, msg % 'foo1'):
+-            str(response.context['foo1'])
+-        with self.assertRaisesMessage(RemovedInDjango40Warning, msg % 'foo2'):
+-            str(response.context['foo2'])
++        with self.assertWarnsMessage(RemovedInDjango40Warning, msg % 'foo1'):
++            response = self.client.get('/template/custom/bar1/bar2/')
++        self.assertEqual(response.status_code, 200)
++        self.assertEqual(response.context['foo1'], 'bar1')
++        self.assertEqual(response.context['foo2'], 'bar2')
+         self.assertEqual(response.context['key'], 'value')
+         self.assertIsInstance(response.context['view'], View)

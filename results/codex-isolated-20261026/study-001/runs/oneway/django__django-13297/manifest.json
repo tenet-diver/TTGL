@@ -1,0 +1,114 @@
+{
+  "schema_version": 3,
+  "run_id": "c4aadc93-8af7-4868-b701-fd1f87f7ed95",
+  "task_id": "django__django-13297",
+  "condition": "oneway",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-26T19:45:15.125268+00:00",
+  "finished_at": "2026-10-26T19:48:24.021874+00:00",
+  "identity_sha256": "6bcb28ff394ce01982f6b80e172f6e8edf82a2614b3bea308b734c18a42f8c2c",
+  "config": {
+    "condition": "oneway",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d"
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 3,
+  "expert_calls": 1,
+  "elapsed_seconds": 188.75531946797855,
+  "controller_thread_id": "01a179be-e35c-7173-8830-211e1ef1cda5",
+  "expert_thread_id": "01a179bf-5fd7-71b1-922b-de5a39aa4dfc",
+  "usage": {
+    "input_tokens": 483513,
+    "cached_input_tokens": 431872,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 5271,
+    "reasoning_output_tokens": 2129
+  },
+  "observed_usage_partial": {
+    "input_tokens": 483513,
+    "cached_input_tokens": 431872,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 5271,
+    "reasoning_output_tokens": 2129
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 472814,
+        "cached_input_tokens": 431872,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4007,
+        "reasoning_output_tokens": 1175
+      },
+      "observed_partial": {
+        "input_tokens": 472814,
+        "cached_input_tokens": 431872,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4007,
+        "reasoning_output_tokens": 1175
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    },
+    "gpt-6.1-sol": {
+      "usage": {
+        "input_tokens": 10699,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1264,
+        "reasoning_output_tokens": 954
+      },
+      "observed_partial": {
+        "input_tokens": 10699,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1264,
+        "reasoning_output_tokens": 954
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 8,
+  "failure_type": null,
+  "summary": "Moved URL-kwarg deprecation wrappers into TemplateView.get_context_data(), so subclass overrides receive ordinary values and can use them in ORM queries. Added SQLite-backed regression coverage and verified deferred warning behavior. `python tests/runtests.py generic_views --verbosity 1` passed (215 tests); `git diff --check` passed.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "51bfa3dcb766c144732597d644017943a41a97ad89c21fb366aca8e289c9f25d",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

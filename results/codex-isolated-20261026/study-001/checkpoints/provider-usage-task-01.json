@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-10-26T19:39:14.554583+00:00",
+  "collector_sha256": "3136cf39293105846374fcfe8c01103feec6530d349873faeb744443ef907751",
+  "app_server_protocol_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+  "status": "incomplete",
+  "method": "account/usage/read",
+  "new_model_inference_requested": false,
+  "independent_root_threads_attested": true,
+  "selected_states_finalized": true,
+  "selected_states_usage_ledger_complete": true,
+  "threads": [
+    {
+      "thread_id": "01a179b6-73d0-7b10-915a-7ee2dadd8af3",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179b2-98c4-76f3-bbee-2eb8d4d2d38a",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179b4-7097-7943-b56c-1d6a958e1942",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179b4-90ad-7f10-856a-5eaf5b1f34c9",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179b5-8b84-7a11-a07a-9d760a2298d5",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179b1-3ceb-7fc3-bb5f-dd7279bb6a2e",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179b7-3274-74d2-90b9-0877c072e3cf",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    }
+  ],
+  "totals": {
+    "estimated_usage_credits_micros": null,
+    "estimated_usage_usd_micros": null
+  },
+  "totals_status": "missing_thread_estimates",
+  "limitations": [
+    "These are provider estimates, not subscription invoices or a promise of quota availability.",
+    "Backend estimates may lag recent activity; repeat with a new output path after settlement.",
+    "Explicit thread IDs without a state file have no independently checked completion status.",
+    "Known-thread estimates cannot establish whole-task spend when a state ledger is incomplete.",
+    "Never add nested parent and child bills without a documented accounting boundary.",
+    "Cached tokens are included in input; token categories must not all be summed.",
+    "No inference compute, hardware, evaluator or human labor costs are added here."
+  ],
+  "sources": [
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/small/scikit-learn__scikit-learn-14141/state.json",
+      "sha256": "5947a738854bebb69cb0077ea1eb58e5096c9f341ab2a6462209b3eb51aecff8",
+      "run_id": "48a2aac6-e66b-4736-ba97-309d3e38dc61",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/large/scikit-learn__scikit-learn-14141/state.json",
+      "sha256": "826a89cc254fc5aa2667d1dbc29865f13c46d185c41b208d212cc9e3346de0ad",
+      "run_id": "d761fd3c-6e5f-47c9-ae31-befd16ffda32",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/precall_router/scikit-learn__scikit-learn-14141/state.json",
+      "sha256": "41a207743a2a6755443c941d40d4ef38fc87dc9e19b2daee8a3e2652644778f1",
+      "run_id": "23c11602-58e9-43bf-85a9-75cdec9e9f0a",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/oneway/scikit-learn__scikit-learn-14141/state.json",
+      "sha256": "7d9c09d2c577a6efce4f14ac6f754b8325ee161889a61ad2eccad1c5c84844a7",
+      "run_id": "893b2432-c270-4191-9250-269db83c8ee3",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/reset_expert/scikit-learn__scikit-learn-14141/state.json",
+      "sha256": "eb152e2970f3338f2b0f5e461315e7139d87dab592f776fea1967ce8ebb7b360",
+      "run_id": "04482ad2-f2d4-488f-b6b0-6c64ef088081",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/personal/scikit-learn__scikit-learn-14141/state.json",
+      "sha256": "57bdd473019fb6161d7cd2e4690235237e046e23a60d3742c7a4b84054cda1de",
+      "run_id": "81aee22f-88d8-4878-89f5-8d7ab84b7e0f",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+diff --git a/django/views/generic/base.py b/django/views/generic/base.py
+index ea5baca..9abbf7d 100644
+--- a/django/views/generic/base.py
++++ b/django/views/generic/base.py
+@@ -157,12 +157,15 @@ class TemplateResponseMixin:
+ class TemplateView(TemplateResponseMixin, ContextMixin, View):
+     """Render a template."""
+     def get(self, request, *args, **kwargs):
+-        # RemovedInDjango40Warning: when the deprecation ends, replace with:
+-        #   context = self.get_context_data()
+-        context_kwargs = _wrap_url_kwargs_with_deprecation_warning(kwargs)
+-        context = self.get_context_data(**context_kwargs)
++        context = self.get_context_data(**kwargs)
+         return self.render_to_response(context)
+ 
++    def get_context_data(self, **kwargs):
++        # RemovedInDjango40Warning: when the deprecation ends, remove this
++        # override and pass URL kwargs to ContextMixin.get_context_data().
++        kwargs = _wrap_url_kwargs_with_deprecation_warning(kwargs)
++        return super().get_context_data(**kwargs)
++
+ 
+ # RemovedInDjango40Warning
+ def _wrap_url_kwargs_with_deprecation_warning(url_kwargs):
+diff --git a/tests/generic_views/test_detail.py b/tests/generic_views/test_detail.py
+index 002435d..74d4aba 100644
+--- a/tests/generic_views/test_detail.py
++++ b/tests/generic_views/test_detail.py
+@@ -2,6 +2,7 @@ import datetime
+ 
+ from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
+ from django.test import TestCase, override_settings
++from django.utils.deprecation import RemovedInDjango40Warning
+ from django.test.client import RequestFactory
+ from django.views.generic.base import View
+ from django.views.generic.detail import SingleObjectTemplateResponseMixin
+@@ -27,6 +28,18 @@ class DetailViewTest(TestCase):
+             content='I was once bitten by a moose.', template='generic_views/page_template.html'
+         )
+ 
++    def test_template_view_url_kwargs_can_be_used_in_queryset(self):
++        artist = Artist.objects.create(name='TestArtist')
++        response = self.client.get('/template/filter/TestArtist/')
++        self.assertEqual(response.status_code, 200)
++        self.assertEqual(response.context['artist'], artist)
++        with self.assertRaisesMessage(
++            RemovedInDjango40Warning,
++            'TemplateView passing URL kwargs to the context is deprecated. '
++            'Reference artist_name in your template through view.kwargs instead.',
++        ):
++            str(response.context['artist_name'])
++
+     def test_simple_object(self):
+         res = self.client.get('/detail/obj/')
+         self.assertEqual(res.status_code, 200)
+diff --git a/tests/generic_views/urls.py b/tests/generic_views/urls.py
+index 9537240..ee79581 100644
+--- a/tests/generic_views/urls.py
++++ b/tests/generic_views/urls.py
+@@ -12,6 +12,7 @@ urlpatterns = [
+     path('template/no_template/', TemplateView.as_view()),
+     path('template/login_required/', login_required(TemplateView.as_view())),
+     path('template/simple/<foo>/', TemplateView.as_view(template_name='generic_views/about.html')),
++    path('template/filter/<artist_name>/', views.ArtistFilterTemplateView.as_view()),
+     path(
+         'template/custom/<foo1>/<foo2>/',
+         views.CustomTemplateView.as_view(template_name='generic_views/about.html'),
+diff --git a/tests/generic_views/views.py b/tests/generic_views/views.py
+index 0271733..c661160 100644
+--- a/tests/generic_views/views.py
++++ b/tests/generic_views/views.py
+@@ -17,6 +17,16 @@ class CustomTemplateView(generic.TemplateView):
+         return context
+ 
+ 
++class ArtistFilterTemplateView(generic.TemplateView):
++    template_name = 'generic_views/about.html'
++
++    def get_context_data(self, **kwargs):
++        artist = Artist.objects.get(name=kwargs['artist_name'])
++        context = super().get_context_data(**kwargs)
++        context['artist'] = artist
++        return context
++
++
+ class ObjectDetail(generic.DetailView):
+     template_name = 'generic_views/detail.html'
+ 

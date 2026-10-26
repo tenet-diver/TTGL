@@ -1,0 +1,10 @@
+{
+  "instance_id": "django__django-13297",
+  "model_name_or_path": "ttgl-small",
+  "model_patch": "diff --git a/django/views/generic/base.py b/django/views/generic/base.py\nindex ea5baca..97c531e 100644\n--- a/django/views/generic/base.py\n+++ b/django/views/generic/base.py\n@@ -159,15 +159,18 @@ class TemplateView(TemplateResponseMixin, ContextMixin, View):\n     def get(self, request, *args, **kwargs):\n         # RemovedInDjango40Warning: when the deprecation ends, replace with:\n         #   context = self.get_context_data()\n-        context_kwargs = _wrap_url_kwargs_with_deprecation_warning(kwargs)\n-        context = self.get_context_data(**context_kwargs)\n+        context = self.get_context_data(**kwargs)\n+        context.update(_wrap_url_kwargs_with_deprecation_warning(kwargs, context))\n         return self.render_to_response(context)\n \n \n # RemovedInDjango40Warning\n-def _wrap_url_kwargs_with_deprecation_warning(url_kwargs):\n+def _wrap_url_kwargs_with_deprecation_warning(url_kwargs, context):\n     context_kwargs = {}\n     for key, value in url_kwargs.items():\n+        if key not in context:\n+            continue\n+\n         # Bind into function closure.\n         @SimpleLazyObject\n         def access_value(key=key, value=value):\n",
+  "manifest_sha256": "0509f186b49f446c3d29c5ca1fff84d1f77d4cb5125fff64680aba9541ce03f9",
+  "patch_sha256": "ff07b7b3f55e15d37a61e20e829aee580a6f9a30cfe31b2a0da3788f131f0814",
+  "status": "completed_ungraded",
+  "preparation_seconds": 27.30438912997488,
+  "assignment_wall_seconds": 106.43074212002102
+}

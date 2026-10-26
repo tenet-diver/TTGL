@@ -1,0 +1,16 @@
+  0%|          | 0/1 [00:00<?, ?it/s]Running 1 instances...
+100%|██████████| 1/1 [00:46<00:00, 46.98s/it]1 ran successfully, 0 failed: 100%|██████████| 1/1 [00:46<00:00, 46.99s/it]1 ran successfully, 0 failed: 100%|██████████| 1/1 [00:46<00:00, 46.99s/it]
+All instances run.
+Total instances: 1
+Instances submitted: 1
+Instances completed: 1
+Instances incomplete: 0
+Instances resolved: 0
+Instances unresolved: 1
+Instances with likely infrastructure failures: 0
+Instances with ambiguous failures: 0
+Instances with empty patches: 0
+Instances with errors: 0
+Unstopped containers: 0
+Unremoved images: 0
+Report written to logs/evaluation/ttgl-reset_expert-django__django-13297-8ae7b5f2-f3a66933e694/results.json
