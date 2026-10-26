@@ -16,6 +16,17 @@ actual subscription charges are kept separate. [Host cleanup](results/host-clean
 removed 106 rebuildable cache/dependency directories and one recoverable clean
 worktree while preserving source and local results.
 
+A separate [general delegation development study](experiments/delegation-development-001/README.md)
+tests stronger independent verification, adaptive consultation, cheap-first
+fallback and a compact context-only expert interface. The target is **95% lower
+model cost with at least 95% of matched Sol accuracy retained**. Three registered
+candidates have 36 new development assignments; 12 disjoint tasks are reserved
+for final evaluation. The [compact-interface calibration](results/compact-expert-calibration-001/analysis.json)
+measured 39.0% fewer input tokens and 36.8% lower token-rate scenario cost on one
+fresh arithmetic call per interface. This is a mechanism result, not repository
+accuracy or complete-task savings. Scored outcomes and held-out selection remain
+separate from preflights and preparation.
+
 The live Codex feasibility pilot completed 16 paired task assignments. Functional regression success was Luna **3/4**, Sol **4/4**, prompt routing **4/4**, and the optional-conversation controller **3/4**. All optional controllers chose zero expert calls. A separately required two-round clarification exchange passed its 30 regression tests. Strict original-test-file rules rejected several otherwise functional patches; both outcomes are [recorded](results/codex-pilot-001/analysis/summary.json). These tiny historical-task results do **not** establish cost savings or noninferiority; token and dollar usage were unavailable.
 
 The new **[SWE-bench Verified replay](results/swe-replay-001/README.md)** analyzes all **500 tasks across ten published model runs**. The primary learned router saved **46.1% estimated inference cost**, but success fell from **72.8% to 64.2%**, failing the three-point quality tolerance. MiniMax-M2.5 alone reached **75.8% at $0.073/task**, versus a ten-model portfolio point at **76.2% and $0.115/task**. Those are historical published-run estimates, not fresh conversational-agent results or measured Codex plan savings.
