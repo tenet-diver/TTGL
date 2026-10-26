@@ -1,0 +1,18 @@
+{
+  "kind": "seed_exact_program_evaluation_cache_before_new_independent_inference",
+  "source_study": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001",
+  "source_cache_observed_sha256": "b7de6e180c315bfdfc5569272c04973f5d29b24a322d724c9d2d2af18bfa2b8c",
+  "snapshot_sha256": "b7de6e180c315bfdfc5569272c04973f5d29b24a322d724c9d2d2af18bfa2b8c",
+  "source_environment_sha256": "d136037aeca3e11a0296317990658a8f950aae314d77ae63c5036e6bb26984b8",
+  "target_environment_sha256": "2afabea09fe5838ee9e781087b5614e37be52523b5586bcd4bfffc1b89664a61",
+  "verified_report_entries": 27,
+  "grading_invariants": {
+    "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+    "private_grading_dataset_sha256": "19a99afeb913aa03f7676ad157e498c778365e29b72672f3b67dd2913c5fe39f",
+    "grading_timeout_seconds": 1200
+  },
+  "model_attempts_reused": false,
+  "new_grading_executions": 0,
+  "lookup_validation": "Existing evaluator recomputes task/patch/image/dataset/timeout key and verifies original report and exact patch.diff on each hit",
+  "script_sha256": "07ff40bcd4ee11e2873aab2b747b457d5294548ae25cd5b6735d3109e1f186f7"
+}
