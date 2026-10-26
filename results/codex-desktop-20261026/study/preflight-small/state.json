@@ -1,0 +1,82 @@
+{
+  "schema_version": 3,
+  "run_id": "6778f7dd-e0ea-48f9-9732-f0dba1e30233",
+  "task_id": "metering-preflight-small",
+  "identity_sha256": "74172ad5c3e904580efe056ff2bfa59ac51625f57bdcbc5bc8502323aec155c4",
+  "created_at": "2026-10-26T16:32:42.473111+00:00",
+  "status": "completed_ungraded",
+  "deadline_epoch": 1793032452.474041,
+  "config": {
+    "condition": "small",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 1,
+    "timeout_seconds": 90,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "44bf8bf47bd0262a242f4cb8b405ceea51d43258397ba2383c925e4396e9a44f"
+  },
+  "phase": "controller",
+  "selected_model": "gpt-6-luna",
+  "controller_thread_id": "01a1790e-9c56-7530-8836-0aefe8c81b86",
+  "expert_thread_id": null,
+  "turns": 1,
+  "expert_calls": 0,
+  "inflight": null,
+  "next_prompt": "Solve the software-engineering task in the assigned workspace. Inspect relevant code, make the necessary changes, execute available checks, and report what you verified. Respect the user's editable memory and constraints. Do not read hidden evaluator files, other experiment workspaces, reference solutions, or parent research artifacts. Do not access external services or launch other agents yourself. Only edit the listed allowed paths. Path scope is an experiment instruction, not an OS security boundary.\n\nTask: Do not use tools. Return action complete, empty question/context, summary TTGL preflight.\nAllowed paths: [\".\"]\nEditable user memory (same initial content in every condition): []\nYou are the sole solving agent. Return action complete when finished.\nReturn the requested JSON schema. Use empty question/context on completion.",
+  "usage": {
+    "input_tokens": 17423,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 26,
+    "reasoning_output_tokens": 0
+  },
+  "usage_complete": {
+    "input_tokens": true,
+    "cached_input_tokens": true,
+    "cache_write_input_tokens": true,
+    "output_tokens": true,
+    "reasoning_output_tokens": true
+  },
+  "usage_threads": {
+    "01a1790e-9c56-7530-8836-0aefe8c81b86": {
+      "model": "gpt-6-luna",
+      "scope": "thread_cumulative",
+      "last_snapshot": {
+        "input_tokens": 17423,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 26,
+        "reasoning_output_tokens": 0
+      }
+    }
+  },
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "observed_partial": {
+        "input_tokens": 17423,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 26,
+        "reasoning_output_tokens": 0
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "elapsed_seconds": 7.702709401957691,
+  "tool_failures": 0,
+  "summary": "TTGL preflight",
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97"
+  }
+}

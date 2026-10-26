@@ -4,6 +4,14 @@ Updated 26 October 2026. Repository: `tenet-diver/TTGL`, working branch `work`.
 Continue from the latest pushed commit on that branch. `main` is not the active
 research branch; do not merge or replace it implicitly.
 
+Desktop continuation on 26 October: the ordinary ChatGPT-authenticated CLI
+successfully completed both model/token preflight calls. See
+[`results/codex-desktop-20261026`](../../results/codex-desktop-20261026/README.md).
+The read-only startup failure below describes the previous managed host.
+Scored execution is still pending: the desktop had only about 12 GiB free,
+and worker dependencies, isolation and official environment controls are not
+validated. No scored benchmark assignments were launched on the desktop.
+
 ## The goal and evidence boundary
 
 Paper: **We have to combine — A conversation is all you need**.

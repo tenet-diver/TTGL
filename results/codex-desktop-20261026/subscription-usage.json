@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-10-26T16:33:17.246354+00:00",
+  "collector_sha256": "d56ab42c6fed6b4c51eca384c83549fd698432de969834dd4368f3c30f2c0878",
+  "app_server_protocol_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+  "status": "incomplete",
+  "method": "account/usage/read",
+  "new_model_inference_requested": false,
+  "independent_root_threads_attested": true,
+  "selected_states_finalized": true,
+  "selected_states_usage_ledger_complete": true,
+  "threads": [
+    {
+      "thread_id": "01a1790e-9c56-7530-8836-0aefe8c81b86",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a1790e-ba58-79a3-bf97-65880536aab7",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    }
+  ],
+  "totals": {
+    "estimated_usage_credits_micros": null,
+    "estimated_usage_usd_micros": null
+  },
+  "totals_status": "missing_thread_estimates",
+  "limitations": [
+    "These are provider estimates, not subscription invoices or a promise of quota availability.",
+    "Backend estimates may lag recent activity; repeat with a new output path after settlement.",
+    "Explicit thread IDs without a state file have no independently checked completion status.",
+    "Known-thread estimates cannot establish whole-task spend when a state ledger is incomplete.",
+    "Never add nested parent and child bills without a documented accounting boundary.",
+    "Cached tokens are included in input; token categories must not all be summed.",
+    "No inference compute, hardware, evaluator or human labor costs are added here."
+  ],
+  "sources": [
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-desktop-20261026/study/preflight-small/state.json",
+      "sha256": "a60d6ef83ee7d75b6b80363f540c9436418857cd8a6d6b413c1121f192a879fd",
+      "run_id": "6778f7dd-e0ea-48f9-9732-f0dba1e30233",
+      "task_id": "metering-preflight-small",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-desktop-20261026/study/preflight-large/state.json",
+      "sha256": "23662789ab32e16701943464a0aea59b31616ebf4e4256f33c46fe6c5fc46630",
+      "run_id": "979ef7d4-3bed-4600-a0c4-f0b0e7d3973c",
+      "task_id": "metering-preflight-large",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    }
+  ]
+}

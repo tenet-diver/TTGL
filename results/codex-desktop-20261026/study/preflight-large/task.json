@@ -1,0 +1,9 @@
+{
+  "task_id": "metering-preflight-large",
+  "workspace": "/Users/rustameynaliyev/Developer/ttgl-workers-20261026/preflight-large",
+  "prompt": "Do not use tools. Return action complete, empty question/context, summary TTGL preflight.",
+  "allowed_paths": [
+    "."
+  ],
+  "memory": []
+}

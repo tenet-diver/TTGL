@@ -1,0 +1,86 @@
+{
+  "schema_version": 3,
+  "run_id": "6778f7dd-e0ea-48f9-9732-f0dba1e30233",
+  "task_id": "metering-preflight-small",
+  "condition": "small",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-26T16:32:42.473111+00:00",
+  "finished_at": "2026-10-26T16:32:50.263392+00:00",
+  "identity_sha256": "74172ad5c3e904580efe056ff2bfa59ac51625f57bdcbc5bc8502323aec155c4",
+  "config": {
+    "condition": "small",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 1,
+    "timeout_seconds": 90,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "44bf8bf47bd0262a242f4cb8b405ceea51d43258397ba2383c925e4396e9a44f"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97"
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 1,
+  "expert_calls": 0,
+  "elapsed_seconds": 7.702709401957691,
+  "controller_thread_id": "01a1790e-9c56-7530-8836-0aefe8c81b86",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 17423,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 26,
+    "reasoning_output_tokens": 0
+  },
+  "observed_usage_partial": {
+    "input_tokens": 17423,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 26,
+    "reasoning_output_tokens": 0
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 17423,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 26,
+        "reasoning_output_tokens": 0
+      },
+      "observed_partial": {
+        "input_tokens": 17423,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 26,
+        "reasoning_output_tokens": 0
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 0,
+  "failure_type": null,
+  "summary": "TTGL preflight",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "6b4c12c2c281793c1c15347ad03b8949320308700d1b3d0fc1f95b8e9950bcdc",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}
