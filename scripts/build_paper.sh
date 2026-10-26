@@ -48,7 +48,31 @@ sources = ['frontmatter.md', '../thesis/personal-agent-prior-art.md',
            '../../scripts/plot_swe_frontier.py']
 artifacts = ['paper.md', 'paper.pdf', 'paper.docx', 'paper.html',
              'figures/conversation.png', 'figures/conversation.svg']
-report = {'status':'literature_live_feasibility_and_500_task_public_replay_with_prospective_conversation_design',
+live_roots = [Path('../../results') / name for name in
+              ['codex-isolated-20261026', 'delegation-development-001', 'delegation-heldout-001']]
+completed = []
+for root in live_roots:
+    if not root.exists():
+        continue
+    for validation in sorted(root.glob('analysis*/validation.json')):
+        record = json.loads(validation.read_text())
+        if record.get('status') != 'completed_officially_graded_engineering_panel':
+            continue
+        completed.append(str(validation.parent))
+        sources.extend(str(p) for p in sorted(validation.parent.rglob('*'))
+                       if p.is_file() and p.suffix in ('.json', '.csv', '.md', '.txt'))
+    for environment in sorted(root.glob('*/environment.json')):
+        for name in ['design.json', 'design.sha256', 'environment.json', 'environment.sha256',
+                     'tasks.json', 'rate-scenario.json', 'preflight.json']:
+            p = environment.parent / name
+            if p.is_file():
+                sources.append(str(p))
+sources.extend(str(p) for p in sorted(Path('../../prompts').glob('controller-v2-*.txt')))
+sources.extend(['../../src/ttgl/policy.py', '../../src/ttgl/frontier.py',
+                '../../scripts/run_policy_study.py', '../../scripts/report_policy_target.py'])
+status = ('live_studies_in_progress_with_historical_pilot_and_replay' if not completed
+          else 'completed_live_panels_with_historical_pilot_and_replay')
+report = {'status':status, 'completed_live_analyses':completed,
           'built_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
           'word_count_approximate':len(Path('paper.md').read_text().split()),
           'pandoc':subprocess.check_output(['pandoc','--version'],text=True).splitlines()[0],
