@@ -1,0 +1,14 @@
+{
+  "status": "registered_before_new_environment_controls_and_held_out_inference",
+  "tasks_sha256": "a9c058df0d35d8fe74118d7a1dc91e4e12380a7f085708a067993892ac9d6997",
+  "driver": "scripts/run_swe_readiness.py",
+  "driver_sha256": "445cc0df45bc49366ded63f26d8a7ae435a003379ec7ae58d4c97c403817fcef",
+  "control_driver_sha256": "5d0ff53aa20349e1cfd09be24c2d67a7f9edd8869ec32add7e40e7aa2c7c107b",
+  "native_control_timeout_seconds": 1200,
+  "scored_grading_timeout_seconds": 1200,
+  "public_probe_timeout_seconds": 180,
+  "sequence": "For each reserved case: complete independent base/gold official controls, then public staged probe on same warm immutable image, then remove image. No overlapping grader/worker studies.",
+  "model_inference_calls": 0,
+  "repair_policy": "Preserve failed control/probe artifacts, diagnose and repair without model outcomes, explicitly resume only verified closed controls. No automatic reserved-case dropping.",
+  "active_scored_generation_sources_unchanged": true
+}

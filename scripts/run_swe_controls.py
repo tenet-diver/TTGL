@@ -20,14 +20,20 @@ from ttgl.benchmark import digest, read_tasks, write_new
 from ttgl.isolated import docker
 
 
-def main():
+def main(*, after_pair=None, callback_description=None):
+    if (after_pair is None)!=(callback_description is None):
+        raise ValueError('A public-probe callback requires its provenance description')
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--private-root', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--tasks', type=Path, default=Path('experiments/swe-bench-verified-001/tasks.json'))
     parser.add_argument('--evaluator-image', default='ttgl-evaluator:20261026-cli')
+    parser.add_argument('--timeout',type=int,default=600,
+                        help='Native test limit, fixed across base and gold controls')
     parser.add_argument('--resume', action='store_true', help='Verify and retain completed controls; continue only untouched tasks')
     args = parser.parse_args()
+    if args.timeout < 1:
+        parser.error('--timeout must be positive')
     private, output = args.private_root.resolve(), args.output.resolve()
     dataset = private / 'selected.dataset.json'
     public = read_tasks(args.tasks)
@@ -55,11 +61,13 @@ def main():
     protocol = {
         'tasks_sha256': digest(args.tasks), 'private_dataset_sha256': digest(dataset),
         'evaluator_image_id': evaluator, 'script_sha256': digest(Path(__file__)),
-        'timeout_seconds': 600, 'workers': 1,
+        'timeout_seconds': args.timeout, 'workers': 1,
         'eligibility_rule': 'gold resolved=true and base resolved=false, with no infrastructure failure',
         'selection': 'all frozen tasks; no replacement based on model outcomes',
         'inference_calls': 0,
     }
+    if callback_description is not None:
+        protocol['post_pair_callback'] = callback_description
     if args.resume:
         original = json.loads((output / 'protocol.json').read_text())
         if {k:v for k,v in original.items() if k != 'script_sha256'} != {k:v for k,v in protocol.items() if k != 'script_sha256'}:
@@ -84,6 +92,8 @@ def main():
                 if native.get('infra_failure') is not False or native.get('resolved') != result['resolved']:
                     raise ValueError('Completed control provenance or infrastructure status invalid')
             rows.append(row)
+            if after_pair is not None:
+                after_pair(task,row)
             continue
         if args.resume and any(output.glob(instance + '-*.stdout.txt')):
             raise ValueError('Partial control requires explicit reconciliation; no automatic replay')
@@ -95,11 +105,12 @@ def main():
             command = ['docker', 'run', '--rm', '-v', '/var/run/docker.sock:/var/run/docker.sock',
                        '-v', f'{private}:{private}', '-w', str(private), evaluator,
                        'eval', str(dataset), '--instance', instance,
-                       '--run-id', run_id, '--workers', '1', '--timeout', '600']
+                       '--run-id', run_id, '--workers', '1', '--timeout', str(args.timeout)]
             command += ['--gold'] if kind == 'gold' else ['--predictions', str(predictions)]
             started = time.monotonic()
             with (output / f'{instance}-{kind}.stdout.txt').open('x') as stream:
-                result = subprocess.run(command, stdout=stream, stderr=subprocess.STDOUT, timeout=1200)
+                result = subprocess.run(command, stdout=stream, stderr=subprocess.STDOUT,
+                                        timeout=max(1200,2*args.timeout))
             source = private / 'logs/evaluation' / run_id
             target = output / 'logs' / run_id
             if source.exists():
@@ -121,6 +132,8 @@ def main():
                            and all(r['infra_failure'] is False for r in row['controls'].values()))
         rows.append(row)
         write_new(output / (instance + '.json'), row)
+        if after_pair is not None:
+            after_pair(task,row)
         # Only this control's benchmark image is removed; no shared caches or
         # other workloads are pruned during execution. Digest enables re-pull.
         docker('image', 'rm', image)
