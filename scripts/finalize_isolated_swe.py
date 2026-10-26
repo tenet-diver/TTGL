@@ -115,7 +115,7 @@ def main():
         for key in design['task_ids']:
             writer.writerow([key, *[indexed[key, arm]['resolved'] for arm in design['arms']]])
     lines = ['# Metered isolated SWE-bench results', '',
-        f"The study completed {len(records)} assignments on {len(design['task_ids'])} tasks across six conditions. "
+        f"The study completed {len(records)} assignments on {len(design['task_ids'])} tasks across {len(design['arms'])} conditions. "
         'Outcomes come from the official pinned SWE-bench evaluator and are joined to exact exported patches.', '',
         '| Condition | Resolved | Input tokens | Output tokens | Expert requests | Published-rate scenario USD |',
         '|---|---:|---:|---:|---:|---:|']
