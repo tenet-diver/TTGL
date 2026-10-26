@@ -158,7 +158,7 @@ be performed through the existing harness. It does not show that the mandatory
 conversation was necessary, cheaper, naturally selected or superior to a
 single-model solution.
 
-## What the pilot cannot estimate
+## What the four-bug pilot cannot estimate
 
 The interface exposed neither a complete token ledger nor billed dollar costs.
 These fields are stored as null, including cost per assigned and resolved task.
@@ -172,5 +172,52 @@ opaque hosted model versions prevent a frontier or statistical noninferiority
 claim. There is no trained existing-router comparison, no open-weight local
 model result, no learned communication policy and no evidence of longitudinal
 improvement. The matrix is useful evidence about feasibility and failure modes,
-and the dialogue check validates a mechanism. The principal economic hypothesis
-remains untested.
+and the dialogue check validates a mechanism. The four-bug pilot does not test the principal economic hypothesis.
+
+## The resource constraint behind the 95-percent target
+
+For the follow-up target, let $C_S$ be all independent controller inference,
+$C_H$ routing and handoff overhead, $C_E$ specialist inference, and $C_L$ the
+matched Sol-only total. The cost requirement is
+
+$$C_S+C_H+C_E\leq 0.05C_L.$$
+
+Thus the available specialist budget is at most
+$0.05C_L-C_S-C_H$. If that quantity is negative, selecting fewer consultations
+cannot suffice: the controller itself must become more efficient, or the target
+must be reported as unattained. When it is positive, assistance must concentrate
+on cases where its expected verified benefit justifies that remaining budget.
+A small model's low per-token price alone therefore does not establish the
+system-level saving. Long histories, repeated failed attempts, selected context,
+expert replies and integration all count. The independent cheap baseline and
+the matched expensive baseline are essential to interpreting the frontier.
+
+## A development case about verification and handoff
+
+The Django `13297` issue illustrates the distinction between solving, checking
+and deciding to consult. The original continuing-conversation controller chose
+no expert call, removed lazy wrappers from URL parameters and reported three
+narrow public tests passing. Independent official grading found the requested
+regression repaired but two existing-behavior checks failing. The fresh-thread
+expert condition also chose no consultation and failed the same existing checks;
+its summary instead reported that its attempted test commands could not run.
+Those visible-check descriptions are model self-reports. The official failures
+come from the separate evaluator and were not returned to either controller.
+
+On the same issue, the one-way controller inspected the implementation and
+existing warning contract, then asked for a minimal fix before changing files.
+Its selected context explained the database-binding failure and the requirement
+that warnings remain deferred until values are accessed. The specialist
+suggested moving wrapping into `get_context_data()`, rather than removing the
+existing behavior. The controller integrated a repair and the official grade
+passed. This is an observed early, context-informed consultation, not a
+multi-round conversation or a verified fallback after a failed local repair.
+
+The matched Luna-only and Sol-only runs also passed this issue. The case thus
+does not establish that specialist help was necessary, or that requesting help
+would have rescued the failed trajectories. It instead motivates the subsequent
+shared verification instructions and explicit handoff policy. Treating every
+unassisted failure as a missed delegation, or feeding hidden grading failures
+back into the live controller, would overstate the evidence. A causal rescue
+experiment would need separately registered continuations from matched
+predecision states, with all extra inference counted.

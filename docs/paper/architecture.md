@@ -74,20 +74,40 @@ multiple internal model/tool interactions, so a turn cap is not falsely reported
 as an exact cap on billable inference requests. Timeout handling terminates the
 wrapper's process group and preserves a failure disposition.
 
-In this managed session, the installed standalone CLI identifies itself as
-version 0.163.0 but cannot initialize its in-process app server because the
-required state location is read-only. We do not bypass that restriction. The
-live pilot therefore uses the available Codex collaboration interface with
-fresh, explicitly selected models. The reusable CLI adapter is tested with an
-injected deterministic backend; those tests verify control flow, not model
-quality. The two execution paths are recorded as distinct backends.
+The historical BugsInPy pilot ran in a managed session where the standalone
+CLI could not initialize its app server because the state location was
+read-only. That pilot used the Codex collaboration interface with fresh,
+explicitly selected models. Its software checks and its model trials are
+separate evidence, and its missing token counters remain missing.
 
-The collaboration interface does not expose a reliable itemized token invoice
-to this experiment. It also shares a filesystem among agents. Workspaces are
-separate copies, and instructions prohibit reading other trials, evaluator
-files or external solutions, but this is a soft boundary rather than an OS-level
-confidentiality guarantee. Stronger held-out evaluations require separate
-containers or machines with an evaluator outside the agent's mount namespace.
+The desktop continuation uses the ordinary authenticated Codex CLI,
+version 0.163.0-alpha.10.2, with positive native usage observations for both
+requested models. Native host tools and external connectors are disabled;
+the acting controller receives one shell tool through the maintained MCP SDK.
+That tool operates only inside its assigned unmounted, offline Docker worker.
+The router and specialist are context-only sessions with no worker tools.
+A separate trusted official evaluator receives the grading data and Docker
+socket. The evaluator's artifacts and authentication are not mounted in solver
+workers. Source restoration, dependency checks and official base/reference
+controls are completed independently before scored inference.
+
+CLI counters are cumulative by thread in the pinned event contract. The
+orchestrator records validated per-response deltas and reconciles totals by
+model, including consultations. It retains tool statuses and hashes rather
+than serializing unrestricted tool outputs or reasoning. Model summaries of
+visible checks are therefore self-reports; the independent official grade is
+the functional outcome. A separately versioned policy backend injects general
+solving and delegation guidance without changing the frozen six-arm prompts,
+and archives the effective injected prompt for each invocation. Both the
+original and policy studies preserve failed or interrupted assignments rather
+than silently repeating them.
+
+Native tokens, published token-rate scenarios, provider-estimated credits,
+subscription cash expense and full deployment cost remain distinct. Ordinary
+subscription authentication makes metering possible; it does not make an
+itemized invoice available. Independent workspaces and disabled tools are
+practical isolation controls, not a formal security proof or protection against
+prior exposure to public historical tasks.
 
 ## Memory and context controls
 

@@ -1,7 +1,6 @@
 ---
 title: "We have to combine — A conversation is all you need"
 subtitle: "Using small language models as conversational routers for agentic software engineering"
-author: "Author and institutional affiliation to be supplied"
 date: "26 October 2026 (Europe/Amsterdam)"
 lang: en-GB
 link-citations: true

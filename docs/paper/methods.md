@@ -72,6 +72,82 @@ graded, and identifies measurement or orchestration failures. It cannot prove
 noninferiority, cost superiority, architectural novelty, long-horizon learning
 or a benefit for open-weight local models.
 
+## Metered benchmark engineering panel
+
+A separate desktop protocol extends the feasibility work to the frozen
+12-issue SWE-bench Verified panel. It assigns each issue once to six conditions:
+Luna alone (`small`), Sol alone (`large`), task-only selection (`precall_router`),
+one-way expert assistance (`oneway`), a fresh expert thread for each
+consultation (`reset_expert`), and continuing expert conversation (`personal`).
+The latter two have the same expert-call allowance; retaining conversation is
+the intended contrast. No consultation is compulsory. Actual requested and
+completed expert turns are reported, including unsuccessful requests. This is
+an engineering panel, not the powered confirmatory study specified below.
+
+The requested identifiers are `gpt-6-luna` and `gpt-6.1-sol`, both at medium
+reasoning effort. These hosted identifiers do not disclose parameter counts or
+immutable weight revisions. Every condition has the same 900-second solver
+budget, including its routing and expert work. The bounded controller has up
+to six outer turns and two expert consultations, with at most 24,000 selected
+context characters. All conditions start with the same empty personal memory.
+No weights, router parameters, procedural skills or user memory are learned
+from scored outcomes. Task order follows the frozen panel; condition order
+within each task is randomized with seed 1729. This task grouping amortizes
+image loading without sharing worker files between conditions.
+
+Each acting agent receives a disposable Docker worker with no host mounts,
+network, Docker socket or retained prior-agent checkout. It has two CPU cores,
+a 4-GiB memory limit and a 256-process limit. The ordinary authenticated Codex
+client remains on the host, with native host tools disabled. Its repository
+shell tool uses the official MCP SDK to execute only in that assigned worker.
+Routers and experts receive no worker tool; expert context is selected by the
+controller. Original image Git history is replaced with an exact-base shallow
+checkout. Tracked source is checked by blob identity, audited build metadata
+is restored, and the staged working tree must be clean. Ignored compiled
+extensions remain available for scientific packages. Exact image identities,
+source hashes and setup exceptions are retained.
+
+Before scored inference, all 12 original environments pass independent official
+controls: a neutral-marker no-fix submission leaves the regression unresolved,
+and the supplied reference patch resolves it. Both are evaluated with the
+unchanged pinned SWE-bench harness. All 12 staged solver environments also pass
+fixed public smoke modules. Failed preparations and their dependency repairs
+remain archived. Eligibility is determined before model outcomes; no task is
+replaced. The original public/private panel hashes are retained, and the
+trusted grader's dataset copy changes only its image references to the exact
+validated image identities. Grading material is outside every solver worker.
+
+Every exported submission is joined by its exact patch hash to an original
+official report. Byte-identical programs for the same task may share that
+report only when evaluator image, private dataset and timeout also match.
+An explicit reuse receipt distinguishes this from a fresh evaluator execution.
+Different patches receive fresh run identifiers. The grading timeout is 1,200
+seconds in every condition; the solver budget remains 900 seconds. Functional
+resolution follows official grading. The older pilot's additional strict
+artifact-policy outcomes are reported separately and are not relabeled as
+SWE-bench results. Failed assigned attempts stay in the denominator, and an
+uncertain or unmetered attempt is not silently retried or priced at zero.
+
+The study freezes the published Enterprise Codex Standard-mode token rates
+before scored inference [@openaiCodexRateCard2026]. Per million tokens, Luna's
+uncached input, cached input and output rates are US$0.10, US$0.01 and US$0.50;
+Sol's are US$2.00, US$0.10 and US$10.00. Native total input includes cached
+input, so only uncached input receives the ordinary input rate. Native output
+already includes reasoning. Every routing and expert role contributes to the
+assigned condition, and its per-model counters must reconcile to the task
+total. Unavailable counters remain unavailable costs.
+
+These rates define a counterfactual published-token-rate scenario, not this
+account's subscription invoice, quota consumption or an API bill. The rate
+card's signed-in Codex long-context policy applies to that scenario. API
+cache-write and request-level context billing need a separately compatible
+meter. Provider-estimated credits and dollars, when available, are separate
+observations. Preparation time and actual grader executions are recorded;
+hardware, energy, setup, grading and subscription allocation are not assumed
+to cost zero. A favorable token-rate comparison alone cannot establish the
+proposed full-cost target. Paired task bootstrap intervals are conditional on
+this small public panel and cannot establish a three-point quality margin.
+
 ## Confirmatory software-engineering study
 
 The proposed primary evaluation uses a pinned release of SWE-bench Verified,
@@ -194,3 +270,51 @@ count as useful emergence. A visually interesting conversation pattern is not
 evidence. Learning can use centralized training with decentralized execution,
 but rewards and credit attribution must be specified. This extension remains
 prospective and does not delay or inflate the claims of the core dyadic study.
+
+## Evidence-driven delegation as a general policy
+
+A useful delegation policy must transfer beyond benchmark repair. The controller
+first identifies the requested outcome, relevant constraints and observable
+acceptance criteria. It attempts work independently while that produces useful
+progress, then reassesses when checks fail, evidence conflicts, assumptions
+remain unresolved or progress stalls. Early consultation is permitted when the
+capability gap is apparent or an independent attempt would consume the resources
+needed for integration. A failed check is evidence to interpret, rather than an
+automatic trigger: an intentionally failing regression test can be part of a
+successful diagnosis. Missing access or permissions must not be misclassified
+as a reasoning problem that a larger model can fix.
+
+The handoff conveys the goal, constraints, relevant artifact excerpts, attempted
+approaches, observed outcomes and a specific request. Observations are separated
+from hypotheses. Since a context-only expert cannot open the controller's files,
+necessary content must accompany the request. The controller remains responsible
+for integration and verification, and can return new evidence to the expert.
+The general mechanism applies to tests in coding, source checks in research,
+recalculation in quantitative tasks and acceptance criteria in planning. The
+software benchmark measures one application; it cannot establish cross-domain
+transfer by itself.
+
+The prompt-development treatment gives standalone and assisted controllers the
+same independent-solving and verification instructions. Assisted controllers
+add either evidence-driven consultation or a simpler bounded cheap-first fallback
+rule. This separates stronger ordinary prompting from the marginal value of
+expert access. Development runs are disclosed separately, including failed
+policies; cases whose outcomes informed revisions cannot become the final test
+set. Forced consultations remain mechanism checks, because they cannot establish
+that a controller chooses assistance appropriately.
+
+Before the follow-up experiments, the practical target was sharpened to a
+model-cost ratio of at most 0.05 and accuracy retention of at least 0.95 relative
+to a matched Sol-only controller. Retention is the ratio of aggregate success
+fractions, not an absolute five-percentage-point margin. All controller,
+consultation and integration model inference belongs in policy cost. This target
+is separate from the earlier prospective three-point/25-percent gate and is not
+a post-hoc claim about historical replay. Published standalone benchmark scores
+supply external context, but cannot replace matched controls when tools, effort,
+task populations or stopping rules differ.
+
+The analysis reports both ratios, paired uncertainty, reference successes lost,
+reference failures rescued and the accuracy-cost frontier. A policy meeting the
+point target on a tiny panel does not establish population noninferiority;
+ceiling outcomes can yield misleadingly narrow bootstrap intervals. Falling
+expert usage counts as useful only when the quality constraint is retained.
