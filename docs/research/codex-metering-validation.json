@@ -1,0 +1,28 @@
+{
+  "checked_at_utc": "2026-10-26T11:28:46.531740+00:00",
+  "status": "source_schema_and_software_validated_live_metering_pending",
+  "codex_cli_version": "0.163.0",
+  "native_auth_mode": "ChatGPT (recognized by codex login status)",
+  "credentials_manually_read": false,
+  "ccusage_version": "20.0.44",
+  "ccusage_sessions_discovered": 0,
+  "prior_pilot_usage_recovered": false,
+  "tests": {
+    "passed": 96,
+    "skipped": 1,
+    "subtests_passed": 2,
+    "seconds": 4.88
+  },
+  "frozen_pilot_modified": false,
+  "actual_model_calls_for_this_investigation": 0,
+  "subscription_account_usage_request_executed": false,
+  "code_changes": [
+    "explicit turn vs thread-cumulative scope",
+    "durable per-thread/model baselines",
+    "delta and raw snapshot journal",
+    "per-model totals",
+    "unknown totals for missing/decreasing/ambiguous observations",
+    "all-zero Codex fallback completeness guard"
+  ],
+  "runtime_blocker": "Read-only Codex runtime home prevents installation-ID write during nested CLI initialization"
+}

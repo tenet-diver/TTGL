@@ -184,7 +184,7 @@
     {
       "id": "local-29",
       "title": "Run metered larger SWE comparison of conversation versus one-way assistance and existing trained routers",
-      "status": "pending_isolated_evaluation_and_metered_inference",
+      "status": "pending_writable_codex_runtime_or_usage_export_and_isolated_metered_evaluation",
       "artifact": "docs/paper/methods.md",
       "study_scope": "conversational_routing_software_engineering"
     },
@@ -193,6 +193,13 @@
       "title": "Implement longitudinal collaboration learning and multi-agent topology studies using existing frameworks",
       "status": "prospective_extension_not_run",
       "artifact": "docs/paper/methods.md",
+      "study_scope": "conversational_routing_software_engineering"
+    },
+    {
+      "id": "local-31",
+      "title": "Verify subscription-backed Codex metering and correct cumulative usage accounting",
+      "status": "completed_source_schema_and_software_validation_live_runtime_pending",
+      "artifact": "docs/research/codex-metering.md",
       "study_scope": "conversational_routing_software_engineering"
     }
   ],
@@ -205,7 +212,7 @@
     "actual_spend_usd": 0,
     "status": "blocked_missing_api_key_and_runtime_access"
   },
-  "updated_at_utc": "2026-10-26T00:11:03.397493+00:00",
+  "updated_at_utc": "2026-10-26T11:28:46.530984+00:00",
   "evidence": {
     "results": "results/routing-pilot-001",
     "reproduction": "results/reproduction-verification.json",
@@ -229,6 +236,8 @@
     "current_paper_sources": "docs/paper/README.md",
     "software_validation": "86 passed, 1 skipped, 2 subtests; live dialogue separately graded 30/30",
     "dollar_cost_results": "unavailable; usage and price fields null",
-    "trained_router_comparison": "not_run_in_Codex_pilot"
+    "trained_router_comparison": "not_run_in_Codex_pilot",
+    "subscription_metering": "Official CLI/SDK and installed app-server account/usage/read schema verified; native ChatGPT login recognized; live counters not exposed in current runtime",
+    "metering_software_validation": "96 passed, 1 skipped, 2 subtests; cumulative-thread and per-model accounting tested"
   }
 }

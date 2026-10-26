@@ -1,0 +1,407 @@
+{
+  "reviewed_at_utc": "2026-10-26T11:23:36.270235+00:00",
+  "repository": "https://github.com/openai/codex",
+  "source_revision": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+  "installed_cli": "codex-cli 0.163.0",
+  "scope": "Official Codex token metering with ChatGPT subscription authentication; source and installed schema inspection only",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/README.md",
+      "path": "README.md",
+      "sha256": "ba4e1f69ff48386e72a9c5e1edaf76aad64a475c2d51af79ccba6d1128261ba7",
+      "bytes": 3334,
+      "cache": "/tmp/codex-metering-review/README.md"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/sdk/typescript/src/events.ts",
+      "path": "sdk/typescript/src/events.ts",
+      "sha256": "dca9d5a0c216eff99f242067814be1985c027e64bf38ab4a6b6fe5c2571a4403",
+      "bytes": 2404,
+      "cache": "/tmp/codex-metering-review/sdk/typescript/src/events.ts"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/sdk/typescript/src/thread.ts",
+      "path": "sdk/typescript/src/thread.ts",
+      "sha256": "21e5c7dc1c3047564750ecea5dfab8a47ab732488c5023e4e22adb01e874483f",
+      "bytes": 5029,
+      "cache": "/tmp/codex-metering-review/sdk/typescript/src/thread.ts"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/sdk/typescript/README.md",
+      "path": "sdk/typescript/README.md",
+      "sha256": "bc454b26a6920efb1826912be6b6ba96348ab39d9f4e70078465deb586dbbfe7",
+      "bytes": 5147,
+      "cache": "/tmp/codex-metering-review/sdk/typescript/README.md"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/exec/src/event_processor_with_json_output.rs",
+      "path": "codex-rs/exec/src/event_processor_with_json_output.rs",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/protocol/src/protocol.rs",
+      "path": "codex-rs/protocol/src/protocol.rs",
+      "sha256": "f4e941902aca003fe30b54daca3ef5c5cadfe77c9a643995780a4f47a93e751d",
+      "bytes": 241590,
+      "cache": "/tmp/codex-metering-review/codex-rs/protocol/src/protocol.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/app-server/README.md",
+      "path": "codex-rs/app-server/README.md",
+      "sha256": "b4a92cfab25bd7b96a16b8f9503a8aeae71fad9bad786ee0662efb2cddd1aeb6",
+      "bytes": 40129,
+      "cache": "/tmp/codex-metering-review/codex-rs/app-server/README.md"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/app-server-protocol/src/protocol/v2.rs",
+      "path": "codex-rs/app-server-protocol/src/protocol/v2.rs",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/core/src/codex.rs",
+      "path": "codex-rs/core/src/codex.rs",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/exec/src/event_processor_with_jsonl_output.rs",
+      "path": "codex-rs/exec/src/event_processor_with_jsonl_output.rs",
+      "sha256": "bc296541b385f9b4ca2c28cc638e25a8d6b1332b2cd67f5a03eaa97a3d612b19",
+      "bytes": 27168,
+      "cache": "/tmp/codex-metering-review/codex-rs/exec/src/event_processor_with_jsonl_output.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/exec/src/exec_events.rs",
+      "path": "codex-rs/exec/src/exec_events.rs",
+      "sha256": "dafa872d7e86a099e56e28a329dcb9c03db90ed768c3b88cca8c91d46dc1d0e5",
+      "bytes": 10713,
+      "cache": "/tmp/codex-metering-review/codex-rs/exec/src/exec_events.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/core/src/state/turn_token_usage.rs",
+      "path": "codex-rs/core/src/state/turn_token_usage.rs",
+      "sha256": "eb7c9899f56712c397b2146ff0f41fc5f870232d18bb416815e2dd3a78d564c6",
+      "bytes": 1853,
+      "cache": "/tmp/codex-metering-review/codex-rs/core/src/state/turn_token_usage.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/core/tests/suite/token_usage_rollout.rs",
+      "path": "codex-rs/core/tests/suite/token_usage_rollout.rs",
+      "sha256": "cf536ba2293e2eb8a789712062420629ab061ba101fba7834b90211e7ce07b9a",
+      "bytes": 3996,
+      "cache": "/tmp/codex-metering-review/codex-rs/core/tests/suite/token_usage_rollout.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/app-server/src/request_processors/token_usage_replay.rs",
+      "path": "codex-rs/app-server/src/request_processors/token_usage_replay.rs",
+      "sha256": "38eebe47c9e96839cbb411a2a2a41acca0b52e28f49b52cb95a1673fe067d495",
+      "bytes": 7277,
+      "cache": "/tmp/codex-metering-review/codex-rs/app-server/src/request_processors/token_usage_replay.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/app-server-protocol/schema/typescript/v2/ThreadTokenUsage.ts",
+      "path": "codex-rs/app-server-protocol/schema/typescript/v2/ThreadTokenUsage.ts",
+      "sha256": "27cae6c3e6c44696225e9a0903e0531c6eff126c6de3da2176bc5cdd904def4e",
+      "bytes": 345,
+      "cache": "/tmp/codex-metering-review/codex-rs/app-server-protocol/schema/typescript/v2/ThreadTokenUsage.ts"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/app-server-protocol/schema/typescript/v2/ThreadTokenUsageUpdatedNotification.ts",
+      "path": "codex-rs/app-server-protocol/schema/typescript/v2/ThreadTokenUsageUpdatedNotification.ts",
+      "sha256": "53ce4421d686b8a7f9a86c5ad54de2a7dceecfb95df74fa5f441947e136f063d",
+      "bytes": 332,
+      "cache": "/tmp/codex-metering-review/codex-rs/app-server-protocol/schema/typescript/v2/ThreadTokenUsageUpdatedNotification.ts"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/app-server-protocol/schema/typescript/v2/TokenUsageBreakdown.ts",
+      "path": "codex-rs/app-server-protocol/schema/typescript/v2/TokenUsageBreakdown.ts",
+      "sha256": "e983f21175fdfdf1a239e26cd8916e1cb765bc0cb7904e2bd9cc83ffe325c8a7",
+      "bytes": 345,
+      "cache": "/tmp/codex-metering-review/codex-rs/app-server-protocol/schema/typescript/v2/TokenUsageBreakdown.ts"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/app-server-protocol/schema/typescript/v2/GetAccountTokenUsageResponse.ts",
+      "path": "codex-rs/app-server-protocol/schema/typescript/v2/GetAccountTokenUsageResponse.ts",
+      "sha256": "c342b7d5c798aac1b65f9753cae44c0a785aeef6d39be82f310f96227b24c5ae",
+      "bytes": 634,
+      "cache": "/tmp/codex-metering-review/codex-rs/app-server-protocol/schema/typescript/v2/GetAccountTokenUsageResponse.ts"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/app-server-protocol/schema/typescript/v2/AccountTokenUsageSummary.ts",
+      "path": "codex-rs/app-server-protocol/schema/typescript/v2/AccountTokenUsageSummary.ts",
+      "sha256": "afb22ae8edf0130af826655f557843f22c77dcac69e72cbd40ed93d29487f9b3",
+      "bytes": 366,
+      "cache": "/tmp/codex-metering-review/codex-rs/app-server-protocol/schema/typescript/v2/AccountTokenUsageSummary.ts"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/app-server-protocol/schema/typescript/v2/AccountTokenUsageDailyBucket.ts",
+      "path": "codex-rs/app-server-protocol/schema/typescript/v2/AccountTokenUsageDailyBucket.ts",
+      "sha256": "dec66188900692d8c4ff29ccd172f65b494a5b68c3d6c4cdf80b7167f5ea8b2a",
+      "bytes": 236,
+      "cache": "/tmp/codex-metering-review/codex-rs/app-server-protocol/schema/typescript/v2/AccountTokenUsageDailyBucket.ts"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/app-server-protocol/schema/typescript/v2/GetAccountRateLimitsResponse.ts",
+      "path": "codex-rs/app-server-protocol/schema/typescript/v2/GetAccountRateLimitsResponse.ts",
+      "sha256": "a046fcd60782ace2b87517d43bdeaf9ceaec4ad06f67b84ca3d1a83c251bc9d1",
+      "bytes": 1291,
+      "cache": "/tmp/codex-metering-review/codex-rs/app-server-protocol/schema/typescript/v2/GetAccountRateLimitsResponse.ts"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/sdk/typescript/src/exec.ts",
+      "path": "sdk/typescript/src/exec.ts",
+      "sha256": "0df2fe1ccd90e05b2f2fb0cb3e1bd3293e23f36e3bbb369258edc6a63ae8655c",
+      "bytes": 14462,
+      "cache": "/tmp/codex-metering-review/sdk/typescript/src/exec.ts"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/sdk/typescript/src/codex.ts",
+      "path": "sdk/typescript/src/codex.ts",
+      "sha256": "25a5b9ccb6a485f3aaa474d6e39f3d48ad72903d9e3a2f02e7b6218228d6a470",
+      "bytes": 1230,
+      "cache": "/tmp/codex-metering-review/sdk/typescript/src/codex.ts"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/core/src/session/token_budget.rs",
+      "path": "codex-rs/core/src/session/token_budget.rs",
+      "sha256": "fd19a6246e31c0d7b4a36354fc0db78ff273d0895e1d0cfd565e24ede5592e91",
+      "bytes": 8297,
+      "cache": "/tmp/codex-metering-review/codex-rs/core/src/session/token_budget.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/core/src/session/turn.rs",
+      "path": "codex-rs/core/src/session/turn.rs",
+      "sha256": "9fc51309911acf0722445f4a062c9c83dd8ec228504fd498e7281bb09d286ff1",
+      "bytes": 140084,
+      "cache": "/tmp/codex-metering-review/codex-rs/core/src/session/turn.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/core/src/agent/control/budget.rs",
+      "path": "codex-rs/core/src/agent/control/budget.rs",
+      "sha256": "5ab77ab8eb202c21e9c53aca921429f8abae53b1f857ff4f3128ac90d87a54f3",
+      "bytes": 1241,
+      "cache": "/tmp/codex-metering-review/codex-rs/core/src/agent/control/budget.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/core/src/session/rollout_budget.rs",
+      "path": "codex-rs/core/src/session/rollout_budget.rs",
+      "sha256": "e1b1c9588228bb9b124368e7bcb5285a8702412b78dc746dc417fb5c254e291e",
+      "bytes": 1186,
+      "cache": "/tmp/codex-metering-review/codex-rs/core/src/session/rollout_budget.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/app-server/src/request_processors/account_processor.rs",
+      "path": "codex-rs/app-server/src/request_processors/account_processor.rs",
+      "sha256": "f462380b847d6f895f587063cb71a07aec14cf33d46c13298a3940a9647a48d6",
+      "bytes": 63508,
+      "cache": "/tmp/codex-metering-review/codex-rs/app-server/src/request_processors/account_processor.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/app-server/src/bespoke_event_handling.rs",
+      "path": "codex-rs/app-server/src/bespoke_event_handling.rs",
+      "sha256": "c02cdef8d166be171f6218cfaf0c5e3b714a6589487f62dce71b1f1e17903952",
+      "bytes": 159692,
+      "cache": "/tmp/codex-metering-review/codex-rs/app-server/src/bespoke_event_handling.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/exec/src/event_processor_with_jsonl_output_tests.rs",
+      "path": "codex-rs/exec/src/event_processor_with_jsonl_output_tests.rs",
+      "sha256": "3297579e2874cd1fa6a13ef208016da6dd63ad5baaafcf894f781aa294578acb",
+      "bytes": 5486,
+      "cache": "/tmp/codex-metering-review/codex-rs/exec/src/event_processor_with_jsonl_output_tests.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/exec/tests/event_processor_with_json_output.rs",
+      "path": "codex-rs/exec/tests/event_processor_with_json_output.rs",
+      "sha256": "e7da216377ff84f26f2893677a87b96c4bfd031d1a2b1fb60d374da7998c00ed",
+      "bytes": 65516,
+      "cache": "/tmp/codex-metering-review/codex-rs/exec/tests/event_processor_with_json_output.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/app-server-protocol/src/protocol/common.rs",
+      "path": "codex-rs/app-server-protocol/src/protocol/common.rs",
+      "sha256": "98753d972e985de0d686081644055ea8b9bba8ef80320b448d4505e7144d6be4",
+      "bytes": 175094,
+      "cache": "/tmp/codex-metering-review/codex-rs/app-server-protocol/src/protocol/common.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/app-server-protocol/src/protocol/v2/account.rs",
+      "path": "codex-rs/app-server-protocol/src/protocol/v2/account.rs",
+      "sha256": "5d998285659e7c066ecef1bf0b02fd208a5ae8adfb033c957bc024c851f0cbef",
+      "bytes": 31403,
+      "cache": "/tmp/codex-metering-review/codex-rs/app-server-protocol/src/protocol/v2/account.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/app-server-protocol/schema/typescript/v2/ThreadUsage.ts",
+      "path": "codex-rs/app-server-protocol/schema/typescript/v2/ThreadUsage.ts",
+      "sha256": "f9661f3130c2c4a3005e44da2e59d9cd575fdb1374bc89fb4e979ea7beda721e",
+      "bytes": 399,
+      "cache": "/tmp/codex-metering-review/codex-rs/app-server-protocol/schema/typescript/v2/ThreadUsage.ts"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/app-server-protocol/schema/typescript/v2/ThreadUsageBreakdownGroup.ts",
+      "path": "codex-rs/app-server-protocol/schema/typescript/v2/ThreadUsageBreakdownGroup.ts",
+      "sha256": "73a3f4466ff30e833131e975da5be2767bf46f23a4e5aa4671f4646ffcafd62e",
+      "bytes": 464,
+      "cache": "/tmp/codex-metering-review/codex-rs/app-server-protocol/schema/typescript/v2/ThreadUsageBreakdownGroup.ts"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/core/src/session/session.rs",
+      "path": "codex-rs/core/src/session/session.rs",
+      "sha256": "9a97ddc94a43dd42f5b6561dc00c306c564fc622f046b3bc8379d5cf56c55b20",
+      "bytes": 98268,
+      "cache": "/tmp/codex-metering-review/codex-rs/core/src/session/session.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/core/src/state/session.rs",
+      "path": "codex-rs/core/src/state/session.rs",
+      "sha256": "2c9ec4057978cd98ca63bbe41a5d3cba2871fb9653fa269dd85608aaa65fa82d",
+      "bytes": 17299,
+      "cache": "/tmp/codex-metering-review/codex-rs/core/src/state/session.rs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/codex-api/src/sse/responses.rs",
+      "path": "codex-rs/codex-api/src/sse/responses.rs",
+      "sha256": "2516c7aee4ee4df70a86f642863b578566e59c1c2ff0b119c527ea95dda2373c",
+      "bytes": 72792,
+      "cache": "/tmp/codex-metering-review/codex-rs/codex-api/src/sse/responses.rs"
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Codex supports ChatGPT subscription sign-in and API-key sign-in as separate supported modes",
+      "source": "README.md",
+      "lines": [
+        68,
+        72
+      ]
+    },
+    {
+      "claim": "Official SDK exposes five token categories in turn.completed.usage",
+      "source": "sdk/typescript/src/events.ts",
+      "lines": [
+        20,
+        38
+      ]
+    },
+    {
+      "claim": "SDK uses inherited environment/auth unless apiKey override supplied",
+      "source": "sdk/typescript/src/exec.ts",
+      "lines": [
+        183,
+        198
+      ]
+    },
+    {
+      "claim": "CLI completed-turn usage is copied from thread total snapshot, despite SDK per-turn comment",
+      "source": "codex-rs/exec/src/event_processor_with_jsonl_output.rs",
+      "lines": [
+        118,
+        128,
+        509,
+        535
+      ]
+    },
+    {
+      "claim": "Thread token usage appserver notification has threadId,turnId and total,last snapshots",
+      "source": "codex-rs/app-server-protocol/schema/typescript/v2/ThreadTokenUsageUpdatedNotification.ts"
+    },
+    {
+      "claim": "account/usage/read supports optional threadId",
+      "source": "codex-rs/app-server-protocol/src/protocol/common.rs",
+      "lines": [
+        1372,
+        1376,
+        3194,
+        3210
+      ]
+    },
+    {
+      "claim": "ChatGPT-authenticated per-thread route returns backend estimated credits/USD and model/effort/speed token groups; 403/404 gives no thread usage",
+      "source": "codex-rs/app-server/src/request_processors/account_processor.rs",
+      "lines": [
+        1259,
+        1337
+      ]
+    },
+    {
+      "claim": "Provider response usage is recorded with response/thread/turn/session/root IDs; resume preserves cumulative thread totals",
+      "source": "codex-rs/core/tests/suite/token_usage_rollout.rs",
+      "lines": [
+        30,
+        125
+      ]
+    },
+    {
+      "claim": "Cached input and reasoning are detail categories, not extra independent additive tokens",
+      "source": "codex-rs/codex-api/src/sse/responses.rs",
+      "lines": [
+        119,
+        143,
+        868,
+        895
+      ]
+    },
+    {
+      "claim": "Thread usage snapshots are replayed when attaching; repeated notification is not new spending",
+      "source": "codex-rs/app-server/src/request_processors/token_usage_replay.rs",
+      "lines": [
+        1,
+        54
+      ]
+    }
+  ],
+  "installed_schema_validation": {
+    "command": "codex app-server generate-ts --out /tmp/codex-metering-installed-schema --experimental",
+    "exit_code": 0,
+    "model_calls": 0,
+    "account_usage_request_executed": false,
+    "confirmed_methods": [
+      "account/usage/read",
+      "thread/tokenUsage/updated"
+    ],
+    "artifacts": [
+      {
+        "path": "/tmp/codex-metering-installed-schema/ClientRequest.ts",
+        "sha256": "9ff8dcc6e37782a0d95cddf329e0b29a6f5e834f005cfa4f21c77a564e10e40b",
+        "bytes": 28190
+      },
+      {
+        "path": "/tmp/codex-metering-installed-schema/ServerNotification.ts",
+        "sha256": "df9b5ab2f11010ac336fb7c5b6bb386a7c389cd5dbe742ac5c804fcc69bd40d9",
+        "bytes": 15707
+      },
+      {
+        "path": "/tmp/codex-metering-installed-schema/v2/ThreadUsage.ts",
+        "sha256": "f9661f3130c2c4a3005e44da2e59d9cd575fdb1374bc89fb4e979ea7beda721e",
+        "bytes": 399
+      },
+      {
+        "path": "/tmp/codex-metering-installed-schema/v2/ThreadUsageBreakdownGroup.ts",
+        "sha256": "73a3f4466ff30e833131e975da5be2767bf46f23a4e5aa4671f4646ffcafd62e",
+        "bytes": 464
+      },
+      {
+        "path": "/tmp/codex-metering-installed-schema/v2/GetAccountTokenUsageParams.ts",
+        "sha256": "1a7a313f8a64fb038abfff5360e61f7e27019d708c37190840e1689633363892",
+        "bytes": 327
+      },
+      {
+        "path": "/tmp/codex-metering-installed-schema/v2/ThreadTokenUsage.ts",
+        "sha256": "27cae6c3e6c44696225e9a0903e0531c6eff126c6de3da2176bc5cdd904def4e",
+        "bytes": 345
+      },
+      {
+        "path": "/tmp/codex-metering-installed-schema/v2/ThreadTokenUsageUpdatedNotification.ts",
+        "sha256": "53ce4421d686b8a7f9a86c5ad54de2a7dceecfb95df74fa5f441947e136f063d",
+        "bytes": 332
+      }
+    ]
+  },
+  "limits": [
+    "No actual account/usage/read call or new model inference was performed by this review",
+    "Account/billing-route availability is not guaranteed by schema support",
+    "Parent/child inclusion in backend estimated thread cost was not established; do not blindly sum parent and child estimated totals",
+    "Missing provider observations and zero-defaulted SDK counters need explicit completeness handling",
+    "Token use or backend estimated USD is not the same as marginal subscription cash expense"
+  ]
+}

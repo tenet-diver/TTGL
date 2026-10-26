@@ -1,0 +1,46 @@
+{
+  "checked_at_utc": "2026-10-26T11:23:42.030324+00:00",
+  "repository": "ccusage/ccusage",
+  "revision": "e351d846191a0176520e8b3d8151dd80a60bc7e4",
+  "version": "20.0.44",
+  "license": "MIT",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/ccusage/ccusage/e351d846191a0176520e8b3d8151dd80a60bc7e4/docs/guide/codex/index.md",
+      "sha256": "e10b03603eb58519ddde06fdaa5e1467dbccb1559edf98203649fa097c02d49d",
+      "bytes": 12084
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ccusage/ccusage/e351d846191a0176520e8b3d8151dd80a60bc7e4/rust/adapters/codex/src/README.md",
+      "sha256": "ff84b2ea8735ea31a33ba3f763bb672494c421aa74d290e26fa8d567d403b9b4",
+      "bytes": 5232
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ccusage/ccusage/e351d846191a0176520e8b3d8151dd80a60bc7e4/apps/ccusage/LICENSE",
+      "sha256": "ffa4dd2d15c2e9f87d21367a007593002366c308d90b4a666d5bd43f57df7563",
+      "bytes": 1066
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ccusage/ccusage/e351d846191a0176520e8b3d8151dd80a60bc7e4/apps/ccusage/package.json",
+      "sha256": "380f779ee7a4e9e6472401fb41f57ddcd5521e39452bc8bbcd8de79f32beb269",
+      "bytes": 1075
+    }
+  ],
+  "claims": [
+    "Codex JSONL and saved exec output support",
+    "Session/model token reports and cumulative/replay/compaction handling",
+    "costUSD is API-equivalent estimate, not ChatGPT credit balance",
+    "Codex format support remains experimental"
+  ],
+  "commands": [
+    "npm exec --yes --cache /workspace/.cache/ttgl-npm --package=ccusage@20.0.44 -- ccusage --version",
+    "npm exec --yes --cache /workspace/.cache/ttgl-npm --package=ccusage@20.0.44 -- ccusage codex session --json --offline"
+  ],
+  "local_validation": {
+    "version_command": "ccusage 20.0.44",
+    "session_command_exit_code": 0,
+    "sessions_discovered": 0,
+    "interpretation": "No local usage records; zero report totals are not measured zero inference",
+    "actual_model_usage_recovered": false
+  }
+}

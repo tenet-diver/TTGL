@@ -5,6 +5,7 @@ import signal
 import time
 
 import pytest
+import ttgl.personal as personal
 
 from ttgl.personal import (
     ACTION_SCHEMA, CodexBackend, Request, Response, USAGE_FIELDS,
@@ -29,9 +30,20 @@ class ScriptedBackend:
         return response
 
 
-def reply(action="complete", *, question="", context="", summary="done", thread="thread-small", usage=None):
+def reply(action="complete", *, question="", context="", summary="done", thread="thread-small", usage=None,
+          usage_scope="turn"):
     return Response(text=json.dumps(dict(action=action, question=question, context=context, summary=summary)),
-                    thread_id=thread, usage=usage or {})
+                    thread_id=thread, usage=usage or {}, usage_scope=usage_scope)
+
+
+def counts(value):
+    """Independent category counters; the test never adds overlapping fields."""
+    return {key: value for key in USAGE_FIELDS}
+
+
+def cumulative_expert(value, action="answer"):
+    return Response(text=json.dumps({"action": action, "message": "Check the caller and preserve None."}),
+                    thread_id="expert", usage=counts(value), usage_scope="thread_cumulative")
 
 
 @pytest.fixture
@@ -179,6 +191,159 @@ def test_missing_usage_in_one_turn_keeps_total_null_but_retains_partial(task, tm
     assert result["observed_usage_partial"]["input_tokens"] == 10
 
 
+def test_cumulative_usage_counts_each_thread_once_across_dialogue(task, tmp_path):
+    backend = ScriptedBackend(
+        reply("ask_expert", question="Help?", context="Function", usage=counts(100),
+              usage_scope="thread_cumulative"),
+        cumulative_expert(200, "request_context"),
+        reply("ask_expert", question="Caller evidence", context="Caller", usage=counts(250),
+              usage_scope="thread_cumulative"),
+        cumulative_expert(450),
+        reply(usage=counts(400), usage_scope="thread_cumulative"),
+    )
+    out = tmp_path / "run"
+    result = run_task(task, out, condition="personal", backend=backend)
+    assert result["status"] == "completed_ungraded"
+    assert result["usage"] == counts(850)  # 400 controller + 450 expert, not 1400.
+    assert result["usage_by_model"]["gpt-6-luna"]["usage"] == counts(400)
+    assert result["usage_by_model"]["gpt-6.1-sol"]["usage"] == counts(450)
+    assert result["usage_accounting_issues"] == []
+    assert result["cost_usd"] is None
+    events = [json.loads(line) for line in (out / "events.jsonl").read_text().splitlines()]
+    responses = [e for e in events if e["event"] == "response"]
+    assert [e["usage"]["input_tokens"] for e in responses] == [100, 200, 250, 450, 400]
+    assert [e["usage_delta"]["input_tokens"] for e in responses] == [100, 200, 150, 250, 150]
+    assert all(e["usage_scope"] == "thread_cumulative" for e in responses)
+    checkpoint = json.loads((out / "state.json").read_text())
+    assert checkpoint["usage_threads"]["thread-small"]["last_snapshot"] == counts(400)
+    assert checkpoint["usage_threads"]["expert"]["model"] == "gpt-6.1-sol"
+
+
+def test_repeated_cumulative_snapshot_adds_zero_not_duplicate_usage(task, tmp_path):
+    backend = ScriptedBackend(
+        reply("ask_expert", question="Help?", context="Code", usage=counts(100),
+              usage_scope="thread_cumulative"),
+        cumulative_expert(200),
+        reply(usage=counts(100), usage_scope="thread_cumulative"),
+    )
+    result = run_task(task, tmp_path / "run", condition="personal", backend=backend)
+    assert result["usage"] == counts(300)
+    assert not result["usage_accounting_issues"]
+
+
+@pytest.mark.parametrize("later,reason", [
+    (50, "cumulative_counter_decreased"),
+    (None, "missing_counter"),
+])
+def test_reset_or_missing_counter_makes_total_unknown(task, tmp_path, later, reason):
+    final_usage = counts(150)
+    final_usage["input_tokens"] = later
+    backend = ScriptedBackend(
+        reply("ask_expert", question="Help?", context="Code", usage=counts(100),
+              usage_scope="thread_cumulative"),
+        cumulative_expert(200),
+        reply(usage=final_usage, usage_scope="thread_cumulative"),
+    )
+    result = run_task(task, tmp_path / "run", condition="personal", backend=backend)
+    assert result["status"] == "completed_ungraded"
+    assert result["usage"]["input_tokens"] is None
+    assert result["usage"]["output_tokens"] == 350
+    assert result["observed_usage_partial"]["input_tokens"] == 300
+    issue = result["usage_accounting_issues"][-1]
+    assert issue["delta"]["input_tokens"] is None
+    assert issue["issues"] == [{"reason": reason, "fields": ["input_tokens"]}]
+
+
+def test_missing_snapshot_is_not_replaced_by_zero_on_later_resume(task, tmp_path):
+    initial_usage = counts(100)
+    initial_usage["input_tokens"] = None
+    backend = ScriptedBackend(
+        reply("ask_expert", question="Help?", context="Code", usage=initial_usage,
+              usage_scope="thread_cumulative"),
+        cumulative_expert(200),
+        reply(usage=counts(150), usage_scope="thread_cumulative"),
+    )
+    result = run_task(task, tmp_path / "run", condition="personal", backend=backend)
+    assert result["usage"]["input_tokens"] is None
+    assert result["observed_usage_partial"]["input_tokens"] == 200
+    assert result["usage_accounting_issues"][-1]["issues"][0]["reason"] == "missing_previous_snapshot"
+
+
+def test_cumulative_baseline_survives_clean_between_turn_restart(task, tmp_path, monkeypatch):
+    original_write = personal._write_json
+    out = tmp_path / "run"
+
+    def stop_after_expert(path, state):
+        original_write(path, state)
+        if (path.name == "state.json" and state.get("turns") == 2
+                and state.get("phase") == "controller" and not state.get("inflight")):
+            raise KeyboardInterrupt()
+
+    monkeypatch.setattr(personal, "_write_json", stop_after_expert)
+    with pytest.raises(KeyboardInterrupt):
+        run_task(task, out, condition="personal", backend=ScriptedBackend(
+            reply("ask_expert", question="Help?", context="Code", usage=counts(100),
+                  usage_scope="thread_cumulative"), cumulative_expert(200)))
+    checkpoint = json.loads((out / "state.json").read_text())
+    assert checkpoint["inflight"] is None
+    assert checkpoint["usage_threads"]["thread-small"]["last_snapshot"] == counts(100)
+    monkeypatch.setattr(personal, "_write_json", original_write)
+    backend = ScriptedBackend(reply(usage=counts(300), usage_scope="thread_cumulative"))
+    result = run_task(task, out, condition="personal", backend=backend, resume=True)
+    assert len(backend.requests) == 1
+    assert backend.requests[0].thread_id == "thread-small"
+    assert result["usage"] == counts(500)
+
+
+@pytest.mark.parametrize("scope,thread,reason", [
+    ("turn", "thread-small", "thread_usage_scope_changed"),
+    ("thread_cumulative", "different-thread", "resumed_thread_changed"),
+])
+def test_scope_or_thread_switch_cannot_make_a_complete_usage_total(task, tmp_path, scope, thread, reason):
+    backend = ScriptedBackend(
+        reply("ask_expert", question="Help?", context="Code", usage=counts(100),
+              usage_scope="thread_cumulative"), cumulative_expert(200),
+        reply(thread=thread, usage=counts(500), usage_scope=scope),
+    )
+    result = run_task(task, tmp_path / "run", condition="personal", backend=backend)
+    assert result["usage"] == {key: None for key in USAGE_FIELDS}
+    assert result["observed_usage_partial"] == counts(300)
+    assert result["usage_accounting_issues"][-1]["issues"][0]["reason"] == reason
+
+
+def test_cumulative_thread_model_cannot_silently_change(task, tmp_path):
+    out = tmp_path / "run"
+    run_task(task, out, condition="small", backend=ScriptedBackend(
+        reply(usage=counts(100), usage_scope="thread_cumulative")))
+    checkpoint = json.loads((out / "state.json").read_text())
+    request = Request("changed-model", "another-model", "controller", "prompt",
+                      Path(task["workspace"]), ACTION_SCHEMA, 10, thread_id="thread-small")
+    accounted = personal._account_usage(checkpoint, request,
+        reply(usage=counts(300), usage_scope="thread_cumulative"))
+    assert accounted["issues"][0]["reason"] == "thread_model_changed"
+    assert accounted["delta"] == {key: None for key in USAGE_FIELDS}
+    assert checkpoint["usage_threads"]["thread-small"]["model"] == "gpt-6-luna"
+    assert not any(checkpoint["usage_complete"].values())
+
+
+def test_codex_default_zero_snapshot_is_not_proof_of_free_inference(task, tmp_path):
+    response = parse_codex_events([json.dumps(event) for event in [
+        {"type": "thread.started", "thread_id": "thread-small"},
+        {"type": "item.completed", "item": {"type": "agent_message", "text": reply().text}},
+        {"type": "turn.completed", "usage": counts(0)},
+    ]])
+    assert response.usage == counts(0)  # Preserve the raw source counter.
+    assert response.usage_evidence == "no_positive_metering_evidence"
+    result = run_task(task, tmp_path / "run", condition="small", backend=ScriptedBackend(response))
+    assert result["status"] == "completed_ungraded"
+    assert result["usage"] == {key: None for key in USAGE_FIELDS}
+    assert result["cost_usd"] is None
+    # An explicit generic backend delta is a different, declared contract.
+    explicit = run_task(task, tmp_path / "explicit", condition="small",
+                        backend=ScriptedBackend(reply(usage=counts(0))))
+    assert explicit["usage"] == counts(0)
+
+
 def test_completed_run_resume_does_not_repeat_model_calls(task, tmp_path):
     backend = ScriptedBackend(reply())
     original = run_task(task, tmp_path / "run", condition="small", backend=backend)
@@ -262,6 +427,7 @@ def test_parser_retains_usage_and_tool_failures_but_not_reasoning():
     assert response.thread_id == "abc"
     assert response.text == "final JSON here"
     assert response.usage["input_tokens"] == 31
+    assert response.usage_scope == "thread_cumulative"
     assert response.usage["reasoning_output_tokens"] is None
     assert response.tool_events[0]["exit_code"] == 1
     assert "DO NOT STORE" not in repr(response)
@@ -352,6 +518,7 @@ def test_codex_subprocess_accepts_documented_jsonl_protocol(tmp_path):
     assert response.status == "completed"
     assert response.thread_id == "test-thread"
     assert response.usage["input_tokens"] == 10
+    assert response.usage_scope == "thread_cumulative"
 
 
 def test_task_paths_cannot_escape_workspace(task):

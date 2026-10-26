@@ -109,6 +109,10 @@ class Response:
     tool_events: list[dict] = field(default_factory=list)
     error_type: str | None = None
     elapsed_seconds: float = 0.0
+    # Generic backends must return explicit turn deltas. The pinned Codex
+    # JSONL processor instead emits cumulative usage for the entire thread.
+    usage_scope: str = "turn"
+    usage_evidence: str = "reported"
 
 
 class Backend(Protocol):
@@ -119,12 +123,15 @@ def parse_codex_events(lines: list[str], *, returncode: int = 0,
                        fallback_thread_id: str | None = None) -> Response:
     """Read documented JSONL events without saving reasoning or tool output.
 
-    Usage is per completed turn according to Codex, not inferred from text.
+    Despite the SDK's per-turn wording, the pinned Rust JSONL processor maps
+    thread totals into turn.completed.usage. Keep that scope explicit so
+    resumed controller/expert threads are not counted repeatedly.
     Tool failures are evidence, not automatically a failed task: agents may
     legitimately run a failing regression test and then fix the defect.
     """
     response = Response(thread_id=fallback_thread_id,
-                        usage={key: None for key in USAGE_FIELDS})
+                        usage={key: None for key in USAGE_FIELDS},
+                        usage_scope="thread_cumulative")
     saw_completion = False
     saw_failure = False
     for line in lines:
@@ -158,6 +165,12 @@ def parse_codex_events(lines: list[str], *, returncode: int = 0,
                     response.status, response.error_type = "failed", "invalid_usage"
                     return response
                 response.usage[key] = value
+            observed = [value for value in response.usage.values() if value is not None]
+            if observed and not any(observed):
+                # The pinned processor substitutes Usage::default() when no
+                # usage notification was received. An all-zero completion is
+                # therefore not evidence of free inference.
+                response.usage_evidence = "no_positive_metering_evidence"
         elif kind in ("turn.failed", "error"):
             saw_failure = True
         elif kind == "item.completed":
@@ -182,6 +195,96 @@ def parse_codex_events(lines: list[str], *, returncode: int = 0,
     elif not isinstance(response.text, str) or not response.text:
         response.status, response.error_type = "failed", "missing_final_message"
     return response
+
+
+def _account_usage(state: dict, request: Request, response: Response) -> dict:
+    """Attribute explicit turn deltas or advancing thread snapshots once.
+
+    Baselines are durable state, keyed by thread and bound to one model/scope.
+    A missing or regressing field invalidates its complete total; it is never
+    replaced by zero. Categories can overlap and are not added to each other.
+    This accounting assumes the harness owns fresh threads and prohibits nested
+    agents; it is not a general-purpose fork/compaction reconciliation tool.
+    """
+    delta = {key: None for key in USAGE_FIELDS}
+    issues = []
+    model_usage = state["usage_by_model"].setdefault(request.model, {
+        "observed_partial": {key: 0 for key in USAGE_FIELDS},
+        "complete": {key: True for key in USAGE_FIELDS},
+    })
+
+    def invalidate(reason: str, fields=USAGE_FIELDS) -> None:
+        fields = list(fields)
+        for key in fields:
+            state["usage_complete"][key] = False
+            model_usage["complete"][key] = False
+        issues.append({"reason": reason, "fields": fields})
+
+    if response.usage_scope not in ("turn", "thread_cumulative"):
+        invalidate("unknown_usage_scope")
+        response.status, response.error_type = "failed", "invalid_backend_usage_scope"
+    elif not isinstance(response.usage, dict) or any(
+        value is not None and (type(value) is not int or value < 0)
+        for value in (response.usage.get(key) for key in USAGE_FIELDS)
+    ):
+        invalidate("invalid_counter")
+        response.status, response.error_type = "failed", "invalid_backend_usage"
+    else:
+        thread = response.thread_id
+        valid_thread = isinstance(thread, str) and bool(thread.strip())
+        baseline = state["usage_threads"].get(thread) if valid_thread else None
+        identity_issue = None
+        if request.thread_id and thread != request.thread_id:
+            identity_issue = "resumed_thread_changed"
+        elif baseline and baseline["model"] != request.model:
+            identity_issue = "thread_model_changed"
+        elif baseline and baseline["scope"] != response.usage_scope:
+            identity_issue = "thread_usage_scope_changed"
+        elif response.usage_scope == "thread_cumulative":
+            if not valid_thread:
+                identity_issue = "cumulative_usage_without_thread"
+            elif request.thread_id and baseline is None:
+                identity_issue = "missing_resumed_thread_baseline"
+            elif request.thread_id is None and baseline is not None:
+                identity_issue = "fresh_request_reused_existing_thread"
+        if identity_issue:
+            invalidate(identity_issue)
+        else:
+            if baseline is None and valid_thread:
+                baseline = {"model": request.model, "scope": response.usage_scope,
+                            "last_snapshot": {key: 0 for key in USAGE_FIELDS}}
+                state["usage_threads"][thread] = baseline
+            if response.usage_evidence != "reported":
+                invalidate(response.usage_evidence)
+                if baseline:
+                    baseline["last_snapshot"] = {key: None for key in USAGE_FIELDS}
+            else:
+                for key in USAGE_FIELDS:
+                    value = response.usage.get(key)
+                    if value is None:
+                        invalidate("missing_counter", [key])
+                    elif response.usage_scope == "turn":
+                        delta[key] = value
+                    else:
+                        previous = baseline["last_snapshot"][key]
+                        if previous is None:
+                            invalidate("missing_previous_snapshot", [key])
+                        elif value < previous:
+                            invalidate("cumulative_counter_decreased", [key])
+                        else:
+                            delta[key] = value - previous
+                    if baseline:
+                        baseline["last_snapshot"][key] = value
+    for key, value in delta.items():
+        if value is not None:
+            state["usage"][key] += value
+            model_usage["observed_partial"][key] += value
+    entry = {"request_id": request.request_id, "model": request.model,
+             "thread_id": response.thread_id, "scope": response.usage_scope,
+             "evidence": response.usage_evidence, "delta": delta, "issues": issues}
+    if issues:
+        state["usage_accounting_issues"].append(entry)
+    return entry
 
 
 class CodexBackend:
@@ -413,7 +516,7 @@ def run_task(task: dict, output_dir: Path, *, condition: str,
                 return json.loads((output_dir / "manifest.json").read_text())
         else:
             state = {
-                "schema_version": 2, "run_id": str(uuid.uuid4()), "task_id": task["task_id"],
+                "schema_version": 3, "run_id": str(uuid.uuid4()), "task_id": task["task_id"],
                 "identity_sha256": identity, "created_at": _utc(), "status": "running",
                 "deadline_epoch": time.time() + timeout_seconds, "config": config,
                 "phase": "router" if condition == "precall_router" else "controller",
@@ -423,6 +526,7 @@ def run_task(task: dict, output_dir: Path, *, condition: str,
                 "inflight": None, "next_prompt": _task_prompt(
                     task, cooperative=condition == "personal", expert_limit=max_expert_calls),
                 "usage": {key: 0 for key in USAGE_FIELDS}, "usage_complete": {key: True for key in USAGE_FIELDS},
+                "usage_threads": {}, "usage_by_model": {}, "usage_accounting_issues": [],
                 "elapsed_seconds": 0.0, "tool_failures": 0, "summary": "",
                 "backend": backend.describe() if isinstance(backend, CodexBackend)
                     else {"name": type(backend).__name__, "version": None},
@@ -494,15 +598,7 @@ def run_task(task: dict, output_dir: Path, *, condition: str,
                     or not math.isfinite(response.elapsed_seconds) or response.elapsed_seconds < 0):
                 response.status, response.error_type = "failed", "invalid_backend_timing"
                 response.elapsed_seconds = time.monotonic() - began
-            for key in USAGE_FIELDS:
-                value = response.usage.get(key)
-                if value is None:
-                    state["usage_complete"][key] = False
-                elif type(value) is int and value >= 0:
-                    state["usage"][key] += value
-                else:
-                    response.status, response.error_type = "failed", "invalid_backend_usage"
-                    state["usage_complete"][key] = False
+            accounting = _account_usage(state, request, response)
             state["elapsed_seconds"] += max(0, response.elapsed_seconds)
             state["tool_failures"] += sum(
                 event.get("status") == "failed" or (event.get("exit_code") not in (None, 0))
@@ -510,7 +606,10 @@ def run_task(task: dict, output_dir: Path, *, condition: str,
             )
             _append(output_dir / "events.jsonl", {**common, "event": "response", "at": _utc(),
                     "thread_id": response.thread_id, "status": response.status,
-                    "usage": {key: response.usage.get(key) for key in USAGE_FIELDS},
+                    "usage": {key: response.usage.get(key) if isinstance(response.usage, dict) else None
+                              for key in USAGE_FIELDS},
+                    "usage_scope": response.usage_scope, "usage_evidence": response.usage_evidence,
+                    "usage_delta": accounting["delta"], "usage_accounting_issues": accounting["issues"],
                     "cost_usd": None, "cost_status": "not_observed",
                     "elapsed_seconds": response.elapsed_seconds, "text": response.text,
                     "tool_events": response.tool_events, "error_type": response.error_type})
@@ -570,7 +669,7 @@ def run_task(task: dict, output_dir: Path, *, condition: str,
             _write_json(checkpoint, state)
         _write_json(checkpoint, state)
         manifest = {
-            "schema_version": 2, "run_id": state["run_id"], "task_id": task["task_id"],
+            "schema_version": 3, "run_id": state["run_id"], "task_id": task["task_id"],
             "condition": condition, "status": state["status"], "created_at": state["created_at"],
             "finished_at": _utc(), "identity_sha256": identity, "config": config,
             "backend": state["backend"],
@@ -580,6 +679,13 @@ def run_task(task: dict, output_dir: Path, *, condition: str,
             "expert_thread_id": state["expert_thread_id"],
             "usage": {key: state["usage"][key] if state["usage_complete"][key] else None for key in USAGE_FIELDS},
             "observed_usage_partial": state["usage"], "cost_usd": None,
+            "usage_by_model": {
+                model: {"usage": {key: record["observed_partial"][key] if record["complete"][key] else None
+                                  for key in USAGE_FIELDS},
+                        "observed_partial": record["observed_partial"], "complete": record["complete"]}
+                for model, record in state["usage_by_model"].items()
+            },
+            "usage_accounting_issues": state["usage_accounting_issues"],
             "cost_status": "not_observed", "tool_failures": state["tool_failures"],
             "failure_type": state.get("failure_type"), "summary": state["summary"],
             "accepted": None, "grading_status": "not_run",

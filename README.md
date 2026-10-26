@@ -8,6 +8,7 @@ Read the **[paper](docs/paper/README.md)**: [PDF](docs/paper/paper.pdf), [Word](
 
 The live Codex feasibility pilot completed 16 paired task assignments. Functional regression success was Luna **3/4**, Sol **4/4**, prompt routing **4/4**, and the optional-conversation controller **3/4**. All optional controllers chose zero expert calls. A separately required two-round clarification exchange passed its 30 regression tests. Strict original-test-file rules rejected several otherwise functional patches; both outcomes are [recorded](results/codex-pilot-001/analysis/summary.json). These tiny historical-task results do **not** establish cost savings or noninferiority; token and dollar usage were unavailable.
 
+- [Subscription-backed Codex metering](docs/research/codex-metering.md): official usage counters, provider-estimated credits and ccusage; separate API billing is unnecessary for token metering.
 - [Codex conversation harness](docs/research/personal-harness.md): persistent controller and expert threads, clarification/challenge responses, bounded turns, failure records and unknown-cost handling.
 - [Frozen pilot and restore instructions](experiments/codex-pilot-001/README.md), [full results](results/codex-pilot-001/analysis/), [live dialogue transcript](results/codex-pilot-001/dialogue-transcript.md).
 - [Closest prior work](docs/thesis/personal-agent-prior-art.md), [source register](docs/thesis/personal-agent-prior-art-sources.json), [communication protocols](docs/thesis/agent-communication.md).
@@ -20,7 +21,7 @@ python scripts/analyze_codex_pilot.py --output-dir results/my-pilot-analysis
 python -m pytest -q
 ```
 
-The research dependencies are pinned below. Core validation: **86 passed, 1 skipped, 2 subtests passed**. The standalone Codex CLI adapter is tested with subprocess fixtures; live trials used the collaboration interface because nested CLI initialization encounters a read-only state directory here. Runpod remains unprovisioned and its authorized US$100 budget unspent. Fastest Jira/Confluence access is still unavailable; [local task state](docs/research/task-state.json) and an [import CSV](docs/research/jira-import.csv) preserve progress.
+The research dependencies are pinned below. Core validation: **96 passed, 1 skipped, 2 subtests passed**. The standalone Codex CLI adapter is tested with subprocess fixtures; live trials used the collaboration interface because nested CLI initialization encounters a read-only state directory here. Runpod remains unprovisioned and its authorized US$100 budget unspent. Fastest Jira/Confluence access is still unavailable; [local task state](docs/research/task-state.json) and an [import CSV](docs/research/jira-import.csv) preserve progress.
 
 ## Earlier coding-problem replay
 
