@@ -16,6 +16,11 @@ solving and verification guidance. Each candidate has 12 new assignments, for
 | fallback-001 | Bounded independent attempt and verification; fallback after unsuccessful repair | Default Codex instructions |
 | compact-001 | Same adaptive policy | Compact role-specific instructions |
 
+The adaptive and fallback rules are prompt policies. The runtime enforces the
+resource and role boundaries; the model chooses its checks and whether to ask.
+Readiness probes establish environment compatibility before inference. Hidden
+official grades remain outside the live delegation loop.
+
 `selection-protocol-002.json` is the active selection registration. It adds the
 compact candidate before any v2 development grades or held-out inference. The
 original `selection-protocol.json` is preserved. Selection prioritizes assisted
