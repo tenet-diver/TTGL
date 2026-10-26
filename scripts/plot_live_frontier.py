@@ -56,5 +56,8 @@ plt.close(fig)
 benchmark.write_new(args.output_dir/'provenance.json',{
     'records_sha256':benchmark.digest(args.records),
     'script_sha256':benchmark.digest(Path(__file__)),
+    'target_analysis_source_sha256':benchmark.digest(Path(frontier.__file__)),
+    'research_dependency_lock_sha256':benchmark.digest(Path(__file__).resolve().parents[1]/'requirements-research.lock'),
+    'matplotlib_version':matplotlib.__version__,
     'comparisons':comparisons,
     'cost_definition':'Published Codex Standard token-rate scenario; not observed billing or full deployment cost'})
