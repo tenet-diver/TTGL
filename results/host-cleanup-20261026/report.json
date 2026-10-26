@@ -1,0 +1,318 @@
+{
+  "date": "2026-10-26",
+  "cache_directories_removed": 47,
+  "allocated_gib_before_cache_removal": 22.55379867553711,
+  "docker_reclaimed_decimal_gb_reported": 15.051,
+  "docker_reclaimed_precision": "CLI rounded GB",
+  "worktrees_inspected": 119,
+  "clean_worktrees_removed": [
+    {
+      "path": "/Users/rustameynaliyev/Documents/Codex/2026-10-16/se/work/api292-controller0669",
+      "head": "0669a0b231b8f5ba3ed681e331eff9e89b8fc040",
+      "backup_ref": "refs/cleanup-backups/20261026/api292-controller0669",
+      "removed": true
+    }
+  ],
+  "dirty_worktrees_preserved": 6,
+  "retained": [
+    "all dirty/untracked source",
+    "worktrees containing ignored local artifacts",
+    "database volumes",
+    "native logs and test result bundles",
+    "SwiftPM recovery directories",
+    "Android SDK",
+    "authentication and Codex runtime",
+    "historical experiment results"
+  ],
+  "cache_removals": [
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-compiler",
+      "allocated_kib_before": 3421308,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/6f17d9d6d196914b8f321ed11984e618/DerivedData/Build",
+      "allocated_kib_before": 552136,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/6f17d9d6d196914b8f321ed11984e618/DerivedData/ModuleCache.noindex",
+      "allocated_kib_before": 219892,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/6f17d9d6d196914b8f321ed11984e618/DerivedData/SDKStatCaches.noindex",
+      "allocated_kib_before": 1548,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/6f17d9d6d196914b8f321ed11984e618/DerivedData/CompilationCache.noindex",
+      "allocated_kib_before": 28,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/475b88e59126a716eec6f028f49bde99/DerivedData/Build",
+      "allocated_kib_before": 794392,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/475b88e59126a716eec6f028f49bde99/DerivedData/ModuleCache.noindex",
+      "allocated_kib_before": 314500,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/475b88e59126a716eec6f028f49bde99/DerivedData/SDKStatCaches.noindex",
+      "allocated_kib_before": 1548,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/475b88e59126a716eec6f028f49bde99/DerivedData/CompilationCache.noindex",
+      "allocated_kib_before": 28,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/fe21f49f18a35a1eee981126f57c7d2e/DerivedData/Build",
+      "allocated_kib_before": 954760,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/fe21f49f18a35a1eee981126f57c7d2e/DerivedData/ModuleCache.noindex",
+      "allocated_kib_before": 316392,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/fe21f49f18a35a1eee981126f57c7d2e/DerivedData/SDKStatCaches.noindex",
+      "allocated_kib_before": 1496,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/fe21f49f18a35a1eee981126f57c7d2e/DerivedData/CompilationCache.noindex",
+      "allocated_kib_before": 28,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/9ffa12bb7edebf52df5e4c5906f3c111/DerivedData/Build",
+      "allocated_kib_before": 1001304,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/9ffa12bb7edebf52df5e4c5906f3c111/DerivedData/ModuleCache.noindex",
+      "allocated_kib_before": 313048,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/9ffa12bb7edebf52df5e4c5906f3c111/DerivedData/SDKStatCaches.noindex",
+      "allocated_kib_before": 1548,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/44bfca1b77d54a72856f7c8c217599e1/DerivedData/Build",
+      "allocated_kib_before": 761028,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/44bfca1b77d54a72856f7c8c217599e1/DerivedData/ModuleCache.noindex",
+      "allocated_kib_before": 305064,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/44bfca1b77d54a72856f7c8c217599e1/DerivedData/SDKStatCaches.noindex",
+      "allocated_kib_before": 1496,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/44bfca1b77d54a72856f7c8c217599e1/DerivedData/CompilationCache.noindex",
+      "allocated_kib_before": 28,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/819a04ea653823c4fb2af482b031eb13/DerivedData/Build",
+      "allocated_kib_before": 1031816,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/819a04ea653823c4fb2af482b031eb13/DerivedData/ModuleCache.noindex",
+      "allocated_kib_before": 314500,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/819a04ea653823c4fb2af482b031eb13/DerivedData/SDKStatCaches.noindex",
+      "allocated_kib_before": 1548,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/819a04ea653823c4fb2af482b031eb13/DerivedData/CompilationCache.noindex",
+      "allocated_kib_before": 28,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/23504e9b6596425c7b72d5a62a9440e9/DerivedData/Build",
+      "allocated_kib_before": 1037264,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/23504e9b6596425c7b72d5a62a9440e9/DerivedData/ModuleCache.noindex",
+      "allocated_kib_before": 314336,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/23504e9b6596425c7b72d5a62a9440e9/DerivedData/SDKStatCaches.noindex",
+      "allocated_kib_before": 1548,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-xcode/23504e9b6596425c7b72d5a62a9440e9/DerivedData/CompilationCache.noindex",
+      "allocated_kib_before": 28,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.cache/calorie-budget-android/gradle/caches",
+      "allocated_kib_before": 1837580,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/.npm/_cacache",
+      "allocated_kib_before": 289488,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/calorie-budget-reward-authority-recovery.noindex/node_modules",
+      "allocated_kib_before": 380604,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/calorie-budget-376-current-sync.noindex/node_modules",
+      "allocated_kib_before": 718620,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/calorie-budget-resume-pr341.noindex/node_modules",
+      "allocated_kib_before": 380604,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/calorie-budget-379-conflict-recovery.noindex/node_modules",
+      "allocated_kib_before": 718620,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/calorie-budget-mac-ci-simplification.noindex/node_modules",
+      "allocated_kib_before": 380604,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/calorie-budget-377-project-sync.noindex/node_modules",
+      "allocated_kib_before": 718620,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/calorie-budget-sourcekit-bounds.noindex/node_modules",
+      "allocated_kib_before": 718532,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/calorie-budget-android-selector-scope.noindex/node_modules",
+      "allocated_kib_before": 380604,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/calorie-budget-resume-pr356.noindex/node_modules",
+      "allocated_kib_before": 380604,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/calorie-budget-conflict-recovery.noindex/node_modules",
+      "allocated_kib_before": 380592,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/calorie-budget-375-current-sync.noindex/node_modules",
+      "allocated_kib_before": 718620,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/calorie-budget-479-portable-recovery.noindex/node_modules",
+      "allocated_kib_before": 718620,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/calorie-budget-platform-builds.noindex/node_modules",
+      "allocated_kib_before": 380592,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Documents/Codex/2026-10-16/se/work/api360-shadow-report-20261017/node_modules",
+      "allocated_kib_before": 720956,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Documents/Codex/2026-10-16/se/work/visual-qa-library-efficiency/node_modules",
+      "allocated_kib_before": 720952,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Documents/Codex/2026-10-16/se/work/api292-before-20261017/node_modules",
+      "allocated_kib_before": 720964,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    },
+    {
+      "path": "/Users/rustameynaliyev/Documents/Codex/2026-10-16/se/work/api292-after-20261017/node_modules",
+      "allocated_kib_before": 720956,
+      "kind": "rebuildable_cache_or_ignored_dependencies",
+      "removed": true
+    }
+  ],
+  "recreated_caches_at_verification": [
+    "/Users/rustameynaliyev/.cache/calorie-budget-native-compiler",
+    "/Users/rustameynaliyev/.npm/_cacache",
+    "/Users/rustameynaliyev/Developer/calorie-budget-479-portable-recovery.noindex/node_modules"
+  ],
+  "free_bytes_after_cleanup": 49330835456,
+  "free_space_note": "Measured while evaluator setup/control image downloads were underway; caches may be recreated by normal use"
+}
