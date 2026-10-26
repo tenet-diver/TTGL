@@ -4,13 +4,24 @@ Updated 26 October 2026. Repository: `tenet-diver/TTGL`, working branch `work`.
 Continue from the latest pushed commit on that branch. `main` is not the active
 research branch; do not merge or replace it implicitly.
 
-Desktop continuation on 26 October: the ordinary ChatGPT-authenticated CLI
-successfully completed both model/token preflight calls. See
-[`results/codex-desktop-20261026`](../../results/codex-desktop-20261026/README.md).
-The read-only startup failure below describes the previous managed host.
-Scored execution is still pending: the desktop had only about 12 GiB free,
-and worker dependencies, isolation and official environment controls are not
-validated. No scored benchmark assignments were launched on the desktop.
+Desktop continuation on 26 October: ordinary ChatGPT authentication and native
+positive token metering work for both requested models. The isolated worker and
+official grader are implemented, with 142 tests and both subtests passing; the
+optional PyTorch integration is skipped. All 24 official base/reference controls
+pass their expected outcomes on the complete original 12-task panel. See
+[`controls-002`](../../results/codex-isolated-20261026/controls-002/validation.json),
+[`isolation runbook`](isolated-execution.md), and
+[`preparation history`](../../results/codex-isolated-20261026/preparation-history.md).
+
+Scored inference has not started yet. Seven task workers have passed their
+staged public smoke checks; the remaining five are running in
+`results/codex-isolated-20261026/worker-validation-006`. Merge the completed
+readiness records with provenance before freezing `study-001`. Preserve all
+failed preparations and control interruptions. Cleanup removed rebuildable
+caches and continues through old, inactive temporary verification dependencies;
+source, logs, database volumes, authentication and active CI are preserved.
+The read-only startup failure discussed below is historical to the previous
+managed host. Consult current records before redoing completed setup.
 
 ## The goal and evidence boundary
 
