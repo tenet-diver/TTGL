@@ -22,10 +22,11 @@ pandoc paper.md --standalone --toc --number-sections --citeproc \
   --include-in-header=../thesis/layout.tex -V colorlinks=true -V urlcolor=blue \
   -V linkcolor=blue -V mainfont='DejaVu Serif' -V sansfont='DejaVu Sans' \
   -V monofont='DejaVu Sans Mono' -o paper.pdf
-pandoc paper.md --standalone --toc --number-sections --citeproc \
+pandoc paper.md --standalone --number-sections --citeproc \
+  --lua-filter=docx-contents.lua \
   --bibliography=references.bib --resource-path=. -o paper.docx
 pandoc paper.md --standalone --toc --number-sections --citeproc \
-  --bibliography=references.bib --resource-path=. --mathml \
+  --bibliography=references.bib --resource-path=. --math-method=mathml \
   --css=../thesis/style.css --embed-resources -o paper.html
 python - <<'PY'
 import datetime, hashlib, json, subprocess
@@ -39,7 +40,7 @@ sources = ['frontmatter.md', '../thesis/personal-agent-prior-art.md',
            '../../results/codex-pilot-001/analysis/summary.json',
            '../../results/codex-pilot-001/analysis/records.json',
            '../../results/codex-pilot-001/dialogue-transcript.md',
-           '../../scripts/build_paper.sh',
+           '../../scripts/build_paper.sh', 'docx-contents.lua',
            '../../experiments/swe-replay-001/protocol.json',
            '../../results/swe-replay-001/summary.json',
            '../../results/swe-replay-001/additional-comparisons.json',

@@ -6,7 +6,7 @@ research branch; do not merge or replace it implicitly.
 
 Desktop continuation on 26 October: ordinary ChatGPT authentication and native
 positive token metering work for both requested models. The isolated worker and
-official grader are implemented, with 142 tests and both subtests passing; the
+official grader are implemented, with 149 tests and both subtests passing; the
 optional PyTorch integration is skipped. All 24 official base/reference controls
 pass their expected outcomes on the complete original 12-task panel. See
 [`controls-002`](../../results/codex-isolated-20261026/controls-002/validation.json),
@@ -430,3 +430,8 @@ policy. A development build is exercising the Docker-based Pandoc pipeline, but
 final results, frontmatter, discussion and build provenance still require updates,
 and every final PDF/DOCX page must be rendered and visually inspected. Artifact
 operation markers were already run exactly once per format earlier; do not rerun.
+
+Policy extension software validation: 158 passed, one optional Torch skip, both
+subtests passed, real Docker checks enabled. See
+`results/delegation-development-001/software-validation-001/validation.json`.
+This validates software behavior, not model task accuracy.
