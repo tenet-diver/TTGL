@@ -13,6 +13,7 @@ The original 12-task panel is retained; no task is replaced based on outcomes.
 | requests-worker-repair | The repository-pinned, hash-verified pytest-mock wheel repairs the Requests public environment: 200 passes, 11 skips. All six future conditions receive the same dependency. |
 | worker-validation-003 | SymPy public smoke passes after mode normalization. Astropy preparation rejects its setup-only setuptools pin, before model inference. |
 | worker-validation-004 | Host free space is below the image-plus-reserve check before worker creation. |
+| worker-validation-006 | Seaborn, Django-17084, Django-13121 and Xarray-7229 public smoke tests pass. Sphinx preparation rejects dependency bounds in setup.py and verbosity-only tox.ini changes; exact blobs audited before inference. |
 | worker-validation-005 | Astropy public smoke passes after audited source restoration (three tests pass, 87 deselected). Seaborn preparation stops below the ten-GiB reserve before worker creation. |
 
 The source guard compares full Git blob identities, preserves ignored compiled

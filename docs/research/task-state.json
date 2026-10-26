@@ -80,7 +80,7 @@
     {
       "id": "local-14",
       "title": "Freeze repository-level run manifests and execute funded paired SWE evaluation",
-      "status": "in_progress_standard_benchmark_controls_complete",
+      "status": "in_progress_frozen_72_assignment_isolated_study",
       "study_scope": "prospective_repository_level_software_engineering"
     },
     {
@@ -184,7 +184,7 @@
     {
       "id": "local-29",
       "title": "Run metered larger SWE comparison of conversation versus one-way assistance and existing trained routers",
-      "status": "in_progress_isolated_worker_preparation_before_scored_runs",
+      "status": "in_progress_frozen_72_assignment_isolated_study",
       "artifact": "docs/research/HANDOVER.md",
       "study_scope": "conversational_routing_software_engineering"
     },
@@ -219,7 +219,7 @@
     {
       "id": "local-34",
       "title": "Implement six-arm metered Codex benchmark and attempt native preflight",
-      "status": "completed_software_and_native_token_preflight_scored_study_pending",
+      "status": "completed_149_software_tests_and_fresh_native_meter_preflight",
       "artifact": "results/codex-isolated-20261026/software-validation-003/validation.json",
       "study_scope": "standard_benchmark_routing_and_conversation"
     },
@@ -254,7 +254,7 @@
     "actual_spend_usd": 0,
     "status": "blocked_missing_api_key_and_runtime_access"
   },
-  "updated_at_utc": "2026-10-26T19:02:38.863726+00:00",
+  "updated_at_utc": "2026-10-26T19:26:38.429870+00:00",
   "evidence": {
     "results": "results/routing-pilot-001",
     "reproduction": "results/reproduction-verification.json",
@@ -276,14 +276,14 @@
     "personal_agent_audit": "docs/thesis/personal-review.json",
     "current_paper": "docs/paper/paper.pdf",
     "current_paper_sources": "docs/paper/README.md",
-    "software_validation": "142 passed, 1 optional torch skip, 2 subtests; real Docker integration enabled",
+    "software_validation": "149 passed, 1 optional torch skip, 2 subtests; real Docker integration enabled",
     "dollar_cost_results": "primary historical SWE replay46.1% lower estimated inference with8.6pp qualityloss; live conversation dollars/credits unknown",
     "trained_router_comparison": "not_run_in_Codex_pilot",
     "subscription_metering": "Native model token counters observed and reconciled; provider-estimated credits/dollars remain separately nullable",
     "metering_software_validation": "96 passed, 1 skipped, 2 subtests; cumulative-thread and per-model accounting tested",
     "standard_benchmark_replay": "results/swe-replay-001/summary.json: all500 tasks and10 models; historical estimated inference costs, not new model calls",
     "standard_benchmark_controls": "24 official controls across all12 original tasks;12 valid base/reference pairs;0 infrastructure failures",
-    "standard_benchmark_live": "not_started; final staged public worker probes in progress",
+    "standard_benchmark_live": "Frozen12-task six-condition72-assignment study launched; see study-001 manifests and official grade index for actual progress",
     "handover": "docs/research/HANDOVER.md",
     "project_usage": "docs/research/project-usage-guide.md",
     "standard_benchmark_audit": "docs/research/swe-replay-audit.md"

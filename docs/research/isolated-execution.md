@@ -137,9 +137,9 @@ limit; passing within that limit also validates the longer grading allowance.
 
 Official image preparation also changes regular-file execute bits. The worker
 compares complete Git blob identities, including binary files, before staging.
-It permits only those mode changes and one audited Astropy `pyproject.toml`
-build-system change from `setuptools` to `setuptools==68.0.0`, identified by
-both exact Git blob hashes. Staging restores the original base blob, records
+It permits only those mode changes and audited build/runner metadata changes identified by both exact Git blob
+hashes. Astropy pins setuptools in `pyproject.toml`; Sphinx constrains build
+dependencies in `setup.py` and adds only pytest verbosity in `tox.ini`. Staging restores the original base blob, records
 the setup exception, and requires the final exact-base checkout to be clean.
 Other content changes, added/deleted paths and symlinks are rejected. Ignored
 compiled dependencies survive this normalization. Public worker tests check
@@ -178,3 +178,10 @@ usage are included. Missing counters or unpriced models produce unavailable
 cost, and per-model counters must reconcile to the task total. Seven pricing
 behavior tests passed before inference. No scenario proves full deployment
 savings or small-panel quality noninferiority.
+
+The final Sphinx dependency/runner audit is recorded with exact hashes and
+diffs in `results/codex-isolated-20261026/image-setup-audits`. Restoring those
+files to the original base revision passes its public utility smoke module.
+The original rejected preparation is retained in worker-validation-006 and
+the successful final check in worker-validation-007. No benchmark model
+outcome preceded this setup normalization.

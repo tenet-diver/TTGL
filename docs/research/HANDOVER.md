@@ -13,13 +13,26 @@ pass their expected outcomes on the complete original 12-task panel. See
 [`isolation runbook`](isolated-execution.md), and
 [`preparation history`](../../results/codex-isolated-20261026/preparation-history.md).
 
-Scored inference has not started yet. Seven task workers have passed their
-staged public smoke checks; the remaining five are running in
-`results/codex-isolated-20261026/worker-validation-006`. Merge the completed
-readiness records with provenance before freezing `study-001`. Preserve all
-failed preparations and control interruptions. Cleanup removed rebuildable
-caches and continues through old, inactive temporary verification dependencies;
-source, logs, database volumes, authentication and active CI are preserved.
+The scored run is launched in `results/codex-isolated-20261026/study-001`:
+12 original tasks, all six conditions, 72 assignments. Both fresh model/token
+preflight calls pass. All 12 staged public worker checks are joined in
+`worker-validation-final.json`. Final software validation passes 149 tests and
+both subtests, with only the optional PyTorch training integration skipped.
+The source, configuration and published Codex token-rate scenario are frozen.
+Do not edit generation/evaluation source during this run or implicitly repeat
+an uncertain assignment. Inspect `artifacts/scored-study-001.log`, finalized
+`runs/**/manifest.json` and `grades.json` for current progress. The `grade`
+command can reconcile retained patches without new model inference; only
+resume after explicit reconciliation of any interruption. Preserve all failed
+preparations and the controls' disk stop/resume records.
+
+Host cleanup is complete: 106 rebuildable cache/dependency directories were
+removed, including 51 inactive old temporary verification dependency trees.
+Their source/package manifests and logs remain. One clean worktree was removed
+with its HEAD preserved under a Git recovery ref. Credentials, dirty source,
+unique local artifacts, database volumes and active CI were preserved. See
+`results/host-cleanup-20261026`. Observed free space is recorded separately from
+allocated directory sizes, which can share filesystem blocks.
 The read-only startup failure discussed below is historical to the previous
 managed host. Consult current records before redoing completed setup.
 

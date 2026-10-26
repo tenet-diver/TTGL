@@ -1,0 +1,10 @@
+{
+  "instance_id": "pydata__xarray-7229",
+  "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; python -m pytest -q xarray/tests/test_options.py",
+  "returncode": 0,
+  "image_id": "sha256:b2db3a6ab994cd3873198d9d37835e476178d4a6c0612afd37c6e378f32aaa5a",
+  "controls_record_sha256": "16bd3b9f822c58da906536b5a9e3eeaeb66943f110f579031f5fb0d74a37d848",
+  "ready": true,
+  "reason": "public_smoke_pass",
+  "stdout_sha256": "2a6ff9aac6b5a4fa27919e0a8868587fb10925233e250767b3c12a587e8a4f87"
+}

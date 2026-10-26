@@ -1,0 +1,18 @@
+{
+  "status": "passed_before_scored_inference",
+  "passed": 149,
+  "skipped": 1,
+  "subtests_passed": 2,
+  "skip_reason": "Optional torch training integration unavailable",
+  "real_docker_integration_enabled": true,
+  "frozen_environment_sha256": "d136037aeca3e11a0296317990658a8f950aae314d77ae63c5036e6bb26984b8",
+  "source_sha256": {
+    "scripts/run_isolated_swe.py": "2cb38ebbe6d8eed530a19f953faaedb9d3898c146731f24f5e5fb0235ef56f49",
+    "src/ttgl/isolated.py": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "src/ttgl/evaluation.py": "8bca9f41db8532fde7bed4f9686ecf1a74f7b97421605df0b79a575d2fbefb13",
+    "tools/worker-mcp/server.mjs": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "tools/worker-mcp/package-lock.json": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "tools/worker-dependencies.json": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d",
+    "experiments/codex-isolated-20261026/pricing-scenario.json": "24337a4fbe01bd97c0a8034c97e7f940779d207a388111dd3c19601919a49328"
+  }
+}

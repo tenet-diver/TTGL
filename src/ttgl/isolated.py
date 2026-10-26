@@ -20,6 +20,16 @@ from . import benchmark, personal
 ROOT = Path(__file__).resolve().parents[2]
 SERVER = ROOT / 'tools/worker-mcp/server.mjs'
 DEPENDENCIES = ROOT / 'tools/worker-dependencies.json'
+# Exact, inspected dependency/runner-only changes made by official image setup.
+# Every listed file is restored to its original base blob before model access.
+AUDITED_SETUP_BLOBS = {
+    ('astropy/astropy', 'pyproject.toml'): (
+        '3364d307406a06457fba6b129db98c2399e7d624', '02dddbe713a3d037b3e5f6ba49af3b7ec1c49c0b'),
+    ('sphinx-doc/sphinx', 'setup.py'): (
+        '2538952e376408be7da679fc647fac447dd30602', '94e1d8b320a57b3b1d0a556e15e9a90080e39d6d'),
+    ('sphinx-doc/sphinx', 'tox.ini'): (
+        'a363e187faaecc3096f41168ccedd93a17a0cf50', '3b8bc12d02028feaac4d488c13b662e3e6db163d'),
+}
 
 
 def docker(*args: str, timeout: float = 300) -> str:
@@ -165,19 +175,17 @@ class DockerWorkers:
             source_diff = docker('exec', name, 'git', '-C', '/testbed', 'diff', '--raw',
                                  '--no-abbrev', '-z', task['base_commit'], 'HEAD', '--', '.')
             # Compare blob identities, including binary files, independently of
-            # image setup's execute-bit changes. The sole audited content change
-            # is Astropy's build dependency pin; staging restores its base blob.
+            # image setup's execute-bit changes. Inspected dependency/runner
+            # metadata exceptions require exact hashes; staging restores base.
             fields = source_diff.split('\0')
             for index in range(0, len(fields)-1, 2):
                 metadata, path = fields[index], fields[index+1]
                 old_mode, new_mode, old_blob, new_blob, status = metadata[1:].split()
                 regular = old_mode in {'100644', '100755'} and new_mode in {'100644', '100755'}
-                setup_pin = (task.get('repo') == 'astropy/astropy' and path == 'pyproject.toml'
-                             and old_blob == '3364d307406a06457fba6b129db98c2399e7d624'
-                             and new_blob == '02dddbe713a3d037b3e5f6ba49af3b7ec1c49c0b')
-                if not regular or status != 'M' or (old_blob != new_blob and not setup_pin):
+                audited_setup = AUDITED_SETUP_BLOBS.get((task.get('repo'), path)) == (old_blob, new_blob)
+                if not regular or status != 'M' or (old_blob != new_blob and not audited_setup):
                     raise RuntimeError('Prepared image contains tracked source changes beyond audited setup')
-                if setup_pin:
+                if audited_setup:
                     restored_setup_files.append({'path': path, 'base_blob': old_blob,
                                                  'image_setup_blob': new_blob})
         docker('exec', name, 'bash', '-lc', 'mkdir -p /testbed && rm -rf /testbed/.git')
