@@ -435,3 +435,36 @@ Policy extension software validation: 158 passed, one optional Torch skip, both
 subtests passed, real Docker checks enabled. See
 `results/delegation-development-001/software-validation-001/validation.json`.
 This validates software behavior, not model task accuracy.
+
+The follow-up now includes both `adaptive-001` and `fallback-001`, each with
+four development tasks and three conditions (24 new assignments total). Both
+positive-token preflights pass. `selection-protocol.json` fixes highest assisted
+resolution count, then lowest absolute scenario cost; independent Luna/Sol
+repeats and every candidate remain reported. `scripts/select_delegation_policy.py`
+checks registered task identities and hashes before writing an immutable choice.
+
+Current serial queues: `/tmp/ttgl_queue_policy_development.py` runs adaptive after
+all original 72 grades; `/tmp/ttgl_queue_fallback_and_controls.py` then runs
+fallback, finalizes it, and launches fresh held-out base/gold controls. The old
+`ttgl_queue_heldout_controls.py` waiting process was terminated before it started
+any controls. `/tmp/ttgl_queue_heldout_validation.py` runs public probes after
+those controls; `scripts/validate_policy_workers.py` adds the pinned Pylint pragma
+parser smoke without changing the original validator. `/tmp/ttgl_queue_selected_heldout.py`
+selects only from the two completed development analyses, waits for staged worker
+readiness, creates a validated source configuration and a three-arm held-out
+study, binds the selection hash, and runs/preflights/finalizes it. No new inference
+is permitted until those checks pass. Inspect logs before restarting any queue.
+
+The held-out reservation is complete: positions 13-24 in the original SHA256
+ordering, no overlap with the original panel. Public manifest and private-dataset
+hashes are committed; private references remain outside the repository. Any new
+image-setup mismatches need explicit audit after the older frozen studies finish,
+not silent source-guard weakening or outcome-driven replacement.
+
+`/tmp/ttgl_prefetch_next.py` only warms the next original task's exact frozen
+image while the current image is prepared, with a 15-GiB reserve plus incoming
+image size and no deletion. Its events are retained in
+`results/codex-isolated-20261026/image-prefetch-001.jsonl`. No model assignment,
+prompt, evaluator, or solver time limit changes. The native grader's image-list
+helper explicitly warns against concurrent use, so grader/worker runs remain
+serial. A cold pull or a long official test run is not a stalled model call.
