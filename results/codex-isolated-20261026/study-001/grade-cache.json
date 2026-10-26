@@ -78,5 +78,25 @@
   "fe1ce7d9fe7e388c322c17548030b7220e80722476e055b5fca42bad0229f46b": {
     "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/small/django__django-15037/b8d1b785c903/logs/ttgl-small/django__django-15037/report.json",
     "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07"
+  },
+  "7295d8e346b80a86792760ebeae4d8a1db9c8c966658176e33ffc90074f95d87": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/psf__requests-5414/f5c17d0e5321/logs/ttgl-large/psf__requests-5414/report.json",
+    "report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0"
+  },
+  "4168fd19016285f9bc3f2e3b384959d9a2ed484cabe0d31b59a11aaa9b940a2e": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/small/psf__requests-5414/b1ba3f9306a7/logs/ttgl-small/psf__requests-5414/report.json",
+    "report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0"
+  },
+  "f9e72eb4731ce30ac7e99a0f890e1df0f0b2e16c5ec370673531f34dd46aacc3": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/psf__requests-5414/90b4a5db28cd/logs/ttgl-reset_expert/psf__requests-5414/report.json",
+    "report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0"
+  },
+  "3fc5c45e4049eed48bfbd751f86b0a42b388af055c7298160edb19fa46eb521c": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/personal/psf__requests-5414/24f188ede185/logs/ttgl-personal/psf__requests-5414/report.json",
+    "report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0"
+  },
+  "f0c38075a44c0ed1dd11ebb5e84b47ae4cc3b43a16d33da39745c570273d4cdd": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/psf__requests-5414/758aee12de73/logs/ttgl-oneway/psf__requests-5414/report.json",
+    "report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0"
   }
 }

@@ -1,0 +1,23 @@
+{
+  "container": "ttgl-worker-20120b01da2e9428e94b8bdf",
+  "image_id": "sha256:ff5caf954ad336865c3614fa0157f383a8e80c40ec802625347d119e3e33965e",
+  "base_commit": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+  "mounts": [],
+  "network": "none",
+  "cap_drop": [
+    "ALL"
+  ],
+  "memory_bytes": 4294967296,
+  "native_host_tools": false,
+  "solver_reference_material": false,
+  "image_tracked_source_audited": true,
+  "restored_image_setup_files": [],
+  "ignored_compiled_dependencies_retained": true,
+  "additional_worker_dependencies": [
+    {
+      "name": "pytest-mock",
+      "version": "2.0.0",
+      "wheel_sha256": "cb67402d87d5f53c579263d37971a164743dc33c159dfb4fb4a86f37c5552307"
+    }
+  ]
+}

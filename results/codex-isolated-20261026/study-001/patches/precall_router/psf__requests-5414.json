@@ -1,0 +1,10 @@
+{
+  "instance_id": "psf__requests-5414",
+  "model_name_or_path": "ttgl-precall_router",
+  "model_patch": "diff --git a/requests/models.py b/requests/models.py\nindex e7d292d..d863881 100644\n--- a/requests/models.py\n+++ b/requests/models.py\n@@ -403,7 +403,7 @@ class PreparedRequest(RequestEncodingMixin, RequestHooksMixin):\n                 host = self._get_idna_encoded_host(host)\n             except UnicodeError:\n                 raise InvalidURL('URL has an invalid label.')\n-        elif host.startswith(u'*'):\n+        elif host.startswith((u'*', u'.')):\n             raise InvalidURL('URL has an invalid label.')\n \n         # Carefully reconstruct the network location\ndiff --git a/tests/test_requests.py b/tests/test_requests.py\nindex 463e8bf..3c3b4fd 100644\n--- a/tests/test_requests.py\n+++ b/tests/test_requests.py\n@@ -81,6 +81,7 @@ class TestRequests:\n             (InvalidSchema, 'localhost.localdomain:3128/'),\n             (InvalidSchema, '10.122.1.1:3128/'),\n             (InvalidURL, 'http://'),\n+            (InvalidURL, 'http://.example.com'),\n         ))\n     def test_invalid_url(self, exception, url):\n         with pytest.raises(exception):\n",
+  "manifest_sha256": "42c658b3a3556491bc30f7a3cae76b1ec8b90676d7892950ad12a113ab3e0d96",
+  "patch_sha256": "38c1c26bccd568893d8b8a69a968ffa9892064cb7b6473d98e3260c6ebac0320",
+  "status": "completed_ungraded",
+  "preparation_seconds": 20.06531082710717,
+  "assignment_wall_seconds": 100.6558384570526
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": 3,
+  "run_id": "c29e507f-238a-49bd-b428-d0cf58cd5fe9",
+  "task_id": "psf__requests-5414",
+  "condition": "personal",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-26T20:45:35.884171+00:00",
+  "finished_at": "2026-10-26T20:46:31.300659+00:00",
+  "identity_sha256": "78e6dac29de9aadcf5e7102d1e42be2940ca76a73f5ca9d71c654df24f5530bf",
+  "config": {
+    "condition": "personal",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d"
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 1,
+  "expert_calls": 0,
+  "elapsed_seconds": 55.29069849906955,
+  "controller_thread_id": "01a179f6-22de-7563-8680-096514e96907",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 129320,
+    "cached_input_tokens": 102656,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1090,
+    "reasoning_output_tokens": 205
+  },
+  "observed_usage_partial": {
+    "input_tokens": 129320,
+    "cached_input_tokens": 102656,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1090,
+    "reasoning_output_tokens": 205
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 129320,
+        "cached_input_tokens": 102656,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1090,
+        "reasoning_output_tokens": 205
+      },
+      "observed_partial": {
+        "input_tokens": 129320,
+        "cached_input_tokens": 102656,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1090,
+        "reasoning_output_tokens": 205
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 3,
+  "failure_type": null,
+  "summary": "Updated requests/models.py to reject ASCII hostnames starting with a dot as invalid labels, and added `http://.example.com` to the bad URL test cases. The focused check passed: 6 passed. The full `tests/test_requests.py` run was blocked by unavailable network access and missing test dependencies (127 passed, 4 failed, 157 errors, 1 xfailed). A direct `requests.get` reproduction attempted a network connection in this environment, so verification is limited to URL preparation through the focused tests.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "f91837b4480bc7919dbf3bd84ffa46d95adc4ee2ab5098b5b658b34861da5565",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

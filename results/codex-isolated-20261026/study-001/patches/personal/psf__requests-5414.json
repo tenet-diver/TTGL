@@ -1,0 +1,10 @@
+{
+  "instance_id": "psf__requests-5414",
+  "model_name_or_path": "ttgl-personal",
+  "model_patch": "diff --git a/requests/models.py b/requests/models.py\nindex e7d292d..d863881 100644\n--- a/requests/models.py\n+++ b/requests/models.py\n@@ -403,7 +403,7 @@ class PreparedRequest(RequestEncodingMixin, RequestHooksMixin):\n                 host = self._get_idna_encoded_host(host)\n             except UnicodeError:\n                 raise InvalidURL('URL has an invalid label.')\n-        elif host.startswith(u'*'):\n+        elif host.startswith((u'*', u'.')):\n             raise InvalidURL('URL has an invalid label.')\n \n         # Carefully reconstruct the network location\ndiff --git a/tests/test_requests.py b/tests/test_requests.py\nindex 463e8bf..7a409b6 100644\n--- a/tests/test_requests.py\n+++ b/tests/test_requests.py\n@@ -2488,6 +2488,7 @@ class TestPreparingURLs(object):\n             b\"http://*\",\n             u\"http://*.google.com\",\n             u\"http://*\",\n+            u\"http://.example.com\",\n             u\"http://☃.net/\"\n         )\n     )\n",
+  "manifest_sha256": "4740ac5ea157fa52fdbf1664465b62ca61e4b00dbc49a423a8a1279cf5afa692",
+  "patch_sha256": "66ea80d444e47fc9c9b9b907f7e8d447666f8476e741b2cbd0729ef38c05f9b6",
+  "status": "completed_ungraded",
+  "preparation_seconds": 17.98833789397031,
+  "assignment_wall_seconds": 74.74410400202032
+}

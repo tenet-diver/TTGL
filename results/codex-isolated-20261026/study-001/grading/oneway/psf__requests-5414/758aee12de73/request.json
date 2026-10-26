@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-oneway-psf__requests-5414-38c1c26b-758aee12de73",
+  "prediction_sha256": "9ed49ca7fac88681892356a0287c86b797919c21c9a16e35d16c4f205d35be24",
+  "model_patch_sha256": "38c1c26bccd568893d8b8a69a968ffa9892064cb7b6473d98e3260c6ebac0320",
+  "patch_record_sha256": "cb5f8c36caffb612a76cc0599a255a4c21165a01556ae55f361f0e353389a92b",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "19a99afeb913aa03f7676ad157e498c778365e29b72672f3b67dd2913c5fe39f",
+  "timeout_seconds": 1200
+}

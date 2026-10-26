@@ -1,0 +1,26 @@
+diff --git a/requests/models.py b/requests/models.py
+index e7d292d..6f34423 100644
+--- a/requests/models.py
++++ b/requests/models.py
+@@ -398,7 +398,7 @@ class PreparedRequest(RequestEncodingMixin, RequestHooksMixin):
+         # non-ASCII characters. This allows users to automatically get the correct IDNA
+         # behaviour. For strings containing only ASCII characters, we need to also verify
+         # it doesn't start with a wildcard (*), before allowing the unencoded hostname.
+-        if not unicode_is_ascii(host):
++        if not unicode_is_ascii(host) or host.startswith(u'.'):
+             try:
+                 host = self._get_idna_encoded_host(host)
+             except UnicodeError:
+diff --git a/tests/test_requests.py b/tests/test_requests.py
+index 463e8bf..3afdf1a 100644
+--- a/tests/test_requests.py
++++ b/tests/test_requests.py
+@@ -2486,6 +2486,8 @@ class TestPreparingURLs(object):
+         (
+             b"http://*.google.com",
+             b"http://*",
++            b"http://.example.com",
++            u"http://.example.com",
+             u"http://*.google.com",
+             u"http://*",
+             u"http://☃.net/"

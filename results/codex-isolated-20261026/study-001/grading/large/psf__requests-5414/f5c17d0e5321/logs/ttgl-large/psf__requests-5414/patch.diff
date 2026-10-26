@@ -1,0 +1,41 @@
+diff --git a/requests/models.py b/requests/models.py
+index e7d292d..884aae7 100644
+--- a/requests/models.py
++++ b/requests/models.py
+@@ -397,13 +397,13 @@ class PreparedRequest(RequestEncodingMixin, RequestHooksMixin):
+         # In general, we want to try IDNA encoding the hostname if the string contains
+         # non-ASCII characters. This allows users to automatically get the correct IDNA
+         # behaviour. For strings containing only ASCII characters, we need to also verify
+-        # it doesn't start with a wildcard (*), before allowing the unencoded hostname.
++        # it doesn't start with a wildcard (*) or dot, before allowing the unencoded hostname.
+         if not unicode_is_ascii(host):
+             try:
+                 host = self._get_idna_encoded_host(host)
+             except UnicodeError:
+                 raise InvalidURL('URL has an invalid label.')
+-        elif host.startswith(u'*'):
++        elif host.startswith((u'*', u'.')):
+             raise InvalidURL('URL has an invalid label.')
+ 
+         # Carefully reconstruct the network location
+diff --git a/tests/test_requests.py b/tests/test_requests.py
+index 463e8bf..1733a70 100644
+--- a/tests/test_requests.py
++++ b/tests/test_requests.py
+@@ -2496,6 +2496,16 @@ class TestPreparingURLs(object):
+         with pytest.raises(requests.exceptions.InvalidURL):
+             r.prepare()
+ 
++    @pytest.mark.parametrize('url', (
++        u'http://.example.com',
++        b'http://.example.com',
++        u'http://..example.com',
++        u'http://.',
++    ))
++    def test_preparing_url_with_leading_dot(self, url):
++        with pytest.raises(InvalidURL, match=r'^URL has an invalid label\.$'):
++            requests.Request('GET', url).prepare()
++
+     @pytest.mark.parametrize(
+         'url, exception',
+         (

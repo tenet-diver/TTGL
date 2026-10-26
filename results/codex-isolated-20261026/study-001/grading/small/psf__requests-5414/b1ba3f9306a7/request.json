@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-small-psf__requests-5414-60081b8d-b1ba3f9306a7",
+  "prediction_sha256": "1616f9c8e6e5d570b6425a1105df4a5b8b8d4188fb1eb0b9bf71ef7f63515f0f",
+  "model_patch_sha256": "60081b8d949a3f6fccd25532b3b67e51082be68ea059c2c3752cfad122a37172",
+  "patch_record_sha256": "d46b71491a05a979c101781bca8cb3028285d2748e60668af08648da38071d46",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "19a99afeb913aa03f7676ad157e498c778365e29b72672f3b67dd2913c5fe39f",
+  "timeout_seconds": 1200
+}

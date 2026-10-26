@@ -1,0 +1,8 @@
+{
+  "kind": "reuse_exact_program_and_evaluator",
+  "cache_key": "f0c38075a44c0ed1dd11ebb5e84b47ae4cc3b43a16d33da39745c570273d4cdd",
+  "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/psf__requests-5414/758aee12de73/logs/ttgl-oneway/psf__requests-5414/report.json",
+  "report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0",
+  "patch_record_sha256": "b4caef7ee8ab544bb101a79463f3fa381d5c04fabb7e866e9db0cababab6787a",
+  "new_evaluation_executed": false
+}

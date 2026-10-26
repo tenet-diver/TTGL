@@ -1,0 +1,10 @@
+{
+  "instance_id": "psf__requests-5414",
+  "model_name_or_path": "ttgl-reset_expert",
+  "model_patch": "diff --git a/requests/models.py b/requests/models.py\nindex e7d292d..6f34423 100644\n--- a/requests/models.py\n+++ b/requests/models.py\n@@ -398,7 +398,7 @@ class PreparedRequest(RequestEncodingMixin, RequestHooksMixin):\n         # non-ASCII characters. This allows users to automatically get the correct IDNA\n         # behaviour. For strings containing only ASCII characters, we need to also verify\n         # it doesn't start with a wildcard (*), before allowing the unencoded hostname.\n-        if not unicode_is_ascii(host):\n+        if not unicode_is_ascii(host) or host.startswith(u'.'):\n             try:\n                 host = self._get_idna_encoded_host(host)\n             except UnicodeError:\ndiff --git a/tests/test_requests.py b/tests/test_requests.py\nindex 463e8bf..3afdf1a 100644\n--- a/tests/test_requests.py\n+++ b/tests/test_requests.py\n@@ -2486,6 +2486,8 @@ class TestPreparingURLs(object):\n         (\n             b\"http://*.google.com\",\n             b\"http://*\",\n+            b\"http://.example.com\",\n+            u\"http://.example.com\",\n             u\"http://*.google.com\",\n             u\"http://*\",\n             u\"http://☃.net/\"\n",
+  "manifest_sha256": "2a46e75888407f58c732166f5fdaa91f205be13667c90cda98fa2f302b9af40c",
+  "patch_sha256": "d5c7bb6327dee2af37334ce82ac21d2083e699f02bdb190b13184ae366de4fc5",
+  "status": "completed_ungraded",
+  "preparation_seconds": 12.063503877958283,
+  "assignment_wall_seconds": 50.89367705292534
+}

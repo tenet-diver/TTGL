@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-reset_expert-psf__requests-5414-d5c7bb63-90b4a5db28cd",
+  "prediction_sha256": "8b1cdb0c082f583ea30a6fe83302ef8ef9a450fdb68a99599bf3c4d947a8b32a",
+  "model_patch_sha256": "d5c7bb6327dee2af37334ce82ac21d2083e699f02bdb190b13184ae366de4fc5",
+  "patch_record_sha256": "9a9f29d3f6ce3e6f73e8966d63942e88d823afd862b9d31698d2f138c04c2d50",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "19a99afeb913aa03f7676ad157e498c778365e29b72672f3b67dd2913c5fe39f",
+  "timeout_seconds": 1200
+}

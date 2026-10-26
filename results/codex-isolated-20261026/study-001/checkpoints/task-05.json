@@ -1,0 +1,225 @@
+{
+  "status": "partial_complete_task_block",
+  "task_index": 5,
+  "total_tasks": 12,
+  "total_assignments": 72,
+  "not_a_full_study_conclusion": true,
+  "results": [
+    {
+      "condition": "small",
+      "instance_id": "psf__requests-5414",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 33.15557804296259,
+      "published_rate_scenario_usd": 0.0035211800000000005,
+      "usage": {
+        "input_tokens": 123000,
+        "cached_input_tokens": 104448,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1243,
+        "reasoning_output_tokens": 411
+      },
+      "patch_sha256": "60081b8d949a3f6fccd25532b3b67e51082be68ea059c2c3752cfad122a37172",
+      "official_report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 130,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "large",
+      "instance_id": "psf__requests-5414",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 64.29243759601377,
+      "published_rate_scenario_usd": 0.06560880000000001,
+      "usage": {
+        "input_tokens": 125976,
+        "cached_input_tokens": 105728,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1454,
+        "reasoning_output_tokens": 219
+      },
+      "patch_sha256": "d22c643a3e0eddb719523907d751e12ed869d1b1714f1cd4a0d2f10daa67f22c",
+      "official_report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 130,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "precall_router",
+      "instance_id": "psf__requests-5414",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 78.76750911504496,
+      "published_rate_scenario_usd": 0.00666672,
+      "usage": {
+        "input_tokens": 192951,
+        "cached_input_tokens": 149632,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1677,
+        "reasoning_output_tokens": 469
+      },
+      "patch_sha256": "38c1c26bccd568893d8b8a69a968ffa9892064cb7b6473d98e3260c6ebac0320",
+      "official_report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 130,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "oneway",
+      "instance_id": "psf__requests-5414",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 43.11423098598607,
+      "published_rate_scenario_usd": 0.0024453,
+      "usage": {
+        "input_tokens": 123173,
+        "cached_input_tokens": 115200,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 992,
+        "reasoning_output_tokens": 193
+      },
+      "patch_sha256": "38c1c26bccd568893d8b8a69a968ffa9892064cb7b6473d98e3260c6ebac0320",
+      "official_report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 130,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "reset_expert",
+      "instance_id": "psf__requests-5414",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 36.811539704096504,
+      "published_rate_scenario_usd": 0.00334842,
+      "usage": {
+        "input_tokens": 135728,
+        "cached_input_tokens": 120832,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1301,
+        "reasoning_output_tokens": 335
+      },
+      "patch_sha256": "d5c7bb6327dee2af37334ce82ac21d2083e699f02bdb190b13184ae366de4fc5",
+      "official_report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 130,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "personal",
+      "instance_id": "psf__requests-5414",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 55.29069849906955,
+      "published_rate_scenario_usd": 0.00423796,
+      "usage": {
+        "input_tokens": 129320,
+        "cached_input_tokens": 102656,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1090,
+        "reasoning_output_tokens": 205
+      },
+      "patch_sha256": "66ea80d444e47fc9c9b9b907f7e8d447666f8476e741b2cbd0729ef38c05f9b6",
+      "official_report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 130,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    }
+  ]
+}
