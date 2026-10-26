@@ -24,6 +24,7 @@ pandoc paper.md --standalone --toc --number-sections --citeproc \
   -V monofont='DejaVu Sans Mono' -o paper.pdf
 pandoc paper.md --standalone --number-sections --citeproc \
   --lua-filter=docx-contents.lua \
+  --reference-doc=reference.docx \
   --bibliography=references.bib --resource-path=. -o paper.docx
 pandoc paper.md --standalone --toc --number-sections --citeproc \
   --bibliography=references.bib --resource-path=. --math-method=mathml \
@@ -40,7 +41,7 @@ sources = ['frontmatter.md', '../thesis/personal-agent-prior-art.md',
            '../../results/codex-pilot-001/analysis/summary.json',
            '../../results/codex-pilot-001/analysis/records.json',
            '../../results/codex-pilot-001/dialogue-transcript.md',
-           '../../scripts/build_paper.sh', 'docx-contents.lua',
+           '../../scripts/build_paper.sh', 'docx-contents.lua', 'reference.docx',
            '../../experiments/swe-replay-001/protocol.json',
            '../../results/swe-replay-001/summary.json',
            '../../results/swe-replay-001/additional-comparisons.json',

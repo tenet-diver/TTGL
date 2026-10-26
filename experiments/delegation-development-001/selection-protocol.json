@@ -1,0 +1,24 @@
+{
+  "status": "registered_before_any_v2_development_grades",
+  "candidates": [
+    "adaptive-001",
+    "fallback-001"
+  ],
+  "shared_tasks_sha256": "a02fb52c87e10fa7814c7ac4ea00bf68f8878a709cf564bb4e8b0a8ed2b0508f",
+  "conditions_per_candidate": [
+    "small",
+    "large",
+    "personal"
+  ],
+  "new_scored_assignments_total": 24,
+  "development_only": true,
+  "selection_rule": "Among assisted candidates with complete official grades and complete native cost accounting, choose highest resolved count, then lowest total published-rate model-cost scenario. Freeze selection and all prompts before held-out inference. Report both candidates and their independent control repeats; no best-of merging of task attempts.",
+  "cheap_control": "Compare strengthened Luna-only with each assisted candidate; do not attribute shared prompting gains to delegation.",
+  "fallback_rule": "Initial independent attempt plus visible check; one materially different unsuccessful repair attempt, or no credible approach after initial inspection, triggers a consultation while integration budget remains.",
+  "additional_revisions": "If a later revision is necessary, register a new candidate and retain all earlier runs before scoring it. Never tune on held-out outcomes.",
+  "target": {
+    "cost_ratio_max": 0.05,
+    "accuracy_retention_min": 0.95
+  },
+  "external_baselines": "Published benchmarks are context; paired local controls support retention estimates."
+}
