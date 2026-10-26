@@ -1,0 +1,10 @@
+{
+  "instance_id": "pydata__xarray-3095",
+  "model_name_or_path": "ttgl-personal",
+  "model_patch": "diff --git a/xarray/core/variable.py b/xarray/core/variable.py\nindex 379be8f..23cf03d 100644\n--- a/xarray/core/variable.py\n+++ b/xarray/core/variable.py\n@@ -1942,14 +1942,10 @@ class IndexVariable(Variable):\n             data copied from original.\n         \"\"\"\n         if data is None:\n-            if deep:\n-                # self._data should be a `PandasIndexAdapter` instance at this\n-                # point, which doesn't have a copy method, so make a deep copy\n-                # of the underlying `pandas.MultiIndex` and create a new\n-                # `PandasIndexAdapter` instance with it.\n-                data = PandasIndexAdapter(self._data.array.copy(deep=True))\n-            else:\n-                data = self._data\n+            # pandas.Index objects are immutable. Reusing the adapter also\n+            # preserves its dtype: Index.copy(deep=True) can cast unicode\n+            # indexes to object dtype.\n+            data = self._data\n         else:\n             data = as_compatible_data(data)\n             if self.shape != data.shape:\n",
+  "manifest_sha256": "6e49e05004b115889a9bc7edf18c79c51db41db945c8994d16452c499d8269b0",
+  "patch_sha256": "803e703fd46f91ef225ff39e97685e0a0b63faf55f5fbb8ffe99c8d365142c24",
+  "status": "completed_ungraded",
+  "preparation_seconds": 9.342738106963225,
+  "assignment_wall_seconds": 139.66807499399874
+}

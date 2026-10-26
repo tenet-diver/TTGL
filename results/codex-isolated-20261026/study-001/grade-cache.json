@@ -30,5 +30,29 @@
   "f5cfb83d80c36ca0f3b36ea952c509128083df1261531b99f2b7f279e317e126": {
     "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/django__django-13297/dec33f3eb37d/logs/ttgl-large/django__django-13297/report.json",
     "report_sha256": "880ffaefa81e80d2c225e2de289e292483cf2a17eafe11c7b0bd0f4610392737"
+  },
+  "fbcc57a2112338a338294c0c01673b5445ef8cac62aa27d15bcd3ab510b19757": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/small/pydata__xarray-3095/13ac06c45ef4/logs/ttgl-small/pydata__xarray-3095/report.json",
+    "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
+  },
+  "e123fcfe72d530117c75d54565941f321614452aa895ee885f4dc6349ace9b4e": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/pydata__xarray-3095/4d26d1b00cb1/logs/ttgl-oneway/pydata__xarray-3095/report.json",
+    "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
+  },
+  "b0d5fb3f3326aed3d6ecca3f0bba50764df413797c4f3f56a090ca60bc938924": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/personal/pydata__xarray-3095/fd86b88e80ee/logs/ttgl-personal/pydata__xarray-3095/report.json",
+    "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
+  },
+  "13e429d4151ea79bef75049feac1682626960d310fcea21477e82cf1c56261b1": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/pydata__xarray-3095/223c0da8d056/logs/ttgl-reset_expert/pydata__xarray-3095/report.json",
+    "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
+  },
+  "f96c3e7c40daced87b2dce8c7194a44df4debaa3640c3a4b0d0bf93518553424": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/pydata__xarray-3095/9704a3ec17d4/logs/ttgl-large/pydata__xarray-3095/report.json",
+    "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
+  },
+  "3b0fb3aa1ec623a09199049303382207a4ee71e478150f21fc046d2338b6c81f": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/precall_router/pydata__xarray-3095/e98d51e66110/logs/ttgl-precall_router/pydata__xarray-3095/report.json",
+    "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
   }
 }

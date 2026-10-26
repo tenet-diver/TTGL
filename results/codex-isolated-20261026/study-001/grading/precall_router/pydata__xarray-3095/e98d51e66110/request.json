@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-precall_router-pydata__xarray-3095-59226791-e98d51e66110",
+  "prediction_sha256": "996e0b0ccef91b6e55bee084eeb940e0006d8361f5a9d6c2c295c759a8c1fbf4",
+  "model_patch_sha256": "59226791d1fa45add6fcd6427437d0fd9cca44d9d89f0c2988be07fdd29c940c",
+  "patch_record_sha256": "b00619bcb26eab3b081bafa89593287402e6f57d91a45d469051cfe6db6f81db",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "19a99afeb913aa03f7676ad157e498c778365e29b72672f3b67dd2913c5fe39f",
+  "timeout_seconds": 1200
+}

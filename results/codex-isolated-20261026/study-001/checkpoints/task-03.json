@@ -1,0 +1,225 @@
+{
+  "status": "partial_complete_task_block",
+  "task_index": 3,
+  "total_tasks": 12,
+  "total_assignments": 72,
+  "not_a_full_study_conclusion": true,
+  "results": [
+    {
+      "condition": "small",
+      "instance_id": "pydata__xarray-3095",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 93.78656751697417,
+      "published_rate_scenario_usd": 0.0067018600000000005,
+      "usage": {
+        "input_tokens": 209561,
+        "cached_input_tokens": 167936,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1720,
+        "reasoning_output_tokens": 257
+      },
+      "patch_sha256": "d5b1d9db934bd2c009ea0662d1c180b5a4950ffe3adf54d0cd0555a053854459",
+      "official_report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 253,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "large",
+      "instance_id": "pydata__xarray-3095",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 169.63487313396763,
+      "published_rate_scenario_usd": 0.1690076,
+      "usage": {
+        "input_tokens": 307642,
+        "cached_input_tokens": 249856,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2845,
+        "reasoning_output_tokens": 404
+      },
+      "patch_sha256": "b11bf704af6d69c15b02aa71869847e3284292e030273192aaa0f94650cd3251",
+      "official_report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 253,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "precall_router",
+      "instance_id": "pydata__xarray-3095",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 76.83945060893893,
+      "published_rate_scenario_usd": 0.0081995,
+      "usage": {
+        "input_tokens": 280296,
+        "cached_input_tokens": 231040,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1927,
+        "reasoning_output_tokens": 252
+      },
+      "patch_sha256": "59226791d1fa45add6fcd6427437d0fd9cca44d9d89f0c2988be07fdd29c940c",
+      "official_report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 253,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "oneway",
+      "instance_id": "pydata__xarray-3095",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 87.75392047094647,
+      "published_rate_scenario_usd": 0.0061755,
+      "usage": {
+        "input_tokens": 255512,
+        "cached_input_tokens": 225280,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1799,
+        "reasoning_output_tokens": 339
+      },
+      "patch_sha256": "95b8f5335e94ee2c8930c6c45cfd10d060754bbc03ce6a6c972f64bfa7f6079e",
+      "official_report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 253,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "reset_expert",
+      "instance_id": "pydata__xarray-3095",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 78.67363510897849,
+      "published_rate_scenario_usd": 0.00700766,
+      "usage": {
+        "input_tokens": 244804,
+        "cached_input_tokens": 203136,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1619,
+        "reasoning_output_tokens": 375
+      },
+      "patch_sha256": "9649e2f05214b1013277468d67a30e08a81560562e51d3d95c0b0ef6f95145b0",
+      "official_report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 253,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "personal",
+      "instance_id": "pydata__xarray-3095",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 129.01981754298322,
+      "published_rate_scenario_usd": 0.005503900000000001,
+      "usage": {
+        "input_tokens": 214023,
+        "cached_input_tokens": 184960,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1496,
+        "reasoning_output_tokens": 94
+      },
+      "patch_sha256": "803e703fd46f91ef225ff39e97685e0a0b63faf55f5fbb8ffe99c8d365142c24",
+      "official_report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 253,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    }
+  ]
+}

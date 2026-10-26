@@ -1,0 +1,17 @@
+{
+  "container": "ttgl-worker-cd1edef3296a28ba58a8158b",
+  "image_id": "sha256:4e682920ccfb9f1707a53a0609ef10120b04c25744ad0a5da2a57640d0491f00",
+  "base_commit": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+  "mounts": [],
+  "network": "none",
+  "cap_drop": [
+    "ALL"
+  ],
+  "memory_bytes": 4294967296,
+  "native_host_tools": false,
+  "solver_reference_material": false,
+  "image_tracked_source_audited": true,
+  "restored_image_setup_files": [],
+  "ignored_compiled_dependencies_retained": true,
+  "additional_worker_dependencies": []
+}

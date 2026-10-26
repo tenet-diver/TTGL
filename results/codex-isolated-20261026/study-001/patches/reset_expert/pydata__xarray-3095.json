@@ -1,0 +1,10 @@
+{
+  "instance_id": "pydata__xarray-3095",
+  "model_name_or_path": "ttgl-reset_expert",
+  "model_patch": "diff --git a/xarray/core/variable.py b/xarray/core/variable.py\nindex 379be8f..dda8705 100644\n--- a/xarray/core/variable.py\n+++ b/xarray/core/variable.py\n@@ -1947,7 +1947,8 @@ class IndexVariable(Variable):\n                 # point, which doesn't have a copy method, so make a deep copy\n                 # of the underlying `pandas.MultiIndex` and create a new\n                 # `PandasIndexAdapter` instance with it.\n-                data = PandasIndexAdapter(self._data.array.copy(deep=True))\n+                data = PandasIndexAdapter(self._data.array.copy(deep=True),\n+                                         dtype=self._data.dtype)\n             else:\n                 data = self._data\n         else:\ndiff --git a/xarray/tests/test_dataset.py b/xarray/tests/test_dataset.py\nindex fc6f7f3..2373fb6 100644\n--- a/xarray/tests/test_dataset.py\n+++ b/xarray/tests/test_dataset.py\n@@ -2069,6 +2069,18 @@ class TestDataset:\n \n             assert data.attrs['Test'] is not copied.attrs['Test']\n \n+    def test_copy_preserves_unicode_index_dtype(self):\n+        ds = Dataset(coords={'x': ['foo'], 'y': ('x', ['bar'])},\n+                     data_vars={'z': ('x', ['baz'])})\n+        da = ds.z\n+\n+        for copied in (ds.copy(deep=True), deepcopy(ds)):\n+            assert copied.x.dtype.kind == 'U'\n+\n+        for copied in (da.copy(deep=False), da.copy(deep=True),\n+                       copy(da), deepcopy(da)):\n+            assert copied.x.dtype.kind == 'U'\n+\n     def test_copy_with_data(self):\n         orig = create_test_data()\n         new_data = {k: np.random.randn(*v.shape)\n",
+  "manifest_sha256": "4c3029a1fd437274aa273d1b8372248929e2facda548309499d781f42d574904",
+  "patch_sha256": "9649e2f05214b1013277468d67a30e08a81560562e51d3d95c0b0ef6f95145b0",
+  "status": "completed_ungraded",
+  "preparation_seconds": 8.360283727990463,
+  "assignment_wall_seconds": 88.38848407100886
+}

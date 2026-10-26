@@ -1,0 +1,37 @@
+diff --git a/xarray/core/variable.py b/xarray/core/variable.py
+index 379be8f..dda8705 100644
+--- a/xarray/core/variable.py
++++ b/xarray/core/variable.py
+@@ -1947,7 +1947,8 @@ class IndexVariable(Variable):
+                 # point, which doesn't have a copy method, so make a deep copy
+                 # of the underlying `pandas.MultiIndex` and create a new
+                 # `PandasIndexAdapter` instance with it.
+-                data = PandasIndexAdapter(self._data.array.copy(deep=True))
++                data = PandasIndexAdapter(self._data.array.copy(deep=True),
++                                         dtype=self._data.dtype)
+             else:
+                 data = self._data
+         else:
+diff --git a/xarray/tests/test_dataset.py b/xarray/tests/test_dataset.py
+index fc6f7f3..2373fb6 100644
+--- a/xarray/tests/test_dataset.py
++++ b/xarray/tests/test_dataset.py
+@@ -2069,6 +2069,18 @@ class TestDataset:
+ 
+             assert data.attrs['Test'] is not copied.attrs['Test']
+ 
++    def test_copy_preserves_unicode_index_dtype(self):
++        ds = Dataset(coords={'x': ['foo'], 'y': ('x', ['bar'])},
++                     data_vars={'z': ('x', ['baz'])})
++        da = ds.z
++
++        for copied in (ds.copy(deep=True), deepcopy(ds)):
++            assert copied.x.dtype.kind == 'U'
++
++        for copied in (da.copy(deep=False), da.copy(deep=True),
++                       copy(da), deepcopy(da)):
++            assert copied.x.dtype.kind == 'U'
++
+     def test_copy_with_data(self):
+         orig = create_test_data()
+         new_data = {k: np.random.randn(*v.shape)
