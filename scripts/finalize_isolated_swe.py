@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -35,7 +36,11 @@ def main():
     (out / 'provider-collector.stdout.txt').write_text(result.stdout + result.stderr)
     if result.returncode not in (0, 2) or not provider.is_file():
         raise RuntimeError('Provider collector failed without a usable observation')
-    summary = benchmark.analyze(study, study / 'grades.json', out / 'analysis',
+    portable = {arm: {key: os.path.relpath(Path(path) if Path(path).is_absolute() else study / path, out)
+                       for key, path in rows.items()}
+                for arm, rows in json.loads((study / 'grades.json').read_text()).items()}
+    benchmark.write_new(out / 'grades-portable.json', portable)
+    summary = benchmark.analyze(study, out / 'grades-portable.json', out / 'analysis',
                                 provider_usage_path=provider)
     records = json.loads((out / 'analysis/records.json').read_text())
     if any(r['resolved'] is None for r in records):
@@ -103,7 +108,8 @@ def main():
         'Environment exclusions determined before scored inference: '
         + (', '.join(environment['excluded_environment_ids']) or 'none') + '.', '',
         'See analysis/records.json and analysis/summary.json for all assigned records, provenance, '
-        'paired uncertainty and cost availability. The frozen design, environment, per-role journals, '
+        'paired uncertainty and cost availability. grades-portable.json resolves archived reports relative to '
+        'this directory so the analysis can be reproduced after relocating the checkout. The frozen design, environment, per-role journals, '
         'patches and original official grading logs are in the parent study directory.', '']
     (out / 'README.md').write_text('\n'.join(lines))
     benchmark.write_new(out / 'validation.json', {
@@ -114,6 +120,7 @@ def main():
         'design_sha256': benchmark.digest(study / 'design.json'),
         'environment_sha256': benchmark.digest(study / 'environment.json'),
         'grade_index_sha256': benchmark.digest(study / 'grades.json'),
+        'portable_grade_index_sha256': benchmark.digest(out / 'grades-portable.json'),
         'provider_usage_sha256': benchmark.digest(provider),
         'grading_execution_records': len(executions), 'exact_program_grade_reuses': len(reuses),
     })

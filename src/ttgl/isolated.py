@@ -110,12 +110,13 @@ class DockerWorkers:
                 # warm. Remove only our now-unused image, never global caches.
                 docker('image', 'rm', self.previous_image)
                 self.previous_image = None
-            if shutil.disk_usage(workspace).free < 10 * 1024**3 + image.get('size_bytes', 0):
-                raise RuntimeError('Insufficient free space for the next worker image plus reserve')
+            image_bytes = image.get('size_bytes', 0)
             reference, image = image['reference'], image['image_id']
             observed = json.loads(docker('image', 'inspect', reference)) if subprocess.run(
                 ['docker', 'image', 'inspect', reference], capture_output=True).returncode == 0 else []
             if not observed:
+                if shutil.disk_usage(workspace).free < 10 * 1024**3 + image_bytes:
+                    raise RuntimeError('Insufficient free space for the next worker image plus reserve')
                 docker('pull', reference, timeout=1200)
             if json.loads(docker('image', 'inspect', reference))[0]['Id'] != image:
                 raise ValueError('Pulled worker differs from frozen image')

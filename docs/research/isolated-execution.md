@@ -144,3 +144,19 @@ the setup exception, and requires the final exact-base checkout to be clean.
 Other content changes, added/deleted paths and symlinks are rejected. Ignored
 compiled dependencies survive this normalization. Public worker tests check
 that those dependencies still import after source restoration.
+
+The control runner supports an explicit `--resume` after a host free-space
+stop between tasks. It verifies the original protocol, dataset, prediction
+bytes and every completed native report before skipping completed pairs.
+A resume receipt records the revised driver hash without rewriting the
+original protocol. Partial control attempts require reconciliation and are
+never automatically replayed. Source control records retain the actual process
+return codes, including the Django-17084 successful gold report followed by
+an image-enumeration cleanup race. That native report has
+`infra_failure=false`; its nonzero wrapper exit is not hidden.
+
+Controls and worker image cleanup are now run sequentially: concurrent image
+removal can race the upstream Docker SDK's image inventory. The 10-GiB worker
+reserve stays enforced. An already cached image no longer needs its own size
+added to the pre-download reserve; uncached images still do. Disk stops and
+failed preparations make no model calls and remain in their original folders.

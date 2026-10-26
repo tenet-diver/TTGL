@@ -314,5 +314,48 @@
     "/Users/rustameynaliyev/Developer/calorie-budget-479-portable-recovery.noindex/node_modules"
   ],
   "free_bytes_after_cleanup": 49330835456,
-  "free_space_note": "Measured while evaluator setup/control image downloads were underway; caches may be recreated by normal use"
+  "free_space_note": "Measured while evaluator setup/control image downloads were underway; caches may be recreated by normal use",
+  "additional_inactive_cache_removals": [
+    {
+      "path": "/Users/rustameynaliyev/Library/Caches/Cypress/12.9.0",
+      "allocated_kib_before": 528984,
+      "kind": "inactive downloadable Cypress binary cache"
+    },
+    {
+      "path": "/Users/rustameynaliyev/Library/Caches/Google/Chrome/Default/Cache",
+      "allocated_kib_before": 777804,
+      "kind": "rebuildable HTTP/code/download cache; no browser profile or persistent storage"
+    },
+    {
+      "path": "/Users/rustameynaliyev/Library/Caches/Google/Chrome/Default/Code Cache",
+      "allocated_kib_before": 379512,
+      "kind": "rebuildable HTTP/code/download cache; no browser profile or persistent storage"
+    },
+    {
+      "path": "/Users/rustameynaliyev/Library/Caches/Google/Chrome/Default/image_cache",
+      "allocated_kib_before": 0,
+      "kind": "rebuildable HTTP/code/download cache; no browser profile or persistent storage"
+    },
+    {
+      "path": "/Users/rustameynaliyev/Library/Caches/Google/Chrome/System Profile/Code Cache",
+      "allocated_kib_before": 16,
+      "kind": "rebuildable HTTP/code/download cache; no browser profile or persistent storage"
+    },
+    {
+      "path": "/Users/rustameynaliyev/Library/Caches/Google/Chrome/Profile 2/Cache",
+      "allocated_kib_before": 1080,
+      "kind": "rebuildable HTTP/code/download cache; no browser profile or persistent storage"
+    },
+    {
+      "path": "/Users/rustameynaliyev/Library/Caches/Google/Chrome/Profile 2/Code Cache",
+      "allocated_kib_before": 48,
+      "kind": "rebuildable HTTP/code/download cache; no browser profile or persistent storage"
+    },
+    {
+      "path": "/Users/rustameynaliyev/.npm/_cacache",
+      "allocated_kib_before": 217520,
+      "kind": "rebuildable HTTP/code/download cache; no browser profile or persistent storage"
+    }
+  ],
+  "additional_cache_allocated_gib_before": 1.8167152404785156
 }

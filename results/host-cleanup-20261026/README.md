@@ -17,3 +17,14 @@ Codex runtime and previous experiment evidence were preserved.
 ref, preservation checks and the observed free bytes during setup. Some caches
 were subsequently recreated by ordinary use; the report lists those observed
 at verification. Cleanup does not disable or stop the existing CI runner.
+
+A later pass removed the inactive Cypress 12.9.0 downloadable binary cache
+(0.50 GiB allocated). The ongoing experiment also deletes its own completed
+images and reclaims unused Docker VM blocks. The active native CI workload is
+preserved; its changing resource use means the initial free-space gain is not
+a promise of continuously available capacity.
+
+The second cache pass also removed 1.31 GiB of Chrome HTTP/code/image caches
+and npm content-addressed downloads. Chrome profiles, cookies and persistent
+Storage directories were not touched. Additional cache removals total 1.82 GiB
+allocated before deletion and are itemized in report.json.
