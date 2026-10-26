@@ -27,15 +27,17 @@ ax.axhline(95, color='#38764b', linestyle='--', linewidth=1)
 ax.axvline(5, color='#38764b', linestyle='--', linewidth=1)
 colors = {'small':'#2875b2','personal':'#d26c18','oneway':'#8c5c9c',
           'reset_expert':'#b34856','precall_router':'#448b83'}
+labels = {'small':'Luna only','personal':'Continued dialogue','oneway':'One-way help',
+          'reset_expert':'Fresh expert','precall_router':'Pre-task router'}
 for arm, row in comparisons.items():
     x, y = 100*row['cost_ratio'], 100*row['accuracy_retention_ratio']
     if x <= 0:
         raise ValueError('A log cost chart requires positive measured scenario cost')
     ax.scatter(x, y, s=65, color=colors.get(arm),
-               label=f"{arm}: {row['policy_resolved']}/{row['paired_tasks']}; cost {x:.1f}%")
+               label=f"{labels.get(arm,arm)}: {row['policy_resolved']}/{row['paired_tasks']}; cost {x:.1f}%")
 reference = [r for r in records if r['arm']=='large']
 ax.scatter(100,100,s=75,color='#292929',marker='s',
-           label=f"large: {sum(r['resolved'] for r in reference)}/{len(reference)}; cost 100%")
+           label=f"Sol only: {sum(r['resolved'] for r in reference)}/{len(reference)}; cost 100%")
 ax.set_xscale('log')
 ax.set_xlim(min(.5,min(50*r['cost_ratio'] for r in comparisons.values())),
             max(120, max(100*r['cost_ratio'] for r in comparisons.values())*1.2))
