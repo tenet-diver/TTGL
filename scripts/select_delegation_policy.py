@@ -12,6 +12,11 @@ parser.add_argument('--candidate', action='append', required=True, help='adaptiv
 parser.add_argument('--protocol', type=Path, required=True)
 parser.add_argument('--output', type=Path, required=True)
 args = parser.parse_args()
+protocol = json.loads(args.protocol.read_text())
+registered_tasks_path = args.protocol.parent/'tasks.json'
+if benchmark.digest(registered_tasks_path) != protocol['shared_tasks_sha256']:
+    raise ValueError('Registered development task manifest changed')
+registered_ids = sorted(r['instance_id'] for r in benchmark.read_tasks(registered_tasks_path)['tasks'])
 candidates = []
 expected_tasks, expected_rates = None, None
 for spec in args.candidate:
@@ -28,6 +33,8 @@ for spec in args.candidate:
     if result['cost_ratio'] is None:
         raise ValueError('Missing candidate cost observations; do not select on unknowns')
     tasks = sorted({r['task_id'] for r in records})
+    if tasks != registered_ids:
+        raise ValueError('Candidate outcomes are not the registered development task set')
     rates = validation['published_rate_scenario_sha256']
     if expected_tasks is not None and (tasks != expected_tasks or rates != expected_rates):
         raise ValueError('Candidate task sets or pricing scenarios differ')
