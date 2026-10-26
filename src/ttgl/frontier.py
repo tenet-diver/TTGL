@@ -1,6 +1,7 @@
 """Paired quality/cost evidence for a declared relative-retention target."""
 import math
 import numpy as np
+from scipy.stats import beta
 
 
 def compare(records, *, policy, reference='large', seed=1729, samples=10000):
@@ -37,10 +38,19 @@ def compare(records, *, policy, reference='large', seed=1729, samples=10000):
         if np.all(boot_rc > 0):
             cost_ci = np.quantile(pc[draw].sum(axis=1)/boot_rc, [.025, .975]).tolist()
     joint = quality_ratio >= .95 and cost_ratio <= .05 if quality_ratio is not None and cost_ratio is not None else None
+    # This endpoint conditions on Sol successes and asks whether the policy
+    # retains those successes. It differs from aggregate accuracy retention,
+    # which can offset a lost Sol success with a rescued Sol failure.
+    reference_successes = int(r.sum())
+    both_successful = int(((r == 1) & (p == 1)).sum())
+    conditional_lower = (float(beta.ppf(.05, both_successful,
+                                       reference_successes-both_successful+1))
+                         if both_successful else 0.) if reference_successes else None
     return {'policy': policy, 'reference': reference, 'paired_tasks': len(tasks),
         'policy_resolved': int(p.sum()), 'reference_resolved': int(r.sum()),
         'reference_successes_lost': int(((r == 1) & (p == 0)).sum()),
         'reference_failures_rescued': int(((r == 0) & (p == 1)).sum()),
+        'reference_success_retention_one_sided_95_exact_lower_bound': conditional_lower,
         'accuracy_retention_ratio': quality_ratio, 'cost_ratio': cost_ratio,
         'model_cost_reduction_fraction': 1-cost_ratio if cost_ratio is not None else None,
         'accuracy_difference_points': float(100*(p.mean()-r.mean())),
@@ -52,5 +62,6 @@ def compare(records, *, policy, reference='large', seed=1729, samples=10000):
         'bootstrap': {'samples': samples, 'seed': seed, 'unit': 'paired task',
                       'method': 'percentile; interval unavailable if any bootstrap reference denominator is zero'},
         'limitations': ['Small samples and ceiling outcomes can produce degenerate bootstrap intervals; these do not prove population noninferiority.',
+                        'The exact conditional bound assumes independent representative tasks; repository clustering, contamination and development selection weaken that interpretation.',
                         'Cost inherits the input accounting definition; published token-rate scenarios are not observed bills.',
                         'Development-set policy selection invalidates a held-out interpretation of the same cases.']}

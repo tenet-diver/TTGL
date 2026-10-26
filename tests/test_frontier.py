@@ -11,12 +11,20 @@ def test_relative_retention_and_total_cost_both_required():
     result = compare(rows(), policy='small')
     assert result['joint_95_95_point_target_met'] is True
     assert result['model_cost_reduction_fraction'] == .96
+    assert result['reference_success_retention_one_sided_95_exact_lower_bound'] < .95
     loss = compare(rows((True, False)), policy='small')
     assert loss['accuracy_retention_ratio'] == .5
     assert loss['reference_successes_lost'] == 1
     assert loss['joint_95_95_point_target_met'] is False
     expensive = compare(rows(pc=.06), policy='small')
     assert expensive['joint_95_95_point_target_met'] is False
+
+
+def test_perfect_tiny_panels_do_not_establish_tight_retention():
+    twelve = compare(rows(p=(True,)*12, r=(True,)*12), policy='small')
+    assert twelve['reference_success_retention_one_sided_95_exact_lower_bound'] < .8
+    fifty_nine = compare(rows(p=(True,)*59, r=(True,)*59), policy='small')
+    assert fifty_nine['reference_success_retention_one_sided_95_exact_lower_bound'] > .95
 
 
 def test_missing_cost_and_zero_denominators_remain_unknown():
