@@ -15,3 +15,6 @@ experiments/codex-pilot-001/**/junit.xml -whitespace
 
 # Preserve original evaluator logs and scripts byte-for-byte, including whitespace.
 results/codex-isolated-20261026/**/logs/** -whitespace
+# Preserve native pytest failure transcripts without editing their evidence.
+results/codex-isolated-20261026/software-validation-002/*.log -whitespace
+results/codex-isolated-20261026/software-validation-002/*.xml -whitespace
