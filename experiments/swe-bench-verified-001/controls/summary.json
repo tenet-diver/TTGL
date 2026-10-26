@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "evidence_class": "executed_official_evaluator_controls_not_model_experiment",
+  "model_inference_calls": 0,
+  "control_runs_executed": 4,
+  "instances_control_checked": 2,
+  "control_pairs_valid": 1,
+  "selected_tasks": 12,
+  "selected_tasks_without_controls": 10,
+  "all_selected_tasks_environment_validated": false,
+  "quality_or_cost_savings_estimate": null,
+  "requests_diagnosis": "Gold resolves the target regression but seven declared PASS_TO_PASS checks fail; full pytest log also contains 158 fixture setup errors. Proxy-sensitive behavior and missing httpbin fixture plugin prevent readiness. Original official artifacts retained; tests and proxy not weakened.",
+  "pairs": [
+    {
+      "instance_id": "psf__requests-5414",
+      "control_pair_valid": false
+    },
+    {
+      "instance_id": "sympy__sympy-17139",
+      "control_pair_valid": true
+    }
+  ],
+  "records": [
+    {
+      "instance_id": "psf__requests-5414",
+      "control": "base",
+      "run_id": "ttgl-verified-001-base-requests5414",
+      "resolved": false,
+      "patch_successfully_applied": true,
+      "official_infra_failure": false,
+      "tests": {
+        "FAIL_TO_PASS": {
+          "success": 0,
+          "failure": 1
+        },
+        "PASS_TO_PASS": {
+          "success": 123,
+          "failure": 7
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      },
+      "report": "logs/evaluation/ttgl-verified-001-base-requests5414/base-control/psf__requests-5414/report.json",
+      "image_observed_repo_digest": "swebench/sweb.eval.x86_64.psf_1776_requests-5414@sha256:71c78211f16803c111ed1807ded20f8defd5f6917fb958ace4e076d5ea7d8b10"
+    },
+    {
+      "instance_id": "psf__requests-5414",
+      "control": "gold",
+      "run_id": "ttgl-verified-001-gold-requests5414",
+      "resolved": false,
+      "patch_successfully_applied": true,
+      "official_infra_failure": false,
+      "tests": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 123,
+          "failure": 7
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      },
+      "report": "logs/evaluation/ttgl-verified-001-gold-requests5414/gold/psf__requests-5414/report.json",
+      "image_observed_repo_digest": "swebench/sweb.eval.x86_64.psf_1776_requests-5414@sha256:71c78211f16803c111ed1807ded20f8defd5f6917fb958ace4e076d5ea7d8b10"
+    },
+    {
+      "instance_id": "sympy__sympy-17139",
+      "control": "base",
+      "run_id": "ttgl-verified-001-base-sympy17139",
+      "resolved": false,
+      "patch_successfully_applied": true,
+      "official_infra_failure": false,
+      "tests": {
+        "FAIL_TO_PASS": {
+          "success": 0,
+          "failure": 2
+        },
+        "PASS_TO_PASS": {
+          "success": 67,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      },
+      "report": "logs/evaluation/ttgl-verified-001-base-sympy17139/base-control/sympy__sympy-17139/report.json",
+      "image_observed_repo_digest": "swebench/sweb.eval.x86_64.sympy_1776_sympy-17139@sha256:9a8111742e0548816d920a27ba259ebde7647f4e46e7522c61647990dd35713c"
+    },
+    {
+      "instance_id": "sympy__sympy-17139",
+      "control": "gold",
+      "run_id": "ttgl-verified-001-gold-sympy17139",
+      "resolved": true,
+      "patch_successfully_applied": true,
+      "official_infra_failure": false,
+      "tests": {
+        "FAIL_TO_PASS": {
+          "success": 2,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 67,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      },
+      "report": "logs/evaluation/ttgl-verified-001-gold-sympy17139/gold/sympy__sympy-17139/report.json",
+      "image_observed_repo_digest": "swebench/sweb.eval.x86_64.sympy_1776_sympy-17139@sha256:9a8111742e0548816d920a27ba259ebde7647f4e46e7522c61647990dd35713c"
+    }
+  ],
+  "input_sha256": {
+    "logs/evaluation/ttgl-verified-001-base-requests5414/base-control/psf__requests-5414/eval.sh": "e74ec7cce3032abbbd2ac873d0630572bdf8e098aa5941dcf8dfe36bfc22f6d4",
+    "logs/evaluation/ttgl-verified-001-base-requests5414/base-control/psf__requests-5414/patch.diff": "d288b2214b2220cbaa21fe1922eb3ffdb0406e94f4fd428ff65d90a8e3c1307b",
+    "logs/evaluation/ttgl-verified-001-base-requests5414/base-control/psf__requests-5414/report.json": "acd4f7a12c1cdb49aa64a50433a2fb98775f0aa4a31e8b85728c8e3be75dba16",
+    "logs/evaluation/ttgl-verified-001-base-requests5414/base-control/psf__requests-5414/run_instance.log": "0859585f850e727ae19cf2a1f7e7a66959f77a43a44fc9fe808511393d072d18",
+    "logs/evaluation/ttgl-verified-001-base-requests5414/base-control/psf__requests-5414/test_output.txt": "b06786f962e706627c02973a1d88932a861c85b78736bace2d72dd34665f6b7f",
+    "logs/evaluation/ttgl-verified-001-gold-requests5414/gold/psf__requests-5414/eval.sh": "e74ec7cce3032abbbd2ac873d0630572bdf8e098aa5941dcf8dfe36bfc22f6d4",
+    "logs/evaluation/ttgl-verified-001-gold-requests5414/gold/psf__requests-5414/patch.diff": "41e9433ac5e2cdb17a3972bec818a1118ea4a3f2b7485cd11fff7e27f6f3f680",
+    "logs/evaluation/ttgl-verified-001-gold-requests5414/gold/psf__requests-5414/report.json": "ab7efd88250cc01a4b106d83b79f8ab1fb93244d19a06b8ea397b99fc6824cb7",
+    "logs/evaluation/ttgl-verified-001-gold-requests5414/gold/psf__requests-5414/run_instance.log": "d847828f5b10618b1b531a1b02020a3b19e4cb3c428b1a461e3a77ce07f90444",
+    "logs/evaluation/ttgl-verified-001-gold-requests5414/gold/psf__requests-5414/test_output.txt": "91db071874c77ebdaf4e73d88181dafeee8ea3be13e74276122a3c0f8c335543",
+    "logs/evaluation/ttgl-verified-001-base-sympy17139/base-control/sympy__sympy-17139/eval.sh": "8231ee6bc6994134c94c3adc6e369ea783c785130565374136c42b5c033a114b",
+    "logs/evaluation/ttgl-verified-001-base-sympy17139/base-control/sympy__sympy-17139/patch.diff": "d288b2214b2220cbaa21fe1922eb3ffdb0406e94f4fd428ff65d90a8e3c1307b",
+    "logs/evaluation/ttgl-verified-001-base-sympy17139/base-control/sympy__sympy-17139/report.json": "d988e5eb19765958e6b8e48397f49141481c8eba10d81cffa7f19891d46d11e2",
+    "logs/evaluation/ttgl-verified-001-base-sympy17139/base-control/sympy__sympy-17139/run_instance.log": "f9d3e1bbbca1d8cac1525c234b1a404a681fb833f25164553fb3309d85abc854",
+    "logs/evaluation/ttgl-verified-001-base-sympy17139/base-control/sympy__sympy-17139/test_output.txt": "265d46ea98f6a0da661c0bdcdeab4db64272f1fa3e5f4d6fe53a1e8476c050b0",
+    "logs/evaluation/ttgl-verified-001-gold-sympy17139/gold/sympy__sympy-17139/eval.sh": "8231ee6bc6994134c94c3adc6e369ea783c785130565374136c42b5c033a114b",
+    "logs/evaluation/ttgl-verified-001-gold-sympy17139/gold/sympy__sympy-17139/patch.diff": "8d075ec2ca5d69a25b188b01bcc94733358cd360ebb782e6626edc89bc563e5e",
+    "logs/evaluation/ttgl-verified-001-gold-sympy17139/gold/sympy__sympy-17139/report.json": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a",
+    "logs/evaluation/ttgl-verified-001-gold-sympy17139/gold/sympy__sympy-17139/run_instance.log": "ea71b311d332ad54bc013ce0df6678cc61efcb6f49434ee1160a37ba2e5e406b",
+    "logs/evaluation/ttgl-verified-001-gold-sympy17139/gold/sympy__sympy-17139/test_output.txt": "0c0c5a35786b29dc6fb609bb72642c606b513216d8c7646e86c8e7b0c4569b4b"
+  }
+}

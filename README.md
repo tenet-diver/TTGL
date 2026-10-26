@@ -8,6 +8,12 @@ Read the **[paper](docs/paper/README.md)**: [PDF](docs/paper/paper.pdf), [Word](
 
 The live Codex feasibility pilot completed 16 paired task assignments. Functional regression success was Luna **3/4**, Sol **4/4**, prompt routing **4/4**, and the optional-conversation controller **3/4**. All optional controllers chose zero expert calls. A separately required two-round clarification exchange passed its 30 regression tests. Strict original-test-file rules rejected several otherwise functional patches; both outcomes are [recorded](results/codex-pilot-001/analysis/summary.json). These tiny historical-task results do **not** establish cost savings or noninferiority; token and dollar usage were unavailable.
 
+The new **[SWE-bench Verified replay](results/swe-replay-001/README.md)** analyzes all **500 tasks across ten published model runs**. The primary learned router saved **46.1% estimated inference cost**, but success fell from **72.8% to 64.2%**, failing the three-point quality tolerance. MiniMax-M2.5 alone reached **75.8% at $0.073/task**, versus a ten-model portfolio point at **76.2% and $0.115/task**. Those are historical published-run estimates, not fresh conversational-agent results or measured Codex plan savings.
+
+- **[Continue on a writable Codex host](docs/research/HANDOVER.md)**: complete handover, prerequisites, execution commands and evidence boundaries.
+- **[Use it in your own projects](docs/research/project-usage-guide.md)**: installation, bounded collaboration, token/credit accounting and cost scenarios.
+- [Metered six-arm SWE-bench runner](docs/research/swe-bench-runner.md), [frozen official task sample and executed evaluator controls](experiments/swe-bench-verified-001/README.md), [independent audit](docs/research/swe-replay-audit.md).
+- [Research contribution and sample-size design](docs/research/standard-benchmark-research.md), [ADR 0007](docs/adr/0007-standard-benchmark-and-metered-handover.md).
 - [Subscription-backed Codex metering](docs/research/codex-metering.md): official usage counters, provider-estimated credits and ccusage; separate API billing is unnecessary for token metering.
 - [Codex conversation harness](docs/research/personal-harness.md): persistent controller and expert threads, clarification/challenge responses, bounded turns, failure records and unknown-cost handling.
 - [Frozen pilot and restore instructions](experiments/codex-pilot-001/README.md), [full results](results/codex-pilot-001/analysis/), [live dialogue transcript](results/codex-pilot-001/dialogue-transcript.md).
@@ -21,7 +27,7 @@ python scripts/analyze_codex_pilot.py --output-dir results/my-pilot-analysis
 python -m pytest -q
 ```
 
-The research dependencies are pinned below. Core validation: **96 passed, 1 skipped, 2 subtests passed**. The standalone Codex CLI adapter is tested with subprocess fixtures; live trials used the collaboration interface because nested CLI initialization encounters a read-only state directory here. Runpod remains unprovisioned and its authorized US$100 budget unspent. Fastest Jira/Confluence access is still unavailable; [local task state](docs/research/task-state.json) and an [import CSV](docs/research/jira-import.csv) preserve progress.
+The research dependencies are pinned below. Core validation: **136 passed, 1 skipped, 2 subtests passed**. The standalone adapter and metering collector have software tests; their actual native preflights still fail at the read-only Codex state directory. One official SWE-bench base/reference control pair passed; a second environment failed and remains recorded. The fresh conversational benchmark is **not completed**. Runpod remains unprovisioned and its authorized US$100 budget unspent. Fastest Jira/Confluence access is still unavailable; [local task state](docs/research/task-state.json) and an [import CSV](docs/research/jira-import.csv) preserve progress.
 
 ## Earlier coding-problem replay
 

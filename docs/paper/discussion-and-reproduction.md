@@ -18,6 +18,14 @@ reset expert sessions under equal budgets. A bidirectional API alone is not a
 scientific contribution; the empirical finding, including a negative result,
 is the contribution.
 
+The complete SWE-bench Verified replay sharpens this requirement. The primary
+pre-task router saves estimated inference dollars but loses too much quality,
+and a strong inexpensive standalone model undercuts the apparent advantage of
+several portfolio operating points. A conversational agent must therefore beat
+credible cheap standalone alternatives, not merely reduce calls to a costly
+reference. The replay is a standard-benchmark result, while its historical
+single-attempt data and unmeasured deployment expenses restrict its claims.
+
 The pilot's lack of optional consultations is a useful design lesson. Easy
 tasks can show that a controller avoids unnecessary expert work, but cannot
 evaluate its capacity to obtain help. The next development sample should span
@@ -113,6 +121,16 @@ US$100 Runpod allocation. No new credential is needed to reproduce the recorded
 analysis. Credentials and connectivity are still required for future paid GPU
 or provider runs.
 
+The new `scripts/run_swe_bench.py` bridge implements six frozen conditions,
+mandatory native model-and-metering preflight, clean source checkouts, official
+prediction export and grade import. One-way proposals and reset-expert
+conversations are now software-tested arms. `scripts/collect_codex_usage.py`
+uses the official app-server's per-thread estimate route without new inference.
+The [handover](../research/HANDOVER.md) specifies the suitable writable host,
+official evaluator controls, worker dependency/isolation prerequisites,
+reproduction commands and pending work. Source-code readiness is distinct from
+successful live metering or a completed causal comparison.
+
 Fastest Jira and Confluence synchronization remain unavailable in the current
 tool set. Local task records and an import CSV preserve progress; they are not
 remote issue keys or evidence of publication. The intended Confluence destination
@@ -127,10 +145,12 @@ retaining a prespecified level of task success, beyond single-model execution,
 initial routing and one-way assistance. Personal memory and learned skills can
 be tested as additional interventions.
 
-The present work implements and validates the orchestration and measurement
-path, executes a four-condition historical-bug pilot, and demonstrates one live
-two-round clarification-and-integration exchange. It does not establish cost
-savings or performance noninferiority. The complete records expose where the
-pilot is informative and where its task scale, absent billing and grading
-policy prevent a stronger conclusion. The registered next comparisons turn the
-product intuition into a falsifiable software-engineering experiment.
+The present work implements and tests the orchestration and measurement code,
+executes a four-condition historical-bug pilot, demonstrates one live two-round
+clarification exchange, and analyzes all 500 SWE-bench Verified tasks across ten
+published model runs. The primary replay router reduces estimated inference
+cost by 46.1% but loses 8.6 quality points; it fails the joint target. Portfolio
+results also show why an inexpensive strong standalone model is essential as a
+control. These are useful empirical findings without establishing live
+conversational savings or performance noninferiority. The next comparisons test
+that remaining causal claim with observable subscription or inference usage.

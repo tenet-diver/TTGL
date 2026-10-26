@@ -1,0 +1,91 @@
+{
+  "checked_at": "2026-10-26",
+  "purpose": "Current Codex project-use documentation and pricing access check; no live inference or invoice measurement",
+  "sources": [
+    {
+      "id": "openai_pricing",
+      "url": "https://openai.com/api/pricing/",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "id": "codex_pricing",
+      "url": "https://developers.openai.com/codex/pricing/",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "id": "codex_models",
+      "url": "https://developers.openai.com/codex/models/",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "id": "codex_config",
+      "url": "https://developers.openai.com/codex/config-basic/",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "id": "codex_auth",
+      "url": "https://developers.openai.com/codex/auth/",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "id": "codex_help",
+      "url": "https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "id": "README.md",
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/README.md",
+      "retrieved_at": "2026-10-26T16:01:04.986628+00:00",
+      "sha256": "ba4e1f69ff48386e72a9c5e1edaf76aad64a475c2d51af79ccba6d1128261ba7",
+      "bytes": 3334
+    },
+    {
+      "id": "docs/getting-started.md",
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/docs/getting-started.md",
+      "retrieved_at": "2026-10-26T16:01:05.332821+00:00",
+      "sha256": "210187b0199e42d71beabab773f6b8f3c01fe897037df1b16f88dd4efe007e90",
+      "bytes": 177
+    },
+    {
+      "id": "docs/authentication.md",
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/docs/authentication.md",
+      "retrieved_at": "2026-10-26T16:01:05.548308+00:00",
+      "sha256": "3fe4a065894ac5c1c212432a2c35b9e16a39a79377ea4c9521122a28ae0f7aef",
+      "bytes": 134
+    },
+    {
+      "id": "docs/config.md",
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/docs/config.md",
+      "retrieved_at": "2026-10-26T16:01:05.774094+00:00",
+      "sha256": "745768b4da6cd73e414fc49c5c6ef3d6bf8a0c08289fab23a7dd79776ab31d9d",
+      "bytes": 726
+    },
+    {
+      "id": "codex-rs/core/models.json",
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/core/models.json",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "codex-rs/core/config.schema.json",
+      "url": "https://raw.githubusercontent.com/openai/codex/970111f6cb62cc02fe36a82ea7d71b37a2889c97/codex-rs/core/config.schema.json",
+      "retrieved_at": "2026-10-26T16:01:06.385984+00:00",
+      "sha256": "d98f7bbe84dfe375d05ad5a8249a5368d82989551e38c6a4babe35356b92c14e",
+      "bytes": 253474
+    },
+    {
+      "id": "codex_npm_0.163.0",
+      "url": "https://registry.npmjs.org/@openai/codex/0.163.0",
+      "retrieved_at": "2026-10-26T16:04:27.313738+00:00",
+      "sha256": "c6f5f2b4adf5eb2cd4ecab2ca5964c0a80b6f7b56718aacf5de87452460f562f",
+      "version": "0.163.0",
+      "integrity": "sha512-HNd7vR9oTK6M2ikxFnvNDCdYUgAsyo9VVnd5KnEd2ON0GYI++7MiX9XNPUkhtdgGKFPsWS+CEppQ1UU63uVhUw==",
+      "status": "retrieved"
+    }
+  ],
+  "additional_existing_evidence": [
+    "docs/thesis/market-sources.json",
+    "docs/thesis/model-catalog.csv",
+    "docs/research/codex-metering-sources.json",
+    "docs/research/ccusage-sources.json"
+  ]
+}

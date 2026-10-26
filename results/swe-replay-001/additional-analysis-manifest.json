@@ -1,0 +1,8 @@
+{
+  "report_script_sha256": "fdb58a684bc741934ca7ea358f5201bf9c9bd21947ada3bb624fa3f9e5a68ce5",
+  "original_summary_sha256": "8e11f0f4fbf2ed9d5b613a8a3ee69299f0793ced727ffbde14811d7c91667232",
+  "original_records_sha256": "740d3d332ca0d6103ded535af837dc77f13c75b039aaaa9289e3b910059fcfd5",
+  "additional_comparisons_sha256": "11e5b32f6b2af5a2dd1e3175d09cfcfc169f4f0e100b5bb15ae3870796dc3b7f",
+  "readme_sha256": "8503fdbe041d8a7f14a124ba1195e970993c771a20731b5571e6309be5e56d06",
+  "status": "additional comparisons; no new fit or selection"
+}

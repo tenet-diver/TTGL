@@ -1,25 +1,25 @@
 {
   "status": "passed",
-  "checked_at_utc": "2026-10-26T00:13:22.724947+00:00",
-  "paper_pages": 35,
-  "word_count_approximate": 9370,
-  "cited_references": 22,
-  "source_and_artifact_hashes_checked": 21,
-  "pdf_margin_violations": [],
+  "checked_at_utc": "2026-10-26T16:25:02.738083+00:00",
+  "paper_pages": 40,
+  "word_count_approximate": 11117,
+  "cited_references": 23,
+  "source_and_artifact_hashes_checked": 27,
+  "pdf_page_safety_bound_violations": [],
+  "pdf_bound_definition": "text within page with30pt horizontal and25pt vertical safety inset; not a typography review",
   "docx_zip_and_xml": "valid",
-  "html_image_and_mathml": "embedded",
-  "local_document_links": "valid",
-  "editorial_review_resolution": "Abstract now centers bidirectional conversation, full-cost hypothesis, pilot findings and optional personalization. Resolves the editorial item in review.json.",
+  "html_embedded_images": 2,
+  "html_mathml": true,
   "software_tests": {
-    "passed": 86,
+    "passed": 136,
     "skipped": 1,
-    "subtests_passed": 2,
-    "command": "/workspace/.tools/ttgl-research/bin/python -m pytest -q",
-    "run_duration_seconds": 4.05
+    "subtests_passed": 2
   },
-  "actual_model_trials": 16,
-  "optional_expert_turns": 0,
-  "separate_forced_dialogue_expert_turns": 2,
-  "observed_model_costs": "unavailable",
-  "analysis_reproduction": "byte_identical_summary"
+  "new_live_model_trials": 0,
+  "historical_replay_tasks": 500,
+  "historical_replay_model_outcomes": 5000,
+  "live_conversation_cost_savings": "unmeasured",
+  "replay_cost_definition": "historical upstream estimated inference USD; excludes newconversation andplancredits",
+  "independent_research_audit": "../research/swe-replay-audit.md",
+  "historical_review": "review.json predates this extension and remains preserved"
 }

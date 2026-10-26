@@ -121,6 +121,53 @@ def test_resumed_expert_cannot_silently_switch_conversation(task, tmp_path):
     assert result["expert_thread_id"] == "expert-1"
 
 
+@pytest.mark.parametrize("condition", ["oneway", "reset_expert"])
+def test_stateless_expert_ablations_keep_controller_and_count_fresh_experts(task, tmp_path, condition):
+    first_action = "answer" if condition == "oneway" else "request_context"
+    backend = ScriptedBackend(
+        reply("ask_expert", question="Help", context="Code", usage=counts(100), usage_scope="thread_cumulative"),
+        Response(text=json.dumps({"action": first_action, "message": "The caller matters."}),
+                 thread_id="expert-1", usage=counts(200), usage_scope="thread_cumulative"),
+        reply("ask_expert", question="Here is all the evidence", context="Caller and code",
+              usage=counts(300), usage_scope="thread_cumulative"),
+        Response(text=json.dumps({"action": "answer", "message": "Preserve None."}),
+                 thread_id="expert-2", usage=counts(400), usage_scope="thread_cumulative"),
+        reply(usage=counts(500), usage_scope="thread_cumulative"),
+    )
+    result = run_task(task, tmp_path / condition, condition=condition, backend=backend)
+    assert result["status"] == "completed_ungraded"
+    assert result["expert_calls"] == 2
+    assert result["usage"] == counts(1100)  # 500 actor + 200 first expert + 400 second expert.
+    assert [r.thread_id for r in backend.requests] == [None, None, "thread-small", None, "thread-small"]
+    assert "fresh" in backend.requests[2].prompt
+    assert backend.requests[1].read_only and backend.requests[3].read_only
+    expected = ["answer"] if condition == "oneway" else ["answer", "request_context", "challenge"]
+    assert backend.requests[1].schema["properties"]["action"]["enum"] == expected
+
+
+def test_oneway_cannot_request_clarification(task, tmp_path):
+    backend = ScriptedBackend(
+        reply("ask_expert", question="Help", context="Code"),
+        Response(text=json.dumps({"action": "request_context", "message": "Show caller?"}),
+                 thread_id="expert-1"),
+    )
+    result = run_task(task, tmp_path / "oneway", condition="oneway", backend=backend)
+    assert result["status"] == "protocol_failed"
+    assert result["expert_calls"] == 0
+
+
+@pytest.mark.parametrize("condition", ["oneway", "reset_expert"])
+def test_stateless_expert_rejects_reused_thread(task, tmp_path, condition):
+    expert = Response(text=json.dumps({"action": "answer", "message": "Use a guard."}), thread_id="expert-1")
+    backend = ScriptedBackend(
+        reply("ask_expert", question="Help", context="Code"), expert,
+        reply("ask_expert", question="More help", context="More code"), expert,
+    )
+    result = run_task(task, tmp_path / condition, condition=condition, backend=backend)
+    assert result["status"] == "protocol_failed"
+    assert result["expert_calls"] == 1
+
+
 @pytest.mark.parametrize("resumed_thread", [None, "", " ", "unexpected-new-controller"])
 def test_resumed_controller_requires_same_nonempty_thread(task, tmp_path, resumed_thread):
     backend = ScriptedBackend(

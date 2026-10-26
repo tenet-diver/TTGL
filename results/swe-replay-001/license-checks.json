@@ -1,0 +1,44 @@
+{
+  "checked_at_utc": "2026-10-26T16:12:38.489301+00:00",
+  "checks": [
+    {
+      "repository": "SWE-bench/experiments",
+      "commit": "40f164d5b8f1d249bf95a6df8b74b577fd8e519d",
+      "listing_url": "https://api.github.com/repos/SWE-bench/experiments/contents?ref=40f164d5b8f1d249bf95a6df8b74b577fd8e519d",
+      "response_sha256": "c9d9fa999c5a309c1e4c47db4f2a30169c903530ced1b82ee2b04210392d5192",
+      "root_entries": [
+        ".cursor",
+        ".github",
+        ".gitignore",
+        ".pre-commit-config.yaml",
+        "README.md",
+        "analysis",
+        "checklist.md",
+        "evaluation",
+        "validation"
+      ],
+      "top_level_license_files": []
+    },
+    {
+      "repository": "SWE-bench/swe-bench-tasks",
+      "commit": "3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d",
+      "listing_url": "https://api.github.com/repos/SWE-bench/swe-bench-tasks/contents?ref=3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d",
+      "response_sha256": "33e4cadec10d5c6108ac1b7799c0ed912c16453c0579cac18ef2ac93d37107e0",
+      "root_entries": [
+        ".gitignore",
+        "CHANGELOG.md",
+        "README.md",
+        "TODO.md",
+        "dockerfile_gen",
+        "eval",
+        "pyproject.toml",
+        "sweb.yaml",
+        "tasks",
+        "uv.lock",
+        "versioning"
+      ],
+      "top_level_license_files": []
+    }
+  ],
+  "interpretation": "No explicit top-level license file found in either pinned distribution repository. This is not a comprehensive legal determination or an audit of every original project/model license. Raw third-party material stays in ignored cache; record factual task results and retrieval hashes."
+}

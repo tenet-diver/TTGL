@@ -24,7 +24,8 @@ from typing import Any, Protocol
 import uuid
 
 
-CONDITIONS = ("small", "large", "personal", "precall_router")
+CONDITIONS = ("small", "large", "personal", "precall_router", "oneway", "reset_expert")
+COOPERATIVE_CONDITIONS = ("personal", "oneway", "reset_expert")
 USAGE_FIELDS = (
     "input_tokens", "cached_input_tokens", "cache_write_input_tokens",
     "output_tokens", "reasoning_output_tokens",
@@ -48,6 +49,10 @@ ROUTE_SCHEMA = _schema({
 })
 EXPERT_SCHEMA = _schema({
     "action": {"type": "string", "enum": ["answer", "request_context", "challenge"]},
+    "message": {"type": "string"},
+})
+ONEWAY_EXPERT_SCHEMA = _schema({
+    "action": {"type": "string", "enum": ["answer"]},
     "message": {"type": "string"},
 })
 
@@ -412,7 +417,8 @@ def validate_task(task: dict) -> dict:
     return {**task, "workspace": str(workspace), "memory": memory, "allowed_paths": allowed}
 
 
-def _task_prompt(task: dict, *, cooperative: bool, expert_limit: int) -> str:
+def _task_prompt(task: dict, *, cooperative: bool, expert_limit: int,
+                 condition: str = "personal") -> str:
     shared = (
         "Solve the software-engineering task in the assigned workspace. Inspect relevant code, "
         "make the necessary changes, execute available checks, and report what you verified. "
@@ -431,11 +437,28 @@ def _task_prompt(task: dict, *, cooperative: bool, expert_limit: int) -> str:
             "You remain responsible for verification and integration. To ask, return action "
             "ask_expert, one concrete question, and only the context necessary for that question. "
             "The expert receives only the question/context you send and cannot edit this workspace. "
-            "It can answer, ask for missing context, or challenge your assumptions. The conversation "
-            "persists: use ask_expert again to answer its question, supply evidence, challenge its "
-            "proposal, or ask a follow-up. You may inspect code and test between messages. "
-            "Treat every proposal as unverified; inspect, test, and integrate useful parts. "
-            "When finished, return action complete.\n"
+        )
+        if condition == "oneway":
+            shared += (
+                "Each consultation is a fresh one-way proposal. The expert cannot request a "
+                "clarification and retains no earlier consultation. Supply all necessary context "
+                "each time. Additional consultations, if allowed, are independent requests. "
+            )
+        elif condition == "reset_expert":
+            shared += (
+                "The expert can answer, request context or challenge your assumptions, but each "
+                "consultation starts a fresh expert thread with no earlier messages. If you "
+                "reply, include all evidence and prior messages you want that expert to see. "
+            )
+        else:
+            shared += (
+                "It can answer, ask for missing context, or challenge your assumptions. The "
+                "conversation persists: use ask_expert again to answer its question, supply "
+                "evidence, challenge its proposal, or ask a follow-up. "
+            )
+        shared += (
+            "You may inspect code and test between messages. Treat every proposal as unverified; "
+            "inspect, test, and integrate useful parts. When finished, return action complete.\n"
         )
     else:
         shared += "You are the sole solving agent. Return action complete when finished.\n"
@@ -524,7 +547,8 @@ def run_task(task: dict, output_dir: Path, *, condition: str,
                 "controller_thread_id": None, "expert_thread_id": None,
                 "turns": 0, "expert_calls": 0,
                 "inflight": None, "next_prompt": _task_prompt(
-                    task, cooperative=condition == "personal", expert_limit=max_expert_calls),
+                    task, cooperative=condition in COOPERATIVE_CONDITIONS,
+                    expert_limit=max_expert_calls, condition=condition),
                 "usage": {key: 0 for key in USAGE_FIELDS}, "usage_complete": {key: True for key in USAGE_FIELDS},
                 "usage_threads": {}, "usage_by_model": {}, "usage_accounting_issues": [],
                 "elapsed_seconds": 0.0, "tool_failures": 0, "summary": "",
@@ -552,20 +576,34 @@ def run_task(task: dict, output_dir: Path, *, condition: str,
                 )
                 model, schema, thread_id, readonly = small_model, ROUTE_SCHEMA, None, True
             elif phase == "expert":
-                prompt = (
+                role = (
                     "Participate in a bounded software-engineering conversation with the small agent. "
                     "Use only the question/context supplied in this conversation. Do not use tools, "
                     "read files, access other workspaces, or edit anything. State uncertainties. "
+                )
+                if condition == "oneway":
+                    role += (
+                        "Return action answer with a self-contained proposal or suggested patch. "
+                        "Do not ask clarification questions. If context is insufficient, state "
+                        "assumptions and limitations rather than invent evidence. This is a "
+                        "one-way consultation with no retained earlier expert conversation. "
+                    )
+                else:
+                    role += (
                     "Return action answer with a proposal or suggested patch when the evidence is "
                     "sufficient; request_context with a specific clarifying question when evidence "
                     "is missing; or challenge with a concrete objection to a flawed assumption or "
-                    "proposal. The small agent can reply and act between messages. Never claim you "
-                    "executed tests. Put your answer, question, or challenge in message.\n"
+                    "proposal. The small agent can reply and act between messages. "
+                    )
+                prompt = (role +
+                    "Never claim you executed tests. Put your response in message.\n"
                     f"Small agent's latest message: {state['question']}\n"
                     f"Selected context: {state['context']}"
                 )
-                model, schema = large_model, EXPERT_SCHEMA
-                thread_id, readonly = state["expert_thread_id"], True
+                model = large_model
+                schema = ONEWAY_EXPERT_SCHEMA if condition == "oneway" else EXPERT_SCHEMA
+                thread_id = state["expert_thread_id"] if condition == "personal" else None
+                readonly = True
             else:
                 prompt = state["next_prompt"]
                 model, schema = state["selected_model"], ACTION_SCHEMA
@@ -624,10 +662,15 @@ def run_task(task: dict, output_dir: Path, *, condition: str,
                         state["route_reason"] = value["reason"]
                         state["phase"] = "controller"
                     elif phase == "expert":
-                        if not response.thread_id:
+                        if not isinstance(response.thread_id, str) or not response.thread_id.strip():
                             raise ValueError("Expert conversation requires a thread ID")
-                        if state["expert_thread_id"] and response.thread_id != state["expert_thread_id"]:
+                        if request.thread_id and response.thread_id != request.thread_id:
                             raise ValueError("Expert response changed the resumed conversation thread")
+                        if response.thread_id == state["controller_thread_id"]:
+                            raise ValueError("Expert must not share the controller thread")
+                        if (condition in ("oneway", "reset_expert")
+                                and response.thread_id == state["expert_thread_id"]):
+                            raise ValueError("Stateless expert ablation requires a fresh thread")
                         if not value["message"].strip():
                             raise ValueError("Expert response needs a nonempty message")
                         state["expert_thread_id"] = response.thread_id
@@ -639,8 +682,11 @@ def run_task(task: dict, output_dir: Path, *, condition: str,
                             "inspect code, run tests, and continue your own work. If it requests "
                             "context, use ask_expert to answer with relevant evidence when useful. "
                             "If it challenges a proposal, assess the objection and reply or revise. "
-                            "You may also challenge its answer or ask a follow-up. Each ask_expert "
-                            "continues the same expert conversation. Verify and integrate useful "
+                            "You may also challenge its answer or ask a follow-up. "
+                            + ("Each ask_expert continues the same expert conversation. "
+                               if condition == "personal" else
+                               "Each ask_expert starts a fresh expert conversation; include all needed context. ")
+                            + "Verify and integrate useful "
                             "proposals; do not assume its claims are true. "
                             f"Remaining expert requests: {max_expert_calls - state['expert_calls']}.\n"
                             f"Expert message: {value['message']}\nReturn the same action JSON schema."
@@ -653,7 +699,7 @@ def run_task(task: dict, output_dir: Path, *, condition: str,
                         state["controller_thread_id"] = response.thread_id
                         if value["action"] == "complete":
                             state["status"], state["summary"] = "completed_ungraded", value["summary"]
-                        elif condition != "personal":
+                        elif condition not in COOPERATIVE_CONDITIONS:
                             raise ValueError("Solo condition cannot ask an expert")
                         elif state["expert_calls"] >= max_expert_calls:
                             state["status"], state["failure_type"] = "budget_exhausted", "expert_limit"

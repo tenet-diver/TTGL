@@ -1,0 +1,5066 @@
+{
+  "experiment": "swe-replay-001",
+  "kind": "exploratory_public_agent_trajectory_outcome_replay_not_fresh_inference",
+  "benchmark": "SWE-bench Verified, complete 500-task test split",
+  "tasks": 500,
+  "repositories": 12,
+  "models": {
+    "gpt_5_mini": {
+      "published_open_model_tag": false,
+      "published_model_id": "gpt-5-mini-2025-08-07",
+      "metadata_total_cost_usd": 23.600609549999998,
+      "metadata_resolution_percent": 56.2,
+      "cost_reconciled_to_metadata": true,
+      "zero_cost_tasks": 0,
+      "mean_api_calls": 20.342
+    },
+    "gpt_5_2_high": {
+      "published_open_model_tag": false,
+      "published_model_id": "gpt-5-2",
+      "metadata_total_cost_usd": 236.78350885,
+      "metadata_resolution_percent": 72.8,
+      "cost_reconciled_to_metadata": true,
+      "zero_cost_tasks": 0,
+      "mean_api_calls": 35.046
+    },
+    "deepseek_3_2_high": {
+      "published_open_model_tag": true,
+      "published_model_id": "deepseek-v3.2",
+      "metadata_total_cost_usd": 223.92324825,
+      "metadata_resolution_percent": 70.0,
+      "cost_reconciled_to_metadata": true,
+      "zero_cost_tasks": 0,
+      "mean_api_calls": 88.506
+    },
+    "kimi_k2_5_high": {
+      "published_open_model_tag": true,
+      "published_model_id": "kimi-k2.5",
+      "metadata_total_cost_usd": 73.276870372,
+      "metadata_resolution_percent": 70.8,
+      "cost_reconciled_to_metadata": true,
+      "zero_cost_tasks": 0,
+      "mean_api_calls": 51.178
+    },
+    "minimax_2_5_high": {
+      "published_open_model_tag": true,
+      "published_model_id": "minimax-m2.5",
+      "metadata_total_cost_usd": 36.644993922,
+      "metadata_resolution_percent": 75.8,
+      "cost_reconciled_to_metadata": true,
+      "zero_cost_tasks": 0,
+      "mean_api_calls": 60.45
+    },
+    "glm_5_high": {
+      "published_open_model_tag": true,
+      "published_model_id": "glm-5",
+      "metadata_total_cost_usd": 267.19456811,
+      "metadata_resolution_percent": 72.8,
+      "cost_reconciled_to_metadata": true,
+      "zero_cost_tasks": 0,
+      "mean_api_calls": 76.176
+    },
+    "gemini_3_flash_high": {
+      "published_open_model_tag": false,
+      "published_model_id": "gemini-3-flash-preview",
+      "metadata_total_cost_usd": 177.98206539999998,
+      "metadata_resolution_percent": 75.8,
+      "cost_reconciled_to_metadata": true,
+      "zero_cost_tasks": 2,
+      "mean_api_calls": 56.126
+    },
+    "claude_4_5_haiku_high": {
+      "published_open_model_tag": false,
+      "published_model_id": "claude-haiku-4-5-20251001",
+      "metadata_total_cost_usd": 165.46221805000002,
+      "metadata_resolution_percent": 66.6,
+      "cost_reconciled_to_metadata": true,
+      "zero_cost_tasks": 0,
+      "mean_api_calls": 66.154
+    },
+    "claude_4_5_sonnet_high": {
+      "published_open_model_tag": false,
+      "published_model_id": "claude-sonnet-4-5-20250929",
+      "metadata_total_cost_usd": 328.9482492,
+      "metadata_resolution_percent": 71.4,
+      "cost_reconciled_to_metadata": true,
+      "zero_cost_tasks": 0,
+      "mean_api_calls": 48.3
+    },
+    "claude_4_6_opus": {
+      "published_open_model_tag": false,
+      "published_model_id": "claude-opus-4-6",
+      "metadata_total_cost_usd": 275.76132225,
+      "metadata_resolution_percent": 75.6,
+      "cost_reconciled_to_metadata": true,
+      "zero_cost_tasks": 0,
+      "mean_api_calls": 28.932
+    }
+  },
+  "primary_policy": "cost_benefit_router_large_0.5",
+  "primary_pair": [
+    "gpt_5_mini",
+    "gpt_5_2_high"
+  ],
+  "router_fit_seconds": 1.8276843720086617,
+  "actual_new_inference_spend_usd": 0,
+  "full_operational_cost_usd": null,
+  "subscription_credit_savings": null,
+  "primary_result": {
+    "policy": "cost_benefit_router_large_0.5",
+    "tasks": 500,
+    "resolved": 321.0,
+    "resolution_rate": 0.642,
+    "estimated_inference_total_usd": 127.56669275,
+    "estimated_inference_usd_per_task": 0.2551333855,
+    "estimated_inference_usd_per_resolved_task": 0.397404027258567,
+    "inference_saving_vs_large_fraction": 0.461251784934008,
+    "resolution_difference_vs_large": -0.08599999999999997,
+    "large_model_fraction": 0.5,
+    "nondeployable_oracle": false,
+    "break_even_added_overhead_usd_per_task": 0.21843363219999995,
+    "remaining_overhead_for_25pct_saving_usd_per_task": 0.10004187777499995,
+    "task_bootstrap": {
+      "resolution_ci95": [
+        0.602,
+        0.686
+      ],
+      "paired_resolution_difference_ci95": [
+        -0.11605,
+        -0.056
+      ],
+      "paired_resolution_difference_lower95": -0.112,
+      "paired_cost_ratio_ci95": [
+        0.4860227673771577,
+        0.5916718984488981
+      ],
+      "paired_cost_ratio_upper95": 0.5816873423896972,
+      "quality_noninferiority_3pp_supported": false,
+      "at_least_25pct_inference_saving_supported": true,
+      "joint_exploratory_target_supported": false
+    },
+    "repository_cluster_bootstrap": {
+      "resolution_ci95": [
+        0.5282736874487285,
+        0.701300955988456
+      ],
+      "paired_resolution_difference_ci95": [
+        -0.11865153438363324,
+        -0.05554281345565756
+      ],
+      "paired_resolution_difference_lower95": -0.11207023700539111,
+      "paired_cost_ratio_ci95": [
+        0.42093979960491096,
+        0.6304701306822573
+      ],
+      "paired_cost_ratio_upper95": 0.6096650892173174,
+      "quality_noninferiority_3pp_supported": false,
+      "at_least_25pct_inference_saving_supported": true,
+      "joint_exploratory_target_supported": false
+    },
+    "overhead_sensitivity": [
+      {
+        "extra_usd_per_task": 0,
+        "inference_plus_assumed_overhead_usd_per_task": 0.2551333855,
+        "saving_fraction": 0.4612517849340081
+      },
+      {
+        "extra_usd_per_task": 0.001,
+        "inference_plus_assumed_overhead_usd_per_task": 0.2561333855,
+        "saving_fraction": 0.45914015138981246
+      },
+      {
+        "extra_usd_per_task": 0.01,
+        "inference_plus_assumed_overhead_usd_per_task": 0.2651333855,
+        "saving_fraction": 0.44013544949205186
+      },
+      {
+        "extra_usd_per_task": 0.05,
+        "inference_plus_assumed_overhead_usd_per_task": 0.30513338549999997,
+        "saving_fraction": 0.35567010772422714
+      }
+    ],
+    "model_counts": {
+      "gpt_5_mini": 250,
+      "gpt_5_2_high": 250
+    }
+  },
+  "pair_complementarity": {
+    "both_solve": 262,
+    "small_only": 19,
+    "large_only": 102,
+    "neither": 117
+  },
+  "prediction_metrics": {
+    "gpt_5_mini": {
+      "oof_brier": 0.24579095674832532,
+      "oof_cost_mae_usd": 0.021752447872330386
+    },
+    "gpt_5_2_high": {
+      "oof_brier": 0.19888587373433916,
+      "oof_cost_mae_usd": 0.24220759351883503
+    },
+    "deepseek_3_2_high": {
+      "oof_brier": 0.2046441330307105,
+      "oof_cost_mae_usd": 0.20123896346704825
+    },
+    "kimi_k2_5_high": {
+      "oof_brier": 0.19850796202550788,
+      "oof_cost_mae_usd": 0.09114306734964546
+    },
+    "minimax_2_5_high": {
+      "oof_brier": 0.18718692729205327,
+      "oof_cost_mae_usd": 0.047378766155556064
+    },
+    "glm_5_high": {
+      "oof_brier": 0.19042302417547252,
+      "oof_cost_mae_usd": 0.3297692937751259
+    },
+    "gemini_3_flash_high": {
+      "oof_brier": 0.18286341704151096,
+      "oof_cost_mae_usd": 0.10003113059467238
+    },
+    "claude_4_5_haiku_high": {
+      "oof_brier": 0.2213669255211101,
+      "oof_cost_mae_usd": 0.1379683719623045
+    },
+    "claude_4_5_sonnet_high": {
+      "oof_brier": 0.20189193224446345,
+      "oof_cost_mae_usd": 0.2414673005148044
+    },
+    "claude_4_6_opus": {
+      "oof_brier": 0.18427382508245393,
+      "oof_cost_mae_usd": 0.36495818280273806
+    }
+  },
+  "limits": [
+    "Models ran upstream; this run fits routers and replays full task outcomes.",
+    "One historical attempt per model/task; stochastic rerun variability not measured.",
+    "Same harness version does not imply identical model reasoning effort, API settings or run date precision.",
+    "Upstream cost values are estimates, not independently audited invoices; environment/router costs excluded.",
+    "Folds share repositories. Bootstrap conditions on fixed OOF policies and does not retrain; only 12 repository clusters.",
+    "Portfolio and grid results are exploratory. Do not select a test-grid winner as confirmatory evidence.",
+    "No evidence about live conversation, distillation, Codex billing or present-day frontier models.",
+    "Small is a product tier here; GPT-5-mini parameter count and on-device feasibility are not established."
+  ],
+  "policies": [
+    {
+      "policy": "random_expected_large_0",
+      "tasks": 500,
+      "resolved": 281.0,
+      "resolution_rate": 0.562,
+      "estimated_inference_total_usd": 23.600609549999998,
+      "estimated_inference_usd_per_task": 0.0472012191,
+      "estimated_inference_usd_per_resolved_task": 0.083987934341637,
+      "inference_saving_vs_large_fraction": 0.9003283224215131,
+      "resolution_difference_vs_large": -0.16599999999999993,
+      "large_model_fraction": 0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.4263657985999999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.30797404417499996,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.52,
+          0.606
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.206,
+          -0.126
+        ],
+        "paired_resolution_difference_lower95": -0.2,
+        "paired_cost_ratio_ci95": [
+          0.09330390777314326,
+          0.10678818758316927
+        ],
+        "paired_cost_ratio_upper95": 0.10564478984480695,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.4669296688668257,
+          0.6081353874098792
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.2026214833759591,
+          -0.1295291676333359
+        ],
+        "paired_resolution_difference_lower95": -0.19393481803367735,
+        "paired_cost_ratio_ci95": [
+          0.08941760351415867,
+          0.11485947513802873
+        ],
+        "paired_cost_ratio_upper95": 0.11217054233063249,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0472012191,
+          "saving_fraction": 0.9003283224215131
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0482012191,
+          "saving_fraction": 0.8982166888773174
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0572012191,
+          "saving_fraction": 0.8792119869795569
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0972012191,
+          "saving_fraction": 0.7947466452117322
+        }
+      ]
+    },
+    {
+      "policy": "random_expected_large_0.1",
+      "tasks": 500,
+      "resolved": 289.3,
+      "resolution_rate": 0.5786,
+      "estimated_inference_total_usd": 44.91889948,
+      "estimated_inference_usd_per_task": 0.08983779896,
+      "estimated_inference_usd_per_resolved_task": 0.15526754054614586,
+      "inference_saving_vs_large_fraction": 0.8102954901793618,
+      "resolution_difference_vs_large": -0.14939999999999998,
+      "large_model_fraction": 0.1,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.38372921873999993,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.26533746431499994,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.5385949999999999,
+          0.6204049999999999
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.18540000000000004,
+          -0.1134
+        ],
+        "paired_resolution_difference_lower95": -0.18,
+        "paired_cost_ratio_ci95": [
+          0.1839735169958289,
+          0.19610936882485236
+        ],
+        "paired_cost_ratio_upper95": 0.19508031086032626,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.4855534101867273,
+          0.6238545052280171
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.18235933503836316,
+          -0.11657625087000234
+        ],
+        "paired_resolution_difference_lower95": -0.17454133623030962,
+        "paired_cost_ratio_ci95": [
+          0.1804758431627428,
+          0.20337352762422586
+        ],
+        "paired_cost_ratio_upper95": 0.20095348809756927,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.08983779896,
+          "saving_fraction": 0.8102954901793618
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.09083779896000001,
+          "saving_fraction": 0.8081838566351661
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.09983779896,
+          "saving_fraction": 0.7891791547374056
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.13983779896,
+          "saving_fraction": 0.7047138129695808
+        }
+      ]
+    },
+    {
+      "policy": "random_expected_large_0.25",
+      "tasks": 500,
+      "resolved": 301.75,
+      "resolution_rate": 0.6035,
+      "estimated_inference_total_usd": 76.896334375,
+      "estimated_inference_usd_per_task": 0.15379266875,
+      "estimated_inference_usd_per_resolved_task": 0.2548345795360398,
+      "inference_saving_vs_large_fraction": 0.6752462418161348,
+      "resolution_difference_vs_large": -0.12449999999999994,
+      "large_model_fraction": 0.25,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.3197743489499999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.20138259452499993,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.566,
+          0.6430125
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.1545,
+          -0.0945
+        ],
+        "paired_resolution_difference_lower95": -0.15,
+        "paired_cost_ratio_ci95": [
+          0.3199779308298574,
+          0.33009114068737694
+        ],
+        "paired_cost_ratio_upper95": 0.3292335923836052,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.5121792612434795,
+          0.6479381778330218
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.1519661125319693,
+          -0.09714687572500195
+        ],
+        "paired_resolution_difference_lower95": -0.145451113525258,
+        "paired_cost_ratio_ci95": [
+          0.31706320263561905,
+          0.3361446063535215
+        ],
+        "paired_cost_ratio_upper95": 0.3341279067479744,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.15379266875,
+          "saving_fraction": 0.6752462418161348
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.15479266875,
+          "saving_fraction": 0.6731346082719392
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.16379266875,
+          "saving_fraction": 0.6541299063741786
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.20379266875000002,
+          "saving_fraction": 0.5696645646063538
+        }
+      ]
+    },
+    {
+      "policy": "random_expected_large_0.5",
+      "tasks": 500,
+      "resolved": 322.5,
+      "resolution_rate": 0.645,
+      "estimated_inference_total_usd": 130.1920592,
+      "estimated_inference_usd_per_task": 0.2603841184,
+      "estimated_inference_usd_per_resolved_task": 0.4036963075968992,
+      "inference_saving_vs_large_fraction": 0.45016416121075653,
+      "resolution_difference_vs_large": -0.08299999999999996,
+      "large_model_fraction": 0.5,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.21318289929999995,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.09479114487499996,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.61,
+          0.682
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.103,
+          -0.063
+        ],
+        "paired_resolution_difference_lower95": -0.1,
+        "paired_cost_ratio_ci95": [
+          0.5466519538865715,
+          0.5533940937915847
+        ],
+        "paired_cost_ratio_upper95": 0.5528223949224035,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.5559841958162853,
+          0.6879271368928184
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.10131074168797954,
+          -0.06476458381666796
+        ],
+        "paired_resolution_difference_lower95": -0.09696740901683867,
+        "paired_cost_ratio_ci95": [
+          0.5447088017570793,
+          0.5574297375690144
+        ],
+        "paired_cost_ratio_upper95": 0.5560852711653163,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.2603841184,
+          "saving_fraction": 0.45016416121075653
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.2613841184,
+          "saving_fraction": 0.4480525276665609
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.2703841184,
+          "saving_fraction": 0.4290478257688003
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.31038411839999996,
+          "saving_fraction": 0.3445824840009756
+        }
+      ]
+    },
+    {
+      "policy": "random_expected_large_0.75",
+      "tasks": 500,
+      "resolved": 343.25,
+      "resolution_rate": 0.6865,
+      "estimated_inference_total_usd": 183.487784025,
+      "estimated_inference_usd_per_task": 0.36697556805,
+      "estimated_inference_usd_per_resolved_task": 0.5345601865258558,
+      "inference_saving_vs_large_fraction": 0.22508208060537827,
+      "resolution_difference_vs_large": -0.04149999999999998,
+      "large_model_fraction": 0.75,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.10659144964999995,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.011800304775000048,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.65,
+          0.7225
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.0515,
+          -0.0315
+        ],
+        "paired_resolution_difference_lower95": -0.05,
+        "paired_cost_ratio_ci95": [
+          0.7733259769432858,
+          0.7766970468957923
+        ],
+        "paired_cost_ratio_upper95": 0.7764111974612017,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.599829078017674,
+          0.7285958367588637
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.05065537084398977,
+          -0.03238229190833398
+        ],
+        "paired_resolution_difference_lower95": -0.04848370450841934,
+        "paired_cost_ratio_ci95": [
+          0.7723544008785396,
+          0.778714868784507
+        ],
+        "paired_cost_ratio_upper95": 0.7780426355826582,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.36697556805,
+          "saving_fraction": 0.22508208060537815
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.36797556805,
+          "saving_fraction": 0.22297044706118263
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.37697556805,
+          "saving_fraction": 0.20396574516342203
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.41697556804999997,
+          "saving_fraction": 0.11950040339559731
+        }
+      ]
+    },
+    {
+      "policy": "random_expected_large_0.9",
+      "tasks": 500,
+      "resolved": 355.7,
+      "resolution_rate": 0.7114,
+      "estimated_inference_total_usd": 215.46521892,
+      "estimated_inference_usd_per_task": 0.43093043784,
+      "estimated_inference_usd_per_resolved_task": 0.6057498423390498,
+      "inference_saving_vs_large_fraction": 0.0900328322421512,
+      "resolution_difference_vs_large": -0.016599999999999948,
+      "large_model_fraction": 0.9,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.04263657985999991,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.07575517456500008,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.6747949999999999,
+          0.7496
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.020599999999999993,
+          -0.012599999999999998
+        ],
+        "paired_resolution_difference_lower95": -0.019999999999999993,
+        "paired_cost_ratio_ci95": [
+          0.9093303907773141,
+          0.9106788187583169
+        ],
+        "paired_cost_ratio_upper95": 0.9105644789844808,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6237231521020792,
+          0.7535382134674101
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.020262148337595903,
+          -0.01295291676333359
+        ],
+        "paired_resolution_difference_lower95": -0.01939348180336773,
+        "paired_cost_ratio_ci95": [
+          0.9089417603514158,
+          0.9114859475138031
+        ],
+        "paired_cost_ratio_upper95": 0.9112170542330634,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.43093043784,
+          "saving_fraction": 0.09003283224215108
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.43193043784,
+          "saving_fraction": 0.08792119869795556
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.44093043784,
+          "saving_fraction": 0.06891649680019496
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.48093043784,
+          "saving_fraction": -0.01554884496762976
+        }
+      ]
+    },
+    {
+      "policy": "random_expected_large_1",
+      "tasks": 500,
+      "resolved": 364.0,
+      "resolution_rate": 0.728,
+      "estimated_inference_total_usd": 236.78350884999998,
+      "estimated_inference_usd_per_task": 0.4735670176999999,
+      "estimated_inference_usd_per_resolved_task": 0.6505041451923076,
+      "inference_saving_vs_large_fraction": 0.0,
+      "resolution_difference_vs_large": 0.0,
+      "large_model_fraction": 1,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.0,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.118391754425,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.69,
+          0.766
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          1.0,
+          1.0
+        ],
+        "paired_cost_ratio_upper95": 1.0,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6392345974053258,
+          0.7710853979297472
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          1.0,
+          1.0
+        ],
+        "paired_cost_ratio_upper95": 1.0,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4735670176999999,
+          "saving_fraction": 0.0
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4745670176999999,
+          "saving_fraction": -0.0021116335441955236
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.48356701769999993,
+          "saving_fraction": -0.021116335441956124
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.5235670176999999,
+          "saving_fraction": -0.10558167720978084
+        }
+      ]
+    },
+    {
+      "policy": "always_gpt_5_mini",
+      "tasks": 500,
+      "resolved": 281.0,
+      "resolution_rate": 0.562,
+      "estimated_inference_total_usd": 23.600609549999998,
+      "estimated_inference_usd_per_task": 0.0472012191,
+      "estimated_inference_usd_per_resolved_task": 0.083987934341637,
+      "inference_saving_vs_large_fraction": 0.9003283224215131,
+      "resolution_difference_vs_large": -0.16599999999999993,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.4263657985999999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.30797404417499996,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.52,
+          0.606
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.206,
+          -0.126
+        ],
+        "paired_resolution_difference_lower95": -0.2,
+        "paired_cost_ratio_ci95": [
+          0.09330390777314326,
+          0.10678818758316927
+        ],
+        "paired_cost_ratio_upper95": 0.10564478984480695,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.4669296688668257,
+          0.6081353874098792
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.2026214833759591,
+          -0.1295291676333359
+        ],
+        "paired_resolution_difference_lower95": -0.19393481803367735,
+        "paired_cost_ratio_ci95": [
+          0.08941760351415867,
+          0.11485947513802873
+        ],
+        "paired_cost_ratio_upper95": 0.11217054233063249,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0472012191,
+          "saving_fraction": 0.9003283224215131
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0482012191,
+          "saving_fraction": 0.8982166888773174
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0572012191,
+          "saving_fraction": 0.8792119869795569
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0972012191,
+          "saving_fraction": 0.7947466452117322
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 500
+      }
+    },
+    {
+      "policy": "always_gpt_5_2_high",
+      "tasks": 500,
+      "resolved": 364.0,
+      "resolution_rate": 0.728,
+      "estimated_inference_total_usd": 236.78350884999998,
+      "estimated_inference_usd_per_task": 0.4735670176999999,
+      "estimated_inference_usd_per_resolved_task": 0.6505041451923076,
+      "inference_saving_vs_large_fraction": 0.0,
+      "resolution_difference_vs_large": 0.0,
+      "large_model_fraction": 1.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.0,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.118391754425,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.69,
+          0.766
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          1.0,
+          1.0
+        ],
+        "paired_cost_ratio_upper95": 1.0,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6392345974053258,
+          0.7710853979297472
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          1.0,
+          1.0
+        ],
+        "paired_cost_ratio_upper95": 1.0,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4735670176999999,
+          "saving_fraction": 0.0
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4745670176999999,
+          "saving_fraction": -0.0021116335441955236
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.48356701769999993,
+          "saving_fraction": -0.021116335441956124
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.5235670176999999,
+          "saving_fraction": -0.10558167720978084
+        }
+      ],
+      "model_counts": {
+        "gpt_5_2_high": 500
+      }
+    },
+    {
+      "policy": "always_deepseek_3_2_high",
+      "tasks": 500,
+      "resolved": 350.0,
+      "resolution_rate": 0.7,
+      "estimated_inference_total_usd": 223.92324825000003,
+      "estimated_inference_usd_per_task": 0.4478464965000001,
+      "estimated_inference_usd_per_resolved_task": 0.6397807092857144,
+      "inference_saving_vs_large_fraction": 0.05431231534011427,
+      "resolution_difference_vs_large": -0.028000000000000025,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.025720521199999846,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.09267123322500015,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.66,
+          0.738
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.058,
+          0.002
+        ],
+        "paired_resolution_difference_lower95": -0.052,
+        "paired_cost_ratio_ci95": [
+          0.8853603503835149,
+          1.0116546016561496
+        ],
+        "paired_cost_ratio_upper95": 1.0017462888594935,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.5933499798039144,
+          0.7430516955731276
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.07407407407407407,
+          0.009139514485462902
+        ],
+        "paired_resolution_difference_lower95": -0.06173077839744506,
+        "paired_cost_ratio_ci95": [
+          0.866971502240887,
+          1.0488070534666083
+        ],
+        "paired_cost_ratio_upper95": 1.0323035258481865,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4478464965000001,
+          "saving_fraction": 0.05431231534011427
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4488464965000001,
+          "saving_fraction": 0.052200681795918635
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4578464965000001,
+          "saving_fraction": 0.033195979898158035
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.49784649650000007,
+          "saving_fraction": -0.051269361869666685
+        }
+      ],
+      "model_counts": {
+        "deepseek_3_2_high": 500
+      }
+    },
+    {
+      "policy": "always_kimi_k2_5_high",
+      "tasks": 500,
+      "resolved": 354.0,
+      "resolution_rate": 0.708,
+      "estimated_inference_total_usd": 73.27687037199999,
+      "estimated_inference_usd_per_task": 0.146553740744,
+      "estimated_inference_usd_per_resolved_task": 0.20699680896045194,
+      "inference_saving_vs_large_fraction": 0.6905322050176215,
+      "resolution_difference_vs_large": -0.020000000000000018,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.3270132769559999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.20862152253099994,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.668,
+          0.746
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.054,
+          0.014
+        ],
+        "paired_resolution_difference_lower95": -0.048,
+        "paired_cost_ratio_ci95": [
+          0.28664925494083726,
+          0.33405034118890053
+        ],
+        "paired_cost_ratio_upper95": 0.32973702276568595,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.5944427710843373,
+          0.7527322404371585
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.07861540268641866,
+          0.011142320158225553
+        ],
+        "paired_resolution_difference_lower95": -0.06307256051231955,
+        "paired_cost_ratio_ci95": [
+          0.2710895388063196,
+          0.33137666892946016
+        ],
+        "paired_cost_ratio_upper95": 0.32735606598117295,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.146553740744,
+          "saving_fraction": 0.6905322050176215
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.147553740744,
+          "saving_fraction": 0.688420571473426
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.156553740744,
+          "saving_fraction": 0.6694158695756653
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.196553740744,
+          "saving_fraction": 0.5849505278078405
+        }
+      ],
+      "model_counts": {
+        "kimi_k2_5_high": 500
+      }
+    },
+    {
+      "policy": "always_minimax_2_5_high",
+      "tasks": 500,
+      "resolved": 379.0,
+      "resolution_rate": 0.758,
+      "estimated_inference_total_usd": 36.644993922,
+      "estimated_inference_usd_per_task": 0.073289987844,
+      "estimated_inference_usd_per_resolved_task": 0.09668863831662268,
+      "inference_saving_vs_large_fraction": 0.8452384032149205,
+      "resolution_difference_vs_large": 0.030000000000000027,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.40027702985599994,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.28188527543099995,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.718,
+          0.796
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.004,
+          0.06204999999999972
+        ],
+        "paired_resolution_difference_lower95": 0.002,
+        "paired_cost_ratio_ci95": [
+          0.1417005220755125,
+          0.16888025079471297
+        ],
+        "paired_cost_ratio_upper95": 0.16680134632443203,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6761067019400353,
+          0.7871949753576151
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.009349491304862179,
+          0.08176976705582908
+        ],
+        "paired_resolution_difference_lower95": -0.0016550285513744338,
+        "paired_cost_ratio_ci95": [
+          0.13727216187109254,
+          0.19148717973565835
+        ],
+        "paired_cost_ratio_upper95": 0.1870002209137647,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.073289987844,
+          "saving_fraction": 0.8452384032149205
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.074289987844,
+          "saving_fraction": 0.8431267696707249
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.08328998784399999,
+          "saving_fraction": 0.8241220677729644
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.123289987844,
+          "saving_fraction": 0.7396567260051397
+        }
+      ],
+      "model_counts": {
+        "minimax_2_5_high": 500
+      }
+    },
+    {
+      "policy": "always_glm_5_high",
+      "tasks": 500,
+      "resolved": 364.0,
+      "resolution_rate": 0.728,
+      "estimated_inference_total_usd": 267.19456811,
+      "estimated_inference_usd_per_task": 0.53438913622,
+      "estimated_inference_usd_per_resolved_task": 0.7340510112912088,
+      "inference_saving_vs_large_fraction": -0.1284340256958736,
+      "resolution_difference_vs_large": 0.0,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": -0.060822118520000024,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.17921387294500002,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.69,
+          0.766
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.028,
+          0.028049999999999728
+        ],
+        "paired_resolution_difference_lower95": -0.024,
+        "paired_cost_ratio_ci95": [
+          1.0383114474972572,
+          1.2272240404333719
+        ],
+        "paired_cost_ratio_upper95": 1.2098869917958675,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6153780068728523,
+          0.7750868526007143
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.045004518072289154,
+          0.03425036181885495
+        ],
+        "paired_resolution_difference_lower95": -0.0339662786029707,
+        "paired_cost_ratio_ci95": [
+          1.0216745048528073,
+          1.2465179829497832
+        ],
+        "paired_cost_ratio_upper95": 1.2220309724839915,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.53438913622,
+          "saving_fraction": -0.1284340256958736
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.53538913622,
+          "saving_fraction": -0.13054565924006933
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.54438913622,
+          "saving_fraction": -0.1495503611378297
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.58438913622,
+          "saving_fraction": -0.23401570290565465
+        }
+      ],
+      "model_counts": {
+        "glm_5_high": 500
+      }
+    },
+    {
+      "policy": "always_gemini_3_flash_high",
+      "tasks": 500,
+      "resolved": 379.0,
+      "resolution_rate": 0.758,
+      "estimated_inference_total_usd": 177.9820654,
+      "estimated_inference_usd_per_task": 0.3559641308,
+      "estimated_inference_usd_per_resolved_task": 0.46960967124010555,
+      "inference_saving_vs_large_fraction": 0.2483342008722833,
+      "resolution_difference_vs_large": 0.030000000000000027,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.11760288689999993,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.0007888675250000698,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.718,
+          0.796
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.06
+        ],
+        "paired_resolution_difference_lower95": 0.004,
+        "paired_cost_ratio_ci95": [
+          0.7069989394177497,
+          0.8021302699979455
+        ],
+        "paired_cost_ratio_upper95": 0.7937601554555617,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6691393298502964,
+          0.7910810054411497
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.003668327796234773,
+          0.07085928376800305
+        ],
+        "paired_resolution_difference_lower95": 0.003998412698412699,
+        "paired_cost_ratio_ci95": [
+          0.6765459098933293,
+          0.8568557910360568
+        ],
+        "paired_cost_ratio_upper95": 0.8380575454837971,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.3559641308,
+          "saving_fraction": 0.2483342008722833
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.3569641308,
+          "saving_fraction": 0.24622256732808767
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.3659641308,
+          "saving_fraction": 0.22721786543032707
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4059641308,
+          "saving_fraction": 0.14275252366250246
+        }
+      ],
+      "model_counts": {
+        "gemini_3_flash_high": 500
+      }
+    },
+    {
+      "policy": "always_claude_4_5_haiku_high",
+      "tasks": 500,
+      "resolved": 333.0,
+      "resolution_rate": 0.666,
+      "estimated_inference_total_usd": 165.46221805,
+      "estimated_inference_usd_per_task": 0.3309244361,
+      "estimated_inference_usd_per_resolved_task": 0.49688353768768767,
+      "inference_saving_vs_large_fraction": 0.3012088601372206,
+      "resolution_difference_vs_large": -0.061999999999999944,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.14264258159999993,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.024250827174999934,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.624,
+          0.706
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.096,
+          -0.028
+        ],
+        "paired_resolution_difference_lower95": -0.09,
+        "paired_cost_ratio_ci95": [
+          0.6564140946996396,
+          0.7463110811534983
+        ],
+        "paired_cost_ratio_upper95": 0.7381964205790359,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.5886746535314743,
+          0.700790375145705
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.08810234567049116,
+          -0.011672020631617054
+        ],
+        "paired_resolution_difference_lower95": -0.08527131782945736,
+        "paired_cost_ratio_ci95": [
+          0.5971891242125276,
+          0.7389054889384241
+        ],
+        "paired_cost_ratio_upper95": 0.7340427964443633,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.3309244361,
+          "saving_fraction": 0.3012088601372206
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.3319244361,
+          "saving_fraction": 0.29909722659302496
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.3409244361,
+          "saving_fraction": 0.28009252469526436
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.3809244361,
+          "saving_fraction": 0.19562718292743964
+        }
+      ],
+      "model_counts": {
+        "claude_4_5_haiku_high": 500
+      }
+    },
+    {
+      "policy": "always_claude_4_5_sonnet_high",
+      "tasks": 500,
+      "resolved": 357.0,
+      "resolution_rate": 0.714,
+      "estimated_inference_total_usd": 328.94824919999996,
+      "estimated_inference_usd_per_task": 0.6578964984,
+      "estimated_inference_usd_per_resolved_task": 0.9214236672268906,
+      "inference_saving_vs_large_fraction": -0.38923631463027886,
+      "resolution_difference_vs_large": -0.014000000000000012,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": -0.18432948070000005,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.30272123512500004,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.67595,
+          0.7520499999999998
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.044,
+          0.016
+        ],
+        "paired_resolution_difference_lower95": -0.04,
+        "paired_cost_ratio_ci95": [
+          1.312412836327733,
+          1.4732604107881544
+        ],
+        "paired_cost_ratio_upper95": 1.4602852120347594,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6381885618569035,
+          0.7497288654060067
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.036645104259608076,
+          0.02851067680057897
+        ],
+        "paired_resolution_difference_lower95": -0.03333333333333333,
+        "paired_cost_ratio_ci95": [
+          1.2830534126066622,
+          1.4597886838688396
+        ],
+        "paired_cost_ratio_upper95": 1.4454168326862802,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.6578964984,
+          "saving_fraction": -0.38923631463027886
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.6588964984,
+          "saving_fraction": -0.3913479481744746
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.6678964984,
+          "saving_fraction": -0.4103526500722352
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.7078964984,
+          "saving_fraction": -0.4948179918400599
+        }
+      ],
+      "model_counts": {
+        "claude_4_5_sonnet_high": 500
+      }
+    },
+    {
+      "policy": "always_claude_4_6_opus",
+      "tasks": 500,
+      "resolved": 378.0,
+      "resolution_rate": 0.756,
+      "estimated_inference_total_usd": 275.76132225000003,
+      "estimated_inference_usd_per_task": 0.5515226445000001,
+      "estimated_inference_usd_per_resolved_task": 0.7295273075396826,
+      "inference_saving_vs_large_fraction": -0.16461371650967527,
+      "resolution_difference_vs_large": 0.028000000000000025,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": -0.07795562680000018,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.19634738122500017,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.718,
+          0.792
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.004049999999999997,
+          0.062
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          1.0772725482772603,
+          1.2566895569857095
+        ],
+        "paired_cost_ratio_upper95": 1.2389351361739116,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6752205937336424,
+          0.7916695205479451
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.0070670448332422085,
+          0.09138837333668877
+        ],
+        "paired_resolution_difference_lower95": -0.0032631914496030015,
+        "paired_cost_ratio_ci95": [
+          1.0908069478474567,
+          1.271035041438181
+        ],
+        "paired_cost_ratio_upper95": 1.2559124811044557,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.5515226445000001,
+          "saving_fraction": -0.16461371650967527
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.5525226445000001,
+          "saving_fraction": -0.166725350053871
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.5615226445000001,
+          "saving_fraction": -0.18573005195163161
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.6015226445000001,
+          "saving_fraction": -0.27019539371945633
+        }
+      ],
+      "model_counts": {
+        "claude_4_6_opus": 500
+      }
+    },
+    {
+      "policy": "benefit_router_large_0",
+      "tasks": 500,
+      "resolved": 281.0,
+      "resolution_rate": 0.562,
+      "estimated_inference_total_usd": 23.600609549999998,
+      "estimated_inference_usd_per_task": 0.0472012191,
+      "estimated_inference_usd_per_resolved_task": 0.083987934341637,
+      "inference_saving_vs_large_fraction": 0.9003283224215131,
+      "resolution_difference_vs_large": -0.16599999999999993,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.4263657985999999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.30797404417499996,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.52,
+          0.606
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.206,
+          -0.126
+        ],
+        "paired_resolution_difference_lower95": -0.2,
+        "paired_cost_ratio_ci95": [
+          0.09330390777314326,
+          0.10678818758316927
+        ],
+        "paired_cost_ratio_upper95": 0.10564478984480695,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.4669296688668257,
+          0.6081353874098792
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.2026214833759591,
+          -0.1295291676333359
+        ],
+        "paired_resolution_difference_lower95": -0.19393481803367735,
+        "paired_cost_ratio_ci95": [
+          0.08941760351415867,
+          0.11485947513802873
+        ],
+        "paired_cost_ratio_upper95": 0.11217054233063249,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0472012191,
+          "saving_fraction": 0.9003283224215131
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0482012191,
+          "saving_fraction": 0.8982166888773174
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0572012191,
+          "saving_fraction": 0.8792119869795569
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0972012191,
+          "saving_fraction": 0.7947466452117322
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 500
+      }
+    },
+    {
+      "policy": "cost_benefit_router_large_0",
+      "tasks": 500,
+      "resolved": 281.0,
+      "resolution_rate": 0.562,
+      "estimated_inference_total_usd": 23.600609549999998,
+      "estimated_inference_usd_per_task": 0.0472012191,
+      "estimated_inference_usd_per_resolved_task": 0.083987934341637,
+      "inference_saving_vs_large_fraction": 0.9003283224215131,
+      "resolution_difference_vs_large": -0.16599999999999993,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.4263657985999999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.30797404417499996,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.52,
+          0.606
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.206,
+          -0.126
+        ],
+        "paired_resolution_difference_lower95": -0.2,
+        "paired_cost_ratio_ci95": [
+          0.09330390777314326,
+          0.10678818758316927
+        ],
+        "paired_cost_ratio_upper95": 0.10564478984480695,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.4669296688668257,
+          0.6081353874098792
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.2026214833759591,
+          -0.1295291676333359
+        ],
+        "paired_resolution_difference_lower95": -0.19393481803367735,
+        "paired_cost_ratio_ci95": [
+          0.08941760351415867,
+          0.11485947513802873
+        ],
+        "paired_cost_ratio_upper95": 0.11217054233063249,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0472012191,
+          "saving_fraction": 0.9003283224215131
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0482012191,
+          "saving_fraction": 0.8982166888773174
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0572012191,
+          "saving_fraction": 0.8792119869795569
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0972012191,
+          "saving_fraction": 0.7947466452117322
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 500
+      }
+    },
+    {
+      "policy": "length_rule_large_0",
+      "tasks": 500,
+      "resolved": 281.0,
+      "resolution_rate": 0.562,
+      "estimated_inference_total_usd": 23.600609549999998,
+      "estimated_inference_usd_per_task": 0.0472012191,
+      "estimated_inference_usd_per_resolved_task": 0.083987934341637,
+      "inference_saving_vs_large_fraction": 0.9003283224215131,
+      "resolution_difference_vs_large": -0.16599999999999993,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.4263657985999999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.30797404417499996,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.52,
+          0.606
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.206,
+          -0.126
+        ],
+        "paired_resolution_difference_lower95": -0.2,
+        "paired_cost_ratio_ci95": [
+          0.09330390777314326,
+          0.10678818758316927
+        ],
+        "paired_cost_ratio_upper95": 0.10564478984480695,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.4669296688668257,
+          0.6081353874098792
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.2026214833759591,
+          -0.1295291676333359
+        ],
+        "paired_resolution_difference_lower95": -0.19393481803367735,
+        "paired_cost_ratio_ci95": [
+          0.08941760351415867,
+          0.11485947513802873
+        ],
+        "paired_cost_ratio_upper95": 0.11217054233063249,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0472012191,
+          "saving_fraction": 0.9003283224215131
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0482012191,
+          "saving_fraction": 0.8982166888773174
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0572012191,
+          "saving_fraction": 0.8792119869795569
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0972012191,
+          "saving_fraction": 0.7947466452117322
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 500
+      }
+    },
+    {
+      "policy": "seeded_random_large_0",
+      "tasks": 500,
+      "resolved": 281.0,
+      "resolution_rate": 0.562,
+      "estimated_inference_total_usd": 23.600609549999998,
+      "estimated_inference_usd_per_task": 0.0472012191,
+      "estimated_inference_usd_per_resolved_task": 0.083987934341637,
+      "inference_saving_vs_large_fraction": 0.9003283224215131,
+      "resolution_difference_vs_large": -0.16599999999999993,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.4263657985999999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.30797404417499996,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.52,
+          0.606
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.206,
+          -0.126
+        ],
+        "paired_resolution_difference_lower95": -0.2,
+        "paired_cost_ratio_ci95": [
+          0.09330390777314326,
+          0.10678818758316927
+        ],
+        "paired_cost_ratio_upper95": 0.10564478984480695,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.4669296688668257,
+          0.6081353874098792
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.2026214833759591,
+          -0.1295291676333359
+        ],
+        "paired_resolution_difference_lower95": -0.19393481803367735,
+        "paired_cost_ratio_ci95": [
+          0.08941760351415867,
+          0.11485947513802873
+        ],
+        "paired_cost_ratio_upper95": 0.11217054233063249,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0472012191,
+          "saving_fraction": 0.9003283224215131
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0482012191,
+          "saving_fraction": 0.8982166888773174
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0572012191,
+          "saving_fraction": 0.8792119869795569
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0972012191,
+          "saving_fraction": 0.7947466452117322
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 500
+      }
+    },
+    {
+      "policy": "benefit_router_large_0.1",
+      "tasks": 500,
+      "resolved": 296.0,
+      "resolution_rate": 0.592,
+      "estimated_inference_total_usd": 50.38457375,
+      "estimated_inference_usd_per_task": 0.1007691475,
+      "estimated_inference_usd_per_resolved_task": 0.17021815456081082,
+      "inference_saving_vs_large_fraction": 0.787212487919004,
+      "resolution_difference_vs_large": -0.136,
+      "large_model_fraction": 0.1,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.37279787019999994,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.25440611577499994,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.55,
+          0.636
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.174,
+          -0.098
+        ],
+        "paired_resolution_difference_lower95": -0.168,
+        "paired_cost_ratio_ci95": [
+          0.1764406228059273,
+          0.25478918195511174
+        ],
+        "paired_cost_ratio_upper95": 0.24795109816173735,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.49811017655527773,
+          0.6429290601652886
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.15441325920612148,
+          -0.10328286745832524
+        ],
+        "paired_resolution_difference_lower95": -0.15047682894587755,
+        "paired_cost_ratio_ci95": [
+          0.17434032066815405,
+          0.29602723557115795
+        ],
+        "paired_cost_ratio_upper95": 0.2764619297174775,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1007691475,
+          "saving_fraction": 0.7872124879190039
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1017691475,
+          "saving_fraction": 0.7851008543748084
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1107691475,
+          "saving_fraction": 0.7660961524770478
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1507691475,
+          "saving_fraction": 0.681630810709223
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 450,
+        "gpt_5_2_high": 50
+      }
+    },
+    {
+      "policy": "cost_benefit_router_large_0.1",
+      "tasks": 500,
+      "resolved": 293.0,
+      "resolution_rate": 0.586,
+      "estimated_inference_total_usd": 42.5446214,
+      "estimated_inference_usd_per_task": 0.08508924279999999,
+      "estimated_inference_usd_per_resolved_task": 0.14520348600682592,
+      "inference_saving_vs_large_fraction": 0.8203227006533145,
+      "resolution_difference_vs_large": -0.14200000000000002,
+      "large_model_fraction": 0.1,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.3884777748999999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.27008602047499997,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.544,
+          0.632
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.18,
+          -0.102
+        ],
+        "paired_resolution_difference_lower95": -0.174,
+        "paired_cost_ratio_ci95": [
+          0.1531954286917274,
+          0.208402091218943
+        ],
+        "paired_cost_ratio_upper95": 0.20458553829115636,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.4957397780884152,
+          0.6365506724663765
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.16097719353816914,
+          -0.10606060606060606
+        ],
+        "paired_resolution_difference_lower95": -0.15740937746256894,
+        "paired_cost_ratio_ci95": [
+          0.134600957153639,
+          0.29484086190642317
+        ],
+        "paired_cost_ratio_upper95": 0.2712569746324127,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.08508924279999999,
+          "saving_fraction": 0.8203227006533145
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0860892428,
+          "saving_fraction": 0.818211067109119
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.09508924279999999,
+          "saving_fraction": 0.7992063652113583
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1350892428,
+          "saving_fraction": 0.7147410234435336
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 450,
+        "gpt_5_2_high": 50
+      }
+    },
+    {
+      "policy": "length_rule_large_0.1",
+      "tasks": 500,
+      "resolved": 292.0,
+      "resolution_rate": 0.584,
+      "estimated_inference_total_usd": 50.97492645,
+      "estimated_inference_usd_per_task": 0.1019498529,
+      "estimated_inference_usd_per_resolved_task": 0.17457166592465753,
+      "inference_saving_vs_large_fraction": 0.784719270790551,
+      "resolution_difference_vs_large": -0.14400000000000002,
+      "large_model_fraction": 0.1,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.37161716479999995,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.2532254103749999,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.542,
+          0.628
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.182,
+          -0.106
+        ],
+        "paired_resolution_difference_lower95": -0.176,
+        "paired_cost_ratio_ci95": [
+          0.17894863131118463,
+          0.25339353930207514
+        ],
+        "paired_cost_ratio_upper95": 0.24896647784138706,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.4854643091130315,
+          0.6341476612818077
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.17097743585512745,
+          -0.11210762331838565
+        ],
+        "paired_resolution_difference_lower95": -0.16561629805076336,
+        "paired_cost_ratio_ci95": [
+          0.18240894696651833,
+          0.2935909554825527
+        ],
+        "paired_cost_ratio_upper95": 0.2743828628765461,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1019498529,
+          "saving_fraction": 0.784719270790551
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1029498529,
+          "saving_fraction": 0.7826076372463554
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1119498529,
+          "saving_fraction": 0.7636029353485949
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.15194985290000002,
+          "saving_fraction": 0.6791375935807701
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 450,
+        "gpt_5_2_high": 50
+      }
+    },
+    {
+      "policy": "seeded_random_large_0.1",
+      "tasks": 500,
+      "resolved": 293.0,
+      "resolution_rate": 0.586,
+      "estimated_inference_total_usd": 42.61955725,
+      "estimated_inference_usd_per_task": 0.0852391145,
+      "estimated_inference_usd_per_resolved_task": 0.14545923976109215,
+      "inference_saving_vs_large_fraction": 0.8200062265442689,
+      "resolution_difference_vs_large": -0.14200000000000002,
+      "large_model_fraction": 0.1,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.38832790319999994,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.26993614877499994,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.542,
+          0.63
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.18,
+          -0.104
+        ],
+        "paired_resolution_difference_lower95": -0.174,
+        "paired_cost_ratio_ci95": [
+          0.15169489193741162,
+          0.20995684391300048
+        ],
+        "paired_cost_ratio_upper95": 0.20541614574100972,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.49451403294691887,
+          0.626336427463991
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.17280118778280543,
+          -0.10583848185147356
+        ],
+        "paired_resolution_difference_lower95": -0.1660519971988041,
+        "paired_cost_ratio_ci95": [
+          0.1489893872257147,
+          0.22079085364867643
+        ],
+        "paired_cost_ratio_upper95": 0.2124756441768884,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0852391145,
+          "saving_fraction": 0.8200062265442689
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0862391145,
+          "saving_fraction": 0.8178945930000733
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.0952391145,
+          "saving_fraction": 0.7988898911023127
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1352391145,
+          "saving_fraction": 0.714424549334488
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 450,
+        "gpt_5_2_high": 50
+      }
+    },
+    {
+      "policy": "benefit_router_large_0.25",
+      "tasks": 500,
+      "resolved": 308.0,
+      "resolution_rate": 0.616,
+      "estimated_inference_total_usd": 88.10486495,
+      "estimated_inference_usd_per_task": 0.1762097299,
+      "estimated_inference_usd_per_resolved_task": 0.28605475633116884,
+      "inference_saving_vs_large_fraction": 0.6279096235295103,
+      "resolution_difference_vs_large": -0.11199999999999999,
+      "large_model_fraction": 0.25,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.2973572877999999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.17896553337499993,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.576,
+          0.658
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.146,
+          -0.078
+        ],
+        "paired_resolution_difference_lower95": -0.14,
+        "paired_cost_ratio_ci95": [
+          0.322841757116317,
+          0.4234761373801184
+        ],
+        "paired_cost_ratio_upper95": 0.4157421875503603,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.5048913520632133,
+          0.6731679035250464
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.14724308946482478,
+          -0.08638683960019038
+        ],
+        "paired_resolution_difference_lower95": -0.14059821387010327,
+        "paired_cost_ratio_ci95": [
+          0.3062668191900217,
+          0.4834911180462716
+        ],
+        "paired_cost_ratio_upper95": 0.45939030412466497,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1762097299,
+          "saving_fraction": 0.6279096235295103
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1772097299,
+          "saving_fraction": 0.6257979899853148
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1862097299,
+          "saving_fraction": 0.6067932880875542
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.2262097299,
+          "saving_fraction": 0.5223279463197295
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 375,
+        "gpt_5_2_high": 125
+      }
+    },
+    {
+      "policy": "cost_benefit_router_large_0.25",
+      "tasks": 500,
+      "resolved": 302.0,
+      "resolution_rate": 0.604,
+      "estimated_inference_total_usd": 73.38767815,
+      "estimated_inference_usd_per_task": 0.1467753563,
+      "estimated_inference_usd_per_resolved_task": 0.24300555678807947,
+      "inference_saving_vs_large_fraction": 0.6900642341756563,
+      "resolution_difference_vs_large": -0.124,
+      "large_model_fraction": 0.25,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.32679166139999993,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.20839990697499994,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.564,
+          0.648
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.16,
+          -0.088
+        ],
+        "paired_resolution_difference_lower95": -0.154,
+        "paired_cost_ratio_ci95": [
+          0.2663833884918476,
+          0.3562288760431888
+        ],
+        "paired_cost_ratio_upper95": 0.3483111397643364,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.49832463952985123,
+          0.6612140318418619
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.15447196904119356,
+          -0.08954806970732929
+        ],
+        "paired_resolution_difference_lower95": -0.1482641735341071,
+        "paired_cost_ratio_ci95": [
+          0.24920953259684858,
+          0.43493137139958415
+        ],
+        "paired_cost_ratio_upper95": 0.4026620913813339,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1467753563,
+          "saving_fraction": 0.6900642341756563
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1477753563,
+          "saving_fraction": 0.6879526006314607
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1567753563,
+          "saving_fraction": 0.6689478987337001
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.19677535629999998,
+          "saving_fraction": 0.5844825569658754
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 375,
+        "gpt_5_2_high": 125
+      }
+    },
+    {
+      "policy": "length_rule_large_0.25",
+      "tasks": 500,
+      "resolved": 306.0,
+      "resolution_rate": 0.612,
+      "estimated_inference_total_usd": 89.31975664999999,
+      "estimated_inference_usd_per_task": 0.17863951329999997,
+      "estimated_inference_usd_per_resolved_task": 0.2918946295751634,
+      "inference_saving_vs_large_fraction": 0.6227788113969408,
+      "resolution_difference_vs_large": -0.11599999999999999,
+      "large_model_fraction": 0.25,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.29492750439999993,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.17653574997499996,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.57,
+          0.654
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.152,
+          -0.08
+        ],
+        "paired_resolution_difference_lower95": -0.146,
+        "paired_cost_ratio_ci95": [
+          0.3258953771481637,
+          0.4287471552359759
+        ],
+        "paired_cost_ratio_upper95": 0.42042515977846595,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.5069438687026776,
+          0.6666666666666666
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.1428675856307435,
+          -0.09090909090909091
+        ],
+        "paired_resolution_difference_lower95": -0.13734023487242372,
+        "paired_cost_ratio_ci95": [
+          0.31859668717977196,
+          0.5240776977870811
+        ],
+        "paired_cost_ratio_upper95": 0.5016015524610761,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.17863951329999997,
+          "saving_fraction": 0.6227788113969408
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.17963951329999997,
+          "saving_fraction": 0.6206671778527451
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.18863951329999998,
+          "saving_fraction": 0.6016624759549846
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.22863951329999999,
+          "saving_fraction": 0.5171971341871597
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 375,
+        "gpt_5_2_high": 125
+      }
+    },
+    {
+      "policy": "seeded_random_large_0.25",
+      "tasks": 500,
+      "resolved": 305.0,
+      "resolution_rate": 0.61,
+      "estimated_inference_total_usd": 72.0925072,
+      "estimated_inference_usd_per_task": 0.1441850144,
+      "estimated_inference_usd_per_resolved_task": 0.23636887606557377,
+      "inference_saving_vs_large_fraction": 0.6955340870226318,
+      "resolution_difference_vs_large": -0.118,
+      "large_model_fraction": 0.25,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.3293820032999999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.21099024887499992,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.564,
+          0.6520499999999998
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.154,
+          -0.082
+        ],
+        "paired_resolution_difference_lower95": -0.148,
+        "paired_cost_ratio_ci95": [
+          0.2632213340935196,
+          0.3510970108395305
+        ],
+        "paired_cost_ratio_upper95": 0.34232046448959497,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.5202692938603344,
+          0.6488165584415584
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.14953933179461953,
+          -0.08916489738145793
+        ],
+        "paired_resolution_difference_lower95": -0.142165807929011,
+        "paired_cost_ratio_ci95": [
+          0.27728953889923375,
+          0.34292501399755376
+        ],
+        "paired_cost_ratio_upper95": 0.33384583334535883,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1441850144,
+          "saving_fraction": 0.6955340870226316
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.1451850144,
+          "saving_fraction": 0.6934224534784361
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.15418501440000001,
+          "saving_fraction": 0.6744177515806755
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.19418501440000002,
+          "saving_fraction": 0.5899524098128508
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 375,
+        "gpt_5_2_high": 125
+      }
+    },
+    {
+      "policy": "benefit_router_large_0.5",
+      "tasks": 500,
+      "resolved": 328.0,
+      "resolution_rate": 0.656,
+      "estimated_inference_total_usd": 148.57399479999998,
+      "estimated_inference_usd_per_task": 0.29714798959999994,
+      "estimated_inference_usd_per_resolved_task": 0.45296949634146333,
+      "inference_saving_vs_large_fraction": 0.3725323375703493,
+      "resolution_difference_vs_large": -0.07199999999999995,
+      "large_model_fraction": 0.5,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.17641902809999999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.05802727367499999,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.616,
+          0.698
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.1,
+          -0.044
+        ],
+        "paired_resolution_difference_lower95": -0.09409999999999999,
+        "paired_cost_ratio_ci95": [
+          0.578182948762543,
+          0.6769798015644322
+        ],
+        "paired_cost_ratio_upper95": 0.6688076824579495,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.5430383280057507,
+          0.7158503630511266
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.10645425700687466,
+          -0.04981532142907636
+        ],
+        "paired_resolution_difference_lower95": -0.10262648374401365,
+        "paired_cost_ratio_ci95": [
+          0.5129846038909172,
+          0.7324853680988852
+        ],
+        "paired_cost_ratio_upper95": 0.7097691507914439,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.29714798959999994,
+          "saving_fraction": 0.3725323375703493
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.29814798959999994,
+          "saving_fraction": 0.3704207040261538
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.30714798959999995,
+          "saving_fraction": 0.3514160021283932
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.34714798959999993,
+          "saving_fraction": 0.26695066036056847
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 250,
+        "gpt_5_2_high": 250
+      }
+    },
+    {
+      "policy": "cost_benefit_router_large_0.5",
+      "tasks": 500,
+      "resolved": 321.0,
+      "resolution_rate": 0.642,
+      "estimated_inference_total_usd": 127.56669275,
+      "estimated_inference_usd_per_task": 0.2551333855,
+      "estimated_inference_usd_per_resolved_task": 0.397404027258567,
+      "inference_saving_vs_large_fraction": 0.461251784934008,
+      "resolution_difference_vs_large": -0.08599999999999997,
+      "large_model_fraction": 0.5,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.21843363219999995,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.10004187777499995,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.602,
+          0.686
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.11605,
+          -0.056
+        ],
+        "paired_resolution_difference_lower95": -0.112,
+        "paired_cost_ratio_ci95": [
+          0.4860227673771577,
+          0.5916718984488981
+        ],
+        "paired_cost_ratio_upper95": 0.5816873423896972,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.5282736874487285,
+          0.701300955988456
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.11865153438363324,
+          -0.05554281345565756
+        ],
+        "paired_resolution_difference_lower95": -0.11207023700539111,
+        "paired_cost_ratio_ci95": [
+          0.42093979960491096,
+          0.6304701306822573
+        ],
+        "paired_cost_ratio_upper95": 0.6096650892173174,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.2551333855,
+          "saving_fraction": 0.4612517849340081
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.2561333855,
+          "saving_fraction": 0.45914015138981246
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.2651333855,
+          "saving_fraction": 0.44013544949205186
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.30513338549999997,
+          "saving_fraction": 0.35567010772422714
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 250,
+        "gpt_5_2_high": 250
+      }
+    },
+    {
+      "policy": "length_rule_large_0.5",
+      "tasks": 500,
+      "resolved": 337.0,
+      "resolution_rate": 0.674,
+      "estimated_inference_total_usd": 141.34087159999999,
+      "estimated_inference_usd_per_task": 0.28268174319999995,
+      "estimated_inference_usd_per_resolved_task": 0.4194091145400593,
+      "inference_saving_vs_large_fraction": 0.40307974872718844,
+      "resolution_difference_vs_large": -0.05399999999999994,
+      "large_model_fraction": 0.5,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.19088527449999998,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.07249352007499998,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.63595,
+          0.714
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.08,
+          -0.03
+        ],
+        "paired_resolution_difference_lower95": -0.076,
+        "paired_cost_ratio_ci95": [
+          0.548601219481894,
+          0.6459779961831157
+        ],
+        "paired_cost_ratio_upper95": 0.6391608109403161,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.5850510692626876,
+          0.7202177383352047
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.0657535799708011,
+          -0.020978105663969543
+        ],
+        "paired_resolution_difference_lower95": -0.06415094339622641,
+        "paired_cost_ratio_ci95": [
+          0.5265855125137768,
+          0.7630969894499106
+        ],
+        "paired_cost_ratio_upper95": 0.7420834926717361,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.28268174319999995,
+          "saving_fraction": 0.40307974872718844
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.28368174319999995,
+          "saving_fraction": 0.4009681151829928
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.29268174319999996,
+          "saving_fraction": 0.3819634132852322
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.33268174319999994,
+          "saving_fraction": 0.2974980715174076
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 250,
+        "gpt_5_2_high": 250
+      }
+    },
+    {
+      "policy": "seeded_random_large_0.5",
+      "tasks": 500,
+      "resolved": 333.0,
+      "resolution_rate": 0.666,
+      "estimated_inference_total_usd": 125.60182865,
+      "estimated_inference_usd_per_task": 0.2512036573,
+      "estimated_inference_usd_per_resolved_task": 0.3771826686186186,
+      "inference_saving_vs_large_fraction": 0.4695499308206995,
+      "resolution_difference_vs_large": -0.061999999999999944,
+      "large_model_fraction": 0.5,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.22236336039999993,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.10397160597499994,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.624,
+          0.706
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.088,
+          -0.036
+        ],
+        "paired_resolution_difference_lower95": -0.084,
+        "paired_cost_ratio_ci95": [
+          0.4803836590698631,
+          0.5842434809934507
+        ],
+        "paired_cost_ratio_upper95": 0.5747677702877289,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.5732068628818524,
+          0.7111907586474469
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.07806691449814127,
+          -0.037155438205195526
+        ],
+        "paired_resolution_difference_lower95": -0.07472732874602034,
+        "paired_cost_ratio_ci95": [
+          0.49475305745375436,
+          0.6057286847427871
+        ],
+        "paired_cost_ratio_upper95": 0.5931078786277743,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.2512036573,
+          "saving_fraction": 0.4695499308206995
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.2522036573,
+          "saving_fraction": 0.4674382972765039
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.2612036573,
+          "saving_fraction": 0.4484335953787433
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.3012036573,
+          "saving_fraction": 0.36396825361091856
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 250,
+        "gpt_5_2_high": 250
+      }
+    },
+    {
+      "policy": "benefit_router_large_0.75",
+      "tasks": 500,
+      "resolved": 349.0,
+      "resolution_rate": 0.698,
+      "estimated_inference_total_usd": 196.5881884,
+      "estimated_inference_usd_per_task": 0.3931763768,
+      "estimated_inference_usd_per_resolved_task": 0.5632899381088825,
+      "inference_saving_vs_large_fraction": 0.16975557396382412,
+      "resolution_difference_vs_large": -0.030000000000000027,
+      "large_model_fraction": 0.75,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.08039064089999992,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.038001113525000074,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.658,
+          0.738
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.052,
+          -0.012
+        ],
+        "paired_resolution_difference_lower95": -0.046,
+        "paired_cost_ratio_ci95": [
+          0.7941509987403652,
+          0.8632366002186704
+        ],
+        "paired_cost_ratio_upper95": 0.8591843488828991,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.5888790560471977,
+          0.750491114222986
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.060978550701905734,
+          -0.016527790391426763
+        ],
+        "paired_resolution_difference_lower95": -0.05440091289463675,
+        "paired_cost_ratio_ci95": [
+          0.7154755158656309,
+          0.8774709666617149
+        ],
+        "paired_cost_ratio_upper95": 0.8715062901773571,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.3931763768,
+          "saving_fraction": 0.16975557396382412
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.3941763768,
+          "saving_fraction": 0.1676439404196285
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4031763768,
+          "saving_fraction": 0.1486392385218679
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4431763768,
+          "saving_fraction": 0.06417389675404317
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 125,
+        "gpt_5_2_high": 375
+      }
+    },
+    {
+      "policy": "cost_benefit_router_large_0.75",
+      "tasks": 500,
+      "resolved": 342.0,
+      "resolution_rate": 0.684,
+      "estimated_inference_total_usd": 188.04093054999998,
+      "estimated_inference_usd_per_task": 0.37608186109999997,
+      "estimated_inference_usd_per_resolved_task": 0.5498272823099415,
+      "inference_saving_vs_large_fraction": 0.20585292673772282,
+      "resolution_difference_vs_large": -0.04399999999999993,
+      "large_model_fraction": 0.75,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.09748515659999996,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.02090659782500004,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.644,
+          0.726
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.068,
+          -0.02
+        ],
+        "paired_resolution_difference_lower95": -0.064,
+        "paired_cost_ratio_ci95": [
+          0.7534138451881859,
+          0.8371338044278227
+        ],
+        "paired_cost_ratio_upper95": 0.8298652067458044,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.5676983173076924,
+          0.7431789627553548
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.08804109679989376,
+          -0.02035791361439558
+        ],
+        "paired_resolution_difference_lower95": -0.07903377148310624,
+        "paired_cost_ratio_ci95": [
+          0.6689846521208228,
+          0.8512402175799807
+        ],
+        "paired_cost_ratio_upper95": 0.8446727399872237,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.37608186109999997,
+          "saving_fraction": 0.20585292673772282
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.37708186109999997,
+          "saving_fraction": 0.20374129319352718
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.3860818611,
+          "saving_fraction": 0.18473659129576658
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.42608186109999996,
+          "saving_fraction": 0.10027124952794186
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 125,
+        "gpt_5_2_high": 375
+      }
+    },
+    {
+      "policy": "length_rule_large_0.75",
+      "tasks": 500,
+      "resolved": 355.0,
+      "resolution_rate": 0.71,
+      "estimated_inference_total_usd": 191.94837399999997,
+      "estimated_inference_usd_per_task": 0.38389674799999995,
+      "estimated_inference_usd_per_resolved_task": 0.5406996450704225,
+      "inference_saving_vs_large_fraction": 0.18935074941558794,
+      "resolution_difference_vs_large": -0.018000000000000016,
+      "large_model_fraction": 0.75,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.08967026969999997,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.028721484725000024,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.67195,
+          0.75
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.036,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": -0.032,
+        "paired_cost_ratio_ci95": [
+          0.767815245055245,
+          0.8479812265370706
+        ],
+        "paired_cost_ratio_upper95": 0.8421994749908754,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6184725745085606,
+          0.7533747137312982
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.028902518057050873,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": -0.026950153746560932,
+        "paired_cost_ratio_ci95": [
+          0.7611342827713505,
+          0.9187584909527643
+        ],
+        "paired_cost_ratio_upper95": 0.8997693147034012,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.38389674799999995,
+          "saving_fraction": 0.18935074941558794
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.38489674799999996,
+          "saving_fraction": 0.1872391158713923
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.39389674799999996,
+          "saving_fraction": 0.1682344139736317
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.43389674799999994,
+          "saving_fraction": 0.08376907220580698
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 125,
+        "gpt_5_2_high": 375
+      }
+    },
+    {
+      "policy": "seeded_random_large_0.75",
+      "tasks": 500,
+      "resolved": 348.0,
+      "resolution_rate": 0.696,
+      "estimated_inference_total_usd": 178.9897021,
+      "estimated_inference_usd_per_task": 0.35797940419999996,
+      "estimated_inference_usd_per_resolved_task": 0.5143382244252873,
+      "inference_saving_vs_large_fraction": 0.24407868196011828,
+      "resolution_difference_vs_large": -0.03200000000000003,
+      "large_model_fraction": 0.75,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.11558761349999996,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.0028041409250000315,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.656,
+          0.7340499999999998
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.05,
+          -0.014
+        ],
+        "paired_resolution_difference_lower95": -0.048,
+        "paired_cost_ratio_ci95": [
+          0.709860668299328,
+          0.8009233890443735
+        ],
+        "paired_cost_ratio_upper95": 0.7944452146845429,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6082311105311236,
+          0.7379938656685382
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.04501970749922207,
+          -0.0068703311535687
+        ],
+        "paired_resolution_difference_lower95": -0.04282295789852465,
+        "paired_cost_ratio_ci95": [
+          0.7271823754197769,
+          0.797751434780906
+        ],
+        "paired_cost_ratio_upper95": 0.7900930142333408,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.35797940419999996,
+          "saving_fraction": 0.24407868196011828
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.35897940419999996,
+          "saving_fraction": 0.24196704841592265
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.36797940419999997,
+          "saving_fraction": 0.22296234651816205
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.40797940419999995,
+          "saving_fraction": 0.13849700475033733
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 125,
+        "gpt_5_2_high": 375
+      }
+    },
+    {
+      "policy": "benefit_router_large_0.9",
+      "tasks": 500,
+      "resolved": 352.0,
+      "resolution_rate": 0.704,
+      "estimated_inference_total_usd": 218.12325355,
+      "estimated_inference_usd_per_task": 0.43624650709999996,
+      "estimated_inference_usd_per_resolved_task": 0.6196683339488636,
+      "inference_saving_vs_large_fraction": 0.0788072420694681,
+      "resolution_difference_vs_large": -0.02400000000000002,
+      "large_model_fraction": 0.9,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.03732051059999997,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.08107124382500003,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.664,
+          0.744
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.04,
+          -0.01
+        ],
+        "paired_resolution_difference_lower95": -0.038,
+        "paired_cost_ratio_ci95": [
+          0.8940761801405479,
+          0.946157612252646
+        ],
+        "paired_cost_ratio_upper95": 0.9423392733361025,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.594374093231565,
+          0.7563502616285891
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.05725232874869691,
+          -0.0106176026875282
+        ],
+        "paired_resolution_difference_lower95": -0.05023012249039646,
+        "paired_cost_ratio_ci95": [
+          0.8239867241148515,
+          0.954066539800215
+        ],
+        "paired_cost_ratio_upper95": 0.9512062268245653,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.43624650709999996,
+          "saving_fraction": 0.0788072420694681
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.43724650709999996,
+          "saving_fraction": 0.07669560852527246
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.44624650709999997,
+          "saving_fraction": 0.05769090662751186
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.48624650709999995,
+          "saving_fraction": -0.026774435140312747
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 50,
+        "gpt_5_2_high": 450
+      }
+    },
+    {
+      "policy": "cost_benefit_router_large_0.9",
+      "tasks": 500,
+      "resolved": 353.0,
+      "resolution_rate": 0.706,
+      "estimated_inference_total_usd": 216.21071934999998,
+      "estimated_inference_usd_per_task": 0.43242143869999994,
+      "estimated_inference_usd_per_resolved_task": 0.6124949556657223,
+      "inference_saving_vs_large_fraction": 0.08688438481175076,
+      "resolution_difference_vs_large": -0.02200000000000002,
+      "large_model_fraction": 0.9,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.04114557899999999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.07724617542500001,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.666,
+          0.7460499999999998
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.038,
+          -0.008
+        ],
+        "paired_resolution_difference_lower95": -0.034,
+        "paired_cost_ratio_ci95": [
+          0.8825910833317218,
+          0.9396107499796192
+        ],
+        "paired_cost_ratio_upper95": 0.9360654767310987,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.59147875996198,
+          0.7605056811456977
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.05932266257607001,
+          -0.007028143973837776
+        ],
+        "paired_resolution_difference_lower95": -0.051598610083066036,
+        "paired_cost_ratio_ci95": [
+          0.7961429894040648,
+          0.9559650381201941
+        ],
+        "paired_cost_ratio_upper95": 0.9520169498360337,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.43242143869999994,
+          "saving_fraction": 0.08688438481175076
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.43342143869999994,
+          "saving_fraction": 0.08477275126755512
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.44242143869999995,
+          "saving_fraction": 0.06576804936979463
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4824214386999999,
+          "saving_fraction": -0.018697292398030196
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 50,
+        "gpt_5_2_high": 450
+      }
+    },
+    {
+      "policy": "length_rule_large_0.9",
+      "tasks": 500,
+      "resolved": 358.0,
+      "resolution_rate": 0.716,
+      "estimated_inference_total_usd": 219.6184892,
+      "estimated_inference_usd_per_task": 0.4392369784,
+      "estimated_inference_usd_per_resolved_task": 0.6134594670391061,
+      "inference_saving_vs_large_fraction": 0.07249246255943376,
+      "resolution_difference_vs_large": -0.01200000000000001,
+      "large_model_fraction": 0.9,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.03433003929999995,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.08406171512500005,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.676,
+          0.756
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.026,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": -0.022,
+        "paired_cost_ratio_ci95": [
+          0.9016785581696172,
+          0.950981596084474
+        ],
+        "paired_cost_ratio_upper95": 0.9485687627203667,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.631432529409093,
+          0.7575100279772138
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.019324005124509568,
+          0.004589299494126714
+        ],
+        "paired_resolution_difference_lower95": -0.018565923371347205,
+        "paired_cost_ratio_ci95": [
+          0.912604343598866,
+          0.9607568741063292
+        ],
+        "paired_cost_ratio_upper95": 0.9529882289284494,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4392369784,
+          "saving_fraction": 0.07249246255943376
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4402369784,
+          "saving_fraction": 0.07038082901523812
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4492369784,
+          "saving_fraction": 0.05137612711747752
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.48923697839999997,
+          "saving_fraction": -0.0330892146503472
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 50,
+        "gpt_5_2_high": 450
+      }
+    },
+    {
+      "policy": "seeded_random_large_0.9",
+      "tasks": 500,
+      "resolved": 361.0,
+      "resolution_rate": 0.722,
+      "estimated_inference_total_usd": 217.8584458,
+      "estimated_inference_usd_per_task": 0.4357168916,
+      "estimated_inference_usd_per_resolved_task": 0.6034859994459834,
+      "inference_saving_vs_large_fraction": 0.07992559592479398,
+      "resolution_difference_vs_large": -0.006000000000000005,
+      "large_model_fraction": 0.9,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.03785012609999994,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.08054162832500006,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.682,
+          0.762
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.016,
+          0.004
+        ],
+        "paired_resolution_difference_lower95": -0.014,
+        "paired_cost_ratio_ci95": [
+          0.8922667319704148,
+          0.9460140185593165
+        ],
+        "paired_cost_ratio_upper95": 0.941958478543121,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6422107563769158,
+          0.7586268036194668
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.01632988998068363,
+          0.009302686696518849
+        ],
+        "paired_resolution_difference_lower95": -0.014585873983739837,
+        "paired_cost_ratio_ci95": [
+          0.9105272099693908,
+          0.9387411996569315
+        ],
+        "paired_cost_ratio_upper95": 0.9341817151419294,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4357168916,
+          "saving_fraction": 0.07992559592479398
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4367168916,
+          "saving_fraction": 0.07781396238059834
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4457168916,
+          "saving_fraction": 0.058809260482837744
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4857168916,
+          "saving_fraction": -0.025656081284986865
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 50,
+        "gpt_5_2_high": 450
+      }
+    },
+    {
+      "policy": "benefit_router_large_1",
+      "tasks": 500,
+      "resolved": 364.0,
+      "resolution_rate": 0.728,
+      "estimated_inference_total_usd": 236.78350884999998,
+      "estimated_inference_usd_per_task": 0.4735670176999999,
+      "estimated_inference_usd_per_resolved_task": 0.6505041451923076,
+      "inference_saving_vs_large_fraction": 0.0,
+      "resolution_difference_vs_large": 0.0,
+      "large_model_fraction": 1.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.0,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.118391754425,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.69,
+          0.766
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          1.0,
+          1.0
+        ],
+        "paired_cost_ratio_upper95": 1.0,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6392345974053258,
+          0.7710853979297472
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          1.0,
+          1.0
+        ],
+        "paired_cost_ratio_upper95": 1.0,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4735670176999999,
+          "saving_fraction": 0.0
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4745670176999999,
+          "saving_fraction": -0.0021116335441955236
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.48356701769999993,
+          "saving_fraction": -0.021116335441956124
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.5235670176999999,
+          "saving_fraction": -0.10558167720978084
+        }
+      ],
+      "model_counts": {
+        "gpt_5_2_high": 500
+      }
+    },
+    {
+      "policy": "cost_benefit_router_large_1",
+      "tasks": 500,
+      "resolved": 364.0,
+      "resolution_rate": 0.728,
+      "estimated_inference_total_usd": 236.78350884999998,
+      "estimated_inference_usd_per_task": 0.4735670176999999,
+      "estimated_inference_usd_per_resolved_task": 0.6505041451923076,
+      "inference_saving_vs_large_fraction": 0.0,
+      "resolution_difference_vs_large": 0.0,
+      "large_model_fraction": 1.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.0,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.118391754425,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.69,
+          0.766
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          1.0,
+          1.0
+        ],
+        "paired_cost_ratio_upper95": 1.0,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6392345974053258,
+          0.7710853979297472
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          1.0,
+          1.0
+        ],
+        "paired_cost_ratio_upper95": 1.0,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4735670176999999,
+          "saving_fraction": 0.0
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4745670176999999,
+          "saving_fraction": -0.0021116335441955236
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.48356701769999993,
+          "saving_fraction": -0.021116335441956124
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.5235670176999999,
+          "saving_fraction": -0.10558167720978084
+        }
+      ],
+      "model_counts": {
+        "gpt_5_2_high": 500
+      }
+    },
+    {
+      "policy": "length_rule_large_1",
+      "tasks": 500,
+      "resolved": 364.0,
+      "resolution_rate": 0.728,
+      "estimated_inference_total_usd": 236.78350884999998,
+      "estimated_inference_usd_per_task": 0.4735670176999999,
+      "estimated_inference_usd_per_resolved_task": 0.6505041451923076,
+      "inference_saving_vs_large_fraction": 0.0,
+      "resolution_difference_vs_large": 0.0,
+      "large_model_fraction": 1.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.0,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.118391754425,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.69,
+          0.766
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          1.0,
+          1.0
+        ],
+        "paired_cost_ratio_upper95": 1.0,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6392345974053258,
+          0.7710853979297472
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          1.0,
+          1.0
+        ],
+        "paired_cost_ratio_upper95": 1.0,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4735670176999999,
+          "saving_fraction": 0.0
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4745670176999999,
+          "saving_fraction": -0.0021116335441955236
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.48356701769999993,
+          "saving_fraction": -0.021116335441956124
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.5235670176999999,
+          "saving_fraction": -0.10558167720978084
+        }
+      ],
+      "model_counts": {
+        "gpt_5_2_high": 500
+      }
+    },
+    {
+      "policy": "seeded_random_large_1",
+      "tasks": 500,
+      "resolved": 364.0,
+      "resolution_rate": 0.728,
+      "estimated_inference_total_usd": 236.78350884999998,
+      "estimated_inference_usd_per_task": 0.4735670176999999,
+      "estimated_inference_usd_per_resolved_task": 0.6505041451923076,
+      "inference_saving_vs_large_fraction": 0.0,
+      "resolution_difference_vs_large": 0.0,
+      "large_model_fraction": 1.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.0,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.118391754425,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.69,
+          0.766
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          1.0,
+          1.0
+        ],
+        "paired_cost_ratio_upper95": 1.0,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6392345974053258,
+          0.7710853979297472
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          1.0,
+          1.0
+        ],
+        "paired_cost_ratio_upper95": 1.0,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4735670176999999,
+          "saving_fraction": 0.0
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.4745670176999999,
+          "saving_fraction": -0.0021116335441955236
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.48356701769999993,
+          "saving_fraction": -0.021116335441956124
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.5235670176999999,
+          "saving_fraction": -0.10558167720978084
+        }
+      ],
+      "model_counts": {
+        "gpt_5_2_high": 500
+      }
+    },
+    {
+      "policy": "portfolio_lambda_0",
+      "tasks": 500,
+      "resolved": 380.0,
+      "resolution_rate": 0.76,
+      "estimated_inference_total_usd": 180.22256173,
+      "estimated_inference_usd_per_task": 0.36044512346,
+      "estimated_inference_usd_per_resolved_task": 0.47426989928947366,
+      "inference_saving_vs_large_fraction": 0.23887198646013297,
+      "resolution_difference_vs_large": 0.03200000000000003,
+      "large_model_fraction": 0.114,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.11312189423999991,
+      "remaining_overhead_for_25pct_saving_usd_per_task": -0.005269860185000086,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.72395,
+          0.798
+        ],
+        "paired_resolution_difference_ci95": [
+          0.004,
+          0.062
+        ],
+        "paired_resolution_difference_lower95": 0.008,
+        "paired_cost_ratio_ci95": [
+          0.6941148048900752,
+          0.8322947618593513
+        ],
+        "paired_cost_ratio_upper95": 0.8204575736676338,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6821741671537113,
+          0.7978170389875138
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0022564683867717446,
+          0.0927180260988627
+        ],
+        "paired_resolution_difference_lower95": 0.0055790017002671855,
+        "paired_cost_ratio_ci95": [
+          0.5555271136237444,
+          0.9214372518172576
+        ],
+        "paired_cost_ratio_upper95": 0.8876295256078801,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.36044512346,
+          "saving_fraction": 0.23887198646013297
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.36144512346,
+          "saving_fraction": 0.23676035291593733
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.37044512346,
+          "saving_fraction": 0.21775565101817673
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.41044512346,
+          "saving_fraction": 0.133290309250352
+        }
+      ],
+      "model_counts": {
+        "gpt_5_2_high": 57,
+        "deepseek_3_2_high": 3,
+        "kimi_k2_5_high": 9,
+        "minimax_2_5_high": 116,
+        "glm_5_high": 44,
+        "gemini_3_flash_high": 148,
+        "claude_4_5_sonnet_high": 14,
+        "claude_4_6_opus": 109
+      }
+    },
+    {
+      "policy": "portfolio_lambda_0.05",
+      "tasks": 500,
+      "resolved": 378.0,
+      "resolution_rate": 0.756,
+      "estimated_inference_total_usd": 134.588299686,
+      "estimated_inference_usd_per_task": 0.269176599372,
+      "estimated_inference_usd_per_resolved_task": 0.35605370287301585,
+      "inference_saving_vs_large_fraction": 0.43159766345357964,
+      "resolution_difference_vs_large": 0.028000000000000025,
+      "large_model_fraction": 0.072,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.20439041832799992,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.08599866390299993,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.718,
+          0.794
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.058
+        ],
+        "paired_resolution_difference_lower95": 0.004,
+        "paired_cost_ratio_ci95": [
+          0.5099724284722984,
+          0.6301655674645358
+        ],
+        "paired_cost_ratio_upper95": 0.6204796984548323,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6907125189499721,
+          0.7927173414820473
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.0022375143599975816,
+          0.08946399424464883
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          0.41374430887598895,
+          0.7993472725666423
+        ],
+        "paired_cost_ratio_upper95": 0.7379111473005981,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.269176599372,
+          "saving_fraction": 0.4315976634535795
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.270176599372,
+          "saving_fraction": 0.4294860299093839
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.279176599372,
+          "saving_fraction": 0.4104813280116234
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.319176599372,
+          "saving_fraction": 0.3260159862437987
+        }
+      ],
+      "model_counts": {
+        "gpt_5_2_high": 36,
+        "kimi_k2_5_high": 20,
+        "minimax_2_5_high": 207,
+        "glm_5_high": 36,
+        "gemini_3_flash_high": 119,
+        "claude_4_5_sonnet_high": 6,
+        "claude_4_6_opus": 76
+      }
+    },
+    {
+      "policy": "portfolio_lambda_0.1",
+      "tasks": 500,
+      "resolved": 379.0,
+      "resolution_rate": 0.758,
+      "estimated_inference_total_usd": 103.04666910600001,
+      "estimated_inference_usd_per_task": 0.20609333821200002,
+      "estimated_inference_usd_per_resolved_task": 0.27189094750923487,
+      "inference_saving_vs_large_fraction": 0.5648063937962882,
+      "resolution_difference_vs_large": 0.030000000000000027,
+      "large_model_fraction": 0.052,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.26747367948799994,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.14908192506299991,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.72,
+          0.796
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.06
+        ],
+        "paired_resolution_difference_lower95": 0.006,
+        "paired_cost_ratio_ci95": [
+          0.3827878810869,
+          0.4894747505459854
+        ],
+        "paired_cost_ratio_upper95": 0.4824016140019662,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6951133803506709,
+          0.797956621079516
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.09184034462841739
+        ],
+        "paired_resolution_difference_lower95": 0.0024061624044330113,
+        "paired_cost_ratio_ci95": [
+          0.3296340987448765,
+          0.7081677095141833
+        ],
+        "paired_cost_ratio_upper95": 0.6597084790479322,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.20609333821200002,
+          "saving_fraction": 0.5648063937962882
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.20709333821200002,
+          "saving_fraction": 0.5626947602520925
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.21609333821200002,
+          "saving_fraction": 0.5436900583543319
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.25609333821200003,
+          "saving_fraction": 0.4592247165865072
+        }
+      ],
+      "model_counts": {
+        "gpt_5_2_high": 26,
+        "kimi_k2_5_high": 28,
+        "minimax_2_5_high": 291,
+        "glm_5_high": 22,
+        "gemini_3_flash_high": 76,
+        "claude_4_5_sonnet_high": 4,
+        "claude_4_6_opus": 53
+      }
+    },
+    {
+      "policy": "portfolio_lambda_0.25",
+      "tasks": 500,
+      "resolved": 381.0,
+      "resolution_rate": 0.762,
+      "estimated_inference_total_usd": 57.688269377999994,
+      "estimated_inference_usd_per_task": 0.11537653875599999,
+      "estimated_inference_usd_per_resolved_task": 0.15141278051968501,
+      "inference_saving_vs_large_fraction": 0.7563670305496446,
+      "resolution_difference_vs_large": 0.03400000000000003,
+      "large_model_fraction": 0.032,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.3581904789439999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.23979872451899995,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.724,
+          0.8
+        ],
+        "paired_resolution_difference_ci95": [
+          0.002,
+          0.066
+        ],
+        "paired_resolution_difference_lower95": 0.008,
+        "paired_cost_ratio_ci95": [
+          0.21266768736334754,
+          0.2757777876425641
+        ],
+        "paired_cost_ratio_upper95": 0.27112300482820245,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6964262341062079,
+          0.7905105395771879
+        ],
+        "paired_resolution_difference_ci95": [
+          0.008492119183849725,
+          0.0859017997268817
+        ],
+        "paired_resolution_difference_lower95": 0.011120394341795703,
+        "paired_cost_ratio_ci95": [
+          0.17140987284405537,
+          0.46623362253707773
+        ],
+        "paired_cost_ratio_upper95": 0.4302098244564382,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.11537653875599999,
+          "saving_fraction": 0.7563670305496446
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.11637653875599999,
+          "saving_fraction": 0.754255397005449
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.125376538756,
+          "saving_fraction": 0.7352506951076885
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.165376538756,
+          "saving_fraction": 0.6507853533398636
+        }
+      ],
+      "model_counts": {
+        "gpt_5_2_high": 16,
+        "deepseek_3_2_high": 1,
+        "kimi_k2_5_high": 32,
+        "minimax_2_5_high": 409,
+        "glm_5_high": 9,
+        "gemini_3_flash_high": 17,
+        "claude_4_5_haiku_high": 2,
+        "claude_4_6_opus": 14
+      }
+    },
+    {
+      "policy": "portfolio_lambda_0.5",
+      "tasks": 500,
+      "resolved": 376.0,
+      "resolution_rate": 0.752,
+      "estimated_inference_total_usd": 43.601737622,
+      "estimated_inference_usd_per_task": 0.087203475244,
+      "estimated_inference_usd_per_resolved_task": 0.11596206814361702,
+      "inference_saving_vs_large_fraction": 0.8158582165043374,
+      "resolution_difference_vs_large": 0.02400000000000002,
+      "large_model_fraction": 0.018,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.3863635424559999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.2679717880309999,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.714,
+          0.79
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.01,
+          0.058
+        ],
+        "paired_resolution_difference_lower95": -0.004,
+        "paired_cost_ratio_ci95": [
+          0.16708707806198642,
+          0.20330365745574214
+        ],
+        "paired_cost_ratio_upper95": 0.20016160373999045,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6705010525940198,
+          0.7807685939369997
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.01344574780058651,
+          0.07332657600031484
+        ],
+        "paired_resolution_difference_lower95": -0.007463803735811958,
+        "paired_cost_ratio_ci95": [
+          0.15099465213364888,
+          0.28094380275636976
+        ],
+        "paired_cost_ratio_upper95": 0.2650669610411702,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.087203475244,
+          "saving_fraction": 0.8158582165043374
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.088203475244,
+          "saving_fraction": 0.8137465829601418
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.097203475244,
+          "saving_fraction": 0.7947418810623812
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.137203475244,
+          "saving_fraction": 0.7102765392945565
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 2,
+        "gpt_5_2_high": 9,
+        "kimi_k2_5_high": 32,
+        "minimax_2_5_high": 445,
+        "glm_5_high": 1,
+        "gemini_3_flash_high": 9,
+        "claude_4_5_haiku_high": 2
+      }
+    },
+    {
+      "policy": "portfolio_lambda_1",
+      "tasks": 500,
+      "resolved": 375.0,
+      "resolution_rate": 0.75,
+      "estimated_inference_total_usd": 37.233427222,
+      "estimated_inference_usd_per_task": 0.074466854444,
+      "estimated_inference_usd_per_resolved_task": 0.09928913925866667,
+      "inference_saving_vs_large_fraction": 0.842753292225317,
+      "resolution_difference_vs_large": 0.02200000000000002,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.39910016325599995,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.2807084088309999,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.71,
+          0.788
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.012,
+          0.056
+        ],
+        "paired_resolution_difference_lower95": -0.006,
+        "paired_cost_ratio_ci95": [
+          0.1431960222643476,
+          0.17242802011183675
+        ],
+        "paired_cost_ratio_upper95": 0.1700357427656086,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.66054844274415,
+          0.7807131611847691
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.03057868724823127,
+          0.07336935882017845
+        ],
+        "paired_resolution_difference_lower95": -0.01767027906847333,
+        "paired_cost_ratio_ci95": [
+          0.1387817737315651,
+          0.1978786179688898
+        ],
+        "paired_cost_ratio_upper95": 0.19256312217223653,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.074466854444,
+          "saving_fraction": 0.842753292225317
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.075466854444,
+          "saving_fraction": 0.8406416586811214
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.084466854444,
+          "saving_fraction": 0.8216369567833609
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.124466854444,
+          "saving_fraction": 0.7371716150155361
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 14,
+        "kimi_k2_5_high": 18,
+        "minimax_2_5_high": 468
+      }
+    },
+    {
+      "policy": "portfolio_lambda_2",
+      "tasks": 500,
+      "resolved": 374.0,
+      "resolution_rate": 0.748,
+      "estimated_inference_total_usd": 35.842337382,
+      "estimated_inference_usd_per_task": 0.07168467476399999,
+      "estimated_inference_usd_per_resolved_task": 0.09583512668983957,
+      "inference_saving_vs_large_fraction": 0.8486282361635845,
+      "resolution_difference_vs_large": 0.020000000000000018,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.40188234293599995,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.28349058851099995,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.71,
+          0.786
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.014,
+          0.054
+        ],
+        "paired_resolution_difference_lower95": -0.008,
+        "paired_cost_ratio_ci95": [
+          0.13862517243338518,
+          0.1659223732463271
+        ],
+        "paired_cost_ratio_upper95": 0.1633020104676894,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6537903225806452,
+          0.7797845036212094
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.041666666666666664,
+          0.07317544024861095
+        ],
+        "paired_resolution_difference_lower95": -0.025166137090046774,
+        "paired_cost_ratio_ci95": [
+          0.1335993042091709,
+          0.18747301366728233
+        ],
+        "paired_cost_ratio_upper95": 0.18180176090474706,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.07168467476399999,
+          "saving_fraction": 0.8486282361635845
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.07268467476399999,
+          "saving_fraction": 0.8465166026193889
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.08168467476399999,
+          "saving_fraction": 0.8275119007216283
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.121684674764,
+          "saving_fraction": 0.7430465589538036
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 28,
+        "kimi_k2_5_high": 7,
+        "minimax_2_5_high": 465
+      }
+    },
+    {
+      "policy": "open_weight_portfolio_lambda_0",
+      "tasks": 500,
+      "resolved": 376.0,
+      "resolution_rate": 0.752,
+      "estimated_inference_total_usd": 106.80356889000001,
+      "estimated_inference_usd_per_task": 0.21360713778,
+      "estimated_inference_usd_per_resolved_task": 0.2840520449202128,
+      "inference_saving_vs_large_fraction": 0.5489400025841369,
+      "resolution_difference_vs_large": 0.02400000000000002,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.2599598799199999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.14156812549499992,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.714,
+          0.79
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.008,
+          0.058
+        ],
+        "paired_resolution_difference_lower95": -0.004,
+        "paired_cost_ratio_ci95": [
+          0.3908798834844809,
+          0.5169838902369104
+        ],
+        "paired_cost_ratio_upper95": 0.5042217141094905,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6797981730355349,
+          0.7811397320494033
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.015669721056284495,
+          0.08635385469244139
+        ],
+        "paired_resolution_difference_lower95": -0.008397491505819418,
+        "paired_cost_ratio_ci95": [
+          0.26993555143297865,
+          0.6073101140112445
+        ],
+        "paired_cost_ratio_upper95": 0.5771069947394779,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.21360713778,
+          "saving_fraction": 0.5489400025841368
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.21460713778,
+          "saving_fraction": 0.5468283690399411
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.22360713778000002,
+          "saving_fraction": 0.5278236671421805
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.26360713778,
+          "saving_fraction": 0.44335832537435593
+        }
+      ],
+      "model_counts": {
+        "deepseek_3_2_high": 30,
+        "kimi_k2_5_high": 34,
+        "minimax_2_5_high": 306,
+        "glm_5_high": 130
+      }
+    },
+    {
+      "policy": "open_weight_portfolio_lambda_0.05",
+      "tasks": 500,
+      "resolved": 379.0,
+      "resolution_rate": 0.758,
+      "estimated_inference_total_usd": 76.186605646,
+      "estimated_inference_usd_per_task": 0.15237321129200002,
+      "estimated_inference_usd_per_resolved_task": 0.20102006766754618,
+      "inference_saving_vs_large_fraction": 0.6782436157990062,
+      "resolution_difference_vs_large": 0.030000000000000027,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.3211938064079999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.20280205198299991,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.72,
+          0.7960499999999998
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.004,
+          0.064
+        ],
+        "paired_resolution_difference_lower95": 0.002,
+        "paired_cost_ratio_ci95": [
+          0.27971196270938614,
+          0.3659961960619908
+        ],
+        "paired_cost_ratio_upper95": 0.3585011852489688,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6769172932330827,
+          0.7875153913336054
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.01263238171981121,
+          0.08651647359711141
+        ],
+        "paired_resolution_difference_lower95": -0.0043700373468874365,
+        "paired_cost_ratio_ci95": [
+          0.23511189745613667,
+          0.5603452904589824
+        ],
+        "paired_cost_ratio_upper95": 0.5108505921094433,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.15237321129200002,
+          "saving_fraction": 0.6782436157990062
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.15337321129200002,
+          "saving_fraction": 0.6761319822548106
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.16237321129200002,
+          "saving_fraction": 0.65712728035705
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.20237321129200003,
+          "saving_fraction": 0.5726619385892252
+        }
+      ],
+      "model_counts": {
+        "deepseek_3_2_high": 22,
+        "kimi_k2_5_high": 44,
+        "minimax_2_5_high": 364,
+        "glm_5_high": 70
+      }
+    },
+    {
+      "policy": "open_weight_portfolio_lambda_0.1",
+      "tasks": 500,
+      "resolved": 379.0,
+      "resolution_rate": 0.758,
+      "estimated_inference_total_usd": 60.937105672,
+      "estimated_inference_usd_per_task": 0.121874211344,
+      "estimated_inference_usd_per_resolved_task": 0.16078391997889183,
+      "inference_saving_vs_large_fraction": 0.7426463271536234,
+      "resolution_difference_vs_large": 0.030000000000000027,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.3516928063559999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.23330105193099993,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.72,
+          0.796
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.004,
+          0.066
+        ],
+        "paired_resolution_difference_lower95": 0.002,
+        "paired_cost_ratio_ci95": [
+          0.22263281211549146,
+          0.29416990946565097
+        ],
+        "paired_cost_ratio_upper95": 0.28766942612492125,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6830518796497466,
+          0.7867795691640699
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.011952429516384224,
+          0.09116134576277286
+        ],
+        "paired_resolution_difference_lower95": -0.0035335689045936395,
+        "paired_cost_ratio_ci95": [
+          0.18608136587154983,
+          0.4682126489929633
+        ],
+        "paired_cost_ratio_upper95": 0.43545676861870936,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.121874211344,
+          "saving_fraction": 0.7426463271536234
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.122874211344,
+          "saving_fraction": 0.7405346936094278
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.13187421134400001,
+          "saving_fraction": 0.7215299917116672
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.171874211344,
+          "saving_fraction": 0.6370646499438426
+        }
+      ],
+      "model_counts": {
+        "deepseek_3_2_high": 16,
+        "kimi_k2_5_high": 43,
+        "minimax_2_5_high": 399,
+        "glm_5_high": 42
+      }
+    },
+    {
+      "policy": "open_weight_portfolio_lambda_0.25",
+      "tasks": 500,
+      "resolved": 379.0,
+      "resolution_rate": 0.758,
+      "estimated_inference_total_usd": 46.880006662,
+      "estimated_inference_usd_per_task": 0.093760013324,
+      "estimated_inference_usd_per_resolved_task": 0.1236939489762533,
+      "inference_saving_vs_large_fraction": 0.8020132107608136,
+      "resolution_difference_vs_large": 0.030000000000000027,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.3798070043759999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.26141524995099996,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.72,
+          0.796
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.004,
+          0.064
+        ],
+        "paired_resolution_difference_lower95": 0.002,
+        "paired_cost_ratio_ci95": [
+          0.17513488691947948,
+          0.2239702451371909
+        ],
+        "paired_cost_ratio_upper95": 0.21820361007219963,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.686101389861014,
+          0.7875010428253615
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.006282705389848247,
+          0.08861660435154732
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          0.15370431283640637,
+          0.32445680163084295
+        ],
+        "paired_cost_ratio_upper95": 0.302105966588481,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.093760013324,
+          "saving_fraction": 0.8020132107608134
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.094760013324,
+          "saving_fraction": 0.7999015772166178
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.10376001332399999,
+          "saving_fraction": 0.7808968753188573
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.143760013324,
+          "saving_fraction": 0.6964315335510325
+        }
+      ],
+      "model_counts": {
+        "deepseek_3_2_high": 6,
+        "kimi_k2_5_high": 37,
+        "minimax_2_5_high": 440,
+        "glm_5_high": 17
+      }
+    },
+    {
+      "policy": "open_weight_portfolio_lambda_0.5",
+      "tasks": 500,
+      "resolved": 376.0,
+      "resolution_rate": 0.752,
+      "estimated_inference_total_usd": 39.014194974,
+      "estimated_inference_usd_per_task": 0.078028389948,
+      "estimated_inference_usd_per_resolved_task": 0.10376115684574468,
+      "inference_saving_vs_large_fraction": 0.835232634386227,
+      "resolution_difference_vs_large": 0.02400000000000002,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.39553862775199994,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.27714687332699994,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.714,
+          0.79
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.01,
+          0.058
+        ],
+        "paired_resolution_difference_lower95": -0.004,
+        "paired_cost_ratio_ci95": [
+          0.1499569335991706,
+          0.1813042446401185
+        ],
+        "paired_cost_ratio_upper95": 0.17856644711272912,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6705010525940198,
+          0.7807685939369997
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.01344574780058651,
+          0.07332657600031484
+        ],
+        "paired_resolution_difference_lower95": -0.007463803735811958,
+        "paired_cost_ratio_ci95": [
+          0.14400302131410203,
+          0.2149993152308774
+        ],
+        "paired_cost_ratio_upper95": 0.20642709163037365,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.078028389948,
+          "saving_fraction": 0.835232634386227
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.079028389948,
+          "saving_fraction": 0.8331210008420313
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.088028389948,
+          "saving_fraction": 0.8141162989442708
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.128028389948,
+          "saving_fraction": 0.729650957176446
+        }
+      ],
+      "model_counts": {
+        "kimi_k2_5_high": 32,
+        "minimax_2_5_high": 465,
+        "glm_5_high": 3
+      }
+    },
+    {
+      "policy": "open_weight_portfolio_lambda_1",
+      "tasks": 500,
+      "resolved": 378.0,
+      "resolution_rate": 0.756,
+      "estimated_inference_total_usd": 37.500933184,
+      "estimated_inference_usd_per_task": 0.07500186636799999,
+      "estimated_inference_usd_per_resolved_task": 0.09920881794708994,
+      "inference_saving_vs_large_fraction": 0.841623543100054,
+      "resolution_difference_vs_large": 0.028000000000000025,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.39856515133199993,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.28017339690699994,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.716,
+          0.794
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.006,
+          0.06
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          0.1443834113823904,
+          0.17346006296384994
+        ],
+        "paired_cost_ratio_upper95": 0.17107092510203417,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6712191230676129,
+          0.7844613169048276
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.012197620951619352,
+          0.0795841577162238
+        ],
+        "paired_resolution_difference_lower95": -0.0046328899321857065,
+        "paired_cost_ratio_ci95": [
+          0.13941549258788985,
+          0.2008020688190163
+        ],
+        "paired_cost_ratio_upper95": 0.19591971935828992,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.07500186636799999,
+          "saving_fraction": 0.841623543100054
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.07600186636799999,
+          "saving_fraction": 0.8395119095558584
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.08500186636799999,
+          "saving_fraction": 0.8205072076580978
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.12500186636799998,
+          "saving_fraction": 0.7360418658902732
+        }
+      ],
+      "model_counts": {
+        "kimi_k2_5_high": 21,
+        "minimax_2_5_high": 479
+      }
+    },
+    {
+      "policy": "open_weight_portfolio_lambda_2",
+      "tasks": 500,
+      "resolved": 379.0,
+      "resolution_rate": 0.758,
+      "estimated_inference_total_usd": 37.26215139,
+      "estimated_inference_usd_per_task": 0.07452430278,
+      "estimated_inference_usd_per_resolved_task": 0.09831702213720317,
+      "inference_saving_vs_large_fraction": 0.8426319823919612,
+      "resolution_difference_vs_large": 0.030000000000000027,
+      "large_model_fraction": 0.0,
+      "nondeployable_oracle": false,
+      "break_even_added_overhead_usd_per_task": 0.39904271491999993,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.28065096049499993,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.718,
+          0.796
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.004,
+          0.06204999999999972
+        ],
+        "paired_resolution_difference_lower95": 0.002,
+        "paired_cost_ratio_ci95": [
+          0.14376613082332065,
+          0.17242265795841485
+        ],
+        "paired_cost_ratio_upper95": 0.1699191122912845,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6761067019400353,
+          0.7871949753576151
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.009349491304862179,
+          0.08176976705582908
+        ],
+        "paired_resolution_difference_lower95": -0.0016550285513744338,
+        "paired_cost_ratio_ci95": [
+          0.1387315653720384,
+          0.19824840804326913
+        ],
+        "paired_cost_ratio_upper95": 0.19373772087853375,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.07452430278,
+          "saving_fraction": 0.8426319823919612
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.07552430278,
+          "saving_fraction": 0.8405203488477656
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.08452430277999999,
+          "saving_fraction": 0.8215156469500051
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.12452430278,
+          "saving_fraction": 0.7370503051821803
+        }
+      ],
+      "model_counts": {
+        "kimi_k2_5_high": 11,
+        "minimax_2_5_high": 489
+      }
+    },
+    {
+      "policy": "NONDEPLOYABLE_pair_outcome_cost_oracle",
+      "tasks": 500,
+      "resolved": 383.0,
+      "resolution_rate": 0.766,
+      "estimated_inference_total_usd": 76.9014891,
+      "estimated_inference_usd_per_task": 0.15380297820000002,
+      "estimated_inference_usd_per_resolved_task": 0.20078717780678854,
+      "inference_saving_vs_large_fraction": 0.6752244720356926,
+      "resolution_difference_vs_large": 0.038000000000000034,
+      "large_model_fraction": 0.204,
+      "nondeployable_oracle": true,
+      "break_even_added_overhead_usd_per_task": 0.3197640394999999,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.2013722850749999,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.72995,
+          0.802
+        ],
+        "paired_resolution_difference_ci95": [
+          0.022,
+          0.056
+        ],
+        "paired_resolution_difference_lower95": 0.024,
+        "paired_cost_ratio_ci95": [
+          0.2798747901054169,
+          0.37214343759791174
+        ],
+        "paired_cost_ratio_upper95": 0.36258391479596513,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6927097433120862,
+          0.8003786995283263
+        ],
+        "paired_resolution_difference_ci95": [
+          0.021634515391014974,
+          0.07142857142857142
+        ],
+        "paired_resolution_difference_lower95": 0.023577648455038104,
+        "paired_cost_ratio_ci95": [
+          0.2691794804888484,
+          0.354293840543661
+        ],
+        "paired_cost_ratio_upper95": 0.3486452574983594,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.15380297820000002,
+          "saving_fraction": 0.6752244720356926
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.15480297820000002,
+          "saving_fraction": 0.6731128384914968
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.16380297820000003,
+          "saving_fraction": 0.6541081365937362
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.20380297820000004,
+          "saving_fraction": 0.5696427948259115
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 398,
+        "gpt_5_2_high": 102
+      }
+    },
+    {
+      "policy": "NONDEPLOYABLE_portfolio_outcome_cost_oracle",
+      "tasks": 500,
+      "resolved": 439.0,
+      "resolution_rate": 0.878,
+      "estimated_inference_total_usd": 46.794617234,
+      "estimated_inference_usd_per_task": 0.09358923446800001,
+      "estimated_inference_usd_per_resolved_task": 0.10659366112528473,
+      "inference_saving_vs_large_fraction": 0.8023738331217825,
+      "resolution_difference_vs_large": 0.15000000000000002,
+      "large_model_fraction": 0.014,
+      "nondeployable_oracle": true,
+      "break_even_added_overhead_usd_per_task": 0.37997778323199993,
+      "remaining_overhead_for_25pct_saving_usd_per_task": 0.26158602880699994,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.848,
+          0.906
+        ],
+        "paired_resolution_difference_ci95": [
+          0.118,
+          0.182
+        ],
+        "paired_resolution_difference_lower95": 0.124,
+        "paired_cost_ratio_ci95": [
+          0.16598199897271962,
+          0.23543826164593287
+        ],
+        "paired_cost_ratio_upper95": 0.22948929680392702,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.8188507718696398,
+          0.9078576652504005
+        ],
+        "paired_resolution_difference_ci95": [
+          0.11925287356321838,
+          0.2170276818536259
+        ],
+        "paired_resolution_difference_lower95": 0.12230144878180296,
+        "paired_cost_ratio_ci95": [
+          0.1650622996747423,
+          0.2659546877655403
+        ],
+        "paired_cost_ratio_upper95": 0.25292822734073245,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": true,
+        "joint_exploratory_target_supported": true
+      },
+      "overhead_sensitivity": [
+        {
+          "extra_usd_per_task": 0,
+          "inference_plus_assumed_overhead_usd_per_task": 0.09358923446800001,
+          "saving_fraction": 0.8023738331217825
+        },
+        {
+          "extra_usd_per_task": 0.001,
+          "inference_plus_assumed_overhead_usd_per_task": 0.09458923446800001,
+          "saving_fraction": 0.8002621995775868
+        },
+        {
+          "extra_usd_per_task": 0.01,
+          "inference_plus_assumed_overhead_usd_per_task": 0.103589234468,
+          "saving_fraction": 0.7812574976798262
+        },
+        {
+          "extra_usd_per_task": 0.05,
+          "inference_plus_assumed_overhead_usd_per_task": 0.143589234468,
+          "saving_fraction": 0.6967921559120015
+        }
+      ],
+      "model_counts": {
+        "gpt_5_mini": 191,
+        "gpt_5_2_high": 7,
+        "deepseek_3_2_high": 6,
+        "kimi_k2_5_high": 25,
+        "minimax_2_5_high": 242,
+        "glm_5_high": 6,
+        "gemini_3_flash_high": 13,
+        "claude_4_5_haiku_high": 1,
+        "claude_4_5_sonnet_high": 1,
+        "claude_4_6_opus": 8
+      }
+    }
+  ]
+}

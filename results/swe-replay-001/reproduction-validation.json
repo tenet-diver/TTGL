@@ -1,0 +1,14 @@
+{
+  "checked_at_utc": "2026-10-26T16:15:12.871050+00:00",
+  "original_analysis_reproduced": true,
+  "summary_identical_except_measured_fit_seconds": true,
+  "byte_identical": {
+    "task-records.jsonl": true,
+    "folds.json": true,
+    "sources.json": true
+  },
+  "original_script_hash_matches": true,
+  "model_inference_calls": 0,
+  "validation_tests": "5 passed",
+  "method": "Reran complete five-fold model fitting, all61 policies and paired bootstrap; compared deterministic outputs."
+}

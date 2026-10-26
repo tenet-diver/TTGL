@@ -1,0 +1,6 @@
+{
+  "protocol_sha256": "ddf64c54c3c15f9f8039491cf7774c83fec2632c7a281b393ce2fb48c75f0a1e",
+  "frozen_at_utc": "2026-10-26T16:07:11.763407+00:00",
+  "stage": "before_fit_and_policy_outcome_analysis",
+  "note": "Within-fold quotas finalized before fitting to avoid indirect cross-fold ranking leakage."
+}

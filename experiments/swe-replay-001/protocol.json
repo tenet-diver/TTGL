@@ -1,0 +1,127 @@
+{
+  "experiment_id": "swe-replay-001",
+  "status": "exploratory_secondary_analysis_frozen_before_model_fitting",
+  "created_at_utc": "2026-10-26T16:04:20.436508+00:00",
+  "registration_limits": "Public aggregate accuracies and primary model prices were inspected when selecting data. This is not prospective preregistration or a fresh model trial.",
+  "benchmark": "SWE-bench Verified, complete 500-task test split",
+  "source_repository": "SWE-bench/experiments",
+  "source_commit": "40f164d5b8f1d249bf95a6df8b74b577fd8e519d",
+  "task_repository": "SWE-bench/swe-bench-tasks",
+  "task_commit": "3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d",
+  "harness": "mini-SWE-agent 2.0.0, published 2026-02-17 submissions, one attempt per task/model",
+  "models": {
+    "gpt_5_mini": "20260217_mini-v2.0.0_gpt-5-mini",
+    "gpt_5_2_high": "20260217_mini-v2.0.0_gpt-5-2-high",
+    "deepseek_3_2_high": "20260217_mini-v2.0.0_deepseek-3-2-high",
+    "kimi_k2_5_high": "20260217_mini-v2.0.0_kimi-k2-5-high",
+    "minimax_2_5_high": "20260217_mini-v2.0.0_minimax-2-5-high",
+    "glm_5_high": "20260217_mini-v2.0.0_glm-5-high",
+    "gemini_3_flash_high": "20260217_mini-v2.0.0_gemini-3-flash-high",
+    "claude_4_5_haiku_high": "20260217_mini-v2.0.0_claude-4-5-haiku-high",
+    "claude_4_5_sonnet_high": "20260217_mini-v2.0.0_claude-4-5-sonnet-high",
+    "claude_4_6_opus": "20260217_mini-v2.0.0_claude-4-6-opus"
+  },
+  "primary_pair": [
+    "gpt_5_mini",
+    "gpt_5_2_high"
+  ],
+  "primary_policy": "benefit_per_predicted_incremental_dollar_at_50_percent_large_allocation",
+  "features": [
+    "problem_statement word TF-IDF 1-2grams min_df2 max_features5000 sublinear_tf",
+    "log1p problem_statement character length",
+    "repository name one-hot"
+  ],
+  "forbidden_features": [
+    "gold patch",
+    "test patch",
+    "hidden tests",
+    "own heldout outcome",
+    "own heldout cost",
+    "trajectory",
+    "API call counts",
+    "instance identifier"
+  ],
+  "split": {
+    "method": "KFold(shuffle=True,random_state=1729)",
+    "folds": 5,
+    "unit": "task",
+    "notes": "Pre-task repository can recur in train/test. Cluster bootstrap sensitivity by repository; unseen-repository performance not established."
+  },
+  "estimators": {
+    "quality": "LogisticRegression(C=1,solver=liblinear,max_iter=2000,random_state=1729); constant training prior if one class",
+    "cost": "Ridge(alpha=1,solver=lsqr) on log1p published cost, clamp predicted dollars to >=0.000001"
+  },
+  "pair_scores": [
+    "predicted_gain",
+    "predicted_gain / max(predicted_large_cost - predicted_small_cost, 0.001)",
+    "problem_length",
+    "seeded_random"
+  ],
+  "large_allocation_grid": [
+    0,
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    0.9,
+    1
+  ],
+  "allocation": "Rank scores within each held-out fold; select floor(fraction*fold_size) tasks. The known batch quota uses no heldout labels/costs, including indirect cross-fold training effects. Not an online per-arrival quota guarantee.",
+  "portfolio_lambda_grid": [
+    0,
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    1,
+    2
+  ],
+  "portfolio_policy": "argmax predicted success probability - lambda*predicted task cost",
+  "baselines": [
+    "all-small",
+    "all-large",
+    "every individual portfolio model",
+    "expected random pair mixtures",
+    "fixed seeded random allocation",
+    "nondeployable outcome/cost oracle"
+  ],
+  "oracle": "For each task choose cheapest successful model when one succeeds, otherwise cheapest model; uses true heldout labels and costs and is never a deployable result.",
+  "cost": {
+    "kind": "upstream-reported estimated API inference dollars per complete task attempt",
+    "not_included": [
+      "router training/inference compute dollars",
+      "environment/test execution",
+      "subscription allocation",
+      "actual invoices"
+    ],
+    "overhead_sensitivity_usd_per_task": [
+      0,
+      0.001,
+      0.01,
+      0.05
+    ]
+  },
+  "analysis": {
+    "bootstrap_replicates": 2000,
+    "seed": 1729,
+    "paired_task_bootstrap": true,
+    "paired_repository_cluster_sensitivity": true,
+    "quality_noninferiority_margin_absolute": 0.03,
+    "practical_saving_target": 0.25,
+    "quality_test": "one-sided95 lower quantile of paired resolution difference > -0.03",
+    "cost_test": "one-sided95 upper quantile of paired mean-cost ratio < 0.75",
+    "qualification": "Intervals conditional on fixed fitted OOF policies and public one-attempt outcomes; no familywise claim from selecting grid winners."
+  },
+  "do_not_claim": [
+    "fresh model inference",
+    "live bidirectional cooperation",
+    "distillation",
+    "small open local model",
+    "current provider invoice savings",
+    "Codex subscription credit savings",
+    "full operational cost savings",
+    "frontier model coverage",
+    "novel routing algorithm"
+  ],
+  "portfolio_secondary": "Also apply identical utility grid to the subset tagged os_model=true by source metadata; this tag is not a model-license audit."
+}

@@ -80,7 +80,7 @@
     {
       "id": "local-14",
       "title": "Freeze repository-level run manifests and execute funded paired SWE evaluation",
-      "status": "pending_integration_credentials_and_costed_resource_plan",
+      "status": "standard_benchmark_bridge_ready_live_execution_blocked",
       "study_scope": "prospective_repository_level_software_engineering"
     },
     {
@@ -184,8 +184,8 @@
     {
       "id": "local-29",
       "title": "Run metered larger SWE comparison of conversation versus one-way assistance and existing trained routers",
-      "status": "pending_writable_codex_runtime_or_usage_export_and_isolated_metered_evaluation",
-      "artifact": "docs/paper/methods.md",
+      "status": "blocked_live_native_codex_readonly_worker_isolation_and_environment_controls_pending",
+      "artifact": "docs/research/HANDOVER.md",
       "study_scope": "conversational_routing_software_engineering"
     },
     {
@@ -201,6 +201,48 @@
       "status": "completed_source_schema_and_software_validation_live_runtime_pending",
       "artifact": "docs/research/codex-metering.md",
       "study_scope": "conversational_routing_software_engineering"
+    },
+    {
+      "id": "local-32",
+      "title": "Execute full 500-task SWE-bench Verified historical cost-quality replay",
+      "status": "completed_exploratory_primary_quality_target_failed",
+      "artifact": "results/swe-replay-001/README.md",
+      "study_scope": "standard_benchmark_routing_and_conversation"
+    },
+    {
+      "id": "local-33",
+      "title": "Prepare official SWE-bench task panel and validate evaluator controls",
+      "status": "partial_four_controls_two_tasks_one_valid_environment",
+      "artifact": "experiments/swe-bench-verified-001/controls/summary.json",
+      "study_scope": "standard_benchmark_routing_and_conversation"
+    },
+    {
+      "id": "local-34",
+      "title": "Implement six-arm metered Codex benchmark and attempt native preflight",
+      "status": "software_validated_native_preflight_blocked_before_inference",
+      "artifact": "results/codex-runtime-20261026/blocked-study/preflight.json",
+      "study_scope": "standard_benchmark_routing_and_conversation"
+    },
+    {
+      "id": "local-35",
+      "title": "Collect provider-estimated subscription credits with complete thread accounting",
+      "status": "software_validated_live_account_estimates_unavailable",
+      "artifact": "src/ttgl/subscription.py",
+      "study_scope": "standard_benchmark_routing_and_conversation"
+    },
+    {
+      "id": "local-36",
+      "title": "Write personal-project setup, novelty assessment and new-host handover",
+      "status": "completed",
+      "artifact": "docs/research/HANDOVER.md",
+      "study_scope": "standard_benchmark_routing_and_conversation"
+    },
+    {
+      "id": "local-37",
+      "title": "Integrate standard-benchmark findings into the paper and audit reproduction",
+      "status": "completed_negative_replay_result_live_conversation_unproven",
+      "artifact": "docs/paper/standard-benchmark-results.md",
+      "study_scope": "standard_benchmark_routing_and_conversation"
     }
   ],
   "runpod_budget": {
@@ -212,7 +254,7 @@
     "actual_spend_usd": 0,
     "status": "blocked_missing_api_key_and_runtime_access"
   },
-  "updated_at_utc": "2026-10-26T11:28:46.530984+00:00",
+  "updated_at_utc": "2026-10-26T16:20:53.699725+00:00",
   "evidence": {
     "results": "results/routing-pilot-001",
     "reproduction": "results/reproduction-verification.json",
@@ -234,10 +276,16 @@
     "personal_agent_audit": "docs/thesis/personal-review.json",
     "current_paper": "docs/paper/paper.pdf",
     "current_paper_sources": "docs/paper/README.md",
-    "software_validation": "86 passed, 1 skipped, 2 subtests; live dialogue separately graded 30/30",
-    "dollar_cost_results": "unavailable; usage and price fields null",
+    "software_validation": "136 passed, 1 skipped, 2 subtests; official evaluator controls reported separately",
+    "dollar_cost_results": "primary historical SWE replay46.1% lower estimated inference with8.6pp qualityloss; live conversation dollars/credits unknown",
     "trained_router_comparison": "not_run_in_Codex_pilot",
     "subscription_metering": "Official CLI/SDK and installed app-server account/usage/read schema verified; native ChatGPT login recognized; live counters not exposed in current runtime",
-    "metering_software_validation": "96 passed, 1 skipped, 2 subtests; cumulative-thread and per-model accounting tested"
+    "metering_software_validation": "96 passed, 1 skipped, 2 subtests; cumulative-thread and per-model accounting tested",
+    "standard_benchmark_replay": "results/swe-replay-001/summary.json: all500 tasks and10 models; historical estimated inference costs, not new model calls",
+    "standard_benchmark_controls": "4 official controls across2 tasks; SymPy valid, Requests invalid,10 selected environments unvalidated",
+    "standard_benchmark_live": "not_run; native metering preflight failed before inference",
+    "handover": "docs/research/HANDOVER.md",
+    "project_usage": "docs/research/project-usage-guide.md",
+    "standard_benchmark_audit": "docs/research/swe-replay-audit.md"
   }
 }

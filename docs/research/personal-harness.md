@@ -2,7 +2,8 @@
 
 `ttgl.personal` adds a bounded experimental controller around the existing Codex CLI for **We have to combine — A conversation is all you need**. The testable hypothesis is lower total cost with minimal task-performance loss, not a claim that conversation is already sufficient. Codex still performs repository inspection, editing, shell execution and test execution. The module supplies condition assignment, a continuing small/large-agent conversation, persistence and measurement; it does not implement another coding-agent loop or claim that this orchestration is a novel algorithm. Personal memory is optional and defaults to an empty list.
 
-Four conditions are implemented:
+Six conditions are implemented. The original live pilot used the first four;
+the two ablations have software validation only:
 
 | Condition | Behavior |
 | --- | --- |
@@ -10,6 +11,15 @@ Four conditions are implemented:
 | `large` | One Sol agent solves it with the same tools and initial memory. |
 | `precall_router` | Luna selects small or large from task text and memory before any solving attempt; the selected agent then solves alone. Router usage is included. |
 | `personal` | Luna acts in the workspace, optionally converses with Sol, resumes its own Codex thread, and verifies/integrates useful proposals. Sol can ask for context or challenge Luna; both sides retain their conversational threads. |
+| `oneway` | The controller can request up to the same two bounded proposals. Each expert starts fresh, must return `answer`, and is instructed not to ask clarification questions. The controller verifies and integrates. |
+| `reset_expert` | The same expert actions as `personal` are available, but every consultation starts a fresh expert thread. The controller must resend any earlier context it needs. |
+
+All cooperative arms share the wall deadline, maximum CLI turns and maximum
+consultations. Calls remain optional. `oneway` versus `reset_expert` contrasts
+answer-only proposals with clarification/challenge under fresh expert state;
+`reset_expert` versus `personal` contrasts fresh versus retained expert state.
+Actual dialogue content and resource use must still be measured. Schema and
+prompt restrictions do not guarantee semantic compliance in a live response.
 
 The pre-call condition is a simple LLM routing baseline. It is **not an implementation or reproduction of RouteLLM, Router-R1 or a calibrated success predictor**. Astra can replace Sol through `--large-model gpt-6-astra`; every such change defines a separate condition. Requested model identifiers do not establish provider availability or immutable weight revisions. Log the service version when the provider supplies it.
 

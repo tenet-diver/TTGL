@@ -11,7 +11,8 @@ toc-depth: 2
 # Status and scope {.unnumbered}
 
 This is a research paper and master's-thesis core, with a reproducible engineering
-pilot and a prospective confirmatory protocol. Its central contribution is an
+pilot, a completed 500-task SWE-bench Verified routing replay, and a prospective
+confirmatory conversation protocol. Its central contribution is an
 empirical replication and conversational-routing extension, **not a claim to have
 invented small agents that consult larger models**. The broader earlier thesis
 contains supporting reviews of open-model portfolios, prices, distillation,
@@ -26,8 +27,9 @@ Codex agent experiments. The separately authorized one-80-GB-GPU Runpod budget
 of US$100 has not been spent on this work.
 
 Author, university, supervisor and submission declarations remain for the author
-to complete. No institutional approval, model-training result or dollar saving
-is implied by this manuscript.
+to complete. No institutional approval or model-training result is implied by
+this manuscript. Historical estimated inference savings are reported separately
+from unmeasured conversation benefits, current bills and subscription usage.
 
 # Abstract {.unnumbered}
 
@@ -51,6 +53,16 @@ two-round clarification-and-integration check passes its 30 regression tests.
 Strict artifact-policy outcomes are reported separately because several workers
 added assertions inside existing test files.
 
+An additional experiment fits cross-validated pre-task routers on 5,000 published
+agent outcomes: ten models on all 500 SWE-bench Verified tasks using mini-SWE-agent
+2.0.0. The primary half-budget router achieves 64.2% success at US$0.2551 per task,
+versus GPT-5.2's 72.8% at US$0.4736. Estimated inference cost falls 46.1%, but the
+8.6-point quality loss fails the three-point tolerance. A ten-model portfolio
+operating point reaches 76.2% at US$0.1154; inexpensive MiniMax-M2.5 alone reaches
+75.8% at US$0.0733. The latter comparison prevents attributing the benefits of
+model choice to routing. These historical outcome replays are not new model
+inference or live conversations.
+
 The confirmatory protocol compares conversation with single-model execution,
 pre-call routing and one-way assistance under matched information and resource
 budgets. The proposed gate combines a three-percentage-point quality tolerance
@@ -58,7 +70,9 @@ with lower measured total cost; a 25% saving is the practical target. Personal
 memory, learned collaboration skills and multi-agent communication are optional
 ablations and extensions. The pilot exposes no complete billing ledger and is
 not powered for noninferiority. It therefore establishes execution feasibility,
-not cost savings, open-model capability or learning improvement.
+not conversational cost savings, local-model capability or learning improvement.
+The standard-benchmark replay supplies a reproducible negative primary result
+and identifies a stronger low-cost standalone control for the next experiment.
 
 **Keywords:** conversational routing; small language models; software-engineering
 agents; bidirectional collaboration; cost–quality tradeoffs; replication.

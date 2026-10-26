@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "experiment_id": "swe-bench-verified-001",
+  "status": "prepared_not_executed",
+  "tasks_sha256": "e6a43141699e22a0dca4f61fac701c677ee4da74fdb13aca81f451b4a4826f58",
+  "private_dataset_sha256": "a72128a492173036bc89622f20645d704971e8d8e322160eddc79e172f588d09",
+  "task_archive_sha256": "ff31aa1f8d2bb78f16559524264a99b868b7218ca82b390dc750bbc59538aa20",
+  "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+  "harness_archive_sha256": "d06181d5365b51fc7ff490171581b9ee87d77e19b3a739a8d574bf25d9ef9479",
+  "task_revision": "3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d",
+  "sampling_seed": "ttgl-swe-verified-001",
+  "assigned_tasks": 12,
+  "population_instance_ids_sha256": "fad0fdea4fc2315e9b78cdf80882a32e32393297052e502e0e63c79ad648fb85",
+  "reference_and_test_patches_in_public_tasks": false,
+  "provenance": [
+    {
+      "instance_id": "scikit-learn__scikit-learn-14141",
+      "image": "swebench/sweb.eval.x86_64.scikit-learn_1776_scikit-learn-14141:latest",
+      "files_sha256": {
+        "Dockerfile": "170c9237e7ed690c1c500fc216882599d19de32b3cfd6b1659b4e601796fb5cc",
+        "environment.yml": "4649225bced91db6396c9f3b9351a466544c9dc693c21f49da8dc68655af840d",
+        "eval.sh": "ef85d38f3b3bf3214f85a906eed6876a64f1f833abd037adcd0070d5318ae201",
+        "gold.patch": "8e8d4cc0896699078510b4f349a9ae79819f89cfc18e69a06a764153060e6be5",
+        "problem_statement.md": "d7ebed2ea76e894ada60802cd35b6b85be16898861489cad218a9c8c706a1d60",
+        "task.yaml": "8312ebf40b7951918aa3034d75a2683d2b25c1519294b7c41550af168a8eca39",
+        "test.patch": "24c7e9c541cbffcca07fc6970fb26e84627095875b9603a586f8b77d1a05c2ff",
+        "tests.json": "54adf5291a6bd67a9c13cf336b355f6d0e5f6c7e7acfecc4d0d3d6109e599dd7"
+      }
+    },
+    {
+      "instance_id": "django__django-13297",
+      "image": "swebench/sweb.eval.x86_64.django_1776_django-13297:latest",
+      "files_sha256": {
+        "Dockerfile": "455e4b290eaf80ea5904a0d33dad28fb2dc9beda918b84ee657ce1dc12c85f74",
+        "environment.yml": "8e3042f426929234073b18cc2f513b8060c38002ca5f3ef3350240d96919cc5c",
+        "eval.sh": "57f2e91893901e9f7a3fa5f4d62f245bbb204747b4c61e48497fcd19ae900f33",
+        "gold.patch": "3f22504c0339aed615bca366ebb07b5f2a0cf7534f29393b7068875d1d3ef09e",
+        "hints.md": "3195a8111419a297425117d480f46468dc4851862e607810fb5c08ef5191e176",
+        "problem_statement.md": "e61d15a6ceed56f64d664100196a3313d242c09e49317661ec6aa85c8c980c36",
+        "task.yaml": "d70a188241f8cc9d90c49314871ab1a23ef146f733f4f4ba570f20215be5aea8",
+        "test.patch": "21a27212783bc4c43bf297f9c595b2829ffad8bb641dea654fba5b2941b1afee",
+        "tests.json": "a59e2e6b18c0d726cf14aecb32ca791407a53d31f276c6b87df540dd466b2d5a"
+      }
+    },
+    {
+      "instance_id": "pydata__xarray-3095",
+      "image": "swebench/sweb.eval.x86_64.pydata_1776_xarray-3095:latest",
+      "files_sha256": {
+        "Dockerfile": "021d0bee432f5c181099ac0bc7f2b37c2a950fea63fa922b00b35b8cd331e661",
+        "environment.yml": "ffd856d6652f460e2a9b6b6d45542fd0a377a7759b1aabccd2470d2cc1409d7a",
+        "eval.sh": "55cc80f177605ee6df3212d4400ef8ca4201294568f99261477e0407cbcb9570",
+        "gold.patch": "15ee0073513dfa4723e55f92c67f7ca66c9651a6d627c08c06e7bada6bcd7525",
+        "hints.md": "a583de0ed8fd42cc075681d74fd94c119f359093a58ebc5f99d812a3126321e2",
+        "problem_statement.md": "3d8f2d8422b56bd5980ec478be1413ef87805484446fc15dbd482342a59abb25",
+        "task.yaml": "1c22c6e3c47832803b919e6f262ad5318dd82bab707505621ab5c134441d2758",
+        "test.patch": "74e9567e31b72197c929b56e94c92b21f8fb62f9b8008bee43aba3ac81d33134",
+        "tests.json": "1b56a58c14c5ba91215ee4ab422cd007c3a130b7249b8d950549bc983d7098ea"
+      }
+    },
+    {
+      "instance_id": "django__django-15037",
+      "image": "swebench/sweb.eval.x86_64.django_1776_django-15037:latest",
+      "files_sha256": {
+        "Dockerfile": "2041eb380f1ed574f8e05e3f998ecde5f1136550db22492c91b31d8934a035bf",
+        "environment.yml": "26bcaf92892065e110718b6094b4550c7c56961933a56f90b91bd992134dd116",
+        "eval.sh": "362640a7668f55aba668a9e94376e25f1dbd401a697bb860db308012e7b083ad",
+        "gold.patch": "92ebb2aeb6fe4e9fac030ecec452fc48a01e8b90c71ab68e57b372b82e51cbd0",
+        "hints.md": "e871c3a029de14383ffdffc940db1608a4b7ba1fec815d2d4d754320103bb0c1",
+        "problem_statement.md": "0d8c12fc486d8e5e0c9c28316b6d7052f1630eecc58aa279c2bcfae3478f4f09",
+        "task.yaml": "025c5b826e8c8a6a68b90df0b5068e83d32cce7f308f43618c7e2085c4418073",
+        "test.patch": "5f66696389af56c70e19339b6f64cc48bbf59dcc522acfba20c66fb601c16539",
+        "tests.json": "fb578ca24d13c2c2392ddc192dafe800267f5b5c3646f77cb96c29c7d347e3ee"
+      }
+    },
+    {
+      "instance_id": "psf__requests-5414",
+      "image": "swebench/sweb.eval.x86_64.psf_1776_requests-5414:latest",
+      "files_sha256": {
+        "Dockerfile": "d966cfbde6bf81dcdbd2ce12834174d2b96a2fadd630abf1cf5a599c65cc87e9",
+        "environment.yml": "7ff9c7aafd0d4bd23ebe517bb01f1b762694340e73fb5e25438714dfafe40f64",
+        "eval.sh": "4377d9706acaf9ca53b0be93cc7aaf262bbac6a24cb0f79bf76ba68451ffe25a",
+        "gold.patch": "41e9433ac5e2cdb17a3972bec818a1118ea4a3f2b7485cd11fff7e27f6f3f680",
+        "problem_statement.md": "08faa0ea47836476b5f4b3709c06a00569996ccc654011299f9c8587cd7007ba",
+        "task.yaml": "57cd810b784e3fbcabb607251988c13ca921770975d0f368d15a536ce7c106fa",
+        "test.patch": "46e0fcf881a426fb44dcd64c29be1f1d81113fcbfffe658404fc6298bc028a53",
+        "tests.json": "8ff8a64fb6befb100203a1047689f6117d89c5984ce2df0d724ff1c7be41b22c"
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-17139",
+      "image": "swebench/sweb.eval.x86_64.sympy_1776_sympy-17139:latest",
+      "files_sha256": {
+        "Dockerfile": "6e83112aae087779554a054244c572b8f4695358356342f254cf2149a505535c",
+        "environment.yml": "7e0852a867999879fc18d4c200e12bfca4759674d0ff61a0f6974a721fd37d56",
+        "eval.sh": "6f318ad3a71c81f154bd9f6c4e08bb9517ac3e0281f1a21582d767518ce3ed0b",
+        "gold.patch": "8d075ec2ca5d69a25b188b01bcc94733358cd360ebb782e6626edc89bc563e5e",
+        "problem_statement.md": "17e532f00dac2a0e2aae1ca47a21c4be3cc3d4686da16dfc58ed0d69f6c02334",
+        "task.yaml": "0725cf32b04fa51369e1dbb90b3cb14b4927a29dc2882e36bfa31c9df3ef5760",
+        "test.patch": "02f8cf20f24d88c38b9abfb96ce526b2599c1629461522fc7fd80bfa207a1840",
+        "tests.json": "2dd8c525c238528f3c0dddbaa7241f470e112430064fc7724018b3fd6e94edc2"
+      }
+    },
+    {
+      "instance_id": "astropy__astropy-12907",
+      "image": "swebench/sweb.eval.x86_64.astropy_1776_astropy-12907:latest",
+      "files_sha256": {
+        "Dockerfile": "ee5e34e9ba01750dacb0ae605d1ad6a2a9caa0658b5ed6a78129b1db112ad770",
+        "environment.yml": "c2590b2aedc3e8c87ee9c1e81c6bbae444bb221fba91a155c3653c5ed75aceb7",
+        "eval.sh": "229f462fcbdcae232228507f9491b8538c5aeaeede709c5fc822b586245d9460",
+        "gold.patch": "0f3e44432ed8540e9526edff4f83793948a2f139fc3971b67c30043c1eb7964a",
+        "problem_statement.md": "c01334ec1b21a089c650cf2e7b96ab974469076bf1260d23885799e1f0a7551f",
+        "task.yaml": "826c98b246e267afffb1bcc71d4de98932a468e775cfc1a5842528d557e7d3a7",
+        "test.patch": "5ef90b640ffce4590bb61ef2ea0e3256416dddf41b45bf4f2c3610a6e8c53718",
+        "tests.json": "f9fc8709f82b482b517281f3390c7027154d8a4963f7424ee7c27da845d56928"
+      }
+    },
+    {
+      "instance_id": "mwaskom__seaborn-3069",
+      "image": "swebench/sweb.eval.x86_64.mwaskom_1776_seaborn-3069:latest",
+      "files_sha256": {
+        "Dockerfile": "7a9c7210a7f2caf9be924b94f9cbb3fad258206de3fd2bb035b4970033cc53b0",
+        "environment.yml": "1352d6decce6f95ccc2f948b9a11bea103383fdf824b48e9e272b222d94e3eb5",
+        "eval.sh": "7a00ea831cdaddd4a34231b77aef2cef321e3ec54a18b7e5e86d862bfa4ce324",
+        "gold.patch": "f209d3f9733c3c4bdcafb48f8601948c53ee16451e7775b33186439ccac7096c",
+        "problem_statement.md": "739f9b2e6297497555d4d850e066137b282ad7c5bbcdee814e957ef0f81a9b1e",
+        "task.yaml": "96951d8e14dcfb0284d39829349bb67e62a8068edaf4b2450b0c4a6ea06f04b0",
+        "test.patch": "803d1a61b7ead9a5a445af41a94de488c5a2eb1a038b8ca53dc7ce620baaa7af",
+        "tests.json": "0773af1d2827f2391abca601ce6bcec6f8fea3ea1f1e4611afa75b39b56d5d96"
+      }
+    },
+    {
+      "instance_id": "django__django-17084",
+      "image": "swebench/sweb.eval.x86_64.django_1776_django-17084:latest",
+      "files_sha256": {
+        "Dockerfile": "9222b6ebe5e909872b9842fc2d03c0e19b756452604633e8b2b52c7612c709ee",
+        "environment.yml": "0d20261df4e04c3be7d6dfb1f75cb5cde49bd0a8811cd79e451db93f8fbdc0a8",
+        "eval.sh": "ffdd1bb4c2667744f064d9bfa9a204122a24c30100e5283fe771b0248b766551",
+        "gold.patch": "70b2cc8c10a81279292067a2212d64e653a150e2e3ba2008b8a8f9eb073a008b",
+        "hints.md": "6c68f258691eafc141850dc368ef63e73220d6d51d6d616430d377c8e0a472b0",
+        "problem_statement.md": "04cc3977bbc184d950a14a6b4e9caf06f854fa2575218694b65982247ca6388c",
+        "task.yaml": "53771d4db76e0404cc01ddd771d2f41a71961795f8370a3e23731873eadbdbbb",
+        "test.patch": "66a64e8a0915009e165fd3f951cbfea7fc5ba74b37134c41abac4e25f6174549",
+        "tests.json": "ff0b666a4ad8be58e594083ea10ee9b19589fd4498c7e438b99047915ecea355"
+      }
+    },
+    {
+      "instance_id": "django__django-13121",
+      "image": "swebench/sweb.eval.x86_64.django_1776_django-13121:latest",
+      "files_sha256": {
+        "Dockerfile": "df7c0d15e4e400358034d1a836a20701c7027aa8a889a374f313345b40b8b76d",
+        "environment.yml": "8e3042f426929234073b18cc2f513b8060c38002ca5f3ef3350240d96919cc5c",
+        "eval.sh": "1e125af6097b3e68ba9adc18a73c0bbad08b137f19e48ae2cc16bcd1b9cc6c52",
+        "gold.patch": "6c3817c1f9ac977ee2de4d35a570e9edda3fc5c5da703145875f6bb9d0ceab56",
+        "hints.md": "9f0bc54f9440af80f54ee98ffea5f0032319ec4f9d44934c3814cc3528b684ef",
+        "problem_statement.md": "37a34c2a2b342e01d020f528d940358d465faa6f1c427f0f2a855a1d7d768f45",
+        "task.yaml": "f030ed1c2e0854d58511c236b3c8d74f29b293e979e9173a527394d7769bc98d",
+        "test.patch": "ecbd46beecf8e3f760f4d5199664660a5bfc0f9e00c5a4aee13fb42cb283b0ec",
+        "tests.json": "e93280d4de308352adba8907211f24980abba25a1dd2e11030f2940836130fe3"
+      }
+    },
+    {
+      "instance_id": "pydata__xarray-7229",
+      "image": "swebench/sweb.eval.x86_64.pydata_1776_xarray-7229:latest",
+      "files_sha256": {
+        "Dockerfile": "618039c27d60954e0fe3aa97e13cbca5eea6ba08906d58c350e43f0cc4cea53a",
+        "environment.yml": "8d57224e65dbbcc9100d87bb8486ebecdf7372e3c00c6284fefe48261f79f0c1",
+        "eval.sh": "14fe43e7c2dd1998db118c71c5d7457f893f73344fc9e48dceb2c2e36b5f54d7",
+        "gold.patch": "325a43d8995a3ee5fea4add7d01122f87b41ea33938ab458402e1e07e492197b",
+        "hints.md": "e6438c1c8bcfc5dec1981ca0989c23a26bb6e984a83fa613d63afbc1a5df126b",
+        "problem_statement.md": "1755ba7fe03d6f5917886ea3d5f0e5116a78593b08596ad9d394c5ccbb7f26aa",
+        "task.yaml": "1e808d62518cace6d7946431271fa6fe7290a88ac9dbfb40a8684987104b5e86",
+        "test.patch": "052d1964b51fbbf3aa4869b22bf97f6c2fc4afd6b7d14255fad74e4f46480977",
+        "tests.json": "3d6048319789260af1c8080d166b38bdb302026236de73ffd417acb7a39d7a5d"
+      }
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-9230",
+      "image": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-9230:latest",
+      "files_sha256": {
+        "Dockerfile": "f147d77d8ef77514ee18b371506a378ab0f4b809b0e8d77de7cabdb1bcfa5134",
+        "environment.yml": "0b8080eb9a468f5e73eacebceff33985d2cb24ef83cbbed66b62dda28f44f9bd",
+        "eval.sh": "8553eefebbdaefe08ffe48c6db4675cf25f8658222e29e39b561e3fcc68f150e",
+        "gold.patch": "e6cc08c8b1858c3d41964c220e396638c15e601f88fa9cb6493938e5fdd814c6",
+        "problem_statement.md": "e814405fe0885a2284bec4dfdf1efa5bd0386117d02410e9ad0ec98c0e1712ab",
+        "task.yaml": "8580eb77a03c4e9e0664b6b37dbe98fa8a5838414b323c438778eb049375ae3f",
+        "test.patch": "0971215a38b16f54484b9a2f11da137413f131dfc453fd9a08de1978d31360b0",
+        "tests.json": "32d320a53663ca35e564cd99af9ef0157553a69222db0b1ea22d55139a630f54"
+      }
+    }
+  ]
+}

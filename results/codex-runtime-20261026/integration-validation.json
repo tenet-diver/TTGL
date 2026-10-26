@@ -1,0 +1,16 @@
+{
+  "checked_at_utc": "2026-10-26T16:20:53.699725+00:00",
+  "software_tests": {
+    "passed": 136,
+    "skipped": 1,
+    "subtests_passed": 2,
+    "command": "/workspace/.tools/ttgl-research/bin/python -m pytest -q --junitxml=/tmp/ttgl-standard-benchmark-tests.xml"
+  },
+  "live_bridge_preflight": "failed_before_inference",
+  "run_guard_refused_after_failed_preflight": true,
+  "scored_assignments_launched": 0,
+  "scored_task_cost_usd": null,
+  "actual_model_credit_usage": null,
+  "official_controls": "experiments/swe-bench-verified-001/controls/summary.json",
+  "replay_reproduction": "results/swe-replay-001/reproduction-validation.json"
+}

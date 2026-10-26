@@ -15,8 +15,8 @@ already cover much of the architecture: this is a replication and controlled
 extension, not a first-invention claim.
 
 The paper contains a full related-work review, system design, paired experiment
-protocol, economic accounting, live pilot results, limitations and next-study
-design. The proposed confirmatory gate uses a three-point quality margin and a
+protocol, economic accounting, live pilot results, a complete SWE-bench Verified
+replay, limitations and next-study design. The proposed confirmatory gate uses a three-point quality margin and a
 25% practical savings target; neither is established by the pilot.
 
 | Live condition | Functional success | Accepted under strict artifact policy |
@@ -30,12 +30,22 @@ The strict policy rejects changes to existing test files, including added
 assertions. All optional conversational controllers chose zero consultations.
 The router always selected Luna. A separate required two-round dialogue passed
 30 regression tests. These are tiny feasibility observations; **no savings or
-noninferiority claim is supported**, and token/dollar costs remain unknown.
+noninferiority claim is supported for the live conversation**, and its token/dollar costs remain unknown.
+
+The new [standard-benchmark analysis](standard-benchmark-results.md) covers all
+500 SWE-bench Verified tasks and ten published mini-SWE-agent runs. The primary
+learned router saves **46.1% estimated inference cost**, but loses **8.6 quality
+points** (64.2% versus 72.8%), failing the declared quality target. MiniMax-M2.5
+alone reaches 75.8% at about $0.073/task, illustrating why inexpensive strong
+single-model controls matter. Historical replay costs are not measured Codex
+quota savings or a live conversation result.
 
 - [Prior-art review](../thesis/personal-agent-prior-art.md), [source register](../thesis/personal-agent-prior-art-sources.json), [bibliography](references.bib).
 - [Architecture](architecture.md), [methods and ablations](methods.md), [costs and results](economics-and-results.md), [discussion and reproduction](discussion-and-reproduction.md).
 - [Frozen pilot](../../experiments/codex-pilot-001/README.md), [analysis](../../results/codex-pilot-001/analysis/summary.json), [dialogue transcript](../../results/codex-pilot-001/dialogue-transcript.md).
 - [Codex harness runbook](../research/personal-harness.md), [independent review](review.json), [build hashes](build-manifest.json).
+- [SWE-bench replay records and reproduction](../../results/swe-replay-001/README.md), [independent audit](../research/swe-replay-audit.md).
+- [New-host handover](../research/HANDOVER.md), [personal project setup](../research/project-usage-guide.md), [metered six-arm runner](../research/swe-bench-runner.md).
 
 Rebuild with `bash scripts/build_paper.sh` from the repository root. It uses
 Pandoc, XeLaTeX and Graphviz, which were exercised in this environment. Reproduce

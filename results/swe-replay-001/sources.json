@@ -1,0 +1,3140 @@
+{
+  "fetched_at_utc": "2026-10-26T16:07:34.043649+00:00",
+  "source_commit": "40f164d5b8f1d249bf95a6df8b74b577fd8e519d",
+  "task_commit": "3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d",
+  "license_note": "No explicit top-level license found in the pinned experiments or task-distribution repositories. Raw texts remain ignored local cache; artifacts redistribute derived numerical facts, identifiers and hashes. Review upstream terms before redistributing raw submissions.",
+  "sources": [
+    {
+      "path": "models/claude_4_5_haiku_high/metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_claude-4-5-haiku-high/metadata.yaml",
+      "sha256": "bac88a3b1c50cbf8784fe98070fa77e0dd8f2b2809e0b9bee9fb1ed8779cf868",
+      "bytes": 815
+    },
+    {
+      "path": "models/claude_4_5_haiku_high/per_instance_details.json",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_claude-4-5-haiku-high/per_instance_details.json",
+      "sha256": "4104e3cf041d57048ac22bf1ffc0805b154a064dfcbb1c0666647e4613008533",
+      "bytes": 53125
+    },
+    {
+      "path": "models/claude_4_5_sonnet_high/metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_claude-4-5-sonnet-high/metadata.yaml",
+      "sha256": "a158a82473a28ec37c2639d5d309dbba23cd4f75d22763c9b5e67b4b5830d308",
+      "bytes": 809
+    },
+    {
+      "path": "models/claude_4_5_sonnet_high/per_instance_details.json",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_claude-4-5-sonnet-high/per_instance_details.json",
+      "sha256": "c7f61049937deafa6327e0d5f17c0baf482751388530530bb9f5d53ce0fbf7cc",
+      "bytes": 52885
+    },
+    {
+      "path": "models/claude_4_6_opus/metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_claude-4-6-opus/metadata.yaml",
+      "sha256": "57c9de0e30a7299338f659f0526e8e6bceb6e4e59e7c5a533528f3b7c3017264",
+      "bytes": 826
+    },
+    {
+      "path": "models/claude_4_6_opus/per_instance_details.json",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_claude-4-6-opus/per_instance_details.json",
+      "sha256": "c669276c9b7c23ffe967df0d7cc9f1f6406001ae02095761ddb2ac067103430d",
+      "bytes": 52805
+    },
+    {
+      "path": "models/deepseek_3_2_high/metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_deepseek-3-2-high/metadata.yaml",
+      "sha256": "cc7f67a07a5059e6cd884ef5d000d25b6284845d4bb09253636a885af58cff43",
+      "bytes": 766
+    },
+    {
+      "path": "models/deepseek_3_2_high/per_instance_details.json",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_deepseek-3-2-high/per_instance_details.json",
+      "sha256": "5eeebd0aa53aa6234f36380d14141597f7776b32b0ba1a020dc2abaf005b50c1",
+      "bytes": 53441
+    },
+    {
+      "path": "models/gemini_3_flash_high/metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_gemini-3-flash-high/metadata.yaml",
+      "sha256": "1f0567e39e292e9216cb669def83e6f6a9bd02ee3d9731c4f23cad13ac42816b",
+      "bytes": 827
+    },
+    {
+      "path": "models/gemini_3_flash_high/per_instance_details.json",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_gemini-3-flash-high/per_instance_details.json",
+      "sha256": "6e49e555537839726c02dbbefd45cdf63bbed8c138eaf349d783381ca0716e33",
+      "bytes": 53102
+    },
+    {
+      "path": "models/glm_5_high/metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_glm-5-high/metadata.yaml",
+      "sha256": "51caca169f8ea93795ea15d67cdb3c78740612dbc4040a5d30cbf65e0d660013",
+      "bytes": 684
+    },
+    {
+      "path": "models/glm_5_high/per_instance_details.json",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_glm-5-high/per_instance_details.json",
+      "sha256": "cd139949a7a4044709f28d628c0a6ae9861da3e334033ae736a92a44d1d0a57c",
+      "bytes": 53220
+    },
+    {
+      "path": "models/gpt_5_2_high/metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_gpt-5-2-high/metadata.yaml",
+      "sha256": "969a7c91b351fd0ac9ce47fddec706a9babbc15a84bc2022dd6f138461858d75",
+      "bytes": 754
+    },
+    {
+      "path": "models/gpt_5_2_high/per_instance_details.json",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_gpt-5-2-high/per_instance_details.json",
+      "sha256": "8bac088fcc87374906a207a3cf93e25df715546ace895b3a588cc075f6353fd1",
+      "bytes": 52861
+    },
+    {
+      "path": "models/gpt_5_mini/metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_gpt-5-mini/metadata.yaml",
+      "sha256": "599f40af8d63b5971e73ab8afe1362a4dc8e3a6765b31e46c518d836e3ac1c16",
+      "bytes": 746
+    },
+    {
+      "path": "models/gpt_5_mini/per_instance_details.json",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_gpt-5-mini/per_instance_details.json",
+      "sha256": "b98b3f03cf9fbcf0eaa878ccde6d34a72483149ceb04559c90fd52277cb9d1ae",
+      "bytes": 52686
+    },
+    {
+      "path": "models/kimi_k2_5_high/metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_kimi-k2-5-high/metadata.yaml",
+      "sha256": "205dab6b9d0851bc1080baf7af7e845ea95b4908997a29095c6b7bb2c2b70484",
+      "bytes": 762
+    },
+    {
+      "path": "models/kimi_k2_5_high/per_instance_details.json",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_kimi-k2-5-high/per_instance_details.json",
+      "sha256": "3794b2c4b853845d97cf89db10f4264a0b27ba75f6b1bbbf1e34ddf6fa8a5c1f",
+      "bytes": 53298
+    },
+    {
+      "path": "models/minimax_2_5_high/metadata.yaml",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_minimax-2-5-high/metadata.yaml",
+      "sha256": "9d11723206b90a1a3dc02b0a3c2c3870e8c487b756c36aff13120ad397e7abbc",
+      "bytes": 761
+    },
+    {
+      "path": "models/minimax_2_5_high/per_instance_details.json",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/evaluation/verified/20260217_mini-v2.0.0_minimax-2-5-high/per_instance_details.json",
+      "sha256": "62a26211006b557f1a31371ee6cf3119be5bdaed43dcce3fe6efedc0912c012c",
+      "bytes": 53456
+    },
+    {
+      "path": "problems/astropy__astropy-12907.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-12907/problem_statement.md",
+      "sha256": "c01334ec1b21a089c650cf2e7b96ab974469076bf1260d23885799e1f0a7551f",
+      "bytes": 1246
+    },
+    {
+      "path": "problems/astropy__astropy-13033.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-13033/problem_statement.md",
+      "sha256": "a295c83e68ff62290947b0796b75659b94621b7f2340d6f0055512d04be3f1d1",
+      "bytes": 2790
+    },
+    {
+      "path": "problems/astropy__astropy-13236.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-13236/problem_statement.md",
+      "sha256": "1f01b57c4e17057a2427b8ed897618f91782d22e98804b706826ba936a3d5ec4",
+      "bytes": 2057
+    },
+    {
+      "path": "problems/astropy__astropy-13398.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-13398/problem_statement.md",
+      "sha256": "c26c8dc258dc5cb9dd34f30bdbaaed3f19a8ada137e0f19d81d7f57dc5f11bba",
+      "bytes": 5323
+    },
+    {
+      "path": "problems/astropy__astropy-13453.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-13453/problem_statement.md",
+      "sha256": "be929904c3062b54da2fa3ad7de338bd7f1f41a5aa48e64bec41f244d6e17c5a",
+      "bytes": 7910
+    },
+    {
+      "path": "problems/astropy__astropy-13579.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-13579/problem_statement.md",
+      "sha256": "70a48b6e4c77b5abc12b1e750bbb70110b7215d19c9ea3550f2b7261be84021d",
+      "bytes": 4822
+    },
+    {
+      "path": "problems/astropy__astropy-13977.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-13977/problem_statement.md",
+      "sha256": "53b72f8a5aed23f5d11650d7d4ae0e36c820cfade3c8ebcc7b718055a80d1cb2",
+      "bytes": 3762
+    },
+    {
+      "path": "problems/astropy__astropy-14096.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-14096/problem_statement.md",
+      "sha256": "938971021e89cd882f6ea33d61202fe7aa0091d7be4748b100ddc7e164db90cd",
+      "bytes": 982
+    },
+    {
+      "path": "problems/astropy__astropy-14182.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-14182/problem_statement.md",
+      "sha256": "2f743a72613ab0e8e063ff7b7f0a233015ad12ba14992625d9f84b315fa885fd",
+      "bytes": 1871
+    },
+    {
+      "path": "problems/astropy__astropy-14309.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-14309/problem_statement.md",
+      "sha256": "27b74ed7081579a5f310188d6ed6ac4da1d785c492b00052d605b7ba04d036b9",
+      "bytes": 4910
+    },
+    {
+      "path": "problems/astropy__astropy-14365.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-14365/problem_statement.md",
+      "sha256": "615252d5c44819451977588671ce903d3a21c41a8bf011738e2aee39218d56c6",
+      "bytes": 1339
+    },
+    {
+      "path": "problems/astropy__astropy-14369.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-14369/problem_statement.md",
+      "sha256": "005d3d61c2ffbfa601f53125a9fb5271a1a87979977b857204d9f3cf5190fba9",
+      "bytes": 2597
+    },
+    {
+      "path": "problems/astropy__astropy-14508.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-14508/problem_statement.md",
+      "sha256": "d08eb8c70acd4f003f7f477092385046092d36ff4e4155594b286795e7f9cd9f",
+      "bytes": 2629
+    },
+    {
+      "path": "problems/astropy__astropy-14539.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-14539/problem_statement.md",
+      "sha256": "deeb8ddb329b19eb6de7602db7ffbfb94a0887bedebd68ce49594609b6f4cf1a",
+      "bytes": 1463
+    },
+    {
+      "path": "problems/astropy__astropy-14598.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-14598/problem_statement.md",
+      "sha256": "5edf1315e9ce360f72c2d3b23f08cdb974a758b64b13a6724236ca5d54beb9a9",
+      "bytes": 2651
+    },
+    {
+      "path": "problems/astropy__astropy-14995.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-14995/problem_statement.md",
+      "sha256": "2eb1c507dd3ad67acc74872966e4bb5e14d571e20e67f246fc454ed9461f5745",
+      "bytes": 2455
+    },
+    {
+      "path": "problems/astropy__astropy-7166.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-7166/problem_statement.md",
+      "sha256": "70c79d6da0284ce81f9e951dbab5c77d94bf8a27cd156f54169b424d75d11e43",
+      "bytes": 162
+    },
+    {
+      "path": "problems/astropy__astropy-7336.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-7336/problem_statement.md",
+      "sha256": "1c51cc8817f7b2f1feb043bdd2a54fcc4f89150dad82c60dbd43f68d1dcdf90d",
+      "bytes": 1572
+    },
+    {
+      "path": "problems/astropy__astropy-7606.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-7606/problem_statement.md",
+      "sha256": "d61965d0866c6a856d68dc4229f873e783399415a60d2a906d7847b777623ddd",
+      "bytes": 1052
+    },
+    {
+      "path": "problems/astropy__astropy-7671.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-7671/problem_statement.md",
+      "sha256": "90a901a7b3d510c5fe9317b76fc9f83e883b577de167936d9e76ccbd69677f70",
+      "bytes": 1916
+    },
+    {
+      "path": "problems/astropy__astropy-8707.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-8707/problem_statement.md",
+      "sha256": "f7420a19ba5b0c807396a84da376d8303e69ff66d0216c332adf099da589a714",
+      "bytes": 840
+    },
+    {
+      "path": "problems/astropy__astropy-8872.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/astropy__astropy-8872/problem_statement.md",
+      "sha256": "495ed57c2183a49ff489deab1cf1f0a4fafe7e6fad6d6af79a407426de354746",
+      "bytes": 887
+    },
+    {
+      "path": "problems/django__django-10097.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-10097/problem_statement.md",
+      "sha256": "2288319e7e72693551b8454b5c63f165f23dfb32bc6579ad03602d3cd311bdaa",
+      "bytes": 2664
+    },
+    {
+      "path": "problems/django__django-10554.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-10554/problem_statement.md",
+      "sha256": "2f72fa6137f1d53983cff629a05e06c42a2ad477ea4557746c4688cbd6aeb724",
+      "bytes": 2909
+    },
+    {
+      "path": "problems/django__django-10880.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-10880/problem_statement.md",
+      "sha256": "d554ba8ef84e2e4dc22c291d413e4cb58070d5d730dae3aca383a4cdb77c20b2",
+      "bytes": 278
+    },
+    {
+      "path": "problems/django__django-10914.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-10914/problem_statement.md",
+      "sha256": "ba101c6d80094fe56bc64d74dcb7efe033a6e0d43dd77e8f00e65806fdbcdb8b",
+      "bytes": 1025
+    },
+    {
+      "path": "problems/django__django-10973.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-10973/problem_statement.md",
+      "sha256": "bde1c4529fef5d030d1bd73a02e45bdbf9535a3c351aa9a43dba5c8249800271",
+      "bytes": 359
+    },
+    {
+      "path": "problems/django__django-10999.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-10999/problem_statement.md",
+      "sha256": "efbac10cda6c1ef780205a8d9fc176b5489d1da8f76d9cbd366ef303052fd8d3",
+      "bytes": 618
+    },
+    {
+      "path": "problems/django__django-11066.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11066/problem_statement.md",
+      "sha256": "2c4cbca71895396f6bac73ad9454105f56828f542278e2e927483f6cac599db8",
+      "bytes": 1873
+    },
+    {
+      "path": "problems/django__django-11087.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11087/problem_statement.md",
+      "sha256": "9bd93972a91db1ad0e44e65720dd0f36f000de6264e770ffdaaeb06996a338f3",
+      "bytes": 9262
+    },
+    {
+      "path": "problems/django__django-11095.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11095/problem_statement.md",
+      "sha256": "0564572e65282f6920d43eaaa77ae7b103eec95b435aa1ba183d7daa32b9e83d",
+      "bytes": 381
+    },
+    {
+      "path": "problems/django__django-11099.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11099/problem_statement.md",
+      "sha256": "b0526bc6d9268fe373bf624621c8d5f560fc6b0ffae7e64b460d84f6726f3ed5",
+      "bytes": 764
+    },
+    {
+      "path": "problems/django__django-11119.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11119/problem_statement.md",
+      "sha256": "264fad964e8d5a49cd04509eb503175aed31535e29c9262cb9eee4b251192728",
+      "bytes": 369
+    },
+    {
+      "path": "problems/django__django-11133.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11133/problem_statement.md",
+      "sha256": "a7f427b7eb3f746b6985030b467a99099e6e3453319297a41e35effa7c32b8ed",
+      "bytes": 895
+    },
+    {
+      "path": "problems/django__django-11138.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11138/problem_statement.md",
+      "sha256": "b33c129178156fdb6d35f4d406ac6090bc6fbb7b220893ec068c0d76d7bca1ea",
+      "bytes": 3149
+    },
+    {
+      "path": "problems/django__django-11141.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11141/problem_statement.md",
+      "sha256": "f7a89b6c259b982bea8f5247ea54ad080dd4d3b5a7a559662b13928218ef6d94",
+      "bytes": 829
+    },
+    {
+      "path": "problems/django__django-11149.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11149/problem_statement.md",
+      "sha256": "06f935b0cc647735e6955439f0cdd900198152c69bf75dc8f9af4673d0bc3f2b",
+      "bytes": 783
+    },
+    {
+      "path": "problems/django__django-11163.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11163/problem_statement.md",
+      "sha256": "8dbd8cae38c3a82b681a79bdfe8ffaa78aa6f1fad9744a1ca197f90265e5c80b",
+      "bytes": 410
+    },
+    {
+      "path": "problems/django__django-11179.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11179/problem_statement.md",
+      "sha256": "9f6cb755dfdc0db5536cba40dae20c41d4750fd6a87acc18677c929ca896d136",
+      "bytes": 283
+    },
+    {
+      "path": "problems/django__django-11206.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11206/problem_statement.md",
+      "sha256": "ee97fdc81bae9d09d812606706e4594d671418a6b4ece0d0e649518e4b915e07",
+      "bytes": 698
+    },
+    {
+      "path": "problems/django__django-11211.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11211/problem_statement.md",
+      "sha256": "658b186e181f63e4cf92e146a414b8f30b0fc898e5bb698a7a45bcd900fce010",
+      "bytes": 963
+    },
+    {
+      "path": "problems/django__django-11239.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11239/problem_statement.md",
+      "sha256": "4f06ccec412dfd622e67248f35d24c93d00bfb755849a39f958b4e806969b86f",
+      "bytes": 1056
+    },
+    {
+      "path": "problems/django__django-11265.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11265/problem_statement.md",
+      "sha256": "6186de491ef0cfc65eab80595ae1e2d5e8746e2b5751fc5e39bc75b293bbaa3c",
+      "bytes": 3810
+    },
+    {
+      "path": "problems/django__django-11276.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11276/problem_statement.md",
+      "sha256": "eb475bff9bea96bffba03eee2d2d0b4e1b494afe04343176f8200a97e32077c8",
+      "bytes": 1124
+    },
+    {
+      "path": "problems/django__django-11292.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11292/problem_statement.md",
+      "sha256": "6fdf22f6653877da6f205b4a51557ccc30e14866d85c33a67657a29deb7194b1",
+      "bytes": 401
+    },
+    {
+      "path": "problems/django__django-11299.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11299/problem_statement.md",
+      "sha256": "97b5f134c36100595809297bfa1c1ce5948944ca8c384e47b2b9df33fb94089c",
+      "bytes": 3050
+    },
+    {
+      "path": "problems/django__django-11333.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11333/problem_statement.md",
+      "sha256": "46c75805409021e7df849f3ee81081ba222cd9ceac4020e5a956be44df192d5d",
+      "bytes": 1505
+    },
+    {
+      "path": "problems/django__django-11400.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11400/problem_statement.md",
+      "sha256": "3add264d5b3fc0e287b7bfe3c5b1179263d4a811de6caeb2a739b918bb049a21",
+      "bytes": 803
+    },
+    {
+      "path": "problems/django__django-11433.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11433/problem_statement.md",
+      "sha256": "65f0d2e3b24ac4220baeebaf2adbdb8124d975a8ea8397a95a0054bae9b585b7",
+      "bytes": 588
+    },
+    {
+      "path": "problems/django__django-11451.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11451/problem_statement.md",
+      "sha256": "3b394ef33a4c2eb7541dfa1eb6dd8672bd86a4de24b7c674cccf909c32b1f346",
+      "bytes": 2067
+    },
+    {
+      "path": "problems/django__django-11477.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11477/problem_statement.md",
+      "sha256": "e6f1734b2127e19740523521d8c2a947f81cb3b7f7bbe51fd8550374fd580d9b",
+      "bytes": 225
+    },
+    {
+      "path": "problems/django__django-11490.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11490/problem_statement.md",
+      "sha256": "3e617e299646332b07e60d86867a3c5246fd7fd6cf0263a94ae5585f0fd30d00",
+      "bytes": 459
+    },
+    {
+      "path": "problems/django__django-11532.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11532/problem_statement.md",
+      "sha256": "55f341608fd38b10a968d018743892b2ae8828db032984dc7c105f6679eb65c7",
+      "bytes": 2682
+    },
+    {
+      "path": "problems/django__django-11551.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11551/problem_statement.md",
+      "sha256": "cd027addb8154f7cfea79bc2b15dede0f5147436aee168f548dcbbe233ccdecb",
+      "bytes": 5415
+    },
+    {
+      "path": "problems/django__django-11555.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11555/problem_statement.md",
+      "sha256": "7ee01f2d7d71129328901b610c75e815c7dfb7ddd1ca605d87d8d02ba6851d1c",
+      "bytes": 750
+    },
+    {
+      "path": "problems/django__django-11603.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11603/problem_statement.md",
+      "sha256": "cc6c06c69faae4c8e525b22f032272081f2dbc5d7d732f3589ca3f5723a0215b",
+      "bytes": 396
+    },
+    {
+      "path": "problems/django__django-11728.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11728/problem_statement.md",
+      "sha256": "92e9410d9f1fe201c108b695ddfe9c121a14eff902d41f154f2982ad5ce6d6c7",
+      "bytes": 501
+    },
+    {
+      "path": "problems/django__django-11734.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11734/problem_statement.md",
+      "sha256": "b51d07c9174dd7bef00b07bb42a728e48a83131a9a9b752fa99f6eb5ef0c76cc",
+      "bytes": 832
+    },
+    {
+      "path": "problems/django__django-11740.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11740/problem_statement.md",
+      "sha256": "e957578643e3473772f3962d3350cf65879725d62c071efa6b97fc4fda1f7d27",
+      "bytes": 1975
+    },
+    {
+      "path": "problems/django__django-11749.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11749/problem_statement.md",
+      "sha256": "43e20ff7e1fecc7bc072098091cafb2d1c078428917e0a43b182ef78cecccecb",
+      "bytes": 1249
+    },
+    {
+      "path": "problems/django__django-11790.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11790/problem_statement.md",
+      "sha256": "4482bb11e178b43b0d8d59d373ea8ed2631996c27f7ec51d89d65dad47ab37cb",
+      "bytes": 469
+    },
+    {
+      "path": "problems/django__django-11815.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11815/problem_statement.md",
+      "sha256": "e022afa957e8b3db88243013133760019ad87c3d207851d0da7af9fdd8483efd",
+      "bytes": 1601
+    },
+    {
+      "path": "problems/django__django-11820.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11820/problem_statement.md",
+      "sha256": "8037de3210e730f87afe64ed1280846ba8d4d7e23c7720cba65ebe389ce36a7e",
+      "bytes": 343
+    },
+    {
+      "path": "problems/django__django-11848.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11848/problem_statement.md",
+      "sha256": "cce2d9dc991da88832938161e2da1d3b1b829f72c5e178ed15a7d9ae8435db74",
+      "bytes": 626
+    },
+    {
+      "path": "problems/django__django-11880.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11880/problem_statement.md",
+      "sha256": "e602e90dd73a70f9faf006238dfda2347f4aa08bb29365ae2611b3ea92f3eff4",
+      "bytes": 1088
+    },
+    {
+      "path": "problems/django__django-11885.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11885/problem_statement.md",
+      "sha256": "bd6ce8dcb4e3ccf23898a9f244352cc8d464c3f6e5fff1f656d5a30446a6ea10",
+      "bytes": 1296
+    },
+    {
+      "path": "problems/django__django-11951.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11951/problem_statement.md",
+      "sha256": "7c7ff1d81171a59af83ad9d0934053aa7c4e9bf6698ae2b3acde3e4d6353c169",
+      "bytes": 613
+    },
+    {
+      "path": "problems/django__django-11964.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11964/problem_statement.md",
+      "sha256": "9f510b2ad7d3833f07816f18dfa6dbb8dacf72061c288cfe399418bfe4da25ab",
+      "bytes": 2355
+    },
+    {
+      "path": "problems/django__django-11999.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-11999/problem_statement.md",
+      "sha256": "5c317d46980d58d2ca75a9fb2c1af025e27357abd4dcd5ea37d4b2dcd8bcd63c",
+      "bytes": 512
+    },
+    {
+      "path": "problems/django__django-12039.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12039/problem_statement.md",
+      "sha256": "2d2bf1ab2eecd3ede142cda952d8b44ef51fab8febe416c2a85636fd4e13ea3d",
+      "bytes": 1261
+    },
+    {
+      "path": "problems/django__django-12050.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12050/problem_statement.md",
+      "sha256": "161289bab4cda50aeb7a81ed68bb3a025e2a99db08588000a2f91ee206fbaa19",
+      "bytes": 347
+    },
+    {
+      "path": "problems/django__django-12125.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12125/problem_statement.md",
+      "sha256": "d466ceb9860bfb421821c9bab47b1fa2c11295523365b174ea0b2a5a3b125a65",
+      "bytes": 1589
+    },
+    {
+      "path": "problems/django__django-12143.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12143/problem_statement.md",
+      "sha256": "ea44d6cab1951bed46e10efdbfdb78f383cedc26f1d76a88cc7075ab774c2d87",
+      "bytes": 1441
+    },
+    {
+      "path": "problems/django__django-12155.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12155/problem_statement.md",
+      "sha256": "9f32a4a285f49a0f7005c54b76bcfa9d413dcf203ccc4e6f03bdb5bd89f537a4",
+      "bytes": 777
+    },
+    {
+      "path": "problems/django__django-12193.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12193/problem_statement.md",
+      "sha256": "6bd02eebf7c0609141d1497e235bcffa2070916542617dcee089b19d8d844eeb",
+      "bytes": 775
+    },
+    {
+      "path": "problems/django__django-12209.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12209/problem_statement.md",
+      "sha256": "5e48c4a578224647481334cf10311fff1141a4897260744d719b8af678daf53c",
+      "bytes": 1200
+    },
+    {
+      "path": "problems/django__django-12262.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12262/problem_statement.md",
+      "sha256": "eb0c9b99667bc7666a6ff518747eaa71c6d392f727583d3f90cabe5cf4afe994",
+      "bytes": 1040
+    },
+    {
+      "path": "problems/django__django-12273.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12273/problem_statement.md",
+      "sha256": "0ddf00d3800106f5e154fc638ba1e50b97e2fbebc27ab4639e16040bcf2685ca",
+      "bytes": 926
+    },
+    {
+      "path": "problems/django__django-12276.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12276/problem_statement.md",
+      "sha256": "e8baf7faea7833b073ddc3bc0336ed0bbc8dae41004fbaf398cb6b8c8f667a8b",
+      "bytes": 606
+    },
+    {
+      "path": "problems/django__django-12304.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12304/problem_statement.md",
+      "sha256": "99dceeb9e23295f6b10e7778f737b9bfb3cf49f99eca1cfae9b10505324c3901",
+      "bytes": 582
+    },
+    {
+      "path": "problems/django__django-12308.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12308/problem_statement.md",
+      "sha256": "3a5c42ef1352e5d34855a9b6efc54b08f2e6122a861306f8f47e323775851784",
+      "bytes": 459
+    },
+    {
+      "path": "problems/django__django-12325.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12325/problem_statement.md",
+      "sha256": "8f920ccb5f6169fecd052cc74e6c0149701d063e78802c8f33d585a69bb18c02",
+      "bytes": 900
+    },
+    {
+      "path": "problems/django__django-12406.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12406/problem_statement.md",
+      "sha256": "0c14152f7ac2ba5dc35c69013918f93d4c0941bee9547f5eaf4e55012f00e717",
+      "bytes": 1066
+    },
+    {
+      "path": "problems/django__django-12419.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12419/problem_statement.md",
+      "sha256": "1f07796a60c95eb7974ea0084d52158fa47471e45dff3dde4ad328aeff3a17f6",
+      "bytes": 684
+    },
+    {
+      "path": "problems/django__django-12663.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12663/problem_statement.md",
+      "sha256": "0453b1e19a5f5d3644f3d6ff1fbdbf9f02062b7d22ef9a99ec54c669d83e7797",
+      "bytes": 2854
+    },
+    {
+      "path": "problems/django__django-12708.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12708/problem_statement.md",
+      "sha256": "773681998993eff75a3b69f04821e4e8683f89cfffdee38f19fe11cb3c7a98be",
+      "bytes": 959
+    },
+    {
+      "path": "problems/django__django-12713.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12713/problem_statement.md",
+      "sha256": "daa45ff786da924bd2c4d52dd6d87b42fef8c43cac605a5b7853ac7dd298fe60",
+      "bytes": 257
+    },
+    {
+      "path": "problems/django__django-12741.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12741/problem_statement.md",
+      "sha256": "06e228f603008bf1f807cfa5e10f0e54802d174667e2297d56503df2a19ac25d",
+      "bytes": 398
+    },
+    {
+      "path": "problems/django__django-12754.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12754/problem_statement.md",
+      "sha256": "096b0804a84a35b844281a50c353c849cc0eba64d986c65a460f5bb04b84692e",
+      "bytes": 860
+    },
+    {
+      "path": "problems/django__django-12774.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12774/problem_statement.md",
+      "sha256": "8c35fba9272466eec8851a624ea13c5c07eb184359c94dfb922efed85b0fc3b6",
+      "bytes": 1094
+    },
+    {
+      "path": "problems/django__django-12858.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12858/problem_statement.md",
+      "sha256": "9f760a5124387f24e94d814b847aa7d039df33cb4cb376c2a61cd36815dd7310",
+      "bytes": 794
+    },
+    {
+      "path": "problems/django__django-12965.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-12965/problem_statement.md",
+      "sha256": "254dbca011ff2803abe568573c62adfd5da9fe84910faf0ad79554fec9254d7b",
+      "bytes": 2281
+    },
+    {
+      "path": "problems/django__django-13012.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13012/problem_statement.md",
+      "sha256": "1b11bed9d411d9511fc71355d4a757a90b9abe722332f5c8a986a64f5a33ff59",
+      "bytes": 1414
+    },
+    {
+      "path": "problems/django__django-13023.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13023/problem_statement.md",
+      "sha256": "c05085a58a67bb3f452db083e2f011b6b0a4706ec1f8ef24df17fc6e6756cb70",
+      "bytes": 524
+    },
+    {
+      "path": "problems/django__django-13028.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13028/problem_statement.md",
+      "sha256": "595c86a498bfd25246b3b296e410f9a474774df3fb66b907d7c809f2fb920fce",
+      "bytes": 2839
+    },
+    {
+      "path": "problems/django__django-13033.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13033/problem_statement.md",
+      "sha256": "9da64b2f9c703ec1bd14a565ff384b69d1932e062d68e8e911a9e951f85f5a90",
+      "bytes": 3732
+    },
+    {
+      "path": "problems/django__django-13089.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13089/problem_statement.md",
+      "sha256": "5825c5a4fb9c815c7ce346478818d9a0160ebaaa75534bf94f3992b25a3f6cc3",
+      "bytes": 1597
+    },
+    {
+      "path": "problems/django__django-13109.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13109/problem_statement.md",
+      "sha256": "ae5dcc3d81e5961ced793da00ad311e186b174c968bb7c2cec7c8fae00577545",
+      "bytes": 1924
+    },
+    {
+      "path": "problems/django__django-13112.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13112/problem_statement.md",
+      "sha256": "23bc7cc79708f1a1396e96c7f125e2b8db60c77298639a055c9ba2d50dec1afd",
+      "bytes": 1944
+    },
+    {
+      "path": "problems/django__django-13121.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13121/problem_statement.md",
+      "sha256": "37a34c2a2b342e01d020f528d940358d465faa6f1c427f0f2a855a1d7d768f45",
+      "bytes": 1189
+    },
+    {
+      "path": "problems/django__django-13128.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13128/problem_statement.md",
+      "sha256": "d05584e584d668d3bc05dac8dc889140cbec5336c30912ddf99cb5fc0f8f9716",
+      "bytes": 422
+    },
+    {
+      "path": "problems/django__django-13158.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13158/problem_statement.md",
+      "sha256": "7939c5ed353c7d0a907dbaa7389c478cb1d18d44096c3c84f3a07a827d36ce0c",
+      "bytes": 1176
+    },
+    {
+      "path": "problems/django__django-13195.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13195/problem_statement.md",
+      "sha256": "0e4d0ef4cd6f3ef28f227f6d3eb1c9db8a5249e7dbb5361922695786e5394fce",
+      "bytes": 2424
+    },
+    {
+      "path": "problems/django__django-13212.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13212/problem_statement.md",
+      "sha256": "a79d287e01597f81eca52a95eafec22b22872f3dc0e06b8837a711242627b150",
+      "bytes": 474
+    },
+    {
+      "path": "problems/django__django-13279.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13279/problem_statement.md",
+      "sha256": "1717b549ca903701f93bd54096281c7b223c471cb822f2e8703d60637a33eb91",
+      "bytes": 432
+    },
+    {
+      "path": "problems/django__django-13297.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13297/problem_statement.md",
+      "sha256": "e61d15a6ceed56f64d664100196a3313d242c09e49317661ec6aa85c8c980c36",
+      "bytes": 1384
+    },
+    {
+      "path": "problems/django__django-13315.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13315/problem_statement.md",
+      "sha256": "23acf4cc72106d313ec1c5743de12eed7749031842e215685a30db410495531f",
+      "bytes": 285
+    },
+    {
+      "path": "problems/django__django-13343.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13343/problem_statement.md",
+      "sha256": "e105d6198bfcc19f652eb3f7d9a0fc8243ada3b8492de1688b31b3e4b43a1153",
+      "bytes": 1262
+    },
+    {
+      "path": "problems/django__django-13344.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13344/problem_statement.md",
+      "sha256": "fa0d64caaae3c17b9e52c447593c2c8ac3354046b1df2ceb293645b293b06090",
+      "bytes": 1363
+    },
+    {
+      "path": "problems/django__django-13346.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13346/problem_statement.md",
+      "sha256": "3cb764082e21011777c787f5ecf6688762b6f899a8b1f4ef1fab404245dc227c",
+      "bytes": 622
+    },
+    {
+      "path": "problems/django__django-13363.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13363/problem_statement.md",
+      "sha256": "097d83cb362b6f57378d29dc14641c115abeeb3aabfa8bf57ed92f2da0b790ea",
+      "bytes": 1682
+    },
+    {
+      "path": "problems/django__django-13401.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13401/problem_statement.md",
+      "sha256": "07a5d3176edc3678b34a08f4f72789a0f7e0af6a29389b6109c5009e098762a3",
+      "bytes": 1234
+    },
+    {
+      "path": "problems/django__django-13406.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13406/problem_statement.md",
+      "sha256": "ca2ece66b44ccf60d98ae4b1e6f5bdc9bcfefc640ea3b3bac0bfa7554a49fa2a",
+      "bytes": 3086
+    },
+    {
+      "path": "problems/django__django-13410.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13410/problem_statement.md",
+      "sha256": "a0d73591704ec56dc81c6e7035614a8bd526166b9700b9f982c4c58c4b719676",
+      "bytes": 1244
+    },
+    {
+      "path": "problems/django__django-13417.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13417/problem_statement.md",
+      "sha256": "7778fbb63ad2655872035b872bbaba9e904a8547fb6d3ef5fd8aa0e0997c054e",
+      "bytes": 952
+    },
+    {
+      "path": "problems/django__django-13449.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13449/problem_statement.md",
+      "sha256": "b082782316bb4c8f2899f9f31d81edd84d4ded60ed7627073f56014db30da0d9",
+      "bytes": 6278
+    },
+    {
+      "path": "problems/django__django-13512.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13512/problem_statement.md",
+      "sha256": "77633ba2243ab634f8e720517e2dea5dee17f839be6ad5ae87c58b4bf021cbf6",
+      "bytes": 468
+    },
+    {
+      "path": "problems/django__django-13513.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13513/problem_statement.md",
+      "sha256": "db52b2ac85d9ffdc2d35533770ede3c4c61472b7e111b351053abd0d678468d5",
+      "bytes": 1160
+    },
+    {
+      "path": "problems/django__django-13516.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13516/problem_statement.md",
+      "sha256": "b2aa69aba131cbff8cc00252876c7fce9fb8226461cdb25a902029535818a40d",
+      "bytes": 619
+    },
+    {
+      "path": "problems/django__django-13551.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13551/problem_statement.md",
+      "sha256": "e6346f8aa9161943a4e9cb982869c271a849cf3a8988e926d32bb177ee8f02e6",
+      "bytes": 609
+    },
+    {
+      "path": "problems/django__django-13568.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13568/problem_statement.md",
+      "sha256": "919d7cd6597b70c38f5e1aaeb15f5433c5aa76d6df01dc6d5dad11b23f44b425",
+      "bytes": 767
+    },
+    {
+      "path": "problems/django__django-13569.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13569/problem_statement.md",
+      "sha256": "224927604fb87c103765f979b79d32e837525161fc8192644f5932e4c797561d",
+      "bytes": 1983
+    },
+    {
+      "path": "problems/django__django-13590.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13590/problem_statement.md",
+      "sha256": "05b78c5617cc34ad2af8034fde1a60f353913bda2cecfe6c547ce5f80dfaafbf",
+      "bytes": 859
+    },
+    {
+      "path": "problems/django__django-13658.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13658/problem_statement.md",
+      "sha256": "764f9340434a4ec85588c26979702eceac011b8e753ca0165b78bbdefae98bb5",
+      "bytes": 1245
+    },
+    {
+      "path": "problems/django__django-13670.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13670/problem_statement.md",
+      "sha256": "2b0864eb153038e5272adca0a3ce20666fb56b1c813c89aca8e4ea51842ab77a",
+      "bytes": 769
+    },
+    {
+      "path": "problems/django__django-13741.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13741/problem_statement.md",
+      "sha256": "649548e0c7ba74a107750c961644b757d2d8465b58073945fa9b92ff29705aba",
+      "bytes": 1030
+    },
+    {
+      "path": "problems/django__django-13786.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13786/problem_statement.md",
+      "sha256": "d45af58840168e1fc6be62f4cec2c28e8538aaf9db2dc1be29531dfe7f8ed648",
+      "bytes": 740
+    },
+    {
+      "path": "problems/django__django-13794.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13794/problem_statement.md",
+      "sha256": "8fec230311b96c7a82993e454ee4cb7288e74ba228b16cf24b991b4894bcffea",
+      "bytes": 307
+    },
+    {
+      "path": "problems/django__django-13807.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13807/problem_statement.md",
+      "sha256": "76117df0c07f45dd32c37f2b6b6c60218d89e2785ce40cca9378dd771f5d19e6",
+      "bytes": 1501
+    },
+    {
+      "path": "problems/django__django-13809.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13809/problem_statement.md",
+      "sha256": "7a85668efd30416150d8bb3013727c6ebf8d0013064afc93e5b96d2aabcf456c",
+      "bytes": 459
+    },
+    {
+      "path": "problems/django__django-13810.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13810/problem_statement.md",
+      "sha256": "56e9927b1d405bb6be5bd7a327cea4ed7a83858f705590310391df2fd2066379",
+      "bytes": 2269
+    },
+    {
+      "path": "problems/django__django-13820.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13820/problem_statement.md",
+      "sha256": "8448b0b82597255474fabc23fafe8fb9aee04c6f7bbc5a59dbec7918a19063e4",
+      "bytes": 2116
+    },
+    {
+      "path": "problems/django__django-13821.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13821/problem_statement.md",
+      "sha256": "265686648c416aaf4879d6757538e5d9ee13c00496288e6fbd5fbdb9901cf3ec",
+      "bytes": 540
+    },
+    {
+      "path": "problems/django__django-13837.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13837/problem_statement.md",
+      "sha256": "34e44d1cfd0354cf9ed68afafef69789c59418e2ea0620e23b6402522a2ae4ac",
+      "bytes": 1665
+    },
+    {
+      "path": "problems/django__django-13925.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13925/problem_statement.md",
+      "sha256": "53aa9d5d9f674abca126966c4a1292cebbfcdb29346652e41d2151dd88f09b69",
+      "bytes": 4086
+    },
+    {
+      "path": "problems/django__django-13933.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13933/problem_statement.md",
+      "sha256": "401348caf9cb639acfea61bb1f3bbc93a59d3e8a025d2fb99dd17c4a512723dd",
+      "bytes": 1211
+    },
+    {
+      "path": "problems/django__django-13964.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-13964/problem_statement.md",
+      "sha256": "d0a164326a7b3fd89b9236e331075a4b9dd8285ea90f5757ea056d87737020c3",
+      "bytes": 1870
+    },
+    {
+      "path": "problems/django__django-14007.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14007/problem_statement.md",
+      "sha256": "61950a482ff12ae94f13cdf0032eeb04986240655411db0358161491ad853e0a",
+      "bytes": 1214
+    },
+    {
+      "path": "problems/django__django-14011.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14011/problem_statement.md",
+      "sha256": "be59236cc1523a08327292712cb4cb8f939a49866e7355254a3efa586ae4fdd2",
+      "bytes": 1913
+    },
+    {
+      "path": "problems/django__django-14017.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14017/problem_statement.md",
+      "sha256": "a9b1b917d84ea9f7230d9dd8a0e81fe9261b0a878979d52423fa24cbb574acba",
+      "bytes": 1269
+    },
+    {
+      "path": "problems/django__django-14034.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14034/problem_statement.md",
+      "sha256": "8c9d626d0cc8f675b7b679ccde8ee202319203f4a5c57f2faeb08bbbc7ad7fd9",
+      "bytes": 1131
+    },
+    {
+      "path": "problems/django__django-14053.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14053/problem_statement.md",
+      "sha256": "cca208480bfc81085f4ca0bf64ee24023dbc67f90016f0f45790b5b6170683b8",
+      "bytes": 3110
+    },
+    {
+      "path": "problems/django__django-14089.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14089/problem_statement.md",
+      "sha256": "cbfb85cb9ea9b08049b15ffaff23b96640926088e725b8b70f7ef2a31b767118",
+      "bytes": 322
+    },
+    {
+      "path": "problems/django__django-14122.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14122/problem_statement.md",
+      "sha256": "977d049025358afe0585a110b6fdcfe236b41139b69f5300d6b4aa5195523097",
+      "bytes": 467
+    },
+    {
+      "path": "problems/django__django-14140.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14140/problem_statement.md",
+      "sha256": "a305c3e778a6834a2fac10b055678ce26e2ee1173e5c6c0b969a50a12a261b03",
+      "bytes": 1154
+    },
+    {
+      "path": "problems/django__django-14155.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14155/problem_statement.md",
+      "sha256": "99528d0959fec5b17e878bcf5770321d0bbcd6728de15155b2e4d5d4f019e1de",
+      "bytes": 553
+    },
+    {
+      "path": "problems/django__django-14170.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14170/problem_statement.md",
+      "sha256": "8cf4ee1d30b4dea29472bf630efb43bae3dba0dcd4704599e04ab5fcf0789dc6",
+      "bytes": 1749
+    },
+    {
+      "path": "problems/django__django-14238.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14238/problem_statement.md",
+      "sha256": "ee71cd2bf018f9b6642fe511b99cd64cebaf60a85abc709d87d65ee2c97a2ffd",
+      "bytes": 2590
+    },
+    {
+      "path": "problems/django__django-14311.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14311/problem_statement.md",
+      "sha256": "461ce927881a7aee7d62b6cea89d7bc71d0f6ce70e107dbf073a0abe37394d4b",
+      "bytes": 607
+    },
+    {
+      "path": "problems/django__django-14315.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14315/problem_statement.md",
+      "sha256": "bef4cf98805c60cd26812114b20594a4cf19b71cbd87b68f2424e16bb288c768",
+      "bytes": 493
+    },
+    {
+      "path": "problems/django__django-14349.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14349/problem_statement.md",
+      "sha256": "a68339a313302a5206f13b93193a304536f6bd11f99f1a0555a7077431b99152",
+      "bytes": 2385
+    },
+    {
+      "path": "problems/django__django-14351.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14351/problem_statement.md",
+      "sha256": "3634baa513384ea0fff395865c0be84f51bc20db766ab44634106e45cb39bae5",
+      "bytes": 8541
+    },
+    {
+      "path": "problems/django__django-14373.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14373/problem_statement.md",
+      "sha256": "3a92f914a19e30131524e7b737d800631f22bc13950e775dd3a81e75e702b45c",
+      "bytes": 220
+    },
+    {
+      "path": "problems/django__django-14376.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14376/problem_statement.md",
+      "sha256": "5365417653d0973045c8b9dad432b1ea4300765b3114a94b249824beb70ec215",
+      "bytes": 788
+    },
+    {
+      "path": "problems/django__django-14404.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14404/problem_statement.md",
+      "sha256": "def9177a98fb70db5e820c239d7c624fe8e84ef5b3c0a48fdda3cbf03e2e004b",
+      "bytes": 306
+    },
+    {
+      "path": "problems/django__django-14434.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14434/problem_statement.md",
+      "sha256": "069b0d7ba8ebff2f277a626aec1231cfee3546478a755fd268df7ecf2e4ee766",
+      "bytes": 190
+    },
+    {
+      "path": "problems/django__django-14493.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14493/problem_statement.md",
+      "sha256": "cc9de371234c2f0d9b3de4138b2ce9166d023f8c0862aee47daabf371d863356",
+      "bytes": 1458
+    },
+    {
+      "path": "problems/django__django-14500.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14500/problem_statement.md",
+      "sha256": "b5100d0bf94598959c948adbc85bc8ee1dfe12dac61312ed2abdba68d8eab4fd",
+      "bytes": 292
+    },
+    {
+      "path": "problems/django__django-14534.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14534/problem_statement.md",
+      "sha256": "2dfdaf218918ae65f7a8279d0c7bb35685a56cfa459949bed8d8765ac33511f9",
+      "bytes": 1640
+    },
+    {
+      "path": "problems/django__django-14539.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14539/problem_statement.md",
+      "sha256": "914210188a0f0d3164757e5694efc608a1a55b5bdd8710f9bb72926cd6e599bf",
+      "bytes": 353
+    },
+    {
+      "path": "problems/django__django-14559.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14559/problem_statement.md",
+      "sha256": "6cc9af44c911bf02e1f72e4b16fbc31d33889d6468f7ef4ffde9ef408f92e90f",
+      "bytes": 480
+    },
+    {
+      "path": "problems/django__django-14580.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14580/problem_statement.md",
+      "sha256": "636298273b9a33484b44d2319b239719d8913afa944d0659f8af13415e8f2c7c",
+      "bytes": 1576
+    },
+    {
+      "path": "problems/django__django-14608.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14608/problem_statement.md",
+      "sha256": "28120c6f6a8b2a68dc45ba85d6154eb892ad4040da4961ffc4d8d34a60fd992e",
+      "bytes": 607
+    },
+    {
+      "path": "problems/django__django-14631.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14631/problem_statement.md",
+      "sha256": "1d3f964a6347e618040724052803c6e2011af7a3288f08293494b40da803118d",
+      "bytes": 1405
+    },
+    {
+      "path": "problems/django__django-14672.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14672/problem_statement.md",
+      "sha256": "ff82815c7599ddedc3670e83f2a86a3ddb817a5697c861baed4cd27146e51f62",
+      "bytes": 6768
+    },
+    {
+      "path": "problems/django__django-14725.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14725/problem_statement.md",
+      "sha256": "dce7d4945c7b8b97bb004da9edae37b3d03bf2d284a99c7901634f198a928494",
+      "bytes": 378
+    },
+    {
+      "path": "problems/django__django-14752.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14752/problem_statement.md",
+      "sha256": "1b904159e732bdd60114e919ef960bb89f645abf72dad8ca4ecb0897e11bea66",
+      "bytes": 2847
+    },
+    {
+      "path": "problems/django__django-14765.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14765/problem_statement.md",
+      "sha256": "9fc69efed0cf0027e31a1ce26ac09b72d66e7d3e2125a055188e2ac870ff4d90",
+      "bytes": 562
+    },
+    {
+      "path": "problems/django__django-14771.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14771/problem_statement.md",
+      "sha256": "c73f49f76429d7c1fd9ba1b867ed0bf555f7cbe2cef3891f312c4d856d42bd6f",
+      "bytes": 998
+    },
+    {
+      "path": "problems/django__django-14787.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14787/problem_statement.md",
+      "sha256": "b52409ced83e2b68e7961a34db6792ca6b89277456ea14c6c166c7f8c8e17c0d",
+      "bytes": 745
+    },
+    {
+      "path": "problems/django__django-14792.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14792/problem_statement.md",
+      "sha256": "b5f5a0d21a40deb0fea2a4a0dfa0b0c5f45c891648de9e0d622db437f3b84e3e",
+      "bytes": 1518
+    },
+    {
+      "path": "problems/django__django-14855.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14855/problem_statement.md",
+      "sha256": "7c113fe11bfa67ad47de43ed350aab131ae71456dec54707251ac2e79d5de7b9",
+      "bytes": 1011
+    },
+    {
+      "path": "problems/django__django-14915.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14915/problem_statement.md",
+      "sha256": "bf8158a727f6dc6c7342fadb1af16bfe69171e4a5a9e1db719367ce0dbacc849",
+      "bytes": 1007
+    },
+    {
+      "path": "problems/django__django-14999.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-14999/problem_statement.md",
+      "sha256": "5264ba42b6576487dbd71edab4f86f5c7e2642f728562861bea1a0fad04da819",
+      "bytes": 262
+    },
+    {
+      "path": "problems/django__django-15022.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15022/problem_statement.md",
+      "sha256": "053d6cadf868999d5c91d65c608c767c064794a28f5a6ce572ddb790e1dcd63f",
+      "bytes": 1224
+    },
+    {
+      "path": "problems/django__django-15037.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15037/problem_statement.md",
+      "sha256": "0d8c12fc486d8e5e0c9c28316b6d7052f1630eecc58aa279c2bcfae3478f4f09",
+      "bytes": 502
+    },
+    {
+      "path": "problems/django__django-15098.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15098/problem_statement.md",
+      "sha256": "d851e9e482d434693a8ffd0b6f1452774897d663326ba7f51d28aa70893506b5",
+      "bytes": 2612
+    },
+    {
+      "path": "problems/django__django-15103.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15103/problem_statement.md",
+      "sha256": "34eeb1884ba091d5ef043989c3516cae61b057232f28bbf2d341c5cf670b2f84",
+      "bytes": 378
+    },
+    {
+      "path": "problems/django__django-15104.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15104/problem_statement.md",
+      "sha256": "28a48760ccbbb8e549a66edeae834de8a47f4a34d06ba80e4c929c6ea55626d2",
+      "bytes": 4594
+    },
+    {
+      "path": "problems/django__django-15127.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15127/problem_statement.md",
+      "sha256": "c292bb768c1a7f54599f5232bf0ec130db16cae3504ab40183bf07f4ff3f3622",
+      "bytes": 306
+    },
+    {
+      "path": "problems/django__django-15128.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15128/problem_statement.md",
+      "sha256": "45a25eccc76c2a4696cf8ae4ddc4b1d8ccaf016a096c077f16d0db237f16a8f4",
+      "bytes": 2662
+    },
+    {
+      "path": "problems/django__django-15161.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15161/problem_statement.md",
+      "sha256": "57e447ac62225ffba5dba333898b1c0a4c43d39f66a983cb54b238f5350dd134",
+      "bytes": 506
+    },
+    {
+      "path": "problems/django__django-15252.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15252/problem_statement.md",
+      "sha256": "ac94dfb5dfb9903b30502daafec445b4d52b5549b1ab13215baf510048fc3e7d",
+      "bytes": 1681
+    },
+    {
+      "path": "problems/django__django-15268.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15268/problem_statement.md",
+      "sha256": "d924c4fce88325ef036717d83eec6886a45e706bcdb2990f20049ed3d6377f07",
+      "bytes": 1307
+    },
+    {
+      "path": "problems/django__django-15277.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15277/problem_statement.md",
+      "sha256": "98525d608a2e031433d4b7356a5bfc0143c43f0e34ab84fd9f2a2d6e15f8359d",
+      "bytes": 2761
+    },
+    {
+      "path": "problems/django__django-15278.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15278/problem_statement.md",
+      "sha256": "1a089ebde40b260fa592330ff3bf56f5bfa3f06d96e50e5f17196fa2e6140d74",
+      "bytes": 1224
+    },
+    {
+      "path": "problems/django__django-15280.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15280/problem_statement.md",
+      "sha256": "064a07fb72e08e129f1fbe7f8d633a6b54b3e15107da3af57dc8ddc9b8da0ad8",
+      "bytes": 2509
+    },
+    {
+      "path": "problems/django__django-15315.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15315/problem_statement.md",
+      "sha256": "a26b3534bece469f866614b19fadd37e13c9a06ce293bfe21e32313b9cfa90fd",
+      "bytes": 793
+    },
+    {
+      "path": "problems/django__django-15368.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15368/problem_statement.md",
+      "sha256": "1bced2e7a3d9d1a655c00e9057eca1f32180b3ef8cbdb43fa560b580531f07d0",
+      "bytes": 1182
+    },
+    {
+      "path": "problems/django__django-15375.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15375/problem_statement.md",
+      "sha256": "4616483f7cb30681f19b8196d8484bef3b60b87d89b3547c73c01b54b98a1ba8",
+      "bytes": 1619
+    },
+    {
+      "path": "problems/django__django-15380.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15380/problem_statement.md",
+      "sha256": "53100fe4bc9f478124a2d09309952bdae262d1f27673d79613eaea157cf20191",
+      "bytes": 1608
+    },
+    {
+      "path": "problems/django__django-15382.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15382/problem_statement.md",
+      "sha256": "edcce7a405fe9cea7bd3d257a381b34a8247f33ad1ad1d95d6899109c98873da",
+      "bytes": 407
+    },
+    {
+      "path": "problems/django__django-15467.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15467/problem_statement.md",
+      "sha256": "fc7443424d0b936393fb4f7cf0d1c3045fbd138a736a563d555bbf5cafccd99b",
+      "bytes": 727
+    },
+    {
+      "path": "problems/django__django-15499.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15499/problem_statement.md",
+      "sha256": "5b157eb69d1b4d671f1f1751692541bfd58a51abda2269af5968a299640619ad",
+      "bytes": 263
+    },
+    {
+      "path": "problems/django__django-15503.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15503/problem_statement.md",
+      "sha256": "ae5996a2ff543fb4739d14e1d0080c854ac289205e0abe1d687645bc14af2123",
+      "bytes": 1801
+    },
+    {
+      "path": "problems/django__django-15525.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15525/problem_statement.md",
+      "sha256": "d08bb0e6192157df05eeac23a447e986930f16b9905c8071c73bc00007945357",
+      "bytes": 4382
+    },
+    {
+      "path": "problems/django__django-15554.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15554/problem_statement.md",
+      "sha256": "2d27a8c06b70734c54326cfad54dacbad5376e57a6a6ea68a4c33e91047624af",
+      "bytes": 1278
+    },
+    {
+      "path": "problems/django__django-15561.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15561/problem_statement.md",
+      "sha256": "faf31e89ae86084aeea09177048679096a74f81864023dda9cbe3a32e3db6e46",
+      "bytes": 359
+    },
+    {
+      "path": "problems/django__django-15563.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15563/problem_statement.md",
+      "sha256": "46a090e69eecd18516e4819f11699ec9c5b3d2226db86a616217d9115cdfb5a7",
+      "bytes": 1727
+    },
+    {
+      "path": "problems/django__django-15569.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15569/problem_statement.md",
+      "sha256": "107938cd24f7bef580939d1998ce566f02fe292c37bcd14013c5f28ec5fb4f51",
+      "bytes": 646
+    },
+    {
+      "path": "problems/django__django-15572.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15572/problem_statement.md",
+      "sha256": "f9d1889009c44a56a4487dbf777c536841b4b30a2472ee1d1e30b75007f12aa3",
+      "bytes": 1392
+    },
+    {
+      "path": "problems/django__django-15629.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15629/problem_statement.md",
+      "sha256": "f0d48bfd83441c3935b06e4a92bcdb578150b817ce17a73b3275233796473aa6",
+      "bytes": 2405
+    },
+    {
+      "path": "problems/django__django-15695.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15695/problem_statement.md",
+      "sha256": "613bfb30e51009598a05937b5149afbc0cf7b5eb59572cc4282e9154fd39da22",
+      "bytes": 1308
+    },
+    {
+      "path": "problems/django__django-15731.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15731/problem_statement.md",
+      "sha256": "b28cf585d0d568812aef7b882e47df7a542f7736ee900877c426c000a3ed953c",
+      "bytes": 1181
+    },
+    {
+      "path": "problems/django__django-15732.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15732/problem_statement.md",
+      "sha256": "9fec2159f491fae94855a4e7f43923ee35d5c1b124f9f26769a0e6015ff0f312",
+      "bytes": 601
+    },
+    {
+      "path": "problems/django__django-15741.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15741/problem_statement.md",
+      "sha256": "885e417777d572d47461e7ec0c9eb4ea29ec0e446a60f4515cbf32625a3a9cbf",
+      "bytes": 365
+    },
+    {
+      "path": "problems/django__django-15814.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15814/problem_statement.md",
+      "sha256": "2ade174953b4185bc7ebb099982940b2b244588d523290a1f468b54fd5c87ea7",
+      "bytes": 2646
+    },
+    {
+      "path": "problems/django__django-15851.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15851/problem_statement.md",
+      "sha256": "f4d50fcd56c36967abc5518f3cf22d8f7cdec73d9ee380ead21efd6c4e434526",
+      "bytes": 632
+    },
+    {
+      "path": "problems/django__django-15863.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15863/problem_statement.md",
+      "sha256": "1ebdb648984e2cfa5ad5cfa36fddb9ee9dc83e08d602602194b729276ee6a3fc",
+      "bytes": 840
+    },
+    {
+      "path": "problems/django__django-15916.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15916/problem_statement.md",
+      "sha256": "561a7dff2336249703a63a8fbfcf8e868324859d74b3da2ade1a4fee5ed23d61",
+      "bytes": 1744
+    },
+    {
+      "path": "problems/django__django-15930.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15930/problem_statement.md",
+      "sha256": "e2c63560dec85eba8d54e55e16e39c352b0db782bc1b1f06aef31819757e9732",
+      "bytes": 689
+    },
+    {
+      "path": "problems/django__django-15957.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15957/problem_statement.md",
+      "sha256": "676a7fa58acee1293e62f431bfea0ddd001785e0efd2051bb50d7314027e9213",
+      "bytes": 858
+    },
+    {
+      "path": "problems/django__django-15973.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15973/problem_statement.md",
+      "sha256": "8f96852cd0ac22cf509a263bbe10456db887c640e893fc4c49f453b45e1ed023",
+      "bytes": 5341
+    },
+    {
+      "path": "problems/django__django-15987.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-15987/problem_statement.md",
+      "sha256": "74fc422f95f0cc73e0782cafc65260bc6805ce03753bea993d58c0641edc8a5d",
+      "bytes": 176
+    },
+    {
+      "path": "problems/django__django-16032.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16032/problem_statement.md",
+      "sha256": "a6962d82b41042e5d8c3ddd56535e25107582436685e7ab9efc78b0da6df86c1",
+      "bytes": 778
+    },
+    {
+      "path": "problems/django__django-16082.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16082/problem_statement.md",
+      "sha256": "1d2c67bed1ede6923fe1102ec80424352c4ad9263a4049da7684b360d9aeef87",
+      "bytes": 308
+    },
+    {
+      "path": "problems/django__django-16100.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16100/problem_statement.md",
+      "sha256": "1348b1dd6ab1cb64b3178fe8cf3fa0b9998eaa9eb0a7c522fb5eed67f62254ba",
+      "bytes": 281
+    },
+    {
+      "path": "problems/django__django-16116.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16116/problem_statement.md",
+      "sha256": "2f9755e00c736ae0fd1d1b7f5361f1a3928b5efcbf3abc6736b8589c723fc6bf",
+      "bytes": 762
+    },
+    {
+      "path": "problems/django__django-16136.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16136/problem_statement.md",
+      "sha256": "94dcebd6197a6b892e97650b984227b233cb75312d624d939ff1a2956850c3bc",
+      "bytes": 2089
+    },
+    {
+      "path": "problems/django__django-16139.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16139/problem_statement.md",
+      "sha256": "b995147ec63f69ca6a39f0fdbf6e8d9f5647458bc7e76a693157834c38435ec2",
+      "bytes": 1417
+    },
+    {
+      "path": "problems/django__django-16145.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16145/problem_statement.md",
+      "sha256": "04c20c6816a5e01d7261a30182d4c5718c4758e2b629fbba7e2778fdec4cb77f",
+      "bytes": 595
+    },
+    {
+      "path": "problems/django__django-16255.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16255/problem_statement.md",
+      "sha256": "2359a3443b4020179e535a3df289178a975a90472b1fb6c3c23adf85aee5c371",
+      "bytes": 1566
+    },
+    {
+      "path": "problems/django__django-16256.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16256/problem_statement.md",
+      "sha256": "8573a7026e50e932c44f36aeeb9c57c6fd28231d65e43fb98b39afa563d4f01c",
+      "bytes": 2204
+    },
+    {
+      "path": "problems/django__django-16263.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16263/problem_statement.md",
+      "sha256": "ef08a5be58ef19907c5ccbc08283ca421442f12cf119e39a33cc4d0224911e56",
+      "bytes": 656
+    },
+    {
+      "path": "problems/django__django-16315.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16315/problem_statement.md",
+      "sha256": "1e77d04330a04cec33e1085c3641b845bddc133ae3c5102cdd71b9fd61023fa9",
+      "bytes": 1298
+    },
+    {
+      "path": "problems/django__django-16333.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16333/problem_statement.md",
+      "sha256": "603fcbce6271954ca24171d4ae19dcaba962abf158fc04f53d3fd18dbcd20cb3",
+      "bytes": 559
+    },
+    {
+      "path": "problems/django__django-16429.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16429/problem_statement.md",
+      "sha256": "b6ca3283813884840693619432ca2d9fe158676400cb3c3524f3b059d57b1200",
+      "bytes": 966
+    },
+    {
+      "path": "problems/django__django-16454.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16454/problem_statement.md",
+      "sha256": "1b38e35ca2721cfc6bfdf1b9fdc133975c7e5c72b4ef5e91e132fd578e89d0e0",
+      "bytes": 2043
+    },
+    {
+      "path": "problems/django__django-16485.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16485/problem_statement.md",
+      "sha256": "b4fa6712d6e1d39bf9c121043248a2ba7faecb8c92f65be12459ab0f7d32b4e0",
+      "bytes": 246
+    },
+    {
+      "path": "problems/django__django-16493.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16493/problem_statement.md",
+      "sha256": "75075130dacc249477d2c94033054758246062c4b4570d8a8b5c6ac0a220ab79",
+      "bytes": 1141
+    },
+    {
+      "path": "problems/django__django-16502.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16502/problem_statement.md",
+      "sha256": "7efef7822c78cdf0e41a2bf058fd740eeb35cb07a471343a0bbc7128caf0305f",
+      "bytes": 1676
+    },
+    {
+      "path": "problems/django__django-16527.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16527/problem_statement.md",
+      "sha256": "d9bcb36c05a8542b01cc22ded3b6545b090ccac64f969ddee3981d62c6e74e10",
+      "bytes": 493
+    },
+    {
+      "path": "problems/django__django-16560.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16560/problem_statement.md",
+      "sha256": "55bdf0c9598df4bb15567401559ad47ae47a817a1a61031101d6d4105e3e2da3",
+      "bytes": 842
+    },
+    {
+      "path": "problems/django__django-16569.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16569/problem_statement.md",
+      "sha256": "06d476280f43c0739d98b1cc072683c8b766243ba66ee1ad7c4c86bc1c62cfcb",
+      "bytes": 1742
+    },
+    {
+      "path": "problems/django__django-16595.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16595/problem_statement.md",
+      "sha256": "9634961aa789b58bc0e66fae12245de8b9f826e5f69b752226458f5888fe2116",
+      "bytes": 1540
+    },
+    {
+      "path": "problems/django__django-16612.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16612/problem_statement.md",
+      "sha256": "360343632af96cb566321012a292dbc7e00e3201c90017aa1d73e9f8f01979d9",
+      "bytes": 731
+    },
+    {
+      "path": "problems/django__django-16631.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16631/problem_statement.md",
+      "sha256": "32af93df5e62a2e558611028be5030691d5720d2a172c9a0e83213c68d779a8a",
+      "bytes": 830
+    },
+    {
+      "path": "problems/django__django-16642.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16642/problem_statement.md",
+      "sha256": "8c925b62cf8a6164ad42e17af5c693af15ee49cf2295d42ed29c83ca9300895f",
+      "bytes": 261
+    },
+    {
+      "path": "problems/django__django-16661.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16661/problem_statement.md",
+      "sha256": "8ae40c58d69fbb6c556a88fd5efa91256048a66c1a75b2b6047bedc907979619",
+      "bytes": 1315
+    },
+    {
+      "path": "problems/django__django-16662.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16662/problem_statement.md",
+      "sha256": "42e240ffdb04350697f828e621ac52538d02097c07e3bd29e2e48e7005968beb",
+      "bytes": 744
+    },
+    {
+      "path": "problems/django__django-16667.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16667/problem_statement.md",
+      "sha256": "f5e8f8238e1858da54eeda18945034c35444d586b4fb303dab3b95f44a0f06f4",
+      "bytes": 1760
+    },
+    {
+      "path": "problems/django__django-16801.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16801/problem_statement.md",
+      "sha256": "f7f76c637955914a37f86dce9b70030f0740b9013c976a1aa0240db988a4591a",
+      "bytes": 724
+    },
+    {
+      "path": "problems/django__django-16819.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16819/problem_statement.md",
+      "sha256": "97b715a333546c080e735147ddaec689c9bac7e3c9f656b0225ba9b42a2cec70",
+      "bytes": 146
+    },
+    {
+      "path": "problems/django__django-16877.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16877/problem_statement.md",
+      "sha256": "a27611c7e5e670510d13fa2a390101af04671478b7f29d91fc6833223a50236f",
+      "bytes": 435
+    },
+    {
+      "path": "problems/django__django-16899.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16899/problem_statement.md",
+      "sha256": "9c9351066a13a3059571433afaff2b7a9948b725fdf47c3c39f8f0b73fc1394f",
+      "bytes": 784
+    },
+    {
+      "path": "problems/django__django-16901.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16901/problem_statement.md",
+      "sha256": "c8993e991640f6009471290abeba79fbb302f7b82c293f7e9340fe4e1220f532",
+      "bytes": 1034
+    },
+    {
+      "path": "problems/django__django-16938.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16938/problem_statement.md",
+      "sha256": "df77a03b1d4dc247eb9cb80cd7a2d98d9b6f63f3036e1a3d65431ff0edc39d39",
+      "bytes": 4015
+    },
+    {
+      "path": "problems/django__django-16950.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-16950/problem_statement.md",
+      "sha256": "f269742c4cfd7938fbc0c71820914948ed127d5ce9750df52c33f7a340b91f34",
+      "bytes": 1445
+    },
+    {
+      "path": "problems/django__django-17029.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-17029/problem_statement.md",
+      "sha256": "4de1d6b3ae651b2f319eab80284de337f4a85e6bb7ea0b00ebbe2713b2ad5e38",
+      "bytes": 882
+    },
+    {
+      "path": "problems/django__django-17084.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-17084/problem_statement.md",
+      "sha256": "04cc3977bbc184d950a14a6b4e9caf06f854fa2575218694b65982247ca6388c",
+      "bytes": 648
+    },
+    {
+      "path": "problems/django__django-17087.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-17087/problem_statement.md",
+      "sha256": "70cad331a2b095ca612c98e2d2d81a549fb32f91f6ac261196d30d4a77bdb2fb",
+      "bytes": 1135
+    },
+    {
+      "path": "problems/django__django-7530.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-7530/problem_statement.md",
+      "sha256": "660d95fad484d129e2943cf8276d081cfceb02bada155f6ddf2e5e1ce4af5d39",
+      "bytes": 485
+    },
+    {
+      "path": "problems/django__django-9296.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/django__django-9296/problem_statement.md",
+      "sha256": "1dad6e4ae15cb47af74a688dc59b6a40fa55b6ec0086f587e16c784c78acfc23",
+      "bytes": 411
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-13989.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-13989/problem_statement.md",
+      "sha256": "13d52a70d283b3677d5258aadda203f99ac501d0073989215713092077f6e3ff",
+      "bytes": 1714
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-14623.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-14623/problem_statement.md",
+      "sha256": "464f0388f374a7b9d35c4376287b032364fc63e51dfb872fbd0806154dbbc152",
+      "bytes": 1117
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-20488.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-20488/problem_statement.md",
+      "sha256": "12056807682e586594be117be56e64ed357f0907510f7d7fb645a4241e4fa165",
+      "bytes": 1952
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-20676.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-20676/problem_statement.md",
+      "sha256": "c201ac5236b0a5eb57faa1768a12c67f0132074a5538d82feb717a62af9ad01d",
+      "bytes": 1645
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-20826.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-20826/problem_statement.md",
+      "sha256": "881edf60640e55712a3d98f4ab4da1ef4c7e1976c75cb152ed0507cc5522d216",
+      "bytes": 2496
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-20859.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-20859/problem_statement.md",
+      "sha256": "e164457f11ff826d316c84285ade2b510a4b086fc263d1f948a16ceb84da4d34",
+      "bytes": 2582
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-21568.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-21568/problem_statement.md",
+      "sha256": "b8683c29c5989c50521624efa9b34be927922e08f51ff01a96dec8526e3eec91",
+      "bytes": 1297
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-22719.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-22719/problem_statement.md",
+      "sha256": "2ffeda0f37f0b31f33acc4091c401b2ecdf32fe61756e07d1248ab2095cb77e0",
+      "bytes": 10176
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-22865.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-22865/problem_statement.md",
+      "sha256": "59bd59ccfcb72e1937305af38434e86d804f312430f62fe056769ed708670d49",
+      "bytes": 1515
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-22871.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-22871/problem_statement.md",
+      "sha256": "a32253ecd61549cba0b22de10788e2edc09166a2598bdc364eb9f6f993d3ac26",
+      "bytes": 1439
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-23299.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-23299/problem_statement.md",
+      "sha256": "e09f2f06fba2878eb83a9b899e7f51c5053caf050a9e1ccaa56a015edf027cc6",
+      "bytes": 1780
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-23314.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-23314/problem_statement.md",
+      "sha256": "e724887a3c1acc1c91e3f2fefb8d9e30bafcf58b3d6d1696dc8f57e77fd90cba",
+      "bytes": 943
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-23412.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-23412/problem_statement.md",
+      "sha256": "f6a488ca9ccd9717eed2b1b06381bfb2f0df1fcb770c10d2798a394581354770",
+      "bytes": 1859
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-23476.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-23476/problem_statement.md",
+      "sha256": "09f6a686f1cdc38099eeaf53b4f8d5d7f5ccc2587d792da3f5f5ac0ee5e94eab",
+      "bytes": 3251
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-24026.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-24026/problem_statement.md",
+      "sha256": "4ee911f96026baf36281275f48621c1a645938de534397eb62e8411bfbd8a34d",
+      "bytes": 2133
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-24149.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-24149/problem_statement.md",
+      "sha256": "e45198b3ac6b31622abb846680415a32e52d5ed8fc60c85953b9f0deb461b6af",
+      "bytes": 3224
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-24177.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-24177/problem_statement.md",
+      "sha256": "1e6d6a06f568bc8745d92ec2649e97912a1fbacf7a85df9fa976435714b537d5",
+      "bytes": 2031
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-24570.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-24570/problem_statement.md",
+      "sha256": "e92b7455ee344da93d431a6f48428a89f1ee055b46c062bc804d4456e74c15a5",
+      "bytes": 1356
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-24627.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-24627/problem_statement.md",
+      "sha256": "7d9e2b69794435ee2ed448b97c45250b028de009950f7b9982cc81114eb400fd",
+      "bytes": 395
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-24637.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-24637/problem_statement.md",
+      "sha256": "229bc433cf176f1a8226326a9c48ed322d9b4452549f123ca6095121249d19c7",
+      "bytes": 2257
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-24870.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-24870/problem_statement.md",
+      "sha256": "9fdff9e3329f9ef19a9deb6f152b3a23c9c3e091258eb9deb5f740f036885f70",
+      "bytes": 1150
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-24970.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-24970/problem_statement.md",
+      "sha256": "5ae160cc5420b0587fc3a4d567fb1d76d86d4d20de526eaaaeb95759ea568dbf",
+      "bytes": 1758
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-25122.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-25122/problem_statement.md",
+      "sha256": "30f322bb014d478fa18bfb886ae986dc6bf1dc3d16c4f0b10cda5f2560a3296b",
+      "bytes": 1084
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-25287.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-25287/problem_statement.md",
+      "sha256": "f9bbb7794506f072129a5e7941e265280853fd873550828d7a66e91baa611c7e",
+      "bytes": 2097
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-25311.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-25311/problem_statement.md",
+      "sha256": "a2583ca80e1609006e02901af35754c41bc9bb0c325da37d2f6fef434d7f2ff7",
+      "bytes": 908
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-25332.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-25332/problem_statement.md",
+      "sha256": "86c03c9b73bf970095097ed7e90516f96639aaf8b1a81a8ba3ddd8f620e0eee4",
+      "bytes": 1004
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-25479.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-25479/problem_statement.md",
+      "sha256": "4581a22d3e68c0fdc0b045d3f6560197585f94d041d18c57a6ee1153a968b709",
+      "bytes": 5785
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-25775.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-25775/problem_statement.md",
+      "sha256": "a15b46987ceec554e057cf8fc62b015b435221182f76357b9d54ada6417c6401",
+      "bytes": 718
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-25960.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-25960/problem_statement.md",
+      "sha256": "97c83d815bdd983310f81c7c5141e2ec1e2347a25140e90dab10dcb54f87e630",
+      "bytes": 788
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-26113.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-26113/problem_statement.md",
+      "sha256": "dd3266ec4a7c3e8cc3d0b7ccb0bd76d85b33814bedadceb4277d755db08479ca",
+      "bytes": 9424
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-26208.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-26208/problem_statement.md",
+      "sha256": "6c2b512012bf5cab6147cc2fc8c0df54e71b53036615685d77ec186f511a5fdd",
+      "bytes": 2085
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-26291.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-26291/problem_statement.md",
+      "sha256": "135da5f1618662180c804de8c65d94b1230e40361752a81fe3e698e8696a6350",
+      "bytes": 3844
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-26342.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-26342/problem_statement.md",
+      "sha256": "321b76866bbc962e78d72c560f335d29c16a725b2ddb967b03dc638c9baa0037",
+      "bytes": 573
+    },
+    {
+      "path": "problems/matplotlib__matplotlib-26466.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/matplotlib__matplotlib-26466/problem_statement.md",
+      "sha256": "75451baef8d992a85b82c5b525b6563cd4ad037336bbac3f555901c7cbe163de",
+      "bytes": 1412
+    },
+    {
+      "path": "problems/mwaskom__seaborn-3069.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/mwaskom__seaborn-3069/problem_statement.md",
+      "sha256": "739f9b2e6297497555d4d850e066137b282ad7c5bbcdee814e957ef0f81a9b1e",
+      "bytes": 1188
+    },
+    {
+      "path": "problems/mwaskom__seaborn-3187.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/mwaskom__seaborn-3187/problem_statement.md",
+      "sha256": "72157e71b5c0ed5d58d66a7eeb30ed7b2fb237374183b9ebee200f5d58abd77b",
+      "bytes": 1438
+    },
+    {
+      "path": "problems/pallets__flask-5014.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pallets__flask-5014/problem_statement.md",
+      "sha256": "f77d8eab7dd608172aa78b3b50dfa7e0e9b3a6a1c52d14a1cb02417eb5a0ab00",
+      "bytes": 195
+    },
+    {
+      "path": "problems/psf__requests-1142.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/psf__requests-1142/problem_statement.md",
+      "sha256": "0192533ff2ef0c53a600b3ef02cb9dc20bf0998d56eeaee80ca1a76c46758eec",
+      "bytes": 381
+    },
+    {
+      "path": "problems/psf__requests-1724.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/psf__requests-1724/problem_statement.md",
+      "sha256": "eacde5d201658474274cce4558b5d2b8ae74d9fcc2ad6ddc76aaf003b2160b8a",
+      "bytes": 7476
+    },
+    {
+      "path": "problems/psf__requests-1766.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/psf__requests-1766/problem_statement.md",
+      "sha256": "90d541e87a05a5135b7ee242c82702e5cad1e2cae9e5571fcbc032d7d6d80682",
+      "bytes": 897
+    },
+    {
+      "path": "problems/psf__requests-1921.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/psf__requests-1921/problem_statement.md",
+      "sha256": "3f7bdcd805645db3f6bbfa3476d3207f878afdfa4a91f8c8d56705d9aaf48e8d",
+      "bytes": 708
+    },
+    {
+      "path": "problems/psf__requests-2317.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/psf__requests-2317/problem_statement.md",
+      "sha256": "9fdbda259c2e75551a5282e979edf4ca93ba378bee22df393fe02998991cfd1a",
+      "bytes": 851
+    },
+    {
+      "path": "problems/psf__requests-2931.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/psf__requests-2931/problem_statement.md",
+      "sha256": "c36c337f6c5d918e8d193684510213e2eaed8633e575b819757674cca0d980fd",
+      "bytes": 274
+    },
+    {
+      "path": "problems/psf__requests-5414.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/psf__requests-5414/problem_statement.md",
+      "sha256": "08faa0ea47836476b5f4b3709c06a00569996ccc654011299f9c8587cd7007ba",
+      "bytes": 1428
+    },
+    {
+      "path": "problems/psf__requests-6028.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/psf__requests-6028/problem_statement.md",
+      "sha256": "1d82b6998adb429d6d13a59c0c321de5ea24889a19843d4de7ea4dff06739cc0",
+      "bytes": 1268
+    },
+    {
+      "path": "problems/pydata__xarray-2905.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-2905/problem_statement.md",
+      "sha256": "0d3a9b692fc42e67214ed21e669b85cd5c6a222b3a4abc2055d93915876b6be8",
+      "bytes": 2135
+    },
+    {
+      "path": "problems/pydata__xarray-3095.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-3095/problem_statement.md",
+      "sha256": "3d8f2d8422b56bd5980ec478be1413ef87805484446fc15dbd482342a59abb25",
+      "bytes": 2811
+    },
+    {
+      "path": "problems/pydata__xarray-3151.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-3151/problem_statement.md",
+      "sha256": "abcd2e1b10d6d979b0510ec1a37372c9909c15bc786d4b7bb9027facb727d597",
+      "bytes": 2326
+    },
+    {
+      "path": "problems/pydata__xarray-3305.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-3305/problem_statement.md",
+      "sha256": "21a3e64aad08beb73b01c601fffd82ad2f9086802463ce389ca5b50f7c271883",
+      "bytes": 2188
+    },
+    {
+      "path": "problems/pydata__xarray-3677.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-3677/problem_statement.md",
+      "sha256": "4d1a08fa41ecef39ce23af292d1139cdc7d030bef74172654e29d4876338b716",
+      "bytes": 1456
+    },
+    {
+      "path": "problems/pydata__xarray-3993.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-3993/problem_statement.md",
+      "sha256": "3d888dbe00aca081458ceccefa5c7b6e323f5d30b3e5f165c668a7cd51260301",
+      "bytes": 919
+    },
+    {
+      "path": "problems/pydata__xarray-4075.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-4075/problem_statement.md",
+      "sha256": "d1cc08eec285573fc56f2a58a623e0b7adf33e6f75fd16b4214dd1db4b3e46a6",
+      "bytes": 2273
+    },
+    {
+      "path": "problems/pydata__xarray-4094.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-4094/problem_statement.md",
+      "sha256": "4c60cee2e4247fd72e76052ae5938216ea38eca360d5b87d2a006d71bf4a91bc",
+      "bytes": 1604
+    },
+    {
+      "path": "problems/pydata__xarray-4356.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-4356/problem_statement.md",
+      "sha256": "45eae8de9d15e25d24a44a925c8abe59036ea87382e3c37e60e620e30b2ff0ff",
+      "bytes": 703
+    },
+    {
+      "path": "problems/pydata__xarray-4629.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-4629/problem_statement.md",
+      "sha256": "f688557a88966226d7977917ae86e312dc52434d7ef61cd02b7d655d24d9f816",
+      "bytes": 2659
+    },
+    {
+      "path": "problems/pydata__xarray-4687.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-4687/problem_statement.md",
+      "sha256": "c88bf8b1b5d25b8a288a2b44d5dfbdfb965ec927fa9658368ebeb65809441dbd",
+      "bytes": 3990
+    },
+    {
+      "path": "problems/pydata__xarray-4695.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-4695/problem_statement.md",
+      "sha256": "acdf7cc514d6a56c02cf412e8f041cd8d2250ba1f9782e73d7dc5ee8dc06216d",
+      "bytes": 3514
+    },
+    {
+      "path": "problems/pydata__xarray-4966.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-4966/problem_statement.md",
+      "sha256": "2ec61276a1a4afebd955dd7404328821ff6626c57ad13b69003d78eb3939e957",
+      "bytes": 4384
+    },
+    {
+      "path": "problems/pydata__xarray-6461.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-6461/problem_statement.md",
+      "sha256": "20d71a31e8ed14106420d0641e413897539ac72fd6b4b6ad62270f5ba780de6e",
+      "bytes": 986
+    },
+    {
+      "path": "problems/pydata__xarray-6599.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-6599/problem_statement.md",
+      "sha256": "96fa37e0c21ff705c55cdf125c413b37779b3ef6566658861e3d00d6cf2fa8c4",
+      "bytes": 4318
+    },
+    {
+      "path": "problems/pydata__xarray-6721.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-6721/problem_statement.md",
+      "sha256": "8885a8e303e07d8e74f13a24134ecd7d051a2e2ded38ac313d6667e68b93a021",
+      "bytes": 9276
+    },
+    {
+      "path": "problems/pydata__xarray-6744.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-6744/problem_statement.md",
+      "sha256": "8bdb6741fb6506b53a5a6bd32fb48ce9a45a92641394f0624c98635856bc4ed4",
+      "bytes": 1547
+    },
+    {
+      "path": "problems/pydata__xarray-6938.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-6938/problem_statement.md",
+      "sha256": "80200279ed4af4b8b73e3d9bf2ec5a39dbded0c3e337b1b944253fd7b7b04248",
+      "bytes": 2986
+    },
+    {
+      "path": "problems/pydata__xarray-6992.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-6992/problem_statement.md",
+      "sha256": "2fd625e5f58b6b7b7c292b9ba90307e8583cad9d4ddb395fe9805bb06c74208b",
+      "bytes": 1570
+    },
+    {
+      "path": "problems/pydata__xarray-7229.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-7229/problem_statement.md",
+      "sha256": "1755ba7fe03d6f5917886ea3d5f0e5116a78593b08596ad9d394c5ccbb7f26aa",
+      "bytes": 2832
+    },
+    {
+      "path": "problems/pydata__xarray-7233.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-7233/problem_statement.md",
+      "sha256": "ffb9cebf240efb2d4641ad1dc10e0e38951a8c5f8e9f6bb2a2de8e90acf95b07",
+      "bytes": 1824
+    },
+    {
+      "path": "problems/pydata__xarray-7393.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pydata__xarray-7393/problem_statement.md",
+      "sha256": "7a754d9fc6c6c54623c0bbff6a45db2b812026258275ff61e8fa85d1c4f81f40",
+      "bytes": 2370
+    },
+    {
+      "path": "problems/pylint-dev__pylint-4551.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pylint-dev__pylint-4551/problem_statement.md",
+      "sha256": "28e19b9ac4f2a25215824cc162bb26d6ef73d661478746cd0cfc2e0432fadb18",
+      "bytes": 777
+    },
+    {
+      "path": "problems/pylint-dev__pylint-4604.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pylint-dev__pylint-4604/problem_statement.md",
+      "sha256": "0072c898db86e2500d95b0b95f0929f23f8a733dc9b0eb4a0d170189049a8dbb",
+      "bytes": 685
+    },
+    {
+      "path": "problems/pylint-dev__pylint-4661.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pylint-dev__pylint-4661/problem_statement.md",
+      "sha256": "9888ff5d07c438e865ef06f4e23337fdf555c438756ab3d74e75abea222cb932",
+      "bytes": 995
+    },
+    {
+      "path": "problems/pylint-dev__pylint-4970.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pylint-dev__pylint-4970/problem_statement.md",
+      "sha256": "194295749557b085970e22cc0886d8d0d772e77521bf3b3af55f43f90a3d65ee",
+      "bytes": 618
+    },
+    {
+      "path": "problems/pylint-dev__pylint-6386.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pylint-dev__pylint-6386/problem_statement.md",
+      "sha256": "5a767dafdd95cd6eef40ba263e539f02b0f86d745a804a7bc792d1a8c8b59a41",
+      "bytes": 739
+    },
+    {
+      "path": "problems/pylint-dev__pylint-6528.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pylint-dev__pylint-6528/problem_statement.md",
+      "sha256": "b11d702c9bf142c2d05d59049258cd45746f2328b7598d6fd4acfa49530e8b39",
+      "bytes": 2359
+    },
+    {
+      "path": "problems/pylint-dev__pylint-6903.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pylint-dev__pylint-6903/problem_statement.md",
+      "sha256": "5b236da9e3dbb09d3bf45598d1cc24596fa01daf96d7280482e081345f4ed50f",
+      "bytes": 2662
+    },
+    {
+      "path": "problems/pylint-dev__pylint-7080.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pylint-dev__pylint-7080/problem_statement.md",
+      "sha256": "82319497af035b3cdcd4ee71b5fccd578074989dfa157dc54ecc5bf8ea76ceab",
+      "bytes": 24770
+    },
+    {
+      "path": "problems/pylint-dev__pylint-7277.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pylint-dev__pylint-7277/problem_statement.md",
+      "sha256": "dc1d852f34bf1341c1a0ba290aba65e3cd34b15cc2060f5c96e5eaa4fdf946d5",
+      "bytes": 1087
+    },
+    {
+      "path": "problems/pylint-dev__pylint-8898.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pylint-dev__pylint-8898/problem_statement.md",
+      "sha256": "fe9420583d351e0e81a7cbc876fef18b386ba1d375bcfb031830f3885d4f4347",
+      "bytes": 3455
+    },
+    {
+      "path": "problems/pytest-dev__pytest-10051.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-10051/problem_statement.md",
+      "sha256": "c8f618a73662951809b75d56e2f6743203138a82223c2a963e6de26f2fa3199c",
+      "bytes": 1371
+    },
+    {
+      "path": "problems/pytest-dev__pytest-10081.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-10081/problem_statement.md",
+      "sha256": "591d6bb69d71666bdd35a3144c95f3d689544055966393676fd23f260f707571",
+      "bytes": 2906
+    },
+    {
+      "path": "problems/pytest-dev__pytest-10356.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-10356/problem_statement.md",
+      "sha256": "04324b4ba13d4d4a7c28e790561dc0927851fc39eb3d245b2e688bb6a0de3174",
+      "bytes": 5278
+    },
+    {
+      "path": "problems/pytest-dev__pytest-5262.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-5262/problem_statement.md",
+      "sha256": "d957354242a7a545699ec4d161c3e4c6ab6df9288000d6e46a051b8b7ff50301",
+      "bytes": 4789
+    },
+    {
+      "path": "problems/pytest-dev__pytest-5631.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-5631/problem_statement.md",
+      "sha256": "1e9120fbb21d881c388af3596eaa479bad2f604703eb79bd19898b5d7b18af03",
+      "bytes": 2306
+    },
+    {
+      "path": "problems/pytest-dev__pytest-5787.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-5787/problem_statement.md",
+      "sha256": "3837cd101981ed22a8c48e65978c0784010ef055a815f30371345aa1220f520e",
+      "bytes": 3907
+    },
+    {
+      "path": "problems/pytest-dev__pytest-5809.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-5809/problem_statement.md",
+      "sha256": "22a2be85d2560116244c4051221d1ab5109fa7476651aac4e4ee8e26e4b8e6f1",
+      "bytes": 971
+    },
+    {
+      "path": "problems/pytest-dev__pytest-5840.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-5840/problem_statement.md",
+      "sha256": "20d9cc3dd4114c8bc9f5eb76bb16d3c50ff8826b8c106119be6c3cf4ed01f398",
+      "bytes": 625
+    },
+    {
+      "path": "problems/pytest-dev__pytest-6197.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-6197/problem_statement.md",
+      "sha256": "ca576fd3db872eac6366a70f11be67886795dbb95d5719f2f9e8ff617c698371",
+      "bytes": 2773
+    },
+    {
+      "path": "problems/pytest-dev__pytest-6202.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-6202/problem_statement.md",
+      "sha256": "5a155e2295b1a561c0bb815941a93974af85fe064020a90a98d80a10930867bc",
+      "bytes": 2157
+    },
+    {
+      "path": "problems/pytest-dev__pytest-7205.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-7205/problem_statement.md",
+      "sha256": "088371cacf194b0c57058002e7701c7ce885d7c4548fa25d6757305fc33d7ed1",
+      "bytes": 4267
+    },
+    {
+      "path": "problems/pytest-dev__pytest-7236.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-7236/problem_statement.md",
+      "sha256": "b97f13da12adf3cd4fbc5716c51b9b721331b69908c7d76241ad351fd9496845",
+      "bytes": 2692
+    },
+    {
+      "path": "problems/pytest-dev__pytest-7324.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-7324/problem_statement.md",
+      "sha256": "c86104555dc540eca4e1fc4625c95084e5ebe6bb5484acc6a9d4b2fca7378634",
+      "bytes": 469
+    },
+    {
+      "path": "problems/pytest-dev__pytest-7432.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-7432/problem_statement.md",
+      "sha256": "f8453cfb1e017be81d0fd5ac8fc5b6faeff6045f71763c81e7fd51537a81ef31",
+      "bytes": 773
+    },
+    {
+      "path": "problems/pytest-dev__pytest-7490.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-7490/problem_statement.md",
+      "sha256": "9a5e8c33368dc3bbe9c5f03d3136a574cebede61fea6c575d39ddf108b92d947",
+      "bytes": 22778
+    },
+    {
+      "path": "problems/pytest-dev__pytest-7521.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-7521/problem_statement.md",
+      "sha256": "39f1953e5d5a7481355aa6109b16ecaebbb037957e473cc71e9ab1402d3aa9b9",
+      "bytes": 3893
+    },
+    {
+      "path": "problems/pytest-dev__pytest-7571.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-7571/problem_statement.md",
+      "sha256": "cb0b950c7e8128160c75093a0472586c438834ff2737056acef74c376ddae034",
+      "bytes": 459
+    },
+    {
+      "path": "problems/pytest-dev__pytest-7982.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-7982/problem_statement.md",
+      "sha256": "90201d780cf37fdf665a7ea9c601714391d34ccc8bb513bf3e7d5f3e667e49da",
+      "bytes": 451
+    },
+    {
+      "path": "problems/pytest-dev__pytest-8399.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/pytest-dev__pytest-8399/problem_statement.md",
+      "sha256": "2471cd247002e8cb4c9cff40999a0841dbfea96004fb15d6df9c23528395c011",
+      "bytes": 1083
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-10297.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-10297/problem_statement.md",
+      "sha256": "80b289fedf3bc996489e3ce2ce6f575ea7c8153524ea8736ccd7e0dad0c29a41",
+      "bytes": 1519
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-10844.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-10844/problem_statement.md",
+      "sha256": "43c3e45ef59dc9057830a2c20fe3663e490c3a54df511936a4c7965337f4d1a0",
+      "bytes": 2399
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-10908.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-10908/problem_statement.md",
+      "sha256": "706f3719994e3076d30e5aeafcaa86f8ce95666d705c8eb5127779336e4d88ae",
+      "bytes": 2035
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-11310.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-11310/problem_statement.md",
+      "sha256": "ec9f2ef832b10c04cff10b1f35daf40f7a85b1bd4d0c33083913f384c945dc8e",
+      "bytes": 1212
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-11578.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-11578/problem_statement.md",
+      "sha256": "e4945959c7c914eff336d7a28037c018533b3473ef69f46f3bcf8c51560a211a",
+      "bytes": 7387
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-12585.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-12585/problem_statement.md",
+      "sha256": "0bd52ce53c9612da5326a0742940720ef9520cb2c0f8893e2e49f1513706b4a6",
+      "bytes": 1422
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-12682.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-12682/problem_statement.md",
+      "sha256": "4dcadd0e9335f9d8fdd65b5192353e4b58702fc3370a468414ad8e5de7d891b2",
+      "bytes": 518
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-12973.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-12973/problem_statement.md",
+      "sha256": "9f4c3ac86062600df1bbf16897c088a862213cb9418d09da8d0d6e32163ba223",
+      "bytes": 1575
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-13124.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-13124/problem_statement.md",
+      "sha256": "e4b5e3d5f7d9caee0d460a28e1d4014ef402cbeb55ace8996a8f80511c98c3fe",
+      "bytes": 5567
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-13135.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-13135/problem_statement.md",
+      "sha256": "582b6fe37fa8edbe272dd4ea41164cad281e24f1b7c1970a33a900e93b8180df",
+      "bytes": 5280
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-13142.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-13142/problem_statement.md",
+      "sha256": "09d29f40006ebbae91aeab363c05beda6131a0d3ddee55d1d9581619e065d6d1",
+      "bytes": 2314
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-13328.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-13328/problem_statement.md",
+      "sha256": "c9bb5529b14627fcae2c8af8e3a21bcb6aa2996a2fab228ef52f32bbed489194",
+      "bytes": 4704
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-13439.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-13439/problem_statement.md",
+      "sha256": "bcdb7c064b7370929b2d8b37e9b35008d95bc4050e49372d9f13723e13f8baa4",
+      "bytes": 1234
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-13496.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-13496/problem_statement.md",
+      "sha256": "c31f09492b24bb94b8cf334d1de9ab6984ec81b9020a18ea4a738a88012cbaa9",
+      "bytes": 1371
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-13779.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-13779/problem_statement.md",
+      "sha256": "d32c6ecdfaf0eeb42a35e7cb05bd03fc034571aaef7c7743a452422c2bcdc6bc",
+      "bytes": 589
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-14053.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-14053/problem_statement.md",
+      "sha256": "4bfeec31c05255ebf71795aa346b58c911563bf4a11dac38c2e20e73f2b2d267",
+      "bytes": 3098
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-14087.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-14087/problem_statement.md",
+      "sha256": "0d731842a870c18ba49de0ee6ce5c623522f0a0af328adc9415addcc07f5aae1",
+      "bytes": 2320
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-14141.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-14141/problem_statement.md",
+      "sha256": "d7ebed2ea76e894ada60802cd35b6b85be16898861489cad218a9c8c706a1d60",
+      "bytes": 158
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-14496.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-14496/problem_statement.md",
+      "sha256": "7860d59abe6e6a85ed92cbc43c7b632982164bc89105df4df399793154bb15df",
+      "bytes": 2290
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-14629.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-14629/problem_statement.md",
+      "sha256": "f86e27ce1f598af98703b4d161827503a9824a289e29450725ed2ee741798adb",
+      "bytes": 1814
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-14710.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-14710/problem_statement.md",
+      "sha256": "a2ab68a76bfcf2cb56a50c1e385a1b1bcbdc8ec024121323193d7034f2075d4f",
+      "bytes": 6629
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-14894.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-14894/problem_statement.md",
+      "sha256": "0cf2009aebab59ce0221a4ccda59465d8506a274a5d76a4f9e35338c5373ced5",
+      "bytes": 1716
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-14983.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-14983/problem_statement.md",
+      "sha256": "ca3d0c700c131e4b74bc7b9370f8e9c38093b25298dc682251e7c5185877f222",
+      "bytes": 1297
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-15100.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-15100/problem_statement.md",
+      "sha256": "b77ba0094810ffb21a5f1fe01b16786055bb1a4d20663b52f38cf52395c76f8d",
+      "bytes": 2136
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-25102.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-25102/problem_statement.md",
+      "sha256": "1a82e3a4fcebb5f0fc0f744df67eb1972fa38f469885fe52a1db5e9ae2ed4884",
+      "bytes": 2534
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-25232.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-25232/problem_statement.md",
+      "sha256": "e5c9f486382e80b0206deb50925b3428f89ae5b5ba499e3374eb34e2736bef74",
+      "bytes": 1476
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-25747.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-25747/problem_statement.md",
+      "sha256": "9737299393a037ff2845a2f62b558550b2900387a4de7ee94c19b48d397f1d33",
+      "bytes": 6147
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-25931.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-25931/problem_statement.md",
+      "sha256": "4412b74c4fee9ba3b565d1aafd5f3f2e77b29f2ac2146b59ea84e7fe15777c36",
+      "bytes": 2860
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-25973.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-25973/problem_statement.md",
+      "sha256": "73a642843461ddaf31130dd05ca0f888b2e5ae074838ae77651be01c14a677b7",
+      "bytes": 1968
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-26194.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-26194/problem_statement.md",
+      "sha256": "55520f2fb243de6275b76da65b6d282fcbfcbfdd7806865b90f6aa1885675038",
+      "bytes": 1137
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-26323.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-26323/problem_statement.md",
+      "sha256": "19e2010f847d286d34c737a7ff679d95087e38af917b4b0e43a595f9d64b0536",
+      "bytes": 2812
+    },
+    {
+      "path": "problems/scikit-learn__scikit-learn-9288.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/scikit-learn__scikit-learn-9288/problem_statement.md",
+      "sha256": "4c6be4c6f8f699371300fb64162cb969da421307c54fc0743c0f78ae90c09b2b",
+      "bytes": 3366
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-10323.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-10323/problem_statement.md",
+      "sha256": "789a19432537c3948b2c7389aa497711b6ec5a68c9f0d8c3ce2b73eb15f57753",
+      "bytes": 3102
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-10435.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-10435/problem_statement.md",
+      "sha256": "a7667cf5cb9cc0846f633b6b55eb826a593b62faeefd644de9e2612875ccac12",
+      "bytes": 2194
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-10449.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-10449/problem_statement.md",
+      "sha256": "0183a0fabfe0276a52a424fc3c303ad3d0b8b8f67c0ecdfaa6fdaed36028ae66",
+      "bytes": 4478
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-10466.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-10466/problem_statement.md",
+      "sha256": "78f4344e3d2bd2d617628d3b78ad561a400fc79d5c2c9f4269e3b32f907bd4cb",
+      "bytes": 3137
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-10614.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-10614/problem_statement.md",
+      "sha256": "59e104221b08590febe6ae868c6d35b4348e5c6fbf023b4806df6d313e88c730",
+      "bytes": 3078
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-10673.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-10673/problem_statement.md",
+      "sha256": "f455450f1dbed1a4b75c2bcd97f9147d124b866223283f6287bd09ce6eab7d8e",
+      "bytes": 1333
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-11445.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-11445/problem_statement.md",
+      "sha256": "08000b81dab279b65ecdf12560d94509e19e03f5f6d7151da5f6eefea9d5b31c",
+      "bytes": 1791
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-11510.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-11510/problem_statement.md",
+      "sha256": "e7ae2e2a1619fdc7fa58451dae12c5dd8b268002fdb30b4b3f457a6a9ef26762",
+      "bytes": 5366
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-7440.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-7440/problem_statement.md",
+      "sha256": "d9558af32ba6cbcd6cb5c430f514ed0eebb29d72289dc90fcee26062ca9ff073",
+      "bytes": 905
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-7454.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-7454/problem_statement.md",
+      "sha256": "a93b807ebfda03f2b54e0acea6736e85b625421a0f992d4330a5fa283e127438",
+      "bytes": 2678
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-7462.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-7462/problem_statement.md",
+      "sha256": "8b7f970ed7e3c847eb7675a3564030771ff64e2f479027f3bb628d7d7c925acc",
+      "bytes": 1169
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-7590.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-7590/problem_statement.md",
+      "sha256": "23b9b88e30541f1109b04492ccf35a93a15fdeecb2b736bf22be5a2a6173f84e",
+      "bytes": 600
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-7748.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-7748/problem_statement.md",
+      "sha256": "8d2fa20fad9e7875f1cfb475ed77cbdea0daee392ce09045da39a7468b6e1c99",
+      "bytes": 381
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-7757.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-7757/problem_statement.md",
+      "sha256": "3f43b5effb6183c93b07ad0706394845cec8f7306b6fad5d9b60b531bad2328d",
+      "bytes": 670
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-7889.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-7889/problem_statement.md",
+      "sha256": "79c6d3aae9150c5f5b35229397fdc5a31cd577f78fa37ddb0638a24d7b30d2b2",
+      "bytes": 1166
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-7910.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-7910/problem_statement.md",
+      "sha256": "c3d99aeda62cf24ce56a14f0f21c0dc80ac1a4afb3e43e50dbf7bf32a548aa5b",
+      "bytes": 1139
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-7985.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-7985/problem_statement.md",
+      "sha256": "388fe0c5ce4e1358bcc58e7e4314ba618c2bb432bc814c80f0855adcc3659ec4",
+      "bytes": 1776
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-8035.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-8035/problem_statement.md",
+      "sha256": "9960c2dd48b9675a179b60d4f9ad656c08cf4c9929417d8f245d58e5a3d43825",
+      "bytes": 725
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-8056.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-8056/problem_statement.md",
+      "sha256": "4ad73beedadd0040b395a860a9ece993226dfb83750d36cef213cb166e04589b",
+      "bytes": 1569
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-8120.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-8120/problem_statement.md",
+      "sha256": "2260a8491280312f611378ddff0e08bb9f0961011d0a49b7a2be74a1844cb18b",
+      "bytes": 1855
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-8265.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-8265/problem_statement.md",
+      "sha256": "12de68889c589ea2508d8777d1e79daf4a61a9df309d11d02e9dc7d09bef6178",
+      "bytes": 1725
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-8269.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-8269/problem_statement.md",
+      "sha256": "f40b2a7070b7417ff6f4fabda0357b7559760868d01607bbdc94f81a459ee0ef",
+      "bytes": 1187
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-8459.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-8459/problem_statement.md",
+      "sha256": "5a7af99001528e86ff4d88a9bf03e4b87b08c1c4907ef4230d6dfa05a3375018",
+      "bytes": 1341
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-8475.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-8475/problem_statement.md",
+      "sha256": "eb853c25d5bef73ec730b1b49aeda892f80fa01bce481e71b1a35942d6c9ca0f",
+      "bytes": 766
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-8548.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-8548/problem_statement.md",
+      "sha256": "f0c8a912cffb03b9d6346146e11cf044329280bfe2a193fd9e46980b193cffb0",
+      "bytes": 358
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-8551.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-8551/problem_statement.md",
+      "sha256": "59b1b15138bca3802f81a94c49ced00a098c6dc015474f0a7c06967bc623d7b6",
+      "bytes": 1874
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-8593.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-8593/problem_statement.md",
+      "sha256": "d7a0b222ecda2268846b70d86cee54c8162748aacb047519b2e657c3c18dc962",
+      "bytes": 638
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-8595.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-8595/problem_statement.md",
+      "sha256": "f5549e64af66510e584758f04371935b8c6c3a5fec4fda812b8571a7bd733be4",
+      "bytes": 676
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-8621.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-8621/problem_statement.md",
+      "sha256": "3e046e4b32763535effb1e5d144ce265b213b55f236d73a32390a316abc44a7a",
+      "bytes": 2035
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-8638.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-8638/problem_statement.md",
+      "sha256": "bcfbf8c2f2b843cf3892b3ec7af0762b44dbf3e9d2d0ed45b4024391108a3677",
+      "bytes": 2924
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-8721.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-8721/problem_statement.md",
+      "sha256": "684041d7ab737dd04914a0017b92d238cd8dae72182457e3f3a21f494e7acb3e",
+      "bytes": 562
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-9229.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-9229/problem_statement.md",
+      "sha256": "b7113d548cb7ce3722699857d638d2acf607a5547ab13feaff1272d633d15e58",
+      "bytes": 3824
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-9230.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-9230/problem_statement.md",
+      "sha256": "e814405fe0885a2284bec4dfdf1efa5bd0386117d02410e9ad0ec98c0e1712ab",
+      "bytes": 1241
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-9258.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-9258/problem_statement.md",
+      "sha256": "4163acebdf504c769400387fdf4abdce2b57c5d5634a7845a8a347af1de7464f",
+      "bytes": 516
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-9281.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-9281/problem_statement.md",
+      "sha256": "696b5942cd9fe6b1dc6e2502106c1c07dcf1a2499d4cbba1315a66b6eb359c11",
+      "bytes": 813
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-9320.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-9320/problem_statement.md",
+      "sha256": "1e80458fcccbe9d7ea035db6f115cf94f82a81db1d68582850a9067f52818ca0",
+      "bytes": 1117
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-9367.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-9367/problem_statement.md",
+      "sha256": "0194a1f3d78c24e2cd8d0647655aec554403841bf37f6a97294bdc909de61241",
+      "bytes": 511
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-9461.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-9461/problem_statement.md",
+      "sha256": "cc2eb5d4afca2da5e00ca423f2dce2bf467613a98b9686da7dc19a08e1f4de0f",
+      "bytes": 2294
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-9591.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-9591/problem_statement.md",
+      "sha256": "0545e9ebe4d53e8e146f733e7ade35057a622d70fb80c97d6e5380c967e64e40",
+      "bytes": 1977
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-9602.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-9602/problem_statement.md",
+      "sha256": "dd03477a6034e20a46578ea1168ac36ca4bf5b3029673575f08af9083884dec2",
+      "bytes": 1373
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-9658.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-9658/problem_statement.md",
+      "sha256": "fb174fdfb25bda6b0b338bd0dec7c6d01dc5e3eddde6cf5baf8b7f95c59400db",
+      "bytes": 2690
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-9673.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-9673/problem_statement.md",
+      "sha256": "7926d944c30024620395f3792e0585e9f9105999c2de9d57269a75f648dc5b2b",
+      "bytes": 1413
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-9698.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-9698/problem_statement.md",
+      "sha256": "e2bd3a063a06ffaaccbff166bc0a3c4dc2e1b016c1917f0d21afc9675cb64c41",
+      "bytes": 835
+    },
+    {
+      "path": "problems/sphinx-doc__sphinx-9711.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sphinx-doc__sphinx-9711/problem_statement.md",
+      "sha256": "774dbded97246fc337cc3a9f01569a66641396f3952440385d51e6f7e095234a",
+      "bytes": 1571
+    },
+    {
+      "path": "problems/sympy__sympy-11618.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-11618/problem_statement.md",
+      "sha256": "7eec6e997311bf1014a07659710714c0a891fd0e5b9d58dadb31a83b23746330",
+      "bytes": 252
+    },
+    {
+      "path": "problems/sympy__sympy-12096.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-12096/problem_statement.md",
+      "sha256": "a633664578299e2b65570564c49bb08d3e5bfb7fe7d230c64d1d7525d2fb9718",
+      "bytes": 598
+    },
+    {
+      "path": "problems/sympy__sympy-12419.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-12419/problem_statement.md",
+      "sha256": "48b311ac971aa2fe020b8dd89cd7d2aac3278d4b668921c6b07a29cb914ed4a5",
+      "bytes": 1141
+    },
+    {
+      "path": "problems/sympy__sympy-12481.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-12481/problem_statement.md",
+      "sha256": "5be18855c5c93b9af1ad839da500cb74d1bb38ff8e1f93340baedcd8df0249cc",
+      "bytes": 407
+    },
+    {
+      "path": "problems/sympy__sympy-12489.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-12489/problem_statement.md",
+      "sha256": "33f4a1134633597866883bbd4ac04b3642fda8ae680822b1c44d5a5e82b8ce28",
+      "bytes": 1214
+    },
+    {
+      "path": "problems/sympy__sympy-13031.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-13031/problem_statement.md",
+      "sha256": "5d95a063a1ada8b9273255940d122605d87ea3ab2aa27f524725442be780b5c6",
+      "bytes": 717
+    },
+    {
+      "path": "problems/sympy__sympy-13091.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-13091/problem_statement.md",
+      "sha256": "56dd1975c2cdb9924609fb6ce9a46f4a1269dce8da33bf80032d1c9d8a73e7db",
+      "bytes": 1823
+    },
+    {
+      "path": "problems/sympy__sympy-13372.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-13372/problem_statement.md",
+      "sha256": "fea79ea0704f92ccaa0cf508934dd810021e6742c6176ab08533ba3941178b69",
+      "bytes": 1183
+    },
+    {
+      "path": "problems/sympy__sympy-13480.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-13480/problem_statement.md",
+      "sha256": "f08f8be58202a7048af4813f1d9533b70f45c070ab93f6399a5c1c89217507e6",
+      "bytes": 430
+    },
+    {
+      "path": "problems/sympy__sympy-13551.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-13551/problem_statement.md",
+      "sha256": "9ab38d31087d297db60978aeca658666788926a0235df297346836b93872311f",
+      "bytes": 499
+    },
+    {
+      "path": "problems/sympy__sympy-13615.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-13615/problem_statement.md",
+      "sha256": "0104f2ab13e8c9bc42244c2d12fdc0850b05a7c0723f6303e75c9888ae27f5fb",
+      "bytes": 201
+    },
+    {
+      "path": "problems/sympy__sympy-13647.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-13647/problem_statement.md",
+      "sha256": "33fdeac33e13d08385f780f3d2aa6f907906d209c24070b75ce407a059c19411",
+      "bytes": 1220
+    },
+    {
+      "path": "problems/sympy__sympy-13757.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-13757/problem_statement.md",
+      "sha256": "63fe3a94f352bfa567c1934f7dacc6d0c86db8ed628f4595b73c1f3f0bf9a4c4",
+      "bytes": 421
+    },
+    {
+      "path": "problems/sympy__sympy-13798.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-13798/problem_statement.md",
+      "sha256": "aa83d8763f10cb6dcd1d8abdb848d6332241bf6710ce4e27aa7e49160fd529a6",
+      "bytes": 861
+    },
+    {
+      "path": "problems/sympy__sympy-13852.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-13852/problem_statement.md",
+      "sha256": "51eca986eb401e0dc2856252c823632a51285a5a0d70bd046d46c39362d0df02",
+      "bytes": 1892
+    },
+    {
+      "path": "problems/sympy__sympy-13877.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-13877/problem_statement.md",
+      "sha256": "e8eb7f7fe32ffe357b6a54186c56ae0f9326084bf90504838895599d08e0dbc8",
+      "bytes": 4361
+    },
+    {
+      "path": "problems/sympy__sympy-13878.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-13878/problem_statement.md",
+      "sha256": "5ed83f5e24361e5ca95f9c3dfcff3ba9ce9775f1fd9a2a10ac3a4511370b6d75",
+      "bytes": 3106
+    },
+    {
+      "path": "problems/sympy__sympy-13974.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-13974/problem_statement.md",
+      "sha256": "26dc1cb7842ede97a6327729441278edd7c5fb6223d165e7589e37b441ab1c74",
+      "bytes": 1044
+    },
+    {
+      "path": "problems/sympy__sympy-14248.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-14248/problem_statement.md",
+      "sha256": "056549bbb76a727325fc85b052ecb5d1c9ba9d70d702cf011b407e3877e5c383",
+      "bytes": 585
+    },
+    {
+      "path": "problems/sympy__sympy-14531.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-14531/problem_statement.md",
+      "sha256": "8cf843dcf782552dff92511ba20491f033530e49ebbf1594db04bef5a60ada92",
+      "bytes": 668
+    },
+    {
+      "path": "problems/sympy__sympy-14711.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-14711/problem_statement.md",
+      "sha256": "e4767d6b2a2a74a4b7ef986a9f1f89a8a65d7e7bf026dae881f92dbd7b3ad77c",
+      "bytes": 1070
+    },
+    {
+      "path": "problems/sympy__sympy-14976.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-14976/problem_statement.md",
+      "sha256": "3c0d98bb2098e4b8be846f95279696c6ab55e3ab5f22f05c946c0af281f81bda",
+      "bytes": 680
+    },
+    {
+      "path": "problems/sympy__sympy-15017.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-15017/problem_statement.md",
+      "sha256": "b106dd1aed96c16195e44e41b0d863086366cf9c597e31787a38816ae04efb2a",
+      "bytes": 1010
+    },
+    {
+      "path": "problems/sympy__sympy-15345.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-15345/problem_statement.md",
+      "sha256": "b4f90f0a60cc245efb58b06f492d4258e4294d809ef39cf896c3713d13ba2905",
+      "bytes": 269
+    },
+    {
+      "path": "problems/sympy__sympy-15349.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-15349/problem_statement.md",
+      "sha256": "9e23e96a13f172fc27e87972f1f4f86c22ebb28407ed8dbdce0a665c3c04c412",
+      "bytes": 725
+    },
+    {
+      "path": "problems/sympy__sympy-15599.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-15599/problem_statement.md",
+      "sha256": "cf4081c50e2bce78ef90503152dbf7f94f2f8cf0323ee9cd68cf0e3a60835d6e",
+      "bytes": 1828
+    },
+    {
+      "path": "problems/sympy__sympy-15809.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-15809/problem_statement.md",
+      "sha256": "4d0982bb7d0bc25fd0f0c24f136fddb1e2e9e1571502aadcae1c84644c40bd5a",
+      "bytes": 350
+    },
+    {
+      "path": "problems/sympy__sympy-15875.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-15875/problem_statement.md",
+      "sha256": "66200c6c95ab27678328e3e9e41742399523e236227071c0751e274a8fd9f265",
+      "bytes": 563
+    },
+    {
+      "path": "problems/sympy__sympy-15976.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-15976/problem_statement.md",
+      "sha256": "2b1a85414c4df764477586489a407c5be000ef58e9ae013aef7711bb9c2f4f75",
+      "bytes": 1053
+    },
+    {
+      "path": "problems/sympy__sympy-16450.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-16450/problem_statement.md",
+      "sha256": "b52fc0b413e314219a9e63f3137553f66603fecadc83cc12f34a4136d03bcd60",
+      "bytes": 1610
+    },
+    {
+      "path": "problems/sympy__sympy-16597.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-16597/problem_statement.md",
+      "sha256": "1b04ffa8e91360cc91e2397541d3f8c5f34ffc0cb5cd84b0015747240c26932c",
+      "bytes": 611
+    },
+    {
+      "path": "problems/sympy__sympy-16766.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-16766/problem_statement.md",
+      "sha256": "c71bac3070c6e9ab8d889dd00a304ef866828dbf4c152138857e3be79b96f971",
+      "bytes": 599
+    },
+    {
+      "path": "problems/sympy__sympy-16792.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-16792/problem_statement.md",
+      "sha256": "48b3d6d8e3ddfc9a78b57d8f79cf5ca78ba55a990f1eba937b998fd9160a77a8",
+      "bytes": 1930
+    },
+    {
+      "path": "problems/sympy__sympy-16886.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-16886/problem_statement.md",
+      "sha256": "8bcff84556fbb7d34383e0f16d01027922121a39bb63b881fcd3d8f5e2e74f29",
+      "bytes": 185
+    },
+    {
+      "path": "problems/sympy__sympy-17139.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-17139/problem_statement.md",
+      "sha256": "17e532f00dac2a0e2aae1ca47a21c4be3cc3d4686da16dfc58ed0d69f6c02334",
+      "bytes": 1916
+    },
+    {
+      "path": "problems/sympy__sympy-17318.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-17318/problem_statement.md",
+      "sha256": "8a310f20c7a096a6254d15f08997beaed275576879e726690cc2a8de13e47e3c",
+      "bytes": 2310
+    },
+    {
+      "path": "problems/sympy__sympy-17630.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-17630/problem_statement.md",
+      "sha256": "1edfd6e1183bb765b9186e8d8fdfe541d80ef44766baf7b722b7626235719599",
+      "bytes": 3430
+    },
+    {
+      "path": "problems/sympy__sympy-17655.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-17655/problem_statement.md",
+      "sha256": "933042963b8cdfbe2ba70d5a221c3a40e00b60595f5b865417d4494c0b566af0",
+      "bytes": 1958
+    },
+    {
+      "path": "problems/sympy__sympy-18189.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-18189/problem_statement.md",
+      "sha256": "7c3dbee591c8248e8411469c75edcf733756664c61dac40611ba50a9dab45cae",
+      "bytes": 678
+    },
+    {
+      "path": "problems/sympy__sympy-18199.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-18199/problem_statement.md",
+      "sha256": "fb429ef2a603c20980fa2ed7dc66d00cc148ca8103d92b69662bb6c687f2e162",
+      "bytes": 300
+    },
+    {
+      "path": "problems/sympy__sympy-18211.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-18211/problem_statement.md",
+      "sha256": "e2e6d8d8bb9ce663b29aaccb73683ba91e87ceb98a7d613750de91f2d4b245a5",
+      "bytes": 842
+    },
+    {
+      "path": "problems/sympy__sympy-18698.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-18698/problem_statement.md",
+      "sha256": "cd81e74232a1271cd69ffe8a0ed157acd609e130503b78ae962414616718a537",
+      "bytes": 458
+    },
+    {
+      "path": "problems/sympy__sympy-18763.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-18763/problem_statement.md",
+      "sha256": "5c1164a6c4ec868668f2fdd4b75e440df221ae6f0f1716e1854884efb8aa3851",
+      "bytes": 567
+    },
+    {
+      "path": "problems/sympy__sympy-19040.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-19040/problem_statement.md",
+      "sha256": "42bb887eb79aa3dcd7183824fdce7ccc38d867dff8242d8edad92a705e0bbd58",
+      "bytes": 1889
+    },
+    {
+      "path": "problems/sympy__sympy-19346.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-19346/problem_statement.md",
+      "sha256": "beaf218a0d5d4cb22acc35caa8e471d049542cd914604cced5485993327db334",
+      "bytes": 480
+    },
+    {
+      "path": "problems/sympy__sympy-19495.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-19495/problem_statement.md",
+      "sha256": "a608f9c2e5cfc35840160135755897f7a04207162f2909999258e38ddc336973",
+      "bytes": 1537
+    },
+    {
+      "path": "problems/sympy__sympy-19637.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-19637/problem_statement.md",
+      "sha256": "684f607f31cc768c385029a235053287b43082a993b8c6f631e6e1859e49e12d",
+      "bytes": 221
+    },
+    {
+      "path": "problems/sympy__sympy-19783.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-19783/problem_statement.md",
+      "sha256": "6c701bb3840d26e89d9d3fef6d91d7d72ba7ed68cf6c2347f8d5c2eb275425c5",
+      "bytes": 422
+    },
+    {
+      "path": "problems/sympy__sympy-19954.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-19954/problem_statement.md",
+      "sha256": "173f90e5d7bbeb35fddaaccfcd44c94f30a06f4c2a68f379aec6aba11f302cdd",
+      "bytes": 921
+    },
+    {
+      "path": "problems/sympy__sympy-20154.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-20154/problem_statement.md",
+      "sha256": "16cda9e1dbc96941a98fa2f54a1545709b1a3aefe133b20841f69d6391bef6dd",
+      "bytes": 552
+    },
+    {
+      "path": "problems/sympy__sympy-20428.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-20428/problem_statement.md",
+      "sha256": "3e20082eaadedd75f04a9afb22c1256f85d6e4768296ee14bdfbb5ba6a255fff",
+      "bytes": 3710
+    },
+    {
+      "path": "problems/sympy__sympy-20438.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-20438/problem_statement.md",
+      "sha256": "ab48dc1dc9b89443d93044930f964e8d4dfe25706fceb03dddf2295c060d339a",
+      "bytes": 1269
+    },
+    {
+      "path": "problems/sympy__sympy-20590.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-20590/problem_statement.md",
+      "sha256": "e2f8e16a69eabf97334f7852f8675d8d470ef7a3e990ab484c6427bd7ad9ff52",
+      "bytes": 758
+    },
+    {
+      "path": "problems/sympy__sympy-20801.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-20801/problem_statement.md",
+      "sha256": "d97c4296d41c2a7cdf87b6e2de16dd10a5755318d9bde720c8677b8787c20ec3",
+      "bytes": 509
+    },
+    {
+      "path": "problems/sympy__sympy-20916.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-20916/problem_statement.md",
+      "sha256": "728c710a38f30dcfc83a99f11302f2ff4f69c34b26b6d1daf40f27e289fe550c",
+      "bytes": 176
+    },
+    {
+      "path": "problems/sympy__sympy-21379.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-21379/problem_statement.md",
+      "sha256": "e199bb269f9d7eedd813b73859ebc266bbf9180ba44e93fee83257f13a7b3c38",
+      "bytes": 1781
+    },
+    {
+      "path": "problems/sympy__sympy-21596.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-21596/problem_statement.md",
+      "sha256": "14ad62b22f2daefbb61e2837aaf1a92c5ac3fd3639733a6e8b2fb6831296edb5",
+      "bytes": 592
+    },
+    {
+      "path": "problems/sympy__sympy-21612.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-21612/problem_statement.md",
+      "sha256": "657b0dc782c25c6b54593dac7ccb7c4aaa95bd6da6e1a87b2e4b778f86d29b99",
+      "bytes": 681
+    },
+    {
+      "path": "problems/sympy__sympy-21847.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-21847/problem_statement.md",
+      "sha256": "94d91698afcd1df16f19769e6eb73afc4229159f92d2f0fcaa6fa9cf41116fdd",
+      "bytes": 1061
+    },
+    {
+      "path": "problems/sympy__sympy-21930.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-21930/problem_statement.md",
+      "sha256": "867fbad616cdb7324c99258b4bd7ad7f6b4a2fb66f7945b669f9ae279ad38535",
+      "bytes": 707
+    },
+    {
+      "path": "problems/sympy__sympy-22080.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-22080/problem_statement.md",
+      "sha256": "e4e025ba043919887cf1773f79e5bb6f7b7ad8eab54718e8ec0d0ff2f4c37b14",
+      "bytes": 645
+    },
+    {
+      "path": "problems/sympy__sympy-22456.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-22456/problem_statement.md",
+      "sha256": "9311c594ded4da8a3e4ab2bbd4baf262680395c18327a5c827272551798f1eb4",
+      "bytes": 302
+    },
+    {
+      "path": "problems/sympy__sympy-22714.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-22714/problem_statement.md",
+      "sha256": "8f4d48e9d985d6bbdd7b61fbdf1342c381f26da9849ebd45c4b78252fdaf1f11",
+      "bytes": 1660
+    },
+    {
+      "path": "problems/sympy__sympy-22914.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-22914/problem_statement.md",
+      "sha256": "6d0642aa48ec6648e34338c6c374b48eb3b7e27a65a15538a22954f66b47a4c0",
+      "bytes": 628
+    },
+    {
+      "path": "problems/sympy__sympy-23262.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-23262/problem_statement.md",
+      "sha256": "c0c0ac5aecba195d382f82e1b5d1519cc8053e29b967bdc2805137079c9fd3b7",
+      "bytes": 1033
+    },
+    {
+      "path": "problems/sympy__sympy-23413.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-23413/problem_statement.md",
+      "sha256": "ab4fff5ca11234b934a212b8d896ccf0c1aaa53e998524f54bff44dc41daa64d",
+      "bytes": 353
+    },
+    {
+      "path": "problems/sympy__sympy-23534.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-23534/problem_statement.md",
+      "sha256": "400b9d6f7a875ed1363ccec3bfcfcf08e88275d11ea57044355753de52aa4c25",
+      "bytes": 727
+    },
+    {
+      "path": "problems/sympy__sympy-23824.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-23824/problem_statement.md",
+      "sha256": "6e2c57adb3bb75a9841d6ebb74f72bd5f711a1a11df1ed32906681eb3613dabd",
+      "bytes": 2103
+    },
+    {
+      "path": "problems/sympy__sympy-23950.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-23950/problem_statement.md",
+      "sha256": "b56221e6a6bb28b09a09c076fdba0cbf1cb9d256956c52345ec825ccd52f61db",
+      "bytes": 766
+    },
+    {
+      "path": "problems/sympy__sympy-24066.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-24066/problem_statement.md",
+      "sha256": "f96812d2e3e17bd07f17b6e553bc354c0bd522bf3dcf81aec841676c8a371b7b",
+      "bytes": 605
+    },
+    {
+      "path": "problems/sympy__sympy-24213.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-24213/problem_statement.md",
+      "sha256": "643ce391df54dc5676bb5ccb2bc1f1a1963be8b0f54cee9bc816a1fe1ca2310b",
+      "bytes": 1023
+    },
+    {
+      "path": "problems/sympy__sympy-24443.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-24443/problem_statement.md",
+      "sha256": "465efb86a6aacc25222e99cb78b1cdd86248af5a67b27ae1c4a043c1c126c0d4",
+      "bytes": 687
+    },
+    {
+      "path": "problems/sympy__sympy-24539.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-24539/problem_statement.md",
+      "sha256": "c45c55bcffb2b526d21ed6b0c8d19976455280d6ce9343f7f2d62d96c3d3e037",
+      "bytes": 659
+    },
+    {
+      "path": "problems/sympy__sympy-24562.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-24562/problem_statement.md",
+      "sha256": "b0d650e7d0c5a65c71332089cc3c86f85c07ab1175b3847c401d8e328c520f1c",
+      "bytes": 222
+    },
+    {
+      "path": "problems/sympy__sympy-24661.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/tasks/sympy__sympy-24661/problem_statement.md",
+      "sha256": "6d2fd3a85268058e45ba93bb541d2addc5f70c2995aacea9c9193cfffbb51d4f",
+      "bytes": 351
+    },
+    {
+      "path": "source-readme.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/experiments/40f164d5b8f1d249bf95a6df8b74b577fd8e519d/README.md",
+      "sha256": "d7119a4ea21056232f54073b24310d36a9797ddfc6ce7da8bdd579affc487582",
+      "bytes": 12830
+    },
+    {
+      "path": "tasks-readme.md",
+      "url": "https://raw.githubusercontent.com/SWE-bench/swe-bench-tasks/3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d/README.md",
+      "sha256": "b4d7119d879c7356e58dec4b66e60b8fc13e67c9e5d47a84c4cbe23ff7f50fa0",
+      "bytes": 568
+    }
+  ]
+}

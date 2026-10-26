@@ -1,0 +1,113 @@
+{
+  "schema_version": 3,
+  "run_id": "85b793a1-3d8f-4bd7-ba28-3706c5da857e",
+  "task_id": "metering-preflight-small",
+  "condition": "small",
+  "status": "failed",
+  "created_at": "2026-10-26T16:17:55.955850+00:00",
+  "finished_at": "2026-10-26T16:17:56.055407+00:00",
+  "identity_sha256": "9c1f2782f66d7e681b99af8ec9c1ed9ebc6ce3be88d666fbd951cbf08d923844",
+  "config": {
+    "condition": "small",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 1,
+    "timeout_seconds": 90,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "44bf8bf47bd0262a242f4cb8b405ceea51d43258397ba2383c925e4396e9a44f"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97"
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 1,
+  "expert_calls": 0,
+  "elapsed_seconds": 0.07098356900678482,
+  "controller_thread_id": null,
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": null,
+    "cached_input_tokens": null,
+    "cache_write_input_tokens": null,
+    "output_tokens": null,
+    "reasoning_output_tokens": null
+  },
+  "observed_usage_partial": {
+    "input_tokens": 0,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 0,
+    "reasoning_output_tokens": 0
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": null,
+        "cached_input_tokens": null,
+        "cache_write_input_tokens": null,
+        "output_tokens": null,
+        "reasoning_output_tokens": null
+      },
+      "observed_partial": {
+        "input_tokens": 0,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 0,
+        "reasoning_output_tokens": 0
+      },
+      "complete": {
+        "input_tokens": false,
+        "cached_input_tokens": false,
+        "cache_write_input_tokens": false,
+        "output_tokens": false,
+        "reasoning_output_tokens": false
+      }
+    }
+  },
+  "usage_accounting_issues": [
+    {
+      "request_id": "85b793a1-3d8f-4bd7-ba28-3706c5da857e:1",
+      "model": "gpt-6-luna",
+      "thread_id": null,
+      "scope": "thread_cumulative",
+      "evidence": "reported",
+      "delta": {
+        "input_tokens": null,
+        "cached_input_tokens": null,
+        "cache_write_input_tokens": null,
+        "output_tokens": null,
+        "reasoning_output_tokens": null
+      },
+      "issues": [
+        {
+          "reason": "cumulative_usage_without_thread",
+          "fields": [
+            "input_tokens",
+            "cached_input_tokens",
+            "cache_write_input_tokens",
+            "output_tokens",
+            "reasoning_output_tokens"
+          ]
+        }
+      ]
+    }
+  ],
+  "cost_status": "not_observed",
+  "tool_failures": 0,
+  "failure_type": "codex_exit",
+  "summary": "",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "a9d08142395310eeda6a395d94755f40e2cee0dbcf967ebd34bf662f6cdd52c1",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

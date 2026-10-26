@@ -1,0 +1,9 @@
+{
+  "source_sha256": "8e11f0f4fbf2ed9d5b613a8a3ee69299f0793ced727ffbde14811d7c91667232",
+  "script_sha256": "422af3e043cc4730ecf26df8c279c93310ebabea283fe93ae809046aef03d975",
+  "files": {
+    "standalone-controls.png": "e91d395e899a179bcd5a83d7aa856f21e4566393d8a57d49bedcb2d10ad9ec06",
+    "standalone-controls.svg": "1084352d67e27bf984eb55b316d8b2acdc651a46da69c382e552afb08e01dcca",
+    "standalone-controls.pdf": "ac317934c0dd2459884328a6bf065fa2538ade8829546c8b6b6b0e2e139cf84e"
+  }
+}

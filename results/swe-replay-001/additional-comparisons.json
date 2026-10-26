@@ -1,0 +1,680 @@
+{
+  "status": "additional_descriptive_comparisons_after_initial_analysis",
+  "reference_selection_note": "Every single model was a planned baseline. MiniMax is singled out here after observing that it was cheaper and more accurate than the preselected GPT-5.2 baseline. No router or grid value was refitted.",
+  "primary_vs_expected_random_half": {
+    "resolution_difference": -0.0030000000000000027,
+    "cost_ratio": 0.9798346652927048,
+    "estimated_inference_saving_fraction": 0.0201653347072952,
+    "task_bootstrap": {
+      "resolution_ci95": [
+        0.602,
+        0.686
+      ],
+      "paired_resolution_difference_ci95": [
+        -0.024,
+        0.019
+      ],
+      "paired_resolution_difference_lower95": -0.02,
+      "paired_cost_ratio_ci95": [
+        0.8835417225318231,
+        1.0758790327233831
+      ],
+      "paired_cost_ratio_upper95": 1.0579641542552751,
+      "quality_noninferiority_3pp_supported": true,
+      "at_least_25pct_inference_saving_supported": false,
+      "joint_exploratory_target_supported": false
+    },
+    "repository_cluster_bootstrap": {
+      "resolution_ci95": [
+        0.5282736874487285,
+        0.701300955988456
+      ],
+      "paired_resolution_difference_ci95": [
+        -0.037121395887314626,
+        0.03080714996196828
+      ],
+      "paired_resolution_difference_lower95": -0.0304836719337848,
+      "paired_cost_ratio_ci95": [
+        0.764663347511118,
+        1.1386692063807826
+      ],
+      "paired_cost_ratio_upper95": 1.1067988963649995,
+      "quality_noninferiority_3pp_supported": false,
+      "at_least_25pct_inference_saving_supported": false,
+      "joint_exploratory_target_supported": false
+    }
+  },
+  "primary_vs_expected_random_note": "Random baseline is analytic expected selection, not a newly executed randomized model trial. Intervals resample tasks; random allocation variance is not included.",
+  "portfolio_vs_minimax": {
+    "open_weight_portfolio_lambda_0": {
+      "resolution_difference": -0.006000000000000005,
+      "cost_ratio": 2.914547321725164,
+      "estimated_inference_saving_fraction": -1.914547321725164,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.714,
+          0.79
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.024,
+          0.012
+        ],
+        "paired_resolution_difference_lower95": -0.02,
+        "paired_cost_ratio_ci95": [
+          2.5333689083120294,
+          3.391493326320784
+        ],
+        "paired_cost_ratio_upper95": 3.291884350692989,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6797981730355349,
+          0.7811397320494033
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.020117512200353942,
+          0.03261464614408121
+        ],
+        "paired_resolution_difference_lower95": -0.018349271756595658,
+        "paired_cost_ratio_ci95": [
+          1.6085814381858636,
+          3.8410902421361195
+        ],
+        "paired_cost_ratio_upper95": 3.7199331668524196,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      }
+    },
+    "open_weight_portfolio_lambda_0.05": {
+      "resolution_difference": 0.0,
+      "cost_ratio": 2.0790453890691194,
+      "estimated_inference_saving_fraction": -1.0790453890691194,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.72,
+          0.7960499999999998
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.016,
+          0.016
+        ],
+        "paired_resolution_difference_lower95": -0.014,
+        "paired_cost_ratio_ci95": [
+          1.8243966495436892,
+          2.3730722411610725
+        ],
+        "paired_cost_ratio_upper95": 2.3119835153390738,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6769172932330827,
+          0.7875153913336054
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.01810160427807487,
+          0.026318687688383937
+        ],
+        "paired_resolution_difference_lower95": -0.01403755868544601,
+        "paired_cost_ratio_ci95": [
+          1.4796347279542459,
+          3.0365469460197905
+        ],
+        "paired_cost_ratio_upper95": 2.836013844996521,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      }
+    },
+    "open_weight_portfolio_lambda_0.1": {
+      "resolution_difference": 0.0,
+      "cost_ratio": 1.6629039645007586,
+      "estimated_inference_saving_fraction": -0.6629039645007586,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.72,
+          0.796
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.014,
+          0.014
+        ],
+        "paired_resolution_difference_lower95": -0.012,
+        "paired_cost_ratio_ci95": [
+          1.4758179641413025,
+          1.886077591269121
+        ],
+        "paired_cost_ratio_upper95": 1.8417100031058151,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6830518796497466,
+          0.7867795691640699
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.013139446760136415,
+          0.030311738070358713
+        ],
+        "paired_resolution_difference_lower95": -0.010966117216117215,
+        "paired_cost_ratio_ci95": [
+          1.2649918739408472,
+          2.5131196318191513
+        ],
+        "paired_cost_ratio_upper95": 2.355296115651615,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      }
+    },
+    "open_weight_portfolio_lambda_0.25": {
+      "resolution_difference": 0.0,
+      "cost_ratio": 1.279301799361341,
+      "estimated_inference_saving_fraction": -0.2793017993613409,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.72,
+          0.796
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.01,
+          0.01
+        ],
+        "paired_resolution_difference_lower95": -0.008,
+        "paired_cost_ratio_ci95": [
+          1.1662399170515039,
+          1.4090679017070395
+        ],
+        "paired_cost_ratio_upper95": 1.3877581900310723,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.686101389861014,
+          0.7875010428253615
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.010309278350515464,
+          0.028574846206425135
+        ],
+        "paired_resolution_difference_lower95": -0.008807515913989273,
+        "paired_cost_ratio_ci95": [
+          1.0817047440813061,
+          1.799843230145014
+        ],
+        "paired_cost_ratio_upper95": 1.6689587910812396,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      }
+    },
+    "open_weight_portfolio_lambda_0.5": {
+      "resolution_difference": -0.006000000000000005,
+      "cost_ratio": 1.0646527887831805,
+      "estimated_inference_saving_fraction": -0.06465278878318048,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.714,
+          0.79
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.014,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": -0.012,
+        "paired_cost_ratio_ci95": [
+          1.0284859068428729,
+          1.1134865967375092
+        ],
+        "paired_cost_ratio_upper95": 1.1037174630783708,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6705010525940198,
+          0.7807685939369997
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.012296346893341428,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": -0.011152416356877323,
+        "paired_cost_ratio_ci95": [
+          1.027995860846135,
+          1.1527253591565587
+        ],
+        "paired_cost_ratio_upper95": 1.129574822984723,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      }
+    },
+    "open_weight_portfolio_lambda_1": {
+      "resolution_difference": -0.0020000000000000018,
+      "cost_ratio": 1.0233576041470192,
+      "estimated_inference_saving_fraction": -0.02335760414701915,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.716,
+          0.794
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.006,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": -0.006,
+        "paired_cost_ratio_ci95": [
+          1.0060605413255708,
+          1.0485518360104864
+        ],
+        "paired_cost_ratio_upper95": 1.0446133605243688,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6712191230676129,
+          0.7844613169048276
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.009118888009881889,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": -0.007664308871205423,
+        "paired_cost_ratio_ci95": [
+          1.0006980880995728,
+          1.0665300440560694
+        ],
+        "paired_cost_ratio_upper95": 1.0553082946668193,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      }
+    },
+    "open_weight_portfolio_lambda_2": {
+      "resolution_difference": 0.0,
+      "cost_ratio": 1.0168415219092037,
+      "estimated_inference_saving_fraction": -0.016841521909203738,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.718,
+          0.796
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          1.0028246022958949,
+          1.0405624005051717
+        ],
+        "paired_cost_ratio_upper95": 1.0356118793318065,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6761067019400353,
+          0.7871949753576151
+        ],
+        "paired_resolution_difference_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": 0.0,
+        "paired_cost_ratio_ci95": [
+          0.9982440375438635,
+          1.0536271176931182
+        ],
+        "paired_cost_ratio_upper95": 1.045502398269636,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      }
+    },
+    "portfolio_lambda_0": {
+      "resolution_difference": 0.0020000000000000018,
+      "cost_ratio": 4.918067720617154,
+      "estimated_inference_saving_fraction": -3.918067720617154,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.72395,
+          0.798
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.022,
+          0.026
+        ],
+        "paired_resolution_difference_lower95": -0.02,
+        "paired_cost_ratio_ci95": [
+          4.446957917291696,
+          5.472875718556325
+        ],
+        "paired_cost_ratio_upper95": 5.374332911195743,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6821741671537113,
+          0.7978170389875138
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.01624806952655446,
+          0.051956540191834266
+        ],
+        "paired_resolution_difference_lower95": -0.013763729801132765,
+        "paired_cost_ratio_ci95": [
+          3.3379767071646054,
+          5.709875910033854
+        ],
+        "paired_cost_ratio_upper95": 5.644035751620116,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      }
+    },
+    "portfolio_lambda_0.05": {
+      "resolution_difference": -0.0020000000000000018,
+      "cost_ratio": 3.672760868032216,
+      "estimated_inference_saving_fraction": -2.672760868032216,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.718,
+          0.794
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.026,
+          0.02
+        ],
+        "paired_resolution_difference_lower95": -0.022,
+        "paired_cost_ratio_ci95": [
+          3.28379688226982,
+          4.101545294640091
+        ],
+        "paired_cost_ratio_upper95": 4.021603623563536,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6907125189499721,
+          0.7927173414820473
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.018846256417094472,
+          0.047623424369747876
+        ],
+        "paired_resolution_difference_lower95": -0.016736902164120836,
+        "paired_cost_ratio_ci95": [
+          2.549558311114142,
+          4.373798381447495
+        ],
+        "paired_cost_ratio_upper95": 4.267058907440487,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      }
+    },
+    "portfolio_lambda_0.1": {
+      "resolution_difference": 0.0,
+      "cost_ratio": 2.8120258206438247,
+      "estimated_inference_saving_fraction": -1.8120258206438247,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.72,
+          0.796
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.02,
+          0.02
+        ],
+        "paired_resolution_difference_lower95": -0.016,
+        "paired_cost_ratio_ci95": [
+          2.4856726084456904,
+          3.1777669496046546
+        ],
+        "paired_cost_ratio_upper95": 3.121462003437888,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6951133803506709,
+          0.797956621079516
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.016483678276964498,
+          0.05604387709991153
+        ],
+        "paired_resolution_difference_lower95": -0.015087183560787582,
+        "paired_cost_ratio_ci95": [
+          2.173544823294875,
+          3.841241434167129
+        ],
+        "paired_cost_ratio_upper95": 3.622192327474922,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      }
+    },
+    "portfolio_lambda_0.25": {
+      "resolution_difference": 0.0040000000000000036,
+      "cost_ratio": 1.5742469353601547,
+      "estimated_inference_saving_fraction": -0.5742469353601547,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.724,
+          0.8
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.008,
+          0.016
+        ],
+        "paired_resolution_difference_lower95": -0.006,
+        "paired_cost_ratio_ci95": [
+          1.3976162574262416,
+          1.761633868464476
+        ],
+        "paired_cost_ratio_upper95": 1.7296960171714142,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6964262341062079,
+          0.7905105395771879
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.008097988874625588,
+          0.0425531914893617
+        ],
+        "paired_resolution_difference_lower95": -0.0064253643710713544,
+        "paired_cost_ratio_ci95": [
+          1.1960745837797693,
+          2.5640850172665175
+        ],
+        "paired_cost_ratio_upper95": 2.353275330637438,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      }
+    },
+    "portfolio_lambda_0.5": {
+      "resolution_difference": -0.006000000000000005,
+      "cost_ratio": 1.1898415842231451,
+      "estimated_inference_saving_fraction": -0.18984158422314512,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.714,
+          0.79
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.014,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": -0.012,
+        "paired_cost_ratio_ci95": [
+          1.1201034850687188,
+          1.2786639035133558
+        ],
+        "paired_cost_ratio_upper95": 1.26193322454004,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6705010525940198,
+          0.7807685939369997
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.012296346893341428,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": -0.011152416356877323,
+        "paired_cost_ratio_ci95": [
+          1.0543833358687424,
+          1.5650973726526238
+        ],
+        "paired_cost_ratio_upper95": 1.492467852840819,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      }
+    },
+    "portfolio_lambda_1": {
+      "resolution_difference": -0.008000000000000007,
+      "cost_ratio": 1.0160576721953483,
+      "estimated_inference_saving_fraction": -0.01605767219534826,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.71,
+          0.788
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.016,
+          -0.002
+        ],
+        "paired_resolution_difference_lower95": -0.014,
+        "paired_cost_ratio_ci95": [
+          0.9989361638652766,
+          1.0408935348862147
+        ],
+        "paired_cost_ratio_upper95": 1.035600001103308,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.66054844274415,
+          0.7807131611847691
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.027149936061381073,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": -0.02334721262591367,
+        "paired_cost_ratio_ci95": [
+          0.9910774650112512,
+          1.0525064083930027
+        ],
+        "paired_cost_ratio_upper95": 1.0450160735718474,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      }
+    },
+    "portfolio_lambda_2": {
+      "resolution_difference": -0.010000000000000009,
+      "cost_ratio": 0.9780964204358041,
+      "estimated_inference_saving_fraction": 0.021903579564195863,
+      "task_bootstrap": {
+        "resolution_ci95": [
+          0.71,
+          0.786
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.02,
+          -0.002
+        ],
+        "paired_resolution_difference_lower95": -0.018,
+        "paired_cost_ratio_ci95": [
+          0.932721493421202,
+          1.0161026848759374
+        ],
+        "paired_cost_ratio_upper95": 1.0108102384327105,
+        "quality_noninferiority_3pp_supported": true,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      },
+      "repository_cluster_bootstrap": {
+        "resolution_ci95": [
+          0.6537903225806452,
+          0.7797845036212094
+        ],
+        "paired_resolution_difference_ci95": [
+          -0.035899999999999994,
+          0.0
+        ],
+        "paired_resolution_difference_lower95": -0.030614199702869653,
+        "paired_cost_ratio_ci95": [
+          0.8889301551767884,
+          1.02053234775979
+        ],
+        "paired_cost_ratio_upper95": 1.0153300204225832,
+        "quality_noninferiority_3pp_supported": false,
+        "at_least_25pct_inference_saving_supported": false,
+        "joint_exploratory_target_supported": false
+      }
+    }
+  },
+  "literal_zero_cost_records": [
+    {
+      "instance_id": "django__django-15731",
+      "model": "gemini_3_flash_high",
+      "api_calls": 1,
+      "resolved": false,
+      "source_estimated_cost_usd": 0.0,
+      "selected_by": [
+        "always_gemini_3_flash_high",
+        "portfolio_lambda_0",
+        "portfolio_lambda_0.05",
+        "portfolio_lambda_0.1"
+      ],
+      "interpretation": "Explicit upstream zero, not an imputed missing value. Billing completeness unverified; do not infer free inference."
+    },
+    {
+      "instance_id": "django__django-15814",
+      "model": "gemini_3_flash_high",
+      "api_calls": 1,
+      "resolved": false,
+      "source_estimated_cost_usd": 0.0,
+      "selected_by": [
+        "always_gemini_3_flash_high",
+        "portfolio_lambda_0"
+      ],
+      "interpretation": "Explicit upstream zero, not an imputed missing value. Billing completeness unverified; do not infer free inference."
+    }
+  ]
+}

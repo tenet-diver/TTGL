@@ -9,7 +9,8 @@ dot -Tsvg figures/conversation.dot -o figures/conversation.svg
 python - <<'PY'
 from pathlib import Path
 parts = ['frontmatter.md', '../thesis/personal-agent-prior-art.md', 'architecture.md',
-         'methods.md', 'economics-and-results.md', 'discussion-and-reproduction.md']
+         'methods.md', 'economics-and-results.md', 'standard-benchmark-results.md',
+         'discussion-and-reproduction.md']
 Path('paper.md').write_text('\n\n'.join(Path(p).read_text().rstrip() for p in parts)
                            + '\n\n# References {.unnumbered}\n\n::: {#refs}\n:::\n')
 Path('references.bib').write_text('\n'.join(Path(p).read_text() for p in
@@ -31,16 +32,22 @@ import datetime, hashlib, json, subprocess
 from pathlib import Path
 sources = ['frontmatter.md', '../thesis/personal-agent-prior-art.md',
            '../thesis/personal-agent-prior-art-sources.json', 'architecture.md',
-           'methods.md', 'economics-and-results.md', 'discussion-and-reproduction.md',
+           'methods.md', 'economics-and-results.md', 'standard-benchmark-results.md',
+           'discussion-and-reproduction.md',
            'references.bib', 'additional-references.bib', 'figures/conversation.dot',
            '../../experiments/codex-pilot-001/protocol.json',
            '../../results/codex-pilot-001/analysis/summary.json',
            '../../results/codex-pilot-001/analysis/records.json',
            '../../results/codex-pilot-001/dialogue-transcript.md',
-           '../../scripts/build_paper.sh']
+           '../../scripts/build_paper.sh',
+           '../../experiments/swe-replay-001/protocol.json',
+           '../../results/swe-replay-001/summary.json',
+           '../../results/swe-replay-001/additional-comparisons.json',
+           '../../results/swe-replay-001/figures/standalone-controls.png',
+           '../../scripts/plot_swe_frontier.py']
 artifacts = ['paper.md', 'paper.pdf', 'paper.docx', 'paper.html',
              'figures/conversation.png', 'figures/conversation.svg']
-report = {'status':'literature_and_live_feasibility_pilot_with_prospective_confirmatory_design',
+report = {'status':'literature_live_feasibility_and_500_task_public_replay_with_prospective_conversation_design',
           'built_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
           'word_count_approximate':len(Path('paper.md').read_text().split()),
           'pandoc':subprocess.check_output(['pandoc','--version'],text=True).splitlines()[0],
