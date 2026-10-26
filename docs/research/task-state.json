@@ -243,6 +243,20 @@
       "status": "completed_negative_replay_result_live_conversation_unproven",
       "artifact": "docs/paper/standard-benchmark-results.md",
       "study_scope": "standard_benchmark_routing_and_conversation"
+    },
+    {
+      "id": "local-38",
+      "title": "Develop general verification and delegation policy with matched independent-solving prompts",
+      "status": "implemented_and_development_frozen_awaiting_serial_run",
+      "artifact": "results/delegation-development-001/adaptive-001",
+      "study_scope": "general_delegation_policy"
+    },
+    {
+      "id": "local-39",
+      "title": "Evaluate joint 95 percent model-cost reduction and 95 percent Sol accuracy retention on held-out tasks",
+      "status": "target_defined_reserving_new_tasks_not_run",
+      "artifact": "docs/research/delegation-policy-development.md",
+      "study_scope": "general_delegation_policy"
     }
   ],
   "runpod_budget": {
@@ -254,7 +268,7 @@
     "actual_spend_usd": 0,
     "status": "blocked_missing_api_key_and_runtime_access"
   },
-  "updated_at_utc": "2026-10-26T19:26:38.429870+00:00",
+  "updated_at_utc": "2026-10-26T20:42:21.129974+00:00",
   "evidence": {
     "results": "results/routing-pilot-001",
     "reproduction": "results/reproduction-verification.json",
@@ -286,6 +300,7 @@
     "standard_benchmark_live": "Frozen12-task six-condition72-assignment study launched; see study-001 manifests and official grade index for actual progress",
     "handover": "docs/research/HANDOVER.md",
     "project_usage": "docs/research/project-usage-guide.md",
-    "standard_benchmark_audit": "docs/research/swe-replay-audit.md"
+    "standard_benchmark_audit": "docs/research/swe-replay-audit.md",
+    "policy_development": "First four original tasks are development only; v2 prompts frozen with twelve new matched assignments; successful positive-token preflights; no scored development assignments yet."
   }
 }

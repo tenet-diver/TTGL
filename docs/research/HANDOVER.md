@@ -392,3 +392,41 @@ Suggested first message for the next session:
 > and commit/push. Do not treat offline replay as conversational-agent results.
 
 The user's guiding sentiment remains: **“Believe in me who believes in you.”**
+
+## Policy development continuation
+
+The user sharpened the objective: pursue 95% lower total model inference cost
+while retaining at least 95% of matched Sol-only task accuracy. This is a target,
+not a guaranteed outcome. Strengthen Luna's independent solving before crediting
+expert access, and use a general evidence-driven delegation policy, applicable
+beyond coding. See `delegation-policy-development.md` and `prompts/controller-v2-*`.
+
+The first four original task blocks now form disclosed development evidence for
+future prompts; do not reuse them as an untouched final test. A separate
+12-assignment study is frozen at `results/delegation-development-001/adaptive-001`
+(four tasks, Luna, Sol, and assisted Luna), using `scripts/run_policy_study.py`.
+Its two positive-token preflights pass. The backend adds shared solving guidance
+to standalone and assisted controllers, and additional handoff/escalation guidance
+only to assisted controllers. Effective injected prompts are archived separately;
+original source and prompt hashes are guarded. Do not edit those files while its
+queued run is pending or active.
+
+Local process `/tmp/ttgl_queue_policy_development.py` waits for original PID 87486
+to exit and verifies all 72 archived outcomes before starting the new scored run.
+Log: `artifacts/policy-development-001.log`. Avoid concurrent image-removing
+workers/graders. `/tmp/ttgl_finalize_when_ready.py` waits for complete official
+grades, then finalizes each study and computes the declared joint target with
+`scripts/report_policy_target.py`. Inspect actual processes and logs before
+restarting anything; no implicit retries.
+
+A separate private directory, `../ttgl-heldout-private-20261026`, is preparing the
+first 24 tasks in the original deterministic order. Reserve tasks 13 through 24
+for fresh held-out evaluation; retain tasks 1 through 12 as the original panel.
+Do not inspect held-out model outcomes or choose the final policy after scoring
+them. This preparation alone supplies no new environment controls or inference.
+
+Paper source methods now include the isolated live study and general delegation
+policy. A development build is exercising the Docker-based Pandoc pipeline, but
+final results, frontmatter, discussion and build provenance still require updates,
+and every final PDF/DOCX page must be rendered and visually inspected. Artifact
+operation markers were already run exactly once per format earlier; do not rerun.
