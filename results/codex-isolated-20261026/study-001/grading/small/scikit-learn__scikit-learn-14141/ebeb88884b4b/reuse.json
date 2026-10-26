@@ -1,0 +1,8 @@
+{
+  "kind": "reuse_exact_program_and_evaluator",
+  "cache_key": "83d034fa81365b3ab2d7076fd0328dc0d9c47becf704af8160ff29c4d8db4c1b",
+  "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/scikit-learn__scikit-learn-14141/975cab3b4c2f/logs/ttgl-reset_expert/scikit-learn__scikit-learn-14141/report.json",
+  "report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191",
+  "patch_record_sha256": "2c120ea1505a0b3a46107da6e8749f52c16f9b05610ca6fa798615da8cbd39b4",
+  "new_evaluation_executed": false
+}

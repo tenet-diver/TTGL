@@ -1,0 +1,10 @@
+{
+  "83d034fa81365b3ab2d7076fd0328dc0d9c47becf704af8160ff29c4d8db4c1b": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/scikit-learn__scikit-learn-14141/975cab3b4c2f/logs/ttgl-reset_expert/scikit-learn__scikit-learn-14141/report.json",
+    "report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191"
+  },
+  "a9573a2528954335c0d2099cda1a583659ae5a4cde2c72d1adfb7590e2516bb1": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/scikit-learn__scikit-learn-14141/9bffe065f1d0/logs/ttgl-large/scikit-learn__scikit-learn-14141/report.json",
+    "report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191"
+  }
+}

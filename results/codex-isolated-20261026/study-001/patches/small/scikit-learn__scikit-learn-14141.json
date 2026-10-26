@@ -1,0 +1,10 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-14141",
+  "model_name_or_path": "ttgl-small",
+  "model_patch": "diff --git a/sklearn/utils/_show_versions.py b/sklearn/utils/_show_versions.py\nindex e5d3141..bb6194d 100644\n--- a/sklearn/utils/_show_versions.py\n+++ b/sklearn/utils/_show_versions.py\n@@ -45,6 +45,7 @@ def _get_deps_info():\n         \"sklearn\",\n         \"numpy\",\n         \"scipy\",\n+        \"joblib\",\n         \"Cython\",\n         \"pandas\",\n         \"matplotlib\",\ndiff --git a/sklearn/utils/tests/test_show_versions.py b/sklearn/utils/tests/test_show_versions.py\nindex 31153c9..b6f2807 100644\n--- a/sklearn/utils/tests/test_show_versions.py\n+++ b/sklearn/utils/tests/test_show_versions.py\n@@ -20,6 +20,7 @@ def test_get_deps_info():\n     assert 'sklearn' in deps_info\n     assert 'numpy' in deps_info\n     assert 'scipy' in deps_info\n+    assert 'joblib' in deps_info\n     assert 'Cython' in deps_info\n     assert 'pandas' in deps_info\n     assert 'matplotlib' in deps_info\n",
+  "manifest_sha256": "fdb6c2ea913d9fcd017f72441e84c9926959bff32068969cc372f27a538c736f",
+  "patch_sha256": "104ed2c252d32d8eb027c95379002aae6499e4e67ee8863b62ded5158e5d9b8e",
+  "status": "completed_ungraded",
+  "preparation_seconds": 21.062052497058176,
+  "assignment_wall_seconds": 55.409256655024365
+}

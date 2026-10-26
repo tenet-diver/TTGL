@@ -1,0 +1,84 @@
+{
+  "status": "partial_first_task_complete",
+  "completed_tasks": 1,
+  "total_tasks": 12,
+  "completed_assignments": 6,
+  "total_assignments": 72,
+  "not_a_full_study_conclusion": true,
+  "results": [
+    {
+      "condition": "small",
+      "instance_id": "scikit-learn__scikit-learn-14141",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 32.54,
+      "published_rate_scenario_usd": 0.00334986,
+      "input_tokens": 79850,
+      "cached_input_tokens": 55296,
+      "output_tokens": 683,
+      "patch_sha256": "104ed2c252d32d8eb027c95379002aae6499e4e67ee8863b62ded5158e5d9b8e"
+    },
+    {
+      "condition": "large",
+      "instance_id": "scikit-learn__scikit-learn-14141",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 54.44,
+      "published_rate_scenario_usd": 0.05029,
+      "input_tokens": 104977,
+      "cached_input_tokens": 88960,
+      "output_tokens": 936,
+      "patch_sha256": "723f756c9015f5b0cf5776a4df71d7c4c5c2092851c262eba61da4d6014eaa32"
+    },
+    {
+      "condition": "precall_router",
+      "instance_id": "scikit-learn__scikit-learn-14141",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 58.28,
+      "published_rate_scenario_usd": 0.0072769,
+      "input_tokens": 292816,
+      "cached_input_tokens": 250880,
+      "output_tokens": 1149,
+      "patch_sha256": "104ed2c252d32d8eb027c95379002aae6499e4e67ee8863b62ded5158e5d9b8e"
+    },
+    {
+      "condition": "oneway",
+      "instance_id": "scikit-learn__scikit-learn-14141",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 36.52,
+      "published_rate_scenario_usd": 0.0036987200000000004,
+      "input_tokens": 133426,
+      "cached_input_tokens": 111232,
+      "output_tokens": 734,
+      "patch_sha256": "104ed2c252d32d8eb027c95379002aae6499e4e67ee8863b62ded5158e5d9b8e"
+    },
+    {
+      "condition": "reset_expert",
+      "instance_id": "scikit-learn__scikit-learn-14141",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 34.88,
+      "published_rate_scenario_usd": 0.00350342,
+      "input_tokens": 114713,
+      "cached_input_tokens": 92032,
+      "output_tokens": 630,
+      "patch_sha256": "104ed2c252d32d8eb027c95379002aae6499e4e67ee8863b62ded5158e5d9b8e"
+    },
+    {
+      "condition": "personal",
+      "instance_id": "scikit-learn__scikit-learn-14141",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 29.31,
+      "published_rate_scenario_usd": 0.004430180000000001,
+      "input_tokens": 109140,
+      "cached_input_tokens": 75648,
+      "output_tokens": 649,
+      "patch_sha256": "104ed2c252d32d8eb027c95379002aae6499e4e67ee8863b62ded5158e5d9b8e"
+    }
+  ],
+  "actual_official_grader_executions": 2,
+  "exact_program_report_reuses": 4
+}
