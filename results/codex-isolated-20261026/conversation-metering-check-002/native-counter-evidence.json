@@ -1,0 +1,79 @@
+{
+  "purpose": "owned-thread cumulative-meter validation; not a scored task",
+  "threads": [
+    {
+      "thread_id": "01a17952-1240-7682-b418-1275677ffc1a",
+      "rollout_sha256": "a875af3b028b5f47971530aeafc4f3169e23d5bf9fd2261bf1c11d70772293f8",
+      "counter_events": [
+        {
+          "total_token_usage": {
+            "input_tokens": 10547,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 26,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 10573
+          },
+          "last_token_usage": {
+            "input_tokens": 10547,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 26,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 10573
+          }
+        }
+      ]
+    },
+    {
+      "thread_id": "01a17951-f909-7cf0-b340-610931f6da79",
+      "rollout_sha256": "efca30fa2314fcfaef8b555c8d52100c8c0a3d3805f7ea73fc9851e3564af761",
+      "counter_events": [
+        {
+          "total_token_usage": {
+            "input_tokens": 10066,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 37,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 10103
+          },
+          "last_token_usage": {
+            "input_tokens": 10066,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 37,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 10103
+          }
+        },
+        {
+          "total_token_usage": {
+            "input_tokens": 20462,
+            "cached_input_tokens": 9856,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 60,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 20522
+          },
+          "last_token_usage": {
+            "input_tokens": 10396,
+            "cached_input_tokens": 9856,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 23,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 10419
+          }
+        }
+      ]
+    }
+  ],
+  "manifest_usage": {
+    "input_tokens": 31009,
+    "cached_input_tokens": 9856,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 86,
+    "reasoning_output_tokens": 0
+  },
+  "native_totals_equal_ledger": true
+}

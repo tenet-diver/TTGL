@@ -72,6 +72,13 @@ the run and remain ungraded. The `grade` command can grade retained predictions
 without new model inference; use it to reconcile a grading interruption before
 resuming generation.
 
+Byte-identical submissions for the same task may share an original official
+report. The cache key includes the task, exact patch SHA-256, evaluator image,
+private dataset hash and grading timeout. Reuse verifies the original report
+and patch hash and writes a separate receipt; it does not fabricate or copy a
+new official report. Changed patches always receive a fresh run ID. Report the
+number of actual evaluator executions separately from model assignments.
+
 The study separately freezes adapter, MCP server, dependency lock and driver
 hashes, worker image IDs/digests and control eligibility. It records environment
 exclusions before model outcomes, with no task substitution. Completed
@@ -101,3 +108,39 @@ null. Clone/container preparation time is recorded separately from the model
 execution manifest. Evaluator/setup overhead and hardware allocation are not
 silently counted as zero. This 12-task engineering panel cannot establish a
 three-point quality margin or reliable full deployment savings.
+
+## Repairs and amendments before scored inference
+
+The first live conversation check exposed an overly strict protocol check:
+a complete expert question with empty additional context was rejected. Empty
+selected context is legitimate for a self-contained question. The repaired
+orchestrator still requires a nonempty question and enforces the total context
+limit. A fresh three-turn Luna/Sol/Luna check passed, and its ledger exactly
+matched the owned native rollout token totals. The failed check is retained.
+Frozen historical trials are not rewritten or resumed under the new source.
+
+The Requests image lacks the `mocker` fixture needed by its public utility
+tests. Its base repository explicitly pins `pytest-mock==2.0.0` in
+`requirements-dev.txt`. The runtime installs that SHA-256-verified wheel,
+offline and without dependency resolution, in each Requests solver container.
+All six conditions receive it. The official evaluator image is unchanged.
+The original 192-pass/8-error public check and the repaired 200-pass check
+(11 skips each) are retained. `tools/worker-dependencies.json` freezes the
+download and enters the study source checks.
+
+The SymPy no-fix control completed near the original 600-second evaluation
+limit on this host while retaining all 67 preservation checks. Before any
+scored model outcome, the fresh study's grader limit is set to 1200 seconds
+for every condition to reduce host-speed artifacts. The solver's original
+900-second budget is unchanged. Control records keep their actual 600-second
+limit; passing within that limit also validates the longer grading allowance.
+
+Official image preparation also changes regular-file execute bits. The worker
+compares complete Git blob identities, including binary files, before staging.
+It permits only those mode changes and one audited Astropy `pyproject.toml`
+build-system change from `setuptools` to `setuptools==68.0.0`, identified by
+both exact Git blob hashes. Staging restores the original base blob, records
+the setup exception, and requires the final exact-base checkout to be clean.
+Other content changes, added/deleted paths and symlinks are rejected. Ignored
+compiled dependencies survive this normalization. Public worker tests check
+that those dependencies still import after source restoration.

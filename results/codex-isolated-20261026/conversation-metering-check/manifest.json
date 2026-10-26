@@ -1,0 +1,90 @@
+{
+  "schema_version": 3,
+  "run_id": "e9c6feb6-481a-4ad2-94a4-0d11d79c1f86",
+  "task_id": "conversation-metering-mechanism",
+  "condition": "personal",
+  "status": "protocol_failed",
+  "created_at": "2026-10-26T17:42:25.416975+00:00",
+  "finished_at": "2026-10-26T17:42:33.766155+00:00",
+  "identity_sha256": "362dc73e262c654a1daaf68b89a50e57c6cd1663e9678167f79f99888b5aaec1",
+  "config": {
+    "condition": "personal",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 4,
+    "timeout_seconds": 120,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "44bf8bf47bd0262a242f4cb8b405ceea51d43258397ba2383c925e4396e9a44f"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "ed3c2caa7cecd04aded56aa73f064d798fcaf8eb2b363454c241d55ecda5679b"
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 1,
+  "expert_calls": 0,
+  "elapsed_seconds": 8.204127716948278,
+  "controller_thread_id": "01a1794e-6fa9-7a31-b10e-5d6ef6b8efd2",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 10061,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 69,
+    "reasoning_output_tokens": 33
+  },
+  "observed_usage_partial": {
+    "input_tokens": 10061,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 69,
+    "reasoning_output_tokens": 33
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 10061,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 69,
+        "reasoning_output_tokens": 33
+      },
+      "observed_partial": {
+        "input_tokens": 10061,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 69,
+        "reasoning_output_tokens": 33
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 0,
+  "failure_type": "ValueError",
+  "summary": "",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "3e434d91391dec452fe468d3fb8753a47a9d6f53d42dfa9884af2a0f1f122e0d",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

@@ -1,5 +1,8 @@
 {
   "control": {
     "scikit-learn__scikit-learn-14141": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/grading-mechanism-check/grading/control/scikit-learn__scikit-learn-14141/a0361610b9d6/logs/ttgl-grading-mechanism-no-fix-control/scikit-learn__scikit-learn-14141/report.json"
+  },
+  "empty_control": {
+    "scikit-learn__scikit-learn-14141": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/grading-mechanism-check/grading/empty_control/scikit-learn__scikit-learn-14141/bb4d3e658f15/logs/results.json"
   }
 }

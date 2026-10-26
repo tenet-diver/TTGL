@@ -13,11 +13,13 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+from urllib.request import urlopen
 
 from . import benchmark, personal
 
 ROOT = Path(__file__).resolve().parents[2]
 SERVER = ROOT / 'tools/worker-mcp/server.mjs'
+DEPENDENCIES = ROOT / 'tools/worker-dependencies.json'
 
 
 def docker(*args: str, timeout: float = 300) -> str:
@@ -40,7 +42,8 @@ class ContainerBackend(personal.CodexBackend):
         return {**super().describe(), 'worker_tools': 'offline Docker through MCP',
                 'server_sha256': benchmark.digest(SERVER),
                 'lock_sha256': benchmark.digest(SERVER.parent / 'package-lock.json'),
-                'adapter_sha256': benchmark.digest(Path(__file__))}
+                'adapter_sha256': benchmark.digest(Path(__file__)),
+                'worker_dependencies_sha256': benchmark.digest(DEPENDENCIES)}
 
     def command(self, request, schema_path):
         # Do not inherit personal instructions, connectors, hooks, or native host
@@ -96,6 +99,7 @@ class DockerWorkers:
         self.backend, self.images, self.records = backend, images, records
         self.task = None
         self.previous_image = None
+        self.pending_container = None
 
     def prepare(self, task: dict, workspace: Path, output: Path):
         image = self.images[task['instance_id']]
@@ -128,13 +132,52 @@ class DockerWorkers:
                '--security-opt', 'no-new-privileges', '--pids-limit', '256',
                '--memory', '4g', '--cpus', '2', '--label', 'ttgl.worker=true',
                '--workdir', '/testbed', '--entrypoint', 'sleep', image, 'infinity')
+        self.pending_container = name
         docker('start', name)
+        dependency_records = []
+        packages = json.loads(DEPENDENCIES.read_text())['repositories'].get(task.get('repo'), [])
+        for package in packages:
+            cache = ROOT / 'artifacts/worker-dependencies'
+            cache.mkdir(parents=True, exist_ok=True)
+            wheel = cache / package['filename']
+            if not wheel.exists():
+                with urlopen(package['url'], timeout=60) as response:
+                    content = response.read()
+                if hashlib.sha256(content).hexdigest() != package['sha256']:
+                    raise ValueError('Worker dependency download checksum mismatch')
+                wheel.write_bytes(content)
+            if benchmark.digest(wheel) != package['sha256']:
+                raise ValueError('Cached worker dependency changed')
+            docker('cp', str(wheel), name + ':/tmp/' + wheel.name)
+            docker('exec', name, '/opt/miniconda3/envs/testbed/bin/python', '-m', 'pip',
+                   'install', '--no-index', '--no-deps', '/tmp/' + wheel.name)
+            dependency_records.append({'name': package['name'], 'version': package['version'],
+                                       'wheel_sha256': package['sha256']})
         # Keep ignored compiled extensions from the prepared image. Removing
         # the whole repository would destroy editable sklearn/astropy builds.
         # Verify tracked content before replacing the original Git history.
+        restored_setup_files = []
         if benchmark_image:
-            docker('exec', name, 'git', '-C', '/testbed', 'diff', '--quiet',
-                   task['base_commit'], '--', '.')
+            if docker('exec', name, 'git', '-C', '/testbed', 'status', '--porcelain').strip():
+                raise RuntimeError('Prepared image contains uncommitted tracked source changes')
+            source_diff = docker('exec', name, 'git', '-C', '/testbed', 'diff', '--raw',
+                                 '--no-abbrev', '-z', task['base_commit'], 'HEAD', '--', '.')
+            # Compare blob identities, including binary files, independently of
+            # image setup's execute-bit changes. The sole audited content change
+            # is Astropy's build dependency pin; staging restores its base blob.
+            fields = source_diff.split('\0')
+            for index in range(0, len(fields)-1, 2):
+                metadata, path = fields[index], fields[index+1]
+                old_mode, new_mode, old_blob, new_blob, status = metadata[1:].split()
+                regular = old_mode in {'100644', '100755'} and new_mode in {'100644', '100755'}
+                setup_pin = (task.get('repo') == 'astropy/astropy' and path == 'pyproject.toml'
+                             and old_blob == '3364d307406a06457fba6b129db98c2399e7d624'
+                             and new_blob == '02dddbe713a3d037b3e5f6ba49af3b7ec1c49c0b')
+                if not regular or status != 'M' or (old_blob != new_blob and not setup_pin):
+                    raise RuntimeError('Prepared image contains tracked source changes beyond audited setup')
+                if setup_pin:
+                    restored_setup_files.append({'path': path, 'base_blob': old_blob,
+                                                 'image_setup_blob': new_blob})
         docker('exec', name, 'bash', '-lc', 'mkdir -p /testbed && rm -rf /testbed/.git')
         # Recreate files as the container user. docker cp preserves host UIDs
         # on Docker Desktop, which makes Git reject the checkout and prevents
@@ -154,16 +197,21 @@ class DockerWorkers:
         observed = docker('exec', name, 'git', '-C', '/testbed', 'rev-parse', 'HEAD').strip()
         if observed != task['base_commit']:
             raise RuntimeError('Worker base mismatch')
+        if docker('exec', name, 'git', '-C', '/testbed', 'status', '--porcelain').strip():
+            raise RuntimeError('Staged worker source is dirty before inference')
         benchmark.write_new(record_path, {
             'container': name, 'image_id': image, 'base_commit': observed,
             'mounts': info['Mounts'], 'network': info['HostConfig']['NetworkMode'],
             'cap_drop': info['HostConfig']['CapDrop'], 'memory_bytes': info['HostConfig']['Memory'],
             'native_host_tools': False, 'solver_reference_material': False,
-            'image_tracked_source_verified_at_base': benchmark_image,
+            'image_tracked_source_audited': benchmark_image,
+            'restored_image_setup_files': restored_setup_files,
             'ignored_compiled_dependencies_retained': benchmark_image,
+            'additional_worker_dependencies': dependency_records,
         })
         self.backend.container, self.task = name, task
         self.previous_image = image
+        self.pending_container = None
 
     def export_patch(self, task, workspace):
         name = self.backend.container
@@ -175,5 +223,8 @@ class DockerWorkers:
                       '--no-ext-diff', task['base_commit'], '--', '.')
 
     def close(self):
-        docker('rm', '-f', self.backend.container)
+        owned = self.backend.container or self.pending_container
+        if owned:
+            docker('rm', '-f', owned)
         self.backend.container = None
+        self.pending_container = None

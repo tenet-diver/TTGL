@@ -1,0 +1,28 @@
+...................................................................... [ 49%]
+..................................................F..................... [100%]
+=================================== FAILURES ===================================
+_______________ test_timeout_cleans_process_and_sanitizes_stderr _______________
+
+tmp_path = PosixPath('/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/pytest-of-rustameynaliyev/pytest-19/test_timeout_cleans_process_an0')
+
+    def test_timeout_cleans_process_and_sanitizes_stderr(tmp_path):
+        executable = fake_executable(tmp_path, "import time\ntime.sleep(30)\n")
+        started = time.monotonic()
+        client = AppServer(str(executable), timeout=0.1)
+        with pytest.raises(MeterUnavailable, match="app_server_timeout"):
+            with client:
+                pass
+        assert time.monotonic() - started < 3
+        assert client.process is None and client.stderr is None
+        executable = fake_executable(tmp_path, "import sys\nsys.stderr.write('secret-user: Read-only file system (os error 30)')\nsys.exit(1)\n")
+        report = collect(["root-one"], client_factory=lambda: AppServer(str(executable), 5))
+>       assert report["threads"][0]["reason"] == "read_only_state_directory"
+E       AssertionError: assert 'app_server_timeout' == 'read_only_state_directory'
+E         
+E         - read_only_state_directory
+E         + app_server_timeout
+
+tests/test_subscription.py:156: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_subscription.py::test_timeout_cleans_process_and_sanitizes_stderr
+1 failed, 141 passed, 1 skipped, 2 subtests passed in 169.59s (0:02:49)

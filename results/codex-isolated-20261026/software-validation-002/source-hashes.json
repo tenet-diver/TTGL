@@ -1,0 +1,8 @@
+{
+  "src/ttgl/isolated.py": "085177275f225c4e7b18b8db0eadedbd588e76d92c964f5642afa998e74a36c6",
+  "src/ttgl/personal.py": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826",
+  "src/ttgl/evaluation.py": "8bca9f41db8532fde7bed4f9686ecf1a74f7b97421605df0b79a575d2fbefb13",
+  "tests/test_isolated.py": "57815ac48ad2f860ba64d8fb47e8b5296c40d3d6c509100df5013e2f69f91711",
+  "tests/test_personal.py": "f1cbaec5caf4bf2d3f8ed26a62bb61aeec3b7b300eb72312e945bc8978c26a23",
+  "tests/test_subscription.py": "df33501d0e9bcbde3f153bc3e5bf706d7a268aab042ac884139ef4bb1bed1e97"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "repositories": {
+    "psf/requests": [
+      {
+        "name": "pytest-mock",
+        "version": "2.0.0",
+        "filename": "pytest_mock-2.0.0-py2.py3-none-any.whl",
+        "url": "https://files.pythonhosted.org/packages/99/95/d108de3eed0ae29d98c94c918c1245713e7f222dead2d77c24bc4ca7ca0c/pytest_mock-2.0.0-py2.py3-none-any.whl",
+        "sha256": "cb67402d87d5f53c579263d37971a164743dc33c159dfb4fb4a86f37c5552307",
+        "reason": "Pinned by the base repository requirements-dev.txt; supplies the missing mocker fixture"
+      }
+    ]
+  }
+}

@@ -84,6 +84,19 @@ def test_personal_resumes_actor_after_context_bounded_expert(task, tmp_path):
     assert [event["event"] for event in events] == ["request", "response"] * 3
 
 
+def test_self_contained_expert_question_needs_no_extra_context(task, tmp_path):
+    backend = ScriptedBackend(
+        reply('ask_expert', question='What is 7 times 9?', context=''),
+        Response(text=json.dumps({'action': 'answer', 'message': '63'}), thread_id='expert'),
+        reply(summary='Verified 7 * 9 == 63'),
+    )
+    result = run_task(task, tmp_path / 'self-contained', condition='personal', backend=backend)
+    assert result['status'] == 'completed_ungraded'
+    assert result['expert_calls'] == 1
+    assert 'What is 7 times 9?' in backend.requests[1].prompt
+    assert backend.requests[2].thread_id == 'thread-small'
+
+
 @pytest.mark.parametrize("expert_action", ["request_context", "challenge"])
 def test_two_way_conversation_keeps_both_threads_and_verifies(task, tmp_path, expert_action):
     backend = ScriptedBackend(
@@ -438,7 +451,7 @@ def test_expert_cap_is_enforced(task, tmp_path):
 
 @pytest.mark.parametrize("response", [
     reply("ask_expert", question="Help?", context="code", thread=None),
-    reply("ask_expert", question="Help?", context=""),
+    reply("ask_expert", question="", context="Relevant code"),
     Response(text="not JSON"),
     Response(text=json.dumps({"action": "complete"})),
 ])

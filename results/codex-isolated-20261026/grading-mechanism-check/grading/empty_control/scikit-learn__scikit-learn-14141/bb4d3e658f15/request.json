@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-empty_control-scikit-learn__scikit-learn-14141-e3b0c442-bb4d3e658f15",
+  "prediction_sha256": "9ad884ce6cf778820cc814d346b23defc96ebf5dfeaf6fa3e7ccbce1267849b2",
+  "model_patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "patch_record_sha256": "84a983b835e9c7142b4ca2881c3d7cd0ff7a41d86b4feda2b9fb889a04d72682",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "cd987b79a275a679fa1f099a8f7d28b2e1e7ee2d6c457e5359413cf86016a166",
+  "timeout_seconds": 1200
+}

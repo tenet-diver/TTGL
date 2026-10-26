@@ -17,7 +17,7 @@ from ttgl import benchmark, isolated, evaluation
 
 def sources():
     paths = [Path(__file__), Path(isolated.__file__), Path(evaluation.__file__), isolated.SERVER,
-             isolated.SERVER.parent / 'package-lock.json']
+             isolated.SERVER.parent / 'package-lock.json', isolated.DEPENDENCIES]
     return {str(p.relative_to(isolated.ROOT)): benchmark.digest(p) for p in paths}
 
 
@@ -86,6 +86,7 @@ def main():
             'private_grading_dataset_sha256': benchmark.digest(grade_dataset),
             'original_private_dataset_sha256': benchmark.digest(original_dataset),
             'evaluator_image_id': control_protocol['evaluator_image_id'],
+            'grading_timeout_seconds': 1200,
             'original_tasks_sha256': benchmark.digest(args.tasks),
             'controls_summary_sha256': benchmark.digest(args.controls / 'summary.json'),
             'worker_validation_sha256': benchmark.digest(args.worker_validation),
@@ -118,7 +119,8 @@ def main():
         if benchmark.digest(dataset) != environment['private_grading_dataset_sha256']:
             raise ValueError('Frozen grading dataset changed')
         grader = evaluation.OfficialEvaluator(study, Path(environment['private_evaluator_root']),
-                                              environment['evaluator_image_id'], dataset)
+                                              environment['evaluator_image_id'], dataset,
+                                              timeout_seconds=environment['grading_timeout_seconds'])
         if args.command == 'grade':
             design, _ = benchmark.load_design(study)
             for assignment in design['assignment_order']:

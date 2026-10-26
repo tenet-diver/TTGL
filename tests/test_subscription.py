@@ -107,7 +107,9 @@ def test_state_collection_includes_router_and_preserves_unfinished_status(tmp_pa
 
 def fake_executable(tmp_path: Path, body: str) -> Path:
     path = tmp_path / "fake-codex"
-    path.write_text(f"#!{sys.executable}\n" + body)
+    # These fixture servers use only the standard library; avoid loading
+    # unrelated site packages before their protocol/timing checks.
+    path.write_text(f"#!{sys.executable} -S\n" + body)
     path.chmod(0o755)
     return path
 

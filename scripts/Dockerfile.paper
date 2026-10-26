@@ -1,0 +1,5 @@
+# Desktop reproduction of scripts/build_paper.sh without host TeX installation.
+FROM pandoc/latex:3.11.0.0@sha256:cdbf139f607237498b412b3aa051008311d69b88006ab47550efba357af3b277
+RUN apk add --no-cache graphviz font-dejavu \
+    && tlmgr update --self \
+    && tlmgr install tocloft

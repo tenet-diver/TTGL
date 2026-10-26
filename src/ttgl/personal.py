@@ -703,8 +703,8 @@ def run_task(task: dict, output_dir: Path, *, condition: str,
                             raise ValueError("Solo condition cannot ask an expert")
                         elif state["expert_calls"] >= max_expert_calls:
                             state["status"], state["failure_type"] = "budget_exhausted", "expert_limit"
-                        elif not value["question"].strip() or not value["context"].strip():
-                            raise ValueError("Expert request needs a question and selected context")
+                        elif not value["question"].strip():
+                            raise ValueError("Expert request needs a nonempty question")
                         elif len(value["question"]) + len(value["context"]) > max_context_characters:
                             raise ValueError("Expert request exceeds context limit; no silent truncation")
                         else:

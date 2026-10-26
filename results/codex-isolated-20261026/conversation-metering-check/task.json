@@ -1,0 +1,9 @@
+{
+  "task_id": "conversation-metering-mechanism",
+  "workspace": "/Users/rustameynaliyev/Developer/TTGL/artifacts/conversation-metering-workspace",
+  "allowed_paths": [
+    "."
+  ],
+  "memory": [],
+  "prompt": "This is a protocol mechanism check, not a repository benchmark. Do not use tools. You must start by asking the expert what 7 times 9 equals, using action ask_expert and including that arithmetic question in question. After the expert responds, complete with the numeric answer in summary. Do not complete before asking the expert."
+}

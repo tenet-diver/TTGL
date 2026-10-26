@@ -82,9 +82,15 @@ def test_changed_worker_revision_cannot_be_exported(worker):
         runtime.export_patch(task, workspace)
 
 
-def test_staged_worker_retains_preinstalled_ignored_extensions(worker, tmp_path):
+@pytest.mark.parametrize('content_changed', [False, True])
+def test_staged_worker_retains_extensions_but_rejects_changed_source(worker, tmp_path, content_changed):
     backend, runtime, task, workspace = worker
     docker('exec', backend.container, 'bash', '-lc', 'echo prepared-extension > /testbed/compiled-fixture.so')
+    docker('exec', backend.container, 'chmod', '+x', '/testbed/value.txt')
+    if content_changed:
+        docker('exec', backend.container, 'bash', '-lc', 'echo 99 > /testbed/value.txt')
+    docker('exec', backend.container, 'git', '-C', '/testbed', '-c', 'user.name=TTGL',
+           '-c', 'user.email=ttgl@example.invalid', 'commit', '-am', 'image setup modes')
     tag = 'ttgl-test-dependencies:' + task['base_commit'][:12]
     image = docker('commit', backend.container, tag).strip()
     runtime.close()
@@ -93,10 +99,14 @@ def test_staged_worker_retains_preinstalled_ignored_extensions(worker, tmp_path)
         'image_id': image, 'reference': tag, 'size_bytes': 0,
     }}, tmp_path / 'second-environments')
     try:
+        if content_changed:
+            with pytest.raises(RuntimeError, match='tracked source changes'):
+                second.prepare(task, workspace, tmp_path / 'second-runs' / 'fixture')
+            assert not second_backend.container
+            return
         second.prepare(task, workspace, tmp_path / 'second-runs' / 'fixture')
         assert docker('exec', second_backend.container, 'cat', '/testbed/compiled-fixture.so').strip() == 'prepared-extension'
         assert second.export_patch(task, workspace) == ''
     finally:
-        if second_backend.container:
-            second.close()
+        second.close()
         docker('image', 'rm', tag)
