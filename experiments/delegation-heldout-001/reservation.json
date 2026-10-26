@@ -1,0 +1,14 @@
+{
+  "status": "reserved_before_policy_selection_no_model_trials",
+  "tasks_sha256": "a9c058df0d35d8fe74118d7a1dc91e4e12380a7f085708a067993892ac9d6997",
+  "original_panel_sha256": "e6a43141699e22a0dca4f61fac701c677ee4da74fdb13aca81f451b4a4826f58",
+  "upstream_preparation_sha256": "2b993a2a7502f2d84e535ca94e977449f47c6bfaca05d38149b8dc4cfb279096",
+  "private_24_dataset_sha256": "0e68db01b95ddbe9083aa009097a54c8c8849388adf8641c9c1a18342795e783",
+  "private_heldout_dataset_sha256": "af9d8bdba3c17aa4d388a3890ae951d73d40a9ad4077061be4dd54df1ee16511",
+  "purpose": "Final evaluation after the general delegation policy is selected on development tasks",
+  "target": {
+    "cost_ratio_max": 0.05,
+    "accuracy_retention_min": 0.95
+  },
+  "environment_exclusions": "Only invalid independent base/gold controls or staged dependency probes; preserve all exclusions and do not replace based on model outcomes."
+}
