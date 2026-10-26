@@ -51,3 +51,15 @@ def test_unregistered_task_outcomes_cannot_select_policy(tmp_path):
     assert result.returncode != 0
     assert 'registered development task set' in result.stderr
     assert not output.exists()
+
+
+def test_registered_compact_candidate_cannot_be_omitted(tmp_path):
+    command, output = fixture(tmp_path)
+    protocol = tmp_path/'protocol.json'
+    record = json.loads(protocol.read_text())
+    record['candidate_modes'] = ['adaptive','fallback','adaptive_compact']
+    protocol.write_text(json.dumps(record))
+    result = subprocess.run(command,capture_output=True,text=True)
+    assert result.returncode != 0
+    assert 'Every registered candidate' in result.stderr
+    assert not output.exists()
