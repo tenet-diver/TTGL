@@ -1,0 +1,23 @@
+{
+  "status": "frozen_development_not_run",
+  "purpose": "Improve general solving, verification and evidence-driven delegation; no held-out claim",
+  "tasks_sha256": "a02fb52c87e10fa7814c7ac4ea00bf68f8878a709cf564bb4e8b0a8ed2b0508f",
+  "conditions": [
+    "small",
+    "large",
+    "personal"
+  ],
+  "prompt_mode": "adaptive",
+  "model_effort": "medium",
+  "task_budget_seconds": 900,
+  "max_outer_turns": 6,
+  "max_expert_calls": 2,
+  "selection_uses_observed_failures": false,
+  "outcomes_already_observed": true,
+  "primary_final_target": {
+    "policy_to_sol_cost_ratio_max": 0.05,
+    "policy_to_sol_accuracy_ratio_min": 0.95
+  },
+  "policy_selection": "Use independent Luna verification and routing failure analysis; record every prompt revision and run. Select before held-out outcomes.",
+  "no_hidden_grader_feedback_to_controller": true
+}
