@@ -1,0 +1,6 @@
+{
+  "status": "pre_inference_preparation_stop",
+  "reason": "Host free space below image plus reserve before worker creation",
+  "scored_model_calls": 0,
+  "completed_public_probe_ids": []
+}

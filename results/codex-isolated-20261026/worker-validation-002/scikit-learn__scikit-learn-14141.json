@@ -1,0 +1,10 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-14141",
+  "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; python -m pytest -q sklearn/utils/tests/test_show_versions.py",
+  "returncode": 0,
+  "image_id": "sha256:b66d524a1b44b0ed09a517d06fcdf5326ff47e64a0cb847a683ba95b8540137d",
+  "controls_record_sha256": "2f6c65b13a4e5ad5ec56226cc9070071bac7d6b972c0fd1a1c0f222d463477db",
+  "ready": true,
+  "reason": "public_smoke_pass",
+  "stdout_sha256": "7cf70a9b119b4267d826478b10c8399c150e898a3e0408b2409e083d05477a96"
+}

@@ -1,0 +1,7 @@
+{
+  "status": "stopped_before_model_inference",
+  "reason": "A real-container regression test exposed macOS AppleDouble metadata in tar exports; rerun preparation with COPYFILE_DISABLE=1",
+  "scored_assignments_launched": 0,
+  "model_calls": 0,
+  "completed_worker_probes": 0
+}

@@ -1,0 +1,10 @@
+{
+  "instance_id": "astropy__astropy-12907",
+  "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; python -m pytest -q astropy/units/tests/test_quantity.py -k test_unit",
+  "returncode": 0,
+  "image_id": "sha256:9b1cabf7bcd83a28469f67e3852d8e2207e90d45aa71f436bb7e600bdee8bae2",
+  "controls_record_sha256": "47c60f265b30696a8212c84f4b5f2e730d1270614b2b500af0bc5e5edf9cfbbb",
+  "ready": true,
+  "reason": "public_smoke_pass",
+  "stdout_sha256": "71bd2b81bbc7edd1fa03da0b9ab07598ecb710de88a112ca74df48d578649544"
+}

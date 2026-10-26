@@ -1,0 +1,10 @@
+{
+  "instance_id": "sympy__sympy-17139",
+  "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; python bin/test sympy/core/tests/test_numbers.py -k test_Integer",
+  "returncode": 0,
+  "image_id": "sha256:05bd322eebbc03124d5701f89047cf0c91c6905c87506c581cd40d8540bb9a48",
+  "controls_record_sha256": "7ca3070f049a996e4e51f520cd46fd53e46350dd5fa8c4e5ecff81f51d231794",
+  "ready": true,
+  "reason": "public_smoke_pass",
+  "stdout_sha256": "0ba95696404c8dd9a57fd1befdf20f88e7b4fe0dc7e507c5c20f04aed8f3db1a"
+}

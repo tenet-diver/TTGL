@@ -1,0 +1,8 @@
+{
+  "status": "pre_inference_preparation_stop",
+  "reason": "Host free space below 10 GiB reserve before Seaborn worker creation",
+  "scored_model_calls": 0,
+  "completed_public_probe_ids": [
+    "astropy__astropy-12907"
+  ]
+}

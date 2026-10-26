@@ -1,0 +1,35 @@
+{
+    "total_instances": 1,
+    "submitted_instances": 1,
+    "completed_instances": 1,
+    "resolved_instances": 1,
+    "unresolved_instances": 0,
+    "infra_failure_instances": 0,
+    "ambiguous_failure_instances": 0,
+    "empty_patch_instances": 0,
+    "error_instances": 0,
+    "completed_ids": [
+        "scikit-learn__scikit-learn-14141"
+    ],
+    "incomplete_ids": [],
+    "empty_patch_ids": [],
+    "submitted_ids": [
+        "scikit-learn__scikit-learn-14141"
+    ],
+    "resolved_ids": [
+        "scikit-learn__scikit-learn-14141"
+    ],
+    "unresolved_ids": [],
+    "infra_failure_ids": [],
+    "ambiguous_failure_ids": [],
+    "failure_reasons": {},
+    "error_ids": [],
+    "schema_version": 2,
+    "unstopped_instances": 1,
+    "unstopped_containers": [
+        "sweb.eval.scikit-learn__scikit-learn-14141.ttgl-desktop-controls-001-gold-scikit-learn__scikit-learn-14141"
+    ],
+    "unremoved_images": [
+        "swebench/sweb.eval.x86_64.scikit-learn_1776_scikit-learn-14141:latest"
+    ]
+}

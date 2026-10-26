@@ -1,0 +1,10 @@
+{
+  "instance_id": "psf__requests-5414",
+  "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; python -m pytest -q tests/test_utils.py",
+  "returncode": 0,
+  "image_id": "sha256:ff5caf954ad336865c3614fa0157f383a8e80c40ec802625347d119e3e33965e",
+  "controls_record_sha256": "c867c3fc1ee763cae1747ea10f60e0cf448a01ac037135c2d12f0abbf1a431a9",
+  "ready": true,
+  "reason": "public_smoke_pass",
+  "stdout_sha256": "651dc5495e3eee61f31fb2afbae1b6713d9d6c97016ee1a53e82d77dbb006f26"
+}

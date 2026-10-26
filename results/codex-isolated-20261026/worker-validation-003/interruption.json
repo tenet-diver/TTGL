@@ -1,0 +1,8 @@
+{
+  "status": "pre_inference_preparation_stop",
+  "reason": "Astropy prepared image setup metadata rejected before source audit repair",
+  "scored_model_calls": 0,
+  "completed_public_probe_ids": [
+    "sympy__sympy-17139"
+  ]
+}

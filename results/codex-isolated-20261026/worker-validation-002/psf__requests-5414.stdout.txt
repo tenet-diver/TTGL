@@ -1,0 +1,167 @@
+..s..................................................................... [ 34%]
+........................................................................ [ 68%]
+...............................EEEEEEEE.............ssssssssss.....      [100%]
+==================================== ERRORS ====================================
+_ ERROR at setup of test_should_bypass_proxies_pass_only_hostname[http://172.16.1.1/-172.16.1.1] _
+file /testbed/tests/test_utils.py, line 654
+  @pytest.mark.parametrize(
+      'url, expected', (
+              ('http://172.16.1.1/', '172.16.1.1'),
+              ('http://172.16.1.1:5000/', '172.16.1.1'),
+              ('http://user:pass@172.16.1.1', '172.16.1.1'),
+              ('http://user:pass@172.16.1.1:5000', '172.16.1.1'),
+              ('http://hostname/', 'hostname'),
+              ('http://hostname:5000/', 'hostname'),
+              ('http://user:pass@hostname', 'hostname'),
+              ('http://user:pass@hostname:5000', 'hostname'),
+      ))
+  def test_should_bypass_proxies_pass_only_hostname(url, expected, mocker):
+E       fixture 'mocker' not found
+>       available fixtures: cache, capfd, capfdbinary, caplog, capsys, capsysbinary, doctest_namespace, httpbin, httpbin_secure, monkeypatch, nosan_server, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+
+/testbed/tests/test_utils.py:654
+_ ERROR at setup of test_should_bypass_proxies_pass_only_hostname[http://172.16.1.1:5000/-172.16.1.1] _
+file /testbed/tests/test_utils.py, line 654
+  @pytest.mark.parametrize(
+      'url, expected', (
+              ('http://172.16.1.1/', '172.16.1.1'),
+              ('http://172.16.1.1:5000/', '172.16.1.1'),
+              ('http://user:pass@172.16.1.1', '172.16.1.1'),
+              ('http://user:pass@172.16.1.1:5000', '172.16.1.1'),
+              ('http://hostname/', 'hostname'),
+              ('http://hostname:5000/', 'hostname'),
+              ('http://user:pass@hostname', 'hostname'),
+              ('http://user:pass@hostname:5000', 'hostname'),
+      ))
+  def test_should_bypass_proxies_pass_only_hostname(url, expected, mocker):
+E       fixture 'mocker' not found
+>       available fixtures: cache, capfd, capfdbinary, caplog, capsys, capsysbinary, doctest_namespace, httpbin, httpbin_secure, monkeypatch, nosan_server, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+
+/testbed/tests/test_utils.py:654
+_ ERROR at setup of test_should_bypass_proxies_pass_only_hostname[http://user:pass@172.16.1.1-172.16.1.1] _
+file /testbed/tests/test_utils.py, line 654
+  @pytest.mark.parametrize(
+      'url, expected', (
+              ('http://172.16.1.1/', '172.16.1.1'),
+              ('http://172.16.1.1:5000/', '172.16.1.1'),
+              ('http://user:pass@172.16.1.1', '172.16.1.1'),
+              ('http://user:pass@172.16.1.1:5000', '172.16.1.1'),
+              ('http://hostname/', 'hostname'),
+              ('http://hostname:5000/', 'hostname'),
+              ('http://user:pass@hostname', 'hostname'),
+              ('http://user:pass@hostname:5000', 'hostname'),
+      ))
+  def test_should_bypass_proxies_pass_only_hostname(url, expected, mocker):
+E       fixture 'mocker' not found
+>       available fixtures: cache, capfd, capfdbinary, caplog, capsys, capsysbinary, doctest_namespace, httpbin, httpbin_secure, monkeypatch, nosan_server, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+
+/testbed/tests/test_utils.py:654
+_ ERROR at setup of test_should_bypass_proxies_pass_only_hostname[http://user:pass@172.16.1.1:5000-172.16.1.1] _
+file /testbed/tests/test_utils.py, line 654
+  @pytest.mark.parametrize(
+      'url, expected', (
+              ('http://172.16.1.1/', '172.16.1.1'),
+              ('http://172.16.1.1:5000/', '172.16.1.1'),
+              ('http://user:pass@172.16.1.1', '172.16.1.1'),
+              ('http://user:pass@172.16.1.1:5000', '172.16.1.1'),
+              ('http://hostname/', 'hostname'),
+              ('http://hostname:5000/', 'hostname'),
+              ('http://user:pass@hostname', 'hostname'),
+              ('http://user:pass@hostname:5000', 'hostname'),
+      ))
+  def test_should_bypass_proxies_pass_only_hostname(url, expected, mocker):
+E       fixture 'mocker' not found
+>       available fixtures: cache, capfd, capfdbinary, caplog, capsys, capsysbinary, doctest_namespace, httpbin, httpbin_secure, monkeypatch, nosan_server, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+
+/testbed/tests/test_utils.py:654
+_ ERROR at setup of test_should_bypass_proxies_pass_only_hostname[http://hostname/-hostname] _
+file /testbed/tests/test_utils.py, line 654
+  @pytest.mark.parametrize(
+      'url, expected', (
+              ('http://172.16.1.1/', '172.16.1.1'),
+              ('http://172.16.1.1:5000/', '172.16.1.1'),
+              ('http://user:pass@172.16.1.1', '172.16.1.1'),
+              ('http://user:pass@172.16.1.1:5000', '172.16.1.1'),
+              ('http://hostname/', 'hostname'),
+              ('http://hostname:5000/', 'hostname'),
+              ('http://user:pass@hostname', 'hostname'),
+              ('http://user:pass@hostname:5000', 'hostname'),
+      ))
+  def test_should_bypass_proxies_pass_only_hostname(url, expected, mocker):
+E       fixture 'mocker' not found
+>       available fixtures: cache, capfd, capfdbinary, caplog, capsys, capsysbinary, doctest_namespace, httpbin, httpbin_secure, monkeypatch, nosan_server, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+
+/testbed/tests/test_utils.py:654
+_ ERROR at setup of test_should_bypass_proxies_pass_only_hostname[http://hostname:5000/-hostname] _
+file /testbed/tests/test_utils.py, line 654
+  @pytest.mark.parametrize(
+      'url, expected', (
+              ('http://172.16.1.1/', '172.16.1.1'),
+              ('http://172.16.1.1:5000/', '172.16.1.1'),
+              ('http://user:pass@172.16.1.1', '172.16.1.1'),
+              ('http://user:pass@172.16.1.1:5000', '172.16.1.1'),
+              ('http://hostname/', 'hostname'),
+              ('http://hostname:5000/', 'hostname'),
+              ('http://user:pass@hostname', 'hostname'),
+              ('http://user:pass@hostname:5000', 'hostname'),
+      ))
+  def test_should_bypass_proxies_pass_only_hostname(url, expected, mocker):
+E       fixture 'mocker' not found
+>       available fixtures: cache, capfd, capfdbinary, caplog, capsys, capsysbinary, doctest_namespace, httpbin, httpbin_secure, monkeypatch, nosan_server, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+
+/testbed/tests/test_utils.py:654
+_ ERROR at setup of test_should_bypass_proxies_pass_only_hostname[http://user:pass@hostname-hostname] _
+file /testbed/tests/test_utils.py, line 654
+  @pytest.mark.parametrize(
+      'url, expected', (
+              ('http://172.16.1.1/', '172.16.1.1'),
+              ('http://172.16.1.1:5000/', '172.16.1.1'),
+              ('http://user:pass@172.16.1.1', '172.16.1.1'),
+              ('http://user:pass@172.16.1.1:5000', '172.16.1.1'),
+              ('http://hostname/', 'hostname'),
+              ('http://hostname:5000/', 'hostname'),
+              ('http://user:pass@hostname', 'hostname'),
+              ('http://user:pass@hostname:5000', 'hostname'),
+      ))
+  def test_should_bypass_proxies_pass_only_hostname(url, expected, mocker):
+E       fixture 'mocker' not found
+>       available fixtures: cache, capfd, capfdbinary, caplog, capsys, capsysbinary, doctest_namespace, httpbin, httpbin_secure, monkeypatch, nosan_server, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+
+/testbed/tests/test_utils.py:654
+_ ERROR at setup of test_should_bypass_proxies_pass_only_hostname[http://user:pass@hostname:5000-hostname] _
+file /testbed/tests/test_utils.py, line 654
+  @pytest.mark.parametrize(
+      'url, expected', (
+              ('http://172.16.1.1/', '172.16.1.1'),
+              ('http://172.16.1.1:5000/', '172.16.1.1'),
+              ('http://user:pass@172.16.1.1', '172.16.1.1'),
+              ('http://user:pass@172.16.1.1:5000', '172.16.1.1'),
+              ('http://hostname/', 'hostname'),
+              ('http://hostname:5000/', 'hostname'),
+              ('http://user:pass@hostname', 'hostname'),
+              ('http://user:pass@hostname:5000', 'hostname'),
+      ))
+  def test_should_bypass_proxies_pass_only_hostname(url, expected, mocker):
+E       fixture 'mocker' not found
+>       available fixtures: cache, capfd, capfdbinary, caplog, capsys, capsysbinary, doctest_namespace, httpbin, httpbin_secure, monkeypatch, nosan_server, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+
+/testbed/tests/test_utils.py:654
+=========================== short test summary info ============================
+ERROR tests/test_utils.py::test_should_bypass_proxies_pass_only_hostname[http://172.16.1.1/-172.16.1.1]
+ERROR tests/test_utils.py::test_should_bypass_proxies_pass_only_hostname[http://172.16.1.1:5000/-172.16.1.1]
+ERROR tests/test_utils.py::test_should_bypass_proxies_pass_only_hostname[http://user:pass@172.16.1.1-172.16.1.1]
+ERROR tests/test_utils.py::test_should_bypass_proxies_pass_only_hostname[http://user:pass@172.16.1.1:5000-172.16.1.1]
+ERROR tests/test_utils.py::test_should_bypass_proxies_pass_only_hostname[http://hostname/-hostname]
+ERROR tests/test_utils.py::test_should_bypass_proxies_pass_only_hostname[http://hostname:5000/-hostname]
+ERROR tests/test_utils.py::test_should_bypass_proxies_pass_only_hostname[http://user:pass@hostname-hostname]
+ERROR tests/test_utils.py::test_should_bypass_proxies_pass_only_hostname[http://user:pass@hostname:5000-hostname]
+192 passed, 11 skipped, 8 errors in 1.59s
+
