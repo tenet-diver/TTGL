@@ -1,0 +1,28 @@
+diff --git a/sympy/simplify/fu.py b/sympy/simplify/fu.py
+index ad1130e..6cb9c8f 100644
+--- a/sympy/simplify/fu.py
++++ b/sympy/simplify/fu.py
+@@ -501,6 +501,11 @@ def _f(rv):
+         if not (rv.is_Pow and rv.base.func == f):
+             return rv
+ 
++        # Comparing a known non-real exponent with real bounds raises
++        # TypeError (e.g. cos(x)**I).
++        if rv.exp.is_real is False:
++            return rv
++
+         if (rv.exp < 0) == True:
+             return rv
+         if (rv.exp > max) == True:
+diff --git a/sympy/simplify/tests/test_fu.py b/sympy/simplify/tests/test_fu.py
+index 54be6e1..03bdae2 100644
+--- a/sympy/simplify/tests/test_fu.py
++++ b/sympy/simplify/tests/test_fu.py
+@@ -84,6 +84,7 @@ def test_TR5():
+ 
+ 
+ def test_TR6():
++    assert TR6(cos(x)**I) == cos(x)**I
+     assert TR6(cos(x)**2) == -sin(x)**2 + 1
+     assert TR6(cos(x)**-2) == cos(x)**(-2)
+     assert TR6(cos(x)**4) == (-sin(x)**2 + 1)**2

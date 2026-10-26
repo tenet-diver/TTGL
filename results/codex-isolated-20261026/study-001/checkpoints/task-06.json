@@ -1,0 +1,225 @@
+{
+  "status": "partial_complete_task_block",
+  "task_index": 6,
+  "total_tasks": 12,
+  "total_assignments": 72,
+  "not_a_full_study_conclusion": true,
+  "results": [
+    {
+      "condition": "small",
+      "instance_id": "sympy__sympy-17139",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 45.93881967198104,
+      "published_rate_scenario_usd": 0.005133479999999999,
+      "usage": {
+        "input_tokens": 154202,
+        "cached_input_tokens": 123008,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1568,
+        "reasoning_output_tokens": 352
+      },
+      "patch_sha256": "bfbfa81089e5437d7301371d847a9a83fb93153f77efff460d059db056889d85",
+      "official_report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 2,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 67,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "large",
+      "instance_id": "sympy__sympy-17139",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 346.77834186702967,
+      "published_rate_scenario_usd": 0.123572,
+      "usage": {
+        "input_tokens": 595833,
+        "cached_input_tokens": 578560,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3117,
+        "reasoning_output_tokens": 538
+      },
+      "patch_sha256": "b2fc5bc078e670d08ff8bd601048ea8c331f7869db6b11c14b73721e6bc0502f",
+      "official_report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 2,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 67,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "precall_router",
+      "instance_id": "sympy__sympy-17139",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 133.80542488000356,
+      "published_rate_scenario_usd": 0.12074168,
+      "usage": {
+        "input_tokens": 258384,
+        "cached_input_tokens": 208256,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2220,
+        "reasoning_output_tokens": 238
+      },
+      "patch_sha256": "b0c0924d825f418d785bbad10b38f0cdaaab93a2a7fc07b8ace6409229cae9b7",
+      "official_report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 2,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 67,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "oneway",
+      "instance_id": "sympy__sympy-17139",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 52.053361360915005,
+      "published_rate_scenario_usd": 0.00359266,
+      "usage": {
+        "input_tokens": 133759,
+        "cached_input_tokens": 116736,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1446,
+        "reasoning_output_tokens": 401
+      },
+      "patch_sha256": "81c2efd35e8a6b7ae2cd22b7ac13cf9ce236b5045f6af458f0b0c938975bbee2",
+      "official_report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 2,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 67,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "reset_expert",
+      "instance_id": "sympy__sympy-17139",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 66.18652030895464,
+      "published_rate_scenario_usd": 0.00356166,
+      "usage": {
+        "input_tokens": 126321,
+        "cached_input_tokens": 108416,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1374,
+        "reasoning_output_tokens": 443
+      },
+      "patch_sha256": "0ee8c51b7db687e7751bec9249a95fcc0ff9d03ecf20f2ff039dbd0cd8289704",
+      "official_report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 2,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 67,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "personal",
+      "instance_id": "sympy__sympy-17139",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 38.264244468999095,
+      "published_rate_scenario_usd": 0.00289526,
+      "usage": {
+        "input_tokens": 138866,
+        "cached_input_tokens": 130176,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1449,
+        "reasoning_output_tokens": 384
+      },
+      "patch_sha256": "cec67b3a37a51349b76deb6eceae068b72f7393f96d4eac8137e8aa7e802a116",
+      "official_report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 2,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 67,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    }
+  ]
+}

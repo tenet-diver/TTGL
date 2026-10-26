@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-precall_router-sympy__sympy-17139-b0c0924d-6791e0f3ed94",
+  "prediction_sha256": "c33b64460bd787b7f02c25d2216fbc37d27702a22a86819cf3e36aa26a726e48",
+  "model_patch_sha256": "b0c0924d825f418d785bbad10b38f0cdaaab93a2a7fc07b8ace6409229cae9b7",
+  "patch_record_sha256": "b1fa655111b636fa47eede4f653583de0d3ffc0dbd79d400e8644c4f6d486948",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "19a99afeb913aa03f7676ad157e498c778365e29b72672f3b67dd2913c5fe39f",
+  "timeout_seconds": 1200
+}

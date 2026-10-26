@@ -1,0 +1,10 @@
+{
+  "instance_id": "sympy__sympy-17139",
+  "model_name_or_path": "ttgl-personal",
+  "model_patch": "diff --git a/sympy/simplify/fu.py b/sympy/simplify/fu.py\nindex ad1130e..5b5bc10 100644\n--- a/sympy/simplify/fu.py\n+++ b/sympy/simplify/fu.py\n@@ -501,6 +501,10 @@ def _f(rv):\n         if not (rv.is_Pow and rv.base.func == f):\n             return rv\n \n+        # Ordering a known non-real exponent (e.g. I) against zero raises.\n+        if rv.exp.is_real is False:\n+            return rv\n+\n         if (rv.exp < 0) == True:\n             return rv\n         if (rv.exp > max) == True:\ndiff --git a/sympy/simplify/tests/test_fu.py b/sympy/simplify/tests/test_fu.py\nindex 54be6e1..e035b74 100644\n--- a/sympy/simplify/tests/test_fu.py\n+++ b/sympy/simplify/tests/test_fu.py\n@@ -1,5 +1,5 @@\n from sympy import (\n-    Add, Mul, S, Symbol, cos, cot, pi, I, sin, sqrt, tan, root, csc, sec,\n+    Add, Mul, S, Symbol, cos, cot, pi, I, sin, sqrt, tan, root, csc, sec, simplify,\n     powsimp, symbols, sinh, cosh, tanh, coth, sech, csch, Dummy)\n from sympy.simplify.fu import (\n     L, TR1, TR10, TR10i, TR11, TR12, TR12i, TR13, TR14, TR15, TR16,\n@@ -87,6 +87,7 @@ def test_TR6():\n     assert TR6(cos(x)**2) == -sin(x)**2 + 1\n     assert TR6(cos(x)**-2) == cos(x)**(-2)\n     assert TR6(cos(x)**4) == (-sin(x)**2 + 1)**2\n+    assert simplify(cos(x)**I) == cos(x)**I\n \n \n def test_TR7():\n",
+  "manifest_sha256": "b9f7ec3d0eceb79d83e58146861e97160ec0f20319faefe9f0697175b43ac005",
+  "patch_sha256": "cec67b3a37a51349b76deb6eceae068b72f7393f96d4eac8137e8aa7e802a116",
+  "status": "completed_ungraded",
+  "preparation_seconds": 15.57994016003795,
+  "assignment_wall_seconds": 57.380652006017044
+}

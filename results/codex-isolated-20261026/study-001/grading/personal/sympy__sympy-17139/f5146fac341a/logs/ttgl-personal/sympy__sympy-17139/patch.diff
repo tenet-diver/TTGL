@@ -1,0 +1,34 @@
+diff --git a/sympy/simplify/fu.py b/sympy/simplify/fu.py
+index ad1130e..5b5bc10 100644
+--- a/sympy/simplify/fu.py
++++ b/sympy/simplify/fu.py
+@@ -501,6 +501,10 @@ def _f(rv):
+         if not (rv.is_Pow and rv.base.func == f):
+             return rv
+ 
++        # Ordering a known non-real exponent (e.g. I) against zero raises.
++        if rv.exp.is_real is False:
++            return rv
++
+         if (rv.exp < 0) == True:
+             return rv
+         if (rv.exp > max) == True:
+diff --git a/sympy/simplify/tests/test_fu.py b/sympy/simplify/tests/test_fu.py
+index 54be6e1..e035b74 100644
+--- a/sympy/simplify/tests/test_fu.py
++++ b/sympy/simplify/tests/test_fu.py
+@@ -1,5 +1,5 @@
+ from sympy import (
+-    Add, Mul, S, Symbol, cos, cot, pi, I, sin, sqrt, tan, root, csc, sec,
++    Add, Mul, S, Symbol, cos, cot, pi, I, sin, sqrt, tan, root, csc, sec, simplify,
+     powsimp, symbols, sinh, cosh, tanh, coth, sech, csch, Dummy)
+ from sympy.simplify.fu import (
+     L, TR1, TR10, TR10i, TR11, TR12, TR12i, TR13, TR14, TR15, TR16,
+@@ -87,6 +87,7 @@ def test_TR6():
+     assert TR6(cos(x)**2) == -sin(x)**2 + 1
+     assert TR6(cos(x)**-2) == cos(x)**(-2)
+     assert TR6(cos(x)**4) == (-sin(x)**2 + 1)**2
++    assert simplify(cos(x)**I) == cos(x)**I
+ 
+ 
+ def test_TR7():

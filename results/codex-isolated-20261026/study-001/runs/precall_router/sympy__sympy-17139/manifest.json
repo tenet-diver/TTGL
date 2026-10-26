@@ -1,0 +1,114 @@
+{
+  "schema_version": 3,
+  "run_id": "c8cb8763-83ec-4846-aa41-c7ae90a8d19c",
+  "task_id": "sympy__sympy-17139",
+  "condition": "precall_router",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-26T21:26:27.756999+00:00",
+  "finished_at": "2026-10-26T21:28:41.658957+00:00",
+  "identity_sha256": "87f7fb50e8869af3b5187c84ac2e229852f55ecb9293b9c72dcfe3fea371ca95",
+  "config": {
+    "condition": "precall_router",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d"
+  },
+  "selected_model": "gpt-6.1-sol",
+  "turns": 2,
+  "expert_calls": 0,
+  "elapsed_seconds": 133.80542488000356,
+  "controller_thread_id": "01a17a1b-a4c1-75a3-82e8-95c45fd3aae6",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 258384,
+    "cached_input_tokens": 208256,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2220,
+    "reasoning_output_tokens": 238
+  },
+  "observed_usage_partial": {
+    "input_tokens": 258384,
+    "cached_input_tokens": 208256,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2220,
+    "reasoning_output_tokens": 238
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 21150,
+        "cached_input_tokens": 10368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 118,
+        "reasoning_output_tokens": 0
+      },
+      "observed_partial": {
+        "input_tokens": 21150,
+        "cached_input_tokens": 10368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 118,
+        "reasoning_output_tokens": 0
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    },
+    "gpt-6.1-sol": {
+      "usage": {
+        "input_tokens": 237234,
+        "cached_input_tokens": 197888,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2102,
+        "reasoning_output_tokens": 238
+      },
+      "observed_partial": {
+        "input_tokens": 237234,
+        "cached_input_tokens": 197888,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2102,
+        "reasoning_output_tokens": 238
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 3,
+  "failure_type": null,
+  "summary": "Fixed `_TR56` to check that exponents are real before ordering comparisons. Added regression coverage for complex sine/cosine powers. Verified `simplify(cos(x)**I)` returns unchanged. Repository tests: 97 passed, 3 expected failures. `git diff --check` passed. Pytest was unavailable; used SymPy’s test runner.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "37d16fd6fdca9b35ef5f4891730be74144485fa73fa74517a898d58a14a6d9ae",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

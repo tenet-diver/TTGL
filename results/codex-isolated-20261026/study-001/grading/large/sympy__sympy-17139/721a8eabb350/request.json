@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-large-sympy__sympy-17139-b2fc5bc0-721a8eabb350",
+  "prediction_sha256": "2e0e055723f15d9a8daecb31977526982f76a68b7d8789ceb023b71bb2cd8d73",
+  "model_patch_sha256": "b2fc5bc078e670d08ff8bd601048ea8c331f7869db6b11c14b73721e6bc0502f",
+  "patch_record_sha256": "82e697f6f482617ab49f3ea21045a0b5806c1cfe22e8612ac9a0ccc5aee8868f",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "19a99afeb913aa03f7676ad157e498c778365e29b72672f3b67dd2913c5fe39f",
+  "timeout_seconds": 1200
+}

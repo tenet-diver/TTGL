@@ -1,0 +1,10 @@
+{
+  "instance_id": "sympy__sympy-17139",
+  "model_name_or_path": "ttgl-small",
+  "model_patch": "diff --git a/sympy/simplify/fu.py b/sympy/simplify/fu.py\nindex ad1130e..448b359 100644\n--- a/sympy/simplify/fu.py\n+++ b/sympy/simplify/fu.py\n@@ -501,6 +501,12 @@ def _f(rv):\n         if not (rv.is_Pow and rv.base.func == f):\n             return rv\n \n+        # Comparing a known non-real exponent with real bounds raises\n+        # TypeError (e.g. I < 0). These power rewrites only apply to\n+        # real exponents, so leave other cases unchanged.\n+        if rv.exp.is_real is not True:\n+            return rv\n+\n         if (rv.exp < 0) == True:\n             return rv\n         if (rv.exp > max) == True:\ndiff --git a/sympy/simplify/tests/test_fu.py b/sympy/simplify/tests/test_fu.py\nindex 54be6e1..03bdae2 100644\n--- a/sympy/simplify/tests/test_fu.py\n+++ b/sympy/simplify/tests/test_fu.py\n@@ -84,6 +84,7 @@ def test_TR5():\n \n \n def test_TR6():\n+    assert TR6(cos(x)**I) == cos(x)**I\n     assert TR6(cos(x)**2) == -sin(x)**2 + 1\n     assert TR6(cos(x)**-2) == cos(x)**(-2)\n     assert TR6(cos(x)**4) == (-sin(x)**2 + 1)**2\ndiff --git a/sympy/simplify/tests/test_simplify.py b/sympy/simplify/tests/test_simplify.py\nindex 27fc527..3e71d7f 100644\n--- a/sympy/simplify/tests/test_simplify.py\n+++ b/sympy/simplify/tests/test_simplify.py\n@@ -158,6 +158,7 @@ def test_simplify_other():\n \n \n def test_simplify_complex():\n+    assert simplify(cos(x)**I) == cos(x)**I\n     cosAsExp = cos(x)._eval_rewrite_as_exp(x)\n     tanAsExp = tan(x)._eval_rewrite_as_exp(x)\n     assert simplify(cosAsExp*tanAsExp) == sin(x) # issue 4341\n",
+  "manifest_sha256": "2e88def925cd4b73dd0b572230aa52a5862931799b415448fcbc5450f8884ad1",
+  "patch_sha256": "bfbfa81089e5437d7301371d847a9a83fb93153f77efff460d059db056889d85",
+  "status": "completed_ungraded",
+  "preparation_seconds": 13.846168905962259,
+  "assignment_wall_seconds": 61.198855814989656
+}

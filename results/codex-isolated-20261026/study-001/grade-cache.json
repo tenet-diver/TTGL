@@ -98,5 +98,29 @@
   "f0c38075a44c0ed1dd11ebb5e84b47ae4cc3b43a16d33da39745c570273d4cdd": {
     "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/psf__requests-5414/758aee12de73/logs/ttgl-oneway/psf__requests-5414/report.json",
     "report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0"
+  },
+  "b05590120fdcef8629ced9be3dfeb079f419abf2697a19527fa35848011da548": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/sympy__sympy-17139/721a8eabb350/logs/ttgl-large/sympy__sympy-17139/report.json",
+    "report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a"
+  },
+  "6f799482c9d6d9b445efb064bb9b49b927a414f62be355d53fc3697095257250": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/personal/sympy__sympy-17139/f5146fac341a/logs/ttgl-personal/sympy__sympy-17139/report.json",
+    "report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a"
+  },
+  "644f545fedb21b89745081ab449a6335ba6327b4918031ab376b75ae5ff9dde6": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/precall_router/sympy__sympy-17139/6791e0f3ed94/logs/ttgl-precall_router/sympy__sympy-17139/report.json",
+    "report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a"
+  },
+  "e7053eadd2e0901f87cb38d5e3b85c8fe94a914dd3ff90659341b95bed7c2ab8": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/sympy__sympy-17139/0c274ac1939c/logs/ttgl-reset_expert/sympy__sympy-17139/report.json",
+    "report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a"
+  },
+  "2ac61dc8c8967ac9c30c710c73c38cf5cf59057ba9fd2cd42ccfeb6c01e4bebe": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/small/sympy__sympy-17139/019b4d963978/logs/ttgl-small/sympy__sympy-17139/report.json",
+    "report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a"
+  },
+  "35a5e2292c7f7480a867246c78aeee4fa36bbaddb1482c3bc354142eb3d71b01": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/sympy__sympy-17139/7d833febec61/logs/ttgl-oneway/sympy__sympy-17139/report.json",
+    "report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a"
   }
 }

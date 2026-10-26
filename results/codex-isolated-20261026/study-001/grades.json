@@ -4,41 +4,47 @@
     "django__django-13297": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/django__django-13297/f3a66933e694/logs/ttgl-reset_expert/django__django-13297/report.json",
     "pydata__xarray-3095": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/pydata__xarray-3095/223c0da8d056/logs/ttgl-reset_expert/pydata__xarray-3095/report.json",
     "django__django-15037": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/django__django-15037/6a5f3d305257/logs/ttgl-reset_expert/django__django-15037/report.json",
-    "psf__requests-5414": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/psf__requests-5414/90b4a5db28cd/logs/ttgl-reset_expert/psf__requests-5414/report.json"
+    "psf__requests-5414": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/psf__requests-5414/90b4a5db28cd/logs/ttgl-reset_expert/psf__requests-5414/report.json",
+    "sympy__sympy-17139": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/sympy__sympy-17139/0c274ac1939c/logs/ttgl-reset_expert/sympy__sympy-17139/report.json"
   },
   "large": {
     "scikit-learn__scikit-learn-14141": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/scikit-learn__scikit-learn-14141/9bffe065f1d0/logs/ttgl-large/scikit-learn__scikit-learn-14141/report.json",
     "django__django-13297": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/django__django-13297/dec33f3eb37d/logs/ttgl-large/django__django-13297/report.json",
     "pydata__xarray-3095": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/pydata__xarray-3095/9704a3ec17d4/logs/ttgl-large/pydata__xarray-3095/report.json",
     "django__django-15037": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/django__django-15037/9d04de6f8cec/logs/ttgl-large/django__django-15037/report.json",
-    "psf__requests-5414": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/psf__requests-5414/f5c17d0e5321/logs/ttgl-large/psf__requests-5414/report.json"
+    "psf__requests-5414": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/psf__requests-5414/f5c17d0e5321/logs/ttgl-large/psf__requests-5414/report.json",
+    "sympy__sympy-17139": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/sympy__sympy-17139/721a8eabb350/logs/ttgl-large/sympy__sympy-17139/report.json"
   },
   "precall_router": {
     "scikit-learn__scikit-learn-14141": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/scikit-learn__scikit-learn-14141/975cab3b4c2f/logs/ttgl-reset_expert/scikit-learn__scikit-learn-14141/report.json",
     "django__django-13297": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/precall_router/django__django-13297/f26b8998e554/logs/ttgl-precall_router/django__django-13297/report.json",
     "pydata__xarray-3095": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/precall_router/pydata__xarray-3095/e98d51e66110/logs/ttgl-precall_router/pydata__xarray-3095/report.json",
     "django__django-15037": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/precall_router/django__django-15037/f0a57f05f479/logs/ttgl-precall_router/django__django-15037/report.json",
-    "psf__requests-5414": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/psf__requests-5414/758aee12de73/logs/ttgl-oneway/psf__requests-5414/report.json"
+    "psf__requests-5414": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/psf__requests-5414/758aee12de73/logs/ttgl-oneway/psf__requests-5414/report.json",
+    "sympy__sympy-17139": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/precall_router/sympy__sympy-17139/6791e0f3ed94/logs/ttgl-precall_router/sympy__sympy-17139/report.json"
   },
   "oneway": {
     "scikit-learn__scikit-learn-14141": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/scikit-learn__scikit-learn-14141/975cab3b4c2f/logs/ttgl-reset_expert/scikit-learn__scikit-learn-14141/report.json",
     "django__django-13297": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/django__django-13297/b5b3a7a36757/logs/ttgl-oneway/django__django-13297/report.json",
     "pydata__xarray-3095": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/pydata__xarray-3095/4d26d1b00cb1/logs/ttgl-oneway/pydata__xarray-3095/report.json",
     "django__django-15037": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/django__django-15037/3a617235b1af/logs/ttgl-oneway/django__django-15037/report.json",
-    "psf__requests-5414": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/psf__requests-5414/758aee12de73/logs/ttgl-oneway/psf__requests-5414/report.json"
+    "psf__requests-5414": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/psf__requests-5414/758aee12de73/logs/ttgl-oneway/psf__requests-5414/report.json",
+    "sympy__sympy-17139": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/sympy__sympy-17139/7d833febec61/logs/ttgl-oneway/sympy__sympy-17139/report.json"
   },
   "small": {
     "scikit-learn__scikit-learn-14141": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/scikit-learn__scikit-learn-14141/975cab3b4c2f/logs/ttgl-reset_expert/scikit-learn__scikit-learn-14141/report.json",
     "django__django-13297": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/small/django__django-13297/df7b6d0b33ac/logs/ttgl-small/django__django-13297/report.json",
     "pydata__xarray-3095": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/small/pydata__xarray-3095/13ac06c45ef4/logs/ttgl-small/pydata__xarray-3095/report.json",
     "django__django-15037": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/small/django__django-15037/b8d1b785c903/logs/ttgl-small/django__django-15037/report.json",
-    "psf__requests-5414": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/small/psf__requests-5414/b1ba3f9306a7/logs/ttgl-small/psf__requests-5414/report.json"
+    "psf__requests-5414": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/small/psf__requests-5414/b1ba3f9306a7/logs/ttgl-small/psf__requests-5414/report.json",
+    "sympy__sympy-17139": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/small/sympy__sympy-17139/019b4d963978/logs/ttgl-small/sympy__sympy-17139/report.json"
   },
   "personal": {
     "scikit-learn__scikit-learn-14141": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/scikit-learn__scikit-learn-14141/975cab3b4c2f/logs/ttgl-reset_expert/scikit-learn__scikit-learn-14141/report.json",
     "django__django-13297": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/personal/django__django-13297/fa7ad6e22d21/logs/ttgl-personal/django__django-13297/report.json",
     "pydata__xarray-3095": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/personal/pydata__xarray-3095/fd86b88e80ee/logs/ttgl-personal/pydata__xarray-3095/report.json",
     "django__django-15037": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/personal/django__django-15037/e77ff42a8756/logs/ttgl-personal/django__django-15037/report.json",
-    "psf__requests-5414": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/personal/psf__requests-5414/24f188ede185/logs/ttgl-personal/psf__requests-5414/report.json"
+    "psf__requests-5414": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/personal/psf__requests-5414/24f188ede185/logs/ttgl-personal/psf__requests-5414/report.json",
+    "sympy__sympy-17139": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/personal/sympy__sympy-17139/f5146fac341a/logs/ttgl-personal/sympy__sympy-17139/report.json"
   }
 }

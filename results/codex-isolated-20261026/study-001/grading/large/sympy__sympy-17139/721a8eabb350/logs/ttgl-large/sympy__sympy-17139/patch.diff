@@ -1,0 +1,49 @@
+diff --git a/sympy/simplify/fu.py b/sympy/simplify/fu.py
+index ad1130e..0a34075 100644
+--- a/sympy/simplify/fu.py
++++ b/sympy/simplify/fu.py
+@@ -501,6 +501,9 @@ def _f(rv):
+         if not (rv.is_Pow and rv.base.func == f):
+             return rv
+ 
++        # Only real exponents can be compared with the bounds below.
++        if not rv.exp.is_real:
++            return rv
+         if (rv.exp < 0) == True:
+             return rv
+         if (rv.exp > max) == True:
+diff --git a/sympy/simplify/tests/test_fu.py b/sympy/simplify/tests/test_fu.py
+index 54be6e1..0fbfaec 100644
+--- a/sympy/simplify/tests/test_fu.py
++++ b/sympy/simplify/tests/test_fu.py
+@@ -77,6 +77,14 @@ def test__TR56():
+     assert T(sin(x)**8, sin, cos, h, 10, True) == (-cos(x)**2 + 1)**4
+ 
+ 
++def test_TR56_nonreal_exponents():
++    for transform, func in ((TR5, sin), (TR6, cos)):
++        for exponent in (I, 1 + I, x, Symbol('z', real=False)):
++            expr = func(x)**exponent
++            assert transform(expr) == expr
++            assert transform(expr, pow=True) == expr
++
++
+ def test_TR5():
+     assert TR5(sin(x)**2) == -cos(x)**2 + 1
+     assert TR5(sin(x)**-2) == sin(x)**(-2)
+diff --git a/sympy/simplify/tests/test_simplify.py b/sympy/simplify/tests/test_simplify.py
+index 27fc527..c25aa34 100644
+--- a/sympy/simplify/tests/test_simplify.py
++++ b/sympy/simplify/tests/test_simplify.py
+@@ -158,6 +158,11 @@ def test_simplify_other():
+ 
+ 
+ def test_simplify_complex():
++    for func in (sin, cos):
++        for exponent in (I, 1 + I):
++            expr = func(x)**exponent
++            assert simplify(expr) == expr
++
+     cosAsExp = cos(x)._eval_rewrite_as_exp(x)
+     tanAsExp = tan(x)._eval_rewrite_as_exp(x)
+     assert simplify(cosAsExp*tanAsExp) == sin(x) # issue 4341

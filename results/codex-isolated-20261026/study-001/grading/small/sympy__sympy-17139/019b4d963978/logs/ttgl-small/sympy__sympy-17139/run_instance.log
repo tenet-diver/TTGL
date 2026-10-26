@@ -1,0 +1,86 @@
+2026-10-26 21:55:23,514 - INFO - Creating container for sympy__sympy-17139...
+2026-10-26 21:55:23,675 - INFO - Container for sympy__sympy-17139 created: 40aa8b570392e8574f9a4466161546e803bc63e41153a567028ba11a51737c50
+2026-10-26 21:55:24,289 - INFO - Container for sympy__sympy-17139 started: 40aa8b570392e8574f9a4466161546e803bc63e41153a567028ba11a51737c50
+2026-10-26 21:55:24,308 - INFO - Intermediate patch for sympy__sympy-17139 written to logs/evaluation/ttgl-small-sympy__sympy-17139-bfbfa810-019b4d963978/ttgl-small/sympy__sympy-17139/patch.diff, now applying to container...
+2026-10-26 21:55:24,986 - INFO - >>>>> Applied Patch:
+Checking patch sympy/simplify/fu.py...
+warning: sympy/simplify/fu.py has type 100755, expected 100644
+Checking patch sympy/simplify/tests/test_fu.py...
+warning: sympy/simplify/tests/test_fu.py has type 100755, expected 100644
+Checking patch sympy/simplify/tests/test_simplify.py...
+warning: sympy/simplify/tests/test_simplify.py has type 100755, expected 100644
+Applied patch sympy/simplify/fu.py cleanly.
+Applied patch sympy/simplify/tests/test_fu.py cleanly.
+Applied patch sympy/simplify/tests/test_simplify.py cleanly.
+
+2026-10-26 21:55:26,247 - INFO - Git diff before:
+diff --git a/sympy/simplify/fu.py b/sympy/simplify/fu.py
+index ad1130ef9..448b35923 100755
+--- a/sympy/simplify/fu.py
++++ b/sympy/simplify/fu.py
+@@ -501,6 +501,12 @@ def _f(rv):
+         if not (rv.is_Pow and rv.base.func == f):
+             return rv
+ 
++        # Comparing a known non-real exponent with real bounds raises
++        # TypeError (e.g. I < 0). These power rewrites only apply to
++        # real exponents, so leave other cases unchanged.
++        if rv.exp.is_real is not True:
++            return rv
++
+         if (rv.exp < 0) == True:
+             return rv
+         if (rv.exp > max) == True:
+diff --git a/sympy/simplify/tests/test_fu.py b/sympy/simplify/tests/test_fu.py
+index 54be6e1dc..03bdae230 100755
+--- a/sympy/simplify/tests/test_fu.py
++++ b/sympy/simplify/tests/test_fu.py
+@@ -84,6 +84,7 @@ def test_TR5():
+ 
+ 
+ def test_TR6():
++    assert TR6(cos(x)**I) == cos(x)**I
+     assert TR6(cos(x)**2) == -sin(x)**2 + 1
+     assert TR6(cos(x)**-2) == cos(x)**(-2)
+     assert TR6(cos(x)**4) == (-sin(x)**2 + 1)**2
+diff --git a/sympy/simplify/tests/test_simplify.py b/sympy/simplify/tests/test_simplify.py
+index 27fc5270e..3e71d7f24 100755
+--- a/sympy/simplify/tests/test_simplify.py
++++ b/sympy/simplify/tests/test_simplify.py
+@@ -158,6 +158,7 @@ def test_simplify_other():
+ 
+ 
+ def test_simplify_complex():
++    assert simplify(cos(x)**I) == cos(x)**I
+     cosAsExp = cos(x)._eval_rewrite_as_exp(x)
+     tanAsExp = tan(x)._eval_rewrite_as_exp(x)
+     assert simplify(cosAsExp*tanAsExp) == sin(x) # issue 4341
+2026-10-26 21:55:26,263 - INFO - Eval script for sympy__sympy-17139 written to logs/evaluation/ttgl-small-sympy__sympy-17139-bfbfa810-019b4d963978/ttgl-small/sympy__sympy-17139/eval.sh; copying to container...
+2026-10-26 22:04:38,845 - INFO - Test runtime: 552.12 seconds
+2026-10-26 22:04:38,873 - INFO - Test output for sympy__sympy-17139 written to logs/evaluation/ttgl-small-sympy__sympy-17139-bfbfa810-019b4d963978/ttgl-small/sympy__sympy-17139/test_output.txt
+2026-10-26 22:04:39,139 - INFO - Git diff after:
+diff --git a/sympy/simplify/fu.py b/sympy/simplify/fu.py
+index ad1130ef9..448b35923 100755
+--- a/sympy/simplify/fu.py
++++ b/sympy/simplify/fu.py
+@@ -501,6 +501,12 @@ def _f(rv):
+         if not (rv.is_Pow and rv.base.func == f):
+             return rv
+ 
++        # Comparing a known non-real exponent with real bounds raises
++        # TypeError (e.g. I < 0). These power rewrites only apply to
++        # real exponents, so leave other cases unchanged.
++        if rv.exp.is_real is not True:
++            return rv
++
+         if (rv.exp < 0) == True:
+             return rv
+         if (rv.exp > max) == True:
+2026-10-26 22:04:39,142 - INFO - Git diff changed after running eval script
+2026-10-26 22:04:39,146 - INFO - Grading answer for sympy__sympy-17139...
+2026-10-26 22:04:39,197 - INFO - report: {'sympy__sympy-17139': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': True, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': ['test__TR56', 'test_issue_17137'], 'failure': []}, 'PASS_TO_PASS': {'success': ['test_TR1', 'test_TR2', 'test_TR2i', 'test_TR3', 'test_TR5', 'test_TR6', 'test_TR7', 'test_TR8', 'test_TR9', 'test_TR10', 'test_TR10i', 'test_TR11', 'test_TR12', 'test_TR13', 'test_L', 'test_fu', 'test_objective', 'test_process_common_addends', 'test_trig_split', 'test_TRmorrie', 'test_TRpower', 'test_hyper_as_trig', 'test_TR12i', 'test_TR14', 'test_TR15_16_17', 'test_issue_7263', 'test_simplify_expr', 'test_issue_3557', 'test_simplify_other', 'test_simplify_complex', 'test_simplify_ratio', 'test_simplify_measure', 'test_simplify_rational', 'test_simplify_issue_1308', 'test_issue_5652', 'test_simplify_fail1', 'test_nthroot', 'test_nthroot1', 'test_separatevars', 'test_separatevars_advanced_factor', 'test_hypersimp', 'test_nsimplify', 'test_issue_9448', 'test_extract_minus_sign', 'test_diff', 'test_logcombine_1', 'test_logcombine_complex_coeff', 'test_issue_5950', 'test_posify', 'test_issue_4194', 'test_as_content_primitive', 'test_signsimp', 'test_besselsimp', 'test_Piecewise', 'test_polymorphism', 'test_issue_from_PR1599', 'test_issue_6811', 'test_issue_6920', 'test_issue_7001', 'test_inequality_no_auto_simplify', 'test_issue_9398', 'test_issue_9324_simplify', 'test_issue_13474', 'test_simplify_function_inverse', 'test_clear_coefficients', 'test_nc_simplify', 'test_issue_15965'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for sympy__sympy-17139: resolved: True
+2026-10-26 22:04:39,217 - INFO - Attempting to stop container sweb.eval.sympy__sympy-17139.ttgl-small-sympy__sympy-17139-bfbfa810-019b4d963978...
+2026-10-26 22:04:54,705 - INFO - Container sweb.eval.sympy__sympy-17139.ttgl-small-sympy__sympy-17139-bfbfa810-019b4d963978 stopped successfully.
+2026-10-26 22:04:54,708 - INFO - Attempting to remove container sweb.eval.sympy__sympy-17139.ttgl-small-sympy__sympy-17139-bfbfa810-019b4d963978...
+2026-10-26 22:04:54,852 - INFO - Container sweb.eval.sympy__sympy-17139.ttgl-small-sympy__sympy-17139-bfbfa810-019b4d963978 removed successfully.

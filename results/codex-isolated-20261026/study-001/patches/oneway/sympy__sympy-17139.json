@@ -1,0 +1,10 @@
+{
+  "instance_id": "sympy__sympy-17139",
+  "model_name_or_path": "ttgl-oneway",
+  "model_patch": "diff --git a/sympy/simplify/fu.py b/sympy/simplify/fu.py\nindex ad1130e..6cb9c8f 100644\n--- a/sympy/simplify/fu.py\n+++ b/sympy/simplify/fu.py\n@@ -501,6 +501,11 @@ def _f(rv):\n         if not (rv.is_Pow and rv.base.func == f):\n             return rv\n \n+        # Comparing a known non-real exponent with real bounds raises\n+        # TypeError (e.g. cos(x)**I).\n+        if rv.exp.is_real is False:\n+            return rv\n+\n         if (rv.exp < 0) == True:\n             return rv\n         if (rv.exp > max) == True:\ndiff --git a/sympy/simplify/tests/test_fu.py b/sympy/simplify/tests/test_fu.py\nindex 54be6e1..03bdae2 100644\n--- a/sympy/simplify/tests/test_fu.py\n+++ b/sympy/simplify/tests/test_fu.py\n@@ -84,6 +84,7 @@ def test_TR5():\n \n \n def test_TR6():\n+    assert TR6(cos(x)**I) == cos(x)**I\n     assert TR6(cos(x)**2) == -sin(x)**2 + 1\n     assert TR6(cos(x)**-2) == cos(x)**(-2)\n     assert TR6(cos(x)**4) == (-sin(x)**2 + 1)**2\n",
+  "manifest_sha256": "41ad472ce50d1a0558b072035f3dfdbd08cedef85000fc4340ac804a7193941d",
+  "patch_sha256": "81c2efd35e8a6b7ae2cd22b7ac13cf9ce236b5045f6af458f0b0c938975bbee2",
+  "status": "completed_ungraded",
+  "preparation_seconds": 14.403183671995066,
+  "assignment_wall_seconds": 67.8870029959362
+}

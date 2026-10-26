@@ -1,0 +1,44 @@
+diff --git a/sympy/simplify/fu.py b/sympy/simplify/fu.py
+index ad1130e..e6ea2cf 100644
+--- a/sympy/simplify/fu.py
++++ b/sympy/simplify/fu.py
+@@ -498,7 +498,7 @@ def _f(rv):
+         # or only those expressible as powers of 2. Also, should it only
+         # make the changes in powers that appear in sums -- making an isolated
+         # change is not going to allow a simplification as far as I can tell.
+-        if not (rv.is_Pow and rv.base.func == f):
++        if not (rv.is_Pow and rv.base.func == f and rv.exp.is_real):
+             return rv
+ 
+         if (rv.exp < 0) == True:
+diff --git a/sympy/simplify/tests/test_fu.py b/sympy/simplify/tests/test_fu.py
+index 54be6e1..03f9d6b 100644
+--- a/sympy/simplify/tests/test_fu.py
++++ b/sympy/simplify/tests/test_fu.py
+@@ -70,6 +70,11 @@ def test_TR3():
+ 
+ def test__TR56():
+     h = lambda x: 1 - x
++    for exponent in (I, 1 + I, x):
++        for f, g in ((sin, cos), (cos, sin)):
++            expr = f(x)**exponent
++            assert T(expr, f, g, h, 4, False) == expr
++            assert T(expr, f, g, h, 4, True) == expr
+     assert T(sin(x)**3, sin, cos, h, 4, False) == sin(x)**3
+     assert T(sin(x)**10, sin, cos, h, 4, False) == sin(x)**10
+     assert T(sin(x)**6, sin, cos, h, 6, False) == (-cos(x)**2 + 1)**3
+diff --git a/sympy/simplify/tests/test_simplify.py b/sympy/simplify/tests/test_simplify.py
+index 27fc527..47e02d6 100644
+--- a/sympy/simplify/tests/test_simplify.py
++++ b/sympy/simplify/tests/test_simplify.py
+@@ -815,3 +815,10 @@ def test_issue_7971():
+     z = Integral(x, (x, 1, 1))
+     assert z != 0
+     assert simplify(z) is S.Zero
++
++
++def test_simplify_trig_complex_power():
++    for f in (sin, cos):
++        for exponent in (I, 1 + I):
++            expr = f(x)**exponent
++            assert simplify(expr) == expr
