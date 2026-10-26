@@ -47,6 +47,8 @@ def compare(records, *, policy, reference='large', seed=1729, samples=10000):
                                        reference_successes-both_successful+1))
                          if both_successful else 0.) if reference_successes else None
     return {'policy': policy, 'reference': reference, 'paired_tasks': len(tasks),
+        'interpretation': 'Descriptive matched-panel comparison; not a powered population noninferiority test',
+        'population_noninferiority_established': False,
         'policy_resolved': int(p.sum()), 'reference_resolved': int(r.sum()),
         'reference_successes_lost': int(((r == 1) & (p == 0)).sum()),
         'reference_failures_rescued': int(((r == 0) & (p == 1)).sum()),
