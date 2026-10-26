@@ -1,0 +1,8 @@
+{
+  "run_id": "ttgl-control-scikit-learn__scikit-learn-14141-94059e93-a0361610b9d6",
+  "prediction_sha256": "6d180c7326cf411a6aa8bbe31f8062ccbcd77a2135afc97a29b1eaa02483607f",
+  "model_patch_sha256": "94059e9373339b225761696fc698884cfd084d3c1ca60272f4ef3616f2c88cfa",
+  "patch_record_sha256": "e39bbf8a94d369e9120288be78c4f64ad91330851252dc27be032623a4d1f593",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "cd987b79a275a679fa1f099a8f7d28b2e1e7ee2d6c457e5359413cf86016a166"
+}

@@ -12,21 +12,22 @@ import sys
 import tempfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
-from ttgl import benchmark, isolated
+from ttgl import benchmark, isolated, evaluation
 
 
 def sources():
-    paths = [Path(__file__), Path(isolated.__file__), isolated.SERVER,
+    paths = [Path(__file__), Path(isolated.__file__), Path(evaluation.__file__), isolated.SERVER,
              isolated.SERVER.parent / 'package-lock.json']
     return {str(p.relative_to(isolated.ROOT)): benchmark.digest(p) for p in paths}
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=['init', 'preflight', 'run'])
+    parser.add_argument('command', choices=['init', 'preflight', 'run', 'grade'])
     parser.add_argument('--study-dir', type=Path, required=True)
     parser.add_argument('--controls', type=Path)
     parser.add_argument('--worker-validation', type=Path)
+    parser.add_argument('--private-root', type=Path)
     parser.add_argument('--tasks', type=Path, default=Path('experiments/swe-bench-verified-001/tasks.json'))
     parser.add_argument('--workspace-root', type=Path)
     parser.add_argument('--small-model', default='gpt-6-luna')
@@ -35,9 +36,10 @@ def main():
     args = parser.parse_args()
     study = args.study_dir.resolve()
     if args.command == 'init':
-        if not args.controls or not args.workspace_root or not args.worker_validation:
-            parser.error('init requires --controls, --worker-validation and --workspace-root')
+        if not args.controls or not args.workspace_root or not args.worker_validation or not args.private_root:
+            parser.error('init requires --controls, --worker-validation, --private-root and --workspace-root')
         controls = json.loads((args.controls / 'summary.json').read_text())
+        control_protocol = json.loads((args.controls / 'protocol.json').read_text())
         panel = benchmark.read_tasks(args.tasks)
         lookup = {r['instance_id']: r for r in controls['tasks']}
         workers = json.loads(args.worker_validation.read_text())
@@ -55,6 +57,18 @@ def main():
                     and readiness[r['instance_id']]['ready']]
         if not eligible:
             raise ValueError('No valid evaluator environment; do not spend model quota')
+        private = args.private_root.resolve()
+        original_dataset = private / 'selected.dataset.json'
+        if benchmark.digest(original_dataset) != control_protocol['private_dataset_sha256']:
+            raise ValueError('Private dataset differs from the official controls')
+        # Pin only the image reference in an independent copy; official tests,
+        # patches and evaluation scripts remain byte-identical field values.
+        private_rows = json.loads(original_dataset.read_text())
+        selected_ids = {r['instance_id'] for r in eligible}
+        grade_rows = [dict(row, image=lookup[row['instance_id']]['image']['image_id'])
+                      for row in private_rows if row['instance_id'] in selected_ids]
+        grade_dataset = private / ('study-' + study.name + '-' + benchmark.digest(args.tasks)[:8] + '.dataset.json')
+        benchmark.write_new(grade_dataset, grade_rows)
         filtered = {**panel, 'tasks': eligible}
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / 'tasks.json'
@@ -67,6 +81,11 @@ def main():
         environment = {
             'schema_version': 1, 'source_sha256': sources(),
             'backend': isolated.ContainerBackend().describe(),
+            'private_evaluator_root': str(private),
+            'private_grading_dataset': str(grade_dataset),
+            'private_grading_dataset_sha256': benchmark.digest(grade_dataset),
+            'original_private_dataset_sha256': benchmark.digest(original_dataset),
+            'evaluator_image_id': control_protocol['evaluator_image_id'],
             'original_tasks_sha256': benchmark.digest(args.tasks),
             'controls_summary_sha256': benchmark.digest(args.controls / 'summary.json'),
             'worker_validation_sha256': benchmark.digest(args.worker_validation),
@@ -95,8 +114,21 @@ def main():
     if args.command == 'preflight':
         print(json.dumps(benchmark.preflight(study, backend=backend)))
     else:
+        dataset = Path(environment['private_grading_dataset'])
+        if benchmark.digest(dataset) != environment['private_grading_dataset_sha256']:
+            raise ValueError('Frozen grading dataset changed')
+        grader = evaluation.OfficialEvaluator(study, Path(environment['private_evaluator_root']),
+                                              environment['evaluator_image_id'], dataset)
+        if args.command == 'grade':
+            design, _ = benchmark.load_design(study)
+            for assignment in design['assignment_order']:
+                arm, key = assignment['arm'], assignment['instance_id']
+                if (study / 'patches' / arm / (key + '.json')).exists():
+                    grader(arm, key)
+            return
         workers = isolated.DockerWorkers(backend, environment['images'], study / 'environments')
-        benchmark.run_study(study, resume=args.resume, backend=backend, worker_runtime=workers)
+        benchmark.run_study(study, resume=args.resume, backend=backend, worker_runtime=workers,
+                            assignment_callback=grader)
 
 
 if __name__ == '__main__':

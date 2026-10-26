@@ -57,6 +57,26 @@ def test_freeze_rejects_mutations_and_preserves_balanced_assignments(task_manife
         benchmark.initialize(task_manifest, study, workspaces, small_model="small", large_model="large")
 
 
+def test_task_blocks_finish_all_conditions_and_reproduce_seed(task_manifest, tmp_path):
+    data = json.loads(task_manifest.read_text())
+    first = data['tasks'][0]
+    data['tasks'] = [dict(first, instance_id=f'example__project-{i}') for i in range(3)]
+    task_manifest.write_text(json.dumps(data))
+    orders = []
+    for i, seed in enumerate((1729, 1729, 1730)):
+        design = benchmark.initialize(task_manifest, tmp_path / f'study-{i}',
+                                      tmp_path / f'workers-{i}', small_model='small',
+                                      large_model='large', assignment_ordering='task_blocked', seed=seed)
+        order = design['assignment_order']
+        for j, task in enumerate(data['tasks']):
+            block = order[j*6:(j+1)*6]
+            assert {row['instance_id'] for row in block} == {task['instance_id']}
+            assert {row['arm'] for row in block} == set(benchmark.ARMS)
+        orders.append(order)
+    assert orders[0] == orders[1]
+    assert orders[0] != orders[2]
+
+
 @pytest.mark.parametrize("value", ["../escape", "/absolute", "a/b", "--option"])
 def test_rejects_unsafe_task_ids(task_manifest, value):
     data = json.loads(task_manifest.read_text())

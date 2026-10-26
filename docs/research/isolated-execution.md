@@ -53,13 +53,24 @@ predictions, or harness grading logic.
    records failures, and makes no model calls.
 6. Freeze a new study with `scripts/run_isolated_swe.py init --controls CONTROLS
    --worker-validation NEW_VALIDATION/summary.json --study-dir NEW_STUDY
-   --workspace-root NEW_WORKERS`, then use its `preflight`
+   --private-root PRIVATE --workspace-root NEW_WORKERS`, then use its `preflight`
    and `run` commands. Defaults retain Luna, Sol, medium reasoning, all six
    conditions and the original 900-second assignment budget.
 7. Grade each exported condition with the same official harness, preserving
    original reports and exact patch joins. Analyze using
    `scripts/run_swe_bench.py analyze` and collect finalized thread estimates
    using `scripts/collect_codex_usage.py`.
+
+The isolated `run` command grades each completed assignment immediately after
+closing its worker, while the pinned task image is still cached. This avoids
+another panel of image downloads. The evaluator receives a private dataset copy
+that changes only the image reference to the exact validated image ID; its test
+and reference fields are unchanged. Original and copied dataset hashes are
+recorded. Native evaluator reports are copied into the study and joined through
+the existing strict patch-hash importer. Explicit infrastructure failures stop
+the run and remain ungraded. The `grade` command can grade retained predictions
+without new model inference; use it to reconcile a grading interruption before
+resuming generation.
 
 The study separately freezes adapter, MCP server, dependency lock and driver
 hashes, worker image IDs/digests and control eligibility. It records environment

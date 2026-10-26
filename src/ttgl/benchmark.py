@@ -207,7 +207,8 @@ def export_patch(task: dict, workspace: Path) -> str:
     return git(workspace, "diff", "--binary", "--no-ext-diff", task["base_commit"], "--", ".")
 
 
-def run_study(study: Path, *, resume: bool = False, backend=None, worker_runtime=None) -> None:
+def run_study(study: Path, *, resume: bool = False, backend=None, worker_runtime=None,
+              assignment_callback=None) -> None:
     study = study.resolve()
     design, data = load_design(study)
     preflight_path = study / "preflight.json"
@@ -270,6 +271,8 @@ def run_study(study: Path, *, resume: bool = False, backend=None, worker_runtime
                 worker_runtime.close()
             if any(manifest["usage"].get(key) is None for key in ("input_tokens", "cached_input_tokens", "output_tokens")):
                 raise RuntimeError("Assigned trial has incomplete metering; artifacts retained. Reconcile before continuing.")
+            if assignment_callback is not None:
+                assignment_callback(arm, task_id)
         export_predictions(study, design)
 
 

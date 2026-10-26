@@ -1,0 +1,6 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-14141",
+  "model_name_or_path": "ttgl-grading-mechanism-no-fix-control",
+  "model_patch": "diff --git a/.ttgl_control b/.ttgl_control\nnew file mode 100644\nindex 0000000..85c3040\n--- /dev/null\n+++ b/.ttgl_control\n@@ -0,0 +1 @@\n+base control\n",
+  "patch_sha256": "94059e9373339b225761696fc698884cfd084d3c1ca60272f4ef3616f2c88cfa"
+}

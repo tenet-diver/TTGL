@@ -1,14 +1,2 @@
-# Markdown hard breaks and standard CSV CRLF are intentional.
-*.md whitespace=-blank-at-eol
-*.csv whitespace=cr-at-eol
-# Preserve generated research figures exactly as recorded by their hashes.
-results/**/*.svg -whitespace
-docs/thesis/figures/*.svg -whitespace
-
-# Submission patches preserve upstream whitespace as experimental evidence.
-*.patch -whitespace
-docs/paper/figures/*.svg -whitespace
-# Preserve generated documents and hashed evaluator transcripts byte-for-byte.
-docs/paper/paper.html -whitespace
-experiments/codex-pilot-001/**/stdout.txt -whitespace
-experiments/codex-pilot-001/**/junit.xml -whitespace
+# Preserve original evaluator logs and scripts byte-for-byte, including whitespace.
+results/codex-isolated-20261026/**/logs/** -whitespace
