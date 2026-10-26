@@ -241,3 +241,22 @@ identify removable fixed context as a practical cost component and motivate a
 separately graded development candidate. The reduction cannot be extrapolated
 to long questions, cached sessions or complete assisted tasks without their own
 measurements. No invoice or subscription-quota saving is inferred.
+
+## A development case about initial routing
+
+On SymPy `17139`, the pre-call router selected Sol for a failure involving an
+imaginary exponent in trigonometric simplification. That run passed at a total
+published-rate scenario cost of US$0.120742, including its routing decision.
+Luna-only also passed, at US$0.005133. All three assisted-controller conditions
+independently passed this issue using Luna with zero consultations. Their
+scenario costs were US$0.002895 to US$0.003593; Sol-only passed at US$0.123572.
+
+These task-matched independent draws illustrate why apparent subject difficulty
+is insufficient evidence for purchasing stronger inference. Cheap local work
+can establish useful capability before a delegation decision. They also show
+that a nominally cooperative arm can succeed entirely through the cheap model;
+its result cannot be credited to an expert conversation. The unobserved
+small-solver continuation of that particular router decision remains a
+counterfactual. This case is descriptive and selected after observation; the
+registered joint target is assessed on the complete matched panel, including
+its failed and expensive cases.
