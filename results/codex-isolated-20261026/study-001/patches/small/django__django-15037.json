@@ -1,0 +1,10 @@
+{
+  "instance_id": "django__django-15037",
+  "model_name_or_path": "ttgl-small",
+  "model_patch": "diff --git a/django/core/management/commands/inspectdb.py b/django/core/management/commands/inspectdb.py\nindex f9b4bfb..e8b6f0c 100644\n--- a/django/core/management/commands/inspectdb.py\n+++ b/django/core/management/commands/inspectdb.py\n@@ -128,6 +128,11 @@ class Command(BaseCommand):\n                             field_type = '%s(%s' % (rel_type, rel_to)\n                         else:\n                             field_type = \"%s('%s'\" % (rel_type, rel_to)\n+                        referenced_column, referenced_table = relations[column_name]\n+                        if referenced_column != connection.introspection.get_primary_key_column(\n+                            cursor, referenced_table,\n+                        ):\n+                            extra_params['to_field'] = referenced_column\n                     else:\n                         # Calling `get_field_type` to get the field type string and any\n                         # additional parameters and notes.\n",
+  "manifest_sha256": "29ef31aad0c802e4339b3539fd49c806cd1b4b5bc5ec9365ad7a62b119298a12",
+  "patch_sha256": "924068ed0b53308dd12a828231f212a9fb668fa0d1a86a89b8a8871923539bb4",
+  "status": "completed_ungraded",
+  "preparation_seconds": 23.831388213904575,
+  "assignment_wall_seconds": 63.33278392290231
+}

@@ -1,0 +1,225 @@
+{
+  "status": "partial_complete_task_block",
+  "task_index": 4,
+  "total_tasks": 12,
+  "total_assignments": 72,
+  "not_a_full_study_conclusion": true,
+  "results": [
+    {
+      "condition": "small",
+      "instance_id": "django__django-15037",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 38.13371212105267,
+      "published_rate_scenario_usd": 0.00775526,
+      "usage": {
+        "input_tokens": 156206,
+        "cached_input_tokens": 94976,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1365,
+        "reasoning_output_tokens": 336
+      },
+      "patch_sha256": "924068ed0b53308dd12a828231f212a9fb668fa0d1a86a89b8a8871923539bb4",
+      "official_report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 14,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "large",
+      "instance_id": "django__django-15037",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 99.71176959294826,
+      "published_rate_scenario_usd": 0.1150884,
+      "usage": {
+        "input_tokens": 184407,
+        "cached_input_tokens": 145024,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2182,
+        "reasoning_output_tokens": 592
+      },
+      "patch_sha256": "fb524a09368c61f77c4ed16b1197bde6939ce23740c9200c6dbcae067887547a",
+      "official_report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 14,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "precall_router",
+      "instance_id": "django__django-15037",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 53.399394701002166,
+      "published_rate_scenario_usd": 0.0055916,
+      "usage": {
+        "input_tokens": 182894,
+        "cached_input_tokens": 149120,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1446,
+        "reasoning_output_tokens": 296
+      },
+      "patch_sha256": "615c75d9de8f4fbe5d31e28e91532ad6417f735b2f02d05209d048be25f070bd",
+      "official_report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 14,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "oneway",
+      "instance_id": "django__django-15037",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 37.49283052398823,
+      "published_rate_scenario_usd": 0.00549696,
+      "usage": {
+        "input_tokens": 165193,
+        "cached_input_tokens": 130176,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1387,
+        "reasoning_output_tokens": 400
+      },
+      "patch_sha256": "8c24af9be363195ef7c3e1f92a143aad5ac859a514f9771a1195b2dea86d5463",
+      "official_report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 14,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "reset_expert",
+      "instance_id": "django__django-15037",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 43.268822749960236,
+      "published_rate_scenario_usd": 0.00571288,
+      "usage": {
+        "input_tokens": 173904,
+        "cached_input_tokens": 137728,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1436,
+        "reasoning_output_tokens": 504
+      },
+      "patch_sha256": "75e4793ea6df131207b8e57ad95139472d8f1897a031f82f18a6a9c5d7dd1748",
+      "official_report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 14,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "condition": "personal",
+      "instance_id": "django__django-15037",
+      "officially_resolved": true,
+      "expert_calls": 0,
+      "execution_seconds": 54.97441348596476,
+      "published_rate_scenario_usd": 0.0066500199999999995,
+      "usage": {
+        "input_tokens": 217159,
+        "cached_input_tokens": 175232,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1410,
+        "reasoning_output_tokens": 381
+      },
+      "patch_sha256": "db3f1a906a663498a684a3b7c05190d232128752dac86b4097cde00698d63c28",
+      "official_report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07",
+      "grading_evidence": "official_per_instance_report",
+      "test_counts": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 14,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    }
+  ]
+}

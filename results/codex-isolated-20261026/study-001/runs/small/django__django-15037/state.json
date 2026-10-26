@@ -1,0 +1,87 @@
+{
+  "schema_version": 3,
+  "run_id": "c5fdba42-359d-4210-82e7-4fc1e9bc4182",
+  "task_id": "django__django-15037",
+  "identity_sha256": "e6b2dec97d92dc70b05c7f73656a31e93f0c85926081370aeabc564faa7ee6fd",
+  "created_at": "2026-10-26T20:36:22.708846+00:00",
+  "status": "completed_ungraded",
+  "deadline_epoch": 1793047882.7088902,
+  "config": {
+    "condition": "small",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "phase": "controller",
+  "selected_model": "gpt-6-luna",
+  "controller_thread_id": "01a179ed-b166-7292-9eed-d8e5a594cc96",
+  "expert_thread_id": null,
+  "turns": 1,
+  "expert_calls": 0,
+  "inflight": null,
+  "next_prompt": "Solve the software-engineering task in the assigned workspace. Inspect relevant code, make the necessary changes, execute available checks, and report what you verified. Respect the user's editable memory and constraints. Do not read hidden evaluator files, other experiment workspaces, reference solutions, or parent research artifacts. Do not access external services or launch other agents yourself. Only edit the listed allowed paths. Path scope is an experiment instruction, not an OS security boundary.\n\nTask: Foreign key to a specific field is not handled in inspectdb\nDescription\n\t \n\t\t(last modified by Tim Graham)\n\t \nif you have a DB like that\nCREATE TABLE foo ( id serial primary key, other_id int UNIQUE);\nCREATE TABLE bar (\n\tid serial primary key, other_id int,\n\tconstraint myconst \n\tFOREIGN KEY(other_id) references foo(other_id)\n);\nthe generated model for the bar table will have the other_id be a FK to foo and not foo(other_id).\nI'm attaching a potential fix for this. Sorry I had no time for the UTs.\n\n\nRepair this repository at its assigned base. Preserve existing tests; you may add tests. Do not commit, change HEAD, retrieve upstream fixes, or access benchmark data, evaluator artifacts, or other workers. Report unavailable test dependencies honestly.\nAllowed paths: [\".\"]\nEditable user memory (same initial content in every condition): []\nYou are the sole solving agent. Return action complete when finished.\nReturn the requested JSON schema. Use empty question/context on completion.",
+  "usage": {
+    "input_tokens": 156206,
+    "cached_input_tokens": 94976,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1365,
+    "reasoning_output_tokens": 336
+  },
+  "usage_complete": {
+    "input_tokens": true,
+    "cached_input_tokens": true,
+    "cache_write_input_tokens": true,
+    "output_tokens": true,
+    "reasoning_output_tokens": true
+  },
+  "usage_threads": {
+    "01a179ed-b166-7292-9eed-d8e5a594cc96": {
+      "model": "gpt-6-luna",
+      "scope": "thread_cumulative",
+      "last_snapshot": {
+        "input_tokens": 156206,
+        "cached_input_tokens": 94976,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1365,
+        "reasoning_output_tokens": 336
+      }
+    }
+  },
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "observed_partial": {
+        "input_tokens": 156206,
+        "cached_input_tokens": 94976,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1365,
+        "reasoning_output_tokens": 336
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "elapsed_seconds": 38.13371212105267,
+  "tool_failures": 3,
+  "summary": "Updated `inspectdb` to emit `to_field` when a foreign key references a column other than the target table’s primary key. The focused foreign-key inspectdb test passed. The full inspectdb suite ran 20 tests but had one failure in `test_custom_fields`: the SQLite test environment introspected the custom column as `TextField`, so the expected custom field was absent. The other 15 tests passed and 4 were skipped.",
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d"
+  }
+}

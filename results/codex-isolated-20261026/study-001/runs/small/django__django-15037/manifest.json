@@ -1,0 +1,91 @@
+{
+  "schema_version": 3,
+  "run_id": "c5fdba42-359d-4210-82e7-4fc1e9bc4182",
+  "task_id": "django__django-15037",
+  "condition": "small",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-26T20:36:22.708846+00:00",
+  "finished_at": "2026-10-26T20:37:00.915270+00:00",
+  "identity_sha256": "e6b2dec97d92dc70b05c7f73656a31e93f0c85926081370aeabc564faa7ee6fd",
+  "config": {
+    "condition": "small",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d"
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 1,
+  "expert_calls": 0,
+  "elapsed_seconds": 38.13371212105267,
+  "controller_thread_id": "01a179ed-b166-7292-9eed-d8e5a594cc96",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 156206,
+    "cached_input_tokens": 94976,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1365,
+    "reasoning_output_tokens": 336
+  },
+  "observed_usage_partial": {
+    "input_tokens": 156206,
+    "cached_input_tokens": 94976,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1365,
+    "reasoning_output_tokens": 336
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 156206,
+        "cached_input_tokens": 94976,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1365,
+        "reasoning_output_tokens": 336
+      },
+      "observed_partial": {
+        "input_tokens": 156206,
+        "cached_input_tokens": 94976,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1365,
+        "reasoning_output_tokens": 336
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 3,
+  "failure_type": null,
+  "summary": "Updated `inspectdb` to emit `to_field` when a foreign key references a column other than the target table’s primary key. The focused foreign-key inspectdb test passed. The full inspectdb suite ran 20 tests but had one failure in `test_custom_fields`: the SQLite test environment introspected the custom column as `TextField`, so the expected custom field was absent. The other 15 tests passed and 4 were skipped.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "97130dc0a02ba7864afb2098004b719a9646fd178296f73b83ffe69dc1eca4de",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

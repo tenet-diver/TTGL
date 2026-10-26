@@ -1,0 +1,48 @@
+2026-10-26 20:24:01,338 - INFO - Creating container for django__django-15037...
+2026-10-26 20:24:01,503 - INFO - Container for django__django-15037 created: acbb5fcdbbc1f96e36c3a73c248a84d4cc9f756ea1b55afa071b2e9ec76f1b5f
+2026-10-26 20:24:02,246 - INFO - Container for django__django-15037 started: acbb5fcdbbc1f96e36c3a73c248a84d4cc9f756ea1b55afa071b2e9ec76f1b5f
+2026-10-26 20:24:02,265 - INFO - Intermediate patch for django__django-15037 written to logs/evaluation/ttgl-personal-django__django-15037-db3f1a90-e77ff42a8756/ttgl-personal/django__django-15037/patch.diff, now applying to container...
+2026-10-26 20:24:03,272 - INFO - >>>>> Applied Patch:
+Checking patch django/core/management/commands/inspectdb.py...
+Applied patch django/core/management/commands/inspectdb.py cleanly.
+
+2026-10-26 20:24:06,903 - INFO - Git diff before:
+diff --git a/django/core/management/commands/inspectdb.py b/django/core/management/commands/inspectdb.py
+index f9b4bfb477..d76d0721b2 100644
+--- a/django/core/management/commands/inspectdb.py
++++ b/django/core/management/commands/inspectdb.py
+@@ -128,6 +128,9 @@ class Command(BaseCommand):
+                             field_type = '%s(%s' % (rel_type, rel_to)
+                         else:
+                             field_type = "%s('%s'" % (rel_type, rel_to)
++                        to_field, to_table = relations[column_name]
++                        if to_field != connection.introspection.get_primary_key_column(cursor, to_table):
++                            extra_params['to_field'] = to_field
+                     else:
+                         # Calling `get_field_type` to get the field type string and any
+                         # additional parameters and notes.
+2026-10-26 20:24:06,923 - INFO - Eval script for django__django-15037 written to logs/evaluation/ttgl-personal-django__django-15037-db3f1a90-e77ff42a8756/ttgl-personal/django__django-15037/eval.sh; copying to container...
+2026-10-26 20:24:45,887 - INFO - Test runtime: 38.45 seconds
+2026-10-26 20:24:45,901 - INFO - Test output for django__django-15037 written to logs/evaluation/ttgl-personal-django__django-15037-db3f1a90-e77ff42a8756/ttgl-personal/django__django-15037/test_output.txt
+2026-10-26 20:24:46,165 - INFO - Git diff after:
+diff --git a/django/core/management/commands/inspectdb.py b/django/core/management/commands/inspectdb.py
+index f9b4bfb477..d76d0721b2 100644
+--- a/django/core/management/commands/inspectdb.py
++++ b/django/core/management/commands/inspectdb.py
+@@ -128,6 +128,9 @@ class Command(BaseCommand):
+                             field_type = '%s(%s' % (rel_type, rel_to)
+                         else:
+                             field_type = "%s('%s'" % (rel_type, rel_to)
++                        to_field, to_table = relations[column_name]
++                        if to_field != connection.introspection.get_primary_key_column(cursor, to_table):
++                            extra_params['to_field'] = to_field
+                     else:
+                         # Calling `get_field_type` to get the field type string and any
+                         # additional parameters and notes.
+2026-10-26 20:24:46,170 - INFO - Grading answer for django__django-15037...
+2026-10-26 20:24:46,190 - INFO - report: {'django__django-15037': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': True, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': ['test_foreign_key_to_field (inspectdb.tests.InspectDBTestCase)'], 'failure': []}, 'PASS_TO_PASS': {'success': ['inspectdb --include-views creates models for database views.', 'test_attribute_name_not_python_keyword (inspectdb.tests.InspectDBTestCase)', 'test_char_field_db_collation (inspectdb.tests.InspectDBTestCase)', 'Introspection of column names consist/start with digits (#16536/#17676)', 'Test introspection of various Django field types', 'Introspection errors should not crash the command, and the error should', 'test_json_field (inspectdb.tests.InspectDBTestCase)', 'By default the command generates models with `Meta.managed = False` (#14305)', 'Introspection of column names containing special characters,', 'test_stealth_table_name_filter_option (inspectdb.tests.InspectDBTestCase)', 'Introspection of table names containing special characters,', 'inspectdb can inspect a subset of tables by passing the table names as', 'test_text_field_db_collation (inspectdb.tests.InspectDBTestCase)', 'test_unique_together_meta (inspectdb.tests.InspectDBTestCase)'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for django__django-15037: resolved: True
+2026-10-26 20:24:46,212 - INFO - Attempting to stop container sweb.eval.django__django-15037.ttgl-personal-django__django-15037-db3f1a90-e77ff42a8756...
+2026-10-26 20:25:01,577 - INFO - Container sweb.eval.django__django-15037.ttgl-personal-django__django-15037-db3f1a90-e77ff42a8756 stopped successfully.
+2026-10-26 20:25:01,582 - INFO - Attempting to remove container sweb.eval.django__django-15037.ttgl-personal-django__django-15037-db3f1a90-e77ff42a8756...
+2026-10-26 20:25:01,738 - INFO - Container sweb.eval.django__django-15037.ttgl-personal-django__django-15037-db3f1a90-e77ff42a8756 removed successfully.

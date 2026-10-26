@@ -54,5 +54,29 @@
   "3b0fb3aa1ec623a09199049303382207a4ee71e478150f21fc046d2338b6c81f": {
     "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/precall_router/pydata__xarray-3095/e98d51e66110/logs/ttgl-precall_router/pydata__xarray-3095/report.json",
     "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
+  },
+  "47085c97dcc1ff6ac08133d8830c23c6f45dbc676436ca7a76569fcbeba52108": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/personal/django__django-15037/e77ff42a8756/logs/ttgl-personal/django__django-15037/report.json",
+    "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07"
+  },
+  "a476b1f563ee2aca5520ec3cf401a754b9f6c844e7b07f608d0e65f7a7a39d54": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/precall_router/django__django-15037/f0a57f05f479/logs/ttgl-precall_router/django__django-15037/report.json",
+    "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07"
+  },
+  "5eea822b34f62036b219cf377a39c7dc10da27e2ce56d96ae387757f8d8f2d06": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/django__django-15037/9d04de6f8cec/logs/ttgl-large/django__django-15037/report.json",
+    "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07"
+  },
+  "daeb0256652883ae19cd00fcc477e75619f844018bf9449bf0719b458b1034f9": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/django__django-15037/3a617235b1af/logs/ttgl-oneway/django__django-15037/report.json",
+    "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07"
+  },
+  "a7a5dc797e6ade06ded17dc9432e67e5eac4854727c6eb3dc9c53f28693f4760": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/django__django-15037/6a5f3d305257/logs/ttgl-reset_expert/django__django-15037/report.json",
+    "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07"
+  },
+  "fe1ce7d9fe7e388c322c17548030b7220e80722476e055b5fca42bad0229f46b": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/small/django__django-15037/b8d1b785c903/logs/ttgl-small/django__django-15037/report.json",
+    "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07"
   }
 }

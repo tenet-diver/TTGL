@@ -1,0 +1,69 @@
+diff --git a/django/core/management/commands/inspectdb.py b/django/core/management/commands/inspectdb.py
+index f9b4bfb..15f387e 100644
+--- a/django/core/management/commands/inspectdb.py
++++ b/django/core/management/commands/inspectdb.py
+@@ -120,9 +120,12 @@ class Command(BaseCommand):
+                             rel_type = 'OneToOneField'
+                         else:
+                             rel_type = 'ForeignKey'
++                        ref_db_column, ref_db_table = relations[column_name]
++                        if ref_db_column != connection.introspection.get_primary_key_column(cursor, ref_db_table):
++                            extra_params['to_field'] = ref_db_column
+                         rel_to = (
+-                            "self" if relations[column_name][1] == table_name
+-                            else table2model(relations[column_name][1])
++                            "self" if ref_db_table == table_name
++                            else table2model(ref_db_table)
+                         )
+                         if rel_to in known_models:
+                             field_type = '%s(%s' % (rel_type, rel_to)
+diff --git a/tests/inspectdb/models.py b/tests/inspectdb/models.py
+index 4d2c224..118cec7 100644
+--- a/tests/inspectdb/models.py
++++ b/tests/inspectdb/models.py
+@@ -109,3 +109,14 @@ class UniqueTogether(models.Model):
+             ('from_field', 'field1'),
+             ('non_unique', 'non_unique_0'),
+         ]
++
++
++class ForeignKeyTarget(models.Model):
++    key = models.IntegerField(primary_key=True)
++    other_id = models.IntegerField(unique=True)
++
++
++class ForeignKeyToField(models.Model):
++    foreign_key = models.ForeignKey(ForeignKeyTarget, models.CASCADE, to_field='other_id')
++    one_to_one = models.OneToOneField(ForeignKeyTarget, models.CASCADE, to_field='other_id', related_name='+')
++    primary_key_reference = models.ForeignKey(ForeignKeyTarget, models.CASCADE, related_name='+')
+diff --git a/tests/inspectdb/tests.py b/tests/inspectdb/tests.py
+index 8be1681..f76449a 100644
+--- a/tests/inspectdb/tests.py
++++ b/tests/inspectdb/tests.py
+@@ -204,6 +204,26 @@ class InspectDBTestCase(TestCase):
+             output,
+         )
+ 
++    @skipUnlessDBFeature('can_introspect_foreign_keys')
++    def test_foreign_key_to_field(self):
++        out = StringIO()
++        call_command('inspectdb', 'inspectdb_foreignkeytofield', stdout=out)
++        output = out.getvalue()
++        for name, field_type in (
++            ('foreign_key', 'ForeignKey'),
++            ('one_to_one', 'OneToOneField'),
++        ):
++            with self.subTest(field_type=field_type):
++                self.assertIn(
++                    "%s = models.%s('InspectdbForeignkeytarget', "
++                    "models.DO_NOTHING, to_field='other_id')" % (name, field_type),
++                    output,
++                )
++        self.assertIn(
++            "primary_key_reference = models.ForeignKey('InspectdbForeignkeytarget', models.DO_NOTHING)",
++            output,
++        )
++
+     def test_digits_column_name_introspection(self):
+         """Introspection of column names consist/start with digits (#16536/#17676)"""
+         char_field_type = connection.features.introspected_field_types['CharField']
