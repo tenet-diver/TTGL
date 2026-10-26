@@ -1,0 +1,110 @@
+{
+  "83d034fa81365b3ab2d7076fd0328dc0d9c47becf704af8160ff29c4d8db4c1b": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/scikit-learn__scikit-learn-14141/975cab3b4c2f/logs/ttgl-reset_expert/scikit-learn__scikit-learn-14141/report.json",
+    "report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191"
+  },
+  "a9573a2528954335c0d2099cda1a583659ae5a4cde2c72d1adfb7590e2516bb1": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/scikit-learn__scikit-learn-14141/9bffe065f1d0/logs/ttgl-large/scikit-learn__scikit-learn-14141/report.json",
+    "report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191"
+  },
+  "86def917a083e2c1815668833750df9e0307ac6ad08c0be2555dc0ec109d5abe": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/django__django-13297/f3a66933e694/logs/ttgl-reset_expert/django__django-13297/report.json",
+    "report_sha256": "c1dd575315f0d17b11d6ab9d09ddd58a03676014b9cae94a19300fb3e06c6fd6"
+  },
+  "f01fe5ed19e0122214f86b6fafbeb6fe905842a3c7d8e7060059a9fbfd2866fe": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/precall_router/django__django-13297/f26b8998e554/logs/ttgl-precall_router/django__django-13297/report.json",
+    "report_sha256": "880ffaefa81e80d2c225e2de289e292483cf2a17eafe11c7b0bd0f4610392737"
+  },
+  "5f0b9dc4e57e00f8b32f4f65d8653f11595bc258e286c172da6a4162b3efb365": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/django__django-13297/b5b3a7a36757/logs/ttgl-oneway/django__django-13297/report.json",
+    "report_sha256": "880ffaefa81e80d2c225e2de289e292483cf2a17eafe11c7b0bd0f4610392737"
+  },
+  "db996b1d2d2855bb65cf8673719dbe1a11c73419d7adeb286151888b48a3a47d": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/personal/django__django-13297/fa7ad6e22d21/logs/ttgl-personal/django__django-13297/report.json",
+    "report_sha256": "c1dd575315f0d17b11d6ab9d09ddd58a03676014b9cae94a19300fb3e06c6fd6"
+  },
+  "54fd37f34b16bce07873fcec6b16ba330dff5100290eb1c27b247a4854fc0b01": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/small/django__django-13297/df7b6d0b33ac/logs/ttgl-small/django__django-13297/report.json",
+    "report_sha256": "880ffaefa81e80d2c225e2de289e292483cf2a17eafe11c7b0bd0f4610392737"
+  },
+  "f5cfb83d80c36ca0f3b36ea952c509128083df1261531b99f2b7f279e317e126": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/django__django-13297/dec33f3eb37d/logs/ttgl-large/django__django-13297/report.json",
+    "report_sha256": "880ffaefa81e80d2c225e2de289e292483cf2a17eafe11c7b0bd0f4610392737"
+  },
+  "fbcc57a2112338a338294c0c01673b5445ef8cac62aa27d15bcd3ab510b19757": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/small/pydata__xarray-3095/13ac06c45ef4/logs/ttgl-small/pydata__xarray-3095/report.json",
+    "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
+  },
+  "e123fcfe72d530117c75d54565941f321614452aa895ee885f4dc6349ace9b4e": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/pydata__xarray-3095/4d26d1b00cb1/logs/ttgl-oneway/pydata__xarray-3095/report.json",
+    "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
+  },
+  "b0d5fb3f3326aed3d6ecca3f0bba50764df413797c4f3f56a090ca60bc938924": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/personal/pydata__xarray-3095/fd86b88e80ee/logs/ttgl-personal/pydata__xarray-3095/report.json",
+    "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
+  },
+  "13e429d4151ea79bef75049feac1682626960d310fcea21477e82cf1c56261b1": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/pydata__xarray-3095/223c0da8d056/logs/ttgl-reset_expert/pydata__xarray-3095/report.json",
+    "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
+  },
+  "f96c3e7c40daced87b2dce8c7194a44df4debaa3640c3a4b0d0bf93518553424": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/pydata__xarray-3095/9704a3ec17d4/logs/ttgl-large/pydata__xarray-3095/report.json",
+    "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
+  },
+  "3b0fb3aa1ec623a09199049303382207a4ee71e478150f21fc046d2338b6c81f": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/precall_router/pydata__xarray-3095/e98d51e66110/logs/ttgl-precall_router/pydata__xarray-3095/report.json",
+    "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
+  },
+  "47085c97dcc1ff6ac08133d8830c23c6f45dbc676436ca7a76569fcbeba52108": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/personal/django__django-15037/e77ff42a8756/logs/ttgl-personal/django__django-15037/report.json",
+    "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07"
+  },
+  "a476b1f563ee2aca5520ec3cf401a754b9f6c844e7b07f608d0e65f7a7a39d54": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/precall_router/django__django-15037/f0a57f05f479/logs/ttgl-precall_router/django__django-15037/report.json",
+    "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07"
+  },
+  "5eea822b34f62036b219cf377a39c7dc10da27e2ce56d96ae387757f8d8f2d06": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/django__django-15037/9d04de6f8cec/logs/ttgl-large/django__django-15037/report.json",
+    "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07"
+  },
+  "daeb0256652883ae19cd00fcc477e75619f844018bf9449bf0719b458b1034f9": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/django__django-15037/3a617235b1af/logs/ttgl-oneway/django__django-15037/report.json",
+    "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07"
+  },
+  "a7a5dc797e6ade06ded17dc9432e67e5eac4854727c6eb3dc9c53f28693f4760": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/django__django-15037/6a5f3d305257/logs/ttgl-reset_expert/django__django-15037/report.json",
+    "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07"
+  },
+  "fe1ce7d9fe7e388c322c17548030b7220e80722476e055b5fca42bad0229f46b": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/small/django__django-15037/b8d1b785c903/logs/ttgl-small/django__django-15037/report.json",
+    "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07"
+  },
+  "7295d8e346b80a86792760ebeae4d8a1db9c8c966658176e33ffc90074f95d87": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/psf__requests-5414/f5c17d0e5321/logs/ttgl-large/psf__requests-5414/report.json",
+    "report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0"
+  },
+  "4168fd19016285f9bc3f2e3b384959d9a2ed484cabe0d31b59a11aaa9b940a2e": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/small/psf__requests-5414/b1ba3f9306a7/logs/ttgl-small/psf__requests-5414/report.json",
+    "report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0"
+  },
+  "f9e72eb4731ce30ac7e99a0f890e1df0f0b2e16c5ec370673531f34dd46aacc3": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/psf__requests-5414/90b4a5db28cd/logs/ttgl-reset_expert/psf__requests-5414/report.json",
+    "report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0"
+  },
+  "3fc5c45e4049eed48bfbd751f86b0a42b388af055c7298160edb19fa46eb521c": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/personal/psf__requests-5414/24f188ede185/logs/ttgl-personal/psf__requests-5414/report.json",
+    "report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0"
+  },
+  "f0c38075a44c0ed1dd11ebb5e84b47ae4cc3b43a16d33da39745c570273d4cdd": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/oneway/psf__requests-5414/758aee12de73/logs/ttgl-oneway/psf__requests-5414/report.json",
+    "report_sha256": "21d26dd5365a03572c830500aa4e166cd555d6e0930b9e29870e86e9e8bff9d0"
+  },
+  "b05590120fdcef8629ced9be3dfeb079f419abf2697a19527fa35848011da548": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/sympy__sympy-17139/721a8eabb350/logs/ttgl-large/sympy__sympy-17139/report.json",
+    "report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a"
+  },
+  "6f799482c9d6d9b445efb064bb9b49b927a414f62be355d53fc3697095257250": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/personal/sympy__sympy-17139/f5146fac341a/logs/ttgl-personal/sympy__sympy-17139/report.json",
+    "report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d"
+  },
+  "response": {
+    "text": "{\"action\":\"answer\",\"message\":\"Both results are correct: 17×19=323 and (323−17)/18=306/18=17. One checking invariant is 323=17×18+17.\"}",
+    "thread_id": "01a17a22-8e4d-7d92-a29d-e4cf586bf18f",
+    "usage": {
+      "input_tokens": 10481,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 85,
+      "reasoning_output_tokens": 27
+    },
+    "status": "completed",
+    "tool_events": [],
+    "error_type": null,
+    "elapsed_seconds": 7.975924850907177,
+    "usage_scope": "thread_cumulative",
+    "usage_evidence": "reported"
+  },
+  "fresh_thread": true,
+  "request": {
+    "kind": "expert",
+    "read_only": true,
+    "model": "gpt-6.1-sol"
+  }
+}

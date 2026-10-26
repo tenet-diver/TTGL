@@ -1,0 +1,40 @@
+{
+  "kind": "two_fresh_call_mechanism_calibration_not_benchmark_quality_evidence",
+  "records": [
+    {
+      "variant": "default",
+      "native_usage": {
+        "input_tokens": 10481,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 85,
+        "reasoning_output_tokens": 27
+      },
+      "model_cost_scenario_usd_decimal": "0.021812",
+      "response_sha256": "4454ee8f2fc14588a955e9ea1a76dffa334076c99a2b26b667f7b8669de17ea0"
+    },
+    {
+      "variant": "compact",
+      "native_usage": {
+        "input_tokens": 6393,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 100,
+        "reasoning_output_tokens": 42
+      },
+      "model_cost_scenario_usd_decimal": "0.013786",
+      "response_sha256": "2ce29f92bde356f028f6cd54a5d347e432313f323d104214b96ed29e7cc7b056"
+    }
+  ],
+  "input_reduction_fraction": 0.3900391184047324,
+  "published_rate_cost_reduction_fraction": 0.3679625894003301,
+  "arithmetic_answers_reviewed_correct": true,
+  "context_tool_events": 0,
+  "cost_definition": "Frozen published Codex Standard token-rate scenario, not an invoice",
+  "limitations": [
+    "One independent draw per variant; output token difference includes stochastic variation.",
+    "Correct elementary arithmetic does not establish repository-task quality retention.",
+    "Only built-in context-role instructions differ; permission and tool exclusions remain enforced."
+  ],
+  "protocol_sha256": "61039fe04e862b2d89a13240ee6385c1295e01a5bbefaedf03c5b98c64db06dd"
+}

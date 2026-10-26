@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "dataset_id": "SWE-bench/SWE-bench_Verified",
+  "dataset_revision": "3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d",
+  "dataset_revision_kind": "official_task_repository_git_commit",
+  "task_repository": "https://github.com/SWE-bench/swe-bench-tasks",
+  "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+  "selection": {
+    "method": "first four original panel tasks; development only, outcomes already observed",
+    "source_sha256": "e6a43141699e22a0dca4f61fac701c677ee4da74fdb13aca81f451b4a4826f58",
+    "assigned_tasks": 4,
+    "selection_uses_model_outcomes": false
+  },
+  "tasks": [
+    {
+      "instance_id": "scikit-learn__scikit-learn-14141",
+      "repo": "scikit-learn/scikit-learn",
+      "base_commit": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "problem_statement": "Add joblib in show_versions\njoblib should be added to the dependencies listed in show_versions or added to the issue template when sklearn version is > 0.20.\n"
+    },
+    {
+      "instance_id": "django__django-13297",
+      "repo": "django/django",
+      "base_commit": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "problem_statement": "TemplateView.get_context_data()'s kwargs returns SimpleLazyObjects that causes a crash when filtering.\nDescription\n\t\nExample Code that works in 3.0, but not in 3.1:\nclass OfferView(TemplateView):\n\ttemplate_name = \"offers/offer.html\"\n\tdef get_context_data(self, **kwargs):\n\t\toffer_slug = kwargs.get(\"offer_slug\", \"\")\n\t\toffer = get_object_or_404(Account, slug=offer_slug)\n\t\treturn {\"offer\": offer, \"offer_slug\": offer_slug}\nIn order to make this work in 3.1, you have to explicitly convert the result of kwargs.get() to a string to get the SimpleLazyObject to resolve:\nclass OfferView(TemplateView):\n\ttemplate_name = \"offers/offer.html\"\n\tdef get_context_data(self, **kwargs):\n\t\toffer_slug = kwargs.get(\"offer_slug\", \"\")\n\t\toffer = get_object_or_404(Account, slug=str(offer_slug))\n\t\treturn {\"offer\": offer, \"offer_slug\": offer_slug}\nThe error generated if you don't is:\nError binding parameter 0 - probably unsupported type\nfrom django/db/backends/sqlite3/operations.py, line 144, in _quote_params_for_last_executed_query\nIn both cases, the urls.py looks like:\npath(\n\t\t\"/offers/<slug:offer_slug>/\",\n\t\tOfferView.as_view(),\n\t\tname=\"offer_view\",\n\t),\nWhen debugging, I found that offer_slug (coming in from kwargs.get) was of type 'SimpleLazyObject' in Django 3.1, and when I explicitly converted it to a string, get_object_or_404 behaved as expected.\nThis is using Python 3.7.8 with SQLite.\n"
+    },
+    {
+      "instance_id": "pydata__xarray-3095",
+      "repo": "pydata/xarray",
+      "base_commit": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "problem_statement": "REGRESSION: copy(deep=True) casts unicode indices to object\nDataset.copy(deep=True) and DataArray.copy (deep=True/False) accidentally cast IndexVariable's with dtype='<U*' to object. Same applies to copy.copy() and copy.deepcopy().\n\nThis is a regression in xarray >= 0.12.2. xarray 0.12.1 and earlier are unaffected.\n\n```\n\nIn [1]: ds = xarray.Dataset(\n   ...:     coords={'x': ['foo'], 'y': ('x', ['bar'])},\n   ...:     data_vars={'z': ('x', ['baz'])})                                                              \n\nIn [2]: ds                                                                                                                                                                                                                     \nOut[2]: \n<xarray.Dataset>\nDimensions:  (x: 1)\nCoordinates:\n  * x        (x) <U3 'foo'\n    y        (x) <U3 'bar'\nData variables:\n    z        (x) <U3 'baz'\n\nIn [3]: ds.copy()                                                                                                                                                                                                              \nOut[3]: \n<xarray.Dataset>\nDimensions:  (x: 1)\nCoordinates:\n  * x        (x) <U3 'foo'\n    y        (x) <U3 'bar'\nData variables:\n    z        (x) <U3 'baz'\n\nIn [4]: ds.copy(deep=True)                                                                                                                                                                                                     \nOut[4]: \n<xarray.Dataset>\nDimensions:  (x: 1)\nCoordinates:\n  * x        (x) object 'foo'\n    y        (x) <U3 'bar'\nData variables:\n    z        (x) <U3 'baz'\n\nIn [5]: ds.z                                                                                                                                                                                                                   \nOut[5]: \n<xarray.DataArray 'z' (x: 1)>\narray(['baz'], dtype='<U3')\nCoordinates:\n  * x        (x) <U3 'foo'\n    y        (x) <U3 'bar'\n\nIn [6]: ds.z.copy()                                                                                                                                                                                                            \nOut[6]: \n<xarray.DataArray 'z' (x: 1)>\narray(['baz'], dtype='<U3')\nCoordinates:\n  * x        (x) object 'foo'\n    y        (x) <U3 'bar'\n\nIn [7]: ds.z.copy(deep=True)                                                                                                                                                                                                   \nOut[7]: \n<xarray.DataArray 'z' (x: 1)>\narray(['baz'], dtype='<U3')\nCoordinates:\n  * x        (x) object 'foo'\n    y        (x) <U3 'bar'\n```\n"
+    },
+    {
+      "instance_id": "django__django-15037",
+      "repo": "django/django",
+      "base_commit": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "problem_statement": "Foreign key to a specific field is not handled in inspectdb\nDescription\n\t \n\t\t(last modified by Tim Graham)\n\t \nif you have a DB like that\nCREATE TABLE foo ( id serial primary key, other_id int UNIQUE);\nCREATE TABLE bar (\n\tid serial primary key, other_id int,\n\tconstraint myconst \n\tFOREIGN KEY(other_id) references foo(other_id)\n);\nthe generated model for the bar table will have the other_id be a FK to foo and not foo(other_id).\nI'm attaching a potential fix for this. Sorry I had no time for the UTs.\n"
+    }
+  ]
+}

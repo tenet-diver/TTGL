@@ -1,0 +1,9 @@
+{
+  "task_id": "metering-preflight-small",
+  "workspace": "/Users/rustameynaliyev/Developer/ttgl-policy-compact-dev-001/preflight-small",
+  "prompt": "Do not use tools. Return action complete, empty question/context, summary TTGL preflight.",
+  "allowed_paths": [
+    "."
+  ],
+  "memory": []
+}

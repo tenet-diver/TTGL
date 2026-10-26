@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-26T21:37:00.913949+00:00",
+  "dataset_id": "SWE-bench/SWE-bench_Verified",
+  "dataset_revision": "3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d",
+  "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+  "tasks_sha256": "a02fb52c87e10fa7814c7ac4ea00bf68f8878a709cf564bb4e8b0a8ed2b0508f",
+  "task_ids": [
+    "scikit-learn__scikit-learn-14141",
+    "django__django-13297",
+    "pydata__xarray-3095",
+    "django__django-15037"
+  ],
+  "arms": [
+    "small",
+    "large",
+    "personal"
+  ],
+  "reference": "large",
+  "seed": 1729,
+  "assignment_order": [
+    {
+      "instance_id": "scikit-learn__scikit-learn-14141",
+      "arm": "large"
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-14141",
+      "arm": "small"
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-14141",
+      "arm": "personal"
+    },
+    {
+      "instance_id": "django__django-13297",
+      "arm": "small"
+    },
+    {
+      "instance_id": "django__django-13297",
+      "arm": "personal"
+    },
+    {
+      "instance_id": "django__django-13297",
+      "arm": "large"
+    },
+    {
+      "instance_id": "pydata__xarray-3095",
+      "arm": "large"
+    },
+    {
+      "instance_id": "pydata__xarray-3095",
+      "arm": "personal"
+    },
+    {
+      "instance_id": "pydata__xarray-3095",
+      "arm": "small"
+    },
+    {
+      "instance_id": "django__django-15037",
+      "arm": "personal"
+    },
+    {
+      "instance_id": "django__django-15037",
+      "arm": "large"
+    },
+    {
+      "instance_id": "django__django-15037",
+      "arm": "small"
+    }
+  ],
+  "workspace_root": "/Users/rustameynaliyev/Developer/ttgl-policy-compact-dev-001",
+  "assignment_ordering": "task_blocked",
+  "config": {
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "timeout_seconds": 900,
+    "reasoning_effort": "medium",
+    "max_turns": 6,
+    "max_expert_calls": 2
+  },
+  "source_sha256": {
+    "personal": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826",
+    "benchmark": "76facfc3e2b26dd3ffe7f2453da31e53e2c6b4161b8eb86b39a003b9d8d53b42"
+  },
+  "worker_environment": "offline Docker through MCP",
+  "model_identity": "Requested provider identifiers; immutable model revision not observed by this adapter",
+  "isolation": "unmounted offline Docker; native host tools disabled; MCP SDK shell only",
+  "evaluation": "Independent official SWE-bench harness reports only",
+  "economic_endpoint": "API-equivalent model cost; subscription credits and deployment cost separate"
+}

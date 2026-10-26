@@ -1,0 +1,34 @@
+{
+  "status": "registered_before_any_v2_development_grades",
+  "candidates": [
+    "adaptive-001",
+    "fallback-001",
+    "compact-001"
+  ],
+  "shared_tasks_sha256": "a02fb52c87e10fa7814c7ac4ea00bf68f8878a709cf564bb4e8b0a8ed2b0508f",
+  "conditions_per_candidate": [
+    "small",
+    "large",
+    "personal"
+  ],
+  "new_scored_assignments_total": 36,
+  "development_only": true,
+  "selection_rule": "Among assisted candidates with complete official grades and complete native cost accounting, choose highest resolved count, then lowest total published-rate model-cost scenario. Freeze selection and all prompts before held-out inference. Report both candidates and their independent control repeats; no best-of merging of task attempts.",
+  "cheap_control": "Compare strengthened Luna-only with each assisted candidate; do not attribute shared prompting gains to delegation.",
+  "fallback_rule": "Initial independent attempt plus visible check; one materially different unsuccessful repair attempt, or no credible approach after initial inspection, triggers a consultation while integration budget remains.",
+  "additional_revisions": "If a later revision is necessary, register a new candidate and retain all earlier runs before scoring it. Never tune on held-out outcomes.",
+  "target": {
+    "cost_ratio_max": 0.05,
+    "accuracy_retention_min": 0.95
+  },
+  "external_baselines": "Published benchmarks are context; paired local controls support retention estimates.",
+  "candidate_modes": [
+    "adaptive",
+    "fallback",
+    "adaptive_compact"
+  ],
+  "amendment": "Add compact context-only expert interface before any v2 development grades or held-out inference. Existing candidates, prompts and scored assignment lists remain unchanged.",
+  "predecessor_sha256": "a3f0455a954ba3adc7c71e0e153e80d06dba4e35779fb385057d52f6a51a3d34",
+  "compact_calibration_protocol_sha256": "61039fe04e862b2d89a13240ee6385c1295e01a5bbefaedf03c5b98c64db06dd",
+  "compact_difference": "Same adaptive controller policy and acting agents; only context-only expert/router built-in instructions replaced using documented model_instructions_file. All permissions and tool exclusions preserved."
+}

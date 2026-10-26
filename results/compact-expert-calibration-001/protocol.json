@@ -1,0 +1,31 @@
+{
+  "kind": "fresh_context_prefix_metering_and_mechanism_calibration_not_benchmark_accuracy",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "medium",
+  "prompt": "You are a context-only expert. Use only this question and context. Do not use tools or inspect files. Return action answer and put your answer in message. A controller calculated 17*19=323 and (323-17)/18=17. Check both results and give one arithmetic invariant for checking them. Do not claim any tool execution.",
+  "system_sha256": "d1456719abaf6ad0d669b8f786180eadb12b4ba738ff8f3d052a87ed5448c594",
+  "script_sha256": "8987d32608737a1856f12257ee0ab9f6932efc92473714c5daa1c24a14d86b93",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "answer",
+          "request_context",
+          "challenge"
+        ]
+      },
+      "message": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "action",
+      "message"
+    ],
+    "additionalProperties": false
+  },
+  "official_config_reference": "https://learn.chatgpt.com/docs/config-file/config-reference",
+  "frozen_study_prompts_unchanged": true
+}

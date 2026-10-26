@@ -21,7 +21,7 @@ candidates = []
 expected_tasks, expected_rates = None, None
 for spec in args.candidate:
     mode, directory = spec.split('=', 1)
-    if mode not in ('adaptive', 'fallback') or any(r['mode']==mode for r in candidates):
+    if mode not in ('adaptive', 'fallback', 'adaptive_compact') or any(r['mode']==mode for r in candidates):
         raise ValueError('Candidate modes must be distinct and explicitly named')
     directory = Path(directory)
     validation = json.loads((directory/'validation.json').read_text())
@@ -44,8 +44,8 @@ for spec in args.candidate:
         'assigned':len(rows), 'total_model_cost_scenario_usd':sum(r['cost_usd'] for r in rows),
         'analysis_directory':str(directory), 'records_sha256':benchmark.digest(path),
         'target_comparison':result})
-if {r['mode'] for r in candidates} != {'adaptive','fallback'}:
-    raise ValueError('Both registered candidates are required')
+if {r['mode'] for r in candidates} != set(protocol.get('candidate_modes',['adaptive','fallback'])):
+    raise ValueError('Every registered candidate is required')
 ordered = sorted(candidates,key=lambda r:(-r['resolved'],r['total_model_cost_scenario_usd'],r['mode']))
 benchmark.write_new(args.output, {
     'status':'selected_on_development_only_before_held_out_inference',
