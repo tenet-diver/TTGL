@@ -1,0 +1,20 @@
+{
+  "review_date_utc": "2026-10-25",
+  "scope": "official README capability claims only; no integration or runtime test",
+  "repository": "langchain-ai/langgraph",
+  "commit": "a25bfafe4858d2a85bede09ba83f9a591d1f1133",
+  "url": "https://raw.githubusercontent.com/langchain-ai/langgraph/a25bfafe4858d2a85bede09ba83f9a591d1f1133/README.md",
+  "sha256": "3a13e257af1216962d53d72414a7f44ac1fc5cea34d994bdff60ea2a3b045933",
+  "selected_lines": [
+    "  <h3>Low-level orchestration framework for building stateful agents.</h3>",
+    "  <a href=\"https://opensource.org/licenses/MIT\" target=\"_blank\"><img src=\"https://img.shields.io/pypi/l/langgraph\" alt=\"PyPI - License\"></a>",
+    "Trusted by companies shaping the future of agents \u2013 including Klarna, Replit, Elastic, and more \u2013 LangGraph is a low-level orchestration framework for building, managing, and deploying long-running, stateful agents.",
+    "LangGraph provides low-level supporting infrastructure for *any* long-running, stateful workflow or agent:",
+    "- **[Durable execution](https://docs.langchain.com/oss/python/langgraph/durable-execution)** \u2014 Build agents that persist through failures and can run for extended periods, automatically resuming from exactly where they left off.",
+    "- **[Human-in-the-loop](https://docs.langchain.com/oss/python/langgraph/interrupts)** \u2014 Seamlessly incorporate human oversight by inspecting and modifying agent state at any point during execution.",
+    "- **[Comprehensive memory](https://docs.langchain.com/oss/python/langgraph/memory)** \u2014 Create truly stateful agents with both short-term working memory for ongoing reasoning and long-term persistent memory across sessions.",
+    "- **[Production-ready deployment](https://docs.langchain.com/langsmith/deployments)** \u2014 Deploy sophisticated agent systems confidently with scalable infrastructure designed to handle the unique challenges of stateful, long-running workflows.",
+    "- [LangSmith Deployment](https://docs.langchain.com/langsmith/deployments) \u2013 Deploy and scale agents effortlessly with a purpose-built deployment platform for long-running, stateful workflows. Discover, reuse, configure, and share agents across teams \u2013 and iterate quickly with visual prototyping in [LangSmith Studio](https://docs.langchain.com/langsmith/studio).",
+    "- **[Guides](https://docs.langchain.com/oss/python/learn)** \u2013 Quick, actionable code snippets for topics such as streaming, adding memory & persistence, and design patterns (e.g. branching, subgraphs, etc.)."
+  ]
+}

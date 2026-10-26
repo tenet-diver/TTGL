@@ -1,0 +1,633 @@
+{
+  "adaptations": [
+    "CPython 3.8.20 replaces patch versions 3.8.1/3.6.9 for compatibility",
+    "All tests in designated official fixed test module are used, including regression guards",
+    "Fixed-version test directory is overlaid on buggy/submitted source only in evaluator",
+    "Task descriptions are investigator-written behavioral specifications based on published regression intent; no official issue text supplied by BugsInPy",
+    "No test semantics were modified",
+    "Exclude PySnooper2 test_disable, which tests a separate unrequested feature introduced between dataset commits; include both custom_repr regressions and all other module guards. Clarify public API task specification before any outcome is graded."
+  ],
+  "dataset": "BugsInPy",
+  "dataset_revision": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
+  "environment_python": "Python 3.8.20",
+  "feasibility_screen": [
+    {
+      "buggy": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tests/test_chinese.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-1/control-buggy/junit.xml"
+        ],
+        "counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0,
+          "tests": 1
+        },
+        "elapsed_seconds": 0.5062848769994162,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-1/control-buggy/junit.xml",
+        "junit_sha256": "eb78022d5ffc1f39337093d339d234ccb55b6dcff6d156b541a2e6cd1b2b1ed4",
+        "returncode": 0,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-1/control-buggy/stdout.txt",
+        "stdout_sha256": "f9e51c13d0b56aeb5afaf2bff98cf660f0b6219e5d532a9ee8d503b7e0a25474"
+      },
+      "eligible": false,
+      "fixed": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tests/test_chinese.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-1/control-fixed/junit.xml"
+        ],
+        "counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0,
+          "tests": 1
+        },
+        "elapsed_seconds": 0.20469053000033455,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-1/control-fixed/junit.xml",
+        "junit_sha256": "7307a10053e7fd5210adfaa81b0c6bab84ad2a57e556c1c27b8fd61647509816",
+        "returncode": 0,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-1/control-fixed/stdout.txt",
+        "stdout_sha256": "7d1f90a4f1dc1f671c3dd99c62005b7f5536aeca6973bedb3e2cd52fd1195c83"
+      },
+      "rule": "buggy has assertion/test failures without collection errors; fixed full selected module passes",
+      "task_id": "pysnooper-1"
+    },
+    {
+      "buggy": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tests/test_pysnooper.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-2/control-buggy-corrected/junit.xml",
+          "-k",
+          "not test_disable"
+        ],
+        "counts": {
+          "errors": 0,
+          "failures": 2,
+          "skipped": 0,
+          "tests": 30
+        },
+        "elapsed_seconds": 0.2580137269997067,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-2/control-buggy-corrected/junit.xml",
+        "junit_sha256": "d31e7f4116f4472487851f407a3906c55294cd5c58db4c3b31abe213833062e2",
+        "returncode": 1,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-2/control-buggy-corrected/stdout.txt",
+        "stdout_sha256": "441ca108596ce09e388a121299f2eba203c7416caf42a8730438a3068584fb9d"
+      },
+      "eligible": true,
+      "fixed": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tests/test_pysnooper.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-2/control-fixed-corrected/junit.xml",
+          "-k",
+          "not test_disable"
+        ],
+        "counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0,
+          "tests": 30
+        },
+        "elapsed_seconds": 0.19734187399990333,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-2/control-fixed-corrected/junit.xml",
+        "junit_sha256": "82360dc9f699a6d2ef71e6fb649a23815105c85547c33dd8a2a8d65ff13f9470",
+        "returncode": 0,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-2/control-fixed-corrected/stdout.txt",
+        "stdout_sha256": "d03d2d8331d79ab928fcaface7c6ae1af1b47459e5152bbba1d3e84624d8ffc5"
+      },
+      "rule": "buggy has assertion/test failures without collection errors; fixed full selected module passes",
+      "task_id": "pysnooper-2"
+    },
+    {
+      "buggy": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tests/test_pysnooper.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-3/control-buggy/junit.xml"
+        ],
+        "counts": {
+          "errors": 1,
+          "failures": 0,
+          "skipped": 0,
+          "tests": 1
+        },
+        "elapsed_seconds": 0.20271697200041672,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-3/control-buggy/junit.xml",
+        "junit_sha256": "dd84195670145ed931b16d2c95bbafdc6251526a040be30fc313e523b469825d",
+        "returncode": 2,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-3/control-buggy/stdout.txt",
+        "stdout_sha256": "e44c04294f10e9b0edce9e3e912bc4501ce60259a315fd4dc828bdecc0cb7142"
+      },
+      "eligible": false,
+      "fixed": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tests/test_pysnooper.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-3/control-fixed/junit.xml"
+        ],
+        "counts": {
+          "errors": 1,
+          "failures": 0,
+          "skipped": 0,
+          "tests": 1
+        },
+        "elapsed_seconds": 0.19344800499948178,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-3/control-fixed/junit.xml",
+        "junit_sha256": "8ba51bf570acd3831c128fc83a8ada6a308fb2abad883842b13c8b562e11ad52",
+        "returncode": 2,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-3/control-fixed/stdout.txt",
+        "stdout_sha256": "21b90b5f2b1593faee03d55d404300195f44d53848b0ab6e842350d7c883e443"
+      },
+      "rule": "buggy has assertion/test failures without collection errors; fixed full selected module passes",
+      "task_id": "pysnooper-3"
+    },
+    {
+      "buggy": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tqdm/tests/tests_contrib.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-1/control-buggy/junit.xml"
+        ],
+        "counts": {
+          "errors": 1,
+          "failures": 1,
+          "skipped": 1,
+          "tests": 4
+        },
+        "elapsed_seconds": 0.5304556170003707,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-1/control-buggy/junit.xml",
+        "junit_sha256": "2093b5778e1250f87ce5bbfd5e1f15f2a0d65d5867c371ffc14c26f18925089c",
+        "returncode": 1,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-1/control-buggy/stdout.txt",
+        "stdout_sha256": "ed5754334e8bb07eb04d40e493a2e0df8523d46240f07ebeb5e3958bdbdf235f"
+      },
+      "eligible": false,
+      "fixed": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tqdm/tests/tests_contrib.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-1/control-fixed/junit.xml"
+        ],
+        "counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 1,
+          "tests": 4
+        },
+        "elapsed_seconds": 0.26554447099988465,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-1/control-fixed/junit.xml",
+        "junit_sha256": "64aaa2e315cb98f8f8f9e6311da44dd06a24b65fb4a11cff6ea8597504bec047",
+        "returncode": 0,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-1/control-fixed/stdout.txt",
+        "stdout_sha256": "8734fb52fded3f24f284184db5887db933f6b11f8a4f2c052214dc30fe8e0a80"
+      },
+      "rule": "buggy has assertion/test failures without collection errors; fixed full selected module passes",
+      "task_id": "tqdm-1"
+    },
+    {
+      "buggy": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tqdm/tests/tests_tqdm.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-2/control-buggy/junit.xml"
+        ],
+        "counts": {
+          "errors": 36,
+          "failures": 39,
+          "skipped": 1,
+          "tests": 59
+        },
+        "elapsed_seconds": 3.214753713000391,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-2/control-buggy/junit.xml",
+        "junit_sha256": "34890c06241cd4c4397afd164e3652666be5ec8a1f9b2514120fc81b217f7286",
+        "returncode": 1,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-2/control-buggy/stdout.txt",
+        "stdout_sha256": "c0fd4b8b18112cd4b7b72f0038afaf85e83a3a6e2a83600c3e7465312111cb04"
+      },
+      "eligible": false,
+      "fixed": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tqdm/tests/tests_tqdm.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-2/control-fixed/junit.xml"
+        ],
+        "counts": {
+          "errors": 0,
+          "failures": 1,
+          "skipped": 1,
+          "tests": 59
+        },
+        "elapsed_seconds": 0.5112884769996526,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-2/control-fixed/junit.xml",
+        "junit_sha256": "54c6b3b98bf130361bad9f8edab7ad477979659553d8143f2e2f89d86a622e0a",
+        "returncode": 1,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-2/control-fixed/stdout.txt",
+        "stdout_sha256": "be34eb7cbc0d68ee4369b186801ed80b69b9aa4d0cc76d2512f8050bb8589142"
+      },
+      "rule": "buggy has assertion/test failures without collection errors; fixed full selected module passes",
+      "task_id": "tqdm-2"
+    },
+    {
+      "buggy": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tqdm/tests/tests_tqdm.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-3/control-buggy/junit.xml"
+        ],
+        "counts": {
+          "errors": 0,
+          "failures": 1,
+          "skipped": 1,
+          "tests": 56
+        },
+        "elapsed_seconds": 0.6445501339994735,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-3/control-buggy/junit.xml",
+        "junit_sha256": "73c1125767a57f85035f143d6e282f73caaf01aa74dc140025d12070c3b5d881",
+        "returncode": 1,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-3/control-buggy/stdout.txt",
+        "stdout_sha256": "2bfa70c14523774e007975657ffa66fe556c0b87bfbf67893a50019d13f6730e"
+      },
+      "eligible": true,
+      "fixed": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tqdm/tests/tests_tqdm.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-3/control-fixed/junit.xml"
+        ],
+        "counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 1,
+          "tests": 56
+        },
+        "elapsed_seconds": 0.4863324529997044,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-3/control-fixed/junit.xml",
+        "junit_sha256": "701c49e40b0b32fe3779cdaec2f5fa44a3a9e150df2b4d5bc89a4ea307c81b3f",
+        "returncode": 0,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-3/control-fixed/stdout.txt",
+        "stdout_sha256": "51497bc7bc89795959b73ac0e21699801dfe276aec1806cd83d3caa9738ca62c"
+      },
+      "rule": "buggy has assertion/test failures without collection errors; fixed full selected module passes",
+      "task_id": "tqdm-3"
+    },
+    {
+      "buggy": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tqdm/tests/tests_tqdm.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-4/control-buggy/junit.xml"
+        ],
+        "counts": {
+          "errors": 1,
+          "failures": 1,
+          "skipped": 1,
+          "tests": 52
+        },
+        "elapsed_seconds": 0.5868429390002348,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-4/control-buggy/junit.xml",
+        "junit_sha256": "1f0d933474a72e2befd7ba2d40c45a3870e441f063723e2d7bafc9de4450d4ed",
+        "returncode": 1,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-4/control-buggy/stdout.txt",
+        "stdout_sha256": "99508f4bc3129be4a747268c6a61a0562702c86c2271ba86f116122a9a53a3bb"
+      },
+      "eligible": false,
+      "fixed": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tqdm/tests/tests_tqdm.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-4/control-fixed/junit.xml"
+        ],
+        "counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 1,
+          "tests": 52
+        },
+        "elapsed_seconds": 0.4613512179994359,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-4/control-fixed/junit.xml",
+        "junit_sha256": "1966502074705cd64afe2a8cede0dadd43be091f0956779aac2b4076523e970f",
+        "returncode": 0,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-4/control-fixed/stdout.txt",
+        "stdout_sha256": "2ba6eabd9d41a7b508fce9015d8d3e171ec4a5a1800b8f7dc7a6acbe48db7bad"
+      },
+      "rule": "buggy has assertion/test failures without collection errors; fixed full selected module passes",
+      "task_id": "tqdm-4"
+    },
+    {
+      "buggy": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tqdm/tests/tests_tqdm.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-5/control-buggy/junit.xml"
+        ],
+        "counts": {
+          "errors": 0,
+          "failures": 1,
+          "skipped": 1,
+          "tests": 46
+        },
+        "elapsed_seconds": 0.3751024029998007,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-5/control-buggy/junit.xml",
+        "junit_sha256": "c4c6a625c80ac6f63d7facf9f5f3b79c4bc086b13c2d1bdb00eb3f52a61f7882",
+        "returncode": 1,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-5/control-buggy/stdout.txt",
+        "stdout_sha256": "49f767ca6777c6aa920fb48321f18552a9a0877fc03c8dd15f9de2d67166a798"
+      },
+      "eligible": true,
+      "fixed": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tqdm/tests/tests_tqdm.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-5/control-fixed/junit.xml"
+        ],
+        "counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 1,
+          "tests": 46
+        },
+        "elapsed_seconds": 0.31530216699957236,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-5/control-fixed/junit.xml",
+        "junit_sha256": "7bb8af27a7a1521842af410de18e47e5b24f4e2755170148c288fc5a21ac409d",
+        "returncode": 0,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-5/control-fixed/stdout.txt",
+        "stdout_sha256": "941030133a12f984dcd69e3725d9c09b3aad9a8f709b2cd8169ee26c54dc9467"
+      },
+      "rule": "buggy has assertion/test failures without collection errors; fixed full selected module passes",
+      "task_id": "tqdm-5"
+    },
+    {
+      "buggy": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tqdm/tests/tests_synchronisation.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-6/control-buggy/junit.xml"
+        ],
+        "counts": {
+          "errors": 0,
+          "failures": 1,
+          "skipped": 0,
+          "tests": 4
+        },
+        "elapsed_seconds": 6.296061183000347,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-6/control-buggy/junit.xml",
+        "junit_sha256": "0e38e7ff794a87a1e7fc6efc19aa9261ed4273eb9a096587d65c3f0d13cab9e6",
+        "returncode": 1,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-6/control-buggy/stdout.txt",
+        "stdout_sha256": "eff4dbbbfd2b5bd8b35f2017de3d8622997e8bb1252cd269a0b39a19b2b70d7e"
+      },
+      "eligible": true,
+      "fixed": {
+        "command": [
+          "/workspace/.tools/ttgl-codex-pilot/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-o",
+          "addopts=",
+          "tqdm/tests/tests_synchronisation.py",
+          "--junitxml=/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-6/control-fixed/junit.xml"
+        ],
+        "counts": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0,
+          "tests": 4
+        },
+        "elapsed_seconds": 6.2333036669997455,
+        "junit_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-6/control-fixed/junit.xml",
+        "junit_sha256": "2fcc908750f62450baafecf6761e802393516a39d556e5f3d2f545db8e07d7f1",
+        "returncode": 0,
+        "stdout_path": "/workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-6/control-fixed/stdout.txt",
+        "stdout_sha256": "e544ede25b31bbc420638ded9814bd395f9d2cb13ac28334d977f843668d84ee"
+      },
+      "rule": "buggy has assertion/test failures without collection errors; fixed full selected module passes",
+      "task_id": "tqdm-6"
+    }
+  ],
+  "sources": [
+    {
+      "bytes": 175,
+      "sha256": "199b770bd6551117a00f9c7ce2c674d7ddb818e3bb5dc344371340e75e52296e",
+      "url": "https://raw.githubusercontent.com/soarsmu/BugsInPy/11c5f1eea954a42132cfd06bf257766a7963e0fd/projects/PySnooper/bugs/1/bug.info"
+    },
+    {
+      "bytes": 19859,
+      "sha256": "2db6ba657315932efb206c9d85edd485fb01d3023aead9bbaceca53b5d4b37b9",
+      "url": "https://codeload.github.com/cool-RR/PySnooper/tar.gz/e21a31162f4c54be693d8ca8260e42393b39abd3"
+    },
+    {
+      "bytes": 20089,
+      "sha256": "2caf610a20d4e3532c8ed39064e1077db2480c522f93c7e3b880d21d737e76e9",
+      "url": "https://codeload.github.com/cool-RR/PySnooper/tar.gz/56f22f8ffe1c6b2be4d2cf3ad1987fdb66113da2"
+    },
+    {
+      "bytes": 177,
+      "sha256": "732ba78c8ab772b50d5c121e972e0ff6b4892472dcde7b044609e4a0201614e4",
+      "url": "https://raw.githubusercontent.com/soarsmu/BugsInPy/11c5f1eea954a42132cfd06bf257766a7963e0fd/projects/PySnooper/bugs/2/bug.info"
+    },
+    {
+      "bytes": 19859,
+      "sha256": "2db6ba657315932efb206c9d85edd485fb01d3023aead9bbaceca53b5d4b37b9",
+      "url": "https://codeload.github.com/cool-RR/PySnooper/tar.gz/e21a31162f4c54be693d8ca8260e42393b39abd3"
+    },
+    {
+      "bytes": 40175,
+      "sha256": "e3c709f02672f59cbc69a3b69feef58695a86140b4a52b55755993ee7311c2e3",
+      "url": "https://codeload.github.com/cool-RR/PySnooper/tar.gz/814abc34a098c1b98cb327105ac396f985d2413e"
+    },
+    {
+      "bytes": 177,
+      "sha256": "f4edd7b703911670e11dbe11477c42bd0ce8739c3999b220af8e38219c90f062",
+      "url": "https://raw.githubusercontent.com/soarsmu/BugsInPy/11c5f1eea954a42132cfd06bf257766a7963e0fd/projects/PySnooper/bugs/3/bug.info"
+    },
+    {
+      "bytes": 8426,
+      "sha256": "1b365437ab854bed92cb513061dff198c09e24b9cd320b7c5930b80060c5d18d",
+      "url": "https://codeload.github.com/cool-RR/PySnooper/tar.gz/6e3d797be3fa0a746fb5b1b7c7fea78eb926c208"
+    },
+    {
+      "bytes": 8547,
+      "sha256": "6db5406ee788098a4ffe6e703712f274a82e1af1711981334868b065b981fe96",
+      "url": "https://codeload.github.com/cool-RR/PySnooper/tar.gz/15555ed760000b049aff8fecc79d29339c1224c3"
+    },
+    {
+      "bytes": 209,
+      "sha256": "3bca7455cc4f7c6a5a653e91b5824f67384ecfbfc1901a6a27ae6eb7385fff44",
+      "url": "https://raw.githubusercontent.com/soarsmu/BugsInPy/11c5f1eea954a42132cfd06bf257766a7963e0fd/projects/tqdm/bugs/1/bug.info"
+    },
+    {
+      "bytes": 131621,
+      "sha256": "8320daed14e9391b791fab0c0f19f269c6903feb139ca5ba11d4bab1c3ccc2ff",
+      "url": "https://codeload.github.com/tqdm/tqdm/tar.gz/8cc777fe8401a05d07f2c97e65d15e4460feab88"
+    },
+    {
+      "bytes": 131626,
+      "sha256": "e651f36a6c6fabba920a4ffae295654080231a394e40e9cb1ae9a2247ea5aac9",
+      "url": "https://codeload.github.com/tqdm/tqdm/tar.gz/c0dcf39b046d1b4ff6de14ac99ad9a1b10487512"
+    },
+    {
+      "bytes": 206,
+      "sha256": "20e7313692bc7ea7af64675b1ceccbbf0618c6b68c401ac3de68cb6366d430d8",
+      "url": "https://raw.githubusercontent.com/soarsmu/BugsInPy/11c5f1eea954a42132cfd06bf257766a7963e0fd/projects/tqdm/bugs/2/bug.info"
+    },
+    {
+      "bytes": 128105,
+      "sha256": "42945b2eb1b906094d890305ff83a6550293b629a4fd4f6be81bb9e58b42e8a4",
+      "url": "https://codeload.github.com/tqdm/tqdm/tar.gz/bef86db56654d271838b145ad77f7040a73a7b4d"
+    },
+    {
+      "bytes": 128133,
+      "sha256": "ec450245e889f017b5c28327c411c673b06eb24b2a2abd4b929a142c8004d92a",
+      "url": "https://codeload.github.com/tqdm/tqdm/tar.gz/127af5caf19e7d29c346f5ca8a9c7ef3004b664b"
+    },
+    {
+      "bytes": 206,
+      "sha256": "48e4180efbd4d0e54faf353e0e94c9a47c69b0db03903baea16660abdb7501c8",
+      "url": "https://raw.githubusercontent.com/soarsmu/BugsInPy/11c5f1eea954a42132cfd06bf257766a7963e0fd/projects/tqdm/bugs/3/bug.info"
+    },
+    {
+      "bytes": 118475,
+      "sha256": "00e1f18471a527f41939f73240108102ffde61e30e8a67a92adeb6c806080e71",
+      "url": "https://codeload.github.com/tqdm/tqdm/tar.gz/c2599e3cd6087429f48bae34347ec5d2473c8392"
+    },
+    {
+      "bytes": 118620,
+      "sha256": "908f38a5ec409fa2ece869f3751c926f693e8dbde0ec2aea44005538ec35acf9",
+      "url": "https://codeload.github.com/tqdm/tqdm/tar.gz/73962a47026dd980ac0758820efc9c41cbf938e0"
+    },
+    {
+      "bytes": 206,
+      "sha256": "51bea30e7d69f67f8a49da2e59594ca4feaa08737d6f65573af795fb46936ab8",
+      "url": "https://raw.githubusercontent.com/soarsmu/BugsInPy/11c5f1eea954a42132cfd06bf257766a7963e0fd/projects/tqdm/bugs/4/bug.info"
+    },
+    {
+      "bytes": 99531,
+      "sha256": "c1325f637898368c64c65cbacc824608c6b75f8b57fa58605c06f1176befc88b",
+      "url": "https://codeload.github.com/tqdm/tqdm/tar.gz/03b347646492131d889871939b40457d29147216"
+    },
+    {
+      "bytes": 99584,
+      "sha256": "e8a6169fa8612f2306a271d1f8b248934c3ec4ffeacdca584b126459b8fbb0e2",
+      "url": "https://codeload.github.com/tqdm/tqdm/tar.gz/964dee631d0ed30e2f799b42fc58ba5e73795a08"
+    },
+    {
+      "bytes": 206,
+      "sha256": "94c71277306cd397048c9624f9c92ef95f10dcd412965b4b715d49a0f5256c0f",
+      "url": "https://raw.githubusercontent.com/soarsmu/BugsInPy/11c5f1eea954a42132cfd06bf257766a7963e0fd/projects/tqdm/bugs/5/bug.info"
+    },
+    {
+      "bytes": 76696,
+      "sha256": "a14f128838b15865510c7e4b924d912cc7a453db0fbed0f9f9dbe2c7fba5fff3",
+      "url": "https://codeload.github.com/tqdm/tqdm/tar.gz/19b08ab34fdbfa0275bc5cb2430436c724c7e759"
+    },
+    {
+      "bytes": 76841,
+      "sha256": "d6733a481fea413473003a9fbc3d90bfbaeaf28956f59893f5fa1e1925d02d9c",
+      "url": "https://codeload.github.com/tqdm/tqdm/tar.gz/4f340697af69b71850aad496387c9c5aa1904136"
+    },
+    {
+      "bytes": 217,
+      "sha256": "363378aa64576f91c1e57493ad6fe37bd6071c023467c1be6a6d60afc14b5bc4",
+      "url": "https://raw.githubusercontent.com/soarsmu/BugsInPy/11c5f1eea954a42132cfd06bf257766a7963e0fd/projects/tqdm/bugs/6/bug.info"
+    },
+    {
+      "bytes": 75157,
+      "sha256": "b5ff33ead5925f3bb41b645d3e90aece085c221cd0b8597b8275fe7026ddbf43",
+      "url": "https://codeload.github.com/tqdm/tqdm/tar.gz/a4b9c86db548b2d0dbb5af7a6bbdc26ab47e1eec"
+    },
+    {
+      "bytes": 75251,
+      "sha256": "275251800005b1627f3ea7b73daf0c786e68b7a0576a0231c59c71520da0bde6",
+      "url": "https://codeload.github.com/tqdm/tqdm/tar.gz/6dad2e89019317e875c46d5a3a82a811ad6de2f9"
+    }
+  ]
+}

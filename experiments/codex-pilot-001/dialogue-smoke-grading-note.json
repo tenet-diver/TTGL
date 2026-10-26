@@ -1,0 +1,6 @@
+{
+  "reason": "Initial smoke grading used relative --output, so JUnit was written under evaluator checkout while collector looked under repository root. The underlying tests passed but count was missing. Repeat grading uses absolute output path. No model rerun or patch change.",
+  "original": "dialogue-smoke-grade/report.json",
+  "corrected": "dialogue-smoke-grade-corrected/report.json",
+  "patch_sha256_unchanged": true
+}

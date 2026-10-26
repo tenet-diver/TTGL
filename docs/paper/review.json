@@ -1,0 +1,69 @@
+{
+  "review_date": "2026-10-26",
+  "reviewer": "independent conversation_code_review agent",
+  "status": "passed_with_editorial_revision_requested",
+  "critical_defects": [],
+  "scope": [
+    "Paper sources and generated PDF/DOCX/HTML",
+    "Frozen four-condition pilot protocol and grading reports",
+    "Independent reproduction of recorded pilot analysis",
+    "Separate forced-dialogue mechanism check",
+    "Focused orchestrator, analysis and restore software tests"
+  ],
+  "verified_results": {
+    "assigned_tasks": 4,
+    "repository_clusters": 2,
+    "assigned_model_trials": 16,
+    "functional_successes": {"luna": 3, "sol": 4, "precall": 4, "personal": 3},
+    "accepted_under_frozen_artifact_policy": {"luna": 3, "sol": 4, "precall": 2, "personal": 0},
+    "optional_conversation_expert_turns": 0,
+    "all_prompt_router_choices": "gpt-6-luna",
+    "cost_fields": "null; no dollar-saving estimate",
+    "comparable_latency_fields": "null; delayed root observation is not model latency",
+    "forced_dialogue": {
+      "expert_turns": 2,
+      "selected_regression_tests_passed": 30,
+      "artifact_policy_violations": 0,
+      "separate_from_primary_matrix": true,
+      "initial_collector_failure_retained": true,
+      "regrading_patch_hash_unchanged": true,
+      "model_rerun_for_collector_correction": false
+    },
+    "analysis_reproduction": "exact JSON equality with recorded summary"
+  },
+  "artifact_checks": {
+    "build_manifest_entries_verified": 21,
+    "build_manifest_mismatches": 0,
+    "cached_source_hashes_verified": 73,
+    "cached_source_hash_mismatches": 0,
+    "cited_keys": 22,
+    "missing_citation_keys": 0,
+    "missing_local_links": 0,
+    "docx_zip_and_document_xml": "valid",
+    "pdf_pages": 35,
+    "pdf_words_outside_30pt_side_bounds": 0,
+    "focused_software_tests": {"passed": 48, "failed": 0},
+    "resumed_controller_thread_identity_check": "present; prior review defect corrected"
+  },
+  "methodological_limits_explicitly_reported": [
+    "No optional controller consulted an expert, so the primary matrix does not estimate a dialogue benefit.",
+    "The forced exchange establishes execution, not necessity, savings or superiority.",
+    "The strict existing-test-file policy and prompt ambiguity can reject functionally correct patches; endpoints are separated.",
+    "Four historical issues and two repositories do not support a frontier, equivalence or noninferiority claim.",
+    "Shared filesystem isolation is instruction-based, and public-task contamination cannot be excluded.",
+    "Luna and Sol are opaque hosted proxies, not evidence of open-weight or local-device performance.",
+    "No model learning, many-to-many swarm or native learned-router replication was executed.",
+    "Prior art overlaps strongly; the paper makes no first-architecture claim.",
+    "Standalone CLI service readiness remains unvalidated; live trials used the collaboration interface."
+  ],
+  "editorial_revision_requested": {
+    "file": "frontmatter.md",
+    "issue": "The abstract still foregrounds persistent personalization as the remaining empirical question. The latest user scope centers bounded bidirectional conversation and total-cost/performance tradeoffs, with memory optional.",
+    "recommendation": "Reframe the abstract around conversational routing and the cost/noninferiority hypothesis; retain personal memory as an optional ablation. Rebuild generated artifacts afterward."
+  },
+  "notes": [
+    "The source register is a targeted review, not an exhaustive systematic review or universal novelty proof.",
+    "Artifact checks refer to the reviewed build dated 2026-10-26T00:07:56.142826+00:00. Regenerate the build manifest after editorial changes.",
+    "No frozen experiment files or model workspaces were modified by this review."
+  ]
+}

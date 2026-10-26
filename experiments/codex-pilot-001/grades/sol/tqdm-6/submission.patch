@@ -1,0 +1,72 @@
+diff -ruN '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-6/base/tqdm/_tqdm.py /workspace/scratch/ttgl-codex-pilot/sol/tqdm-6/tqdm/_tqdm.py
+--- /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-6/base/tqdm/_tqdm.py	2026-10-25 23:49:43.358033265 +0000
++++ /workspace/scratch/ttgl-codex-pilot/sol/tqdm-6/tqdm/_tqdm.py	2026-10-25 23:57:24.696019720 +0000
+@@ -850,10 +850,14 @@
+         self.start_t = self.last_print_t
+ 
+     def __len__(self):
+-        return self.total if self.iterable is None else \
+-            (self.iterable.shape[0] if hasattr(self.iterable, "shape")
+-             else len(self.iterable) if hasattr(self.iterable, "__len__")
+-             else self.total)
++        try:
++            return self.total if self.iterable is None else \
++                (self.iterable.shape[0] if hasattr(self.iterable, "shape")
++                 else len(self.iterable) if hasattr(self.iterable, "__len__")
++                 else self.total)
++        except AttributeError:
++            # Length hints may be requested before total has been initialized.
++            raise TypeError('length is unknown')
+ 
+     def __enter__(self):
+         return self
+diff -ruN '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-6/base/tqdm/tests/test_length.py /workspace/scratch/ttgl-codex-pilot/sol/tqdm-6/tqdm/tests/test_length.py
+--- /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-6/base/tqdm/tests/test_length.py	1970-01-01 00:00:00.000000000 +0000
++++ /workspace/scratch/ttgl-codex-pilot/sol/tqdm-6/tqdm/tests/test_length.py	2026-10-25 23:57:25.272011573 +0000
+@@ -0,0 +1,46 @@
++from io import StringIO
++from multiprocessing.pool import ThreadPool
++
++import pytest
++
++from tqdm import tqdm
++
++
++def test_disabled_imap_can_be_collected():
++    pool = ThreadPool(1)
++    try:
++        bar = tqdm(pool.imap(abs, [-1, -2, -3]), disable=True)
++        with pytest.raises(TypeError):
++            len(bar)
++        assert list(bar) == [1, 2, 3]
++    finally:
++        pool.close()
++        pool.join()
++
++
++def test_disabled_generator_can_be_collected():
++    assert list(tqdm((i for i in range(3)), disable=True)) == [0, 1, 2]
++
++
++def test_disabled_manual_length_is_unknown():
++    with pytest.raises(TypeError):
++        len(tqdm(disable=True))
++
++
++@pytest.mark.parametrize('disable', [False, True])
++def test_sized_iterable_length_and_iteration(disable):
++    with tqdm([1, 2, 3], disable=disable, file=StringIO()) as bar:
++        assert len(bar) == 3
++        assert list(bar) == [1, 2, 3]
++
++
++def test_manual_length():
++    with tqdm(total=3, file=StringIO()) as bar:
++        assert len(bar) == 3
++
++
++def test_enabled_unknown_length_can_be_collected():
++    with tqdm((i for i in range(3)), file=StringIO()) as bar:
++        with pytest.raises(TypeError):
++            len(bar)
++        assert list(bar) == [0, 1, 2]

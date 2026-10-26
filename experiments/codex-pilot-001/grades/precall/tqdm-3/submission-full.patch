@@ -1,0 +1,19 @@
+--- a/tqdm/_tqdm.py
++++ b/tqdm/_tqdm.py
+@@ -953,6 +953,16 @@
+              else len(self.iterable) if hasattr(self.iterable, "__len__")
+              else getattr(self, "total", None))
+ 
++    def __bool__(self):
++        """Return whether the bar has a non-empty total or iterable."""
++        if self.total is not None:
++            return bool(self.total)
++        if self.iterable is not None:
++            return bool(self.iterable)
++        raise TypeError("tqdm object has no total or iterable")
++
++    __nonzero__ = __bool__
++
+     def __enter__(self):
+         return self
+ 

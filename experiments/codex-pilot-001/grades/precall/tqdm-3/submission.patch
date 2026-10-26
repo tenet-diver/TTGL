@@ -1,0 +1,20 @@
+diff -ruN '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-3/base/tqdm/_tqdm.py /workspace/scratch/ttgl-codex-pilot/precall/tqdm-3/tqdm/_tqdm.py
+--- /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-3/base/tqdm/_tqdm.py	2026-10-25 23:49:37.559176129 +0000
++++ /workspace/scratch/ttgl-codex-pilot/precall/tqdm-3/tqdm/_tqdm.py	2026-10-25 23:55:39.133350776 +0000
+@@ -953,6 +953,16 @@
+              else len(self.iterable) if hasattr(self.iterable, "__len__")
+              else getattr(self, "total", None))
+ 
++    def __bool__(self):
++        """Return whether the bar has a non-empty total or iterable."""
++        if self.total is not None:
++            return bool(self.total)
++        if self.iterable is not None:
++            return bool(self.iterable)
++        raise TypeError("tqdm object has no total or iterable")
++
++    __nonzero__ = __bool__
++
+     def __enter__(self):
+         return self
+ 

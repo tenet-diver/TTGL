@@ -1,0 +1,7 @@
+[
+  {
+    "path": "tqdm/_tqdm.py",
+    "before_sha256": "c4ff7e2454503583a44beec609b77b173d027e877c26879f052f362b89b6f84e",
+    "after_sha256": "788379e72c779f097ecc124fcadb28085cad4d761d54a6ad0050bea87fbec6a1"
+  }
+]

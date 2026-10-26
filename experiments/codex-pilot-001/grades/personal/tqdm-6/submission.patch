@@ -1,0 +1,32 @@
+diff -ruN '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-6/base/tqdm/_tqdm.py /workspace/scratch/ttgl-codex-pilot/personal/tqdm-6/tqdm/_tqdm.py
+--- /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-6/base/tqdm/_tqdm.py	2026-10-25 23:49:43.358033265 +0000
++++ /workspace/scratch/ttgl-codex-pilot/personal/tqdm-6/tqdm/_tqdm.py	2026-10-25 23:58:37.373019206 +0000
+@@ -850,6 +850,10 @@
+         self.start_t = self.last_print_t
+ 
+     def __len__(self):
++        # Instances are added to the monitor before __init__ has populated
++        # their fields. A length check during that window should be harmless.
++        if not hasattr(self, 'iterable') or not hasattr(self, 'total'):
++            return 0
+         return self.total if self.iterable is None else \
+             (self.iterable.shape[0] if hasattr(self.iterable, "shape")
+              else len(self.iterable) if hasattr(self.iterable, "__len__")
+diff -ruN '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-6/base/tqdm/tests/tests_tqdm.py /workspace/scratch/ttgl-codex-pilot/personal/tqdm-6/tqdm/tests/tests_tqdm.py
+--- /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-6/base/tqdm/tests/tests_tqdm.py	2026-10-25 23:49:43.358986250 +0000
++++ /workspace/scratch/ttgl-codex-pilot/personal/tqdm-6/tqdm/tests/tests_tqdm.py	2026-10-25 23:58:59.944394152 +0000
+@@ -1355,6 +1355,14 @@
+ 
+ 
+ @with_setup(pretest, posttest)
++def test_len_during_init():
++    """Length checks are safe before constructor fields are assigned."""
++    t = object.__new__(tqdm)
++    t.disable = True  # keep __del__ safe for this deliberately partial object
++    assert len(t) == 0
++
++
++@with_setup(pretest, posttest)
+ def test_len():
+     """Test advance len (numpy array shape)"""
+     try:

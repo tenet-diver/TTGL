@@ -1,0 +1,80 @@
+diff -ruN '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-3/base/tqdm/_tqdm.py /workspace/scratch/ttgl-codex-pilot/sol/tqdm-3/tqdm/_tqdm.py
+--- /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-3/base/tqdm/_tqdm.py	2026-10-25 23:49:37.559176129 +0000
++++ /workspace/scratch/ttgl-codex-pilot/sol/tqdm-3/tqdm/_tqdm.py	2026-10-25 23:54:01.094807118 +0000
+@@ -947,6 +947,16 @@
+         # NB: Avoid race conditions by setting start_t at the very end of init
+         self.start_t = self.last_print_t
+ 
++    def __bool__(self):
++        if self.total is not None:
++            return self.total > 0
++        if self.iterable is None:
++            raise TypeError('bool() undefined when iterable == total == None')
++        return bool(self.iterable)
++
++    def __nonzero__(self):
++        return self.__bool__()
++
+     def __len__(self):
+         return self.total if self.iterable is None else \
+             (self.iterable.shape[0] if hasattr(self.iterable, "shape")
+diff -ruN '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-3/base/tqdm/tests/test_bool.py /workspace/scratch/ttgl-codex-pilot/sol/tqdm-3/tqdm/tests/test_bool.py
+--- /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-3/base/tqdm/tests/test_bool.py	1970-01-01 00:00:00.000000000 +0000
++++ /workspace/scratch/ttgl-codex-pilot/sol/tqdm-3/tqdm/tests/test_bool.py	2026-10-25 23:54:01.670798679 +0000
+@@ -0,0 +1,56 @@
++"""Regression tests for progress bar truth values."""
++try:
++    from StringIO import StringIO
++except ImportError:
++    from io import StringIO
++
++from nose.tools import assert_raises
++
++from tqdm import tqdm
++
++
++def test_known_total_truth():
++    for disable in (False, True):
++        for total in (0, -1, 0.5, 2):
++            # An explicit total takes precedence over the iterable's length.
++            for iterable in (None, [], [1], iter([1])):
++                with tqdm(iterable, total=total, disable=disable,
++                          file=StringIO()) as bar:
++                    assert bool(bar) is (total > 0)
++                    assert bar.__nonzero__() is (total > 0)
++
++
++def test_unsized_iterable_truth_preserves_iteration():
++    for disable in (False, True):
++        for values in ([], [0, 1]):
++            iterable = (value for value in values)
++            with tqdm(iterable, disable=disable, file=StringIO()) as bar:
++                assert bool(bar) is True
++                assert bar.__nonzero__() is True
++                assert list(bar) == values
++
++
++def test_iterable_custom_truth():
++    class EmptyIterable(object):
++        def __iter__(self):
++            return iter([])
++
++        def __bool__(self):
++            return False
++
++        __nonzero__ = __bool__
++
++    for disable in (False, True):
++        with tqdm(EmptyIterable(), disable=disable, file=StringIO()) as bar:
++            assert bool(bar) is False
++            assert bar.__nonzero__() is False
++
++
++def test_undefined_truth():
++    for disable in (False, True):
++        with tqdm(disable=disable, file=StringIO()) as bar:
++            with assert_raises(TypeError) as error:
++                bool(bar)
++            assert str(error.exception) == (
++                'bool() undefined when iterable == total == None')
++            assert_raises(TypeError, bar.__nonzero__)

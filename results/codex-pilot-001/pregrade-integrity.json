@@ -1,0 +1,46 @@
+{
+  "status": "verified",
+  "protocol_sha256": "ef87410a47547c2afb6378a7a51ca53f7440412b7567a52268f090f9c97dd414",
+  "checks": [
+    {
+      "task_id": "pysnooper-2",
+      "field": "base_tree_sha256",
+      "sha256": "062d4ddca6cf37c538ab32b3126dce1d262421f6b40531508303c7366c3dfabd"
+    },
+    {
+      "task_id": "pysnooper-2",
+      "field": "evaluation_test_tree_sha256",
+      "sha256": "a1b1badc0892d2f67672cf68dafb082ce6d3c0140d7067a86df10928b19787d8"
+    },
+    {
+      "task_id": "tqdm-3",
+      "field": "base_tree_sha256",
+      "sha256": "8f34595c6881e2850e8d960fcb828a66be9b491cb31f0bcc478079de39734dd7"
+    },
+    {
+      "task_id": "tqdm-3",
+      "field": "evaluation_test_tree_sha256",
+      "sha256": "b0a268decb9c03d5c62a390c82ba4895bd8314e9270bd633f532ac428a51e66f"
+    },
+    {
+      "task_id": "tqdm-5",
+      "field": "base_tree_sha256",
+      "sha256": "3bd3ff23ba88055f2084f8340d5a49fdf9dbea21e31bac4da5182c6d5542d796"
+    },
+    {
+      "task_id": "tqdm-5",
+      "field": "evaluation_test_tree_sha256",
+      "sha256": "e58ad5a22efe52859ef9af905c8699e981b82a0c331de4fc1cacf3816bdc2199"
+    },
+    {
+      "task_id": "tqdm-6",
+      "field": "base_tree_sha256",
+      "sha256": "6abd7640599983713e60abe48a786a0b11fcf1a9484f1d884a196223880d3d55"
+    },
+    {
+      "task_id": "tqdm-6",
+      "field": "evaluation_test_tree_sha256",
+      "sha256": "1622183c3dded9bc9edc3d99bc0830044ae98677d2396ca2131b944aa8cb7792"
+    }
+  ]
+}

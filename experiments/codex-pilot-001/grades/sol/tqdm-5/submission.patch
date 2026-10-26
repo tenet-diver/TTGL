@@ -1,0 +1,82 @@
+diff -ruN '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-5/base/tqdm/_tqdm.py /workspace/scratch/ttgl-codex-pilot/sol/tqdm-5/tqdm/_tqdm.py
+--- /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-5/base/tqdm/_tqdm.py	2026-10-25 23:49:41.593875653 +0000
++++ /workspace/scratch/ttgl-codex-pilot/sol/tqdm-5/tqdm/_tqdm.py	2026-10-25 23:56:56.721421232 +0000
+@@ -748,8 +748,16 @@
+         if disable is None and hasattr(file, "isatty") and not file.isatty():
+             disable = True
+ 
++        # Preprocess the arguments
++        if total is None and iterable is not None:
++            try:
++                total = len(iterable)
++            except (TypeError, AttributeError):
++                total = None
++
+         if disable:
+             self.iterable = iterable
++            self.total = total
+             self.disable = disable
+             self.pos = self._get_free_pos(self)
+             self._instances.remove(self)
+@@ -765,13 +773,6 @@
+ """, fp_write=getattr(file, 'write', sys.stderr.write)) if "nested" in kwargs
+                 else TqdmKeyError("Unknown argument(s): " + str(kwargs)))
+ 
+-        # Preprocess the arguments
+-        if total is None and iterable is not None:
+-            try:
+-                total = len(iterable)
+-            except (TypeError, AttributeError):
+-                total = None
+-
+         if ((ncols is None) and (file in (sys.stderr, sys.stdout))) or \
+                 dynamic_ncols:  # pragma: no cover
+             if dynamic_ncols:
+diff -ruN '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-5/base/tqdm/tests/tests_disabled_total.py /workspace/scratch/ttgl-codex-pilot/sol/tqdm-5/tqdm/tests/tests_disabled_total.py
+--- /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-5/base/tqdm/tests/tests_disabled_total.py	1970-01-01 00:00:00.000000000 +0000
++++ /workspace/scratch/ttgl-codex-pilot/sol/tqdm-5/tqdm/tests/tests_disabled_total.py	2026-10-25 23:56:56.982276376 +0000
+@@ -0,0 +1,44 @@
++"""Disabled bars retain the total and length behavior of enabled bars."""
++from __future__ import unicode_literals
++
++from io import StringIO
++from unittest import TestCase
++
++from tqdm import tqdm
++
++
++class TestDisabledTotal(TestCase):
++    def check_bar(self, iterable, total, expected_total, expected_length):
++        for disable in (False, True, None):
++            output = StringIO()
++            with tqdm(iterable, total=total, disable=disable,
++                      file=output) as bar:
++                self.assertEqual(bar.total, expected_total)
++                self.assertEqual(len(bar), expected_length)
++                self.assertEqual(bool(bar), bool(expected_length))
++            if disable is not False:
++                self.assertEqual(output.getvalue(), '')
++
++    def test_inferred_total(self):
++        self.check_bar([1, 2, 3], None, 3, 3)
++        self.check_bar([], None, 0, 0)
++
++    def test_explicit_total_without_iterable(self):
++        self.check_bar(None, 5, 5, 5)
++        self.check_bar(None, 0, 0, 0)
++
++    def test_explicit_total_overrides_inference(self):
++        self.check_bar([1, 2, 3], 8, 8, 3)
++        self.check_bar([1, 2, 3], 0, 0, 3)
++
++    def test_unsized_iterable_with_total(self):
++        self.check_bar(iter([1, 2, 3]), 5, 5, 5)
++        self.check_bar(iter([]), 0, 0, 0)
++
++    def test_unknown_total(self):
++        for iterable in (None, iter([1, 2, 3])):
++            for disable in (False, True, None):
++                with tqdm(iterable, disable=disable, file=StringIO()) as bar:
++                    self.assertIsNone(bar.total)
++                    self.assertRaises(TypeError, len, bar)
++                    self.assertRaises(TypeError, bool, bar)

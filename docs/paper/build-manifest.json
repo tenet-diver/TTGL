@@ -1,0 +1,92 @@
+{
+  "status": "literature_and_live_feasibility_pilot_with_prospective_confirmatory_design",
+  "built_at_utc": "2026-10-26T00:12:33.870802+00:00",
+  "word_count_approximate": 9370,
+  "pandoc": "pandoc 3.1.11.1",
+  "files": {
+    "frontmatter.md": {
+      "sha256": "137766ff6de221823ac7ecb71e1a3af4df73662b43a9ad2bbcd08fe5e3448d8f",
+      "bytes": 6470
+    },
+    "../thesis/personal-agent-prior-art.md": {
+      "sha256": "413508da2114b950ddc2af633963e8bee35ddb2d2456772bc8012a143415a33c",
+      "bytes": 23786
+    },
+    "../thesis/personal-agent-prior-art-sources.json": {
+      "sha256": "f71d883217357d685159802ca96eff523ee56e14939c3eee3b44720ea40e5e77",
+      "bytes": 26232
+    },
+    "architecture.md": {
+      "sha256": "67a9eb3a8120c82ec2015f1b04432f9df1f2296175859dea1681ba619265ad95",
+      "bytes": 7285
+    },
+    "methods.md": {
+      "sha256": "23c8f6faea2c9c9ff3a236eb98b0a388dbd67e29cb85411f5c1e41ca6b4654bb",
+      "bytes": 12330
+    },
+    "economics-and-results.md": {
+      "sha256": "88831b80c3129a8bbc30306816a8c21a1c77728a3e8831b986e145dbf8080e1e",
+      "bytes": 10443
+    },
+    "discussion-and-reproduction.md": {
+      "sha256": "67fd6c1e03344b17d421e5868704b10819e7dbe4de4c464ea605b0d6ddd08c43",
+      "bytes": 7614
+    },
+    "references.bib": {
+      "sha256": "df1b81466f2ef976b45adcd02d0a531569bf3e8ae0e44142376a37a79335f2e9",
+      "bytes": 34962
+    },
+    "additional-references.bib": {
+      "sha256": "a3e68ce0a24f3e0f978355ecfd899fe94f9cce7fec40fee167114518439f62a3",
+      "bytes": 1094
+    },
+    "figures/conversation.dot": {
+      "sha256": "6389844a1802bbfce701aead7e2a51f50911cc0b785d2e8dedd149b7c0bc4e49",
+      "bytes": 1075
+    },
+    "../../experiments/codex-pilot-001/protocol.json": {
+      "sha256": "ef87410a47547c2afb6378a7a51ca53f7440412b7567a52268f090f9c97dd414",
+      "bytes": 2951
+    },
+    "../../results/codex-pilot-001/analysis/summary.json": {
+      "sha256": "2c0eb88c39d0c21e6eb0dcd09cb909a9ecc2238fc7e093f08d87a858213a6f7c",
+      "bytes": 3995
+    },
+    "../../results/codex-pilot-001/analysis/records.json": {
+      "sha256": "a2a03c9143b91dcb68621ab709842b8eb982b529349c63c11a08708323000b19",
+      "bytes": 12359
+    },
+    "../../results/codex-pilot-001/dialogue-transcript.md": {
+      "sha256": "397c18453580a73a635ff6fc364dc0a20aefb00f13de3425472145f6f1b2ff69",
+      "bytes": 4204
+    },
+    "../../scripts/build_paper.sh": {
+      "sha256": "c463a72c68560a893de0d3e13b58aae3ec4c32436484b9255ad0526dfea2ff9a",
+      "bytes": 3187
+    },
+    "paper.md": {
+      "sha256": "6a90e83d89efab5fe6489538aa425c3aad13db3d6d34a3ee167072e7d7b03eaf",
+      "bytes": 67978
+    },
+    "paper.pdf": {
+      "sha256": "639f3cc7a76752aa16f099ce53ab4b649949dbbafd3b3150c04acf8ac1666373",
+      "bytes": 264672
+    },
+    "paper.docx": {
+      "sha256": "70585c3ff1fd6da53040af2b3c8ff1ba3b294e94ab3f5583b36f7af325186d4e",
+      "bytes": 154209
+    },
+    "paper.html": {
+      "sha256": "00db2fdd7897cc1fe2872c2879e4b66efecbc12362854cb33f6e752d5316d0b8",
+      "bytes": 258109
+    },
+    "figures/conversation.png": {
+      "sha256": "9954698a444d0fc0d175e7c9fb77b573522cdae393e977fb98f823c4cbe2af32",
+      "bytes": 115436
+    },
+    "figures/conversation.svg": {
+      "sha256": "11296e8207498aaaabc9ec86d8ff6eb0ca042483d1f4fb364fccbde4eb3e7e60",
+      "bytes": 6303
+    }
+  }
+}

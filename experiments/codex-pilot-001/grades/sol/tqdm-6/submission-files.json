@@ -1,0 +1,12 @@
+[
+  {
+    "path": "tqdm/_tqdm.py",
+    "before_sha256": "f01312f7c421b308675812d9cabe5e7efce09eac5aae0474cae0b7d5154b90c4",
+    "after_sha256": "2abf1f29a1309465e076893d4d5dfe9c2fddcf73087660ecdd83791c36d8690f"
+  },
+  {
+    "path": "tqdm/tests/test_length.py",
+    "before_sha256": null,
+    "after_sha256": "2dff8b1c46cdd12e2e1b6d82e0a86985b1440f9386106f25aa5046afbc4afdba"
+  }
+]

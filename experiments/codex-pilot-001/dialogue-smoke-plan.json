@@ -1,0 +1,17 @@
+{
+  "status": "frozen_before_smoke_trial",
+  "created_at": "2026-10-26T00:00:09.951374+00:00",
+  "task_id": "pysnooper-2",
+  "arm": "dialogue_smoke",
+  "models": [
+    "gpt-6-luna",
+    "gpt-6.1-sol"
+  ],
+  "reason": "All four optional-conversation controllers reported zero consultations; test the live message mechanism separately",
+  "intervention": "Required one expert clarification question, controller response, expert proposal, controller integration and verification; exactly two expert turns maximum",
+  "classification": "post-pilot engineering mechanism check; not part of four-arm performance analysis",
+  "workspace": "/workspace/scratch/ttgl-codex-pilot/dialogue_smoke/pysnooper-2",
+  "deadline_seconds": 240,
+  "reasoning_effort": "medium",
+  "cost_usd": null
+}

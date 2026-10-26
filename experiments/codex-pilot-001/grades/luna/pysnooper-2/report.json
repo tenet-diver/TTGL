@@ -1,0 +1,49 @@
+{
+  "arm": "luna",
+  "base_commit": "e21a31162f4c54be693d8ca8260e42393b39abd3",
+  "changed_files": [
+    {
+      "after_sha256": "0c6ff5d7bf023d7c73478677160ca3dc1a11fbf5a83d40f08c6cf6c87e53ba25",
+      "before_sha256": "a3659fb6d0f1edfd71d11e573c8af2b90c3ff8dd4766849bbb1c95706c50f3e4",
+      "path": "pysnooper/tracer.py"
+    }
+  ],
+  "patch_sha256": "c7a1a11e5aeba066bee1b874c47e5689a58d80334c4654f8380cb7188749c7a0",
+  "prohibited_edits": [],
+  "protocol_sha256": "ef87410a47547c2afb6378a7a51ca53f7440412b7567a52268f090f9c97dd414",
+  "resolved": false,
+  "returncode": 1,
+  "task_id": "pysnooper-2",
+  "test": {
+    "command": [
+      "/workspace/.tools/ttgl-codex-pilot/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-o",
+      "addopts=",
+      "tests/test_pysnooper.py",
+      "--junitxml=/workspace/TTGL/experiments/codex-pilot-001/grades/luna/pysnooper-2/junit.xml",
+      "-k",
+      "not test_disable"
+    ],
+    "counts": {
+      "errors": 0,
+      "failures": 2,
+      "skipped": 0,
+      "tests": 30
+    },
+    "elapsed_seconds": 0.2753667219994895,
+    "junit_path": "/workspace/TTGL/experiments/codex-pilot-001/grades/luna/pysnooper-2/junit.xml",
+    "junit_sha256": "f2ff7dadc96db4fcb7f9594fe2add43425bb95c145752844580e616bf5cbd041",
+    "returncode": 1,
+    "stdout_path": "/workspace/TTGL/experiments/codex-pilot-001/grades/luna/pysnooper-2/stdout.txt",
+    "stdout_sha256": "07aefcb4903ac1ffdf2d9b30c7a403a153e8a58d7e199cf6f6da06fbdf139e4f"
+  },
+  "testcounts": {
+    "errors": 0,
+    "failures": 2,
+    "skipped": 0,
+    "tests": 30
+  }
+}

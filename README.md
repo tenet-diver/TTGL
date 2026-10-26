@@ -1,10 +1,26 @@
-# TTGL research
+# We have to combine — A conversation is all you need
 
-A reproducible study of confidence-aware routing from a local coding model to a stronger remote model, followed by verified teacher-output distillation.
+**Using small language models as conversational routers for agentic software engineering.**
 
-## We Gotta Combine! — personal AI that collaborates and learns
+The hypothesis is lower **total cost** with minimal performance degradation through continuing small-model ↔ expert conversations: questions, clarification, challenge, revision and tested integration. Personal memory and learning are optional extensions. Closely related architectures already exist; this is a replication and controlled extension, not a first-architecture claim.
 
-The [pre-results thesis](docs/thesis/README.md) studies a compact personal agent that uses open-model experts, verifies and integrates their work, and learns from repeated use. It separates better cooperation from increasing independent local capability. Read the [PDF](docs/thesis/thesis.pdf), [Word document](docs/thesis/thesis.docx), [cooperative architecture](docs/thesis/personal-controller.md), or [longitudinal learning plan](docs/thesis/longitudinal-learning.md). Portfolio routing, customer adaptation, browser tasks and [per-task economics](docs/thesis/task-economics.md) remain supporting parts of the design. The new empirical studies are unrun.
+Read the **[paper](docs/paper/README.md)**: [PDF](docs/paper/paper.pdf), [Word](docs/paper/paper.docx), [HTML](docs/paper/paper.html). It contains the literature review, explicit prior-art comparison, experiment design, live pilot results and limitations. [ADR 0006](docs/adr/0006-personal-agent-replication.md) records the current scope.
+
+The live Codex feasibility pilot completed 16 paired task assignments. Functional regression success was Luna **3/4**, Sol **4/4**, prompt routing **4/4**, and the optional-conversation controller **3/4**. All optional controllers chose zero expert calls. A separately required two-round clarification exchange passed its 30 regression tests. Strict original-test-file rules rejected several otherwise functional patches; both outcomes are [recorded](results/codex-pilot-001/analysis/summary.json). These tiny historical-task results do **not** establish cost savings or noninferiority; token and dollar usage were unavailable.
+
+- [Codex conversation harness](docs/research/personal-harness.md): persistent controller and expert threads, clarification/challenge responses, bounded turns, failure records and unknown-cost handling.
+- [Frozen pilot and restore instructions](experiments/codex-pilot-001/README.md), [full results](results/codex-pilot-001/analysis/), [live dialogue transcript](results/codex-pilot-001/dialogue-transcript.md).
+- [Closest prior work](docs/thesis/personal-agent-prior-art.md), [source register](docs/thesis/personal-agent-prior-art-sources.json), [communication protocols](docs/thesis/agent-communication.md).
+- [Earlier broad thesis](docs/thesis/README.md): supporting open-model, distillation, browser and economics reviews. Its older proposed study hierarchy is superseded by the current paper.
+
+Reproduce the recorded analysis without calling a model:
+
+```bash
+python scripts/analyze_codex_pilot.py --output-dir results/my-pilot-analysis
+python -m pytest -q
+```
+
+The research dependencies are pinned below. Core validation: **86 passed, 1 skipped, 2 subtests passed**. The standalone Codex CLI adapter is tested with subprocess fixtures; live trials used the collaboration interface because nested CLI initialization encounters a read-only state directory here. Runpod remains unprovisioned and its authorized US$100 budget unspent. Fastest Jira/Confluence access is still unavailable; [local task state](docs/research/task-state.json) and an [import CSV](docs/research/jira-import.csv) preserve progress.
 
 ## Earlier coding-problem replay
 

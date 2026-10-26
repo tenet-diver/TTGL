@@ -1,0 +1,12 @@
+[
+  {
+    "path": "tqdm/_tqdm.py",
+    "before_sha256": "f01312f7c421b308675812d9cabe5e7efce09eac5aae0474cae0b7d5154b90c4",
+    "after_sha256": "72e698a78ab53d5e9b6679c58251844ac2e8ac4fdc64eac89315446bd5eac9b0"
+  },
+  {
+    "path": "tqdm/tests/tests_tqdm.py",
+    "before_sha256": "41fc613bf22710dc8bc159d97c7a17c414027b08c985ff07dc5f8eee70abcda8",
+    "after_sha256": "0a131778ce67c4db96451d77faf16457db95a23d73af0ab2fc235263a11b6d59"
+  }
+]

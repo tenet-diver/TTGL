@@ -1,0 +1,17 @@
+[
+  {
+    "path": "pysnooper/tracer.py",
+    "before_sha256": "a3659fb6d0f1edfd71d11e573c8af2b90c3ff8dd4766849bbb1c95706c50f3e4",
+    "after_sha256": "bfbb5d0bcdce766b68f104cd9bdc166c5858c9bd3f51c95e9a23efb60b2f9f0a"
+  },
+  {
+    "path": "pysnooper/utils.py",
+    "before_sha256": "e7336ee824b309eec23ba1eef3f4d327a51f4c38c16ffbe6fea8a915c54fe5ed",
+    "after_sha256": "fa17c8cbb67ac2af286b5494ae7e0a08731f1405eb7c94a2bf15dfca9925950e"
+  },
+  {
+    "path": "tests/test_custom_repr.py",
+    "before_sha256": null,
+    "after_sha256": "88eb2eb75210cb281259327a3daf8ba62bc361717805e58a1cbd00022b7620ad"
+  }
+]

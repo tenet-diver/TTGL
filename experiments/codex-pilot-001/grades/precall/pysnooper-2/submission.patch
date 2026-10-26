@@ -1,0 +1,70 @@
+diff -ruN '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-2/base/pysnooper/tracer.py /workspace/scratch/ttgl-codex-pilot/precall/pysnooper-2/pysnooper/tracer.py
+--- /workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-2/base/pysnooper/tracer.py	2026-10-25 23:49:27.590680794 +0000
++++ /workspace/scratch/ttgl-codex-pilot/precall/pysnooper-2/pysnooper/tracer.py	2026-10-25 23:55:46.205243405 +0000
+@@ -19,11 +19,12 @@
+ ipython_filename_pattern = re.compile('^<ipython-input-([0-9]+)-.*>$')
+ 
+ 
+-def get_local_reprs(frame, watch=()):
++def get_local_reprs(frame, watch=(), custom_repr=()):
+     code = frame.f_code
+     vars_order = code.co_varnames + code.co_cellvars + code.co_freevars + tuple(frame.f_locals.keys())
+ 
+-    result_items = [(key, utils.get_shortish_repr(value)) for key, value in frame.f_locals.items()]
++    result_items = [(key, get_value_repr(value, custom_repr))
++                    for key, value in frame.f_locals.items()]
+     result_items.sort(key=lambda key_value: vars_order.index(key_value[0]))
+     result = collections.OrderedDict(result_items)
+ 
+@@ -32,6 +33,21 @@
+     return result
+ 
+ 
++def get_value_repr(value, custom_repr):
++    for condition, formatter in custom_repr:
++        try:
++            matches = isinstance(value, condition) if isinstance(condition, type) else condition(value)
++            if matches:
++                result = formatter(value)
++                if not isinstance(result, pycompat.string_types):
++                    result = pycompat.text_type(result)
++                return utils.truncate(result.replace('\r', '').replace('\n', ''),
++                                      utils.MAX_VARIABLE_LENGTH)
++        except Exception:
++            continue
++    return utils.get_shortish_repr(value)
++
++
+ class UnavailableSource(object):
+     def __getitem__(self, i):
+         return u'SOURCE IS UNAVAILABLE'
+@@ -186,6 +202,7 @@
+             prefix='',
+             overwrite=False,
+             thread_info=False,
++            custom_repr=(),
+     ):
+         self._write = get_write_function(output, overwrite)
+ 
+@@ -200,6 +217,11 @@
+         self.depth = depth
+         self.prefix = prefix
+         self.thread_info = thread_info
++        if (isinstance(custom_repr, (tuple, list)) and len(custom_repr) == 2
++                and callable(custom_repr[1])
++                and (isinstance(custom_repr[0], type) or callable(custom_repr[0]))):
++            custom_repr = (custom_repr,)
++        self.custom_repr = tuple(custom_repr)
+         self.thread_info_padding = 0
+         assert self.depth >= 1
+         self.target_codes = set()
+@@ -307,7 +329,8 @@
+         #                                                                     #
+         old_local_reprs = self.frame_to_local_reprs.get(frame, {})
+         self.frame_to_local_reprs[frame] = local_reprs = \
+-                                       get_local_reprs(frame, watch=self.watch)
++                                       get_local_reprs(frame, watch=self.watch,
++                                                       custom_repr=self.custom_repr)
+ 
+         newish_string = ('Starting var:.. ' if event == 'call' else
+                                                             'New var:....... ')

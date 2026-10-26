@@ -1,0 +1,40 @@
+{
+  "status": "validated_feasibility_artifacts",
+  "recorded_at_utc": "2026-10-26T00:14:16.701843+00:00",
+  "main_trial_count": 16,
+  "assigned_tasks": 4,
+  "repositories": 2,
+  "source_control_checks": 8,
+  "software_tests": {
+    "passed": 86,
+    "skipped": 1,
+    "subtests_passed": 2
+  },
+  "functional_successes": {
+    "luna": 3,
+    "sol": 4,
+    "precall": 4,
+    "personal": 3
+  },
+  "artifact_policy_accepted": {
+    "luna": 3,
+    "sol": 4,
+    "precall": 2,
+    "personal": 0
+  },
+  "optional_expert_turns": 0,
+  "forced_dialogue_expert_turns": 2,
+  "forced_dialogue_regression_tests_passed": 30,
+  "cost_observed": false,
+  "analysis_reproduced_exactly": true,
+  "setup_commands": "research and pinned pilot environments verified; no GPU provisioned",
+  "standalone_codex_cli": "unavailable_read_only_app_server_state",
+  "environment_draft_fields_saved": [
+    "install_script",
+    "start_skill"
+  ],
+  "environment_draft_applied_or_published": false,
+  "jira_sync": false,
+  "confluence_publication": false,
+  "frozen_protocol_sha256": "ef87410a47547c2afb6378a7a51ca53f7440412b7567a52268f090f9c97dd414"
+}

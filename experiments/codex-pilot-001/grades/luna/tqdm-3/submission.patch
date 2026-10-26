@@ -1,0 +1,24 @@
+diff -ruN '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-3/base/tqdm/_tqdm.py /workspace/scratch/ttgl-codex-pilot/luna/tqdm-3/tqdm/_tqdm.py
+--- /workspace/scratch/ttgl-codex-pilot-evaluator/tqdm-3/base/tqdm/_tqdm.py	2026-10-25 23:49:37.559176129 +0000
++++ /workspace/scratch/ttgl-codex-pilot/luna/tqdm-3/tqdm/_tqdm.py	2026-10-25 23:53:36.607163877 +0000
+@@ -953,6 +953,20 @@
+              else len(self.iterable) if hasattr(self.iterable, "__len__")
+              else getattr(self, "total", None))
+ 
++    def __bool__(self):
++        """Return whether this progress bar has work to do."""
++        if self.total is not None:
++            return bool(self.total)
++        if self.iterable is not None:
++            try:
++                return bool(len(self.iterable))
++            except TypeError:
++                # Unsized iterables still represent potentially available work.
++                return True
++        raise TypeError("tqdm with neither total nor iterable has no truth value")
++
++    __nonzero__ = __bool__
++
+     def __enter__(self):
+         return self
+ 

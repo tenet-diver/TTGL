@@ -1,0 +1,34 @@
+--- a/tqdm/_tqdm.py
++++ b/tqdm/_tqdm.py
+@@ -748,8 +748,17 @@
+         if disable is None and hasattr(file, "isatty") and not file.isatty():
+             disable = True
+ 
++        # Precompute total iterations before the disabled fast path so that
++        # len() and bool() behave consistently whether or not output is shown.
++        if total is None and iterable is not None:
++            try:
++                total = len(iterable)
++            except (TypeError, AttributeError):
++                total = None
++
+         if disable:
+             self.iterable = iterable
++            self.total = total
+             self.disable = disable
+             self.pos = self._get_free_pos(self)
+             self._instances.remove(self)
+@@ -764,13 +773,6 @@
+ `nested` is deprecated and automated. Use position instead for manual control.
+ """, fp_write=getattr(file, 'write', sys.stderr.write)) if "nested" in kwargs
+                 else TqdmKeyError("Unknown argument(s): " + str(kwargs)))
+-
+-        # Preprocess the arguments
+-        if total is None and iterable is not None:
+-            try:
+-                total = len(iterable)
+-            except (TypeError, AttributeError):
+-                total = None
+ 
+         if ((ncols is None) and (file in (sys.stderr, sys.stdout))) or \
+                 dynamic_ncols:  # pragma: no cover

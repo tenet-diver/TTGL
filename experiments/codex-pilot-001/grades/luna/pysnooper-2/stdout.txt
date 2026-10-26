@@ -1,0 +1,171 @@
+............................FF                                           [100%]
+=================================== FAILURES ===================================
+_______________________________ test_custom_repr _______________________________
+
+    def test_custom_repr():
+        string_io = io.StringIO()
+    
+        def large(l):
+            return isinstance(l, list) and len(l) > 5
+    
+        def print_list_size(l):
+            return 'list(size={})'.format(len(l))
+    
+        def print_dict(d):
+            return 'dict(keys={})'.format(sorted(list(d.keys())))
+    
+        def evil_condition(x):
+            return large(x) or isinstance(x, dict)
+    
+        @pysnooper.snoop(string_io, custom_repr=(
+            (large, print_list_size),
+            (dict, print_dict),
+            (evil_condition, lambda x: 'I am evil')))
+        def sum_to_x(x):
+            l = list(range(x))
+            a = {'1': 1, '2': 2}
+            return sum(l)
+    
+        result = sum_to_x(10000)
+    
+        output = string_io.getvalue()
+>       assert_output(
+            output,
+            (
+                VariableEntry('x', '10000'),
+                CallEntry(),
+                LineEntry(),
+                VariableEntry('l', 'list(size=10000)'),
+                LineEntry(),
+                VariableEntry('a', "dict(keys=['1', '2'])"),
+                LineEntry(),
+                ReturnEntry(),
+                ReturnValueEntry('49995000'),
+            )
+        )
+
+../../../pysnooper-2/fixed/tests/test_pysnooper.py:1162: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+output = 'Starting var:.. x = 10000\n00:01:10.571438 call      1154     def sum_to_x(x):\n00:01:10.571463 line      1155       ...line      1157         return sum(l)\n00:01:10.571995 return    1157         return sum(l)\nReturn value:.. 49995000\n'
+expected_entries = (VariableEntry(name='x', value='10000', prefix=''), CallEntry(prefix=''), LineEntry(prefix=''), VariableEntry(name='l'...size=10000)', prefix=''), LineEntry(prefix=''), VariableEntry(name='a', value="dict(keys=['1', '2'])", prefix=''), ...)
+prefix = None
+
+    def assert_output(output, expected_entries, prefix=None):
+        lines = tuple(filter(None, output.split('\n')))
+    
+        if prefix is not None:
+            for line in lines:
+                if not line.startswith(prefix):
+                    raise OutputFailure(line)
+    
+        any_mismatch = False
+        result = ''
+        template = u'\n{line!s:%s}   {expected_entry}  {arrow}' % max(map(len, lines))
+        for expected_entry, line in zip_longest(expected_entries, lines, fillvalue=""):
+            mismatch = not (expected_entry and expected_entry.check(line))
+            any_mismatch |= mismatch
+            arrow = '<===' * mismatch
+            result += template.format(**locals())
+    
+        if len(lines) != len(expected_entries):
+            result += '\nOutput has {} lines, while we expect {} lines.'.format(
+                    len(lines), len(expected_entries))
+    
+        if any_mismatch:
+>           raise OutputFailure(result)
+E           tests.utils.OutputFailure: 
+E           Starting var:.. x = 10000                                     VariableEntry(name='x', value='10000', prefix='')  
+E           00:01:10.571438 call      1154     def sum_to_x(x):           CallEntry(prefix='')  
+E           00:01:10.571463 line      1155         l = list(range(x))     LineEntry(prefix='')  
+E           New var:....... l = 'list(size=10000)'                        VariableEntry(name='l', value='list(size=10000)', prefix='')  <===
+E           00:01:10.571749 line      1156         a = {'1': 1, '2': 2}   LineEntry(prefix='')  
+E           New var:....... a = "dict(keys=['1', '2'])"                   VariableEntry(name='a', value="dict(keys=['1', '2'])", prefix='')  <===
+E           00:01:10.571773 line      1157         return sum(l)          LineEntry(prefix='')  
+E           00:01:10.571995 return    1157         return sum(l)          ReturnEntry(prefix='')  
+E           Return value:.. 49995000                                      ReturnValueEntry(value='49995000', prefix='')
+
+../../../pysnooper-2/fixed/tests/utils.py:269: OutputFailure
+___________________________ test_custom_repr_single ____________________________
+
+    def test_custom_repr_single():
+        string_io = io.StringIO()
+    
+        @pysnooper.snoop(string_io, custom_repr=(list, lambda l: 'foofoo!'))
+        def sum_to_x(x):
+            l = list(range(x))
+            return 7
+    
+        result = sum_to_x(10000)
+    
+        output = string_io.getvalue()
+>       assert_output(
+            output,
+            (
+                VariableEntry('x', '10000'),
+                CallEntry(),
+                LineEntry(),
+                VariableEntry('l', 'foofoo!'),
+                LineEntry(),
+                ReturnEntry(),
+                ReturnValueEntry('7'),
+            )
+        )
+
+../../../pysnooper-2/fixed/tests/test_pysnooper.py:1188: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+output = "Starting var:.. x = 10000\n00:01:10.597382 call      1181     def sum_to_x(x):\n00:01:10.597412 line      1182       ...n00:01:10.597602 line      1183         return 7\n00:01:10.597619 return    1183         return 7\nReturn value:.. 7\n"
+expected_entries = (VariableEntry(name='x', value='10000', prefix=''), CallEntry(prefix=''), LineEntry(prefix=''), VariableEntry(name='l', value='foofoo!', prefix=''), LineEntry(prefix=''), ReturnEntry(prefix=''), ...)
+prefix = None
+
+    def assert_output(output, expected_entries, prefix=None):
+        lines = tuple(filter(None, output.split('\n')))
+    
+        if prefix is not None:
+            for line in lines:
+                if not line.startswith(prefix):
+                    raise OutputFailure(line)
+    
+        any_mismatch = False
+        result = ''
+        template = u'\n{line!s:%s}   {expected_entry}  {arrow}' % max(map(len, lines))
+        for expected_entry, line in zip_longest(expected_entries, lines, fillvalue=""):
+            mismatch = not (expected_entry and expected_entry.check(line))
+            any_mismatch |= mismatch
+            arrow = '<===' * mismatch
+            result += template.format(**locals())
+    
+        if len(lines) != len(expected_entries):
+            result += '\nOutput has {} lines, while we expect {} lines.'.format(
+                    len(lines), len(expected_entries))
+    
+        if any_mismatch:
+>           raise OutputFailure(result)
+E           tests.utils.OutputFailure: 
+E           Starting var:.. x = 10000                                   VariableEntry(name='x', value='10000', prefix='')  
+E           00:01:10.597382 call      1181     def sum_to_x(x):         CallEntry(prefix='')  
+E           00:01:10.597412 line      1182         l = list(range(x))   LineEntry(prefix='')  
+E           New var:....... l = 'foofoo!'                               VariableEntry(name='l', value='foofoo!', prefix='')  <===
+E           00:01:10.597602 line      1183         return 7             LineEntry(prefix='')  
+E           00:01:10.597619 return    1183         return 7             ReturnEntry(prefix='')  
+E           Return value:.. 7                                           ReturnValueEntry(value='7', prefix='')
+
+../../../pysnooper-2/fixed/tests/utils.py:269: OutputFailure
+=============================== warnings summary ===============================
+/workspace/.tools/ttgl-codex-pilot/lib/python3.8/site-packages/_pytest/junitxml.py:417
+  /workspace/.tools/ttgl-codex-pilot/lib/python3.8/site-packages/_pytest/junitxml.py:417: PytestDeprecationWarning: The 'junit_family' default value will change to 'xunit2' in pytest 6.0.
+  Add 'junit_family=xunit1' to your pytest.ini file to keep the current format in future versions of pytest and silence this warning.
+    _issue_warning_captured(deprecated.JUNIT_XML_DEFAULT_FAMILY, config.hook, 2)
+
+pysnooper/variables.py:3
+pysnooper/variables.py:3
+  /workspace/scratch/ttgl-codex-pilot-evaluator/grading/luna/pysnooper-2/pysnooper/variables.py:3: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3, and in 3.10 it will stop working
+    from collections import Mapping, Sequence
+
+-- Docs: https://docs.pytest.org/en/latest/warnings.html
+- generated xml file: /workspace/TTGL/experiments/codex-pilot-001/grades/luna/pysnooper-2/junit.xml -
+=========================== short test summary info ============================
+FAILED tests/test_pysnooper.py::test_custom_repr - tests.utils.OutputFailure: 
+FAILED tests/test_pysnooper.py::test_custom_repr_single - tests.utils.OutputF...
+2 failed, 28 passed, 1 deselected, 3 warnings in 0.12s

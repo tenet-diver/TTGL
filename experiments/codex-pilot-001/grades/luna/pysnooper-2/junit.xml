@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite errors="0" failures="2" hostname="b9c09386627b" name="pytest" skipped="0" tests="30" time="0.108" timestamp="2026-10-26T00:01:10.503402"><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="21" name="test_string_io" time="0.002"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="49" name="test_thread_info" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="78" name="test_multi_thread_info" time="0.002"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="158" name="test_callable" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="190" name="test_watch" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="241" name="test_watch_explode" time="0.002"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="290" name="test_variables_classes" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="339" name="test_single_watch_no_comma" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="379" name="test_long_variable" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="404" name="test_repr_exception" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="431" name="test_depth" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="490" name="test_method_and_prefix" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="527" name="test_file_output" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="557" name="test_confusing_decorator_lines" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="599" name="test_lambda" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="617" name="test_unavailable_source" time="0.002"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="649" name="test_no_overwrite_by_default" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="681" name="test_overwrite" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="723" name="test_error_in_overwrite_argument" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="733" name="test_needs_parentheses" time="0.000"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="750" name="test_with_block" time="0.002"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="872" name="test_with_block_depth" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="926" name="test_cellvars" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="987" name="test_var_order" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="1031" name="test_truncate" time="0.000"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="1043" name="test_indentation" time="0.002"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="1049" name="test_exception" time="0.001"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="1054" name="test_generator" time="0.002"></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="1134" name="test_custom_repr" time="0.001"><failure message="tests.utils.OutputFailure: 
+Starting var:.. x = 10000                                     VariableEntry(name=&apos;x&apos;, value=&apos;10000&apos;, prefix=&apos;&apos;)  
+00:01:10.571438 call      1154     def sum_to_x(x):           CallEntry(prefix=&apos;&apos;)  
+00:01:10.571463 line      1155         l = list(range(x))     LineEntry(prefix=&apos;&apos;)  
+New var:....... l = &apos;list(size=10000)&apos;                        VariableEntry(name=&apos;l&apos;, value=&apos;list(size=10000)&apos;, prefix=&apos;&apos;)  &lt;===
+00:01:10.571749 line      1156         a = {&apos;1&apos;: 1, &apos;2&apos;: 2}   LineEntry(prefix=&apos;&apos;)  
+New var:....... a = &quot;dict(keys=[&apos;1&apos;, &apos;2&apos;])&quot;                   VariableEntry(name=&apos;a&apos;, value=&quot;dict(keys=[&apos;1&apos;, &apos;2&apos;])&quot;, prefix=&apos;&apos;)  &lt;===
+00:01:10.571773 line      1157         return sum(l)          LineEntry(prefix=&apos;&apos;)  
+00:01:10.571995 return    1157         return sum(l)          ReturnEntry(prefix=&apos;&apos;)  
+Return value:.. 49995000                                      ReturnValueEntry(value=&apos;49995000&apos;, prefix=&apos;&apos;)">def test_custom_repr():
+        string_io = io.StringIO()
+    
+        def large(l):
+            return isinstance(l, list) and len(l) &gt; 5
+    
+        def print_list_size(l):
+            return &apos;list(size={})&apos;.format(len(l))
+    
+        def print_dict(d):
+            return &apos;dict(keys={})&apos;.format(sorted(list(d.keys())))
+    
+        def evil_condition(x):
+            return large(x) or isinstance(x, dict)
+    
+        @pysnooper.snoop(string_io, custom_repr=(
+            (large, print_list_size),
+            (dict, print_dict),
+            (evil_condition, lambda x: &apos;I am evil&apos;)))
+        def sum_to_x(x):
+            l = list(range(x))
+            a = {&apos;1&apos;: 1, &apos;2&apos;: 2}
+            return sum(l)
+    
+        result = sum_to_x(10000)
+    
+        output = string_io.getvalue()
+&gt;       assert_output(
+            output,
+            (
+                VariableEntry(&apos;x&apos;, &apos;10000&apos;),
+                CallEntry(),
+                LineEntry(),
+                VariableEntry(&apos;l&apos;, &apos;list(size=10000)&apos;),
+                LineEntry(),
+                VariableEntry(&apos;a&apos;, &quot;dict(keys=[&apos;1&apos;, &apos;2&apos;])&quot;),
+                LineEntry(),
+                ReturnEntry(),
+                ReturnValueEntry(&apos;49995000&apos;),
+            )
+        )
+
+../../../pysnooper-2/fixed/tests/test_pysnooper.py:1162: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+output = &apos;Starting var:.. x = 10000\n00:01:10.571438 call      1154     def sum_to_x(x):\n00:01:10.571463 line      1155       ...line      1157         return sum(l)\n00:01:10.571995 return    1157         return sum(l)\nReturn value:.. 49995000\n&apos;
+expected_entries = (VariableEntry(name=&apos;x&apos;, value=&apos;10000&apos;, prefix=&apos;&apos;), CallEntry(prefix=&apos;&apos;), LineEntry(prefix=&apos;&apos;), VariableEntry(name=&apos;l&apos;...size=10000)&apos;, prefix=&apos;&apos;), LineEntry(prefix=&apos;&apos;), VariableEntry(name=&apos;a&apos;, value=&quot;dict(keys=[&apos;1&apos;, &apos;2&apos;])&quot;, prefix=&apos;&apos;), ...)
+prefix = None
+
+    def assert_output(output, expected_entries, prefix=None):
+        lines = tuple(filter(None, output.split(&apos;\n&apos;)))
+    
+        if prefix is not None:
+            for line in lines:
+                if not line.startswith(prefix):
+                    raise OutputFailure(line)
+    
+        any_mismatch = False
+        result = &apos;&apos;
+        template = u&apos;\n{line!s:%s}   {expected_entry}  {arrow}&apos; % max(map(len, lines))
+        for expected_entry, line in zip_longest(expected_entries, lines, fillvalue=&quot;&quot;):
+            mismatch = not (expected_entry and expected_entry.check(line))
+            any_mismatch |= mismatch
+            arrow = &apos;&lt;===&apos; * mismatch
+            result += template.format(**locals())
+    
+        if len(lines) != len(expected_entries):
+            result += &apos;\nOutput has {} lines, while we expect {} lines.&apos;.format(
+                    len(lines), len(expected_entries))
+    
+        if any_mismatch:
+&gt;           raise OutputFailure(result)
+E           tests.utils.OutputFailure: 
+E           Starting var:.. x = 10000                                     VariableEntry(name=&apos;x&apos;, value=&apos;10000&apos;, prefix=&apos;&apos;)  
+E           00:01:10.571438 call      1154     def sum_to_x(x):           CallEntry(prefix=&apos;&apos;)  
+E           00:01:10.571463 line      1155         l = list(range(x))     LineEntry(prefix=&apos;&apos;)  
+E           New var:....... l = &apos;list(size=10000)&apos;                        VariableEntry(name=&apos;l&apos;, value=&apos;list(size=10000)&apos;, prefix=&apos;&apos;)  &lt;===
+E           00:01:10.571749 line      1156         a = {&apos;1&apos;: 1, &apos;2&apos;: 2}   LineEntry(prefix=&apos;&apos;)  
+E           New var:....... a = &quot;dict(keys=[&apos;1&apos;, &apos;2&apos;])&quot;                   VariableEntry(name=&apos;a&apos;, value=&quot;dict(keys=[&apos;1&apos;, &apos;2&apos;])&quot;, prefix=&apos;&apos;)  &lt;===
+E           00:01:10.571773 line      1157         return sum(l)          LineEntry(prefix=&apos;&apos;)  
+E           00:01:10.571995 return    1157         return sum(l)          ReturnEntry(prefix=&apos;&apos;)  
+E           Return value:.. 49995000                                      ReturnValueEntry(value=&apos;49995000&apos;, prefix=&apos;&apos;)
+
+../../../pysnooper-2/fixed/tests/utils.py:269: OutputFailure</failure></testcase><testcase classname="tests.test_pysnooper" file="../../../pysnooper-2/fixed/tests/test_pysnooper.py" line="1176" name="test_custom_repr_single" time="0.001"><failure message="tests.utils.OutputFailure: 
+Starting var:.. x = 10000                                   VariableEntry(name=&apos;x&apos;, value=&apos;10000&apos;, prefix=&apos;&apos;)  
+00:01:10.597382 call      1181     def sum_to_x(x):         CallEntry(prefix=&apos;&apos;)  
+00:01:10.597412 line      1182         l = list(range(x))   LineEntry(prefix=&apos;&apos;)  
+New var:....... l = &apos;foofoo!&apos;                               VariableEntry(name=&apos;l&apos;, value=&apos;foofoo!&apos;, prefix=&apos;&apos;)  &lt;===
+00:01:10.597602 line      1183         return 7             LineEntry(prefix=&apos;&apos;)  
+00:01:10.597619 return    1183         return 7             ReturnEntry(prefix=&apos;&apos;)  
+Return value:.. 7                                           ReturnValueEntry(value=&apos;7&apos;, prefix=&apos;&apos;)">def test_custom_repr_single():
+        string_io = io.StringIO()
+    
+        @pysnooper.snoop(string_io, custom_repr=(list, lambda l: &apos;foofoo!&apos;))
+        def sum_to_x(x):
+            l = list(range(x))
+            return 7
+    
+        result = sum_to_x(10000)
+    
+        output = string_io.getvalue()
+&gt;       assert_output(
+            output,
+            (
+                VariableEntry(&apos;x&apos;, &apos;10000&apos;),
+                CallEntry(),
+                LineEntry(),
+                VariableEntry(&apos;l&apos;, &apos;foofoo!&apos;),
+                LineEntry(),
+                ReturnEntry(),
+                ReturnValueEntry(&apos;7&apos;),
+            )
+        )
+
+../../../pysnooper-2/fixed/tests/test_pysnooper.py:1188: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+output = &quot;Starting var:.. x = 10000\n00:01:10.597382 call      1181     def sum_to_x(x):\n00:01:10.597412 line      1182       ...n00:01:10.597602 line      1183         return 7\n00:01:10.597619 return    1183         return 7\nReturn value:.. 7\n&quot;
+expected_entries = (VariableEntry(name=&apos;x&apos;, value=&apos;10000&apos;, prefix=&apos;&apos;), CallEntry(prefix=&apos;&apos;), LineEntry(prefix=&apos;&apos;), VariableEntry(name=&apos;l&apos;, value=&apos;foofoo!&apos;, prefix=&apos;&apos;), LineEntry(prefix=&apos;&apos;), ReturnEntry(prefix=&apos;&apos;), ...)
+prefix = None
+
+    def assert_output(output, expected_entries, prefix=None):
+        lines = tuple(filter(None, output.split(&apos;\n&apos;)))
+    
+        if prefix is not None:
+            for line in lines:
+                if not line.startswith(prefix):
+                    raise OutputFailure(line)
+    
+        any_mismatch = False
+        result = &apos;&apos;
+        template = u&apos;\n{line!s:%s}   {expected_entry}  {arrow}&apos; % max(map(len, lines))
+        for expected_entry, line in zip_longest(expected_entries, lines, fillvalue=&quot;&quot;):
+            mismatch = not (expected_entry and expected_entry.check(line))
+            any_mismatch |= mismatch
+            arrow = &apos;&lt;===&apos; * mismatch
+            result += template.format(**locals())
+    
+        if len(lines) != len(expected_entries):
+            result += &apos;\nOutput has {} lines, while we expect {} lines.&apos;.format(
+                    len(lines), len(expected_entries))
+    
+        if any_mismatch:
+&gt;           raise OutputFailure(result)
+E           tests.utils.OutputFailure: 
+E           Starting var:.. x = 10000                                   VariableEntry(name=&apos;x&apos;, value=&apos;10000&apos;, prefix=&apos;&apos;)  
+E           00:01:10.597382 call      1181     def sum_to_x(x):         CallEntry(prefix=&apos;&apos;)  
+E           00:01:10.597412 line      1182         l = list(range(x))   LineEntry(prefix=&apos;&apos;)  
+E           New var:....... l = &apos;foofoo!&apos;                               VariableEntry(name=&apos;l&apos;, value=&apos;foofoo!&apos;, prefix=&apos;&apos;)  &lt;===
+E           00:01:10.597602 line      1183         return 7             LineEntry(prefix=&apos;&apos;)  
+E           00:01:10.597619 return    1183         return 7             ReturnEntry(prefix=&apos;&apos;)  
+E           Return value:.. 7                                           ReturnValueEntry(value=&apos;7&apos;, prefix=&apos;&apos;)
+
+../../../pysnooper-2/fixed/tests/utils.py:269: OutputFailure</failure></testcase></testsuite></testsuites>

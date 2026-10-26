@@ -1,0 +1,47 @@
+{
+  "arm": "sol",
+  "base_commit": "c2599e3cd6087429f48bae34347ec5d2473c8392",
+  "changed_files": [
+    {
+      "after_sha256": "745e1c50598116d1dcec52b3c30c0d35b99d9b4ec8fcfc72999620f2371b7f21",
+      "before_sha256": "c4ff7e2454503583a44beec609b77b173d027e877c26879f052f362b89b6f84e",
+      "path": "tqdm/_tqdm.py"
+    }
+  ],
+  "patch_sha256": "a51bdda2bbe7b928949c2d48a52f2b7610c5d31ba37dae168536a51dd49c18a0",
+  "prohibited_edits": [],
+  "protocol_sha256": "ef87410a47547c2afb6378a7a51ca53f7440412b7567a52268f090f9c97dd414",
+  "resolved": true,
+  "returncode": 0,
+  "task_id": "tqdm-3",
+  "test": {
+    "command": [
+      "/workspace/.tools/ttgl-codex-pilot/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-o",
+      "addopts=",
+      "tqdm/tests/tests_tqdm.py",
+      "--junitxml=/workspace/TTGL/experiments/codex-pilot-001/grades/sol/tqdm-3/junit.xml"
+    ],
+    "counts": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 1,
+      "tests": 56
+    },
+    "elapsed_seconds": 0.41120639300061157,
+    "junit_path": "/workspace/TTGL/experiments/codex-pilot-001/grades/sol/tqdm-3/junit.xml",
+    "junit_sha256": "ad08a322f1ce2f742fb98580146f5cfc0cd3e3bf128deadce9b0eb6c31384cac",
+    "returncode": 0,
+    "stdout_path": "/workspace/TTGL/experiments/codex-pilot-001/grades/sol/tqdm-3/stdout.txt",
+    "stdout_sha256": "dd15d0ab362c05d7461f5611b2be9acc716c5b5ff8160c475a66aa34231db542"
+  },
+  "testcounts": {
+    "errors": 0,
+    "failures": 0,
+    "skipped": 1,
+    "tests": 56
+  }
+}

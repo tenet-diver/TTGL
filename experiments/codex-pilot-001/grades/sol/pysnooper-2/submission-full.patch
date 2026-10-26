@@ -1,0 +1,148 @@
+--- a/pysnooper/tracer.py
++++ b/pysnooper/tracer.py
+@@ -19,11 +19,12 @@
+ ipython_filename_pattern = re.compile('^<ipython-input-([0-9]+)-.*>$')
+ 
+ 
+-def get_local_reprs(frame, watch=()):
++def get_local_reprs(frame, watch=(), custom_repr=()):
+     code = frame.f_code
+     vars_order = code.co_varnames + code.co_cellvars + code.co_freevars + tuple(frame.f_locals.keys())
+ 
+-    result_items = [(key, utils.get_shortish_repr(value)) for key, value in frame.f_locals.items()]
++    result_items = [(key, utils.get_shortish_repr(value, custom_repr))
++                    for key, value in frame.f_locals.items()]
+     result_items.sort(key=lambda key_value: vars_order.index(key_value[0]))
+     result = collections.OrderedDict(result_items)
+ 
+@@ -186,8 +187,13 @@
+             prefix='',
+             overwrite=False,
+             thread_info=False,
++            custom_repr=(),
+     ):
+         self._write = get_write_function(output, overwrite)
++        custom_repr = tuple(custom_repr)
++        if len(custom_repr) == 2 and callable(custom_repr[0]):
++            custom_repr = (custom_repr,)
++        self.custom_repr = custom_repr
+ 
+         self.watch = [
+             v if isinstance(v, BaseVariable) else CommonVariable(v)
+@@ -307,7 +313,8 @@
+         #                                                                     #
+         old_local_reprs = self.frame_to_local_reprs.get(frame, {})
+         self.frame_to_local_reprs[frame] = local_reprs = \
+-                                       get_local_reprs(frame, watch=self.watch)
++                                       get_local_reprs(frame, watch=self.watch,
++                                                       custom_repr=self.custom_repr)
+ 
+         newish_string = ('Starting var:.. ' if event == 'call' else
+                                                             'New var:....... ')
+--- a/pysnooper/utils.py
++++ b/pysnooper/utils.py
+@@ -49,9 +49,16 @@
+     )
+ 
+ 
+-def get_shortish_repr(item):
++def get_shortish_repr(item, custom_repr=()):
+     try:
+-        r = repr(item)
++        repr_function = repr
++        for condition, formatter in custom_repr:
++            matches = (isinstance(item, condition) if isinstance(condition, type)
++                       else condition(item))
++            if matches:
++                repr_function = formatter
++                break
++        r = repr_function(item)
+     except Exception:
+         r = 'REPR FAILED'
+     r = r.replace('\r', '').replace('\n', '')
+--- a/tests/test_custom_repr.py
++++ b/tests/test_custom_repr.py
+@@ -0,0 +1,83 @@
++import io
++
++import pytest
++
++import pysnooper
++from pysnooper.utils import get_shortish_repr, truncate, MAX_VARIABLE_LENGTH
++
++
++@pytest.mark.parametrize('custom_repr', [
++    (list, lambda value: str(len(value))),
++    [list, lambda value: str(len(value))],
++    ((list, lambda value: str(len(value))),),
++    [(list, lambda value: str(len(value)))],
++    (lambda value: isinstance(value, list), lambda value: str(len(value))),
++    ((lambda value: False, lambda value: 'wrong'),
++     (lambda value: isinstance(value, list), lambda value: str(len(value))),
++     (list, lambda value: 'too late')),
++])
++def test_custom_repr_local_values(custom_repr):
++    output = io.StringIO()
++
++    @pysnooper.snoop(output=output, custom_repr=custom_repr)
++    def traced(values):
++        count = 7
++        values.append(count)
++        return count
++
++    values = [1, 2]
++    assert traced(values) == 7
++    lines = output.getvalue().splitlines()
++    assert 'Starting var:.. values = 2' in lines
++    assert 'Modified var:.. values = 3' in lines
++    assert 'New var:....... count = 7' in lines
++
++
++def test_custom_repr_type_matches_subclasses_and_uses_first_match():
++    class ListSubclass(list):
++        pass
++
++    output = io.StringIO()
++
++    @pysnooper.snoop(output=output, custom_repr=(
++        (list, lambda value: 'first'),
++        (object, lambda value: 'second'),
++    ))
++    def traced(values):
++        return values
++
++    values = ListSubclass([1, 2])
++    assert traced(values) is values
++    assert 'Starting var:.. values = first' in output.getvalue().splitlines()
++
++
++def test_custom_repr_keeps_default_behavior_on_other_tracers():
++    output = io.StringIO()
++
++    @pysnooper.snoop(output=output, custom_repr=(list, lambda value: 'custom'))
++    def custom(values):
++        return values
++
++    @pysnooper.snoop(output=output)
++    def default(values):
++        return values
++
++    custom([1])
++    default([1])
++    lines = output.getvalue().splitlines()
++    assert 'Starting var:.. values = custom' in lines
++    assert 'Starting var:.. values = [1]' in lines
++
++
++def test_custom_repr_preserves_cleanup_and_failure_handling():
++    formatted = 'start\r\n' + 'x' * 150 + 'end'
++    assert get_shortish_repr([], ((list, lambda value: formatted),)) == (
++        truncate(formatted.replace('\r', '').replace('\n', ''),
++                 MAX_VARIABLE_LENGTH)
++    )
++
++    def broken_formatter(value):
++        raise ValueError('cannot format')
++
++    assert get_shortish_repr([], ((list, broken_formatter),)) == 'REPR FAILED'
++    assert get_shortish_repr(7, ((list, broken_formatter),)) == '7'

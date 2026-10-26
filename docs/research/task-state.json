@@ -74,7 +74,7 @@
     {
       "id": "local-13",
       "title": "Integrate common mini-SWE-agent harness and current-model compatibility checks",
-      "status": "planned",
+      "status": "superseded_by_codex_harness_local_24",
       "study_scope": "prospective_repository_level_software_engineering"
     },
     {
@@ -114,7 +114,7 @@
     {
       "id": "local-19",
       "title": "Integrate browser harness and multi-model router using existing frameworks",
-      "status": "planned",
+      "status": "deferred_secondary_domain",
       "study_scope": "prospective_cross_domain_portfolio",
       "artifact": "docs/adr/0004-specialist-model-portfolio.md"
     },
@@ -149,9 +149,51 @@
     {
       "id": "local-24",
       "title": "Implement bounded expert tool and matched-context cooperative-agent harness",
-      "status": "planned",
+      "status": "completed_software_and_live_mechanism_validation",
       "study_scope": "prospective_personal_agent_cooperation_and_learning",
-      "artifact": "docs/thesis/personal-controller.md"
+      "artifact": "docs/research/personal-harness.md"
+    },
+    {
+      "id": "local-25",
+      "title": "Audit closest conversational routing prior art and novelty",
+      "status": "completed",
+      "artifact": "docs/thesis/personal-agent-prior-art.md",
+      "study_scope": "conversational_routing_software_engineering"
+    },
+    {
+      "id": "local-26",
+      "title": "Freeze and execute paired Codex historical-bug pilot",
+      "status": "completed_feasibility_only",
+      "artifact": "results/codex-pilot-001/analysis/summary.json",
+      "study_scope": "conversational_routing_software_engineering"
+    },
+    {
+      "id": "local-27",
+      "title": "Execute persistent two-round expert clarification and integration check",
+      "status": "completed_mechanism_only",
+      "artifact": "results/codex-pilot-001/dialogue-transcript.md",
+      "study_scope": "conversational_routing_software_engineering"
+    },
+    {
+      "id": "local-28",
+      "title": "Write current conversational-routing paper with honest pilot findings",
+      "status": "completed",
+      "artifact": "docs/paper/README.md",
+      "study_scope": "conversational_routing_software_engineering"
+    },
+    {
+      "id": "local-29",
+      "title": "Run metered larger SWE comparison of conversation versus one-way assistance and existing trained routers",
+      "status": "pending_isolated_evaluation_and_metered_inference",
+      "artifact": "docs/paper/methods.md",
+      "study_scope": "conversational_routing_software_engineering"
+    },
+    {
+      "id": "local-30",
+      "title": "Implement longitudinal collaboration learning and multi-agent topology studies using existing frameworks",
+      "status": "prospective_extension_not_run",
+      "artifact": "docs/paper/methods.md",
+      "study_scope": "conversational_routing_software_engineering"
     }
   ],
   "runpod_budget": {
@@ -163,7 +205,7 @@
     "actual_spend_usd": 0,
     "status": "blocked_missing_api_key_and_runtime_access"
   },
-  "updated_at_utc": "2026-10-25T23:28:08.249074+00:00",
+  "updated_at_utc": "2026-10-26T00:11:03.397493+00:00",
   "evidence": {
     "results": "results/routing-pilot-001",
     "reproduction": "results/reproduction-verification.json",
@@ -174,14 +216,19 @@
     "pre_results_thesis": "docs/thesis/thesis.pdf",
     "thesis_sources": "docs/thesis/README.md",
     "thesis_evidence_audit": "docs/thesis/evidence-audit.json",
-    "repository_level_swe_results": "not_run",
+    "repository_level_swe_results": "results/codex-pilot-001/analysis/summary.json (adapted four-bug pilot, not SWE-bench)",
     "portfolio_and_browser_results": "not_run",
     "portfolio_protocol": "docs/thesis/ensemble-methodology.md",
     "task_price_evidence": "docs/thesis/task-price-checks.json",
     "portfolio_evidence_review": "docs/thesis/portfolio-review.json",
-    "cooperative_and_longitudinal_results": "not_run",
-    "cooperative_protocol": "docs/thesis/personal-controller.md",
+    "cooperative_and_longitudinal_results": "optional-conversation pilot and forced-dialogue mechanism check completed; no learning results",
+    "cooperative_protocol": "experiments/codex-pilot-001/protocol.json",
     "longitudinal_protocol": "docs/thesis/longitudinal-plan.json",
-    "personal_agent_audit": "docs/thesis/personal-review.json"
+    "personal_agent_audit": "docs/thesis/personal-review.json",
+    "current_paper": "docs/paper/paper.pdf",
+    "current_paper_sources": "docs/paper/README.md",
+    "software_validation": "86 passed, 1 skipped, 2 subtests; live dialogue separately graded 30/30",
+    "dollar_cost_results": "unavailable; usage and price fields null",
+    "trained_router_comparison": "not_run_in_Codex_pilot"
   }
 }

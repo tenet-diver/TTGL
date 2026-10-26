@@ -1,0 +1,18 @@
+digraph conversation {
+  graph [rankdir=TB, bgcolor="white", pad=0.15, nodesep=0.6, ranksep=0.55];
+  node [shape=box, style="rounded,filled", fillcolor="#edf4ff", fontname="DejaVu Sans", fontsize=12, margin="0.17,0.12"];
+  edge [fontname="DejaVu Sans", fontsize=10, color="#44546a"];
+  user [label="User goal and constraints\nOptional editable memory", fillcolor="#f2f2f2"];
+  small [label="Acting small controller\nInspect · decide · integrate", fillcolor="#dcebd5"];
+  expert [label="Persistent expert conversation\nAnswer · ask · challenge", fillcolor="#fff0d2"];
+  tools [label="Existing Codex tools\nRepository edits and visible tests"];
+  output [label="Submitted patch", fillcolor="#f2f2f2"];
+  grader [label="Independent evaluator\nFunctional tests + artifact rules", fillcolor="#f9e2e2"];
+  { rank=same; small; expert; }
+  user -> small;
+  small -> expert [label="selected context / question / reply"];
+  expert -> small [label="proposal / clarification / critique"];
+  small -> tools [label="act and verify", dir=both];
+  tools -> output;
+  output -> grader;
+}

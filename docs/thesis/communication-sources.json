@@ -1,0 +1,258 @@
+{
+  "as_of_utc": "2026-10-25",
+  "scope": "Targeted official protocol, schema and SDK review for a personal manager communicating with remote agents. No model performance experiments or live agent messaging were performed.",
+  "protocol_versions_reviewed": {
+    "MCP": "2026-07-28",
+    "A2A": "1.0.0"
+  },
+  "source_policy": "Pinned official GitHub text retrieved using the configured network proxy. SHA-256 values cover exact retrieved bytes. Application design recommendations are distinguished from protocol guarantees.",
+  "limitations": [
+    "Documentation/schema inspection does not establish runtime conformance or deployment compatibility.",
+    "The MCP specification index retains an initialization wording in its extension overview, while the version-specific changelog explicitly removes initialization and the tasks overview uses per-request capability discovery. The chapter follows the concrete versioned changelog/tasks operations and requires capability tests.",
+    "Direct current Slack Events API page returned proxy 403; exact event retry timing and event-ID guarantees are not claimed.",
+    "No standard price contract was found in the reviewed A2A AgentCard schema; any quotes, reservations or price fields in this design are application-level.",
+    "No universal agent directory, free execution, exactly-once delivery or measured intelligence improvement is inferred from protocol support."
+  ],
+  "software_sources": [
+    {
+      "key": "mcp:docs/specification/2026-07-28/index.mdx",
+      "url": "https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/dae694f61a31f7a3ec2af3aff709e11f70f61e48/docs/specification/2026-07-28/index.mdx",
+      "repository": "modelcontextprotocol/modelcontextprotocol",
+      "revision": "dae694f61a31f7a3ec2af3aff709e11f70f61e48",
+      "retrieved_at_utc": "2026-10-25T23:37:11.137840+00:00",
+      "status": "retrieved",
+      "sha256": "c8151ab8d7f26ab46785fd34b23f7197db1a98ca8318967faa01e401909667b5",
+      "bytes": 5694,
+      "citation_key": "ttglmcpcommunication2026",
+      "verified_claims": [
+        "MCP exposes tools, resources and prompts; host policy remains an application responsibility."
+      ],
+      "review_scope": "Targeted official documentation or schema review; not a runtime conformance test."
+    },
+    {
+      "key": "mcp:docs/specification/2026-07-28/changelog.mdx",
+      "url": "https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/dae694f61a31f7a3ec2af3aff709e11f70f61e48/docs/specification/2026-07-28/changelog.mdx",
+      "repository": "modelcontextprotocol/modelcontextprotocol",
+      "revision": "dae694f61a31f7a3ec2af3aff709e11f70f61e48",
+      "retrieved_at_utc": "2026-10-25T23:37:11.138520+00:00",
+      "status": "retrieved",
+      "sha256": "b327e576f4c96b34e92f338f8ffefc35e13d0e953ab76bdb3aab342d104c8e53",
+      "bytes": 11719,
+      "citation_key": "ttglmcpcommunication2026",
+      "verified_claims": [
+        "2026-07-28 removes protocol-level HTTP sessions and initialization; server/discover and per-request capabilities are used.",
+        "Experimental tasks move to an official opt-in extension; explicit handles represent cross-call state."
+      ],
+      "review_scope": "Targeted official documentation or schema review; not a runtime conformance test."
+    },
+    {
+      "key": "mcp:docs/extensions/tasks/overview.mdx",
+      "url": "https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/dae694f61a31f7a3ec2af3aff709e11f70f61e48/docs/extensions/tasks/overview.mdx",
+      "repository": "modelcontextprotocol/modelcontextprotocol",
+      "revision": "dae694f61a31f7a3ec2af3aff709e11f70f61e48",
+      "retrieved_at_utc": "2026-10-25T23:37:11.146545+00:00",
+      "status": "retrieved",
+      "sha256": "812183984b616066794e552c582c1df4f907725e216dda41ab285eac5dd3e3e3",
+      "bytes": 9812,
+      "citation_key": "ttglmcpcommunication2026",
+      "verified_claims": [
+        "Tasks provide durable handles, polling, input via tasks/update and cooperative cancellation."
+      ],
+      "review_scope": "Targeted official documentation or schema review; not a runtime conformance test."
+    },
+    {
+      "key": "mcp_python:README.md",
+      "url": "https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/a525a3d9bece967d91534b746a6c842931b7b4ec/README.md",
+      "repository": "modelcontextprotocol/python-sdk",
+      "revision": "a525a3d9bece967d91534b746a6c842931b7b4ec",
+      "retrieved_at_utc": "2026-10-25T23:37:11.471472+00:00",
+      "status": "retrieved",
+      "sha256": "51552fa66eee9852eb40f5bad68319df90800e88c399c4f404562c570216c05b",
+      "bytes": 4561,
+      "citation_key": "ttglmcppythoncommunication2026",
+      "verified_claims": [
+        "Current README documents v2 client/server APIs, Python 3.11+, and links the migration guide; exact server/version compatibility still requires integration tests."
+      ],
+      "review_scope": "Targeted official documentation or schema review; not a runtime conformance test."
+    },
+    {
+      "key": "a2a:docs/specification.md",
+      "url": "https://raw.githubusercontent.com/a2aproject/A2A/98279d62316361ba8451eaef300f72b72e169185/docs/specification.md",
+      "repository": "a2aproject/A2A",
+      "revision": "98279d62316361ba8451eaef300f72b72e169185",
+      "retrieved_at_utc": "2026-10-25T23:37:11.494147+00:00",
+      "status": "retrieved",
+      "sha256": "8af843abb347083d175945c9c3e340a68288fdf3a5eee8b38514fa1a158d7e88",
+      "bytes": 157901,
+      "citation_key": "ttgla2acommunication2026",
+      "verified_claims": [
+        "Current specification identifies latest released version 1.0.0.",
+        "Messages, tasks, artifacts, streaming, polling, input/authentication interruptions and server-generated task IDs have distinct semantics.",
+        "Send Message operations MAY be idempotent; message IDs alone do not guarantee deduplication."
+      ],
+      "review_scope": "Targeted official documentation or schema review; not a runtime conformance test."
+    },
+    {
+      "key": "a2a:docs/topics/agent-discovery.md",
+      "url": "https://raw.githubusercontent.com/a2aproject/A2A/98279d62316361ba8451eaef300f72b72e169185/docs/topics/agent-discovery.md",
+      "repository": "a2aproject/A2A",
+      "revision": "98279d62316361ba8451eaef300f72b72e169185",
+      "retrieved_at_utc": "2026-10-25T23:37:11.549937+00:00",
+      "status": "retrieved",
+      "sha256": "425709fbaf1cdafdd43b824c39ec677713fd354b2080c09ebf522ba7d83dd554",
+      "bytes": 7404,
+      "citation_key": "ttgla2acommunication2026",
+      "verified_claims": [
+        "Known-host well-known Agent Cards, catalogs/registries and direct configuration are discovery approaches; no universal registry or free-service guarantee follows."
+      ],
+      "review_scope": "Targeted official documentation or schema review; not a runtime conformance test."
+    },
+    {
+      "key": "a2a_python:README.md",
+      "url": "https://raw.githubusercontent.com/a2aproject/a2a-python/e12d494b4136351d5b5d07b5c6beae95a500fc4e/README.md",
+      "repository": "a2aproject/a2a-python",
+      "revision": "e12d494b4136351d5b5d07b5c6beae95a500fc4e",
+      "retrieved_at_utc": "2026-10-25T23:37:11.590340+00:00",
+      "status": "retrieved",
+      "sha256": "4f504a88a4c169c26cfa6bc2a25acbff8799f1adb3d8847a6b6b66e3343b6dc8",
+      "bytes": 5941,
+      "citation_key": "ttgla2apythoncommunication2026",
+      "verified_claims": [
+        "SDK documents protocol 1.0 support plus scoped 0.3 compatibility across JSON-RPC, HTTP+JSON and gRPC."
+      ],
+      "review_scope": "Targeted official documentation or schema review; not a runtime conformance test."
+    },
+    {
+      "key": "a2a:specification/a2a.proto",
+      "url": "https://raw.githubusercontent.com/a2aproject/A2A/98279d62316361ba8451eaef300f72b72e169185/specification/a2a.proto",
+      "repository": "a2aproject/A2A",
+      "revision": "98279d62316361ba8451eaef300f72b72e169185",
+      "retrieved_at_utc": "2026-10-25T23:39:10.400708+00:00",
+      "status": "retrieved",
+      "sha256": "945df6e34001b2bfd0fd62d9484b63094dfad9d78705e41e2873441c419ae2d1",
+      "bytes": 35942,
+      "citation_key": "ttgla2acommunication2026",
+      "verified_claims": [
+        "AgentCard fields include interfaces, capabilities, security requirements, skills and modes; no standard billing, cost or price field is present.",
+        "TaskState distinguishes submitted, working, completed, failed, canceled, input required, rejected and authentication required."
+      ],
+      "review_scope": "Targeted official documentation or schema review; not a runtime conformance test."
+    },
+    {
+      "key": "bolt_ack",
+      "url": "https://raw.githubusercontent.com/slackapi/bolt-python/d1bd9549fe1e526d8ffa7153d3e8c72f1ee2f239/docs/english/concepts/acknowledge.md",
+      "retrieved_at_utc": "2026-10-25T23:37:11.151298+00:00",
+      "status": "retrieved",
+      "sha256": "9bc17114c581a79091baea6bc628de7f9fcf3e8dbb4deb7f494851e77cd90be7",
+      "bytes": 1763,
+      "verified_claims": [
+        "Interactive request handlers should acknowledge promptly; documented timeout is three seconds."
+      ],
+      "excerpts": [
+        "We recommend calling `ack()` right away before initiating any time-consuming processes such as fetching information from your database or sending a new message, since you only have 3 seconds to respond before Slack registers a timeout error."
+      ],
+      "repository": "slackapi/bolt-python",
+      "revision": "d1bd9549fe1e526d8ffa7153d3e8c72f1ee2f239",
+      "citation_key": "ttglslackcommunication2026"
+    },
+    {
+      "key": "events_api",
+      "url": "https://docs.slack.dev/apis/events-api/",
+      "retrieved_at_utc": "2026-10-25T23:37:11.152077+00:00",
+      "status": "error",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "limitation": "Current direct Events API document unavailable via proxy; exact retry schedule and event_id contract not verified in this review."
+    },
+    {
+      "key": "bolt_signature",
+      "url": "https://raw.githubusercontent.com/slackapi/bolt-python/d1bd9549fe1e526d8ffa7153d3e8c72f1ee2f239/slack_bolt/middleware/request_verification/request_verification.py",
+      "retrieved_at_utc": "2026-10-25T23:37:11.152606+00:00",
+      "status": "retrieved",
+      "sha256": "9ea750ddb67926dc131b69c64df3e9eb4e041a2045e48aed68197b2991677015",
+      "bytes": 2604,
+      "verified_claims": [
+        "Default HTTP request-verification middleware validates request body, signature and timestamp; this middleware skips Socket Mode, which has a different authenticated transport."
+      ],
+      "excerpts": [
+        "Checks the validity of `x-slack-signature`, `x-slack-request-timestamp`, and the request body data.",
+        "return mode == \"socket_mode\""
+      ],
+      "repository": "slackapi/bolt-python",
+      "revision": "d1bd9549fe1e526d8ffa7153d3e8c72f1ee2f239",
+      "citation_key": "ttglslackcommunication2026"
+    },
+    {
+      "key": "event-listening.md",
+      "url": "https://raw.githubusercontent.com/slackapi/bolt-python/d1bd9549fe1e526d8ffa7153d3e8c72f1ee2f239/docs/english/concepts/event-listening.md",
+      "retrieved_at_utc": "2026-10-25T23:37:36.473460+00:00",
+      "status": "retrieved",
+      "sha256": "0aa9e7fd6bb34f0d96edd722e472b19ea30f736862361b3d2ce28f4420e4eeb8",
+      "bytes": 1597,
+      "verified_claims": [
+        "Events must be subscribed in app configuration; message subtypes include bot_message and message_replied."
+      ],
+      "excerpts": [
+        "You can listen to [any Events API event](/reference/events) using the `event()` method after subscribing to it in your app configuration.",
+        "Common message subtypes like `bot_message` and `message_replied` can be found"
+      ],
+      "repository": "slackapi/bolt-python",
+      "revision": "d1bd9549fe1e526d8ffa7153d3e8c72f1ee2f239",
+      "citation_key": "ttglslackcommunication2026"
+    },
+    {
+      "key": "lazy-listeners.md",
+      "url": "https://raw.githubusercontent.com/slackapi/bolt-python/d1bd9549fe1e526d8ffa7153d3e8c72f1ee2f239/docs/english/concepts/lazy-listeners.md",
+      "retrieved_at_utc": "2026-10-25T23:37:36.489184+00:00",
+      "status": "retrieved",
+      "sha256": "dd552c7847aa8b2eb7d1e6d0f108ec0a5f16c752eafe705c5b9a17406b536c66",
+      "bytes": 4430,
+      "verified_claims": [
+        "Slack acknowledgement is transport acceptance, not completion of long agent work; Bolt separates timely ack and lazy long-running processing.",
+        "Events do not require explicit ack() calls in these Bolt listeners, but FaaS listener processing still has a three-second deadline."
+      ],
+      "excerpts": [
+        "Note that in the case of events, while the listener doesn't need to explicitly call the `ack()` method, it still needs to complete its function within 3 seconds as well.",
+        "`lazy: List[Callable]`: Responsible for handling time-consuming processes related to the request. The lazy function does not have access to `ack()`."
+      ],
+      "repository": "slackapi/bolt-python",
+      "revision": "d1bd9549fe1e526d8ffa7153d3e8c72f1ee2f239",
+      "citation_key": "ttglslackcommunication2026"
+    },
+    {
+      "key": "authenticating-oauth.md",
+      "url": "https://raw.githubusercontent.com/slackapi/bolt-python/d1bd9549fe1e526d8ffa7153d3e8c72f1ee2f239/docs/english/concepts/authenticating-oauth.md",
+      "retrieved_at_utc": "2026-10-25T23:37:36.485848+00:00",
+      "status": "retrieved",
+      "sha256": "9365fa6d2a1ef52fac4c2dafdc8db85258ef7d1bc73dafb8c147d3f4033d4cb8",
+      "bytes": 4509,
+      "verified_claims": [
+        "Multi-workspace apps require OAuth installation records and explicit bot/user scopes; use existing installation/state stores rather than inventing an authentication subsystem."
+      ],
+      "excerpts": [
+        "Slack apps installed on multiple workspaces will need to implement OAuth, then store installation information (like access tokens) securely.",
+        "scopes=[\"app_mentions:read\", \"channels:history\", \"im:history\", \"chat:write\"]"
+      ],
+      "repository": "slackapi/bolt-python",
+      "revision": "d1bd9549fe1e526d8ffa7153d3e8c72f1ee2f239",
+      "citation_key": "ttglslackcommunication2026"
+    },
+    {
+      "key": "message-sending.md",
+      "url": "https://raw.githubusercontent.com/slackapi/bolt-python/d1bd9549fe1e526d8ffa7153d3e8c72f1ee2f239/docs/english/concepts/message-sending.md",
+      "retrieved_at_utc": "2026-10-25T23:37:36.589591+00:00",
+      "status": "retrieved",
+      "sha256": "c7ad930685b6b48189a93ec9380ea9e5c2e0ad07729ac3348a7429ab34d316c1",
+      "bytes": 5204,
+      "verified_claims": [
+        "Bolt provides threaded messages and streaming helpers using channel and thread identities. These identities associate conversation; the application still needs authoritative task state."
+      ],
+      "excerpts": [
+        "`thread_ts` | Sourced from the event payload. Falls back to the `ts` value if available.",
+        "If either `channel_id` or `thread_ts` cannot be sourced, the utility will be `None`."
+      ],
+      "repository": "slackapi/bolt-python",
+      "revision": "d1bd9549fe1e526d8ffa7153d3e8c72f1ee2f239",
+      "citation_key": "ttglslackcommunication2026"
+    }
+  ]
+}

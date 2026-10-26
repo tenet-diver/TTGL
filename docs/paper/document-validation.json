@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-10-26T00:13:22.724947+00:00",
+  "paper_pages": 35,
+  "word_count_approximate": 9370,
+  "cited_references": 22,
+  "source_and_artifact_hashes_checked": 21,
+  "pdf_margin_violations": [],
+  "docx_zip_and_xml": "valid",
+  "html_image_and_mathml": "embedded",
+  "local_document_links": "valid",
+  "editorial_review_resolution": "Abstract now centers bidirectional conversation, full-cost hypothesis, pilot findings and optional personalization. Resolves the editorial item in review.json.",
+  "software_tests": {
+    "passed": 86,
+    "skipped": 1,
+    "subtests_passed": 2,
+    "command": "/workspace/.tools/ttgl-research/bin/python -m pytest -q",
+    "run_duration_seconds": 4.05
+  },
+  "actual_model_trials": 16,
+  "optional_expert_turns": 0,
+  "separate_forced_dialogue_expert_turns": 2,
+  "observed_model_costs": "unavailable",
+  "analysis_reproduction": "byte_identical_summary"
+}

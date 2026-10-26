@@ -1,3 +1,5 @@
+> **Current work:** [We have to combine — A conversation is all you need](../paper/README.md) contains the active conversational-routing protocol and live Codex feasibility results. This earlier thesis remains a supporting pre-results literature/design supplement; its study hierarchy and working title are superseded by ADR 0006. Its original model-learning studies remain unrun.
+
 # We Gotta Combine!
 
 **Personal AI Through Open-Model Collaboration and Continual Distillation**
@@ -14,7 +16,7 @@ The central objective is to democratize useful AI through an affordable personal
 - [Learning through usage and distillation](longitudinal-learning.md), with a [machine-readable prospective plan](longitudinal-plan.json). Rounds track cumulative arrivals, verification yield, target tokens and compute; final tests remain sealed during learning.
 - [Analysis and study hierarchy](analysis-plan.md), [reproducibility and empty reporting templates](reproducibility-and-limits.md), [source/design audit](personal-review.json), [document validation](document-validation.json), and [artifact hashes](build-manifest.json).
 
-Study 1 is the current primary cooperation experiment: a study-unadapted small controller plus one strong expert versus that same strong model acting directly, with equal personal context, tools and resource caps. Accepted task success includes benchmark resolution and feasible mandatory user constraints. Study 0 supplies flat-routing controls. Study 2 is a separate proposed longitudinal experiment, distinguishing standalone learning, allocation changes and learned collaboration. Their hypotheses cannot substitute for one another after seeing results.
+In this earlier design, Study 1 was the proposed primary cooperation experiment: a study-unadapted small controller plus one strong expert versus that same strong model acting directly, with equal personal context, tools and resource caps. Accepted task success includes benchmark resolution and feasible mandatory user constraints. Study 0 supplies flat-routing controls. Study 2 is a separate proposed longitudinal experiment, distinguishing standalone learning, allocation changes and learned collaboration. Their hypotheses cannot substitute for one another after seeing results.
 
 ## Supporting studies and economic evidence
 

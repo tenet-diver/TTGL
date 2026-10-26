@@ -1,0 +1,90 @@
+{
+  "arm_labels": {
+    "luna": "Luna only",
+    "personal": "Luna\u2013Sol conversational collaboration",
+    "precall": "Luna prompt router with one task-level selection",
+    "sol": "Sol only"
+  },
+  "arms": [
+    "luna",
+    "sol",
+    "precall",
+    "personal"
+  ],
+  "attempts_per_arm_task": 1,
+  "budget": {
+    "attempts": 1,
+    "enforcement": "root interrupts overdue workers; record observed polling slippage",
+    "exact_token_compute_matching": false,
+    "expert_wait_included": true,
+    "routing_phase_included": true,
+    "wall_seconds_per_task": 240
+  },
+  "candidate_order": [
+    "pysnooper-1",
+    "pysnooper-2",
+    "pysnooper-3",
+    "tqdm-1",
+    "tqdm-2",
+    "tqdm-3",
+    "tqdm-4",
+    "tqdm-5",
+    "tqdm-6",
+    "tqdm-7",
+    "tqdm-8",
+    "tqdm-9"
+  ],
+  "fork_turns": "none",
+  "grader_sha256": "cf6d773567e03bcb8ba6c7cee0568341d419fb72b2ac2d434b2d5c7ae2b9b435",
+  "limitations": [
+    "small convenience feasibility subset, no frontier or statistical superiority claim",
+    "shared filesystem provides soft isolation only",
+    "no complete token or dollar cost telemetry",
+    "historical public tasks may be training-contaminated"
+  ],
+  "memory_sha256": "7bd3c26d265cf6eed3cf6d8bff864353be561c679ee932848644c7841c8c91d2",
+  "model_ids": {
+    "luna": "gpt-6-luna",
+    "sol": "gpt-6.1-sol"
+  },
+  "personal_intervention": {
+    "expert_conversation_persistent_within_task": true,
+    "expert_may_request_clarification": true,
+    "expert_model": "gpt-6.1-sol",
+    "full_four_capability_architecture": "Not claimed tested",
+    "max_expert_turns": 2,
+    "optional_personal_memory_capabilities": "Available as matched static context; not independently tested by this pilot",
+    "root_forwards_messages_verbatim": true,
+    "small_agent_owns_final_integration": true,
+    "small_model_acts": true
+  },
+  "precall_intervention": {
+    "choices": [
+      "gpt-6-luna",
+      "gpt-6.1-sol"
+    ],
+    "repository_inspection_allowed": false,
+    "router_model": "gpt-6-luna",
+    "selected_worker_fresh_context": true,
+    "single_selection": true,
+    "visible_context": [
+      "TASK.md",
+      "USER_MEMORY.md"
+    ]
+  },
+  "protocol_amendment": "Before any model outcome: remove unrelated disable feature test; clarify custom_repr public API in all four task prompts",
+  "provenance_sha256": "633f3c9f08942654011eae8fce2fe69d803e9b9776e767771b628850b40045b8",
+  "reasoning_effort": "medium",
+  "routing_baseline": "Untrained task-only Luna prompt router, not RouteLLM",
+  "seed": 1729,
+  "selection": "first four eligible by frozen feasibility order; no model outcomes used",
+  "status": "frozen_before_model_trials",
+  "task_ids": [
+    "pysnooper-2",
+    "tqdm-3",
+    "tqdm-5",
+    "tqdm-6"
+  ],
+  "tasks_sha256": "98d0bd3ab3b000d02027a51e31e9e78e5eb852c6c9becf2f27b2769cac1f35e1",
+  "test_policy": "official fixed test module except unrelated PySnooper test_disable; all other cases plus no prohibited edits"
+}

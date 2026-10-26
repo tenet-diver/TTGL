@@ -1,0 +1,125 @@
+{
+  "status": "descriptive_feasibility_analysis",
+  "assigned_tasks": 4,
+  "seed": 1729,
+  "reference": "sol",
+  "arms": {
+    "luna": {
+      "assigned": 4,
+      "graded": 4,
+      "resolved": 3,
+      "ungraded": 0,
+      "resolved_per_assigned": 0.75,
+      "mean_wall_seconds": null,
+      "total_cost_usd": null,
+      "cost_per_assigned_usd": null,
+      "cost_per_resolved_usd": null,
+      "reported_expert_calls": 0,
+      "expert_call_count_complete": true,
+      "functional_successes": 3,
+      "artifact_policy_failures": 0
+    },
+    "sol": {
+      "assigned": 4,
+      "graded": 4,
+      "resolved": 4,
+      "ungraded": 0,
+      "resolved_per_assigned": 1.0,
+      "mean_wall_seconds": null,
+      "total_cost_usd": null,
+      "cost_per_assigned_usd": null,
+      "cost_per_resolved_usd": null,
+      "reported_expert_calls": 0,
+      "expert_call_count_complete": true,
+      "functional_successes": 4,
+      "artifact_policy_failures": 0
+    },
+    "precall": {
+      "assigned": 4,
+      "graded": 4,
+      "resolved": 2,
+      "ungraded": 0,
+      "resolved_per_assigned": 0.5,
+      "mean_wall_seconds": null,
+      "total_cost_usd": null,
+      "cost_per_assigned_usd": null,
+      "cost_per_resolved_usd": null,
+      "reported_expert_calls": 0,
+      "expert_call_count_complete": true,
+      "functional_successes": 4,
+      "artifact_policy_failures": 2
+    },
+    "personal": {
+      "assigned": 4,
+      "graded": 4,
+      "resolved": 0,
+      "ungraded": 0,
+      "resolved_per_assigned": 0.0,
+      "mean_wall_seconds": null,
+      "total_cost_usd": null,
+      "cost_per_assigned_usd": null,
+      "cost_per_resolved_usd": null,
+      "reported_expert_calls": 0,
+      "expert_call_count_complete": true,
+      "functional_successes": 3,
+      "artifact_policy_failures": 4
+    }
+  },
+  "paired_differences": {
+    "luna": {
+      "status": "descriptive_only",
+      "quality_difference": -0.25,
+      "bootstrap_percentile_95": [
+        -0.75,
+        0.0
+      ],
+      "discordant_tasks": 1,
+      "warning": "Tiny-sample bootstrap can be degenerate; a zero-width interval does not establish equivalence"
+    },
+    "precall": {
+      "status": "descriptive_only",
+      "quality_difference": -0.5,
+      "bootstrap_percentile_95": [
+        -1.0,
+        0.0
+      ],
+      "discordant_tasks": 2,
+      "warning": "Tiny-sample bootstrap can be degenerate; a zero-width interval does not establish equivalence"
+    },
+    "personal": {
+      "status": "descriptive_only",
+      "quality_difference": -1.0,
+      "bootstrap_percentile_95": [
+        -1.0,
+        -1.0
+      ],
+      "discordant_tasks": 4,
+      "warning": "Tiny-sample bootstrap can be degenerate; a zero-width interval does not establish equivalence"
+    }
+  },
+  "limitations": [
+    "Not a powered confirmatory evaluation",
+    "Task bootstrap is conditional on the chosen issues, which may share repositories or bug families",
+    "Models may have seen public tasks",
+    "Unknown prices and usage remain null",
+    "Wall time includes orchestration and contention"
+  ],
+  "repository_clusters": 2,
+  "conditions": {
+    "luna": "single Luna",
+    "sol": "single Sol",
+    "precall": "untrained task-only Luna router",
+    "personal": "optional conversational Luna controller"
+  },
+  "interpretation": [
+    "All four task routers selected Luna; no learned-router performance claim.",
+    "All four optional conversational controllers chose zero expert turns; this matrix did not exercise dialogue.",
+    "Original-test-file edits fail the frozen artifact policy even when additive and functionally correct.",
+    "Unknown usage and prices prevent testing the dollar-saving hypothesis.",
+    "Forced-dialogue smoke is separate and cannot be added as a fifth performance arm."
+  ],
+  "provenance": {
+    "protocol_sha256": "ef87410a47547c2afb6378a7a51ca53f7440412b7567a52268f090f9c97dd414",
+    "event_log_sha256": "b6cb1cf8943c2ca9e4261712c29bb48ee8a764a8801f8a9fd170ff598e1eb9da"
+  }
+}

@@ -1,0 +1,148 @@
+--- a/pysnooper/tracer.py
++++ b/pysnooper/tracer.py
+@@ -11,6 +11,7 @@
+ import itertools
+ import threading
+ import traceback
++import types
+ 
+ from .variables import CommonVariable, Exploding, BaseVariable
+ from . import utils, pycompat
+@@ -18,12 +19,25 @@
+ 
+ ipython_filename_pattern = re.compile('^<ipython-input-([0-9]+)-.*>$')
+ 
+-
+-def get_local_reprs(frame, watch=()):
++try:
++    type_types = (type, types.ClassType)
++except AttributeError:
++    type_types = (type,)
++
++
++def get_local_reprs(frame, watch=(), custom_repr=()):
+     code = frame.f_code
+     vars_order = code.co_varnames + code.co_cellvars + code.co_freevars + tuple(frame.f_locals.keys())
+ 
+-    result_items = [(key, utils.get_shortish_repr(value)) for key, value in frame.f_locals.items()]
++    def get_repr(value):
++        for condition, formatter in custom_repr:
++            matches = (isinstance(value, condition) if isinstance(condition, type_types)
++                       else condition(value))
++            if matches:
++                return utils.get_shortish_repr(value, formatter)
++        return utils.get_shortish_repr(value)
++
++    result_items = [(key, get_repr(value)) for key, value in frame.f_locals.items()]
+     result_items.sort(key=lambda key_value: vars_order.index(key_value[0]))
+     result = collections.OrderedDict(result_items)
+ 
+@@ -186,6 +200,7 @@
+             prefix='',
+             overwrite=False,
+             thread_info=False,
++            custom_repr=(),
+     ):
+         self._write = get_write_function(output, overwrite)
+ 
+@@ -200,6 +215,19 @@
+         self.depth = depth
+         self.prefix = prefix
+         self.thread_info = thread_info
++        if (isinstance(custom_repr, (tuple, list)) and len(custom_repr) == 2
++                and callable(custom_repr[1])
++                and (isinstance(custom_repr[0], type_types)
++                     or callable(custom_repr[0]))):
++            custom_repr = (custom_repr,)
++        else:
++            custom_repr = tuple(custom_repr)
++        for pair in custom_repr:
++            if (len(pair) != 2
++                    or not (isinstance(pair[0], type_types) or callable(pair[0]))
++                    or not callable(pair[1])):
++                raise TypeError('custom_repr must contain (condition, formatter) pairs')
++        self.custom_repr = custom_repr
+         self.thread_info_padding = 0
+         assert self.depth >= 1
+         self.target_codes = set()
+@@ -307,7 +335,8 @@
+         #                                                                     #
+         old_local_reprs = self.frame_to_local_reprs.get(frame, {})
+         self.frame_to_local_reprs[frame] = local_reprs = \
+-                                       get_local_reprs(frame, watch=self.watch)
++                                       get_local_reprs(frame, watch=self.watch,
++                                                       custom_repr=self.custom_repr)
+ 
+         newish_string = ('Starting var:.. ' if event == 'call' else
+                                                             'New var:....... ')
+--- a/pysnooper/utils.py
++++ b/pysnooper/utils.py
+@@ -49,11 +49,13 @@
+     )
+ 
+ 
+-def get_shortish_repr(item):
++def get_shortish_repr(item, repr_func=repr):
+     try:
+-        r = repr(item)
++        r = repr_func(item)
+     except Exception:
+         r = 'REPR FAILED'
++    if not isinstance(r, string_types):
++        r = repr(r)
+     r = r.replace('\r', '').replace('\n', '')
+     r = truncate(r, MAX_VARIABLE_LENGTH)
+     return r
+--- a/tests/test_custom_repr.py
++++ b/tests/test_custom_repr.py
+@@ -0,0 +1,50 @@
++import io
++
++import pysnooper
++
++
++def traced_output(function, custom_repr):
++    output = io.StringIO()
++    tracer = pysnooper.snoop(output, custom_repr=custom_repr)
++    tracer(function)()
++    return output.getvalue()
++
++
++def test_single_type_pair_and_subclasses():
++    class MyList(list):
++        pass
++
++    def function():
++        value = MyList([1, 2, 3])
++
++    output = traced_output(function, (list, lambda value: str(len(value))))
++    assert 'value = 3' in output
++
++
++def test_predicate_and_first_matching_formatter():
++    def function():
++        value = [1, 2, 3]
++
++    custom_repr = (
++        (lambda value: isinstance(value, list), lambda value: 'first'),
++        (list, lambda value: 'second'),
++    )
++    output = traced_output(function, custom_repr)
++    assert 'value = first' in output
++    assert 'value = second' not in output
++
++
++def test_unmatched_values_keep_default_repr():
++    def function():
++        value = 'ordinary'
++
++    output = traced_output(function, (list, lambda value: 'custom'))
++    assert "value = 'ordinary'" in output
++
++
++def test_custom_repr_output_is_shortened():
++    def function():
++        value = []
++
++    output = traced_output(function, (list, lambda value: 'x' * 150))
++    assert 'value = ' + ('x' * 48) + '...' + ('x' * 49) in output

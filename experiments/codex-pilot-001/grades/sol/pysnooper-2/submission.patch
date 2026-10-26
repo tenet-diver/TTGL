@@ -1,0 +1,64 @@
+diff -ruN '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-2/base/pysnooper/tracer.py /workspace/scratch/ttgl-codex-pilot/sol/pysnooper-2/pysnooper/tracer.py
+--- /workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-2/base/pysnooper/tracer.py	2026-10-25 23:49:27.590680794 +0000
++++ /workspace/scratch/ttgl-codex-pilot/sol/pysnooper-2/pysnooper/tracer.py	2026-10-25 23:53:49.198980661 +0000
+@@ -19,11 +19,12 @@
+ ipython_filename_pattern = re.compile('^<ipython-input-([0-9]+)-.*>$')
+ 
+ 
+-def get_local_reprs(frame, watch=()):
++def get_local_reprs(frame, watch=(), custom_repr=()):
+     code = frame.f_code
+     vars_order = code.co_varnames + code.co_cellvars + code.co_freevars + tuple(frame.f_locals.keys())
+ 
+-    result_items = [(key, utils.get_shortish_repr(value)) for key, value in frame.f_locals.items()]
++    result_items = [(key, utils.get_shortish_repr(value, custom_repr))
++                    for key, value in frame.f_locals.items()]
+     result_items.sort(key=lambda key_value: vars_order.index(key_value[0]))
+     result = collections.OrderedDict(result_items)
+ 
+@@ -186,8 +187,13 @@
+             prefix='',
+             overwrite=False,
+             thread_info=False,
++            custom_repr=(),
+     ):
+         self._write = get_write_function(output, overwrite)
++        custom_repr = tuple(custom_repr)
++        if len(custom_repr) == 2 and callable(custom_repr[0]):
++            custom_repr = (custom_repr,)
++        self.custom_repr = custom_repr
+ 
+         self.watch = [
+             v if isinstance(v, BaseVariable) else CommonVariable(v)
+@@ -307,7 +313,8 @@
+         #                                                                     #
+         old_local_reprs = self.frame_to_local_reprs.get(frame, {})
+         self.frame_to_local_reprs[frame] = local_reprs = \
+-                                       get_local_reprs(frame, watch=self.watch)
++                                       get_local_reprs(frame, watch=self.watch,
++                                                       custom_repr=self.custom_repr)
+ 
+         newish_string = ('Starting var:.. ' if event == 'call' else
+                                                             'New var:....... ')
+diff -ruN '--exclude=__pycache__' '--exclude=.pytest_cache' /workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-2/base/pysnooper/utils.py /workspace/scratch/ttgl-codex-pilot/sol/pysnooper-2/pysnooper/utils.py
+--- /workspace/scratch/ttgl-codex-pilot-evaluator/pysnooper-2/base/pysnooper/utils.py	2026-10-25 23:49:27.590796124 +0000
++++ /workspace/scratch/ttgl-codex-pilot/sol/pysnooper-2/pysnooper/utils.py	2026-10-25 23:53:48.490990939 +0000
+@@ -49,9 +49,16 @@
+     )
+ 
+ 
+-def get_shortish_repr(item):
++def get_shortish_repr(item, custom_repr=()):
+     try:
+-        r = repr(item)
++        repr_function = repr
++        for condition, formatter in custom_repr:
++            matches = (isinstance(item, condition) if isinstance(condition, type)
++                       else condition(item))
++            if matches:
++                repr_function = formatter
++                break
++        r = repr_function(item)
+     except Exception:
+         r = 'REPR FAILED'
+     r = r.replace('\r', '').replace('\n', '')

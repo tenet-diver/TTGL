@@ -1,0 +1,669 @@
+{
+  "as_of": "2026-10-26",
+  "scope": "Targeted primary-text novelty review of persistent personal coding agents, selective delegation and collaboration learning; no TTGL model performance results. Search is not exhaustive.",
+  "paper_versions": {
+    "belcak2025smallagents": "2506.02153v3",
+    "zhang2025routerr1": "2506.09033v3",
+    "yue2025masrouter": "2502.11133v1",
+    "shi2026edgewise": "2610.17560v2",
+    "cui2026unoorchestra": "2605.05007v1",
+    "gao2026decisionbench": "2605.19099v1",
+    "huang2026personalskills": "2608.10319v2",
+    "li2026mempabench": "2610.30485v1",
+    "liu2026nanomuse": "2610.08699v1",
+    "xu2025amem": "2502.12110v11",
+    "shinn2023reflexion": "2303.11366v4",
+    "zhou2025memento": "2508.16153v2",
+    "wan2025rema": "2503.09501v3",
+    "zhuge2024gptswarm": "2402.16823v3",
+    "he2026agentlightning": "2608.17528v1"
+  },
+  "reviewed_sections": {
+    "edgewise": "Sections3,4; Table1; AppendicesA,B,C,G.2. Main dollar column denominator not independently established; no new USD/task calculation.",
+    "routerr1": "Sections3,4.3,5.2 and5.3; six-model pool; cost coefficient0main versus cost-sweep experiments.",
+    "masrouter": "Sections4and5, mainpoolandcostobjective; code/license.",
+    "uno": "Sections4–6 andAppendixA.1; authorrepository unavailable404.",
+    "skills": "Sections2,3.1–3.3 andTable1;164evolution/42test,5splits,LLMscoring.",
+    "decisionbench": "Sections1,4–6; headline3substrates,11models,5conditions; officialcodeREADMEandtree.",
+    "mempabench": "Abstract, benchmarkconstruction/evaluation andmemorydiscussion; notSWEaccuracy.",
+    "memento": "Primarymethod andofficialpinnedREADME/license.",
+    "rema": "Primarymethod/mainreasoningdesign andofficialREADME; noSWEclaim.",
+    "gptswarm": "Primarymethodgraphnode/edgeoptimization; nofirstswarmclaim.",
+    "a_mem": "Primarymemoryarchitecture; noSWEcostclaim.",
+    "reflexion": "Primaryframeworktextfeedback/episodicmemory; noweightupdateclaim.",
+    "agentlightning": "Primaryarchitecture/codingagentsections; pinnedofficialREADMEandMITlicense.",
+    "nanomuse": "Primaryabstract/architecture/costroadmap; GitHublicensemetadata.",
+    "slm": "Positionstatementandconversionprocedure; notcontrolledSWEcostevidence."
+  },
+  "reusable_software": {
+    "Router-R1": {
+      "revision": "801a240e37701577907c32de27a548af4e6c4430",
+      "license": "Apache-2.0",
+      "status": "README/LICENSE inspected; not run"
+    },
+    "MasRouter": {
+      "revision": "e005f7696fe0c0412563f6cd67f4cd3712fa2822",
+      "license": "Apache-2.0",
+      "status": "README/LICENSE inspected; not run"
+    },
+    "Memento": {
+      "revision": "42fbbcac63dd58ed6856c0761357345a58e4f032",
+      "license": "MIT",
+      "status": "README/LICENSE inspected; not run"
+    },
+    "Agent Lightning": {
+      "revision": "05c7fe133175653e48c990546a3509e52dc56512",
+      "license": "MIT",
+      "status": "README/LICENSE inspected; not run"
+    },
+    "DecisionBench": {
+      "code_revision": "08da513de448610cbe2f824989203edd73451f3c",
+      "data_revision": "614f9ef2aa06ba6dffbe539bf31a36e36ad4557c",
+      "license": "not established from inspected artifacts",
+      "status": "Release reachable; not run or vendored"
+    },
+    "EdgeWise": {
+      "status": "Primary paperverified; projectpageCONNECT403; officialimplementation/checkpoint/license notverified. Searches do not proveabsence."
+    },
+    "Uno-Orchestra": {
+      "status": "Primary paperverified; linkedauthorGitHubrepository404. Separate same-title repositorynotverifiedauthorrelease."
+    },
+    "nanoMuse": {
+      "license": "GPL-3.0 viaGitHubrepositorymetadata",
+      "status": "Architecturalpriorart; notrun"
+    }
+  },
+  "records": [
+    {
+      "id": "slm_abs",
+      "url": "https://arxiv.org/abs/2506.02153",
+      "status": 200,
+      "sha256": "efb31e1668ce7e5f1e786ff33f3a9eac13e5eb2a02322d0a594b74e66b73501e",
+      "bytes": 43921,
+      "retrieved_at": "2026-10-25T23:43:38.916872+00:00"
+    },
+    {
+      "id": "routerr1_abs",
+      "url": "https://arxiv.org/abs/2506.09033",
+      "status": 200,
+      "sha256": "2a6a21d68f64ec5fb595c4ad6f80c085c26f7b3befdb2b7af1cfd17a214e5ea4",
+      "bytes": 43895,
+      "retrieved_at": "2026-10-25T23:43:38.919678+00:00"
+    },
+    {
+      "id": "memento_repo",
+      "url": "https://api.github.com/search/repositories?q=Memento+agent+learning",
+      "status": 200,
+      "sha256": "4af480b8ee5b87b369a76c49bd22c9a783908272ebffbe97898f8ab0f0772a5f",
+      "bytes": 55,
+      "retrieved_at": "2026-10-25T23:43:39.011478+00:00"
+    },
+    {
+      "id": "masrouter_repo",
+      "url": "https://api.github.com/search/repositories?q=MASRouter",
+      "status": 200,
+      "sha256": "f3bda07180b3bf38d64adda81592061356be8f60351526f0abe3f80bd8e8a816",
+      "bytes": 29593,
+      "retrieved_at": "2026-10-25T23:43:39.136095+00:00"
+    },
+    {
+      "id": "agentlightning_repo",
+      "url": "https://raw.githubusercontent.com/microsoft/agent-lightning/main/README.md",
+      "status": 200,
+      "sha256": "aabd3c1ff7dbf32f717cc98b6cbcaece27bf13de52f46d46acde9108c8f61edf",
+      "bytes": 11560,
+      "retrieved_at": "2026-10-25T23:43:38.854195+00:00"
+    },
+    {
+      "id": "rema_repo",
+      "url": "https://api.github.com/search/repositories?q=ReMA+multi+agent",
+      "status": 200,
+      "sha256": "4fb7400e531b7d45509779b25a1c006a611590320776dfa810209043f9740805",
+      "bytes": 42531,
+      "retrieved_at": "2026-10-25T23:43:39.278107+00:00"
+    },
+    {
+      "id": "adaptorch_repo",
+      "url": "https://api.github.com/search/repositories?q=AdaptOrch",
+      "status": 200,
+      "sha256": "6ffecbc38c5bff0e247efa7c206623e82332a01aac407c25306b735e903cebfe",
+      "bytes": 5471,
+      "retrieved_at": "2026-10-25T23:43:39.082744+00:00"
+    },
+    {
+      "id": "smallagent_repo",
+      "url": "https://api.github.com/search/repositories?q=small+language+model+personal+agent",
+      "status": 200,
+      "sha256": "c8d0577df03096f040da605d2db4d99bb419d053856c64ce7a372773483c8fe5",
+      "bytes": 57220,
+      "retrieved_at": "2026-10-25T23:43:39.115619+00:00"
+    },
+    {
+      "id": "slm_html",
+      "url": "https://arxiv.org/html/2506.02153v3",
+      "status": 200,
+      "sha256": "d9675e6d07838e4699e8781c9d8378705e373e5b558572c1d9c60a49d952afaf",
+      "bytes": 181729,
+      "retrieved_at": "2026-10-25T23:43:55.030082+00:00"
+    },
+    {
+      "id": "routerr1_html",
+      "url": "https://arxiv.org/html/2506.09033v3",
+      "status": 200,
+      "sha256": "2f3805e482ee8cbaed9be7b99d19ba1eb6fdf6708d9f4ae3704a3554e70bf536",
+      "bytes": 556789,
+      "retrieved_at": "2026-10-25T23:43:55.064627+00:00"
+    },
+    {
+      "id": "masrouter_abs",
+      "url": "https://arxiv.org/abs/2502.11133",
+      "status": 200,
+      "sha256": "6a41e77e06fb762b9d122b0eaca67260e0c62ab9b2a88328b8fd76edbd2c5f70",
+      "bytes": 43498,
+      "retrieved_at": "2026-10-25T23:43:54.948021+00:00"
+    },
+    {
+      "id": "memento_search",
+      "url": "https://arxiv.org/search/?query=Memento+Fine-tuning+LLM+Agents&searchtype=all&abstracts=show&order=-announced_date_first&size=50",
+      "status": 200,
+      "sha256": "e0157f500c34a47f4f587cbb82db000f5b06d25b98f5fde294d7d29eed571a95",
+      "bytes": 19996,
+      "retrieved_at": "2026-10-25T23:43:55.434431+00:00"
+    },
+    {
+      "id": "rema_readme",
+      "url": "https://raw.githubusercontent.com/qiaodan-cuhk/ReMA-public/main/README.md",
+      "status": 200,
+      "sha256": "ce5707cda2b371dbf2852d19c5f19e7b88ac63ea0dee9f30f6fce74cac34075f",
+      "bytes": 4340,
+      "retrieved_at": "2026-10-25T23:43:54.924093+00:00"
+    },
+    {
+      "id": "masrouter_readme",
+      "url": "https://raw.githubusercontent.com/yanweiyue/masrouter/main/README.md",
+      "status": 200,
+      "sha256": "478b89196d50707c979608bf05486c01d221d79a740d01100874303f3614e574",
+      "bytes": 2369,
+      "retrieved_at": "2026-10-25T23:43:54.942765+00:00"
+    },
+    {
+      "id": "agentlightning_abs",
+      "url": "https://arxiv.org/abs/2608.17528",
+      "status": 200,
+      "sha256": "f6488da40b99cd04de6a0a4506a37021f8238243940c3dd02bb7b00d8693ea6c",
+      "bytes": 43598,
+      "retrieved_at": "2026-10-25T23:43:55.033924+00:00"
+    },
+    {
+      "id": "memento_github",
+      "url": "https://api.github.com/search/repositories?q=Memento+LLM",
+      "status": 200,
+      "sha256": "4a464c059a485ba30a2fc3b200de0a3e1883d35106a3a3ec4b0c8fc1eae9936a",
+      "bytes": 163023,
+      "retrieved_at": "2026-10-25T23:43:56.230759+00:00"
+    },
+    {
+      "id": "evolver_github",
+      "url": "https://api.github.com/search/repositories?q=AgentEvolver",
+      "status": 200,
+      "sha256": "7638595ea626eeb68fbb3a6f163cf77b0c7a247c40007c0b1dc4b7667321bfaa",
+      "bytes": 56749,
+      "retrieved_at": "2026-10-25T23:43:55.668623+00:00"
+    },
+    {
+      "id": "masrouter_html",
+      "url": "https://arxiv.org/html/2502.11133v1",
+      "status": 200,
+      "sha256": "ab0a1203bb326bfee04fe3dc97bcdda90e684ad2611dcd7358bab3a1222c2545",
+      "bytes": 664014,
+      "retrieved_at": "2026-10-25T23:44:19.772974+00:00"
+    },
+    {
+      "id": "memento_abs",
+      "url": "https://arxiv.org/abs/2508.16153",
+      "status": 200,
+      "sha256": "feac1d5f5d6ec2070f6015cf5e0f9ba373596cfbe72bbb0b765987a1703d869b",
+      "bytes": 45142,
+      "retrieved_at": "2026-10-25T23:44:19.702800+00:00"
+    },
+    {
+      "id": "memento_readme",
+      "url": "https://raw.githubusercontent.com/Memento-Teams/Memento/main/README.md",
+      "status": 200,
+      "sha256": "2b3497cb9e1fa32ccbb256f48069254d434725a25d18c9d46c0478d6b7c6b067",
+      "bytes": 15565,
+      "retrieved_at": "2026-10-25T23:44:19.829792+00:00"
+    },
+    {
+      "id": "rema_abs",
+      "url": "https://arxiv.org/abs/2503.09501",
+      "status": 200,
+      "sha256": "d5e4c6209d0e70578184f6f1f85d944d52884ebca0705a107b91e7b1ef8830bf",
+      "bytes": 45134,
+      "retrieved_at": "2026-10-25T23:44:19.707500+00:00"
+    },
+    {
+      "id": "agentlightning_html",
+      "url": "https://arxiv.org/html/2608.17528v1",
+      "status": 200,
+      "sha256": "6f19abfe891952771207dea26c290c2fbb27fa940915de0de7c98bc8bdd4a009",
+      "bytes": 244566,
+      "retrieved_at": "2026-10-25T23:44:19.771027+00:00"
+    },
+    {
+      "id": "gptswarm_abs",
+      "url": "https://arxiv.org/abs/2402.16823",
+      "status": 200,
+      "sha256": "0bb2e57b7201257c144bf5a70c1071f56f91a98db2df2b916a228916aa794ef4",
+      "bytes": 42436,
+      "retrieved_at": "2026-10-25T23:44:19.744322+00:00"
+    },
+    {
+      "id": "evolver_readme",
+      "url": "https://raw.githubusercontent.com/modelscope/AgentEvolver/main/README.md",
+      "status": 200,
+      "sha256": "f2d2d358d3914d8c5b4831914ece3f7241d30d555aa25f947025c7ef1f4154ab",
+      "bytes": 11070,
+      "retrieved_at": "2026-10-25T23:44:19.753314+00:00"
+    },
+    {
+      "id": "a_mem_abs",
+      "url": "https://arxiv.org/abs/2502.12110",
+      "status": 200,
+      "sha256": "8b9d53a6187119d6b2347b8756de186665271721068eaf24b2ddc7ade7db62f7",
+      "bytes": 45492,
+      "retrieved_at": "2026-10-25T23:44:19.671708+00:00"
+    },
+    {
+      "id": "reflexion_abs",
+      "url": "https://arxiv.org/abs/2303.11366",
+      "status": 200,
+      "sha256": "3e603a9b007a656c3a0f28f1b618cf972c186d7ac7d2e0c5be3dcb11c565bf1a",
+      "bytes": 43770,
+      "retrieved_at": "2026-10-25T23:44:19.775323+00:00"
+    },
+    {
+      "id": "memento_html",
+      "url": "https://arxiv.org/html/2508.16153v2",
+      "status": 200,
+      "sha256": "57ffc867d3a226b9eaf6440cc45cc09e5b60bcb49d49bae46e3a260fc6e81fb0",
+      "bytes": 423406,
+      "retrieved_at": "2026-10-25T23:44:50.276301+00:00"
+    },
+    {
+      "id": "rema_html",
+      "url": "https://arxiv.org/html/2503.09501v3",
+      "status": 200,
+      "sha256": "0fb379d8a76f3b67ef5503acd2479ce57948c39605fd517e72a5b3992e0d9fda",
+      "bytes": 501027,
+      "retrieved_at": "2026-10-25T23:44:50.410103+00:00"
+    },
+    {
+      "id": "gptswarm_html",
+      "url": "https://arxiv.org/html/2402.16823v3",
+      "status": 200,
+      "sha256": "722b80fb2c3e197a0790e8d236a99c160b8bccde4a529954b21bf5708802d835",
+      "bytes": 364373,
+      "retrieved_at": "2026-10-25T23:44:50.349280+00:00"
+    },
+    {
+      "id": "reflexion_html",
+      "url": "https://arxiv.org/html/2303.11366v4",
+      "status": 200,
+      "sha256": "c96741a6170d6a8a1ec17f3780d561f813078190404f47792178080c4118f002",
+      "bytes": 208124,
+      "retrieved_at": "2026-10-25T23:44:50.390245+00:00"
+    },
+    {
+      "id": "a_mem_html",
+      "url": "https://arxiv.org/html/2502.12110v11",
+      "status": 200,
+      "sha256": "00699fe82d03985fd6639a4a46038a8f920a9d28288c61ed988e8b7c8cb265cd",
+      "bytes": 445912,
+      "retrieved_at": "2026-10-25T23:44:50.414600+00:00"
+    },
+    {
+      "id": "personal_search",
+      "url": "https://arxiv.org/search/?query=personal%20agent%20small%20model%20delegation&searchtype=all&abstracts=show&order=-announced_date_first&size=50",
+      "status": 200,
+      "sha256": "093852a15d043272cab9672a4e34edcc5c46c6a08e80cfcb58a46d9852870394",
+      "bytes": 15260,
+      "retrieved_at": "2026-10-25T23:44:50.731816+00:00"
+    },
+    {
+      "id": "collab_search",
+      "url": "https://arxiv.org/search/?query=small%20large%20language%20models%20collaboration%20agent%20software&searchtype=all&abstracts=show&order=-announced_date_first&size=50",
+      "status": 200,
+      "sha256": "57965ec2cf86bc0f9ff05ecff10aa2267f1531217a0116f9c7e07edc294cc7b4",
+      "bytes": 35179,
+      "retrieved_at": "2026-10-25T23:44:50.975367+00:00"
+    },
+    {
+      "id": "routerr1_repo",
+      "url": "https://api.github.com/repos/ulab-uiuc/Router-R1/commits/main",
+      "status": 422,
+      "sha256": "9f67255c1cbaef31f10919c7606339d2e793dee8be735016b321930905518461",
+      "bytes": 138,
+      "retrieved_at": "2026-10-25T23:44:50.605374+00:00"
+    },
+    {
+      "id": "agentlightning_commit",
+      "url": "https://api.github.com/repos/microsoft/agent-lightning/commits/main",
+      "status": 200,
+      "sha256": "ea338f4ef98cc4b8023e41c1f2ae2016ef994d067c9f60e4bbc32246ef8a8c6a",
+      "bytes": 9885,
+      "retrieved_at": "2026-10-25T23:44:50.854533+00:00"
+    },
+    {
+      "id": "memento_commit",
+      "url": "https://api.github.com/repos/Memento-Teams/Memento/commits/main",
+      "status": 200,
+      "sha256": "fd75b9b5a50979483f25ee91ce54a91ef7e33a4841a8df79646e42bc4e567383",
+      "bytes": 10764,
+      "retrieved_at": "2026-10-25T23:44:50.929571+00:00"
+    },
+    {
+      "id": "masrouter_commit",
+      "url": "https://api.github.com/repos/yanweiyue/masrouter/commits/main",
+      "status": 200,
+      "sha256": "2db80b0378b4e9cbf41a22b026cd7bbfddd388e902fb786d38e05a8dc8a957bf",
+      "bytes": 10432,
+      "retrieved_at": "2026-10-25T23:44:51.028621+00:00"
+    },
+    {
+      "id": "skills_abs",
+      "url": "https://arxiv.org/abs/2608.10319",
+      "status": 200,
+      "sha256": "e546bcd7c7222c74f09e89b6c1db963563ef068d71a1b52bacc30b9f17ab2e98",
+      "bytes": 44350,
+      "retrieved_at": "2026-10-25T23:45:15.507622+00:00"
+    },
+    {
+      "id": "skills_html",
+      "url": "https://arxiv.org/html/2608.10319v2",
+      "status": 200,
+      "sha256": "855b3001565e03500b92f5a3987f7c70684fdb28f3fb27fae7e236f87e64f7f8",
+      "bytes": 197331,
+      "retrieved_at": "2026-10-25T23:45:15.669788+00:00"
+    },
+    {
+      "id": "debatecoder_html",
+      "url": "https://arxiv.org/html/2601.21469v1",
+      "status": 200,
+      "sha256": "fcc34a616e5515848db6cd8525f445f8b6a3f1a6d9715dec76888f86c965f16a",
+      "bytes": 115644,
+      "retrieved_at": "2026-10-25T23:45:15.433181+00:00"
+    },
+    {
+      "id": "routerr1_commit",
+      "url": "https://api.github.com/repos/ulab-uiuc/Router-R1/commits/master",
+      "status": 200,
+      "sha256": "2fba0d1276dfd2d657f028c8869e4e2e4c9470bcb55fbea857b3e125634c7ce8",
+      "bytes": 5559,
+      "retrieved_at": "2026-10-25T23:45:15.745512+00:00"
+    },
+    {
+      "id": "expert_search",
+      "url": "https://arxiv.org/search/?query=agent%20delegation&searchtype=title&abstracts=show&order=-announced_date_first&size=50",
+      "status": 200,
+      "sha256": "8d78ff32f698ec9c0a4e376363611eedc96af1d52af54d1a7745a91ba0a75dc4",
+      "bytes": 255155,
+      "retrieved_at": "2026-10-25T23:45:15.913022+00:00"
+    },
+    {
+      "id": "personal_search2",
+      "url": "https://arxiv.org/search/?query=personal%20agent&searchtype=title&abstracts=show&order=-announced_date_first&size=50",
+      "status": 200,
+      "sha256": "590cc14fea9b6d208d4f16ec4fb2afc12dbb07eb670a8d07bdb44c0d039650fe",
+      "bytes": 253307,
+      "retrieved_at": "2026-10-25T23:45:15.749050+00:00"
+    },
+    {
+      "id": "edgewise_abs",
+      "url": "https://arxiv.org/abs/2610.17560",
+      "status": 200,
+      "sha256": "14665108a1fdc66da56afb60fa6aed75bdf468c024f611e917304b3165c721bc",
+      "bytes": 44326,
+      "retrieved_at": "2026-10-25T23:45:43.951149+00:00"
+    },
+    {
+      "id": "uno_abs",
+      "url": "https://arxiv.org/abs/2605.05007",
+      "status": 200,
+      "sha256": "7575a290ae89806a478355da40a9ecadef8ea3f66c08368a66c5d2d0e09ac28f",
+      "bytes": 42316,
+      "retrieved_at": "2026-10-25T23:45:43.963129+00:00"
+    },
+    {
+      "id": "decisionbench_abs",
+      "url": "https://arxiv.org/abs/2605.19099",
+      "status": 200,
+      "sha256": "ccd6f0b738e07cf031efef33f26576c3654bf4be3f79fadf3835a2df1660bc28",
+      "bytes": 44051,
+      "retrieved_at": "2026-10-25T23:45:44.038556+00:00"
+    },
+    {
+      "id": "nanomuse_abs",
+      "url": "https://arxiv.org/abs/2610.08699",
+      "status": 200,
+      "sha256": "40f91891302b9c3712c0da517f784ecd26bc64dfab48371fdd5e7b92255159c3",
+      "bytes": 42031,
+      "retrieved_at": "2026-10-25T23:45:43.892113+00:00"
+    },
+    {
+      "id": "mempabench_abs",
+      "url": "https://arxiv.org/abs/2610.30485",
+      "status": 200,
+      "sha256": "65d83f87312b24089f4a9f505dd49ac33cf96330115c920a27abedc0dcf91cbf",
+      "bytes": 42392,
+      "retrieved_at": "2026-10-25T23:45:43.893819+00:00"
+    },
+    {
+      "id": "edgewise_html",
+      "url": "https://arxiv.org/html/2610.17560v2",
+      "status": 200,
+      "sha256": "fbf5c220f5973b63190bd4e9b8751f896515ace241f40fe96ae76b4562f6809c",
+      "bytes": 220897,
+      "retrieved_at": "2026-10-25T23:46:05.735255+00:00"
+    },
+    {
+      "id": "uno_html",
+      "url": "https://arxiv.org/html/2605.05007v1",
+      "status": 200,
+      "sha256": "dac4053ebc1e1a704150d18d326119d31dafa10bcd086ca173428abe737ce5ef",
+      "bytes": 958534,
+      "retrieved_at": "2026-10-25T23:46:05.696648+00:00"
+    },
+    {
+      "id": "decisionbench_html",
+      "url": "https://arxiv.org/html/2605.19099v1",
+      "status": 200,
+      "sha256": "f4bed0a172108a994e654e5de1cd1f9b7fee20013d715aa29571649d0ada6a84",
+      "bytes": 469845,
+      "retrieved_at": "2026-10-25T23:46:05.632102+00:00"
+    },
+    {
+      "id": "nanomuse_html",
+      "url": "https://arxiv.org/html/2610.08699v1",
+      "status": 200,
+      "sha256": "0fd685dcb0d01d605e7361683815e30438425ef108cfb4c088eaccc990180213",
+      "bytes": 150539,
+      "retrieved_at": "2026-10-25T23:46:05.724998+00:00"
+    },
+    {
+      "id": "mempabench_html",
+      "url": "https://arxiv.org/html/2610.30485v1",
+      "status": 200,
+      "sha256": "3b8e5c1737a5aa6a52795288a5514e96e247d890715d94138c5f6ec3fa1cf72a",
+      "bytes": 2360774,
+      "retrieved_at": "2026-10-25T23:46:05.851464+00:00"
+    },
+    {
+      "id": "edgewise_search",
+      "url": "https://api.github.com/search/repositories?q=EdgeWise%20language%20delegation",
+      "status": 200,
+      "sha256": "4af480b8ee5b87b369a76c49bd22c9a783908272ebffbe97898f8ab0f0772a5f",
+      "bytes": 55,
+      "retrieved_at": "2026-10-25T23:46:29.221836+00:00"
+    },
+    {
+      "id": "uno_repo",
+      "url": "https://api.github.com/repos/CuiZHIQ/Uno-Orchestra",
+      "status": 404,
+      "sha256": "4f50e254a719a6b1b06b529bdaa08980e4acf0878aad0090cba7771f6ebdf0b9",
+      "bytes": 118,
+      "retrieved_at": "2026-10-25T23:46:29.147970+00:00"
+    },
+    {
+      "id": "uno_readme",
+      "url": "https://raw.githubusercontent.com/CuiZHIQ/Uno-Orchestra/main/README.md",
+      "status": 404,
+      "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+      "bytes": 14,
+      "retrieved_at": "2026-10-25T23:46:28.938056+00:00"
+    },
+    {
+      "id": "decisionbench_datasets",
+      "url": "https://huggingface.co/api/datasets?author=decisionbench",
+      "status": 200,
+      "sha256": "5d4b4a66966c49441a1471a5a905cfa294cfcf9162dd65f61b5be86eb16fca89",
+      "bytes": 1966,
+      "retrieved_at": "2026-10-25T23:46:29.010858+00:00"
+    },
+    {
+      "id": "nanomuse_repo",
+      "url": "https://api.github.com/repos/nano-muse/nanoMuse",
+      "status": 200,
+      "sha256": "e0c85d2a51cc58e1bb501268c3e09650a4afb660ca8c00eef30acf1f7c80a0e1",
+      "bytes": 6813,
+      "retrieved_at": "2026-10-25T23:46:29.207825+00:00"
+    },
+    {
+      "id": "edgewise_search2",
+      "url": "https://api.github.com/search/repositories?q=EdgeWise",
+      "status": 200,
+      "sha256": "cfc0bbb3d8822a4e7db956002354007c098469c5f444abb32a36892e69fd70ef",
+      "bytes": 161105,
+      "retrieved_at": "2026-10-25T23:46:49.535387+00:00"
+    },
+    {
+      "id": "edgewise_hf_models",
+      "url": "https://huggingface.co/api/models?search=EdgeWise",
+      "status": 200,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "bytes": 2,
+      "retrieved_at": "2026-10-25T23:46:48.245306+00:00"
+    },
+    {
+      "id": "edgewise_hf_datasets",
+      "url": "https://huggingface.co/api/datasets?search=EdgeWise",
+      "status": 200,
+      "sha256": "b92100667ff1e1d6057b94689217b0a70da1bf241df3edb57a4ae94ed2cccaca",
+      "bytes": 1239,
+      "retrieved_at": "2026-10-25T23:46:48.248743+00:00"
+    },
+    {
+      "id": "uno_search",
+      "url": "https://api.github.com/search/repositories?q=Uno-Orchestra",
+      "status": 200,
+      "sha256": "5fe6eec134a88eb6014ec7256b63412d9cbacd9fbdaa4a813f16f4f4c01c1872",
+      "bytes": 11133,
+      "retrieved_at": "2026-10-25T23:46:48.564792+00:00"
+    },
+    {
+      "id": "decisionbench_code_tree",
+      "url": "https://huggingface.co/api/datasets/decisionbench/code/tree/08da513de448610cbe2f824989203edd73451f3c",
+      "status": 200,
+      "sha256": "0322ff7d12e06bf2f45f24bdba1a7501dcfb26a86107779f9510576ceb2d2bdd",
+      "bytes": 893,
+      "retrieved_at": "2026-10-25T23:46:48.299344+00:00"
+    },
+    {
+      "id": "decisionbench_code_card",
+      "url": "https://huggingface.co/datasets/decisionbench/code/raw/08da513de448610cbe2f824989203edd73451f3c/README.md",
+      "status": 200,
+      "sha256": "348d5efcea036b5d54096278558402c6694808b3821aa642054044915359c10f",
+      "bytes": 4779,
+      "retrieved_at": "2026-10-25T23:46:48.273813+00:00"
+    },
+    {
+      "id": "edgewise_project",
+      "url": "https://research.nvidia.com/labs/lpr/edge-wise/",
+      "error": "ProxyError: CONNECT 403 Forbidden",
+      "retrieved_at": "2026-10-25T23:47:11.534472+00:00",
+      "consequence": "Project page unavailable; no code/checkpoint availability or license inferred."
+    },
+    {
+      "id": "decisionbench_info",
+      "url": "https://huggingface.co/api/datasets/decisionbench/code",
+      "status": 200,
+      "sha256": "37dc4f40266465ba3d6e7e235986bca4472618641b6e65b0da6618096e48e862",
+      "bytes": 5621,
+      "retrieved_at": "2026-10-25T23:47:11.833336+00:00"
+    },
+    {
+      "id": "uno_fork",
+      "url": "https://api.github.com/repos/strehorcrux/Uno-Orchestra",
+      "status": 200,
+      "sha256": "c3dfd40507bcb2c5796fed003618c88d46dc509457bb2b322773db1461776ea3",
+      "bytes": 5623,
+      "retrieved_at": "2026-10-25T23:47:12.380633+00:00"
+    },
+    {
+      "id": "agentlightning_license",
+      "url": "https://raw.githubusercontent.com/microsoft/agent-lightning/05c7fe133175653e48c990546a3509e52dc56512/LICENSE",
+      "status": 200,
+      "sha256": "8f71659370c5268d9a1dc962a46232540e8fca63462586d8efaa95aab492a208",
+      "bytes": 1046,
+      "retrieved_at": "2026-10-25T23:47:45.225430+00:00"
+    },
+    {
+      "id": "agentlightning_pinned_readme",
+      "url": "https://raw.githubusercontent.com/microsoft/agent-lightning/05c7fe133175653e48c990546a3509e52dc56512/README.md",
+      "status": 200,
+      "sha256": "aabd3c1ff7dbf32f717cc98b6cbcaece27bf13de52f46d46acde9108c8f61edf",
+      "bytes": 11560,
+      "retrieved_at": "2026-10-25T23:47:45.228325+00:00"
+    },
+    {
+      "id": "routerr1_pinned_readme",
+      "url": "https://raw.githubusercontent.com/ulab-uiuc/Router-R1/801a240e37701577907c32de27a548af4e6c4430/README.md",
+      "status": 200,
+      "sha256": "0a5939a495864a031aa3b681bbea9b40a437aab6efca3a377779535ceb33af76",
+      "bytes": 7496,
+      "retrieved_at": "2026-10-25T23:47:45.317974+00:00"
+    },
+    {
+      "id": "routerr1_license",
+      "url": "https://raw.githubusercontent.com/ulab-uiuc/Router-R1/801a240e37701577907c32de27a548af4e6c4430/LICENSE",
+      "status": 200,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357,
+      "retrieved_at": "2026-10-25T23:47:45.337197+00:00"
+    },
+    {
+      "id": "masrouter_license",
+      "url": "https://raw.githubusercontent.com/yanweiyue/masrouter/e005f7696fe0c0412563f6cd67f4cd3712fa2822/LICENSE",
+      "status": 200,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357,
+      "retrieved_at": "2026-10-25T23:47:45.276914+00:00"
+    },
+    {
+      "id": "memento_pinned_readme",
+      "url": "https://raw.githubusercontent.com/Memento-Teams/Memento/42fbbcac63dd58ed6856c0761357345a58e4f032/README.md",
+      "status": 200,
+      "sha256": "2b3497cb9e1fa32ccbb256f48069254d434725a25d18c9d46c0478d6b7c6b067",
+      "bytes": 15565,
+      "retrieved_at": "2026-10-25T23:47:45.350108+00:00"
+    },
+    {
+      "id": "memento_license",
+      "url": "https://raw.githubusercontent.com/Memento-Teams/Memento/42fbbcac63dd58ed6856c0761357345a58e4f032/LICENSE",
+      "status": 200,
+      "sha256": "9bd5390b7c1aefeec541cf2190b762ee3982ab770eb4883a02b788f833de7036",
+      "bytes": 1073,
+      "retrieved_at": "2026-10-25T23:47:45.252611+00:00"
+    }
+  ]
+}

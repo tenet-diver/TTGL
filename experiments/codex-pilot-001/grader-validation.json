@@ -1,0 +1,102 @@
+{
+  "checks": [
+    {
+      "control": "unchanged",
+      "report_sha256": "90dc2035fa6814e4a9b982bfcdac7ccf0416914d8b9a767d3255a0dbe66cc958",
+      "resolved": false,
+      "task_id": "pysnooper-2",
+      "testcounts": {
+        "errors": 0,
+        "failures": 2,
+        "skipped": 0,
+        "tests": 30
+      }
+    },
+    {
+      "control": "gold",
+      "report_sha256": "fdbd201f37e593c1754626db391dc338cab32d198e2fcc24647482f3c1fbaad7",
+      "resolved": true,
+      "task_id": "pysnooper-2",
+      "testcounts": {
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0,
+        "tests": 30
+      }
+    },
+    {
+      "control": "unchanged",
+      "report_sha256": "bffe4496ad62e0422600d061445e710dad75a878ed4db2c9cd6a0712b8daef69",
+      "resolved": false,
+      "task_id": "tqdm-3",
+      "testcounts": {
+        "errors": 0,
+        "failures": 1,
+        "skipped": 1,
+        "tests": 56
+      }
+    },
+    {
+      "control": "gold",
+      "report_sha256": "bbd49be18c22e6e4f9ecc404bd3841cab7ed1a9a40989e5653ef9f0d4bc49935",
+      "resolved": true,
+      "task_id": "tqdm-3",
+      "testcounts": {
+        "errors": 0,
+        "failures": 0,
+        "skipped": 1,
+        "tests": 56
+      }
+    },
+    {
+      "control": "unchanged",
+      "report_sha256": "c1fe54305c0ffd766590ddbf7bf521944a07f9b6c06f9bff5885e94d4ea48c2a",
+      "resolved": false,
+      "task_id": "tqdm-5",
+      "testcounts": {
+        "errors": 0,
+        "failures": 1,
+        "skipped": 1,
+        "tests": 46
+      }
+    },
+    {
+      "control": "gold",
+      "report_sha256": "4f2f9cfca66887a77b020817b5b9b787060e18af23c3256a367f1f79a31c5b12",
+      "resolved": true,
+      "task_id": "tqdm-5",
+      "testcounts": {
+        "errors": 0,
+        "failures": 0,
+        "skipped": 1,
+        "tests": 46
+      }
+    },
+    {
+      "control": "unchanged",
+      "report_sha256": "7318904fca6791605aa9d13a5fc4092b5861967391a0bbb8e252ad4b1e45b530",
+      "resolved": false,
+      "task_id": "tqdm-6",
+      "testcounts": {
+        "errors": 0,
+        "failures": 1,
+        "skipped": 0,
+        "tests": 4
+      }
+    },
+    {
+      "control": "gold",
+      "report_sha256": "4d47d4a48df62e200ab44ff09cd786f5fb5fb77318dfdb3e6acf70e4febf7dc9",
+      "resolved": true,
+      "task_id": "tqdm-6",
+      "testcounts": {
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0,
+        "tests": 4
+      }
+    }
+  ],
+  "status": "passed",
+  "type": "evaluator_controls_not_model_results"
+}

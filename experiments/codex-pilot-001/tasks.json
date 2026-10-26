@@ -1,0 +1,68 @@
+{
+  "arms": [
+    "luna",
+    "sol",
+    "precall",
+    "personal"
+  ],
+  "evaluator_root": "/workspace/scratch/ttgl-codex-pilot-evaluator",
+  "tasks": [
+    {
+      "base_commit": "e21a31162f4c54be693d8ca8260e42393b39abd3",
+      "base_tree_sha256": "062d4ddca6cf37c538ab32b3126dce1d262421f6b40531508303c7366c3dfabd",
+      "bug_id": 2,
+      "evaluation_test_tree_sha256": "a1b1badc0892d2f67672cf68dafb082ce6d3c0140d7067a86df10928b19787d8",
+      "fixed_commit": "814abc34a098c1b98cb327105ac396f985d2413e",
+      "original_python": "3.8.1",
+      "project": "PySnooper",
+      "repo": "cool-RR/PySnooper",
+      "source_dir": "pysnooper",
+      "statement": "The snoop decorator must support custom_repr as either one (condition, formatter) pair or an ordered sequence of such pairs. A condition may be a type (matching instances) or a predicate callable. Use the formatter for the first matching condition when rendering local values; otherwise keep the default representation. A single pair such as custom_repr=(list, lambda value: str(len(value))) must work. Preserve the existing tracing API and default behavior.",
+      "task_id": "pysnooper-2",
+      "test_file": "tests/test_pysnooper.py"
+    },
+    {
+      "base_commit": "c2599e3cd6087429f48bae34347ec5d2473c8392",
+      "base_tree_sha256": "8f34595c6881e2850e8d960fcb828a66be9b491cb31f0bcc478079de39734dd7",
+      "bug_id": 3,
+      "evaluation_test_tree_sha256": "b0a268decb9c03d5c62a390c82ba4895bd8314e9270bd633f532ac428a51e66f",
+      "fixed_commit": "73962a47026dd980ac0758820efc9c41cbf938e0",
+      "original_python": "3.6.9",
+      "project": "tqdm",
+      "repo": "tqdm/tqdm",
+      "source_dir": "tqdm",
+      "statement": "Boolean conversion of a progress bar should reflect whether its total or iterable is nonempty. Handle known totals, unsized iterables, and the undefined case where neither total nor iterable exists, instead of relying on an invalid length conversion. Preserve Python compatibility and existing iteration behavior.",
+      "task_id": "tqdm-3",
+      "test_file": "tqdm/tests/tests_tqdm.py"
+    },
+    {
+      "base_commit": "19b08ab34fdbfa0275bc5cb2430436c724c7e759",
+      "base_tree_sha256": "3bd3ff23ba88055f2084f8340d5a49fdf9dbea21e31bac4da5182c6d5542d796",
+      "bug_id": 5,
+      "evaluation_test_tree_sha256": "e58ad5a22efe52859ef9af905c8699e981b82a0c331de4fc1cacf3816bdc2199",
+      "fixed_commit": "4f340697af69b71850aad496387c9c5aa1904136",
+      "original_python": "3.6.9",
+      "project": "tqdm",
+      "repo": "tqdm/tqdm",
+      "source_dir": "tqdm",
+      "statement": "A disabled progress bar should still expose the same total and Boolean behavior as an enabled one. Preserve inferred iterable lengths and explicit totals even when progress display is disabled.",
+      "task_id": "tqdm-5",
+      "test_file": "tqdm/tests/tests_tqdm.py"
+    },
+    {
+      "base_commit": "a4b9c86db548b2d0dbb5af7a6bbdc26ab47e1eec",
+      "base_tree_sha256": "6abd7640599983713e60abe48a786a0b11fcf1a9484f1d884a196223880d3d55",
+      "bug_id": 6,
+      "evaluation_test_tree_sha256": "1622183c3dded9bc9edc3d99bc0830044ae98677d2396ca2131b944aa8cb7792",
+      "fixed_commit": "6dad2e89019317e875c46d5a3a82a811ad6de2f9",
+      "original_python": "3.6.9",
+      "project": "tqdm",
+      "repo": "tqdm/tqdm",
+      "source_dir": "tqdm",
+      "statement": "Wrapping an imap iterator in a progress bar can trigger premature length access before all fields have been initialized. Make length handling robust without changing ordinary iteration.",
+      "task_id": "tqdm-6",
+      "test_file": "tqdm/tests/tests_synchronisation.py"
+    }
+  ],
+  "workspace_root": "/workspace/scratch/ttgl-codex-pilot"
+}

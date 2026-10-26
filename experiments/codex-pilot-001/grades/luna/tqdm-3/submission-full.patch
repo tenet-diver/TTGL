@@ -1,0 +1,23 @@
+--- a/tqdm/_tqdm.py
++++ b/tqdm/_tqdm.py
+@@ -953,6 +953,20 @@
+              else len(self.iterable) if hasattr(self.iterable, "__len__")
+              else getattr(self, "total", None))
+ 
++    def __bool__(self):
++        """Return whether this progress bar has work to do."""
++        if self.total is not None:
++            return bool(self.total)
++        if self.iterable is not None:
++            try:
++                return bool(len(self.iterable))
++            except TypeError:
++                # Unsized iterables still represent potentially available work.
++                return True
++        raise TypeError("tqdm with neither total nor iterable has no truth value")
++
++    __nonzero__ = __bool__
++
+     def __enter__(self):
+         return self
+ 
