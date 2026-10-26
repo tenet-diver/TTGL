@@ -20,8 +20,9 @@ comparisons = {arm: frontier.compare(records, policy=arm) for arm in arms if arm
 if any(r['cost_ratio'] is None or r['accuracy_retention_ratio'] is None for r in comparisons.values()):
     raise ValueError('Missing paired cost/quality values; do not chart unknowns as zero')
 args.output_dir.mkdir(parents=True, exist_ok=False)
+y_top = max(110,max(100*r['accuracy_retention_ratio'] for r in comparisons.values())+5)
 fig, ax = plt.subplots(figsize=(8, 5.5))
-ax.axvspan(.1, 5, ymin=95/110, ymax=1, color='#d9eedf', alpha=.8)
+ax.axvspan(.001, 5, ymin=95/y_top, ymax=1, color='#d9eedf', alpha=.8)
 ax.axhline(95, color='#38764b', linestyle='--', linewidth=1)
 ax.axvline(5, color='#38764b', linestyle='--', linewidth=1)
 colors = {'small':'#2875b2','personal':'#d26c18','oneway':'#8c5c9c',
@@ -36,8 +37,9 @@ reference = [r for r in records if r['arm']=='large']
 ax.scatter(100,100,s=75,color='#292929',marker='s',
            label=f"large: {sum(r['resolved'] for r in reference)}/{len(reference)}; cost 100%")
 ax.set_xscale('log')
-ax.set_xlim(.5, max(120, max(100*r['cost_ratio'] for r in comparisons.values())*1.2))
-ax.set_ylim(0,max(110,max(100*r['accuracy_retention_ratio'] for r in comparisons.values())+5))
+ax.set_xlim(min(.5,min(50*r['cost_ratio'] for r in comparisons.values())),
+            max(120, max(100*r['cost_ratio'] for r in comparisons.values())*1.2))
+ax.set_ylim(0,y_top)
 ax.set_xticks([1,5,10,25,50,100], ['1','5','10','25','50','100'])
 ax.set_xlabel('Published token-rate scenario cost (% of matched Sol-only; log scale)')
 ax.set_ylabel('Task accuracy retained (% of matched Sol-only)')
