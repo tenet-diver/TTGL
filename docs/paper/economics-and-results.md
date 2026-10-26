@@ -221,3 +221,23 @@ unassisted failure as a missed delegation, or feeding hidden grading failures
 back into the live controller, would overstate the evidence. A causal rescue
 experiment would need separately registered continuations from matched
 predecision states, with all extra inference counted.
+
+## Measured context-only interface overhead
+
+The separate specialist-interface calibration produced the following native
+counter observations. Each row is one fresh Sol call on the same arithmetic
+question; both reported zero cached-input tokens and no tool events.
+
+| Context-only interface | Input tokens | Output tokens | Published-rate USD |
+|---|---:|---:|---:|
+| Default instructions | 10,481 | 85 | 0.021812 |
+| Compact role instructions | 6,393 | 100 | 0.013786 |
+
+Input fell 39.0% and the published-rate model-cost scenario fell 36.8%. Both
+answers were correct for the declared arithmetic fixture. The modest output
+length difference is stochastic variation from one draw per interface; these
+observations provide no accuracy-retention estimate for repository tasks. They
+identify removable fixed context as a practical cost component and motivate a
+separately graded development candidate. The reduction cannot be extrapolated
+to long questions, cached sessions or complete assisted tasks without their own
+measurements. No invoice or subscription-quota saving is inferred.

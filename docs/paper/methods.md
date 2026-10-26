@@ -318,3 +318,23 @@ reference failures rescued and the accuracy-cost frontier. A policy meeting the
 point target on a tiny panel does not establish population noninferiority;
 ceiling outcomes can yield misleadingly narrow bootstrap intervals. Falling
 expert usage counts as useful only when the quality constraint is retained.
+
+## Compact specialist interface
+
+A further development candidate keeps the adaptive controller policy and acting
+agents unchanged, but replaces the built-in instructions for context-only
+specialists with a short role-specific instruction file. Codex documents this
+setting as `model_instructions_file` [@openaiCodexConfig2026]. The request still
+contains the expert role, permitted context, uncertainty requirements and output
+schema. Native tool exclusions and filesystem/network permissions are unchanged.
+This is a specialist-interface treatment, not a change in model weights or a
+permission relaxation. Its source and instruction hashes are frozen separately.
+
+Before any v2 development grades, a fresh-call mechanism calibration compared
+the default and compact interfaces using the same elementary arithmetic question,
+model and medium reasoning effort. Both answers were checked against the known
+arithmetic and neither invoked tools. The calibration tests transport, metering
+and fixed-context overhead; it does not establish software-task quality. The
+compact candidate was then added to the disclosed development roster before
+policy selection. The same independent controller and Sol-only conditions are
+retained so reduced helper overhead is not attributed to a weakened reference.

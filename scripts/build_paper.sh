@@ -64,14 +64,24 @@ for root in live_roots:
                        if p.is_file() and p.suffix in ('.json', '.csv', '.md', '.txt', '.png', '.svg'))
     for environment in sorted(root.glob('*/environment.json')):
         for name in ['design.json', 'design.sha256', 'environment.json', 'environment.sha256',
-                     'tasks.json', 'rate-scenario.json', 'preflight.json']:
+                     'tasks.json', 'rate-scenario.json', 'preflight.json', 'policy-selection-binding.json']:
             p = environment.parent / name
             if p.is_file():
                 sources.append(str(p))
 sources.extend(str(p) for p in sorted(Path('../../prompts').glob('controller-v2-*.txt')))
 sources.extend(['../../src/ttgl/policy.py', '../../src/ttgl/frontier.py',
                 '../../scripts/run_policy_study.py', '../../scripts/report_policy_target.py',
-                '../../scripts/plot_live_frontier.py', '../../scripts/select_delegation_policy.py'])
+                '../../scripts/plot_live_frontier.py', '../../scripts/select_delegation_policy.py',
+                '../../src/ttgl/compact.py', '../../scripts/run_compact_policy_study.py',
+                '../../prompts/compact-context-system.txt',
+                '../../results/compact-expert-calibration-001/protocol.json',
+                '../../results/compact-expert-calibration-001/default.json',
+                '../../results/compact-expert-calibration-001/compact.json',
+                '../../results/compact-expert-calibration-001/analysis.json',
+                '../../experiments/delegation-development-001/selection-protocol-002.json'])
+selection = Path('../../experiments/delegation-heldout-001/selected-policy.json')
+if selection.exists():
+    sources.append(str(selection))
 status = ('live_studies_in_progress_with_historical_pilot_and_replay' if not completed
           else 'completed_live_panels_with_historical_pilot_and_replay')
 report = {'status':status, 'completed_live_analyses':completed,
