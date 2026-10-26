@@ -5,12 +5,40 @@ import argparse
 import csv
 import json
 import os
+import math
 from pathlib import Path
 import subprocess
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
 from ttgl import benchmark
+
+
+
+def scenario_cost(manifest, prices):
+    """Published Codex Standard token-rate scenario; never an observed bill."""
+    if manifest.get('usage_accounting_issues') or not manifest.get('usage_by_model'):
+        return None
+    required = ('input_tokens', 'cached_input_tokens', 'output_tokens')
+    if any(type(manifest.get('usage', {}).get(k)) is not int for k in required):
+        return None
+    total = 0.0
+    observed = [0, 0, 0]
+    for model, record in manifest['usage_by_model'].items():
+        rate = prices['models'].get(model)
+        counts = [record['usage'].get(k) for k in required]
+        if not rate or any(type(n) is not int or n < 0 for n in counts):
+            return None
+        observed = [a+b for a,b in zip(observed, counts)]
+        if counts[1] > counts[0]:
+            raise ValueError('Cached input exceeds total native input')
+        fields = ('input_per_million', 'cached_input_per_million', 'output_per_million')
+        if any(type(rate.get(k)) not in (float, int) or not math.isfinite(rate[k]) or rate[k] < 0 for k in fields):
+            raise ValueError('Invalid published token rate')
+        total += ((counts[0]-counts[1])*rate[fields[0]] + counts[1]*rate[fields[1]] + counts[2]*rate[fields[2]])/1_000_000
+    if observed != [manifest['usage'][k] for k in required]:
+        raise ValueError('Per-model native counters do not reconcile to task totals')
+    return total
 
 
 def main():
@@ -45,6 +73,16 @@ def main():
     records = json.loads((out / 'analysis/records.json').read_text())
     if any(r['resolved'] is None for r in records):
         raise ValueError('Official grades are missing; results remain incomplete')
+    environment = json.loads((study / 'environment.json').read_text())
+    scenario_path = study / 'rate-scenario.json'
+    if benchmark.digest(scenario_path) != environment['published_rate_scenario_sha256']:
+        raise ValueError('Frozen token-rate scenario changed')
+    rates = json.loads(scenario_path.read_text())
+    scenario_records = [{**r, 'cost_usd': scenario_cost(json.loads((study / 'runs' / r['arm'] / r['task_id'] / 'manifest.json').read_text()), rates),
+                         'cost_kind': rates['kind']} for r in records]
+    scenario_summary = {'rates': rates, 'paired_savings': benchmark.paired_savings(scenario_records, design)}
+    benchmark.write_new(out / 'published-rate-records.json', scenario_records)
+    benchmark.write_new(out / 'published-rate-scenario.json', scenario_summary)
     totals = []
     for arm, quality in summary['arms'].items():
         rows = [r for r in records if r['arm'] == arm]
@@ -64,6 +102,8 @@ def main():
             'mean_execution_seconds': quality['mean_wall_seconds'],
             'preparation_seconds': sum(p['preparation_seconds'] for p in patches),
             'api_equivalent_usd': quality['total_cost_usd'],
+            'published_codex_standard_scenario_usd': (sum(r['cost_usd'] for r in scenario_records if r['arm'] == arm)
+                if all(r['cost_usd'] is not None for r in scenario_records if r['arm'] == arm) else None),
         })
     with (out / 'condition-results.csv').open('x') as stream:
         writer = csv.DictWriter(stream, fieldnames=list(totals[0]))
@@ -77,10 +117,12 @@ def main():
     lines = ['# Metered isolated SWE-bench results', '',
         f"The study completed {len(records)} assignments on {len(design['task_ids'])} tasks across six conditions. "
         'Outcomes come from the official pinned SWE-bench evaluator and are joined to exact exported patches.', '',
-        '| Condition | Resolved | Input tokens | Output tokens | Expert requests |',
-        '|---|---:|---:|---:|---:|']
+        '| Condition | Resolved | Input tokens | Output tokens | Expert requests | Published-rate scenario USD |',
+        '|---|---:|---:|---:|---:|---:|']
     for row in totals:
-        lines.append(f"| {row['condition']} | {row['resolved']}/{row['assigned']} | {row['input_tokens']} | {row['output_tokens']} | {row['expert_requests']} |")
+        cost = row['published_codex_standard_scenario_usd']
+        cost_label = f'{cost:.4f}' if cost is not None else 'unavailable'
+        lines.append(f"| {row['condition']} | {row['resolved']}/{row['assigned']} | {row['input_tokens']} | {row['output_tokens']} | {row['expert_requests']} | {cost_label} |")
     lines += ['', '## Paired quality differences versus the large solo condition', '',
               '| Condition | Difference in percentage points | Conditional paired bootstrap 95% interval |',
               '|---|---:|---:|']
@@ -92,6 +134,16 @@ def main():
     reuses = list(study.glob('grading/**/reuse.json'))
     lines += ['', f'Official evaluator invocations with retained execution records: {len(executions)}. '
               f'Exact-program report reuses: {len(reuses)}. Reuse is not an additional test execution.']
+    lines += ['', '## Published-rate cost scenario', '',
+        'Rates were verified and frozen before scored inference from the [official Enterprise Codex Standard-mode rate card]('
+        + rates['source_url'] + '). They price native uncached input, cached input and output separately. '
+        'This is a counterfactual token-rate scenario, not this account invoice, API bill or observed quota use. '
+        'The signed-in Codex long-context exemption follows that rate card. See published-rate-scenario.json '
+        'for paired cost-ratio uncertainty and published-rate-records.json for every assigned observation.', '',
+        '| Condition | Estimated scenario saving versus large |', '|---|---:|']
+    for arm, cost in scenario_summary['paired_savings'].items():
+        saving = cost.get('estimated_savings_fraction')
+        lines.append(f"| {arm} | {100*saving:.1f}% |" if saving is not None else f'| {arm} | unavailable |')
     lines += ['', '## Interpretation and accounting', '',
         'This is a small engineering panel of public historical tasks. It cannot establish a three-point '
         'noninferiority margin. The task bootstrap is conditional on this panel and may be degenerate; '
@@ -101,7 +153,7 @@ def main():
         'does not turn raw token reduction into dollar or quota savings. Router and expert turns are '
         'included in their assigned condition. Failed attempts remain in assigned-task accounting.', '',
         'Backend credit estimates are retained in provider-usage.json, including unavailable values. '
-        'API-equivalent dollars remain null without a verified exact-model price schedule. Provider '
+        'API-equivalent dollars remain null: API cache-write and request-level context pricing need a separately compatible meter. Provider '
         'estimates are not subscription invoices. Setup, independent controls, grading, hardware and '
         'subscription allocation require separate accounting. The registered joint cost/quality target '
         'is not established by these small-panel model-only measurements.', '',
@@ -122,6 +174,8 @@ def main():
         'grade_index_sha256': benchmark.digest(study / 'grades.json'),
         'portable_grade_index_sha256': benchmark.digest(out / 'grades-portable.json'),
         'provider_usage_sha256': benchmark.digest(provider),
+        'published_rate_records_sha256': benchmark.digest(out / 'published-rate-records.json'),
+        'published_rate_scenario_sha256': benchmark.digest(scenario_path),
         'grading_execution_records': len(executions), 'exact_program_grade_reuses': len(reuses),
     })
     print(json.dumps({'status': 'officially_graded', 'tasks': len(design['task_ids']),

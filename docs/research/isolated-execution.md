@@ -88,8 +88,8 @@ reconciliation rather than an automatic retry.
 This fresh desktop study executes tasks in their frozen hash-sampled order and
 randomizes the six conditions within each task using seed 1729. This declared
 task-blocked ordering lets all conditions reuse the same immutable image while
-keeping independent containers; the preceding image is removed before loading
-the next task. This avoids retaining the full panel's images on the host.
+keeping independent containers; the incoming immutable image is pulled before the preceding image is removed,
+so shared layers can be reused while the disk reserve is enforced. This avoids retaining the full panel's images on the host.
 It is an execution amendment to the unrun globally shuffled host-checkout
 design, not a retrospective reordering of scored attempts.
 
@@ -160,3 +160,21 @@ removal can race the upstream Docker SDK's image inventory. The 10-GiB worker
 reserve stays enforced. An already cached image no longer needs its own size
 added to the pre-download reserve; uncached images still do. Disk stops and
 failed preparations make no model calls and remain in their original folders.
+
+Before scored inference, image handoff was amended to pull the next immutable
+image before removing the completed task image. At most the predecessor and
+incoming image overlap during the pull, with the same free-space reserve.
+This retains shared Docker layers without retaining the full panel. The
+solver source, dependency image identity, prompts and grading are unchanged.
+
+Before scored inference, `experiments/codex-isolated-20261026/pricing-scenario.json`
+freezes the official Enterprise Codex Standard token-rate card for the exact
+requested model IDs. It enters the execution source freeze and is copied into
+the study. Final analysis reports its counterfactual token-rate cost separately
+from API-equivalent dollars, observed subscription credits and actual cash.
+The published signed-in Codex context policy applies to that scenario; API
+cache-write/context billing is not silently substituted. Router and expert
+usage are included. Missing counters or unpriced models produce unavailable
+cost, and per-model counters must reconcile to the task total. Seven pricing
+behavior tests passed before inference. No scenario proves full deployment
+savings or small-panel quality noninferiority.

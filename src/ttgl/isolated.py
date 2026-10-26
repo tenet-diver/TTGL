@@ -105,11 +105,6 @@ class DockerWorkers:
         image = self.images[task['instance_id']]
         benchmark_image = isinstance(image, dict)
         if isinstance(image, dict):
-            if self.previous_image and self.previous_image != image['image_id']:
-                # Task-blocked execution keeps only the preceding task's image
-                # warm. Remove only our now-unused image, never global caches.
-                docker('image', 'rm', self.previous_image)
-                self.previous_image = None
             image_bytes = image.get('size_bytes', 0)
             reference, image = image['reference'], image['image_id']
             observed = json.loads(docker('image', 'inspect', reference)) if subprocess.run(
@@ -120,6 +115,12 @@ class DockerWorkers:
                 docker('pull', reference, timeout=1200)
             if json.loads(docker('image', 'inspect', reference))[0]['Id'] != image:
                 raise ValueError('Pulled worker differs from frozen image')
+            if self.previous_image and self.previous_image != image:
+                # Pull before removing the predecessor so shared immutable
+                # layers survive. The reserve above covers the incoming image.
+                # Only our completed task image is removed, never global caches.
+                docker('image', 'rm', self.previous_image)
+                self.previous_image = None
         # Image IDs, not mutable tags, enter the execution freeze.
         if not image.startswith('sha256:'):
             raise ValueError('Worker image must be bound to its local immutable image ID')

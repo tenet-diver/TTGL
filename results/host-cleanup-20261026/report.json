@@ -357,5 +357,478 @@
       "kind": "rebuildable HTTP/code/download cache; no browser profile or persistent storage"
     }
   ],
-  "additional_cache_allocated_gib_before": 1.8167152404785156
+  "additional_cache_allocated_gib_before": 1.8167152404785156,
+  "temporary_verification_dependency_removals": [
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-FZCZLL/checkout/node_modules",
+      "age_days": 1.5,
+      "allocated_kib_before": 380668,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-vae3Yv/checkout/node_modules",
+      "age_days": 3.6,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-9Gt41V/checkout/node_modules",
+      "age_days": 3.5,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-KgW2Ds/checkout/node_modules",
+      "age_days": 4.0,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-oSSIcg/checkout/node_modules",
+      "age_days": 1.5,
+      "allocated_kib_before": 380668,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-3sTq8b/checkout/node_modules",
+      "age_days": 3.1,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-HWa0gO/checkout/node_modules",
+      "age_days": 1.3,
+      "allocated_kib_before": 380668,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-1Wa7uv/checkout/node_modules",
+      "age_days": 4.0,
+      "allocated_kib_before": 718536,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-tSzSGk/checkout/node_modules",
+      "age_days": 3.6,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-n97pVn/checkout/node_modules",
+      "age_days": 3.7,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-uUCU0M/checkout/node_modules",
+      "age_days": 3.9,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-a7MURT/checkout/node_modules",
+      "age_days": 4.1,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-X7rq7f/checkout/node_modules",
+      "age_days": 3.7,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-FRCrj7/checkout/node_modules",
+      "age_days": 3.0,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-7ksXtW/checkout/node_modules",
+      "age_days": 3.7,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-7ufRzP/checkout/node_modules",
+      "age_days": 3.7,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-OLNJaR/checkout/node_modules",
+      "age_days": 3.6,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-r73RDW/checkout/node_modules",
+      "age_days": 4.4,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-nVPxvp/checkout/node_modules",
+      "age_days": 3.5,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-ghbwTl/checkout/node_modules",
+      "age_days": 3.6,
+      "allocated_kib_before": 718536,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-mV5kCE/checkout/node_modules",
+      "age_days": 3.7,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-uv1Dpx/checkout/node_modules",
+      "age_days": 3.7,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-rBT2YR/checkout/node_modules",
+      "age_days": 1.8,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-ucWHHy/checkout/node_modules",
+      "age_days": 3.1,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-Whc05u/checkout/node_modules",
+      "age_days": 1.3,
+      "allocated_kib_before": 380668,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-tiEZAT/checkout/node_modules",
+      "age_days": 3.7,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-S0TFeJ/checkout/node_modules",
+      "age_days": 3.6,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-EILcza/checkout/node_modules",
+      "age_days": 4.4,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-DUZGAl/checkout/node_modules",
+      "age_days": 3.6,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-fs0Kq6/checkout/node_modules",
+      "age_days": 3.1,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-gFNufP/checkout/node_modules",
+      "age_days": 3.5,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-ZsFqFl/checkout/node_modules",
+      "age_days": 3.6,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-ZYcbLd/checkout/node_modules",
+      "age_days": 4.4,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-o2kQQK/checkout/node_modules",
+      "age_days": 1.5,
+      "allocated_kib_before": 380668,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-aCvKdv/checkout/node_modules",
+      "age_days": 3.6,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-giMtGK/checkout/node_modules",
+      "age_days": 1.3,
+      "allocated_kib_before": 718608,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-Vr1bp9/checkout/node_modules",
+      "age_days": 2.4,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-15FIjQ/checkout/node_modules",
+      "age_days": 1.5,
+      "allocated_kib_before": 380668,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-OpQl8W/checkout/node_modules",
+      "age_days": 4.6,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-wIYi9E/checkout/node_modules",
+      "age_days": 8.2,
+      "allocated_kib_before": 340064,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-nZ9LuJ/checkout/node_modules",
+      "age_days": 3.6,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-gI3bio/checkout/node_modules",
+      "age_days": 2.3,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-mfZT6a/checkout/node_modules",
+      "age_days": 4.0,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-Ue4oRg/checkout/node_modules",
+      "age_days": 9.0,
+      "allocated_kib_before": 720952,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-oajwsk/checkout/node_modules",
+      "age_days": 1.3,
+      "allocated_kib_before": 380668,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-ZM2OA1/checkout/node_modules",
+      "age_days": 4.0,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-yGzt5R/checkout/node_modules",
+      "age_days": 2.5,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-WemVAE/checkout/node_modules",
+      "age_days": 2.0,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-XqxEUw/checkout/node_modules",
+      "age_days": 2.7,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-IQwt68/checkout/node_modules",
+      "age_days": 3.7,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-4GkXJC/checkout/node_modules",
+      "age_days": 4.5,
+      "allocated_kib_before": 718532,
+      "removed": true,
+      "tracked_files": 0,
+      "open_process_references": 0,
+      "kind": "inactive ignored temporary verification dependencies"
+    }
+  ],
+  "temporary_dependencies_allocated_gib_before": 32.33348846435547,
+  "post_cleanup_check": {
+    "at_utc": "2026-10-26T19:18:25.796260+00:00",
+    "all_51_dependency_paths_absent": true,
+    "all_51_checkout_package_manifests_preserved": true,
+    "tracked_dependency_files_removed": 0,
+    "free_gib_at_check": 40.54298400878906,
+    "free_space_note": "Observed with ongoing worker image downloads; not a sum of allocated deletion counts"
+  },
+  "total_cache_directories_removed": 106,
+  "total_allocated_cache_gib_before": 56.704002380371094,
+  "allocated_space_caveat": "Allocated sizes may share filesystem blocks; totals are not unique physical bytes reclaimed. Observed free space is recorded separately."
 }

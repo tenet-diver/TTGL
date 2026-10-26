@@ -14,10 +14,12 @@ import tempfile
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
 from ttgl import benchmark, isolated, evaluation
 
+RATE_SCENARIO = isolated.ROOT / 'experiments/codex-isolated-20261026/pricing-scenario.json'
+
 
 def sources():
     paths = [Path(__file__), Path(isolated.__file__), Path(evaluation.__file__), isolated.SERVER,
-             isolated.SERVER.parent / 'package-lock.json', isolated.DEPENDENCIES]
+             isolated.SERVER.parent / 'package-lock.json', isolated.DEPENDENCIES, RATE_SCENARIO]
     return {str(p.relative_to(isolated.ROOT)): benchmark.digest(p) for p in paths}
 
 
@@ -78,8 +80,10 @@ def main():
                 assignment_ordering='task_blocked',
                 worker_environment='Official task image dependencies; exact-base source with shallow Git history',
                 isolation='Unmounted offline Docker workers; host native tools disabled; context-only expert/router')
+        benchmark.write_new(study / 'rate-scenario.json', json.loads(RATE_SCENARIO.read_text()))
         environment = {
             'schema_version': 1, 'source_sha256': sources(),
+            'published_rate_scenario_sha256': benchmark.digest(study / 'rate-scenario.json'),
             'backend': isolated.ContainerBackend().describe(),
             'private_evaluator_root': str(private),
             'private_grading_dataset': str(grade_dataset),
