@@ -503,3 +503,28 @@ still requires identical patch/image/full grading dataset/timeout and native
 report hashes. Independent model attempts remain mandatory. This changes grading
 work, not the inference-cost endpoint. The new seed script rejects incompatible
 settings and modified reports in behavior tests.
+
+### Integrated held-out readiness
+
+The active tail queue is now `/tmp/ttgl_queue_three_candidate_readiness_004.py`:
+it preserves fallback/compact scoring and analysis, then invokes
+`scripts/run_swe_readiness.py` for the reserved panel. The prior waiting
+`ttgl_queue_three_candidate_controls.py` and separate public-validator queue were
+terminated before starting any work. Controls and public probes now run in order
+for each case while its immutable image is warm, avoiding a second image download.
+The callback runs after both native controls have completed and before image
+removal. Native control rows and probe attempts have separate provenance.
+
+The new readiness registration fixes a uniform 1200-second native test limit for
+both base and gold controls, matching the scored grader; solver limits remain
+unchanged. Existing standalone control commands retain their 600-second default.
+Original/development scored-source hashes were checked after this preparation-only
+extension and have zero mismatches. Tests cover callback ordering and explicit
+resume after a failed public probe without repeating closed native controls.
+
+The selected held-out waiting queue is now
+`/tmp/ttgl_queue_selected_heldout_003.py`. It requires all 12 reserved cases to
+have valid controls and ready public probes before inference. A recoverable
+setup failure therefore requires agent diagnosis and repair, rather than silent
+automatic task dropping. Failed preparation containers have their identity and
+source diff retained before cleanup; failed records and native reports remain.
