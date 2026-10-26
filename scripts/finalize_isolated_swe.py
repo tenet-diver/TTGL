@@ -79,7 +79,7 @@ def main():
         raise ValueError('Frozen token-rate scenario changed')
     rates = json.loads(scenario_path.read_text())
     scenario_records = [{**r, 'cost_usd': scenario_cost(json.loads((study / 'runs' / r['arm'] / r['task_id'] / 'manifest.json').read_text()), rates),
-                         'cost_kind': rates['kind']} for r in records]
+                         'cost_kind': rates['kind'], 'cost_source': rates['source_url']} for r in records]
     scenario_summary = {'rates': rates, 'paired_savings': benchmark.paired_savings(scenario_records, design)}
     benchmark.write_new(out / 'published-rate-records.json', scenario_records)
     benchmark.write_new(out / 'published-rate-scenario.json', scenario_summary)

@@ -67,3 +67,27 @@ def compare(records, *, policy, reference='large', seed=1729, samples=10000):
                         'The exact conditional bound assumes independent representative tasks; repository clustering, contamination and development selection weaken that interpretation.',
                         'Cost inherits the input accounting definition; published token-rate scenarios are not observed bills.',
                         'Development-set policy selection invalidates a held-out interpretation of the same cases.']}
+
+
+def added_value(records, *, policy, cheap='small', strong='large'):
+    """Separate added capability over Luna from savings relative to Sol."""
+    versus_cheap = compare(records,policy=policy,reference=cheap)
+    versus_strong = compare(records,policy=policy,reference=strong)
+    p, c, s = (versus_strong['policy_resolved'], versus_cheap['reference_resolved'],
+               versus_strong['reference_resolved'])
+    totals = {}
+    for arm in (policy,cheap,strong):
+        values = [r.get('cost_usd') for r in records if r['arm']==arm]
+        totals[arm] = sum(values) if values and all(v is not None for v in values) else None
+    extra = totals[policy]-totals[cheap] if totals[policy] is not None and totals[cheap] is not None else None
+    return {'policy':policy,'cheap_reference':cheap,'strong_reference':strong,
+        'paired_tasks':versus_strong['paired_tasks'],
+        'additional_resolved_vs_cheap':p-c,
+        'cheap_control_successes_lost':versus_cheap['reference_successes_lost'],
+        'cheap_control_failures_resolved_by_policy':versus_cheap['reference_failures_rescued'],
+        'accuracy_gain_points_vs_cheap':versus_cheap['accuracy_difference_points'],
+        'strong_over_cheap_resolved_gap':s-c,
+        'fraction_of_positive_strong_cheap_gap_closed':(p-c)/(s-c) if s>c else None,
+        'extra_model_cost_scenario_usd_vs_cheap':extra,
+        'incremental_scenario_usd_per_additional_resolved':extra/(p-c) if extra is not None and p>c else None,
+        'interpretation':'Task-matched independent runs; apparent rescues are not causal continuations from the same solver state. No positive Sol-Luna gap means gap closure is undefined.'}

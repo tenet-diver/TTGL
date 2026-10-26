@@ -1,5 +1,5 @@
 import pytest
-from ttgl.frontier import compare
+from ttgl.frontier import compare, added_value
 
 
 def rows(p=(True, True), r=(True, True), pc=.04, rc=1.):
@@ -43,3 +43,23 @@ def test_unmatched_or_duplicate_or_ungraded_results_are_rejected():
         compare(rows()+rows(), policy='small')
     with pytest.raises(ValueError, match='grade'):
         compare(rows(p=(None,True)), policy='small')
+
+
+def test_gap_closure_distinguishes_cheap_baseline_from_strong_reference():
+    records=[]
+    for i in range(3):
+        for arm,outcomes,cost in [('small',[True,False,False],.01),
+                                  ('personal',[True,True,False],.03),
+                                  ('large',[True,True,True],.2)]:
+            records.append(dict(task_id=str(i),arm=arm,resolved=outcomes[i],cost_usd=cost))
+    result=added_value(records,policy='personal')
+    assert result['additional_resolved_vs_cheap']==1
+    assert result['fraction_of_positive_strong_cheap_gap_closed']==.5
+    assert result['extra_model_cost_scenario_usd_vs_cheap']==pytest.approx(.06)
+
+
+def test_gap_closure_is_unknown_when_cheap_control_already_matches_strong():
+    records=rows()+[dict(task_id=str(i),arm='personal',resolved=True,cost_usd=None) for i in range(2)]
+    result=added_value(records,policy='personal')
+    assert result['fraction_of_positive_strong_cheap_gap_closed'] is None
+    assert result['incremental_scenario_usd_per_additional_resolved'] is None

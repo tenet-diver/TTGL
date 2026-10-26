@@ -16,6 +16,8 @@ records = json.loads(args.records.read_text())
 arms = sorted({row['arm'] for row in records} - {args.reference})
 report = {'records_sha256': benchmark.digest(args.records),
           'source_sha256': benchmark.digest(Path(frontier.__file__)),
-          'comparisons': [frontier.compare(records, policy=arm, reference=args.reference) for arm in arms]}
+          'comparisons': [frontier.compare(records, policy=arm, reference=args.reference) for arm in arms],
+          'added_value_vs_luna': [frontier.added_value(records,policy=arm,strong=args.reference)
+                                  for arm in arms if arm!='small'] if args.reference!='small' else []}
 benchmark.write_new(args.output, report)
 print(json.dumps(report, indent=2))
