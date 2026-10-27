@@ -1,0 +1,99 @@
+{
+  "records_sha256": "5609c6641024d201bfb1cab6cbeb49db8e77726aa1afe4cd703b251d553c1ef2",
+  "source_sha256": "7dd7f6ee120ee127e68e061e180ebd7a7f62cac9f93193f03ff2cd3d9ac5bb95",
+  "comparisons": [
+    {
+      "policy": "personal",
+      "reference": "large",
+      "paired_tasks": 7,
+      "interpretation": "Descriptive matched-panel comparison; not a powered population noninferiority test",
+      "population_noninferiority_established": false,
+      "policy_resolved": 6,
+      "reference_resolved": 7,
+      "reference_successes_lost": 1,
+      "reference_failures_rescued": 0,
+      "reference_success_retention_one_sided_95_exact_lower_bound": 0.47929702640869287,
+      "accuracy_retention_ratio": 0.8571428571428571,
+      "cost_ratio": 0.07284057311251954,
+      "model_cost_reduction_fraction": 0.9271594268874804,
+      "accuracy_difference_points": -14.28571428571429,
+      "accuracy_retention_paired_bootstrap_95_interval": [
+        0.5714285714285714,
+        1.0
+      ],
+      "cost_ratio_paired_bootstrap_95_interval": [
+        0.03419760493780335,
+        0.10585203801415163
+      ],
+      "joint_95_95_point_target_met": false,
+      "bootstrap_intervals_within_target": false,
+      "bootstrap": {
+        "samples": 10000,
+        "seed": 1729,
+        "unit": "paired task",
+        "method": "percentile; interval unavailable if any bootstrap reference denominator is zero"
+      },
+      "limitations": [
+        "Small samples and ceiling outcomes can produce degenerate bootstrap intervals; these do not prove population noninferiority.",
+        "The exact conditional bound assumes independent representative tasks; repository clustering, contamination and development selection weaken that interpretation.",
+        "Cost inherits the input accounting definition; published token-rate scenarios are not observed bills.",
+        "Development-set policy selection invalidates a held-out interpretation of the same cases."
+      ]
+    },
+    {
+      "policy": "small",
+      "reference": "large",
+      "paired_tasks": 7,
+      "interpretation": "Descriptive matched-panel comparison; not a powered population noninferiority test",
+      "population_noninferiority_established": false,
+      "policy_resolved": 5,
+      "reference_resolved": 7,
+      "reference_successes_lost": 2,
+      "reference_failures_rescued": 0,
+      "reference_success_retention_one_sided_95_exact_lower_bound": 0.341261436155336,
+      "accuracy_retention_ratio": 0.7142857142857143,
+      "cost_ratio": 0.040188015302032205,
+      "model_cost_reduction_fraction": 0.9598119846979678,
+      "accuracy_difference_points": -28.57142857142857,
+      "accuracy_retention_paired_bootstrap_95_interval": [
+        0.42857142857142855,
+        1.0
+      ],
+      "cost_ratio_paired_bootstrap_95_interval": [
+        0.03319434232235892,
+        0.05286886704832143
+      ],
+      "joint_95_95_point_target_met": false,
+      "bootstrap_intervals_within_target": false,
+      "bootstrap": {
+        "samples": 10000,
+        "seed": 1729,
+        "unit": "paired task",
+        "method": "percentile; interval unavailable if any bootstrap reference denominator is zero"
+      },
+      "limitations": [
+        "Small samples and ceiling outcomes can produce degenerate bootstrap intervals; these do not prove population noninferiority.",
+        "The exact conditional bound assumes independent representative tasks; repository clustering, contamination and development selection weaken that interpretation.",
+        "Cost inherits the input accounting definition; published token-rate scenarios are not observed bills.",
+        "Development-set policy selection invalidates a held-out interpretation of the same cases."
+      ]
+    }
+  ],
+  "added_value_vs_luna": [
+    {
+      "policy": "personal",
+      "cheap_reference": "small",
+      "strong_reference": "large",
+      "paired_tasks": 7,
+      "additional_resolved_vs_cheap": 1,
+      "cheap_control_successes_lost": 0,
+      "cheap_control_failures_resolved_by_policy": 1,
+      "accuracy_gain_points_vs_cheap": 14.28571428571428,
+      "strong_over_cheap_resolved_gap": 2,
+      "fraction_of_positive_strong_cheap_gap_closed": 0.5,
+      "extra_model_cost_scenario_usd_vs_cheap": 0.03769952,
+      "incremental_scenario_usd_per_additional_resolved": 0.03769952,
+      "interpretation": "Task-matched independent runs; apparent rescues are not causal continuations from the same solver state. No positive Sol-Luna gap means gap closure is undefined."
+    }
+  ]
+}

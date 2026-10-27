@@ -1,0 +1,51 @@
+{
+  "status": "officially_graded_paired_rescue_interim",
+  "task_id": "sphinx-doc__sphinx-10673",
+  "outcomes": {
+    "small": false,
+    "large": true,
+    "personal": true
+  },
+  "completed_expert_calls": 2,
+  "same_expert_thread_reused": true,
+  "expert_actions": [
+    "request_context",
+    "answer"
+  ],
+  "expert_tool_events": 0,
+  "controller_reports_regression_failure_before_asking": true,
+  "local_test_outputs_independently_retained": false,
+  "pre_consultation_patch_or_grade": null,
+  "causal_expert_effect_established": false,
+  "handoff_limitation": "Requested exact source was not supplied in full; paths alone are inaccessible to the context-only expert",
+  "artifact_sha256": {
+    "results/delegation-heldout-001/study-002/runs/small/sphinx-doc__sphinx-10673/state.json": "073f517ac6a21139f0f44afe4927f5eb712ec52842ee0030a24f6a34d5206275",
+    "results/delegation-heldout-001/study-002/runs/small/sphinx-doc__sphinx-10673/task.json": "d1a0b1847d947d11a8feb2beaa16927cf80bc083b8fe74293e00d35eac71eb48",
+    "results/delegation-heldout-001/study-002/runs/small/sphinx-doc__sphinx-10673/memory.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "results/delegation-heldout-001/study-002/runs/small/sphinx-doc__sphinx-10673/events.jsonl": "a9d241c38f6a80e5179a13f1f377e241c5555519f58a4800ef198e1cde215021",
+    "results/delegation-heldout-001/study-002/runs/small/sphinx-doc__sphinx-10673/manifest.json": "7a06813064feb10c7218a6c8bff2a162dd5e60eed40813a75e0175f0ce978906",
+    "results/delegation-heldout-001/study-002/patches/small/sphinx-doc__sphinx-10673.json": "3555916f3abc1d29dcccf8a79c1a8c039cfaf8b5b1daef03cb1d61014327206a",
+    "results/delegation-heldout-001/study-002/grading/small/sphinx-doc__sphinx-10673/890d5ea5d023/logs/ttgl-small/sphinx-doc__sphinx-10673/report.json": "29c2b77f9872b8d7b0c6bf171d8d857da38db291df707f0a471f53144d0fd710",
+    "results/delegation-heldout-001/study-002/runs/large/sphinx-doc__sphinx-10673/state.json": "165ce86697c25ca638d7da6371f694c87ed84dcaa79be94a09a2db02944cf035",
+    "results/delegation-heldout-001/study-002/runs/large/sphinx-doc__sphinx-10673/task.json": "9f471cda1b204e948ae0deabceb808ca0762ecb6afb0c5cd7815f0a922e0eec7",
+    "results/delegation-heldout-001/study-002/runs/large/sphinx-doc__sphinx-10673/memory.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "results/delegation-heldout-001/study-002/runs/large/sphinx-doc__sphinx-10673/events.jsonl": "56cbdcaaaf32384a065316d4e12f8b74630940ca0da88f5cdf4927e196086793",
+    "results/delegation-heldout-001/study-002/runs/large/sphinx-doc__sphinx-10673/manifest.json": "7863117fb0d159d134e65f4db5486771870e05a571914cf32823d00de637e11e",
+    "results/delegation-heldout-001/study-002/patches/large/sphinx-doc__sphinx-10673.json": "e1baf0f18e3b21e1df4d5006ecb64061a94fbb82fe4967ec37b91614d28a28ed",
+    "results/delegation-heldout-001/study-002/grading/large/sphinx-doc__sphinx-10673/55a33992c0c7/logs/ttgl-large/sphinx-doc__sphinx-10673/report.json": "47c1dcb11b54aa6aa7b0e973643eae36b705f3fbe34a5041872eb8994abc52b8",
+    "results/delegation-heldout-001/study-002/runs/personal/sphinx-doc__sphinx-10673/state.json": "60f30cf341bdb9697cca57f638a7928c2500294f062882618a0db12d750104b3",
+    "results/delegation-heldout-001/study-002/runs/personal/sphinx-doc__sphinx-10673/task.json": "7ea225f0b8a97f3b79493cde16801cc08e50422dd9b085a53af6a34078b98b5f",
+    "results/delegation-heldout-001/study-002/runs/personal/sphinx-doc__sphinx-10673/memory.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "results/delegation-heldout-001/study-002/runs/personal/sphinx-doc__sphinx-10673/events.jsonl": "b3e3d3c47eb95e2ef6fc2cfcfb54a8f98ae2e0409fe508eb930153322ca27ca4",
+    "results/delegation-heldout-001/study-002/runs/personal/sphinx-doc__sphinx-10673/manifest.json": "42c48d891c8cc7c8cf9b4abdea7dcc899422b40cc0f8ac0988c9ff3f82c66ab2",
+    "results/delegation-heldout-001/study-002/patches/personal/sphinx-doc__sphinx-10673.json": "22a180dd345a7da9f9f15846be3408cae8a1c112489a3246a2a71a5a5856761f",
+    "results/delegation-heldout-001/study-002/grading/personal/sphinx-doc__sphinx-10673/41661821005f/logs/ttgl-personal/sphinx-doc__sphinx-10673/report.json": "47c1dcb11b54aa6aa7b0e973643eae36b705f3fbe34a5041872eb8994abc52b8",
+    "results/delegation-heldout-001/study-002/effective-prompts/60e88f4e0d249b589c1ca67c72a2c949b9bc529e8993a6cbdf0a717a02a31ad0.json": "c15ca7fa63a7c41fe04933a14f44c510471ce58d7512d82676bec1bffbbf8571",
+    "results/delegation-heldout-001/study-002/effective-prompts/6b7a53506f53555b06d8418f655937ed91b7e5d3228727b5a8d16ad95a8c10a6.json": "561bc3f3f841b00ff67d5ae7ef4acf4386dc11bc118d275b2ea20753cc2c5daf",
+    "results/delegation-heldout-001/study-002/effective-prompts/e178c9c9299cab3c0459f7fd9a5ab1be211b3f7f6e549a7f9a554818beb67b40.json": "a368cb33395c2ed6bbe28c1fdec5303106c5913280981e50997e3cc4fa91cceb",
+    "results/delegation-heldout-001/study-002/effective-prompts/f7c80c7a3d593a78bbea635dd9467200c0cde64c54a6516fa3a2e922caf4498b.json": "0a3c01c821a1802febe82d31f5fa6ae878d4f53032f78a5147ac4e7c2d558808",
+    "results/delegation-heldout-001/study-002/effective-prompts/82c81f680e7080792083f068b912caacccffcebe035fdf8eec6837f2ef238590.json": "e65f1321a23662ee82992536e93d2e7da3d58a0153605f5ee869ef3a91605996",
+    "results/delegation-heldout-001/study-002/effective-prompts/f54cb095e05552908e19183b7650be2c87d591408f72c88f471072d9acf09136.json": "a0d135f92d2fa785f873cb8ec6dad1811be33bf0b05a4cfb7f4ba8f1ee9a27d7",
+    "results/delegation-heldout-001/study-002/effective-prompts/55f6814bb9d9cef36870483d1f4333aeb17e0bb9ad6b90ce63ee7ac491243006.json": "80c18c0a6cca286d9af61b7126d41db3aa94d15cc9b9e40993076abc4aa7b533"
+  }
+}

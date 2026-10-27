@@ -984,3 +984,45 @@ scores remain PENDING. Final patches are now sealed in unmounted records before
 the in-place verifier; fresh replays use sealed host-only sources rather than
 mutable agent logs. Native frozen sources were reverified unchanged. The old
 Pro control queue and its immutable original registration were not modified.
+
+## Heartbeat 19:47 UTC: first real held-out paired rescue
+
+All three queues remain live: native supervisor 74049, original Pro controls
+77749, new Pro pipeline 44928. At inspection: 21/33 official grades, seven
+complete blocks, Sol 7/7, Luna 5/7, assisted Luna 6/7. Assisted Luna has two
+completed consultations, both on sphinx10673. This is the first held-out
+paired rescue relative to standalone Luna. It loses none of Luna's successes.
+
+Independent partial audit of all 21 passed: checkpoint-routing-rescue-002.json.
+Interim records/report/figure: results/delegation-heldout-001/interim-007.
+Total scenarios USD: Luna 0.04639970, Sol 1.15456560, assisted 0.08409922.
+Assisted saving 92.7159%, retention 85.7143%; joint 95/95 still fails. Added resolution
+cost relative to Luna is 0.03769952 and half the observed Sol–Luna resolution gap
+is closed. Treat this as descriptive, incomplete independent-attempt evidence.
+The run must continue unchanged to 33; no selection/stopping rule changed.
+
+Trace: Luna reports a new regression test still fails and asks for diagnosis.
+Sol requests exact code and builder observations. Luna's second message locates
+an earlier directive-parser warning path; Sol then advises keeping generated
+pages out of source dependencies and fixing the module-index fixture. The final
+patch passes official grading. Both expert responses retain the same thread,
+first request_context then answer. This is real voluntary bidirectional delegation,
+not the earlier forced toy. However Luna itself found the earlier warning path,
+the expert did not receive all requested exact code (paths were supplied instead),
+and no pre-consultation patch exists in this old runner. Do not attribute the
+whole success causally to Sol. Local check counts remain self-reported because
+the old journal retains tool hashes rather than full command/output text.
+
+Archived only this closed task's three-arm run records, patches, official reports
+and seven effective prompts, plus a hashed rescue-episode.json. No in-flight
+case was staged or modified. Interim graph uses the existing plotting tool with
+an added optional title, clearly labels 7/11 tasks and 21/33 grades, and was viewed
+at full resolution. That plot script is not a frozen generation source. Paper
+source and README now include the interim rescue and its limitations. Generated
+PDF/DOCX previews remain stale and are not final deliverables.
+
+No new model inference, retries, source changes to frozen code, cleanup or paid
+services were launched this heartbeat. Pro pipeline remains correctly waiting
+for the original control chain. Its queue.json records the INITIAL waiting
+state, not a live stage tracker; inspect invocation files/native jobs and
+stopped.json/completion.json plus actual process liveness for subsequent status.

@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--records', type=Path, required=True)
 parser.add_argument('--output-dir', type=Path, required=True)
+parser.add_argument('--title', default='Matched live outcomes and the 95% saving / 95% retention target')
 args = parser.parse_args()
 records = json.loads(args.records.read_text())
 arms = sorted({r['arm'] for r in records})
@@ -45,7 +46,7 @@ ax.set_ylim(0,y_top)
 ax.set_xticks([1,5,10,25,50,100], ['1','5','10','25','50','100'])
 ax.set_xlabel('Published token-rate scenario cost (% of matched Sol-only; log scale)')
 ax.set_ylabel('Task accuracy retained (% of matched Sol-only)')
-ax.set_title('Matched live outcomes and the 95% saving / 95% retention target')
+ax.set_title(args.title)
 ax.grid(alpha=.2)
 ax.legend(loc='lower center',bbox_to_anchor=(.5,-.39),ncol=2,frameon=False,fontsize=9)
 fig.text(.5,.01,'Point estimates on public tasks; development and held-out panels must be interpreted separately.\nToken-rate scenario excludes deployment overhead and is not an observed invoice.',ha='center',fontsize=8)
@@ -54,6 +55,7 @@ for suffix in ('png','svg'):
     fig.savefig(args.output_dir/('frontier.'+suffix),dpi=220,bbox_inches='tight')
 plt.close(fig)
 benchmark.write_new(args.output_dir/'provenance.json',{
+    'figure_title':args.title,
     'records_sha256':benchmark.digest(args.records),
     'script_sha256':benchmark.digest(Path(__file__)),
     'target_analysis_source_sha256':benchmark.digest(Path(frontier.__file__)),

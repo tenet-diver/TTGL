@@ -60,10 +60,28 @@ the score or silently substitute an easier case. An explicit pre-inference
 disposition now excludes this invalid control under the original reservation's
 eligibility rule, without replacement. All eleven remaining readiness checks
 passed and the selected policy's 33-assignment held-out run is in progress.
-At the 27 October interim checkpoint, four complete task blocks (12 official
-grades) give Sol 4/4, standalone Luna 3/4 and assisted Luna 3/4. The assisted
-condition made zero expert requests on those tasks. These incomplete results
-are descriptive and are not the final held-out estimate.
+At the 27 October interim checkpoint, seven complete task blocks (21 official
+grades) give Sol 7/7, standalone Luna 5/7 and assisted Luna 6/7. All 21 assignments
+pass independent patch/report and native token-delta audits. Assisted Luna makes
+two consultations on one task, resolves one case missed by Luna and loses none
+of Luna's successes. Its total token-rate scenario is USD 0.08409922, versus
+0.04639970 for Luna and 1.15456560 for Sol: 92.7% savings with 85.7% relative
+accuracy retention. The joint 95/95 target still fails. These incomplete results
+are descriptive and do not establish population improvement or noninferiority.
+The registered run continues unchanged.
+
+![Interim held-out comparison, seven of eleven eligible tasks.](../../results/delegation-heldout-001/interim-007/figures/frontier.png){width=100%}
+
+The observed rescue is `sphinx-10673`. Luna requested help while reporting a
+failing regression test; Sol requested exact context, Luna's next message
+identified an earlier directive-parser warning path, and Sol advised on dependency handling and
+a module-index fixture. The final patch passes official evaluation. Both requests
+continue the same expert thread, demonstrating voluntary bidirectional
+consultation on a real benchmark episode. The second handoff still references
+paths rather than supplying all requested source excerpts, limiting what the
+tool-free expert can check. No pre-consultation patch was archived by this old
+runner, so this is a paired independent-attempt rescue, not a causal attribution
+of the entire improvement to Sol. The next Pro protocol captures that snapshot.
 
 A separate SWE-bench Pro V2 subset is reserved: 12 repository-diverse development
 tasks for inexpensive prompt iteration and 24 disjoint validation tasks. The

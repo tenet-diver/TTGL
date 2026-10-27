@@ -30,6 +30,12 @@ assisted condition has achieved the subsequent joint 95% saving / 95% relative
 accuracy-retention target. The tables below describe older feasibility evidence.
 Generated document previews still require rebuilding and final result QA.
 
+The current [seven-task held-out interim checkpoint](../../results/delegation-heldout-001/interim-007/README.md)
+shows the first paired rescue: assisted Luna 6/7 versus Luna 5/7 and Sol 7/7,
+with two voluntary consultations on one task. It saves 92.7% versus Sol and
+retains 85.7% of Sol's accuracy, still missing 95/95. This is incomplete evidence;
+the eleven-task registered run continues without changing its policy.
+
 The [verification-feedback study](../research/verification-feedback-study.md)
 adds a separately versioned policy candidate and a 12-development/24-validation
 Aider-derived reservation to distinguish responding to test failures from

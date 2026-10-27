@@ -1,0 +1,10 @@
+{
+  "status": "interim_not_complete_study",
+  "completed_task_blocks": 7,
+  "eligible_tasks": 11,
+  "official_grades_in_checkpoint": 21,
+  "assigned": 33,
+  "checkpoint_sha256": "61dcbd73c9ec4b9af7d3e5ad0fde007d70d05c1f7b8bd57ab7fc6a8a9f15215c",
+  "no_stopping_or_selection_decision_based_on_interim_result": true,
+  "final_analysis_still_pending": true
+}
