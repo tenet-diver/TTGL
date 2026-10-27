@@ -9,6 +9,23 @@ Git-snapshot, transport and metric checks pass in adapter-validation-003. Read
 [the rescue design](routing-rescue-study.md) before starting model trials. The
 original Pro controls queue remains unchanged and must not be duplicated.
 
+`scripts/continue_pro_rescue.py` is queued under
+`pro-pipeline-protocol-003.json`. It waits for those controls, then performs a
+real actor check, native MCP witness-write/read/handoff with positive per-model
+metering, and official pristine witness replay. Only after passing does it run
+one four-arm development block and independently replay final and pre-handoff
+patches. It stops for review before expanding to twelve tasks. No automatic
+retry or replay of model inference is permitted. Source bindings remain frozen
+while this queue is active. Adapter-validation-004 records 34 passing software
+checks; these do not substitute for the queued real environment checks.
+
+The diagnostic agent captures its authoritative final patch outside mounted
+logs before in-place verification. The queue builds sealed host-only replay
+sources from those bytes and the private pre-handoff snapshots, checks native
+manifest/patch hashes, reconciles every model's event-level token deltas, and
+requires a fixed locally resolved task image throughout the first block.
+Attempted expert requests and completed consultations are reported separately.
+
 Status: the adapter and observable tool recorder are implemented. The original
 six transport/framework checks remain covered by 18 passing checks for the new
 routing diagnostic, using scripted model/environment fixtures and a real Git

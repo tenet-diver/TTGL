@@ -37,6 +37,16 @@ def test_consultation_without_snapshot_is_not_reported_as_verified_recovery():
     assert result['arms']['optional']['pre_handoff_fail_final_pass'] == 0
 
 
+def test_attempted_handoff_is_distinct_from_a_completed_expert_response():
+    rows = block('miss', {'large'})
+    optional = next(r for r in rows if r['arm']=='optional')
+    optional.update(expert_requests_attempted=1, pre_handoff_resolved=False)
+    metrics = summarize(rows)['arms']['optional']
+    assert metrics['expert_calls'] == 0 and metrics['expert_requests_attempted'] == 1
+    assert metrics['requested_on_sol_rescuable'] == 1
+    assert metrics['consulted_on_sol_rescuable'] == 0
+
+
 @pytest.mark.parametrize('kind', ['duplicate', 'missing', 'invented-prior'])
 def test_invalid_or_selected_assignments_are_rejected(kind):
     rows = block('task', set(ARMS))

@@ -923,3 +923,64 @@ and final patches; use handoff_metrics for paired rescue and loss. Source
 hashes must match adapter-validation-003 and then the actual pre-inference freeze.
 No Pro model inference has occurred yet. Keep Aider feedback work separate;
 prioritize this larger proprietary rescue comparison before training or RL.
+
+## Heartbeat 19:17 UTC: real Pro preflight and first block queued
+
+Native supervisor 74049 recovered a registered preparation disk guard failure
+after fifteen completed assignments. Receipts record zero repeated inference;
+it subsequently reached nineteen official grades, six complete task blocks.
+It and Pro controls queue 77749 remain live. Inspect recovery events/processes
+rather than acting on an old traceback. No additional cleanup was performed.
+
+NEW LIVE QUEUE: PID 44928, execsession 51778, under caffeinate-s:
+scripts/continue_pro_rescue.py --protocol
+experiments/swe-pro-prompt-001/pro-pipeline-protocol-003.json --output
+results/swe-pro-prompt-001/first-block-003
+Log: artifacts/pro-rescue-pipeline-003.log. queue.json currently says waiting for
+existing one-task controls. Never start another copy or reuse that output path.
+
+The queue waits for the existing native33/audit -> Pro nop/oracle chain. It
+validates both real control reports and the twelve-GiB reserve before running
+ttgl.harbor_preflight:NativeProPreflight. Before model calls, that agent checks
+clean source, absence of commits outside HEAD, absence of known private paths
+and a host-only sentinel, and direct-IP egress under the no-network actor phase.
+The network probe tests one endpoint, not universal security. Missing or
+ambiguous observations stop before inference.
+
+The mechanism-only preflight allows 180 seconds, six outer calls and two
+consultations. Luna must create/read one random witness file, obtain actual HEAD
+and send these observations to Sol, then integrate. Only the witness may change;
+the original issue is not supplied. Native metering and actual selected-context
+transfer must pass. SETUP inference is reported separately from task quality.
+The unchanged official PatchReplayAgent then replays the nonempty witness on a
+pristine image: apply_rc must be zero, diffstat must name the witness, and the
+unfixed task must retain its known negative reward. No scored trial precedes it.
+
+If every real gate passes, the queue runs ONE four-arm block in the registered
+order large, required_review, optional, small. All share v3 common guidance,
+2940 seconds, six outer turns, two expert calls and 24k context. Final patches
+and available pre-handoff snapshots receive separate pristine regrades AFTER
+generation. Native token deltas are audited before costs are calculated.
+Unknown tokens/bills stay unknown. Required-review noncompliance remains in the
+denominator; attempted expert requests and completed consultations are distinct.
+
+Success writes first-block-003/{records.json,paired-rescue.json,completion.json}.
+It stops for actual cost/runtime review before expanding to twelve tasks. No
+sealed validation or full population starts automatically. Failure writes
+stopped.json and retains unique invocation/native logs. Reconcile those before
+any versioned continuation; NEVER repeat started or uncertain model inference.
+The locally resolved task-image ID is bound across every job. Sources and the
+twelve-GiB reserve are checked before each job; there is no forced image cleanup.
+
+SOURCE FREEZE: protocol003 binds 34 generation/prompt/runtime/task/rate files,
+including the pipeline and preflight. Do not edit bound files while PID 44928 is
+active. This supplements the native study freeze. Docs/tests may change, but a
+generation change requires reconciliation and versioned registration.
+
+Before registration, 34 software checks passed in the actual Harbor runtime
+(11.15 seconds), including the earlier 18, boundary decisions and corrupt-token
+audit rejection. Receipt: adapter-validation-004. Real actor checks and Pro
+scores remain PENDING. Final patches are now sealed in unmounted records before
+the in-place verifier; fresh replays use sealed host-only sources rather than
+mutable agent logs. Native frozen sources were reverified unchanged. The old
+Pro control queue and its immutable original registration were not modified.

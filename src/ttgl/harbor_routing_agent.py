@@ -111,6 +111,10 @@ class RoutingDiagnosticCodex(ConversationalCodex):
     async def run(self, instruction, environment, context):
         await super().run(instruction, environment, context)
         records = Path(context.metadata['private_records_path'])
+        # Preserve an authoritative final patch before Harbor invokes its
+        # in-place verifier. Later fresh replays use host-only sealed copies.
+        final_patch = records/'final.patch'
+        shutil.copyfile(self.logs_dir/'model.patch', final_patch)
         snapshot = records/'pre-handoff.json'
         if snapshot.exists():
             # Model generation has ended. Publish a derivative for the unchanged
@@ -118,6 +122,7 @@ class RoutingDiagnosticCodex(ConversationalCodex):
             shutil.copyfile(records/'pre-handoff.patch', self.logs_dir/'pre-handoff.patch')
         context.metadata.update({
             'pre_handoff_snapshot': str(snapshot) if snapshot.exists() else None,
+            'final_patch_sha256': benchmark.digest(final_patch),
             'required_review_observed': (context.metadata['expert_calls'] > 0
                                          if self.policy == 'required_review' and self.condition == 'personal'
                                          else None),

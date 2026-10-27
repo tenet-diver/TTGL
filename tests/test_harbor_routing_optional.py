@@ -135,6 +135,8 @@ def test_actual_callbacks_export_snapshot_only_after_generation(tmp_path, monkey
     asyncio.run(scenario())
     assert context.n_input_tokens == (300 if condition == 'personal' else 100)
     assert context.metadata['policy'] == mode
+    authoritative = Path(context.metadata['private_records_path'])/'final.patch'
+    assert authoritative.read_text() == 'final fixture patch\n'
     assert (logs/'pre-handoff.patch').exists() == (condition == 'personal')
     if condition == 'personal':
         assert (logs/'pre-handoff.patch').read_text() == 'candidate fixture patch\n'
