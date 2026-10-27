@@ -804,3 +804,21 @@ v3 standalone controls. Keep Pro and feedback panels separate, and serialize
 benchmark workers/image cleanup. Do not tune validation repeatedly until it
 passes or claim reliability from tiny samples. Report the frontier if 95/95
 fails. Continue the existing heartbeat; no new paid service or training run.
+
+Subsequent adapter inspection found a maintained Harbor aider_polyglot converter:
+reuse it after fixing its observed boundaries/verifier, rather than implementing
+a parallel conversion. Pinned inspected Harbor source revision:
+e77a18bfeed53f907f335b9132d87006e01b3dfd. Downloaded source is under ignored
+artifacts/self-verification-research-001/harbor-adapter. The adapter embeds an
+encrypted exemplar in the actor workspace with a public default password; keep
+all exemplar material outside the actor image/workspace instead. Its C++ wrapper
+returns success even when an executed test returns failure. This was reproduced
+on Linux in a disposable, networkless cached Python image with a tiny fixture,
+not a benchmark worker or model trial. Receipt:
+results/verification-feedback-001/preparation-001/upstream-cpp-exit-audit.json.
+Initial macOS-find and noexec-tmpfs probes were unsuitable; the final explicit
+Linux exec-enabled fixture ran the failing test and proved exit 1 becomes 0.
+Correct exit propagation and test-execution counting without weakening assertions,
+then require empty/reference controls before any feedback scores. Latest native
+checkpoint: nine official grades, three complete blocks: Sol 3/3, Luna 2/3,
+personal 2/3 with zero consultations. Neither queue was interrupted.

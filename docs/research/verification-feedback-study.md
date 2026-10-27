@@ -60,6 +60,21 @@ reference solutions, tests, or model outputs have been downloaded for this study
 
 ## Prospective execution and analysis
 
+Harbor already maintains an `aider_polyglot` adapter. Reuse its conversion and
+language setup rather than build a parallel harness, after the following
+audited corrections. Inspection of Harbor revision
+`e77a18bfeed53f907f335b9132d87006e01b3dfd` found that the generated actor workspace
+contains an encrypted reference payload with a public default password. Reference
+material must instead remain outside the actor image/workspace. Its C++ shell
+wrapper also fails to propagate a failing test executable's status: a controlled
+Linux probe ran an executable that exited 1, yet the unchanged wrapper exited 0.
+`upstream-cpp-exit-audit.json` records source/snippet/image hashes and actual
+output. This is a shell mechanism result, not a task or model score. Audit and
+correct status propagation, require that tests actually execute, and prove
+negative/positive controls while retaining the original assertions before using
+this adapter for scoring. These findings concern the inspected revision, not
+every Harbor dataset or adapter.
+
 Finish the frozen current study first. Keep its held-out outcomes separate from
 new development. Complete the queued Pro environment controls and real adapter
 boundary/metering/replay checks. For the feedback diagnostic, reuse maintained

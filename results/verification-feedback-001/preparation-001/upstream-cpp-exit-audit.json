@@ -1,0 +1,18 @@
+{
+  "direct_test_exit_code": 1,
+  "upstream_wrapper_exit_code": 0,
+  "stdout": "Copying C++ test files to workspace...\nTest files copied successfully\nBuilding and running C++ tests...\nUsing CMake build system...\nRunning: ./test_failure\nINTENTIONAL_TEST_FAILURE\n",
+  "stderr": "",
+  "status": "upstream_wrapper_false_success_reproduced_on_linux",
+  "scope": "Shell exit propagation with mock successful build tools and one deliberately failing executable; no benchmark task or model inference",
+  "adapter_revision": "e77a18bfeed53f907f335b9132d87006e01b3dfd",
+  "utils_sha256": "5b8b31053f14a78f1be106b42a1f4207e7986f9767312ad1bc762c7dbfdc949f",
+  "snippet_sha256": "fec758290f70682b2fc5df5a493e7b7f1adacd49e6339e64d505abd6cad2419b",
+  "image_id": "sha256:a33c10a97f11005523814c6eee013986119fe41f3122f444518117536675c8e1",
+  "model_inference_calls": 0,
+  "previous_probes": [
+    "macOS find lacks -executable; rejected as platform evidence",
+    "Docker tmpfs default forbids executable fixtures; explicit exec used for the final probe"
+  ],
+  "required_before_use": "Audit strict exit propagation without changing test assertions, and require negative/positive controls before scored C++ trials"
+}
