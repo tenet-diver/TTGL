@@ -1,0 +1,7 @@
+{
+  "task_id": "required-context-review-001",
+  "workspace": "/Users/rustameynaliyev/Developer/TTGL/artifacts/handoff-mechanism-001-empty-context",
+  "allowed_paths": [],
+  "memory": [],
+  "prompt": "This is a context-only handoff mechanism check, not a benchmark task. Do not use tools, read files, or claim test execution. From the supplied observations, propose a corrected Python function as text. After preparing a candidate, you MUST request a specialist review before completing, sending the candidate, acceptance criteria, observations and public marker HANDOFF-CONTEXT-001 in your selected context. Then integrate useful advice and put the final proposed function and remaining verification limits in your summary.\nSpecification: clamp(x, lower, upper) returns lower if x is below lower, upper if above upper, otherwise x; if lower > upper raise ValueError.\nCurrent candidate: def clamp(x, lower, upper): return min(x, upper)\nSupplied public observations: clamp(-3,0,5) returned -3 but must return 0; clamp(2,5,0) returned 0 but must raise ValueError. These observations are task inputs; you have not executed them yourself. No grader or hidden tests are available."
+}

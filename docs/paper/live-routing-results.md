@@ -60,16 +60,17 @@ the score or silently substitute an easier case. An explicit pre-inference
 disposition now excludes this invalid control under the original reservation's
 eligibility rule, without replacement. All eleven remaining readiness checks
 passed and the selected policy's 33-assignment held-out run is in progress.
-At the 27 October interim checkpoint, two complete task blocks (six official
-grades) give Sol 2/2, standalone Luna 1/2 and assisted Luna 1/2. The assisted
+At the 27 October interim checkpoint, four complete task blocks (12 official
+grades) give Sol 4/4, standalone Luna 3/4 and assisted Luna 3/4. The assisted
 condition made zero expert requests on those tasks. These incomplete results
 are descriptive and are not the final held-out estimate.
 
 A separate SWE-bench Pro V2 subset is reserved: 12 repository-diverse development
 tasks for inexpensive prompt iteration and 24 disjoint validation tasks. The
-642-task population is not an automatically scheduled run. Only public inputs
-have been acquired for the reserved population. One development task is prepared
-privately for controls. Six adapter mechanism checks pass, but actual environment
+642-task population is not an automatically scheduled run. Public inputs have
+been acquired for all 36 reserved cases. All twelve development tasks are
+prepared privately, with first-task controls queued separately. Eighteen adapter,
+snapshot and analysis mechanism checks pass, but actual environment
 controls, real boundary/metering/replay validation and Pro model inference remain
 pending. Use the official maintained harness and pristine grading protocol.
 The open-weight replication and subsequent distillation/RL comparisons follow
@@ -100,3 +101,14 @@ detection and model-initiated error recognition must be reported separately.
 No model trials from this diagnostic have run. The executable reservation and
 the [prospective design](../research/verification-feedback-study.md) retain the
 bounded scope and prohibit tuning on validation outcomes.
+
+The next Pro development matrix explicitly contrasts voluntary consultation
+with required review, alongside matched standalone controls. Pre-consultation
+candidate patches and final patches will receive separate pristine-container
+grades after generation. This measures rescue of an observed candidate failure
+and distinguishes routing underuse from failure to transfer or integrate useful
+expert advice. A separate live context-only required-review check completed
+three native calls and demonstrated transfer and integration of an expert-found
+edge case; its six post-hoc checks are mechanism evidence, not benchmark quality
+or autonomous-routing performance. The larger development/validation comparison
+has not started model inference yet.

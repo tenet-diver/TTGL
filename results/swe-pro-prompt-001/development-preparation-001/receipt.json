@@ -1,0 +1,68 @@
+{
+  "status": "twelve_development_tasks_prepared_not_controlled_or_scored",
+  "prepared": [
+    {
+      "task_id": "instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+      "private_path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+      "receipt_sha256": "bb869d9734adc6777a621a01dde5d6ebd2fbed501789004ce3d67e8f379a98ac"
+    },
+    {
+      "task_id": "instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86",
+      "private_path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86",
+      "receipt_sha256": "6ae1506ed68918c7e19e5af24f9d00713b9a026ded23d758f360d8c25217ab8d"
+    },
+    {
+      "task_id": "instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan",
+      "private_path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan",
+      "receipt_sha256": "099a75521cc4f232f92539ac529c75f2005a5cfdda6814de60761fb67bbda749"
+    },
+    {
+      "task_id": "instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b",
+      "private_path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b",
+      "receipt_sha256": "843b4445a21d63eb710631c752138e09ec6bcdf8471d356e3d904c507d50a5d7"
+    },
+    {
+      "task_id": "instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2",
+      "private_path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2",
+      "receipt_sha256": "a3dd0df807abb778d53e617ecb28ac34d099e535d7bcf1317afd5a50fbc6c747"
+    },
+    {
+      "task_id": "instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5",
+      "private_path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5",
+      "receipt_sha256": "7b33346bf793f3b7c366796f45c1041bb50378c8eba14644b8dcb6df43a95d5d"
+    },
+    {
+      "task_id": "instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+      "private_path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+      "receipt_sha256": "bc74bea7e140c3980408ce6969996bffc63cbd59d08ac9243bd3e8cab5eb39c8"
+    },
+    {
+      "task_id": "instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2",
+      "private_path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2",
+      "receipt_sha256": "81703903f8ce2d9042d439f59ab393258184dde572c8e0d1518f9915b58214c6"
+    },
+    {
+      "task_id": "instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77",
+      "private_path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77",
+      "receipt_sha256": "8b2625b521e9e066ac088a45ab7cbbe561d9c9e780b3fec7a57a0a7b63adab07"
+    },
+    {
+      "task_id": "instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+      "private_path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+      "receipt_sha256": "d91a0d74d4c85de934b264d26fc5d12bf35100d5d7b9d5e910fb9b4cda0ac538"
+    },
+    {
+      "task_id": "instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171",
+      "private_path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171",
+      "receipt_sha256": "23d792418bb750fa9d5dbeefba01cf00b5939c05f883ed1a7a7fe029ce464290"
+    },
+    {
+      "task_id": "instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+      "private_path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+      "receipt_sha256": "15c38728350bda80bacc7c98a2635689eacbe7f39e53a3c344fef7b4e26b218f"
+    }
+  ],
+  "model_calls": 0,
+  "validation_tasks_prepared": 0,
+  "first_control_queue_untouched": true
+}

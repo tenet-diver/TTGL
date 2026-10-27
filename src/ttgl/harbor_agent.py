@@ -57,6 +57,9 @@ class ConversationalCodex(BaseAgent):
     def version(self):
         return '0.1.0-experimental'
 
+    def make_backend(self, bridge, records):
+        return HarborBackend(bridge, mode=self.policy, audit_root=records/'effective-prompts')
+
     async def setup(self, environment):
         result = await environment.exec(
             command='git -C /app rev-parse --show-toplevel 2>/dev/null || git -C /testbed rev-parse --show-toplevel',
@@ -83,7 +86,7 @@ class ConversationalCodex(BaseAgent):
         workspace = records/'empty-host-context'
         workspace.mkdir(exist_ok=False)
         bridge = EnvironmentBridge(environment, self.repository, records/'visible-tool-trace.jsonl').start()
-        backend = HarborBackend(bridge, mode=self.policy, audit_root=records/'effective-prompts')
+        backend = self.make_backend(bridge, records)
         task = {'task_id': task_id, 'prompt': instruction+'\nRepair the assigned repository. Do not commit, change HEAD, retrieve upstream fixes, or inspect evaluator artifacts. Report checks honestly.',
                 'workspace': str(workspace.resolve()), 'allowed_paths': ['.'], 'memory': []}
         try:

@@ -1,0 +1,64 @@
+{
+  "status": "amended_before_any_pro_model_inference",
+  "stage": "proprietary_prompt_iteration_before_open_weight_learning",
+  "reservation_sha256": "c86b3c9a83e94e4bcc4f5162f6d8bc1eb5849a10074b23073590984fb0d4dc89",
+  "development_tasks": 12,
+  "validation_tasks": 24,
+  "development_arms": [
+    "luna_only_verification_v3",
+    "sol_only_verification_v3",
+    "optional_verification_luna_sol",
+    "required_review_luna_sol"
+  ],
+  "shared_controls": "One registered standalone Luna and Sol assignment per task while common prompts/tools/budgets match; no best-of selection across repeats.",
+  "development_assignment_cap": 48,
+  "validation_arms": [
+    "luna_only_frozen_selected_common_guidance",
+    "sol_only_frozen_selected_common_guidance",
+    "frozen_optional_luna_sol"
+  ],
+  "validation_assignment_cap": 72,
+  "first_execution_unit": "Independent environment/adapter controls, then one complete development task block, then measured cost/runtime review before continuation.",
+  "full_population_auto_run": false,
+  "selection": "Required review is a mechanism/quality control, not evidence of autonomous routing. Freeze the optional policy after development. Do not expand sealed validation if development has no credible rescue benefit; register any further development separately rather than tune on validation.",
+  "target": {
+    "cost_ratio_max": 0.05,
+    "accuracy_retention_min": 0.95
+  },
+  "model_ids": [
+    "gpt-6-luna",
+    "gpt-6.1-sol"
+  ],
+  "model_identity_caveat": "Requested proprietary aliases are not immutable weight revisions.",
+  "learning_arms_in_this_study": [],
+  "held_out_updates_forbidden": true,
+  "inference_calls": 0,
+  "registered_at": "2026-10-27T19:03:33.502104+00:00",
+  "supersedes_unrun_protocol_sha256": "99b0367223f478ab3354c026f9535d7622d430b4a90507760590b006f732ee13",
+  "reason": "Measure rescue of Luna failures, distinguish voluntary routing from required handoff/integration capability",
+  "agent_import_path": "ttgl.harbor_routing_agent:RoutingDiagnosticCodex",
+  "policy_modes": {
+    "small": "verification",
+    "large": "verification",
+    "optional": "verification",
+    "required_review": "required_review"
+  },
+  "snapshot": "Capture exact candidate patch before the first expert response using a separate Git index. Regrade after generation with unchanged official PatchReplayAgent and patch_name=pre-handoff.patch. Never expose that grade during solving.",
+  "primary_routing_diagnostics": [
+    "Luna-fail/Sol-pass paired cases rescued",
+    "Luna successes lost after assistance",
+    "Actual pre-handoff failures repaired after consultation",
+    "Correct pre-handoff candidates regressed after consultation",
+    "Failure to perform a required review",
+    "All controller/expert/integration native tokens and total cost"
+  ],
+  "noncompliance": "Keep and grade every required-review assignment even if no consultation occurs; report noncompliance separately.",
+  "live_mechanism_probe": "results/handoff-mechanism-001; required context-only handoff, not benchmark accuracy or autonomous routing",
+  "source_freeze_required_before_first_model_trial": true,
+  "agent_conditions": {
+    "small": "small",
+    "large": "large",
+    "optional": "personal",
+    "required_review": "personal"
+  }
+}

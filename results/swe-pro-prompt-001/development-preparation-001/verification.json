@@ -1,0 +1,7 @@
+{
+  "status": "all_twelve_preparation_receipts_and_upstream_file_hashes_verified",
+  "tasks": 12,
+  "files": 132,
+  "model_calls": 0,
+  "task_controls_or_model_accuracy_implied": false
+}

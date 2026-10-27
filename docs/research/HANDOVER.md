@@ -850,3 +850,76 @@ reference isolation and negative/positive task controls are still pending.
 Next step remains finishing native grading, then existing Pro controls and real
 adapter validation. The feedback adaptation must be integrated into maintained
 task conversion before its own first-task controls; no full diagnostic run yet.
+
+## User steering: measure rescue, and run real handoff / larger comparison
+
+The user rejected lack of improvement over Luna alone and explicitly requested
+larger data, routing capability and handoff testing. Do not present availability
+of Sol or low cost as a positive routing result. Current native supervision and
+Pro control queue remain live and unchanged. Latest checkpoint: 14/33 official
+grades, four complete blocks, Sol 4/4, Luna 3/4, personal 3/4 with zero expert
+requests. Independent partial patch/report/token audit passed for all 14:
+results/delegation-heldout-001/checkpoint-routing-rescue-001.json. That is NOT
+the completion audit the Pro queue awaits.
+
+NEW PRO MATRIX BEFORE ANY PRO INFERENCE:
+experiments/swe-pro-prompt-001/routing-protocol-002.json supersedes the original
+unrun matrix, retaining 12 development/24 validation tasks and caps48/72. Arms:
+matched v3 Luna, matched v3 Sol, voluntary v3 consultation, required review after
+an independent candidate. The last is a diagnostic, not autonomous routing.
+Read docs/research/routing-rescue-study.md. Freeze optional policy before sealed
+validation; do not tune repeatedly until it passes. Required-review failures to
+consult stay in the quality denominator and get explicit noncompliance counts.
+
+IMPLEMENTED: ttgl.harbor_routing_agent:RoutingDiagnosticCodex with policy options
+verification/required_review. It uses the maintained Harbor lifecycle and our
+existing native transport; condition=personal maps both cooperative arms, while
+job identities and policy distinguish them. Parent harbor_agent now exposes a
+backend factory; native frozen study sources do not include that file and were
+reverified unchanged. The new class captures pre-handoff.patch on the host before
+the first expert response using a temporary Git index, preserving real staging
+and including new files. Only after generation does it export a replay copy to
+agent/pre-handoff.patch. Grade with unchanged official PatchReplayAgent using
+patch_name=pre-handoff.patch, alongside separate final-patch fresh regrading.
+Never grade the candidate during solving or provide the grade to the model.
+Snapshot time is debited from the same call deadline and recorded elapsed time.
+
+Eighteen actual-runtime software checks pass (9.36 s), including all prior six
+adapter tests, real Git/index and phase-context snapshot checks, actual callback
+fixtures for all four arms and paired rescue/regression/missing-evidence metrics.
+Receipt: results/swe-pro-prompt-001/adapter-validation-003. This extends the old
+proof, not real Pro environment or accuracy validation. Existing nop/oracle
+queue retains its old immutable proof/control registration; do NOT restart it.
+Use the new proof/source freeze for subsequent model trials.
+
+LIVE NATIVE HANDOFF TEST DID RUN:
+results/handoff-mechanism-001. Three native calls: Luna proposes and asks, Sol
+reviews, Luna integrates. One consultation, zero tools, complete positive
+per-model usage, event deltas independently reconciled. Public context marker
+was actually forwarded. Sol found a NaN edge case in Luna's clamp proposal;
+Luna switched to explicit branches. Six POST-HOC sandbox checks: initial5/6,
+final6/6. This is a context-only REQUIRED handoff mechanism result, NOT benchmark
+accuracy or autonomous routing. Initial empty allowed_paths metadata was rejected
+before run-directory creation/inference; the rejected task and zero-call
+correction receipt are retained. No started call was repeated. Validation and
+native events/manifests are archived; there are no private reasoning traces.
+
+ALL TWELVE PRO DEVELOPMENT TASKS PREPARED using the existing pinned preparer.
+Fresh separate evaluator roots under ../ttgl-pro-development-prepared-20261027/
+<instance_id>/, each with its own preparation.json and v2/tasks directory.
+Do not add them to the original ../ttgl-pro-private-20261027 root: the existing
+queue is deliberately one-task controls only. Preparation receipt/index:
+results/swe-pro-prompt-001/development-preparation-001/receipt.json and the
+private root's development-index.json. Only development reference/verifier files
+were acquired; sealed validation private files were not. These are preparation,
+not empty/reference checks or model assignments.
+
+NEXT: finish/audit the native33; let existing Pro first-task nop/oracle controls
+finish; prove the real offline actor boundary, host-record invisibility, native
+usage through the actual transport and pristine replay. Then execute one full
+four-arm Pro development block, inspect cost/runtime, and expand within the
+registered twelve-task cap. Capture and later regrade pre-handoff candidates
+and final patches; use handoff_metrics for paired rescue and loss. Source
+hashes must match adapter-validation-003 and then the actual pre-inference freeze.
+No Pro model inference has occurred yet. Keep Aider feedback work separate;
+prioritize this larger proprietary rescue comparison before training or RL.

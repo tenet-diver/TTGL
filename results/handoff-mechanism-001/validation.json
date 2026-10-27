@@ -1,0 +1,92 @@
+{
+  "status": "native_handoff_and_integration_mechanism_passed",
+  "native_requests": 3,
+  "expert_calls": 1,
+  "marker_forwarded": true,
+  "no_tool_calls": true,
+  "native_token_deltas_reconciled": true,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 22832,
+        "cached_input_tokens": 10880,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 607,
+        "reasoning_output_tokens": 162
+      },
+      "observed_partial": {
+        "input_tokens": 22832,
+        "cached_input_tokens": 10880,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 607,
+        "reasoning_output_tokens": 162
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    },
+    "gpt-6.1-sol": {
+      "usage": {
+        "input_tokens": 10762,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 265,
+        "reasoning_output_tokens": 63
+      },
+      "observed_partial": {
+        "input_tokens": 10762,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 265,
+        "reasoning_output_tokens": 63
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "code_check": {
+    "candidate": {
+      "passed": 5,
+      "total": 6,
+      "checks": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ]
+    },
+    "final": {
+      "passed": 6,
+      "total": 6,
+      "checks": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  },
+  "code_check_scope": "Post-hoc sandbox checks of this single context-only fixture, not a preregistered quality comparison or benchmark result",
+  "autonomous_routing_claim": false,
+  "benchmark_accuracy_claim": false,
+  "code_check_image_id": "sha256:a33c10a97f11005523814c6eee013986119fe41f3122f444518117536675c8e1",
+  "artifact_sha256": {
+    "task.json": "7d9c0df4f7c28872078a93c1521bb68df0ab3059d2d76ab5ce5afdc960f3d6e4",
+    "protocol.json": "826a6e4815ffd4de09a271261d22369d44a0471a7185e86c3f39b569aea1c461",
+    "run/manifest.json": "2f9b23e0c49fd8a7bbc6b08ca6c90eaf7269a42cbba797aef12110f8ddec11b8",
+    "run/events.jsonl": "d881238e0c1a45486db556c68e6b9d33b6ddfe72a75337b50b2004e5e9cdf390"
+  }
+}

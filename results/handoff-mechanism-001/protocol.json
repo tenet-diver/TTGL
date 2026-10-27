@@ -1,0 +1,17 @@
+{
+  "status": "registered_before_inference",
+  "kind": "required_context_handoff_mechanism_only",
+  "task_quality_claim": false,
+  "autonomous_routing_claim": false,
+  "max_turns": 6,
+  "max_expert_calls": 2,
+  "timeout_seconds": 180,
+  "acceptance": [
+    "actual native small/expert/integration responses",
+    "public marker forwarded in expert selected context",
+    "nonempty expert response",
+    "controller completes after expert",
+    "positive complete per-model native token accounting"
+  ],
+  "repeat_on_failure": false
+}

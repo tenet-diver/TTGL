@@ -1,0 +1,6 @@
+{
+  "reason": "Validator requires nonempty allowed_paths, even for an empty context workspace",
+  "prior_run_directory_exists": false,
+  "prior_model_calls": 0,
+  "change": "allowed_paths [] to [.] in an empty workspace; all native tools remain disabled and no worker MCP is configured"
+}

@@ -1,0 +1,31 @@
+{
+  "status": "routing_diagnostic_framework_checks_passed",
+  "tests_passed": 18,
+  "seconds": 9.36,
+  "command": "PYTHONPATH=src artifacts/harbor-runtime-001/bin/python -m pytest -q tests/test_harbor_routing_optional.py tests/test_handoff_metrics.py tests/test_harbor_agent_optional.py tests/test_harbor_bridge.py",
+  "scope": "Real framework callbacks with scripted responses, real Git snapshot/index preservation, authenticated transport and rescue-metric behavior; not real Pro environment or model quality",
+  "live_native_handoff_probe": "results/handoff-mechanism-001/validation.json",
+  "source_sha256": {
+    "src/ttgl/harbor_agent.py": "8d27dc1a0eb813a5beea38c0d8259215c1c4e424f71c5256b6132abdf9aa5c93",
+    "src/ttgl/harbor_bridge.py": "d68008ddcad6d3cec3c9d3af71e085c76230638c2ed6b1dff5dd6a9e61e64039",
+    "src/ttgl/harbor_routing_agent.py": "48e293a5d47be6248326ad185157b098a0f6833c266475a8daf2a1acda340964",
+    "src/ttgl/handoff_metrics.py": "d705be09b568e67c335bf0783d93d735d9aa7c8f5851ad750903b1bcef57dcfe",
+    "src/ttgl/verification_policy.py": "9b60c1e4656d168db553b992ebd31acf8d0656e9bbdfba070e824fc4f493e4c4",
+    "tools/worker-mcp/harbor-server.mjs": "cd207f6da4bfa2c69d171d8a82a41d0f67a2e200f424907a0716f6e17abb571e",
+    "prompts/controller-v3-verification-delegation.txt": "438004aa752026edd36d7f0f5fcfccbb8141fc0aeee21e1a900f318b4b77cd9f",
+    "prompts/controller-v3-required-review.txt": "8ae50e58e4305591fbc087d6b1c3731775a9134e1a4bce5d667f3d3aa0187950",
+    "prompts/controller-v3-verification-common.txt": "eb1e579c24b5d26decd2fc1146afc82ab0a87c0fdd06ea0e29b2a98194cbbf07"
+  },
+  "remaining": [
+    "Pro environment empty/reference controls",
+    "Real actor privacy/offline boundary check",
+    "Native metering through actual Pro transport",
+    "First complete four-arm development block",
+    "Independent final and pre-handoff patch regrades"
+  ],
+  "old_controls_queue": "Still uses unchanged nop/oracle agents and its original registration; do not restart or alter it",
+  "model_inference_calls_in_framework_checks": 0,
+  "extends_proof_sha256": "ae56f8beaf2a47e43e1c5efc9a5ead5d5b1434eccf852610f6c990195111d8c3",
+  "live_native_handoff_probe_sha256": "e631aa4ade256d8c2610bdc747642f1ff8e85094d0d82fb5e3710762db49e08e",
+  "checks_include": "Snapshot overhead debited from the same expert-call deadline and recorded elapsed time"
+}

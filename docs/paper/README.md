@@ -35,6 +35,12 @@ adds a separately versioned policy candidate and a 12-development/24-validation
 Aider-derived reservation to distinguish responding to test failures from
 anticipating hidden failures. It has no model-quality results yet.
 
+The [routing-rescue design](../research/routing-rescue-study.md) now governs the
+unrun Pro comparison: matched standalone controls, optional consultation and
+required review, with independent pre-handoff/final patch grading. A live native
+context-only handoff check demonstrated actual review and integration, but does
+not establish benchmark accuracy or autonomous routing.
+
 The [prospective learning study](learning-study.md) specifies separate training,
 development and evaluation data; observable trace collection; sequence and
 probability distillation; RL; local/remote controls; and inference versus

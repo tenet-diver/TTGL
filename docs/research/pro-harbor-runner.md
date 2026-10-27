@@ -1,8 +1,18 @@
 # Experimental Luna / Sol adapter for SWE-bench Pro V2
 
-Status: the adapter and observable tool recorder are implemented. Transport and
-actual Harbor API callbacks pass six mechanism checks, using scripted model and
-environment fixtures. **No Pro model trials or Pro environment controls have
+The pre-inference amendment `experiments/swe-pro-prompt-001/routing-protocol-002.json`
+now defines the next four-arm matrix: matched v3 standalone Luna/Sol, optional
+routing and required review. `ttgl.harbor_routing_agent:RoutingDiagnosticCodex`
+adds `policy=verification|required_review`, captures the candidate before first
+consultation and exports a post-generation replay derivative. Eighteen framework,
+Git-snapshot, transport and metric checks pass in adapter-validation-003. Read
+[the rescue design](routing-rescue-study.md) before starting model trials. The
+original Pro controls queue remains unchanged and must not be duplicated.
+
+Status: the adapter and observable tool recorder are implemented. The original
+six transport/framework checks remain covered by 18 passing checks for the new
+routing diagnostic, using scripted model/environment fixtures and a real Git
+snapshot fixture. **No Pro model trials or Pro environment controls have
 run yet.** The first reserved development task is prepared for independent
 controls. These checks establish wiring, not software-task accuracy.
 
