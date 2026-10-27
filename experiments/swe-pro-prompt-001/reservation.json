@@ -1,0 +1,665 @@
+{
+  "status": "reserved_public_inputs_only_not_executed",
+  "dataset": "SWE-bench Pro V2",
+  "upstream_repository": "scaleapi/SWE-bench_Pro-os",
+  "revision": "66f92766bba642462d4bbe5479e83f91f9211862",
+  "population_tasks": 642,
+  "inventory_sha256": "8ae8e029cb7cca8237705960d9371593d3e010194515cc264ed64b1e2587d4a8",
+  "seed": "ttgl-pro-prompt-001",
+  "selection": "Seeded task order within repository, seeded round-robin across repositories; no outcome selection",
+  "development": [
+    {
+      "instance_id": "instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+      "repository": "NodeBB/NodeBB",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/instruction.md",
+          "sha256": "67ab7c9c26426a337a5dae6eb3a431bbba15db8971c695198d06a99ca76cc8ab"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/task.toml",
+          "sha256": "a9dfb94d44ff46a774db16e8091ee59f49276830d3917186eeae6822fc4072b7"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/environment/Dockerfile",
+          "sha256": "fa0db8ab4ba69a267ebf0c3bb7bc3972473e63e70d93cf577d93e2e30c13b8d3"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86",
+      "repository": "ansible/ansible",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86/instruction.md",
+          "sha256": "6ca494273af9e9618a0d5e04ea04ec55d6d2a1f6bd46bd710f3d827c9c1f3463"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86/task.toml",
+          "sha256": "09b7e33c03cab1225eff08f06cd834f369a1f6dcb142d262686b903ad1117711"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86/environment/Dockerfile",
+          "sha256": "f35a8a119db7a548ce5d516a1c9cd3d879fbcfa9f66fdf23c2b47bf911d1233a"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan",
+      "repository": "element-hq/element-web",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan/instruction.md",
+          "sha256": "49e0abf083feb9055b02fa127bf089b594faeb1260e1829276e471cedf3f7950"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan/task.toml",
+          "sha256": "870f717e646ba23dd2b9ebdc3960b87950ca904b82bc945483d663ba32c5228f"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan/environment/Dockerfile",
+          "sha256": "e781d142957933add3a590e849faa94a37e095e419e728d13bb5f79fda0b323b"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b",
+      "repository": "tutao/tutanota",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b/instruction.md",
+          "sha256": "e194da19b6c4ec3a1c7937afb01e98b659206096f4e2c014de8640576df323d9"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b/task.toml",
+          "sha256": "a800b6a817091b9363358055b175e915d8220f482a52ad5ca68e5fd607cf091e"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b/environment/Dockerfile",
+          "sha256": "2c11ff0e5a8a6619fc6c1f620448600e0656294a13944186bf881a36373c856b"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2",
+      "repository": "gravitational/teleport",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/instruction.md",
+          "sha256": "6aded38a02c1bb15e196c3f4ca9c270b962ba0b387fe5fb9f18a0b2d547a98a5"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/task.toml",
+          "sha256": "242d6d491ce93b58410d78de20dcb800a32d899407c2bf5b3c7028efaec320b3"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/environment/Dockerfile",
+          "sha256": "11298e2b984e99302b0501a68156a1a0d3bf9b9e642197d8b64fbf5a4a14bd7e"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5",
+      "repository": "future-architect/vuls",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/instruction.md",
+          "sha256": "5fbfbd559759cfec906a12effd0ac06f9c249bffeeaffd8aa4fb4ce58296b27e"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/task.toml",
+          "sha256": "9feb72b3e41d18111576b07220820d13f76156ada1f37d407d4461c07d90b398"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/environment/Dockerfile",
+          "sha256": "acf3a378f8c8c348dc30533f8f071083ed5460302fb76b298b2bc9bfcbd2cc80"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+      "repository": "flipt-io/flipt",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/instruction.md",
+          "sha256": "dd6f30b5653fbf3318314416a343feba0b03d0731b7c70e06abff80cfc48b7a6"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/task.toml",
+          "sha256": "a328cdb17b4391954ecd6b05e7e29972d5328ebebc006da0594b9033df163163"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/environment/Dockerfile",
+          "sha256": "13ffb1f5961500774217661e91da64b97266484e4f0051b24ff215d3eaad69b3"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2",
+      "repository": "navidrome/navidrome",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/instruction.md",
+          "sha256": "3f360d77aebaf6be030eba9995fce84fab2f7a20d88a4b18552414f9c2796e57"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/task.toml",
+          "sha256": "6d98881898a3c7b202a4ae81a404690ce60ad9ce58291eef835f7cd4953a019c"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/environment/Dockerfile",
+          "sha256": "2928de2ac6bf0e6ea3e8d5cbb5f514195b3e240304288575c94935ce1dcd73b0"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77",
+      "repository": "protonmail/webclients",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77/instruction.md",
+          "sha256": "757bb975fa545acaff58ab9046260ae79fe9a90910d6f7c1a6985c7e294d52f4"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77/task.toml",
+          "sha256": "423800620d83f3d6a16db7de22e7400a678ea27bb60fccc549a189a8c0fb4560"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77/environment/Dockerfile",
+          "sha256": "32af5ccd3da6e47e84c6d146670f8f51b35324f59a2da696494d2145783b4564"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+      "repository": "internetarchive/openlibrary",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/instruction.md",
+          "sha256": "0b033dc305b809c28e2a858c5a5044998792bf504f3e19cf75ada73bc42ccedc"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/task.toml",
+          "sha256": "b531d59847d2cf5919992d80620ad9f7f36c534252208a52042a3b84b4e6ead7"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/environment/Dockerfile",
+          "sha256": "1844398278dfb604e77d52f2771e1b400a10d56ce00ad615e6810519d0d6533c"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171",
+      "repository": "qutebrowser/qutebrowser",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/instruction.md",
+          "sha256": "2b6404790b98a54e4f7dfa2e0ac0c4e368ef5aff8d4880ba7794716fa5952887"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/task.toml",
+          "sha256": "787449a53fa8670e567a857beda8ede1cd6f847828ef4d755ea60da77debd23b"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/environment/Dockerfile",
+          "sha256": "f2fdd0df135e353a7b2774b94b131e74e7b055b1e9a4686cf7c169f087d431e4"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+      "repository": "NodeBB/NodeBB",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/instruction.md",
+          "sha256": "9318f650713e12266ae1e30add44f240d5116c22a6327bc129f91dad357338d5"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/task.toml",
+          "sha256": "0c63e47658829d314b97d7943291687854dafb03f5c8137f7081186abd80a9d5"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/environment/Dockerfile",
+          "sha256": "369bbad4997e6a884cb9f499f1973d42e7f15f4d970c319a8727b746d19a13e2"
+        }
+      }
+    }
+  ],
+  "held_out": [
+    {
+      "instance_id": "instance_ansible__ansible-11c1777d56664b1acb56b387a1ad6aeadef1391d-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "repository": "ansible/ansible",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_ansible__ansible-11c1777d56664b1acb56b387a1ad6aeadef1391d-v0f01c69f1e2528b935359cfe578530722bca2c59/instruction.md",
+          "sha256": "e0346da2ed2213ac1df5623f87fc2432a3520fb5958b60d5c028233d75d66aac"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_ansible__ansible-11c1777d56664b1acb56b387a1ad6aeadef1391d-v0f01c69f1e2528b935359cfe578530722bca2c59/task.toml",
+          "sha256": "38559044156b35da2b5e557ea21485ccd942464570a8418d5463246b84512041"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_ansible__ansible-11c1777d56664b1acb56b387a1ad6aeadef1391d-v0f01c69f1e2528b935359cfe578530722bca2c59/environment/Dockerfile",
+          "sha256": "ff587b18b73a541e6d51a92129a13a59fd87e6e2078370f2ede198dd53500502"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_element-hq__element-web-7c63d52500e145d6fff6de41dd717f61ab88d02f-vnan",
+      "repository": "element-hq/element-web",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_element-hq__element-web-7c63d52500e145d6fff6de41dd717f61ab88d02f-vnan/instruction.md",
+          "sha256": "9c420f9504f37003e475e3fdd2df7ec50ec1630f41e3ba044231e3c69f226ff7"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_element-hq__element-web-7c63d52500e145d6fff6de41dd717f61ab88d02f-vnan/task.toml",
+          "sha256": "fe55069cb01839452e5d0fea8da7951b2a3fa7e17ede6350fdfc470a7c717b29"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_element-hq__element-web-7c63d52500e145d6fff6de41dd717f61ab88d02f-vnan/environment/Dockerfile",
+          "sha256": "5193204bf40ce8fa3a95255a2ce6d21ab5cc33d933588a322a86df8ccf475c8a"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_tutao__tutanota-f3ffe17af6e8ab007e8d461355057ad237846d9d-vbc0d9ba8f0071fbe982809910959a6ff8884dbbf",
+      "repository": "tutao/tutanota",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_tutao__tutanota-f3ffe17af6e8ab007e8d461355057ad237846d9d-vbc0d9ba8f0071fbe982809910959a6ff8884dbbf/instruction.md",
+          "sha256": "e8bf735d7c2526f6507788642ec0f3c9bfe417ce65bce9b947ebe025a351c5f8"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_tutao__tutanota-f3ffe17af6e8ab007e8d461355057ad237846d9d-vbc0d9ba8f0071fbe982809910959a6ff8884dbbf/task.toml",
+          "sha256": "1617803a10b972b3f7395e9b6ba3dbc6bb6098de6d34e695ec1ae8603e010a2d"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_tutao__tutanota-f3ffe17af6e8ab007e8d461355057ad237846d9d-vbc0d9ba8f0071fbe982809910959a6ff8884dbbf/environment/Dockerfile",
+          "sha256": "769e90f599518682ffbfa6148f341f92350c871d81257daaf43054a9d13b976d"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_gravitational__teleport-bb562408da4adeae16e025be65e170959d1ec492-vee9b09fb20c43af7e520f57e9239bbcf46b7113d",
+      "repository": "gravitational/teleport",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_gravitational__teleport-bb562408da4adeae16e025be65e170959d1ec492-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/instruction.md",
+          "sha256": "e57424d67864cf9e1662bfd165e651875812f7f9ddf79b65df63981c0163f10f"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_gravitational__teleport-bb562408da4adeae16e025be65e170959d1ec492-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/task.toml",
+          "sha256": "292bb983841cdb3f7209f2cac47b4de9f8c2ad0829e071897a7986569af0af1d"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_gravitational__teleport-bb562408da4adeae16e025be65e170959d1ec492-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/environment/Dockerfile",
+          "sha256": "219eab65ae755dc43549694dfa4a859c054ab56f0baf13b9eaadb486ea9e12d4"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_future-architect__vuls-3f8de0268376e1f0fa6d9d61abb0d9d3d580ea7d",
+      "repository": "future-architect/vuls",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_future-architect__vuls-3f8de0268376e1f0fa6d9d61abb0d9d3d580ea7d/instruction.md",
+          "sha256": "e0398d386ff29277e82ab2d218e3c70a72f539226560283fff5d5657deb02182"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_future-architect__vuls-3f8de0268376e1f0fa6d9d61abb0d9d3d580ea7d/task.toml",
+          "sha256": "aabb3d7fd692f0bb6f61f1a6e575f9a5327d34cba526f7be86c6cd8b8f91c456"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_future-architect__vuls-3f8de0268376e1f0fa6d9d61abb0d9d3d580ea7d/environment/Dockerfile",
+          "sha256": "3e9d0cf07a5755d0d446f9fcb2dc2b159871b76624bc6603e16e9c489439a5b5"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_flipt-io__flipt-f36bd61fb1cee4669de1f00e59da462bfeae8765",
+      "repository": "flipt-io/flipt",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_flipt-io__flipt-f36bd61fb1cee4669de1f00e59da462bfeae8765/instruction.md",
+          "sha256": "52e0eddaa90682cb39208a8a596e20b3969863a21bf4ed745a142f18422e3bd4"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_flipt-io__flipt-f36bd61fb1cee4669de1f00e59da462bfeae8765/task.toml",
+          "sha256": "3a573ea8d0b2a34c9cf9dd5e8caa88d2cb026c5a58b19b84ed9c4f157d851ad2"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_flipt-io__flipt-f36bd61fb1cee4669de1f00e59da462bfeae8765/environment/Dockerfile",
+          "sha256": "18e1d141d0e29486b9b59ee0049ba2b3d2992197a8dea8f9132ccffdfadbf3e4"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_navidrome__navidrome-55730514ea59d5f1d0b8e3f8745569c29bdbf7b4",
+      "repository": "navidrome/navidrome",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_navidrome__navidrome-55730514ea59d5f1d0b8e3f8745569c29bdbf7b4/instruction.md",
+          "sha256": "6d67259be8455dce24942df8387916de51822bef1c1d7ccb44dbff7db350e65c"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_navidrome__navidrome-55730514ea59d5f1d0b8e3f8745569c29bdbf7b4/task.toml",
+          "sha256": "2b752ae398d10d4c29f18951d70dfc192cbf0ac1bef3daf2b61689a0aaaf8d3f"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_navidrome__navidrome-55730514ea59d5f1d0b8e3f8745569c29bdbf7b4/environment/Dockerfile",
+          "sha256": "f096493b0798a73df496f9aab134a529e7c407d6bd7449b2bbb033d38479c64f"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_protonmail__webclients-cb8cc309c6968b0a2a5fe4288d0ae0a969ff31e1",
+      "repository": "protonmail/webclients",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_protonmail__webclients-cb8cc309c6968b0a2a5fe4288d0ae0a969ff31e1/instruction.md",
+          "sha256": "f21e04c2ddd6cfc0594d32493ed477f9181974aa3e3f260746d1eb6292c8e54d"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_protonmail__webclients-cb8cc309c6968b0a2a5fe4288d0ae0a969ff31e1/task.toml",
+          "sha256": "0c59a41290cc5c014bee61d13c096292e4c8d63cefdff570bd0106bac5edcefa"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_protonmail__webclients-cb8cc309c6968b0a2a5fe4288d0ae0a969ff31e1/environment/Dockerfile",
+          "sha256": "9fbacf987dcda2ffecaeba86a84c5b81259fb4136ac5896c34178d91f0fd6c1e"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_internetarchive__openlibrary-d8162c226a9d576f094dc1830c4c1ffd0be2dd17-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+      "repository": "internetarchive/openlibrary",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_internetarchive__openlibrary-d8162c226a9d576f094dc1830c4c1ffd0be2dd17-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/instruction.md",
+          "sha256": "3036d37f67ef03c9afa544e2626c908c1ad3b9dec461e616c9de4b1d09d8315e"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_internetarchive__openlibrary-d8162c226a9d576f094dc1830c4c1ffd0be2dd17-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/task.toml",
+          "sha256": "baca4f0150f702d0af464bac233818406fd872cb38f736ae47d09bb2f6875ed4"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_internetarchive__openlibrary-d8162c226a9d576f094dc1830c4c1ffd0be2dd17-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/environment/Dockerfile",
+          "sha256": "8a58918e6377cc4245e4c785748f65062ef8405ca6331502589670d9daf4c0f9"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-a84ecfb80a00f8ab7e341372560458e3f9cfffa2-v2ef375ac784985212b1805e1d0431dc8f1b3c171",
+      "repository": "qutebrowser/qutebrowser",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_qutebrowser__qutebrowser-a84ecfb80a00f8ab7e341372560458e3f9cfffa2-v2ef375ac784985212b1805e1d0431dc8f1b3c171/instruction.md",
+          "sha256": "7fe71b33c94388df555d75838d629348a2d69ff3d4f3cdffd9499b974a2f769b"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_qutebrowser__qutebrowser-a84ecfb80a00f8ab7e341372560458e3f9cfffa2-v2ef375ac784985212b1805e1d0431dc8f1b3c171/task.toml",
+          "sha256": "3cdda740c47783d31625817a0ab7c8dbfa0377e7213bee2999e3a939cbe19715"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_qutebrowser__qutebrowser-a84ecfb80a00f8ab7e341372560458e3f9cfffa2-v2ef375ac784985212b1805e1d0431dc8f1b3c171/environment/Dockerfile",
+          "sha256": "9089ae0d51c54c9f9581b29f7ed32c8a41e48cda9b02e515f6b33596601d6d64"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_NodeBB__NodeBB-f1a80d48cc45877fcbadf34c2345dd9709722c7f-v4fbcfae8b15e4ce5d132c408bca69ebb9cf146ed",
+      "repository": "NodeBB/NodeBB",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_NodeBB__NodeBB-f1a80d48cc45877fcbadf34c2345dd9709722c7f-v4fbcfae8b15e4ce5d132c408bca69ebb9cf146ed/instruction.md",
+          "sha256": "32f7e6b3cc764edd1bf9580e70ab33bf27e155738f7d78bb5c8a27d528fa2ff2"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_NodeBB__NodeBB-f1a80d48cc45877fcbadf34c2345dd9709722c7f-v4fbcfae8b15e4ce5d132c408bca69ebb9cf146ed/task.toml",
+          "sha256": "e414837070d42bfb1a6fc067917a9bf6111ea0072edd2ccd58ede36c7c52b6d1"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_NodeBB__NodeBB-f1a80d48cc45877fcbadf34c2345dd9709722c7f-v4fbcfae8b15e4ce5d132c408bca69ebb9cf146ed/environment/Dockerfile",
+          "sha256": "5d18c82bdd8b437ea4b63b162c432d28c787a57abb8fcbbd8b91e8188ea695f6"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-cd9c4eb5a6b2bfaf4a6709f001ce3d0c92c1eed2-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "repository": "ansible/ansible",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_ansible__ansible-cd9c4eb5a6b2bfaf4a6709f001ce3d0c92c1eed2-v0f01c69f1e2528b935359cfe578530722bca2c59/instruction.md",
+          "sha256": "4aa780d53868a70f3e57446b6aba188d881db70289e392a8004d584af10b615e"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_ansible__ansible-cd9c4eb5a6b2bfaf4a6709f001ce3d0c92c1eed2-v0f01c69f1e2528b935359cfe578530722bca2c59/task.toml",
+          "sha256": "7c4efac49a5b01dabe54661099426ed43eb0e98d0a3b126792a6f2ba2a2e54b6"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_ansible__ansible-cd9c4eb5a6b2bfaf4a6709f001ce3d0c92c1eed2-v0f01c69f1e2528b935359cfe578530722bca2c59/environment/Dockerfile",
+          "sha256": "d478254a1aff05ee57999fa16e2ab866aae76f00d93057593dcfb302cedef217"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_element-hq__element-web-4c6b0d35add7ae8d58f71ea1711587e31081444b-vnan",
+      "repository": "element-hq/element-web",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_element-hq__element-web-4c6b0d35add7ae8d58f71ea1711587e31081444b-vnan/instruction.md",
+          "sha256": "09e170a28db2f972b17cd92ded1b1ff7eb15781b7ef6680bbffb68328830e70a"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_element-hq__element-web-4c6b0d35add7ae8d58f71ea1711587e31081444b-vnan/task.toml",
+          "sha256": "7c7823e1357d4b1aa95c95aaa0cb906a9fc9b480577f19d0ad61cc91d89131f6"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_element-hq__element-web-4c6b0d35add7ae8d58f71ea1711587e31081444b-vnan/environment/Dockerfile",
+          "sha256": "d84ff9bedc567e1fffb4a352e54bc51219534812cd146410a30608058c1ec86e"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+      "repository": "tutao/tutanota",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/instruction.md",
+          "sha256": "0ebf40baf8e9f6e3a0e04da2d0c0c8c799a1f4c89aa3151cb2fe97ff5b009ced"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/task.toml",
+          "sha256": "305b8af561c83edbb8dca8751a6ee5f3619d246d80f473894f8b2579d8a69a32"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/environment/Dockerfile",
+          "sha256": "754bc36bc75fa8c10744ba1c955abf95766fb493ba2580456921fb42f854c053"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_gravitational__teleport-d6ffe82aaf2af1057b69c61bf9df777f5ab5635a-vee9b09fb20c43af7e520f57e9239bbcf46b7113d",
+      "repository": "gravitational/teleport",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_gravitational__teleport-d6ffe82aaf2af1057b69c61bf9df777f5ab5635a-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/instruction.md",
+          "sha256": "16b47d256637016b5df652bd334d88666c8f3ac29714939b50035bb593c2de88"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_gravitational__teleport-d6ffe82aaf2af1057b69c61bf9df777f5ab5635a-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/task.toml",
+          "sha256": "85451fd2c793bdd67977cd6baabe717047e3ebf14c56a79f7b0db72be661a44b"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_gravitational__teleport-d6ffe82aaf2af1057b69c61bf9df777f5ab5635a-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/environment/Dockerfile",
+          "sha256": "a50f09738e8162f6f677d84ef3d79baad4b4b7dbf229ae4118ac01a5228b5177"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_future-architect__vuls-2c84be80b65d022c262956cd26fc79d8bb2f7010",
+      "repository": "future-architect/vuls",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_future-architect__vuls-2c84be80b65d022c262956cd26fc79d8bb2f7010/instruction.md",
+          "sha256": "ff767ca2c93a073dbacf4c013205100ad25747dbf9472d4b542225459e71b581"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_future-architect__vuls-2c84be80b65d022c262956cd26fc79d8bb2f7010/task.toml",
+          "sha256": "8f2d2569b221ce172cfa20a1266f71801342e3f9b50cf718e6050ed77d1bb159"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_future-architect__vuls-2c84be80b65d022c262956cd26fc79d8bb2f7010/environment/Dockerfile",
+          "sha256": "4a78aeb6db9dbaa2b7a787d0f5701d4932930b920982ea9ad26633a4424f6636"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_flipt-io__flipt-0b119520afca1cf25c470ff4288c464d4510b944",
+      "repository": "flipt-io/flipt",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_flipt-io__flipt-0b119520afca1cf25c470ff4288c464d4510b944/instruction.md",
+          "sha256": "6852688efa4b7fd23338fff953dd3bb27f356659141eecab76b4dc410169c56e"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_flipt-io__flipt-0b119520afca1cf25c470ff4288c464d4510b944/task.toml",
+          "sha256": "dcab0842620f077401dd61ffd26db59ee7a91dccbfc4a2e02abac399a1e39c10"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_flipt-io__flipt-0b119520afca1cf25c470ff4288c464d4510b944/environment/Dockerfile",
+          "sha256": "82da5d043c167af793260065fd26ea750b2a38eba15de654b623367d526ca845"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_navidrome__navidrome-1e96b858a91c640fe64e84c5e5ad8cc0954ea38d",
+      "repository": "navidrome/navidrome",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_navidrome__navidrome-1e96b858a91c640fe64e84c5e5ad8cc0954ea38d/instruction.md",
+          "sha256": "2dda914e5953615aec5a09c7efe233da46db297ee4d0a0235091b776168d50e8"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_navidrome__navidrome-1e96b858a91c640fe64e84c5e5ad8cc0954ea38d/task.toml",
+          "sha256": "64ee1ca1ac83ec93c769cf6478631a9efc641aee8ede6c37935b7ff37b0df637"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_navidrome__navidrome-1e96b858a91c640fe64e84c5e5ad8cc0954ea38d/environment/Dockerfile",
+          "sha256": "818e1f58140065699360daa0970baca578138c2bde11ca07aea8f98ab6d4fdc7"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_protonmail__webclients-d494a66038112b239a381f49b3914caf8d2ef3b4",
+      "repository": "protonmail/webclients",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_protonmail__webclients-d494a66038112b239a381f49b3914caf8d2ef3b4/instruction.md",
+          "sha256": "dd565d32fe33eaa92d07e6a742b24bd12d0e1f2d2429dce5cbed824548e46bac"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_protonmail__webclients-d494a66038112b239a381f49b3914caf8d2ef3b4/task.toml",
+          "sha256": "d4bc055ac8a21941c0277bdc529f194645551d30338ed9873e2c4a75180c3352"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_protonmail__webclients-d494a66038112b239a381f49b3914caf8d2ef3b4/environment/Dockerfile",
+          "sha256": "b2879b05bc6d9a6eebca02759d9a9c388504c6a2843ea0d74136f5f3406492bb"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_internetarchive__openlibrary-58999808a17a26b387f8237860a7a524d1e2d262-v08d8e8889ec945ab821fb156c04c7d2e2810debb",
+      "repository": "internetarchive/openlibrary",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_internetarchive__openlibrary-58999808a17a26b387f8237860a7a524d1e2d262-v08d8e8889ec945ab821fb156c04c7d2e2810debb/instruction.md",
+          "sha256": "2acdfddcf523f709bcc09fa7b597cbb6125c89836c6bb7a38f2d5e5e312e0bd4"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_internetarchive__openlibrary-58999808a17a26b387f8237860a7a524d1e2d262-v08d8e8889ec945ab821fb156c04c7d2e2810debb/task.toml",
+          "sha256": "218c0608c21191aeeb97ff28d9ed21ee273730e92e55576aeeb8b8fe58a06337"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_internetarchive__openlibrary-58999808a17a26b387f8237860a7a524d1e2d262-v08d8e8889ec945ab821fb156c04c7d2e2810debb/environment/Dockerfile",
+          "sha256": "3f81713bbf9ddc05fa2f7206c839e434bab3cd0ab989616646063a9159ed7109"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+      "repository": "qutebrowser/qutebrowser",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/instruction.md",
+          "sha256": "c365a6a6d3e504a66fddfd52613e3368f429c3819ef73e5e92145b5557ef6f9e"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/task.toml",
+          "sha256": "fce974438b1d7d1df272c4f43dc698f870e713a450d1e99366cc728f3ad0f35f"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/environment/Dockerfile",
+          "sha256": "b21188fac01d5617a52c6fc0753e85b06199f6b0c8254ef3841df67389ecf9d5"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_NodeBB__NodeBB-4327a09d76f10a79109da9d91c22120428d3bdb9-vnan",
+      "repository": "NodeBB/NodeBB",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_NodeBB__NodeBB-4327a09d76f10a79109da9d91c22120428d3bdb9-vnan/instruction.md",
+          "sha256": "a37c3d256856d664446a7324c5965a96fa7c27dc94dc16ab1a48d17052b34ae2"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_NodeBB__NodeBB-4327a09d76f10a79109da9d91c22120428d3bdb9-vnan/task.toml",
+          "sha256": "f27a605e6de433504a7ca4d4bb70383633d9d0ada47901b8c76f8c3e57d9380f"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_NodeBB__NodeBB-4327a09d76f10a79109da9d91c22120428d3bdb9-vnan/environment/Dockerfile",
+          "sha256": "b3411152799acb13a05835468adfb1c97276833de79dbe5be3f3ad160d596475"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+      "repository": "ansible/ansible",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/instruction.md",
+          "sha256": "0574bd29eb64d79bb66a69a45cb7067e9a3e57b39400f9e7e02623913a1502b8"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/task.toml",
+          "sha256": "982947294b1d723dcad38400336709106e6d6738ad50f3d2c3770c054bd8f3f5"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/environment/Dockerfile",
+          "sha256": "f183e215094b9c7f55a72c61f7bc2bc4b212c88ff4e5e8843df962f598db5a5b"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_element-hq__element-web-f14374a51c153f64f313243f2df6ea4971db4e15",
+      "repository": "element-hq/element-web",
+      "files": {
+        "instruction.md": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_element-hq__element-web-f14374a51c153f64f313243f2df6ea4971db4e15/instruction.md",
+          "sha256": "e68d5b091af5aa5c93736cdb68b11bb0bf8c3a7128e693cc3e3439e8cda9daca"
+        },
+        "task.toml": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_element-hq__element-web-f14374a51c153f64f313243f2df6ea4971db4e15/task.toml",
+          "sha256": "b7b1c41996ec31735b6495541196977ad3e00f517c4dd8cfe19feec79345b27a"
+        },
+        "environment/Dockerfile": {
+          "path": "experiments/swe-pro-prompt-001/public/instance_element-hq__element-web-f14374a51c153f64f313243f2df6ea4971db4e15/environment/Dockerfile",
+          "sha256": "078e2207e99f34944c08572c2c72be1d43497b25f87f87d994cb350203fdbc05"
+        }
+      }
+    }
+  ],
+  "private_tests_or_reference_solutions_downloaded": false,
+  "full_population_run_authorized_by_this_manifest": false,
+  "inference_calls": 0
+}

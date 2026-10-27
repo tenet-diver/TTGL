@@ -1,0 +1,10 @@
+{
+  "instance_id": "django__django-13297",
+  "model_name_or_path": "ttgl-small",
+  "model_patch": "",
+  "manifest_sha256": "979c7dd2d3b7c4a00c5db15b0bb6e6e80d2c86a2469c8d8713e9ac26adf28039",
+  "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "status": "protocol_failed",
+  "preparation_seconds": 75.59646221995354,
+  "assignment_wall_seconds": 95.78587644395884
+}

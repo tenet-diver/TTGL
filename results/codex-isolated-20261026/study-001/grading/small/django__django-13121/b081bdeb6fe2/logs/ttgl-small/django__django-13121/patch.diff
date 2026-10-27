@@ -1,0 +1,57 @@
+diff --git a/django/db/backends/sqlite3/base.py b/django/db/backends/sqlite3/base.py
+index 31e8a55..d46d300 100644
+--- a/django/db/backends/sqlite3/base.py
++++ b/django/db/backends/sqlite3/base.py
+@@ -557,6 +557,8 @@ def _sqlite_format_dtdelta(conn, lhs, rhs):
+             out = real_lhs + real_rhs
+         else:
+             out = real_lhs - real_rhs
++        if isinstance(lhs, int) and isinstance(rhs, int):
++            return duration_microseconds(out)
+     except (ValueError, TypeError):
+         return None
+     # typecast_timestamp returns a date or a datetime without timezone.
+diff --git a/django/db/models/expressions.py b/django/db/models/expressions.py
+index a156c5e..23f4ada 100644
+--- a/django/db/models/expressions.py
++++ b/django/db/models/expressions.py
+@@ -9,6 +9,7 @@ from django.db.models import fields
+ from django.db.models.constants import LOOKUP_SEP
+ from django.db.models.query_utils import Q
+ from django.utils.deconstruct import deconstructible
++from django.utils.duration import duration_microseconds
+ from django.utils.functional import cached_property
+ from django.utils.hashable import make_hashable
+ 
+@@ -495,10 +496,27 @@ class DurationExpression(CombinedExpression):
+         connection.ops.check_expression_support(self)
+         expressions = []
+         expression_params = []
+-        sql, params = self.compile(self.lhs, compiler, connection)
+-        expressions.append(sql)
+-        expression_params.extend(params)
+-        sql, params = self.compile(self.rhs, compiler, connection)
++        try:
++            duration_only = (
++                self.lhs.output_field.get_internal_type() == 'DurationField' and
++                self.rhs.output_field.get_internal_type() == 'DurationField'
++            )
++        except FieldError:
++            duration_only = False
++        if duration_only and connection.vendor == 'mysql':
++            sql, params = compiler.compile(self.lhs)
++            expressions.append(sql)
++            expression_params.extend(params)
++            if isinstance(self.rhs, DurationValue):
++                rhs = Value(duration_microseconds(self.rhs.value), output_field=fields.BigIntegerField())
++                sql, params = compiler.compile(rhs)
++            else:
++                sql, params = compiler.compile(self.rhs)
++        else:
++            sql, params = self.compile(self.lhs, compiler, connection)
++            expressions.append(sql)
++            expression_params.extend(params)
++            sql, params = self.compile(self.rhs, compiler, connection)
+         expressions.append(sql)
+         expression_params.extend(params)
+         # order of precedence

@@ -1,0 +1,104 @@
+{
+  "schema_version": 3,
+  "run_id": "d70a3a6a-d245-4a0d-ba6b-8ebf8030e00f",
+  "task_id": "django__django-13297",
+  "identity_sha256": "1f2932b266e60c3a42e7162792adb9aa00f36a42128fa3ebb18f083d0487a19b",
+  "created_at": "2026-10-27T01:26:52.171009+00:00",
+  "status": "protocol_failed",
+  "deadline_epoch": 1793065312.171052,
+  "config": {
+    "condition": "small",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "phase": "controller",
+  "selected_model": "gpt-6-luna",
+  "controller_thread_id": "01a17af7-a4f0-7373-a5aa-9ecad797be57",
+  "expert_thread_id": null,
+  "turns": 1,
+  "expert_calls": 0,
+  "inflight": null,
+  "next_prompt": "Solve the software-engineering task in the assigned workspace. Inspect relevant code, make the necessary changes, execute available checks, and report what you verified. Respect the user's editable memory and constraints. Do not read hidden evaluator files, other experiment workspaces, reference solutions, or parent research artifacts. Do not access external services or launch other agents yourself. Only edit the listed allowed paths. Path scope is an experiment instruction, not an OS security boundary.\n\nTask: TemplateView.get_context_data()'s kwargs returns SimpleLazyObjects that causes a crash when filtering.\nDescription\n\t\nExample Code that works in 3.0, but not in 3.1:\nclass OfferView(TemplateView):\n\ttemplate_name = \"offers/offer.html\"\n\tdef get_context_data(self, **kwargs):\n\t\toffer_slug = kwargs.get(\"offer_slug\", \"\")\n\t\toffer = get_object_or_404(Account, slug=offer_slug)\n\t\treturn {\"offer\": offer, \"offer_slug\": offer_slug}\nIn order to make this work in 3.1, you have to explicitly convert the result of kwargs.get() to a string to get the SimpleLazyObject to resolve:\nclass OfferView(TemplateView):\n\ttemplate_name = \"offers/offer.html\"\n\tdef get_context_data(self, **kwargs):\n\t\toffer_slug = kwargs.get(\"offer_slug\", \"\")\n\t\toffer = get_object_or_404(Account, slug=str(offer_slug))\n\t\treturn {\"offer\": offer, \"offer_slug\": offer_slug}\nThe error generated if you don't is:\nError binding parameter 0 - probably unsupported type\nfrom django/db/backends/sqlite3/operations.py, line 144, in _quote_params_for_last_executed_query\nIn both cases, the urls.py looks like:\npath(\n\t\t\"/offers/<slug:offer_slug>/\",\n\t\tOfferView.as_view(),\n\t\tname=\"offer_view\",\n\t),\nWhen debugging, I found that offer_slug (coming in from kwargs.get) was of type 'SimpleLazyObject' in Django 3.1, and when I explicitly converted it to a string, get_object_or_404 behaved as expected.\nThis is using Python 3.7.8 with SQLite.\n\n\nRepair this repository at its assigned base. Preserve existing tests; you may add tests. Do not commit, change HEAD, retrieve upstream fixes, or access benchmark data, evaluator artifacts, or other workers. Report unavailable test dependencies honestly.\nAllowed paths: [\".\"]\nEditable user memory (same initial content in every condition): []\nYou are the sole solving agent. Return action complete when finished.\nReturn the requested JSON schema. Use empty question/context on completion.",
+  "usage": {
+    "input_tokens": 258197,
+    "cached_input_tokens": 241536,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2737,
+    "reasoning_output_tokens": 809
+  },
+  "usage_complete": {
+    "input_tokens": true,
+    "cached_input_tokens": true,
+    "cache_write_input_tokens": true,
+    "output_tokens": true,
+    "reasoning_output_tokens": true
+  },
+  "usage_threads": {
+    "01a17af7-a4f0-7373-a5aa-9ecad797be57": {
+      "model": "gpt-6-luna",
+      "scope": "thread_cumulative",
+      "last_snapshot": {
+        "input_tokens": 258197,
+        "cached_input_tokens": 241536,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2737,
+        "reasoning_output_tokens": 809
+      }
+    }
+  },
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "observed_partial": {
+        "input_tokens": 258197,
+        "cached_input_tokens": 241536,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2737,
+        "reasoning_output_tokens": 809
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "elapsed_seconds": 56.05824056698475,
+  "tool_failures": 4,
+  "summary": "",
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d",
+    "controller_policy": {
+      "mode": "adaptive",
+      "source_sha256": "bf163122b4c9769dbec7ef0c9759fc5e07a4453dc6906f75c31dfa41d6eee707",
+      "prompts_sha256": {
+        "controller-v2-common.txt": "bcab59483071803bd76c6a2125c4892771bafb3f3845b151494732f1b905fd23",
+        "controller-v2-delegation.txt": "97fa0f26f6477d16ad94e130d0ae33b9909da26598fe72fd9178513f330e568b",
+        "controller-v2-fallback.txt": "b0e31632e6796b582a7982325aca364419cbeeeaa309224b47eae2ccce8a4724"
+      }
+    },
+    "compact_context_instructions": {
+      "system_sha256": "d1456719abaf6ad0d669b8f786180eadb12b4ba738ff8f3d052a87ed5448c594",
+      "source_sha256": "51d4b97bd09ac44287702d187f94af1235b4e6bd37fa55aae42e26aea8530a59",
+      "driver_sha256": "93b9667c0947ba610262d54ffb62f5a408e89dcd2e23a527f6ddc4c4dc2fec35",
+      "applies_to": "context-only expert/router roles; acting controllers unchanged",
+      "official_reference": "https://learn.chatgpt.com/docs/config-file/config-reference"
+    }
+  },
+  "failure_type": "ValueError"
+}

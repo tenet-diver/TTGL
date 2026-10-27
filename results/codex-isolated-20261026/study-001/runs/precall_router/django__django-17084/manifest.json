@@ -1,0 +1,114 @@
+{
+  "schema_version": 3,
+  "run_id": "3891c9ac-190c-4c65-b97b-91eaae96941d",
+  "task_id": "django__django-17084",
+  "condition": "precall_router",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-26T23:42:18.531144+00:00",
+  "finished_at": "2026-10-26T23:43:49.257323+00:00",
+  "identity_sha256": "d423baa0a41e50fd7fed4ad35d98eae5c1e1cddf28e2bd9ee7699d1d0ff66510",
+  "config": {
+    "condition": "precall_router",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d"
+  },
+  "selected_model": "gpt-6.1-sol",
+  "turns": 2,
+  "expert_calls": 0,
+  "elapsed_seconds": 90.64531128387898,
+  "controller_thread_id": "01a17a98-0315-7442-89b1-9eb499b60d06",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 240618,
+    "cached_input_tokens": 204288,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2292,
+    "reasoning_output_tokens": 508
+  },
+  "observed_usage_partial": {
+    "input_tokens": 240618,
+    "cached_input_tokens": 204288,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2292,
+    "reasoning_output_tokens": 508
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 20165,
+        "cached_input_tokens": 9856,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 222,
+        "reasoning_output_tokens": 118
+      },
+      "observed_partial": {
+        "input_tokens": 20165,
+        "cached_input_tokens": 9856,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 222,
+        "reasoning_output_tokens": 118
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    },
+    "gpt-6.1-sol": {
+      "usage": {
+        "input_tokens": 220453,
+        "cached_input_tokens": 194432,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2070,
+        "reasoning_output_tokens": 390
+      },
+      "observed_partial": {
+        "input_tokens": 220453,
+        "cached_input_tokens": 194432,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2070,
+        "reasoning_output_tokens": 390
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 3,
+  "failure_type": null,
+  "summary": "Fixed aggregation over referenced window annotations by using a subquery. Added regression tests for plain and Coalesce-wrapped windows and unused annotation pruning. SQLite suite passed: 530 tests, 11 skips, 1 expected failure. Diff checks passed. PostgreSQL drivers are unavailable. Black flags only pre-existing formatting in query.py; test formatting passes.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "05631bb5af6aaa50da62209240acd17e7d3a93fe9fd174a95b0832b91d8c22f7",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

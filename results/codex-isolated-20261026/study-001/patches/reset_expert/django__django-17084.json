@@ -1,0 +1,10 @@
+{
+  "instance_id": "django__django-17084",
+  "model_name_or_path": "ttgl-reset_expert",
+  "model_patch": "diff --git a/django/db/models/sql/query.py b/django/db/models/sql/query.py\nindex 13a6809..5b489ca 100644\n--- a/django/db/models/sql/query.py\n+++ b/django/db/models/sql/query.py\n@@ -450,6 +450,9 @@ class Query(BaseExpression):\n             isinstance(self.group_by, tuple)\n             or self.is_sliced\n             or has_existing_aggregation\n+            or any(\n+                aggregate.contains_over_clause for aggregate in aggregates.values()\n+            )\n             or refs_subquery\n             or qualify\n             or self.distinct\ndiff --git a/tests/aggregation/tests.py b/tests/aggregation/tests.py\nindex 366b843..1bf6984 100644\n--- a/tests/aggregation/tests.py\n+++ b/tests/aggregation/tests.py\n@@ -27,6 +27,7 @@ from django.db.models import (\n     TimeField,\n     Value,\n     Variance,\n+    Window,\n     When,\n )\n from django.db.models.expressions import Func, RawSQL\n@@ -2207,3 +2208,12 @@ class AggregateAnnotationPruningTests(TestCase):\n         sql = ctx.captured_queries[0][\"sql\"].lower()\n         self.assertEqual(sql.count(\"select\"), 3, \"Subquery wrapping required\")\n         self.assertEqual(aggregate, {\"sum_total_books\": 3})\n+\n+\n+class AggregateOverWindowTests(TestCase):\n+    def test_aggregate_over_window_annotation(self):\n+        Author.objects.bulk_create([Author(age=age) for age in (1, 2, 3)])\n+        result = Author.objects.annotate(\n+            cumulative_age=Window(Sum(\"age\"), order_by=F(\"age\").asc()),\n+        ).aggregate(total=Sum(\"cumulative_age\"))\n+        self.assertEqual(result[\"total\"], 10)\n",
+  "manifest_sha256": "0aa460b4d7b2ff7bb92be8c8dcba53d761a6cb7ee3c25e2f858f3b3a916a3a9f",
+  "patch_sha256": "324326e391693432d3939dd2e7879f956e66362510dd9e9926132da359d9ad34",
+  "status": "completed_ungraded",
+  "preparation_seconds": 23.40641776600387,
+  "assignment_wall_seconds": 67.56630622700322
+}

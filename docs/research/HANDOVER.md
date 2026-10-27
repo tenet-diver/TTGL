@@ -528,3 +528,55 @@ have valid controls and ready public probes before inference. A recoverable
 setup failure therefore requires agent diagnosis and repair, rather than silent
 automatic task dropping. Failed preparation containers have their identity and
 source diff retained before cleanup; failed records and native reports remain.
+
+## 27 October: completed routing studies, graphs and bounded Pro subset
+
+All 72 original and 36 development assignments are complete. Independent native
+patch/report joins and token-delta audits pass for all 108. Original: Luna9/12,
+Sol10/12, pretask11/12; continued access9/12 with zero consultations. No assisted
+arm meets the joint95/95 target. Adaptive and bounded cheap-first each4/4 on the
+same four development tasks, at87.1%/89.1% lower scenario cost than their Sol
+controls; Luna controls2/4 and3/4. Compact3/4 with0calls is not evidence that
+expert instruction compaction caused a repository-quality change. Final native
+records and source hashes are archived. Graphs and interpretation:
+results/prompt-comparison-001/README.md (figures-002 is the2x2 layout).
+
+Selected policy remains fallback, frozen before held-out inference. First held
+control django7530 passes with sentinel and gold, with identical native report
+hashes and all recorded F2P passing on sentinel. Original upstream task metadata
+labels a squashmigrations test as F2P while the issue/gold changes makemigrations.
+We did not change those labels or tests. Original reservation explicitly permits
+invalid independent control exclusions. environment-disposition-002.json records
+one exclusion, no replacement, before any model outcome. eligible-tasks-002 has
+11. Originalcontrols001/worker-validation001 retained. Private derivative root
+../ttgl-heldout-eligible-private-20261027 has exactly those11 unchanged taskrows.
+
+Terminated waiting selected003 PID95492 before held inference; never restart it.
+Current /tmp/ttgl_continue_heldout_004.py under caffeinate-s (execsession91285)
+runs controls002+worker-validation002, requires all11 valid, then initializes
+validated-source002/study002 using SAME selectedfallback, positive preflight,
+33scoredassignments, finalanalysis002/target/audit/plot. Log:
+artifacts/selected-heldout-continuation-004.log. Source remains frozen after
+init. Recoverable public-probe failures STOP for diagnosis; no further automatic
+exclusion. Inspect this process before launching overlapping graders.
+
+User prioritizes proprietary prompt/routing comparison FIRST; OSS baseline,
+sequence/probability distillation and RL later. No GPU training has run. For the
+newer Pro V2 benchmark, user explicitly rejected paying for600task iterations.
+experiments/swe-pro-prompt-001 reserves12dev+24disjointvalidation, repository-
+roundrobin seeded without outcomes, pins official revision66f92766bba642462d4bbe5479e83f91f9211862.
+Only108publicinstruction/config/Dockerfile files downloaded (194803bytes), no
+reference solutions/tests. Real validation confirms all filehashes, disjointness
+and order-invariant selection. protocol capsdev48assignments (Luna,Sol,adaptive,
+fallback with registered shared controls), validation72 (3arms). Firstunit:
+environment/adaptervalidation then ONEcomplete taskblock and measureactualcost.
+No automatic full642run. No Pro controls/inference yet. Must integrate maintained
+upstream Harbor locked evaluator; Verified adapter is NOT yet a Pro adapter.
+Official Pro V2 release inspected at pinned revision;642tasks11reposmultiplelangs.
+
+Added docs/paper/live-routing-results.md and buildsource integration, graph.
+Generated PDFs/DOCX still previews, finalbuild+fullpageQA outstanding. README
+updated to completedlive studies. Pro plots are not fabricated; availablegraph
+uses actual Verified pilot/development data. Need finish proprietary heldout
+and iterate on boundedPro before claims/learning expansion. Last fullsuite158
+remainslastfull; newscriptactualdata validations and4independentaudits pass.

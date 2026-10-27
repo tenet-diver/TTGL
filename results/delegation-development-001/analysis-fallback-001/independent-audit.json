@@ -1,0 +1,160 @@
+{
+  "status": "complete_study_audit",
+  "assigned": 12,
+  "audited": 12,
+  "missing": [],
+  "tool_event_types": {
+    "mcp_tool_call": 106
+  },
+  "records": [
+    {
+      "arm": "large",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "resolved": true,
+      "native_usage_complete": true,
+      "published_rate_scenario_usd_decimal": "0.0573224",
+      "context_only_role_tool_violations": [],
+      "manifest_sha256": "e92e7b344724ef2204a118ff48666f2376379557ee079c64ab3caf848d6c1f18",
+      "events_sha256": "a81ec20d2c9c8334f12c37971578d07e4e5f6e98a1e33e324fabdf5adf41b835",
+      "report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191",
+      "evidence": "official_per_instance_report"
+    },
+    {
+      "arm": "small",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "resolved": true,
+      "native_usage_complete": true,
+      "published_rate_scenario_usd_decimal": "0.00515786",
+      "context_only_role_tool_violations": [],
+      "manifest_sha256": "d59503c0f786213af8c26bc38c582f121350ef9f0491e6b2de2377c6c317a1d5",
+      "events_sha256": "fae7b4d27caea01032343cfcc90adbb1a4312333e81bbd52f1c2ced68a1790d5",
+      "report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191",
+      "evidence": "official_per_instance_report"
+    },
+    {
+      "arm": "personal",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "resolved": true,
+      "native_usage_complete": true,
+      "published_rate_scenario_usd_decimal": "0.00339398",
+      "context_only_role_tool_violations": [],
+      "manifest_sha256": "859bc047b5bcd5e1e86c696ab6872cdb69a46ba126f7bdb5dee7918fa12f293e",
+      "events_sha256": "157ffdaf13f27c1615d68e94938494223d83b37cd20e9afa015ccf8dee16eb58",
+      "report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191",
+      "evidence": "official_per_instance_report"
+    },
+    {
+      "arm": "small",
+      "task_id": "django__django-13297",
+      "resolved": false,
+      "native_usage_complete": true,
+      "published_rate_scenario_usd_decimal": "0.00428756",
+      "context_only_role_tool_violations": [],
+      "manifest_sha256": "9f91612332aa13986e2d40af59df389aa36d70ca8238b61f068aed6f5ece3d28",
+      "events_sha256": "68109029f263d7faead02dc39ac71857b86e80e0a268b495ec3d37bc936324da",
+      "report_sha256": "c1dd575315f0d17b11d6ab9d09ddd58a03676014b9cae94a19300fb3e06c6fd6",
+      "evidence": "official_per_instance_report"
+    },
+    {
+      "arm": "personal",
+      "task_id": "django__django-13297",
+      "resolved": true,
+      "native_usage_complete": true,
+      "published_rate_scenario_usd_decimal": "0.03944518",
+      "context_only_role_tool_violations": [],
+      "manifest_sha256": "15dea19afb30270ae3715fb356b625803f5ac44d4142b34c5c2d99f98e2c8756",
+      "events_sha256": "ac468048838106d93ac0eeb435f38206203a839a1254f07eb0cc3380ffcae4da",
+      "report_sha256": "880ffaefa81e80d2c225e2de289e292483cf2a17eafe11c7b0bd0f4610392737",
+      "evidence": "official_per_instance_report"
+    },
+    {
+      "arm": "large",
+      "task_id": "django__django-13297",
+      "resolved": true,
+      "native_usage_complete": true,
+      "published_rate_scenario_usd_decimal": "0.16643",
+      "context_only_role_tool_violations": [],
+      "manifest_sha256": "8a032de8b5727904d0527dd0ef9a8f1601ea4674d4cada374c950e163a884f5c",
+      "events_sha256": "c5e58d4fedeb617381ef5519d79376b62b723bd53fc99e5d4878816645106116",
+      "report_sha256": "880ffaefa81e80d2c225e2de289e292483cf2a17eafe11c7b0bd0f4610392737",
+      "evidence": "official_per_instance_report"
+    },
+    {
+      "arm": "large",
+      "task_id": "pydata__xarray-3095",
+      "resolved": true,
+      "native_usage_complete": true,
+      "published_rate_scenario_usd_decimal": "0.1306396",
+      "context_only_role_tool_violations": [],
+      "manifest_sha256": "c723b8d6639ba4a0e5de4be3d5681a5d7a2437023f2c2cbace91d15652f7e2d3",
+      "events_sha256": "a663be25bc2d874062ab75132d47bc12b6c90c0870edf9218eff4d44adc6ceb6",
+      "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc",
+      "evidence": "official_per_instance_report"
+    },
+    {
+      "arm": "personal",
+      "task_id": "pydata__xarray-3095",
+      "resolved": true,
+      "native_usage_complete": true,
+      "published_rate_scenario_usd_decimal": "0.00731896",
+      "context_only_role_tool_violations": [],
+      "manifest_sha256": "2ebd4ed7e6b49a8e325977b4d4f5fc93ae162cf3c2eab5b24e3f8157b6349d29",
+      "events_sha256": "fcac22fd212e170436eb728e341d3fd94aac2c134f0374f1a7d7e6dafcf68259",
+      "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc",
+      "evidence": "official_per_instance_report"
+    },
+    {
+      "arm": "small",
+      "task_id": "pydata__xarray-3095",
+      "resolved": true,
+      "native_usage_complete": true,
+      "published_rate_scenario_usd_decimal": "0.00592664",
+      "context_only_role_tool_violations": [],
+      "manifest_sha256": "9c9dbe2a8b010faf950185435e3126f60a5cc4ee1712aeec1f0cdbc8b38f812f",
+      "events_sha256": "eb99eabf75b72ecbf57ff2a576ff8034df67d5740d82e6f0bd4bde2cc8cc40f4",
+      "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc",
+      "evidence": "official_per_instance_report"
+    },
+    {
+      "arm": "personal",
+      "task_id": "django__django-15037",
+      "resolved": true,
+      "native_usage_complete": true,
+      "published_rate_scenario_usd_decimal": "0.00431122",
+      "context_only_role_tool_violations": [],
+      "manifest_sha256": "3fac2234a3b9180411c675a7f99862c4cc95ec4370058dfa7caa98a93c6a609b",
+      "events_sha256": "4063e980967a4e494ed84fbda85343695b63ef5acceb78b93b3872324fe2ba52",
+      "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07",
+      "evidence": "official_per_instance_report"
+    },
+    {
+      "arm": "large",
+      "task_id": "django__django-15037",
+      "resolved": true,
+      "native_usage_complete": true,
+      "published_rate_scenario_usd_decimal": "0.1458184",
+      "context_only_role_tool_violations": [],
+      "manifest_sha256": "8b666a4873aa7754f86791097c3e046aa2347240377dd0a74eecc3565cbe672e",
+      "events_sha256": "44a883b94821f634dfbb1d8a436f92d3ebfc04cb7909c639dfd038992d16982f",
+      "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07",
+      "evidence": "official_per_instance_report"
+    },
+    {
+      "arm": "small",
+      "task_id": "django__django-15037",
+      "resolved": true,
+      "native_usage_complete": true,
+      "published_rate_scenario_usd_decimal": "0.00519468",
+      "context_only_role_tool_violations": [],
+      "manifest_sha256": "11f6aac778585b4a1ca5d728097345e5b29e0cb0fb0e838ef61fa828fe53a275",
+      "events_sha256": "9b16ed10874d326b194b2505e273e6ab574a3ed992e62cbe9cde1b033f7bc780",
+      "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07",
+      "evidence": "official_per_instance_report"
+    }
+  ],
+  "context_only_role_tool_violations": 0,
+  "design_sha256": "6e0429572456cda3a47475120c76cf9fa614ab2028c7e2550e691e00b0fd4b6a",
+  "rates_sha256": "24337a4fbe01bd97c0a8034c97e7f940779d207a388111dd3c19601919a49328",
+  "script_sha256": "2a04469289d3b8c095b0bf975f383938c69f0ddf271f7d92ea635fb51e6c9a57",
+  "scope": "Independent event-delta sums, Decimal scenario arithmetic and exact official grade joins; not an invoice or a formal isolation proof"
+}

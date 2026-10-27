@@ -1,0 +1,107 @@
+{
+  "schema_version": 3,
+  "run_id": "87fca7af-8126-4daa-a210-ff0bbedd76f3",
+  "task_id": "pydata__xarray-3095",
+  "condition": "large",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-27T01:36:09.764903+00:00",
+  "finished_at": "2026-10-27T01:37:46.063425+00:00",
+  "identity_sha256": "6dd251e4353c0274b745cf97486dd54b3783cbf6875ba3b84635f2e1112d6644",
+  "config": {
+    "condition": "large",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d",
+    "controller_policy": {
+      "mode": "adaptive",
+      "source_sha256": "bf163122b4c9769dbec7ef0c9759fc5e07a4453dc6906f75c31dfa41d6eee707",
+      "prompts_sha256": {
+        "controller-v2-common.txt": "bcab59483071803bd76c6a2125c4892771bafb3f3845b151494732f1b905fd23",
+        "controller-v2-delegation.txt": "97fa0f26f6477d16ad94e130d0ae33b9909da26598fe72fd9178513f330e568b",
+        "controller-v2-fallback.txt": "b0e31632e6796b582a7982325aca364419cbeeeaa309224b47eae2ccce8a4724"
+      }
+    },
+    "compact_context_instructions": {
+      "system_sha256": "d1456719abaf6ad0d669b8f786180eadb12b4ba738ff8f3d052a87ed5448c594",
+      "source_sha256": "51d4b97bd09ac44287702d187f94af1235b4e6bd37fa55aae42e26aea8530a59",
+      "driver_sha256": "93b9667c0947ba610262d54ffb62f5a408e89dcd2e23a527f6ddc4c4dc2fec35",
+      "applies_to": "context-only expert/router roles; acting controllers unchanged",
+      "official_reference": "https://learn.chatgpt.com/docs/config-file/config-reference"
+    }
+  },
+  "selected_model": "gpt-6.1-sol",
+  "turns": 1,
+  "expert_calls": 0,
+  "elapsed_seconds": 96.20940356899519,
+  "controller_thread_id": "01a17b00-275a-78b2-aee6-61077af0db6e",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 208857,
+    "cached_input_tokens": 169600,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1988,
+    "reasoning_output_tokens": 313
+  },
+  "observed_usage_partial": {
+    "input_tokens": 208857,
+    "cached_input_tokens": 169600,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1988,
+    "reasoning_output_tokens": 313
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6.1-sol": {
+      "usage": {
+        "input_tokens": 208857,
+        "cached_input_tokens": 169600,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1988,
+        "reasoning_output_tokens": 313
+      },
+      "observed_partial": {
+        "input_tokens": 208857,
+        "cached_input_tokens": 169600,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1988,
+        "reasoning_output_tokens": 313
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 1,
+  "failure_type": null,
+  "summary": "Fixed IndexVariable copying to preserve Unicode and byte-string dtypes. Added regression coverage for Dataset, DataArray, shallow/deep copies, and Python copy functions. Verified 67 copy-related tests and 381 variable/indexing tests pass; expected failures remain. git diff --check passed.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "a304e96e8e05cf6b25df50dc5bf412c142f6c3526d72867bdc3fd5000ea89bc8",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

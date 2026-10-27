@@ -1,0 +1,87 @@
+{
+  "schema_version": 3,
+  "run_id": "10767c8a-32a9-4be5-b209-a56bf5cf387b",
+  "task_id": "astropy__astropy-12907",
+  "identity_sha256": "bada84476c0130a26ea69c1bef611d8506d9531245cbebc28c54a66a4e4b840f",
+  "created_at": "2026-10-26T23:05:21.745570+00:00",
+  "status": "completed_ungraded",
+  "deadline_epoch": 1793056821.7456288,
+  "config": {
+    "condition": "reset_expert",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "phase": "controller",
+  "selected_model": "gpt-6-luna",
+  "controller_thread_id": "01a17a76-17fa-7682-ae9b-501f24d9cf24",
+  "expert_thread_id": null,
+  "turns": 1,
+  "expert_calls": 0,
+  "inflight": null,
+  "next_prompt": "Solve the software-engineering task in the assigned workspace. Inspect relevant code, make the necessary changes, execute available checks, and report what you verified. Respect the user's editable memory and constraints. Do not read hidden evaluator files, other experiment workspaces, reference solutions, or parent research artifacts. Do not access external services or launch other agents yourself. Only edit the listed allowed paths. Path scope is an experiment instruction, not an OS security boundary.\n\nTask: Modeling's `separability_matrix` does not compute separability correctly for nested CompoundModels\nConsider the following model:\n\n```python\nfrom astropy.modeling import models as m\nfrom astropy.modeling.separable import separability_matrix\n\ncm = m.Linear1D(10) & m.Linear1D(5)\n```\n\nIt's separability matrix as you might expect is a diagonal:\n\n```python\n>>> separability_matrix(cm)\narray([[ True, False],\n       [False,  True]])\n```\n\nIf I make the model more complex:\n```python\n>>> separability_matrix(m.Pix2Sky_TAN() & m.Linear1D(10) & m.Linear1D(5))\narray([[ True,  True, False, False],\n       [ True,  True, False, False],\n       [False, False,  True, False],\n       [False, False, False,  True]])\n```\n\nThe output matrix is again, as expected, the outputs and inputs to the linear models are separable and independent of each other.\n\nIf however, I nest these compound models:\n```python\n>>> separability_matrix(m.Pix2Sky_TAN() & cm)\narray([[ True,  True, False, False],\n       [ True,  True, False, False],\n       [False, False,  True,  True],\n       [False, False,  True,  True]])\n```\nSuddenly the inputs and outputs are no longer separable?\n\nThis feels like a bug to me, but I might be missing something?\n\n\nRepair this repository at its assigned base. Preserve existing tests; you may add tests. Do not commit, change HEAD, retrieve upstream fixes, or access benchmark data, evaluator artifacts, or other workers. Report unavailable test dependencies honestly.\nAllowed paths: [\".\"]\nEditable user memory (same initial content in every condition): []\nYou are the small agent. Act yourself where useful. You may converse with a larger expert for bounded assistance at most 2 times. Decide when help is worth it. You remain responsible for verification and integration. To ask, return action ask_expert, one concrete question, and only the context necessary for that question. The expert receives only the question/context you send and cannot edit this workspace. The expert can answer, request context or challenge your assumptions, but each consultation starts a fresh expert thread with no earlier messages. If you reply, include all evidence and prior messages you want that expert to see. You may inspect code and test between messages. Treat every proposal as unverified; inspect, test, and integrate useful parts. When finished, return action complete.\nReturn the requested JSON schema. Use empty question/context on completion.",
+  "usage": {
+    "input_tokens": 161748,
+    "cached_input_tokens": 129024,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1292,
+    "reasoning_output_tokens": 202
+  },
+  "usage_complete": {
+    "input_tokens": true,
+    "cached_input_tokens": true,
+    "cache_write_input_tokens": true,
+    "output_tokens": true,
+    "reasoning_output_tokens": true
+  },
+  "usage_threads": {
+    "01a17a76-17fa-7682-ae9b-501f24d9cf24": {
+      "model": "gpt-6-luna",
+      "scope": "thread_cumulative",
+      "last_snapshot": {
+        "input_tokens": 161748,
+        "cached_input_tokens": 129024,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1292,
+        "reasoning_output_tokens": 202
+      }
+    }
+  },
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "observed_partial": {
+        "input_tokens": 161748,
+        "cached_input_tokens": 129024,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1292,
+        "reasoning_output_tokens": 202
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "elapsed_seconds": 44.70765999692958,
+  "tool_failures": 2,
+  "summary": "Fixed `_cstack` to preserve the right child’s computed separability matrix when stacking nested compound models. Added a regression test for the reported `Pix2Sky_TAN() & (Linear1D & Linear1D)` case.\n\nVerified: `astropy/modeling/tests/test_separable.py` passed (12 passed), and `git diff --check` passed. The broader `test_core.py` and `test_models.py` run had 14 failures and 205 passes; the failures concern existing NumPy bounding-box/deprecation issues, not separability.",
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d"
+  }
+}

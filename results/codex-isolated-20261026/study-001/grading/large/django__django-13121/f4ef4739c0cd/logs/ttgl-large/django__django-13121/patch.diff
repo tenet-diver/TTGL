@@ -1,0 +1,107 @@
+diff --git a/django/db/models/expressions.py b/django/db/models/expressions.py
+index a156c5e..4b581a1 100644
+--- a/django/db/models/expressions.py
++++ b/django/db/models/expressions.py
+@@ -57,7 +57,7 @@ class Combinable:
+         if not hasattr(other, 'resolve_expression'):
+             # everything must be resolvable to an expression
+             if isinstance(other, datetime.timedelta):
+-                other = DurationValue(other, output_field=fields.DurationField())
++                other = Value(other, output_field=fields.DurationField())
+             else:
+                 other = Value(other)
+ 
+@@ -449,9 +449,10 @@ class CombinedExpression(SQLiteNumericMixin, Expression):
+             rhs_output = self.rhs.output_field
+         except FieldError:
+             rhs_output = None
++        lhs_type = lhs_output.get_internal_type() if lhs_output else None
++        rhs_type = rhs_output.get_internal_type() if rhs_output else None
+         if (not connection.features.has_native_duration_field and
+-                ((lhs_output and lhs_output.get_internal_type() == 'DurationField') or
+-                 (rhs_output and rhs_output.get_internal_type() == 'DurationField'))):
++                lhs_type != rhs_type and 'DurationField' in {lhs_type, rhs_type}):
+             return DurationExpression(self.lhs, self.connector, self.rhs).as_sql(compiler, connection)
+         if (lhs_output and rhs_output and self.connector == self.SUB and
+             lhs_output.get_internal_type() in {'DateField', 'DateTimeField', 'TimeField'} and
+@@ -480,15 +481,14 @@ class CombinedExpression(SQLiteNumericMixin, Expression):
+ 
+ class DurationExpression(CombinedExpression):
+     def compile(self, side, compiler, connection):
+-        if not isinstance(side, DurationValue):
+-            try:
+-                output = side.output_field
+-            except FieldError:
+-                pass
+-            else:
+-                if output.get_internal_type() == 'DurationField':
+-                    sql, params = compiler.compile(side)
+-                    return connection.ops.format_for_duration_arithmetic(sql), params
++        try:
++            output = side.output_field
++        except FieldError:
++            pass
++        else:
++            if output.get_internal_type() == 'DurationField':
++                sql, params = compiler.compile(side)
++                return connection.ops.format_for_duration_arithmetic(sql), params
+         return compiler.compile(side)
+ 
+     def as_sql(self, compiler, connection):
+@@ -709,14 +709,6 @@ class Value(Expression):
+         return []
+ 
+ 
+-class DurationValue(Value):
+-    def as_sql(self, compiler, connection):
+-        connection.ops.check_expression_support(self)
+-        if connection.features.has_native_duration_field:
+-            return super().as_sql(compiler, connection)
+-        return connection.ops.date_interval_sql(self.value), []
+-
+-
+ class RawSQL(Expression):
+     def __init__(self, sql, params, output_field=None):
+         if output_field is None:
+diff --git a/tests/expressions/tests.py b/tests/expressions/tests.py
+index 459a877..50d181e 100644
+--- a/tests/expressions/tests.py
++++ b/tests/expressions/tests.py
+@@ -1468,6 +1468,37 @@ class FTimeDeltaTests(TestCase):
+         ))
+         self.assertIsNone(queryset.first().shifted)
+ 
++    def test_duration_expressions(self):
++        delta = datetime.timedelta(days=1, seconds=2, microseconds=3)
++        duration = F('estimated_time')
++        expressions = [
++            (duration + delta, lambda value: value + delta),
++            (delta + duration, lambda value: delta + value),
++            (duration - delta, lambda value: value - delta),
++            (delta - duration, lambda value: delta - value),
++            (duration + duration, lambda value: value + value),
++            (duration - duration, lambda value: value - value),
++            ((duration + delta) - duration, lambda value: delta),
++            (duration + Value(delta, output_field=DurationField()), lambda value: value + delta),
++        ]
++        for expression, expected in expressions:
++            with self.subTest(expression=expression):
++                queryset = Experiment.objects.annotate(duration=expression)
++                for experiment in queryset:
++                    self.assertEqual(experiment.duration, expected(experiment.estimated_time))
++
++    def test_datetime_with_duration_expression(self):
++        delta = datetime.timedelta(days=1, microseconds=3)
++        queryset = Experiment.objects.annotate(shifted=ExpressionWrapper(
++            F('start') + (F('estimated_time') + delta),
++            output_field=DateTimeField(),
++        ))
++        for experiment in queryset:
++            self.assertEqual(
++                experiment.shifted,
++                experiment.start + experiment.estimated_time + delta,
++            )
++
+     @skipUnlessDBFeature('supports_temporal_subtraction')
+     def test_date_subtraction(self):
+         queryset = Experiment.objects.annotate(

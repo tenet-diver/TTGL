@@ -1,0 +1,33 @@
+{
+  "status": "explicit_pre_inference_environment_disposition",
+  "excluded_instance_id": "django__django-7530",
+  "reason": "Sentinel-patch native control already passes all recorded FAIL_TO_PASS and PASS_TO_PASS tests; official grading does not discriminate this repair. Gold also resolves. No model outcome used.",
+  "controls_record_sha256": "99f640b16f1febc4a2d2de93c4990e3bc47f3cf46d25ce7a3f9717c344d777dc",
+  "native_reports": {
+    "base": {
+      "returncode": 0,
+      "elapsed_seconds": 110.17844506702386,
+      "report": "logs/ttgl-desktop-controls-001-base-django__django-7530/base-control/django__django-7530/report.json",
+      "resolved": true,
+      "infra_failure": false,
+      "report_sha256": "a7c6bcbb2a8ccf835c90cc295b59f176fc0ad486ac950ed3dbdd6cc010bc292a"
+    },
+    "gold": {
+      "returncode": 0,
+      "elapsed_seconds": 53.83650809794199,
+      "report": "logs/ttgl-desktop-controls-001-gold-django__django-7530/gold/django__django-7530/report.json",
+      "resolved": true,
+      "infra_failure": false,
+      "report_sha256": "a7c6bcbb2a8ccf835c90cc295b59f176fc0ad486ac950ed3dbdd6cc010bc292a"
+    }
+  },
+  "original_tasks_sha256": "a9c058df0d35d8fe74118d7a1dc91e4e12380a7f085708a067993892ac9d6997",
+  "remaining_tasks": 11,
+  "replacement_tasks": 0,
+  "original_private_dataset_sha256": "af9d8bdba3c17aa4d388a3890ae951d73d40a9ad4077061be4dd54df1ee16511",
+  "eligible_private_dataset_sha256": "4e81a3e0ab1c93066633ace3ba452c0fa6f9b3abc359df8bf0908a788fcabf5f",
+  "selected_policy_sha256": "16fd8d40f16e124346e38037c9cb17ba023abb81c6673990709b023f2d6c939c",
+  "protocol_basis": "Original reservation permits invalid independent base/gold control exclusions. Preserve original failed run; do not change test labels or score.",
+  "new_controls_directory": "results/delegation-heldout-001/controls-002",
+  "new_worker_validation_directory": "results/delegation-heldout-001/worker-validation-002"
+}

@@ -1,0 +1,263 @@
+{
+  "studies": [
+    {
+      "label": "Original policies · 12 tasks",
+      "records": "results/codex-isolated-20261026/analysis-001/published-rate-records.json",
+      "sha256": "12340aafdda3e04a08e011fa1e947733e94aac8d8f9e403cdb1a31a3d21ea6a2",
+      "points": {
+        "large": {
+          "tasks": [
+            "astropy__astropy-12907",
+            "django__django-13121",
+            "django__django-13297",
+            "django__django-15037",
+            "django__django-17084",
+            "mwaskom__seaborn-3069",
+            "psf__requests-5414",
+            "pydata__xarray-3095",
+            "pydata__xarray-7229",
+            "scikit-learn__scikit-learn-14141",
+            "sphinx-doc__sphinx-9230",
+            "sympy__sympy-17139"
+          ],
+          "n": 12,
+          "resolved": 10,
+          "cost_per_task": 0.1155287,
+          "expert_calls": 0
+        },
+        "oneway": {
+          "tasks": [
+            "astropy__astropy-12907",
+            "django__django-13121",
+            "django__django-13297",
+            "django__django-15037",
+            "django__django-17084",
+            "mwaskom__seaborn-3069",
+            "psf__requests-5414",
+            "pydata__xarray-3095",
+            "pydata__xarray-7229",
+            "scikit-learn__scikit-learn-14141",
+            "sphinx-doc__sphinx-9230",
+            "sympy__sympy-17139"
+          ],
+          "n": 12,
+          "resolved": 9,
+          "cost_per_task": 0.00918063,
+          "expert_calls": 1
+        },
+        "personal": {
+          "tasks": [
+            "astropy__astropy-12907",
+            "django__django-13121",
+            "django__django-13297",
+            "django__django-15037",
+            "django__django-17084",
+            "mwaskom__seaborn-3069",
+            "psf__requests-5414",
+            "pydata__xarray-3095",
+            "pydata__xarray-7229",
+            "scikit-learn__scikit-learn-14141",
+            "sphinx-doc__sphinx-9230",
+            "sympy__sympy-17139"
+          ],
+          "n": 12,
+          "resolved": 9,
+          "cost_per_task": 0.005224063333333334,
+          "expert_calls": 0
+        },
+        "precall_router": {
+          "tasks": [
+            "astropy__astropy-12907",
+            "django__django-13121",
+            "django__django-13297",
+            "django__django-15037",
+            "django__django-17084",
+            "mwaskom__seaborn-3069",
+            "psf__requests-5414",
+            "pydata__xarray-3095",
+            "pydata__xarray-7229",
+            "scikit-learn__scikit-learn-14141",
+            "sphinx-doc__sphinx-9230",
+            "sympy__sympy-17139"
+          ],
+          "n": 12,
+          "resolved": 11,
+          "cost_per_task": 0.07960902166666667,
+          "expert_calls": 0
+        },
+        "reset_expert": {
+          "tasks": [
+            "astropy__astropy-12907",
+            "django__django-13121",
+            "django__django-13297",
+            "django__django-15037",
+            "django__django-17084",
+            "mwaskom__seaborn-3069",
+            "psf__requests-5414",
+            "pydata__xarray-3095",
+            "pydata__xarray-7229",
+            "scikit-learn__scikit-learn-14141",
+            "sphinx-doc__sphinx-9230",
+            "sympy__sympy-17139"
+          ],
+          "n": 12,
+          "resolved": 8,
+          "cost_per_task": 0.008728166666666667,
+          "expert_calls": 1
+        },
+        "small": {
+          "tasks": [
+            "astropy__astropy-12907",
+            "django__django-13121",
+            "django__django-13297",
+            "django__django-15037",
+            "django__django-17084",
+            "mwaskom__seaborn-3069",
+            "psf__requests-5414",
+            "pydata__xarray-3095",
+            "pydata__xarray-7229",
+            "scikit-learn__scikit-learn-14141",
+            "sphinx-doc__sphinx-9230",
+            "sympy__sympy-17139"
+          ],
+          "n": 12,
+          "resolved": 9,
+          "cost_per_task": 0.005843058333333334,
+          "expert_calls": 0
+        }
+      }
+    },
+    {
+      "label": "Adaptive prompt · 4 development tasks",
+      "records": "results/delegation-development-001/analysis-adaptive-001/published-rate-records.json",
+      "sha256": "07778d27391ae6a111e6bd4565a45fe596a0f0ac5d94c70de305b5ee106e38df",
+      "points": {
+        "large": {
+          "tasks": [
+            "django__django-13297",
+            "django__django-15037",
+            "pydata__xarray-3095",
+            "scikit-learn__scikit-learn-14141"
+          ],
+          "n": 4,
+          "resolved": 4,
+          "cost_per_task": 0.1142725,
+          "expert_calls": 0
+        },
+        "personal": {
+          "tasks": [
+            "django__django-13297",
+            "django__django-15037",
+            "pydata__xarray-3095",
+            "scikit-learn__scikit-learn-14141"
+          ],
+          "n": 4,
+          "resolved": 4,
+          "cost_per_task": 0.01475536,
+          "expert_calls": 1
+        },
+        "small": {
+          "tasks": [
+            "django__django-13297",
+            "django__django-15037",
+            "pydata__xarray-3095",
+            "scikit-learn__scikit-learn-14141"
+          ],
+          "n": 4,
+          "resolved": 2,
+          "cost_per_task": 0.004256975,
+          "expert_calls": 0
+        }
+      }
+    },
+    {
+      "label": "Cheap-first prompt · 4 development tasks",
+      "records": "results/delegation-development-001/analysis-fallback-001/published-rate-records.json",
+      "sha256": "a6fde60db66eb51c0520c4f3eca374e1fcb57756c0c95c31339ce3c4e3ac0f05",
+      "points": {
+        "large": {
+          "tasks": [
+            "django__django-13297",
+            "django__django-15037",
+            "pydata__xarray-3095",
+            "scikit-learn__scikit-learn-14141"
+          ],
+          "n": 4,
+          "resolved": 4,
+          "cost_per_task": 0.12505259999999999,
+          "expert_calls": 0
+        },
+        "personal": {
+          "tasks": [
+            "django__django-13297",
+            "django__django-15037",
+            "pydata__xarray-3095",
+            "scikit-learn__scikit-learn-14141"
+          ],
+          "n": 4,
+          "resolved": 4,
+          "cost_per_task": 0.013617335,
+          "expert_calls": 1
+        },
+        "small": {
+          "tasks": [
+            "django__django-13297",
+            "django__django-15037",
+            "pydata__xarray-3095",
+            "scikit-learn__scikit-learn-14141"
+          ],
+          "n": 4,
+          "resolved": 3,
+          "cost_per_task": 0.005141685,
+          "expert_calls": 0
+        }
+      }
+    },
+    {
+      "label": "Compact expert · 4 development tasks",
+      "records": "results/delegation-development-001/analysis-compact-001/published-rate-records.json",
+      "sha256": "0f07b182a0bc4a6148b3b84ba6e26b7ebb0e8d3aaa57f69a00a285fb37e4f842",
+      "points": {
+        "large": {
+          "tasks": [
+            "django__django-13297",
+            "django__django-15037",
+            "pydata__xarray-3095",
+            "scikit-learn__scikit-learn-14141"
+          ],
+          "n": 4,
+          "resolved": 4,
+          "cost_per_task": 0.10622899999999999,
+          "expert_calls": 0
+        },
+        "personal": {
+          "tasks": [
+            "django__django-13297",
+            "django__django-15037",
+            "pydata__xarray-3095",
+            "scikit-learn__scikit-learn-14141"
+          ],
+          "n": 4,
+          "resolved": 3,
+          "cost_per_task": 0.00458512,
+          "expert_calls": 0
+        },
+        "small": {
+          "tasks": [
+            "django__django-13297",
+            "django__django-15037",
+            "pydata__xarray-3095",
+            "scikit-learn__scikit-learn-14141"
+          ],
+          "n": 4,
+          "resolved": 3,
+          "cost_per_task": 0.00553249,
+          "expert_calls": 0
+        }
+      }
+    }
+  ],
+  "script_sha256": "183f608da53ef1e8054edabc1fd80ef152b7ca60f27fe771454d67767363c4c5",
+  "matplotlib_version": "3.11.2",
+  "interpretation": "Separate descriptive panels; repeated controls and different panels are not pooled."
+}

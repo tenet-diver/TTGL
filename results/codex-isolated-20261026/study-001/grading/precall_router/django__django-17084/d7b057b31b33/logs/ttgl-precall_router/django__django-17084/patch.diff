@@ -1,0 +1,85 @@
+diff --git a/django/db/models/sql/query.py b/django/db/models/sql/query.py
+index 13a6809..29ae226 100644
+--- a/django/db/models/sql/query.py
++++ b/django/db/models/sql/query.py
+@@ -403,6 +403,7 @@ class Query(BaseExpression):
+         # Store annotation mask prior to temporarily adding aggregations for
+         # resolving purpose to facilitate their subsequent removal.
+         refs_subquery = False
++        refs_window = False
+         replacements = {}
+         annotation_select_mask = self.annotation_select_mask
+         for alias, aggregate_expr in aggregate_exprs.items():
+@@ -419,6 +420,10 @@ class Query(BaseExpression):
+                 getattr(self.annotations[ref], "subquery", False)
+                 for ref in aggregate.get_refs()
+             )
++            refs_window |= any(
++                getattr(self.annotations[ref], "contains_over_clause", True)
++                for ref in aggregate.get_refs()
++            )
+             aggregate = aggregate.replace_expressions(replacements)
+             self.annotations[alias] = aggregate
+             replacements[Ref(alias, aggregate)] = aggregate
+@@ -441,6 +446,7 @@ class Query(BaseExpression):
+         # Existing aggregations would cause incorrect results as
+         # get_aggregation() must produce just one result and thus must not use
+         # GROUP BY.
++        # Aggregates referencing window functions also require a subquery.
+         #
+         # If the query has limit or distinct, or uses set operations, then
+         # those operations must be done in a subquery so that the query
+@@ -451,6 +457,7 @@ class Query(BaseExpression):
+             or self.is_sliced
+             or has_existing_aggregation
+             or refs_subquery
++            or refs_window
+             or qualify
+             or self.distinct
+             or self.combinator
+diff --git a/tests/expressions_window/tests.py b/tests/expressions_window/tests.py
+index 3a02a36..90aab1a 100644
+--- a/tests/expressions_window/tests.py
++++ b/tests/expressions_window/tests.py
+@@ -26,6 +26,7 @@ from django.db.models import (
+ from django.db.models.fields.json import KeyTextTransform, KeyTransform
+ from django.db.models.functions import (
+     Cast,
++    Coalesce,
+     CumeDist,
+     DenseRank,
+     ExtractYear,
+@@ -130,6 +131,33 @@ class WindowFunctionTests(TestCase):
+                     ordered=False,
+                 )
+ 
++    def test_aggregate_over_window(self):
++        window = Window(
++            expression=Sum("salary"),
++            partition_by="department",
++            order_by=F("hire_date").asc(),
++        )
++        for expression in (window, Coalesce(window, 0)):
++            with self.subTest(expression=expression):
++                queryset = Employee.objects.annotate(cumulative_salary=expression)
++                self.assertEqual(
++                    queryset.aggregate(
++                        salary_total=Sum("salary"),
++                        cumulative_salary_total=Sum("cumulative_salary"),
++                    ),
++                    {"salary_total": 637000, "cumulative_salary_total": 1152000},
++                )
++
++    def test_unreferenced_window_annotation_pruned(self):
++        queryset = Employee.objects.annotate(
++            cumulative_salary=Window(Sum("salary"), order_by="pk"),
++        )
++        with self.assertNumQueries(1) as ctx:
++            self.assertEqual(queryset.aggregate(total=Sum("salary")), {"total": 637000})
++        sql = ctx.captured_queries[0]["sql"].lower()
++        self.assertEqual(sql.count("select"), 1)
++        self.assertNotIn("over", sql)
++
+     def test_department_salary(self):
+         qs = Employee.objects.annotate(
+             department_sum=Window(

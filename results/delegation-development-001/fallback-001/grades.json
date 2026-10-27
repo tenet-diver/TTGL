@@ -1,0 +1,20 @@
+{
+  "large": {
+    "scikit-learn__scikit-learn-14141": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/large/scikit-learn__scikit-learn-14141/9bffe065f1d0/logs/ttgl-large/scikit-learn__scikit-learn-14141/report.json",
+    "django__django-13297": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/grading/large/django__django-13297/77a805b9e793/logs/ttgl-large/django__django-13297/report.json",
+    "pydata__xarray-3095": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/grading/large/pydata__xarray-3095/c64b4da74ffd/logs/ttgl-large/pydata__xarray-3095/report.json",
+    "django__django-15037": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/grading/large/django__django-15037/75edd4fbf695/logs/ttgl-large/django__django-15037/report.json"
+  },
+  "small": {
+    "scikit-learn__scikit-learn-14141": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/scikit-learn__scikit-learn-14141/975cab3b4c2f/logs/ttgl-reset_expert/scikit-learn__scikit-learn-14141/report.json",
+    "django__django-13297": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/grading/small/django__django-13297/0db5f56d2ac9/logs/ttgl-small/django__django-13297/report.json",
+    "pydata__xarray-3095": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/grading/small/pydata__xarray-3095/bb1854df4c64/logs/ttgl-small/pydata__xarray-3095/report.json",
+    "django__django-15037": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/django__django-15037/6a5f3d305257/logs/ttgl-reset_expert/django__django-15037/report.json"
+  },
+  "personal": {
+    "scikit-learn__scikit-learn-14141": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/scikit-learn__scikit-learn-14141/975cab3b4c2f/logs/ttgl-reset_expert/scikit-learn__scikit-learn-14141/report.json",
+    "django__django-13297": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/grading/personal/django__django-13297/3c6f122024a1/logs/ttgl-personal/django__django-13297/report.json",
+    "pydata__xarray-3095": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/grading/personal/pydata__xarray-3095/8d76c40d24bc/logs/ttgl-personal/pydata__xarray-3095/report.json",
+    "django__django-15037": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/grading/personal/django__django-15037/114731fc3513/logs/ttgl-personal/django__django-15037/report.json"
+  }
+}

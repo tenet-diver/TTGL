@@ -1,0 +1,20 @@
+{
+  "large": {
+    "scikit-learn__scikit-learn-14141": "../../codex-isolated-20261026/study-001/grading/large/scikit-learn__scikit-learn-14141/9bffe065f1d0/logs/ttgl-large/scikit-learn__scikit-learn-14141/report.json",
+    "django__django-13297": "../compact-001/grading/large/django__django-13297/3e83d643e1c2/logs/ttgl-large/django__django-13297/report.json",
+    "pydata__xarray-3095": "../compact-001/grading/large/pydata__xarray-3095/b1614b68c0f3/logs/ttgl-large/pydata__xarray-3095/report.json",
+    "django__django-15037": "../compact-001/grading/large/django__django-15037/7848f39f9dc7/logs/ttgl-large/django__django-15037/report.json"
+  },
+  "small": {
+    "scikit-learn__scikit-learn-14141": "../../codex-isolated-20261026/study-001/grading/reset_expert/scikit-learn__scikit-learn-14141/975cab3b4c2f/logs/ttgl-reset_expert/scikit-learn__scikit-learn-14141/report.json",
+    "django__django-13297": "../compact-001/grading/small/django__django-13297/d53dd724c949/logs/ttgl-small/django__django-13297/report.json",
+    "pydata__xarray-3095": "../compact-001/grading/small/pydata__xarray-3095/2389e8759403/logs/ttgl-small/pydata__xarray-3095/report.json",
+    "django__django-15037": "../compact-001/grading/small/django__django-15037/f0c2075e20cf/logs/ttgl-small/django__django-15037/report.json"
+  },
+  "personal": {
+    "scikit-learn__scikit-learn-14141": "../../codex-isolated-20261026/study-001/grading/reset_expert/scikit-learn__scikit-learn-14141/975cab3b4c2f/logs/ttgl-reset_expert/scikit-learn__scikit-learn-14141/report.json",
+    "django__django-13297": "../compact-001/grading/personal/django__django-13297/c5fe27a78052/logs/ttgl-personal/django__django-13297/report.json",
+    "pydata__xarray-3095": "../compact-001/grading/personal/pydata__xarray-3095/1ba6d5434117/logs/ttgl-personal/pydata__xarray-3095/report.json",
+    "django__django-15037": "../compact-001/grading/personal/django__django-15037/26c37ea7cf8e/logs/ttgl-personal/django__django-15037/report.json"
+  }
+}

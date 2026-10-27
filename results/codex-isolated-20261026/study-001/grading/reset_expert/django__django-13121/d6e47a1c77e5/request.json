@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-reset_expert-django__django-13121-3db37618-d6e47a1c77e5",
+  "prediction_sha256": "6d33d38f3fc64b1ec7563dddc0d8b7b9034c5c37bd6796c0c44dbf64ca6e4f44",
+  "model_patch_sha256": "3db37618a770145f5ea800fabcab682be09857d90d5c7945b546a8f7ac7cfb6a",
+  "patch_record_sha256": "994f521ffa1566d33284aefb8c505d14efdf83ab764a0e5665b01120bbc6b0d3",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "19a99afeb913aa03f7676ad157e498c778365e29b72672f3b67dd2913c5fe39f",
+  "timeout_seconds": 1200
+}

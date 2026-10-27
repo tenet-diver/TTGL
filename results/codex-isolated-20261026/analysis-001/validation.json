@@ -1,0 +1,17 @@
+{
+  "status": "completed_officially_graded_engineering_panel",
+  "assignments": 72,
+  "tasks": 12,
+  "all_official_grades_joined_to_exact_patches": true,
+  "powered_noninferiority_established": false,
+  "full_deployment_savings_established": false,
+  "design_sha256": "c590d2f0cdc059364dabe357248266f17417baf5a9692d0affb6a42199ee3dac",
+  "environment_sha256": "d136037aeca3e11a0296317990658a8f950aae314d77ae63c5036e6bb26984b8",
+  "grade_index_sha256": "8d6d4e3a818820e1cc10387f092a95946db11b4a7978e3de8744caa5697a20be",
+  "portable_grade_index_sha256": "b4f5eeffeb7dc6024956056f8c1bfc8b668b776fe868bc4f9312cd1803540776",
+  "provider_usage_sha256": "720977320a1d99e61855be6ef4180cc1c2e9b59e6f0c108db725d4d835e9df47",
+  "published_rate_records_sha256": "12340aafdda3e04a08e011fa1e947733e94aac8d8f9e403cdb1a31a3d21ea6a2",
+  "published_rate_scenario_sha256": "24337a4fbe01bd97c0a8034c97e7f940779d207a388111dd3c19601919a49328",
+  "grading_execution_records": 67,
+  "exact_program_grade_reuses": 5
+}

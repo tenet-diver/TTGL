@@ -1,0 +1,36 @@
+{
+  "status": "reserved_design_not_executed",
+  "stage": "proprietary_prompt_iteration_before_open_weight_learning",
+  "reservation_sha256": "c86b3c9a83e94e4bcc4f5162f6d8bc1eb5849a10074b23073590984fb0d4dc89",
+  "development_tasks": 12,
+  "validation_tasks": 24,
+  "development_arms": [
+    "luna_only_common_guidance",
+    "sol_only_common_guidance",
+    "adaptive_luna_sol",
+    "bounded_cheap_first_luna_sol"
+  ],
+  "shared_controls": "One registered standalone Luna and Sol assignment per task while common prompts/tools/budgets match; no best-of selection across repeats.",
+  "development_assignment_cap": 48,
+  "validation_arms": [
+    "luna_only_common_guidance",
+    "sol_only_common_guidance",
+    "selected_luna_sol_policy"
+  ],
+  "validation_assignment_cap": 72,
+  "first_execution_unit": "Independent environment/adapter controls, then one complete development task block, then measured cost/runtime review before continuation.",
+  "full_population_auto_run": false,
+  "selection": "Highest development resolution count, then lowest total model-cost scenario, lexical tie; freeze prompt and source hashes before scored inference.",
+  "target": {
+    "cost_ratio_max": 0.05,
+    "accuracy_retention_min": 0.95
+  },
+  "model_ids": [
+    "gpt-6-luna",
+    "gpt-6.1-sol"
+  ],
+  "model_identity_caveat": "Requested proprietary aliases are not immutable weight revisions.",
+  "learning_arms_in_this_study": [],
+  "held_out_updates_forbidden": true,
+  "inference_calls": 0
+}

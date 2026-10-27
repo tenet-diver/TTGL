@@ -1,0 +1,55 @@
+diff --git a/sphinx/util/docfields.py b/sphinx/util/docfields.py
+index 3a3367e..ff56f08 100644
+--- a/sphinx/util/docfields.py
++++ b/sphinx/util/docfields.py
+@@ -297,11 +297,22 @@ class DocFieldTransformer:
+ 
+             # also support syntax like ``:param type name:``
+             if typedesc.is_typed:
+-                try:
+-                    argtype, argname = fieldarg.split(None, 1)
+-                except ValueError:
+-                    pass
+-                else:
++                # Types may contain whitespace inside delimiters, e.g.
++                # ``dict(str, str)``.  Split the type from the argument name
++                # only at whitespace outside those delimiters.
++                depth = 0
++                split_at = None
++                for index, char in enumerate(fieldarg):
++                    if char in '([{':
++                        depth += 1
++                    elif char in ')]}':
++                        depth = max(0, depth - 1)
++                    elif char.isspace() and depth == 0:
++                        split_at = index
++                        break
++                if split_at is not None:
++                    argtype = fieldarg[:split_at]
++                    argname = fieldarg[split_at:].strip()
+                     types.setdefault(typename, {})[argname] = \
+                         [nodes.Text(argtype)]
+                     fieldarg = argname
+diff --git a/tests/test_domain_py.py b/tests/test_domain_py.py
+index 569390c..a85b1dc 100644
+--- a/tests/test_domain_py.py
++++ b/tests/test_domain_py.py
+@@ -984,6 +984,18 @@ def test_info_field_list(app):
+                 **{"py:module": "example", "py:class": "Class"})
+ 
+ 
++def test_info_field_list_type_with_spaces(app):
++    text = (".. py:module:: example\n"
++            ".. py:class:: Class\n"
++            "\n"
++            "   :param dict(str, str) opc_meta: optional\n")
++    doctree = restructuredtext.parse(app, text)
++
++    assert "opc_meta" in doctree.astext()
++    assert "dict(str, str)" in doctree.astext()
++    assert "optional" in doctree.astext()
++
++
+ def test_info_field_list_var(app):
+     text = (".. py:class:: Class\n"
+             "\n"

@@ -1,0 +1,57 @@
+diff --git a/CHANGES b/CHANGES
+index 2d41dd9..beba208 100644
+--- a/CHANGES
++++ b/CHANGES
+@@ -47,6 +47,8 @@ Features added
+ Bugs fixed
+ ----------
+ 
++* #9230: Python parameter types containing spaces are incorrectly rendered
++
+ * #8872: autodoc: stacked singledispatches are wrongly rendered
+ * #8597: autodoc: a docsting having metadata only should be treated as
+   undocumented
+diff --git a/sphinx/util/docfields.py b/sphinx/util/docfields.py
+index 3a3367e..6d48e91 100644
+--- a/sphinx/util/docfields.py
++++ b/sphinx/util/docfields.py
+@@ -298,7 +298,7 @@ class DocFieldTransformer:
+             # also support syntax like ``:param type name:``
+             if typedesc.is_typed:
+                 try:
+-                    argtype, argname = fieldarg.split(None, 1)
++                    argtype, argname = fieldarg.rsplit(None, 1)
+                 except ValueError:
+                     pass
+                 else:
+diff --git a/tests/test_domain_py.py b/tests/test_domain_py.py
+index 569390c..a92ff8c 100644
+--- a/tests/test_domain_py.py
++++ b/tests/test_domain_py.py
+@@ -984,6 +984,26 @@ def test_info_field_list(app):
+                 **{"py:module": "example", "py:class": "Class"})
+ 
+ 
++@pytest.mark.parametrize('datatype', [
++    'str',
++    'dict(str,str)',
++    'dict(str, str)',
++    'Dict[str, str]',
++    'Dict[str, Tuple[int, str]]',
++    'int or None',
++])
++def test_info_field_list_param_type(app, datatype):
++    text = (".. py:function:: func(opc_meta)\n"
++            "\n"
++            "   :param %s opc_meta: (optional)\n" % datatype)
++    doctree = restructuredtext.parse(app, text)
++    field = list(doctree.traverse(nodes.field))[0]
++
++    assert field[0].astext() == 'Parameters'
++    assert field[1].astext() == 'opc_meta (%s) -- (optional)' % datatype
++    assert_node(field[1][0][0], addnodes.literal_strong, 'opc_meta')
++
++
+ def test_info_field_list_var(app):
+     text = (".. py:class:: Class\n"
+             "\n"

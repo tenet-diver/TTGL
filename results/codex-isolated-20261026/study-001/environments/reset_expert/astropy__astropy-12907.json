@@ -1,0 +1,23 @@
+{
+  "container": "ttgl-worker-42860e6ea4ef7a750685cd3a",
+  "image_id": "sha256:9b1cabf7bcd83a28469f67e3852d8e2207e90d45aa71f436bb7e600bdee8bae2",
+  "base_commit": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+  "mounts": [],
+  "network": "none",
+  "cap_drop": [
+    "ALL"
+  ],
+  "memory_bytes": 4294967296,
+  "native_host_tools": false,
+  "solver_reference_material": false,
+  "image_tracked_source_audited": true,
+  "restored_image_setup_files": [
+    {
+      "path": "pyproject.toml",
+      "base_blob": "3364d307406a06457fba6b129db98c2399e7d624",
+      "image_setup_blob": "02dddbe713a3d037b3e5f6ba49af3b7ec1c49c0b"
+    }
+  ],
+  "ignored_compiled_dependencies_retained": true,
+  "additional_worker_dependencies": []
+}

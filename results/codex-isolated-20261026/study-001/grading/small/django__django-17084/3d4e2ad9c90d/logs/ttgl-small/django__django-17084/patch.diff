@@ -1,0 +1,33 @@
+diff --git a/django/db/models/sql/query.py b/django/db/models/sql/query.py
+index 13a6809..d743250 100644
+--- a/django/db/models/sql/query.py
++++ b/django/db/models/sql/query.py
+@@ -451,6 +451,7 @@ class Query(BaseExpression):
+             or self.is_sliced
+             or has_existing_aggregation
+             or refs_subquery
++            or any(aggregate.contains_over_clause for aggregate in aggregates.values())
+             or qualify
+             or self.distinct
+             or self.combinator
+diff --git a/tests/expressions_window/tests.py b/tests/expressions_window/tests.py
+index 3a02a36..4ce0df0 100644
+--- a/tests/expressions_window/tests.py
++++ b/tests/expressions_window/tests.py
+@@ -93,6 +93,16 @@ class WindowFunctionTests(TestCase):
+             ]
+         )
+ 
++    def test_aggregate_over_window(self):
++        queryset = Employee.objects.annotate(
++            cumulative_salary=Window(Sum("salary"), order_by=F("hire_date").asc())
++        )
++        result = queryset.aggregate(
++            salary_total=Sum("salary"), cumulative_salary_total=Sum("cumulative_salary")
++        )
++        self.assertEqual(result["salary_total"], 637000)
++        self.assertGreater(result["cumulative_salary_total"], result["salary_total"])
++
+     def test_dense_rank(self):
+         tests = [
+             ExtractYear(F("hire_date")).asc(),

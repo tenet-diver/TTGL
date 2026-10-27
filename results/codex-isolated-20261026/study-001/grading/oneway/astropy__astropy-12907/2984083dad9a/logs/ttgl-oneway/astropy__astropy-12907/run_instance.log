@@ -1,0 +1,71 @@
+2026-10-26 22:57:15,153 - INFO - Creating container for astropy__astropy-12907...
+2026-10-26 22:57:15,290 - INFO - Container for astropy__astropy-12907 created: 4560df38f13bea84130915a50c43aa5d6e622cd439bd4264fb172dc36366eabb
+2026-10-26 22:57:15,862 - INFO - Container for astropy__astropy-12907 started: 4560df38f13bea84130915a50c43aa5d6e622cd439bd4264fb172dc36366eabb
+2026-10-26 22:57:15,880 - INFO - Intermediate patch for astropy__astropy-12907 written to logs/evaluation/ttgl-oneway-astropy__astropy-12907-f5bd9eac-2984083dad9a/ttgl-oneway/astropy__astropy-12907/patch.diff, now applying to container...
+2026-10-26 22:57:16,474 - INFO - >>>>> Applied Patch:
+Checking patch astropy/modeling/separable.py...
+warning: astropy/modeling/separable.py has type 100755, expected 100644
+Checking patch astropy/modeling/tests/test_separable.py...
+warning: astropy/modeling/tests/test_separable.py has type 100755, expected 100644
+Applied patch astropy/modeling/separable.py cleanly.
+Applied patch astropy/modeling/tests/test_separable.py cleanly.
+
+2026-10-26 22:57:17,662 - INFO - Git diff before:
+diff --git a/astropy/modeling/separable.py b/astropy/modeling/separable.py
+index a308e2729..45bea3608 100755
+--- a/astropy/modeling/separable.py
++++ b/astropy/modeling/separable.py
+@@ -242,7 +242,7 @@ def _cstack(left, right):
+         cright = _coord_matrix(right, 'right', noutp)
+     else:
+         cright = np.zeros((noutp, right.shape[1]))
+-        cright[-right.shape[0]:, -right.shape[1]:] = 1
++        cright[-right.shape[0]:, -right.shape[1]:] = right
+ 
+     return np.hstack([cleft, cright])
+ 
+diff --git a/astropy/modeling/tests/test_separable.py b/astropy/modeling/tests/test_separable.py
+index 8dfe5c862..0d60ddc20 100755
+--- a/astropy/modeling/tests/test_separable.py
++++ b/astropy/modeling/tests/test_separable.py
+@@ -148,3 +148,16 @@ def test_custom_model_separable():
+ 
+     assert not model_c().separable
+     assert np.all(separability_matrix(model_c()) == [True, True])
++
++
++def test_nested_compound_model_separability():
++    linear_models = models.Linear1D(10) & models.Linear1D(5)
++    compound_model = models.Pix2Sky_TAN() & linear_models
++
++    assert_allclose(
++        separability_matrix(compound_model),
++        np.array([[True, True, False, False],
++                  [True, True, False, False],
++                  [False, False, True, False],
++                  [False, False, False, True]])
++    )
+2026-10-26 22:57:17,681 - INFO - Eval script for astropy__astropy-12907 written to logs/evaluation/ttgl-oneway-astropy__astropy-12907-f5bd9eac-2984083dad9a/ttgl-oneway/astropy__astropy-12907/eval.sh; copying to container...
+2026-10-26 23:04:48,881 - INFO - Test runtime: 450.80 seconds
+2026-10-26 23:04:48,924 - INFO - Test output for astropy__astropy-12907 written to logs/evaluation/ttgl-oneway-astropy__astropy-12907-f5bd9eac-2984083dad9a/ttgl-oneway/astropy__astropy-12907/test_output.txt
+2026-10-26 23:04:49,133 - INFO - Git diff after:
+diff --git a/astropy/modeling/separable.py b/astropy/modeling/separable.py
+index a308e2729..45bea3608 100755
+--- a/astropy/modeling/separable.py
++++ b/astropy/modeling/separable.py
+@@ -242,7 +242,7 @@ def _cstack(left, right):
+         cright = _coord_matrix(right, 'right', noutp)
+     else:
+         cright = np.zeros((noutp, right.shape[1]))
+-        cright[-right.shape[0]:, -right.shape[1]:] = 1
++        cright[-right.shape[0]:, -right.shape[1]:] = right
+ 
+     return np.hstack([cleft, cright])
+2026-10-26 23:04:49,136 - INFO - Git diff changed after running eval script
+2026-10-26 23:04:49,144 - INFO - Grading answer for astropy__astropy-12907...
+2026-10-26 23:04:49,204 - INFO - report: {'astropy__astropy-12907': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': True, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': ['astropy/modeling/tests/test_separable.py::test_separable[compound_model6-result6]', 'astropy/modeling/tests/test_separable.py::test_separable[compound_model9-result9]'], 'failure': []}, 'PASS_TO_PASS': {'success': ['astropy/modeling/tests/test_separable.py::test_coord_matrix', 'astropy/modeling/tests/test_separable.py::test_cdot', 'astropy/modeling/tests/test_separable.py::test_cstack', 'astropy/modeling/tests/test_separable.py::test_arith_oper', 'astropy/modeling/tests/test_separable.py::test_separable[compound_model0-result0]', 'astropy/modeling/tests/test_separable.py::test_separable[compound_model1-result1]', 'astropy/modeling/tests/test_separable.py::test_separable[compound_model2-result2]', 'astropy/modeling/tests/test_separable.py::test_separable[compound_model3-result3]', 'astropy/modeling/tests/test_separable.py::test_separable[compound_model4-result4]', 'astropy/modeling/tests/test_separable.py::test_separable[compound_model5-result5]', 'astropy/modeling/tests/test_separable.py::test_separable[compound_model7-result7]', 'astropy/modeling/tests/test_separable.py::test_separable[compound_model8-result8]', 'astropy/modeling/tests/test_separable.py::test_custom_model_separable'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for astropy__astropy-12907: resolved: True
+2026-10-26 23:04:49,219 - INFO - Attempting to stop container sweb.eval.astropy__astropy-12907.ttgl-oneway-astropy__astropy-12907-f5bd9eac-2984083dad9a...
+2026-10-26 23:05:04,645 - INFO - Container sweb.eval.astropy__astropy-12907.ttgl-oneway-astropy__astropy-12907-f5bd9eac-2984083dad9a stopped successfully.
+2026-10-26 23:05:04,649 - INFO - Attempting to remove container sweb.eval.astropy__astropy-12907.ttgl-oneway-astropy__astropy-12907-f5bd9eac-2984083dad9a...
+2026-10-26 23:05:04,858 - INFO - Container sweb.eval.astropy__astropy-12907.ttgl-oneway-astropy__astropy-12907-f5bd9eac-2984083dad9a removed successfully.

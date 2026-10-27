@@ -1,0 +1,10 @@
+{
+  "instance_id": "pydata__xarray-3095",
+  "model_name_or_path": "ttgl-small",
+  "model_patch": "diff --git a/xarray/core/variable.py b/xarray/core/variable.py\nindex 379be8f..d608c7f 100644\n--- a/xarray/core/variable.py\n+++ b/xarray/core/variable.py\n@@ -1947,7 +1947,8 @@ class IndexVariable(Variable):\n                 # point, which doesn't have a copy method, so make a deep copy\n                 # of the underlying `pandas.MultiIndex` and create a new\n                 # `PandasIndexAdapter` instance with it.\n-                data = PandasIndexAdapter(self._data.array.copy(deep=True))\n+                data = PandasIndexAdapter(self._data.array.copy(deep=True),\n+                                          dtype=self.dtype)\n             else:\n                 data = self._data\n         else:\ndiff --git a/xarray/tests/test_variable.py b/xarray/tests/test_variable.py\nindex 73d2a40..bda3bc1 100644\n--- a/xarray/tests/test_variable.py\n+++ b/xarray/tests/test_variable.py\n@@ -1828,6 +1828,13 @@ class TestIndexVariable(VariableSubclassobjects):\n         v = IndexVariable(['x'], midx, {'foo': 'bar'})\n         assert v.to_index().names == ('x_level_0', 'x_level_1')\n \n+    def test_copy_preserves_unicode_dtype(self):\n+        variable = IndexVariable('x', np.array(['foo'], dtype='<U3'))\n+        assert variable.copy(deep=False).dtype == np.dtype('<U3')\n+        assert variable.copy(deep=True).dtype == np.dtype('<U3')\n+        assert copy(variable).dtype == np.dtype('<U3')\n+        assert deepcopy(variable).dtype == np.dtype('<U3')\n+\n     def test_data(self):\n         x = IndexVariable('x', np.arange(3.0))\n         assert isinstance(x._data, PandasIndexAdapter)\n",
+  "manifest_sha256": "e03abb81a660616357e90bd9676f879b7391018ae4c6b9d03d60a3e3d3756158",
+  "patch_sha256": "2f2dc30352bc5e95328d8aa448a9cf66b37efbdc9398bbe6d21444347e54d12a",
+  "status": "completed_ungraded",
+  "preparation_seconds": 6.455118431011215,
+  "assignment_wall_seconds": 98.25742983305827
+}

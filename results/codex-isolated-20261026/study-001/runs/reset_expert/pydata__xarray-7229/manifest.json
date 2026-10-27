@@ -1,0 +1,114 @@
+{
+  "schema_version": 3,
+  "run_id": "87382de7-2fe8-46c2-9b5b-9e3c02d84be8",
+  "task_id": "pydata__xarray-7229",
+  "condition": "reset_expert",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-27T00:04:04.991531+00:00",
+  "finished_at": "2026-10-27T00:05:54.363180+00:00",
+  "identity_sha256": "196e2e7e27a7d14624f3ff26fe16d36404d1b3f1963259f804d6dd5380973a79",
+  "config": {
+    "condition": "reset_expert",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d"
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 3,
+  "expert_calls": 1,
+  "elapsed_seconds": 109.34160182590131,
+  "controller_thread_id": "01a17aab-d9e0-7923-b801-e8f6b08b4373",
+  "expert_thread_id": "01a17aac-7876-7433-80fd-1aa476c44dd8",
+  "usage": {
+    "input_tokens": 446847,
+    "cached_input_tokens": 394368,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4369,
+    "reasoning_output_tokens": 1291
+  },
+  "observed_usage_partial": {
+    "input_tokens": 446847,
+    "cached_input_tokens": 394368,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4369,
+    "reasoning_output_tokens": 1291
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 436107,
+        "cached_input_tokens": 394368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3709,
+        "reasoning_output_tokens": 888
+      },
+      "observed_partial": {
+        "input_tokens": 436107,
+        "cached_input_tokens": 394368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3709,
+        "reasoning_output_tokens": 888
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    },
+    "gpt-6.1-sol": {
+      "usage": {
+        "input_tokens": 10740,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 660,
+        "reasoning_output_tokens": 403
+      },
+      "observed_partial": {
+        "input_tokens": 10740,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 660,
+        "reasoning_output_tokens": 403
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 0,
+  "failure_type": null,
+  "summary": "Updated `xr.where(..., keep_attrs=True)` to merge coordinate attrs using the normal override policy, then restore data attrs from `x`. Added DataArray and Dataset regressions covering data-variable and coordinate attrs. Verified with `python -m pytest xarray/tests/test_computation.py -k 'where' -q` (2 passed) and `git diff --check`.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "fb27a24908644989c745598d101952afe12f95c5c0610c5960c8b3e56a4683c8",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

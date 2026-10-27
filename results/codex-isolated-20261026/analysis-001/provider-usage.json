@@ -1,0 +1,1266 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-10-27T00:29:40.583751+00:00",
+  "collector_sha256": "3136cf39293105846374fcfe8c01103feec6530d349873faeb744443ef907751",
+  "app_server_protocol_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+  "status": "incomplete",
+  "method": "account/usage/read",
+  "new_model_inference_requested": false,
+  "independent_root_threads_attested": true,
+  "selected_states_finalized": true,
+  "selected_states_usage_ledger_complete": true,
+  "threads": [
+    {
+      "thread_id": "01a179b1-3ceb-7fc3-bb5f-dd7279bb6a2e",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179b2-98c4-76f3-bbee-2eb8d4d2d38a",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179b4-7097-7943-b56c-1d6a958e1942",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179b4-90ad-7f10-856a-5eaf5b1f34c9",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179b5-8b84-7a11-a07a-9d760a2298d5",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179b6-73d0-7b10-915a-7ee2dadd8af3",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179b7-3274-74d2-90b9-0877c072e3cf",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179b9-92a3-7181-b0a2-39f4ce1b3ab6",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179bb-acaf-7963-bd3e-085531d07d13",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179bb-cac2-71f1-acb7-09e00e568ba2",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179be-e35c-7173-8830-211e1ef1cda5",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179bf-5fd7-71b1-922b-de5a39aa4dfc",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179c3-421d-7563-b744-7d5fd3462c4e",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179c5-2cd6-7480-9f6e-e906d76e005c",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179c7-9821-7652-9dd7-5f0f68ea9c4e",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179cd-738f-7442-8c06-f25507967093",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179d1-1e5d-7730-9d6f-f5ad12dab003",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179d3-811e-7200-aaf6-f8f88d4fde3f",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179d6-8c64-7482-a343-970b9257a82c",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179d8-c3c8-7623-8ef7-4344dd844424",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179dc-358b-75e1-99c9-dfb3a8f7a79b",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179dc-4c66-70f2-8850-8aa4b1cdc892",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179e1-4277-7312-b47f-d8c6a3867978",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179e3-f790-7eb2-b8cc-43c63db6bbd5",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179e4-202c-7093-961a-cd75b5240ce3",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179e6-7350-70a3-b2d8-b9fa34cc8f85",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179e9-58ab-7b20-911c-4a34e2b69e21",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179eb-f02d-7d61-a9b3-05c5ff166633",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179ed-b166-7292-9eed-d8e5a594cc96",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179f0-ca49-7ca1-92a1-4163e3fbe13f",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179f2-a6c5-79d0-973e-1518a3e1ff7f",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179f4-17ef-71b3-8d39-079878690821",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179f6-22de-7563-8680-096514e96907",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179f7-fe4a-7e72-b3f6-2c7bfd2ffce1",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179fa-0882-7932-85f6-ba48ae348826",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179fa-32f0-7f13-ae27-0b1e9b42c073",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a179ff-d47e-7f40-85bc-4da962d02ec9",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a0f-40c3-7b03-a7dd-24bbaebca4aa",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a1b-8bf0-7663-b846-a5f47502f35e",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a1b-a4c1-75a3-82e8-95c45fd3aae6",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a25-d46d-7c03-95bf-3743d9c51245",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a35-2472-7322-80d0-08dd33c6b544",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a3e-fe0e-7460-9158-2de9358939cb",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a4c-3cca-78f3-b4e5-65c86212404a",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a54-a9cd-7c22-b363-8876fe7692a8",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a5d-991a-7692-b45a-f077311bc8f0",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a67-9505-75a0-8e5f-7d7e4085b0c6",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a67-abef-7361-895a-a7e0b666f007",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a6d-d526-74b1-8a09-ed2b9c68dea3",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a76-17fa-7682-ae9b-501f24d9cf24",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a7c-aa54-78a3-a432-c1b3540c4b90",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a7f-9c1b-7391-b0d8-620f4c1fed4f",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a86-60f3-7991-8c06-63c217da525d",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a88-b65c-7350-8bf4-401be93c7ee4",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a8c-5f19-7d80-8c52-5e139c4fb137",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a8c-6e72-7681-b784-eb429998ef7c",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a92-e5c3-7912-b97d-c086bf32b1d1",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a96-2b7b-7a62-9c17-5fec4a28a98f",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a97-eae5-76e0-af06-05efc00266b5",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a98-0315-7442-89b1-9eb499b60d06",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a9a-3784-7300-b79c-ba1f662f028c",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a9b-a6f0-75c0-8f85-15993849ec6d",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a9d-3219-75a2-938c-6e80fb1ed1b6",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17a9e-a9a9-73f1-a3cc-5dbfd0f138b1",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17aa0-a1dd-7cb3-a3cb-c84b6df3c9b8",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17aa2-f9da-7000-ac9e-3a8652d23a4a",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17aa4-7103-7ee2-a4e3-90e0fd7d3e81",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17aa6-3994-7973-a586-d9c88673a00f",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17aa8-2a23-7b20-b4e3-8d378ba1bbfc",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17aa9-efea-7991-bc8e-02d1e78f28ae",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17aaa-02b2-71b0-9033-1fd1360797f9",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17aab-d9e0-7923-b801-e8f6b08b4373",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17aac-7876-7433-80fd-1aa476c44dd8",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17aae-73b0-72e3-8943-1583017aa448",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17ab1-9d4e-7c03-813f-d520dedc4d94",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17ab3-a072-7d42-8467-a5e8770b4d91",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17ab5-3e19-7041-b040-2717888eccc6",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17ab5-4ca2-7a70-b55d-c88a5e220301",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17ab8-8a41-77d1-9c5b-43b58028f090",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17aba-aca0-7412-b9dd-0da3e1b8001c",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17abb-dfc9-7001-beba-6713c9a22061",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17abd-3836-7380-8af8-d88734d39bd0",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17abe-76cc-7250-844b-b6b7e0187cb1",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17abf-acff-7323-807e-efa83c966c8f",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17abf-c29a-75f3-8fe2-2984aaa0a6ff",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17ac1-0be9-7d00-bc7b-9b8b0097308d",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    }
+  ],
+  "totals": {
+    "estimated_usage_credits_micros": null,
+    "estimated_usage_usd_micros": null
+  },
+  "totals_status": "missing_thread_estimates",
+  "limitations": [
+    "These are provider estimates, not subscription invoices or a promise of quota availability.",
+    "Backend estimates may lag recent activity; repeat with a new output path after settlement.",
+    "Explicit thread IDs without a state file have no independently checked completion status.",
+    "Known-thread estimates cannot establish whole-task spend when a state ledger is incomplete.",
+    "Never add nested parent and child bills without a documented accounting boundary.",
+    "Cached tokens are included in input; token categories must not all be summed.",
+    "No inference compute, hardware, evaluator or human labor costs are added here."
+  ],
+  "sources": [
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/reset_expert/scikit-learn__scikit-learn-14141/state.json",
+      "sha256": "eb152e2970f3338f2b0f5e461315e7139d87dab592f776fea1967ce8ebb7b360",
+      "run_id": "04482ad2-f2d4-488f-b6b0-6c64ef088081",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/large/scikit-learn__scikit-learn-14141/state.json",
+      "sha256": "826a89cc254fc5aa2667d1dbc29865f13c46d185c41b208d212cc9e3346de0ad",
+      "run_id": "d761fd3c-6e5f-47c9-ae31-befd16ffda32",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/precall_router/scikit-learn__scikit-learn-14141/state.json",
+      "sha256": "41a207743a2a6755443c941d40d4ef38fc87dc9e19b2daee8a3e2652644778f1",
+      "run_id": "23c11602-58e9-43bf-85a9-75cdec9e9f0a",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/oneway/scikit-learn__scikit-learn-14141/state.json",
+      "sha256": "7d9c09d2c577a6efce4f14ac6f754b8325ee161889a61ad2eccad1c5c84844a7",
+      "run_id": "893b2432-c270-4191-9250-269db83c8ee3",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/small/scikit-learn__scikit-learn-14141/state.json",
+      "sha256": "5947a738854bebb69cb0077ea1eb58e5096c9f341ab2a6462209b3eb51aecff8",
+      "run_id": "48a2aac6-e66b-4736-ba97-309d3e38dc61",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/personal/scikit-learn__scikit-learn-14141/state.json",
+      "sha256": "57bdd473019fb6161d7cd2e4690235237e046e23a60d3742c7a4b84054cda1de",
+      "run_id": "81aee22f-88d8-4878-89f5-8d7ab84b7e0f",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/reset_expert/django__django-13297/state.json",
+      "sha256": "761f5089320abc217859f6c21fb3354917a85622a4ab29bf646d82dcc22d4794",
+      "run_id": "365ea166-0760-473e-9ab7-dbf52a7e2071",
+      "task_id": "django__django-13297",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/precall_router/django__django-13297/state.json",
+      "sha256": "7f632bc51deff1f7fbbe66f4093b10c1902a4857651267d0f2af27242d7f0a22",
+      "run_id": "bf6b19b0-2d72-4a8b-9241-70e69904327a",
+      "task_id": "django__django-13297",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/oneway/django__django-13297/state.json",
+      "sha256": "4389b7f068791d90d61710a40ed9f601ee200ec9d80650f03253384fe54900ea",
+      "run_id": "c4aadc93-8af7-4868-b701-fd1f87f7ed95",
+      "task_id": "django__django-13297",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/personal/django__django-13297/state.json",
+      "sha256": "67109c092284df45744c4bbdb3b4844df2f2e36f6002b7e7711eec58bc2b33ca",
+      "run_id": "5ac68c5c-ad30-47fb-9247-05e0c8911920",
+      "task_id": "django__django-13297",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/small/django__django-13297/state.json",
+      "sha256": "35693cc909f15bca5d106209635e65f01d04a81f8df6e933b192dbac5e774d09",
+      "run_id": "21920cc6-35b5-417d-8898-e17c6ddb1cca",
+      "task_id": "django__django-13297",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/large/django__django-13297/state.json",
+      "sha256": "8ffe84770f6993d674be85a13069a74290feb00afb37fe9aade7266f4a0295f4",
+      "run_id": "48fa9041-1b57-430f-bd48-9a71e92b4171",
+      "task_id": "django__django-13297",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/small/pydata__xarray-3095/state.json",
+      "sha256": "3316934bf98fd1152e8fcfa75016f3cfa4c7b208fa0f0700869419e790b29502",
+      "run_id": "c993c7e0-1495-448f-b28d-2532fbe37f99",
+      "task_id": "pydata__xarray-3095",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/oneway/pydata__xarray-3095/state.json",
+      "sha256": "4bb25a1c7d002930e67dae48f487ac40257af3aa7860813c1c25947183bdc788",
+      "run_id": "ef51d90f-d62d-4ade-b4fc-d5955b9a0c52",
+      "task_id": "pydata__xarray-3095",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/personal/pydata__xarray-3095/state.json",
+      "sha256": "8280aec121e6f55fbc4d05f90a7f46095183d4f40b3ffdd552f266b42ab30ae2",
+      "run_id": "12ac0119-e73e-48c9-9167-54d5041393c1",
+      "task_id": "pydata__xarray-3095",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/reset_expert/pydata__xarray-3095/state.json",
+      "sha256": "acf17808852ea6f44f55af0bd43bf9f49d445ee7540cc0517c0a9696d0df0804",
+      "run_id": "ccbd793e-5d2d-4392-92a1-fe1a4d8459ae",
+      "task_id": "pydata__xarray-3095",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/large/pydata__xarray-3095/state.json",
+      "sha256": "5a02befc0155b8d06ab086d50e4e8cdbd6de7ab81240dac46d5fed8b5995d843",
+      "run_id": "d5212935-f1bd-48e5-a8af-eeeca9837510",
+      "task_id": "pydata__xarray-3095",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/precall_router/pydata__xarray-3095/state.json",
+      "sha256": "fcba0807ac1b085643e37b885665d89c1824a4d84ff424f1ef6da69e92913a84",
+      "run_id": "9eeb047d-a1d9-488a-9efc-461d27e303ee",
+      "task_id": "pydata__xarray-3095",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/personal/django__django-15037/state.json",
+      "sha256": "a6b3acfcbb21c9e6d21e3ed8ed9c7e1b4b83de9f01bde897c81c387104d492f0",
+      "run_id": "d2a0ecb1-90c2-4c2c-8c60-beec0da90c29",
+      "task_id": "django__django-15037",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/precall_router/django__django-15037/state.json",
+      "sha256": "6b1b7fee171082835bcff274da88bb15fbd270832b0dd78321260f7943ce7347",
+      "run_id": "0377e71c-455e-4634-9b60-c2ed0da69094",
+      "task_id": "django__django-15037",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/large/django__django-15037/state.json",
+      "sha256": "603c03f1d02811fb4a4a3269aea3b336ee4f6adf1fb2174c03f9dc7191d43382",
+      "run_id": "25c4bda8-6658-4e36-b7ac-a391e3827cec",
+      "task_id": "django__django-15037",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/oneway/django__django-15037/state.json",
+      "sha256": "629e561af05ace66b8041acf744f1fbb07033aecba2f1da3ed5e0cfb9a5e4ce0",
+      "run_id": "6722105e-2936-4057-80cf-2ec4d92edb34",
+      "task_id": "django__django-15037",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/reset_expert/django__django-15037/state.json",
+      "sha256": "b9f5e046f462910f96bbc1b6eb041c51f0068df6d80b228dfff7c97b60969a49",
+      "run_id": "5bcdb51b-e72a-4df6-b315-da076e761280",
+      "task_id": "django__django-15037",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/small/django__django-15037/state.json",
+      "sha256": "b6db73a4174c30f361477cce37b892b15efc073fb89ee034f62af831ff2684d2",
+      "run_id": "c5fdba42-359d-4210-82e7-4fc1e9bc4182",
+      "task_id": "django__django-15037",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/large/psf__requests-5414/state.json",
+      "sha256": "5511c4fafe2d3d75bae3744acc97b8b4d83ab904859eff709dcad591cd49f126",
+      "run_id": "b708938a-193b-46ad-8ff5-408888a43260",
+      "task_id": "psf__requests-5414",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/small/psf__requests-5414/state.json",
+      "sha256": "0e84792445b422cc361ace57cb02bdaea9073911b4c48226ea5f038abce8701c",
+      "run_id": "7899835a-a861-4358-8ef3-15678241bb82",
+      "task_id": "psf__requests-5414",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/reset_expert/psf__requests-5414/state.json",
+      "sha256": "311c89f55a9c7c82b8c98dc23886670e1aaf56f6f7658b23b28935b5111f7293",
+      "run_id": "244d1176-5ba4-40b9-8105-a316153cbaa2",
+      "task_id": "psf__requests-5414",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/personal/psf__requests-5414/state.json",
+      "sha256": "1dc5e7943e43708cb8809be535abebc01430c559c6eb56c628bd3c105912ff0f",
+      "run_id": "c29e507f-238a-49bd-b428-d0cf58cd5fe9",
+      "task_id": "psf__requests-5414",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/oneway/psf__requests-5414/state.json",
+      "sha256": "e7c844685218bfa8a23755efd54e59cd3cc54162baeb743936a851385152b5af",
+      "run_id": "983a933e-04b9-4d08-91ea-bff3cf0ac53a",
+      "task_id": "psf__requests-5414",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/precall_router/psf__requests-5414/state.json",
+      "sha256": "2a3fd834223b6e1206f1a80e7dbac6b299fdf25575eea70287f72ae691dc574c",
+      "run_id": "827512c6-c71d-494a-820e-3203fdc960be",
+      "task_id": "psf__requests-5414",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/large/sympy__sympy-17139/state.json",
+      "sha256": "93d0a39bb25eaf10c3650c3bcedd08971fc9cebfbf718f3b351d3567fa379d94",
+      "run_id": "b2d87701-50fa-4e8f-9aec-3b6880c7a318",
+      "task_id": "sympy__sympy-17139",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/personal/sympy__sympy-17139/state.json",
+      "sha256": "97c8d9cb46713c6bf6ea007564298ccae9a33ac8a0fed261451fb9e1f5e69dab",
+      "run_id": "afe3157d-155c-4916-a0b5-abb9d050d69e",
+      "task_id": "sympy__sympy-17139",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/precall_router/sympy__sympy-17139/state.json",
+      "sha256": "445b3804e79a3d35648e6c63ef5fc188020ad523122f3214be820778758d1e84",
+      "run_id": "c8cb8763-83ec-4846-aa41-c7ae90a8d19c",
+      "task_id": "sympy__sympy-17139",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/reset_expert/sympy__sympy-17139/state.json",
+      "sha256": "23726f702246d2c8aea5402e2f26077418f7ac5314ffa2ecdb45a95e232a725a",
+      "run_id": "0daaedb5-76a5-4c95-a7ef-196c10955969",
+      "task_id": "sympy__sympy-17139",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/small/sympy__sympy-17139/state.json",
+      "sha256": "2b810fc253cbe220dcee75c0c1bd977327b9183b4b5fd4860aeee3ffaaae7527",
+      "run_id": "aed6b4e5-102c-4e0e-8ab4-8d77c45b4558",
+      "task_id": "sympy__sympy-17139",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/oneway/sympy__sympy-17139/state.json",
+      "sha256": "f3170b8e85ccf31b8de41900d0c89faf15586586e73264ec8a14b5a2e65fdca2",
+      "run_id": "340cfd6a-bfa5-47c6-bd9f-533a15cabb00",
+      "task_id": "sympy__sympy-17139",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/personal/astropy__astropy-12907/state.json",
+      "sha256": "3e733260b9f196c36a3eab9903b78d3d6e5ec019981ff584906ebdfa62bcb966",
+      "run_id": "e1a5c56a-5c1c-46e8-9aba-cd4ed5b6ffe0",
+      "task_id": "astropy__astropy-12907",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/small/astropy__astropy-12907/state.json",
+      "sha256": "748e79baca6b049cbd2a5948382ca74818bbb4fb4455c3a29681b561f0efeb43",
+      "run_id": "0e1d16c1-7a03-4574-9925-4cd0efadb877",
+      "task_id": "astropy__astropy-12907",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/large/astropy__astropy-12907/state.json",
+      "sha256": "7397266b5f46d3f01f4400883961aa68e012c34e10600a06b9546cb3088f8d92",
+      "run_id": "3f608b0b-4d0c-4e1d-a616-b209141ede24",
+      "task_id": "astropy__astropy-12907",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/precall_router/astropy__astropy-12907/state.json",
+      "sha256": "fe4701a277d0b9f9f2d4b82c1dc833a448b037d3d097ce1c3c4d594b2e2e095f",
+      "run_id": "9731d5b8-892d-4274-a077-90254029d51d",
+      "task_id": "astropy__astropy-12907",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/oneway/astropy__astropy-12907/state.json",
+      "sha256": "00c371693610e92607357be51d348fa93d57892e934b21b8a25b8517278ef6d1",
+      "run_id": "a2675c76-51f7-48f4-8d54-f9d6273ddfcc",
+      "task_id": "astropy__astropy-12907",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/reset_expert/astropy__astropy-12907/state.json",
+      "sha256": "92918fdd9dbd6b79d05dc1f4435eacd5dd159f7c99087e07ba9553b3d6a34089",
+      "run_id": "10767c8a-32a9-4be5-b209-a56bf5cf387b",
+      "task_id": "astropy__astropy-12907",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/small/mwaskom__seaborn-3069/state.json",
+      "sha256": "18653342dbcf970ffc3a8ce5b9da3ebc5d3397b46eb93a3ad392f2ad68ee5039",
+      "run_id": "1c864ef6-84ad-4b77-a22c-2cde444ffa16",
+      "task_id": "mwaskom__seaborn-3069",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/large/mwaskom__seaborn-3069/state.json",
+      "sha256": "f721a0602f8ff8c411865f88db0a38a65a802391e6252afbcaaf189fa7b85188",
+      "run_id": "986c4d16-82c6-4143-8f91-530397800a03",
+      "task_id": "mwaskom__seaborn-3069",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/personal/mwaskom__seaborn-3069/state.json",
+      "sha256": "d908ead38d80b05e3268f4b6a1ca40c1464f05c5f49e762301cd3609f6d1fe87",
+      "run_id": "9887e55f-141b-45dc-94f0-66fab0642612",
+      "task_id": "mwaskom__seaborn-3069",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/oneway/mwaskom__seaborn-3069/state.json",
+      "sha256": "49a6c9640c3d13f2ed7290d3f25834bd9cd226b8ce86ccccd19233d30b27795d",
+      "run_id": "cb5e475a-9469-4e38-88e6-6a91472da836",
+      "task_id": "mwaskom__seaborn-3069",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/precall_router/mwaskom__seaborn-3069/state.json",
+      "sha256": "dcc7027ddcd9c1971503b5b1cc4e22ee73a90dc1e39e77895ec921a3c6847b6f",
+      "run_id": "0d331fb3-8476-47f0-9ab3-85f68642ee0e",
+      "task_id": "mwaskom__seaborn-3069",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/reset_expert/mwaskom__seaborn-3069/state.json",
+      "sha256": "2575f60ee1a2014d712159ecedaeb563f6e412d9b4a9cf3ef8908827673ec40e",
+      "run_id": "a163d2ce-4883-4f11-9382-713f985f7280",
+      "task_id": "mwaskom__seaborn-3069",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/large/django__django-17084/state.json",
+      "sha256": "3c1ee420f7f1ff8ddeb0110917d23e0a7f37d8dd28f397b7a8770079f900786e",
+      "run_id": "921e12ef-1c4a-47d7-bd6e-8d5a800f737b",
+      "task_id": "django__django-17084",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/precall_router/django__django-17084/state.json",
+      "sha256": "fd8a7d5ab7f08dd976785a393bd580f397bf99efaa30b069f116ccf4f209101b",
+      "run_id": "3891c9ac-190c-4c65-b97b-91eaae96941d",
+      "task_id": "django__django-17084",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/small/django__django-17084/state.json",
+      "sha256": "676ac6cd583ac82ec665fc749f78a6d22933c5fff61903f963e76ab06993a860",
+      "run_id": "db213219-e187-405f-af79-98469f6f24d7",
+      "task_id": "django__django-17084",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/reset_expert/django__django-17084/state.json",
+      "sha256": "216adb4974016a421ad633f74300af99e67aa33f1b81e161696431775eb2d0f5",
+      "run_id": "db24cd9b-318b-4100-906d-df9ccefb4c72",
+      "task_id": "django__django-17084",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/personal/django__django-17084/state.json",
+      "sha256": "a7f0781225e9c86ae05e8694376d296760affe979881929e8ebbe222c5949451",
+      "run_id": "b8e2c141-4728-4203-a70e-09d0a4e7792c",
+      "task_id": "django__django-17084",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/oneway/django__django-17084/state.json",
+      "sha256": "1cae8ad4e1cbd89d3c100909dbe2c0832eda84b12bba8f14c7414dc9cf6eb57c",
+      "run_id": "b0e706ed-ae28-453a-a6c9-5b8e4443f255",
+      "task_id": "django__django-17084",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/large/django__django-13121/state.json",
+      "sha256": "2b095e262ce7f74b2137ef3a6c6e2568e60c3f7c442609eb35fb3c3c17ee4cac",
+      "run_id": "5ef1ecb5-1180-4a64-a907-0903b4012085",
+      "task_id": "django__django-13121",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/personal/django__django-13121/state.json",
+      "sha256": "c0b71df0850d72ac447bdf42ec455301182be92b8993cc4a9675b2b521c13aaa",
+      "run_id": "35fb118d-b852-4fbf-9fae-e3944a1d9cf1",
+      "task_id": "django__django-13121",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/reset_expert/django__django-13121/state.json",
+      "sha256": "0d89ef7ac17b9bf764c6b4d54126a91fe4ab87b495c64812beeaf532bf2311d1",
+      "run_id": "8761c451-1f15-4c63-8825-8e7c6d30ce88",
+      "task_id": "django__django-13121",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/small/django__django-13121/state.json",
+      "sha256": "3efa813d23d4fdd1ddd250e493b7cc0798a5a47b4c0c15c6d4c8300af8903245",
+      "run_id": "6340966d-74b6-40e4-9cfb-dcae772ba100",
+      "task_id": "django__django-13121",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/oneway/django__django-13121/state.json",
+      "sha256": "f93ff7ea36e0d9147a244bf252ed3684626ac71701a75a7b8b9bd5334dd0b75c",
+      "run_id": "5abc6852-2309-4ad1-86d9-e961d5c9dafd",
+      "task_id": "django__django-13121",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/precall_router/django__django-13121/state.json",
+      "sha256": "661aa9d8e44a4980abdcd8e9c0b91b2f2847eb96a9a1608cdc11a7d168ab17e7",
+      "run_id": "12fbde81-1f42-4743-9f41-404fcbf06215",
+      "task_id": "django__django-13121",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/reset_expert/pydata__xarray-7229/state.json",
+      "sha256": "65184945fe8e12bbe5c4926cbcf6dae522843193480ded1ca78ffc0dc10a0726",
+      "run_id": "87382de7-2fe8-46c2-9b5b-9e3c02d84be8",
+      "task_id": "pydata__xarray-7229",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/large/pydata__xarray-7229/state.json",
+      "sha256": "c19153ebb48d04162ee840a4f8d0d9e2f799c95a8e0641a231899045eef276a8",
+      "run_id": "83a37198-5252-4be5-8459-73d14c11fc82",
+      "task_id": "pydata__xarray-7229",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/small/pydata__xarray-7229/state.json",
+      "sha256": "8c025b8550db47896c1b996c3e4abd90c9c7615bcb099797ceaf747c3035b6d7",
+      "run_id": "219d8f92-766b-4705-b57d-443cf05cb8b9",
+      "task_id": "pydata__xarray-7229",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/personal/pydata__xarray-7229/state.json",
+      "sha256": "dec28e3ccdfa13fd169666a23ecf777f3b356a7e7ddfa6aa4c0ad7cea100d876",
+      "run_id": "c2c36112-c1ec-40b8-b4c5-389cbaae05c0",
+      "task_id": "pydata__xarray-7229",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/precall_router/pydata__xarray-7229/state.json",
+      "sha256": "6a7be8e7bcc8bab5c970096973dabea6787e5177bed432ab752ccdd9b36baf35",
+      "run_id": "8a113de4-8a85-4376-b138-57d7fd85040c",
+      "task_id": "pydata__xarray-7229",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/oneway/pydata__xarray-7229/state.json",
+      "sha256": "8d7ee6be891900e714d738bec93a4dceb30bcf38fc0d9d463d6756345dd54641",
+      "run_id": "893b8978-79fb-4473-a27f-a8ec415a9e93",
+      "task_id": "pydata__xarray-7229",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/small/sphinx-doc__sphinx-9230/state.json",
+      "sha256": "c2a20c625f6a3eec10f99e4e12109b423f498aaa0c6a1c1e2178ea8001ece71c",
+      "run_id": "d6e7d39b-5751-41ed-ab69-79292c6b4482",
+      "task_id": "sphinx-doc__sphinx-9230",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/personal/sphinx-doc__sphinx-9230/state.json",
+      "sha256": "1bb527edc83b1e81784a12fff37a20a9c52bed1014dcf997c36d22b19aa76230",
+      "run_id": "60c6d309-0383-434a-97fd-73620e4a7765",
+      "task_id": "sphinx-doc__sphinx-9230",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/oneway/sphinx-doc__sphinx-9230/state.json",
+      "sha256": "9fd9bfccb76597820695f808e4afb9f6d10ea5a6cd4ce00345642f8095a420f3",
+      "run_id": "f23f6c4c-03bb-4800-96ec-7570696cb71b",
+      "task_id": "sphinx-doc__sphinx-9230",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/reset_expert/sphinx-doc__sphinx-9230/state.json",
+      "sha256": "a4f0a60462163ce8d24a243be1296747c9cd9f570a11923dec5f23baf6d44fb9",
+      "run_id": "9e4dd437-1adc-46a0-992f-4d2b4ae5ea64",
+      "task_id": "sphinx-doc__sphinx-9230",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/precall_router/sphinx-doc__sphinx-9230/state.json",
+      "sha256": "4b5731fa9b0b59628bf3cc925d26101815d372ba5ecf8bbb9ec7c1c2bc600b7b",
+      "run_id": "cb06ae94-1d7d-4211-bbdd-27ecdcc72942",
+      "task_id": "sphinx-doc__sphinx-9230",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/runs/large/sphinx-doc__sphinx-9230/state.json",
+      "sha256": "9a73613b07e5f3b3fdc2fc0a50ea15d325e32db2325067542694dfe3ae745de9",
+      "run_id": "e2ecaccb-e912-460a-83a1-c42f5836d667",
+      "task_id": "sphinx-doc__sphinx-9230",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    }
+  ]
+}

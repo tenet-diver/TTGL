@@ -1,0 +1,103 @@
+{
+  "status": "descriptive_feasibility_analysis",
+  "assigned_tasks": 4,
+  "seed": 1729,
+  "reference": "large",
+  "arms": {
+    "small": {
+      "assigned": 4,
+      "graded": 4,
+      "resolved": 3,
+      "ungraded": 0,
+      "resolved_per_assigned": 0.75,
+      "mean_wall_seconds": 50.313227407750674,
+      "total_cost_usd": null,
+      "cost_per_assigned_usd": null,
+      "cost_per_resolved_usd": null,
+      "reported_expert_calls": 0,
+      "expert_call_count_complete": true
+    },
+    "large": {
+      "assigned": 4,
+      "graded": 4,
+      "resolved": 4,
+      "ungraded": 0,
+      "resolved_per_assigned": 1.0,
+      "mean_wall_seconds": 89.88814648473635,
+      "total_cost_usd": null,
+      "cost_per_assigned_usd": null,
+      "cost_per_resolved_usd": null,
+      "reported_expert_calls": 0,
+      "expert_call_count_complete": true
+    },
+    "personal": {
+      "assigned": 4,
+      "graded": 4,
+      "resolved": 3,
+      "ungraded": 0,
+      "resolved_per_assigned": 0.75,
+      "mean_wall_seconds": 33.991021923022345,
+      "total_cost_usd": null,
+      "cost_per_assigned_usd": null,
+      "cost_per_resolved_usd": null,
+      "reported_expert_calls": 0,
+      "expert_call_count_complete": true
+    }
+  },
+  "paired_differences": {
+    "small": {
+      "status": "descriptive_only",
+      "quality_difference": -0.25,
+      "bootstrap_percentile_95": [
+        -0.75,
+        0.0
+      ],
+      "discordant_tasks": 1,
+      "warning": "Tiny-sample bootstrap can be degenerate; a zero-width interval does not establish equivalence"
+    },
+    "personal": {
+      "status": "descriptive_only",
+      "quality_difference": -0.25,
+      "bootstrap_percentile_95": [
+        -0.75,
+        0.0
+      ],
+      "discordant_tasks": 1,
+      "warning": "Tiny-sample bootstrap can be degenerate; a zero-width interval does not establish equivalence"
+    }
+  },
+  "limitations": [
+    "Not a powered confirmatory evaluation",
+    "Task bootstrap is conditional on the chosen issues, which may share repositories or bug families",
+    "Models may have seen public tasks",
+    "Unknown prices and usage remain null",
+    "Wall time includes orchestration and contention"
+  ],
+  "cost_definition": "API-equivalent model cost, not subscription bill, quota consumption, or full deployment cost",
+  "savings": {
+    "small": {
+      "status": "unavailable_missing_costs",
+      "estimated_savings_fraction": null
+    },
+    "personal": {
+      "status": "unavailable_missing_costs",
+      "estimated_savings_fraction": null
+    }
+  },
+  "estimated_subscription_credit_savings": {
+    "small": {
+      "status": "unavailable_missing_costs",
+      "estimated_savings_fraction": null
+    },
+    "personal": {
+      "status": "unavailable_missing_costs",
+      "estimated_savings_fraction": null
+    }
+  },
+  "provenance": {
+    "design_sha256": "fbff899ff348a1d00316e760d975565f4503374cd8c96f908d51967779ca957c",
+    "grade_index_sha256": "07b83e75ea2bc40dcda39cde65cf3414d416751948d9967a6a1169b1537a1a8e",
+    "prices_sha256": null,
+    "provider_usage_sha256": "1ac1099c0652d21d242682e51e4f13dada80bbcbd58e910c74ad21297b7484c0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "instance_id": "django__django-13297",
+  "model_name_or_path": "ttgl-personal",
+  "model_patch": "diff --git a/django/views/generic/base.py b/django/views/generic/base.py\nindex ea5baca..0f9531a 100644\n--- a/django/views/generic/base.py\n+++ b/django/views/generic/base.py\n@@ -159,8 +159,14 @@ class TemplateView(TemplateResponseMixin, ContextMixin, View):\n     def get(self, request, *args, **kwargs):\n         # RemovedInDjango40Warning: when the deprecation ends, replace with:\n         #   context = self.get_context_data()\n-        context_kwargs = _wrap_url_kwargs_with_deprecation_warning(kwargs)\n-        context = self.get_context_data(**context_kwargs)\n+        context = self.get_context_data(**kwargs)\n+        # Warn only for URL kwargs that are passed through to the template\n+        # context. Keep the original values available to get_context_data().\n+        context_kwargs = {\n+            key: value for key, value in kwargs.items()\n+            if key in context and context[key] is value\n+        }\n+        context.update(_wrap_url_kwargs_with_deprecation_warning(context_kwargs))\n         return self.render_to_response(context)\n \n \n",
+  "manifest_sha256": "dc11b4cbaad10433d4fd30b8e45af6e4cf108dbba44174680fac2e7fa1fb5842",
+  "patch_sha256": "8f97183ab628ad2bdbae1ec59ea0339dbe239f2d880f2ee75573dea2d34c7675",
+  "status": "completed_ungraded",
+  "preparation_seconds": 19.086074925027788,
+  "assignment_wall_seconds": 120.2621521820547
+}

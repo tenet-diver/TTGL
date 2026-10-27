@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-precall_router-django__django-17084-e7de48a3-d7b057b31b33",
+  "prediction_sha256": "68282745c2bbc8d19240474767c5b360052b1cc739006c248310a30b08922869",
+  "model_patch_sha256": "e7de48a3bf538a157131a382a84b571af65412a0d4ca4100b1c8bdb02505d06a",
+  "patch_record_sha256": "2141f2ffdfd64b219d4011924f89a43296d0690cbdc838e5f403faa52834fba3",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "19a99afeb913aa03f7676ad157e498c778365e29b72672f3b67dd2913c5fe39f",
+  "timeout_seconds": 1200
+}

@@ -1,0 +1,10 @@
+{
+  "instance_id": "sphinx-doc__sphinx-9230",
+  "model_name_or_path": "ttgl-oneway",
+  "model_patch": "diff --git a/sphinx/util/docfields.py b/sphinx/util/docfields.py\nindex 3a3367e..02a82c1 100644\n--- a/sphinx/util/docfields.py\n+++ b/sphinx/util/docfields.py\n@@ -297,11 +297,21 @@ class DocFieldTransformer:\n \n             # also support syntax like ``:param type name:``\n             if typedesc.is_typed:\n-                try:\n-                    argtype, argname = fieldarg.split(None, 1)\n-                except ValueError:\n-                    pass\n-                else:\n+                # Split only at whitespace outside parentheses, so types such\n+                # as ``dict(str, str)`` remain intact.\n+                depth = 0\n+                separator = None\n+                for index, char in enumerate(fieldarg):\n+                    if char == '(':\n+                        depth += 1\n+                    elif char == ')':\n+                        depth = max(0, depth - 1)\n+                    elif char.isspace() and depth == 0:\n+                        separator = index\n+                        break\n+                if separator is not None:\n+                    argtype = fieldarg[:separator]\n+                    argname = fieldarg[separator:].strip()\n                     types.setdefault(typename, {})[argname] = \\\n                         [nodes.Text(argtype)]\n                     fieldarg = argname\n",
+  "manifest_sha256": "ff6c636cdbf989167f1e0cf44b03886c4d21508f30cb826ac3afd403ca9857aa",
+  "patch_sha256": "68a70179570e8e7347c057094b31d483d7973b08402f0a71a8e24ac5bc2a964a",
+  "status": "completed_ungraded",
+  "preparation_seconds": 9.308044945006259,
+  "assignment_wall_seconds": 45.890433063032106
+}

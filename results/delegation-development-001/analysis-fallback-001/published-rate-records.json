@@ -1,0 +1,326 @@
+[
+  {
+    "task_id": "scikit-learn__scikit-learn-14141",
+    "arm": "small",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6-luna",
+    "resolved": true,
+    "grader_report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191",
+    "manifest_sha256": "d59503c0f786213af8c26bc38c582f121350ef9f0491e6b2de2377c6c317a1d5",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 21.400640519103035,
+    "expert_calls": 0,
+    "input_tokens": 205047,
+    "output_tokens": 802,
+    "cost_usd": 0.00515786,
+    "cost_source": "https://help.openai.com/en/articles/20001415-chatgpt-rate-card-enterprise-token-based-pricing",
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    },
+    "cost_kind": "published_codex_standard_token_rate_scenario"
+  },
+  {
+    "task_id": "scikit-learn__scikit-learn-14141",
+    "arm": "large",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6.1-sol",
+    "resolved": true,
+    "grader_report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191",
+    "manifest_sha256": "e92e7b344724ef2204a118ff48666f2376379557ee079c64ab3caf848d6c1f18",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 38.347666147048585,
+    "expert_calls": 0,
+    "input_tokens": 90563,
+    "output_tokens": 947,
+    "cost_usd": 0.0573224,
+    "cost_source": "https://help.openai.com/en/articles/20001415-chatgpt-rate-card-enterprise-token-based-pricing",
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    },
+    "cost_kind": "published_codex_standard_token_rate_scenario"
+  },
+  {
+    "task_id": "scikit-learn__scikit-learn-14141",
+    "arm": "personal",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6-luna",
+    "resolved": true,
+    "grader_report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191",
+    "manifest_sha256": "859bc047b5bcd5e1e86c696ab6872cdb69a46ba126f7bdb5dee7918fa12f293e",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 18.96354405907914,
+    "expert_calls": 0,
+    "input_tokens": 117380,
+    "output_tokens": 615,
+    "cost_usd": 0.0033939800000000004,
+    "cost_source": "https://help.openai.com/en/articles/20001415-chatgpt-rate-card-enterprise-token-based-pricing",
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    },
+    "cost_kind": "published_codex_standard_token_rate_scenario"
+  },
+  {
+    "task_id": "django__django-13297",
+    "arm": "small",
+    "status": "protocol_failed",
+    "model_id": "gpt-6-luna",
+    "resolved": false,
+    "grader_report_sha256": "c1dd575315f0d17b11d6ab9d09ddd58a03676014b9cae94a19300fb3e06c6fd6",
+    "manifest_sha256": "9f91612332aa13986e2d40af59df389aa36d70ca8238b61f068aed6f5ece3d28",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 34.85482220095582,
+    "expert_calls": 0,
+    "input_tokens": 140171,
+    "output_tokens": 1899,
+    "cost_usd": 0.004287559999999999,
+    "cost_source": "https://help.openai.com/en/articles/20001415-chatgpt-rate-card-enterprise-token-based-pricing",
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    },
+    "cost_kind": "published_codex_standard_token_rate_scenario"
+  },
+  {
+    "task_id": "django__django-13297",
+    "arm": "large",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6.1-sol",
+    "resolved": true,
+    "grader_report_sha256": "880ffaefa81e80d2c225e2de289e292483cf2a17eafe11c7b0bd0f4610392737",
+    "manifest_sha256": "8a032de8b5727904d0527dd0ef9a8f1601ea4674d4cada374c950e163a884f5c",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 118.0701764310943,
+    "expert_calls": 0,
+    "input_tokens": 292522,
+    "output_tokens": 3009,
+    "cost_usd": 0.16643,
+    "cost_source": "https://help.openai.com/en/articles/20001415-chatgpt-rate-card-enterprise-token-based-pricing",
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    },
+    "cost_kind": "published_codex_standard_token_rate_scenario"
+  },
+  {
+    "task_id": "django__django-13297",
+    "arm": "personal",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6-luna",
+    "resolved": true,
+    "grader_report_sha256": "880ffaefa81e80d2c225e2de289e292483cf2a17eafe11c7b0bd0f4610392737",
+    "manifest_sha256": "15dea19afb30270ae3715fb356b625803f5ac44d4142b34c5c2d99f98e2c8756",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 96.9613893199712,
+    "expert_calls": 1,
+    "input_tokens": 348609,
+    "output_tokens": 4178,
+    "cost_usd": 0.039445179999999996,
+    "cost_source": "https://help.openai.com/en/articles/20001415-chatgpt-rate-card-enterprise-token-based-pricing",
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    },
+    "cost_kind": "published_codex_standard_token_rate_scenario"
+  },
+  {
+    "task_id": "pydata__xarray-3095",
+    "arm": "small",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6-luna",
+    "resolved": true,
+    "grader_report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc",
+    "manifest_sha256": "9c9dbe2a8b010faf950185435e3126f60a5cc4ee1712aeec1f0cdbc8b38f812f",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 45.37772735906765,
+    "expert_calls": 0,
+    "input_tokens": 198492,
+    "output_tokens": 1600,
+    "cost_usd": 0.00592664,
+    "cost_source": "https://help.openai.com/en/articles/20001415-chatgpt-rate-card-enterprise-token-based-pricing",
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    },
+    "cost_kind": "published_codex_standard_token_rate_scenario"
+  },
+  {
+    "task_id": "pydata__xarray-3095",
+    "arm": "large",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6.1-sol",
+    "resolved": true,
+    "grader_report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc",
+    "manifest_sha256": "c723b8d6639ba4a0e5de4be3d5681a5d7a2437023f2c2cbace91d15652f7e2d3",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 114.08481053099968,
+    "expert_calls": 0,
+    "input_tokens": 218391,
+    "output_tokens": 2388,
+    "cost_usd": 0.1306396,
+    "cost_source": "https://help.openai.com/en/articles/20001415-chatgpt-rate-card-enterprise-token-based-pricing",
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    },
+    "cost_kind": "published_codex_standard_token_rate_scenario"
+  },
+  {
+    "task_id": "pydata__xarray-3095",
+    "arm": "personal",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6-luna",
+    "resolved": true,
+    "grader_report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc",
+    "manifest_sha256": "2ebd4ed7e6b49a8e325977b4d4f5fc93ae162cf3c2eab5b24e3f8157b6349d29",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 56.37117709196173,
+    "expert_calls": 0,
+    "input_tokens": 293613,
+    "output_tokens": 1811,
+    "cost_usd": 0.007318960000000001,
+    "cost_source": "https://help.openai.com/en/articles/20001415-chatgpt-rate-card-enterprise-token-based-pricing",
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    },
+    "cost_kind": "published_codex_standard_token_rate_scenario"
+  },
+  {
+    "task_id": "django__django-15037",
+    "arm": "small",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6-luna",
+    "resolved": true,
+    "grader_report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07",
+    "manifest_sha256": "11f6aac778585b4a1ca5d728097345e5b29e0cb0fb0e838ef61fa828fe53a275",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 32.80599688598886,
+    "expert_calls": 0,
+    "input_tokens": 154862,
+    "output_tokens": 1328,
+    "cost_usd": 0.00519468,
+    "cost_source": "https://help.openai.com/en/articles/20001415-chatgpt-rate-card-enterprise-token-based-pricing",
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    },
+    "cost_kind": "published_codex_standard_token_rate_scenario"
+  },
+  {
+    "task_id": "django__django-15037",
+    "arm": "large",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6.1-sol",
+    "resolved": true,
+    "grader_report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07",
+    "manifest_sha256": "8b666a4873aa7754f86791097c3e046aa2347240377dd0a74eecc3565cbe672e",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 101.79660860390868,
+    "expert_calls": 0,
+    "input_tokens": 267644,
+    "output_tokens": 3078,
+    "cost_usd": 0.1458184,
+    "cost_source": "https://help.openai.com/en/articles/20001415-chatgpt-rate-card-enterprise-token-based-pricing",
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    },
+    "cost_kind": "published_codex_standard_token_rate_scenario"
+  },
+  {
+    "task_id": "django__django-15037",
+    "arm": "personal",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6-luna",
+    "resolved": true,
+    "grader_report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07",
+    "manifest_sha256": "3fac2234a3b9180411c675a7f99862c4cc95ec4370058dfa7caa98a93c6a609b",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 31.00522847205866,
+    "expert_calls": 0,
+    "input_tokens": 154046,
+    "output_tokens": 1291,
+    "cost_usd": 0.00431122,
+    "cost_source": "https://help.openai.com/en/articles/20001415-chatgpt-rate-card-enterprise-token-based-pricing",
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    },
+    "cost_kind": "published_codex_standard_token_rate_scenario"
+  }
+]

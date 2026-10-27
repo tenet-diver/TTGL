@@ -1,0 +1,314 @@
+[
+  {
+    "task_id": "scikit-learn__scikit-learn-14141",
+    "arm": "small",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6-luna",
+    "resolved": true,
+    "grader_report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191",
+    "manifest_sha256": "8a718ab4310a2d16a11bfa97e1cca885ff4a92349d24c49613fb32a54667572e",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 21.22324095701333,
+    "expert_calls": 0,
+    "input_tokens": 104572,
+    "output_tokens": 831,
+    "cost_usd": null,
+    "cost_source": null,
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    }
+  },
+  {
+    "task_id": "scikit-learn__scikit-learn-14141",
+    "arm": "large",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6.1-sol",
+    "resolved": true,
+    "grader_report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191",
+    "manifest_sha256": "e27ffa72eb19f90767893eca003fa506355ef2c3136c997a020484aef882870d",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 50.58774361398537,
+    "expert_calls": 0,
+    "input_tokens": 109655,
+    "output_tokens": 1007,
+    "cost_usd": null,
+    "cost_source": null,
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    }
+  },
+  {
+    "task_id": "scikit-learn__scikit-learn-14141",
+    "arm": "personal",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6-luna",
+    "resolved": true,
+    "grader_report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191",
+    "manifest_sha256": "8e4e1dd66c10b5199136e79844a0ce037d44b4ac6c5db8fdaf95ae0f61394231",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 17.11258546297904,
+    "expert_calls": 0,
+    "input_tokens": 121815,
+    "output_tokens": 639,
+    "cost_usd": null,
+    "cost_source": null,
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    }
+  },
+  {
+    "task_id": "django__django-13297",
+    "arm": "small",
+    "status": "protocol_failed",
+    "model_id": "gpt-6-luna",
+    "resolved": false,
+    "grader_report_sha256": "c1dd575315f0d17b11d6ab9d09ddd58a03676014b9cae94a19300fb3e06c6fd6",
+    "manifest_sha256": "60805f7c708171d49440e211227aa93ca31238a422b772a41cb8cd380df46e6e",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 56.05824056698475,
+    "expert_calls": 0,
+    "input_tokens": 258197,
+    "output_tokens": 2737,
+    "cost_usd": null,
+    "cost_source": null,
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    }
+  },
+  {
+    "task_id": "django__django-13297",
+    "arm": "large",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6.1-sol",
+    "resolved": true,
+    "grader_report_sha256": "880ffaefa81e80d2c225e2de289e292483cf2a17eafe11c7b0bd0f4610392737",
+    "manifest_sha256": "88ecbe431010f915eb5c6702a0addf91c2eb4f7c3c1caa0ece0b13ddc3c8cc38",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 131.01137178600766,
+    "expert_calls": 0,
+    "input_tokens": 394993,
+    "output_tokens": 3125,
+    "cost_usd": null,
+    "cost_source": null,
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    }
+  },
+  {
+    "task_id": "django__django-13297",
+    "arm": "personal",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6-luna",
+    "resolved": false,
+    "grader_report_sha256": "c1dd575315f0d17b11d6ab9d09ddd58a03676014b9cae94a19300fb3e06c6fd6",
+    "manifest_sha256": "276fd726cc6d8d0f07ae1d88342e755f985edc308d1f0939037c42e1a5404b58",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 47.75198234699201,
+    "expert_calls": 0,
+    "input_tokens": 235185,
+    "output_tokens": 2840,
+    "cost_usd": null,
+    "cost_source": null,
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    }
+  },
+  {
+    "task_id": "pydata__xarray-3095",
+    "arm": "small",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6-luna",
+    "resolved": true,
+    "grader_report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc",
+    "manifest_sha256": "e03abb81a660616357e90bd9676f879b7391018ae4c6b9d03d60a3e3d3756158",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 90.84090571803972,
+    "expert_calls": 0,
+    "input_tokens": 316254,
+    "output_tokens": 2223,
+    "cost_usd": null,
+    "cost_source": null,
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    }
+  },
+  {
+    "task_id": "pydata__xarray-3095",
+    "arm": "large",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6.1-sol",
+    "resolved": true,
+    "grader_report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc",
+    "manifest_sha256": "1cf1464ce5f62e9e73479212a5cdf520d72dd64c4920fa6896e58622d003951c",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 96.20940356899519,
+    "expert_calls": 0,
+    "input_tokens": 208857,
+    "output_tokens": 1988,
+    "cost_usd": null,
+    "cost_source": null,
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    }
+  },
+  {
+    "task_id": "pydata__xarray-3095",
+    "arm": "personal",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6-luna",
+    "resolved": true,
+    "grader_report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc",
+    "manifest_sha256": "854c1085dd465bc8424ff041f5076d7caf9b3cd437ec014b795178a74d2770eb",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 42.48159602005035,
+    "expert_calls": 0,
+    "input_tokens": 202051,
+    "output_tokens": 1767,
+    "cost_usd": null,
+    "cost_source": null,
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    }
+  },
+  {
+    "task_id": "django__django-15037",
+    "arm": "small",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6-luna",
+    "resolved": true,
+    "grader_report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07",
+    "manifest_sha256": "93c8abfd714be2fab936f6a3dd7d6977b43b9c55e82f70412b917a6c3a3d659e",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 33.13052238896489,
+    "expert_calls": 0,
+    "input_tokens": 167192,
+    "output_tokens": 1176,
+    "cost_usd": null,
+    "cost_source": null,
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    }
+  },
+  {
+    "task_id": "django__django-15037",
+    "arm": "large",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6.1-sol",
+    "resolved": true,
+    "grader_report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07",
+    "manifest_sha256": "75a678133f3086bef1a0abcb283bbddbc410b2506d77209603fd421776dc616d",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 81.7440669699572,
+    "expert_calls": 0,
+    "input_tokens": 214408,
+    "output_tokens": 2181,
+    "cost_usd": null,
+    "cost_source": null,
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    }
+  },
+  {
+    "task_id": "django__django-15037",
+    "arm": "personal",
+    "status": "completed_ungraded",
+    "model_id": "gpt-6-luna",
+    "resolved": true,
+    "grader_report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07",
+    "manifest_sha256": "6c9bebbceee628169960b25b8a446266f20843d583a2ff4e536e21addc8164eb",
+    "grading_evidence": "official_per_instance_report",
+    "wall_seconds": 28.617923862067983,
+    "expert_calls": 0,
+    "input_tokens": 173454,
+    "output_tokens": 1309,
+    "cost_usd": null,
+    "cost_source": null,
+    "pricing": {
+      "api_equivalent_usd": null,
+      "status": "no_price_schedule",
+      "by_model": {}
+    },
+    "subscription": {
+      "estimated_credits": null,
+      "estimated_usd": null,
+      "status": "missing_thread_estimates"
+    }
+  }
+]

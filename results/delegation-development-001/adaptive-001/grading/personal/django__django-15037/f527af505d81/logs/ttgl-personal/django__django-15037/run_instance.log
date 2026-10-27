@@ -1,0 +1,92 @@
+2026-10-27 00:52:29,911 - INFO - Creating container for django__django-15037...
+2026-10-27 00:52:30,005 - INFO - Container for django__django-15037 created: db7b1b091d58e60122056a6a9024f841e609207dba0a6b57516b8ec7a71565df
+2026-10-27 00:52:30,427 - INFO - Container for django__django-15037 started: db7b1b091d58e60122056a6a9024f841e609207dba0a6b57516b8ec7a71565df
+2026-10-27 00:52:30,442 - INFO - Intermediate patch for django__django-15037 written to logs/evaluation/ttgl-personal-django__django-15037-a5f3f53e-f527af505d81/ttgl-personal/django__django-15037/patch.diff, now applying to container...
+2026-10-27 00:52:30,881 - INFO - >>>>> Applied Patch:
+Checking patch django/core/management/commands/inspectdb.py...
+Applied patch django/core/management/commands/inspectdb.py cleanly.
+
+2026-10-27 00:52:32,283 - INFO - Git diff before:
+diff --git a/django/core/management/commands/inspectdb.py b/django/core/management/commands/inspectdb.py
+index f9b4bfb477..a1df58021f 100644
+--- a/django/core/management/commands/inspectdb.py
++++ b/django/core/management/commands/inspectdb.py
+@@ -71,9 +71,16 @@ class Command(BaseCommand):
+                         continue
+                 try:
+                     try:
+-                        relations = connection.introspection.get_relations(cursor, table_name)
+-                    except NotImplementedError:
+-                        relations = {}
++                        relations = {
++                            column: (referenced_column, referenced_table)
++                            for column, referenced_table, referenced_column
++                            in connection.introspection.get_key_columns(cursor, table_name)
++                        }
++                    except (NotImplementedError, TypeError):
++                        try:
++                            relations = connection.introspection.get_relations(cursor, table_name)
++                        except NotImplementedError:
++                            relations = {}
+                     try:
+                         constraints = connection.introspection.get_constraints(cursor, table_name)
+                     except NotImplementedError:
+@@ -128,6 +135,11 @@ class Command(BaseCommand):
+                             field_type = '%s(%s' % (rel_type, rel_to)
+                         else:
+                             field_type = "%s('%s'" % (rel_type, rel_to)
++                        referenced_column = relations[column_name][0]
++                        if referenced_column != connection.introspection.get_primary_key_column(
++                            cursor, relations[column_name][1],
++                        ):
++                            extra_params['to_field'] = referenced_column
+                     else:
+                         # Calling `get_field_type` to get the field type string and any
+                         # additional parameters and notes.
+2026-10-27 00:52:32,296 - INFO - Eval script for django__django-15037 written to logs/evaluation/ttgl-personal-django__django-15037-a5f3f53e-f527af505d81/ttgl-personal/django__django-15037/eval.sh; copying to container...
+2026-10-27 00:52:43,701 - INFO - Test runtime: 11.12 seconds
+2026-10-27 00:52:43,718 - INFO - Test output for django__django-15037 written to logs/evaluation/ttgl-personal-django__django-15037-a5f3f53e-f527af505d81/ttgl-personal/django__django-15037/test_output.txt
+2026-10-27 00:52:43,939 - INFO - Git diff after:
+diff --git a/django/core/management/commands/inspectdb.py b/django/core/management/commands/inspectdb.py
+index f9b4bfb477..a1df58021f 100644
+--- a/django/core/management/commands/inspectdb.py
++++ b/django/core/management/commands/inspectdb.py
+@@ -71,9 +71,16 @@ class Command(BaseCommand):
+                         continue
+                 try:
+                     try:
+-                        relations = connection.introspection.get_relations(cursor, table_name)
+-                    except NotImplementedError:
+-                        relations = {}
++                        relations = {
++                            column: (referenced_column, referenced_table)
++                            for column, referenced_table, referenced_column
++                            in connection.introspection.get_key_columns(cursor, table_name)
++                        }
++                    except (NotImplementedError, TypeError):
++                        try:
++                            relations = connection.introspection.get_relations(cursor, table_name)
++                        except NotImplementedError:
++                            relations = {}
+                     try:
+                         constraints = connection.introspection.get_constraints(cursor, table_name)
+                     except NotImplementedError:
+@@ -128,6 +135,11 @@ class Command(BaseCommand):
+                             field_type = '%s(%s' % (rel_type, rel_to)
+                         else:
+                             field_type = "%s('%s'" % (rel_type, rel_to)
++                        referenced_column = relations[column_name][0]
++                        if referenced_column != connection.introspection.get_primary_key_column(
++                            cursor, relations[column_name][1],
++                        ):
++                            extra_params['to_field'] = referenced_column
+                     else:
+                         # Calling `get_field_type` to get the field type string and any
+                         # additional parameters and notes.
+2026-10-27 00:52:43,945 - INFO - Grading answer for django__django-15037...
+2026-10-27 00:52:43,959 - INFO - report: {'django__django-15037': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': True, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': ['test_foreign_key_to_field (inspectdb.tests.InspectDBTestCase)'], 'failure': []}, 'PASS_TO_PASS': {'success': ['inspectdb --include-views creates models for database views.', 'test_attribute_name_not_python_keyword (inspectdb.tests.InspectDBTestCase)', 'test_char_field_db_collation (inspectdb.tests.InspectDBTestCase)', 'Introspection of column names consist/start with digits (#16536/#17676)', 'Test introspection of various Django field types', 'Introspection errors should not crash the command, and the error should', 'test_json_field (inspectdb.tests.InspectDBTestCase)', 'By default the command generates models with `Meta.managed = False` (#14305)', 'Introspection of column names containing special characters,', 'test_stealth_table_name_filter_option (inspectdb.tests.InspectDBTestCase)', 'Introspection of table names containing special characters,', 'inspectdb can inspect a subset of tables by passing the table names as', 'test_text_field_db_collation (inspectdb.tests.InspectDBTestCase)', 'test_unique_together_meta (inspectdb.tests.InspectDBTestCase)'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for django__django-15037: resolved: True
+2026-10-27 00:52:43,972 - INFO - Attempting to stop container sweb.eval.django__django-15037.ttgl-personal-django__django-15037-a5f3f53e-f527af505d81...
+2026-10-27 00:52:59,298 - INFO - Container sweb.eval.django__django-15037.ttgl-personal-django__django-15037-a5f3f53e-f527af505d81 stopped successfully.
+2026-10-27 00:52:59,301 - INFO - Attempting to remove container sweb.eval.django__django-15037.ttgl-personal-django__django-15037-a5f3f53e-f527af505d81...
+2026-10-27 00:52:59,397 - INFO - Container sweb.eval.django__django-15037.ttgl-personal-django__django-15037-a5f3f53e-f527af505d81 removed successfully.

@@ -1,0 +1,9 @@
+{
+  "task_id": "scikit-learn__scikit-learn-14141",
+  "workspace": "/Users/rustameynaliyev/Developer/ttgl-policy-fallback-dev-001/small/scikit-learn__scikit-learn-14141",
+  "memory": [],
+  "allowed_paths": [
+    "."
+  ],
+  "prompt": "Add joblib in show_versions\njoblib should be added to the dependencies listed in show_versions or added to the issue template when sklearn version is > 0.20.\n\n\nRepair this repository at its assigned base. Preserve existing tests; you may add tests. Do not commit, change HEAD, retrieve upstream fixes, or access benchmark data, evaluator artifacts, or other workers. Report unavailable test dependencies honestly."
+}

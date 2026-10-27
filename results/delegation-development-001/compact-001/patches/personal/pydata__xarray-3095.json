@@ -1,0 +1,10 @@
+{
+  "instance_id": "pydata__xarray-3095",
+  "model_name_or_path": "ttgl-personal",
+  "model_patch": "diff --git a/xarray/core/variable.py b/xarray/core/variable.py\nindex 379be8f..4574469 100644\n--- a/xarray/core/variable.py\n+++ b/xarray/core/variable.py\n@@ -1947,7 +1947,8 @@ class IndexVariable(Variable):\n                 # point, which doesn't have a copy method, so make a deep copy\n                 # of the underlying `pandas.MultiIndex` and create a new\n                 # `PandasIndexAdapter` instance with it.\n-                data = PandasIndexAdapter(self._data.array.copy(deep=True))\n+                data = PandasIndexAdapter(self._data.array.copy(deep=True),\n+                                         dtype=self.dtype)\n             else:\n                 data = self._data\n         else:\ndiff --git a/xarray/tests/test_variable.py b/xarray/tests/test_variable.py\nindex 73d2a40..16bd65a 100644\n--- a/xarray/tests/test_variable.py\n+++ b/xarray/tests/test_variable.py\n@@ -492,6 +492,13 @@ class VariableSubclassobjects:\n                         source_ndarray(w.values))\n         assert_identical(v, copy(v))\n \n+    def test_copy_unicode_index_preserves_dtype(self):\n+        v = IndexVariable('x', np.array(['foo'], dtype='<U3'))\n+        for deep in [True, False]:\n+            assert v.copy(deep=deep).dtype == v.dtype\n+        assert copy(v).dtype == v.dtype\n+        assert deepcopy(v).dtype == v.dtype\n+\n     def test_copy_index(self):\n         midx = pd.MultiIndex.from_product([['a', 'b'], [1, 2], [-1, -2]],\n                                           names=('one', 'two', 'three'))\n",
+  "manifest_sha256": "854c1085dd465bc8424ff041f5076d7caf9b3cd437ec014b795178a74d2770eb",
+  "patch_sha256": "50eb352c91a3e2b70ad32ed86f732e02dfb3994df9dba374a234a38c5aaedbc6",
+  "status": "completed_ungraded",
+  "preparation_seconds": 6.115034893970005,
+  "assignment_wall_seconds": 49.52403389103711
+}

@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-large-pydata__xarray-3095-e18dac1a-436798b22576",
+  "prediction_sha256": "deb92028fe1dfa951d673c3fddf903422ad4593ee124cf5584a7544b66427c4e",
+  "model_patch_sha256": "e18dac1af29eded24d15ce9849013e6bf0bc142efc70b98a65d575245e63369d",
+  "patch_record_sha256": "442190f3974cfd0237249bbfae8220302e66fe131f5cac18109e0c7c0d80ed68",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "19a99afeb913aa03f7676ad157e498c778365e29b72672f3b67dd2913c5fe39f",
+  "timeout_seconds": 1200
+}

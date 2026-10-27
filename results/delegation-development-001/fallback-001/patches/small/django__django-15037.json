@@ -1,0 +1,10 @@
+{
+  "instance_id": "django__django-15037",
+  "model_name_or_path": "ttgl-small",
+  "model_patch": "diff --git a/django/core/management/commands/inspectdb.py b/django/core/management/commands/inspectdb.py\nindex f9b4bfb..222f4ab 100644\n--- a/django/core/management/commands/inspectdb.py\n+++ b/django/core/management/commands/inspectdb.py\n@@ -120,10 +120,10 @@ class Command(BaseCommand):\n                             rel_type = 'OneToOneField'\n                         else:\n                             rel_type = 'ForeignKey'\n-                        rel_to = (\n-                            \"self\" if relations[column_name][1] == table_name\n-                            else table2model(relations[column_name][1])\n-                        )\n+                        rel_field, rel_table = relations[column_name]\n+                        rel_to = \"self\" if rel_table == table_name else table2model(rel_table)\n+                        if rel_field != connection.introspection.get_primary_key_column(cursor, rel_table):\n+                            extra_params['to_field'] = rel_field\n                         if rel_to in known_models:\n                             field_type = '%s(%s' % (rel_type, rel_to)\n                         else:\n",
+  "manifest_sha256": "11f6aac778585b4a1ca5d728097345e5b29e0cb0fb0e838ef61fa828fe53a275",
+  "patch_sha256": "75e4793ea6df131207b8e57ad95139472d8f1897a031f82f18a6a9c5d7dd1748",
+  "status": "completed_ungraded",
+  "preparation_seconds": 20.207488985033706,
+  "assignment_wall_seconds": 54.10756740102079
+}

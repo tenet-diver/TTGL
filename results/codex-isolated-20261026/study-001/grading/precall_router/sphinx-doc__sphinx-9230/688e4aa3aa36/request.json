@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-precall_router-sphinx-doc__sphinx-9230-ee16daa6-688e4aa3aa36",
+  "prediction_sha256": "6e316204012b32479e7c8708d473ca58cbb9fb91699bc9a3c0748b06667fa0f5",
+  "model_patch_sha256": "ee16daa6078f6aea0f6a9d4f2f6c4d1ae3b2a223b7e6e3db30cce0d51d00a75e",
+  "patch_record_sha256": "29ad76381145620f239bdce243307290cbfbeccd0890c9b8fea9f2c6aa5ee894",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "19a99afeb913aa03f7676ad157e498c778365e29b72672f3b67dd2913c5fe39f",
+  "timeout_seconds": 1200
+}

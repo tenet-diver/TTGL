@@ -19,6 +19,16 @@ protocol, economic accounting, live pilot results, a complete SWE-bench Verified
 replay, limitations and next-study design. The proposed confirmatory gate uses a three-point quality margin and a
 25% practical savings target; neither is established by the pilot.
 
+The latest [fresh metered routing results](live-routing-results.md) cover 72
+original assignments and 36 prompt-development assignments, with
+[cost–performance graphs](../../results/prompt-comparison-001/README.md).
+Improved adaptive and cheap-first prompts reached 4/4 development successes,
+matching Sol at 87.1% and 89.1% lower model-cost scenarios. These are development
+results; held-out inference is gated by an invalid independent control. No
+assisted condition has achieved the subsequent joint 95% saving / 95% relative
+accuracy-retention target. The tables below describe older feasibility evidence.
+Generated document previews still require rebuilding and final result QA.
+
 | Live condition | Functional success | Accepted under strict artifact policy |
 |---|---:|---:|
 | Luna only | 3/4 | 3/4 |

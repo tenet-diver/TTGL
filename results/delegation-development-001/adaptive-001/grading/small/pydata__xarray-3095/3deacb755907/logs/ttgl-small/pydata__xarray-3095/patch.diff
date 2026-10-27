@@ -1,0 +1,46 @@
+diff --git a/xarray/core/variable.py b/xarray/core/variable.py
+index 379be8f..4574469 100644
+--- a/xarray/core/variable.py
++++ b/xarray/core/variable.py
+@@ -1947,7 +1947,8 @@ class IndexVariable(Variable):
+                 # point, which doesn't have a copy method, so make a deep copy
+                 # of the underlying `pandas.MultiIndex` and create a new
+                 # `PandasIndexAdapter` instance with it.
+-                data = PandasIndexAdapter(self._data.array.copy(deep=True))
++                data = PandasIndexAdapter(self._data.array.copy(deep=True),
++                                         dtype=self.dtype)
+             else:
+                 data = self._data
+         else:
+diff --git a/xarray/tests/test_variable.py b/xarray/tests/test_variable.py
+index 73d2a40..6e53daa 100644
+--- a/xarray/tests/test_variable.py
++++ b/xarray/tests/test_variable.py
+@@ -492,6 +492,13 @@ class VariableSubclassobjects:
+                         source_ndarray(w.values))
+         assert_identical(v, copy(v))
+ 
++    def test_copy_string_index_preserves_dtype(self):
++        v = IndexVariable('x', np.array(['foo'], dtype='<U3'))
++        for deep in [True, False]:
++            copied = v.copy(deep=deep)
++            assert copied.dtype == v.dtype
++            assert copied.dtype.kind == 'U'
++
+     def test_copy_index(self):
+         midx = pd.MultiIndex.from_product([['a', 'b'], [1, 2], [-1, -2]],
+                                           names=('one', 'two', 'three'))
+@@ -1784,6 +1791,13 @@ class TestVariableWithDask(VariableSubclassobjects):
+         super().test_array_interface()
+ 
+     @pytest.mark.xfail
++    def test_copy_string_index_preserves_dtype(self):
++        v = IndexVariable('x', np.array(['foo'], dtype='<U3'))
++        for deep in [True, False]:
++            copied = v.copy(deep=deep)
++            assert copied.dtype == v.dtype
++            assert copied.dtype.kind == 'U'
++
+     def test_copy_index(self):
+         super().test_copy_index()
+ 

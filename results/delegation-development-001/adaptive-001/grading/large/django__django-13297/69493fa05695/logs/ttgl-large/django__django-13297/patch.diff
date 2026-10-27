@@ -1,0 +1,80 @@
+diff --git a/django/views/generic/base.py b/django/views/generic/base.py
+index ea5baca..7e5c068 100644
+--- a/django/views/generic/base.py
++++ b/django/views/generic/base.py
+@@ -11,7 +11,7 @@ from django.template.response import TemplateResponse
+ from django.urls import reverse
+ from django.utils.decorators import classonlymethod
+ from django.utils.deprecation import RemovedInDjango40Warning
+-from django.utils.functional import SimpleLazyObject
++from django.utils.functional import lazy
+ 
+ logger = logging.getLogger('django.request')
+ 
+@@ -169,7 +169,6 @@ def _wrap_url_kwargs_with_deprecation_warning(url_kwargs):
+     context_kwargs = {}
+     for key, value in url_kwargs.items():
+         # Bind into function closure.
+-        @SimpleLazyObject
+         def access_value(key=key, value=value):
+             warnings.warn(
+                 'TemplateView passing URL kwargs to the context is '
+@@ -178,7 +177,7 @@ def _wrap_url_kwargs_with_deprecation_warning(url_kwargs):
+                 RemovedInDjango40Warning, stacklevel=2,
+             )
+             return value
+-        context_kwargs[key] = access_value
++        context_kwargs[key] = lazy(access_value, type(value))()
+     return context_kwargs
+ 
+ 
+diff --git a/tests/generic_views/test_base.py b/tests/generic_views/test_base.py
+index d498d23..4df731a 100644
+--- a/tests/generic_views/test_base.py
++++ b/tests/generic_views/test_base.py
+@@ -2,8 +2,9 @@ import time
+ 
+ from django.core.exceptions import ImproperlyConfigured
+ from django.http import HttpResponse
++from django.shortcuts import get_object_or_404
+ from django.test import (
+-    RequestFactory, SimpleTestCase, ignore_warnings, override_settings,
++    RequestFactory, SimpleTestCase, TestCase, ignore_warnings, override_settings,
+ )
+ from django.test.utils import require_jinja2
+ from django.urls import resolve
+@@ -11,6 +12,7 @@ from django.utils.deprecation import RemovedInDjango40Warning
+ from django.views.generic import RedirectView, TemplateView, View
+ 
+ from . import views
++from .models import Author
+ 
+ 
+ class SimpleView(View):
+@@ -390,6 +392,26 @@ class TemplateViewTest(SimpleTestCase):
+         self.assertEqual(response.context['title'], 'Title')
+ 
+ 
++@ignore_warnings(category=RemovedInDjango40Warning)
++class TemplateViewQueryTest(TestCase):
++
++    def test_url_kwargs_in_database_query(self):
++        class AuthorView(TemplateView):
++            template_name = 'generic_views/about.html'
++
++            def get_context_data(self, **kwargs):
++                context = super().get_context_data(**kwargs)
++                context['author'] = get_object_or_404(Author, **kwargs)
++                return context
++
++        author = Author.objects.create(name='Author', slug='author')
++        request = RequestFactory().get('/')
++        for kwargs in ({'slug': author.slug}, {'pk': author.pk}):
++            with self.subTest(kwargs=kwargs), self.assertNumQueries(1):
++                response = AuthorView.as_view()(request, **kwargs)
++                self.assertEqual(response.context_data['author'], author)
++
++
+ @override_settings(ROOT_URLCONF='generic_views.urls')
+ class RedirectViewTest(SimpleTestCase):
+ 

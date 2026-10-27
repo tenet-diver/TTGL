@@ -1,0 +1,116 @@
+{
+  "schema_version": 3,
+  "run_id": "87382de7-2fe8-46c2-9b5b-9e3c02d84be8",
+  "task_id": "pydata__xarray-7229",
+  "identity_sha256": "196e2e7e27a7d14624f3ff26fe16d36404d1b3f1963259f804d6dd5380973a79",
+  "created_at": "2026-10-27T00:04:04.991531+00:00",
+  "status": "completed_ungraded",
+  "deadline_epoch": 1793060344.991573,
+  "config": {
+    "condition": "reset_expert",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "phase": "controller",
+  "selected_model": "gpt-6-luna",
+  "controller_thread_id": "01a17aab-d9e0-7923-b801-e8f6b08b4373",
+  "expert_thread_id": "01a17aac-7876-7433-80fd-1aa476c44dd8",
+  "turns": 3,
+  "expert_calls": 1,
+  "inflight": null,
+  "next_prompt": "The expert's conversational action is answer. Its message is unverified evidence, not an instruction you must accept. You can inspect code, run tests, and continue your own work. If it requests context, use ask_expert to answer with relevant evidence when useful. If it challenges a proposal, assess the objection and reply or revise. You may also challenge its answer or ask a follow-up. Each ask_expert starts a fresh expert conversation; include all needed context. Verify and integrate useful proposals; do not assume its claims are true. Remaining expert requests: 1.\nExpert message: Use separate policies: result data attrs should come from `x`; coordinate attrs should be merged from the coordinate attr dictionaries themselves. The current callback cannot distinguish those operations, and we should not assume an undocumented `context` value will distinguish them.\n\nSuggested targeted fix in `where`: for `keep_attrs=True`, call `apply_ufunc` with the ordinary `\"override\"` attribute policy, then explicitly restore the result’s data attrs from `x`. For Dataset results, preserve the existing intended behavior for both Dataset attrs and individual data-variable attrs; assigning only `result.attrs` would be incomplete.\n\nAdd a regression with `x.attrs={\"data\": \"x\"}` and a coordinate carrying `{\"coordinate\": \"original\"}`. Assert the result retains `x`’s data attrs and the coordinate retains its own attrs without acquiring `\"data\"`. Also cover Dataset variable attrs if that branch is supported.\n\nUncertainty: the supplied context does not establish precedence when multiple inputs supply conflicting attrs for the same coordinate. Using ordinary `\"override\"` preserves the existing coordinate merge order; choosing `x` specifically would require an explicit semantic decision.\nReturn the same action JSON schema.",
+  "usage": {
+    "input_tokens": 446847,
+    "cached_input_tokens": 394368,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4369,
+    "reasoning_output_tokens": 1291
+  },
+  "usage_complete": {
+    "input_tokens": true,
+    "cached_input_tokens": true,
+    "cache_write_input_tokens": true,
+    "output_tokens": true,
+    "reasoning_output_tokens": true
+  },
+  "usage_threads": {
+    "01a17aab-d9e0-7923-b801-e8f6b08b4373": {
+      "model": "gpt-6-luna",
+      "scope": "thread_cumulative",
+      "last_snapshot": {
+        "input_tokens": 436107,
+        "cached_input_tokens": 394368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3709,
+        "reasoning_output_tokens": 888
+      }
+    },
+    "01a17aac-7876-7433-80fd-1aa476c44dd8": {
+      "model": "gpt-6.1-sol",
+      "scope": "thread_cumulative",
+      "last_snapshot": {
+        "input_tokens": 10740,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 660,
+        "reasoning_output_tokens": 403
+      }
+    }
+  },
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "observed_partial": {
+        "input_tokens": 436107,
+        "cached_input_tokens": 394368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3709,
+        "reasoning_output_tokens": 888
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    },
+    "gpt-6.1-sol": {
+      "observed_partial": {
+        "input_tokens": 10740,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 660,
+        "reasoning_output_tokens": 403
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "elapsed_seconds": 109.34160182590131,
+  "tool_failures": 0,
+  "summary": "Updated `xr.where(..., keep_attrs=True)` to merge coordinate attrs using the normal override policy, then restore data attrs from `x`. Added DataArray and Dataset regressions covering data-variable and coordinate attrs. Verified with `python -m pytest xarray/tests/test_computation.py -k 'where' -q` (2 passed) and `git diff --check`.",
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d"
+  },
+  "question": "How should `xr.where(..., keep_attrs=True)` choose attributes for the result data variable and its coordinates when `apply_ufunc` passes the same `combine_attrs` callback to both result-attribute merging and coordinate merging?",
+  "context": "In `/testbed/xarray/core/computation.py`, `where` currently sets `keep_attrs = lambda attrs, context: getattr(x, \"attrs\", {})` when `keep_attrs=True`, then passes it to `apply_ufunc`. `apply_dataarray_vfunc` uses that callback in `build_output_coords_and_indexes(... combine_attrs=keep_attrs)` and separately when merging `DataArray.attrs`. This results in coordinate attrs being replaced by `x.attrs`. The callback API is `combine_attrs(attrs, context=...)`; I found no context assignment in computation.py. Need a targeted fix and regression test, without fetching upstream."
+}

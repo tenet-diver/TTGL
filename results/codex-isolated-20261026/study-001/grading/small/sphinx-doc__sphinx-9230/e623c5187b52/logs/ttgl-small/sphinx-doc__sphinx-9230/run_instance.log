@@ -1,0 +1,96 @@
+2026-10-27 00:20:56,270 - INFO - Creating container for sphinx-doc__sphinx-9230...
+2026-10-27 00:20:56,389 - INFO - Container for sphinx-doc__sphinx-9230 created: bbf0fe87b0068d468580addd1b0c6d764eb9f8f786d3912484cc73562e3e2b5c
+2026-10-27 00:20:56,847 - INFO - Container for sphinx-doc__sphinx-9230 started: bbf0fe87b0068d468580addd1b0c6d764eb9f8f786d3912484cc73562e3e2b5c
+2026-10-27 00:20:56,861 - INFO - Intermediate patch for sphinx-doc__sphinx-9230 written to logs/evaluation/ttgl-small-sphinx-doc__sphinx-9230-cb7cb1f3-e623c5187b52/ttgl-small/sphinx-doc__sphinx-9230/patch.diff, now applying to container...
+2026-10-27 00:20:57,282 - INFO - >>>>> Applied Patch:
+Checking patch sphinx/util/docfields.py...
+Applied patch sphinx/util/docfields.py cleanly.
+
+2026-10-27 00:20:57,769 - INFO - Git diff before:
+diff --git a/sphinx/util/docfields.py b/sphinx/util/docfields.py
+index 3a3367ebe..93d6e8ecf 100644
+--- a/sphinx/util/docfields.py
++++ b/sphinx/util/docfields.py
+@@ -22,6 +22,19 @@ if TYPE_CHECKING:
+     from sphinx.directive import ObjectDescription
+ 
+ 
++def _split_type_and_name(value: str) -> Tuple[str, str]:
++    """Split a typed field argument without splitting inside a type expression."""
++    depth = 0
++    for index, char in enumerate(value):
++        if char == '(':
++            depth += 1
++        elif char == ')':
++            depth = max(0, depth - 1)
++        elif char.isspace() and depth == 0:
++            return value[:index], value[index:].lstrip()
++    return value, ''
++
++
+ def _is_single_paragraph(node: nodes.field_body) -> bool:
+     """True if the node only contains one paragraph (and system messages)."""
+     if len(node) == 0:
+@@ -297,11 +310,8 @@ class DocFieldTransformer:
+ 
+             # also support syntax like ``:param type name:``
+             if typedesc.is_typed:
+-                try:
+-                    argtype, argname = fieldarg.split(None, 1)
+-                except ValueError:
+-                    pass
+-                else:
++                argtype, argname = _split_type_and_name(fieldarg)
++                if argname:
+                     types.setdefault(typename, {})[argname] = \
+                         [nodes.Text(argtype)]
+                     fieldarg = argname
+2026-10-27 00:20:57,781 - INFO - Eval script for sphinx-doc__sphinx-9230 written to logs/evaluation/ttgl-small-sphinx-doc__sphinx-9230-cb7cb1f3-e623c5187b52/ttgl-small/sphinx-doc__sphinx-9230/eval.sh; copying to container...
+2026-10-27 00:21:08,979 - INFO - Test runtime: 10.90 seconds
+2026-10-27 00:21:08,994 - INFO - Test output for sphinx-doc__sphinx-9230 written to logs/evaluation/ttgl-small-sphinx-doc__sphinx-9230-cb7cb1f3-e623c5187b52/ttgl-small/sphinx-doc__sphinx-9230/test_output.txt
+2026-10-27 00:21:09,155 - INFO - Git diff after:
+diff --git a/sphinx/util/docfields.py b/sphinx/util/docfields.py
+index 3a3367ebe..93d6e8ecf 100644
+--- a/sphinx/util/docfields.py
++++ b/sphinx/util/docfields.py
+@@ -22,6 +22,19 @@ if TYPE_CHECKING:
+     from sphinx.directive import ObjectDescription
+ 
+ 
++def _split_type_and_name(value: str) -> Tuple[str, str]:
++    """Split a typed field argument without splitting inside a type expression."""
++    depth = 0
++    for index, char in enumerate(value):
++        if char == '(':
++            depth += 1
++        elif char == ')':
++            depth = max(0, depth - 1)
++        elif char.isspace() and depth == 0:
++            return value[:index], value[index:].lstrip()
++    return value, ''
++
++
+ def _is_single_paragraph(node: nodes.field_body) -> bool:
+     """True if the node only contains one paragraph (and system messages)."""
+     if len(node) == 0:
+@@ -297,11 +310,8 @@ class DocFieldTransformer:
+ 
+             # also support syntax like ``:param type name:``
+             if typedesc.is_typed:
+-                try:
+-                    argtype, argname = fieldarg.split(None, 1)
+-                except ValueError:
+-                    pass
+-                else:
++                argtype, argname = _split_type_and_name(fieldarg)
++                if argname:
+                     types.setdefault(typename, {})[argname] = \
+                         [nodes.Text(argtype)]
+                     fieldarg = argname
+2026-10-27 00:21:09,160 - INFO - Grading answer for sphinx-doc__sphinx-9230...
+2026-10-27 00:21:09,185 - INFO - report: {'sphinx-doc__sphinx-9230': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': False, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': [], 'failure': ['tests/test_domain_py.py::test_info_field_list']}, 'PASS_TO_PASS': {'success': ['tests/test_domain_py.py::test_function_signatures', 'tests/test_domain_py.py::test_domain_py_xrefs', 'tests/test_domain_py.py::test_domain_py_xrefs_abbreviations', 'tests/test_domain_py.py::test_domain_py_objects', 'tests/test_domain_py.py::test_resolve_xref_for_properties', 'tests/test_domain_py.py::test_domain_py_find_obj', 'tests/test_domain_py.py::test_domain_py_canonical', 'tests/test_domain_py.py::test_get_full_qualified_name', 'tests/test_domain_py.py::test_parse_annotation', 'tests/test_domain_py.py::test_pyfunction_signature', 'tests/test_domain_py.py::test_pyfunction_signature_full', 'tests/test_domain_py.py::test_pyfunction_signature_full_py38', 'tests/test_domain_py.py::test_pyfunction_with_number_literals', 'tests/test_domain_py.py::test_pyfunction_with_union_type_operator', 'tests/test_domain_py.py::test_optional_pyfunction_signature', 'tests/test_domain_py.py::test_pyexception_signature', 'tests/test_domain_py.py::test_exceptions_module_is_ignored', 'tests/test_domain_py.py::test_pydata_signature', 'tests/test_domain_py.py::test_pydata_signature_old', 'tests/test_domain_py.py::test_pydata_with_union_type_operator', 'tests/test_domain_py.py::test_pyobject_prefix', 'tests/test_domain_py.py::test_pydata', 'tests/test_domain_py.py::test_pyfunction', 'tests/test_domain_py.py::test_pyclass_options', 'tests/test_domain_py.py::test_pymethod_options', 'tests/test_domain_py.py::test_pyclassmethod', 'tests/test_domain_py.py::test_pystaticmethod', 'tests/test_domain_py.py::test_pyattribute', 'tests/test_domain_py.py::test_pyproperty', 'tests/test_domain_py.py::test_pydecorator_signature', 'tests/test_domain_py.py::test_pydecoratormethod_signature', 'tests/test_domain_py.py::test_canonical', 'tests/test_domain_py.py::test_canonical_definition_overrides', 'tests/test_domain_py.py::test_canonical_definition_skip', 'tests/test_domain_py.py::test_canonical_duplicated', 'tests/test_domain_py.py::test_info_field_list_var', 'tests/test_domain_py.py::test_module_index', 'tests/test_domain_py.py::test_module_index_submodule', 'tests/test_domain_py.py::test_module_index_not_collapsed', 'tests/test_domain_py.py::test_modindex_common_prefix', 'tests/test_domain_py.py::test_noindexentry', 'tests/test_domain_py.py::test_python_python_use_unqualified_type_names', 'tests/test_domain_py.py::test_python_python_use_unqualified_type_names_disabled', 'tests/test_domain_py.py::test_warn_missing_reference'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for sphinx-doc__sphinx-9230: resolved: False
+2026-10-27 00:21:09,197 - INFO - Attempting to stop container sweb.eval.sphinx-doc__sphinx-9230.ttgl-small-sphinx-doc__sphinx-9230-cb7cb1f3-e623c5187b52...
+2026-10-27 00:21:24,491 - INFO - Container sweb.eval.sphinx-doc__sphinx-9230.ttgl-small-sphinx-doc__sphinx-9230-cb7cb1f3-e623c5187b52 stopped successfully.
+2026-10-27 00:21:24,494 - INFO - Attempting to remove container sweb.eval.sphinx-doc__sphinx-9230.ttgl-small-sphinx-doc__sphinx-9230-cb7cb1f3-e623c5187b52...
+2026-10-27 00:21:24,581 - INFO - Container sweb.eval.sphinx-doc__sphinx-9230.ttgl-small-sphinx-doc__sphinx-9230-cb7cb1f3-e623c5187b52 removed successfully.

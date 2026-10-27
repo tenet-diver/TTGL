@@ -1,0 +1,91 @@
+{
+  "rates": {
+    "kind": "published_codex_standard_token_rate_scenario",
+    "currency": "USD",
+    "retrieved_at": "2026-10-26T19:16:32.901410+00:00",
+    "source_url": "https://help.openai.com/en/articles/20001415-chatgpt-rate-card-enterprise-token-based-pricing",
+    "supporting_model_sources": [
+      "https://developers.openai.com/api/docs/models/gpt-6-luna",
+      "https://developers.openai.com/api/docs/models/gpt-6.1-sol"
+    ],
+    "scope": "Counterfactual published Enterprise Standard-mode Codex token rates, not this account subscription invoice or credit/quota consumption",
+    "context": "The rate card exempts ChatGPT-signed-in Codex from its additional long-context charge",
+    "accounting": "Cached input is included within native total input; reasoning is included within native output; count every role and failed attempt; unknown native usage remains null",
+    "excluded_costs": [
+      "setup and independent controls",
+      "grading",
+      "hardware and energy",
+      "subscription allocation",
+      "taxes, regional and speed-tier adjustments"
+    ],
+    "models": {
+      "gpt-6-luna": {
+        "input_per_million": 0.1,
+        "cached_input_per_million": 0.01,
+        "output_per_million": 0.5
+      },
+      "gpt-6.1-sol": {
+        "input_per_million": 2.0,
+        "cached_input_per_million": 0.1,
+        "output_per_million": 10.0
+      }
+    }
+  },
+  "paired_savings": {
+    "small": {
+      "status": "descriptive_estimate",
+      "estimated_cost_ratio": 0.05057668210006113,
+      "estimated_savings_fraction": 0.9494233178999388,
+      "paired_bootstrap_cost_ratio_95": [
+        0.03802717097673672,
+        0.0672201586917884
+      ],
+      "valid_bootstrap_samples": 10000,
+      "warning": "Conditional task bootstrap; tiny/clustered samples do not establish quality noninferiority"
+    },
+    "precall_router": {
+      "status": "descriptive_estimate",
+      "estimated_cost_ratio": 0.6890843718198736,
+      "estimated_savings_fraction": 0.3109156281801264,
+      "paired_bootstrap_cost_ratio_95": [
+        0.3174796665924424,
+        0.9891031267463078
+      ],
+      "valid_bootstrap_samples": 10000,
+      "warning": "Conditional task bootstrap; tiny/clustered samples do not establish quality noninferiority"
+    },
+    "oneway": {
+      "status": "descriptive_estimate",
+      "estimated_cost_ratio": 0.07946622787238147,
+      "estimated_savings_fraction": 0.9205337721276186,
+      "paired_bootstrap_cost_ratio_95": [
+        0.04040464327380547,
+        0.15534765007761447
+      ],
+      "valid_bootstrap_samples": 10000,
+      "warning": "Conditional task bootstrap; tiny/clustered samples do not establish quality noninferiority"
+    },
+    "reset_expert": {
+      "status": "descriptive_estimate",
+      "estimated_cost_ratio": 0.07554976959549156,
+      "estimated_savings_fraction": 0.9244502304045085,
+      "paired_bootstrap_cost_ratio_95": [
+        0.0441741985857561,
+        0.1333707526007122
+      ],
+      "valid_bootstrap_samples": 10000,
+      "warning": "Conditional task bootstrap; tiny/clustered samples do not establish quality noninferiority"
+    },
+    "personal": {
+      "status": "descriptive_estimate",
+      "estimated_cost_ratio": 0.04521874939589326,
+      "estimated_savings_fraction": 0.9547812506041068,
+      "paired_bootstrap_cost_ratio_95": [
+        0.03258213948130396,
+        0.0622139269820665
+      ],
+      "valid_bootstrap_samples": 10000,
+      "warning": "Conditional task bootstrap; tiny/clustered samples do not establish quality noninferiority"
+    }
+  }
+}

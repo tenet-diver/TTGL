@@ -1,0 +1,4 @@
+condition,assigned,resolved,resolution_fraction,input_tokens,output_tokens,expert_requests,completed_expert_responses,mean_execution_seconds,preparation_seconds,api_equivalent_usd,published_codex_standard_scenario_usd
+small,4,2,0.5,511075,3956,0,0,27.573691071534995,111.58076961291954,,0.0170279
+large,4,4,1.0,947948,8849,0,0,93.27820203822921,310.65680678992067,,0.45709
+personal,4,4,1.0,980435,8354,1,1,54.37281160170096,121.10814069211483,,0.05902144

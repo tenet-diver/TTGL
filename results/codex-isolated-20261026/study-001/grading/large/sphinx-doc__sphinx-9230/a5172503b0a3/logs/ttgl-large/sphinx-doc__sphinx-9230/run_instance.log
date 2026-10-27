@@ -1,0 +1,108 @@
+2026-10-27 00:28:49,659 - INFO - Creating container for sphinx-doc__sphinx-9230...
+2026-10-27 00:28:49,776 - INFO - Container for sphinx-doc__sphinx-9230 created: d6a0ee9b5fa727b43377368a676f6d05d1d7413b818d16d93fdb00dbdbbc6abe
+2026-10-27 00:28:50,197 - INFO - Container for sphinx-doc__sphinx-9230 started: d6a0ee9b5fa727b43377368a676f6d05d1d7413b818d16d93fdb00dbdbbc6abe
+2026-10-27 00:28:50,212 - INFO - Intermediate patch for sphinx-doc__sphinx-9230 written to logs/evaluation/ttgl-large-sphinx-doc__sphinx-9230-01c8433f-a5172503b0a3/ttgl-large/sphinx-doc__sphinx-9230/patch.diff, now applying to container...
+2026-10-27 00:28:50,626 - INFO - >>>>> Applied Patch:
+Checking patch CHANGES...
+Checking patch sphinx/util/docfields.py...
+Checking patch tests/test_domain_py.py...
+Applied patch CHANGES cleanly.
+Applied patch sphinx/util/docfields.py cleanly.
+Applied patch tests/test_domain_py.py cleanly.
+
+2026-10-27 00:28:51,127 - INFO - Git diff before:
+diff --git a/CHANGES b/CHANGES
+index 2d41dd93a..beba208e6 100644
+--- a/CHANGES
++++ b/CHANGES
+@@ -47,6 +47,8 @@ Features added
+ Bugs fixed
+ ----------
+ 
++* #9230: Python parameter types containing spaces are incorrectly rendered
++
+ * #8872: autodoc: stacked singledispatches are wrongly rendered
+ * #8597: autodoc: a docsting having metadata only should be treated as
+   undocumented
+diff --git a/sphinx/util/docfields.py b/sphinx/util/docfields.py
+index 3a3367ebe..6d48e910c 100644
+--- a/sphinx/util/docfields.py
++++ b/sphinx/util/docfields.py
+@@ -298,7 +298,7 @@ class DocFieldTransformer:
+             # also support syntax like ``:param type name:``
+             if typedesc.is_typed:
+                 try:
+-                    argtype, argname = fieldarg.split(None, 1)
++                    argtype, argname = fieldarg.rsplit(None, 1)
+                 except ValueError:
+                     pass
+                 else:
+diff --git a/tests/test_domain_py.py b/tests/test_domain_py.py
+index 569390c40..a92ff8c88 100644
+--- a/tests/test_domain_py.py
++++ b/tests/test_domain_py.py
+@@ -984,6 +984,26 @@ def test_info_field_list(app):
+                 **{"py:module": "example", "py:class": "Class"})
+ 
+ 
++@pytest.mark.parametrize('datatype', [
++    'str',
++    'dict(str,str)',
++    'dict(str, str)',
++    'Dict[str, str]',
++    'Dict[str, Tuple[int, str]]',
++    'int or None',
++])
++def test_info_field_list_param_type(app, datatype):
++    text = (".. py:function:: func(opc_meta)\n"
++            "\n"
++            "   :param %s opc_meta: (optional)\n" % datatype)
++    doctree = restructuredtext.parse(app, text)
++    field = list(doctree.traverse(nodes.field))[0]
++
++    assert field[0].astext() == 'Parameters'
++    assert field[1].astext() == 'opc_meta (%s) -- (optional)' % datatype
++    assert_node(field[1][0][0], addnodes.literal_strong, 'opc_meta')
++
++
+ def test_info_field_list_var(app):
+     text = (".. py:class:: Class\n"
+             "\n"
+2026-10-27 00:28:51,139 - INFO - Eval script for sphinx-doc__sphinx-9230 written to logs/evaluation/ttgl-large-sphinx-doc__sphinx-9230-01c8433f-a5172503b0a3/ttgl-large/sphinx-doc__sphinx-9230/eval.sh; copying to container...
+2026-10-27 00:29:02,017 - INFO - Test runtime: 10.58 seconds
+2026-10-27 00:29:02,032 - INFO - Test output for sphinx-doc__sphinx-9230 written to logs/evaluation/ttgl-large-sphinx-doc__sphinx-9230-01c8433f-a5172503b0a3/ttgl-large/sphinx-doc__sphinx-9230/test_output.txt
+2026-10-27 00:29:02,208 - INFO - Git diff after:
+diff --git a/CHANGES b/CHANGES
+index 2d41dd93a..beba208e6 100644
+--- a/CHANGES
++++ b/CHANGES
+@@ -47,6 +47,8 @@ Features added
+ Bugs fixed
+ ----------
+ 
++* #9230: Python parameter types containing spaces are incorrectly rendered
++
+ * #8872: autodoc: stacked singledispatches are wrongly rendered
+ * #8597: autodoc: a docsting having metadata only should be treated as
+   undocumented
+diff --git a/sphinx/util/docfields.py b/sphinx/util/docfields.py
+index 3a3367ebe..6d48e910c 100644
+--- a/sphinx/util/docfields.py
++++ b/sphinx/util/docfields.py
+@@ -298,7 +298,7 @@ class DocFieldTransformer:
+             # also support syntax like ``:param type name:``
+             if typedesc.is_typed:
+                 try:
+-                    argtype, argname = fieldarg.split(None, 1)
++                    argtype, argname = fieldarg.rsplit(None, 1)
+                 except ValueError:
+                     pass
+                 else:
+2026-10-27 00:29:02,213 - INFO - Git diff changed after running eval script
+2026-10-27 00:29:02,216 - INFO - Grading answer for sphinx-doc__sphinx-9230...
+2026-10-27 00:29:02,240 - INFO - report: {'sphinx-doc__sphinx-9230': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': True, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': ['tests/test_domain_py.py::test_info_field_list'], 'failure': []}, 'PASS_TO_PASS': {'success': ['tests/test_domain_py.py::test_function_signatures', 'tests/test_domain_py.py::test_domain_py_xrefs', 'tests/test_domain_py.py::test_domain_py_xrefs_abbreviations', 'tests/test_domain_py.py::test_domain_py_objects', 'tests/test_domain_py.py::test_resolve_xref_for_properties', 'tests/test_domain_py.py::test_domain_py_find_obj', 'tests/test_domain_py.py::test_domain_py_canonical', 'tests/test_domain_py.py::test_get_full_qualified_name', 'tests/test_domain_py.py::test_parse_annotation', 'tests/test_domain_py.py::test_pyfunction_signature', 'tests/test_domain_py.py::test_pyfunction_signature_full', 'tests/test_domain_py.py::test_pyfunction_signature_full_py38', 'tests/test_domain_py.py::test_pyfunction_with_number_literals', 'tests/test_domain_py.py::test_pyfunction_with_union_type_operator', 'tests/test_domain_py.py::test_optional_pyfunction_signature', 'tests/test_domain_py.py::test_pyexception_signature', 'tests/test_domain_py.py::test_exceptions_module_is_ignored', 'tests/test_domain_py.py::test_pydata_signature', 'tests/test_domain_py.py::test_pydata_signature_old', 'tests/test_domain_py.py::test_pydata_with_union_type_operator', 'tests/test_domain_py.py::test_pyobject_prefix', 'tests/test_domain_py.py::test_pydata', 'tests/test_domain_py.py::test_pyfunction', 'tests/test_domain_py.py::test_pyclass_options', 'tests/test_domain_py.py::test_pymethod_options', 'tests/test_domain_py.py::test_pyclassmethod', 'tests/test_domain_py.py::test_pystaticmethod', 'tests/test_domain_py.py::test_pyattribute', 'tests/test_domain_py.py::test_pyproperty', 'tests/test_domain_py.py::test_pydecorator_signature', 'tests/test_domain_py.py::test_pydecoratormethod_signature', 'tests/test_domain_py.py::test_canonical', 'tests/test_domain_py.py::test_canonical_definition_overrides', 'tests/test_domain_py.py::test_canonical_definition_skip', 'tests/test_domain_py.py::test_canonical_duplicated', 'tests/test_domain_py.py::test_info_field_list_var', 'tests/test_domain_py.py::test_module_index', 'tests/test_domain_py.py::test_module_index_submodule', 'tests/test_domain_py.py::test_module_index_not_collapsed', 'tests/test_domain_py.py::test_modindex_common_prefix', 'tests/test_domain_py.py::test_noindexentry', 'tests/test_domain_py.py::test_python_python_use_unqualified_type_names', 'tests/test_domain_py.py::test_python_python_use_unqualified_type_names_disabled', 'tests/test_domain_py.py::test_warn_missing_reference'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for sphinx-doc__sphinx-9230: resolved: True
+2026-10-27 00:29:02,253 - INFO - Attempting to stop container sweb.eval.sphinx-doc__sphinx-9230.ttgl-large-sphinx-doc__sphinx-9230-01c8433f-a5172503b0a3...
+2026-10-27 00:29:17,579 - INFO - Container sweb.eval.sphinx-doc__sphinx-9230.ttgl-large-sphinx-doc__sphinx-9230-01c8433f-a5172503b0a3 stopped successfully.
+2026-10-27 00:29:17,583 - INFO - Attempting to remove container sweb.eval.sphinx-doc__sphinx-9230.ttgl-large-sphinx-doc__sphinx-9230-01c8433f-a5172503b0a3...
+2026-10-27 00:29:17,692 - INFO - Container sweb.eval.sphinx-doc__sphinx-9230.ttgl-large-sphinx-doc__sphinx-9230-01c8433f-a5172503b0a3 removed successfully.

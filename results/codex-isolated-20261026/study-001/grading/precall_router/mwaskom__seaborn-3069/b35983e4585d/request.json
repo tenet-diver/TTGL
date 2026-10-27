@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-precall_router-mwaskom__seaborn-3069-d025a531-b35983e4585d",
+  "prediction_sha256": "4987f583a0f1d157846bc30b32ed3ee5a5f79c0d1b4c52329eead8c65dcc4852",
+  "model_patch_sha256": "d025a531f2af145082faf1292af7692056880fb21ba488e3c08bdd65d19ebf4c",
+  "patch_record_sha256": "3704fe85a227f7ea34be452212233f65129e6e33e0c493df03fdf8034ff32825",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "19a99afeb913aa03f7676ad157e498c778365e29b72672f3b67dd2913c5fe39f",
+  "timeout_seconds": 1200
+}

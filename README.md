@@ -6,11 +6,12 @@ The hypothesis is lower **total cost** with minimal performance degradation thro
 
 Read the **[paper](docs/paper/README.md)**: [PDF](docs/paper/paper.pdf), [Word](docs/paper/paper.docx), [HTML](docs/paper/paper.html). It contains the literature review, explicit prior-art comparison, experiment design, live pilot results and limitations. [ADR 0006](docs/adr/0006-personal-agent-replication.md) records the current scope.
 
-A fresh **12-task, six-condition metered SWE-bench study is running** on the
+A fresh **12-task, six-condition metered SWE-bench study is complete** on the
 `work` branch. All 24 official environment controls and all 12 staged public
 worker checks pass. The [frozen study and current official grade index](results/codex-isolated-20261026/study-001/)
 and [completed task checkpoints](results/codex-isolated-20261026/study-001/checkpoints/)
-record partial outcomes without calling them a completed study. Native model
+record the archived outcomes. The [final analysis](results/codex-isolated-20261026/analysis-001/)
+shows Luna 9/12, Sol 10/12 and pre-task routing 11/12. Native model
 tokens are measured; published token-rate scenarios, provider estimates and
 actual subscription charges are kept separate. [Host cleanup](results/host-cleanup-20261026/README.md)
 removed 106 rebuildable cache/dependency directories and one recoverable clean
@@ -20,8 +21,15 @@ A separate [general delegation development study](experiments/delegation-develop
 tests stronger independent verification, adaptive consultation, cheap-first
 fallback and a compact context-only expert interface. The target is **95% lower
 model cost with at least 95% of matched Sol accuracy retained**. Three registered
-candidates have 36 new development assignments; 12 disjoint tasks are reserved
-for final evaluation. The [compact-interface calibration](results/compact-expert-calibration-001/analysis.json)
+candidates completed 36 development assignments. Cheap-first reached 4/4 versus
+matched Luna's 3/4 and Sol's 4/4, with 89.1% lower model-cost scenario than Sol.
+See the [cost–performance graphs and evidence limits](results/prompt-comparison-001/README.md).
+One of 12 reserved validation cases has an invalid independent control; its
+explicit disposition preserves the evidence without replacement, leaving 11
+cases undergoing new readiness checks. No held-out model inference has begun.
+A separate [Pro V2 subset](experiments/swe-pro-prompt-001/README.md) reserves only
+12 development and 24 validation tasks, with no automatic 642-task run.
+The [compact-interface calibration](results/compact-expert-calibration-001/analysis.json)
 measured 39.0% fewer input tokens and 36.8% lower token-rate scenario cost on one
 fresh arithmetic call per interface. This is a mechanism result, not repository
 accuracy or complete-task savings. Scored outcomes and held-out selection remain
@@ -52,8 +60,10 @@ The research dependencies are pinned below. Final pre-inference validation:
 **149 passed, 1 optional PyTorch test skipped, 2 subtests passed**, including
 real Docker integration. Native authenticated model/token preflights pass on
 this desktop; the read-only failure described in older records belongs to the
-previous managed host. The fresh 72-assignment study is **in progress**, with
-no final savings or noninferiority claim. Runpod remains unprovisioned and its
+previous managed host. All 108 original/development assignments passed independent
+native-grade and token-counter audits. No assisted condition meets the joint
+95% cost-reduction / 95% accuracy-retention target; population noninferiority is
+not established. Runpod remains unprovisioned and its
 authorized US$100 budget unspent. No remote Jira/Confluence publication is
 claimed; [local task state](docs/research/task-state.json) and an
 [import CSV](docs/research/jira-import.csv) preserve progress.

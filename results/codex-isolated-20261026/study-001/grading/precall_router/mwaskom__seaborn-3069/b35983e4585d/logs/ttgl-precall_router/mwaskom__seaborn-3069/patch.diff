@@ -1,0 +1,155 @@
+diff --git a/seaborn/_core/plot.py b/seaborn/_core/plot.py
+index 4f0290a..651f396 100644
+--- a/seaborn/_core/plot.py
++++ b/seaborn/_core/plot.py
+@@ -1627,6 +1627,13 @@ class Plotter:
+ 
+     def _finalize_figure(self, p: Plot) -> None:
+ 
++        # Apply all scale defaults before explicit limits, including shared axes.
++        for sub in self._subplots:
++            for axis in "xy":
++                if sub[axis] in self._scales:
++                    axis_obj = getattr(sub["ax"], f"{axis}axis")
++                    self._scales[sub[axis]]._finalize(axis_obj)
++
+         for sub in self._subplots:
+             ax = sub["ax"]
+             for axis in "xy":
+diff --git a/seaborn/_core/scales.py b/seaborn/_core/scales.py
+index bbd71ec..3385fa6 100644
+--- a/seaborn/_core/scales.py
++++ b/seaborn/_core/scales.py
+@@ -101,6 +101,10 @@ class Scale:
+     ) -> Scale:
+         raise NotImplementedError()
+ 
++    def _finalize(self, axis: Axis) -> None:
++        """Apply scale-specific axis defaults after plotting."""
++        pass
++
+     def __call__(self, data: Series) -> ArrayLike:
+ 
+         trans_data: Series | NDArray | list
+@@ -138,6 +142,9 @@ class Scale:
+ class Nominal(Scale):
+     """
+     A categorical scale without relative importance / magnitude.
++
++    Coordinate axes have limits half a step beyond the first and last category,
++    no grid lines, and an inverted y axis.
+     """
+     # Categorical (convert to strings), un-sortable
+ 
+@@ -227,6 +234,18 @@ class Nominal(Scale):
+ 
+         return new
+ 
++    def _finalize(self, axis: Axis) -> None:
++
++        axis.grid(False, which="both")
++        ticks = axis.get_majorticklocs()
++        if not len(ticks):
++            return
++
++        limits = (ticks[0] - .5, ticks[-1] + .5)
++        if axis.axis_name == "y":
++            limits = limits[::-1]
++        axis.axes.set(**{f"{axis.axis_name}lim": limits})
++
+     def tick(self, locator: Locator | None = None):
+         """
+         Configure the selection of ticks for the scale's axis or legend.
+diff --git a/tests/_core/test_plot.py b/tests/_core/test_plot.py
+index 03a6491..64e030e 100644
+--- a/tests/_core/test_plot.py
++++ b/tests/_core/test_plot.py
+@@ -20,6 +20,8 @@ from seaborn._core.rules import categorical_order
+ from seaborn._core.moves import Move, Shift, Dodge
+ from seaborn._stats.aggregation import Agg
+ from seaborn._marks.base import Mark
++from seaborn._marks.dot import Dot
++from seaborn._marks.bar import Bar
+ from seaborn._stats.base import Stat
+ from seaborn.external.version import Version
+ 
+@@ -1142,6 +1144,79 @@ class TestPlotting:
+         assert ax.get_xlabel() == "a"
+         assert ax.get_ylabel() == "b"
+ 
++    @pytest.mark.parametrize("axis", ["x", "y"])
++    @pytest.mark.parametrize("mark", [Dot(), Bar()])
++    @pytest.mark.parametrize("explicit", [False, True])
++    def test_nominal_axis_defaults(self, axis, mark, explicit):
++
++        other = {"x": "y", "y": "x"}[axis]
++        values = [10, 20, 30] if explicit else ["a", "b", "c"]
++        p = Plot(**{axis: values, other: [1, 2, 3]}).add(mark)
++        if explicit:
++            p = p.scale(**{axis: Nominal()})
++        p = p.theme({"axes.grid": True, "axes.xmargin": .2, "axes.ymargin": .2})
++        ax, = p.plot()._figure.axes
++        ax.figure.canvas.draw()
++
++        expected = (-.5, 2.5) if axis == "x" else (2.5, -.5)
++        assert getattr(ax, f"get_{axis}lim")() == expected
++        cat_grid = getattr(ax, f"{axis}axis").get_gridlines()
++        num_grid = getattr(ax, f"{other}axis").get_gridlines()
++        assert not any(t.get_visible() for t in cat_grid)
++        assert any(t.get_visible() for t in num_grid)
++        assert not getattr(ax, f"{other}axis_inverted")()
++
++    @pytest.mark.parametrize("axis", ["x", "y"])
++    @pytest.mark.parametrize("share", [True, False])
++    def test_nominal_axis_facets(self, axis, share):
++
++        other = {"x": "y", "y": "x"}[axis]
++        p = (
++            Plot(**{axis: ["a", "b", "c", "d"], other: [1, 2, 3, 4]})
++            .add(Dot())
++            .facet(col=["left", "left", "right", "right"])
++            .share(**{axis: share})
++            .plot()
++        )
++        expected = (-.5, 3.5) if share else (-.5, 1.5)
++        if axis == "y":
++            expected = expected[::-1]
++        for ax in p._figure.axes:
++            assert getattr(ax, f"get_{axis}lim")() == expected
++
++    @pytest.mark.parametrize("axis", ["x", "y"])
++    def test_nominal_axis_order_without_marks(self, axis):
++
++        p = Plot(**{axis: ["b"]}).scale(**{axis: Nominal(order=["a", "b", "c"])})
++        ax, = p.plot()._figure.axes
++        expected = (-.5, 2.5) if axis == "x" else (2.5, -.5)
++        assert getattr(ax, f"get_{axis}lim")() == expected
++
++    @pytest.mark.parametrize("axis", ["x", "y"])
++    @pytest.mark.parametrize("limits", [(0, 1), (None, 1), (1, None)])
++    def test_nominal_axis_explicit_limits(self, axis, limits):
++
++        other = {"x": "y", "y": "x"}[axis]
++        p = Plot(**{axis: ["a", "b", "c"], other: [1, 2, 3]}).add(Dot())
++        p = p.limit(**{axis: limits})
++        ax, = p.plot()._figure.axes
++        defaults = (-.5, 2.5) if axis == "x" else (2.5, -.5)
++        expected = tuple(d if v is None else v for v, d in zip(limits, defaults))
++        assert getattr(ax, f"get_{axis}lim")() == expected
++
++    @pytest.mark.parametrize("axis", ["x", "y"])
++    def test_nominal_shared_pair_limits(self, axis):
++
++        p = (
++            Plot()
++            .pair(**{axis: [["a", "b", "c"], ["a", "b", "c"]]})
++            .share(**{axis: True})
++            .limit(**{f"{axis}0": (0, 1)})
++            .plot()
++        )
++        for ax in p._figure.axes:
++            assert getattr(ax, f"get_{axis}lim")() == (0, 1)
++
+     def test_limits(self, long_df):
+ 
+         limit = (-2, 24)

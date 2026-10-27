@@ -1,0 +1,65 @@
+2026-10-27 00:32:58,741 - INFO - Creating container for scikit-learn__scikit-learn-14141...
+2026-10-27 00:32:58,868 - INFO - Container for scikit-learn__scikit-learn-14141 created: 7d9e7ecb9316c464cfee2821c043791ab12e7752e57a346fb3e02bc9bd3d811e
+2026-10-27 00:32:59,341 - INFO - Container for scikit-learn__scikit-learn-14141 started: 7d9e7ecb9316c464cfee2821c043791ab12e7752e57a346fb3e02bc9bd3d811e
+2026-10-27 00:32:59,357 - INFO - Intermediate patch for scikit-learn__scikit-learn-14141 written to logs/evaluation/ttgl-small-scikit-learn__scikit-learn-14141-eb6c3d7a-e9a7f638d716/ttgl-small/scikit-learn__scikit-learn-14141/patch.diff, now applying to container...
+2026-10-27 00:32:59,865 - INFO - >>>>> Applied Patch:
+Checking patch sklearn/utils/_show_versions.py...
+Checking patch sklearn/utils/tests/test_show_versions.py...
+Applied patch sklearn/utils/_show_versions.py cleanly.
+Applied patch sklearn/utils/tests/test_show_versions.py cleanly.
+
+2026-10-27 00:33:00,388 - INFO - Git diff before:
+diff --git a/sklearn/utils/_show_versions.py b/sklearn/utils/_show_versions.py
+index e5d3141bf..bb6194ddb 100644
+--- a/sklearn/utils/_show_versions.py
++++ b/sklearn/utils/_show_versions.py
+@@ -45,6 +45,7 @@ def _get_deps_info():
+         "sklearn",
+         "numpy",
+         "scipy",
++        "joblib",
+         "Cython",
+         "pandas",
+         "matplotlib",
+diff --git a/sklearn/utils/tests/test_show_versions.py b/sklearn/utils/tests/test_show_versions.py
+index 31153c96c..66da4dcb8 100644
+--- a/sklearn/utils/tests/test_show_versions.py
++++ b/sklearn/utils/tests/test_show_versions.py
+@@ -20,6 +20,7 @@ def test_get_deps_info():
+     assert 'sklearn' in deps_info
+     assert 'numpy' in deps_info
+     assert 'scipy' in deps_info
++    assert 'joblib' in deps_info
+     assert 'Cython' in deps_info
+     assert 'pandas' in deps_info
+     assert 'matplotlib' in deps_info
+@@ -30,4 +31,5 @@ def test_show_versions_with_blas(capsys):
+     out, err = capsys.readouterr()
+     assert 'python' in out
+     assert 'numpy' in out
++    assert 'joblib' in out
+     assert 'BLAS' in out
+2026-10-27 00:33:00,402 - INFO - Eval script for scikit-learn__scikit-learn-14141 written to logs/evaluation/ttgl-small-scikit-learn__scikit-learn-14141-eb6c3d7a-e9a7f638d716/ttgl-small/scikit-learn__scikit-learn-14141/eval.sh; copying to container...
+2026-10-27 00:33:07,406 - INFO - Test runtime: 6.69 seconds
+2026-10-27 00:33:07,422 - INFO - Test output for scikit-learn__scikit-learn-14141 written to logs/evaluation/ttgl-small-scikit-learn__scikit-learn-14141-eb6c3d7a-e9a7f638d716/ttgl-small/scikit-learn__scikit-learn-14141/test_output.txt
+2026-10-27 00:33:07,565 - INFO - Git diff after:
+diff --git a/sklearn/utils/_show_versions.py b/sklearn/utils/_show_versions.py
+index e5d3141bf..bb6194ddb 100644
+--- a/sklearn/utils/_show_versions.py
++++ b/sklearn/utils/_show_versions.py
+@@ -45,6 +45,7 @@ def _get_deps_info():
+         "sklearn",
+         "numpy",
+         "scipy",
++        "joblib",
+         "Cython",
+         "pandas",
+         "matplotlib",
+2026-10-27 00:33:07,568 - INFO - Git diff changed after running eval script
+2026-10-27 00:33:07,570 - INFO - Grading answer for scikit-learn__scikit-learn-14141...
+2026-10-27 00:33:07,583 - INFO - report: {'scikit-learn__scikit-learn-14141': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': True, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': ['sklearn/utils/tests/test_show_versions.py::test_get_deps_info'], 'failure': []}, 'PASS_TO_PASS': {'success': ['sklearn/utils/tests/test_show_versions.py::test_get_sys_info', 'sklearn/utils/tests/test_show_versions.py::test_show_versions_with_blas'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for scikit-learn__scikit-learn-14141: resolved: True
+2026-10-27 00:33:07,593 - INFO - Attempting to stop container sweb.eval.scikit-learn__scikit-learn-14141.ttgl-small-scikit-learn__scikit-learn-14141-eb6c3d7a-e9a7f638d716...
+2026-10-27 00:33:22,863 - INFO - Container sweb.eval.scikit-learn__scikit-learn-14141.ttgl-small-scikit-learn__scikit-learn-14141-eb6c3d7a-e9a7f638d716 stopped successfully.
+2026-10-27 00:33:22,870 - INFO - Attempting to remove container sweb.eval.scikit-learn__scikit-learn-14141.ttgl-small-scikit-learn__scikit-learn-14141-eb6c3d7a-e9a7f638d716...
+2026-10-27 00:33:22,946 - INFO - Container sweb.eval.scikit-learn__scikit-learn-14141.ttgl-small-scikit-learn__scikit-learn-14141-eb6c3d7a-e9a7f638d716 removed successfully.

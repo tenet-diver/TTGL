@@ -1,0 +1,123 @@
+{
+  "schema_version": 3,
+  "run_id": "06b868dc-2d5e-4caa-8027-a69493d6004a",
+  "task_id": "django__django-13297",
+  "condition": "personal",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-27T01:02:38.852729+00:00",
+  "finished_at": "2026-10-27T01:04:15.948860+00:00",
+  "identity_sha256": "17550a13d85584d2eedb4cd3545323ad7d6d7650bb964b8d3aabaf09a951a3dc",
+  "config": {
+    "condition": "personal",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d",
+    "controller_policy": {
+      "mode": "fallback",
+      "source_sha256": "bf163122b4c9769dbec7ef0c9759fc5e07a4453dc6906f75c31dfa41d6eee707",
+      "prompts_sha256": {
+        "controller-v2-common.txt": "bcab59483071803bd76c6a2125c4892771bafb3f3845b151494732f1b905fd23",
+        "controller-v2-delegation.txt": "97fa0f26f6477d16ad94e130d0ae33b9909da26598fe72fd9178513f330e568b",
+        "controller-v2-fallback.txt": "b0e31632e6796b582a7982325aca364419cbeeeaa309224b47eae2ccce8a4724"
+      }
+    }
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 3,
+  "expert_calls": 1,
+  "elapsed_seconds": 96.9613893199712,
+  "controller_thread_id": "01a17ae1-7877-71f1-b0d9-de5e322f2c44",
+  "expert_thread_id": "01a17ae1-c6d0-76f1-9800-4d09633edd18",
+  "usage": {
+    "input_tokens": 348609,
+    "cached_input_tokens": 305408,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4178,
+    "reasoning_output_tokens": 1348
+  },
+  "observed_usage_partial": {
+    "input_tokens": 348609,
+    "cached_input_tokens": 305408,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4178,
+    "reasoning_output_tokens": 1348
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 337874,
+        "cached_input_tokens": 305408,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3169,
+        "reasoning_output_tokens": 618
+      },
+      "observed_partial": {
+        "input_tokens": 337874,
+        "cached_input_tokens": 305408,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3169,
+        "reasoning_output_tokens": 618
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    },
+    "gpt-6.1-sol": {
+      "usage": {
+        "input_tokens": 10735,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1009,
+        "reasoning_output_tokens": 730
+      },
+      "observed_partial": {
+        "input_tokens": 10735,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1009,
+        "reasoning_output_tokens": 730
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 3,
+  "failure_type": null,
+  "summary": "Moved URL kwarg wrapping into `TemplateView.get_context_data()`, so custom overrides receive ordinary values for ORM filtering while values included in the returned context still warn lazily. Added a SQLite-backed regression test. Verified the focused regression and deprecation tests (4 passed), the generic view base/detail suites (82 passed), and `git diff --check`.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "ac468048838106d93ac0eeb435f38206203a839a1254f07eb0cc3380ffcae4da",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

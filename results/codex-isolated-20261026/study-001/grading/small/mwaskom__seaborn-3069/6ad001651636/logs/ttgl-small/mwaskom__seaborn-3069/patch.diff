@@ -1,0 +1,31 @@
+diff --git a/seaborn/_core/plot.py b/seaborn/_core/plot.py
+index 4f0290a..d7cc0ec 100644
+--- a/seaborn/_core/plot.py
++++ b/seaborn/_core/plot.py
+@@ -1643,6 +1643,26 @@ class Plotter:
+                     if isinstance(b, str):
+                         hi = cast(float, hi) + 0.5
+                     ax.set(**{f"{axis}lim": (lo, hi)})
++                # Nominal coordinates are represented by numeric category
++                # indices, so Matplotlib does not apply categorical autoscaling.
++                # Give them the same half-step bounds and y orientation as the
++                # categorical plotting functions.
++                from seaborn._core.scales import Nominal
++                scale = self._scales.get(axis_key)
++                if isinstance(scale, Nominal):
++                    ticks = getattr(ax, f"get_{axis}ticks")()
++                    if len(ticks) and axis_key not in p._limits:
++                        lo, hi = ticks[0] - .5, ticks[-1] + .5
++                        if axis == "y":
++                            ax.set_ylim(hi, lo)
++                        else:
++                            ax.set_xlim(lo, hi)
++                    if axis == "y" and axis_key not in p._limits and not ax.yaxis_inverted():
++                        ax.invert_yaxis()
++                    # Respect an explicitly requested theme grid; otherwise
++                    # categorical dimensions suppress their grid lines.
++                    if self._theme.get("axes.grid") is not True:
++                        getattr(ax, f"{axis}axis").grid(False)
+ 
+         engine_default = None if p._target is not None else "tight"
+         layout_engine = p._layout_spec.get("engine", engine_default)

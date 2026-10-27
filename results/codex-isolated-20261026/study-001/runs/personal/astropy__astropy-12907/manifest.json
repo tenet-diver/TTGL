@@ -1,0 +1,91 @@
+{
+  "schema_version": 3,
+  "run_id": "e1a5c56a-5c1c-46e8-9aba-cd4ed5b6ffe0",
+  "task_id": "astropy__astropy-12907",
+  "condition": "personal",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-26T22:19:38.756634+00:00",
+  "finished_at": "2026-10-26T22:21:01.416728+00:00",
+  "identity_sha256": "6762b823566c9fa555739d39e39991435eba8b720afda7a02c91b54850897e27",
+  "config": {
+    "condition": "personal",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d"
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 1,
+  "expert_calls": 0,
+  "elapsed_seconds": 82.56896558706649,
+  "controller_thread_id": "01a17a4c-3cca-78f3-b4e5-65c86212404a",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 142597,
+    "cached_input_tokens": 110592,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1189,
+    "reasoning_output_tokens": 168
+  },
+  "observed_usage_partial": {
+    "input_tokens": 142597,
+    "cached_input_tokens": 110592,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1189,
+    "reasoning_output_tokens": 168
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 142597,
+        "cached_input_tokens": 110592,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1189,
+        "reasoning_output_tokens": 168
+      },
+      "observed_partial": {
+        "input_tokens": 142597,
+        "cached_input_tokens": 110592,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1189,
+        "reasoning_output_tokens": 168
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 1,
+  "failure_type": null,
+  "summary": "Fixed nested compound separability by preserving the right child’s dependency matrix when stacking compound models. Added a regression test for `Pix2Sky_TAN() & (Linear1D(10) & Linear1D(5))`. Verified the focused separability tests pass (12 passed), the reported example produces the expected matrix, and `git diff --check` passes. The broader core/models run had 14 unrelated failures and 205 passes; failures involved NumPy deprecation warnings and an output-preparation test.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "f69add7bb0596217fac77cba1188061bea07d390ddd4d7ed03066bad7adbfbca",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

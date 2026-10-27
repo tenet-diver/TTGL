@@ -1,0 +1,16 @@
+  0%|          | 0/1 [00:00<?, ?it/s]Running 1 instances...
+100%|██████████| 1/1 [00:32<00:00, 32.42s/it]1 ran successfully, 0 failed: 100%|██████████| 1/1 [00:32<00:00, 32.42s/it]1 ran successfully, 0 failed: 100%|██████████| 1/1 [00:32<00:00, 32.42s/it]
+All instances run.
+Total instances: 1
+Instances submitted: 1
+Instances completed: 1
+Instances incomplete: 0
+Instances resolved: 1
+Instances unresolved: 0
+Instances with likely infrastructure failures: 0
+Instances with ambiguous failures: 0
+Instances with empty patches: 0
+Instances with errors: 0
+Unstopped containers: 0
+Unremoved images: 0
+Report written to logs/evaluation/ttgl-personal-pydata__xarray-3095-981d67b5-56a1abf54c21/results.json

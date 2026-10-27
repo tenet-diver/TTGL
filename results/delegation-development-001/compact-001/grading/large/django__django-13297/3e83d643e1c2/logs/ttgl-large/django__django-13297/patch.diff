@@ -1,0 +1,89 @@
+diff --git a/django/views/generic/base.py b/django/views/generic/base.py
+index ea5baca..ac5ee37 100644
+--- a/django/views/generic/base.py
++++ b/django/views/generic/base.py
+@@ -11,7 +11,7 @@ from django.template.response import TemplateResponse
+ from django.urls import reverse
+ from django.utils.decorators import classonlymethod
+ from django.utils.deprecation import RemovedInDjango40Warning
+-from django.utils.functional import SimpleLazyObject
++from django.utils.functional import lazy
+ 
+ logger = logging.getLogger('django.request')
+ 
+@@ -169,7 +169,6 @@ def _wrap_url_kwargs_with_deprecation_warning(url_kwargs):
+     context_kwargs = {}
+     for key, value in url_kwargs.items():
+         # Bind into function closure.
+-        @SimpleLazyObject
+         def access_value(key=key, value=value):
+             warnings.warn(
+                 'TemplateView passing URL kwargs to the context is '
+@@ -178,7 +177,8 @@ def _wrap_url_kwargs_with_deprecation_warning(url_kwargs):
+                 RemovedInDjango40Warning, stacklevel=2,
+             )
+             return value
+-        context_kwargs[key] = access_value
++        # Use lazy() so database fields can resolve the value before binding it.
++        context_kwargs[key] = lazy(access_value, type(value))()
+     return context_kwargs
+ 
+ 
+diff --git a/docs/releases/3.1.1.txt b/docs/releases/3.1.1.txt
+index 6aa091b..ee79a41 100644
+--- a/docs/releases/3.1.1.txt
++++ b/docs/releases/3.1.1.txt
+@@ -25,3 +25,6 @@ Bugfixes
+   :meth:`~django.db.models.query.QuerySet.select_for_update()`. When using
+   related fields pointing to a proxy model in the ``of`` argument, the
+   corresponding model was not locked (:ticket:`31866`).
++
++* Fixed a regression in Django 3.1 that caused a crash when using URL kwargs
++  passed to ``TemplateView.get_context_data()`` in database queries.
+diff --git a/tests/generic_views/test_base.py b/tests/generic_views/test_base.py
+index d498d23..86fd295 100644
+--- a/tests/generic_views/test_base.py
++++ b/tests/generic_views/test_base.py
+@@ -2,8 +2,9 @@ import time
+ 
+ from django.core.exceptions import ImproperlyConfigured
+ from django.http import HttpResponse
++from django.shortcuts import get_object_or_404
+ from django.test import (
+-    RequestFactory, SimpleTestCase, ignore_warnings, override_settings,
++    RequestFactory, SimpleTestCase, TestCase, ignore_warnings, override_settings,
+ )
+ from django.test.utils import require_jinja2
+ from django.urls import resolve
+@@ -11,6 +12,7 @@ from django.utils.deprecation import RemovedInDjango40Warning
+ from django.views.generic import RedirectView, TemplateView, View
+ 
+ from . import views
++from .models import Author
+ 
+ 
+ class SimpleView(View):
+@@ -603,3 +605,23 @@ class DeprecationTests(SimpleTestCase):
+             str(response.context['foo2'])
+         self.assertEqual(response.context['key'], 'value')
+         self.assertIsInstance(response.context['view'], View)
++
++
++class TemplateViewURLKwargsTests(TestCase):
++    @ignore_warnings(category=RemovedInDjango40Warning)
++    def test_filter_with_url_kwarg(self):
++        class AuthorView(TemplateView):
++            template_name = 'generic_views/about.html'
++
++            def get_context_data(self, **kwargs):
++                author = get_object_or_404(Author, **kwargs)
++                return super().get_context_data(author=author, **kwargs)
++
++        author = Author.objects.create(name='Test Author', slug='test-author')
++        request = RequestFactory().get('/')
++        for kwargs in ({'slug': author.slug}, {'pk': author.pk}):
++            with self.subTest(kwargs=kwargs):
++                response = AuthorView.as_view()(request, **kwargs)
++                self.assertEqual(response.context_data['author'], author)
++                response.render()
++                self.assertContains(response, '<h1>About</h1>')

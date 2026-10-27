@@ -1,0 +1,10 @@
+{
+  "instance_id": "sphinx-doc__sphinx-9230",
+  "model_name_or_path": "ttgl-small",
+  "model_patch": "diff --git a/sphinx/util/docfields.py b/sphinx/util/docfields.py\nindex 3a3367e..93d6e8e 100644\n--- a/sphinx/util/docfields.py\n+++ b/sphinx/util/docfields.py\n@@ -22,6 +22,19 @@ if TYPE_CHECKING:\n     from sphinx.directive import ObjectDescription\n \n \n+def _split_type_and_name(value: str) -> Tuple[str, str]:\n+    \"\"\"Split a typed field argument without splitting inside a type expression.\"\"\"\n+    depth = 0\n+    for index, char in enumerate(value):\n+        if char == '(':\n+            depth += 1\n+        elif char == ')':\n+            depth = max(0, depth - 1)\n+        elif char.isspace() and depth == 0:\n+            return value[:index], value[index:].lstrip()\n+    return value, ''\n+\n+\n def _is_single_paragraph(node: nodes.field_body) -> bool:\n     \"\"\"True if the node only contains one paragraph (and system messages).\"\"\"\n     if len(node) == 0:\n@@ -297,11 +310,8 @@ class DocFieldTransformer:\n \n             # also support syntax like ``:param type name:``\n             if typedesc.is_typed:\n-                try:\n-                    argtype, argname = fieldarg.split(None, 1)\n-                except ValueError:\n-                    pass\n-                else:\n+                argtype, argname = _split_type_and_name(fieldarg)\n+                if argname:\n                     types.setdefault(typename, {})[argname] = \\\n                         [nodes.Text(argtype)]\n                     fieldarg = argname\n",
+  "manifest_sha256": "ccfb3cfe56124e13c221fa16d18c29675bd78a13b7fb23d1264f6d9e9da1fc55",
+  "patch_sha256": "cb7cb1f31939c12b6749686f99906d32a58cbb61b51284b7ca5faa5fabc52c1f",
+  "status": "completed_ungraded",
+  "preparation_seconds": 15.528126258053817,
+  "assignment_wall_seconds": 48.80290490202606
+}

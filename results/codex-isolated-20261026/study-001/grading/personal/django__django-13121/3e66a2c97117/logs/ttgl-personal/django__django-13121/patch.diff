@@ -1,0 +1,31 @@
+diff --git a/django/db/backends/sqlite3/base.py b/django/db/backends/sqlite3/base.py
+index 31e8a55..3fe36ab 100644
+--- a/django/db/backends/sqlite3/base.py
++++ b/django/db/backends/sqlite3/base.py
+@@ -551,6 +551,8 @@ def _sqlite_format_dtdelta(conn, lhs, rhs):
+     - A string representing a datetime
+     """
+     try:
++        if isinstance(lhs, int) and isinstance(rhs, int):
++            return lhs + rhs if conn.strip() == '+' else lhs - rhs
+         real_lhs = datetime.timedelta(0, 0, lhs) if isinstance(lhs, int) else backend_utils.typecast_timestamp(lhs)
+         real_rhs = datetime.timedelta(0, 0, rhs) if isinstance(rhs, int) else backend_utils.typecast_timestamp(rhs)
+         if conn.strip() == '+':
+diff --git a/tests/expressions/tests.py b/tests/expressions/tests.py
+index 459a877..58c0659 100644
+--- a/tests/expressions/tests.py
++++ b/tests/expressions/tests.py
+@@ -1449,6 +1449,13 @@ class FTimeDeltaTests(TestCase):
+         with self.assertRaises(DatabaseError):
+             list(Experiment.objects.filter(start=F('start') * datetime.timedelta(0)))
+ 
++    def test_durationfield_add_duration(self):
++        delta = datetime.timedelta(days=1)
++        experiment = Experiment.objects.annotate(
++            duration=F('estimated_time') + delta,
++        ).get(pk=self.e0.pk)
++        self.assertEqual(experiment.duration, delta)
++
+     def test_durationfield_add(self):
+         zeros = [e.name for e in Experiment.objects.filter(start=F('start') + F('estimated_time'))]
+         self.assertEqual(zeros, ['e0'])

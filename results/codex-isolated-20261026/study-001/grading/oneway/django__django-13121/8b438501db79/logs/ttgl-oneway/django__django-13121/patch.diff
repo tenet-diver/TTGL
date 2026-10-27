@@ -1,0 +1,51 @@
+diff --git a/django/db/backends/sqlite3/base.py b/django/db/backends/sqlite3/base.py
+index 31e8a55..dca773f 100644
+--- a/django/db/backends/sqlite3/base.py
++++ b/django/db/backends/sqlite3/base.py
+@@ -550,6 +550,8 @@ def _sqlite_format_dtdelta(conn, lhs, rhs):
+     - An integer number of microseconds
+     - A string representing a datetime
+     """
++    if isinstance(lhs, int) and isinstance(rhs, int):
++        return lhs + rhs if conn.strip() == '+' else lhs - rhs
+     try:
+         real_lhs = datetime.timedelta(0, 0, lhs) if isinstance(lhs, int) else backend_utils.typecast_timestamp(lhs)
+         real_rhs = datetime.timedelta(0, 0, rhs) if isinstance(rhs, int) else backend_utils.typecast_timestamp(rhs)
+diff --git a/django/db/models/expressions.py b/django/db/models/expressions.py
+index a156c5e..7a48438 100644
+--- a/django/db/models/expressions.py
++++ b/django/db/models/expressions.py
+@@ -479,14 +479,18 @@ class CombinedExpression(SQLiteNumericMixin, Expression):
+ 
+ 
+ class DurationExpression(CombinedExpression):
+-    def compile(self, side, compiler, connection):
++    def compile(self, side, other, compiler, connection):
+         if not isinstance(side, DurationValue):
+             try:
+                 output = side.output_field
++                other_output = other.output_field
+             except FieldError:
+                 pass
+             else:
+-                if output.get_internal_type() == 'DurationField':
++                if (
++                    output.get_internal_type() == 'DurationField' and
++                    other_output.get_internal_type() in {'DateField', 'DateTimeField', 'TimeField'}
++                ):
+                     sql, params = compiler.compile(side)
+                     return connection.ops.format_for_duration_arithmetic(sql), params
+         return compiler.compile(side)
+@@ -495,10 +499,10 @@ class DurationExpression(CombinedExpression):
+         connection.ops.check_expression_support(self)
+         expressions = []
+         expression_params = []
+-        sql, params = self.compile(self.lhs, compiler, connection)
++        sql, params = self.compile(self.lhs, self.rhs, compiler, connection)
+         expressions.append(sql)
+         expression_params.extend(params)
+-        sql, params = self.compile(self.rhs, compiler, connection)
++        sql, params = self.compile(self.rhs, self.lhs, compiler, connection)
+         expressions.append(sql)
+         expression_params.extend(params)
+         # order of precedence

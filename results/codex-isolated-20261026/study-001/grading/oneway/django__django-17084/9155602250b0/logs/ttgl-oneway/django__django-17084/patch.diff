@@ -1,0 +1,81 @@
+diff --git a/django/db/models/sql/query.py b/django/db/models/sql/query.py
+index 13a6809..71f82cb 100644
+--- a/django/db/models/sql/query.py
++++ b/django/db/models/sql/query.py
+@@ -451,6 +451,9 @@ class Query(BaseExpression):
+             or self.is_sliced
+             or has_existing_aggregation
+             or refs_subquery
++            or any(
++                aggregate.contains_over_clause for aggregate in aggregates.values()
++            )
+             or qualify
+             or self.distinct
+             or self.combinator
+@@ -499,6 +502,27 @@ class Query(BaseExpression):
+             col_refs = {}
+             for alias, aggregate in aggregates.items():
+                 replacements = {}
++                # Window expressions must be evaluated in the inner query
++                # before they can be aggregated in the outer query. Select
++                # references to window annotations as columns in that query.
++                if aggregate.contains_over_clause:
++                    expressions = [aggregate]
++                    while expressions:
++                        expression = expressions.pop()
++                        if (
++                            isinstance(expression, Ref)
++                            and expression.contains_over_clause
++                        ):
++                            if not (col_ref := col_refs.get(expression)):
++                                index = len(col_refs) + 1
++                                col_alias = f"__col{index}"
++                                col_ref = Ref(col_alias, expression.source)
++                                col_refs[expression] = col_ref
++                                inner_query.annotations[col_alias] = expression.source
++                                inner_query.append_annotation_mask([col_alias])
++                            replacements[expression] = col_ref
++                        elif hasattr(expression, "get_source_expressions"):
++                            expressions.extend(expression.get_source_expressions())
+                 for col in self._gen_cols([aggregate], resolve_refs=False):
+                     if not (col_ref := col_refs.get(col)):
+                         index = len(col_refs) + 1
+diff --git a/tests/aggregation/tests.py b/tests/aggregation/tests.py
+index 366b843..fa02b07 100644
+--- a/tests/aggregation/tests.py
++++ b/tests/aggregation/tests.py
+@@ -28,6 +28,7 @@ from django.db.models import (
+     Value,
+     Variance,
+     When,
++    Window,
+ )
+ from django.db.models.expressions import Func, RawSQL
+ from django.db.models.functions import (
+@@ -1163,6 +1164,26 @@ class AggregateTestCase(TestCase):
+         with self.assertRaisesMessage(TypeError, "Complex aggregates require an alias"):
+             Author.objects.aggregate(Sum(1))
+ 
++    @skipUnlessDBFeature("supports_over_clause")
++    def test_aggregate_over_window_annotation(self):
++        ages = [25, 34, 35, 37, 45, 46, 57]
++        queryset = Author.objects.filter(age__in=ages).annotate(
++            cumulative_age=Window(Sum("age"), order_by=F("age").asc())
++        )
++        result = queryset.aggregate(
++            age_total=Sum("age"), cumulative_age_total=Sum("cumulative_age")
++        )
++        cumulative_total = sum(
++            age * (len(ages) - index) for index, age in enumerate(ages)
++        )
++        self.assertEqual(
++            result,
++            {
++                "age_total": sum(ages),
++                "cumulative_age_total": cumulative_total,
++            },
++        )
++
+     def test_aggregate_over_complex_annotation(self):
+         qs = Author.objects.annotate(combined_ages=Sum(F("age") + F("friends__age")))
+ 

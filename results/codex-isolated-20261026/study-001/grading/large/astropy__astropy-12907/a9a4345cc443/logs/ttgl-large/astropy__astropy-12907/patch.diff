@@ -1,0 +1,53 @@
+diff --git a/astropy/modeling/separable.py b/astropy/modeling/separable.py
+index a308e27..45bea36 100644
+--- a/astropy/modeling/separable.py
++++ b/astropy/modeling/separable.py
+@@ -242,7 +242,7 @@ def _cstack(left, right):
+         cright = _coord_matrix(right, 'right', noutp)
+     else:
+         cright = np.zeros((noutp, right.shape[1]))
+-        cright[-right.shape[0]:, -right.shape[1]:] = 1
++        cright[-right.shape[0]:, -right.shape[1]:] = right
+ 
+     return np.hstack([cleft, cright])
+ 
+diff --git a/astropy/modeling/tests/test_separable.py b/astropy/modeling/tests/test_separable.py
+index 8dfe5c8..853a653 100644
+--- a/astropy/modeling/tests/test_separable.py
++++ b/astropy/modeling/tests/test_separable.py
+@@ -148,3 +148,35 @@ def test_custom_model_separable():
+ 
+     assert not model_c().separable
+     assert np.all(separability_matrix(model_c()) == [True, True])
++
++
++@pytest.mark.parametrize('compound_model', [
++    models.Pix2Sky_TAN() & (models.Linear1D(10) & models.Linear1D(5)),
++    (models.Pix2Sky_TAN() & models.Linear1D(10)) & models.Linear1D(5),
++    (models.Linear1D(10) & models.Linear1D(5)) & models.Pix2Sky_TAN(),
++    models.Linear1D(10) & (models.Linear1D(5) & models.Pix2Sky_TAN()),
++])
++def test_nested_compound_separability(compound_model):
++    expected = np.eye(4, dtype=bool)
++    if isinstance(compound_model[0], models.Pix2Sky_TAN):
++        expected[:2, :2] = True
++        separable = [False, False, True, True]
++    else:
++        expected[2:, 2:] = True
++        separable = [True, True, False, False]
++
++    assert_allclose(separability_matrix(compound_model), expected)
++    assert_allclose(is_separable(compound_model), separable)
++
++
++def test_nested_compound_separability_rectangular():
++    compound_model = models.Linear1D(10) & (
++        Mapping((1, 0, 1)) | (models.Linear1D(5) & models.Linear1D(2)
++                              & models.Linear1D(3)))
++    expected = [[True, False, False],
++                [False, False, True],
++                [False, True, False],
++                [False, False, True]]
++
++    assert_allclose(separability_matrix(compound_model), expected)
++    assert_allclose(is_separable(compound_model), [True] * 4)

@@ -1,0 +1,99 @@
+diff --git a/django/views/generic/base.py b/django/views/generic/base.py
+index ea5baca..d6d65b4 100644
+--- a/django/views/generic/base.py
++++ b/django/views/generic/base.py
+@@ -11,7 +11,6 @@ from django.template.response import TemplateResponse
+ from django.urls import reverse
+ from django.utils.decorators import classonlymethod
+ from django.utils.deprecation import RemovedInDjango40Warning
+-from django.utils.functional import SimpleLazyObject
+ 
+ logger = logging.getLogger('django.request')
+ 
+@@ -159,27 +158,20 @@ class TemplateView(TemplateResponseMixin, ContextMixin, View):
+     def get(self, request, *args, **kwargs):
+         # RemovedInDjango40Warning: when the deprecation ends, replace with:
+         #   context = self.get_context_data()
+-        context_kwargs = _wrap_url_kwargs_with_deprecation_warning(kwargs)
+-        context = self.get_context_data(**context_kwargs)
++        _warn_about_url_kwargs(kwargs)
++        context = self.get_context_data(**kwargs)
+         return self.render_to_response(context)
+ 
+ 
+ # RemovedInDjango40Warning
+-def _wrap_url_kwargs_with_deprecation_warning(url_kwargs):
+-    context_kwargs = {}
+-    for key, value in url_kwargs.items():
+-        # Bind into function closure.
+-        @SimpleLazyObject
+-        def access_value(key=key, value=value):
+-            warnings.warn(
+-                'TemplateView passing URL kwargs to the context is '
+-                'deprecated. Reference %s in your template through '
+-                'view.kwargs instead.' % key,
+-                RemovedInDjango40Warning, stacklevel=2,
+-            )
+-            return value
+-        context_kwargs[key] = access_value
+-    return context_kwargs
++def _warn_about_url_kwargs(url_kwargs):
++    for key in url_kwargs:
++        warnings.warn(
++            'TemplateView passing URL kwargs to the context is '
++            'deprecated. Reference %s in your template through '
++            'view.kwargs instead.' % key,
++            RemovedInDjango40Warning, stacklevel=3,
++        )
+ 
+ 
+ class RedirectView(View):
+diff --git a/tests/generic_views/test_base.py b/tests/generic_views/test_base.py
+index d498d23..ecd48c4 100644
+--- a/tests/generic_views/test_base.py
++++ b/tests/generic_views/test_base.py
+@@ -350,6 +350,7 @@ class TemplateViewTest(SimpleTestCase):
+         view = TemplateView.as_view(template_name='generic_views/using.html', template_engine='jinja2')
+         self.assertEqual(view(request).render().content, b'Jinja2\n')
+ 
++    @ignore_warnings(category=RemovedInDjango40Warning)
+     def test_cached_views(self):
+         """
+         A template view can be cached
+@@ -590,16 +591,30 @@ class DeprecationTests(SimpleTestCase):
+         self.assertEqual(response.context['key'], 'value')
+         self.assertIsInstance(response.context['view'], View)
+ 
++    def test_template_params_are_not_lazy(self):
++        received = {}
++
++        class SlugView(TemplateView):
++            template_name = 'generic_views/about.html'
++
++            def get_context_data(self, **kwargs):
++                received.update(kwargs)
++                return super().get_context_data(**kwargs)
++
++        with self.assertWarns(RemovedInDjango40Warning):
++            SlugView.as_view()(RequestFactory().get('/'), slug='example')
++        self.assertEqual(received['slug'], 'example')
++        self.assertIs(type(received['slug']), str)
++
+     def test_template_params_warning(self):
+-        response = self.client.get('/template/custom/bar1/bar2/')
+-        self.assertEqual(response.status_code, 200)
+         msg = (
+             'TemplateView passing URL kwargs to the context is deprecated. '
+             'Reference %s in your template through view.kwargs instead.'
+         )
+-        with self.assertRaisesMessage(RemovedInDjango40Warning, msg % 'foo1'):
+-            str(response.context['foo1'])
+-        with self.assertRaisesMessage(RemovedInDjango40Warning, msg % 'foo2'):
+-            str(response.context['foo2'])
++        with self.assertWarnsMessage(RemovedInDjango40Warning, msg % 'foo1'):
++            response = self.client.get('/template/custom/bar1/bar2/')
++        self.assertEqual(response.status_code, 200)
++        self.assertEqual(response.context['foo1'], 'bar1')
++        self.assertEqual(response.context['foo2'], 'bar2')
+         self.assertEqual(response.context['key'], 'value')
+         self.assertIsInstance(response.context['view'], View)

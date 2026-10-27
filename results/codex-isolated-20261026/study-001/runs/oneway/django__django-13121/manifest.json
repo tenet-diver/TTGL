@@ -1,0 +1,91 @@
+{
+  "schema_version": 3,
+  "run_id": "5abc6852-2309-4ad1-86d9-e961d5c9dafd",
+  "task_id": "django__django-13121",
+  "condition": "oneway",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-27T00:00:03.227771+00:00",
+  "finished_at": "2026-10-27T00:00:59.160644+00:00",
+  "identity_sha256": "83ab83d88b6a44f1749d59c7e6d1d66ef2f68a08830414ab7f51394eb03c1a36",
+  "config": {
+    "condition": "oneway",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d"
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 1,
+  "expert_calls": 0,
+  "elapsed_seconds": 55.83451775403228,
+  "controller_thread_id": "01a17aa8-2a23-7b20-b4e3-8d378ba1bbfc",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 297492,
+    "cached_input_tokens": 250496,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2750,
+    "reasoning_output_tokens": 627
+  },
+  "observed_usage_partial": {
+    "input_tokens": 297492,
+    "cached_input_tokens": 250496,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2750,
+    "reasoning_output_tokens": 627
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 297492,
+        "cached_input_tokens": 250496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2750,
+        "reasoning_output_tokens": 627
+      },
+      "observed_partial": {
+        "input_tokens": 297492,
+        "cached_input_tokens": 250496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2750,
+        "reasoning_output_tokens": 627
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 3,
+  "failure_type": null,
+  "summary": "Updated duration expression compilation so MySQL formats a duration as an INTERVAL only when it is combined with a date/time value. SQLite now returns an integer microsecond result for duration-only arithmetic, matching DurationField conversion. Verified with `python tests/runtests.py expressions.tests.FTimeDeltaTests --settings=test_sqlite`: 23 tests passed, 1 skipped. An initial test invocation used a nonexistent test class; the corrected focused suite passed.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "d3e69fd317dd681217f0862c464de2df76782a01c6387bac461c5844e4f8a348",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

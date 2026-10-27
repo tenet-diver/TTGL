@@ -1,0 +1,59 @@
+diff --git a/django/db/models/sql/query.py b/django/db/models/sql/query.py
+index 13a6809..85e51f3 100644
+--- a/django/db/models/sql/query.py
++++ b/django/db/models/sql/query.py
+@@ -403,6 +403,7 @@ class Query(BaseExpression):
+         # Store annotation mask prior to temporarily adding aggregations for
+         # resolving purpose to facilitate their subsequent removal.
+         refs_subquery = False
++        refs_window = False
+         replacements = {}
+         annotation_select_mask = self.annotation_select_mask
+         for alias, aggregate_expr in aggregate_exprs.items():
+@@ -419,6 +420,7 @@ class Query(BaseExpression):
+                 getattr(self.annotations[ref], "subquery", False)
+                 for ref in aggregate.get_refs()
+             )
++            refs_window |= aggregate.contains_over_clause
+             aggregate = aggregate.replace_expressions(replacements)
+             self.annotations[alias] = aggregate
+             replacements[Ref(alias, aggregate)] = aggregate
+@@ -451,6 +453,7 @@ class Query(BaseExpression):
+             or self.is_sliced
+             or has_existing_aggregation
+             or refs_subquery
++            or refs_window
+             or qualify
+             or self.distinct
+             or self.combinator
+diff --git a/tests/expressions_window/tests.py b/tests/expressions_window/tests.py
+index 3a02a36..665ac8e 100644
+--- a/tests/expressions_window/tests.py
++++ b/tests/expressions_window/tests.py
+@@ -864,6 +864,26 @@ class WindowFunctionTests(TestCase):
+             ),
+         )
+ 
++    def test_aggregate_over_window_annotation(self):
++        queryset = Employee.objects.annotate(
++            cumulative_salary=Window(
++                expression=Sum("salary"), order_by=F("hire_date").asc()
++            )
++        )
++        result = queryset.aggregate(
++            salary_total=Sum("salary"), cumulative_salary_total=Sum("cumulative_salary")
++        )
++        salaries = list(
++            Employee.objects.order_by("hire_date").values_list("salary", flat=True)
++        )
++        cumulative_total = 0
++        running_total = 0
++        for salary in salaries:
++            running_total += salary
++            cumulative_total += running_total
++        self.assertEqual(result["salary_total"], sum(salaries))
++        self.assertEqual(result["cumulative_salary_total"], cumulative_total)
++
+     def test_multiple_ordering(self):
+         """
+         Accumulate the salaries over the departments based on hire_date.

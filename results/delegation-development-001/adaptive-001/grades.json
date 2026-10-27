@@ -1,0 +1,20 @@
+{
+  "large": {
+    "scikit-learn__scikit-learn-14141": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/large/scikit-learn__scikit-learn-14141/f59047c177a9/logs/ttgl-large/scikit-learn__scikit-learn-14141/report.json",
+    "django__django-13297": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/large/django__django-13297/69493fa05695/logs/ttgl-large/django__django-13297/report.json",
+    "pydata__xarray-3095": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/large/pydata__xarray-3095/436798b22576/logs/ttgl-large/pydata__xarray-3095/report.json",
+    "django__django-15037": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/large/django__django-15037/4865269356a5/logs/ttgl-large/django__django-15037/report.json"
+  },
+  "small": {
+    "scikit-learn__scikit-learn-14141": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/small/scikit-learn__scikit-learn-14141/e9a7f638d716/logs/ttgl-small/scikit-learn__scikit-learn-14141/report.json",
+    "django__django-13297": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/small/django__django-13297/100c79de8191/logs/results.json",
+    "pydata__xarray-3095": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/small/pydata__xarray-3095/3deacb755907/logs/ttgl-small/pydata__xarray-3095/report.json",
+    "django__django-15037": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/small/django__django-15037/aa13fcbf13d0/logs/results.json"
+  },
+  "personal": {
+    "scikit-learn__scikit-learn-14141": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/reset_expert/scikit-learn__scikit-learn-14141/975cab3b4c2f/logs/ttgl-reset_expert/scikit-learn__scikit-learn-14141/report.json",
+    "django__django-13297": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/personal/django__django-13297/58c666e631b3/logs/ttgl-personal/django__django-13297/report.json",
+    "pydata__xarray-3095": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/personal/pydata__xarray-3095/56a1abf54c21/logs/ttgl-personal/pydata__xarray-3095/report.json",
+    "django__django-15037": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/personal/django__django-15037/f527af505d81/logs/ttgl-personal/django__django-15037/report.json"
+  }
+}

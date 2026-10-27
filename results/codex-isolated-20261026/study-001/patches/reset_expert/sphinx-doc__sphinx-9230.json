@@ -1,0 +1,10 @@
+{
+  "instance_id": "sphinx-doc__sphinx-9230",
+  "model_name_or_path": "ttgl-reset_expert",
+  "model_patch": "diff --git a/sphinx/util/docfields.py b/sphinx/util/docfields.py\nindex 3a3367e..ef08da7 100644\n--- a/sphinx/util/docfields.py\n+++ b/sphinx/util/docfields.py\n@@ -297,11 +297,25 @@ class DocFieldTransformer:\n \n             # also support syntax like ``:param type name:``\n             if typedesc.is_typed:\n-                try:\n-                    argtype, argname = fieldarg.split(None, 1)\n-                except ValueError:\n-                    pass\n+                # Type expressions may contain spaces, for example\n+                # ``dict(str, str)``.  Find the first whitespace outside\n+                # parentheses so the complete type stays together.\n+                depth = 0\n+                split_at = None\n+                for index, char in enumerate(fieldarg):\n+                    if char == '(':\n+                        depth += 1\n+                    elif char == ')':\n+                        depth = max(0, depth - 1)\n+                    elif char.isspace() and depth == 0:\n+                        split_at = index\n+                        break\n+                if split_at is not None:\n+                    argtype = fieldarg[:split_at]\n+                    argname = fieldarg[split_at:].strip()\n                 else:\n+                    argtype = argname = ''\n+                if argname:\n                     types.setdefault(typename, {})[argname] = \\\n                         [nodes.Text(argtype)]\n                     fieldarg = argname\n",
+  "manifest_sha256": "3c80e8ea5e918aa6ee93f4bc0160b9adecaf3d3df3b2d0df097c6f104816b2b0",
+  "patch_sha256": "1674793d5459b6bd8dcc369ff0a21af15ae1140a23c68b0cd8c6d14b65005614",
+  "status": "completed_ungraded",
+  "preparation_seconds": 9.299132168991491,
+  "assignment_wall_seconds": 43.59158349095378
+}

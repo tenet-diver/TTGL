@@ -1,0 +1,65 @@
+diff --git a/xarray/core/variable.py b/xarray/core/variable.py
+index 379be8f..0894754 100644
+--- a/xarray/core/variable.py
++++ b/xarray/core/variable.py
+@@ -1943,11 +1943,10 @@ class IndexVariable(Variable):
+         """
+         if data is None:
+             if deep:
+-                # self._data should be a `PandasIndexAdapter` instance at this
+-                # point, which doesn't have a copy method, so make a deep copy
+-                # of the underlying `pandas.MultiIndex` and create a new
+-                # `PandasIndexAdapter` instance with it.
+-                data = PandasIndexAdapter(self._data.array.copy(deep=True))
++                # Preserve the adapter's dtype, which may differ from the
++                # underlying pandas.Index dtype (e.g. for fixed-width strings).
++                data = PandasIndexAdapter(self._data.array.copy(deep=True),
++                                          dtype=self._data.dtype)
+             else:
+                 data = self._data
+         else:
+diff --git a/xarray/tests/test_dataset.py b/xarray/tests/test_dataset.py
+index fc6f7f3..3e9f092 100644
+--- a/xarray/tests/test_dataset.py
++++ b/xarray/tests/test_dataset.py
+@@ -2069,6 +2069,40 @@ class TestDataset:
+ 
+             assert data.attrs['Test'] is not copied.attrs['Test']
+ 
++    @pytest.mark.parametrize('dtype', ['U10', 'S10', 'object', 'float32'])
++    @pytest.mark.parametrize('obj_type', ['dataset', 'dataarray', 'variable'])
++    @pytest.mark.parametrize('copy_method', ['default', 'shallow', 'deep',
++                                           'copy', 'deepcopy'])
++    def test_copy_preserves_index_dtype(self, dtype, obj_type, copy_method):
++        values = np.array([1, 2], dtype=dtype)
++        ds = Dataset(coords={'x': values, 'y': ('x', values)},
++                     data_vars={'z': ('x', values)})
++        original = {'dataset': ds, 'dataarray': ds.z,
++                    'variable': ds.x.variable}[obj_type]
++        if copy_method == 'default':
++            actual = original.copy()
++        elif copy_method == 'shallow':
++            actual = original.copy(deep=False)
++        elif copy_method == 'deep':
++            actual = original.copy(deep=True)
++        elif copy_method == 'copy':
++            actual = copy(original)
++        else:
++            actual = deepcopy(original)
++
++        assert_identical(original, actual)
++        if obj_type == 'variable':
++            assert actual.dtype == values.dtype
++            assert actual.values.dtype == values.dtype
++        else:
++            for name in ['x', 'y', 'z']:
++                if obj_type == 'dataarray' and name == 'z':
++                    copied = actual
++                else:
++                    copied = actual[name]
++                assert copied.dtype == values.dtype
++                assert copied.values.dtype == values.dtype
++
+     def test_copy_with_data(self):
+         orig = create_test_data()
+         new_data = {k: np.random.randn(*v.shape)

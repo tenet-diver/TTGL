@@ -1,0 +1,28 @@
+{
+  "container": "ttgl-worker-71e0784e6d688d8a230a0650",
+  "image_id": "sha256:d379dcc96158e93133a465d02a206e554e948a48c38d19a17e18fcced167b933",
+  "base_commit": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+  "mounts": [],
+  "network": "none",
+  "cap_drop": [
+    "ALL"
+  ],
+  "memory_bytes": 4294967296,
+  "native_host_tools": false,
+  "solver_reference_material": false,
+  "image_tracked_source_audited": true,
+  "restored_image_setup_files": [
+    {
+      "path": "setup.py",
+      "base_blob": "2538952e376408be7da679fc647fac447dd30602",
+      "image_setup_blob": "94e1d8b320a57b3b1d0a556e15e9a90080e39d6d"
+    },
+    {
+      "path": "tox.ini",
+      "base_blob": "a363e187faaecc3096f41168ccedd93a17a0cf50",
+      "image_setup_blob": "3b8bc12d02028feaac4d488c13b662e3e6db163d"
+    }
+  ],
+  "ignored_compiled_dependencies_retained": true,
+  "additional_worker_dependencies": []
+}

@@ -1,0 +1,57 @@
+diff --git a/django/db/models/expressions.py b/django/db/models/expressions.py
+index a156c5e..68e3d3d 100644
+--- a/django/db/models/expressions.py
++++ b/django/db/models/expressions.py
+@@ -11,6 +11,7 @@ from django.db.models.query_utils import Q
+ from django.utils.deconstruct import deconstructible
+ from django.utils.functional import cached_property
+ from django.utils.hashable import make_hashable
++from django.utils.duration import duration_microseconds
+ 
+ 
+ class SQLiteNumericMixin:
+@@ -493,6 +494,26 @@ class DurationExpression(CombinedExpression):
+ 
+     def as_sql(self, compiler, connection):
+         connection.ops.check_expression_support(self)
++        # Durations are stored as integer microseconds on backends without a
++        # native duration type. Adding two durations is therefore numeric
++        # arithmetic, not date/interval arithmetic.
++        try:
++            duration_only = all(side.output_field.get_internal_type() == 'DurationField' for side in (self.lhs, self.rhs))
++        except FieldError:
++            duration_only = False
++        if duration_only:
++            expressions = []
++            expression_params = []
++            for side in (self.lhs, self.rhs):
++                if isinstance(side, DurationValue):
++                    expressions.append('%s')
++                    expression_params.append(duration_microseconds(side.value))
++                else:
++                    sql, params = compiler.compile(side)
++                    expressions.append(sql)
++                    expression_params.extend(params)
++            sql = connection.ops.combine_expression(self.connector, expressions)
++            return '(%s)' % sql, expression_params
+         expressions = []
+         expression_params = []
+         sql, params = self.compile(self.lhs, compiler, connection)
+diff --git a/tests/expressions/tests.py b/tests/expressions/tests.py
+index 459a877..4d9c625 100644
+--- a/tests/expressions/tests.py
++++ b/tests/expressions/tests.py
+@@ -1450,6 +1450,13 @@ class FTimeDeltaTests(TestCase):
+             list(Experiment.objects.filter(start=F('start') * datetime.timedelta(0)))
+ 
+     def test_durationfield_add(self):
++        delta = datetime.timedelta(days=1)
++        durations = Experiment.objects.annotate(duration=F('estimated_time') + delta)
++        self.assertEqual(
++            [e.duration for e in durations],
++            [e.estimated_time + delta for e in Experiment.objects.all()],
++        )
++
+         zeros = [e.name for e in Experiment.objects.filter(start=F('start') + F('estimated_time'))]
+         self.assertEqual(zeros, ['e0'])
+ 

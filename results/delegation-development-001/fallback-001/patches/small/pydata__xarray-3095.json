@@ -1,0 +1,10 @@
+{
+  "instance_id": "pydata__xarray-3095",
+  "model_name_or_path": "ttgl-small",
+  "model_patch": "diff --git a/xarray/core/variable.py b/xarray/core/variable.py\nindex 379be8f..dda8705 100644\n--- a/xarray/core/variable.py\n+++ b/xarray/core/variable.py\n@@ -1947,7 +1947,8 @@ class IndexVariable(Variable):\n                 # point, which doesn't have a copy method, so make a deep copy\n                 # of the underlying `pandas.MultiIndex` and create a new\n                 # `PandasIndexAdapter` instance with it.\n-                data = PandasIndexAdapter(self._data.array.copy(deep=True))\n+                data = PandasIndexAdapter(self._data.array.copy(deep=True),\n+                                         dtype=self._data.dtype)\n             else:\n                 data = self._data\n         else:\ndiff --git a/xarray/tests/test_dataset.py b/xarray/tests/test_dataset.py\nindex fc6f7f3..d5bffbe 100644\n--- a/xarray/tests/test_dataset.py\n+++ b/xarray/tests/test_dataset.py\n@@ -5263,3 +5263,18 @@ def test_trapz_datetime(dask, which_datetime):\n \n     actual2 = da.integrate('time', datetime_unit='h')\n     assert_allclose(actual, actual2 / 24.0)\n+\n+\n+def test_copy_unicode_index_preserves_dtype():\n+    ds = Dataset(coords={'x': ['foo'], 'y': ('x', ['bar'])},\n+                 data_vars={'z': ('x', ['baz'])})\n+\n+    for copied in (ds.copy(deep=True), deepcopy(ds)):\n+        assert copied.x.dtype == np.dtype('<U3')\n+\n+    for deep in (False, True):\n+        copied = ds.z.copy(deep=deep)\n+        assert copied.x.dtype == np.dtype('<U3')\n+\n+    assert copy(ds).x.dtype == np.dtype('<U3')\n+    assert deepcopy(ds.z).x.dtype == np.dtype('<U3')\n",
+  "manifest_sha256": "9c9dbe2a8b010faf950185435e3126f60a5cc4ee1712aeec1f0cdbc8b38f812f",
+  "patch_sha256": "095b8d952af970c823151f476fa9f8aa450ad6fff7af663aa9d7112512318a8e",
+  "status": "completed_ungraded",
+  "preparation_seconds": 6.2172109090024605,
+  "assignment_wall_seconds": 52.49709856498521
+}

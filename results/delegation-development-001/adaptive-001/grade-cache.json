@@ -106,5 +106,49 @@
   "6f799482c9d6d9b445efb064bb9b49b927a414f62be355d53fc3697095257250": {
     "report": "/Users/rustameynaliyev/Developer/TTGL/results/codex-isolated-20261026/study-001/grading/personal/sympy__sympy-17139/f5146fac341a/logs/ttgl-personal/sympy__sympy-17139/report.json",
     "report_sha256": "7e475a9f2b73d341b47db82c0dca61ab17a97e16f4e634e285eab885e7f6225a"
+  },
+  "aff047a60a2ef8eb331a6538f669b8ae0cacbe408529d6328c68a026d43fdeea": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/large/scikit-learn__scikit-learn-14141/f59047c177a9/logs/ttgl-large/scikit-learn__scikit-learn-14141/report.json",
+    "report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191"
+  },
+  "fcf39c5d620ddd6e07781e976e2504651df7a4ffbafc2be8f1ef75723fc670b0": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/small/scikit-learn__scikit-learn-14141/e9a7f638d716/logs/ttgl-small/scikit-learn__scikit-learn-14141/report.json",
+    "report_sha256": "558dff9a93d935169035a9422580a4c8c6c4928afa4b97332602acb0c3ea8191"
+  },
+  "5b7a95a150a034218cc1c894fd9276eec5fb6e2e59b0d1fc1f2ae7ef2b5303b3": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/small/django__django-13297/100c79de8191/logs/results.json",
+    "report_sha256": "fb1dc0f75507b01bdd41a10a5dd04ed3ca12bde9891c5c222fafb63ebbee5f8e"
+  },
+  "e5111d440b91531b34aed2bc8b2e6088fd74bd1d612f08513130d0eaf67cc298": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/personal/django__django-13297/58c666e631b3/logs/ttgl-personal/django__django-13297/report.json",
+    "report_sha256": "880ffaefa81e80d2c225e2de289e292483cf2a17eafe11c7b0bd0f4610392737"
+  },
+  "620364a87cb092e7c3dc0d2c0482b17b73eb2ee73d975fe7ea17b65d1124b892": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/large/django__django-13297/69493fa05695/logs/ttgl-large/django__django-13297/report.json",
+    "report_sha256": "880ffaefa81e80d2c225e2de289e292483cf2a17eafe11c7b0bd0f4610392737"
+  },
+  "c4898c69d8b5dda00f4698e6b1e43a7f11940e11c6459916774bfa73b44c1da2": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/large/pydata__xarray-3095/436798b22576/logs/ttgl-large/pydata__xarray-3095/report.json",
+    "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
+  },
+  "1a8973f1fae52b303bab7d4a393f79faaa47a3f4bbbcd198333659a4c8e912fd": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/personal/pydata__xarray-3095/56a1abf54c21/logs/ttgl-personal/pydata__xarray-3095/report.json",
+    "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
+  },
+  "45aa43738c095322948b2120d3b34389536138e3bdfe1f2b91e66898ed208fae": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/small/pydata__xarray-3095/3deacb755907/logs/ttgl-small/pydata__xarray-3095/report.json",
+    "report_sha256": "02f1f7007bc6108e30f6b9446ac271fc6c6d2994e3b62449b5617737bbf7eddc"
+  },
+  "4e615355553eec9d3dd1c83b968fe03497cbe1da360040a665c220aa8a0e856c": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/personal/django__django-15037/f527af505d81/logs/ttgl-personal/django__django-15037/report.json",
+    "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07"
+  },
+  "858cf91609ce021227d03fa0b51222ffb110e020f0e8881206915b7bc88657e9": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/large/django__django-15037/4865269356a5/logs/ttgl-large/django__django-15037/report.json",
+    "report_sha256": "33f07d7423205dcc702872243e772343b235ef1e9adef6212bd1b3d6f57cdb07"
+  },
+  "f9d8ebc19f751d2c04043d7b313f5581c27dd3f2eb81d854902e930be3860cae": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/adaptive-001/grading/small/django__django-15037/aa13fcbf13d0/logs/results.json",
+    "report_sha256": "697e3a66ca4d94198d9e49ba8af677ba027326f1e6092cb1dec4c05c46eb9dc3"
   }
 }

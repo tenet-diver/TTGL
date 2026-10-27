@@ -1,0 +1,10 @@
+{
+  "instance_id": "django__django-13121",
+  "model_name_or_path": "ttgl-personal",
+  "model_patch": "diff --git a/django/db/backends/sqlite3/base.py b/django/db/backends/sqlite3/base.py\nindex 31e8a55..3fe36ab 100644\n--- a/django/db/backends/sqlite3/base.py\n+++ b/django/db/backends/sqlite3/base.py\n@@ -551,6 +551,8 @@ def _sqlite_format_dtdelta(conn, lhs, rhs):\n     - A string representing a datetime\n     \"\"\"\n     try:\n+        if isinstance(lhs, int) and isinstance(rhs, int):\n+            return lhs + rhs if conn.strip() == '+' else lhs - rhs\n         real_lhs = datetime.timedelta(0, 0, lhs) if isinstance(lhs, int) else backend_utils.typecast_timestamp(lhs)\n         real_rhs = datetime.timedelta(0, 0, rhs) if isinstance(rhs, int) else backend_utils.typecast_timestamp(rhs)\n         if conn.strip() == '+':\ndiff --git a/tests/expressions/tests.py b/tests/expressions/tests.py\nindex 459a877..58c0659 100644\n--- a/tests/expressions/tests.py\n+++ b/tests/expressions/tests.py\n@@ -1449,6 +1449,13 @@ class FTimeDeltaTests(TestCase):\n         with self.assertRaises(DatabaseError):\n             list(Experiment.objects.filter(start=F('start') * datetime.timedelta(0)))\n \n+    def test_durationfield_add_duration(self):\n+        delta = datetime.timedelta(days=1)\n+        experiment = Experiment.objects.annotate(\n+            duration=F('estimated_time') + delta,\n+        ).get(pk=self.e0.pk)\n+        self.assertEqual(experiment.duration, delta)\n+\n     def test_durationfield_add(self):\n         zeros = [e.name for e in Experiment.objects.filter(start=F('start') + F('estimated_time'))]\n         self.assertEqual(zeros, ['e0'])\n",
+  "manifest_sha256": "4eca0808e9b29675a6e2c8720cb2100bd747075be8ac3e195b0535f87cb06397",
+  "patch_sha256": "dbb2bf473de180c9b25ea9e3daa59f4fc97118adff77ead8be381dd5f60b0e24",
+  "status": "completed_ungraded",
+  "preparation_seconds": 17.50330596009735,
+  "assignment_wall_seconds": 55.78465532104019
+}

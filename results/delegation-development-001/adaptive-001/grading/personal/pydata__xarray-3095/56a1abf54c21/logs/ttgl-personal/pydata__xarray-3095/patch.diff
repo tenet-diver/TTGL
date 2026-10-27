@@ -1,0 +1,39 @@
+diff --git a/xarray/core/variable.py b/xarray/core/variable.py
+index 379be8f..2322a9e 100644
+--- a/xarray/core/variable.py
++++ b/xarray/core/variable.py
+@@ -1947,7 +1947,14 @@ class IndexVariable(Variable):
+                 # point, which doesn't have a copy method, so make a deep copy
+                 # of the underlying `pandas.MultiIndex` and create a new
+                 # `PandasIndexAdapter` instance with it.
+-                data = PandasIndexAdapter(self._data.array.copy(deep=True))
++                if self.dtype.kind == 'U':
++                    # pandas may coerce a unicode Index to object dtype when
++                    # copying it. Preserve the original NumPy dtype explicitly.
++                    data = PandasIndexAdapter(
++                        self._data.array.values.astype(self.dtype, copy=True),
++                        dtype=self.dtype)
++                else:
++                    data = PandasIndexAdapter(self._data.array.copy(deep=True))
+             else:
+                 data = self._data
+         else:
+diff --git a/xarray/tests/test_variable.py b/xarray/tests/test_variable.py
+index 73d2a40..88260c5 100644
+--- a/xarray/tests/test_variable.py
++++ b/xarray/tests/test_variable.py
+@@ -1823,6 +1823,14 @@ class TestIndexVariable(VariableSubclassobjects):
+         v = IndexVariable(['time'], data, {'foo': 'bar'})
+         assert pd.Index(data, name='time').identical(v.to_index())
+ 
++    def test_copy_preserves_unicode_dtype(self):
++        v = IndexVariable('x', np.array(['foo'], dtype='<U3'))
++
++        for deep in [False, True]:
++            copied = v.copy(deep=deep)
++            assert copied.dtype == v.dtype
++            assert copied.to_index().tolist() == ['foo']
++
+     def test_multiindex_default_level_names(self):
+         midx = pd.MultiIndex.from_product([['a', 'b'], [1, 2]])
+         v = IndexVariable(['x'], midx, {'foo': 'bar'})

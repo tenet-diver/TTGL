@@ -1,0 +1,110 @@
+2026-10-27 00:22:24,561 - INFO - Creating container for sphinx-doc__sphinx-9230...
+2026-10-27 00:22:25,102 - INFO - Container for sphinx-doc__sphinx-9230 created: 8548a28816bf1bf61f54a64083e56ba8bb1de9f58d1d00e6d7e6caf3237b47f8
+2026-10-27 00:22:25,563 - INFO - Container for sphinx-doc__sphinx-9230 started: 8548a28816bf1bf61f54a64083e56ba8bb1de9f58d1d00e6d7e6caf3237b47f8
+2026-10-27 00:22:25,576 - INFO - Intermediate patch for sphinx-doc__sphinx-9230 written to logs/evaluation/ttgl-personal-sphinx-doc__sphinx-9230-dc73a76b-4a94b938202a/ttgl-personal/sphinx-doc__sphinx-9230/patch.diff, now applying to container...
+2026-10-27 00:22:26,028 - INFO - >>>>> Applied Patch:
+Checking patch sphinx/util/docfields.py...
+Checking patch tests/test_domain_py.py...
+Applied patch sphinx/util/docfields.py cleanly.
+Applied patch tests/test_domain_py.py cleanly.
+
+2026-10-27 00:22:26,553 - INFO - Git diff before:
+diff --git a/sphinx/util/docfields.py b/sphinx/util/docfields.py
+index 3a3367ebe..ff56f08ec 100644
+--- a/sphinx/util/docfields.py
++++ b/sphinx/util/docfields.py
+@@ -297,11 +297,22 @@ class DocFieldTransformer:
+ 
+             # also support syntax like ``:param type name:``
+             if typedesc.is_typed:
+-                try:
+-                    argtype, argname = fieldarg.split(None, 1)
+-                except ValueError:
+-                    pass
+-                else:
++                # Types may contain whitespace inside delimiters, e.g.
++                # ``dict(str, str)``.  Split the type from the argument name
++                # only at whitespace outside those delimiters.
++                depth = 0
++                split_at = None
++                for index, char in enumerate(fieldarg):
++                    if char in '([{':
++                        depth += 1
++                    elif char in ')]}':
++                        depth = max(0, depth - 1)
++                    elif char.isspace() and depth == 0:
++                        split_at = index
++                        break
++                if split_at is not None:
++                    argtype = fieldarg[:split_at]
++                    argname = fieldarg[split_at:].strip()
+                     types.setdefault(typename, {})[argname] = \
+                         [nodes.Text(argtype)]
+                     fieldarg = argname
+diff --git a/tests/test_domain_py.py b/tests/test_domain_py.py
+index 569390c40..a85b1dcc1 100644
+--- a/tests/test_domain_py.py
++++ b/tests/test_domain_py.py
+@@ -984,6 +984,18 @@ def test_info_field_list(app):
+                 **{"py:module": "example", "py:class": "Class"})
+ 
+ 
++def test_info_field_list_type_with_spaces(app):
++    text = (".. py:module:: example\n"
++            ".. py:class:: Class\n"
++            "\n"
++            "   :param dict(str, str) opc_meta: optional\n")
++    doctree = restructuredtext.parse(app, text)
++
++    assert "opc_meta" in doctree.astext()
++    assert "dict(str, str)" in doctree.astext()
++    assert "optional" in doctree.astext()
++
++
+ def test_info_field_list_var(app):
+     text = (".. py:class:: Class\n"
+             "\n"
+2026-10-27 00:22:26,566 - INFO - Eval script for sphinx-doc__sphinx-9230 written to logs/evaluation/ttgl-personal-sphinx-doc__sphinx-9230-dc73a76b-4a94b938202a/ttgl-personal/sphinx-doc__sphinx-9230/eval.sh; copying to container...
+2026-10-27 00:22:37,310 - INFO - Test runtime: 10.46 seconds
+2026-10-27 00:22:37,323 - INFO - Test output for sphinx-doc__sphinx-9230 written to logs/evaluation/ttgl-personal-sphinx-doc__sphinx-9230-dc73a76b-4a94b938202a/ttgl-personal/sphinx-doc__sphinx-9230/test_output.txt
+2026-10-27 00:22:37,465 - INFO - Git diff after:
+diff --git a/sphinx/util/docfields.py b/sphinx/util/docfields.py
+index 3a3367ebe..ff56f08ec 100644
+--- a/sphinx/util/docfields.py
++++ b/sphinx/util/docfields.py
+@@ -297,11 +297,22 @@ class DocFieldTransformer:
+ 
+             # also support syntax like ``:param type name:``
+             if typedesc.is_typed:
+-                try:
+-                    argtype, argname = fieldarg.split(None, 1)
+-                except ValueError:
+-                    pass
+-                else:
++                # Types may contain whitespace inside delimiters, e.g.
++                # ``dict(str, str)``.  Split the type from the argument name
++                # only at whitespace outside those delimiters.
++                depth = 0
++                split_at = None
++                for index, char in enumerate(fieldarg):
++                    if char in '([{':
++                        depth += 1
++                    elif char in ')]}':
++                        depth = max(0, depth - 1)
++                    elif char.isspace() and depth == 0:
++                        split_at = index
++                        break
++                if split_at is not None:
++                    argtype = fieldarg[:split_at]
++                    argname = fieldarg[split_at:].strip()
+                     types.setdefault(typename, {})[argname] = \
+                         [nodes.Text(argtype)]
+                     fieldarg = argname
+2026-10-27 00:22:37,469 - INFO - Git diff changed after running eval script
+2026-10-27 00:22:37,471 - INFO - Grading answer for sphinx-doc__sphinx-9230...
+2026-10-27 00:22:37,494 - INFO - report: {'sphinx-doc__sphinx-9230': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': True, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': ['tests/test_domain_py.py::test_info_field_list'], 'failure': []}, 'PASS_TO_PASS': {'success': ['tests/test_domain_py.py::test_function_signatures', 'tests/test_domain_py.py::test_domain_py_xrefs', 'tests/test_domain_py.py::test_domain_py_xrefs_abbreviations', 'tests/test_domain_py.py::test_domain_py_objects', 'tests/test_domain_py.py::test_resolve_xref_for_properties', 'tests/test_domain_py.py::test_domain_py_find_obj', 'tests/test_domain_py.py::test_domain_py_canonical', 'tests/test_domain_py.py::test_get_full_qualified_name', 'tests/test_domain_py.py::test_parse_annotation', 'tests/test_domain_py.py::test_pyfunction_signature', 'tests/test_domain_py.py::test_pyfunction_signature_full', 'tests/test_domain_py.py::test_pyfunction_signature_full_py38', 'tests/test_domain_py.py::test_pyfunction_with_number_literals', 'tests/test_domain_py.py::test_pyfunction_with_union_type_operator', 'tests/test_domain_py.py::test_optional_pyfunction_signature', 'tests/test_domain_py.py::test_pyexception_signature', 'tests/test_domain_py.py::test_exceptions_module_is_ignored', 'tests/test_domain_py.py::test_pydata_signature', 'tests/test_domain_py.py::test_pydata_signature_old', 'tests/test_domain_py.py::test_pydata_with_union_type_operator', 'tests/test_domain_py.py::test_pyobject_prefix', 'tests/test_domain_py.py::test_pydata', 'tests/test_domain_py.py::test_pyfunction', 'tests/test_domain_py.py::test_pyclass_options', 'tests/test_domain_py.py::test_pymethod_options', 'tests/test_domain_py.py::test_pyclassmethod', 'tests/test_domain_py.py::test_pystaticmethod', 'tests/test_domain_py.py::test_pyattribute', 'tests/test_domain_py.py::test_pyproperty', 'tests/test_domain_py.py::test_pydecorator_signature', 'tests/test_domain_py.py::test_pydecoratormethod_signature', 'tests/test_domain_py.py::test_canonical', 'tests/test_domain_py.py::test_canonical_definition_overrides', 'tests/test_domain_py.py::test_canonical_definition_skip', 'tests/test_domain_py.py::test_canonical_duplicated', 'tests/test_domain_py.py::test_info_field_list_var', 'tests/test_domain_py.py::test_module_index', 'tests/test_domain_py.py::test_module_index_submodule', 'tests/test_domain_py.py::test_module_index_not_collapsed', 'tests/test_domain_py.py::test_modindex_common_prefix', 'tests/test_domain_py.py::test_noindexentry', 'tests/test_domain_py.py::test_python_python_use_unqualified_type_names', 'tests/test_domain_py.py::test_python_python_use_unqualified_type_names_disabled', 'tests/test_domain_py.py::test_warn_missing_reference'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for sphinx-doc__sphinx-9230: resolved: True
+2026-10-27 00:22:37,505 - INFO - Attempting to stop container sweb.eval.sphinx-doc__sphinx-9230.ttgl-personal-sphinx-doc__sphinx-9230-dc73a76b-4a94b938202a...
+2026-10-27 00:22:52,787 - INFO - Container sweb.eval.sphinx-doc__sphinx-9230.ttgl-personal-sphinx-doc__sphinx-9230-dc73a76b-4a94b938202a stopped successfully.
+2026-10-27 00:22:52,789 - INFO - Attempting to remove container sweb.eval.sphinx-doc__sphinx-9230.ttgl-personal-sphinx-doc__sphinx-9230-dc73a76b-4a94b938202a...
+2026-10-27 00:22:52,879 - INFO - Container sweb.eval.sphinx-doc__sphinx-9230.ttgl-personal-sphinx-doc__sphinx-9230-dc73a76b-4a94b938202a removed successfully.

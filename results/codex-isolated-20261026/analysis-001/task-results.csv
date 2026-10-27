@@ -1,0 +1,13 @@
+task_id,small,large,precall_router,oneway,reset_expert,personal
+scikit-learn__scikit-learn-14141,True,True,True,True,True,True
+django__django-13297,True,True,True,True,False,False
+pydata__xarray-3095,True,True,True,True,True,True
+django__django-15037,True,True,True,True,True,True
+psf__requests-5414,True,True,True,True,True,True
+sympy__sympy-17139,True,True,True,True,True,True
+astropy__astropy-12907,True,True,True,True,True,True
+mwaskom__seaborn-3069,False,False,True,False,False,False
+django__django-17084,True,True,True,True,True,True
+django__django-13121,True,True,True,True,True,True
+pydata__xarray-7229,False,False,False,False,False,False
+sphinx-doc__sphinx-9230,False,True,True,False,False,True

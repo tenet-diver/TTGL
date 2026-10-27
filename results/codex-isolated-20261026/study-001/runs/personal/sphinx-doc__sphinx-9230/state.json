@@ -1,0 +1,87 @@
+{
+  "schema_version": 3,
+  "run_id": "60c6d309-0383-434a-97fd-73620e4a7765",
+  "task_id": "sphinx-doc__sphinx-9230",
+  "identity_sha256": "13b86fa8d7c52b040f7c8657ed321e404fb18af57d3514e9236ef63e570809d2",
+  "created_at": "2026-10-27T00:21:34.886544+00:00",
+  "status": "completed_ungraded",
+  "deadline_epoch": 1793061394.886606,
+  "config": {
+    "condition": "personal",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "phase": "controller",
+  "selected_model": "gpt-6-luna",
+  "controller_thread_id": "01a17abb-dfc9-7001-beba-6713c9a22061",
+  "expert_thread_id": null,
+  "turns": 1,
+  "expert_calls": 0,
+  "inflight": null,
+  "next_prompt": "Solve the software-engineering task in the assigned workspace. Inspect relevant code, make the necessary changes, execute available checks, and report what you verified. Respect the user's editable memory and constraints. Do not read hidden evaluator files, other experiment workspaces, reference solutions, or parent research artifacts. Do not access external services or launch other agents yourself. Only edit the listed allowed paths. Path scope is an experiment instruction, not an OS security boundary.\n\nTask: Doc rendering is incorrect when :param has datatype dict(str,str)\n**Describe the bug**\nI have a parameter defined under docstring of a method as:-\n:param dict(str, str) opc_meta: (optional)\n\nWhich is being incorrectly rendered in the generated docs as:-\nstr) opc_meta (dict(str,) –(optional) \n\n**To Reproduce**\nCreate any method with the docstring containg the above param\n\n**Expected behavior**\nThe param should be rendered in the generated docs as:-\nopc_meta (dict(str,str)) – (optional) \n\n**Your project**\n[sphinxTest.zip](https://github.com/sphinx-doc/sphinx/files/6468074/sphinxTest.zip)\n\n\n**Screenshots**\n<img width=\"612\" alt=\"Screen Shot 2021-05-12 at 12 30 50 PM\" src=\"https://user-images.githubusercontent.com/8617566/118020143-5f59a280-b31f-11eb-8dc2-5280d5c4896b.png\">\n<img width=\"681\" alt=\"Screen Shot 2021-05-12 at 12 32 25 PM\" src=\"https://user-images.githubusercontent.com/8617566/118020154-62549300-b31f-11eb-953d-9287f9cc27ff.png\">\n\n\n**Environment info**\n- OS: Mac\n- Python version: 3.9.0\n- Sphinx version: 4.0.1\n- Sphinx extensions:  [\"sphinx.ext.autodoc\", \"sphinx.ext.autosummary\", \"sphinx.ext.intersphinx\", \"autodocsumm\"]\n- Extra tools: Browser Firefox.\n\n**Additional context**\nN/A\n\n\n\n\nRepair this repository at its assigned base. Preserve existing tests; you may add tests. Do not commit, change HEAD, retrieve upstream fixes, or access benchmark data, evaluator artifacts, or other workers. Report unavailable test dependencies honestly.\nAllowed paths: [\".\"]\nEditable user memory (same initial content in every condition): []\nYou are the small agent. Act yourself where useful. You may converse with a larger expert for bounded assistance at most 2 times. Decide when help is worth it. You remain responsible for verification and integration. To ask, return action ask_expert, one concrete question, and only the context necessary for that question. The expert receives only the question/context you send and cannot edit this workspace. It can answer, ask for missing context, or challenge your assumptions. The conversation persists: use ask_expert again to answer its question, supply evidence, challenge its proposal, or ask a follow-up. You may inspect code and test between messages. Treat every proposal as unverified; inspect, test, and integrate useful parts. When finished, return action complete.\nReturn the requested JSON schema. Use empty question/context on completion.",
+  "usage": {
+    "input_tokens": 380417,
+    "cached_input_tokens": 342144,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1922,
+    "reasoning_output_tokens": 321
+  },
+  "usage_complete": {
+    "input_tokens": true,
+    "cached_input_tokens": true,
+    "cache_write_input_tokens": true,
+    "output_tokens": true,
+    "reasoning_output_tokens": true
+  },
+  "usage_threads": {
+    "01a17abb-dfc9-7001-beba-6713c9a22061": {
+      "model": "gpt-6-luna",
+      "scope": "thread_cumulative",
+      "last_snapshot": {
+        "input_tokens": 380417,
+        "cached_input_tokens": 342144,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1922,
+        "reasoning_output_tokens": 321
+      }
+    }
+  },
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "observed_partial": {
+        "input_tokens": 380417,
+        "cached_input_tokens": 342144,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1922,
+        "reasoning_output_tokens": 321
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "elapsed_seconds": 42.081039202050306,
+  "tool_failures": 5,
+  "summary": "Updated `DocFieldTransformer` to split typed parameter fields at whitespace outside nested delimiters, preserving spaces in types such as `dict(str, str)`. Added a regression test for `:param dict(str, str) opc_meta:`. Verified with `python -m pytest -q tests/test_domain_py.py -k 'info_field_list'`: 3 passed.",
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d"
+  }
+}

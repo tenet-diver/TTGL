@@ -1,0 +1,43 @@
+diff --git a/seaborn/_core/plot.py b/seaborn/_core/plot.py
+index 4f0290a..559c46b 100644
+--- a/seaborn/_core/plot.py
++++ b/seaborn/_core/plot.py
+@@ -1627,11 +1627,28 @@ class Plotter:
+ 
+     def _finalize_figure(self, p: Plot) -> None:
+ 
++        from seaborn._core.scales import Nominal
++
+         for sub in self._subplots:
+             ax = sub["ax"]
++            nominal_axes = []
+             for axis in "xy":
+                 axis_key = sub[axis]
+ 
++                # Nominal coordinates are centered on integer positions.
++                # Match categorical plots by setting the bounds half a step
++                # outside the first and last nominal tick.
++                scale = self._scales.get(axis_key)
++                if isinstance(scale, Nominal):
++                    nominal_axes.append(axis)
++                    axis_obj = getattr(ax, f"{axis}axis")
++                    ticks = axis_obj.get_majorticklocs()
++                    if len(ticks):
++                        lo, hi = min(ticks), max(ticks)
++                        if axis_key not in p._limits:
++                            ax.set(**{f"{axis}lim": (lo - .5, hi + .5)})
++                    ax.grid(False, axis=axis)
++
+                 # Axis limits
+                 if axis_key in p._limits:
+                     convert_units = getattr(ax, f"{axis}axis").convert_units
+@@ -1644,6 +1661,9 @@ class Plotter:
+                         hi = cast(float, hi) + 0.5
+                     ax.set(**{f"{axis}lim": (lo, hi)})
+ 
++            if "y" in nominal_axes:
++                ax.invert_yaxis()
++
+         engine_default = None if p._target is not None else "tight"
+         layout_engine = p._layout_spec.get("engine", engine_default)
+         set_layout_engine(self._figure, layout_engine)

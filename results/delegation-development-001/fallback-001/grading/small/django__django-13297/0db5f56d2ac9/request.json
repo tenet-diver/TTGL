@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-small-django__django-13297-e22dd672-0db5f56d2ac9",
+  "prediction_sha256": "5e6ca0617da416377599cb2d6dd297446a358503b5df170ba08d442826e16373",
+  "model_patch_sha256": "e22dd672c4a06b5eb10540bcf4e9592b9fc0d6bb5db3f39b44b2c6d1a7de3e33",
+  "patch_record_sha256": "22f07cb2d26fb6091d1aaf5c9c1ff597d12778f603a2c5c21532102cac032883",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "19a99afeb913aa03f7676ad157e498c778365e29b72672f3b67dd2913c5fe39f",
+  "timeout_seconds": 1200
+}

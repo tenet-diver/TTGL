@@ -1,0 +1,1 @@
+{"status": "incomplete", "threads": 13, "totals_status": "missing_thread_estimates", "output": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/analysis-adaptive-001/provider-usage.json"}

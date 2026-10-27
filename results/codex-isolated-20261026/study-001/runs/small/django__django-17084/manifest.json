@@ -1,0 +1,91 @@
+{
+  "schema_version": 3,
+  "run_id": "db213219-e187-405f-af79-98469f6f24d7",
+  "task_id": "django__django-17084",
+  "condition": "small",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-26T23:44:49.133549+00:00",
+  "finished_at": "2026-10-26T23:45:20.966506+00:00",
+  "identity_sha256": "0dc4d5afabe43715b726fcb78d86152f584be4b4b302f245d50e277a9b8d38d6",
+  "config": {
+    "condition": "small",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d"
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 1,
+  "expert_calls": 0,
+  "elapsed_seconds": 31.721863958984613,
+  "controller_thread_id": "01a17a9a-3784-7300-b79c-ba1f662f028c",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 141748,
+    "cached_input_tokens": 120960,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1481,
+    "reasoning_output_tokens": 361
+  },
+  "observed_usage_partial": {
+    "input_tokens": 141748,
+    "cached_input_tokens": 120960,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1481,
+    "reasoning_output_tokens": 361
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 141748,
+        "cached_input_tokens": 120960,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1481,
+        "reasoning_output_tokens": 361
+      },
+      "observed_partial": {
+        "input_tokens": 141748,
+        "cached_input_tokens": 120960,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1481,
+        "reasoning_output_tokens": 361
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 2,
+  "failure_type": null,
+  "summary": "Updated `Query.get_aggregation()` to use a subquery when an aggregate contains a window expression, so the window result is computed before the outer aggregate. Added a regression test in `tests/expressions_window/tests.py`. Verified with `python tests/runtests.py expressions_window.tests.WindowFunctionTests.test_aggregate_over_window --verbosity 2` (passed).",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "8a2d15ceff964242eb7c11c093d4610ef105ed75323260f32c382d60c964ee18",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

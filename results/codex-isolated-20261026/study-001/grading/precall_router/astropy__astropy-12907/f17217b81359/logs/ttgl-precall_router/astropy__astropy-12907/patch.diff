@@ -1,0 +1,46 @@
+diff --git a/astropy/modeling/separable.py b/astropy/modeling/separable.py
+index a308e27..45bea36 100644
+--- a/astropy/modeling/separable.py
++++ b/astropy/modeling/separable.py
+@@ -242,7 +242,7 @@ def _cstack(left, right):
+         cright = _coord_matrix(right, 'right', noutp)
+     else:
+         cright = np.zeros((noutp, right.shape[1]))
+-        cright[-right.shape[0]:, -right.shape[1]:] = 1
++        cright[-right.shape[0]:, -right.shape[1]:] = right
+ 
+     return np.hstack([cleft, cright])
+ 
+diff --git a/astropy/modeling/tests/test_separable.py b/astropy/modeling/tests/test_separable.py
+index 8dfe5c8..1a3e0e6 100644
+--- a/astropy/modeling/tests/test_separable.py
++++ b/astropy/modeling/tests/test_separable.py
+@@ -148,3 +148,28 @@ def test_custom_model_separable():
+ 
+     assert not model_c().separable
+     assert np.all(separability_matrix(model_c()) == [True, True])
++
++
++@pytest.mark.parametrize('compound_model', [
++    models.Pix2Sky_TAN() & models.Linear1D(10) & models.Linear1D(5),
++    models.Pix2Sky_TAN() & (models.Linear1D(10) & models.Linear1D(5)),
++])
++def test_nested_compound_separability(compound_model):
++    assert_allclose(separability_matrix(compound_model),
++                    [[True, True, False, False],
++                     [True, True, False, False],
++                     [False, False, True, False],
++                     [False, False, False, True]])
++    assert_allclose(is_separable(compound_model), [False, False, True, True])
++
++
++def test_nested_compound_separability_mapping():
++    # Preserve a rectangular dependency matrix through multiple nested stacks.
++    compound_model = sh1 & (sh2 & (Mapping((1, 0, 1)) | (scl1 & scl2 & sh1)))
++    assert_allclose(separability_matrix(compound_model),
++                    [[True, False, False, False],
++                     [False, True, False, False],
++                     [False, False, False, True],
++                     [False, False, True, False],
++                     [False, False, False, True]])
++    assert_allclose(is_separable(compound_model), [True] * 5)

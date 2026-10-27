@@ -1,0 +1,9 @@
+{
+  "status": "public_reservation_verified_not_model_evaluation",
+  "development_tasks": 12,
+  "held_out_tasks": 24,
+  "task_overlap": 0,
+  "public_files_hash_verified": 108,
+  "stable_under_inventory_reordering": true,
+  "inference_calls": 0
+}

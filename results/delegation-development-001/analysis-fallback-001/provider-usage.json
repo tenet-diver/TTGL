@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-10-27T01:21:51.768811+00:00",
+  "collector_sha256": "3136cf39293105846374fcfe8c01103feec6530d349873faeb744443ef907751",
+  "app_server_protocol_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+  "status": "incomplete",
+  "method": "account/usage/read",
+  "new_model_inference_requested": false,
+  "independent_root_threads_attested": true,
+  "selected_states_finalized": true,
+  "selected_states_usage_ledger_complete": true,
+  "threads": [
+    {
+      "thread_id": "01a17add-4cb3-74b0-a28b-22470d5aac7e",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17ade-0c1b-7a62-b961-0dd52291e215",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17ade-87c9-79e1-beef-3ebf1cd5e655",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17ae0-0d82-7600-8ac7-41e566b27b37",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17ae1-7877-71f1-b0d9-de5e322f2c44",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17ae1-c6d0-76f1-9800-4d09633edd18",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17ae3-e0e2-7b70-bcaa-b4af6e614624",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17ae8-e197-7bd1-ab42-9e83aa64d7a9",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17aeb-5e5c-7e53-acf0-f567dc2c8b17",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17aec-efce-7990-b892-1b657ac377eb",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17aee-b024-75f2-9150-e283552e2165",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17af0-09ca-76e3-a229-21dfce1e9ba8",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    },
+    {
+      "thread_id": "01a17af2-7ca8-7692-bf39-f6d2b1981efd",
+      "status": "unavailable",
+      "reason": "backend_thread_estimate_unavailable",
+      "usage": null
+    }
+  ],
+  "totals": {
+    "estimated_usage_credits_micros": null,
+    "estimated_usage_usd_micros": null
+  },
+  "totals_status": "missing_thread_estimates",
+  "limitations": [
+    "These are provider estimates, not subscription invoices or a promise of quota availability.",
+    "Backend estimates may lag recent activity; repeat with a new output path after settlement.",
+    "Explicit thread IDs without a state file have no independently checked completion status.",
+    "Known-thread estimates cannot establish whole-task spend when a state ledger is incomplete.",
+    "Never add nested parent and child bills without a documented accounting boundary.",
+    "Cached tokens are included in input; token categories must not all be summed.",
+    "No inference compute, hardware, evaluator or human labor costs are added here."
+  ],
+  "sources": [
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/runs/large/scikit-learn__scikit-learn-14141/state.json",
+      "sha256": "138486231e25b466e7d20b932660358302662785f3e565497dd24b6b00c6c2cb",
+      "run_id": "4312da72-ccc6-41bf-8ecd-0a660c526572",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/runs/small/scikit-learn__scikit-learn-14141/state.json",
+      "sha256": "0e3419a041b91027c4648cbf6f85105596a935f98e4631c30fc2a7acd65721fc",
+      "run_id": "86d294b4-ca6c-41ba-9e97-46bcf5e8742e",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/runs/personal/scikit-learn__scikit-learn-14141/state.json",
+      "sha256": "e33eeb6fa222b586bff424f6689c6e5e53a76049579a14e0d92f20756accaa2f",
+      "run_id": "37c043a8-25d1-4a7c-95b4-7573a06ac813",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/runs/small/django__django-13297/state.json",
+      "sha256": "b63c9d7a90efd6b1e2e6f1fc88eb66ad6dfe47a1c9171e19b8948b8fc86afb13",
+      "run_id": "3083c0e9-cae8-42fb-bbcd-ea20f22cf3c8",
+      "task_id": "django__django-13297",
+      "status": "protocol_failed",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/runs/personal/django__django-13297/state.json",
+      "sha256": "869bc91f441781add4cf2e66e3cbc6427b43123ac0373050e0e95448f65cfac0",
+      "run_id": "06b868dc-2d5e-4caa-8027-a69493d6004a",
+      "task_id": "django__django-13297",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/runs/large/django__django-13297/state.json",
+      "sha256": "e3dd092f12cda6e2745156b8601c22e0722c19c55ed606c3cb0430a1d4efe695",
+      "run_id": "c1a0d4d1-e7ba-4906-81dd-65a945a468ab",
+      "task_id": "django__django-13297",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/runs/large/pydata__xarray-3095/state.json",
+      "sha256": "0222042226d281387cb4462e33b8b4aa80bf1adab5af0f2b584471f9b78bdea8",
+      "run_id": "9b1a1a9c-9be8-4ffc-821e-9b30b14b7c97",
+      "task_id": "pydata__xarray-3095",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/runs/personal/pydata__xarray-3095/state.json",
+      "sha256": "9009e128db61e0bfcbf5c6de945d9301d2e251bb0276f89750a8c482c926782c",
+      "run_id": "aea51665-232e-47d4-98c2-c8ea75ff9cf3",
+      "task_id": "pydata__xarray-3095",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/runs/small/pydata__xarray-3095/state.json",
+      "sha256": "deda45d503cc7063f14a18a350541facef643557355bd0325612b9e223d61895",
+      "run_id": "f4cd58a7-2382-48d0-877c-1dd9ddf97cd8",
+      "task_id": "pydata__xarray-3095",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/runs/personal/django__django-15037/state.json",
+      "sha256": "4bd8e8984606ae0fdf80d7513c613541f11f0e7b83132ece71e7dd97328d795e",
+      "run_id": "dcc70f6e-4f3d-495f-8352-ac2cad2d2da5",
+      "task_id": "django__django-15037",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/runs/large/django__django-15037/state.json",
+      "sha256": "8996fafe4a0e2ec0ac576ccb818e068fffc67aa47c23caca33185bcdd8613c48",
+      "run_id": "e62fe7ae-5448-4415-8a1f-90d849aaf648",
+      "task_id": "django__django-15037",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-development-001/fallback-001/runs/small/django__django-15037/state.json",
+      "sha256": "81021a408eddba19343791a315cd2a47febf7c83b87cef22576f33e5b8a0687c",
+      "run_id": "1004b7b6-c478-4d80-9b40-3b722d8c659c",
+      "task_id": "django__django-15037",
+      "status": "completed_ungraded",
+      "finalized": true,
+      "usage_ledger_complete": true,
+      "usage_accounting_issue_count": 0
+    }
+  ]
+}

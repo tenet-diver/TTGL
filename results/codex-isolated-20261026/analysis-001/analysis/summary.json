@@ -1,0 +1,196 @@
+{
+  "status": "descriptive_feasibility_analysis",
+  "assigned_tasks": 12,
+  "seed": 1729,
+  "reference": "large",
+  "arms": {
+    "small": {
+      "assigned": 12,
+      "graded": 12,
+      "resolved": 9,
+      "ungraded": 0,
+      "resolved_per_assigned": 0.75,
+      "mean_wall_seconds": 54.35317678873738,
+      "total_cost_usd": null,
+      "cost_per_assigned_usd": null,
+      "cost_per_resolved_usd": null,
+      "reported_expert_calls": 0,
+      "expert_call_count_complete": true
+    },
+    "large": {
+      "assigned": 12,
+      "graded": 12,
+      "resolved": 10,
+      "ungraded": 0,
+      "resolved_per_assigned": 0.8333333333333334,
+      "mean_wall_seconds": 142.05704557497907,
+      "total_cost_usd": null,
+      "cost_per_assigned_usd": null,
+      "cost_per_resolved_usd": null,
+      "reported_expert_calls": 0,
+      "expert_call_count_complete": true
+    },
+    "precall_router": {
+      "assigned": 12,
+      "graded": 12,
+      "resolved": 11,
+      "ungraded": 0,
+      "resolved_per_assigned": 0.9166666666666666,
+      "mean_wall_seconds": 110.99197056997218,
+      "total_cost_usd": null,
+      "cost_per_assigned_usd": null,
+      "cost_per_resolved_usd": null,
+      "reported_expert_calls": 0,
+      "expert_call_count_complete": true
+    },
+    "oneway": {
+      "assigned": 12,
+      "graded": 12,
+      "resolved": 9,
+      "ungraded": 0,
+      "resolved_per_assigned": 0.75,
+      "mean_wall_seconds": 70.02578428647637,
+      "total_cost_usd": null,
+      "cost_per_assigned_usd": null,
+      "cost_per_resolved_usd": null,
+      "reported_expert_calls": 1,
+      "expert_call_count_complete": true
+    },
+    "reset_expert": {
+      "assigned": 12,
+      "graded": 12,
+      "resolved": 8,
+      "ungraded": 0,
+      "resolved_per_assigned": 0.6666666666666666,
+      "mean_wall_seconds": 56.51783356239321,
+      "total_cost_usd": null,
+      "cost_per_assigned_usd": null,
+      "cost_per_resolved_usd": null,
+      "reported_expert_calls": 1,
+      "expert_call_count_complete": true
+    },
+    "personal": {
+      "assigned": 12,
+      "graded": 12,
+      "resolved": 9,
+      "ungraded": 0,
+      "resolved_per_assigned": 0.75,
+      "mean_wall_seconds": 53.05039119103458,
+      "total_cost_usd": null,
+      "cost_per_assigned_usd": null,
+      "cost_per_resolved_usd": null,
+      "reported_expert_calls": 0,
+      "expert_call_count_complete": true
+    }
+  },
+  "paired_differences": {
+    "small": {
+      "status": "descriptive_only",
+      "quality_difference": -0.08333333333333333,
+      "bootstrap_percentile_95": [
+        -0.25,
+        0.0
+      ],
+      "discordant_tasks": 1,
+      "warning": "Tiny-sample bootstrap can be degenerate; a zero-width interval does not establish equivalence"
+    },
+    "precall_router": {
+      "status": "descriptive_only",
+      "quality_difference": 0.08333333333333333,
+      "bootstrap_percentile_95": [
+        0.0,
+        0.25
+      ],
+      "discordant_tasks": 1,
+      "warning": "Tiny-sample bootstrap can be degenerate; a zero-width interval does not establish equivalence"
+    },
+    "oneway": {
+      "status": "descriptive_only",
+      "quality_difference": -0.08333333333333333,
+      "bootstrap_percentile_95": [
+        -0.25,
+        0.0
+      ],
+      "discordant_tasks": 1,
+      "warning": "Tiny-sample bootstrap can be degenerate; a zero-width interval does not establish equivalence"
+    },
+    "reset_expert": {
+      "status": "descriptive_only",
+      "quality_difference": -0.16666666666666666,
+      "bootstrap_percentile_95": [
+        -0.4166666666666667,
+        0.0
+      ],
+      "discordant_tasks": 2,
+      "warning": "Tiny-sample bootstrap can be degenerate; a zero-width interval does not establish equivalence"
+    },
+    "personal": {
+      "status": "descriptive_only",
+      "quality_difference": -0.08333333333333333,
+      "bootstrap_percentile_95": [
+        -0.25,
+        0.0
+      ],
+      "discordant_tasks": 1,
+      "warning": "Tiny-sample bootstrap can be degenerate; a zero-width interval does not establish equivalence"
+    }
+  },
+  "limitations": [
+    "Not a powered confirmatory evaluation",
+    "Task bootstrap is conditional on the chosen issues, which may share repositories or bug families",
+    "Models may have seen public tasks",
+    "Unknown prices and usage remain null",
+    "Wall time includes orchestration and contention"
+  ],
+  "cost_definition": "API-equivalent model cost, not subscription bill, quota consumption, or full deployment cost",
+  "savings": {
+    "small": {
+      "status": "unavailable_missing_costs",
+      "estimated_savings_fraction": null
+    },
+    "precall_router": {
+      "status": "unavailable_missing_costs",
+      "estimated_savings_fraction": null
+    },
+    "oneway": {
+      "status": "unavailable_missing_costs",
+      "estimated_savings_fraction": null
+    },
+    "reset_expert": {
+      "status": "unavailable_missing_costs",
+      "estimated_savings_fraction": null
+    },
+    "personal": {
+      "status": "unavailable_missing_costs",
+      "estimated_savings_fraction": null
+    }
+  },
+  "estimated_subscription_credit_savings": {
+    "small": {
+      "status": "unavailable_missing_costs",
+      "estimated_savings_fraction": null
+    },
+    "precall_router": {
+      "status": "unavailable_missing_costs",
+      "estimated_savings_fraction": null
+    },
+    "oneway": {
+      "status": "unavailable_missing_costs",
+      "estimated_savings_fraction": null
+    },
+    "reset_expert": {
+      "status": "unavailable_missing_costs",
+      "estimated_savings_fraction": null
+    },
+    "personal": {
+      "status": "unavailable_missing_costs",
+      "estimated_savings_fraction": null
+    }
+  },
+  "provenance": {
+    "design_sha256": "c590d2f0cdc059364dabe357248266f17417baf5a9692d0affb6a42199ee3dac",
+    "grade_index_sha256": "b4f5eeffeb7dc6024956056f8c1bfc8b668b776fe868bc4f9312cd1803540776",
+    "prices_sha256": null,
+    "provider_usage_sha256": "720977320a1d99e61855be6ef4180cc1c2e9b59e6f0c108db725d4d835e9df47"
+  }
+}

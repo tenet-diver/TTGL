@@ -1,0 +1,10 @@
+{
+  "instance_id": "mwaskom__seaborn-3069",
+  "model_name_or_path": "ttgl-personal",
+  "model_patch": "diff --git a/seaborn/_core/plot.py b/seaborn/_core/plot.py\nindex 4f0290a..6f830e3 100644\n--- a/seaborn/_core/plot.py\n+++ b/seaborn/_core/plot.py\n@@ -1644,6 +1644,18 @@ class Plotter:\n                         hi = cast(float, hi) + 0.5\n                     ax.set(**{f\"{axis}lim\": (lo, hi)})\n \n+                from seaborn._core.scales import Nominal\n+                scale = self._scales.get(axis_key)\n+                if isinstance(scale, Nominal):\n+                    mpl_axis = getattr(ax, f\"{axis}axis\")\n+                    locations = mpl_axis.get_majorticklocs()\n+                    if len(locations):\n+                        limits = (locations[0] - .5, locations[-1] + .5)\n+                        if axis == \"y\":\n+                            limits = limits[::-1]\n+                        ax.set(**{f\"{axis}lim\": limits})\n+                    ax.grid(False, axis=axis)\n+\n         engine_default = None if p._target is not None else \"tight\"\n         layout_engine = p._layout_spec.get(\"engine\", engine_default)\n         set_layout_engine(self._figure, layout_engine)\n",
+  "manifest_sha256": "b2aff50d5cac646fdca2775efdb4a4540d13960330c8264b774ec9df97d63bb5",
+  "patch_sha256": "f57d1dd91c686610d4b22201a31a0646abd2e463bc410e444e9403e1a5d2c7c0",
+  "status": "completed_ungraded",
+  "preparation_seconds": 7.566944226040505,
+  "assignment_wall_seconds": 47.41301525302697
+}

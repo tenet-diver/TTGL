@@ -1,0 +1,10 @@
+{
+  "instance_id": "django__django-15037",
+  "model_name_or_path": "ttgl-small",
+  "model_patch": "diff --git a/django/core/management/commands/inspectdb.py b/django/core/management/commands/inspectdb.py\nindex f9b4bfb..75a3c6c 100644\n--- a/django/core/management/commands/inspectdb.py\n+++ b/django/core/management/commands/inspectdb.py\n@@ -124,6 +124,12 @@ class Command(BaseCommand):\n                             \"self\" if relations[column_name][1] == table_name\n                             else table2model(relations[column_name][1])\n                         )\n+                        # A foreign key may reference a unique field instead of\n+                        # the target model's primary key.\n+                        related_table = relations[column_name][1]\n+                        related_column = relations[column_name][0]\n+                        if related_column != connection.introspection.get_primary_key_column(cursor, related_table):\n+                            extra_params['to_field'] = related_column\n                         if rel_to in known_models:\n                             field_type = '%s(%s' % (rel_type, rel_to)\n                         else:\n",
+  "manifest_sha256": "93c8abfd714be2fab936f6a3dd7d6977b43b9c55e82f70412b917a6c3a3d659e",
+  "patch_sha256": "d32e1c3c90062416e052018c093413e4b23cf8ef463095713daf92a6004980b4",
+  "status": "completed_ungraded",
+  "preparation_seconds": 19.29764825105667,
+  "assignment_wall_seconds": 53.49966991809197
+}

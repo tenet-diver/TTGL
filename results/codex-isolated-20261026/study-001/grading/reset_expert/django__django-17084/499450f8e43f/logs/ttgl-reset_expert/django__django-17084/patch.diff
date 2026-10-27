@@ -1,0 +1,39 @@
+diff --git a/django/db/models/sql/query.py b/django/db/models/sql/query.py
+index 13a6809..5b489ca 100644
+--- a/django/db/models/sql/query.py
++++ b/django/db/models/sql/query.py
+@@ -450,6 +450,9 @@ class Query(BaseExpression):
+             isinstance(self.group_by, tuple)
+             or self.is_sliced
+             or has_existing_aggregation
++            or any(
++                aggregate.contains_over_clause for aggregate in aggregates.values()
++            )
+             or refs_subquery
+             or qualify
+             or self.distinct
+diff --git a/tests/aggregation/tests.py b/tests/aggregation/tests.py
+index 366b843..1bf6984 100644
+--- a/tests/aggregation/tests.py
++++ b/tests/aggregation/tests.py
+@@ -27,6 +27,7 @@ from django.db.models import (
+     TimeField,
+     Value,
+     Variance,
++    Window,
+     When,
+ )
+ from django.db.models.expressions import Func, RawSQL
+@@ -2207,3 +2208,12 @@ class AggregateAnnotationPruningTests(TestCase):
+         sql = ctx.captured_queries[0]["sql"].lower()
+         self.assertEqual(sql.count("select"), 3, "Subquery wrapping required")
+         self.assertEqual(aggregate, {"sum_total_books": 3})
++
++
++class AggregateOverWindowTests(TestCase):
++    def test_aggregate_over_window_annotation(self):
++        Author.objects.bulk_create([Author(age=age) for age in (1, 2, 3)])
++        result = Author.objects.annotate(
++            cumulative_age=Window(Sum("age"), order_by=F("age").asc()),
++        ).aggregate(total=Sum("cumulative_age"))
++        self.assertEqual(result["total"], 10)

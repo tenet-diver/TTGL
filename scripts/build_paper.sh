@@ -9,7 +9,7 @@ dot -Tsvg figures/conversation.dot -o figures/conversation.svg
 python - <<'PY'
 from pathlib import Path
 parts = ['frontmatter.md', '../thesis/personal-agent-prior-art.md', 'architecture.md',
-         'methods.md', 'economics-and-results.md', 'standard-benchmark-results.md',
+         'methods.md', 'economics-and-results.md', 'live-routing-results.md', 'standard-benchmark-results.md',
          'discussion-and-reproduction.md']
 Path('paper.md').write_text('\n\n'.join(Path(p).read_text().rstrip() for p in parts)
                            + '\n\n# References {.unnumbered}\n\n::: {#refs}\n:::\n')
@@ -34,7 +34,7 @@ import datetime, hashlib, json, subprocess
 from pathlib import Path
 sources = ['frontmatter.md', '../thesis/personal-agent-prior-art.md',
            '../thesis/personal-agent-prior-art-sources.json', 'architecture.md',
-           'methods.md', 'economics-and-results.md', 'standard-benchmark-results.md',
+           'methods.md', 'economics-and-results.md', 'live-routing-results.md', 'standard-benchmark-results.md',
            'discussion-and-reproduction.md',
            'references.bib', 'additional-references.bib', 'figures/conversation.dot',
            '../../experiments/codex-pilot-001/protocol.json',

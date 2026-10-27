@@ -1,0 +1,5 @@
+task_id,small,large,personal
+scikit-learn__scikit-learn-14141,True,True,True
+django__django-13297,False,True,True
+pydata__xarray-3095,True,True,True
+django__django-15037,False,True,True

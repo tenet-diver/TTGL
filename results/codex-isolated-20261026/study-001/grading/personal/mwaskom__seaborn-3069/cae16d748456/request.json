@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-personal-mwaskom__seaborn-3069-f57d1dd9-cae16d748456",
+  "prediction_sha256": "df21626deab8fbc750dbbb139e3899af369cf52c9b5cbf1b25f608d231e12e19",
+  "model_patch_sha256": "f57d1dd91c686610d4b22201a31a0646abd2e463bc410e444e9403e1a5d2c7c0",
+  "patch_record_sha256": "04181ec4e5b60443532c1856524bf7a1431e2e6a9c589290dd6e1819447b96e4",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "19a99afeb913aa03f7676ad157e498c778365e29b72672f3b67dd2913c5fe39f",
+  "timeout_seconds": 1200
+}

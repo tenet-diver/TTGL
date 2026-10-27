@@ -1,0 +1,100 @@
+{
+  "schema_version": 3,
+  "run_id": "f4cd58a7-2382-48d0-877c-1dd9ddf97cd8",
+  "task_id": "pydata__xarray-3095",
+  "condition": "small",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-27T01:15:10.439207+00:00",
+  "finished_at": "2026-10-27T01:15:55.883021+00:00",
+  "identity_sha256": "17174da5089d63291f69a225608cd9f0be17562f5414cdb046263d17093ea4d7",
+  "config": {
+    "condition": "small",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d",
+    "controller_policy": {
+      "mode": "fallback",
+      "source_sha256": "bf163122b4c9769dbec7ef0c9759fc5e07a4453dc6906f75c31dfa41d6eee707",
+      "prompts_sha256": {
+        "controller-v2-common.txt": "bcab59483071803bd76c6a2125c4892771bafb3f3845b151494732f1b905fd23",
+        "controller-v2-delegation.txt": "97fa0f26f6477d16ad94e130d0ae33b9909da26598fe72fd9178513f330e568b",
+        "controller-v2-fallback.txt": "b0e31632e6796b582a7982325aca364419cbeeeaa309224b47eae2ccce8a4724"
+      }
+    }
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 1,
+  "expert_calls": 0,
+  "elapsed_seconds": 45.37772735906765,
+  "controller_thread_id": "01a17aec-efce-7990-b892-1b657ac377eb",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 198492,
+    "cached_input_tokens": 163584,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1600,
+    "reasoning_output_tokens": 299
+  },
+  "observed_usage_partial": {
+    "input_tokens": 198492,
+    "cached_input_tokens": 163584,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1600,
+    "reasoning_output_tokens": 299
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 198492,
+        "cached_input_tokens": 163584,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1600,
+        "reasoning_output_tokens": 299
+      },
+      "observed_partial": {
+        "input_tokens": 198492,
+        "cached_input_tokens": 163584,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1600,
+        "reasoning_output_tokens": 299
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 1,
+  "failure_type": null,
+  "summary": "Preserved the original dtype when deep-copying an `IndexVariable` through its pandas index adapter. Added regression coverage for Dataset and DataArray copies, including `copy.copy()` and `copy.deepcopy()`. Verification: the regression test passed (1 passed); the selected Dataset and DataArray copy tests passed (9 passed, 4 xpassed); `git diff --check` passed.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "eb99eabf75b72ecbf57ff2a576ff8034df67d5740d82e6f0bd4bde2cc8cc40f4",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

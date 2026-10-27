@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-personal-astropy__astropy-12907-8a2626d3-3956c6034aa0",
+  "prediction_sha256": "e5a8e2a0cebe4e67b272369106a1202e850c10d1aa529f5a5b47184513959633",
+  "model_patch_sha256": "8a2626d35a683500f6057ea1746d9f8647a515e7799a0d1b4c59a1e04223fa18",
+  "patch_record_sha256": "f729ea2038d9f6cadcbc4d1db01e26c546deb97666d612a39a618acd06ff07a9",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "19a99afeb913aa03f7676ad157e498c778365e29b72672f3b67dd2913c5fe39f",
+  "timeout_seconds": 1200
+}

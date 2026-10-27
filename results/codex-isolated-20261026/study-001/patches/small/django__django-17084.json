@@ -1,0 +1,10 @@
+{
+  "instance_id": "django__django-17084",
+  "model_name_or_path": "ttgl-small",
+  "model_patch": "diff --git a/django/db/models/sql/query.py b/django/db/models/sql/query.py\nindex 13a6809..d743250 100644\n--- a/django/db/models/sql/query.py\n+++ b/django/db/models/sql/query.py\n@@ -451,6 +451,7 @@ class Query(BaseExpression):\n             or self.is_sliced\n             or has_existing_aggregation\n             or refs_subquery\n+            or any(aggregate.contains_over_clause for aggregate in aggregates.values())\n             or qualify\n             or self.distinct\n             or self.combinator\ndiff --git a/tests/expressions_window/tests.py b/tests/expressions_window/tests.py\nindex 3a02a36..4ce0df0 100644\n--- a/tests/expressions_window/tests.py\n+++ b/tests/expressions_window/tests.py\n@@ -93,6 +93,16 @@ class WindowFunctionTests(TestCase):\n             ]\n         )\n \n+    def test_aggregate_over_window(self):\n+        queryset = Employee.objects.annotate(\n+            cumulative_salary=Window(Sum(\"salary\"), order_by=F(\"hire_date\").asc())\n+        )\n+        result = queryset.aggregate(\n+            salary_total=Sum(\"salary\"), cumulative_salary_total=Sum(\"cumulative_salary\")\n+        )\n+        self.assertEqual(result[\"salary_total\"], 637000)\n+        self.assertGreater(result[\"cumulative_salary_total\"], result[\"salary_total\"])\n+\n     def test_dense_rank(self):\n         tests = [\n             ExtractYear(F(\"hire_date\")).asc(),\n",
+  "manifest_sha256": "f65f8f1ec224e7b9d47f23b1d1792284b10234bfd18b5013dc6e08f1a9578bcd",
+  "patch_sha256": "9fa2e5177bf19ca38b9f2386e530769a3babe0c3d53db24916b13a1052de14c0",
+  "status": "completed_ungraded",
+  "preparation_seconds": 21.166424655006267,
+  "assignment_wall_seconds": 54.01885154901538
+}

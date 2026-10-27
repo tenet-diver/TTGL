@@ -1,0 +1,10 @@
+{
+  "instance_id": "mwaskom__seaborn-3069",
+  "model_name_or_path": "ttgl-small",
+  "model_patch": "diff --git a/seaborn/_core/plot.py b/seaborn/_core/plot.py\nindex 4f0290a..d7cc0ec 100644\n--- a/seaborn/_core/plot.py\n+++ b/seaborn/_core/plot.py\n@@ -1643,6 +1643,26 @@ class Plotter:\n                     if isinstance(b, str):\n                         hi = cast(float, hi) + 0.5\n                     ax.set(**{f\"{axis}lim\": (lo, hi)})\n+                # Nominal coordinates are represented by numeric category\n+                # indices, so Matplotlib does not apply categorical autoscaling.\n+                # Give them the same half-step bounds and y orientation as the\n+                # categorical plotting functions.\n+                from seaborn._core.scales import Nominal\n+                scale = self._scales.get(axis_key)\n+                if isinstance(scale, Nominal):\n+                    ticks = getattr(ax, f\"get_{axis}ticks\")()\n+                    if len(ticks) and axis_key not in p._limits:\n+                        lo, hi = ticks[0] - .5, ticks[-1] + .5\n+                        if axis == \"y\":\n+                            ax.set_ylim(hi, lo)\n+                        else:\n+                            ax.set_xlim(lo, hi)\n+                    if axis == \"y\" and axis_key not in p._limits and not ax.yaxis_inverted():\n+                        ax.invert_yaxis()\n+                    # Respect an explicitly requested theme grid; otherwise\n+                    # categorical dimensions suppress their grid lines.\n+                    if self._theme.get(\"axes.grid\") is not True:\n+                        getattr(ax, f\"{axis}axis\").grid(False)\n \n         engine_default = None if p._target is not None else \"tight\"\n         layout_engine = p._layout_spec.get(\"engine\", engine_default)\n",
+  "manifest_sha256": "efec0678ac459a50fb1cdae88820f65e44c868cc89b5fcf062c22879c77989bc",
+  "patch_sha256": "06d41426bbadf1341655cccfb7b41f1e7ca1df2ffa34a55347fbe0c829be1be7",
+  "status": "completed_ungraded",
+  "preparation_seconds": 16.11799968709238,
+  "assignment_wall_seconds": 98.72844463703223
+}
