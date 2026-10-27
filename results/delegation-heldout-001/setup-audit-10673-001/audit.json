@@ -1,0 +1,9 @@
+{
+  "status": "audited_runner_metadata_only_before_inference",
+  "instance_id": "sphinx-doc__sphinx-10673",
+  "base_blob": "7ca990b56df0c4874f2f99179fcf515d24a37b4c",
+  "image_blob": "a0708b02cfe638662f497b834d8551bd23800266",
+  "change": "tox.ini adds pytest -rA only. No implementation/test source changes; exact base restored before model access.",
+  "diff_sha256": "5b910d9cc09b8c19585d243554477df1ad9f103b7b8343d68844fb463a9656af",
+  "runtime_source_sha256": "38781207eaca0178358180edf232d872c0527ad4013d0a5374bb2a975658dac3"
+}

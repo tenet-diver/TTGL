@@ -30,7 +30,8 @@ AUDITED_SETUP_BLOBS = {
         # 9320 image: dependency caps only; inspected before held-out inference.
         ('206ff4ad4904cd24b81e00dc0b3383fcbb54e6a2', '4bb5faeb12fe7d313b81413f3655954aaa09d9cb')},
     ('sphinx-doc/sphinx', 'tox.ini'): {
-        ('a363e187faaecc3096f41168ccedd93a17a0cf50', '3b8bc12d02028feaac4d488c13b662e3e6db163d')},
+        ('a363e187faaecc3096f41168ccedd93a17a0cf50', '3b8bc12d02028feaac4d488c13b662e3e6db163d'),
+        ('7ca990b56df0c4874f2f99179fcf515d24a37b4c', 'a0708b02cfe638662f497b834d8551bd23800266')},
 }
 
 

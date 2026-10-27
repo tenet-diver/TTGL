@@ -74,7 +74,8 @@ supervision does not require teacher/student tokenizer identity. Balance distinc
 tasks and disclose rejection rates, target-token exposure and selection bias;
 do not count many traces of one easy task as many independent tasks.
 
-The probability-distillation arm generates trajectories with the current student
+Following prior work on generative-model and on-policy distillation
+[@gu2024minillm; @lu2025onpolicydistillation], the probability-distillation arm generates trajectories with the current student
 and obtains teacher probability feedback conditioned on those same visible
 histories. This tests correction in states reached by the student, rather than
 only imitation of expert-generated histories. Declare whether the objective
