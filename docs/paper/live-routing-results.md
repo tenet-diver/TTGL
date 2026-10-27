@@ -51,20 +51,52 @@ are not observed invoices or full deployment costs.
 
 ## Held-out status and bounded next study
 
-Held-out model inference has not begun. The first independent control case,
+The first independent control case,
 `django__django-7530`, passes the recorded fail-to-pass test without a repair;
 base and gold native reports both resolve. The archived evaluator therefore
 cannot discriminate repair success for that case. Preserve the failed control
 gate and resolve its environment disposition before proceeding; do not override
 the score or silently substitute an easier case. An explicit pre-inference
 disposition now excludes this invalid control under the original reservation's
-eligibility rule, without replacement. Eleven reserved cases are undergoing
-readiness checks; the selected policy is unchanged.
+eligibility rule, without replacement. All eleven remaining readiness checks
+passed and the selected policy's 33-assignment held-out run is in progress.
+At the 27 October interim checkpoint, two complete task blocks (six official
+grades) give Sol 2/2, standalone Luna 1/2 and assisted Luna 1/2. The assisted
+condition made zero expert requests on those tasks. These incomplete results
+are descriptive and are not the final held-out estimate.
 
 A separate SWE-bench Pro V2 subset is reserved: 12 repository-diverse development
 tasks for inexpensive prompt iteration and 24 disjoint validation tasks. The
 642-task population is not an automatically scheduled run. Only public inputs
-have been acquired; controls, adapter validation and model inference remain
-unexecuted. Use the official maintained harness and pristine grading protocol.
+have been acquired for the reserved population. One development task is prepared
+privately for controls. Six adapter mechanism checks pass, but actual environment
+controls, real boundary/metering/replay validation and Pro model inference remain
+pending. Use the official maintained harness and pristine grading protocol.
 The open-weight replication and subsequent distillation/RL comparisons follow
 this proprietary routing study and are not current learning results.
+
+## Verification observability and prospective feedback diagnostic
+
+The first completed held-out failure illustrates a limitation of confidence-led
+delegation: assisted Luna reported passing local checks and returned complete
+without consulting Sol, while the independent evaluator rejected its patch.
+The available journal does not retain full tool outputs, so those local test
+counts remain self-reported. The observation supports investigating false
+completion; it does not show that the model ignored a visible failing test.
+
+A separate, unrun verification policy now asks for acceptance criteria, checks
+that could falsify a candidate, and material coverage gaps before completion.
+Its assisted variant permits seeking help for an unsupported correctness property
+even after a narrow check passes. Common verification guidance is matched in
+standalone controls. The active held-out policy is unchanged.
+
+A prospective Aider Polyglot-derived diagnostic reserves 12 development and
+24 validation tasks across six languages, excluding development exercise
+families from validation across languages. The maintained Aider harness provides
+test-error feedback for repair; this separates handling an observable failure
+from anticipating an unseen case. The custom conversational protocol is not an
+official Aider leaderboard evaluation. Visible-suite fit, automatic test-gate
+detection and model-initiated error recognition must be reported separately.
+No model trials from this diagnostic have run. The executable reservation and
+the [prospective design](../research/verification-feedback-study.md) retain the
+bounded scope and prohibit tuning on validation outcomes.

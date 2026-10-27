@@ -1,0 +1,424 @@
+{
+  "status": "reserved_not_executed",
+  "dataset": "Aider Polyglot derived feedback diagnostic",
+  "repository": "Aider-AI/polyglot-benchmark",
+  "revision": "7e0611e77b54e2dea774cdc0aa00cf9f7ed6144f",
+  "population_tasks": 225,
+  "population_by_language": {
+    "cpp": 26,
+    "go": 39,
+    "java": 47,
+    "javascript": 49,
+    "python": 34,
+    "rust": 30
+  },
+  "seed": "ttgl-verification-feedback-001",
+  "inventory_sha256": "53cae5f6d8634b5f30ef70091aed83ab6b4fdfd3686ebb649971821069ab4d9a",
+  "selection": "Two development and four validation tasks per language, hash-ranked; exclude every development exercise family across all validation languages",
+  "development": [
+    {
+      "task_id": "cpp/phone-number",
+      "language": "cpp",
+      "exercise_family": "phone-number",
+      "instructions_path": "cpp/exercises/practice/phone-number/.docs/instructions.md",
+      "instructions": {
+        "path": "public/cpp/phone-number/instructions.md",
+        "sha256": "ca1e2c1c43454c151e519a2f784439621c243bb2824715c69a8e0904abc473a5",
+        "git_blob": "62ba48e96fd2a47445a74ab075c7ef7198601815"
+      }
+    },
+    {
+      "task_id": "go/pig-latin",
+      "language": "go",
+      "exercise_family": "pig-latin",
+      "instructions_path": "go/exercises/practice/pig-latin/.docs/instructions.md",
+      "instructions": {
+        "path": "public/go/pig-latin/instructions.md",
+        "sha256": "9251a0956bafeb2ddd68e2755429be65224907f71163756535b3ccb983e571ee",
+        "git_blob": "6c843080d445871fafbf2768deef48fbab032142"
+      }
+    },
+    {
+      "task_id": "java/series",
+      "language": "java",
+      "exercise_family": "series",
+      "instructions_path": "java/exercises/practice/series/.docs/instructions.md",
+      "instructions": {
+        "path": "public/java/series/instructions.md",
+        "sha256": "ee8c3ef97120872948bda3a5c3061270fd0b19c4f520238bb5ad4cf08717d214",
+        "git_blob": "fd97a6706a66b377147ae91d1495db35a1b291e8"
+      }
+    },
+    {
+      "task_id": "javascript/ocr-numbers",
+      "language": "javascript",
+      "exercise_family": "ocr-numbers",
+      "instructions_path": "javascript/exercises/practice/ocr-numbers/.docs/instructions.md",
+      "instructions": {
+        "path": "public/javascript/ocr-numbers/instructions.md",
+        "sha256": "cc9dae7e1e774a12dbf608991fa20d3ce08257abdc90d9e8d5d52725b6d911d0",
+        "git_blob": "7beb257795750af8a41226dc35558924106c5657"
+      }
+    },
+    {
+      "task_id": "python/proverb",
+      "language": "python",
+      "exercise_family": "proverb",
+      "instructions_path": "python/exercises/practice/proverb/.docs/instructions.md",
+      "instructions": {
+        "path": "public/python/proverb/instructions.md",
+        "sha256": "db74a89ac1c983d3cd5c8ade251df98fa4748baa60a6967e323ed42b5ff547f7",
+        "git_blob": "f6fb859325f92dec6336d03d5e1f3bc3026b249f"
+      }
+    },
+    {
+      "task_id": "rust/nucleotide-codons",
+      "language": "rust",
+      "exercise_family": "nucleotide-codons",
+      "instructions_path": "rust/exercises/practice/nucleotide-codons/.docs/instructions.md",
+      "instructions": {
+        "path": "public/rust/nucleotide-codons/instructions.md",
+        "sha256": "edb7f33c0d576e6c8719a4a97378e07379d098bb81c0a58b4917bb2c3ca07a82",
+        "git_blob": "193839403740c2bbcf53eb99ad460672be5a4850"
+      }
+    },
+    {
+      "task_id": "cpp/grade-school",
+      "language": "cpp",
+      "exercise_family": "grade-school",
+      "instructions_path": "cpp/exercises/practice/grade-school/.docs/instructions.md",
+      "instructions": {
+        "path": "public/cpp/grade-school/instructions.md",
+        "sha256": "8dc7133cd5f0564717108757c27ad96ebadf44f03b5fde5c35b826aaeb0b4e0f",
+        "git_blob": "9a63e398d858326d60e2f7f5660cc243c92a917c"
+      }
+    },
+    {
+      "task_id": "go/zebra-puzzle",
+      "language": "go",
+      "exercise_family": "zebra-puzzle",
+      "instructions_path": "go/exercises/practice/zebra-puzzle/.docs/instructions.md",
+      "instructions": {
+        "path": "public/go/zebra-puzzle/instructions.md",
+        "sha256": "324470201656484c8fe03220ef38a55f9f015f26ff32e1ea8d4aaacc1e29f5b5",
+        "git_blob": "c666e33cb3f096af6a0e307501da8da591499a8d"
+      }
+    },
+    {
+      "task_id": "java/ledger",
+      "language": "java",
+      "exercise_family": "ledger",
+      "instructions_path": "java/exercises/practice/ledger/.docs/instructions.md",
+      "instructions": {
+        "path": "public/java/ledger/instructions.md",
+        "sha256": "f14fb62c9cec2bc0a0d2ae3064c52585023034f71cc752e92091bc2b38693424",
+        "git_blob": "a53e5c15e3e6f5f6a62a8ea6be82e3072477baae"
+      }
+    },
+    {
+      "task_id": "javascript/binary",
+      "language": "javascript",
+      "exercise_family": "binary",
+      "instructions_path": "javascript/exercises/practice/binary/.docs/instructions.md",
+      "instructions": {
+        "path": "public/javascript/binary/instructions.md",
+        "sha256": "444f6b49146b4462471b7ec73a6cc841da218243bd96c73fd15f56c3ff9d89f3",
+        "git_blob": "497fe74d59b4980b3d2ed46733073b5c245d0145"
+      }
+    },
+    {
+      "task_id": "python/variable-length-quantity",
+      "language": "python",
+      "exercise_family": "variable-length-quantity",
+      "instructions_path": "python/exercises/practice/variable-length-quantity/.docs/instructions.md",
+      "instructions": {
+        "path": "public/python/variable-length-quantity/instructions.md",
+        "sha256": "665731f052d645396f9b7017d27c1ba77c8100f156de4fcad92300bddefb1484",
+        "git_blob": "5012548268111bd52081b3774efc2a51a0271fd3"
+      }
+    },
+    {
+      "task_id": "rust/word-count",
+      "language": "rust",
+      "exercise_family": "word-count",
+      "instructions_path": "rust/exercises/practice/word-count/.docs/instructions.md",
+      "instructions": {
+        "path": "public/rust/word-count/instructions.md",
+        "sha256": "65364f9d1f4a86b65c802ef54b4b7c0700430fab364b088a32c7affdf6d9070b",
+        "git_blob": "064393c8a0f68810d215d0bec650f9cab19953b5"
+      }
+    }
+  ],
+  "held_out": [
+    {
+      "task_id": "cpp/gigasecond",
+      "language": "cpp",
+      "exercise_family": "gigasecond",
+      "instructions_path": "cpp/exercises/practice/gigasecond/.docs/instructions.md",
+      "instructions": {
+        "path": "public/cpp/gigasecond/instructions.md",
+        "sha256": "41be679e435364e98ee71647be589530b2f3ee593185e627c973fd107f9794a7",
+        "git_blob": "1e20f0022e47d16c84030db24f4c83f00b60652d"
+      }
+    },
+    {
+      "task_id": "go/counter",
+      "language": "go",
+      "exercise_family": "counter",
+      "instructions_path": "go/exercises/practice/counter/.docs/instructions.md",
+      "instructions": {
+        "path": "public/go/counter/instructions.md",
+        "sha256": "c3bc6f4f3d3767036a4b93a38d49bd63a404345e912e9f710caa93ada5d23d93",
+        "git_blob": "6dbd25990e54ecb05105bbcdeddb525ecaf4d999"
+      }
+    },
+    {
+      "task_id": "java/state-of-tic-tac-toe",
+      "language": "java",
+      "exercise_family": "state-of-tic-tac-toe",
+      "instructions_path": "java/exercises/practice/state-of-tic-tac-toe/.docs/instructions.md",
+      "instructions": {
+        "path": "public/java/state-of-tic-tac-toe/instructions.md",
+        "sha256": "3b4c78cd40e496d055eb85276dfa17196ee7bfd72d0961ef570d7df22b849cd0",
+        "git_blob": "1a03ebb6cb4c4468e3c93f90e0a76e4f1812ec55"
+      }
+    },
+    {
+      "task_id": "javascript/queen-attack",
+      "language": "javascript",
+      "exercise_family": "queen-attack",
+      "instructions_path": "javascript/exercises/practice/queen-attack/.docs/instructions.md",
+      "instructions": {
+        "path": "public/javascript/queen-attack/instructions.md",
+        "sha256": "159a9bda6a12590da669cc838f7203bd98096cd9df7ef02a11e50381413a71a5",
+        "git_blob": "97f22a0aee13f74801df153121aeb04104f68dbd"
+      }
+    },
+    {
+      "task_id": "python/bowling",
+      "language": "python",
+      "exercise_family": "bowling",
+      "instructions_path": "python/exercises/practice/bowling/.docs/instructions.md",
+      "instructions": {
+        "path": "public/python/bowling/instructions.md",
+        "sha256": "38a7d249928abfaac3e24d47222283a9bc3a6c5c599d9cea1d43bbe55eb8de1c",
+        "git_blob": "60ccad1b612b070ce573c890c8945b3e20f7eeaf"
+      }
+    },
+    {
+      "task_id": "rust/xorcism",
+      "language": "rust",
+      "exercise_family": "xorcism",
+      "instructions_path": "rust/exercises/practice/xorcism/.docs/instructions.md",
+      "instructions": {
+        "path": "public/rust/xorcism/instructions.md",
+        "sha256": "fc454beb2fa8af3c2a9ff1ff27d1051695eacd7687599dfed1c8a3610f9fb6d2",
+        "git_blob": "a4ddcc2fa434864b8a9801f27463bc7044aa2d9b"
+      }
+    },
+    {
+      "task_id": "cpp/binary-search-tree",
+      "language": "cpp",
+      "exercise_family": "binary-search-tree",
+      "instructions_path": "cpp/exercises/practice/binary-search-tree/.docs/instructions.md",
+      "instructions": {
+        "path": "public/cpp/binary-search-tree/instructions.md",
+        "sha256": "103ea444961a5ecd8c0afec176ece97d006e05574725a41dd284b266a09531ad",
+        "git_blob": "c9bbba5b96df34462caa9482f3d6a810c6686524"
+      }
+    },
+    {
+      "task_id": "go/paasio",
+      "language": "go",
+      "exercise_family": "paasio",
+      "instructions_path": "go/exercises/practice/paasio/.docs/instructions.md",
+      "instructions": {
+        "path": "public/go/paasio/instructions.md",
+        "sha256": "4f389a21f0b352607babb959e45bb449ab5d9b9970d1e3aaf5c2423b2ffc0c33",
+        "git_blob": "5956447487e0c549796d649508c77d36a8019479"
+      }
+    },
+    {
+      "task_id": "java/circular-buffer",
+      "language": "java",
+      "exercise_family": "circular-buffer",
+      "instructions_path": "java/exercises/practice/circular-buffer/.docs/instructions.md",
+      "instructions": {
+        "path": "public/java/circular-buffer/instructions.md",
+        "sha256": "9032880507316b54b8fecebb2a9e7e34cfb04a3e430e8a3488fba2050b6466ed",
+        "git_blob": "2ba1fda2aa73e920e1ae0b25441be2f00fd3dd12"
+      }
+    },
+    {
+      "task_id": "javascript/space-age",
+      "language": "javascript",
+      "exercise_family": "space-age",
+      "instructions_path": "javascript/exercises/practice/space-age/.docs/instructions.md",
+      "instructions": {
+        "path": "public/javascript/space-age/instructions.md",
+        "sha256": "5154666b09c794db3ea85d1bc76a1e8d0ceb036179717efb878e7afa642013bb",
+        "git_blob": "f23b5e2c1fee01d8283d5399594d9324bd35e2f4"
+      }
+    },
+    {
+      "task_id": "python/poker",
+      "language": "python",
+      "exercise_family": "poker",
+      "instructions_path": "python/exercises/practice/poker/.docs/instructions.md",
+      "instructions": {
+        "path": "public/python/poker/instructions.md",
+        "sha256": "62427ba25c07f8c57519f93cbfc293dd3eb9e8b74a33aae3645281433b8941ea",
+        "git_blob": "107cd49d66b4b7af782f61584c8b5cd91f5d8737"
+      }
+    },
+    {
+      "task_id": "rust/two-bucket",
+      "language": "rust",
+      "exercise_family": "two-bucket",
+      "instructions_path": "rust/exercises/practice/two-bucket/.docs/instructions.md",
+      "instructions": {
+        "path": "public/rust/two-bucket/instructions.md",
+        "sha256": "69471472c9db28eda2f841096ae4afd07605949293489b8445142f4cb0cd9ff8",
+        "git_blob": "30d779aa9225cde761d6e21a3b8cae231d24e087"
+      }
+    },
+    {
+      "task_id": "cpp/kindergarten-garden",
+      "language": "cpp",
+      "exercise_family": "kindergarten-garden",
+      "instructions_path": "cpp/exercises/practice/kindergarten-garden/.docs/instructions.md",
+      "instructions": {
+        "path": "public/cpp/kindergarten-garden/instructions.md",
+        "sha256": "0deebfb40706725b72884a95230b3f3a84ed8a16652eb0fdd405ce5516ceacbc",
+        "git_blob": "6fe11a58cec2888895b2a6ba323fc36010645b3e"
+      }
+    },
+    {
+      "task_id": "go/hexadecimal",
+      "language": "go",
+      "exercise_family": "hexadecimal",
+      "instructions_path": "go/exercises/practice/hexadecimal/.docs/instructions.md",
+      "instructions": {
+        "path": "public/go/hexadecimal/instructions.md",
+        "sha256": "b6b8f5c33eb6082796c17ce18a37b75e5b22b7720cbf453bba0728d6cfe66e7c",
+        "git_blob": "3e5afa77c6e3942c87b93845e899bb8fc950f5c4"
+      }
+    },
+    {
+      "task_id": "java/go-counting",
+      "language": "java",
+      "exercise_family": "go-counting",
+      "instructions_path": "java/exercises/practice/go-counting/.docs/instructions.md",
+      "instructions": {
+        "path": "public/java/go-counting/instructions.md",
+        "sha256": "f774382c9c34518f382d9ccbdcc3be778037fa44b5eaac4b0caf0d990fcc109b",
+        "git_blob": "e4b143f2dac93dfcc564c5a17f1cbfa29dbdead2"
+      }
+    },
+    {
+      "task_id": "javascript/forth",
+      "language": "javascript",
+      "exercise_family": "forth",
+      "instructions_path": "javascript/exercises/practice/forth/.docs/instructions.md",
+      "instructions": {
+        "path": "public/javascript/forth/instructions.md",
+        "sha256": "06875da79159e3783cde3d006e405f8329e16837b09b0b4b8225efc3d27a6d9c",
+        "git_blob": "91ad26e6e9cbd2d45e452071e2daf79156cd7186"
+      }
+    },
+    {
+      "task_id": "python/paasio",
+      "language": "python",
+      "exercise_family": "paasio",
+      "instructions_path": "python/exercises/practice/paasio/.docs/instructions.md",
+      "instructions": {
+        "path": "public/python/paasio/instructions.md",
+        "sha256": "4f389a21f0b352607babb959e45bb449ab5d9b9970d1e3aaf5c2423b2ffc0c33",
+        "git_blob": "5956447487e0c549796d649508c77d36a8019479"
+      }
+    },
+    {
+      "task_id": "rust/react",
+      "language": "rust",
+      "exercise_family": "react",
+      "instructions_path": "rust/exercises/practice/react/.docs/instructions.md",
+      "instructions": {
+        "path": "public/rust/react/instructions.md",
+        "sha256": "2d227f7e0b99585c441704993f1ed93009b946ec1ab46c3e9cde89e4dbee500b",
+        "git_blob": "1b9a175d0bccd4c17985a5b3a4cd81bb19fd0735"
+      }
+    },
+    {
+      "task_id": "cpp/knapsack",
+      "language": "cpp",
+      "exercise_family": "knapsack",
+      "instructions_path": "cpp/exercises/practice/knapsack/.docs/instructions.md",
+      "instructions": {
+        "path": "public/cpp/knapsack/instructions.md",
+        "sha256": "69017232ff2b4335ec2ab79bc7470e2d86fa059c3aec2ea4ff51c512142b46e1",
+        "git_blob": "3411db9886a8b0e72f88fe4c4399fb965942a3d7"
+      }
+    },
+    {
+      "task_id": "go/matrix",
+      "language": "go",
+      "exercise_family": "matrix",
+      "instructions_path": "go/exercises/practice/matrix/.docs/instructions.md",
+      "instructions": {
+        "path": "public/go/matrix/instructions.md",
+        "sha256": "0a52fb404642fcddb52d52e22e0fff74c609b1b1a08be07454f70949011b85fb",
+        "git_blob": "dadea8acb59fba30ed9676608619dd52a12c6826"
+      }
+    },
+    {
+      "task_id": "java/hangman",
+      "language": "java",
+      "exercise_family": "hangman",
+      "instructions_path": "java/exercises/practice/hangman/.docs/instructions.md",
+      "instructions": {
+        "path": "public/java/hangman/instructions.md",
+        "sha256": "ed73c7cbfd96365f12988af95c5369c3e244bb874d3209018e03c42a8b5d5ac0",
+        "git_blob": "227e73175c2151cb75aa32aa8ab6a55484addebd"
+      }
+    },
+    {
+      "task_id": "javascript/twelve-days",
+      "language": "javascript",
+      "exercise_family": "twelve-days",
+      "instructions_path": "javascript/exercises/practice/twelve-days/.docs/instructions.md",
+      "instructions": {
+        "path": "public/javascript/twelve-days/instructions.md",
+        "sha256": "b166677b08685e52d20fd150195fede2dd124ae22dc34c719f352f8aea112964",
+        "git_blob": "83bb6e1926b68a987d8c4d600996261f49281067"
+      }
+    },
+    {
+      "task_id": "python/simple-linked-list",
+      "language": "python",
+      "exercise_family": "simple-linked-list",
+      "instructions_path": "python/exercises/practice/simple-linked-list/.docs/instructions.md",
+      "instructions": {
+        "path": "public/python/simple-linked-list/instructions.md",
+        "sha256": "ddf0b0d7a6d0a7b39a70a8dac0ae2e5cc4b7d9ad4163f4a103988bb53abeb914",
+        "git_blob": "04640b1fb0316d5bc0ddb86e1c1960595f298402"
+      }
+    },
+    {
+      "task_id": "rust/wordy",
+      "language": "rust",
+      "exercise_family": "wordy",
+      "instructions_path": "rust/exercises/practice/wordy/.docs/instructions.md",
+      "instructions": {
+        "path": "public/rust/wordy/instructions.md",
+        "sha256": "b9e24dd95b27fa04f706e4dd9e5c7f430684b1af13a1cfde34faee705300aeee",
+        "git_blob": "aafb9ee54bf49aa33e99af41ba55cbe6f4e1a784"
+      }
+    }
+  ],
+  "reference_solutions_downloaded": false,
+  "test_files_downloaded": false,
+  "inference_calls": 0,
+  "full_population_auto_run": false,
+  "claim_scope": "Custom conversational harness and feedback budget; not an official Aider leaderboard score",
+  "licensing": "Exercise content credited to Exercism; preserve per-track licenses before redistributing source or tests"
+}

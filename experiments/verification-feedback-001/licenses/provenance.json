@@ -1,0 +1,53 @@
+{
+  "scope": "Current upstream track license notices accompanying the pinned Aider-derived instructions; track revisions are not exercise-source revisions",
+  "tracks": [
+    {
+      "track": "exercism/cpp",
+      "revision": "7315f0f38a47a6b4d3fe5a44a04b96c2a1805124",
+      "url": "https://raw.githubusercontent.com/exercism/cpp/7315f0f38a47a6b4d3fe5a44a04b96c2a1805124/LICENSE",
+      "path": "licenses/cpp-LICENSE",
+      "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+      "text_header": "MIT License"
+    },
+    {
+      "track": "exercism/go",
+      "revision": "6d9eed09379935e9721d6a57ba5675f4f803fcb3",
+      "url": "https://raw.githubusercontent.com/exercism/go/6d9eed09379935e9721d6a57ba5675f4f803fcb3/LICENSE",
+      "path": "licenses/go-LICENSE",
+      "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+      "text_header": "MIT License"
+    },
+    {
+      "track": "exercism/java",
+      "revision": "8a16b1bb7fe63ab57bc57789e3fcce34063a7371",
+      "url": "https://raw.githubusercontent.com/exercism/java/8a16b1bb7fe63ab57bc57789e3fcce34063a7371/LICENSE",
+      "path": "licenses/java-LICENSE",
+      "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+      "text_header": "MIT License"
+    },
+    {
+      "track": "exercism/javascript",
+      "revision": "ff04f35158cdf61eebfdf18a774010495a1fd6d9",
+      "url": "https://raw.githubusercontent.com/exercism/javascript/ff04f35158cdf61eebfdf18a774010495a1fd6d9/LICENSE",
+      "path": "licenses/javascript-LICENSE",
+      "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+      "text_header": "MIT License"
+    },
+    {
+      "track": "exercism/python",
+      "revision": "6105f6d9d3ef66ce3d5c8f529d2882af3d76b706",
+      "url": "https://raw.githubusercontent.com/exercism/python/6105f6d9d3ef66ce3d5c8f529d2882af3d76b706/LICENSE",
+      "path": "licenses/python-LICENSE",
+      "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+      "text_header": "MIT License"
+    },
+    {
+      "track": "exercism/rust",
+      "revision": "cc099ae090a6acbe6f53f1e36325263046ba333e",
+      "url": "https://raw.githubusercontent.com/exercism/rust/cc099ae090a6acbe6f53f1e36325263046ba333e/LICENSE",
+      "path": "licenses/rust-LICENSE",
+      "sha256": "e52f804e74f0fbd34e8927962319df346166b8194094309a0aee318693df44df",
+      "text_header": "MIT License"
+    }
+  ]
+}

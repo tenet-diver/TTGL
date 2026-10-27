@@ -1,0 +1,18 @@
+{
+  "status": "posthoc_observation_not_a_new_trial",
+  "task_id": "scikit-learn__scikit-learn-25747",
+  "condition": "personal",
+  "resolved": false,
+  "infra_failure": false,
+  "expert_calls": 0,
+  "completion_summary_self_report": "Updated pandas output wrapping to preserve a DataFrame\u2019s own index when its row count differs from the input, allowing aggregating transformers in FeatureUnion to return fewer rows. Added a regression test for the reported pattern. Verified the reproducer returns a 4-row DataFrame with the grouped date index; the focused regression and set-output tests passed (15 passed), and the broader pipeline plus set-output suites passed before adding the regression (103 passed).",
+  "test_claims_independently_audited": false,
+  "journal_scope": "Tool hashes/statuses and model response; full local command/output transcript not retained",
+  "interpretation": "Incorrect completion without consultation despite self-reported passing local tests; not evidence of consciously ignoring a visible failing check",
+  "grader_feedback_used_in_live_generation": false,
+  "artifacts": {
+    "results/delegation-heldout-001/study-002/patches/personal/scikit-learn__scikit-learn-25747.json": "bb783944e5984c7067e3bb5e79f851fe449dc9bd63c3174398da4bf959a81bac",
+    "results/delegation-heldout-001/study-002/runs/personal/scikit-learn__scikit-learn-25747/manifest.json": "7ac24888e5def1763e5156c1a2239270f5fa0fc4133e33169b66b33285a463a0",
+    "results/delegation-heldout-001/study-002/grading/personal/scikit-learn__scikit-learn-25747/22fe5ddddb94/logs/ttgl-personal/scikit-learn__scikit-learn-25747/report.json": "e04e54aa65fbae63698ff701371ed72fe6c1b16bbebb2b74a3609ec9bc0e6d64"
+  }
+}

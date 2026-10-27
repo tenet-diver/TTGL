@@ -744,3 +744,63 @@ continues implementation/experiments/paper, and stays quiet on unchanged state.
 Notify only meaningful results/failure/required action. Keep proprietary routing
 first; no new paid services or training ahead of it. Disable on completion.
 Update this existing heartbeat rather than creating another.
+
+## 27 October: verification-feedback steering and separate candidate
+
+The user asked to continue on larger data and investigate benchmarks with useful
+self-validation feedback. Native supervisor PID 74049 and Pro controls queue
+PID 77749 remain live; no duplicate worker or inference was started. The latest
+observed native index has seven official grades. The first two complete blocks
+give Sol 2/2, Luna 1/2 and personal 1/2, with zero consultations; Sol also succeeds
+on django12125. Read the live state for updates.
+
+The failed personal sklearn25747 patch returned complete with self-reported
+passing tests. Its independent grade is false, infra_failure false, expert_calls
+zero. Native tool journals retain digests/statuses rather than command/output
+transcripts, so the reported 15/103 test counts are NOT independently audited.
+Evidence: results/verification-feedback-001/preparation-001/failure-observation.json.
+Do not infer that Luna ignored a known failing test or reuse this now-observed
+case as fresh held-out evidence.
+
+Separate new files: src/ttgl/verification_policy.py and
+prompts/controller-v3-verification-{common,delegation}.txt. They extend fallback
+with acceptance-criterion coverage checks, discriminating tests, evidence/gap
+summaries and help for material unsupported properties even after narrow tests
+pass. Common guidance is shared with standalone controls. This candidate is NOT
+wired into the current v2 runner or Pro adapter. Its identity is separate and
+refuses mutation during execution. Fifteen focused software tests pass; all
+reservation hashes/Git blobs and the active held-out frozen source checks pass.
+Receipts: results/verification-feedback-001/preparation-001. No model trials.
+
+Primary-source research confirms that Aider's maintained harness returns test
+errors after candidate one and permits a second attempt. LiveCodeBench provides
+self-repair, but audit feedback construction before claiming public-only
+feedback. Interactive Terminal-Bench checks do not remove hidden-verifier
+uncertainty. Assessment/design: docs/research/verification-feedback-study.md.
+The paper source adds this topic and corrects stale held-out status; generated
+previews were NOT rebuilt.
+
+scripts/prepare_feedback_subset.py reserves 12 development and 24 validation tasks
+across six languages from Aider-AI/polyglot-benchmark revision
+7e0611e77b54e2dea774cdc0aa00cf9f7ed6144f. All development exercise families are
+excluded from validation across languages; validation has 23 families. The seed
+is outcome independent. Complete 225-task inventory and 36 instruction blobs
+are verified. No tests, reference solutions or model outputs were acquired for
+this diagnostic. Upstream MIT notices/provenance accompany the instructions.
+Reservation and prospective protocol: experiments/verification-feedback-001.
+This does not authorize an automatic full 225-task launch.
+
+NEXT: finish and audit the native 33 assignments; let the existing Pro queue
+complete its first-task controls, then prove real boundary/metering/replay before
+Pro scoring. Implement the feedback adapter using maintained test commands,
+equal two-stage error feedback, immutable tests, isolated references, first/final
+fresh grades and observable tool traces. Validate one task with empty/reference
+controls before its first four-arm development block. Inspect measured runtime
+and cost, then expand to 12 tasks (48 assignments maximum). Select the policy
+and freeze matched standalone common prompts before the 24-task/72-assignment
+validation: v2 common prompts if v2 is selected, v3 if v3 is selected. The v2
+development arm is a whole-policy ablation, not a clean delegation effect against
+v3 standalone controls. Keep Pro and feedback panels separate, and serialize
+benchmark workers/image cleanup. Do not tune validation repeatedly until it
+passes or claim reliability from tiny samples. Report the frontier if 95/95
+fails. Continue the existing heartbeat; no new paid service or training run.

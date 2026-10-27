@@ -1,0 +1,22 @@
+{
+  "status": "public_reservation_and_policy_software_checks_pass",
+  "model_inference_calls": 0,
+  "development_tasks": 12,
+  "validation_tasks": 24,
+  "validation_exercise_families": 23,
+  "all_instruction_sha256_and_git_blobs_verified": true,
+  "active_heldout_frozen_source_verification": "passed",
+  "software_tests": "15 passed; prompt wiring and reservation behavior, not task quality",
+  "unperformed": [
+    "feedback environment controls",
+    "real feedback boundary validation",
+    "model trials",
+    "independent model patch regrading"
+  ],
+  "source_sha256": {
+    "scripts/prepare_feedback_subset.py": "e5ef2bffaa3e588d30718d63f4e45f117d8568e54619857dccdf24157e1cf582",
+    "src/ttgl/verification_policy.py": "9b60c1e4656d168db553b992ebd31acf8d0656e9bbdfba070e824fc4f493e4c4",
+    "prompts/controller-v3-verification-common.txt": "eb1e579c24b5d26decd2fc1146afc82ab0a87c0fdd06ea0e29b2a98194cbbf07",
+    "prompts/controller-v3-verification-delegation.txt": "438004aa752026edd36d7f0f5fcfccbb8141fc0aeee21e1a900f318b4b77cd9f"
+  }
+}

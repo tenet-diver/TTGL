@@ -1,0 +1,39 @@
+{
+  "status": "prospective_design_requires_environment_and_feedback_runtime_validation",
+  "registered_at": "2026-10-27T18:40:27.504662+00:00",
+  "reservation_sha256": "d712e5c75b829aefcc8cde19b02f6d28c09470fdec14c6eb04f65e1397daef83",
+  "development_tasks": 12,
+  "validation_tasks": 24,
+  "development_assignment_cap": 48,
+  "validation_assignment_cap": 72,
+  "development_arms": [
+    "v2_fallback_cooperative",
+    "v3_verification_luna",
+    "v3_verification_sol",
+    "v3_verification_cooperative"
+  ],
+  "validation_arms": [
+    "luna_with_selected_policy_common_guidance",
+    "sol_with_selected_policy_common_guidance",
+    "selected_cooperative_policy"
+  ],
+  "controls_rule": "Freeze validation standalone common prompts to the selected policy version (v2 or v3). The development v2 whole-policy ablation cannot isolate delegation effects against v3 standalone controls.",
+  "selection": "Maximum development resolution count, minimum total model inference cost, fixed lexical tie; all attempts retained",
+  "first_unit": "One complete four-arm development block only after independent controls, boundary, token metering, immutable-feedback and fresh-regrade validation",
+  "feedback": "Same two-stage test-error opportunity in every arm; final executable registration must freeze truncation, test commands, time, turn, context and expert budgets before the first scored invocation",
+  "hidden_grader_feedback_to_controller": false,
+  "quality_scope": "Aider-derived custom conversational test-feedback results, not official Aider scores",
+  "full_population_auto_run": false,
+  "model_inference_calls": 0,
+  "training_or_rl_included": false,
+  "target": {
+    "cost_ratio_max": 0.05,
+    "relative_accuracy_retention_min": 0.95
+  },
+  "stop_rules": [
+    "Preserve uncertain model attempts; never silently repeat them",
+    "No validation tuning or task replacement based on outcomes",
+    "Stop on environment or grading ambiguity",
+    "Report target failure rather than extending until a desired score appears"
+  ]
+}

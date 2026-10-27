@@ -24,10 +24,16 @@ original assignments and 36 prompt-development assignments, with
 [cost–performance graphs](../../results/prompt-comparison-001/README.md).
 Improved adaptive and cheap-first prompts reached 4/4 development successes,
 matching Sol at 87.1% and 89.1% lower model-cost scenarios. These are development
-results; held-out inference is gated by an invalid independent control. No
+results; the held-out run is in progress after excluding one invalid independent
+control before inference. No
 assisted condition has achieved the subsequent joint 95% saving / 95% relative
 accuracy-retention target. The tables below describe older feasibility evidence.
 Generated document previews still require rebuilding and final result QA.
+
+The [verification-feedback study](../research/verification-feedback-study.md)
+adds a separately versioned policy candidate and a 12-development/24-validation
+Aider-derived reservation to distinguish responding to test failures from
+anticipating hidden failures. It has no model-quality results yet.
 
 The [prospective learning study](learning-study.md) specifies separate training,
 development and evaluation data; observable trace collection; sequence and
