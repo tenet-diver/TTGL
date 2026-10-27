@@ -1051,3 +1051,23 @@ and scored trials remain unstarted behind the full native audit gate. Let the
 existing supervisor continue after space returns; if it times out, reconcile
 its recorded preparation failure and all manifests before versioned continuation.
 Do not restart any model invocation blindly.
+
+## Heartbeat 20:47 UTC: disk reserve restored, native continuation resumed
+
+Initially still 25/33 official grades; all three queues live. The Calorie
+compiler had ended and its 2.3 GiB rebuildable cache had no open references.
+Verified all 25 completed assignment clones against the known base commit and
+full porcelain status including ignored files; all clean, all grades/patches/
+traces retained outside those clones. Open-file checks on both roots found none.
+Removed only those 25 clean clones and the inactive compiler cache. Preserved
+active CI, source, products, unique logs, credentials and database volumes.
+Receipt: results/host-cleanup-20261027/inactive-resource-recovery-2047.json.
+Free bytes increased from 8,061,300,736 to 13,379,182,592 at receipt completion.
+
+The SAME registered supervisor 74049 resumed automatically as attempt-08;
+child runner 50101 is live and personal/sphinx-doc__sphinx-11510 now has its
+new run state. Do not repeat it. Earlier attempts 02–07 were registered
+preparation-only resource retries, not repeated model calls. No generation
+source was changed and all 34 frozen Pro bindings still match. Pro queues
+remain correctly waiting for the full native audit. Grades remain 25 at this
+inspection; no new quality result claimed. Commit and push this cleanup receipt.
