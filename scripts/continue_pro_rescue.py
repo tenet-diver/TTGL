@@ -98,13 +98,17 @@ def main():
         write(out/'image-binding.json',{'image':image,'image_id':frozen_image,
                                        'scope':'Require the same locally resolved task image through this first block'})
         env = {**os.environ, 'PYTHONPATH':str(ROOT/'src')+os.pathsep+str(private/'v2/tooling')}
+        if protocol.get('docker_config'):
+            env['DOCKER_CONFIG'] = protocol['docker_config']
         def job(name, agent, options=()):
             verify()
             if image_id() != frozen_image:
                 raise RuntimeError('Resolved Pro task image changed; no automatic retry')
             if shutil.disk_usage(ROOT).free < protocol['disk_guard_bytes']:
                 raise RuntimeError('Reserved disk unavailable before job: '+name)
-            command = [harbor,'run','-p',str(private/'v2/tasks'),'-e','docker','-a',agent,
+            environment = (['--environment-import-path', protocol['environment_import_path']]
+                           if protocol.get('environment_import_path') else ['-e', 'docker'])
+            command = [harbor,'run','-p',str(private/'v2/tasks'),*environment,'-a',agent,
                        '-n','1','--n-attempts','1','--max-retries','0',
                        '--jobs-dir',str(out/'jobs'),'--job-name',name]
             for key, value in options:

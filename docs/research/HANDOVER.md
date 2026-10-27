@@ -1221,3 +1221,36 @@ failures remain history. This queue should advance when active CI releases its
 transient storage; never delete active compiler data to force it. Inspect real
 PID, invocations, image binding, native jobs, summary/stopped rather than initial
 queue.json alone. Still zero Pro model calls and no new quality results.
+
+## Heartbeat 23:17 UTC: inactive cache recovered; repaired first-block pipeline queued
+
+Control003 PID82715 remains live, waiting before any image pull or control.
+No new native grades or Pro quality results. Database container
+256cd0e3ccb3 (Supabase Postgres) is active and preserved with all volumes.
+Xcode/compiler exited; no compiler processes or open references remained in
+3.6GiB compiler cache. Removed only that rebuildable cache, recording
+inactive-compiler-cache-2317.json. Free bytes10,025,836,544 ->13,899,378,688
+at completion. Recent node_modules directories inspected but preserved.
+Free space still about5GiB below the registered18GiB image-preparation gate.
+Do not lower it silently or delete live CI/database data. Control003's2h wait
+will stop cleanly if the required reserve does not return.
+
+Repaired scripts/continue_pro_rescue.py to use registered custom environment
+import path and task-local DOCKER_CONFIG, defaulting to original Docker behavior
+for historical protocols. All34 existing Harbor/preflight/handoff/token-audit
+checks pass9.84s. Receipt adapter-validation-005. Completed native sources and
+frozen control003 sources unchanged. Old first-block003 has no invocation files
+or jobs; reconciled before registering the successor, no model inference repeated.
+
+New pro-pipeline-protocol-004.json binds39 source/runtime/task/rate files.
+PID7341 (exec9049), log artifacts/pro-rescue-pipeline-004.log; output first-block004.
+It waits for control003's actual nop0/oracle1 summary, independently rechecks
+native results, and then performs the already registered real actor/private-path/
+metering/patch-replay preflight before ONE four-arm first block. Same task,
+v3 prompts, model IDs, bounded call limits and arm order; no full12/24 auto-run.
+Private native record root ../ttgl-pro-native-records-20261028 avoids old attempts.
+No new model calls yet. Stop and preserve any started/uncertain call; no retries.
+All39 pipeline sources and control003 bindings are now FROZEN while queues live.
+Only docs/reporting/tests outside the bindings may change. Inspect real PID,
+image-pull/native invocation files and stopped/completion, not initial queue state.
+The first-block cost/runtime review remains required before further development.
