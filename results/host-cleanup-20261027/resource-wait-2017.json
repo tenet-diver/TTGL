@@ -8,8 +8,8 @@
     "large": 7,
     "personal": 6
   },
-  "partial_audit": "results/delegation-heldout-001/study-002/resource-recoveries/01/partial-audit.json",
-  "partial_audit_sha256": "4998a0459e36d675fef9b1ce6690d41688a920d535f01bbdb0ce9bffda3db4ee",
+  "partial_audit": "results/delegation-heldout-001/checkpoint-resource-025.json",
+  "partial_audit_sha256": "ea6b2eab6381561a9806dccbbdf1f0f30ed31eee650efde59eb90e370d8b3acf",
   "free_bytes": 9006125056,
   "required_bytes": 10737418240,
   "next_unstarted": {

@@ -1037,8 +1037,8 @@ Sol 7/8, Luna 5/8 and assisted Luna 6/8. The eighth case failed in all arms;
 the previously recorded rescue remains, but the seven-case report is an older
 immutable interim checkpoint rather than the latest denominator.
 
-The existing resource-recovery 01 partial audit independently covers all 25
-completed assignments. Next unstarted: personal/sphinx-doc__sphinx-11510.
+A new read-only checkpoint-resource-025.json audit independently covers all 25
+completed assignments; resource-recovery 01 was an earlier 20-assignment audit. Next unstarted: personal/sphinx-doc__sphinx-11510.
 The supervisor waits for reserved space and does not repeat completed inference.
 Observed free disk is below 10 GiB. Active Calorie Xcode compilation and its
 2.2 GiB compiler cache are preserved. Docker has no running containers and no
