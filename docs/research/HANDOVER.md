@@ -1254,3 +1254,30 @@ All39 pipeline sources and control003 bindings are now FROZEN while queues live.
 Only docs/reporting/tests outside the bindings may change. Inspect real PID,
 image-pull/native invocation files and stopped/completion, not initial queue state.
 The first-block cost/runtime review remains required before further development.
+
+## Heartbeat 23:47 UTC: paper reconciled; queues unchanged
+
+Read AGENTS/HANDOVER; actual PIDs82715 and7341 still live, no image-pull/native
+invocation files, no new grades. Free disk roughly10GiB with active Xcode/swift
+compilation again; preserve those caches. No cleanup or model calls this pass.
+Control003 and pipeline004 frozen source bindings verified unchanged.
+
+Used independent time for paper source reconciliation. Frontmatter now counts
+141 fresh assignments (72 + three12 +33), includes final held-out8/11 vs7/11 vs9/11,
+91.45% scenario saving and88.89% retention, and the explicit target miss.
+Live-results chapter now leads with final held-out evidence rather than appended
+seven/ten-case snapshots and contradictory in-progress language. Historical
+interims stay archived. It retains failed control eligibility disposition,
+rescue/handoff limitations, failed consultation, missed escalation, and prospective
+Pro distinction. Conclusion/reproduction now distinguish early read-only managed
+host failure from actual authenticated desktop trials, include read-only final
+audit/target commands, and remove obsolete publication-system workflow prose.
+
+Verified all five closed independent audits (72/12/12/12/33) and exact final
+comparison values against real reports; no pooling of repeated-task panel
+accuracy. Receipt results/paper-source-reconciliation-001/receipt.json hashes the
+three reconciled source chapters and audits. Diff whitespace checks pass for
+these edits. Generated PDF/DOCX/HTML remain earlier working previews and need
+rebuild plus complete visual QA after bounded experiments; no final document
+completion claim. No new Pro quality result or inference. Queue headroom remains
+the previously reported blocker, so do not issue repetitive unchanged alerts.

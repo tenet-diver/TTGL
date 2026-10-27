@@ -106,35 +106,38 @@ python -m ttgl.personal --task task.json --condition personal \
 The runbook documents the exact supported arguments, structured responses,
 resumed threads, failure disposition and grading boundary. Completion means
 the controller finished; it does not automatically mean the issue was resolved.
-A unit-tested fake backend verifies the control flow without pretending to be
-an LLM. The installed standalone CLI's read-only-state failure in the present
-managed session remains a known runtime limitation. The actual live trials used
-the collaboration tool instead and do not establish CLI service readiness.
+A fake backend verifies control flow; real native trials separately verify
+runtime availability and per-model token metering. Earlier managed-host
+read-only failures remain archived historical evidence. They are not the state
+of the writable desktop continuation, which completed all 141 fresh assignments
+across the original, development and held-out panels. The earlier BugsInPy pilot
+used the collaboration tool; those records remain distinct from native trials.
 
-The next performance experiment requires a larger frozen task sample, strong
-worker/evaluator isolation, unambiguous artifact rules, a native one-way
-assistance comparator and observable billing. It can use existing hosted Codex
-agents if their usage can be recorded, or compatible open models through an
-existing serving stack. A faithful reproduction of prior large-scale training
-requires additional resources; it is not silently charged to the existing
-US$100 Runpod allocation. No new credential is needed to reproduce the recorded
-analysis. Credentials and connectivity are still required for future paid GPU
-or provider runs.
+The six-condition SWE-bench bridge implements mandatory native model/metering
+preflight, isolated source checkouts, official prediction export and grade
+import. `scripts/collect_codex_usage.py` uses the supported per-thread estimate
+route without new inference. Native completion counters are cumulative, so the
+independent audit checks response identity and validated counter deltas before
+reconciling total and per-model usage. Missing bills remain unknown.
 
-The new `scripts/run_swe_bench.py` bridge implements six frozen conditions,
-mandatory native model-and-metering preflight, clean source checkouts, official
-prediction export and grade import. One-way proposals and reset-expert
-conversations are now software-tested arms. `scripts/collect_codex_usage.py`
-uses the official app-server's per-thread estimate route without new inference.
-The [handover](../research/HANDOVER.md) specifies the suitable writable host,
-official evaluator controls, worker dependency/isolation prerequisites,
-reproduction commands and pending work. Source-code readiness is distinct from
-successful live metering or a completed causal comparison.
+Reproduce the completed held-out audit and target analysis without new models:
 
-Fastest Jira and Confluence synchronization remain unavailable in the current
-tool set. Local task records and an import CSV preserve progress; they are not
-remote issue keys or evidence of publication. The intended Confluence destination
-remains the FASTEST space at fastestswarm.atlassian.net.
+```bash
+PYTHONPATH=src python scripts/audit_live_study.py \
+  --study-dir results/delegation-heldout-001/study-002 \
+  --output artifacts/my-heldout-audit.json
+python scripts/report_policy_target.py \
+  --records results/delegation-heldout-001/analysis-002/published-rate-records.json \
+  --output artifacts/my-heldout-target.json
+```
+
+Use fresh output paths; these commands must not replace archived evidence.
+The [handover](../research/HANDOVER.md) records source freezes, actual process
+state and gates for continuing the bounded Pro comparison. A passing software
+check or environment fixture is not a task success. The Pro control, real actor
+boundary and pristine patch replay must pass before scored model trials.
+No new GPU or provider purchase is authorized as a workaround. Open-weight
+training remains a later protocol, and its costs must be measured separately.
 
 # Conclusion
 
@@ -146,11 +149,19 @@ initial routing and one-way assistance. Personal memory and learned skills can
 be tested as additional interventions.
 
 The present work implements and tests the orchestration and measurement code,
-executes a four-condition historical-bug pilot, demonstrates one live two-round
-clarification exchange, and analyzes all 500 SWE-bench Verified tasks across ten
-published model runs. The primary replay router reduces estimated inference
-cost by 46.1% but loses 8.6 quality points; it fails the joint target. Portfolio
-results also show why an inexpensive strong standalone model is essential as a
-control. These are useful empirical findings without establishing live
-conversational savings or performance noninferiority. The next comparisons test
-that remaining causal claim with observable subscription or inference usage.
+executes a historical-bug pilot and 141 fresh metered assignments, and replays
+all 500 SWE-bench Verified tasks across ten published model runs. The primary
+historical router saves 46.1% in estimated inference cost but loses 8.6 quality
+points. Cheap strong standalone controls explain why model selection alone is
+not evidence for a routing advantage.
+
+The completed eleven-task held-out conversational comparison improves the
+observed Luna resolution count from seven to eight while Sol resolves nine.
+It saves 91.45% of the Sol model-inference scenario cost and retains 88.89% of
+Sol accuracy, missing both 95/95 components. One voluntary bidirectional rescue
+is accompanied by imperfect context transfer, unsuccessful consultation on
+another task, and an unresolved missed escalation. These results show useful
+mechanism behavior and a limited descriptive improvement, not reliable failure
+detection, a causal expert effect or population noninferiority. The prospective
+Pro comparison retains standalone controls and pre-consultation candidate
+patches to test those remaining questions before any learning claims.

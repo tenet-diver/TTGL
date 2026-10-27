@@ -1,7 +1,7 @@
 ---
 title: "We have to combine — A conversation is all you need"
 subtitle: "Using small language models as conversational routers for agentic software engineering"
-date: "27 October 2026 (Europe/Amsterdam)"
+date: "28 October 2026 (Europe/Amsterdam)"
 lang: en-GB
 link-citations: true
 toc-depth: 2
@@ -10,8 +10,9 @@ toc-depth: 2
 # Status and scope {.unnumbered}
 
 This is a research paper and master's-thesis core, with a reproducible engineering
-pilot, a completed 500-task SWE-bench Verified routing replay, 108 fresh metered
-Luna/Sol assignments, and prospective held-out and learning protocols. Its central contribution is an
+pilot, a completed 500-task SWE-bench Verified routing replay, 141 fresh metered
+Luna/Sol assignments across original, development and held-out panels, and
+prospective Pro and learning protocols. Its central contribution is an
 empirical replication and conversational-routing extension, **not a claim to have
 invented small agents that consult larger models**. The broader earlier thesis
 contains supporting reviews of open-model portfolios, prices, distillation,
@@ -72,14 +73,25 @@ bounded cheap-first assistance each resolve 4/4, matching their Sol controls at
 2/4 and 3/4. These are development observations, not held-out improvements or
 proof that expert help was causally necessary.
 
-No assisted condition meets the sharpened joint target of 95% lower total task
-model-inference cost and 95% relative Sol accuracy. Native grade/patch and token
-audits pass for all 108 assignments; cost scenarios are not bills or deployment
-costs. Held-out validation remains incomplete. A bounded Pro V2 subset extends
-prompt evaluation; a separately specified open-weight study compares sequence
-and probability distillation, RL, and local/remote inference using distinct
-training, development and sealed evaluation partitions. No training, population
-noninferiority or amortized learning-cost benefit is established.
+The selected bounded cheap-first policy is then frozen for an eleven-task
+held-out panel with 33 assignments. Luna resolves 7/11, Sol 9/11 and assisted
+Luna 8/11. Four expert consultations occur across two tasks. Assistance rescues
+one standalone Luna failure and loses none of Luna's successes, closing half
+the observed Sol–Luna resolution gap. Its full task model-inference scenario
+cost falls 91.45% relative to Sol, retaining 88.89% of aggregate accuracy. The
+joint target of 95% cost reduction and 95% relative accuracy retention fails.
+The missing pre-consultation snapshots and independent solver attempts prevent
+causal attribution of the single observed rescue to expert advice.
+
+Native grade/patch and token audits pass for all 141 fresh assignments; the
+panels remain separate because development repeats already observed tasks.
+Cost scenarios are not invoices or full deployment costs, and no population
+noninferiority is established. A bounded Pro V2 protocol prospectively captures
+pre-consultation patches and contrasts voluntary help with required review;
+it has no model-quality results yet. A later open-weight protocol compares
+sequence and probability distillation, RL, and local/remote inference using
+distinct training, development and sealed evaluation partitions. No training
+or amortized learning-cost benefit is established.
 
 **Keywords:** conversational routing; small language models; software-engineering
 agents; bidirectional collaboration; cost–quality tradeoffs; replication.

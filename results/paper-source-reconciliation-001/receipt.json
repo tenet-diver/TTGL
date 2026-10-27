@@ -1,0 +1,42 @@
+{
+  "status": "source_reconciled_to_completed_audits_generated_documents_not_final",
+  "audited_assignments": 141,
+  "panels_pooled_for_accuracy": false,
+  "audits": [
+    {
+      "path": "results/codex-isolated-20261026/analysis-001/independent-audit.json",
+      "assignments": 72,
+      "sha256": "241ccac3ce3b52a8153118de08ee5d4e634a9884e19299c2e15858911ccd7ee2"
+    },
+    {
+      "path": "results/delegation-development-001/analysis-adaptive-001/independent-audit.json",
+      "assignments": 12,
+      "sha256": "95674aa799a9f79c24582a59b7039eaa5cf5b8379df0ede6644e862a39685a1a"
+    },
+    {
+      "path": "results/delegation-development-001/analysis-compact-001/independent-audit.json",
+      "assignments": 12,
+      "sha256": "3ea965e1f8794c1339aa76fd43768dabf683c2644e61b7e35a23b6fbc208c033"
+    },
+    {
+      "path": "results/delegation-development-001/analysis-fallback-001/independent-audit.json",
+      "assignments": 12,
+      "sha256": "b5b0c7b4dc6d763f8e95a59efd9d511fa7fe80ada35a110a25278d13a74e2078"
+    },
+    {
+      "path": "results/delegation-heldout-001/analysis-002/independent-audit.json",
+      "assignments": 33,
+      "sha256": "d9f52b50dcbb528b7fccad2bb5f28f2b31aa10f1a27097b8d3f25202023ea914"
+    }
+  ],
+  "heldout_saving_fraction": 0.9144517529761014,
+  "heldout_relative_retention": 0.8888888888888888,
+  "joint_target_met": false,
+  "sources_sha256": {
+    "docs/paper/frontmatter.md": "85ede02d91898b598e0572205392ec44e6ec59eeec2a144e3c28cceda897628b",
+    "docs/paper/live-routing-results.md": "0c98533d22cc84cf12452834b2a7e99e35950d6d2aa8007852bd6ec6967967ae",
+    "docs/paper/discussion-and-reproduction.md": "2eed0a7fc85c4a51b442cc294af9e0cd383660d7df461ceada090b24390feeca"
+  },
+  "generated_pdf_docx_html_qa": "pending rebuild and complete visual QA after bounded studies",
+  "model_calls": 0
+}
