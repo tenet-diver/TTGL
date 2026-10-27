@@ -1,0 +1,12 @@
+task_id,small,large,personal
+scikit-learn__scikit-learn-25747,False,True,False
+django__django-12276,True,True,True
+django__django-12125,True,True,True
+pylint-dev__pylint-6903,True,True,True
+sympy__sympy-24213,True,True,True
+sphinx-doc__sphinx-9320,True,True,True
+sphinx-doc__sphinx-10673,False,True,True
+django__django-10999,False,False,False
+sphinx-doc__sphinx-11510,False,False,False
+django__django-13109,True,True,True
+sympy__sympy-21847,True,True,True

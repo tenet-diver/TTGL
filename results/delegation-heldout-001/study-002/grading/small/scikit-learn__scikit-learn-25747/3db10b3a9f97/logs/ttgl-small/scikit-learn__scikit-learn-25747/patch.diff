@@ -1,0 +1,43 @@
+diff --git a/sklearn/tests/test_pipeline.py b/sklearn/tests/test_pipeline.py
+index fa7fa2a..06e4837 100644
+--- a/sklearn/tests/test_pipeline.py
++++ b/sklearn/tests/test_pipeline.py
+@@ -1679,3 +1679,25 @@ def test_feature_union_feature_names_in_():
+     union = FeatureUnion([("pass", "passthrough")])
+     union.fit(X_array)
+     assert not hasattr(union, "feature_names_in_")
++
++
++def test_feature_union_pandas_output_with_aggregating_transformer():
++    pd = pytest.importorskip("pandas")
++    from sklearn import config_context
++
++    index = pd.date_range("2020-01-01", periods=48, freq="h")
++    X = pd.DataFrame({"value": 10, "date": index.date}, index=index)
++
++    class AggregatingTransformer(BaseEstimator, TransformerMixin):
++        def fit(self, X, y=None):
++            return self
++
++        def transform(self, X):
++            return X["value"].groupby(X["date"]).sum()
++
++    with config_context(transform_output="pandas"):
++        Xt = make_union(AggregatingTransformer()).fit_transform(X)
++
++    assert isinstance(Xt, pd.DataFrame)
++    assert_array_equal(Xt.iloc[:, 0], [240, 240])
++    assert_array_equal(Xt.index, pd.Index([index[0].date(), index[-1].date()]))
+diff --git a/sklearn/utils/_set_output.py b/sklearn/utils/_set_output.py
+index 335773c..1027a2e 100644
+--- a/sklearn/utils/_set_output.py
++++ b/sklearn/utils/_set_output.py
+@@ -55,7 +55,7 @@ def _wrap_in_pandas_container(
+     if isinstance(data_to_wrap, pd.DataFrame):
+         if columns is not None:
+             data_to_wrap.columns = columns
+-        if index is not None:
++        if index is not None and len(data_to_wrap) == len(index):
+             data_to_wrap.index = index
+         return data_to_wrap
+ 

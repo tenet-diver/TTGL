@@ -1,0 +1,127 @@
+2026-10-27 19:18:23,069 - INFO - Creating container for sphinx-doc__sphinx-9320...
+2026-10-27 19:18:23,190 - INFO - Container for sphinx-doc__sphinx-9320 created: 57e255dbf79f3d9e41f9ca63f1e6fdd2ff24d6e5916104e89b04f481f8027a80
+2026-10-27 19:18:23,711 - INFO - Container for sphinx-doc__sphinx-9320 started: 57e255dbf79f3d9e41f9ca63f1e6fdd2ff24d6e5916104e89b04f481f8027a80
+2026-10-27 19:18:23,727 - INFO - Intermediate patch for sphinx-doc__sphinx-9320 written to logs/evaluation/ttgl-large-sphinx-doc__sphinx-9320-2b0eb1ca-ba3bb9e67685/ttgl-large/sphinx-doc__sphinx-9320/patch.diff, now applying to container...
+2026-10-27 19:18:24,270 - INFO - >>>>> Applied Patch:
+Checking patch CHANGES...
+Checking patch sphinx/cmd/quickstart.py...
+Checking patch tests/test_quickstart.py...
+Applied patch CHANGES cleanly.
+Applied patch sphinx/cmd/quickstart.py cleanly.
+Applied patch tests/test_quickstart.py cleanly.
+
+2026-10-27 19:18:24,958 - INFO - Git diff before:
+diff --git a/CHANGES b/CHANGES
+index 7e8658017..c86c71e82 100644
+--- a/CHANGES
++++ b/CHANGES
+@@ -58,6 +58,8 @@ Features added
+ Bugs fixed
+ ----------
+ 
++* sphinx-quickstart: Allow Enter to exit when an existing conf.py is found
++
+ * #8872: autodoc: stacked singledispatches are wrongly rendered
+ * #8597: autodoc: a docsting having metadata only should be treated as
+   undocumented
+diff --git a/sphinx/cmd/quickstart.py b/sphinx/cmd/quickstart.py
+index a40a21073..00794c9f1 100644
+--- a/sphinx/cmd/quickstart.py
++++ b/sphinx/cmd/quickstart.py
+@@ -90,7 +90,7 @@ class ValidationError(Exception):
+ 
+ def is_path(x: str) -> str:
+     x = path.expanduser(x)
+-    if not path.isdir(x):
++    if x and not path.isdir(x):
+         raise ValidationError(__("Please enter a valid path name."))
+     return x
+ 
+diff --git a/tests/test_quickstart.py b/tests/test_quickstart.py
+index 94144ef22..ba526a548 100644
+--- a/tests/test_quickstart.py
++++ b/tests/test_quickstart.py
+@@ -92,6 +92,46 @@ def test_do_prompt_with_nonascii():
+     assert result == '\u30c9\u30a4\u30c4'
+ 
+ 
++@pytest.mark.parametrize('conf_path', ['conf.py', 'source/conf.py'])
++@pytest.mark.parametrize('answer', ['', '   '])
++def test_quickstart_existing_conf_exit(tempdir, monkeypatch, capsys, conf_path, answer):
++    conffile = tempdir / conf_path
++    conffile.parent.makedirs(exist_ok=True)
++    conffile.write_text('# existing configuration\n')
++    monkeypatch.chdir(tempdir)
++    monkeypatch.setattr(qs, 'term_input', mock_input({
++        'Please enter a new root path': answer,
++    }, needanswer=True))
++
++    with pytest.raises(SystemExit) as exc:
++        qs.main([])
++
++    assert exc.value.code == 1
++    assert 'Please enter a valid path name.' not in capsys.readouterr().out
++    assert conffile.read_text() == '# existing configuration\n'
++    assert not (tempdir / 'index.rst').exists()
++
++
++def test_quickstart_existing_conf_new_path(tempdir, monkeypatch, capsys):
++    conffile = tempdir / 'conf.py'
++    conffile.write_text('# existing configuration\n')
++    new_path = tempdir / 'new'
++    new_path.makedirs()
++    answers = iter([str(tempdir / 'missing'), str(conffile), str(new_path)])
++    monkeypatch.setattr(qs, 'term_input', lambda prompt: next(answers))
++    d = dict(qs.DEFAULTS, path=str(tempdir), project='Sphinx Test',
++             author='Test Author', version='', release='', extensions=[])
++
++    qs.ask_user(d)
++    qs.generate(d)
++
++    assert capsys.readouterr().out.count('Please enter a valid path name.') == 2
++    assert d['path'] == str(new_path)
++    assert (new_path / 'conf.py').isfile()
++    assert (new_path / 'index.rst').isfile()
++    assert conffile.read_text() == '# existing configuration\n'
++
++
+ def test_quickstart_defaults(tempdir):
+     answers = {
+         'Root path': tempdir,
+2026-10-27 19:18:24,971 - INFO - Eval script for sphinx-doc__sphinx-9320 written to logs/evaluation/ttgl-large-sphinx-doc__sphinx-9320-2b0eb1ca-ba3bb9e67685/ttgl-large/sphinx-doc__sphinx-9320/eval.sh; copying to container...
+2026-10-27 19:18:33,763 - INFO - Test runtime: 8.43 seconds
+2026-10-27 19:18:33,778 - INFO - Test output for sphinx-doc__sphinx-9320 written to logs/evaluation/ttgl-large-sphinx-doc__sphinx-9320-2b0eb1ca-ba3bb9e67685/ttgl-large/sphinx-doc__sphinx-9320/test_output.txt
+2026-10-27 19:18:33,974 - INFO - Git diff after:
+diff --git a/CHANGES b/CHANGES
+index 7e8658017..c86c71e82 100644
+--- a/CHANGES
++++ b/CHANGES
+@@ -58,6 +58,8 @@ Features added
+ Bugs fixed
+ ----------
+ 
++* sphinx-quickstart: Allow Enter to exit when an existing conf.py is found
++
+ * #8872: autodoc: stacked singledispatches are wrongly rendered
+ * #8597: autodoc: a docsting having metadata only should be treated as
+   undocumented
+diff --git a/sphinx/cmd/quickstart.py b/sphinx/cmd/quickstart.py
+index a40a21073..00794c9f1 100644
+--- a/sphinx/cmd/quickstart.py
++++ b/sphinx/cmd/quickstart.py
+@@ -90,7 +90,7 @@ class ValidationError(Exception):
+ 
+ def is_path(x: str) -> str:
+     x = path.expanduser(x)
+-    if not path.isdir(x):
++    if x and not path.isdir(x):
+         raise ValidationError(__("Please enter a valid path name."))
+     return x
+2026-10-27 19:18:33,977 - INFO - Git diff changed after running eval script
+2026-10-27 19:18:33,980 - INFO - Grading answer for sphinx-doc__sphinx-9320...
+2026-10-27 19:18:34,001 - INFO - report: {'sphinx-doc__sphinx-9320': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': True, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': ['tests/test_quickstart.py::test_exits_when_existing_confpy'], 'failure': []}, 'PASS_TO_PASS': {'success': ['tests/test_quickstart.py::test_do_prompt', 'tests/test_quickstart.py::test_do_prompt_inputstrip', 'tests/test_quickstart.py::test_do_prompt_with_nonascii', 'tests/test_quickstart.py::test_quickstart_defaults', 'tests/test_quickstart.py::test_quickstart_all_answers', 'tests/test_quickstart.py::test_generated_files_eol', 'tests/test_quickstart.py::test_quickstart_and_build', 'tests/test_quickstart.py::test_default_filename', 'tests/test_quickstart.py::test_extensions'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for sphinx-doc__sphinx-9320: resolved: True
+2026-10-27 19:18:34,016 - INFO - Attempting to stop container sweb.eval.sphinx-doc__sphinx-9320.ttgl-large-sphinx-doc__sphinx-9320-2b0eb1ca-ba3bb9e67685...
+2026-10-27 19:18:49,382 - INFO - Container sweb.eval.sphinx-doc__sphinx-9320.ttgl-large-sphinx-doc__sphinx-9320-2b0eb1ca-ba3bb9e67685 stopped successfully.
+2026-10-27 19:18:49,385 - INFO - Attempting to remove container sweb.eval.sphinx-doc__sphinx-9320.ttgl-large-sphinx-doc__sphinx-9320-2b0eb1ca-ba3bb9e67685...
+2026-10-27 19:18:49,515 - INFO - Container sweb.eval.sphinx-doc__sphinx-9320.ttgl-large-sphinx-doc__sphinx-9320-2b0eb1ca-ba3bb9e67685 removed successfully.

@@ -1,0 +1,208 @@
+2026-10-27 18:16:47,377 - INFO - Creating container for scikit-learn__scikit-learn-25747...
+2026-10-27 18:16:47,528 - INFO - Container for scikit-learn__scikit-learn-25747 created: d10a01b736389b5df23721c8f142145f240b2338e5882e2bc1f165d4e55e85cf
+2026-10-27 18:16:48,339 - INFO - Container for scikit-learn__scikit-learn-25747 started: d10a01b736389b5df23721c8f142145f240b2338e5882e2bc1f165d4e55e85cf
+2026-10-27 18:16:48,379 - INFO - Intermediate patch for scikit-learn__scikit-learn-25747 written to logs/evaluation/ttgl-large-scikit-learn__scikit-learn-25747-f3c0f58c-46c1278e3fb3/ttgl-large/scikit-learn__scikit-learn-25747/patch.diff, now applying to container...
+2026-10-27 18:16:49,211 - INFO - >>>>> Applied Patch:
+Checking patch sklearn/tests/test_pipeline.py...
+warning: sklearn/tests/test_pipeline.py has type 100755, expected 100644
+Checking patch sklearn/utils/_set_output.py...
+warning: sklearn/utils/_set_output.py has type 100755, expected 100644
+Checking patch sklearn/utils/tests/test_set_output.py...
+warning: sklearn/utils/tests/test_set_output.py has type 100755, expected 100644
+Applied patch sklearn/tests/test_pipeline.py cleanly.
+Applied patch sklearn/utils/_set_output.py cleanly.
+Applied patch sklearn/utils/tests/test_set_output.py cleanly.
+
+2026-10-27 18:16:50,403 - INFO - Git diff before:
+diff --git a/sklearn/tests/test_pipeline.py b/sklearn/tests/test_pipeline.py
+index fa7fa2ad2..bdcc1f51a 100755
+--- a/sklearn/tests/test_pipeline.py
++++ b/sklearn/tests/test_pipeline.py
+@@ -1679,3 +1679,37 @@ def test_feature_union_feature_names_in_():
+     union = FeatureUnion([("pass", "passthrough")])
+     union.fit(X_array)
+     assert not hasattr(union, "feature_names_in_")
++
++
++@pytest.mark.parametrize("method", ["fit_transform", "transform"])
++@pytest.mark.parametrize("as_frame", [False, True])
++@pytest.mark.parametrize("n_transformers", [1, 2])
++def test_feature_union_pandas_output_aggregation(method, as_frame, n_transformers):
++    """FeatureUnion preserves the index produced by aggregating transformers."""
++    pd = pytest.importorskip("pandas")
++    from sklearn import config_context
++
++    class AggregatingTransformer(TransformerMixin, BaseEstimator):
++        def fit(self, X, y=None):
++            return self
++
++        def transform(self, X):
++            result = X["value"].groupby(X["date"]).sum()
++            return result.to_frame() if as_frame else result
++
++    index = pd.date_range("2020-01-01", periods=96, freq="H")
++    X = pd.DataFrame({"value": np.arange(96), "date": index.date}, index=index)
++    expected_column = pd.Series(
++        [276, 852, 1428, 2004],
++        index=pd.Index(index.date[::24], name="date"),
++        name="value",
++    )
++    expected = pd.concat([expected_column] * n_transformers, axis=1)
++    union = make_union(*[AggregatingTransformer() for _ in range(n_transformers)])
++
++    with config_context(transform_output="pandas"):
++        if method == "transform":
++            union.fit(X)
++        result = getattr(union, method)(X)
++
++    pd.testing.assert_frame_equal(result, expected)
+diff --git a/sklearn/utils/_set_output.py b/sklearn/utils/_set_output.py
+index 335773c6a..009d15d7d 100755
+--- a/sklearn/utils/_set_output.py
++++ b/sklearn/utils/_set_output.py
+@@ -15,9 +15,9 @@ def _wrap_in_pandas_container(
+ ):
+     """Create a Pandas DataFrame.
+ 
+-    If `data_to_wrap` is a DataFrame, then the `columns` and `index` will be changed
+-    inplace. If `data_to_wrap` is a ndarray, then a new DataFrame is created with
+-    `columns` and `index`.
++    If `data_to_wrap` is a DataFrame, then the `columns` will be changed
++    inplace. The index is preserved. If `data_to_wrap` is an ndarray, then a new
++    DataFrame is created with `columns` and `index`.
+ 
+     Parameters
+     ----------
+@@ -34,7 +34,7 @@ def _wrap_in_pandas_container(
+         `range(n_features)`.
+ 
+     index : array-like, default=None
+-        Index for data.
++        Index for data. Ignored if `data_to_wrap` is already a DataFrame.
+ 
+     Returns
+     -------
+@@ -55,8 +55,6 @@ def _wrap_in_pandas_container(
+     if isinstance(data_to_wrap, pd.DataFrame):
+         if columns is not None:
+             data_to_wrap.columns = columns
+-        if index is not None:
+-            data_to_wrap.index = index
+         return data_to_wrap
+ 
+     return pd.DataFrame(data_to_wrap, index=index, columns=columns)
+diff --git a/sklearn/utils/tests/test_set_output.py b/sklearn/utils/tests/test_set_output.py
+index ac73ca094..2f5a968a6 100755
+--- a/sklearn/utils/tests/test_set_output.py
++++ b/sklearn/utils/tests/test_set_output.py
+@@ -24,16 +24,17 @@ def test__wrap_in_pandas_container_dense():
+     assert_array_equal(dense_named.index, index)
+ 
+ 
+-def test__wrap_in_pandas_container_dense_update_columns_and_index():
+-    """Check that _wrap_in_pandas_container overrides columns and index."""
++@pytest.mark.parametrize("new_index", [None, [10, 12], [10, 12, 14]])
++def test__wrap_in_pandas_container_dense_update_columns_and_index(new_index):
++    """Check that wrapping overrides columns but preserves a DataFrame index."""
+     pd = pytest.importorskip("pandas")
+     X_df = pd.DataFrame([[1, 0, 3], [0, 0, 1]], columns=["a", "b", "c"])
+     new_columns = np.asarray(["f0", "f1", "f2"], dtype=object)
+-    new_index = [10, 12]
++    original_index = X_df.index.copy()
+ 
+     new_df = _wrap_in_pandas_container(X_df, columns=new_columns, index=new_index)
+     assert_array_equal(new_df.columns, new_columns)
+-    assert_array_equal(new_df.index, new_index)
++    assert_array_equal(new_df.index, original_index)
+ 
+ 
+ def test__wrap_in_pandas_container_error_validation():
+2026-10-27 18:16:50,428 - INFO - Eval script for scikit-learn__scikit-learn-25747 written to logs/evaluation/ttgl-large-scikit-learn__scikit-learn-25747-f3c0f58c-46c1278e3fb3/ttgl-large/scikit-learn__scikit-learn-25747/eval.sh; copying to container...
+2026-10-27 18:17:13,739 - INFO - Test runtime: 22.80 seconds
+2026-10-27 18:17:13,765 - INFO - Test output for scikit-learn__scikit-learn-25747 written to logs/evaluation/ttgl-large-scikit-learn__scikit-learn-25747-f3c0f58c-46c1278e3fb3/ttgl-large/scikit-learn__scikit-learn-25747/test_output.txt
+2026-10-27 18:17:14,086 - INFO - Git diff after:
+diff --git a/sklearn/tests/test_pipeline.py b/sklearn/tests/test_pipeline.py
+index fa7fa2ad2..bdcc1f51a 100755
+--- a/sklearn/tests/test_pipeline.py
++++ b/sklearn/tests/test_pipeline.py
+@@ -1679,3 +1679,37 @@ def test_feature_union_feature_names_in_():
+     union = FeatureUnion([("pass", "passthrough")])
+     union.fit(X_array)
+     assert not hasattr(union, "feature_names_in_")
++
++
++@pytest.mark.parametrize("method", ["fit_transform", "transform"])
++@pytest.mark.parametrize("as_frame", [False, True])
++@pytest.mark.parametrize("n_transformers", [1, 2])
++def test_feature_union_pandas_output_aggregation(method, as_frame, n_transformers):
++    """FeatureUnion preserves the index produced by aggregating transformers."""
++    pd = pytest.importorskip("pandas")
++    from sklearn import config_context
++
++    class AggregatingTransformer(TransformerMixin, BaseEstimator):
++        def fit(self, X, y=None):
++            return self
++
++        def transform(self, X):
++            result = X["value"].groupby(X["date"]).sum()
++            return result.to_frame() if as_frame else result
++
++    index = pd.date_range("2020-01-01", periods=96, freq="H")
++    X = pd.DataFrame({"value": np.arange(96), "date": index.date}, index=index)
++    expected_column = pd.Series(
++        [276, 852, 1428, 2004],
++        index=pd.Index(index.date[::24], name="date"),
++        name="value",
++    )
++    expected = pd.concat([expected_column] * n_transformers, axis=1)
++    union = make_union(*[AggregatingTransformer() for _ in range(n_transformers)])
++
++    with config_context(transform_output="pandas"):
++        if method == "transform":
++            union.fit(X)
++        result = getattr(union, method)(X)
++
++    pd.testing.assert_frame_equal(result, expected)
+diff --git a/sklearn/utils/_set_output.py b/sklearn/utils/_set_output.py
+index 335773c6a..009d15d7d 100755
+--- a/sklearn/utils/_set_output.py
++++ b/sklearn/utils/_set_output.py
+@@ -15,9 +15,9 @@ def _wrap_in_pandas_container(
+ ):
+     """Create a Pandas DataFrame.
+ 
+-    If `data_to_wrap` is a DataFrame, then the `columns` and `index` will be changed
+-    inplace. If `data_to_wrap` is a ndarray, then a new DataFrame is created with
+-    `columns` and `index`.
++    If `data_to_wrap` is a DataFrame, then the `columns` will be changed
++    inplace. The index is preserved. If `data_to_wrap` is an ndarray, then a new
++    DataFrame is created with `columns` and `index`.
+ 
+     Parameters
+     ----------
+@@ -34,7 +34,7 @@ def _wrap_in_pandas_container(
+         `range(n_features)`.
+ 
+     index : array-like, default=None
+-        Index for data.
++        Index for data. Ignored if `data_to_wrap` is already a DataFrame.
+ 
+     Returns
+     -------
+@@ -55,8 +55,6 @@ def _wrap_in_pandas_container(
+     if isinstance(data_to_wrap, pd.DataFrame):
+         if columns is not None:
+             data_to_wrap.columns = columns
+-        if index is not None:
+-            data_to_wrap.index = index
+         return data_to_wrap
+ 
+     return pd.DataFrame(data_to_wrap, index=index, columns=columns)
+2026-10-27 18:17:14,092 - INFO - Git diff changed after running eval script
+2026-10-27 18:17:14,096 - INFO - Grading answer for scikit-learn__scikit-learn-25747...
+2026-10-27 18:17:14,227 - INFO - report: {'scikit-learn__scikit-learn-25747': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': True, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': ['sklearn/utils/tests/test_set_output.py::test_set_output_pandas_keep_index'], 'failure': []}, 'PASS_TO_PASS': {'success': ['sklearn/utils/tests/test_set_output.py::test__wrap_in_pandas_container_dense', 'sklearn/utils/tests/test_set_output.py::test__wrap_in_pandas_container_dense_update_columns_and_index', 'sklearn/utils/tests/test_set_output.py::test__wrap_in_pandas_container_error_validation', 'sklearn/utils/tests/test_set_output.py::test__safe_set_output', 'sklearn/utils/tests/test_set_output.py::test_set_output_mixin', 'sklearn/utils/tests/test_set_output.py::test__safe_set_output_error', 'sklearn/utils/tests/test_set_output.py::test_set_output_method', 'sklearn/utils/tests/test_set_output.py::test_set_output_method_error', 'sklearn/utils/tests/test_set_output.py::test__get_output_config', 'sklearn/utils/tests/test_set_output.py::test_get_output_auto_wrap_false', 'sklearn/utils/tests/test_set_output.py::test_auto_wrap_output_keys_errors_with_incorrect_input', 'sklearn/utils/tests/test_set_output.py::test_set_output_mixin_custom_mixin', 'sklearn/utils/tests/test_set_output.py::test__wrap_in_pandas_container_column_errors', 'sklearn/utils/tests/test_set_output.py::test_set_output_mro'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for scikit-learn__scikit-learn-25747: resolved: True
+2026-10-27 18:17:14,247 - INFO - Attempting to stop container sweb.eval.scikit-learn__scikit-learn-25747.ttgl-large-scikit-learn__scikit-learn-25747-f3c0f58c-46c1278e3fb3...
+2026-10-27 18:17:29,785 - INFO - Container sweb.eval.scikit-learn__scikit-learn-25747.ttgl-large-scikit-learn__scikit-learn-25747-f3c0f58c-46c1278e3fb3 stopped successfully.
+2026-10-27 18:17:29,788 - INFO - Attempting to remove container sweb.eval.scikit-learn__scikit-learn-25747.ttgl-large-scikit-learn__scikit-learn-25747-f3c0f58c-46c1278e3fb3...
+2026-10-27 18:17:29,911 - INFO - Container sweb.eval.scikit-learn__scikit-learn-25747.ttgl-large-scikit-learn__scikit-learn-25747-f3c0f58c-46c1278e3fb3 removed successfully.

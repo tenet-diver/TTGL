@@ -1,0 +1,61 @@
+2026-10-27 19:55:17,270 - INFO - Creating container for django__django-10999...
+2026-10-27 19:55:17,423 - INFO - Container for django__django-10999 created: eb0e0a5e389a9fc54f470dd6ca4a5886a54f6a4a101b65ee16ddf5cfa5863375
+2026-10-27 19:55:18,277 - INFO - Container for django__django-10999 started: eb0e0a5e389a9fc54f470dd6ca4a5886a54f6a4a101b65ee16ddf5cfa5863375
+2026-10-27 19:55:18,323 - INFO - Intermediate patch for django__django-10999 written to logs/evaluation/ttgl-small-django__django-10999-25366dbe-cd2907222540/ttgl-small/django__django-10999/patch.diff, now applying to container...
+2026-10-27 19:55:19,152 - INFO - >>>>> Applied Patch:
+Checking patch django/utils/dateparse.py...
+Checking patch tests/utils_tests/test_dateparse.py...
+Applied patch django/utils/dateparse.py cleanly.
+Applied patch tests/utils_tests/test_dateparse.py cleanly.
+
+2026-10-27 19:55:22,418 - INFO - Git diff before:
+diff --git a/django/utils/dateparse.py b/django/utils/dateparse.py
+index 8d08b7d1d3..a037758784 100644
+--- a/django/utils/dateparse.py
++++ b/django/utils/dateparse.py
+@@ -29,7 +29,7 @@ datetime_re = re.compile(
+ standard_duration_re = re.compile(
+     r'^'
+     r'(?:(?P<days>-?\d+) (days?, )?)?'
+-    r'((?:(?P<hours>-?\d+):)(?=\d+:\d+))?'
++    r'((?:(?P<hours>-?\d+):)(?=-?\d+:-?\d+))?'
+     r'(?:(?P<minutes>-?\d+):)?'
+     r'(?P<seconds>-?\d+)'
+     r'(?:\.(?P<microseconds>\d{1,6})\d{0,6})?'
+diff --git a/tests/utils_tests/test_dateparse.py b/tests/utils_tests/test_dateparse.py
+index 8d464278ce..a196c40293 100644
+--- a/tests/utils_tests/test_dateparse.py
++++ b/tests/utils_tests/test_dateparse.py
+@@ -115,6 +115,7 @@ class DurationParseTests(unittest.TestCase):
+             ('-172800', timedelta(days=-2)),
+             ('-15:30', timedelta(minutes=-15, seconds=30)),
+             ('-1:15:30', timedelta(hours=-1, minutes=15, seconds=30)),
++            ('-1:-15:-30', timedelta(hours=-1, minutes=-15, seconds=-30)),
+             ('-30.1', timedelta(seconds=-30, milliseconds=-100)),
+         )
+         for source, expected in test_values:
+2026-10-27 19:55:22,435 - INFO - Eval script for django__django-10999 written to logs/evaluation/ttgl-small-django__django-10999-25366dbe-cd2907222540/ttgl-small/django__django-10999/eval.sh; copying to container...
+2026-10-27 19:55:48,459 - INFO - Test runtime: 25.56 seconds
+2026-10-27 19:55:48,482 - INFO - Test output for django__django-10999 written to logs/evaluation/ttgl-small-django__django-10999-25366dbe-cd2907222540/ttgl-small/django__django-10999/test_output.txt
+2026-10-27 19:55:48,885 - INFO - Git diff after:
+diff --git a/django/utils/dateparse.py b/django/utils/dateparse.py
+index 8d08b7d1d3..a037758784 100644
+--- a/django/utils/dateparse.py
++++ b/django/utils/dateparse.py
+@@ -29,7 +29,7 @@ datetime_re = re.compile(
+ standard_duration_re = re.compile(
+     r'^'
+     r'(?:(?P<days>-?\d+) (days?, )?)?'
+-    r'((?:(?P<hours>-?\d+):)(?=\d+:\d+))?'
++    r'((?:(?P<hours>-?\d+):)(?=-?\d+:-?\d+))?'
+     r'(?:(?P<minutes>-?\d+):)?'
+     r'(?P<seconds>-?\d+)'
+     r'(?:\.(?P<microseconds>\d{1,6})\d{0,6})?'
+2026-10-27 19:55:48,890 - INFO - Git diff changed after running eval script
+2026-10-27 19:55:48,894 - INFO - Grading answer for django__django-10999...
+2026-10-27 19:55:48,911 - INFO - report: {'django__django-10999': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': False, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': [], 'failure': ['test_negative (utils_tests.test_dateparse.DurationParseTests)', 'test_parse_postgresql_format (utils_tests.test_dateparse.DurationParseTests)']}, 'PASS_TO_PASS': {'success': ['test_parse_date (utils_tests.test_dateparse.DateParseTests)', 'test_parse_datetime (utils_tests.test_dateparse.DateParseTests)', 'test_parse_time (utils_tests.test_dateparse.DateParseTests)', 'test_days (utils_tests.test_dateparse.DurationParseTests)', 'test_fractions_of_seconds (utils_tests.test_dateparse.DurationParseTests)', 'test_hours_minutes_seconds (utils_tests.test_dateparse.DurationParseTests)', 'test_iso_8601 (utils_tests.test_dateparse.DurationParseTests)', 'test_minutes_seconds (utils_tests.test_dateparse.DurationParseTests)', 'test_parse_python_format (utils_tests.test_dateparse.DurationParseTests)', 'test_seconds (utils_tests.test_dateparse.DurationParseTests)'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for django__django-10999: resolved: False
+2026-10-27 19:55:48,931 - INFO - Attempting to stop container sweb.eval.django__django-10999.ttgl-small-django__django-10999-25366dbe-cd2907222540...
+2026-10-27 19:56:04,452 - INFO - Container sweb.eval.django__django-10999.ttgl-small-django__django-10999-25366dbe-cd2907222540 stopped successfully.
+2026-10-27 19:56:04,455 - INFO - Attempting to remove container sweb.eval.django__django-10999.ttgl-small-django__django-10999-25366dbe-cd2907222540...
+2026-10-27 19:56:04,626 - INFO - Container sweb.eval.django__django-10999.ttgl-small-django__django-10999-25366dbe-cd2907222540 removed successfully.

@@ -1,0 +1,41 @@
+{
+  "large": {
+    "scikit-learn__scikit-learn-25747": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/scikit-learn__scikit-learn-25747/46c1278e3fb3/logs/ttgl-large/scikit-learn__scikit-learn-25747/report.json",
+    "django__django-12276": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/django__django-12276/bc78fb8b477f/logs/ttgl-large/django__django-12276/report.json",
+    "django__django-12125": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/django__django-12125/03642067d21f/logs/ttgl-large/django__django-12125/report.json",
+    "pylint-dev__pylint-6903": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/pylint-dev__pylint-6903/3000ed0ce270/logs/ttgl-large/pylint-dev__pylint-6903/report.json",
+    "sympy__sympy-24213": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/sympy__sympy-24213/f461b9bc8e61/logs/ttgl-large/sympy__sympy-24213/report.json",
+    "sphinx-doc__sphinx-9320": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/sphinx-doc__sphinx-9320/ba3bb9e67685/logs/ttgl-large/sphinx-doc__sphinx-9320/report.json",
+    "sphinx-doc__sphinx-10673": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/sphinx-doc__sphinx-10673/55a33992c0c7/logs/ttgl-large/sphinx-doc__sphinx-10673/report.json",
+    "django__django-10999": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/django__django-10999/e5e92c1711e7/logs/ttgl-large/django__django-10999/report.json",
+    "sphinx-doc__sphinx-11510": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/sphinx-doc__sphinx-11510/4d089f1ddc6a/logs/ttgl-large/sphinx-doc__sphinx-11510/report.json",
+    "django__django-13109": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/django__django-13109/96de0bae527b/logs/ttgl-large/django__django-13109/report.json",
+    "sympy__sympy-21847": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/sympy__sympy-21847/cecbdd4db35e/logs/ttgl-large/sympy__sympy-21847/report.json"
+  },
+  "small": {
+    "scikit-learn__scikit-learn-25747": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/scikit-learn__scikit-learn-25747/3db10b3a9f97/logs/ttgl-small/scikit-learn__scikit-learn-25747/report.json",
+    "django__django-12276": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/django__django-12276/0ee0fcbcfebd/logs/ttgl-small/django__django-12276/report.json",
+    "django__django-12125": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/django__django-12125/3bca00869f47/logs/ttgl-small/django__django-12125/report.json",
+    "pylint-dev__pylint-6903": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/pylint-dev__pylint-6903/97f0f149bea0/logs/ttgl-small/pylint-dev__pylint-6903/report.json",
+    "sympy__sympy-24213": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/sympy__sympy-24213/bcfe2ae3e14a/logs/ttgl-small/sympy__sympy-24213/report.json",
+    "sphinx-doc__sphinx-9320": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/sphinx-doc__sphinx-9320/535cf4da531e/logs/ttgl-small/sphinx-doc__sphinx-9320/report.json",
+    "sphinx-doc__sphinx-10673": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/sphinx-doc__sphinx-10673/890d5ea5d023/logs/ttgl-small/sphinx-doc__sphinx-10673/report.json",
+    "django__django-10999": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/django__django-10999/cd2907222540/logs/ttgl-small/django__django-10999/report.json",
+    "sphinx-doc__sphinx-11510": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/sphinx-doc__sphinx-11510/da43503f6c5e/logs/ttgl-small/sphinx-doc__sphinx-11510/report.json",
+    "django__django-13109": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/django__django-13109/0a94c4704836/logs/ttgl-small/django__django-13109/report.json",
+    "sympy__sympy-21847": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/sympy__sympy-21847/da9a29959361/logs/ttgl-small/sympy__sympy-21847/report.json"
+  },
+  "personal": {
+    "scikit-learn__scikit-learn-25747": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/scikit-learn__scikit-learn-25747/22fe5ddddb94/logs/ttgl-personal/scikit-learn__scikit-learn-25747/report.json",
+    "django__django-12276": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/django__django-12276/1f7ae8f13a48/logs/ttgl-personal/django__django-12276/report.json",
+    "django__django-12125": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/django__django-12125/37395db48839/logs/ttgl-personal/django__django-12125/report.json",
+    "pylint-dev__pylint-6903": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/pylint-dev__pylint-6903/3758bf4ca797/logs/ttgl-personal/pylint-dev__pylint-6903/report.json",
+    "sympy__sympy-24213": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/sympy__sympy-24213/5d200271ef08/logs/ttgl-personal/sympy__sympy-24213/report.json",
+    "sphinx-doc__sphinx-9320": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/sphinx-doc__sphinx-9320/9f8cc6f96e8d/logs/ttgl-personal/sphinx-doc__sphinx-9320/report.json",
+    "sphinx-doc__sphinx-10673": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/sphinx-doc__sphinx-10673/41661821005f/logs/ttgl-personal/sphinx-doc__sphinx-10673/report.json",
+    "django__django-10999": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/django__django-10999/9065950e9aba/logs/ttgl-personal/django__django-10999/report.json",
+    "sphinx-doc__sphinx-11510": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/sphinx-doc__sphinx-11510/78450092aa37/logs/ttgl-personal/sphinx-doc__sphinx-11510/report.json",
+    "django__django-13109": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/django__django-13109/0a94c4704836/logs/ttgl-small/django__django-13109/report.json",
+    "sympy__sympy-21847": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/sympy__sympy-21847/54862d3cfb3a/logs/ttgl-personal/sympy__sympy-21847/report.json"
+  }
+}

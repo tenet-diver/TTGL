@@ -1,0 +1,15 @@
+{
+    "job_name": "pro-nop-control-001",
+    "jobs_dir": "/Users/rustameynaliyev/Developer/TTGL/results/swe-pro-prompt-001/environment-controls-002/jobs",
+    "n_concurrent_trials": 1,
+    "agents": [
+        {
+            "name": "nop"
+        }
+    ],
+    "datasets": [
+        {
+            "path": "/Users/rustameynaliyev/Developer/ttgl-pro-private-20261027/v2/tasks"
+        }
+    ]
+}

@@ -1,0 +1,99 @@
+2026-10-27 21:22:04,441 - INFO - Creating container for sympy__sympy-21847...
+2026-10-27 21:22:04,561 - INFO - Container for sympy__sympy-21847 created: 1e67703eba45a4931ea2da32ff766a4b328d37d6f87af5d6acacf9bc4f5c8f8a
+2026-10-27 21:22:05,066 - INFO - Container for sympy__sympy-21847 started: 1e67703eba45a4931ea2da32ff766a4b328d37d6f87af5d6acacf9bc4f5c8f8a
+2026-10-27 21:22:05,084 - INFO - Intermediate patch for sympy__sympy-21847 written to logs/evaluation/ttgl-large-sympy__sympy-21847-179a67fe-cecbdd4db35e/ttgl-large/sympy__sympy-21847/patch.diff, now applying to container...
+2026-10-27 21:22:05,629 - INFO - >>>>> Applied Patch:
+Checking patch sympy/polys/monomials.py...
+warning: sympy/polys/monomials.py has type 100755, expected 100644
+Checking patch sympy/polys/tests/test_monomials.py...
+warning: sympy/polys/tests/test_monomials.py has type 100755, expected 100644
+Applied patch sympy/polys/monomials.py cleanly.
+Applied patch sympy/polys/tests/test_monomials.py cleanly.
+
+2026-10-27 21:22:06,631 - INFO - Git diff before:
+diff --git a/sympy/polys/monomials.py b/sympy/polys/monomials.py
+index 0e84403307..d2cd3451e5 100755
+--- a/sympy/polys/monomials.py
++++ b/sympy/polys/monomials.py
+@@ -127,7 +127,7 @@ def itermonomials(variables, max_degrees, min_degrees=None):
+                 for variable in item:
+                     if variable != 1:
+                         powers[variable] += 1
+-                if max(powers.values()) >= min_degree:
++                if sum(powers.values()) >= min_degree:
+                     monomials_list_comm.append(Mul(*item))
+             yield from set(monomials_list_comm)
+         else:
+@@ -139,7 +139,7 @@ def itermonomials(variables, max_degrees, min_degrees=None):
+                 for variable in item:
+                     if variable != 1:
+                         powers[variable] += 1
+-                if max(powers.values()) >= min_degree:
++                if sum(powers.values()) >= min_degree:
+                     monomials_list_non_comm.append(Mul(*item))
+             yield from set(monomials_list_non_comm)
+     else:
+diff --git a/sympy/polys/tests/test_monomials.py b/sympy/polys/tests/test_monomials.py
+index 482cbee30d..64449c0796 100755
+--- a/sympy/polys/tests/test_monomials.py
++++ b/sympy/polys/tests/test_monomials.py
+@@ -162,6 +162,25 @@ def test_monomials():
+                     x*j**2, x*k**2, x*j*k, x**2*j**2*k**2, x*j*k**2, x**2, x**2*j*k**2
+             }
+ 
++
++def test_itermonomials_min_total_degree():
++    cubics = {x**3, y**3, z**3, x**2*y, x**2*z, x*y**2,
++              y**2*z, x*z**2, y*z**2, x*y*z}
++    assert set(itermonomials([x, y, z], 3, min_degrees=3)) == cubics
++
++    quartics = {x**i*y**j*z**(4 - i - j)
++                for i in range(5) for j in range(5 - i)}
++    assert set(itermonomials([x, y, z], 4, min_degrees=3)) == cubics | quartics
++
++    i, j = symbols('i j', commutative=False)
++    quadratics = {i**2, i*j, j*i, j**2}
++    nc_cubics = {i**3, i**2*j, i*j*i, i*j**2,
++                 j*i**2, j*i*j, j**2*i, j**3}
++    assert set(itermonomials([i, j], 2, min_degrees=2)) == quadratics
++    assert set(itermonomials([i, j], 3, min_degrees=2)) == quadratics | nc_cubics
++    assert set(itermonomials([x, i], 2, min_degrees=2)) == {x**2, x*i, i**2}
++
++
+ def test_monomial_count():
+     assert monomial_count(2, 2) == 6
+     assert monomial_count(2, 3) == 10
+2026-10-27 21:22:06,645 - INFO - Eval script for sympy__sympy-21847 written to logs/evaluation/ttgl-large-sympy__sympy-21847-179a67fe-cecbdd4db35e/ttgl-large/sympy__sympy-21847/eval.sh; copying to container...
+2026-10-27 21:22:16,931 - INFO - Test runtime: 9.93 seconds
+2026-10-27 21:22:16,956 - INFO - Test output for sympy__sympy-21847 written to logs/evaluation/ttgl-large-sympy__sympy-21847-179a67fe-cecbdd4db35e/ttgl-large/sympy__sympy-21847/test_output.txt
+2026-10-27 21:22:17,143 - INFO - Git diff after:
+diff --git a/sympy/polys/monomials.py b/sympy/polys/monomials.py
+index 0e84403307..d2cd3451e5 100755
+--- a/sympy/polys/monomials.py
++++ b/sympy/polys/monomials.py
+@@ -127,7 +127,7 @@ def itermonomials(variables, max_degrees, min_degrees=None):
+                 for variable in item:
+                     if variable != 1:
+                         powers[variable] += 1
+-                if max(powers.values()) >= min_degree:
++                if sum(powers.values()) >= min_degree:
+                     monomials_list_comm.append(Mul(*item))
+             yield from set(monomials_list_comm)
+         else:
+@@ -139,7 +139,7 @@ def itermonomials(variables, max_degrees, min_degrees=None):
+                 for variable in item:
+                     if variable != 1:
+                         powers[variable] += 1
+-                if max(powers.values()) >= min_degree:
++                if sum(powers.values()) >= min_degree:
+                     monomials_list_non_comm.append(Mul(*item))
+             yield from set(monomials_list_non_comm)
+     else:
+2026-10-27 21:22:17,149 - INFO - Git diff changed after running eval script
+2026-10-27 21:22:17,152 - INFO - Grading answer for sympy__sympy-21847...
+2026-10-27 21:22:17,179 - INFO - report: {'sympy__sympy-21847': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': True, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': ['test_monomials'], 'failure': []}, 'PASS_TO_PASS': {'success': ['test_monomial_count', 'test_monomial_mul', 'test_monomial_div', 'test_monomial_gcd', 'test_monomial_lcm', 'test_monomial_max', 'test_monomial_pow', 'test_monomial_min', 'test_monomial_divides'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for sympy__sympy-21847: resolved: True
+2026-10-27 21:22:17,190 - INFO - Attempting to stop container sweb.eval.sympy__sympy-21847.ttgl-large-sympy__sympy-21847-179a67fe-cecbdd4db35e...
+2026-10-27 21:22:32,533 - INFO - Container sweb.eval.sympy__sympy-21847.ttgl-large-sympy__sympy-21847-179a67fe-cecbdd4db35e stopped successfully.
+2026-10-27 21:22:32,535 - INFO - Attempting to remove container sweb.eval.sympy__sympy-21847.ttgl-large-sympy__sympy-21847-179a67fe-cecbdd4db35e...
+2026-10-27 21:22:32,656 - INFO - Container sweb.eval.sympy__sympy-21847.ttgl-large-sympy__sympy-21847-179a67fe-cecbdd4db35e removed successfully.

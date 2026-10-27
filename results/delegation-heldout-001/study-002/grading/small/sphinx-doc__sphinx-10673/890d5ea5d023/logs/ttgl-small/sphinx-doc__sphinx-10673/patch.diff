@@ -1,0 +1,80 @@
+diff --git a/sphinx/directives/other.py b/sphinx/directives/other.py
+index 35e16e6..a525a11 100644
+--- a/sphinx/directives/other.py
++++ b/sphinx/directives/other.py
+@@ -76,6 +76,22 @@ class TocTree(SphinxDirective):
+         ret.append(wrappernode)
+         return ret
+ 
++    def _is_generated_doc(self, docname: str) -> bool:
++        # HTML builders generate these pages without corresponding source files.
++        builder = self.env.app.builder
++        if builder.format != 'html':
++            return False
++
++        if docname == 'genindex':
++            return builder.get_builder_config('use_index', 'html')
++        if docname == 'search':
++            return builder.search
++        if docname == 'modindex':
++            indices = builder.config.html_domain_indices
++            return bool(indices is True or
++                        isinstance(indices, list) and 'py-modindex' in indices)
++        return False
++
+     def parse_content(self, toctree: addnodes.toctree) -> List[Node]:
+         suffixes = self.config.source_suffix
+ 
+@@ -118,6 +134,10 @@ class TocTree(SphinxDirective):
+                 docname = docname_join(self.env.docname, docname)
+                 if url_re.match(ref) or ref == 'self':
+                     toctree['entries'].append((title, ref))
++                elif self._is_generated_doc(docname):
++                    if docname == 'modindex':
++                        docname = 'py-modindex'
++                    toctree['entries'].append((title, docname))
+                 elif docname not in self.env.found_docs:
+                     if excluded(self.env.doc2path(docname, False)):
+                         message = __('toctree contains reference to excluded document %r')
+diff --git a/sphinx/environment/adapters/toctree.py b/sphinx/environment/adapters/toctree.py
+index 9678e3c..e160fcb 100644
+--- a/sphinx/environment/adapters/toctree.py
++++ b/sphinx/environment/adapters/toctree.py
+@@ -139,6 +139,17 @@ class TocTree:
+                         item = nodes.list_item('', para)
+                         # don't show subitems
+                         toc = nodes.bullet_list('', item)
++                    elif self._is_generated_doc(ref, builder):
++                        if title is None:
++                            title = {'genindex': __('Index'),
++                                     'py-modindex': __('Module Index'),
++                                     'search': __('Search Page')}.get(ref, ref)
++                        reference = nodes.reference('', '', internal=True,
++                                                    refuri=builder.get_relative_uri(docname, ref),
++                                                    anchorname='', *[nodes.Text(title)])
++                        para = addnodes.compact_paragraph('', '', reference)
++                        item = nodes.list_item('', para)
++                        toc = nodes.bullet_list('', item)
+                     else:
+                         if ref in parents:
+                             logger.warning(__('circular toctree references '
+@@ -258,6 +269,19 @@ class TocTree:
+                     docname, refnode['refuri']) + refnode['anchorname']
+         return newnode
+ 
++    def _is_generated_doc(self, docname: str, builder: "Builder") -> bool:
++        if builder.format != 'html':
++            return False
++        if docname == 'genindex':
++            return builder.get_builder_config('use_index', 'html')
++        if docname == 'search':
++            return builder.search
++        if docname == 'py-modindex':
++            indices = builder.config.html_domain_indices
++            return bool(indices is True or
++                        isinstance(indices, list) and docname in indices)
++        return False
++
+     def get_toctree_ancestors(self, docname: str) -> List[str]:
+         parent = {}
+         for p, children in self.env.toctree_includes.items():

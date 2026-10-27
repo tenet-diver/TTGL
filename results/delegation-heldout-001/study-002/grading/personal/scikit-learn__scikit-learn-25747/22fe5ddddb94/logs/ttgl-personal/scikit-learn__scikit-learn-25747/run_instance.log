@@ -1,0 +1,138 @@
+2026-10-27 18:20:54,692 - INFO - Creating container for scikit-learn__scikit-learn-25747...
+2026-10-27 18:20:54,847 - INFO - Container for scikit-learn__scikit-learn-25747 created: 49c60ddb9736046656803cb558ede614bc06d34b9ec0f719ebb0ea184cc062ef
+2026-10-27 18:20:55,429 - INFO - Container for scikit-learn__scikit-learn-25747 started: 49c60ddb9736046656803cb558ede614bc06d34b9ec0f719ebb0ea184cc062ef
+2026-10-27 18:20:55,451 - INFO - Intermediate patch for scikit-learn__scikit-learn-25747 written to logs/evaluation/ttgl-personal-scikit-learn__scikit-learn-25747-74513600-22fe5ddddb94/ttgl-personal/scikit-learn__scikit-learn-25747/patch.diff, now applying to container...
+2026-10-27 18:20:56,115 - INFO - >>>>> Applied Patch:
+Checking patch sklearn/tests/test_pipeline.py...
+warning: sklearn/tests/test_pipeline.py has type 100755, expected 100644
+Checking patch sklearn/utils/_set_output.py...
+warning: sklearn/utils/_set_output.py has type 100755, expected 100644
+Applied patch sklearn/tests/test_pipeline.py cleanly.
+Applied patch sklearn/utils/_set_output.py cleanly.
+
+2026-10-27 18:20:57,076 - INFO - Git diff before:
+diff --git a/sklearn/tests/test_pipeline.py b/sklearn/tests/test_pipeline.py
+index fa7fa2ad2..4968f05b6 100755
+--- a/sklearn/tests/test_pipeline.py
++++ b/sklearn/tests/test_pipeline.py
+@@ -12,6 +12,7 @@ import numpy as np
+ from scipy import sparse
+ import joblib
+ 
++from sklearn._config import config_context
+ from sklearn.utils._testing import (
+     assert_allclose,
+     assert_array_equal,
+@@ -1620,6 +1621,29 @@ def test_feature_union_set_output():
+     assert_array_equal(X_trans.index, X_test.index)
+ 
+ 
++def test_feature_union_set_output_preserves_aggregated_index():
++    """Pandas output preserves the index when a transformer aggregates rows."""
++    pd = pytest.importorskip("pandas")
++
++    class Aggregator(BaseEstimator, TransformerMixin):
++        def fit(self, X, y=None):
++            return self
++
++        def transform(self, X):
++            return X["value"].groupby(X["date"]).sum()
++
++    index = pd.date_range("2020-01-01", periods=96, freq="h")
++    X = pd.DataFrame({"value": 10, "date": index.date}, index=index)
++    union = FeatureUnion([("aggregate", Aggregator())])
++
++    with config_context(transform_output="pandas"):
++        result = union.fit_transform(X)
++
++    assert isinstance(result, pd.DataFrame)
++    assert result.shape == (4, 1)
++    assert_array_equal(result.index, pd.Index(index.date).unique())
++
++
+ def test_feature_union_getitem():
+     """Check FeatureUnion.__getitem__ returns expected results."""
+     scalar = StandardScaler()
+diff --git a/sklearn/utils/_set_output.py b/sklearn/utils/_set_output.py
+index 335773c6a..aa63fad2b 100755
+--- a/sklearn/utils/_set_output.py
++++ b/sklearn/utils/_set_output.py
+@@ -55,7 +55,10 @@ def _wrap_in_pandas_container(
+     if isinstance(data_to_wrap, pd.DataFrame):
+         if columns is not None:
+             data_to_wrap.columns = columns
+-        if index is not None:
++        # Preserve the index when a transformer changes the number of samples,
++        # for example by aggregating rows. Otherwise, align the output index
++        # with the input as for regular sample-preserving transformers.
++        if index is not None and len(data_to_wrap) == len(index):
+             data_to_wrap.index = index
+         return data_to_wrap
+2026-10-27 18:20:57,105 - INFO - Eval script for scikit-learn__scikit-learn-25747 written to logs/evaluation/ttgl-personal-scikit-learn__scikit-learn-25747-74513600-22fe5ddddb94/ttgl-personal/scikit-learn__scikit-learn-25747/eval.sh; copying to container...
+2026-10-27 18:21:13,652 - INFO - Test runtime: 16.09 seconds
+2026-10-27 18:21:13,682 - INFO - Test output for scikit-learn__scikit-learn-25747 written to logs/evaluation/ttgl-personal-scikit-learn__scikit-learn-25747-74513600-22fe5ddddb94/ttgl-personal/scikit-learn__scikit-learn-25747/test_output.txt
+2026-10-27 18:21:13,890 - INFO - Git diff after:
+diff --git a/sklearn/tests/test_pipeline.py b/sklearn/tests/test_pipeline.py
+index fa7fa2ad2..4968f05b6 100755
+--- a/sklearn/tests/test_pipeline.py
++++ b/sklearn/tests/test_pipeline.py
+@@ -12,6 +12,7 @@ import numpy as np
+ from scipy import sparse
+ import joblib
+ 
++from sklearn._config import config_context
+ from sklearn.utils._testing import (
+     assert_allclose,
+     assert_array_equal,
+@@ -1620,6 +1621,29 @@ def test_feature_union_set_output():
+     assert_array_equal(X_trans.index, X_test.index)
+ 
+ 
++def test_feature_union_set_output_preserves_aggregated_index():
++    """Pandas output preserves the index when a transformer aggregates rows."""
++    pd = pytest.importorskip("pandas")
++
++    class Aggregator(BaseEstimator, TransformerMixin):
++        def fit(self, X, y=None):
++            return self
++
++        def transform(self, X):
++            return X["value"].groupby(X["date"]).sum()
++
++    index = pd.date_range("2020-01-01", periods=96, freq="h")
++    X = pd.DataFrame({"value": 10, "date": index.date}, index=index)
++    union = FeatureUnion([("aggregate", Aggregator())])
++
++    with config_context(transform_output="pandas"):
++        result = union.fit_transform(X)
++
++    assert isinstance(result, pd.DataFrame)
++    assert result.shape == (4, 1)
++    assert_array_equal(result.index, pd.Index(index.date).unique())
++
++
+ def test_feature_union_getitem():
+     """Check FeatureUnion.__getitem__ returns expected results."""
+     scalar = StandardScaler()
+diff --git a/sklearn/utils/_set_output.py b/sklearn/utils/_set_output.py
+index 335773c6a..aa63fad2b 100755
+--- a/sklearn/utils/_set_output.py
++++ b/sklearn/utils/_set_output.py
+@@ -55,7 +55,10 @@ def _wrap_in_pandas_container(
+     if isinstance(data_to_wrap, pd.DataFrame):
+         if columns is not None:
+             data_to_wrap.columns = columns
+-        if index is not None:
++        # Preserve the index when a transformer changes the number of samples,
++        # for example by aggregating rows. Otherwise, align the output index
++        # with the input as for regular sample-preserving transformers.
++        if index is not None and len(data_to_wrap) == len(index):
+             data_to_wrap.index = index
+         return data_to_wrap
+2026-10-27 18:21:13,898 - INFO - Grading answer for scikit-learn__scikit-learn-25747...
+2026-10-27 18:21:13,937 - INFO - report: {'scikit-learn__scikit-learn-25747': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': False, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': [], 'failure': ['sklearn/utils/tests/test_set_output.py::test_set_output_pandas_keep_index']}, 'PASS_TO_PASS': {'success': ['sklearn/utils/tests/test_set_output.py::test__wrap_in_pandas_container_dense', 'sklearn/utils/tests/test_set_output.py::test__wrap_in_pandas_container_dense_update_columns_and_index', 'sklearn/utils/tests/test_set_output.py::test__wrap_in_pandas_container_error_validation', 'sklearn/utils/tests/test_set_output.py::test__safe_set_output', 'sklearn/utils/tests/test_set_output.py::test_set_output_mixin', 'sklearn/utils/tests/test_set_output.py::test__safe_set_output_error', 'sklearn/utils/tests/test_set_output.py::test_set_output_method', 'sklearn/utils/tests/test_set_output.py::test_set_output_method_error', 'sklearn/utils/tests/test_set_output.py::test__get_output_config', 'sklearn/utils/tests/test_set_output.py::test_get_output_auto_wrap_false', 'sklearn/utils/tests/test_set_output.py::test_auto_wrap_output_keys_errors_with_incorrect_input', 'sklearn/utils/tests/test_set_output.py::test_set_output_mixin_custom_mixin', 'sklearn/utils/tests/test_set_output.py::test__wrap_in_pandas_container_column_errors', 'sklearn/utils/tests/test_set_output.py::test_set_output_mro'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for scikit-learn__scikit-learn-25747: resolved: False
+2026-10-27 18:21:13,954 - INFO - Attempting to stop container sweb.eval.scikit-learn__scikit-learn-25747.ttgl-personal-scikit-learn__scikit-learn-25747-74513600-22fe5ddddb94...
+2026-10-27 18:21:29,368 - INFO - Container sweb.eval.scikit-learn__scikit-learn-25747.ttgl-personal-scikit-learn__scikit-learn-25747-74513600-22fe5ddddb94 stopped successfully.
+2026-10-27 18:21:29,375 - INFO - Attempting to remove container sweb.eval.scikit-learn__scikit-learn-25747.ttgl-personal-scikit-learn__scikit-learn-25747-74513600-22fe5ddddb94...
+2026-10-27 18:21:29,498 - INFO - Container sweb.eval.scikit-learn__scikit-learn-25747.ttgl-personal-scikit-learn__scikit-learn-25747-74513600-22fe5ddddb94 removed successfully.

@@ -1,0 +1,130 @@
+{
+  "474d3987d75337e8175e2327fedb064ef40d90b33046672998ce176fe5b91d3e": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/scikit-learn__scikit-learn-25747/46c1278e3fb3/logs/ttgl-large/scikit-learn__scikit-learn-25747/report.json",
+    "report_sha256": "6b77b226f373928e3d51a2d95f9e6e240fc109a0076ef35e4c12433d5e0142fb"
+  },
+  "bdf2cc92372c7148ef6abfbc91bcb4926b4d1ba738c2ee22f0a16c794ce75258": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/scikit-learn__scikit-learn-25747/3db10b3a9f97/logs/ttgl-small/scikit-learn__scikit-learn-25747/report.json",
+    "report_sha256": "e04e54aa65fbae63698ff701371ed72fe6c1b16bbebb2b74a3609ec9bc0e6d64"
+  },
+  "d5bcda3e6a5f0c558077d0137588f7b500fc00b14ed2759187a4b7e7ab63f55a": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/scikit-learn__scikit-learn-25747/22fe5ddddb94/logs/ttgl-personal/scikit-learn__scikit-learn-25747/report.json",
+    "report_sha256": "e04e54aa65fbae63698ff701371ed72fe6c1b16bbebb2b74a3609ec9bc0e6d64"
+  },
+  "f65b3675bb5a3f8e023eb435ac8c94f71c26d9ee47a3ede9c660fbb3f7c66cd2": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/django__django-12276/0ee0fcbcfebd/logs/ttgl-small/django__django-12276/report.json",
+    "report_sha256": "d74486092cdaacc44812b30e7c2c00893fa57b34664832ef3a5d3a284a0223d9"
+  },
+  "a934a75acf040808d88684f4b758c7dcd884b0ca5d9e4b412d143126794c209c": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/django__django-12276/1f7ae8f13a48/logs/ttgl-personal/django__django-12276/report.json",
+    "report_sha256": "d74486092cdaacc44812b30e7c2c00893fa57b34664832ef3a5d3a284a0223d9"
+  },
+  "4d47a211ed8f11136cc7a212574b81e4089968be4fdb99f8dd0a98c0a6ac84c0": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/django__django-12276/bc78fb8b477f/logs/ttgl-large/django__django-12276/report.json",
+    "report_sha256": "d74486092cdaacc44812b30e7c2c00893fa57b34664832ef3a5d3a284a0223d9"
+  },
+  "87a5f236e3284d5e0ece70070cdde0e2bb503cd41f4b9d52de470c110338596f": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/django__django-12125/03642067d21f/logs/ttgl-large/django__django-12125/report.json",
+    "report_sha256": "6b81f7254ada2fc441ce41db5fecd833e0e09f2ac5bd00ef0dc83ac1b9d11228"
+  },
+  "e1c943252f7b4f716546054e32991671c909b0d4b1e944e26e5d3a2fb0466ccd": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/django__django-12125/37395db48839/logs/ttgl-personal/django__django-12125/report.json",
+    "report_sha256": "6b81f7254ada2fc441ce41db5fecd833e0e09f2ac5bd00ef0dc83ac1b9d11228"
+  },
+  "9b0bfe6a020d1e1a631e1342984867427da06bdfd568099cf7c8d1afd7413078": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/django__django-12125/3bca00869f47/logs/ttgl-small/django__django-12125/report.json",
+    "report_sha256": "6b81f7254ada2fc441ce41db5fecd833e0e09f2ac5bd00ef0dc83ac1b9d11228"
+  },
+  "e559b0d82fa3e83a746d6efc4926ef9cb4a9194fece948bffd316ff3e215f23b": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/pylint-dev__pylint-6903/3758bf4ca797/logs/ttgl-personal/pylint-dev__pylint-6903/report.json",
+    "report_sha256": "ba5c07b6df38aff9112cdf1bc71ae84fae6cd800b5b65ffffe74758395f764f1"
+  },
+  "336b44c4afcb1c347fdffa69ab838b09520fab919ea01a209e7a1c0857623d6c": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/pylint-dev__pylint-6903/3000ed0ce270/logs/ttgl-large/pylint-dev__pylint-6903/report.json",
+    "report_sha256": "ba5c07b6df38aff9112cdf1bc71ae84fae6cd800b5b65ffffe74758395f764f1"
+  },
+  "42bbd494acca301fc8c86191dcfb2d5ba108d2580c4e6a78329863695c40004e": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/pylint-dev__pylint-6903/97f0f149bea0/logs/ttgl-small/pylint-dev__pylint-6903/report.json",
+    "report_sha256": "ba5c07b6df38aff9112cdf1bc71ae84fae6cd800b5b65ffffe74758395f764f1"
+  },
+  "cf817747edd8c818a7b20211c50b3b5f93830340e40d203d96d7901ad00086f4": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/sympy__sympy-24213/bcfe2ae3e14a/logs/ttgl-small/sympy__sympy-24213/report.json",
+    "report_sha256": "fccd8302f493925eea531a4ffd6fec430049ad6fd05d0b1e6a2de6fb70c1744e"
+  },
+  "ba7e30364bfd5a03d7c7c94813b0325cb0755f8c616985d985e6e727f037d5fb": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/sympy__sympy-24213/f461b9bc8e61/logs/ttgl-large/sympy__sympy-24213/report.json",
+    "report_sha256": "fccd8302f493925eea531a4ffd6fec430049ad6fd05d0b1e6a2de6fb70c1744e"
+  },
+  "69f7d2a15a86b5e7baa2b6a13be3fdcbe7f6f83b5bf6c33154531b0ddedac956": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/sympy__sympy-24213/5d200271ef08/logs/ttgl-personal/sympy__sympy-24213/report.json",
+    "report_sha256": "fccd8302f493925eea531a4ffd6fec430049ad6fd05d0b1e6a2de6fb70c1744e"
+  },
+  "b3260412eec82883e910f8478247cdc59367e3ed2b77ce82bd5672332ade9ac8": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/sphinx-doc__sphinx-9320/9f8cc6f96e8d/logs/ttgl-personal/sphinx-doc__sphinx-9320/report.json",
+    "report_sha256": "d54f419f27a7c025547c5f86c6c441c8a90d5cbfc2c3e3666e30c53809aec42d"
+  },
+  "74ff9b85a06387bd6570cbe2ac6647b5df497df5d2a923f44bb571a11e4ffadc": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/sphinx-doc__sphinx-9320/535cf4da531e/logs/ttgl-small/sphinx-doc__sphinx-9320/report.json",
+    "report_sha256": "d54f419f27a7c025547c5f86c6c441c8a90d5cbfc2c3e3666e30c53809aec42d"
+  },
+  "acb3ffb70ce48dbcc4cd1368dcb624528b580707325049fb92b4761450221187": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/sphinx-doc__sphinx-9320/ba3bb9e67685/logs/ttgl-large/sphinx-doc__sphinx-9320/report.json",
+    "report_sha256": "d54f419f27a7c025547c5f86c6c441c8a90d5cbfc2c3e3666e30c53809aec42d"
+  },
+  "b55d7f18b60d5907faf768b83d78ead012abf085294129dfb50a08f37b939a84": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/sphinx-doc__sphinx-10673/41661821005f/logs/ttgl-personal/sphinx-doc__sphinx-10673/report.json",
+    "report_sha256": "47c1dcb11b54aa6aa7b0e973643eae36b705f3fbe34a5041872eb8994abc52b8"
+  },
+  "826ba384746186297bd46a06e18bbef528be2391000f7df462a953790e6b35fc": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/sphinx-doc__sphinx-10673/55a33992c0c7/logs/ttgl-large/sphinx-doc__sphinx-10673/report.json",
+    "report_sha256": "47c1dcb11b54aa6aa7b0e973643eae36b705f3fbe34a5041872eb8994abc52b8"
+  },
+  "1d87fab09d88a93f00d0a238b2244109f5c6c1ab0323c7adbadfce34040c4388": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/sphinx-doc__sphinx-10673/890d5ea5d023/logs/ttgl-small/sphinx-doc__sphinx-10673/report.json",
+    "report_sha256": "29c2b77f9872b8d7b0c6bf171d8d857da38db291df707f0a471f53144d0fd710"
+  },
+  "05f9ac33f54142be72f0acb8d03888cc406b124b2272162cc42a293291f2b554": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/django__django-10999/9065950e9aba/logs/ttgl-personal/django__django-10999/report.json",
+    "report_sha256": "1e2864412f0c0934ba87c520e08f58cea87bebe36f218e22a5dae2c8d6acb948"
+  },
+  "a7d5b7d2e59da4270eb60d59b655fc8b92c3cf47201baec4fdac2840f0e20e72": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/django__django-10999/e5e92c1711e7/logs/ttgl-large/django__django-10999/report.json",
+    "report_sha256": "1e2864412f0c0934ba87c520e08f58cea87bebe36f218e22a5dae2c8d6acb948"
+  },
+  "1710262c19fbac52c2f9bdb116a96228db71abeaabb5d5b8ddb748d528a28dfc": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/django__django-10999/cd2907222540/logs/ttgl-small/django__django-10999/report.json",
+    "report_sha256": "1e2864412f0c0934ba87c520e08f58cea87bebe36f218e22a5dae2c8d6acb948"
+  },
+  "6fbdf780a6b9adae2061f5aea3b1f7a2887ad776c53a1d39eaef6ba4e42a10c4": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/sphinx-doc__sphinx-11510/da43503f6c5e/logs/ttgl-small/sphinx-doc__sphinx-11510/report.json",
+    "report_sha256": "798f81cb48b30917627c4145c77ad0d0aa77770d9ac8e8738233669a7c74998a"
+  },
+  "2948fa08ddd4fd33a1880832bbd9cebe6a96aea74f1b46671eab2a531e108249": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/sphinx-doc__sphinx-11510/78450092aa37/logs/ttgl-personal/sphinx-doc__sphinx-11510/report.json",
+    "report_sha256": "1d0a2a215689d2389fd7c9cf6e19fcd7bf589044ff6735f9561c98988a7f484f"
+  },
+  "d1647944958a2ede35bdce07fc9771f55fc8073565cbf09b995f2d46cec2ad92": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/sphinx-doc__sphinx-11510/4d089f1ddc6a/logs/ttgl-large/sphinx-doc__sphinx-11510/report.json",
+    "report_sha256": "1d0a2a215689d2389fd7c9cf6e19fcd7bf589044ff6735f9561c98988a7f484f"
+  },
+  "ca8df2cd90c29befada0dc541db4d5b511282d1a7b5d1828474bc839091225d9": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/django__django-13109/0a94c4704836/logs/ttgl-small/django__django-13109/report.json",
+    "report_sha256": "30f3c36ee4eed4afb0d067e944e1002cfb3f0f9b8e0bfd672a805eb9c8b07eaf"
+  },
+  "b223fc9031314650f2d8dc803eb201ad4a8f77bed1e71d798120d6ff15b63b39": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/django__django-13109/96de0bae527b/logs/ttgl-large/django__django-13109/report.json",
+    "report_sha256": "30f3c36ee4eed4afb0d067e944e1002cfb3f0f9b8e0bfd672a805eb9c8b07eaf"
+  },
+  "ccb87ed8c344170cd46cb91d6e96d8ccd2a6f0f13ad1558e165bd0e3a16ba113": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/sympy__sympy-21847/da9a29959361/logs/ttgl-small/sympy__sympy-21847/report.json",
+    "report_sha256": "c1137a8cefe3346e00cdc284743ab16892e13d5cbb4f3a169edf6f919a705823"
+  },
+  "c14a95aabf6ea6910e2e5efa64fc0f3c357f4bf25a09403b1f5089e346483b12": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/large/sympy__sympy-21847/cecbdd4db35e/logs/ttgl-large/sympy__sympy-21847/report.json",
+    "report_sha256": "c1137a8cefe3346e00cdc284743ab16892e13d5cbb4f3a169edf6f919a705823"
+  },
+  "e1a14df681dc6bb2c54a09d0cbe5ef3d503a35e6f1c68565c6e9b0b02ec47173": {
+    "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/personal/sympy__sympy-21847/54862d3cfb3a/logs/ttgl-personal/sympy__sympy-21847/report.json",
+    "report_sha256": "c1137a8cefe3346e00cdc284743ab16892e13d5cbb4f3a169edf6f919a705823"
+  }
+}

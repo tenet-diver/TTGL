@@ -1,0 +1,93 @@
+diff --git a/django/forms/widgets.py b/django/forms/widgets.py
+index 338d54d..40ac1d3 100644
+--- a/django/forms/widgets.py
++++ b/django/forms/widgets.py
+@@ -387,6 +387,9 @@ class FileInput(Input):
+     def value_omitted_from_data(self, data, files, name):
+         return name not in files
+ 
++    def use_required_attribute(self, initial):
++        return super().use_required_attribute(initial) and not initial
++
+ 
+ FILE_INPUT_CONTRADICTION = object()
+ 
+@@ -451,9 +454,6 @@ class ClearableFileInput(FileInput):
+             return False
+         return upload
+ 
+-    def use_required_attribute(self, initial):
+-        return super().use_required_attribute(initial) and not initial
+-
+     def value_omitted_from_data(self, data, files, name):
+         return (
+             super().value_omitted_from_data(data, files, name) and
+diff --git a/docs/ref/forms/widgets.txt b/docs/ref/forms/widgets.txt
+index a9c4422..7de00ac 100644
+--- a/docs/ref/forms/widgets.txt
++++ b/docs/ref/forms/widgets.txt
+@@ -325,8 +325,9 @@ foundation for custom widgets.
+         to display the ``required`` attribute for each field.
+ 
+         By default, returns ``False`` for hidden widgets and ``True``
+-        otherwise. Special cases are :class:`~django.forms.ClearableFileInput`,
+-        which returns ``False`` when ``initial`` is set, and
++        otherwise. Special cases are :class:`~django.forms.FileInput` and
++        :class:`~django.forms.ClearableFileInput`, which return ``False`` when
++        ``initial`` is set, and
+         :class:`~django.forms.CheckboxSelectMultiple`, which always returns
+         ``False`` because browser validation would require all checkboxes to be
+         checked instead of at least one.
+diff --git a/tests/forms_tests/tests/test_forms.py b/tests/forms_tests/tests/test_forms.py
+index 552f3b8..910491f 100644
+--- a/tests/forms_tests/tests/test_forms.py
++++ b/tests/forms_tests/tests/test_forms.py
+@@ -8,7 +8,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
+ from django.core.validators import MaxValueValidator, RegexValidator
+ from django.forms import (
+     BooleanField, CharField, CheckboxSelectMultiple, ChoiceField, DateField,
+-    DateTimeField, EmailField, FileField, FloatField, Form, HiddenInput,
++    DateTimeField, EmailField, FileField, FileInput, FloatField, Form, HiddenInput,
+     ImageField, IntegerField, MultipleChoiceField, MultipleHiddenInput,
+     MultiValueField, NullBooleanField, PasswordInput, RadioSelect, Select,
+     SplitDateTimeField, SplitHiddenDateTimeWidget, Textarea, TextInput,
+@@ -3608,6 +3608,25 @@ Good luck picking a username that doesn&#x27;t already exist.</p>
+             '</select></td></tr>',
+         )
+ 
++    def test_fileinput_required_attribute(self):
++        class UploadForm(Form):
++            file = FileField(widget=FileInput)
++
++        self.assertHTMLEqual(
++            str(UploadForm()['file']),
++            '<input type="file" name="file" id="id_file" required>',
++        )
++        initial = SimpleUploadedFile('resume.txt', b'content')
++        self.assertHTMLEqual(
++            str(UploadForm(initial={'file': initial})['file']),
++            '<input type="file" name="file" id="id_file">',
++        )
++        UploadForm.base_fields['file'].initial = initial
++        self.assertHTMLEqual(
++            str(UploadForm()['file']),
++            '<input type="file" name="file" id="id_file">',
++        )
++
+     def test_use_required_attribute_false(self):
+         class MyForm(Form):
+             use_required_attribute = False
+diff --git a/tests/forms_tests/widget_tests/test_fileinput.py b/tests/forms_tests/widget_tests/test_fileinput.py
+index bbd7c7f..a5c2050 100644
+--- a/tests/forms_tests/widget_tests/test_fileinput.py
++++ b/tests/forms_tests/widget_tests/test_fileinput.py
+@@ -18,3 +18,9 @@ class FileInputTest(WidgetTest):
+     def test_value_omitted_from_data(self):
+         self.assertIs(self.widget.value_omitted_from_data({}, {}, 'field'), True)
+         self.assertIs(self.widget.value_omitted_from_data({}, {'field': 'value'}, 'field'), False)
++
++    def test_use_required_attribute(self):
++        for initial in (None, ''):
++            with self.subTest(initial=initial):
++                self.assertIs(self.widget.use_required_attribute(initial), True)
++        self.assertIs(self.widget.use_required_attribute('resume.txt'), False)

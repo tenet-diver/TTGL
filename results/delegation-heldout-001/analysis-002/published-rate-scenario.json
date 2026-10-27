@@ -1,0 +1,58 @@
+{
+  "rates": {
+    "kind": "published_codex_standard_token_rate_scenario",
+    "currency": "USD",
+    "retrieved_at": "2026-10-26T19:16:32.901410+00:00",
+    "source_url": "https://help.openai.com/en/articles/20001415-chatgpt-rate-card-enterprise-token-based-pricing",
+    "supporting_model_sources": [
+      "https://developers.openai.com/api/docs/models/gpt-6-luna",
+      "https://developers.openai.com/api/docs/models/gpt-6.1-sol"
+    ],
+    "scope": "Counterfactual published Enterprise Standard-mode Codex token rates, not this account subscription invoice or credit/quota consumption",
+    "context": "The rate card exempts ChatGPT-signed-in Codex from its additional long-context charge",
+    "accounting": "Cached input is included within native total input; reasoning is included within native output; count every role and failed attempt; unknown native usage remains null",
+    "excluded_costs": [
+      "setup and independent controls",
+      "grading",
+      "hardware and energy",
+      "subscription allocation",
+      "taxes, regional and speed-tier adjustments"
+    ],
+    "models": {
+      "gpt-6-luna": {
+        "input_per_million": 0.1,
+        "cached_input_per_million": 0.01,
+        "output_per_million": 0.5
+      },
+      "gpt-6.1-sol": {
+        "input_per_million": 2.0,
+        "cached_input_per_million": 0.1,
+        "output_per_million": 10.0
+      }
+    }
+  },
+  "paired_savings": {
+    "small": {
+      "status": "descriptive_estimate",
+      "estimated_cost_ratio": 0.040435079839560205,
+      "estimated_savings_fraction": 0.9595649201604398,
+      "paired_bootstrap_cost_ratio_95": [
+        0.03429486692760216,
+        0.05156572083550373
+      ],
+      "valid_bootstrap_samples": 10000,
+      "warning": "Conditional task bootstrap; tiny/clustered samples do not establish quality noninferiority"
+    },
+    "personal": {
+      "status": "descriptive_estimate",
+      "estimated_cost_ratio": 0.08554824702389864,
+      "estimated_savings_fraction": 0.9144517529761014,
+      "paired_bootstrap_cost_ratio_95": [
+        0.041285123710084,
+        0.11577162774850677
+      ],
+      "valid_bootstrap_samples": 10000,
+      "warning": "Conditional task bootstrap; tiny/clustered samples do not establish quality noninferiority"
+    }
+  }
+}

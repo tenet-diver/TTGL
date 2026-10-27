@@ -1,0 +1,69 @@
+2026-10-27 19:16:11,865 - INFO - Creating container for sphinx-doc__sphinx-9320...
+2026-10-27 19:16:12,023 - INFO - Container for sphinx-doc__sphinx-9320 created: b69b67055ea1a93ba448be9a0ca61144f59ec4acc755242204dd88f88d3e3874
+2026-10-27 19:16:12,716 - INFO - Container for sphinx-doc__sphinx-9320 started: b69b67055ea1a93ba448be9a0ca61144f59ec4acc755242204dd88f88d3e3874
+2026-10-27 19:16:12,737 - INFO - Intermediate patch for sphinx-doc__sphinx-9320 written to logs/evaluation/ttgl-small-sphinx-doc__sphinx-9320-6bd07ccd-535cf4da531e/ttgl-small/sphinx-doc__sphinx-9320/patch.diff, now applying to container...
+2026-10-27 19:16:13,762 - INFO - >>>>> Applied Patch:
+Checking patch sphinx/cmd/quickstart.py...
+Checking patch tests/test_quickstart.py...
+Applied patch sphinx/cmd/quickstart.py cleanly.
+Applied patch tests/test_quickstart.py cleanly.
+
+2026-10-27 19:16:15,523 - INFO - Git diff before:
+diff --git a/sphinx/cmd/quickstart.py b/sphinx/cmd/quickstart.py
+index a40a21073..95a535c71 100644
+--- a/sphinx/cmd/quickstart.py
++++ b/sphinx/cmd/quickstart.py
+@@ -223,7 +223,7 @@ def ask_user(d: Dict) -> None:
+         print(__('sphinx-quickstart will not overwrite existing Sphinx projects.'))
+         print()
+         d['path'] = do_prompt(__('Please enter a new root path (or just Enter to exit)'),
+-                              '', is_path)
++                              '', lambda x: is_path(x) if x else x)
+         if not d['path']:
+             sys.exit(1)
+ 
+diff --git a/tests/test_quickstart.py b/tests/test_quickstart.py
+index 94144ef22..18d273dca 100644
+--- a/tests/test_quickstart.py
++++ b/tests/test_quickstart.py
+@@ -92,6 +92,16 @@ def test_do_prompt_with_nonascii():
+     assert result == '\u30c9\u30a4\u30c4'
+ 
+ 
++def test_quickstart_exit_when_conf_py_exists(tempdir):
++    (tempdir / 'conf.py').write_text('')
++    qs.term_input = mock_input({'Root path': str(tempdir)})
++
++    with pytest.raises(SystemExit) as exc_info:
++        qs.ask_user({})
++
++    assert exc_info.value.code == 1
++
++
+ def test_quickstart_defaults(tempdir):
+     answers = {
+         'Root path': tempdir,
+2026-10-27 19:16:15,540 - INFO - Eval script for sphinx-doc__sphinx-9320 written to logs/evaluation/ttgl-small-sphinx-doc__sphinx-9320-6bd07ccd-535cf4da531e/ttgl-small/sphinx-doc__sphinx-9320/eval.sh; copying to container...
+2026-10-27 19:16:42,095 - INFO - Test runtime: 25.90 seconds
+2026-10-27 19:16:42,116 - INFO - Test output for sphinx-doc__sphinx-9320 written to logs/evaluation/ttgl-small-sphinx-doc__sphinx-9320-6bd07ccd-535cf4da531e/ttgl-small/sphinx-doc__sphinx-9320/test_output.txt
+2026-10-27 19:16:42,384 - INFO - Git diff after:
+diff --git a/sphinx/cmd/quickstart.py b/sphinx/cmd/quickstart.py
+index a40a21073..95a535c71 100644
+--- a/sphinx/cmd/quickstart.py
++++ b/sphinx/cmd/quickstart.py
+@@ -223,7 +223,7 @@ def ask_user(d: Dict) -> None:
+         print(__('sphinx-quickstart will not overwrite existing Sphinx projects.'))
+         print()
+         d['path'] = do_prompt(__('Please enter a new root path (or just Enter to exit)'),
+-                              '', is_path)
++                              '', lambda x: is_path(x) if x else x)
+         if not d['path']:
+             sys.exit(1)
+2026-10-27 19:16:42,391 - INFO - Git diff changed after running eval script
+2026-10-27 19:16:42,404 - INFO - Grading answer for sphinx-doc__sphinx-9320...
+2026-10-27 19:16:42,461 - INFO - report: {'sphinx-doc__sphinx-9320': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': True, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': ['tests/test_quickstart.py::test_exits_when_existing_confpy'], 'failure': []}, 'PASS_TO_PASS': {'success': ['tests/test_quickstart.py::test_do_prompt', 'tests/test_quickstart.py::test_do_prompt_inputstrip', 'tests/test_quickstart.py::test_do_prompt_with_nonascii', 'tests/test_quickstart.py::test_quickstart_defaults', 'tests/test_quickstart.py::test_quickstart_all_answers', 'tests/test_quickstart.py::test_generated_files_eol', 'tests/test_quickstart.py::test_quickstart_and_build', 'tests/test_quickstart.py::test_default_filename', 'tests/test_quickstart.py::test_extensions'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for sphinx-doc__sphinx-9320: resolved: True
+2026-10-27 19:16:42,499 - INFO - Attempting to stop container sweb.eval.sphinx-doc__sphinx-9320.ttgl-small-sphinx-doc__sphinx-9320-6bd07ccd-535cf4da531e...
+2026-10-27 19:16:58,247 - INFO - Container sweb.eval.sphinx-doc__sphinx-9320.ttgl-small-sphinx-doc__sphinx-9320-6bd07ccd-535cf4da531e stopped successfully.
+2026-10-27 19:16:58,252 - INFO - Attempting to remove container sweb.eval.sphinx-doc__sphinx-9320.ttgl-small-sphinx-doc__sphinx-9320-6bd07ccd-535cf4da531e...
+2026-10-27 19:16:58,403 - INFO - Container sweb.eval.sphinx-doc__sphinx-9320.ttgl-small-sphinx-doc__sphinx-9320-6bd07ccd-535cf4da531e removed successfully.

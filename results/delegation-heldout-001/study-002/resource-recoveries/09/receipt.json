@@ -1,0 +1,16 @@
+{
+  "next_unstarted": {
+    "instance_id": "sympy__sympy-21847",
+    "arm": "small"
+  },
+  "prior_completed_assignments": 30,
+  "failure_log_sha256": "5d7105200e694f3c903bfdc4b00b19ea020b8f2b0bcbd61448370a188ffc3d5b",
+  "partial_audit_sha256": "d1ac18ee65508e5bba5c105af2a5afbb174f458029a64b1abc03aa9ad4204c03",
+  "model_invocations_repeated": 0,
+  "previous_closed_image_removal": {
+    "image_id": "sha256:f07d510a95590299d5ce8c02d761a33704c82e65f6b67e582f383fefe015e27b",
+    "returncode": 0,
+    "stdout": "Untagged: swebench/sweb.eval.x86_64.django_1776_django-13109@sha256:99485703b09250cf48812b5f24e4449c3f179b5bf7673b96cd398aa7f1179295\nDeleted: sha256:f07d510a95590299d5ce8c02d761a33704c82e65f6b67e582f383fefe015e27b\nDeleted: sha256:5d5a05156b50724ff0843dbcb6342fce679a2cee2980d3fa5ee2af3f7f9483c5\nDeleted: sha256:2010db69d0a2d70bbf621efc7e93896bf09ab8a926580ecab4a4edd4c13b7637\nDeleted: sha256:a403ba4131562e17019c905e3a300b0b27e92f9ff0e59bfc1a7610722592555f\nDeleted: sha256:22d661f8a47f119d1054b1b03e187f6c182a068a4009d15d60918480010385b9\nDeleted: sha256:5b7029337af7d84be68ff1ee15c4b80534708a5be1c1c46697f5cd68d475a66c\nDeleted: sha256:93c24d52f8b7c46e749f38dbf342591e533d3674646e3bc645cfca0a2a1864ab\nDeleted: sha256:25c1378d516bc3fc926ee2becf14a6a2382554d3d55e6ada4475e4bae8ab3004\nDeleted: sha256:b6694234e209028c566838b742bca07bcf5d99c7c04d0e2e6e6dd99ac2bd31a4\nDeleted: sha256:8a0e86648282c63cffc267e97f30f980fec946c7c104d65707a17f0fe89a1398\nDeleted: sha256:beb59027b96ddbf30ac9c80b527668fe7011f4f553fe83f5e59199e9a84fb5ca\n",
+    "stderr": ""
+  }
+}

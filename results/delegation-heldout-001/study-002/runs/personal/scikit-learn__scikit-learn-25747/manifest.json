@@ -1,0 +1,100 @@
+{
+  "schema_version": 3,
+  "run_id": "4131d7ed-45d3-4780-8e60-b09b4f367ead",
+  "task_id": "scikit-learn__scikit-learn-25747",
+  "condition": "personal",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-27T18:19:39.032356+00:00",
+  "finished_at": "2026-10-27T18:20:44.011219+00:00",
+  "identity_sha256": "94b1f6db9532e9c4290e7132c3069f3cbde0274eab0ccc2f64d90ac5873f5605",
+  "config": {
+    "condition": "personal",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "1d4213bb5cb95525518a924667df2afd177b392e9ca87e17ec173e9f4d651a27",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d",
+    "controller_policy": {
+      "mode": "fallback",
+      "source_sha256": "bf163122b4c9769dbec7ef0c9759fc5e07a4453dc6906f75c31dfa41d6eee707",
+      "prompts_sha256": {
+        "controller-v2-common.txt": "bcab59483071803bd76c6a2125c4892771bafb3f3845b151494732f1b905fd23",
+        "controller-v2-delegation.txt": "97fa0f26f6477d16ad94e130d0ae33b9909da26598fe72fd9178513f330e568b",
+        "controller-v2-fallback.txt": "b0e31632e6796b582a7982325aca364419cbeeeaa309224b47eae2ccce8a4724"
+      }
+    }
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 1,
+  "expert_calls": 0,
+  "elapsed_seconds": 64.87996418203693,
+  "controller_thread_id": "01a17e96-e00e-75d2-b931-5d1c5f833d5d",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 303440,
+    "cached_input_tokens": 274048,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2263,
+    "reasoning_output_tokens": 421
+  },
+  "observed_usage_partial": {
+    "input_tokens": 303440,
+    "cached_input_tokens": 274048,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2263,
+    "reasoning_output_tokens": 421
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 303440,
+        "cached_input_tokens": 274048,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2263,
+        "reasoning_output_tokens": 421
+      },
+      "observed_partial": {
+        "input_tokens": 303440,
+        "cached_input_tokens": 274048,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2263,
+        "reasoning_output_tokens": 421
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 3,
+  "failure_type": null,
+  "summary": "Updated pandas output wrapping to preserve a DataFrame’s own index when its row count differs from the input, allowing aggregating transformers in FeatureUnion to return fewer rows. Added a regression test for the reported pattern. Verified the reproducer returns a 4-row DataFrame with the grouped date index; the focused regression and set-output tests passed (15 passed), and the broader pipeline plus set-output suites passed before adding the regression (103 passed).",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "dc7caef695a44f884435889d7d17913d05b24146f299916cfce3938026982486",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

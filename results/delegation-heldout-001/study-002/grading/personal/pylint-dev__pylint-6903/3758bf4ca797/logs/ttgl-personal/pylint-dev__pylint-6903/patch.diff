@@ -1,0 +1,65 @@
+diff --git a/pylint/lint/run.py b/pylint/lint/run.py
+index a7e5d55..90943f1 100644
+--- a/pylint/lint/run.py
++++ b/pylint/lint/run.py
+@@ -52,12 +52,12 @@ def _query_cpu() -> int | None:
+         with open("/sys/fs/cgroup/cpu/cpu.cfs_period_us", encoding="utf-8") as file:
+             cpu_period = int(file.read().rstrip())
+         # Divide quota by period and you should get num of allotted CPU to the container, rounded down if fractional.
+-        avail_cpu = int(cpu_quota / cpu_period)
++        avail_cpu = max(1, int(cpu_quota / cpu_period))
+     elif Path("/sys/fs/cgroup/cpu/cpu.shares").is_file():
+         with open("/sys/fs/cgroup/cpu/cpu.shares", encoding="utf-8") as file:
+             cpu_shares = int(file.read().rstrip())
+         # For AWS, gives correct value * 1024.
+-        avail_cpu = int(cpu_shares / 1024)
++        avail_cpu = max(1, int(cpu_shares / 1024))
+     return avail_cpu
+ 
+ 
+diff --git a/tests/lint/test_run.py b/tests/lint/test_run.py
+new file mode 100644
+index 0000000..3f5f05c
+--- /dev/null
++++ b/tests/lint/test_run.py
+@@ -0,0 +1,40 @@
++# Licensed under the GPL: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
++# For details: https://github.com/PyCQA/pylint/blob/main/LICENSE
++# Copyright (c) https://github.com/PyCQA/pylint/blob/main/CONTRIBUTORS.txt
++
++from pathlib import Path
++
++import pytest
++
++from pylint.lint.run import _query_cpu
++
++
++@pytest.mark.parametrize(
++    ("quota", "period", "shares"),
++    [("-1", "100000", "2"), ("50000", "100000", "1024")],
++)
++def test_query_cpu_never_returns_zero(monkeypatch, quota, period, shares):
++    contents = {
++        "/sys/fs/cgroup/cpu/cpu.cfs_quota_us": quota,
++        "/sys/fs/cgroup/cpu/cpu.cfs_period_us": period,
++        "/sys/fs/cgroup/cpu/cpu.shares": shares,
++    }
++
++    monkeypatch.setattr(Path, "is_file", lambda self: str(self) in contents)
++    monkeypatch.setattr("builtins.open", lambda name, **kwargs: _FakeFile(contents[name]))
++
++    assert _query_cpu() >= 1
++
++
++class _FakeFile:
++    def __init__(self, content):
++        self.content = content
++
++    def __enter__(self):
++        return self
++
++    def __exit__(self, *_args):
++        return None
++
++    def read(self):
++        return self.content

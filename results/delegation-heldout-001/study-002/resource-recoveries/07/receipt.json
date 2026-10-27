@@ -1,0 +1,10 @@
+{
+  "next_unstarted": {
+    "instance_id": "sphinx-doc__sphinx-11510",
+    "arm": "personal"
+  },
+  "prior_completed_assignments": 25,
+  "failure_log_sha256": "aefa123d512f920c6eda39278a3fc58d8fa7f230a34d61428a3ae56aa684337d",
+  "partial_audit_sha256": "ea6b2eab6381561a9806dccbbdf1f0f30ed31eee650efde59eb90e370d8b3acf",
+  "model_invocations_repeated": 0
+}

@@ -1,0 +1,5 @@
+{
+  "status": "stopped_preserve_all_attempts_do_not_retry_blindly",
+  "error_type": "ProcessLookupError",
+  "message": "[Errno 3] No such process"
+}

@@ -143,3 +143,32 @@ This incomplete checkpoint supersedes the earlier seven-task denominator,
 without changing the frozen policy or stopping rule. The final task remains
 pending. `checkpoint-030-cost-quality.json` retains per-task costs, grades and
 source hashes; these are token-rate scenarios, not observed invoices.
+
+
+### Completed held-out comparison: eleven tasks, 33 assignments
+
+The frozen study is complete. Independent audit joins all 33 grades to exact
+patches and reconciles native per-model usage; no context-only expert tool
+violations were found. Sol resolves 9/11 (81.8%), Luna 7/11 (63.6%) and assisted
+Luna 8/11 (72.7%). Four expert consultations occur across two tasks. Assisted
+Luna rescues one standalone Luna failure, loses none of Luna's successes and
+closes half the observed two-task Sol–Luna gap. The independently attempted
+runs and missing pre-consultation snapshots preclude causal attribution.
+
+Total published-rate scenario costs are USD 1.63011920 for Sol, 0.06591400 for
+Luna and 0.13945384 for assisted Luna. Assisted savings are 91.4452%, with
+88.8889% relative accuracy retention. Both joint-target components fail. Luna
+alone saves 95.9565% but retains only 77.7778% of Sol accuracy. Assistance costs
+USD 0.07353984 more than Luna for one additional resolved case on this panel.
+These are full assigned-task controller/expert/integration model-inference
+scenarios, not observed invoices or full deployment costs. Eleven public
+historical tasks do not establish population noninferiority or reliable routing.
+
+![Completed held-out cost and quality](../../results/delegation-heldout-001/analysis-002/figures/frontier.png)
+
+The [complete results](../../results/delegation-heldout-001/analysis-002/README.md)
+and `target-95-95.json` supersede all interim denominators. Of twelve originally
+reserved cases, one invalid independent control was excluded before inference,
+without replacement; all eleven scored cases remain in this denominator.
+The prospective Pro comparison remains unscored: its initial no-op control
+stopped during environment construction before any actor or model invocation.

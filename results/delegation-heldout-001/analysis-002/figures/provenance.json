@@ -1,0 +1,87 @@
+{
+  "figure_title": "Matched live outcomes and the 95% saving / 95% retention target",
+  "records_sha256": "c4d4d2dc4fe6ccd572121a08aa9750c7a75ea0e1fe6bd3e6c2f8da87e0a8e782",
+  "script_sha256": "6bb22f9fbfcf5c812654d814c3021cf6059fbba368d2f20f4d050ffba680dd88",
+  "target_analysis_source_sha256": "7dd7f6ee120ee127e68e061e180ebd7a7f62cac9f93193f03ff2cd3d9ac5bb95",
+  "research_dependency_lock_sha256": "41b299b103c7693910436c73678ae24c968588f308b57591f8a438ea3f962539",
+  "matplotlib_version": "3.11.2",
+  "comparisons": {
+    "personal": {
+      "policy": "personal",
+      "reference": "large",
+      "paired_tasks": 11,
+      "interpretation": "Descriptive matched-panel comparison; not a powered population noninferiority test",
+      "population_noninferiority_established": false,
+      "policy_resolved": 8,
+      "reference_resolved": 9,
+      "reference_successes_lost": 1,
+      "reference_failures_rescued": 0,
+      "reference_success_retention_one_sided_95_exact_lower_bound": 0.5708644529685656,
+      "accuracy_retention_ratio": 0.8888888888888888,
+      "cost_ratio": 0.08554824702389861,
+      "model_cost_reduction_fraction": 0.9144517529761014,
+      "accuracy_difference_points": -9.090909090909093,
+      "accuracy_retention_paired_bootstrap_95_interval": [
+        0.6659090909090916,
+        1.0
+      ],
+      "cost_ratio_paired_bootstrap_95_interval": [
+        0.04105555032482817,
+        0.11580000688353174
+      ],
+      "joint_95_95_point_target_met": false,
+      "bootstrap_intervals_within_target": false,
+      "bootstrap": {
+        "samples": 10000,
+        "seed": 1729,
+        "unit": "paired task",
+        "method": "percentile; interval unavailable if any bootstrap reference denominator is zero"
+      },
+      "limitations": [
+        "Small samples and ceiling outcomes can produce degenerate bootstrap intervals; these do not prove population noninferiority.",
+        "The exact conditional bound assumes independent representative tasks; repository clustering, contamination and development selection weaken that interpretation.",
+        "Cost inherits the input accounting definition; published token-rate scenarios are not observed bills.",
+        "Development-set policy selection invalidates a held-out interpretation of the same cases."
+      ]
+    },
+    "small": {
+      "policy": "small",
+      "reference": "large",
+      "paired_tasks": 11,
+      "interpretation": "Descriptive matched-panel comparison; not a powered population noninferiority test",
+      "population_noninferiority_established": false,
+      "policy_resolved": 7,
+      "reference_resolved": 9,
+      "reference_successes_lost": 2,
+      "reference_failures_rescued": 0,
+      "reference_success_retention_one_sided_95_exact_lower_bound": 0.45035835049338985,
+      "accuracy_retention_ratio": 0.7777777777777778,
+      "cost_ratio": 0.04043507983956019,
+      "model_cost_reduction_fraction": 0.9595649201604398,
+      "accuracy_difference_points": -18.181818181818187,
+      "accuracy_retention_paired_bootstrap_95_interval": [
+        0.5,
+        1.0
+      ],
+      "cost_ratio_paired_bootstrap_95_interval": [
+        0.03429424877238842,
+        0.051701247985513676
+      ],
+      "joint_95_95_point_target_met": false,
+      "bootstrap_intervals_within_target": false,
+      "bootstrap": {
+        "samples": 10000,
+        "seed": 1729,
+        "unit": "paired task",
+        "method": "percentile; interval unavailable if any bootstrap reference denominator is zero"
+      },
+      "limitations": [
+        "Small samples and ceiling outcomes can produce degenerate bootstrap intervals; these do not prove population noninferiority.",
+        "The exact conditional bound assumes independent representative tasks; repository clustering, contamination and development selection weaken that interpretation.",
+        "Cost inherits the input accounting definition; published token-rate scenarios are not observed bills.",
+        "Development-set policy selection invalidates a held-out interpretation of the same cases."
+      ]
+    }
+  },
+  "cost_definition": "Published Codex Standard token-rate scenario; not observed billing or full deployment cost"
+}

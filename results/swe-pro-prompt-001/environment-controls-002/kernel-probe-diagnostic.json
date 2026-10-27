@@ -1,0 +1,12 @@
+{
+  "status": "probe_after_exact_image_prefetch",
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "",
+  "image": "alpine:3.23.4@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11",
+  "original_failure": "Harbor 30-second image probe did not complete; Docker credential helper was hanging; isolated public config pull succeeded",
+  "model_calls": 0,
+  "root_cause": "Docker Desktop LinuxKit 5.15.49 has NFT_FIB_IPV4 and NFT_FIB_IPV6 disabled; Harbor requires NFT_FIB_INET. Cached-image probe exits 1, so this is not solely a credential-helper pull delay.",
+  "kernel": "5.15.49-linuxkit",
+  "actor_network_requirement_relaxed": false
+}

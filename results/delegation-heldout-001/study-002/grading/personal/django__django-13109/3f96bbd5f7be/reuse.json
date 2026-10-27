@@ -1,0 +1,8 @@
+{
+  "kind": "reuse_exact_program_and_evaluator",
+  "cache_key": "ca8df2cd90c29befada0dc541db4d5b511282d1a7b5d1828474bc839091225d9",
+  "report": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/grading/small/django__django-13109/0a94c4704836/logs/ttgl-small/django__django-13109/report.json",
+  "report_sha256": "30f3c36ee4eed4afb0d067e944e1002cfb3f0f9b8e0bfd672a805eb9c8b07eaf",
+  "patch_record_sha256": "fa4ec07f2d3548688fe5c9779d5991bd0fc5781bceaa5a79267eb9af8b46e2c1",
+  "new_evaluation_executed": false
+}

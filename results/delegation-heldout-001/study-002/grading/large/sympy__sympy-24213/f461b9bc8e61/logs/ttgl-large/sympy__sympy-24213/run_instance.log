@@ -1,0 +1,89 @@
+2026-10-27 19:05:00,934 - INFO - Creating container for sympy__sympy-24213...
+2026-10-27 19:05:01,080 - INFO - Container for sympy__sympy-24213 created: 208679e068de0c3e6e0c9f6ee22fb953606c20a2a624aebef694d8e35f74e7a9
+2026-10-27 19:05:01,745 - INFO - Container for sympy__sympy-24213 started: 208679e068de0c3e6e0c9f6ee22fb953606c20a2a624aebef694d8e35f74e7a9
+2026-10-27 19:05:01,767 - INFO - Intermediate patch for sympy__sympy-24213 written to logs/evaluation/ttgl-large-sympy__sympy-24213-32c81e20-f461b9bc8e61/ttgl-large/sympy__sympy-24213/patch.diff, now applying to container...
+2026-10-27 19:05:02,418 - INFO - >>>>> Applied Patch:
+Checking patch sympy/physics/units/tests/test_quantities.py...
+warning: sympy/physics/units/tests/test_quantities.py has type 100755, expected 100644
+Checking patch sympy/physics/units/unitsystem.py...
+warning: sympy/physics/units/unitsystem.py has type 100755, expected 100644
+Applied patch sympy/physics/units/tests/test_quantities.py cleanly.
+Applied patch sympy/physics/units/unitsystem.py cleanly.
+
+2026-10-27 19:05:03,908 - INFO - Git diff before:
+diff --git a/sympy/physics/units/tests/test_quantities.py b/sympy/physics/units/tests/test_quantities.py
+index c1830ba5f7..fc31494ade 100755
+--- a/sympy/physics/units/tests/test_quantities.py
++++ b/sympy/physics/units/tests/test_quantities.py
+@@ -377,6 +377,33 @@ def test_factor_and_dimension():
+         assert (3000, Dimension(1)) == Quantity._collect_factor_and_dimension(3000)
+ 
+ 
++def test_factor_and_dimension_equivalent_addends():
++    from sympy.physics.units import acceleration, velocity
++
++    v1 = Quantity('equivalent_addends_v1')
++    SI.set_quantity_dimension(v1, velocity)
++    SI.set_quantity_scale_factor(v1, 2*meter/second)
++    a1 = Quantity('equivalent_addends_a1')
++    SI.set_quantity_dimension(a1, acceleration)
++    SI.set_quantity_scale_factor(a1, -Rational(49, 5)*meter/second**2)
++    t1 = Quantity('equivalent_addends_t1')
++    SI.set_quantity_dimension(t1, time)
++    SI.set_quantity_scale_factor(t1, 5*second)
++
++    assert SI._collect_factor_and_dimension(a1*t1 + v1)[0] == -47
++    for addends in [(a1*t1, v1), (v1, a1*t1)]:
++        factor, dim = SI._collect_factor_and_dimension(
++            Add(*addends, evaluate=False))
++        assert factor == -47
++        assert SI.get_dimension_system().equivalent_dims(dim, velocity)
++
++    factor, dim = SI._collect_factor_and_dimension(1 + v1*t1/meter)
++    assert factor == 11
++    assert SI.get_dimension_system().is_dimensionless(dim)
++
++    raises(ValueError, lambda: SI._collect_factor_and_dimension(a1 + v1))
++
++
+ @XFAIL
+ def test_factor_and_dimension_with_Abs():
+     with warns_deprecated_sympy():
+diff --git a/sympy/physics/units/unitsystem.py b/sympy/physics/units/unitsystem.py
+index a436880c4b..5705c821c2 100755
+--- a/sympy/physics/units/unitsystem.py
++++ b/sympy/physics/units/unitsystem.py
+@@ -175,7 +175,7 @@ def _collect_factor_and_dimension(self, expr):
+             for addend in expr.args[1:]:
+                 addend_factor, addend_dim = \
+                     self._collect_factor_and_dimension(addend)
+-                if dim != addend_dim:
++                if not self.get_dimension_system().equivalent_dims(dim, addend_dim):
+                     raise ValueError(
+                         'Dimension of "{}" is {}, '
+                         'but it should be {}'.format(
+2026-10-27 19:05:03,937 - INFO - Eval script for sympy__sympy-24213 written to logs/evaluation/ttgl-large-sympy__sympy-24213-32c81e20-f461b9bc8e61/ttgl-large/sympy__sympy-24213/eval.sh; copying to container...
+2026-10-27 19:05:25,537 - INFO - Test runtime: 21.11 seconds
+2026-10-27 19:05:25,570 - INFO - Test output for sympy__sympy-24213 written to logs/evaluation/ttgl-large-sympy__sympy-24213-32c81e20-f461b9bc8e61/ttgl-large/sympy__sympy-24213/test_output.txt
+2026-10-27 19:05:25,781 - INFO - Git diff after:
+diff --git a/sympy/physics/units/unitsystem.py b/sympy/physics/units/unitsystem.py
+index a436880c4b..5705c821c2 100755
+--- a/sympy/physics/units/unitsystem.py
++++ b/sympy/physics/units/unitsystem.py
+@@ -175,7 +175,7 @@ def _collect_factor_and_dimension(self, expr):
+             for addend in expr.args[1:]:
+                 addend_factor, addend_dim = \
+                     self._collect_factor_and_dimension(addend)
+-                if dim != addend_dim:
++                if not self.get_dimension_system().equivalent_dims(dim, addend_dim):
+                     raise ValueError(
+                         'Dimension of "{}" is {}, '
+                         'but it should be {}'.format(
+2026-10-27 19:05:25,787 - INFO - Git diff changed after running eval script
+2026-10-27 19:05:25,791 - INFO - Grading answer for sympy__sympy-24213...
+2026-10-27 19:05:25,831 - INFO - report: {'sympy__sympy-24213': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': True, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': ['test_issue_24211'], 'failure': []}, 'PASS_TO_PASS': {'success': ['test_str_repr', 'test_eq', 'test_convert_to', 'test_Quantity_definition', 'test_abbrev', 'test_print', 'test_Quantity_eq', 'test_add_sub', 'test_quantity_abs', 'test_check_unit_consistency', 'test_mul_div', 'test_units', 'test_issue_quart', 'test_issue_5565', 'test_find_unit', 'test_Quantity_derivative', 'test_quantity_postprocessing', 'test_factor_and_dimension', 'test_dimensional_expr_of_derivative', 'test_get_dimensional_expr_with_function', 'test_binary_information', 'test_conversion_with_2_nonstandard_dimensions', 'test_eval_subs', 'test_issue_14932', 'test_issue_14547', 'test_deprecated_quantity_methods', 'test_issue_22164', 'test_issue_22819', 'test_issue_20288', 'test_issue_24062', 'test_prefixed_property'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for sympy__sympy-24213: resolved: True
+2026-10-27 19:05:25,848 - INFO - Attempting to stop container sweb.eval.sympy__sympy-24213.ttgl-large-sympy__sympy-24213-32c81e20-f461b9bc8e61...
+2026-10-27 19:05:41,304 - INFO - Container sweb.eval.sympy__sympy-24213.ttgl-large-sympy__sympy-24213-32c81e20-f461b9bc8e61 stopped successfully.
+2026-10-27 19:05:41,308 - INFO - Attempting to remove container sweb.eval.sympy__sympy-24213.ttgl-large-sympy__sympy-24213-32c81e20-f461b9bc8e61...
+2026-10-27 19:05:41,463 - INFO - Container sweb.eval.sympy__sympy-24213.ttgl-large-sympy__sympy-24213-32c81e20-f461b9bc8e61 removed successfully.

@@ -1,0 +1,16 @@
+{
+  "next_unstarted": {
+    "instance_id": "sphinx-doc__sphinx-9320",
+    "arm": "personal"
+  },
+  "prior_completed_assignments": 15,
+  "failure_log_sha256": "ea5e9d5758a33a6644856aab0ddfa2c9f726569d0b5eeb4b0ac72d5c3a79c2e8",
+  "partial_audit_sha256": "67488ac8473efdd128ac462574c2b85b2cb216c28c0e8bf48e4e5ec8f8fe2b5a",
+  "model_invocations_repeated": 0,
+  "previous_closed_image_removal": {
+    "image_id": "sha256:139dca6eeda9c8a9f98ec7c2c87aff88b968896ac78a0fbafbb943edf29b9d69",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Error: No such image: sha256:139dca6eeda9c8a9f98ec7c2c87aff88b968896ac78a0fbafbb943edf29b9d69\n"
+  }
+}

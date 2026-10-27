@@ -1,0 +1,58 @@
+diff --git a/sklearn/tests/test_pipeline.py b/sklearn/tests/test_pipeline.py
+index fa7fa2a..4968f05 100644
+--- a/sklearn/tests/test_pipeline.py
++++ b/sklearn/tests/test_pipeline.py
+@@ -12,6 +12,7 @@ import numpy as np
+ from scipy import sparse
+ import joblib
+ 
++from sklearn._config import config_context
+ from sklearn.utils._testing import (
+     assert_allclose,
+     assert_array_equal,
+@@ -1620,6 +1621,29 @@ def test_feature_union_set_output():
+     assert_array_equal(X_trans.index, X_test.index)
+ 
+ 
++def test_feature_union_set_output_preserves_aggregated_index():
++    """Pandas output preserves the index when a transformer aggregates rows."""
++    pd = pytest.importorskip("pandas")
++
++    class Aggregator(BaseEstimator, TransformerMixin):
++        def fit(self, X, y=None):
++            return self
++
++        def transform(self, X):
++            return X["value"].groupby(X["date"]).sum()
++
++    index = pd.date_range("2020-01-01", periods=96, freq="h")
++    X = pd.DataFrame({"value": 10, "date": index.date}, index=index)
++    union = FeatureUnion([("aggregate", Aggregator())])
++
++    with config_context(transform_output="pandas"):
++        result = union.fit_transform(X)
++
++    assert isinstance(result, pd.DataFrame)
++    assert result.shape == (4, 1)
++    assert_array_equal(result.index, pd.Index(index.date).unique())
++
++
+ def test_feature_union_getitem():
+     """Check FeatureUnion.__getitem__ returns expected results."""
+     scalar = StandardScaler()
+diff --git a/sklearn/utils/_set_output.py b/sklearn/utils/_set_output.py
+index 335773c..aa63fad 100644
+--- a/sklearn/utils/_set_output.py
++++ b/sklearn/utils/_set_output.py
+@@ -55,7 +55,10 @@ def _wrap_in_pandas_container(
+     if isinstance(data_to_wrap, pd.DataFrame):
+         if columns is not None:
+             data_to_wrap.columns = columns
+-        if index is not None:
++        # Preserve the index when a transformer changes the number of samples,
++        # for example by aggregating rows. Otherwise, align the output index
++        # with the input as for regular sample-preserving transformers.
++        if index is not None and len(data_to_wrap) == len(index):
+             data_to_wrap.index = index
+         return data_to_wrap
+ 

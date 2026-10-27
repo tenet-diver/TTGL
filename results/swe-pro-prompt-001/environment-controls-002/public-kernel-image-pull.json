@@ -1,0 +1,8 @@
+{
+  "image": "alpine:3.23.4@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11",
+  "isolated_public_config": "/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/ttgl-public-image-rxmm9_g9",
+  "returncode": 0,
+  "stdout": "docker.io/library/alpine@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11: Pulling from library/alpine\n6a0ac1617861: Pulling fs layer\n6a0ac1617861: Verifying Checksum\n6a0ac1617861: Download complete\n6a0ac1617861: Pull complete\nDigest: sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11\nStatus: Downloaded newer image for alpine@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11\ndocker.io/library/alpine:3.23.4@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11\n",
+  "stderr": "",
+  "model_calls": 0
+}

@@ -1,0 +1,16 @@
+{
+  "next_unstarted": {
+    "instance_id": "sympy__sympy-21847",
+    "arm": "small"
+  },
+  "prior_completed_assignments": 30,
+  "failure_log_sha256": "a529390a54bb0f07dd036194d4d6552e2bb29e256af944fac9c1f232cf2a4325",
+  "partial_audit_sha256": "d1ac18ee65508e5bba5c105af2a5afbb174f458029a64b1abc03aa9ad4204c03",
+  "model_invocations_repeated": 0,
+  "previous_closed_image_removal": {
+    "image_id": "sha256:f07d510a95590299d5ce8c02d761a33704c82e65f6b67e582f383fefe015e27b",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Error: No such image: sha256:f07d510a95590299d5ce8c02d761a33704c82e65f6b67e582f383fefe015e27b\n"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "next_unstarted": {
+    "instance_id": "django__django-10999",
+    "arm": "small"
+  },
+  "prior_completed_assignments": 23,
+  "failure_log_sha256": "29081092c239f4b3f8d6c459c657778563cb6ed7b1e37e05a48d46fdcda334c9",
+  "partial_audit_sha256": "dfcb516c315c0b8f4f50eb02fa75d4faa1e8cbe073410951f8d5fe0a9c3c4160",
+  "model_invocations_repeated": 0
+}

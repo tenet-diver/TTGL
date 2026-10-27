@@ -1,0 +1,16 @@
+{
+  "next_unstarted": {
+    "instance_id": "django__django-13109",
+    "arm": "small"
+  },
+  "prior_completed_assignments": 27,
+  "failure_log_sha256": "59eda2105aa2c11a0a1d3ccabe2644ebbee272fd0e0403ff3c100c93e32e6172",
+  "partial_audit_sha256": "3a8837a7b11622934a456a167efd7c98f8ed30dccdbe5676f3f52696d9d262da",
+  "model_invocations_repeated": 0,
+  "previous_closed_image_removal": {
+    "image_id": "sha256:ef65c93f68bbc3d40e35f0ec753a359e8de0e5e710fa3225aab2f629131b2807",
+    "returncode": 0,
+    "stdout": "Untagged: swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-11510@sha256:01bf15e77e5d0f6988c8107bf81a5091900228ca0d160bf677d9b07dd17e1a0f\nDeleted: sha256:ef65c93f68bbc3d40e35f0ec753a359e8de0e5e710fa3225aab2f629131b2807\nDeleted: sha256:277cb1b2ec81bf84c47b1936957df8c9d02f4b5a631d93c9c417d375fc345e68\nDeleted: sha256:c6b56385fd6c2daeb04a77ddf8c1b85ae0b3dadba0e73156bedc96076ce4f946\nDeleted: sha256:39be912ab04051c20d0281e42ee8dafffe91052f1db86aeaf3633aaad758572e\nDeleted: sha256:a753618e2b035e8ec0eda5c7a3834465664609cf673b1251a1bf3931c1ff9092\nDeleted: sha256:5b7029337af7d84be68ff1ee15c4b80534708a5be1c1c46697f5cd68d475a66c\nDeleted: sha256:93c24d52f8b7c46e749f38dbf342591e533d3674646e3bc645cfca0a2a1864ab\nDeleted: sha256:25c1378d516bc3fc926ee2becf14a6a2382554d3d55e6ada4475e4bae8ab3004\nDeleted: sha256:b6694234e209028c566838b742bca07bcf5d99c7c04d0e2e6e6dd99ac2bd31a4\nDeleted: sha256:8a0e86648282c63cffc267e97f30f980fec946c7c104d65707a17f0fe89a1398\nDeleted: sha256:beb59027b96ddbf30ac9c80b527668fe7011f4f553fe83f5e59199e9a84fb5ca\n",
+    "stderr": ""
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-personal-sphinx-doc__sphinx-11510-58a6a554-78450092aa37",
+  "prediction_sha256": "1fd3a79f6b461717e914bfab82085dcc3b81e9d160d6da44f2d367f9b9b0be84",
+  "model_patch_sha256": "58a6a554967f55ece7cd44bbddb19a2173ec68c7cfa74a85bf38591e94e4bdb3",
+  "patch_record_sha256": "a886a327da2fc666758dcedb0c01be3fb544f7c9303dedcec8238f35117b5cdd",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "7c0eba1c769a232d18b3802ac03b11972cddcd583c1178abc807d98c9d97def3",
+  "timeout_seconds": 1200
+}

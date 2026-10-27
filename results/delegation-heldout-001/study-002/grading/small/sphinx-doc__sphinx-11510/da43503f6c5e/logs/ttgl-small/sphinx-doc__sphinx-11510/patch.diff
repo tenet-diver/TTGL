@@ -1,0 +1,34 @@
+diff --git a/sphinx/directives/other.py b/sphinx/directives/other.py
+index 19f7c0a..b99d88d 100644
+--- a/sphinx/directives/other.py
++++ b/sphinx/directives/other.py
+@@ -376,7 +376,28 @@ class Include(BaseInclude, SphinxDirective):
+         rel_filename, filename = self.env.relfn2path(self.arguments[0])
+         self.arguments[0] = filename
+         self.env.note_included(filename)
+-        return super().run()
++
++        # Docutils inserts reStructuredText includes directly into the current
++        # state machine, bypassing SphinxStandaloneReader.read_source().  Apply
++        # source-read to that input before it is parsed as well.
++        insert_input = self.state_machine.insert_input
++
++        def insert_input_with_source_read(lines: list[str], source: str) -> None:
++            if source == filename:
++                end_marker = lines[-1:]
++                included_source = '\n'.join(lines[:-1])
++                source_arg = [included_source]
++                self.env.events.emit('source-read', self.env.docname, source_arg)
++                lines = source_arg[0].splitlines()
++                if end_marker:
++                    lines.extend(end_marker)
++            insert_input(lines, source)
++
++        self.state_machine.insert_input = insert_input_with_source_read
++        try:
++            return super().run()
++        finally:
++            self.state_machine.insert_input = insert_input
+ 
+ 
+ def setup(app: Sphinx) -> dict[str, Any]:

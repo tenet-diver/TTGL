@@ -1,0 +1,10 @@
+{
+  "instance_id": "sphinx-doc__sphinx-11510",
+  "model_name_or_path": "ttgl-small",
+  "model_patch": "diff --git a/sphinx/directives/other.py b/sphinx/directives/other.py\nindex 19f7c0a..b99d88d 100644\n--- a/sphinx/directives/other.py\n+++ b/sphinx/directives/other.py\n@@ -376,7 +376,28 @@ class Include(BaseInclude, SphinxDirective):\n         rel_filename, filename = self.env.relfn2path(self.arguments[0])\n         self.arguments[0] = filename\n         self.env.note_included(filename)\n-        return super().run()\n+\n+        # Docutils inserts reStructuredText includes directly into the current\n+        # state machine, bypassing SphinxStandaloneReader.read_source().  Apply\n+        # source-read to that input before it is parsed as well.\n+        insert_input = self.state_machine.insert_input\n+\n+        def insert_input_with_source_read(lines: list[str], source: str) -> None:\n+            if source == filename:\n+                end_marker = lines[-1:]\n+                included_source = '\\n'.join(lines[:-1])\n+                source_arg = [included_source]\n+                self.env.events.emit('source-read', self.env.docname, source_arg)\n+                lines = source_arg[0].splitlines()\n+                if end_marker:\n+                    lines.extend(end_marker)\n+            insert_input(lines, source)\n+\n+        self.state_machine.insert_input = insert_input_with_source_read\n+        try:\n+            return super().run()\n+        finally:\n+            self.state_machine.insert_input = insert_input\n \n \n def setup(app: Sphinx) -> dict[str, Any]:\n",
+  "manifest_sha256": "9551e37d73968b51a5800c591db5ea527787be99f4dd56f645d3cdbfb3db8710",
+  "patch_sha256": "872a78fe6b765ec6587717e64ed70e8e2b069f8d3e2b687947028a0a67b8ff60",
+  "status": "completed_ungraded",
+  "preparation_seconds": 9.94423242204357,
+  "assignment_wall_seconds": 73.78090357698966
+}

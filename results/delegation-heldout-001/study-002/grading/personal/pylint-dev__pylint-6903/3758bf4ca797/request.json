@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-personal-pylint-dev__pylint-6903-8d1c2a2d-3758bf4ca797",
+  "prediction_sha256": "d3b82eaa9a2ab9103f2ece90930effcb2c38c2cdeeae825a1e9e675f725b2266",
+  "model_patch_sha256": "8d1c2a2d2b11649d0986b528ab49c58f664f9ad2a76ea588c733eb9b0ce2dab1",
+  "patch_record_sha256": "c9ded659978de5cb06c218d0b9a80884ececfd74ee86488379dbaa093f95c312",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "7c0eba1c769a232d18b3802ac03b11972cddcd583c1178abc807d98c9d97def3",
+  "timeout_seconds": 1200
+}

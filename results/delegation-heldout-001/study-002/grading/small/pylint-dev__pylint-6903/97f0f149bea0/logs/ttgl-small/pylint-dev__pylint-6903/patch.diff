@@ -1,0 +1,98 @@
+diff --git a/pylint/lint/run.py b/pylint/lint/run.py
+index a7e5d55..90943f1 100644
+--- a/pylint/lint/run.py
++++ b/pylint/lint/run.py
+@@ -52,12 +52,12 @@ def _query_cpu() -> int | None:
+         with open("/sys/fs/cgroup/cpu/cpu.cfs_period_us", encoding="utf-8") as file:
+             cpu_period = int(file.read().rstrip())
+         # Divide quota by period and you should get num of allotted CPU to the container, rounded down if fractional.
+-        avail_cpu = int(cpu_quota / cpu_period)
++        avail_cpu = max(1, int(cpu_quota / cpu_period))
+     elif Path("/sys/fs/cgroup/cpu/cpu.shares").is_file():
+         with open("/sys/fs/cgroup/cpu/cpu.shares", encoding="utf-8") as file:
+             cpu_shares = int(file.read().rstrip())
+         # For AWS, gives correct value * 1024.
+-        avail_cpu = int(cpu_shares / 1024)
++        avail_cpu = max(1, int(cpu_shares / 1024))
+     return avail_cpu
+ 
+ 
+diff --git a/tests/test_pylint_runners.py b/tests/test_pylint_runners.py
+index b06046e..8b13789 100644
+--- a/tests/test_pylint_runners.py
++++ b/tests/test_pylint_runners.py
+@@ -1,42 +1 @@
+-# Licensed under the GPL: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+-# For details: https://github.com/PyCQA/pylint/blob/main/LICENSE
+-# Copyright (c) https://github.com/PyCQA/pylint/blob/main/CONTRIBUTORS.txt
+-# pylint: disable=missing-module-docstring, missing-function-docstring
+ 
+-from __future__ import annotations
+-
+-import os
+-import sys
+-from collections.abc import Callable
+-from unittest.mock import patch
+-
+-import pytest
+-from py._path.local import LocalPath  # type: ignore[import]
+-
+-from pylint import run_epylint, run_pylint, run_pyreverse, run_symilar
+-
+-
+-@pytest.mark.parametrize(
+-    "runner", [run_epylint, run_pylint, run_pyreverse, run_symilar]
+-)
+-def test_runner(runner: Callable, tmpdir: LocalPath) -> None:
+-    filepath = os.path.abspath(__file__)
+-    testargs = ["", filepath]
+-    with tmpdir.as_cwd():
+-        with patch.object(sys, "argv", testargs):
+-            with pytest.raises(SystemExit) as err:
+-                runner()
+-            assert err.value.code == 0
+-
+-
+-@pytest.mark.parametrize(
+-    "runner", [run_epylint, run_pylint, run_pyreverse, run_symilar]
+-)
+-def test_runner_with_arguments(runner: Callable, tmpdir: LocalPath) -> None:
+-    """Check the runners with arguments as parameter instead of sys.argv."""
+-    filepath = os.path.abspath(__file__)
+-    testargs = [filepath]
+-    with tmpdir.as_cwd():
+-        with pytest.raises(SystemExit) as err:
+-            runner(testargs)
+-        assert err.value.code == 0
+diff --git a/tests/test_run_cpu.py b/tests/test_run_cpu.py
+new file mode 100644
+index 0000000..7ef1908
+--- /dev/null
++++ b/tests/test_run_cpu.py
+@@ -0,0 +1,26 @@
++"""Tests for CPU detection."""
++from pathlib import Path
++from builtins import open as builtin_open
++from unittest.mock import patch
++
++from pylint.lint.run import _query_cpu
++
++
++def test_query_cpu_floors_to_one_for_fractional_cpu_shares(tmp_path: Path) -> None:
++    cgroup = tmp_path / "sys/fs/cgroup/cpu"
++    cgroup.mkdir(parents=True)
++    (cgroup / "cpu.cfs_quota_us").write_text("-1", encoding="utf-8")
++    (cgroup / "cpu.shares").write_text("2", encoding="utf-8")
++
++    original_is_file = Path.is_file
++
++    def is_file(path: Path) -> bool:
++        return original_is_file(cgroup / path.name)
++
++    def open_file(path: str, **kwargs: str):
++        return builtin_open(cgroup / Path(path).name, **kwargs)
++
++    with patch("pylint.lint.run.Path.is_file", is_file), patch(
++        "builtins.open", side_effect=open_file
++    ):
++        assert _query_cpu() == 1

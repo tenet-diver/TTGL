@@ -1,0 +1,96 @@
+{
+  "schema_version": 3,
+  "run_id": "36176fee-348e-4ca7-af28-941821ce8a03",
+  "task_id": "django__django-13109",
+  "identity_sha256": "03e8f39ebce757cfcd8773b307a2462f4ba6f1f06e5ed63014e740b2fccea130",
+  "created_at": "2026-10-27T21:10:34.942973+00:00",
+  "status": "completed_ungraded",
+  "deadline_epoch": 1793136334.943032,
+  "config": {
+    "condition": "large",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "phase": "controller",
+  "selected_model": "gpt-6.1-sol",
+  "controller_thread_id": "01a17f33-5e5d-71a2-ba4a-415ed0741dc2",
+  "expert_thread_id": null,
+  "turns": 1,
+  "expert_calls": 0,
+  "inflight": null,
+  "next_prompt": "Solve the software-engineering task in the assigned workspace. Inspect relevant code, make the necessary changes, execute available checks, and report what you verified. Respect the user's editable memory and constraints. Do not read hidden evaluator files, other experiment workspaces, reference solutions, or parent research artifacts. Do not access external services or launch other agents yourself. Only edit the listed allowed paths. Path scope is an experiment instruction, not an OS security boundary.\n\nTask: ForeignKey.validate() should validate using the base manager.\nDescription\n\t\nForeignKey.validate() should validate using the base manager instead of the default manager.\nConsider the models:\nclass ArticleManager(models.Manage):\n\tdef get_queryset(self):\n\t\tqs = super().get_queryset()\n\t\treturn qs.filter(archived=False)\nclass Article(models.Model):\n\ttitle = models.CharField(max_length=100)\n\tarchived = models.BooleanField(default=False)\n\t# Don't include archived articles by default.\n\tobjects = ArticleManager()\nclass FavoriteAricles(models.Model):\n\tarticle = models.ForeignKey(Article, on_delete=models.CASCADE)\nIn the example, now consider a form that allows users to pick a favorite article including archived articles.\nclass FavoriteAriclesForm(forms.ModelForm):\n\tclass Meta:\n\t\tmodel = FavoriteArticle\n\t\tfields = '__all__'\n\tdef __init__(self, *args, **kwargs):\n\t\tsuper().__init__(*args, **kwargs)\n\t\t# Use the base manager instead of the default manager to allow archived articles.\n\t\tself.fields['article'].queryset = Article._base_manager.all()\nThe above form will never validate as True when a user selects an archived article. This is because the ForeignKey validation always uses _default_manager instead of _base_manager. The user facing error message is \"article instance with id 123 does not exist.\" (quite confusing to typical users). The code for this validation is here:\n​https://github.com/django/django/blob/94f63b926fd32d7a7b6e2591ef72aa8f040f25cc/django/db/models/fields/related.py#L917-L919\nThe FavoriteAriclesForm is specifically designed to use a different manager, but the ForeignKey validation makes this difficult.\nIn this example scenario, it is not acceptable to change the model's default manager as the default should avoid archived articles in other typical scenarios.\nSuggested solution: the ForeignKey validation should use the _base_manager instead which does not include the default filters.\n\n\nRepair this repository at its assigned base. Preserve existing tests; you may add tests. Do not commit, change HEAD, retrieve upstream fixes, or access benchmark data, evaluator artifacts, or other workers. Report unavailable test dependencies honestly.\nAllowed paths: [\".\"]\nEditable user memory (same initial content in every condition): []\nYou are the sole solving agent. Return action complete when finished.\nReturn the requested JSON schema. Use empty question/context on completion.",
+  "usage": {
+    "input_tokens": 146666,
+    "cached_input_tokens": 125056,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1524,
+    "reasoning_output_tokens": 122
+  },
+  "usage_complete": {
+    "input_tokens": true,
+    "cached_input_tokens": true,
+    "cache_write_input_tokens": true,
+    "output_tokens": true,
+    "reasoning_output_tokens": true
+  },
+  "usage_threads": {
+    "01a17f33-5e5d-71a2-ba4a-415ed0741dc2": {
+      "model": "gpt-6.1-sol",
+      "scope": "thread_cumulative",
+      "last_snapshot": {
+        "input_tokens": 146666,
+        "cached_input_tokens": 125056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1524,
+        "reasoning_output_tokens": 122
+      }
+    }
+  },
+  "usage_by_model": {
+    "gpt-6.1-sol": {
+      "observed_partial": {
+        "input_tokens": 146666,
+        "cached_input_tokens": 125056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1524,
+        "reasoning_output_tokens": 122
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "elapsed_seconds": 58.92313639202621,
+  "tool_failures": 2,
+  "summary": "Changed ForeignKey.validate() to use _base_manager. Added regression tests covering model validation, customized ModelForm querysets, and rejection of missing related rows. Confirmed both regressions fail before the fix. Afterward, 657 tests passed with 5 skipped across many_to_one, model_fields, model_forms, and validation. git diff --check passed. No commits made.",
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "1d4213bb5cb95525518a924667df2afd177b392e9ca87e17ec173e9f4d651a27",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d",
+    "controller_policy": {
+      "mode": "fallback",
+      "source_sha256": "bf163122b4c9769dbec7ef0c9759fc5e07a4453dc6906f75c31dfa41d6eee707",
+      "prompts_sha256": {
+        "controller-v2-common.txt": "bcab59483071803bd76c6a2125c4892771bafb3f3845b151494732f1b905fd23",
+        "controller-v2-delegation.txt": "97fa0f26f6477d16ad94e130d0ae33b9909da26598fe72fd9178513f330e568b",
+        "controller-v2-fallback.txt": "b0e31632e6796b582a7982325aca364419cbeeeaa309224b47eae2ccce8a4724"
+      }
+    }
+  }
+}

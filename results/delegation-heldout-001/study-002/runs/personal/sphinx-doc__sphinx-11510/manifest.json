@@ -1,0 +1,123 @@
+{
+  "schema_version": 3,
+  "run_id": "d39576ba-645b-4454-baf7-f426a33c8206",
+  "task_id": "sphinx-doc__sphinx-11510",
+  "condition": "personal",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-27T20:51:03.681026+00:00",
+  "finished_at": "2026-10-27T20:53:43.634251+00:00",
+  "identity_sha256": "c84d1a65865724357afdab40c66bf5d154f5ecff190cb113b4452a6615aa49d8",
+  "config": {
+    "condition": "personal",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "1d4213bb5cb95525518a924667df2afd177b392e9ca87e17ec173e9f4d651a27",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d",
+    "controller_policy": {
+      "mode": "fallback",
+      "source_sha256": "bf163122b4c9769dbec7ef0c9759fc5e07a4453dc6906f75c31dfa41d6eee707",
+      "prompts_sha256": {
+        "controller-v2-common.txt": "bcab59483071803bd76c6a2125c4892771bafb3f3845b151494732f1b905fd23",
+        "controller-v2-delegation.txt": "97fa0f26f6477d16ad94e130d0ae33b9909da26598fe72fd9178513f330e568b",
+        "controller-v2-fallback.txt": "b0e31632e6796b582a7982325aca364419cbeeeaa309224b47eae2ccce8a4724"
+      }
+    }
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 5,
+  "expert_calls": 2,
+  "elapsed_seconds": 159.81736983999144,
+  "controller_thread_id": "01a17f21-7edf-72f2-8d2d-3ba7a2693e60",
+  "expert_thread_id": "01a17f21-d91c-7091-ad98-ee5dbb1fef99",
+  "usage": {
+    "input_tokens": 577274,
+    "cached_input_tokens": 517376,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4777,
+    "reasoning_output_tokens": 1433
+  },
+  "observed_usage_partial": {
+    "input_tokens": 577274,
+    "cached_input_tokens": 517376,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4777,
+    "reasoning_output_tokens": 1433
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 554589,
+        "cached_input_tokens": 506624,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3918,
+        "reasoning_output_tokens": 1044
+      },
+      "observed_partial": {
+        "input_tokens": 554589,
+        "cached_input_tokens": 506624,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3918,
+        "reasoning_output_tokens": 1044
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    },
+    "gpt-6.1-sol": {
+      "usage": {
+        "input_tokens": 22685,
+        "cached_input_tokens": 10752,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 859,
+        "reasoning_output_tokens": 389
+      },
+      "observed_partial": {
+        "input_tokens": 22685,
+        "cached_input_tokens": 10752,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 859,
+        "reasoning_output_tokens": 389
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 3,
+  "failure_type": null,
+  "summary": "Updated `Include.run()` to emit `source-read` for ordinary reStructuredText included content while preserving docutils’ synthetic end marker and restoring the original insertion method in `finally`. Added a build regression checking that replacement appears in both the included and parent text. The insertion hook does not cover `:literal:`, `:code:`, or `:parser:` includes. Verified with `pytest -q tests/test_directive_other.py` (8 passed) and `git diff --check`.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "7c30d458025d911e8cf9b67f0c80376a74aed5d3e6091ef16d7845f473234881",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

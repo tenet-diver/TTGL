@@ -1,0 +1,10 @@
+{
+  "instance_id": "django__django-13109",
+  "model_name_or_path": "ttgl-small",
+  "model_patch": "diff --git a/django/db/models/fields/related.py b/django/db/models/fields/related.py\nindex d517d72..c2aea9c 100644\n--- a/django/db/models/fields/related.py\n+++ b/django/db/models/fields/related.py\n@@ -914,7 +914,7 @@ class ForeignKey(ForeignObject):\n             return\n \n         using = router.db_for_read(self.remote_field.model, instance=model_instance)\n-        qs = self.remote_field.model._default_manager.using(using).filter(\n+        qs = self.remote_field.model._base_manager.using(using).filter(\n             **{self.remote_field.field_name: value}\n         )\n         qs = qs.complex_filter(self.get_limit_choices_to())\n",
+  "manifest_sha256": "b3ef405f08886cadb48b46ee033a628fe63928fb921b7adcb52df7409b0f9ad3",
+  "patch_sha256": "f18ffccdb92fc4575c8966cb1092684c9157054f9a4389fa9108d2c3781208eb",
+  "status": "completed_ungraded",
+  "preparation_seconds": 257.8784781509312,
+  "assignment_wall_seconds": 299.4480043579824
+}

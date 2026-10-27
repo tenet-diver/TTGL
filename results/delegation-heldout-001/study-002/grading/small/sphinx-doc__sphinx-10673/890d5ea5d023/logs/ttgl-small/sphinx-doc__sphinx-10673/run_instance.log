@@ -1,0 +1,205 @@
+2026-10-27 19:41:56,573 - INFO - Creating container for sphinx-doc__sphinx-10673...
+2026-10-27 19:41:56,714 - INFO - Container for sphinx-doc__sphinx-10673 created: cba97722f2736300b92944a56ae05826167491ba40806addedd315316558b2d6
+2026-10-27 19:41:57,407 - INFO - Container for sphinx-doc__sphinx-10673 started: cba97722f2736300b92944a56ae05826167491ba40806addedd315316558b2d6
+2026-10-27 19:41:57,427 - INFO - Intermediate patch for sphinx-doc__sphinx-10673 written to logs/evaluation/ttgl-small-sphinx-doc__sphinx-10673-c2b2d724-890d5ea5d023/ttgl-small/sphinx-doc__sphinx-10673/patch.diff, now applying to container...
+2026-10-27 19:41:58,125 - INFO - >>>>> Applied Patch:
+Checking patch sphinx/directives/other.py...
+Checking patch sphinx/environment/adapters/toctree.py...
+Applied patch sphinx/directives/other.py cleanly.
+Applied patch sphinx/environment/adapters/toctree.py cleanly.
+
+2026-10-27 19:41:59,268 - INFO - Git diff before:
+diff --git a/sphinx/directives/other.py b/sphinx/directives/other.py
+index 35e16e623..a525a1111 100644
+--- a/sphinx/directives/other.py
++++ b/sphinx/directives/other.py
+@@ -76,6 +76,22 @@ class TocTree(SphinxDirective):
+         ret.append(wrappernode)
+         return ret
+ 
++    def _is_generated_doc(self, docname: str) -> bool:
++        # HTML builders generate these pages without corresponding source files.
++        builder = self.env.app.builder
++        if builder.format != 'html':
++            return False
++
++        if docname == 'genindex':
++            return builder.get_builder_config('use_index', 'html')
++        if docname == 'search':
++            return builder.search
++        if docname == 'modindex':
++            indices = builder.config.html_domain_indices
++            return bool(indices is True or
++                        isinstance(indices, list) and 'py-modindex' in indices)
++        return False
++
+     def parse_content(self, toctree: addnodes.toctree) -> List[Node]:
+         suffixes = self.config.source_suffix
+ 
+@@ -118,6 +134,10 @@ class TocTree(SphinxDirective):
+                 docname = docname_join(self.env.docname, docname)
+                 if url_re.match(ref) or ref == 'self':
+                     toctree['entries'].append((title, ref))
++                elif self._is_generated_doc(docname):
++                    if docname == 'modindex':
++                        docname = 'py-modindex'
++                    toctree['entries'].append((title, docname))
+                 elif docname not in self.env.found_docs:
+                     if excluded(self.env.doc2path(docname, False)):
+                         message = __('toctree contains reference to excluded document %r')
+diff --git a/sphinx/environment/adapters/toctree.py b/sphinx/environment/adapters/toctree.py
+index 9678e3c7c..e160fcb71 100644
+--- a/sphinx/environment/adapters/toctree.py
++++ b/sphinx/environment/adapters/toctree.py
+@@ -139,6 +139,17 @@ class TocTree:
+                         item = nodes.list_item('', para)
+                         # don't show subitems
+                         toc = nodes.bullet_list('', item)
++                    elif self._is_generated_doc(ref, builder):
++                        if title is None:
++                            title = {'genindex': __('Index'),
++                                     'py-modindex': __('Module Index'),
++                                     'search': __('Search Page')}.get(ref, ref)
++                        reference = nodes.reference('', '', internal=True,
++                                                    refuri=builder.get_relative_uri(docname, ref),
++                                                    anchorname='', *[nodes.Text(title)])
++                        para = addnodes.compact_paragraph('', '', reference)
++                        item = nodes.list_item('', para)
++                        toc = nodes.bullet_list('', item)
+                     else:
+                         if ref in parents:
+                             logger.warning(__('circular toctree references '
+@@ -258,6 +269,19 @@ class TocTree:
+                     docname, refnode['refuri']) + refnode['anchorname']
+         return newnode
+ 
++    def _is_generated_doc(self, docname: str, builder: "Builder") -> bool:
++        if builder.format != 'html':
++            return False
++        if docname == 'genindex':
++            return builder.get_builder_config('use_index', 'html')
++        if docname == 'search':
++            return builder.search
++        if docname == 'py-modindex':
++            indices = builder.config.html_domain_indices
++            return bool(indices is True or
++                        isinstance(indices, list) and docname in indices)
++        return False
++
+     def get_toctree_ancestors(self, docname: str) -> List[str]:
+         parent = {}
+         for p, children in self.env.toctree_includes.items():
+2026-10-27 19:41:59,294 - INFO - Eval script for sphinx-doc__sphinx-10673 written to logs/evaluation/ttgl-small-sphinx-doc__sphinx-10673-c2b2d724-890d5ea5d023/ttgl-small/sphinx-doc__sphinx-10673/eval.sh; copying to container...
+2026-10-27 19:42:24,195 - INFO - Test runtime: 24.34 seconds
+2026-10-27 19:42:24,214 - INFO - Test output for sphinx-doc__sphinx-10673 written to logs/evaluation/ttgl-small-sphinx-doc__sphinx-10673-c2b2d724-890d5ea5d023/ttgl-small/sphinx-doc__sphinx-10673/test_output.txt
+2026-10-27 19:42:24,467 - INFO - Git diff after:
+diff --git a/sphinx/directives/other.py b/sphinx/directives/other.py
+index 35e16e623..a525a1111 100644
+--- a/sphinx/directives/other.py
++++ b/sphinx/directives/other.py
+@@ -76,6 +76,22 @@ class TocTree(SphinxDirective):
+         ret.append(wrappernode)
+         return ret
+ 
++    def _is_generated_doc(self, docname: str) -> bool:
++        # HTML builders generate these pages without corresponding source files.
++        builder = self.env.app.builder
++        if builder.format != 'html':
++            return False
++
++        if docname == 'genindex':
++            return builder.get_builder_config('use_index', 'html')
++        if docname == 'search':
++            return builder.search
++        if docname == 'modindex':
++            indices = builder.config.html_domain_indices
++            return bool(indices is True or
++                        isinstance(indices, list) and 'py-modindex' in indices)
++        return False
++
+     def parse_content(self, toctree: addnodes.toctree) -> List[Node]:
+         suffixes = self.config.source_suffix
+ 
+@@ -118,6 +134,10 @@ class TocTree(SphinxDirective):
+                 docname = docname_join(self.env.docname, docname)
+                 if url_re.match(ref) or ref == 'self':
+                     toctree['entries'].append((title, ref))
++                elif self._is_generated_doc(docname):
++                    if docname == 'modindex':
++                        docname = 'py-modindex'
++                    toctree['entries'].append((title, docname))
+                 elif docname not in self.env.found_docs:
+                     if excluded(self.env.doc2path(docname, False)):
+                         message = __('toctree contains reference to excluded document %r')
+diff --git a/sphinx/environment/adapters/toctree.py b/sphinx/environment/adapters/toctree.py
+index 9678e3c7c..e160fcb71 100644
+--- a/sphinx/environment/adapters/toctree.py
++++ b/sphinx/environment/adapters/toctree.py
+@@ -139,6 +139,17 @@ class TocTree:
+                         item = nodes.list_item('', para)
+                         # don't show subitems
+                         toc = nodes.bullet_list('', item)
++                    elif self._is_generated_doc(ref, builder):
++                        if title is None:
++                            title = {'genindex': __('Index'),
++                                     'py-modindex': __('Module Index'),
++                                     'search': __('Search Page')}.get(ref, ref)
++                        reference = nodes.reference('', '', internal=True,
++                                                    refuri=builder.get_relative_uri(docname, ref),
++                                                    anchorname='', *[nodes.Text(title)])
++                        para = addnodes.compact_paragraph('', '', reference)
++                        item = nodes.list_item('', para)
++                        toc = nodes.bullet_list('', item)
+                     else:
+                         if ref in parents:
+                             logger.warning(__('circular toctree references '
+@@ -258,6 +269,19 @@ class TocTree:
+                     docname, refnode['refuri']) + refnode['anchorname']
+         return newnode
+ 
++    def _is_generated_doc(self, docname: str, builder: "Builder") -> bool:
++        if builder.format != 'html':
++            return False
++        if docname == 'genindex':
++            return builder.get_builder_config('use_index', 'html')
++        if docname == 'search':
++            return builder.search
++        if docname == 'py-modindex':
++            indices = builder.config.html_domain_indices
++            return bool(indices is True or
++                        isinstance(indices, list) and docname in indices)
++        return False
++
+     def get_toctree_ancestors(self, docname: str) -> List[str]:
+         parent = {}
+         for p, children in self.env.toctree_includes.items():
+diff --git a/tests/test_environment_toctree.py b/tests/test_environment_toctree.py
+index 60a9826fd..8d5cfc0b9 100644
+--- a/tests/test_environment_toctree.py
++++ b/tests/test_environment_toctree.py
+@@ -346,3 +346,17 @@ def test_get_toctree_for_includehidden(app):
+ 
+     assert_node(toctree[2],
+                 [bullet_list, list_item, compact_paragraph, reference, "baz"])
++
++
++@pytest.mark.sphinx('xml', testroot='toctree-index')
++def test_toctree_index(app):
++    app.build()
++    toctree = app.env.tocs['index']
++    assert_node(toctree,
++                [bullet_list, ([list_item, (compact_paragraph,  # [0][0]
++                                            [bullet_list, (addnodes.toctree,  # [0][1][0]
++                                                           addnodes.toctree)])])])  # [0][1][1]
++    assert_node(toctree[0][1][1], addnodes.toctree,
++                caption="Indices", glob=False, hidden=False,
++                titlesonly=False, maxdepth=-1, numbered=0,
++                entries=[(None, 'genindex'), (None, 'modindex'), (None, 'search')])
+2026-10-27 19:42:24,473 - INFO - Git diff changed after running eval script
+2026-10-27 19:42:24,478 - INFO - Grading answer for sphinx-doc__sphinx-10673...
+2026-10-27 19:42:24,522 - INFO - report: {'sphinx-doc__sphinx-10673': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': False, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': [], 'failure': ['tests/test_environment_toctree.py::test_toctree_index']}, 'PASS_TO_PASS': {'success': ['tests/test_environment_toctree.py::test_process_doc', 'tests/test_environment_toctree.py::test_glob', 'tests/test_environment_toctree.py::test_get_toc_for', 'tests/test_environment_toctree.py::test_get_toc_for_only', 'tests/test_environment_toctree.py::test_get_toc_for_tocdepth', 'tests/test_environment_toctree.py::test_get_toctree_for', 'tests/test_environment_toctree.py::test_get_toctree_for_collapse', 'tests/test_environment_toctree.py::test_get_toctree_for_maxdepth', 'tests/test_environment_toctree.py::test_get_toctree_for_includehidden'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for sphinx-doc__sphinx-10673: resolved: False
+2026-10-27 19:42:24,543 - INFO - Attempting to stop container sweb.eval.sphinx-doc__sphinx-10673.ttgl-small-sphinx-doc__sphinx-10673-c2b2d724-890d5ea5d023...
+2026-10-27 19:42:39,946 - INFO - Container sweb.eval.sphinx-doc__sphinx-10673.ttgl-small-sphinx-doc__sphinx-10673-c2b2d724-890d5ea5d023 stopped successfully.
+2026-10-27 19:42:39,950 - INFO - Attempting to remove container sweb.eval.sphinx-doc__sphinx-10673.ttgl-small-sphinx-doc__sphinx-10673-c2b2d724-890d5ea5d023...
+2026-10-27 19:42:40,170 - INFO - Container sweb.eval.sphinx-doc__sphinx-10673.ttgl-small-sphinx-doc__sphinx-10673-c2b2d724-890d5ea5d023 removed successfully.

@@ -1,0 +1,10 @@
+{
+  "instance_id": "sphinx-doc__sphinx-9320",
+  "model_name_or_path": "ttgl-personal",
+  "model_patch": "diff --git a/sphinx/cmd/quickstart.py b/sphinx/cmd/quickstart.py\nindex a40a210..f029a2b 100644\n--- a/sphinx/cmd/quickstart.py\n+++ b/sphinx/cmd/quickstart.py\n@@ -223,7 +223,7 @@ def ask_user(d: Dict) -> None:\n         print(__('sphinx-quickstart will not overwrite existing Sphinx projects.'))\n         print()\n         d['path'] = do_prompt(__('Please enter a new root path (or just Enter to exit)'),\n-                              '', is_path)\n+                              '', lambda x: x if not x else is_path(x))\n         if not d['path']:\n             sys.exit(1)\n \ndiff --git a/tests/test_quickstart.py b/tests/test_quickstart.py\nindex 94144ef..0641878 100644\n--- a/tests/test_quickstart.py\n+++ b/tests/test_quickstart.py\n@@ -92,6 +92,16 @@ def test_do_prompt_with_nonascii():\n     assert result == '\\u30c9\\u30a4\\u30c4'\n \n \n+def test_quickstart_existing_conf_exit(tempdir):\n+    (tempdir / 'conf.py').write_text('', encoding='utf-8')\n+    answers = {'Root path': str(tempdir)}\n+    qs.term_input = mock_input(answers)\n+\n+    with pytest.raises(SystemExit) as exc:\n+        qs.ask_user({})\n+    assert exc.value.code == 1\n+\n+\n def test_quickstart_defaults(tempdir):\n     answers = {\n         'Root path': tempdir,\n",
+  "manifest_sha256": "2d1d0add36f7d72b880c78129517a7d8cb9b53a3f25e1d0f5aeab52f4eafb9ec",
+  "patch_sha256": "46c0b1b383dd7198ece2f19075681e8cf08127a3d281b26febd76b0b67af51bd",
+  "status": "completed_ungraded",
+  "preparation_seconds": 10.93943524605129,
+  "assignment_wall_seconds": 68.57441996107809
+}

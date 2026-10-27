@@ -1089,3 +1089,38 @@ saving 91.2951%, relative retention 87.5%, joint target false. Hashed per-task
 snapshot checkpoint-030-cost-quality.json and paper source updated. Treat as
 interim, never completed results; pending final block must run unchanged.
 No source mutation, model repeats, new paid services or cleanup this heartbeat.
+
+
+## Heartbeat 21:47 UTC: held-out complete; Pro environment failure isolated
+
+Native study completed all 33 assignments and supervisor exited successfully.
+analysis-002/independent-audit.json: complete_study_audit, audited=assigned=33,
+missing=[], 362 MCP events. Final quality: Luna 7/11, Sol 9/11, personal 8/11.
+Personal four expert requests/responses across two tasks, one paired rescue,
+zero lost Luna successes; closes half the Sol–Luna gap. Scenario USD totals:
+Luna .06591400, Sol 1.63011920, personal .13945384. Saving 91.4452%, relative
+retention 88.8889%, joint target FALSE. Added scenario cost versus Luna .07353984.
+Official execution records 32 plus one exact-program grade reuse; not 33 test
+executions. Native usage all reconciled. Graph inspected at full resolution.
+Paper source and README updated; generated document previews still need rebuild
+and full visual QA. No population noninferiority or causal-expert claim.
+
+Pro original no-op control failed during environment construction, before actor
+execution/model inference. Oracle did not run. Queue 77749 exited; pipeline
+44928 detected its exit and wrote first-block-003/stopped.json. No Pro model
+invocation exists and do not restart the same output directories. All attempts
+and error logs retained. Root cause: Harbor .25 requires nftables FIB INET for
+phase-varying egress; Docker Desktop LinuxKit 5.15.49 has FIB IPv4/IPv6 disabled.
+Exact cached pinned Alpine probe independently exits 1. Initial public image
+pull also hung in Docker credential helper; isolated empty Docker config pulled
+that exact image successfully without modifying credentials. This did not fix
+the kernel limitation. Receipts kernel-probe-diagnostic.json and
+public-kernel-image-pull.json in environment-controls-002.
+
+Next: preserve the public-setup/no-network-actor/public-verifier requirement.
+Evaluate maintained Docker network disconnect/reconnect as a narrowly scoped
+Harbor environment integration for this host, or an existing compatible local
+runtime; do not claim egress support or bypass the guard. Any continuation must
+be newly versioned with source bindings and new control output directories,
+retaining zero Pro model calls until actual actor-boundary/replay gates pass.
+No extra paid resources or changes to the completed frozen native run.

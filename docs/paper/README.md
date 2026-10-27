@@ -24,17 +24,14 @@ original assignments and 36 prompt-development assignments, with
 [cost–performance graphs](../../results/prompt-comparison-001/README.md).
 Improved adaptive and cheap-first prompts reached 4/4 development successes,
 matching Sol at 87.1% and 89.1% lower model-cost scenarios. These are development
-results; the held-out run is in progress after excluding one invalid independent
-control before inference. No
-assisted condition has achieved the subsequent joint 95% saving / 95% relative
-accuracy-retention target. The tables below describe older feasibility evidence.
-Generated document previews still require rebuilding and final result QA.
-
-The current [seven-task held-out interim checkpoint](../../results/delegation-heldout-001/interim-007/README.md)
-shows the first paired rescue: assisted Luna 6/7 versus Luna 5/7 and Sol 7/7,
-with two voluntary consultations on one task. It saves 92.7% versus Sol and
-retains 85.7% of Sol's accuracy, still missing 95/95. This is incomplete evidence;
-the eleven-task registered run continues without changing its policy.
+results. The completed [eleven-task held-out study](../../results/delegation-heldout-001/analysis-002/README.md)
+resolves 7/11 with Luna, 9/11 with Sol and 8/11 with assisted Luna. Routing rescues
+one Luna failure and loses no Luna success, with four expert consultations.
+Assisted savings are 91.45% and accuracy retention is 88.89%; the joint 95/95
+target fails. All 33 assignments passed independent native usage and official
+patch/grade audit. One invalid independent control was excluded before inference
+without replacement. The earlier interim checkpoints remain archived.
+Generated document previews require rebuilding and final result QA.
 
 The [verification-feedback study](../research/verification-feedback-study.md)
 adds a separately versioned policy candidate and a 12-development/24-validation

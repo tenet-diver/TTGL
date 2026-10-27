@@ -1,0 +1,77 @@
+diff --git a/CHANGES b/CHANGES
+index 7e86580..c86c71e 100644
+--- a/CHANGES
++++ b/CHANGES
+@@ -58,6 +58,8 @@ Features added
+ Bugs fixed
+ ----------
+ 
++* sphinx-quickstart: Allow Enter to exit when an existing conf.py is found
++
+ * #8872: autodoc: stacked singledispatches are wrongly rendered
+ * #8597: autodoc: a docsting having metadata only should be treated as
+   undocumented
+diff --git a/sphinx/cmd/quickstart.py b/sphinx/cmd/quickstart.py
+index a40a210..00794c9 100644
+--- a/sphinx/cmd/quickstart.py
++++ b/sphinx/cmd/quickstart.py
+@@ -90,7 +90,7 @@ class ValidationError(Exception):
+ 
+ def is_path(x: str) -> str:
+     x = path.expanduser(x)
+-    if not path.isdir(x):
++    if x and not path.isdir(x):
+         raise ValidationError(__("Please enter a valid path name."))
+     return x
+ 
+diff --git a/tests/test_quickstart.py b/tests/test_quickstart.py
+index 94144ef..ba526a5 100644
+--- a/tests/test_quickstart.py
++++ b/tests/test_quickstart.py
+@@ -92,6 +92,46 @@ def test_do_prompt_with_nonascii():
+     assert result == '\u30c9\u30a4\u30c4'
+ 
+ 
++@pytest.mark.parametrize('conf_path', ['conf.py', 'source/conf.py'])
++@pytest.mark.parametrize('answer', ['', '   '])
++def test_quickstart_existing_conf_exit(tempdir, monkeypatch, capsys, conf_path, answer):
++    conffile = tempdir / conf_path
++    conffile.parent.makedirs(exist_ok=True)
++    conffile.write_text('# existing configuration\n')
++    monkeypatch.chdir(tempdir)
++    monkeypatch.setattr(qs, 'term_input', mock_input({
++        'Please enter a new root path': answer,
++    }, needanswer=True))
++
++    with pytest.raises(SystemExit) as exc:
++        qs.main([])
++
++    assert exc.value.code == 1
++    assert 'Please enter a valid path name.' not in capsys.readouterr().out
++    assert conffile.read_text() == '# existing configuration\n'
++    assert not (tempdir / 'index.rst').exists()
++
++
++def test_quickstart_existing_conf_new_path(tempdir, monkeypatch, capsys):
++    conffile = tempdir / 'conf.py'
++    conffile.write_text('# existing configuration\n')
++    new_path = tempdir / 'new'
++    new_path.makedirs()
++    answers = iter([str(tempdir / 'missing'), str(conffile), str(new_path)])
++    monkeypatch.setattr(qs, 'term_input', lambda prompt: next(answers))
++    d = dict(qs.DEFAULTS, path=str(tempdir), project='Sphinx Test',
++             author='Test Author', version='', release='', extensions=[])
++
++    qs.ask_user(d)
++    qs.generate(d)
++
++    assert capsys.readouterr().out.count('Please enter a valid path name.') == 2
++    assert d['path'] == str(new_path)
++    assert (new_path / 'conf.py').isfile()
++    assert (new_path / 'index.rst').isfile()
++    assert conffile.read_text() == '# existing configuration\n'
++
++
+ def test_quickstart_defaults(tempdir):
+     answers = {
+         'Root path': tempdir,

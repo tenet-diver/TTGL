@@ -1,0 +1,10 @@
+{
+  "instance_id": "django__django-10999",
+  "model_name_or_path": "ttgl-large",
+  "model_patch": "diff --git a/django/utils/dateparse.py b/django/utils/dateparse.py\nindex 8d08b7d..a037758 100644\n--- a/django/utils/dateparse.py\n+++ b/django/utils/dateparse.py\n@@ -29,7 +29,7 @@ datetime_re = re.compile(\n standard_duration_re = re.compile(\n     r'^'\n     r'(?:(?P<days>-?\\d+) (days?, )?)?'\n-    r'((?:(?P<hours>-?\\d+):)(?=\\d+:\\d+))?'\n+    r'((?:(?P<hours>-?\\d+):)(?=-?\\d+:-?\\d+))?'\n     r'(?:(?P<minutes>-?\\d+):)?'\n     r'(?P<seconds>-?\\d+)'\n     r'(?:\\.(?P<microseconds>\\d{1,6})\\d{0,6})?'\ndiff --git a/tests/utils_tests/test_dateparse.py b/tests/utils_tests/test_dateparse.py\nindex 8d46427..5559bc3 100644\n--- a/tests/utils_tests/test_dateparse.py\n+++ b/tests/utils_tests/test_dateparse.py\n@@ -115,6 +115,11 @@ class DurationParseTests(unittest.TestCase):\n             ('-172800', timedelta(days=-2)),\n             ('-15:30', timedelta(minutes=-15, seconds=30)),\n             ('-1:15:30', timedelta(hours=-1, minutes=15, seconds=30)),\n+            ('1:-15:30', timedelta(hours=1, minutes=-15, seconds=30)),\n+            ('1:15:-30', timedelta(hours=1, minutes=15, seconds=-30)),\n+            ('-1:-15:-30', timedelta(hours=-1, minutes=-15, seconds=-30)),\n+            ('-1:-15:-30.1', timedelta(hours=-1, minutes=-15, seconds=-30, milliseconds=-100)),\n+            ('-4 -1:-15:-30', timedelta(days=-4, hours=-1, minutes=-15, seconds=-30)),\n             ('-30.1', timedelta(seconds=-30, milliseconds=-100)),\n         )\n         for source, expected in test_values:\n",
+  "manifest_sha256": "c8692bc71f6f4711810ce107ee6c7e0aef3a4e00db3273eb78756ce9fb7f9c47",
+  "patch_sha256": "20e2323ba21f5d6cf1afc21713f89f4c888bdcf3eb41080b783f72f3a1ddb17b",
+  "status": "completed_ungraded",
+  "preparation_seconds": 52.865698184934445,
+  "assignment_wall_seconds": 108.0075949189486
+}

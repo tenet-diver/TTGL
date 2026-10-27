@@ -1,0 +1,14 @@
+{
+  "prior_study_audit_sha256": "d9f52b50dcbb528b7fccad2bb5f28f2b31aa10f1a27097b8d3f25202023ea914",
+  "verified_clean_base_clones": [
+    "/Users/rustameynaliyev/Developer/ttgl-heldout-scored-workers-002/personal/sphinx-doc__sphinx-11510",
+    "/Users/rustameynaliyev/Developer/ttgl-heldout-scored-workers-002/large/sphinx-doc__sphinx-11510",
+    "/Users/rustameynaliyev/Developer/ttgl-heldout-scored-workers-002/small/django__django-13109",
+    "/Users/rustameynaliyev/Developer/ttgl-heldout-scored-workers-002/personal/django__django-13109",
+    "/Users/rustameynaliyev/Developer/ttgl-heldout-scored-workers-002/large/django__django-13109",
+    "/Users/rustameynaliyev/Developer/ttgl-heldout-scored-workers-002/small/sympy__sympy-21847",
+    "/Users/rustameynaliyev/Developer/ttgl-heldout-scored-workers-002/large/sympy__sympy-21847",
+    "/Users/rustameynaliyev/Developer/ttgl-heldout-scored-workers-002/personal/sympy__sympy-21847"
+  ],
+  "preserved": []
+}

@@ -1,0 +1,16 @@
+{
+  "next_unstarted": {
+    "instance_id": "django__django-10999",
+    "arm": "personal"
+  },
+  "prior_completed_assignments": 21,
+  "failure_log_sha256": "a529390a54bb0f07dd036194d4d6552e2bb29e256af944fac9c1f232cf2a4325",
+  "partial_audit_sha256": "61dcbd73c9ec4b9af7d3e5ad0fde007d70d05c1f7b8bd57ab7fc6a8a9f15215c",
+  "model_invocations_repeated": 0,
+  "previous_closed_image_removal": {
+    "image_id": "sha256:b02ab4992ad1ccdb85b8209499c396634cd7fead4934baae0ea3884a93bafb83",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Error: No such image: sha256:b02ab4992ad1ccdb85b8209499c396634cd7fead4934baae0ea3884a93bafb83\n"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "run_id": "ttgl-small-scikit-learn__scikit-learn-25747-dbfd8c0d-3db10b3a9f97",
+  "prediction_sha256": "eb4179b6260a5ffc26283abdbdb5ed17a9c8abaf9b4945e5a30d68add1897b56",
+  "model_patch_sha256": "dbfd8c0d0382b3ec112024404278c05bb53616e37478b90bfcf9ec1f160adf00",
+  "patch_record_sha256": "8b6f737d23f57187104ba64a3a8fc7e76107433147e60f8ca41f205630dedea7",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "dataset_sha256": "7c0eba1c769a232d18b3802ac03b11972cddcd583c1178abc807d98c9d97def3",
+  "timeout_seconds": 1200
+}

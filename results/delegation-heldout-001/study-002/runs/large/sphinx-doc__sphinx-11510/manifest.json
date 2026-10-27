@@ -1,0 +1,100 @@
+{
+  "schema_version": 3,
+  "run_id": "19baf3e9-6b61-4384-9567-25460c1fd71d",
+  "task_id": "sphinx-doc__sphinx-11510",
+  "condition": "large",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-27T20:54:46.209027+00:00",
+  "finished_at": "2026-10-27T21:01:02.650814+00:00",
+  "identity_sha256": "1d2acecadf59de9f00185e4661da7ccfd496ce4beecae3811d326d3d30828d57",
+  "config": {
+    "condition": "large",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 900,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "1d4213bb5cb95525518a924667df2afd177b392e9ca87e17ec173e9f4d651a27",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d",
+    "controller_policy": {
+      "mode": "fallback",
+      "source_sha256": "bf163122b4c9769dbec7ef0c9759fc5e07a4453dc6906f75c31dfa41d6eee707",
+      "prompts_sha256": {
+        "controller-v2-common.txt": "bcab59483071803bd76c6a2125c4892771bafb3f3845b151494732f1b905fd23",
+        "controller-v2-delegation.txt": "97fa0f26f6477d16ad94e130d0ae33b9909da26598fe72fd9178513f330e568b",
+        "controller-v2-fallback.txt": "b0e31632e6796b582a7982325aca364419cbeeeaa309224b47eae2ccce8a4724"
+      }
+    }
+  },
+  "selected_model": "gpt-6.1-sol",
+  "turns": 1,
+  "expert_calls": 0,
+  "elapsed_seconds": 376.305178754963,
+  "controller_thread_id": "01a17f24-e4b0-7262-809b-3a22c4bef082",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 1044565,
+    "cached_input_tokens": 992128,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 8763,
+    "reasoning_output_tokens": 3197
+  },
+  "observed_usage_partial": {
+    "input_tokens": 1044565,
+    "cached_input_tokens": 992128,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 8763,
+    "reasoning_output_tokens": 3197
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6.1-sol": {
+      "usage": {
+        "input_tokens": 1044565,
+        "cached_input_tokens": 992128,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8763,
+        "reasoning_output_tokens": 3197
+      },
+      "observed_partial": {
+        "input_tokens": 1044565,
+        "cached_input_tokens": 992128,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8763,
+        "reasoning_output_tokens": 3197
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 7,
+  "failure_type": null,
+  "summary": "Added and documented an include-read event for transforming included text before parsing. Extensions should connect to this event alongside source-read. Added regression coverage for HTML output, nested includes, selection options, paths, and encodings. Verified 99 targeted tests and git diff --check. Broader HTML run timed out; flake8/mypy unavailable.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "60fd2bad05314293399bad359837032ce415aff47203156e0c3ff8cdc029f0f0",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

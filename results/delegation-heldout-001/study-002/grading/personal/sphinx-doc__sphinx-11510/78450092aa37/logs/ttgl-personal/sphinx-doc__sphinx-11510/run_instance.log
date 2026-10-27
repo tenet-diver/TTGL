@@ -1,0 +1,178 @@
+2026-10-27 20:53:52,026 - INFO - Creating container for sphinx-doc__sphinx-11510...
+2026-10-27 20:53:52,183 - INFO - Container for sphinx-doc__sphinx-11510 created: 58ff726da9482fe440d8b61928ae77bd37a6c64a42da618da9f53c1d6324f8d4
+2026-10-27 20:53:52,788 - INFO - Container for sphinx-doc__sphinx-11510 started: 58ff726da9482fe440d8b61928ae77bd37a6c64a42da618da9f53c1d6324f8d4
+2026-10-27 20:53:52,807 - INFO - Intermediate patch for sphinx-doc__sphinx-11510 written to logs/evaluation/ttgl-personal-sphinx-doc__sphinx-11510-58a6a554-78450092aa37/ttgl-personal/sphinx-doc__sphinx-11510/patch.diff, now applying to container...
+2026-10-27 20:53:53,405 - INFO - >>>>> Applied Patch:
+Checking patch sphinx/directives/other.py...
+Checking patch tests/test_directive_other.py...
+Applied patch sphinx/directives/other.py cleanly.
+Applied patch tests/test_directive_other.py cleanly.
+
+2026-10-27 20:53:54,134 - INFO - Git diff before:
+diff --git a/sphinx/directives/other.py b/sphinx/directives/other.py
+index 19f7c0a8d..6d6a7287e 100644
+--- a/sphinx/directives/other.py
++++ b/sphinx/directives/other.py
+@@ -376,7 +376,35 @@ class Include(BaseInclude, SphinxDirective):
+         rel_filename, filename = self.env.relfn2path(self.arguments[0])
+         self.arguments[0] = filename
+         self.env.note_included(filename)
+-        return super().run()
++
++        # docutils inserts included reStructuredText directly into the input
++        # state machine, bypassing SphinxStandaloneReader.read_source().  Apply
++        # source-read to that text before it is parsed.  The docutils include
++        # directive appends a synthetic end-of-inclusion marker immediately
++        # before insertion; keep it outside the event so extensions cannot
++        # alter include bookkeeping.
++        if 'literal' not in self.options and 'code' not in self.options and \
++           'parser' not in self.options:
++            insert_input = self.state_machine.insert_input
++
++            def insert_included_input(lines: list[str], source: str) -> None:
++                marker = '.. end of inclusion from "%s"' % source
++                if lines and lines[-1] == marker and len(lines) >= 2 and lines[-2] == '':
++                    content = lines[:-2]
++                    text = '\n'.join(content)
++                    arg = [text]
++                    self.env.events.emit('source-read', self.env.docname, arg)
++                    lines = arg[0].splitlines()
++                    lines.extend(['', marker])
++                insert_input(lines, source)
++
++            self.state_machine.insert_input = insert_included_input
++            try:
++                return super().run()
++            finally:
++                self.state_machine.insert_input = insert_input
++        else:
++            return super().run()
+ 
+ 
+ def setup(app: Sphinx) -> dict[str, Any]:
+diff --git a/tests/test_directive_other.py b/tests/test_directive_other.py
+index f221db075..492844bc3 100644
+--- a/tests/test_directive_other.py
++++ b/tests/test_directive_other.py
+@@ -5,7 +5,7 @@ from docutils import nodes
+ 
+ from sphinx import addnodes
+ from sphinx.testing import restructuredtext
+-from sphinx.testing.util import assert_node
++from sphinx.testing.util import SphinxTestApp, assert_node
+ 
+ 
+ @pytest.mark.sphinx(testroot='toctree-glob')
+@@ -148,3 +148,23 @@ def test_toctree_twice(app):
+     assert_node(doctree[0][0],
+                 entries=[(None, 'foo'), (None, 'foo')],
+                 includefiles=['foo', 'foo'])
++
++
++def test_source_read_event_for_include(tmp_path):
++    (tmp_path / 'conf.py').write_text('extensions = []\n', encoding='utf8')
++    (tmp_path / 'index.rst').write_text(
++        'Test\n====\n\n.. include:: child.rst\n\n&REPLACE_ME;\n', encoding='utf8')
++    (tmp_path / 'child.rst').write_text(
++        'Child\n=====\n\n&REPLACE_ME;\n', encoding='utf8')
++    app = SphinxTestApp(srcdir=tmp_path, freshenv=True)
++    try:
++        def replace(app, docname, source):
++            source[0] = source[0].replace('&REPLACE_ME;', 'REPLACED')
++
++        app.connect('source-read', replace)
++        app.build()
++        html = (app.outdir / 'index.html').read_text(encoding='utf8')
++        assert html.count('REPLACED') == 2
++        assert 'REPLACE_ME' not in html
++    finally:
++        app.cleanup()
+2026-10-27 20:53:54,150 - INFO - Eval script for sphinx-doc__sphinx-11510 written to logs/evaluation/ttgl-personal-sphinx-doc__sphinx-11510-58a6a554-78450092aa37/ttgl-personal/sphinx-doc__sphinx-11510/eval.sh; copying to container...
+2026-10-27 20:54:09,615 - INFO - Test runtime: 15.00 seconds
+2026-10-27 20:54:09,627 - INFO - Test output for sphinx-doc__sphinx-11510 written to logs/evaluation/ttgl-personal-sphinx-doc__sphinx-11510-58a6a554-78450092aa37/ttgl-personal/sphinx-doc__sphinx-11510/test_output.txt
+2026-10-27 20:54:10,259 - INFO - Git diff after:
+diff --git a/sphinx/directives/other.py b/sphinx/directives/other.py
+index 19f7c0a8d..6d6a7287e 100644
+--- a/sphinx/directives/other.py
++++ b/sphinx/directives/other.py
+@@ -376,7 +376,35 @@ class Include(BaseInclude, SphinxDirective):
+         rel_filename, filename = self.env.relfn2path(self.arguments[0])
+         self.arguments[0] = filename
+         self.env.note_included(filename)
+-        return super().run()
++
++        # docutils inserts included reStructuredText directly into the input
++        # state machine, bypassing SphinxStandaloneReader.read_source().  Apply
++        # source-read to that text before it is parsed.  The docutils include
++        # directive appends a synthetic end-of-inclusion marker immediately
++        # before insertion; keep it outside the event so extensions cannot
++        # alter include bookkeeping.
++        if 'literal' not in self.options and 'code' not in self.options and \
++           'parser' not in self.options:
++            insert_input = self.state_machine.insert_input
++
++            def insert_included_input(lines: list[str], source: str) -> None:
++                marker = '.. end of inclusion from "%s"' % source
++                if lines and lines[-1] == marker and len(lines) >= 2 and lines[-2] == '':
++                    content = lines[:-2]
++                    text = '\n'.join(content)
++                    arg = [text]
++                    self.env.events.emit('source-read', self.env.docname, arg)
++                    lines = arg[0].splitlines()
++                    lines.extend(['', marker])
++                insert_input(lines, source)
++
++            self.state_machine.insert_input = insert_included_input
++            try:
++                return super().run()
++            finally:
++                self.state_machine.insert_input = insert_input
++        else:
++            return super().run()
+ 
+ 
+ def setup(app: Sphinx) -> dict[str, Any]:
+diff --git a/tests/test_directive_other.py b/tests/test_directive_other.py
+index f221db075..492844bc3 100644
+--- a/tests/test_directive_other.py
++++ b/tests/test_directive_other.py
+@@ -5,7 +5,7 @@ from docutils import nodes
+ 
+ from sphinx import addnodes
+ from sphinx.testing import restructuredtext
+-from sphinx.testing.util import assert_node
++from sphinx.testing.util import SphinxTestApp, assert_node
+ 
+ 
+ @pytest.mark.sphinx(testroot='toctree-glob')
+@@ -148,3 +148,23 @@ def test_toctree_twice(app):
+     assert_node(doctree[0][0],
+                 entries=[(None, 'foo'), (None, 'foo')],
+                 includefiles=['foo', 'foo'])
++
++
++def test_source_read_event_for_include(tmp_path):
++    (tmp_path / 'conf.py').write_text('extensions = []\n', encoding='utf8')
++    (tmp_path / 'index.rst').write_text(
++        'Test\n====\n\n.. include:: child.rst\n\n&REPLACE_ME;\n', encoding='utf8')
++    (tmp_path / 'child.rst').write_text(
++        'Child\n=====\n\n&REPLACE_ME;\n', encoding='utf8')
++    app = SphinxTestApp(srcdir=tmp_path, freshenv=True)
++    try:
++        def replace(app, docname, source):
++            source[0] = source[0].replace('&REPLACE_ME;', 'REPLACED')
++
++        app.connect('source-read', replace)
++        app.build()
++        html = (app.outdir / 'index.html').read_text(encoding='utf8')
++        assert html.count('REPLACED') == 2
++        assert 'REPLACE_ME' not in html
++    finally:
++        app.cleanup()
+2026-10-27 20:54:10,268 - INFO - Grading answer for sphinx-doc__sphinx-11510...
+2026-10-27 20:54:10,300 - INFO - report: {'sphinx-doc__sphinx-11510': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': False, 'resolved': False, 'infra_failure': False, 'infra_failure_reason': 'no_tests_collected'}}
+Result for sphinx-doc__sphinx-11510: resolved: False
+2026-10-27 20:54:10,318 - INFO - Attempting to stop container sweb.eval.sphinx-doc__sphinx-11510.ttgl-personal-sphinx-doc__sphinx-11510-58a6a554-78450092aa37...
+2026-10-27 20:54:25,906 - INFO - Container sweb.eval.sphinx-doc__sphinx-11510.ttgl-personal-sphinx-doc__sphinx-11510-58a6a554-78450092aa37 stopped successfully.
+2026-10-27 20:54:25,909 - INFO - Attempting to remove container sweb.eval.sphinx-doc__sphinx-11510.ttgl-personal-sphinx-doc__sphinx-11510-58a6a554-78450092aa37...
+2026-10-27 20:54:26,030 - INFO - Container sweb.eval.sphinx-doc__sphinx-11510.ttgl-personal-sphinx-doc__sphinx-11510-58a6a554-78450092aa37 removed successfully.

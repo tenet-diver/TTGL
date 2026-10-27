@@ -1,0 +1,46 @@
+diff --git a/django/db/migrations/serializer.py b/django/db/migrations/serializer.py
+index 7d22695..dd3e887 100644
+--- a/django/db/migrations/serializer.py
++++ b/django/db/migrations/serializer.py
+@@ -269,7 +269,10 @@ class TypeSerializer(BaseSerializer):
+             if module == builtins.__name__:
+                 return self.value.__name__, set()
+             else:
+-                return "%s.%s" % (module, self.value.__name__), {"import %s" % module}
++                qualname = self.value.__qualname__
++                if '<locals>' in qualname:
++                    qualname = self.value.__name__
++                return "%s.%s" % (module, qualname), {"import %s" % module}
+ 
+ 
+ class UUIDSerializer(BaseSerializer):
+diff --git a/tests/migrations/test_writer.py b/tests/migrations/test_writer.py
+index ca924f3..e4cdc87 100644
+--- a/tests/migrations/test_writer.py
++++ b/tests/migrations/test_writer.py
+@@ -184,6 +184,9 @@ class WriterTests(SimpleTestCase):
+     """
+     Tests the migration writer (makes migration files from Migration instances)
+     """
++    class NestedField(models.CharField):
++        pass
++
+     class NestedEnum(enum.IntEnum):
+         A = 1
+         B = 2
+@@ -590,6 +593,15 @@ class WriterTests(SimpleTestCase):
+         self.assertEqual(result.args, value.args)
+         self.assertEqual(result.keywords, value.keywords)
+ 
++    def test_serialize_nested_type(self):
++        self.assertSerializedResultEqual(
++            self.NestedField,
++            (
++                "migrations.test_writer.WriterTests.NestedField",
++                {"import migrations.test_writer"},
++            ),
++        )
++
+     def test_serialize_type_none(self):
+         self.assertSerializedEqual(type(None))
+ 

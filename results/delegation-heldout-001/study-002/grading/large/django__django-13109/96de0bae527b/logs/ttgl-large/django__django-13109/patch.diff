@@ -1,0 +1,67 @@
+diff --git a/django/db/models/fields/related.py b/django/db/models/fields/related.py
+index d517d72..c2aea9c 100644
+--- a/django/db/models/fields/related.py
++++ b/django/db/models/fields/related.py
+@@ -914,7 +914,7 @@ class ForeignKey(ForeignObject):
+             return
+ 
+         using = router.db_for_read(self.remote_field.model, instance=model_instance)
+-        qs = self.remote_field.model._default_manager.using(using).filter(
++        qs = self.remote_field.model._base_manager.using(using).filter(
+             **{self.remote_field.field_name: value}
+         )
+         qs = qs.complex_filter(self.get_limit_choices_to())
+diff --git a/tests/many_to_one/tests.py b/tests/many_to_one/tests.py
+index e1bfa0d..6e281f9 100644
+--- a/tests/many_to_one/tests.py
++++ b/tests/many_to_one/tests.py
+@@ -1,7 +1,10 @@
+ import datetime
+ from copy import deepcopy
+ 
+-from django.core.exceptions import FieldError, MultipleObjectsReturned
++from django import forms
++from django.core.exceptions import (
++    FieldError, MultipleObjectsReturned, ValidationError,
++)
+ from django.db import IntegrityError, models, transaction
+ from django.test import TestCase
+ from django.utils.translation import gettext_lazy
+@@ -661,6 +664,37 @@ class ManyToOneTests(TestCase):
+             School._meta.base_manager_name = None
+             School._meta._expire_cache()
+ 
++    def test_validation_uses_base_manager(self):
++        school = School.objects.create(is_public=False)
++        self.assertFalse(School.objects.filter(pk=school.pk).exists())
++        student = Student(school=school)
++        student.full_clean()
++
++        school_pk = school.pk
++        school.delete()
++        msg = 'school instance with id %s does not exist.' % school_pk
++        with self.assertRaisesMessage(ValidationError, msg):
++            student.full_clean()
++
++    def test_form_validation_with_base_manager(self):
++        school = School.objects.create(is_public=False)
++
++        class StudentForm(forms.ModelForm):
++            class Meta:
++                model = Student
++                fields = ['school']
++
++        form = StudentForm(data={'school': school.pk})
++        self.assertFalse(form.is_valid())
++        self.assertEqual(form.errors['school'], [
++            'Select a valid choice. That choice is not one of the available choices.',
++        ])
++
++        form = StudentForm(data={'school': school.pk})
++        form.fields['school'].queryset = School._base_manager.all()
++        self.assertTrue(form.is_valid(), form.errors)
++        self.assertEqual(form.save().school, school)
++
+     def test_hasattr_related_object(self):
+         # The exception raised on attribute access when a related object
+         # doesn't exist should be an instance of a subclass of `AttributeError`
