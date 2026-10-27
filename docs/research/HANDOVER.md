@@ -1124,3 +1124,23 @@ runtime; do not claim egress support or bypass the guard. Any continuation must
 be newly versioned with source bindings and new control output directories,
 retaining zero Pro model calls until actual actor-boundary/replay gates pass.
 No extra paid resources or changes to the completed frozen native run.
+
+### Same heartbeat: Docker phase mechanism verified, integration still pending
+
+Maintained Docker bridge disconnect/reconnect works on this host. New reusable
+scripts/probe_docker_network_phases.py performed real positive peer HTTP control,
+removed all actor network attachments, observed failed peer reachability, then
+restored the network and positive HTTP response. Both owned containers and the
+owned bridge were removed successfully. Receipt docker-network-mechanism-004.json.
+This is NOT Harbor integration, universal egress proof or a Pro quality result.
+Earlier fixture failures 001–003 are retained: Alpine lacks httpd (exit127);
+the Python server fixture then needed a real readiness gate before HTTP checks.
+No model calls were made in any probe. Do not confuse these with model retries.
+
+Next implementation is a narrow Harbor Docker environment subclass using its
+custom environment import path and Docker network attachment transitions for
+PUBLIC/NO_NETWORK phases only. Reject allowlists and unsupported configurations;
+preserve actual agent phase context and existing worker/patch/metering gates.
+Prove transition on the real Harbor task before versioned nop/oracle controls,
+then register a new pipeline output/protocol before any model inference. Existing
+pipeline003 is stopped, not active; retain all frozen sources/protocols as history.

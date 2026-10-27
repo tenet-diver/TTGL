@@ -1,0 +1,189 @@
+{
+  "status": "docker_network_phase_mechanism_passed",
+  "error": null,
+  "cleanup_errors": [],
+  "model_calls": 0,
+  "scope": "Owned disposable bridge peer controls only; not Harbor integration, universal egress proof, or Pro model quality.",
+  "events": [
+    {
+      "command": [
+        "image",
+        "inspect",
+        "alpine:3.23.4@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11"
+      ],
+      "returncode": 0,
+      "stdout": "[\n    {\n        \"Id\": \"sha256:3cb067eab609612d81b4d82ff8ad71d73482bb3059a87b642d7e14f0ed659cde\",\n        \"RepoTags\": [],\n        \"RepoDigests\": [\n            \"alpine@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11\"\n        ],\n        \"Parent\": \"\",\n        \"Comment\": \"buildkit.dockerfile.v0\",\n        \"Created\": \"2026-04-15T20:01:40.139676757Z\",\n        \"Container\": \"\",\n        \"ContainerConfig\": {\n            \"Hostname\": \"\",\n            \"Domainname\": \"\",\n            \"User\": \"\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": false,\n            \"AttachStderr\": false,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": null,\n            \"Cmd\": null,\n            \"Image\": \"\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"\",\n            \"Entrypoint\": null,\n            \"OnBuild\": null,\n            \"Labels\": null\n        },\n        \"DockerVersion\": \"\",\n        \"Author\": \"\",\n        \"Config\": {\n            \"Hostname\": \"\",\n            \"Domainname\": \"\",\n            \"User\": \"\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": false,\n            \"AttachStderr\": false,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\n            ],\n            \"Cmd\": [\n                \"/bin/sh\"\n            ],\n            \"Image\": \"\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"/\",\n            \"Entrypoint\": null,\n            \"OnBuild\": null,\n            \"Labels\": null\n        },\n        \"Architecture\": \"amd64\",\n        \"Os\": \"linux\",\n        \"Size\": 8449901,\n        \"VirtualSize\": 8449901,\n        \"GraphDriver\": {\n            \"Data\": {\n                \"MergedDir\": \"/var/lib/docker/overlay2/d58f77a2d19267392006b34487e9e8458af09ad62607058fa2dfa4614ca84e4c/merged\",\n                \"UpperDir\": \"/var/lib/docker/overlay2/d58f77a2d19267392006b34487e9e8458af09ad62607058fa2dfa4614ca84e4c/diff\",\n                \"WorkDir\": \"/var/lib/docker/overlay2/d58f77a2d19267392006b34487e9e8458af09ad62607058fa2dfa4614ca84e4c/work\"\n            },\n            \"Name\": \"overlay2\"\n        },\n        \"RootFS\": {\n            \"Type\": \"layers\",\n            \"Layers\": [\n                \"sha256:29df493baa13de438d6d2ece3a8333032e0b7b9b9d8cce4ee82194da255f61e1\"\n            ]\n        },\n        \"Metadata\": {\n            \"LastTagTime\": \"0001-01-01T00:00:00Z\"\n        }\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "image",
+        "inspect",
+        "python:3.12-slim"
+      ],
+      "returncode": 0,
+      "stdout": "[\n    {\n        \"Id\": \"sha256:a33c10a97f11005523814c6eee013986119fe41f3122f444518117536675c8e1\",\n        \"RepoTags\": [\n            \"python:3.12-slim\"\n        ],\n        \"RepoDigests\": [\n            \"python@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704\"\n        ],\n        \"Parent\": \"\",\n        \"Comment\": \"buildkit.dockerfile.v0\",\n        \"Created\": \"2026-10-21T01:10:54.051521261Z\",\n        \"Container\": \"\",\n        \"ContainerConfig\": {\n            \"Hostname\": \"\",\n            \"Domainname\": \"\",\n            \"User\": \"\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": false,\n            \"AttachStderr\": false,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": null,\n            \"Cmd\": null,\n            \"Image\": \"\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"\",\n            \"Entrypoint\": null,\n            \"OnBuild\": null,\n            \"Labels\": null\n        },\n        \"DockerVersion\": \"\",\n        \"Author\": \"\",\n        \"Config\": {\n            \"Hostname\": \"\",\n            \"Domainname\": \"\",\n            \"User\": \"\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": false,\n            \"AttachStderr\": false,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\n                \"LANG=C.UTF-8\",\n                \"GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305\",\n                \"PYTHON_VERSION=3.12.15\",\n                \"PYTHON_SHA256=c2c4321961fab0fb999d66e0cecf521c2ab3994c7992873ea99e306c1094fd5a\"\n            ],\n            \"Cmd\": [\n                \"python3\"\n            ],\n            \"Image\": \"\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"\",\n            \"Entrypoint\": null,\n            \"OnBuild\": null,\n            \"Labels\": null\n        },\n        \"Architecture\": \"amd64\",\n        \"Os\": \"linux\",\n        \"Size\": 119442998,\n        \"VirtualSize\": 119442998,\n        \"GraphDriver\": {\n            \"Data\": {\n                \"LowerDir\": \"/var/lib/docker/overlay2/f16f896f4cb4c8d21bbff289cb8949ef2ccdf23311c2fc2124291eb7edc17b13/diff:/var/lib/docker/overlay2/a71e8eeaedff26b8cc11fbacb8461949858afb6eb946cfafada610293030c425/diff:/var/lib/docker/overlay2/dd47e7d10594e09f25267f61f7de7460bacad253e0196e704677e750078eb9be/diff\",\n                \"MergedDir\": \"/var/lib/docker/overlay2/e24e7fd5f7031a09c98050f3453b48f10dcdde973089608eceb4fb075f178a31/merged\",\n                \"UpperDir\": \"/var/lib/docker/overlay2/e24e7fd5f7031a09c98050f3453b48f10dcdde973089608eceb4fb075f178a31/diff\",\n                \"WorkDir\": \"/var/lib/docker/overlay2/e24e7fd5f7031a09c98050f3453b48f10dcdde973089608eceb4fb075f178a31/work\"\n            },\n            \"Name\": \"overlay2\"\n        },\n        \"RootFS\": {\n            \"Type\": \"layers\",\n            \"Layers\": [\n                \"sha256:a70f6272827f64e1427d048ced77491aab5d64ab95725e56920802ff391197d7\",\n                \"sha256:33d3a946838548b1885b1068b960a88e41537b6996342c8fc2c767a6879e62f4\",\n                \"sha256:500ecb68a701ad0437ae759f35178f2ddbc48e10a0bc6dc345548054f737df6a\",\n                \"sha256:93881a54803b57e0039f40fd78de98b41b69b55d025c431544788fd84f0904cd\"\n            ]\n        },\n        \"Metadata\": {\n            \"LastTagTime\": \"0001-01-01T00:00:00Z\"\n        }\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "network",
+        "create",
+        "ttgl-net-4bbf3c0c2a"
+      ],
+      "returncode": 0,
+      "stdout": "eba4f6dd26c6e0b0919486121ff356c90147308f5a28f43e29311d2ade444729\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "run",
+        "-d",
+        "--name",
+        "ttgl-http-4bbf3c0c2a",
+        "--network",
+        "ttgl-net-4bbf3c0c2a",
+        "python:3.12-slim",
+        "sh",
+        "-c",
+        "mkdir /www; echo ttgl-network-witness >/www/index.html; cd /www; python -m http.server 8080"
+      ],
+      "returncode": 0,
+      "stdout": "350ad63187a9f79e4921d5af0c4c8cf47fb80fb22f5ff8727450fd74563d77c3\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "run",
+        "-d",
+        "--name",
+        "ttgl-actor-4bbf3c0c2a",
+        "--network",
+        "ttgl-net-4bbf3c0c2a",
+        "alpine:3.23.4@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11",
+        "sleep",
+        "300"
+      ],
+      "returncode": 0,
+      "stdout": "4d45e9a000fb6f507f2f07fdadaa2d8b3c9b043ff5c109b804161914c7e6cb09\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "exec",
+        "ttgl-actor-4bbf3c0c2a",
+        "wget",
+        "-qO-",
+        "-T",
+        "2",
+        "http://ttgl-http-4bbf3c0c2a:8080"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "wget: can't connect to remote host (192.168.96.2): Connection refused\n"
+    },
+    {
+      "command": [
+        "exec",
+        "ttgl-actor-4bbf3c0c2a",
+        "wget",
+        "-qO-",
+        "-T",
+        "2",
+        "http://ttgl-http-4bbf3c0c2a:8080"
+      ],
+      "returncode": 0,
+      "stdout": "ttgl-network-witness\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "network",
+        "disconnect",
+        "ttgl-net-4bbf3c0c2a",
+        "ttgl-actor-4bbf3c0c2a"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "inspect",
+        "ttgl-actor-4bbf3c0c2a"
+      ],
+      "returncode": 0,
+      "stdout": "[\n    {\n        \"Id\": \"4d45e9a000fb6f507f2f07fdadaa2d8b3c9b043ff5c109b804161914c7e6cb09\",\n        \"Created\": \"2026-10-27T21:51:57.683419023Z\",\n        \"Path\": \"sleep\",\n        \"Args\": [\n            \"300\"\n        ],\n        \"State\": {\n            \"Status\": \"running\",\n            \"Running\": true,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 93622,\n            \"ExitCode\": 0,\n            \"Error\": \"\",\n            \"StartedAt\": \"2026-10-27T21:51:58.926476934Z\",\n            \"FinishedAt\": \"0001-01-01T00:00:00Z\"\n        },\n        \"Image\": \"sha256:3cb067eab609612d81b4d82ff8ad71d73482bb3059a87b642d7e14f0ed659cde\",\n        \"ResolvConfPath\": \"/var/lib/docker/containers/4d45e9a000fb6f507f2f07fdadaa2d8b3c9b043ff5c109b804161914c7e6cb09/resolv.conf\",\n        \"HostnamePath\": \"/var/lib/docker/containers/4d45e9a000fb6f507f2f07fdadaa2d8b3c9b043ff5c109b804161914c7e6cb09/hostname\",\n        \"HostsPath\": \"/var/lib/docker/containers/4d45e9a000fb6f507f2f07fdadaa2d8b3c9b043ff5c109b804161914c7e6cb09/hosts\",\n        \"LogPath\": \"/var/lib/docker/containers/4d45e9a000fb6f507f2f07fdadaa2d8b3c9b043ff5c109b804161914c7e6cb09/4d45e9a000fb6f507f2f07fdadaa2d8b3c9b043ff5c109b804161914c7e6cb09-json.log\",\n        \"Name\": \"/ttgl-actor-4bbf3c0c2a\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlay2\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": null,\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"json-file\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"ttgl-net-4bbf3c0c2a\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"CapAdd\": null,\n            \"CapDrop\": null,\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": [],\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": false,\n            \"SecurityOpt\": null,\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"ConsoleSize\": [\n                0,\n                0\n            ],\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 0,\n            \"NanoCpus\": 0,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": null,\n            \"BlkioDeviceWriteBps\": null,\n            \"BlkioDeviceReadIOps\": null,\n            \"BlkioDeviceWriteIOps\": null,\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"KernelMemory\": 0,\n            \"KernelMemoryTCP\": 0,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 0,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": null,\n            \"PidsLimit\": null,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"MaskedPaths\": [\n                \"/proc/asound\",\n                \"/proc/acpi\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"GraphDriver\": {\n            \"Data\": {\n                \"LowerDir\": \"/var/lib/docker/overlay2/c4fee704aed72a2642bd1b81b9f4531b34782761330a338c4047cabcaed3d9b5-init/diff:/var/lib/docker/overlay2/d58f77a2d19267392006b34487e9e8458af09ad62607058fa2dfa4614ca84e4c/diff\",\n                \"MergedDir\": \"/var/lib/docker/overlay2/c4fee704aed72a2642bd1b81b9f4531b34782761330a338c4047cabcaed3d9b5/merged\",\n                \"UpperDir\": \"/var/lib/docker/overlay2/c4fee704aed72a2642bd1b81b9f4531b34782761330a338c4047cabcaed3d9b5/diff\",\n                \"WorkDir\": \"/var/lib/docker/overlay2/c4fee704aed72a2642bd1b81b9f4531b34782761330a338c4047cabcaed3d9b5/work\"\n            },\n            \"Name\": \"overlay2\"\n        },\n        \"Mounts\": [],\n        \"Config\": {\n            \"Hostname\": \"4d45e9a000fb\",\n            \"Domainname\": \"\",\n            \"User\": \"\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": false,\n            \"AttachStderr\": false,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\n            ],\n            \"Cmd\": [\n                \"sleep\",\n                \"300\"\n            ],\n            \"Image\": \"alpine:3.23.4@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"/\",\n            \"Entrypoint\": null,\n            \"OnBuild\": null,\n            \"Labels\": {}\n        },\n        \"NetworkSettings\": {\n            \"Bridge\": \"\",\n            \"SandboxID\": \"4808a6446e4dc8d52aac19c4aa7ba5c0e9e5e8ddd01ac3fd470cfb0fa49c6efe\",\n            \"HairpinMode\": false,\n            \"LinkLocalIPv6Address\": \"\",\n            \"LinkLocalIPv6PrefixLen\": 0,\n            \"Ports\": {},\n            \"SandboxKey\": \"/var/run/docker/netns/4808a6446e4d\",\n            \"SecondaryIPAddresses\": null,\n            \"SecondaryIPv6Addresses\": null,\n            \"EndpointID\": \"\",\n            \"Gateway\": \"\",\n            \"GlobalIPv6Address\": \"\",\n            \"GlobalIPv6PrefixLen\": 0,\n            \"IPAddress\": \"\",\n            \"IPPrefixLen\": 0,\n            \"IPv6Gateway\": \"\",\n            \"MacAddress\": \"\",\n            \"Networks\": {}\n        }\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "exec",
+        "ttgl-actor-4bbf3c0c2a",
+        "wget",
+        "-qO-",
+        "-T",
+        "3",
+        "http://ttgl-http-4bbf3c0c2a:8080"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "wget: bad address 'ttgl-http-4bbf3c0c2a:8080'\n"
+    },
+    {
+      "command": [
+        "network",
+        "connect",
+        "ttgl-net-4bbf3c0c2a",
+        "ttgl-actor-4bbf3c0c2a"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "exec",
+        "ttgl-actor-4bbf3c0c2a",
+        "wget",
+        "-qO-",
+        "-T",
+        "3",
+        "http://ttgl-http-4bbf3c0c2a:8080"
+      ],
+      "returncode": 0,
+      "stdout": "ttgl-network-witness\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "rm",
+        "-f",
+        "ttgl-actor-4bbf3c0c2a"
+      ],
+      "returncode": 0,
+      "stdout": "ttgl-actor-4bbf3c0c2a\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "rm",
+        "-f",
+        "ttgl-http-4bbf3c0c2a"
+      ],
+      "returncode": 0,
+      "stdout": "ttgl-http-4bbf3c0c2a\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "network",
+        "rm",
+        "ttgl-net-4bbf3c0c2a"
+      ],
+      "returncode": 0,
+      "stdout": "ttgl-net-4bbf3c0c2a\n",
+      "stderr": ""
+    }
+  ]
+}

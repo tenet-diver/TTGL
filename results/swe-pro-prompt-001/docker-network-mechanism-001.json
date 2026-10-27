@@ -1,0 +1,6 @@
+{
+  "status": "fixture_failed_before_network_transition",
+  "model_calls": 0,
+  "error": "Initial inspect produced empty IP address; wget received :8080. Both disposable containers and network were removed in finally. No mechanism pass claimed.",
+  "next": "Use the maintained per-network service-name DNS and record every command even when a fixture fails."
+}

@@ -1,0 +1,104 @@
+{
+  "status": "failed",
+  "error": "Error response from daemon: Container 223d2f57287e11d7dc8aa01750ae2407e296c4791663b80e8e5588b4b0fb33de is not running\n",
+  "model_calls": 0,
+  "scope": "Disposable isolated fixture; not a Pro quality result or Harbor integration.",
+  "events": [
+    {
+      "args": [
+        "network",
+        "create",
+        "ttgl-net-530152e2"
+      ],
+      "returncode": 0,
+      "stdout": "aa4eaa05c493ebfc84e50ce12415a4f6726bcf87cb22939066b76eab079bd397\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "run",
+        "-d",
+        "--name",
+        "ttgl-http-530152e2",
+        "--network",
+        "ttgl-net-530152e2",
+        "alpine:3.23.4@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11",
+        "sh",
+        "-c",
+        "mkdir /www; echo ttgl-network-witness >/www/index.html; httpd -f -p 8080 -h /www"
+      ],
+      "returncode": 0,
+      "stdout": "223d2f57287e11d7dc8aa01750ae2407e296c4791663b80e8e5588b4b0fb33de\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "run",
+        "-d",
+        "--name",
+        "ttgl-actor-530152e2",
+        "--network",
+        "ttgl-net-530152e2",
+        "alpine:3.23.4@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11",
+        "sleep",
+        "300"
+      ],
+      "returncode": 0,
+      "stdout": "6bb4ea403d91e5212664783bdcb7a332bb540302794713e3ced9eaeab6d26f4e\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "inspect",
+        "ttgl-http-530152e2"
+      ],
+      "returncode": 0,
+      "stdout": "[\n    {\n        \"Id\": \"223d2f57287e11d7dc8aa01750ae2407e296c4791663b80e8e5588b4b0fb33de\",\n        \"Created\": \"2026-10-27T21:51:02.692687765Z\",\n        \"Path\": \"sh\",\n        \"Args\": [\n            \"-c\",\n            \"mkdir /www; echo ttgl-network-witness \\u003e/www/index.html; httpd -f -p 8080 -h /www\"\n        ],\n        \"State\": {\n            \"Status\": \"exited\",\n            \"Running\": false,\n            \"Paused\": false,\n            \"Restarting\": false,\n            \"OOMKilled\": false,\n            \"Dead\": false,\n            \"Pid\": 0,\n            \"ExitCode\": 127,\n            \"Error\": \"\",\n            \"StartedAt\": \"2026-10-27T21:51:03.674297313Z\",\n            \"FinishedAt\": \"2026-10-27T21:51:03.673215565Z\"\n        },\n        \"Image\": \"sha256:3cb067eab609612d81b4d82ff8ad71d73482bb3059a87b642d7e14f0ed659cde\",\n        \"ResolvConfPath\": \"/var/lib/docker/containers/223d2f57287e11d7dc8aa01750ae2407e296c4791663b80e8e5588b4b0fb33de/resolv.conf\",\n        \"HostnamePath\": \"/var/lib/docker/containers/223d2f57287e11d7dc8aa01750ae2407e296c4791663b80e8e5588b4b0fb33de/hostname\",\n        \"HostsPath\": \"/var/lib/docker/containers/223d2f57287e11d7dc8aa01750ae2407e296c4791663b80e8e5588b4b0fb33de/hosts\",\n        \"LogPath\": \"/var/lib/docker/containers/223d2f57287e11d7dc8aa01750ae2407e296c4791663b80e8e5588b4b0fb33de/223d2f57287e11d7dc8aa01750ae2407e296c4791663b80e8e5588b4b0fb33de-json.log\",\n        \"Name\": \"/ttgl-http-530152e2\",\n        \"RestartCount\": 0,\n        \"Driver\": \"overlay2\",\n        \"Platform\": \"linux\",\n        \"MountLabel\": \"\",\n        \"ProcessLabel\": \"\",\n        \"AppArmorProfile\": \"\",\n        \"ExecIDs\": null,\n        \"HostConfig\": {\n            \"Binds\": null,\n            \"ContainerIDFile\": \"\",\n            \"LogConfig\": {\n                \"Type\": \"json-file\",\n                \"Config\": {}\n            },\n            \"NetworkMode\": \"ttgl-net-530152e2\",\n            \"PortBindings\": {},\n            \"RestartPolicy\": {\n                \"Name\": \"no\",\n                \"MaximumRetryCount\": 0\n            },\n            \"AutoRemove\": false,\n            \"VolumeDriver\": \"\",\n            \"VolumesFrom\": null,\n            \"CapAdd\": null,\n            \"CapDrop\": null,\n            \"CgroupnsMode\": \"private\",\n            \"Dns\": [],\n            \"DnsOptions\": [],\n            \"DnsSearch\": [],\n            \"ExtraHosts\": null,\n            \"GroupAdd\": null,\n            \"IpcMode\": \"private\",\n            \"Cgroup\": \"\",\n            \"Links\": null,\n            \"OomScoreAdj\": 0,\n            \"PidMode\": \"\",\n            \"Privileged\": false,\n            \"PublishAllPorts\": false,\n            \"ReadonlyRootfs\": false,\n            \"SecurityOpt\": null,\n            \"UTSMode\": \"\",\n            \"UsernsMode\": \"\",\n            \"ShmSize\": 67108864,\n            \"Runtime\": \"runc\",\n            \"ConsoleSize\": [\n                0,\n                0\n            ],\n            \"Isolation\": \"\",\n            \"CpuShares\": 0,\n            \"Memory\": 0,\n            \"NanoCpus\": 0,\n            \"CgroupParent\": \"\",\n            \"BlkioWeight\": 0,\n            \"BlkioWeightDevice\": [],\n            \"BlkioDeviceReadBps\": null,\n            \"BlkioDeviceWriteBps\": null,\n            \"BlkioDeviceReadIOps\": null,\n            \"BlkioDeviceWriteIOps\": null,\n            \"CpuPeriod\": 0,\n            \"CpuQuota\": 0,\n            \"CpuRealtimePeriod\": 0,\n            \"CpuRealtimeRuntime\": 0,\n            \"CpusetCpus\": \"\",\n            \"CpusetMems\": \"\",\n            \"Devices\": [],\n            \"DeviceCgroupRules\": null,\n            \"DeviceRequests\": null,\n            \"KernelMemory\": 0,\n            \"KernelMemoryTCP\": 0,\n            \"MemoryReservation\": 0,\n            \"MemorySwap\": 0,\n            \"MemorySwappiness\": null,\n            \"OomKillDisable\": null,\n            \"PidsLimit\": null,\n            \"Ulimits\": null,\n            \"CpuCount\": 0,\n            \"CpuPercent\": 0,\n            \"IOMaximumIOps\": 0,\n            \"IOMaximumBandwidth\": 0,\n            \"MaskedPaths\": [\n                \"/proc/asound\",\n                \"/proc/acpi\",\n                \"/proc/kcore\",\n                \"/proc/keys\",\n                \"/proc/latency_stats\",\n                \"/proc/timer_list\",\n                \"/proc/timer_stats\",\n                \"/proc/sched_debug\",\n                \"/proc/scsi\",\n                \"/sys/firmware\"\n            ],\n            \"ReadonlyPaths\": [\n                \"/proc/bus\",\n                \"/proc/fs\",\n                \"/proc/irq\",\n                \"/proc/sys\",\n                \"/proc/sysrq-trigger\"\n            ]\n        },\n        \"GraphDriver\": {\n            \"Data\": {\n                \"LowerDir\": \"/var/lib/docker/overlay2/2e758be74c7d4f2a05b8dbffcf724ad19b021dd9c5944a6e7a7bdf3204d0a914-init/diff:/var/lib/docker/overlay2/d58f77a2d19267392006b34487e9e8458af09ad62607058fa2dfa4614ca84e4c/diff\",\n                \"MergedDir\": \"/var/lib/docker/overlay2/2e758be74c7d4f2a05b8dbffcf724ad19b021dd9c5944a6e7a7bdf3204d0a914/merged\",\n                \"UpperDir\": \"/var/lib/docker/overlay2/2e758be74c7d4f2a05b8dbffcf724ad19b021dd9c5944a6e7a7bdf3204d0a914/diff\",\n                \"WorkDir\": \"/var/lib/docker/overlay2/2e758be74c7d4f2a05b8dbffcf724ad19b021dd9c5944a6e7a7bdf3204d0a914/work\"\n            },\n            \"Name\": \"overlay2\"\n        },\n        \"Mounts\": [],\n        \"Config\": {\n            \"Hostname\": \"223d2f57287e\",\n            \"Domainname\": \"\",\n            \"User\": \"\",\n            \"AttachStdin\": false,\n            \"AttachStdout\": false,\n            \"AttachStderr\": false,\n            \"Tty\": false,\n            \"OpenStdin\": false,\n            \"StdinOnce\": false,\n            \"Env\": [\n                \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\n            ],\n            \"Cmd\": [\n                \"sh\",\n                \"-c\",\n                \"mkdir /www; echo ttgl-network-witness \\u003e/www/index.html; httpd -f -p 8080 -h /www\"\n            ],\n            \"Image\": \"alpine:3.23.4@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11\",\n            \"Volumes\": null,\n            \"WorkingDir\": \"/\",\n            \"Entrypoint\": null,\n            \"OnBuild\": null,\n            \"Labels\": {}\n        },\n        \"NetworkSettings\": {\n            \"Bridge\": \"\",\n            \"SandboxID\": \"1e3f55070c5909b08d05e5bb9d6059286cc9c147e3314322359dd37678530281\",\n            \"HairpinMode\": false,\n            \"LinkLocalIPv6Address\": \"\",\n            \"LinkLocalIPv6PrefixLen\": 0,\n            \"Ports\": {},\n            \"SandboxKey\": \"/var/run/docker/netns/1e3f55070c59\",\n            \"SecondaryIPAddresses\": null,\n            \"SecondaryIPv6Addresses\": null,\n            \"EndpointID\": \"\",\n            \"Gateway\": \"\",\n            \"GlobalIPv6Address\": \"\",\n            \"GlobalIPv6PrefixLen\": 0,\n            \"IPAddress\": \"\",\n            \"IPPrefixLen\": 0,\n            \"IPv6Gateway\": \"\",\n            \"MacAddress\": \"\",\n            \"Networks\": {\n                \"ttgl-net-530152e2\": {\n                    \"IPAMConfig\": null,\n                    \"Links\": null,\n                    \"Aliases\": [\n                        \"223d2f57287e\"\n                    ],\n                    \"NetworkID\": \"aa4eaa05c493ebfc84e50ce12415a4f6726bcf87cb22939066b76eab079bd397\",\n                    \"EndpointID\": \"\",\n                    \"Gateway\": \"\",\n                    \"IPAddress\": \"\",\n                    \"IPPrefixLen\": 0,\n                    \"IPv6Gateway\": \"\",\n                    \"GlobalIPv6Address\": \"\",\n                    \"GlobalIPv6PrefixLen\": 0,\n                    \"MacAddress\": \"\",\n                    \"DriverOpts\": null\n                }\n            }\n        }\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "exec",
+        "ttgl-http-530152e2",
+        "wget",
+        "-qO-",
+        "-T",
+        "3",
+        "http://127.0.0.1:8080"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Error response from daemon: Container 223d2f57287e11d7dc8aa01750ae2407e296c4791663b80e8e5588b4b0fb33de is not running\n"
+    },
+    {
+      "args": [
+        "rm",
+        "-f",
+        "ttgl-actor-530152e2"
+      ],
+      "returncode": 0,
+      "stdout": "ttgl-actor-530152e2\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "rm",
+        "-f",
+        "ttgl-http-530152e2"
+      ],
+      "returncode": 0,
+      "stdout": "ttgl-http-530152e2\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "network",
+        "rm",
+        "ttgl-net-530152e2"
+      ],
+      "returncode": 0,
+      "stdout": "ttgl-net-530152e2\n",
+      "stderr": ""
+    }
+  ]
+}
