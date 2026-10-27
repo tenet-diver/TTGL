@@ -75,6 +75,20 @@ negative/positive controls while retaining the original assertions before using
 this adapter for scoring. These findings concern the inspected revision, not
 every Harbor dataset or adapter.
 
+The separate `feedback_verifier.strict_cpp_wrapper` adaptation now preserves
+the upstream test-fixture staging, builds the declared exercise target and
+executes that target with strict failure propagation. It enables all Exercism
+cases, matching Aider's `cpp-test.sh`. The target name and exact upstream snippet
+hash are checked before adaptation. Five Linux shell fixtures verify passing,
+test failure, missing executable, configuration failure and build failure;
+seven focused software checks pass (22 with the related policy/reservation
+tests). See `strict-cpp-exit-validation.json`. This is not yet integrated into a
+generated benchmark task. The original CMake configuration often executes tests
+during its default ALL build target, which can already catch failures. The
+post-build reproduction therefore does not establish incorrect published task
+scores. Real compilation, case-count checks and empty/reference controls remain
+required before scoring.
+
 Finish the frozen current study first. Keep its held-out outcomes separate from
 new development. Complete the queued Pro environment controls and real adapter
 boundary/metering/replay checks. For the feedback diagnostic, reuse maintained

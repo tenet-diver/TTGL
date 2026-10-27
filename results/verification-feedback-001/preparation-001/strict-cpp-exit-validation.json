@@ -1,0 +1,91 @@
+{
+  "status": "strict_exit_adaptation_verified_on_linux",
+  "scope": "Five controlled shell cases, mock build tools; not real compilation or benchmark controls",
+  "model_inference_calls": 0,
+  "image_id": "sha256:a33c10a97f11005523814c6eee013986119fe41f3122f444518117536675c8e1",
+  "upstream_utils_sha256": "5b8b31053f14a78f1be106b42a1f4207e7986f9767312ad1bc762c7dbfdc949f",
+  "adaptation_source_sha256": "7bd2dff01638a013c47b637386b4e85026fa9336830f39590bf6d978bc564617",
+  "rows": [
+    {
+      "case": "pass",
+      "variant": "original",
+      "exit_code": 0,
+      "test_executed": true,
+      "stdout": "Copying C++ test files to workspace...\nTest files copied successfully\nBuilding and running C++ tests...\nUsing CMake build system...\nRunning: ./test-fixture\nFIXTURE_TEST_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "case": "pass",
+      "variant": "strict",
+      "exit_code": 0,
+      "test_executed": true,
+      "stdout": "Copying C++ test files to workspace...\nTest files copied successfully\nFIXTURE_TEST_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "case": "test-failure",
+      "variant": "original",
+      "exit_code": 0,
+      "test_executed": true,
+      "stdout": "Copying C++ test files to workspace...\nTest files copied successfully\nBuilding and running C++ tests...\nUsing CMake build system...\nRunning: ./test-fixture\nFIXTURE_TEST_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "case": "test-failure",
+      "variant": "strict",
+      "exit_code": 7,
+      "test_executed": true,
+      "stdout": "Copying C++ test files to workspace...\nTest files copied successfully\nFIXTURE_TEST_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "case": "missing-test",
+      "variant": "original",
+      "exit_code": 0,
+      "test_executed": false,
+      "stdout": "Copying C++ test files to workspace...\nTest files copied successfully\nBuilding and running C++ tests...\nUsing CMake build system...\n",
+      "stderr": ""
+    },
+    {
+      "case": "missing-test",
+      "variant": "strict",
+      "exit_code": 1,
+      "test_executed": false,
+      "stdout": "Copying C++ test files to workspace...\nTest files copied successfully\n",
+      "stderr": ""
+    },
+    {
+      "case": "configure-failure",
+      "variant": "original",
+      "exit_code": 1,
+      "test_executed": false,
+      "stdout": "Copying C++ test files to workspace...\nTest files copied successfully\nBuilding and running C++ tests...\nUsing CMake build system...\nCMake build failed\n",
+      "stderr": ""
+    },
+    {
+      "case": "configure-failure",
+      "variant": "strict",
+      "exit_code": 9,
+      "test_executed": false,
+      "stdout": "Copying C++ test files to workspace...\nTest files copied successfully\n",
+      "stderr": ""
+    },
+    {
+      "case": "build-failure",
+      "variant": "original",
+      "exit_code": 1,
+      "test_executed": false,
+      "stdout": "Copying C++ test files to workspace...\nTest files copied successfully\nBuilding and running C++ tests...\nUsing CMake build system...\nCMake build failed\n",
+      "stderr": ""
+    },
+    {
+      "case": "build-failure",
+      "variant": "strict",
+      "exit_code": 11,
+      "test_executed": false,
+      "stdout": "Copying C++ test files to workspace...\nTest files copied successfully\n",
+      "stderr": ""
+    }
+  ],
+  "caveat": "Original Exercism CMake often executes tests during the ALL build target, which may catch failure earlier. This fixture proves post-build status propagation only, not that actual upstream task scores were wrong."
+}

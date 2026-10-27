@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "command": ".venv/bin/python -m pytest -q tests/test_feedback_verifier.py tests/test_verification_policy.py tests/test_feedback_reservation.py tests/test_policy.py",
+  "passed": 22,
+  "elapsed_seconds": 8.02,
+  "active_heldout_source_verification": "passed",
+  "scope": "Software behavior and model-free Linux shell fixtures, not benchmark accuracy",
+  "model_inference_calls": 0
+}

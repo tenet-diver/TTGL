@@ -822,3 +822,31 @@ Correct exit propagation and test-execution counting without weakening assertion
 then require empty/reference controls before any feedback scores. Latest native
 checkpoint: nine official grades, three complete blocks: Sol 3/3, Luna 2/3,
 personal 2/3 with zero consultations. Neither queue was interrupted.
+
+## Heartbeat 18:47 UTC: strict C++ verifier adaptation
+
+Read AGENTS/HANDOVER and verified both supervisors live. The native run advanced
+to ten official grades (personal pylint6903 succeeds); only the first three
+blocks are complete. Pro controls are still correctly waiting for the native
+final audit. No started inference was repeated or interrupted.
+
+Added separate src/ttgl/feedback_verifier.py, not wired into active generation.
+strict_cpp_wrapper requires the exact audited Harbor snippet hash, retains its
+test-fixture staging, enables EXERCISM_RUN_ALL_TESTS as Aider's cpp-test.sh does,
+builds the explicitly declared exercise target and executes it with strict exit
+propagation. Invalid targets and unreviewed upstream snippets are rejected.
+Seven behavior checks pass, 22 with related policy/reservation checks (8.02 s).
+Five model-free Linux fixture cases independently verify real exit codes:
+pass 0, test failure 7, missing executable 1, configure failure 9, build failure
+11. Receipt: results/verification-feedback-001/preparation-001/
+strict-cpp-exit-validation.json. No model endpoint was called by these checks.
+
+Important scope correction: Exercism's CMake often has an ALL target that runs
+tests while building, which can catch errors before the flawed post-build
+wrapper. Our mocked-build fixture proves the latter stage loses failure status;
+it does NOT prove actual task grades or published scores were inflated. Research
+notes now state this limitation. Real compilation, executed-case accounting,
+reference isolation and negative/positive task controls are still pending.
+Next step remains finishing native grading, then existing Pro controls and real
+adapter validation. The feedback adaptation must be integrated into maintained
+task conversion before its own first-task controls; no full diagnostic run yet.
