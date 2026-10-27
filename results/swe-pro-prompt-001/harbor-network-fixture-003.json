@@ -1,0 +1,42 @@
+{
+  "status": "real_harbor_phase_fixture_passed",
+  "error": null,
+  "cleanup_errors": [],
+  "root": "/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/ttgl-harbor-network-r8ga6gga",
+  "model_calls": 0,
+  "source_sha256": "78f293e6dd7a5b2a87ef5643d207ddd3ea91fab76831f058fc92fed73a641c46",
+  "transitions": [
+    {
+      "container": "c507ad12169bd0398a8c4d12d9337804cc7c00ae63f731504ed6cac2ea204396",
+      "mode": "no-network"
+    },
+    {
+      "container": "c507ad12169bd0398a8c4d12d9337804cc7c00ae63f731504ed6cac2ea204396",
+      "mode": "public"
+    }
+  ],
+  "evidence": [
+    {
+      "phase": "public",
+      "stdout": "200\n",
+      "stderr": null,
+      "return_code": 0
+    },
+    {
+      "phase": "no-network",
+      "stdout": "Traceback (most recent call last):\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 1357, in do_open\n    h.request(req.get_method(), req.selector, req.data, headers,\n  File \"/usr/local/lib/python3.12/http/client.py\", line 1386, in request\n    self._send_request(method, url, body, headers, encode_chunked)\n  File \"/usr/local/lib/python3.12/http/client.py\", line 1432, in _send_request\n    self.endheaders(body, encode_chunked=encode_chunked)\n  File \"/usr/local/lib/python3.12/http/client.py\", line 1381, in endheaders\n    self._send_output(message_body, encode_chunked=encode_chunked)\n  File \"/usr/local/lib/python3.12/http/client.py\", line 1141, in _send_output\n    self.send(msg)\n  File \"/usr/local/lib/python3.12/http/client.py\", line 1085, in send\n    self.connect()\n  File \"/usr/local/lib/python3.12/http/client.py\", line 1051, in connect\n    self.sock = self._create_connection(\n                ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/socket.py\", line 865, in create_connection\n    raise exceptions[0]\n  File \"/usr/local/lib/python3.12/socket.py\", line 850, in create_connection\n    sock.connect(sa)\nOSError: [Errno 101] Network is unreachable\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 215, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 515, in open\n    response = self._open(req, data)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 532, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 492, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 1386, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 1360, in do_open\n    raise URLError(err)\nurllib.error.URLError: <urlopen error [Errno 101] Network is unreachable>\n",
+      "stderr": null,
+      "return_code": 1
+    },
+    {
+      "phase": "restored-public",
+      "stdout": "200\n",
+      "stderr": null,
+      "return_code": 0
+    },
+    {
+      "unsupported_allowlist_rejected": true
+    }
+  ],
+  "scope": "Real Harbor lifecycle and public/no-network/public peer checks; not yet the actual Pro image, official grading or model accuracy."
+}

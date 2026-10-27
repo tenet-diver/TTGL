@@ -1,0 +1,23 @@
+{
+  "status": "failed",
+  "error": "RuntimeError: Command timed out after 5 seconds",
+  "cleanup_errors": [],
+  "root": "/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/ttgl-harbor-network-t8xl0abk",
+  "model_calls": 0,
+  "source_sha256": "78f293e6dd7a5b2a87ef5643d207ddd3ea91fab76831f058fc92fed73a641c46",
+  "transitions": [
+    {
+      "container": "812d4c27eb3af690878333070b9d5d1a27586feeba764cd9dd2792f6eaa5d6dc",
+      "mode": "no-network"
+    }
+  ],
+  "evidence": [
+    {
+      "phase": "public",
+      "stdout": "200\n",
+      "stderr": null,
+      "return_code": 0
+    }
+  ],
+  "scope": "Real Harbor lifecycle and public/no-network/public peer checks; not yet the actual Pro image, official grading or model accuracy."
+}

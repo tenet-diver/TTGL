@@ -1,0 +1,11 @@
+{
+  "image": "sha256:03e700790cf908ecf1175ffe9e9371896ad1783b5db3ce3f2c8c2776fa0bb6de",
+  "complete_study_audited": 33,
+  "container_references": 0,
+  "returncode": 0,
+  "stdout": "Untagged: swebench/sweb.eval.x86_64.sympy_1776_sympy-21847@sha256:9a45ffe20cac4243930e8c5b2b065adbc08f476c880d7465ca0fbfb9f98c6456\nDeleted: sha256:03e700790cf908ecf1175ffe9e9371896ad1783b5db3ce3f2c8c2776fa0bb6de\nDeleted: sha256:4b405d5aac582cf2e59cbbfaf6e9ba8e41d60b07d408f4aa58b41458d7d27099\nDeleted: sha256:3acf76e2b6435c08307b8c5ad00c6ca1e41ff86169cf4a2c46339b1e3b549039\nDeleted: sha256:0f044b246d1f516868130dd8c00f64ce03b26e7a779b24ebd4f7d096dc8fab54\nDeleted: sha256:603ad4cdf9f865da087a6cff6720fa19159196183990e0e60ecaa73fb097a6f0\nDeleted: sha256:0978b19cde395c8e9d7cd291de5d60b45350378b0ed066748348944072e6173b\nDeleted: sha256:a634031e76f92305770c0d66bccc23d78a0050fb795e2b6899fc6772cd5f0063\nDeleted: sha256:8876ba60ff5288b36e43471244bb68618607edc89d02952521abe78b16f64ccb\nDeleted: sha256:1d15e24435ad0b6de659a9bef5a6f6b65542467bea064e43c83ebcd33f7beae1\nDeleted: sha256:6564f6d5b14ac3b34d5dc0b6ec4f94d21cce28262be158eaab1a3c4c58a810cd\nDeleted: sha256:beb59027b96ddbf30ac9c80b527668fe7011f4f553fe83f5e59199e9a84fb5ca\n",
+  "stderr": "",
+  "free_before": 9690710016,
+  "no_force": true,
+  "free_after": 12573790208
+}

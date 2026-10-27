@@ -73,3 +73,27 @@ The running Verified study and its frozen policy remain unchanged. The Aider
 test-feedback diagnostic remains a separate reserved panel, with its own
 controls and verifier corrections. Neither framework tests nor toy mechanism
 checks are pooled into task-quality tables or the 95/95 target calculation.
+
+### Local Harbor networking compatibility
+
+The installed Docker Desktop kernel lacks the nftables FIB support required by
+Harbor 0.25's egress sidecar. A custom environment extension uses Harbor's
+supported import-path hook and maintained Docker network disconnect/connect
+operations, retaining Harbor's lifecycle, exec, mounting and verification code.
+It supports only public/no-network phases on one standard Linux task container;
+allowlists, custom Compose topologies, Windows, published ports, elevated network
+capabilities and exposed daemon sockets are rejected. Every transition inspects
+actual container attachments before completing. A failed transition stops the
+phase, so the actor cannot proceed on an unverified network change.
+
+Real Harbor fixture evidence is separate from task readiness and model quality.
+It checks public peer HTTP reachability, zero attachments and failed numeric-IP
+peer access in the isolated phase, restoration of positive reachability, and
+allowlist rejection. The actual Pro image, actor boundary and official empty/
+reference controls must still pass before any model trial. Peer isolation is
+not a universal egress proof; the registered actual actor probe remains required.
+
+A separate task-local Docker configuration selects the installed Compose plugin
+because the user's global plugin link points to a stale app-translocation path.
+It contains no registry credentials and leaves the user's settings untouched.
+The first official Pro no-op attempt and all failed fixtures remain archived.

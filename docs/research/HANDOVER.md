@@ -1144,3 +1144,41 @@ preserve actual agent phase context and existing worker/patch/metering gates.
 Prove transition on the real Harbor task before versioned nop/oracle controls,
 then register a new pipeline output/protocol before any model inference. Existing
 pipeline003 is stopped, not active; retain all frozen sources/protocols as history.
+
+## Heartbeat 22:17 UTC: real Harbor network integration passes
+
+Read AGENTS and current handover, confirmed all old supervisors/queues exited;
+no live Pro/model trial was restarted. Implemented the narrowly scoped
+`ttgl.harbor_docker_network:DetachedNetworkDocker` using Harbor's supported custom
+environment hook, inherited lifecycle/exec/mounts and Docker attachment commands.
+Public/no-network only; rejects unsupported allowlists, Windows, custom Compose,
+published ports, elevated network capabilities and Docker socket access. Checks
+running actor identity and actual attachments before/after each transition.
+Models cannot enter a phase after a failed transition. No nftables guard bypass.
+
+Reproducible real lifecycle check: scripts/probe_harbor_network_phases.py.
+Final receipt harbor-network-fixture-004.json matches current source SHA and
+passes public HTTP -> zero attachments/failed numeric-IP HTTP -> restored HTTP,
+plus unsupported-allowlist rejection and full fixture cleanup. No model calls.
+Earlier fixtures retained: 001 found broken global Docker Compose symlink;
+002 reached isolated phase but DNS retry exceeded exec timeout. Fixture now
+uses a known peer's numeric IP to test routing separately from resolver delay.
+003 passed; 004 repeats after accurately disabling advertised Windows support.
+
+Task-local DOCKER_CONFIG artifacts/harbor-docker-public-config-001 contains only
+cliPluginsExtraDirs pointing to installed Docker.app plugin, Compose 2.15.1.
+Global symlink and credentials unchanged. Config and intended import path are
+recorded in experiments/swe-pro-prompt-001/docker-network-runtime-001.json.
+Existing upstream .25 lacked required kernel capabilities; this extension adds
+only missing host-specific PUBLIC/NO_NETWORK phase switching, not a new harness.
+
+Removed only the fully graded final SymPy image (audit33, zero container refs,
+no force), then reclaimed Docker VM unused blocks. Receipt closed-final-image-2217.
+Other active CI/compiler cache preserved: compilation has resumed. Free space is
+still below the Pro12GiB reserve, before accounting for incoming actual task image.
+No Pro controls or model calls launched. All old failure directories preserved.
+Next: inspect resource liveness, recover only verified inactive cache if eligible,
+prepare actual first Pro image with reserve, then register NEW nop/oracle controls
+using custom import and isolated Docker config. After those and actual actor/
+metering/replay gates pass, register new pipeline/protocol/output (003 stays stopped).
+The whole proprietary study/paper is not complete; heartbeat remains enabled.

@@ -1,0 +1,21 @@
+{
+  "status": "local_compatibility_implementation_not_registered_model_trials",
+  "environment_import_path": "ttgl.harbor_docker_network:DetachedNetworkDocker",
+  "docker_config_path": "/Users/rustameynaliyev/Developer/TTGL/artifacts/harbor-docker-public-config-001",
+  "docker_config": {
+    "cliPluginsExtraDirs": [
+      "/Applications/Docker.app/Contents/Resources/cli-plugins"
+    ]
+  },
+  "harbor_version": "0.25.0",
+  "installed_compose_version": "2.15.1",
+  "pro_model_trials": 0,
+  "actor_network_requirement": "no-network",
+  "pro_controls_output_pending": "must use a new versioned directory; never restart environment-controls-002",
+  "remaining": [
+    "actual Pro image preparation and disk reserve",
+    "versioned official no-op/reference controls",
+    "actual actor boundary/native metering/sealed patch replay",
+    "one registered four-arm development block"
+  ]
+}
