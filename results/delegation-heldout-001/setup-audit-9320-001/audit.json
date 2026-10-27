@@ -1,0 +1,12 @@
+{
+  "status": "audited_dependency_and_runner_metadata_only_before_held_out_inference",
+  "instance_id": "sphinx-doc__sphinx-9320",
+  "setup_py_base_blob": "206ff4ad4904cd24b81e00dc0b3383fcbb54e6a2",
+  "setup_py_image_blob": "4bb5faeb12fe7d313b81413f3655954aaa09d9cb",
+  "diff_sha256": "bd75e9baf603db721c138cde42fb6ca893b6b67875d2cac86d8864a9814a917f",
+  "changes": "Dependency version caps in setup.py; previously audited pytest -rA runner flag in tox.ini. No implementation or test source changes.",
+  "handling": "Allow only these exact blob pairs, then restore all tracked files to original base before model access; preserve original failed probe.",
+  "runtime_source_sha256": "29183c175eca95a7532ca7e85727e34c423404bf032184fea36319f95401ecdd",
+  "native_controls_repeated": 0,
+  "model_inference_started": false
+}

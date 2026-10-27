@@ -10,7 +10,7 @@ python - <<'PY'
 from pathlib import Path
 parts = ['frontmatter.md', '../thesis/personal-agent-prior-art.md', 'architecture.md',
          'methods.md', 'economics-and-results.md', 'live-routing-results.md', 'standard-benchmark-results.md',
-         'discussion-and-reproduction.md']
+         'learning-study.md', 'discussion-and-reproduction.md']
 Path('paper.md').write_text('\n\n'.join(Path(p).read_text().rstrip() for p in parts)
                            + '\n\n# References {.unnumbered}\n\n::: {#refs}\n:::\n')
 Path('references.bib').write_text('\n'.join(Path(p).read_text() for p in
@@ -35,7 +35,7 @@ from pathlib import Path
 sources = ['frontmatter.md', '../thesis/personal-agent-prior-art.md',
            '../thesis/personal-agent-prior-art-sources.json', 'architecture.md',
            'methods.md', 'economics-and-results.md', 'live-routing-results.md', 'standard-benchmark-results.md',
-           'discussion-and-reproduction.md',
+           'learning-study.md', 'discussion-and-reproduction.md',
            'references.bib', 'additional-references.bib', 'figures/conversation.dot',
            '../../experiments/codex-pilot-001/protocol.json',
            '../../results/codex-pilot-001/analysis/summary.json',
@@ -69,6 +69,7 @@ for root in live_roots:
             if p.is_file():
                 sources.append(str(p))
 sources.extend(str(p) for p in sorted(Path('../../prompts').glob('controller-v2-*.txt')))
+sources.extend(str(p) for p in sorted(Path('../../results/prompt-comparison-001/figures-002').glob('*')) if p.is_file())
 sources.extend(['../../src/ttgl/policy.py', '../../src/ttgl/frontier.py',
                 '../../scripts/run_policy_study.py', '../../scripts/report_policy_target.py',
                 '../../scripts/plot_live_frontier.py', '../../scripts/select_delegation_policy.py',

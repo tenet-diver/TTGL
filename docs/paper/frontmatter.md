@@ -1,7 +1,7 @@
 ---
 title: "We have to combine — A conversation is all you need"
 subtitle: "Using small language models as conversational routers for agentic software engineering"
-date: "26 October 2026 (Europe/Amsterdam)"
+date: "27 October 2026 (Europe/Amsterdam)"
 lang: en-GB
 link-citations: true
 toc-depth: 2
@@ -10,8 +10,8 @@ toc-depth: 2
 # Status and scope {.unnumbered}
 
 This is a research paper and master's-thesis core, with a reproducible engineering
-pilot, a completed 500-task SWE-bench Verified routing replay, and a prospective
-confirmatory conversation protocol. Its central contribution is an
+pilot, a completed 500-task SWE-bench Verified routing replay, 108 fresh metered
+Luna/Sol assignments, and prospective held-out and learning protocols. Its central contribution is an
 empirical replication and conversational-routing extension, **not a claim to have
 invented small agents that consult larger models**. The broader earlier thesis
 contains supporting reviews of open-model portfolios, prices, distillation,
@@ -62,16 +62,24 @@ operating point reaches 76.2% at US$0.1154; inexpensive MiniMax-M2.5 alone reach
 model choice to routing. These historical outcome replays are not new model
 inference or live conversations.
 
-The confirmatory protocol compares conversation with single-model execution,
-pre-call routing and one-way assistance under matched information and resource
-budgets. The proposed gate combines a three-percentage-point quality tolerance
-with lower measured total cost; a 25% saving is the practical target. Personal
-memory, learned collaboration skills and multi-agent communication are optional
-ablations and extensions. The pilot exposes no complete billing ledger and is
-not powered for noninferiority. It therefore establishes execution feasibility,
-not conversational cost savings, local-model capability or learning improvement.
-The standard-benchmark replay supplies a reproducible negative primary result
-and identifies a stronger low-cost standalone control for the next experiment.
+A fresh metered panel executes 72 assignments across 12 SWE-bench Verified tasks.
+Luna alone resolves 9/12, Sol alone 10/12 and pre-task selection 11/12. Continuing
+expert access resolves 9/12 with no consultations. Its published token-rate
+scenario is 95.5% cheaper than Sol, but retains only 90% of aggregate accuracy.
+Three four-task prompt-development studies add 36 assignments. Adaptive and
+bounded cheap-first assistance each resolve 4/4, matching their Sol controls at
+87.1% and 89.1% lower scenario cost, respectively. Matched Luna controls resolve
+2/4 and 3/4. These are development observations, not held-out improvements or
+proof that expert help was causally necessary.
+
+No assisted condition meets the sharpened joint target of 95% lower total task
+model-inference cost and 95% relative Sol accuracy. Native grade/patch and token
+audits pass for all 108 assignments; cost scenarios are not bills or deployment
+costs. Held-out validation remains incomplete. A bounded Pro V2 subset extends
+prompt evaluation; a separately specified open-weight study compares sequence
+and probability distillation, RL, and local/remote inference using distinct
+training, development and sealed evaluation partitions. No training, population
+noninferiority or amortized learning-cost benefit is established.
 
 **Keywords:** conversational routing; small language models; software-engineering
 agents; bidirectional collaboration; cost–quality tradeoffs; replication.

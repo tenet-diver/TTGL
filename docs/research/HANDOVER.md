@@ -580,3 +580,42 @@ updated to completedlive studies. Pro plots are not fabricated; availablegraph
 uses actual Verified pilot/development data. Need finish proprietary heldout
 and iterate on boundedPro before claims/learning expansion. Last fullsuite158
 remainslastfull; newscriptactualdata validations and4independentaudits pass.
+
+### Learning chapter and Sphinx readiness repair
+
+User explicitly requests paper sections for separate training data, distillation,
+RL and learning cost/performance, while continuing proprietary routing first.
+Added docs/paper/learning-study.md: executable SWE-Gym/SWE-smith candidates,
+train/dev/sealed evaluation and family deduplication, observable action/feedback
+traces, current journal's omitted-tool-body limitation, causal loss targets,
+sequence versus on-policy probability distillation and API scoring access, RL
+reward/integrity controls, matched local/remote checkpoint factorial, standalone
+and cooperative learning curves and training-cost amortization. Prospective,
+no training results. New abstract includes108actualtrials and95/95targetmiss.
+Full build succeeded53PDFpages; newchapterPDFpages42-45 visuallychecked, table
+fits, citationsresolve. Final53pagePDF/DOCXQA remainspending; outputs aredrafts.
+
+Readiness004 stopped after6accepted probes at sphinx9320's exact-sourceguard.
+Audited gitdiff base..imageHEAD: setup.py dependencycaps only, tox.ini previously
+audited pytest-rA. Added exactsetupblobpair206ff4ad4904cd24b81e00dc0b3383fcbb54e6a2
+->4bb5faeb12fe7d313b81413f3655954aaa09d9cb, preservingoldpairs; everytrackedfile
+stillrestoredtoexactbasebeforemodel. Archive results/delegation-heldout-001/setup-audit-9320-001.
+Dockerbehaviorchecks TTGL_CONTAINER_TESTS=1 pytest tests/test_isolated.py:
+4passed55.06sec (earlieruninstrumented4skipsnotcountedasverification).
+
+Active replacement /tmp/ttgl_continue_heldout_005.py PID49463 (execsession4578)
+under caffeinate-s, logartifacts/selected-heldout-continuation-005.log.
+Readiness explicitly--resume reusesclosednativecontrols, newversionedprobe;
+Sphinx9320NOWPASSES. NextSphinx10673basefalse/goldtrue; publicprobeinprogress
+atlastcheck. Thenremaining4cases, all11mustpassbefore33heldoutassignments.
+Old004finishedfailureandmustnotrestart. Selectedfallbackunchanged. No model
+callsrepeated. No generationsource editsafterfuturestudy002init/preflight.
+
+For upcomingProintegration inspectedofficialpinnedlocked_codex.py andpatch_replay.py
+(read-only artifacts/pro-harness-source): maintainedHarborcustomBaseAgent API,
+execandcapture/appor/testbed, authoritativefreshpatchregrade,50minnativebudget.
+ProsubsetadapterISNOTimplementedyet. Harbor0.25.0PyPIwheelmetadata/sourceverified
+againstSHA inartifacts/harbor-0.25.0/wheel-provenance.json; notinstalled. Current
+CLIupstreamadapterexpectsOpenAIcompatibleAPI; we mustkeepnativeChatGPTcredentials
+outsideagentworkerswhenwrappingourhostcontroller. ExistingVerifiedMCPusesfixed
+/testbed/Conda; cannotjustpointitatProimagesandclaimintegration.

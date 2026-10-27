@@ -23,12 +23,14 @@ DEPENDENCIES = ROOT / 'tools/worker-dependencies.json'
 # Exact, inspected dependency/runner-only changes made by official image setup.
 # Every listed file is restored to its original base blob before model access.
 AUDITED_SETUP_BLOBS = {
-    ('astropy/astropy', 'pyproject.toml'): (
-        '3364d307406a06457fba6b129db98c2399e7d624', '02dddbe713a3d037b3e5f6ba49af3b7ec1c49c0b'),
-    ('sphinx-doc/sphinx', 'setup.py'): (
-        '2538952e376408be7da679fc647fac447dd30602', '94e1d8b320a57b3b1d0a556e15e9a90080e39d6d'),
-    ('sphinx-doc/sphinx', 'tox.ini'): (
-        'a363e187faaecc3096f41168ccedd93a17a0cf50', '3b8bc12d02028feaac4d488c13b662e3e6db163d'),
+    ('astropy/astropy', 'pyproject.toml'): {
+        ('3364d307406a06457fba6b129db98c2399e7d624', '02dddbe713a3d037b3e5f6ba49af3b7ec1c49c0b')},
+    ('sphinx-doc/sphinx', 'setup.py'): {
+        ('2538952e376408be7da679fc647fac447dd30602', '94e1d8b320a57b3b1d0a556e15e9a90080e39d6d'),
+        # 9320 image: dependency caps only; inspected before held-out inference.
+        ('206ff4ad4904cd24b81e00dc0b3383fcbb54e6a2', '4bb5faeb12fe7d313b81413f3655954aaa09d9cb')},
+    ('sphinx-doc/sphinx', 'tox.ini'): {
+        ('a363e187faaecc3096f41168ccedd93a17a0cf50', '3b8bc12d02028feaac4d488c13b662e3e6db163d')},
 }
 
 
@@ -182,7 +184,7 @@ class DockerWorkers:
                 metadata, path = fields[index], fields[index+1]
                 old_mode, new_mode, old_blob, new_blob, status = metadata[1:].split()
                 regular = old_mode in {'100644', '100755'} and new_mode in {'100644', '100755'}
-                audited_setup = AUDITED_SETUP_BLOBS.get((task.get('repo'), path)) == (old_blob, new_blob)
+                audited_setup = (old_blob, new_blob) in AUDITED_SETUP_BLOBS.get((task.get('repo'), path), set())
                 if not regular or status != 'M' or (old_blob != new_blob and not audited_setup):
                     raise RuntimeError('Prepared image contains tracked source changes beyond audited setup')
                 if audited_setup:

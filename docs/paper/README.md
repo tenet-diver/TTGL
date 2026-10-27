@@ -29,6 +29,12 @@ assisted condition has achieved the subsequent joint 95% saving / 95% relative
 accuracy-retention target. The tables below describe older feasibility evidence.
 Generated document previews still require rebuilding and final result QA.
 
+The [prospective learning study](learning-study.md) specifies separate training,
+development and evaluation data; observable trace collection; sequence and
+probability distillation; RL; local/remote controls; and inference versus
+amortized training-cost learning curves. These are planned comparisons, not
+training results. The immediate priority remains the proprietary routing study.
+
 | Live condition | Functional success | Accepted under strict artifact policy |
 |---|---:|---:|
 | Luna only | 3/4 | 3/4 |
