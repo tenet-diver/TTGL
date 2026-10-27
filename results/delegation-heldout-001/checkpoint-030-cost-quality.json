@@ -1,0 +1,287 @@
+{
+  "status": "interim_10_of_11_tasks_not_complete_study",
+  "created_at": "2026-10-27T21:18:25.935076+00:00",
+  "audit": "checkpoint-resource-030.json",
+  "rates_sha256": "24337a4fbe01bd97c0a8034c97e7f940779d207a388111dd3c19601919a49328",
+  "records": [
+    {
+      "task_id": "django__django-10999",
+      "arm": "large",
+      "resolved": false,
+      "cost_usd": 0.0450344,
+      "expert_calls": 0,
+      "manifest_sha256": "c8692bc71f6f4711810ce107ee6c7e0aef3a4e00db3273eb78756ce9fb7f9c47",
+      "official_report_sha256": "1e2864412f0c0934ba87c520e08f58cea87bebe36f218e22a5dae2c8d6acb948"
+    },
+    {
+      "task_id": "django__django-10999",
+      "arm": "personal",
+      "resolved": false,
+      "cost_usd": 0.00304434,
+      "expert_calls": 0,
+      "manifest_sha256": "7e750439b4311134bfe9a8265d2960bb7b660a1734eee0ddfe15b6579bc208e0",
+      "official_report_sha256": "1e2864412f0c0934ba87c520e08f58cea87bebe36f218e22a5dae2c8d6acb948"
+    },
+    {
+      "task_id": "django__django-10999",
+      "arm": "small",
+      "resolved": false,
+      "cost_usd": 0.00289566,
+      "expert_calls": 0,
+      "manifest_sha256": "db25feda7b1475214a7f2cb4d11221e37cfc8e00e387badd0d7c5e1f28fb8f41",
+      "official_report_sha256": "1e2864412f0c0934ba87c520e08f58cea87bebe36f218e22a5dae2c8d6acb948"
+    },
+    {
+      "task_id": "django__django-12125",
+      "arm": "large",
+      "resolved": true,
+      "cost_usd": 0.1799076,
+      "expert_calls": 0,
+      "manifest_sha256": "a63f99f199fb0eb98a7b3286725c5633197c64d38ba7270b4b444ec66a21de5d",
+      "official_report_sha256": "6b81f7254ada2fc441ce41db5fecd833e0e09f2ac5bd00ef0dc83ac1b9d11228"
+    },
+    {
+      "task_id": "django__django-12125",
+      "arm": "personal",
+      "resolved": true,
+      "cost_usd": 0.00678872,
+      "expert_calls": 0,
+      "manifest_sha256": "84dbb2b461ced8ceb6ff45b67f664882033d5aa26fec8cca0943e3ba275456f3",
+      "official_report_sha256": "6b81f7254ada2fc441ce41db5fecd833e0e09f2ac5bd00ef0dc83ac1b9d11228"
+    },
+    {
+      "task_id": "django__django-12125",
+      "arm": "small",
+      "resolved": true,
+      "cost_usd": 0.00972474,
+      "expert_calls": 0,
+      "manifest_sha256": "0c23d84e2dd20cbc28a5b3010d8f38fd345e755af8755013b1fd0d7bdf3394d8",
+      "official_report_sha256": "6b81f7254ada2fc441ce41db5fecd833e0e09f2ac5bd00ef0dc83ac1b9d11228"
+    },
+    {
+      "task_id": "django__django-12276",
+      "arm": "large",
+      "resolved": true,
+      "cost_usd": 0.09042839999999999,
+      "expert_calls": 0,
+      "manifest_sha256": "4ff5d57b8323971b1094b7549a4f582310c4f3d708e45c4fb9f242f558e3e8e2",
+      "official_report_sha256": "d74486092cdaacc44812b30e7c2c00893fa57b34664832ef3a5d3a284a0223d9"
+    },
+    {
+      "task_id": "django__django-12276",
+      "arm": "personal",
+      "resolved": true,
+      "cost_usd": 0.00536436,
+      "expert_calls": 0,
+      "manifest_sha256": "182b1287600c16d5a21bcbe9412e54105041e76833b41539ab35ef4d0cb2fba5",
+      "official_report_sha256": "d74486092cdaacc44812b30e7c2c00893fa57b34664832ef3a5d3a284a0223d9"
+    },
+    {
+      "task_id": "django__django-12276",
+      "arm": "small",
+      "resolved": true,
+      "cost_usd": 0.0045225,
+      "expert_calls": 0,
+      "manifest_sha256": "bbd301fbaf798af52e26c9c88887871fec555c0c1a40fdb1c1685cce4d9083b3",
+      "official_report_sha256": "d74486092cdaacc44812b30e7c2c00893fa57b34664832ef3a5d3a284a0223d9"
+    },
+    {
+      "task_id": "django__django-13109",
+      "arm": "large",
+      "resolved": true,
+      "cost_usd": 0.0709656,
+      "expert_calls": 0,
+      "manifest_sha256": "9d737544d2e2bec4e4051708bcf70b154a2695d88dfe35282c1f6ffa07fd7487",
+      "official_report_sha256": "30f3c36ee4eed4afb0d067e944e1002cfb3f0f9b8e0bfd672a805eb9c8b07eaf"
+    },
+    {
+      "task_id": "django__django-13109",
+      "arm": "personal",
+      "resolved": true,
+      "cost_usd": 0.00349928,
+      "expert_calls": 0,
+      "manifest_sha256": "55cacde73a3d940af98619b6a82174b4501ad429c916c3d23fc74959c8df994c",
+      "official_report_sha256": "30f3c36ee4eed4afb0d067e944e1002cfb3f0f9b8e0bfd672a805eb9c8b07eaf"
+    },
+    {
+      "task_id": "django__django-13109",
+      "arm": "small",
+      "resolved": true,
+      "cost_usd": 0.00481184,
+      "expert_calls": 0,
+      "manifest_sha256": "b3ef405f08886cadb48b46ee033a628fe63928fb921b7adcb52df7409b0f9ad3",
+      "official_report_sha256": "30f3c36ee4eed4afb0d067e944e1002cfb3f0f9b8e0bfd672a805eb9c8b07eaf"
+    },
+    {
+      "task_id": "pylint-dev__pylint-6903",
+      "arm": "large",
+      "resolved": true,
+      "cost_usd": 0.15432120000000002,
+      "expert_calls": 0,
+      "manifest_sha256": "f6c1b1ddd5fb8b78a4f2b462680b8fe098fb2e155d2a0caab4d61ba48286452c",
+      "official_report_sha256": "ba5c07b6df38aff9112cdf1bc71ae84fae6cd800b5b65ffffe74758395f764f1"
+    },
+    {
+      "task_id": "pylint-dev__pylint-6903",
+      "arm": "personal",
+      "resolved": true,
+      "cost_usd": 0.00306126,
+      "expert_calls": 0,
+      "manifest_sha256": "1dc9d4a6a90f11d3d57e0677aa44f04b4ded97d75da650921056f6c2fae3b52b",
+      "official_report_sha256": "ba5c07b6df38aff9112cdf1bc71ae84fae6cd800b5b65ffffe74758395f764f1"
+    },
+    {
+      "task_id": "pylint-dev__pylint-6903",
+      "arm": "small",
+      "resolved": true,
+      "cost_usd": 0.00586052,
+      "expert_calls": 0,
+      "manifest_sha256": "35ea1a33b7f02a9560b30d2ab1a3d7a81c4c147f810dc39c24b5ad292e6a321e",
+      "official_report_sha256": "ba5c07b6df38aff9112cdf1bc71ae84fae6cd800b5b65ffffe74758395f764f1"
+    },
+    {
+      "task_id": "scikit-learn__scikit-learn-25747",
+      "arm": "large",
+      "resolved": true,
+      "cost_usd": 0.1209764,
+      "expert_calls": 0,
+      "manifest_sha256": "f2cc8ce7a50dc12a79ef18dfab1bc06a41207e5832fe39993dc0ffb4332ba7ba",
+      "official_report_sha256": "6b77b226f373928e3d51a2d95f9e6e240fc109a0076ef35e4c12433d5e0142fb"
+    },
+    {
+      "task_id": "scikit-learn__scikit-learn-25747",
+      "arm": "personal",
+      "resolved": false,
+      "cost_usd": 0.00681118,
+      "expert_calls": 0,
+      "manifest_sha256": "7ac24888e5def1763e5156c1a2239270f5fa0fc4133e33169b66b33285a463a0",
+      "official_report_sha256": "e04e54aa65fbae63698ff701371ed72fe6c1b16bbebb2b74a3609ec9bc0e6d64"
+    },
+    {
+      "task_id": "scikit-learn__scikit-learn-25747",
+      "arm": "small",
+      "resolved": false,
+      "cost_usd": 0.00445494,
+      "expert_calls": 0,
+      "manifest_sha256": "b3a3c7808eb976247f534371aaa0c42d623b2ce47d7356f94b395fb6324cd211",
+      "official_report_sha256": "e04e54aa65fbae63698ff701371ed72fe6c1b16bbebb2b74a3609ec9bc0e6d64"
+    },
+    {
+      "task_id": "sphinx-doc__sphinx-10673",
+      "arm": "large",
+      "resolved": true,
+      "cost_usd": 0.4135644,
+      "expert_calls": 0,
+      "manifest_sha256": "7863117fb0d159d134e65f4db5486771870e05a571914cf32823d00de637e11e",
+      "official_report_sha256": "47c1dcb11b54aa6aa7b0e973643eae36b705f3fbe34a5041872eb8994abc52b8"
+    },
+    {
+      "task_id": "sphinx-doc__sphinx-10673",
+      "arm": "personal",
+      "resolved": true,
+      "cost_usd": 0.05243352,
+      "expert_calls": 2,
+      "manifest_sha256": "42c48d891c8cc7c8cf9b4abdea7dcc899422b40cc0f8ac0988c9ff3f82c66ab2",
+      "official_report_sha256": "47c1dcb11b54aa6aa7b0e973643eae36b705f3fbe34a5041872eb8994abc52b8"
+    },
+    {
+      "task_id": "sphinx-doc__sphinx-10673",
+      "arm": "small",
+      "resolved": false,
+      "cost_usd": 0.01249326,
+      "expert_calls": 0,
+      "manifest_sha256": "7a06813064feb10c7218a6c8bff2a162dd5e60eed40813a75e0175f0ce978906",
+      "official_report_sha256": "29c2b77f9872b8d7b0c6bf171d8d857da38db291df707f0a471f53144d0fd710"
+    },
+    {
+      "task_id": "sphinx-doc__sphinx-11510",
+      "arm": "large",
+      "resolved": false,
+      "cost_usd": 0.2917168,
+      "expert_calls": 0,
+      "manifest_sha256": "e3b4f64bcbc082feb78052fb1191f6833381d428c6a16c67d5c104d7ab721822",
+      "official_report_sha256": "1d0a2a215689d2389fd7c9cf6e19fcd7bf589044ff6735f9561c98988a7f484f"
+    },
+    {
+      "task_id": "sphinx-doc__sphinx-11510",
+      "arm": "personal",
+      "resolved": false,
+      "cost_usd": 0.045352939999999994,
+      "expert_calls": 2,
+      "manifest_sha256": "023b6774337f1c0f18fcb08bb5a761fc5b29c0f30b97363847492dbfb7e9a282",
+      "official_report_sha256": "1d0a2a215689d2389fd7c9cf6e19fcd7bf589044ff6735f9561c98988a7f484f"
+    },
+    {
+      "task_id": "sphinx-doc__sphinx-11510",
+      "arm": "small",
+      "resolved": false,
+      "cost_usd": 0.00887886,
+      "expert_calls": 0,
+      "manifest_sha256": "9551e37d73968b51a5800c591db5ea527787be99f4dd56f645d3cdbfb3db8710",
+      "official_report_sha256": "798f81cb48b30917627c4145c77ad0d0aa77770d9ac8e8738233669a7c74998a"
+    },
+    {
+      "task_id": "sphinx-doc__sphinx-9320",
+      "arm": "large",
+      "resolved": true,
+      "cost_usd": 0.1172352,
+      "expert_calls": 0,
+      "manifest_sha256": "c8d148be898a6ac0042a8cfd8de355b06c0933006854b8851ef4bc23c1276b09",
+      "official_report_sha256": "d54f419f27a7c025547c5f86c6c441c8a90d5cbfc2c3e3666e30c53809aec42d"
+    },
+    {
+      "task_id": "sphinx-doc__sphinx-9320",
+      "arm": "personal",
+      "resolved": true,
+      "cost_usd": 0.0038643199999999996,
+      "expert_calls": 0,
+      "manifest_sha256": "2d1d0add36f7d72b880c78129517a7d8cb9b53a3f25e1d0f5aeab52f4eafb9ec",
+      "official_report_sha256": "d54f419f27a7c025547c5f86c6c441c8a90d5cbfc2c3e3666e30c53809aec42d"
+    },
+    {
+      "task_id": "sphinx-doc__sphinx-9320",
+      "arm": "small",
+      "resolved": true,
+      "cost_usd": 0.00362796,
+      "expert_calls": 0,
+      "manifest_sha256": "018ce608b214f0f2c88f1ec1d834f5de8be5268f00edbe54aca19702a3dc5591",
+      "official_report_sha256": "d54f419f27a7c025547c5f86c6c441c8a90d5cbfc2c3e3666e30c53809aec42d"
+    },
+    {
+      "task_id": "sympy__sympy-24213",
+      "arm": "large",
+      "resolved": true,
+      "cost_usd": 0.07813239999999999,
+      "expert_calls": 0,
+      "manifest_sha256": "70d0dbc753a02285c097bc501f85b65ed845e88acf578406847e6ab5603e7c1e",
+      "official_report_sha256": "fccd8302f493925eea531a4ffd6fec430049ad6fd05d0b1e6a2de6fb70c1744e"
+    },
+    {
+      "task_id": "sympy__sympy-24213",
+      "arm": "personal",
+      "resolved": true,
+      "cost_usd": 0.005775860000000001,
+      "expert_calls": 0,
+      "manifest_sha256": "b5f2a6e219d81858157fc964933b02c9065248ffb87d642c10851febd8083eaa",
+      "official_report_sha256": "fccd8302f493925eea531a4ffd6fec430049ad6fd05d0b1e6a2de6fb70c1744e"
+    },
+    {
+      "task_id": "sympy__sympy-24213",
+      "arm": "small",
+      "resolved": true,
+      "cost_usd": 0.005715780000000001,
+      "expert_calls": 0,
+      "manifest_sha256": "63564686802b290ed84fce71c362f4a83c11853bbe57dc1ba160144d5752761d",
+      "official_report_sha256": "fccd8302f493925eea531a4ffd6fec430049ad6fd05d0b1e6a2de6fb70c1744e"
+    }
+  ],
+  "total_scenario_usd": {
+    "large": 1.5622824,
+    "small": 0.06298606000000001,
+    "personal": 0.13599577999999998
+  },
+  "personal_saving_vs_large": 0.9129505779492876,
+  "personal_relative_accuracy_retention": 0.875,
+  "joint_95_95_target_met": false,
+  "observed_invoice_usd": null
+}

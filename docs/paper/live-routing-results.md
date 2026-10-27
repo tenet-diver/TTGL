@@ -130,3 +130,16 @@ three native calls and demonstrated transfer and integration of an expert-found
 edge case; its six post-hoc checks are mechanism evidence, not benchmark quality
 or autonomous-routing performance. The larger development/validation comparison
 has not started model inference yet.
+
+A later interim checkpoint covers ten complete held-out tasks (30 of 33
+assignments), independently audited in `checkpoint-resource-030.json`.
+Sol resolves 8/10, Luna 6/10 and assisted Luna 7/10. Assisted Luna retains the
+single paired rescue and loses no standalone Luna success. Four consultations
+were completed: two on the successful Sphinx10673 episode and two on
+Sphinx11510, which fails in all three arms. Total scenario costs are USD
+1.56228240 (Sol), 0.06298606 (Luna) and 0.13599578 (assisted). Assisted savings
+are 91.2951% and relative accuracy retention is 87.5%; the joint target fails.
+This incomplete checkpoint supersedes the earlier seven-task denominator,
+without changing the frozen policy or stopping rule. The final task remains
+pending. `checkpoint-030-cost-quality.json` retains per-task costs, grades and
+source hashes; these are token-rate scenarios, not observed invoices.
