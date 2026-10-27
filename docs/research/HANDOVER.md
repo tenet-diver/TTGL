@@ -1182,3 +1182,42 @@ prepare actual first Pro image with reserve, then register NEW nop/oracle contro
 using custom import and isolated Docker config. After those and actual actor/
 metering/replay gates pass, register new pipeline/protocol/output (003 stays stopped).
 The whole proprietary study/paper is not complete; heartbeat remains enabled.
+
+## Heartbeat 22:47 UTC: image verified; new model-free control supervisor queued
+
+No old model/Pro workers were live; completed native grades unchanged. Active
+Xcode/compiler and its 2.9 GiB cache remain preserved. No cleanup this heartbeat.
+Old Docker20.10 `manifest inspect` incorrectly reported no such manifest for the
+first official Pro OCI image. Direct anonymous-token GHCR request returns HTTP200;
+manifest SHA256 is verified against raw response bytes and registry digest:
+0c1bda3771a33dc39070bf3b130b7217a352a144a7e2a9e1360d88113840ed1b.
+Official image exists; do NOT call it unavailable. Layers total868,696,622
+compressed bytes; uncompressed size remains unknown until pull. Diagnostics
+pro-image-manifest-001.json (old CLI failure) and
+pro-image-registry-diagnostic-001.json (registry success; no tokens retained).
+Official v2 README still specifies these public anonymous GHCR images and
+public-setup/no-network-actor/fresh-grading protocol:
+https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/v2/README.md
+
+New scripts/continue_pro_controls.py is a staging-only supervisor, registered
+control-protocol-003.json. PID82715 (caffeinate82716), exec5615,
+artifacts/pro-controls-queue-003.log. Output environment-controls-003.
+It verifies completed native audit33 and frozen source bindings; waits up to2h
+for18GiB free (12GiB reserve plus conservative6GiB incoming-image allowance,
+NOT a claim of known uncompressed size). Current free12GiB. Then pulls the exact
+registered digest, records actual image size/ID, tags it with unchanged upstream
+reference, checks12GiB before each control, and runs ONLY nop/oracle once each
+with fresh native Harbor output and DetachedNetworkDocker through the supported
+custom import path. Positive/negative reward and exceptions inspected, no CLI-only
+success. Failure preserves stopped.json, no automatic retries. No model agents or
+scored assignments are authorized by this supervisor; a successful pair DOES NOT
+start inference automatically. Existing pipeline003 remains stopped.
+
+SOURCE FREEZE: control-protocol003 binds new control supervisor, network adapter,
+runtime lock, actual passing fixture004, prior audit, task preparation and all11
+pinned private files, plus credential-free isolated Docker config. Do not edit
+bound files while82715 is active. Runtime compatibility config001 and all prior
+failures remain history. This queue should advance when active CI releases its
+transient storage; never delete active compiler data to force it. Inspect real
+PID, invocations, image binding, native jobs, summary/stopped rather than initial
+queue.json alone. Still zero Pro model calls and no new quality results.
