@@ -1,0 +1,16 @@
+{
+  "removed": [
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-3qbGsK/checkout/node_modules",
+      "package_sha256": "4df90d7e2c826593abf9f81693bc0eab1779bd3d40ce3c802d22eda2304668fe",
+      "open_references": 0
+    },
+    {
+      "path": "/Users/rustameynaliyev/Developer/calorie-budget-479-portable-recovery.noindex/node_modules",
+      "package_sha256": "10d7e41aaf00a915ca855df6e5a892f38cc2d1b1221e9593ab4f34fe01f36520",
+      "open_references": 0
+    }
+  ],
+  "free_bytes_after": 14952464384,
+  "active_compiler_and_active_CI_preserved": true
+}

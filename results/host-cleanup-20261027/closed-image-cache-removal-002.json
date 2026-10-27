@@ -1,0 +1,41 @@
+{
+  "scope": "Only audited complete original task image IDs and one invalid control; no force, no volumes or global prune",
+  "records": [
+    {
+      "task": "django__django-15037",
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.django_1776_django-15037@sha256:4a75865ed731741f5b3c52483f71fd538bd86933d8339298279e68d87804bc13",
+        "image_id": "sha256:1a016025bfbddd6e8bce37805238019a57bba016eab7fac5c2df58d0476bd55b",
+        "size_bytes": 3006232876
+      },
+      "removed_target": "sha256:1a016025bfbddd6e8bce37805238019a57bba016eab7fac5c2df58d0476bd55b",
+      "returncode": 0,
+      "stdout": "Untagged: swebench/sweb.eval.x86_64.django_1776_django-15037@sha256:4a75865ed731741f5b3c52483f71fd538bd86933d8339298279e68d87804bc13\nDeleted: sha256:1a016025bfbddd6e8bce37805238019a57bba016eab7fac5c2df58d0476bd55b\nDeleted: sha256:2d96a5a2cbf673b76f40fe48bb0b3c072634104f2f3a90bf7a2cb0e3155623ec\nDeleted: sha256:61d674ceda12feeea1ab9cc0342f5d9ab7edcaaddef3caf0dacddaa44e2ee61a\nDeleted: sha256:9f67fa8a18c1db7e47b04d1daa9bbc575ca56ada7ac874daa36e7d71c1013c14\nDeleted: sha256:b14019e4a55e26652d0d952acd8a2ca0303aa99054e67d19c630be4f52236603\n",
+      "stderr": ""
+    },
+    {
+      "task": "sphinx-doc__sphinx-9230",
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-9230@sha256:2a18fa57b69c646bf0e1916f1df157a62de80ca8b55325738f9c9eeff9c38c86",
+        "image_id": "sha256:d379dcc96158e93133a465d02a206e554e948a48c38d19a17e18fcced167b933",
+        "size_bytes": 2811016760
+      },
+      "removed_target": "sha256:d379dcc96158e93133a465d02a206e554e948a48c38d19a17e18fcced167b933",
+      "returncode": 0,
+      "stdout": "Untagged: swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-9230@sha256:2a18fa57b69c646bf0e1916f1df157a62de80ca8b55325738f9c9eeff9c38c86\nDeleted: sha256:d379dcc96158e93133a465d02a206e554e948a48c38d19a17e18fcced167b933\nDeleted: sha256:b61f68afe9e384289b42d3988436be56241248011f3c0d98059dde58f2d4c203\nDeleted: sha256:21a3f1daea320d9219a967cc70caee15ededc3d57f27380b74d25e129e3f270e\nDeleted: sha256:352c57182c8208740d77b6cac48a5de6c8b41665f02f67989149839c4e3fbdf6\nDeleted: sha256:b82927a459fc0cff1f4fcb7458daac0ef58e2ea0f16657a1185efa5b8aa89b24\n",
+      "stderr": ""
+    },
+    {
+      "task": "django__django-7530",
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.django_1776_django-7530@sha256:843450ff83f444aa4626d05cffc0c912b79eb26045f2f625a4f2dd2b58d627f4",
+        "image_id": "sha256:70078ddf2e9dd5a5629123f2c1a1dd151047d61c336fe9da9e89ab32e1a4d6a1",
+        "size_bytes": 2989925250
+      },
+      "removed_target": "swebench/sweb.eval.x86_64.django_1776_django-7530:latest",
+      "returncode": 0,
+      "stdout": "Untagged: swebench/sweb.eval.x86_64.django_1776_django-7530:latest\nUntagged: swebench/sweb.eval.x86_64.django_1776_django-7530@sha256:843450ff83f444aa4626d05cffc0c912b79eb26045f2f625a4f2dd2b58d627f4\nDeleted: sha256:70078ddf2e9dd5a5629123f2c1a1dd151047d61c336fe9da9e89ab32e1a4d6a1\nDeleted: sha256:9d8659bf02e9f2997911efaf2cda5d5482891453a9e0f4a19b453dbb87c45423\nDeleted: sha256:5b5f6cc158f45618598148786f3e52723b631494687f43ea0d9f05d6800c5bd0\nDeleted: sha256:8c3a1f43f5c4b180973a2f415db1cceb76bf0544bfa07161d0ccff85d295711e\nDeleted: sha256:5e6db655a4a1c5bdf6ea287ecb3f666b07fd49835ca1e59c1423f8d0d14d1818\n",
+      "stderr": ""
+    }
+  ]
+}

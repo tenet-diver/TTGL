@@ -31,7 +31,8 @@ AUDITED_SETUP_BLOBS = {
         ('206ff4ad4904cd24b81e00dc0b3383fcbb54e6a2', '4bb5faeb12fe7d313b81413f3655954aaa09d9cb')},
     ('sphinx-doc/sphinx', 'tox.ini'): {
         ('a363e187faaecc3096f41168ccedd93a17a0cf50', '3b8bc12d02028feaac4d488c13b662e3e6db163d'),
-        ('7ca990b56df0c4874f2f99179fcf515d24a37b4c', 'a0708b02cfe638662f497b834d8551bd23800266')},
+        ('7ca990b56df0c4874f2f99179fcf515d24a37b4c', 'a0708b02cfe638662f497b834d8551bd23800266'),
+        ('a3dc5621123a87b1cfa82023fb5b845bf018246d', 'c76147de364565ccd16ee1864a3c10f4bb9a0c8c')},
 }
 
 
@@ -187,7 +188,8 @@ class DockerWorkers:
                 regular = old_mode in {'100644', '100755'} and new_mode in {'100644', '100755'}
                 audited_setup = (old_blob, new_blob) in AUDITED_SETUP_BLOBS.get((task.get('repo'), path), set())
                 if not regular or status != 'M' or (old_blob != new_blob and not audited_setup):
-                    raise RuntimeError('Prepared image contains tracked source changes beyond audited setup')
+                    raise RuntimeError('Prepared image contains tracked source changes beyond audited setup: '
+                                       f'{path} ({old_blob} -> {new_blob}, {status})')
                 if audited_setup:
                     restored_setup_files.append({'path': path, 'base_blob': old_blob,
                                                  'image_setup_blob': new_blob})

@@ -85,6 +85,10 @@ forms of complete logit access. Verify token-ID alignment, vocabulary, templates
 temperature, masks and treatment of tool boundaries. Same-family model names do
 not establish compatibility.
 
+Keep teacher and student identities, acquisition tasks and declared budgets
+matched across the sequence and probability arms. Changing teacher strength at
+the same time as the loss would confound the comparison.
+
 Ordinary generation APIs can supply demonstrations. An on-policy scoring service
 must additionally score arbitrary supplied student sequences; log probabilities
 only for the teacher's own sampled completion do not suffice. Self-hosted

@@ -1,0 +1,10 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-25747",
+  "ready": true,
+  "returncode": 0,
+  "controls_record_sha256": "4ace84a62bbefb21386bae468d2cba79cd79d4f4b1236ea2a81b2790ed23858b",
+  "runtime_adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+  "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d",
+  "image_id": "sha256:6ccd3038f26d22daecfe8f80015b33eb189d49eaa10ee4e0928af2a2a16823ad",
+  "inference_calls": 0
+}

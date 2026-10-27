@@ -1,0 +1,82 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "base_url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Inference endpoint override (--base-url).",
+      "title": "Base Url"
+    },
+    "disable_web_search": {
+      "default": false,
+      "description": "Disable native web search and fetch tools when supported.",
+      "title": "Disable Web Search",
+      "type": "boolean"
+    },
+    "reasoning_effort": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Model reasoning effort. Omit to use the agent's default.",
+      "title": "Reasoning Effort"
+    },
+    "private_records_root": {
+      "title": "Private Records Root",
+      "type": "string"
+    },
+    "condition": {
+      "default": "personal",
+      "enum": [
+        "small",
+        "large",
+        "personal"
+      ],
+      "title": "Condition",
+      "type": "string"
+    },
+    "policy": {
+      "default": "fallback",
+      "enum": [
+        "adaptive",
+        "fallback"
+      ],
+      "title": "Policy",
+      "type": "string"
+    },
+    "small_model": {
+      "default": "gpt-6-luna",
+      "title": "Small Model",
+      "type": "string"
+    },
+    "large_model": {
+      "default": "gpt-6.1-sol",
+      "title": "Large Model",
+      "type": "string"
+    },
+    "task_budget_seconds": {
+      "default": 2940,
+      "exclusiveMinimum": 0,
+      "maximum": 2940,
+      "title": "Task Budget Seconds",
+      "type": "number"
+    }
+  },
+  "required": [
+    "private_records_root"
+  ],
+  "title": "ConversationOptions",
+  "type": "object"
+}

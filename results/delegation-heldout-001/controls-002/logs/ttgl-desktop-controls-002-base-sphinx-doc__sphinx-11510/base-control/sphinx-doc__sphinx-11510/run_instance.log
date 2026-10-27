@@ -1,0 +1,68 @@
+2026-10-27 17:12:46,720 - INFO - Image not found locally, attempting to pull...
+2026-10-27 17:14:24,210 - INFO - Creating container for sphinx-doc__sphinx-11510...
+2026-10-27 17:14:25,300 - INFO - Container for sphinx-doc__sphinx-11510 created: 4754b97997b2d60de9c1d3003bfd21b58958215dc7b150a9d23c22da838c8a74
+2026-10-27 17:14:25,995 - INFO - Container for sphinx-doc__sphinx-11510 started: 4754b97997b2d60de9c1d3003bfd21b58958215dc7b150a9d23c22da838c8a74
+2026-10-27 17:14:26,013 - INFO - Intermediate patch for sphinx-doc__sphinx-11510 written to logs/evaluation/ttgl-desktop-controls-002-base-sphinx-doc__sphinx-11510/base-control/sphinx-doc__sphinx-11510/patch.diff, now applying to container...
+2026-10-27 17:14:26,703 - INFO - >>>>> Applied Patch:
+Checking patch .ttgl_control...
+Applied patch .ttgl_control cleanly.
+
+2026-10-27 17:14:27,744 - INFO - Git diff before:
+
+2026-10-27 17:14:27,767 - INFO - Eval script for sphinx-doc__sphinx-11510 written to logs/evaluation/ttgl-desktop-controls-002-base-sphinx-doc__sphinx-11510/base-control/sphinx-doc__sphinx-11510/eval.sh; copying to container...
+2026-10-27 17:14:48,367 - INFO - Test runtime: 20.17 seconds
+2026-10-27 17:14:48,393 - INFO - Test output for sphinx-doc__sphinx-11510 written to logs/evaluation/ttgl-desktop-controls-002-base-sphinx-doc__sphinx-11510/base-control/sphinx-doc__sphinx-11510/test_output.txt
+2026-10-27 17:14:48,631 - INFO - Git diff after:
+diff --git a/tests/test_directive_other.py b/tests/test_directive_other.py
+index f221db075..45bd03304 100644
+--- a/tests/test_directive_other.py
++++ b/tests/test_directive_other.py
+@@ -148,3 +148,40 @@ def test_toctree_twice(app):
+     assert_node(doctree[0][0],
+                 entries=[(None, 'foo'), (None, 'foo')],
+                 includefiles=['foo', 'foo'])
++
++
++@pytest.mark.sphinx(testroot='directive-include')
++def test_include_source_read_event(app):
++    sources_reported = {}
++
++    def source_read_handler(app, doc, source):
++        sources_reported[doc] = source[0]
++
++    app.connect("source-read", source_read_handler)
++    text = (".. include:: baz/baz.rst\n"
++            "   :start-line: 4\n\n"
++            ".. include:: text.txt\n"
++            "   :literal:    \n")
++    app.env.find_files(app.config, app.builder)
++    restructuredtext.parse(app, text, 'index')
++    assert "index" in sources_reported
++    assert "text.txt" not in sources_reported  # text was included as literal, no rst parsing
++    assert "baz/baz" in sources_reported
++    assert sources_reported["baz/baz"] == "\nBaz was here."
++
++
++@pytest.mark.sphinx(testroot='directive-include')
++def test_include_source_read_event_nested_includes(app):
++
++    def source_read_handler(app, doc, source):
++        text = source[0].replace("#magical", "amazing")
++        source[0] = text
++
++    app.connect("source-read", source_read_handler)
++    text = (".. include:: baz/baz.rst\n")
++    app.env.find_files(app.config, app.builder)
++    doctree = restructuredtext.parse(app, text, 'index')
++    assert_node(doctree, addnodes.document)
++    assert len(doctree.children) == 3
++    assert_node(doctree.children[1], nodes.paragraph)
++    assert doctree.children[1].rawsource == "The amazing foo."
+2026-10-27 17:14:48,633 - INFO - Git diff changed after running eval script
+2026-10-27 17:14:48,636 - INFO - Grading answer for sphinx-doc__sphinx-11510...
+2026-10-27 17:14:48,657 - INFO - report: {'sphinx-doc__sphinx-11510': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': False, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': [], 'failure': ['tests/test_directive_other.py::test_include_source_read_event', 'tests/test_directive_other.py::test_include_source_read_event_nested_includes']}, 'PASS_TO_PASS': {'success': ['tests/test_directive_other.py::test_toctree', 'tests/test_directive_other.py::test_relative_toctree', 'tests/test_directive_other.py::test_toctree_urls_and_titles', 'tests/test_directive_other.py::test_toctree_glob', 'tests/test_directive_other.py::test_toctree_glob_and_url', 'tests/test_directive_other.py::test_reversed_toctree', 'tests/test_directive_other.py::test_toctree_twice'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for sphinx-doc__sphinx-11510: resolved: False
+2026-10-27 17:14:48,676 - INFO - Attempting to stop container sweb.eval.sphinx-doc__sphinx-11510.ttgl-desktop-controls-002-base-sphinx-doc__sphinx-11510...
+2026-10-27 17:15:06,266 - INFO - Container sweb.eval.sphinx-doc__sphinx-11510.ttgl-desktop-controls-002-base-sphinx-doc__sphinx-11510 stopped successfully.
+2026-10-27 17:15:06,271 - INFO - Attempting to remove container sweb.eval.sphinx-doc__sphinx-11510.ttgl-desktop-controls-002-base-sphinx-doc__sphinx-11510...
+2026-10-27 17:15:06,405 - INFO - Container sweb.eval.sphinx-doc__sphinx-11510.ttgl-desktop-controls-002-base-sphinx-doc__sphinx-11510 removed successfully.

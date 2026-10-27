@@ -1,0 +1,31 @@
+{
+  "tasks": [
+    {
+      "instance_id": "django__django-10999",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 148.44170766696334,
+          "report": "logs/ttgl-desktop-controls-002-base-django__django-10999/base-control/django__django-10999/report.json",
+          "resolved": false,
+          "infra_failure": false,
+          "report_sha256": "1e2864412f0c0934ba87c520e08f58cea87bebe36f218e22a5dae2c8d6acb948"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 48.432335737976246,
+          "report": "logs/ttgl-desktop-controls-002-gold-django__django-10999/gold/django__django-10999/report.json",
+          "resolved": true,
+          "infra_failure": false,
+          "report_sha256": "57034ae3f1b8301d75f57b0669b4143a56432dc7f53c3503ac3254005d5bf3a4"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.django_1776_django-10999@sha256:22a35ae325dc5abdd397b1d474d66aad62da6d23c4e9c8763478e82bcf63af7b",
+        "image_id": "sha256:44659731979e615212698d54f39b1124f06bc2e38402d4b9d7e3782cc709a747",
+        "size_bytes": 2871586796
+      },
+      "eligible": true
+    }
+  ]
+}

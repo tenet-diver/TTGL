@@ -1,0 +1,233 @@
+[
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v3/astropy__astropy-12907",
+    "head": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+    "expected_base": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v3/sympy__sympy-17139",
+    "head": "1d3327b8e90a186df6972991963a5ae87053259d",
+    "expected_base": "1d3327b8e90a186df6972991963a5ae87053259d",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v4/astropy__astropy-12907",
+    "head": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+    "expected_base": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v5/astropy__astropy-12907",
+    "head": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+    "expected_base": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v5/mwaskom__seaborn-3069",
+    "head": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+    "expected_base": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v2/psf__requests-5414",
+    "head": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+    "expected_base": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v2/django__django-15037",
+    "head": "dab48b7482295956973879d15bfd4d3bb0718772",
+    "expected_base": "dab48b7482295956973879d15bfd4d3bb0718772",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v2/django__django-13297",
+    "head": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+    "expected_base": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v2/sympy__sympy-17139",
+    "head": "1d3327b8e90a186df6972991963a5ae87053259d",
+    "expected_base": "1d3327b8e90a186df6972991963a5ae87053259d",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v2/scikit-learn__scikit-learn-14141",
+    "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+    "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v2/pydata__xarray-3095",
+    "head": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+    "expected_base": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v7/sphinx-doc__sphinx-9230",
+    "head": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+    "expected_base": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v6/pydata__xarray-7229",
+    "head": "3aa75c8d00a4a2d4acf10d80f76b937cadb666b7",
+    "expected_base": "3aa75c8d00a4a2d4acf10d80f76b937cadb666b7",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v6/mwaskom__seaborn-3069",
+    "head": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+    "expected_base": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v6/django__django-17084",
+    "head": "f8c43aca467b7b0c4bb0a7fa41362f90b610b8df",
+    "expected_base": "f8c43aca467b7b0c4bb0a7fa41362f90b610b8df",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v6/django__django-13121",
+    "head": "ec5aa2161d8015a3fe57dcbbfe14200cd18f0a16",
+    "expected_base": "ec5aa2161d8015a3fe57dcbbfe14200cd18f0a16",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026-v6/sphinx-doc__sphinx-9230",
+    "head": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+    "expected_base": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/ttgl-worker-probes-20261026/scikit-learn__scikit-learn-14141",
+    "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+    "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/django__django-12276/e1ac968e440a/workspace/django__django-12276",
+    "head": "53d8646f799de7f92ab9defe9dc56c6125448102",
+    "expected_base": "53d8646f799de7f92ab9defe9dc56c6125448102",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/django__django-13109/e472661ef8e7/workspace/django__django-13109",
+    "head": "fbe82f82555bc25dccb476c749ca062f0b522be3",
+    "expected_base": "fbe82f82555bc25dccb476c749ca062f0b522be3",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/django__django-13109/efccdfaea56c/workspace/django__django-13109",
+    "head": "fbe82f82555bc25dccb476c749ca062f0b522be3",
+    "expected_base": "fbe82f82555bc25dccb476c749ca062f0b522be3",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/django__django-10999/7e8d8a5d1031/workspace/django__django-10999",
+    "head": "36300ef336e3f130a0dadc1143163ff3d23dc843",
+    "expected_base": "36300ef336e3f130a0dadc1143163ff3d23dc843",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/sympy__sympy-24213/2bb48f1c29c8/workspace/sympy__sympy-24213",
+    "head": "e8c22f6eac7314be8d92590bfff92ced79ee03e2",
+    "expected_base": "e8c22f6eac7314be8d92590bfff92ced79ee03e2",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/scikit-learn__scikit-learn-25747/7326e4ded4b3/workspace/scikit-learn__scikit-learn-25747",
+    "head": "2c867b8f822eb7a684f0d5c4359e4426e1c9cfe0",
+    "expected_base": "2c867b8f822eb7a684f0d5c4359e4426e1c9cfe0",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/sympy__sympy-21847/8dc3f14e1285/workspace/sympy__sympy-21847",
+    "head": "d9b18c518d64d0ebe8e35a98c2fb519938b9b151",
+    "expected_base": "d9b18c518d64d0ebe8e35a98c2fb519938b9b151",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/django__django-12125/6727f1feb087/workspace/django__django-12125",
+    "head": "89d41cba392b759732ba9f1db4ff29ed47da6a56",
+    "expected_base": "89d41cba392b759732ba9f1db4ff29ed47da6a56",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/sphinx-doc__sphinx-10673/c67fccd7921f/workspace/sphinx-doc__sphinx-10673",
+    "head": "f35d2a6cc726f97d0e859ca7a0e1729f7da8a6c8",
+    "expected_base": "f35d2a6cc726f97d0e859ca7a0e1729f7da8a6c8",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/sphinx-doc__sphinx-10673/2efe0cce6fd0/workspace/sphinx-doc__sphinx-10673",
+    "head": "f35d2a6cc726f97d0e859ca7a0e1729f7da8a6c8",
+    "expected_base": "f35d2a6cc726f97d0e859ca7a0e1729f7da8a6c8",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/pylint-dev__pylint-6903/32545171cb5d/workspace/pylint-dev__pylint-6903",
+    "head": "ca80f03a43bc39e4cc2c67dc99817b3c9f13b8a6",
+    "expected_base": "ca80f03a43bc39e4cc2c67dc99817b3c9f13b8a6",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/sphinx-doc__sphinx-11510/122106f6904f/workspace/sphinx-doc__sphinx-11510",
+    "head": "6cb783c0024a873722952a67ebb9f41771c8eb6d",
+    "expected_base": "6cb783c0024a873722952a67ebb9f41771c8eb6d",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/sphinx-doc__sphinx-11510/78c192aec031/workspace/sphinx-doc__sphinx-11510",
+    "head": "6cb783c0024a873722952a67ebb9f41771c8eb6d",
+    "expected_base": "6cb783c0024a873722952a67ebb9f41771c8eb6d",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/sphinx-doc__sphinx-9320/1241b2bfa7a1/workspace/sphinx-doc__sphinx-9320",
+    "head": "e05cef574b8f23ab1b57f57e7da6dee509a4e230",
+    "expected_base": "e05cef574b8f23ab1b57f57e7da6dee509a4e230",
+    "status": "",
+    "eligible": true
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/sphinx-doc__sphinx-9320/92c529acfdf9/workspace/sphinx-doc__sphinx-9320",
+    "head": "e05cef574b8f23ab1b57f57e7da6dee509a4e230",
+    "expected_base": "e05cef574b8f23ab1b57f57e7da6dee509a4e230",
+    "status": "",
+    "eligible": true
+  }
+]

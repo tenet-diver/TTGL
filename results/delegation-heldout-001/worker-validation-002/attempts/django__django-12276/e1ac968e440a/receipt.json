@@ -1,0 +1,10 @@
+{
+  "instance_id": "django__django-12276",
+  "ready": true,
+  "returncode": 0,
+  "controls_record_sha256": "3e5b57c67ca7dd98332d7cddf5aae99859de8921f018c187ceda2017461995c4",
+  "runtime_adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+  "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d",
+  "image_id": "sha256:590b60981698bd7342f3c46cae07e70b7bb768d4a877a8794c756029a2c17a6b",
+  "inference_calls": 0
+}

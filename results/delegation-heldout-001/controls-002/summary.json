@@ -1,0 +1,314 @@
+{
+  "tasks": [
+    {
+      "instance_id": "scikit-learn__scikit-learn-25747",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 260.435155648971,
+          "report": "logs/ttgl-desktop-controls-002-base-scikit-learn__scikit-learn-25747/base-control/scikit-learn__scikit-learn-25747/report.json",
+          "resolved": false,
+          "infra_failure": false,
+          "report_sha256": "e04e54aa65fbae63698ff701371ed72fe6c1b16bbebb2b74a3609ec9bc0e6d64"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 33.052815275033936,
+          "report": "logs/ttgl-desktop-controls-002-gold-scikit-learn__scikit-learn-25747/gold/scikit-learn__scikit-learn-25747/report.json",
+          "resolved": true,
+          "infra_failure": false,
+          "report_sha256": "6b77b226f373928e3d51a2d95f9e6e240fc109a0076ef35e4c12433d5e0142fb"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.scikit-learn_1776_scikit-learn-25747@sha256:557967b5382d23ea1842e6dc9ba11e4816756c6bde57243523a64f8a404141fa",
+        "image_id": "sha256:6ccd3038f26d22daecfe8f80015b33eb189d49eaa10ee4e0928af2a2a16823ad",
+        "size_bytes": 4634985262
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "django__django-12276",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 115.98406782292295,
+          "report": "logs/ttgl-desktop-controls-002-base-django__django-12276/base-control/django__django-12276/report.json",
+          "resolved": false,
+          "infra_failure": false,
+          "report_sha256": "8281764a0b5d56be7381cffac87237abc793c7f34d96d8924dca54b446050e3e"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 40.566701960982755,
+          "report": "logs/ttgl-desktop-controls-002-gold-django__django-12276/gold/django__django-12276/report.json",
+          "resolved": true,
+          "infra_failure": false,
+          "report_sha256": "d74486092cdaacc44812b30e7c2c00893fa57b34664832ef3a5d3a284a0223d9"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.django_1776_django-12276@sha256:903942f778dbcf0b61c62031697c4a5f3655569c11c84204bdfa307b844ec2ae",
+        "image_id": "sha256:590b60981698bd7342f3c46cae07e70b7bb768d4a877a8794c756029a2c17a6b",
+        "size_bytes": 2875730136
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "django__django-12125",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 180.37620037910528,
+          "report": "logs/ttgl-desktop-controls-002-base-django__django-12125/base-control/django__django-12125/report.json",
+          "resolved": false,
+          "infra_failure": false,
+          "report_sha256": "15c3552242b2cc538f74cea933c8b32e0f8c259fdc4c734c03474410a0ced8bd"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 54.971265239990316,
+          "report": "logs/ttgl-desktop-controls-002-gold-django__django-12125/gold/django__django-12125/report.json",
+          "resolved": true,
+          "infra_failure": false,
+          "report_sha256": "6b81f7254ada2fc441ce41db5fecd833e0e09f2ac5bd00ef0dc83ac1b9d11228"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.django_1776_django-12125@sha256:4345ad65eec0da8a32063c2c9a32df380e10b4fb4ccebfcfed9c4be9a185e5ff",
+        "image_id": "sha256:9a52f383c20ba46e835b3a5f0b9671a86dce0242c22337644e220625955db61a",
+        "size_bytes": 2876438739
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "pylint-dev__pylint-6903",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 138.0083093160065,
+          "report": "logs/ttgl-desktop-controls-002-base-pylint-dev__pylint-6903/base-control/pylint-dev__pylint-6903/report.json",
+          "resolved": false,
+          "infra_failure": false,
+          "report_sha256": "71fe4d5a199dac5a124ab249feff6b4e47bb339bfd014df9727e7b0579c61c45"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 88.83510448900051,
+          "report": "logs/ttgl-desktop-controls-002-gold-pylint-dev__pylint-6903/gold/pylint-dev__pylint-6903/report.json",
+          "resolved": true,
+          "infra_failure": false,
+          "report_sha256": "ba5c07b6df38aff9112cdf1bc71ae84fae6cd800b5b65ffffe74758395f764f1"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-6903@sha256:bad80b1c20eeb5d49a6e82dc485ee40fbd67b91df47b56740e1be5471b678f5b",
+        "image_id": "sha256:bdb24d06e2cd96bb0b363bc07b293affb26cca5b2f92edeb3bf428281e53551e",
+        "size_bytes": 2802375863
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "sympy__sympy-24213",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 155.95069130894262,
+          "report": "logs/ttgl-desktop-controls-002-base-sympy__sympy-24213/base-control/sympy__sympy-24213/report.json",
+          "resolved": false,
+          "infra_failure": false,
+          "report_sha256": "2636dd8dd4d89f894e5d89455319577ae03c78b61091ee3d907c077d642dd1ce"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 55.840647486038506,
+          "report": "logs/ttgl-desktop-controls-002-gold-sympy__sympy-24213/gold/sympy__sympy-24213/report.json",
+          "resolved": true,
+          "infra_failure": false,
+          "report_sha256": "fccd8302f493925eea531a4ffd6fec430049ad6fd05d0b1e6a2de6fb70c1744e"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.sympy_1776_sympy-24213@sha256:a458bae7d95f469fa8e438da0a39a2d168e93f70239155dbd833934948f2b296",
+        "image_id": "sha256:139dca6eeda9c8a9f98ec7c2c87aff88b968896ac78a0fbafbb943edf29b9d69",
+        "size_bytes": 2795512985
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-9320",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 58.26671756897122,
+          "report": "logs/ttgl-desktop-controls-002-base-sphinx-doc__sphinx-9320/base-control/sphinx-doc__sphinx-9320/report.json",
+          "resolved": false,
+          "infra_failure": false,
+          "report_sha256": "65c38df8ed80e0608c8ac8204bbb506248db5266886f4e4812b55cfac22853eb"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 42.18522095598746,
+          "report": "logs/ttgl-desktop-controls-002-gold-sphinx-doc__sphinx-9320/gold/sphinx-doc__sphinx-9320/report.json",
+          "resolved": true,
+          "infra_failure": false,
+          "report_sha256": "d54f419f27a7c025547c5f86c6c441c8a90d5cbfc2c3e3666e30c53809aec42d"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-9320@sha256:0dd7b74de29c5734fbcd2fb9ab5295f610b5b281bd2fdd87e9c3c1d3f272f28a",
+        "image_id": "sha256:136da881812f0fb703d404723e9e2122fd72dfb5a756f08344c1a99dc109579e",
+        "size_bytes": 2811553271
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-10673",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 161.1081230129348,
+          "report": "logs/ttgl-desktop-controls-002-base-sphinx-doc__sphinx-10673/base-control/sphinx-doc__sphinx-10673/report.json",
+          "resolved": false,
+          "infra_failure": false,
+          "report_sha256": "29c2b77f9872b8d7b0c6bf171d8d857da38db291df707f0a471f53144d0fd710"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 45.62080442998558,
+          "report": "logs/ttgl-desktop-controls-002-gold-sphinx-doc__sphinx-10673/gold/sphinx-doc__sphinx-10673/report.json",
+          "resolved": true,
+          "infra_failure": false,
+          "report_sha256": "47c1dcb11b54aa6aa7b0e973643eae36b705f3fbe34a5041872eb8994abc52b8"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-10673@sha256:4654890cc32945f5021445040ad6f2efd3b651f1c9efe679021d3b3da5375eb0",
+        "image_id": "sha256:b02ab4992ad1ccdb85b8209499c396634cd7fead4934baae0ea3884a93bafb83",
+        "size_bytes": 2817707918
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "django__django-10999",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 148.44170766696334,
+          "report": "logs/ttgl-desktop-controls-002-base-django__django-10999/base-control/django__django-10999/report.json",
+          "resolved": false,
+          "infra_failure": false,
+          "report_sha256": "1e2864412f0c0934ba87c520e08f58cea87bebe36f218e22a5dae2c8d6acb948"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 48.432335737976246,
+          "report": "logs/ttgl-desktop-controls-002-gold-django__django-10999/gold/django__django-10999/report.json",
+          "resolved": true,
+          "infra_failure": false,
+          "report_sha256": "57034ae3f1b8301d75f57b0669b4143a56432dc7f53c3503ac3254005d5bf3a4"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.django_1776_django-10999@sha256:22a35ae325dc5abdd397b1d474d66aad62da6d23c4e9c8763478e82bcf63af7b",
+        "image_id": "sha256:44659731979e615212698d54f39b1124f06bc2e38402d4b9d7e3782cc709a747",
+        "size_bytes": 2871586796
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-11510",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 150.78107109095436,
+          "report": "logs/ttgl-desktop-controls-002-base-sphinx-doc__sphinx-11510/base-control/sphinx-doc__sphinx-11510/report.json",
+          "resolved": false,
+          "infra_failure": false,
+          "report_sha256": "798f81cb48b30917627c4145c77ad0d0aa77770d9ac8e8738233669a7c74998a"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 56.2842339159688,
+          "report": "logs/ttgl-desktop-controls-002-gold-sphinx-doc__sphinx-11510/gold/sphinx-doc__sphinx-11510/report.json",
+          "resolved": true,
+          "infra_failure": false,
+          "report_sha256": "98936fe62dcd6dc5182ca8c036bf9183ac1808f298acd2a9e0dacd654599ed41"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-11510@sha256:01bf15e77e5d0f6988c8107bf81a5091900228ca0d160bf677d9b07dd17e1a0f",
+        "image_id": "sha256:ef65c93f68bbc3d40e35f0ec753a359e8de0e5e710fa3225aab2f629131b2807",
+        "size_bytes": 2963594832
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "django__django-13109",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 133.5079326069681,
+          "report": "logs/ttgl-desktop-controls-002-base-django__django-13109/base-control/django__django-13109/report.json",
+          "resolved": false,
+          "infra_failure": false,
+          "report_sha256": "8a8e0ad44f7dd5a68146b2ef854dc98d4d078c77fee9d3c5da2e2536a89ac398"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 64.77271001692861,
+          "report": "logs/ttgl-desktop-controls-002-gold-django__django-13109/gold/django__django-13109/report.json",
+          "resolved": true,
+          "infra_failure": false,
+          "report_sha256": "30f3c36ee4eed4afb0d067e944e1002cfb3f0f9b8e0bfd672a805eb9c8b07eaf"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.django_1776_django-13109@sha256:99485703b09250cf48812b5f24e4449c3f179b5bf7673b96cd398aa7f1179295",
+        "image_id": "sha256:f07d510a95590299d5ce8c02d761a33704c82e65f6b67e582f383fefe015e27b",
+        "size_bytes": 2879927689
+      },
+      "eligible": true
+    },
+    {
+      "instance_id": "sympy__sympy-21847",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 199.51356936595403,
+          "report": "logs/ttgl-desktop-controls-002-base-sympy__sympy-21847/base-control/sympy__sympy-21847/report.json",
+          "resolved": false,
+          "infra_failure": false,
+          "report_sha256": "684eae336024d9d3ee3f3a297f73106dc85426fe864143e38b42340cba1a21c0"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 47.29975058103446,
+          "report": "logs/ttgl-desktop-controls-002-gold-sympy__sympy-21847/gold/sympy__sympy-21847/report.json",
+          "resolved": true,
+          "infra_failure": false,
+          "report_sha256": "c1137a8cefe3346e00cdc284743ab16892e13d5cbb4f3a169edf6f919a705823"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.sympy_1776_sympy-21847@sha256:9a45ffe20cac4243930e8c5b2b065adbc08f476c880d7465ca0fbfb9f98c6456",
+        "image_id": "sha256:03e700790cf908ecf1175ffe9e9371896ad1783b5db3ce3f2c8c2776fa0bb6de",
+        "size_bytes": 2779030959
+      },
+      "eligible": true
+    }
+  ],
+  "eligible": [
+    "scikit-learn__scikit-learn-25747",
+    "django__django-12276",
+    "django__django-12125",
+    "pylint-dev__pylint-6903",
+    "sympy__sympy-24213",
+    "sphinx-doc__sphinx-9320",
+    "sphinx-doc__sphinx-10673",
+    "django__django-10999",
+    "sphinx-doc__sphinx-11510",
+    "django__django-13109",
+    "sympy__sympy-21847"
+  ]
+}

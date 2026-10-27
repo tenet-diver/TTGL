@@ -1,0 +1,29 @@
+[
+  {
+    "path": "/Users/rustameynaliyev/.cache/calorie-budget-native-compiler",
+    "kind": "known_rebuildable_cache_or_ignored_dependencies",
+    "removed": false,
+    "reason": "preserved_open_files",
+    "open_file_references": 305
+  },
+  {
+    "path": "/Users/rustameynaliyev/.npm/_cacache",
+    "kind": "known_rebuildable_cache_or_ignored_dependencies",
+    "removed": false,
+    "allocated_kib_before": 648452,
+    "open_file_references": 0,
+    "reason": "eligible_known_rebuildable_inactive_cache"
+  },
+  {
+    "path": "/Users/rustameynaliyev/Developer/calorie-budget-479-portable-recovery.noindex/node_modules",
+    "kind": "known_rebuildable_cache_or_ignored_dependencies",
+    "removed": false,
+    "reason": "preserved_active_checkout"
+  },
+  {
+    "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-3qbGsK/checkout/node_modules",
+    "kind": "known_rebuildable_cache_or_ignored_dependencies",
+    "removed": false,
+    "reason": "preserved_active_checkout"
+  }
+]

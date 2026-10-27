@@ -1,0 +1,10 @@
+{
+  "instance_id": "sympy__sympy-21847",
+  "ready": true,
+  "returncode": 0,
+  "controls_record_sha256": "c5dbf8f9fdc464d95a379c254058842f92ec9fdb78b98046adc3937f6ac179ba",
+  "runtime_adapter_sha256": "1d4213bb5cb95525518a924667df2afd177b392e9ca87e17ec173e9f4d651a27",
+  "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d",
+  "image_id": "sha256:03e700790cf908ecf1175ffe9e9371896ad1783b5db3ce3f2c8c2776fa0bb6de",
+  "inference_calls": 0
+}

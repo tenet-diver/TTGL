@@ -1,0 +1,31 @@
+{
+  "tasks": [
+    {
+      "instance_id": "pylint-dev__pylint-6903",
+      "controls": {
+        "base": {
+          "returncode": 0,
+          "elapsed_seconds": 138.0083093160065,
+          "report": "logs/ttgl-desktop-controls-002-base-pylint-dev__pylint-6903/base-control/pylint-dev__pylint-6903/report.json",
+          "resolved": false,
+          "infra_failure": false,
+          "report_sha256": "71fe4d5a199dac5a124ab249feff6b4e47bb339bfd014df9727e7b0579c61c45"
+        },
+        "gold": {
+          "returncode": 0,
+          "elapsed_seconds": 88.83510448900051,
+          "report": "logs/ttgl-desktop-controls-002-gold-pylint-dev__pylint-6903/gold/pylint-dev__pylint-6903/report.json",
+          "resolved": true,
+          "infra_failure": false,
+          "report_sha256": "ba5c07b6df38aff9112cdf1bc71ae84fae6cd800b5b65ffffe74758395f764f1"
+        }
+      },
+      "image": {
+        "reference": "swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-6903@sha256:bad80b1c20eeb5d49a6e82dc485ee40fbd67b91df47b56740e1be5471b678f5b",
+        "image_id": "sha256:bdb24d06e2cd96bb0b363bc07b293affb26cca5b2f92edeb3bf428281e53551e",
+        "size_bytes": 2802375863
+      },
+      "eligible": true
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/rustameynaliyev/Developer/TTGL/scripts/validate_policy_workers.py", line 18, in <module>
+    validator.main()
+  File "/Users/rustameynaliyev/Developer/TTGL/scripts/validate_swe_workers.py", line 67, in main
+    runtime.prepare(task, workspace, args.output.resolve() / 'runs' / key)
+  File "/Users/rustameynaliyev/Developer/TTGL/src/ttgl/isolated.py", line 189, in prepare
+    raise RuntimeError('Prepared image contains tracked source changes beyond audited setup')
+RuntimeError: Prepared image contains tracked source changes beyond audited setup

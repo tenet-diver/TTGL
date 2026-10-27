@@ -1,0 +1,45 @@
+2026-10-27 17:01:56,941 - INFO - Image not found locally, attempting to pull...
+2026-10-27 17:03:51,337 - INFO - Creating container for sphinx-doc__sphinx-10673...
+2026-10-27 17:03:51,665 - INFO - Container for sphinx-doc__sphinx-10673 created: 4601ac25af445b8a5dcdbf36a115a72c1438abc7dea5e1ec20c44f527db8d153
+2026-10-27 17:03:53,488 - INFO - Container for sphinx-doc__sphinx-10673 started: 4601ac25af445b8a5dcdbf36a115a72c1438abc7dea5e1ec20c44f527db8d153
+2026-10-27 17:03:53,521 - INFO - Intermediate patch for sphinx-doc__sphinx-10673 written to logs/evaluation/ttgl-desktop-controls-002-base-sphinx-doc__sphinx-10673/base-control/sphinx-doc__sphinx-10673/patch.diff, now applying to container...
+2026-10-27 17:03:54,389 - INFO - >>>>> Applied Patch:
+Checking patch .ttgl_control...
+Applied patch .ttgl_control cleanly.
+
+2026-10-27 17:03:55,353 - INFO - Git diff before:
+
+2026-10-27 17:03:55,367 - INFO - Eval script for sphinx-doc__sphinx-10673 written to logs/evaluation/ttgl-desktop-controls-002-base-sphinx-doc__sphinx-10673/base-control/sphinx-doc__sphinx-10673/eval.sh; copying to container...
+2026-10-27 17:04:09,995 - INFO - Test runtime: 14.19 seconds
+2026-10-27 17:04:10,011 - INFO - Test output for sphinx-doc__sphinx-10673 written to logs/evaluation/ttgl-desktop-controls-002-base-sphinx-doc__sphinx-10673/base-control/sphinx-doc__sphinx-10673/test_output.txt
+2026-10-27 17:04:10,248 - INFO - Git diff after:
+diff --git a/tests/test_environment_toctree.py b/tests/test_environment_toctree.py
+index 60a9826fd..8d5cfc0b9 100644
+--- a/tests/test_environment_toctree.py
++++ b/tests/test_environment_toctree.py
+@@ -346,3 +346,17 @@ def test_get_toctree_for_includehidden(app):
+ 
+     assert_node(toctree[2],
+                 [bullet_list, list_item, compact_paragraph, reference, "baz"])
++
++
++@pytest.mark.sphinx('xml', testroot='toctree-index')
++def test_toctree_index(app):
++    app.build()
++    toctree = app.env.tocs['index']
++    assert_node(toctree,
++                [bullet_list, ([list_item, (compact_paragraph,  # [0][0]
++                                            [bullet_list, (addnodes.toctree,  # [0][1][0]
++                                                           addnodes.toctree)])])])  # [0][1][1]
++    assert_node(toctree[0][1][1], addnodes.toctree,
++                caption="Indices", glob=False, hidden=False,
++                titlesonly=False, maxdepth=-1, numbered=0,
++                entries=[(None, 'genindex'), (None, 'modindex'), (None, 'search')])
+2026-10-27 17:04:10,251 - INFO - Git diff changed after running eval script
+2026-10-27 17:04:10,254 - INFO - Grading answer for sphinx-doc__sphinx-10673...
+2026-10-27 17:04:10,292 - INFO - report: {'sphinx-doc__sphinx-10673': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': False, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': [], 'failure': ['tests/test_environment_toctree.py::test_toctree_index']}, 'PASS_TO_PASS': {'success': ['tests/test_environment_toctree.py::test_process_doc', 'tests/test_environment_toctree.py::test_glob', 'tests/test_environment_toctree.py::test_get_toc_for', 'tests/test_environment_toctree.py::test_get_toc_for_only', 'tests/test_environment_toctree.py::test_get_toc_for_tocdepth', 'tests/test_environment_toctree.py::test_get_toctree_for', 'tests/test_environment_toctree.py::test_get_toctree_for_collapse', 'tests/test_environment_toctree.py::test_get_toctree_for_maxdepth', 'tests/test_environment_toctree.py::test_get_toctree_for_includehidden'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for sphinx-doc__sphinx-10673: resolved: False
+2026-10-27 17:04:10,310 - INFO - Attempting to stop container sweb.eval.sphinx-doc__sphinx-10673.ttgl-desktop-controls-002-base-sphinx-doc__sphinx-10673...
+2026-10-27 17:04:26,908 - INFO - Container sweb.eval.sphinx-doc__sphinx-10673.ttgl-desktop-controls-002-base-sphinx-doc__sphinx-10673 stopped successfully.
+2026-10-27 17:04:26,912 - INFO - Attempting to remove container sweb.eval.sphinx-doc__sphinx-10673.ttgl-desktop-controls-002-base-sphinx-doc__sphinx-10673...
+2026-10-27 17:04:27,044 - INFO - Container sweb.eval.sphinx-doc__sphinx-10673.ttgl-desktop-controls-002-base-sphinx-doc__sphinx-10673 removed successfully.

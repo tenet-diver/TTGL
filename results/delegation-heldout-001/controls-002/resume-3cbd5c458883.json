@@ -1,0 +1,5 @@
+{
+  "protocol_sha256": "210711085cc1aefca7379788671488851bd640ec98afdcc75f6851e82ab1efc4",
+  "source_sha256": "5d0ff53aa20349e1cfd09be24c2d67a7f9edd8869ec32add7e40e7aa2c7c107b",
+  "reason": "Continue untouched tasks after host free-space guard; no completed control replay"
+}

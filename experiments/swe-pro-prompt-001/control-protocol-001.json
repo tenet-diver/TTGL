@@ -1,0 +1,23 @@
+{
+  "status": "registered_before_local_controls",
+  "task_id": "instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+  "source_revision": "66f92766bba642462d4bbe5479e83f91f9211862",
+  "harbor_version": "0.25.0",
+  "agents": [
+    "nop",
+    "oracle"
+  ],
+  "expected_rewards": {
+    "nop": 0,
+    "oracle": 1
+  },
+  "n_concurrent": 1,
+  "n_attempts": 1,
+  "max_retries": 0,
+  "model_inference_calls": 0,
+  "execution_order": "Wait for completion/audit of current Verified held-out grading, verify and remove only its clean reproducible host clones, then separate fresh empty and reference controls on one reserved Pro development task.",
+  "automatic_model_trials_after_controls": false,
+  "task_preparation_sha256": "bb869d9734adc6777a621a01dde5d6ebd2fbed501789004ce3d67e8f379a98ac",
+  "adapter_proof_sha256": "f4692272400e9c0def98705854420e0f13155bc51725d38d479393b9734aa858",
+  "disk_guard_bytes": 12884901888
+}

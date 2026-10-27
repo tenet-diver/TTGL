@@ -1,0 +1,57 @@
+{
+  "scikit-learn__scikit-learn-25747": {
+    "record": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/scikit-learn__scikit-learn-25747/7326e4ded4b3/validation/scikit-learn__scikit-learn-25747.json",
+    "record_sha256": "3541b503b793ccc5d802929ae5e84d69fab2e703f76ae24bb88aab11429d05b3",
+    "controls_record_sha256": "4ace84a62bbefb21386bae468d2cba79cd79d4f4b1236ea2a81b2790ed23858b"
+  },
+  "django__django-12276": {
+    "record": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/django__django-12276/e1ac968e440a/validation/django__django-12276.json",
+    "record_sha256": "7c9df0754b724d4b9986dd6d5892a64a1021aa37819a2bcbef72ee89ded27cbe",
+    "controls_record_sha256": "3e5b57c67ca7dd98332d7cddf5aae99859de8921f018c187ceda2017461995c4"
+  },
+  "django__django-12125": {
+    "record": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/django__django-12125/6727f1feb087/validation/django__django-12125.json",
+    "record_sha256": "03e5f05fcbadde190b712a64843008203a3ca45057bf29cf40d2eaf262f9d8f2",
+    "controls_record_sha256": "767e3a2b43bdb3e6d6dd64ef7beb6f94abacde6ad8bf5a923589aad73906edfd"
+  },
+  "pylint-dev__pylint-6903": {
+    "record": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/pylint-dev__pylint-6903/32545171cb5d/validation/pylint-dev__pylint-6903.json",
+    "record_sha256": "e85b992237c9eb4cf37d3728e1906427e112d02d4dc486f1ac868af4c26f366a",
+    "controls_record_sha256": "c1cfeb36a989ecf60b8803c2d5b58677d76b5f050eecade9f41294c0093d3c02"
+  },
+  "sympy__sympy-24213": {
+    "record": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/sympy__sympy-24213/2bb48f1c29c8/validation/sympy__sympy-24213.json",
+    "record_sha256": "f42bbf0e7b9046269444f78d76760b45f7603b36009f7f9d982903086c1f32ce",
+    "controls_record_sha256": "c8a681da75229292caf326dd1dd1870bc331b6b6254628bcc9555e32055b92b6"
+  },
+  "sphinx-doc__sphinx-9320": {
+    "record": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/sphinx-doc__sphinx-9320/92c529acfdf9/validation/sphinx-doc__sphinx-9320.json",
+    "record_sha256": "82e021c2337d2cea03f524f0ad1f282b52df85c0b30b9972a487e3b29e940e44",
+    "controls_record_sha256": "924b068046f858327d5e702290b22084ba7a533a0a0bbbe3fe7100681d9c1953"
+  },
+  "sphinx-doc__sphinx-10673": {
+    "record": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/sphinx-doc__sphinx-10673/c67fccd7921f/validation/sphinx-doc__sphinx-10673.json",
+    "record_sha256": "41d02db89e4c4850b125013de173316787d46e37686dbd8fa094e4ed5ef6a8b2",
+    "controls_record_sha256": "0f92cfc8b8018711c1ada1cda1c0ab26d2114e3d06c9fe64979fd34b644ab8e4"
+  },
+  "django__django-10999": {
+    "record": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/django__django-10999/7e8d8a5d1031/validation/django__django-10999.json",
+    "record_sha256": "b43a56c5021deb2eb2b7b7ec1f727f9eab8114883c65d7f2c146cd8c04ad4975",
+    "controls_record_sha256": "5eb22957c6630f0b48ffb3f5f074b56b32f2bd792899ea566ae9cb4372e21107"
+  },
+  "sphinx-doc__sphinx-11510": {
+    "record": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/sphinx-doc__sphinx-11510/122106f6904f/validation/sphinx-doc__sphinx-11510.json",
+    "record_sha256": "00b66278c28ace7be2fc7d3b5806cbd5805b396ebc53a51d67494cb43429949e",
+    "controls_record_sha256": "f44aa71a06aca0e89b43bc23a99bd5f1298f5ea4ae6a167cf0c4bba930561918"
+  },
+  "django__django-13109": {
+    "record": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/django__django-13109/e472661ef8e7/validation/django__django-13109.json",
+    "record_sha256": "8179e011ff4fbc6e5b4d9d96f875b9979533dfc8b76f50dd8ba5ae1504200362",
+    "controls_record_sha256": "42e48e389ab89940a84f18cab875e6f81f9bec8debca383da986698e6420462c"
+  },
+  "sympy__sympy-21847": {
+    "record": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/worker-validation-002/attempts/sympy__sympy-21847/8dc3f14e1285/validation/sympy__sympy-21847.json",
+    "record_sha256": "a2e8933d1abb7de4eac65b51d28f675290e1ae526a5bd0a4ae20d1ce0fdea66e",
+    "controls_record_sha256": "c5dbf8f9fdc464d95a379c254058842f92ec9fdb78b98046adc3937f6ac179ba"
+  }
+}

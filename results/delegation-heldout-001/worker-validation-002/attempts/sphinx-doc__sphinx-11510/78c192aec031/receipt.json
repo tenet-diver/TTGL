@@ -1,0 +1,10 @@
+{
+  "instance_id": "sphinx-doc__sphinx-11510",
+  "ready": false,
+  "returncode": 1,
+  "controls_record_sha256": "f44aa71a06aca0e89b43bc23a99bd5f1298f5ea4ae6a167cf0c4bba930561918",
+  "runtime_adapter_sha256": "38781207eaca0178358180edf232d872c0527ad4013d0a5374bb2a975658dac3",
+  "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d",
+  "image_id": "sha256:ef65c93f68bbc3d40e35f0ec753a359e8de0e5e710fa3225aab2f629131b2807",
+  "inference_calls": 0
+}

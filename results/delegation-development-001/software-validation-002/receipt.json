@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "command": "TTGL_CONTAINER_TESTS=1 .venv/bin/python -m pytest -q",
+  "passed": 172,
+  "skipped": 2,
+  "subtests_passed": 2,
+  "seconds": 64.59,
+  "skips": "Optional Torch and separately installed Harbor runtime",
+  "stdout_sha256": "51664470f8d31c46d598068d2aed1e0eca2555bfba03ff35ca00e98eeea34086"
+}

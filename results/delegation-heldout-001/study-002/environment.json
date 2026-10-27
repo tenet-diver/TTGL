@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "source_sha256": {
+    "scripts/run_isolated_swe.py": "2cb38ebbe6d8eed530a19f953faaedb9d3898c146731f24f5e5fb0235ef56f49",
+    "src/ttgl/isolated.py": "1d4213bb5cb95525518a924667df2afd177b392e9ca87e17ec173e9f4d651a27",
+    "src/ttgl/evaluation.py": "8bca9f41db8532fde7bed4f9686ecf1a74f7b97421605df0b79a575d2fbefb13",
+    "tools/worker-mcp/server.mjs": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "tools/worker-mcp/package-lock.json": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "tools/worker-dependencies.json": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d",
+    "experiments/codex-isolated-20261026/pricing-scenario.json": "24337a4fbe01bd97c0a8034c97e7f940779d207a388111dd3c19601919a49328"
+  },
+  "published_rate_scenario_sha256": "24337a4fbe01bd97c0a8034c97e7f940779d207a388111dd3c19601919a49328",
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "offline Docker through MCP",
+    "server_sha256": "2a328226e4106c5e4f67cd6141d348e302bbe3b013c103e7b3e8f73a719929c3",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "1d4213bb5cb95525518a924667df2afd177b392e9ca87e17ec173e9f4d651a27",
+    "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d",
+    "controller_policy": {
+      "mode": "fallback",
+      "source_sha256": "bf163122b4c9769dbec7ef0c9759fc5e07a4453dc6906f75c31dfa41d6eee707",
+      "prompts_sha256": {
+        "controller-v2-common.txt": "bcab59483071803bd76c6a2125c4892771bafb3f3845b151494732f1b905fd23",
+        "controller-v2-delegation.txt": "97fa0f26f6477d16ad94e130d0ae33b9909da26598fe72fd9178513f330e568b",
+        "controller-v2-fallback.txt": "b0e31632e6796b582a7982325aca364419cbeeeaa309224b47eae2ccce8a4724"
+      }
+    }
+  },
+  "private_evaluator_root": "/Users/rustameynaliyev/Developer/ttgl-heldout-eligible-private-20261027",
+  "private_grading_dataset": "/Users/rustameynaliyev/Developer/ttgl-heldout-eligible-private-20261027/study-validated-source-002-e8aca5c7.dataset.json",
+  "private_grading_dataset_sha256": "7c0eba1c769a232d18b3802ac03b11972cddcd583c1178abc807d98c9d97def3",
+  "original_private_dataset_sha256": "4e81a3e0ab1c93066633ace3ba452c0fa6f9b3abc359df8bf0908a788fcabf5f",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "grading_timeout_seconds": 1200,
+  "original_tasks_sha256": "e8aca5c7fe2355cb977b862e74fb96f8cd8eb1f37a3fd11b380b875a91ae2df6",
+  "controls_summary_sha256": "64ab493a8404f24da4875ef9a5a23e3fe92c681a79fa271c20732f3d4da54881",
+  "worker_validation_sha256": "815da68f72d23e6528d459002433a6b036bb91c78d2374c229e71487d9e7ddc9",
+  "eligibility": "gold passes, base fails, staged public smoke passes before scored attempts",
+  "excluded_environment_ids": [],
+  "images": {
+    "scikit-learn__scikit-learn-25747": {
+      "reference": "swebench/sweb.eval.x86_64.scikit-learn_1776_scikit-learn-25747@sha256:557967b5382d23ea1842e6dc9ba11e4816756c6bde57243523a64f8a404141fa",
+      "image_id": "sha256:6ccd3038f26d22daecfe8f80015b33eb189d49eaa10ee4e0928af2a2a16823ad",
+      "size_bytes": 4634985262
+    },
+    "django__django-12276": {
+      "reference": "swebench/sweb.eval.x86_64.django_1776_django-12276@sha256:903942f778dbcf0b61c62031697c4a5f3655569c11c84204bdfa307b844ec2ae",
+      "image_id": "sha256:590b60981698bd7342f3c46cae07e70b7bb768d4a877a8794c756029a2c17a6b",
+      "size_bytes": 2875730136
+    },
+    "django__django-12125": {
+      "reference": "swebench/sweb.eval.x86_64.django_1776_django-12125@sha256:4345ad65eec0da8a32063c2c9a32df380e10b4fb4ccebfcfed9c4be9a185e5ff",
+      "image_id": "sha256:9a52f383c20ba46e835b3a5f0b9671a86dce0242c22337644e220625955db61a",
+      "size_bytes": 2876438739
+    },
+    "pylint-dev__pylint-6903": {
+      "reference": "swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-6903@sha256:bad80b1c20eeb5d49a6e82dc485ee40fbd67b91df47b56740e1be5471b678f5b",
+      "image_id": "sha256:bdb24d06e2cd96bb0b363bc07b293affb26cca5b2f92edeb3bf428281e53551e",
+      "size_bytes": 2802375863
+    },
+    "sympy__sympy-24213": {
+      "reference": "swebench/sweb.eval.x86_64.sympy_1776_sympy-24213@sha256:a458bae7d95f469fa8e438da0a39a2d168e93f70239155dbd833934948f2b296",
+      "image_id": "sha256:139dca6eeda9c8a9f98ec7c2c87aff88b968896ac78a0fbafbb943edf29b9d69",
+      "size_bytes": 2795512985
+    },
+    "sphinx-doc__sphinx-9320": {
+      "reference": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-9320@sha256:0dd7b74de29c5734fbcd2fb9ab5295f610b5b281bd2fdd87e9c3c1d3f272f28a",
+      "image_id": "sha256:136da881812f0fb703d404723e9e2122fd72dfb5a756f08344c1a99dc109579e",
+      "size_bytes": 2811553271
+    },
+    "sphinx-doc__sphinx-10673": {
+      "reference": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-10673@sha256:4654890cc32945f5021445040ad6f2efd3b651f1c9efe679021d3b3da5375eb0",
+      "image_id": "sha256:b02ab4992ad1ccdb85b8209499c396634cd7fead4934baae0ea3884a93bafb83",
+      "size_bytes": 2817707918
+    },
+    "django__django-10999": {
+      "reference": "swebench/sweb.eval.x86_64.django_1776_django-10999@sha256:22a35ae325dc5abdd397b1d474d66aad62da6d23c4e9c8763478e82bcf63af7b",
+      "image_id": "sha256:44659731979e615212698d54f39b1124f06bc2e38402d4b9d7e3782cc709a747",
+      "size_bytes": 2871586796
+    },
+    "sphinx-doc__sphinx-11510": {
+      "reference": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-11510@sha256:01bf15e77e5d0f6988c8107bf81a5091900228ca0d160bf677d9b07dd17e1a0f",
+      "image_id": "sha256:ef65c93f68bbc3d40e35f0ec753a359e8de0e5e710fa3225aab2f629131b2807",
+      "size_bytes": 2963594832
+    },
+    "django__django-13109": {
+      "reference": "swebench/sweb.eval.x86_64.django_1776_django-13109@sha256:99485703b09250cf48812b5f24e4449c3f179b5bf7673b96cd398aa7f1179295",
+      "image_id": "sha256:f07d510a95590299d5ce8c02d761a33704c82e65f6b67e582f383fefe015e27b",
+      "size_bytes": 2879927689
+    },
+    "sympy__sympy-21847": {
+      "reference": "swebench/sweb.eval.x86_64.sympy_1776_sympy-21847@sha256:9a45ffe20cac4243930e8c5b2b065adbc08f476c880d7465ca0fbfb9f98c6456",
+      "image_id": "sha256:03e700790cf908ecf1175ffe9e9371896ad1783b5db3ce3f2c8c2776fa0bb6de",
+      "size_bytes": 2779030959
+    }
+  },
+  "worker_boundary": "unmounted offline Docker; native host tools disabled; MCP SDK shell only",
+  "limitations": [
+    "12-task engineering panel; no powered noninferiority claim",
+    "Requested model IDs are not immutable model weights",
+    "Model usage excludes setup, controls and evaluation overhead",
+    "Unknown subscription credits and dollar costs remain null"
+  ],
+  "policy_mode": "fallback",
+  "purpose": "held_out",
+  "source_study": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/validated-source-002",
+  "source_environment_sha256": "909e070921d1b208a47bb008d6333203cef53ae9e91ec2f67a83aedd6fa3f18b",
+  "policy_source_sha256": {
+    "scripts/run_policy_study.py": "2b80fb65a9fe244bd8bcd0c91264b515b3256791c6576c6c082f07af938c285e",
+    "src/ttgl/policy.py": "bf163122b4c9769dbec7ef0c9759fc5e07a4453dc6906f75c31dfa41d6eee707",
+    "prompts/controller-v2-common.txt": "bcab59483071803bd76c6a2125c4892771bafb3f3845b151494732f1b905fd23",
+    "prompts/controller-v2-delegation.txt": "97fa0f26f6477d16ad94e130d0ae33b9909da26598fe72fd9178513f330e568b",
+    "prompts/controller-v2-fallback.txt": "b0e31632e6796b582a7982325aca364419cbeeeaa309224b47eae2ccce8a4724"
+  },
+  "analysis_scope": "Independent new assignments; do not pool development and held-out outcomes"
+}

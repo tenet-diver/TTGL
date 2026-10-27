@@ -1,0 +1,10 @@
+{
+  "instance_id": "django__django-12276",
+  "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; python tests/runtests.py --verbosity 0 utils_tests.test_dateformat",
+  "returncode": 0,
+  "image_id": "sha256:590b60981698bd7342f3c46cae07e70b7bb768d4a877a8794c756029a2c17a6b",
+  "controls_record_sha256": "3e5b57c67ca7dd98332d7cddf5aae99859de8921f018c187ceda2017461995c4",
+  "ready": true,
+  "reason": "public_smoke_pass",
+  "stdout_sha256": "2f91b522685782ae406a82f95a1a2727606a29a9c007d56d260dc6958560c647"
+}

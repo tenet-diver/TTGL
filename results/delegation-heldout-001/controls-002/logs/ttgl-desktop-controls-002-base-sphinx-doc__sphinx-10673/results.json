@@ -1,0 +1,43 @@
+{
+    "total_instances": 1,
+    "submitted_instances": 11,
+    "completed_instances": 1,
+    "resolved_instances": 0,
+    "unresolved_instances": 1,
+    "infra_failure_instances": 0,
+    "ambiguous_failure_instances": 0,
+    "empty_patch_instances": 0,
+    "error_instances": 0,
+    "completed_ids": [
+        "sphinx-doc__sphinx-10673"
+    ],
+    "incomplete_ids": [],
+    "empty_patch_ids": [],
+    "submitted_ids": [
+        "django__django-10999",
+        "django__django-12125",
+        "django__django-12276",
+        "django__django-13109",
+        "pylint-dev__pylint-6903",
+        "scikit-learn__scikit-learn-25747",
+        "sphinx-doc__sphinx-10673",
+        "sphinx-doc__sphinx-11510",
+        "sphinx-doc__sphinx-9320",
+        "sympy__sympy-21847",
+        "sympy__sympy-24213"
+    ],
+    "resolved_ids": [],
+    "unresolved_ids": [
+        "sphinx-doc__sphinx-10673"
+    ],
+    "infra_failure_ids": [],
+    "ambiguous_failure_ids": [],
+    "failure_reasons": {},
+    "error_ids": [],
+    "schema_version": 2,
+    "unstopped_instances": 0,
+    "unstopped_containers": [],
+    "unremoved_images": [
+        "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-10673:latest"
+    ]
+}

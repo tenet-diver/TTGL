@@ -1,0 +1,14 @@
+{
+  "tasks": [
+    {
+      "instance_id": "pylint-dev__pylint-6903",
+      "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; python -m pytest -q tests/test_pragma_parser.py",
+      "returncode": 0,
+      "image_id": "sha256:bdb24d06e2cd96bb0b363bc07b293affb26cca5b2f92edeb3bf428281e53551e",
+      "controls_record_sha256": "c1cfeb36a989ecf60b8803c2d5b58677d76b5f050eecade9f41294c0093d3c02",
+      "ready": true,
+      "reason": "public_smoke_pass",
+      "stdout_sha256": "b243bb402fb5fbac8efebe645d780ff44847fe50b733026039dfac1a8168fedd"
+    }
+  ]
+}

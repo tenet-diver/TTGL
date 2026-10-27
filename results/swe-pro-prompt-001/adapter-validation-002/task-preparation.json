@@ -1,0 +1,66 @@
+{
+  "status": "prepared_not_controlled_or_scored",
+  "task_id": "instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+  "revision": "66f92766bba642462d4bbe5479e83f91f9211862",
+  "files": [
+    {
+      "path": "v2/tasks/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/environment/Dockerfile",
+      "git_blob": "9510e2040cacbc03558393aa62c38817edca1dc9",
+      "sha256": "fa0db8ab4ba69a267ebf0c3bb7bc3972473e63e70d93cf577d93e2e30c13b8d3"
+    },
+    {
+      "path": "v2/tasks/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/instruction.md",
+      "git_blob": "aad9245858ed925de14fe58eeb2fef4d41217c43",
+      "sha256": "67ab7c9c26426a337a5dae6eb3a431bbba15db8971c695198d06a99ca76cc8ab"
+    },
+    {
+      "path": "v2/tasks/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/solution/gold_patch.diff",
+      "git_blob": "73052c750076334bbaeccb80ac0168f934e103c7",
+      "sha256": "f422919a6ec9a6ff0f0bcf7f0527f26e4bcf8c8cc885fe473d47bc68b265ccf4"
+    },
+    {
+      "path": "v2/tasks/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/solution/solve.sh",
+      "git_blob": "51fe0d6c445b3827de10db90efddae9c008ac12c",
+      "sha256": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97"
+    },
+    {
+      "path": "v2/tasks/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/task.toml",
+      "git_blob": "917fe9a90c41b7001344b9a9c29af410072119c9",
+      "sha256": "a9dfb94d44ff46a774db16e8091ee59f49276830d3917186eeae6822fc4072b7"
+    },
+    {
+      "path": "v2/tasks/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/tests/config.json",
+      "git_blob": "103c31001251b4a6ac661f76846f875b53e9e15c",
+      "sha256": "c36ab489be9421a729aec2de91412af85825ea58d7c1552ed69be079e14619c8"
+    },
+    {
+      "path": "v2/tasks/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/tests/parser.py",
+      "git_blob": "289a3536e1cb2e32984eba985b923c015f038327",
+      "sha256": "55c2418512e1f11fac1893043e2a588d6c0809071c373b989a6c3d86906cbd97"
+    },
+    {
+      "path": "v2/tasks/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/tests/run_script.sh",
+      "git_blob": "09ea4ee6593974a2079651c96227b9e698b4a426",
+      "sha256": "f7ae8ff66fd6a77a26a909b2812c84cfb5bfc3b369effc1e8bb683e7dfc56a47"
+    },
+    {
+      "path": "v2/tasks/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/tests/test.sh",
+      "git_blob": "70b0d1aa40351d358dab48e1b0a7f19b94250270",
+      "sha256": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0"
+    },
+    {
+      "path": "v2/tasks/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/tests/test_patch.patch",
+      "git_blob": "b8ae2d428a471607fc6d231a11961f6dd1935bbb",
+      "sha256": "f9e956c040f9a2d81ea81907afee65c13e9624df16f7bcb4d59d60a3b1e8b4e9"
+    },
+    {
+      "path": "v2/tooling/patch_replay.py",
+      "git_blob": "170fc547df62c5b625807501aba4a68d06fb6238",
+      "sha256": "5c8b344de37164e9723f1724c2573013957fb644c3913a64c12c1718c737d876"
+    }
+  ],
+  "inference_calls": 0,
+  "reservation_sha256": "c86b3c9a83e94e4bcc4f5162f6d8bc1eb5849a10074b23073590984fb0d4dc89",
+  "verifier": "Unchanged upstream Harbor task and fresh PatchReplayAgent regrade required",
+  "boundary": "Private evaluator files; never mount this directory in an acting model workspace"
+}

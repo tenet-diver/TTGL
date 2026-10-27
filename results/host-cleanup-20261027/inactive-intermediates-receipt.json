@@ -1,0 +1,24 @@
+{
+  "records": [
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-7ksXtW/checkout/.native-ci/job-GT2TF5/DerivedData/Build/Intermediates.noindex",
+      "age_hours": 111.2,
+      "removed": true,
+      "reason": "eligible_inactive_generated_compiler_intermediates",
+      "allocated_kib_before": 337872,
+      "source_head": "5e3431ab93debeb792b88ea0ab4b540e7160b74c",
+      "open_references": 0
+    },
+    {
+      "path": "/private/var/folders/qx/lmg370097v7ghq0j126pq0040000gn/T/calorie-budget-pre-push-3qbGsK/checkout/.native-ci/job-app/DerivedData/Build/Intermediates.noindex",
+      "age_hours": 24.2,
+      "removed": true,
+      "reason": "eligible_inactive_generated_compiler_intermediates",
+      "allocated_kib_before": 2540,
+      "source_head": "93fbdc9de73afda1f2fec008b1744ede1580591b",
+      "open_references": 0
+    }
+  ],
+  "free_bytes_after": 13065154560,
+  "preserved": "Current CI, compiler CAS, sources, Products, SourcePackages, Logs/Test, .xcresult, coverage, credentials and database volumes"
+}

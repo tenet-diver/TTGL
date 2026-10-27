@@ -1,0 +1,27 @@
+{
+  "instance_id": "sphinx-doc__sphinx-10673",
+  "controls": {
+    "base": {
+      "returncode": 0,
+      "elapsed_seconds": 161.1081230129348,
+      "report": "logs/ttgl-desktop-controls-002-base-sphinx-doc__sphinx-10673/base-control/sphinx-doc__sphinx-10673/report.json",
+      "resolved": false,
+      "infra_failure": false,
+      "report_sha256": "29c2b77f9872b8d7b0c6bf171d8d857da38db291df707f0a471f53144d0fd710"
+    },
+    "gold": {
+      "returncode": 0,
+      "elapsed_seconds": 45.62080442998558,
+      "report": "logs/ttgl-desktop-controls-002-gold-sphinx-doc__sphinx-10673/gold/sphinx-doc__sphinx-10673/report.json",
+      "resolved": true,
+      "infra_failure": false,
+      "report_sha256": "47c1dcb11b54aa6aa7b0e973643eae36b705f3fbe34a5041872eb8994abc52b8"
+    }
+  },
+  "image": {
+    "reference": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-10673@sha256:4654890cc32945f5021445040ad6f2efd3b651f1c9efe679021d3b3da5375eb0",
+    "image_id": "sha256:b02ab4992ad1ccdb85b8209499c396634cd7fead4934baae0ea3884a93bafb83",
+    "size_bytes": 2817707918
+  },
+  "eligible": true
+}

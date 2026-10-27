@@ -1,0 +1,10 @@
+{
+  "instance_id": "pylint-dev__pylint-6903",
+  "ready": true,
+  "returncode": 0,
+  "controls_record_sha256": "c1cfeb36a989ecf60b8803c2d5b58677d76b5f050eecade9f41294c0093d3c02",
+  "runtime_adapter_sha256": "0efe79f1ea79b9698765fe01a12d508232fc6dc2541f626a2bd7f461af24902d",
+  "worker_dependencies_sha256": "6c3c9d410cf1858e5b9673ee67130e619505eb86e9c33b928d0c84d95c3c3d5d",
+  "image_id": "sha256:bdb24d06e2cd96bb0b363bc07b293affb26cca5b2f92edeb3bf428281e53551e",
+  "inference_calls": 0
+}

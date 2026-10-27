@@ -1,0 +1,17 @@
+{
+  "tasks_sha256": "e8aca5c7fe2355cb977b862e74fb96f8cd8eb1f37a3fd11b380b875a91ae2df6",
+  "private_dataset_sha256": "4e81a3e0ab1c93066633ace3ba452c0fa6f9b3abc359df8bf0908a788fcabf5f",
+  "evaluator_image_id": "sha256:44259edbb7814bbcf54eb3d13e5a46439e5076f51107406fbb572a30aac71735",
+  "script_sha256": "5d0ff53aa20349e1cfd09be24c2d67a7f9edd8869ec32add7e40e7aa2c7c107b",
+  "timeout_seconds": 1200,
+  "workers": 1,
+  "eligibility_rule": "gold resolved=true and base resolved=false, with no infrastructure failure",
+  "selection": "all frozen tasks; no replacement based on model outcomes",
+  "inference_calls": 0,
+  "post_pair_callback": {
+    "driver_sha256": "445cc0df45bc49366ded63f26d8a7ae435a003379ec7ae58d4c97c403817fcef",
+    "public_validator_sha256": "85f26a0744b8dada54b271f3e9a0a5e6114749425f7bdda585280df771563e6c",
+    "order": "base control, gold control, public probe, image removal; no overlapping grading",
+    "inference_calls": 0
+  }
+}

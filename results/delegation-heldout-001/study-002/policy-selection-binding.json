@@ -1,0 +1,10 @@
+{
+  "selected_policy_sha256": "16fd8d40f16e124346e38037c9cb17ba023abb81c6673990709b023f2d6c939c",
+  "environment_disposition_sha256": "ce9e1983c1b63467d6d1ecac675900a7ccfa0eb3176f9864be91b498073e7f54",
+  "design_sha256": "a5369e42725f96e4e974286a10818b07f012e12bb036dfebb6265fdf28120d2f",
+  "environment_sha256": "f2329d4e2a66c0a31ddef2330163a3d112f6575f0714791c679b0b55b0099e54",
+  "selected_mode": "fallback",
+  "runtime_controller_mode": "fallback",
+  "driver": "scripts/run_policy_study.py",
+  "selected_before_preflight_and_scored_inference": true
+}

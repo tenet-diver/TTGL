@@ -1,0 +1,56 @@
+2026-10-27 17:11:10,702 - INFO - Creating container for django__django-10999...
+2026-10-27 17:11:11,693 - INFO - Container for django__django-10999 created: 60c8353b77a89f195cbc676d1292a2debe5d88788b987f14474bc19d26fcacc8
+2026-10-27 17:11:12,250 - INFO - Container for django__django-10999 started: 60c8353b77a89f195cbc676d1292a2debe5d88788b987f14474bc19d26fcacc8
+2026-10-27 17:11:12,271 - INFO - Intermediate patch for django__django-10999 written to logs/evaluation/ttgl-desktop-controls-002-gold-django__django-10999/gold/django__django-10999/patch.diff, now applying to container...
+2026-10-27 17:11:12,830 - INFO - >>>>> Applied Patch:
+Checking patch django/utils/dateparse.py...
+Applied patch django/utils/dateparse.py cleanly.
+
+2026-10-27 17:11:14,721 - INFO - Git diff before:
+diff --git a/django/utils/dateparse.py b/django/utils/dateparse.py
+index 8d08b7d1d3..f90d952581 100644
+--- a/django/utils/dateparse.py
++++ b/django/utils/dateparse.py
+@@ -29,9 +29,10 @@ datetime_re = re.compile(
+ standard_duration_re = re.compile(
+     r'^'
+     r'(?:(?P<days>-?\d+) (days?, )?)?'
+-    r'((?:(?P<hours>-?\d+):)(?=\d+:\d+))?'
+-    r'(?:(?P<minutes>-?\d+):)?'
+-    r'(?P<seconds>-?\d+)'
++    r'(?P<sign>-?)'
++    r'((?:(?P<hours>\d+):)(?=\d+:\d+))?'
++    r'(?:(?P<minutes>\d+):)?'
++    r'(?P<seconds>\d+)'
+     r'(?:\.(?P<microseconds>\d{1,6})\d{0,6})?'
+     r'$'
+ )
+2026-10-27 17:11:14,736 - INFO - Eval script for django__django-10999 written to logs/evaluation/ttgl-desktop-controls-002-gold-django__django-10999/gold/django__django-10999/eval.sh; copying to container...
+2026-10-27 17:11:33,894 - INFO - Test runtime: 18.80 seconds
+2026-10-27 17:11:33,928 - INFO - Test output for django__django-10999 written to logs/evaluation/ttgl-desktop-controls-002-gold-django__django-10999/gold/django__django-10999/test_output.txt
+2026-10-27 17:11:34,233 - INFO - Git diff after:
+diff --git a/django/utils/dateparse.py b/django/utils/dateparse.py
+index 8d08b7d1d3..f90d952581 100644
+--- a/django/utils/dateparse.py
++++ b/django/utils/dateparse.py
+@@ -29,9 +29,10 @@ datetime_re = re.compile(
+ standard_duration_re = re.compile(
+     r'^'
+     r'(?:(?P<days>-?\d+) (days?, )?)?'
+-    r'((?:(?P<hours>-?\d+):)(?=\d+:\d+))?'
+-    r'(?:(?P<minutes>-?\d+):)?'
+-    r'(?P<seconds>-?\d+)'
++    r'(?P<sign>-?)'
++    r'((?:(?P<hours>\d+):)(?=\d+:\d+))?'
++    r'(?:(?P<minutes>\d+):)?'
++    r'(?P<seconds>\d+)'
+     r'(?:\.(?P<microseconds>\d{1,6})\d{0,6})?'
+     r'$'
+ )
+2026-10-27 17:11:34,237 - INFO - Grading answer for django__django-10999...
+2026-10-27 17:11:34,255 - INFO - report: {'django__django-10999': {'patch_is_None': False, 'patch_exists': True, 'patch_successfully_applied': True, 'resolved': True, 'infra_failure': False, 'tests_status': {'FAIL_TO_PASS': {'success': ['test_negative (utils_tests.test_dateparse.DurationParseTests)', 'test_parse_postgresql_format (utils_tests.test_dateparse.DurationParseTests)'], 'failure': []}, 'PASS_TO_PASS': {'success': ['test_parse_date (utils_tests.test_dateparse.DateParseTests)', 'test_parse_datetime (utils_tests.test_dateparse.DateParseTests)', 'test_parse_time (utils_tests.test_dateparse.DateParseTests)', 'test_days (utils_tests.test_dateparse.DurationParseTests)', 'test_fractions_of_seconds (utils_tests.test_dateparse.DurationParseTests)', 'test_hours_minutes_seconds (utils_tests.test_dateparse.DurationParseTests)', 'test_iso_8601 (utils_tests.test_dateparse.DurationParseTests)', 'test_minutes_seconds (utils_tests.test_dateparse.DurationParseTests)', 'test_parse_python_format (utils_tests.test_dateparse.DurationParseTests)', 'test_seconds (utils_tests.test_dateparse.DurationParseTests)'], 'failure': []}, 'FAIL_TO_FAIL': {'success': [], 'failure': []}, 'PASS_TO_FAIL': {'success': [], 'failure': []}}}}
+Result for django__django-10999: resolved: True
+2026-10-27 17:11:34,282 - INFO - Attempting to stop container sweb.eval.django__django-10999.ttgl-desktop-controls-002-gold-django__django-10999...
+2026-10-27 17:11:50,282 - INFO - Container sweb.eval.django__django-10999.ttgl-desktop-controls-002-gold-django__django-10999 stopped successfully.
+2026-10-27 17:11:50,291 - INFO - Attempting to remove container sweb.eval.django__django-10999.ttgl-desktop-controls-002-gold-django__django-10999...
+2026-10-27 17:11:50,527 - INFO - Container sweb.eval.django__django-10999.ttgl-desktop-controls-002-gold-django__django-10999 removed successfully.

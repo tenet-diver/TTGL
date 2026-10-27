@@ -1,0 +1,13 @@
+============================= test process starts ==============================
+executable:         /opt/miniconda3/envs/testbed/bin/python  (3.9.20-final-0) [CPython]
+architecture:       64-bit
+cache:              yes
+ground types:       python 
+numpy:              None
+random seed:        53229478
+hash randomization: on (PYTHONHASHSEED=4259429254)
+
+sympy/core/tests/test_numbers.py[6] ......                                  [OK]
+
+================== tests finished: 6 passed, in 1.03 seconds ===================
+

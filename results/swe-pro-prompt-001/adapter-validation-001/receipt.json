@@ -1,0 +1,20 @@
+{
+  "status": "transport_and_framework_checks_passed_not_benchmark_evaluation",
+  "harbor": "0.25.0",
+  "tests_passed": 6,
+  "pip_check": "No broken requirements found",
+  "abstract_methods_unimplemented": [],
+  "inference_calls": 0,
+  "native_benchmark_controls_executed": false,
+  "real_pro_task_prepared": true,
+  "sources_sha256": {
+    "src/ttgl/harbor_agent.py": "4322db49391c3d69ddfdb53218067d700b1e0896669a3dca6e0309807f21cb3b",
+    "src/ttgl/harbor_bridge.py": "d3a7e446fb747156f32d1191a47604eb8008340c57f005e561ab9ac558e5e529",
+    "tools/worker-mcp/harbor-server.mjs": "cd207f6da4bfa2c69d171d8a82a41d0f67a2e200f424907a0716f6e17abb571e",
+    "scripts/prepare_pro_harbor_task.py": "5a08438be3bffa2a9c2d99ff908b523e0e20990370c870280dbe5f246bdcce0e",
+    "requirements-harbor-macos-intel.lock": "b006cf6da6e345b5f5eff08116028c13ca0cff85245c619ec2ce64667a1646d9",
+    "tests/test_harbor_bridge.py": "6dc09bed8c57ea56e571c3eb9d778c6a3cc9b3eeafded0f63713db5b84cdf35a",
+    "tests/test_harbor_agent_optional.py": "31a80505dcf7bf3b9ffb2c29e4568739f28216e74106900d1b25125fe3501b4e"
+  },
+  "scope": "Official MCP client transport roundtrip, authentication/bounds, context-only tool exclusion, real Harbor callbacks using scripted model/environment fixtures, total and per-model expert usage preservation. No model accuracy or Pro environment readiness result."
+}

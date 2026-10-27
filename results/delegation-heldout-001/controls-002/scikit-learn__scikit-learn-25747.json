@@ -1,0 +1,27 @@
+{
+  "instance_id": "scikit-learn__scikit-learn-25747",
+  "controls": {
+    "base": {
+      "returncode": 0,
+      "elapsed_seconds": 260.435155648971,
+      "report": "logs/ttgl-desktop-controls-002-base-scikit-learn__scikit-learn-25747/base-control/scikit-learn__scikit-learn-25747/report.json",
+      "resolved": false,
+      "infra_failure": false,
+      "report_sha256": "e04e54aa65fbae63698ff701371ed72fe6c1b16bbebb2b74a3609ec9bc0e6d64"
+    },
+    "gold": {
+      "returncode": 0,
+      "elapsed_seconds": 33.052815275033936,
+      "report": "logs/ttgl-desktop-controls-002-gold-scikit-learn__scikit-learn-25747/gold/scikit-learn__scikit-learn-25747/report.json",
+      "resolved": true,
+      "infra_failure": false,
+      "report_sha256": "6b77b226f373928e3d51a2d95f9e6e240fc109a0076ef35e4c12433d5e0142fb"
+    }
+  },
+  "image": {
+    "reference": "swebench/sweb.eval.x86_64.scikit-learn_1776_scikit-learn-25747@sha256:557967b5382d23ea1842e6dc9ba11e4816756c6bde57243523a64f8a404141fa",
+    "image_id": "sha256:6ccd3038f26d22daecfe8f80015b33eb189d49eaa10ee4e0928af2a2a16823ad",
+    "size_bytes": 4634985262
+  },
+  "eligible": true
+}

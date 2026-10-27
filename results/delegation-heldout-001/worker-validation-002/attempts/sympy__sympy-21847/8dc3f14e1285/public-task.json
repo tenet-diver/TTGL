@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "dataset_id": "SWE-bench/SWE-bench_Verified",
+  "dataset_revision": "3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d",
+  "dataset_revision_kind": "official_task_repository_git_commit",
+  "task_repository": "https://github.com/SWE-bench/swe-bench-tasks",
+  "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+  "selection": {
+    "method": "single public probe from the reserved manifest",
+    "assigned_tasks": 1,
+    "source_tasks_sha256": "e8aca5c7fe2355cb977b862e74fb96f8cd8eb1f37a3fd11b380b875a91ae2df6",
+    "selection_uses_model_outcomes": false
+  },
+  "tasks": [
+    {
+      "instance_id": "sympy__sympy-21847",
+      "repo": "sympy/sympy",
+      "base_commit": "d9b18c518d64d0ebe8e35a98c2fb519938b9b151",
+      "problem_statement": "itermonomials returns incorrect monomials when using min_degrees argument\n`itermonomials` returns incorrect monomials when using optional `min_degrees` argument\n\nFor example, the following code introduces three symbolic variables and generates monomials with max and min degree of 3:\n\n\n```\nimport sympy as sp\nfrom sympy.polys.orderings import monomial_key\n\nx1, x2, x3 = sp.symbols('x1, x2, x3')\nstates = [x1, x2, x3]\nmax_degrees = 3\nmin_degrees = 3\nmonomials = sorted(sp.itermonomials(states, max_degrees, min_degrees=min_degrees), \n                   key=monomial_key('grlex', states))\nprint(monomials)\n```\nThe code returns `[x3**3, x2**3, x1**3]`, when it _should_ also return monomials such as `x1*x2**2, x2*x3**2, etc...` that also have total degree of 3. This behaviour is inconsistent with the documentation that states that \n\n> A generator of all monomials `monom` is returned, such that either `min_degree <= total_degree(monom) <= max_degree`...\n\nThe monomials are also missing when `max_degrees` is increased above `min_degrees`.\n"
+    }
+  ]
+}

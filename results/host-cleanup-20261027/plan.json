@@ -1,0 +1,1087 @@
+{
+  "status": "verified_before_cleanup",
+  "free_bytes_before": 4740993024,
+  "records": [
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/reset_expert/scikit-learn__scikit-learn-14141",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "arm": "reset_expert",
+      "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/large/scikit-learn__scikit-learn-14141",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "arm": "large",
+      "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/precall_router/scikit-learn__scikit-learn-14141",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "arm": "precall_router",
+      "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/oneway/scikit-learn__scikit-learn-14141",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "arm": "oneway",
+      "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/small/scikit-learn__scikit-learn-14141",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "arm": "small",
+      "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/personal/scikit-learn__scikit-learn-14141",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "arm": "personal",
+      "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/reset_expert/django__django-13297",
+      "task_id": "django__django-13297",
+      "arm": "reset_expert",
+      "head": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "expected_base": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/precall_router/django__django-13297",
+      "task_id": "django__django-13297",
+      "arm": "precall_router",
+      "head": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "expected_base": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/oneway/django__django-13297",
+      "task_id": "django__django-13297",
+      "arm": "oneway",
+      "head": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "expected_base": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/personal/django__django-13297",
+      "task_id": "django__django-13297",
+      "arm": "personal",
+      "head": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "expected_base": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/small/django__django-13297",
+      "task_id": "django__django-13297",
+      "arm": "small",
+      "head": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "expected_base": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/large/django__django-13297",
+      "task_id": "django__django-13297",
+      "arm": "large",
+      "head": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "expected_base": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/small/pydata__xarray-3095",
+      "task_id": "pydata__xarray-3095",
+      "arm": "small",
+      "head": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "expected_base": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/oneway/pydata__xarray-3095",
+      "task_id": "pydata__xarray-3095",
+      "arm": "oneway",
+      "head": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "expected_base": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/personal/pydata__xarray-3095",
+      "task_id": "pydata__xarray-3095",
+      "arm": "personal",
+      "head": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "expected_base": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/reset_expert/pydata__xarray-3095",
+      "task_id": "pydata__xarray-3095",
+      "arm": "reset_expert",
+      "head": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "expected_base": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/large/pydata__xarray-3095",
+      "task_id": "pydata__xarray-3095",
+      "arm": "large",
+      "head": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "expected_base": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/precall_router/pydata__xarray-3095",
+      "task_id": "pydata__xarray-3095",
+      "arm": "precall_router",
+      "head": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "expected_base": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/personal/django__django-15037",
+      "task_id": "django__django-15037",
+      "arm": "personal",
+      "head": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "expected_base": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/precall_router/django__django-15037",
+      "task_id": "django__django-15037",
+      "arm": "precall_router",
+      "head": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "expected_base": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/large/django__django-15037",
+      "task_id": "django__django-15037",
+      "arm": "large",
+      "head": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "expected_base": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/oneway/django__django-15037",
+      "task_id": "django__django-15037",
+      "arm": "oneway",
+      "head": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "expected_base": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/reset_expert/django__django-15037",
+      "task_id": "django__django-15037",
+      "arm": "reset_expert",
+      "head": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "expected_base": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/small/django__django-15037",
+      "task_id": "django__django-15037",
+      "arm": "small",
+      "head": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "expected_base": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/large/psf__requests-5414",
+      "task_id": "psf__requests-5414",
+      "arm": "large",
+      "head": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+      "expected_base": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/small/psf__requests-5414",
+      "task_id": "psf__requests-5414",
+      "arm": "small",
+      "head": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+      "expected_base": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/reset_expert/psf__requests-5414",
+      "task_id": "psf__requests-5414",
+      "arm": "reset_expert",
+      "head": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+      "expected_base": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/personal/psf__requests-5414",
+      "task_id": "psf__requests-5414",
+      "arm": "personal",
+      "head": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+      "expected_base": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/oneway/psf__requests-5414",
+      "task_id": "psf__requests-5414",
+      "arm": "oneway",
+      "head": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+      "expected_base": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/precall_router/psf__requests-5414",
+      "task_id": "psf__requests-5414",
+      "arm": "precall_router",
+      "head": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+      "expected_base": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/large/sympy__sympy-17139",
+      "task_id": "sympy__sympy-17139",
+      "arm": "large",
+      "head": "1d3327b8e90a186df6972991963a5ae87053259d",
+      "expected_base": "1d3327b8e90a186df6972991963a5ae87053259d",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/personal/sympy__sympy-17139",
+      "task_id": "sympy__sympy-17139",
+      "arm": "personal",
+      "head": "1d3327b8e90a186df6972991963a5ae87053259d",
+      "expected_base": "1d3327b8e90a186df6972991963a5ae87053259d",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/precall_router/sympy__sympy-17139",
+      "task_id": "sympy__sympy-17139",
+      "arm": "precall_router",
+      "head": "1d3327b8e90a186df6972991963a5ae87053259d",
+      "expected_base": "1d3327b8e90a186df6972991963a5ae87053259d",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/reset_expert/sympy__sympy-17139",
+      "task_id": "sympy__sympy-17139",
+      "arm": "reset_expert",
+      "head": "1d3327b8e90a186df6972991963a5ae87053259d",
+      "expected_base": "1d3327b8e90a186df6972991963a5ae87053259d",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/small/sympy__sympy-17139",
+      "task_id": "sympy__sympy-17139",
+      "arm": "small",
+      "head": "1d3327b8e90a186df6972991963a5ae87053259d",
+      "expected_base": "1d3327b8e90a186df6972991963a5ae87053259d",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/oneway/sympy__sympy-17139",
+      "task_id": "sympy__sympy-17139",
+      "arm": "oneway",
+      "head": "1d3327b8e90a186df6972991963a5ae87053259d",
+      "expected_base": "1d3327b8e90a186df6972991963a5ae87053259d",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/personal/astropy__astropy-12907",
+      "task_id": "astropy__astropy-12907",
+      "arm": "personal",
+      "head": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+      "expected_base": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/small/astropy__astropy-12907",
+      "task_id": "astropy__astropy-12907",
+      "arm": "small",
+      "head": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+      "expected_base": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/large/astropy__astropy-12907",
+      "task_id": "astropy__astropy-12907",
+      "arm": "large",
+      "head": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+      "expected_base": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/precall_router/astropy__astropy-12907",
+      "task_id": "astropy__astropy-12907",
+      "arm": "precall_router",
+      "head": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+      "expected_base": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/oneway/astropy__astropy-12907",
+      "task_id": "astropy__astropy-12907",
+      "arm": "oneway",
+      "head": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+      "expected_base": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/reset_expert/astropy__astropy-12907",
+      "task_id": "astropy__astropy-12907",
+      "arm": "reset_expert",
+      "head": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+      "expected_base": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/small/mwaskom__seaborn-3069",
+      "task_id": "mwaskom__seaborn-3069",
+      "arm": "small",
+      "head": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+      "expected_base": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/large/mwaskom__seaborn-3069",
+      "task_id": "mwaskom__seaborn-3069",
+      "arm": "large",
+      "head": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+      "expected_base": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/personal/mwaskom__seaborn-3069",
+      "task_id": "mwaskom__seaborn-3069",
+      "arm": "personal",
+      "head": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+      "expected_base": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/oneway/mwaskom__seaborn-3069",
+      "task_id": "mwaskom__seaborn-3069",
+      "arm": "oneway",
+      "head": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+      "expected_base": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/precall_router/mwaskom__seaborn-3069",
+      "task_id": "mwaskom__seaborn-3069",
+      "arm": "precall_router",
+      "head": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+      "expected_base": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/reset_expert/mwaskom__seaborn-3069",
+      "task_id": "mwaskom__seaborn-3069",
+      "arm": "reset_expert",
+      "head": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+      "expected_base": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/large/django__django-17084",
+      "task_id": "django__django-17084",
+      "arm": "large",
+      "head": "f8c43aca467b7b0c4bb0a7fa41362f90b610b8df",
+      "expected_base": "f8c43aca467b7b0c4bb0a7fa41362f90b610b8df",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/precall_router/django__django-17084",
+      "task_id": "django__django-17084",
+      "arm": "precall_router",
+      "head": "f8c43aca467b7b0c4bb0a7fa41362f90b610b8df",
+      "expected_base": "f8c43aca467b7b0c4bb0a7fa41362f90b610b8df",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/small/django__django-17084",
+      "task_id": "django__django-17084",
+      "arm": "small",
+      "head": "f8c43aca467b7b0c4bb0a7fa41362f90b610b8df",
+      "expected_base": "f8c43aca467b7b0c4bb0a7fa41362f90b610b8df",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/reset_expert/django__django-17084",
+      "task_id": "django__django-17084",
+      "arm": "reset_expert",
+      "head": "f8c43aca467b7b0c4bb0a7fa41362f90b610b8df",
+      "expected_base": "f8c43aca467b7b0c4bb0a7fa41362f90b610b8df",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/personal/django__django-17084",
+      "task_id": "django__django-17084",
+      "arm": "personal",
+      "head": "f8c43aca467b7b0c4bb0a7fa41362f90b610b8df",
+      "expected_base": "f8c43aca467b7b0c4bb0a7fa41362f90b610b8df",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/oneway/django__django-17084",
+      "task_id": "django__django-17084",
+      "arm": "oneway",
+      "head": "f8c43aca467b7b0c4bb0a7fa41362f90b610b8df",
+      "expected_base": "f8c43aca467b7b0c4bb0a7fa41362f90b610b8df",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/large/django__django-13121",
+      "task_id": "django__django-13121",
+      "arm": "large",
+      "head": "ec5aa2161d8015a3fe57dcbbfe14200cd18f0a16",
+      "expected_base": "ec5aa2161d8015a3fe57dcbbfe14200cd18f0a16",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/personal/django__django-13121",
+      "task_id": "django__django-13121",
+      "arm": "personal",
+      "head": "ec5aa2161d8015a3fe57dcbbfe14200cd18f0a16",
+      "expected_base": "ec5aa2161d8015a3fe57dcbbfe14200cd18f0a16",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/reset_expert/django__django-13121",
+      "task_id": "django__django-13121",
+      "arm": "reset_expert",
+      "head": "ec5aa2161d8015a3fe57dcbbfe14200cd18f0a16",
+      "expected_base": "ec5aa2161d8015a3fe57dcbbfe14200cd18f0a16",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/small/django__django-13121",
+      "task_id": "django__django-13121",
+      "arm": "small",
+      "head": "ec5aa2161d8015a3fe57dcbbfe14200cd18f0a16",
+      "expected_base": "ec5aa2161d8015a3fe57dcbbfe14200cd18f0a16",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/oneway/django__django-13121",
+      "task_id": "django__django-13121",
+      "arm": "oneway",
+      "head": "ec5aa2161d8015a3fe57dcbbfe14200cd18f0a16",
+      "expected_base": "ec5aa2161d8015a3fe57dcbbfe14200cd18f0a16",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/precall_router/django__django-13121",
+      "task_id": "django__django-13121",
+      "arm": "precall_router",
+      "head": "ec5aa2161d8015a3fe57dcbbfe14200cd18f0a16",
+      "expected_base": "ec5aa2161d8015a3fe57dcbbfe14200cd18f0a16",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/reset_expert/pydata__xarray-7229",
+      "task_id": "pydata__xarray-7229",
+      "arm": "reset_expert",
+      "head": "3aa75c8d00a4a2d4acf10d80f76b937cadb666b7",
+      "expected_base": "3aa75c8d00a4a2d4acf10d80f76b937cadb666b7",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/large/pydata__xarray-7229",
+      "task_id": "pydata__xarray-7229",
+      "arm": "large",
+      "head": "3aa75c8d00a4a2d4acf10d80f76b937cadb666b7",
+      "expected_base": "3aa75c8d00a4a2d4acf10d80f76b937cadb666b7",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/small/pydata__xarray-7229",
+      "task_id": "pydata__xarray-7229",
+      "arm": "small",
+      "head": "3aa75c8d00a4a2d4acf10d80f76b937cadb666b7",
+      "expected_base": "3aa75c8d00a4a2d4acf10d80f76b937cadb666b7",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/personal/pydata__xarray-7229",
+      "task_id": "pydata__xarray-7229",
+      "arm": "personal",
+      "head": "3aa75c8d00a4a2d4acf10d80f76b937cadb666b7",
+      "expected_base": "3aa75c8d00a4a2d4acf10d80f76b937cadb666b7",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/precall_router/pydata__xarray-7229",
+      "task_id": "pydata__xarray-7229",
+      "arm": "precall_router",
+      "head": "3aa75c8d00a4a2d4acf10d80f76b937cadb666b7",
+      "expected_base": "3aa75c8d00a4a2d4acf10d80f76b937cadb666b7",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/oneway/pydata__xarray-7229",
+      "task_id": "pydata__xarray-7229",
+      "arm": "oneway",
+      "head": "3aa75c8d00a4a2d4acf10d80f76b937cadb666b7",
+      "expected_base": "3aa75c8d00a4a2d4acf10d80f76b937cadb666b7",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/small/sphinx-doc__sphinx-9230",
+      "task_id": "sphinx-doc__sphinx-9230",
+      "arm": "small",
+      "head": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+      "expected_base": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/personal/sphinx-doc__sphinx-9230",
+      "task_id": "sphinx-doc__sphinx-9230",
+      "arm": "personal",
+      "head": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+      "expected_base": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/oneway/sphinx-doc__sphinx-9230",
+      "task_id": "sphinx-doc__sphinx-9230",
+      "arm": "oneway",
+      "head": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+      "expected_base": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/reset_expert/sphinx-doc__sphinx-9230",
+      "task_id": "sphinx-doc__sphinx-9230",
+      "arm": "reset_expert",
+      "head": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+      "expected_base": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/precall_router/sphinx-doc__sphinx-9230",
+      "task_id": "sphinx-doc__sphinx-9230",
+      "arm": "precall_router",
+      "head": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+      "expected_base": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/codex-isolated-20261026/study-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-scored-workers-20261026/large/sphinx-doc__sphinx-9230",
+      "task_id": "sphinx-doc__sphinx-9230",
+      "arm": "large",
+      "head": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+      "expected_base": "567ff22716ac258b9edd2c1711d766b440ac0b11",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/adaptive-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-dev-001/large/scikit-learn__scikit-learn-14141",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "arm": "large",
+      "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/adaptive-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-dev-001/small/scikit-learn__scikit-learn-14141",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "arm": "small",
+      "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/adaptive-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-dev-001/personal/scikit-learn__scikit-learn-14141",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "arm": "personal",
+      "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/adaptive-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-dev-001/small/django__django-13297",
+      "task_id": "django__django-13297",
+      "arm": "small",
+      "head": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "expected_base": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/adaptive-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-dev-001/personal/django__django-13297",
+      "task_id": "django__django-13297",
+      "arm": "personal",
+      "head": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "expected_base": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/adaptive-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-dev-001/large/django__django-13297",
+      "task_id": "django__django-13297",
+      "arm": "large",
+      "head": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "expected_base": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/adaptive-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-dev-001/large/pydata__xarray-3095",
+      "task_id": "pydata__xarray-3095",
+      "arm": "large",
+      "head": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "expected_base": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/adaptive-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-dev-001/personal/pydata__xarray-3095",
+      "task_id": "pydata__xarray-3095",
+      "arm": "personal",
+      "head": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "expected_base": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/adaptive-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-dev-001/small/pydata__xarray-3095",
+      "task_id": "pydata__xarray-3095",
+      "arm": "small",
+      "head": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "expected_base": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/adaptive-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-dev-001/personal/django__django-15037",
+      "task_id": "django__django-15037",
+      "arm": "personal",
+      "head": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "expected_base": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/adaptive-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-dev-001/large/django__django-15037",
+      "task_id": "django__django-15037",
+      "arm": "large",
+      "head": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "expected_base": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/adaptive-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-dev-001/small/django__django-15037",
+      "task_id": "django__django-15037",
+      "arm": "small",
+      "head": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "expected_base": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/fallback-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-fallback-dev-001/large/scikit-learn__scikit-learn-14141",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "arm": "large",
+      "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/fallback-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-fallback-dev-001/small/scikit-learn__scikit-learn-14141",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "arm": "small",
+      "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/fallback-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-fallback-dev-001/personal/scikit-learn__scikit-learn-14141",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "arm": "personal",
+      "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/fallback-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-fallback-dev-001/small/django__django-13297",
+      "task_id": "django__django-13297",
+      "arm": "small",
+      "head": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "expected_base": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/fallback-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-fallback-dev-001/personal/django__django-13297",
+      "task_id": "django__django-13297",
+      "arm": "personal",
+      "head": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "expected_base": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/fallback-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-fallback-dev-001/large/django__django-13297",
+      "task_id": "django__django-13297",
+      "arm": "large",
+      "head": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "expected_base": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/fallback-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-fallback-dev-001/large/pydata__xarray-3095",
+      "task_id": "pydata__xarray-3095",
+      "arm": "large",
+      "head": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "expected_base": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/fallback-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-fallback-dev-001/personal/pydata__xarray-3095",
+      "task_id": "pydata__xarray-3095",
+      "arm": "personal",
+      "head": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "expected_base": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/fallback-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-fallback-dev-001/small/pydata__xarray-3095",
+      "task_id": "pydata__xarray-3095",
+      "arm": "small",
+      "head": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "expected_base": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/fallback-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-fallback-dev-001/personal/django__django-15037",
+      "task_id": "django__django-15037",
+      "arm": "personal",
+      "head": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "expected_base": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/fallback-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-fallback-dev-001/large/django__django-15037",
+      "task_id": "django__django-15037",
+      "arm": "large",
+      "head": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "expected_base": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/fallback-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-fallback-dev-001/small/django__django-15037",
+      "task_id": "django__django-15037",
+      "arm": "small",
+      "head": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "expected_base": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/compact-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-compact-dev-001/large/scikit-learn__scikit-learn-14141",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "arm": "large",
+      "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/compact-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-compact-dev-001/small/scikit-learn__scikit-learn-14141",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "arm": "small",
+      "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/compact-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-compact-dev-001/personal/scikit-learn__scikit-learn-14141",
+      "task_id": "scikit-learn__scikit-learn-14141",
+      "arm": "personal",
+      "head": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "expected_base": "3d997697fdd166eff428ea9fd35734b6a8ba113e",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/compact-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-compact-dev-001/small/django__django-13297",
+      "task_id": "django__django-13297",
+      "arm": "small",
+      "head": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "expected_base": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/compact-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-compact-dev-001/personal/django__django-13297",
+      "task_id": "django__django-13297",
+      "arm": "personal",
+      "head": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "expected_base": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/compact-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-compact-dev-001/large/django__django-13297",
+      "task_id": "django__django-13297",
+      "arm": "large",
+      "head": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "expected_base": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/compact-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-compact-dev-001/large/pydata__xarray-3095",
+      "task_id": "pydata__xarray-3095",
+      "arm": "large",
+      "head": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "expected_base": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/compact-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-compact-dev-001/personal/pydata__xarray-3095",
+      "task_id": "pydata__xarray-3095",
+      "arm": "personal",
+      "head": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "expected_base": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/compact-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-compact-dev-001/small/pydata__xarray-3095",
+      "task_id": "pydata__xarray-3095",
+      "arm": "small",
+      "head": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "expected_base": "1757dffac2fa493d7b9a074b84cf8c830a706688",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/compact-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-compact-dev-001/personal/django__django-15037",
+      "task_id": "django__django-15037",
+      "arm": "personal",
+      "head": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "expected_base": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/compact-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-compact-dev-001/large/django__django-15037",
+      "task_id": "django__django-15037",
+      "arm": "large",
+      "head": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "expected_base": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    },
+    {
+      "study": "results/delegation-development-001/compact-001",
+      "path": "/Users/rustameynaliyev/Developer/ttgl-policy-compact-dev-001/small/django__django-15037",
+      "task_id": "django__django-15037",
+      "arm": "small",
+      "head": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "expected_base": "dab48b7482295956973879d15bfd4d3bb0718772",
+      "status": "",
+      "disposition": "eligible_clean_rebuildable_clone"
+    }
+  ],
+  "scope": "Only independently audited complete original/development study source clones; archived patches/grades/traces/private datasets unchanged"
+}

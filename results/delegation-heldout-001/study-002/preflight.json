@@ -1,0 +1,23 @@
+{
+  "ready": true,
+  "design_sha256": "a5369e42725f96e4e974286a10818b07f012e12bb036dfebb6265fdf28120d2f",
+  "checks": {
+    "small": {
+      "status": "completed_ungraded",
+      "metering_ready": true,
+      "manifest_sha256": "973d4a328c61ce9c1b4ea49d594a4db4e992dfc5bcaa55ec044241feef1f7bf7",
+      "requested_model": "gpt-6-luna"
+    },
+    "large": {
+      "status": "completed_ungraded",
+      "metering_ready": true,
+      "manifest_sha256": "0ad348c836e88da594b9601dc4e591aaf345903f8de319fbfe4c4e9f017473c9",
+      "requested_model": "gpt-6.1-sol"
+    }
+  },
+  "cost_allocation": "preflight overhead; excluded from benchmark task model-cost endpoint",
+  "limitations": [
+    "Does not establish worker dependency readiness, isolation, grading, or immutable model revision",
+    "A later interrupted or unavailable meter must still remain incomplete"
+  ]
+}

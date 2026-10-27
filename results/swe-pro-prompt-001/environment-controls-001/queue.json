@@ -1,0 +1,5 @@
+{
+  "status": "waiting_for_prior_study_audit",
+  "protocol_sha256": "b8d9874fccf694c3cd4f4716f8b8b6255591323f1e62ea59f253065c2f4efa95",
+  "model_inference_calls": 0
+}

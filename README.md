@@ -26,9 +26,15 @@ matched Luna's 3/4 and Sol's 4/4, with 89.1% lower model-cost scenario than Sol.
 See the [cost–performance graphs and evidence limits](results/prompt-comparison-001/README.md).
 One of 12 reserved validation cases has an invalid independent control; its
 explicit disposition preserves the evidence without replacement, leaving 11
-cases undergoing new readiness checks. No held-out model inference has begun.
+cases with all independent controls and public readiness checks now passing.
+The frozen 33-assignment continuation passed positive metering preflights and
+is running. Resource-only
+continuation preserves started/uncertain calls rather than repeating them.
 A separate [Pro V2 subset](experiments/swe-pro-prompt-001/README.md) reserves only
 12 development and 24 validation tasks, with no automatic 642-task run.
+Its [Harbor adapter](docs/research/pro-harbor-runner.md) is implemented and passes
+six transport/framework checks; first-task Pro controls are queued after the
+current study. No Pro accuracy result is claimed from those checks.
 The [compact-interface calibration](results/compact-expert-calibration-001/analysis.json)
 measured 39.0% fewer input tokens and 36.8% lower token-rate scenario cost on one
 fresh arithmetic call per interface. This is a mechanism result, not repository
@@ -56,8 +62,8 @@ python scripts/analyze_codex_pilot.py --output-dir results/my-pilot-analysis
 python -m pytest -q
 ```
 
-The research dependencies are pinned below. Final pre-inference validation:
-**149 passed, 1 optional PyTorch test skipped, 2 subtests passed**, including
+The research dependencies are pinned below. Latest full research validation:
+**172 passed, 2 optional tests skipped, 2 subtests passed**, including
 real Docker integration. Native authenticated model/token preflights pass on
 this desktop; the read-only failure described in older records belongs to the
 previous managed host. All 108 original/development assignments passed independent

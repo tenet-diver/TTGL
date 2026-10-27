@@ -1,0 +1,19 @@
+                       ttgl-conversational-codex options                        
+┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┓
+┃ Name               ┃ Type               ┃ Default       ┃ Description        ┃
+┡━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━┩
+│ base_url           │ null               │ null          │                    │
+│ disable_web_search │ boolean            │ false         │ Disable native web │
+│                    │                    │               │ search and fetch   │
+│                    │                    │               │ tools when         │
+│                    │                    │               │ supported.         │
+│ reasoning_effort   │ null               │ null          │                    │
+│ private_records_r… │ string             │ required      │                    │
+│ condition          │ "small" | "large"  │ "personal"    │                    │
+│                    │ | "personal"       │               │                    │
+│ policy             │ "adaptive" |       │ "fallback"    │                    │
+│                    │ "fallback"         │               │                    │
+│ small_model        │ string             │ "gpt-6-luna"  │                    │
+│ large_model        │ string             │ "gpt-6.1-sol" │                    │
+│ task_budget_secon… │ number             │ 2940          │                    │
+└────────────────────┴────────────────────┴───────────────┴────────────────────┘

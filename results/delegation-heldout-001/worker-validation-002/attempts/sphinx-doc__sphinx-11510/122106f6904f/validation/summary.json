@@ -1,0 +1,14 @@
+{
+  "tasks": [
+    {
+      "instance_id": "sphinx-doc__sphinx-11510",
+      "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; if [ -f tests/test_util.py ]; then python -m pytest -q tests/test_util.py; else python -m pytest -q tests/test_util/test_util.py; fi",
+      "returncode": 0,
+      "image_id": "sha256:ef65c93f68bbc3d40e35f0ec753a359e8de0e5e710fa3225aab2f629131b2807",
+      "controls_record_sha256": "f44aa71a06aca0e89b43bc23a99bd5f1298f5ea4ae6a167cf0c4bba930561918",
+      "ready": true,
+      "reason": "public_smoke_pass",
+      "stdout_sha256": "bf4fb16d958997a600eddea654662d1dd1b616d4da2511f02a28acb5b66d094e"
+    }
+  ]
+}

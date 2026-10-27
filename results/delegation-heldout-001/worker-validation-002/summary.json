@@ -1,0 +1,117 @@
+{
+  "tasks": [
+    {
+      "instance_id": "scikit-learn__scikit-learn-25747",
+      "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; python -m pytest -q sklearn/utils/tests/test_show_versions.py",
+      "returncode": 0,
+      "image_id": "sha256:6ccd3038f26d22daecfe8f80015b33eb189d49eaa10ee4e0928af2a2a16823ad",
+      "controls_record_sha256": "4ace84a62bbefb21386bae468d2cba79cd79d4f4b1236ea2a81b2790ed23858b",
+      "ready": true,
+      "reason": "public_smoke_pass",
+      "stdout_sha256": "a27443b19c673b59e919185c4602e882bcfabff424c95257a4839955e80e6631"
+    },
+    {
+      "instance_id": "django__django-12276",
+      "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; python tests/runtests.py --verbosity 0 utils_tests.test_dateformat",
+      "returncode": 0,
+      "image_id": "sha256:590b60981698bd7342f3c46cae07e70b7bb768d4a877a8794c756029a2c17a6b",
+      "controls_record_sha256": "3e5b57c67ca7dd98332d7cddf5aae99859de8921f018c187ceda2017461995c4",
+      "ready": true,
+      "reason": "public_smoke_pass",
+      "stdout_sha256": "2f91b522685782ae406a82f95a1a2727606a29a9c007d56d260dc6958560c647"
+    },
+    {
+      "instance_id": "django__django-12125",
+      "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; python tests/runtests.py --verbosity 0 utils_tests.test_dateformat",
+      "returncode": 0,
+      "image_id": "sha256:9a52f383c20ba46e835b3a5f0b9671a86dce0242c22337644e220625955db61a",
+      "controls_record_sha256": "767e3a2b43bdb3e6d6dd64ef7beb6f94abacde6ad8bf5a923589aad73906edfd",
+      "ready": true,
+      "reason": "public_smoke_pass",
+      "stdout_sha256": "bab74aa26a60a8d3678b75a7e91aa0b37b1d1180096da329356df89e735e0f63"
+    },
+    {
+      "instance_id": "pylint-dev__pylint-6903",
+      "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; python -m pytest -q tests/test_pragma_parser.py",
+      "returncode": 0,
+      "image_id": "sha256:bdb24d06e2cd96bb0b363bc07b293affb26cca5b2f92edeb3bf428281e53551e",
+      "controls_record_sha256": "c1cfeb36a989ecf60b8803c2d5b58677d76b5f050eecade9f41294c0093d3c02",
+      "ready": true,
+      "reason": "public_smoke_pass",
+      "stdout_sha256": "b243bb402fb5fbac8efebe645d780ff44847fe50b733026039dfac1a8168fedd"
+    },
+    {
+      "instance_id": "sympy__sympy-24213",
+      "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; python bin/test sympy/core/tests/test_numbers.py -k test_Integer",
+      "returncode": 0,
+      "image_id": "sha256:139dca6eeda9c8a9f98ec7c2c87aff88b968896ac78a0fbafbb943edf29b9d69",
+      "controls_record_sha256": "c8a681da75229292caf326dd1dd1870bc331b6b6254628bcc9555e32055b92b6",
+      "ready": true,
+      "reason": "public_smoke_pass",
+      "stdout_sha256": "a2b96527d2c88f653ef6d6d3da562d055275c18af0a8c167b3c506395e47383a"
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-9320",
+      "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; if [ -f tests/test_util.py ]; then python -m pytest -q tests/test_util.py; else python -m pytest -q tests/test_util/test_util.py; fi",
+      "returncode": 0,
+      "image_id": "sha256:136da881812f0fb703d404723e9e2122fd72dfb5a756f08344c1a99dc109579e",
+      "controls_record_sha256": "924b068046f858327d5e702290b22084ba7a533a0a0bbbe3fe7100681d9c1953",
+      "ready": true,
+      "reason": "public_smoke_pass",
+      "stdout_sha256": "861b25f665f87dfbfc7944ff29bf9f9b0415dd241c9d478dc34165eb307d4d89"
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-10673",
+      "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; if [ -f tests/test_util.py ]; then python -m pytest -q tests/test_util.py; else python -m pytest -q tests/test_util/test_util.py; fi",
+      "returncode": 0,
+      "image_id": "sha256:b02ab4992ad1ccdb85b8209499c396634cd7fead4934baae0ea3884a93bafb83",
+      "controls_record_sha256": "0f92cfc8b8018711c1ada1cda1c0ab26d2114e3d06c9fe64979fd34b644ab8e4",
+      "ready": true,
+      "reason": "public_smoke_pass",
+      "stdout_sha256": "b472e656def030d08ba90de9c7437d3bdee1f9bba5afbdc04566e073d94d0d0d"
+    },
+    {
+      "instance_id": "django__django-10999",
+      "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; python tests/runtests.py --verbosity 0 utils_tests.test_dateformat",
+      "returncode": 0,
+      "image_id": "sha256:44659731979e615212698d54f39b1124f06bc2e38402d4b9d7e3782cc709a747",
+      "controls_record_sha256": "5eb22957c6630f0b48ffb3f5f074b56b32f2bd792899ea566ae9cb4372e21107",
+      "ready": true,
+      "reason": "public_smoke_pass",
+      "stdout_sha256": "c5672c3665d59070fa7bc8a129596e8ce699fcc51e33e992efcd26e779df8cfb"
+    },
+    {
+      "instance_id": "sphinx-doc__sphinx-11510",
+      "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; if [ -f tests/test_util.py ]; then python -m pytest -q tests/test_util.py; else python -m pytest -q tests/test_util/test_util.py; fi",
+      "returncode": 0,
+      "image_id": "sha256:ef65c93f68bbc3d40e35f0ec753a359e8de0e5e710fa3225aab2f629131b2807",
+      "controls_record_sha256": "f44aa71a06aca0e89b43bc23a99bd5f1298f5ea4ae6a167cf0c4bba930561918",
+      "ready": true,
+      "reason": "public_smoke_pass",
+      "stdout_sha256": "bf4fb16d958997a600eddea654662d1dd1b616d4da2511f02a28acb5b66d094e"
+    },
+    {
+      "instance_id": "django__django-13109",
+      "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; python tests/runtests.py --verbosity 0 utils_tests.test_dateformat",
+      "returncode": 0,
+      "image_id": "sha256:f07d510a95590299d5ce8c02d761a33704c82e65f6b67e582f383fefe015e27b",
+      "controls_record_sha256": "42e48e389ab89940a84f18cab875e6f81f9bec8debca383da986698e6420462c",
+      "ready": true,
+      "reason": "public_smoke_pass",
+      "stdout_sha256": "aaf147d8bfcb818d65e477ffb39c2fd698b9849ede077800c0edeee72d7abf22"
+    },
+    {
+      "instance_id": "sympy__sympy-21847",
+      "command": "export PATH=/opt/miniconda3/envs/testbed/bin:$PATH; python bin/test sympy/core/tests/test_numbers.py -k test_Integer",
+      "returncode": 0,
+      "image_id": "sha256:03e700790cf908ecf1175ffe9e9371896ad1783b5db3ce3f2c8c2776fa0bb6de",
+      "controls_record_sha256": "c5dbf8f9fdc464d95a379c254058842f92ec9fdb78b98046adc3937f6ac179ba",
+      "ready": true,
+      "reason": "public_smoke_pass",
+      "stdout_sha256": "88cfc98046b1f56a3371582ea98cd14a1f18635342cbf4f7531577f297b12ffb"
+    }
+  ],
+  "pipeline_protocol_sha256": "a5b151fa429675a6b203f26ca0898d48e5f92d9ed663626d13b021671c1b2e6a",
+  "accepted_records_sha256": "f6b77401c1a162bd69b36a1eb9fac0f85fbe6745ddc988099c6228df861c9cd1",
+  "native_controls_and_public_probes_are_separate_checks": true
+}

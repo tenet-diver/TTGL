@@ -1,0 +1,20 @@
+{
+  "status": "registered_before_first_scored_model_call",
+  "purpose": "Recover disk guards during worker preparation without repeating model inference",
+  "permitted_errors": [
+    "Insufficient free space for the next worker image plus reserve",
+    "Less than 10 GiB free before worker creation"
+  ],
+  "conditions": [
+    "Frozen runner exited on exactly a permitted preparation guard",
+    "All prior completed patches have native grade/usage audit evidence",
+    "No state/manifest/output exists for the first missing assignment",
+    "Existing source checkout remains at its clean frozen base",
+    "Only previous fully graded task image may be removed without force; no active-container reference",
+    "Keep original assignment order, prompts, model IDs, evaluator, source hashes and 10 GiB reserve"
+  ],
+  "resource_recovery_limit": 13,
+  "model_retry_policy": "No automatic repeat of any started, uncertain, failed or completed model request",
+  "preflight_repeated": false,
+  "design_sha256": "a5369e42725f96e4e974286a10818b07f012e12bb036dfebb6265fdf28120d2f"
+}

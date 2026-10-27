@@ -637,3 +637,110 @@ workingdraftsawaitingfull-documentfinalQA/heldoutresults. Do notclaimProadapter
 ortrainingimplementedfromthechapterdesign. Nextconcretework: finishremaining
 readinessandheldouttrialqueue, thenimplement/validatemaintainedHarbortransport
 foroneProtaskbeforelaunchingthe12taskpromptiteration.
+
+## Current continuation: paper learning chapter, live held-out run and Pro adapter
+
+The paper source now has a dedicated learning-study chapter covering training
+sources, train/development/sealed evaluation splits, trace credit assignment,
+sequence and on-policy probability distillation, RL, matched small/large and
+local/remote controls, learning curves and lifecycle cost amortization. The
+abstract reports the 108 completed proprietary assignments. Builds succeeded
+at 53 PDF pages; the new chapter's four pages were visually checked. Generated
+PDF/DOCX/HTML are working previews, not final fully reviewed deliverables. A
+small final source clarification about matching distillation teacher identities
+still needs the next build. Whole-document final QA waits for final results.
+
+All eleven held-out native controls and staged public probes now pass.
+Readiness source repairs for three Sphinx revisions were exact dependency/runner
+metadata pairs, archived in setup-audit-{9320,10673,11510}-001; original source
+is restored before model access. Main suite: 172 passed, 2 optional skips,
+2 subtests in 64.59s, recorded software-validation-002. The skips are Torch and
+the separate Harbor runtime. Native preflight-small and preflight-large passed
+with positive tokens; no need to repeat them.
+
+Actual held-out study: results/delegation-heldout-001/study-002, 11 tasks x 3
+arms =33 assignments, fallback policy. validated-source-002 is only an UNRUN
+six-arm source configuration; do not count its 66 config assignments as trials.
+The original 008 queue reached init/preflight then stopped before the first
+scored call on the incoming-image reserve. No scored invocation was repeated.
+
+CURRENT NATIVE SUPERVISOR: /tmp/ttgl_continue_heldout_supervised_009.py PID74049,
+execsession6913, under caffeinate-s. Log artifacts/heldout-supervisor-009.log;
+actual run logs artifacts/selected-heldout-supervised-009-attempt-XX.log.
+Registered before the first scored request in study-002/resource-continuation-protocol.json.
+It resumes only the exact frozen preparation disk errors, requires no output
+for the next missing assignment and a clean known base, audits prior native
+patch/usage evidence, rejects uncertain inflight calls, and may remove only a
+fully graded predecessor image without force. It keeps the ten-GiB reserve and
+never retries started inference. Recovery limit13; space wait up to2h. Immutable
+preflight/design/policy selection are reused. On completion it finalizes
+analysis-002, target report, independent audit and frontier plot. If it stops,
+inspect real state and preserve all logs; do not blindly rerun its fixed log
+paths or reinitialize/re-preflight/reselect the study.
+At the last observed checkpoint: three scored manifests, two grades on the
+first task (Sol true, Luna false); assisted grading pending. Read actual state
+for updates. Source and prompt edits are prohibited while this run is active.
+Older queues004-008 have finished failures and must NOT be restarted.
+
+SPACE CLEANUP: results/host-cleanup-20261027 records108 clean original/development
+base clones removed after full independent audits; all patches/grades/traces
+retained. Also33 clean closed-probe source clones, two inactive ignored dependency
+trees, unused npm content cache, two old ignored compiler-intermediate directories,
+and three closed benchmark image caches removed with checks. Test logs, .xcresult,
+coverage, source, Products, SourcePackages, credentials and volumes preserved.
+Docker VM block reclamation is not a global prune. Active compiler cache was
+preserved while305 handles were open. The separate watcher removed it ONLY after
+compiler processes ended and open references reached zero; receipt recorded.
+Watcher PID is finished. Free space rose to~18GiB before the first model image,
+then~14GiB while first-task grading. Allocated counts and observed free bytes
+are not a claim of isolated unique physical reclamation. Active CI continues.
+
+PRO IMPLEMENTATION: src/ttgl/harbor_agent.py + harbor_bridge.py and
+ tools/worker-mcp/harbor-server.mjs implement the maintained Harbor custom-agent
+callbacks plus host native-Codex MCP transport. They keep credentials on the
+host, expert roles tool-free, and authoritative token/prompt/trace records
+outside worker-mounted agent logs. Bridge commands preserve Harbor agent-phase
+context across HTTP threads (important for network policy). Visible bounded
+commands/observations carry request IDs; no private reasoning or grader feedback.
+The unchanged official Pro verifier and PatchReplayAgent remain the graders.
+Actual Pro actor boundary/network/history, privacy, patch replay and native
+metering validation are STILL REQUIRED before model trials.
+
+Optional runtime: artifacts/harbor-runtime-001, Harbor0.25.0. Installed separately;
+pip check passes. requirements-harbor-macos-intel.lock is the real full freeze,
+including NumPy and pytest. cryptography48.0.1 supplies the verified Intel Mac
+wheel; the original latest dependency tried to compile with an incompatible old
+Rust toolchain, retained in the failed install log. No main runtime changed.
+Six checks pass in this runtime (real Harbor callback API with scripted fixtures,
+official MCP client roundtrip, role exclusion, thread phase preservation, and
+expert tokens included in totals/per-model counts). Scope proof:
+results/swe-pro-prompt-001/adapter-validation-002. 001 is retained predecessor.
+These are NO MODEL inference and not benchmark accuracy. No distillation/RL run.
+
+First Pro DEVELOPMENT task prepared with scripts/prepare_pro_harbor_task.py,
+all11 official files Git-blob/SHA-verified, at ../ttgl-pro-private-20261027.
+Task ID instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e.
+Reference/verifier files remain private; only preparation hashes are in repo.
+See docs/research/pro-harbor-runner.md for exact boundaries and command guidance.
+
+CURRENT PRO CONTROLS QUEUE: /tmp/ttgl_queue_pro_controls_002.py PID77749,
+execsession97525, caffeinate-s, log artifacts/pro-controls-queue-002.log.
+Waits for complete Native analysis-002 independent audit, verifies/removes only
+its clean owned base clones, checks12GiB free, then runs ONE Pro task with nop
+and oracle in separate native Harbor Docker jobs, one attempt, no retries.
+Inspects actual native reward0/1 and exception status, archives receipts.
+Results: results/swe-pro-prompt-001/environment-controls-002. Registered in
+experiments/swe-pro-prompt-001/control-protocol-002.json. It does NOT automatically
+start model trials. 001 was superseded while waiting, zero controls/inference,
+with explicit queue-ended receipt. Never restart001. After valid controls,
+implement/execute actual boundary/history/records invisibility/native usage/
+fresh patch replay checks, then ONE full model task block, measure cost/runtime,
+and only then the registered twelve-task prompt development sweep. No full642run.
+
+AUTOMATIC CONTINUATION: heartbeat continue-luna-sol-routing-research is ACTIVE
+on this chat, every30minutes. Created at the user's instruction to keep going
+until experiments/paper are ready. It reads this handover, inspects real queues,
+continues implementation/experiments/paper, and stays quiet on unchanged state.
+Notify only meaningful results/failure/required action. Keep proprietary routing
+first; no new paid services or training ahead of it. Disable on completion.
+Update this existing heartbeat rather than creating another.

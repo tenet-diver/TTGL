@@ -1,0 +1,17 @@
+{
+  "script_sha256": "12350712afc3f14f23435307673255606d810d572f39b286cd9fafeebc058989",
+  "smoke_commands": {
+    "scikit-learn/scikit-learn": "python -m pytest -q sklearn/utils/tests/test_show_versions.py",
+    "django/django": "python tests/runtests.py --verbosity 0 utils_tests.test_dateformat",
+    "pydata/xarray": "python -m pytest -q xarray/tests/test_options.py",
+    "sympy/sympy": "python bin/test sympy/core/tests/test_numbers.py -k test_Integer",
+    "astropy/astropy": "python -m pytest -q astropy/units/tests/test_quantity.py -k test_unit",
+    "psf/requests": "python -m pytest -q tests/test_utils.py",
+    "mwaskom/seaborn": "if [ -f seaborn/tests/test_palettes.py ]; then python -m pytest -q seaborn/tests/test_palettes.py; else python -m pytest -q tests/test_palettes.py; fi",
+    "sphinx-doc/sphinx": "if [ -f tests/test_util.py ]; then python -m pytest -q tests/test_util.py; else python -m pytest -q tests/test_util/test_util.py; fi",
+    "pylint-dev/pylint": "python -m pytest -q tests/test_pragma_parser.py"
+  },
+  "controls_protocol_sha256": "210711085cc1aefca7379788671488851bd640ec98afdcc75f6851e82ab1efc4",
+  "tasks_sha256": "38897bbeb487ec8628cd4505b230b570a17bfd4f4ed31de68efb529b2d3a1d85",
+  "inference_calls": 0
+}

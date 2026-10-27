@@ -1,0 +1,9 @@
+{
+  "tasks_sha256": "e8aca5c7fe2355cb977b862e74fb96f8cd8eb1f37a3fd11b380b875a91ae2df6",
+  "private_dataset_sha256": "4e81a3e0ab1c93066633ace3ba452c0fa6f9b3abc359df8bf0908a788fcabf5f",
+  "native_control_timeout_seconds": 1200,
+  "driver_sha256": "445cc0df45bc49366ded63f26d8a7ae435a003379ec7ae58d4c97c403817fcef",
+  "public_validator_sha256": "85f26a0744b8dada54b271f3e9a0a5e6114749425f7bdda585280df771563e6c",
+  "order": "base control, gold control, public probe, image removal; no overlapping grading",
+  "inference_calls": 0
+}
