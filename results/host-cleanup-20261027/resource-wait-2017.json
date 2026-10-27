@@ -1,0 +1,27 @@
+{
+  "observed_at": "2026-10-27T20:21:04.442795+00:00",
+  "status": "supervisor_waiting_for_registered_disk_reserve_before_inference",
+  "official_grades": 25,
+  "complete_matched_blocks": 8,
+  "resolved_on_complete_blocks": {
+    "small": 5,
+    "large": 7,
+    "personal": 6
+  },
+  "partial_audit": "results/delegation-heldout-001/study-002/resource-recoveries/01/partial-audit.json",
+  "partial_audit_sha256": "4998a0459e36d675fef9b1ce6690d41688a920d535f01bbdb0ce9bffda3db4ee",
+  "free_bytes": 9006125056,
+  "required_bytes": 10737418240,
+  "next_unstarted": {
+    "instance_id": "sphinx-doc__sphinx-11510",
+    "arm": "personal"
+  },
+  "native_supervisor_pid": 74049,
+  "pro_control_queue_pid": 77749,
+  "pro_pipeline_pid": 44928,
+  "pro_bound_sources_verified": 34,
+  "active_compiler_cache_preserved": true,
+  "model_calls_repeated": 0,
+  "cleanup_performed": false,
+  "note": "Registered supervisor retries only resource preparation; Pro queues remain gated behind complete 33-assignment audit. Active Xcode compiler and its cache were preserved."
+}

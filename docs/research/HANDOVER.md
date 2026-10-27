@@ -1026,3 +1026,28 @@ services were launched this heartbeat. Pro pipeline remains correctly waiting
 for the original control chain. Its queue.json records the INITIAL waiting
 state, not a live stage tracker; inspect invocation files/native jobs and
 stopped.json/completion.json plus actual process liveness for subsequent status.
+
+
+## Heartbeat 20:17 UTC: resource wait, 25 official grades
+
+The supervisor (74049) and both Pro queues (77749, 44928) remain live.
+Native held-out generation paused at the registered pre-inference 10 GiB guard;
+25 official grades and eight complete matched blocks exist. Those blocks have
+Sol 7/8, Luna 5/8 and assisted Luna 6/8. The eighth case failed in all arms;
+the previously recorded rescue remains, but the seven-case report is an older
+immutable interim checkpoint rather than the latest denominator.
+
+The existing resource-recovery 01 partial audit independently covers all 25
+completed assignments. Next unstarted: personal/sphinx-doc__sphinx-11510.
+The supervisor waits for reserved space and does not repeat completed inference.
+Observed free disk is below 10 GiB. Active Calorie Xcode compilation and its
+2.2 GiB compiler cache are preserved. Docker has no running containers and no
+remaining closed-task images eligible for removal; the current Sphinx image
+is needed. No broad cache deletion or worker restart was performed.
+Resource snapshot: results/host-cleanup-20261027/resource-wait-2017.json.
+
+All 34 Pro pipeline source bindings were reverified unchanged. Pro controls
+and scored trials remain unstarted behind the full native audit gate. Let the
+existing supervisor continue after space returns; if it times out, reconcile
+its recorded preparation failure and all manifests before versioned continuation.
+Do not restart any model invocation blindly.
