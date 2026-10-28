@@ -1,0 +1,33 @@
+{
+  "status": "contents_spacing_fixed_partial_pdf_review",
+  "pdf_sha256": "89d35b32a3adeb06cd164f954307a69ab1a5226acda5ebb4d3b916be38ac68dc",
+  "docx_sha256": "e411c9ff36381437b758d175d783dcaca32399fbd6584dde7f640f79bfd71ced",
+  "changed_docx_zip_members": [
+    "docProps/core.xml"
+  ],
+  "pdf_pages_reviewed_this_pass": [
+    2,
+    3
+  ],
+  "pdf_review_inherited_by_identical_png": [
+    1,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "png_sha256": {
+    "1": "5e7b4ff05d85037aa7564bd84c0c1df7e2ba75f026a69455092b74755afd95fd",
+    "2": "da3a44898bfe33fb79c1967085284f83f6dcf725caadf087892fd141262010d7",
+    "3": "6f55b360b38d03d0078c57f0ab463dbb4dd70d7e140b135a418dd93e6e9f04fa",
+    "4": "e000b9f4acfa85bc8d8e878146da858ead381c4bc80425c390d8b7736038b5d2",
+    "5": "29a328dd91adb67f3c9152748169c4639475addc02af1e66a5305c5d1ddebc16",
+    "6": "a8ebb799083acb2a36e93a462be1f71ea5047fdfbcfdeeb22301dd1d6c797deb",
+    "7": "737aed101d0a14ec1c9f39cde05fe25a207ca8585e99a6c5d9764846e22d7cf0",
+    "8": "5f19ebf909f6ae8c5c62f77a5521cbded8ffbe621872dbc1e7c74674f78d01ce"
+  },
+  "finding": "Chapter number width now separates two-digit chapter numbers from titles. Both contents pages visually inspected.",
+  "remaining": "Review PDF9\u201355; earlier page51 review needs current render equivalence. Word prior visual QA applies only if content members unchanged. No final delivery.",
+  "new_model_calls": 0
+}

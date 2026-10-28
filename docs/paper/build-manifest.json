@@ -7,7 +7,7 @@
     "../../results/delegation-development-001/analysis-fallback-001",
     "../../results/delegation-heldout-001/analysis-002"
   ],
-  "built_at_utc": "2026-10-28T00:52:54.472982+00:00",
+  "built_at_utc": "2026-10-28T02:18:51.350897+00:00",
   "word_count_approximate": 16273,
   "pandoc": "pandoc 3.11",
   "files": {
@@ -640,11 +640,11 @@
       "bytes": 118848
     },
     "paper.pdf": {
-      "sha256": "b4fb2e7d98079c4d8a6f894890b31783aaaa843d6955b5850ac84c2cc2e3a1b3",
-      "bytes": 819812
+      "sha256": "89d35b32a3adeb06cd164f954307a69ab1a5226acda5ebb4d3b916be38ac68dc",
+      "bytes": 819817
     },
     "paper.docx": {
-      "sha256": "0476b8bf110a29546518f21bc52e9f7785391c4d088433bf3323dad34497c9aa",
+      "sha256": "e411c9ff36381437b758d175d783dcaca32399fbd6584dde7f640f79bfd71ced",
       "bytes": 643223
     },
     "paper.html": {

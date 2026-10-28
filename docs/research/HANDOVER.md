@@ -1367,3 +1367,20 @@ this pass. Exact PDF/PNG hashes and remaining46-page review coverage recorded
 in results/paper-preview-qa-006/receipt.json. Current main PDF reviewed pages
 are1–8 and51; Word43-page review remains complete for unchanged DOCX. No new
 scientific result or final-document completion claim.
+
+## Heartbeat 02:17 UTC: repaired PDF contents spacing
+
+Read AGENTS/latest handover, checked real process liveness, stopped receipts
+and native33-assignment complete audit. No research workers; disk9.8GiB below
+18GiB gate. No model or image invocation/restart/cleanup.
+
+Fixed root cause of contents spacing in shared layout.tex: report-class chapter
+numbers have a distinct tocloft width from section numbers. Guarded chapter
+width3em preserves compatibility with article-class documents. Rebuilt working
+previews (build005,16,273words), visually verified both current contents pages.
+Current PDF1,4–8 PNGs exactly match previously reviewed images;2/3 newly reviewed.
+DOCX ZIP members changed: ['docProps/core.xml']; unchanged member content preserves
+prior43-page Word review despite ZIP metadata differences. Receipt
+results/paper-preview-qa-007/receipt.json binds actual artifacts. Current PDF
+review1–8 complete;9–55 still require review/equivalence (old51 inspected).
+No final-paper or new scientific-result claim. Heartbeat remains enabled.
