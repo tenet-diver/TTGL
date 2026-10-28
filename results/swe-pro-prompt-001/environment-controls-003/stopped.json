@@ -1,0 +1,4 @@
+{
+  "status": "stopped_no_model_calls_authorized",
+  "error": "RuntimeError: Resource wait expired before image preparation; no model call"
+}

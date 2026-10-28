@@ -126,8 +126,9 @@ Reproduce the completed held-out audit and target analysis without new models:
 PYTHONPATH=src python scripts/audit_live_study.py \
   --study-dir results/delegation-heldout-001/study-002 \
   --output artifacts/my-heldout-audit.json
+ttgl_analysis=results/delegation-heldout-001/analysis-002
 python scripts/report_policy_target.py \
-  --records results/delegation-heldout-001/analysis-002/published-rate-records.json \
+  --records "$ttgl_analysis/published-rate-records.json" \
   --output artifacts/my-heldout-target.json
 ```
 

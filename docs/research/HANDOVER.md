@@ -1301,3 +1301,36 @@ path while live. No paid services or deletion of user files/live CI is authorize
 as a workaround. Paper source is reconciled; preview rebuild/visual QA and Pro
 quality results are still pending. Heartbeat remains enabled because requested
 bounded studies and final paper are incomplete.
+
+## Heartbeat 00:47 UTC: resource wait expired; paper previews rebuilt
+
+Read AGENTS and current handover, inspected live PIDs/queues before any action.
+Both control003 and pipeline004 reached their registered resource timeout during
+this pass and exited. Control003 stopped before image preparation; pipeline004
+then detected exited control process. Inspected both stopped.json files and
+verified no image/model invocation files or jobs in either output. No Pro model
+inference occurred and no worker was restarted. Resource events and failures
+are archived. Capacity is the existing concrete blocker; no new permission or
+paid service requested, no user files/active CI/cache removed this pass.
+Reconcile these zero-inference outputs before any NEW versioned continuation
+once the preparation reserve is actually available. Do not restart004/003 in place.
+
+Independent progress: rebuilt PDF/DOCX/HTML/assembled Markdown with current141
+assignment evidence. Build004: 16,273 words, PDF55 pages, DOCX43 rendered pages.
+Used bundled LibreOffice via packaged render_docx.py (not desktop LO). Inspected
+changed abstract, results/graphs and conclusion pages in both formats. Found a
+right-margin overrun in the reproduction command on PDF51/Word40. Replaced long
+record-path argument with local ttgl_analysis variable; rebuilt and re-rendered,
+then verified corrected PDF51 and Word40/41. The corrected command reproduces
+archived target95/95 JSON exactly without model calls. All build source/artifact
+hashes verified. Markers had already been run earlier; not repeated.
+
+Working previews are now committed with explicit non-final README language.
+Receipt results/paper-preview-qa-004/receipt.json records precise partial visual
+coverage. Current Word pages1,4,5,29,30,40,41 reviewed; first five inherited from
+build003 by exact PNG hashes (41/43 pages unchanged;40/41 rechecked). Current PDF51
+reviewed after fix; earlier build003 PDF5,6,35–38,51,52 inspected. No all-page
+100% QA claim; full review and Pro results remain pending before final delivery.
+QA intermediates under artifacts/paper-qa-003 and004, not final artifacts.
+Do not disable heartbeat or mark research complete. Keep unchanged capacity
+checks quiet; continue independent paper QA while waiting for sufficient space.

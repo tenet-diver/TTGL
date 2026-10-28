@@ -2,7 +2,7 @@
 
 **Using small language models as conversational routers for agentic software engineering.**
 
-Read the [PDF](paper.pdf), edit the [Word document](paper.docx), or open the
+Working previews: read the [PDF](paper.pdf), edit the [Word document](paper.docx), or open the
 [self-contained HTML](paper.html). [Markdown](paper.md) is assembled from the
 chapter sources. This is the active paper; the [earlier thesis](../thesis/README.md)
 remains a supporting literature and design supplement.
@@ -31,7 +31,8 @@ Assisted savings are 91.45% and accuracy retention is 88.89%; the joint 95/95
 target fails. All 33 assignments passed independent native usage and official
 patch/grade audit. One invalid independent control was excluded before inference
 without replacement. The earlier interim checkpoints remain archived.
-Generated document previews require rebuilding and final result QA.
+Generated document previews have been rebuilt from these results; complete visual QA
+and the bounded Pro study remain pending.
 
 The [verification-feedback study](../research/verification-feedback-study.md)
 adds a separately versioned policy candidate and a 12-development/24-validation

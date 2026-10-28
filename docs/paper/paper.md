@@ -1,8 +1,7 @@
 ---
 title: "We have to combine — A conversation is all you need"
 subtitle: "Using small language models as conversational routers for agentic software engineering"
-author: "Author and institutional affiliation to be supplied"
-date: "26 October 2026 (Europe/Amsterdam)"
+date: "28 October 2026 (Europe/Amsterdam)"
 lang: en-GB
 link-citations: true
 toc-depth: 2
@@ -11,8 +10,9 @@ toc-depth: 2
 # Status and scope {.unnumbered}
 
 This is a research paper and master's-thesis core, with a reproducible engineering
-pilot, a completed 500-task SWE-bench Verified routing replay, and a prospective
-confirmatory conversation protocol. Its central contribution is an
+pilot, a completed 500-task SWE-bench Verified routing replay, 141 fresh metered
+Luna/Sol assignments across original, development and held-out panels, and
+prospective Pro and learning protocols. Its central contribution is an
 empirical replication and conversational-routing extension, **not a claim to have
 invented small agents that consult larger models**. The broader earlier thesis
 contains supporting reviews of open-model portfolios, prices, distillation,
@@ -63,16 +63,35 @@ operating point reaches 76.2% at US$0.1154; inexpensive MiniMax-M2.5 alone reach
 model choice to routing. These historical outcome replays are not new model
 inference or live conversations.
 
-The confirmatory protocol compares conversation with single-model execution,
-pre-call routing and one-way assistance under matched information and resource
-budgets. The proposed gate combines a three-percentage-point quality tolerance
-with lower measured total cost; a 25% saving is the practical target. Personal
-memory, learned collaboration skills and multi-agent communication are optional
-ablations and extensions. The pilot exposes no complete billing ledger and is
-not powered for noninferiority. It therefore establishes execution feasibility,
-not conversational cost savings, local-model capability or learning improvement.
-The standard-benchmark replay supplies a reproducible negative primary result
-and identifies a stronger low-cost standalone control for the next experiment.
+A fresh metered panel executes 72 assignments across 12 SWE-bench Verified tasks.
+Luna alone resolves 9/12, Sol alone 10/12 and pre-task selection 11/12. Continuing
+expert access resolves 9/12 with no consultations. Its published token-rate
+scenario is 95.5% cheaper than Sol, but retains only 90% of aggregate accuracy.
+Three four-task prompt-development studies add 36 assignments. Adaptive and
+bounded cheap-first assistance each resolve 4/4, matching their Sol controls at
+87.1% and 89.1% lower scenario cost, respectively. Matched Luna controls resolve
+2/4 and 3/4. These are development observations, not held-out improvements or
+proof that expert help was causally necessary.
+
+The selected bounded cheap-first policy is then frozen for an eleven-task
+held-out panel with 33 assignments. Luna resolves 7/11, Sol 9/11 and assisted
+Luna 8/11. Four expert consultations occur across two tasks. Assistance rescues
+one standalone Luna failure and loses none of Luna's successes, closing half
+the observed Sol–Luna resolution gap. Its full task model-inference scenario
+cost falls 91.45% relative to Sol, retaining 88.89% of aggregate accuracy. The
+joint target of 95% cost reduction and 95% relative accuracy retention fails.
+The missing pre-consultation snapshots and independent solver attempts prevent
+causal attribution of the single observed rescue to expert advice.
+
+Native grade/patch and token audits pass for all 141 fresh assignments; the
+panels remain separate because development repeats already observed tasks.
+Cost scenarios are not invoices or full deployment costs, and no population
+noninferiority is established. A bounded Pro V2 protocol prospectively captures
+pre-consultation patches and contrasts voluntary help with required review;
+it has no model-quality results yet. A later open-weight protocol compares
+sequence and probability distillation, RL, and local/remote inference using
+distinct training, development and sealed evaluation partitions. No training
+or amortized learning-cost benefit is established.
 
 **Keywords:** conversational routing; small language models; software-engineering
 agents; bidirectional collaboration; cost–quality tradeoffs; replication.
@@ -285,20 +304,40 @@ multiple internal model/tool interactions, so a turn cap is not falsely reported
 as an exact cap on billable inference requests. Timeout handling terminates the
 wrapper's process group and preserves a failure disposition.
 
-In this managed session, the installed standalone CLI identifies itself as
-version 0.163.0 but cannot initialize its in-process app server because the
-required state location is read-only. We do not bypass that restriction. The
-live pilot therefore uses the available Codex collaboration interface with
-fresh, explicitly selected models. The reusable CLI adapter is tested with an
-injected deterministic backend; those tests verify control flow, not model
-quality. The two execution paths are recorded as distinct backends.
+The historical BugsInPy pilot ran in a managed session where the standalone
+CLI could not initialize its app server because the state location was
+read-only. That pilot used the Codex collaboration interface with fresh,
+explicitly selected models. Its software checks and its model trials are
+separate evidence, and its missing token counters remain missing.
 
-The collaboration interface does not expose a reliable itemized token invoice
-to this experiment. It also shares a filesystem among agents. Workspaces are
-separate copies, and instructions prohibit reading other trials, evaluator
-files or external solutions, but this is a soft boundary rather than an OS-level
-confidentiality guarantee. Stronger held-out evaluations require separate
-containers or machines with an evaluator outside the agent's mount namespace.
+The desktop continuation uses the ordinary authenticated Codex CLI,
+version 0.163.0-alpha.10.2, with positive native usage observations for both
+requested models. Native host tools and external connectors are disabled;
+the acting controller receives one shell tool through the maintained MCP SDK.
+That tool operates only inside its assigned unmounted, offline Docker worker.
+The router and specialist are context-only sessions with no worker tools.
+A separate trusted official evaluator receives the grading data and Docker
+socket. The evaluator's artifacts and authentication are not mounted in solver
+workers. Source restoration, dependency checks and official base/reference
+controls are completed independently before scored inference.
+
+CLI counters are cumulative by thread in the pinned event contract. The
+orchestrator records validated per-response deltas and reconciles totals by
+model, including consultations. It retains tool statuses and hashes rather
+than serializing unrestricted tool outputs or reasoning. Model summaries of
+visible checks are therefore self-reports; the independent official grade is
+the functional outcome. A separately versioned policy backend injects general
+solving and delegation guidance without changing the frozen six-arm prompts,
+and archives the effective injected prompt for each invocation. Both the
+original and policy studies preserve failed or interrupted assignments rather
+than silently repeating them.
+
+Native tokens, published token-rate scenarios, provider-estimated credits,
+subscription cash expense and full deployment cost remain distinct. Ordinary
+subscription authentication makes metering possible; it does not make an
+itemized invoice available. Independent workspaces and disabled tools are
+practical isolation controls, not a formal security proof or protection against
+prior exposure to public historical tasks.
 
 ## Memory and context controls
 
@@ -399,6 +438,82 @@ examples. It establishes that the architecture can be executed and independently
 graded, and identifies measurement or orchestration failures. It cannot prove
 noninferiority, cost superiority, architectural novelty, long-horizon learning
 or a benefit for open-weight local models.
+
+## Metered benchmark engineering panel
+
+A separate desktop protocol extends the feasibility work to the frozen
+12-issue SWE-bench Verified panel. It assigns each issue once to six conditions:
+Luna alone (`small`), Sol alone (`large`), task-only selection (`precall_router`),
+one-way expert assistance (`oneway`), a fresh expert thread for each
+consultation (`reset_expert`), and continuing expert conversation (`personal`).
+The latter two have the same expert-call allowance; retaining conversation is
+the intended contrast. No consultation is compulsory. Actual requested and
+completed expert turns are reported, including unsuccessful requests. This is
+an engineering panel, not the powered confirmatory study specified below.
+
+The requested identifiers are `gpt-6-luna` and `gpt-6.1-sol`, both at medium
+reasoning effort. These hosted identifiers do not disclose parameter counts or
+immutable weight revisions. Every condition has the same 900-second solver
+budget, including its routing and expert work. The bounded controller has up
+to six outer turns and two expert consultations, with at most 24,000 selected
+context characters. All conditions start with the same empty personal memory.
+No weights, router parameters, procedural skills or user memory are learned
+from scored outcomes. Task order follows the frozen panel; condition order
+within each task is randomized with seed 1729. This task grouping amortizes
+image loading without sharing worker files between conditions.
+
+Each acting agent receives a disposable Docker worker with no host mounts,
+network, Docker socket or retained prior-agent checkout. It has two CPU cores,
+a 4-GiB memory limit and a 256-process limit. The ordinary authenticated Codex
+client remains on the host, with native host tools disabled. Its repository
+shell tool uses the official MCP SDK to execute only in that assigned worker.
+Routers and experts receive no worker tool; expert context is selected by the
+controller. Original image Git history is replaced with an exact-base shallow
+checkout. Tracked source is checked by blob identity, audited build metadata
+is restored, and the staged working tree must be clean. Ignored compiled
+extensions remain available for scientific packages. Exact image identities,
+source hashes and setup exceptions are retained.
+
+Before scored inference, all 12 original environments pass independent official
+controls: a neutral-marker no-fix submission leaves the regression unresolved,
+and the supplied reference patch resolves it. Both are evaluated with the
+unchanged pinned SWE-bench harness. All 12 staged solver environments also pass
+fixed public smoke modules. Failed preparations and their dependency repairs
+remain archived. Eligibility is determined before model outcomes; no task is
+replaced. The original public/private panel hashes are retained, and the
+trusted grader's dataset copy changes only its image references to the exact
+validated image identities. Grading material is outside every solver worker.
+
+Every exported submission is joined by its exact patch hash to an original
+official report. Byte-identical programs for the same task may share that
+report only when evaluator image, private dataset and timeout also match.
+An explicit reuse receipt distinguishes this from a fresh evaluator execution.
+Different patches receive fresh run identifiers. The grading timeout is 1,200
+seconds in every condition; the solver budget remains 900 seconds. Functional
+resolution follows official grading. The older pilot's additional strict
+artifact-policy outcomes are reported separately and are not relabeled as
+SWE-bench results. Failed assigned attempts stay in the denominator, and an
+uncertain or unmetered attempt is not silently retried or priced at zero.
+
+The study freezes the published Enterprise Codex Standard-mode token rates
+before scored inference [@openaiCodexRateCard2026]. Per million tokens, Luna's
+uncached input, cached input and output rates are US$0.10, US$0.01 and US$0.50;
+Sol's are US$2.00, US$0.10 and US$10.00. Native total input includes cached
+input, so only uncached input receives the ordinary input rate. Native output
+already includes reasoning. Every routing and expert role contributes to the
+assigned condition, and its per-model counters must reconcile to the task
+total. Unavailable counters remain unavailable costs.
+
+These rates define a counterfactual published-token-rate scenario, not this
+account's subscription invoice, quota consumption or an API bill. The rate
+card's signed-in Codex long-context policy applies to that scenario. API
+cache-write and request-level context billing need a separately compatible
+meter. Provider-estimated credits and dollars, when available, are separate
+observations. Preparation time and actual grader executions are recorded;
+hardware, energy, setup, grading and subscription allocation are not assumed
+to cost zero. A favorable token-rate comparison alone cannot establish the
+proposed full-cost target. Paired task bootstrap intervals are conditional on
+this small public panel and cannot establish a three-point quality margin.
 
 ## Confirmatory software-engineering study
 
@@ -522,6 +637,74 @@ count as useful emergence. A visually interesting conversation pattern is not
 evidence. Learning can use centralized training with decentralized execution,
 but rewards and credit attribution must be specified. This extension remains
 prospective and does not delay or inflate the claims of the core dyadic study.
+
+## Evidence-driven delegation as a general policy
+
+A useful delegation policy must transfer beyond benchmark repair. The controller
+first identifies the requested outcome, relevant constraints and observable
+acceptance criteria. It attempts work independently while that produces useful
+progress, then reassesses when checks fail, evidence conflicts, assumptions
+remain unresolved or progress stalls. Early consultation is permitted when the
+capability gap is apparent or an independent attempt would consume the resources
+needed for integration. A failed check is evidence to interpret, rather than an
+automatic trigger: an intentionally failing regression test can be part of a
+successful diagnosis. Missing access or permissions must not be misclassified
+as a reasoning problem that a larger model can fix.
+
+The handoff conveys the goal, constraints, relevant artifact excerpts, attempted
+approaches, observed outcomes and a specific request. Observations are separated
+from hypotheses. Since a context-only expert cannot open the controller's files,
+necessary content must accompany the request. The controller remains responsible
+for integration and verification, and can return new evidence to the expert.
+The general mechanism applies to tests in coding, source checks in research,
+recalculation in quantitative tasks and acceptance criteria in planning. The
+software benchmark measures one application; it cannot establish cross-domain
+transfer by itself.
+
+The prompt-development treatment gives standalone and assisted controllers the
+same independent-solving and verification instructions. Assisted controllers
+add either evidence-driven consultation or a simpler bounded cheap-first fallback
+rule. This separates stronger ordinary prompting from the marginal value of
+expert access. Development runs are disclosed separately, including failed
+policies; cases whose outcomes informed revisions cannot become the final test
+set. Forced consultations remain mechanism checks, because they cannot establish
+that a controller chooses assistance appropriately.
+
+Before the follow-up experiments, the practical target was sharpened to a
+model-cost ratio of at most 0.05 and accuracy retention of at least 0.95 relative
+to a matched Sol-only controller. Retention is the ratio of aggregate success
+fractions, not an absolute five-percentage-point margin. All controller,
+consultation and integration model inference belongs in policy cost. This target
+is separate from the earlier prospective three-point/25-percent gate and is not
+a post-hoc claim about historical replay. Published standalone benchmark scores
+supply external context, but cannot replace matched controls when tools, effort,
+task populations or stopping rules differ.
+
+The analysis reports both ratios, paired uncertainty, reference successes lost,
+reference failures rescued and the accuracy-cost frontier. A policy meeting the
+point target on a tiny panel does not establish population noninferiority;
+ceiling outcomes can yield misleadingly narrow bootstrap intervals. Falling
+expert usage counts as useful only when the quality constraint is retained.
+
+## Compact specialist interface
+
+A further development candidate keeps the adaptive controller policy and acting
+agents unchanged, but replaces the built-in instructions for context-only
+specialists with a short role-specific instruction file. Codex documents this
+setting as `model_instructions_file` [@openaiCodexConfig2026]. The request still
+contains the expert role, permitted context, uncertainty requirements and output
+schema. Native tool exclusions and filesystem/network permissions are unchanged.
+This is a specialist-interface treatment, not a change in model weights or a
+permission relaxation. Its source and instruction hashes are frozen separately.
+
+Before any v2 development grades, a fresh-call mechanism calibration compared
+the default and compact interfaces using the same elementary arithmetic question,
+model and medium reasoning effort. Both answers were checked against the known
+arithmetic and neither invoked tools. The calibration tests transport, metering
+and fixed-context overhead; it does not establish software-task quality. The
+compact candidate was then added to the disclosed development roster before
+policy selection. The same independent controller and Sol-only conditions are
+retained so reduced helper overhead is not attributed to a weakened reference.
 
 # Measurement and economic analysis
 
@@ -683,7 +866,7 @@ be performed through the existing harness. It does not show that the mandatory
 conversation was necessary, cheaper, naturally selected or superior to a
 single-model solution.
 
-## What the pilot cannot estimate
+## What the four-bug pilot cannot estimate
 
 The interface exposed neither a complete token ledger nor billed dollar costs.
 These fields are stored as null, including cost per assigned and resolved task.
@@ -697,8 +880,253 @@ opaque hosted model versions prevent a frontier or statistical noninferiority
 claim. There is no trained existing-router comparison, no open-weight local
 model result, no learned communication policy and no evidence of longitudinal
 improvement. The matrix is useful evidence about feasibility and failure modes,
-and the dialogue check validates a mechanism. The principal economic hypothesis
-remains untested.
+and the dialogue check validates a mechanism. The four-bug pilot does not test the principal economic hypothesis.
+
+## The resource constraint behind the 95-percent target
+
+For the follow-up target, let $C_S$ be all independent controller inference,
+$C_H$ routing and handoff overhead, $C_E$ specialist inference, and $C_L$ the
+matched Sol-only total. The cost requirement is
+
+$$C_S+C_H+C_E\leq 0.05C_L.$$
+
+Thus the available specialist budget is at most
+$0.05C_L-C_S-C_H$. If that quantity is negative, selecting fewer consultations
+cannot suffice: the controller itself must become more efficient, or the target
+must be reported as unattained. When it is positive, assistance must concentrate
+on cases where its expected verified benefit justifies that remaining budget.
+A small model's low per-token price alone therefore does not establish the
+system-level saving. Long histories, repeated failed attempts, selected context,
+expert replies and integration all count. The independent cheap baseline and
+the matched expensive baseline are essential to interpreting the frontier.
+
+## A development case about verification and handoff
+
+The Django `13297` issue illustrates the distinction between solving, checking
+and deciding to consult. The original continuing-conversation controller chose
+no expert call, removed lazy wrappers from URL parameters and reported three
+narrow public tests passing. Independent official grading found the requested
+regression repaired but two existing-behavior checks failing. The fresh-thread
+expert condition also chose no consultation and failed the same existing checks;
+its summary instead reported that its attempted test commands could not run.
+Those visible-check descriptions are model self-reports. The official failures
+come from the separate evaluator and were not returned to either controller.
+
+On the same issue, the one-way controller inspected the implementation and
+existing warning contract, then asked for a minimal fix before changing files.
+Its selected context explained the database-binding failure and the requirement
+that warnings remain deferred until values are accessed. The specialist
+suggested moving wrapping into `get_context_data()`, rather than removing the
+existing behavior. The controller integrated a repair and the official grade
+passed. This is an observed early, context-informed consultation, not a
+multi-round conversation or a verified fallback after a failed local repair.
+
+The matched Luna-only and Sol-only runs also passed this issue. The case thus
+does not establish that specialist help was necessary, or that requesting help
+would have rescued the failed trajectories. It instead motivates the subsequent
+shared verification instructions and explicit handoff policy. Treating every
+unassisted failure as a missed delegation, or feeding hidden grading failures
+back into the live controller, would overstate the evidence. A causal rescue
+experiment would need separately registered continuations from matched
+predecision states, with all extra inference counted.
+
+## Measured context-only interface overhead
+
+The separate specialist-interface calibration produced the following native
+counter observations. Each row is one fresh Sol call on the same arithmetic
+question; both reported zero cached-input tokens and no tool events.
+
+| Context-only interface | Input tokens | Output tokens | Published-rate USD |
+|---|---:|---:|---:|
+| Default instructions | 10,481 | 85 | 0.021812 |
+| Compact role instructions | 6,393 | 100 | 0.013786 |
+
+Input fell 39.0% and the published-rate model-cost scenario fell 36.8%. Both
+answers were correct for the declared arithmetic fixture. The modest output
+length difference is stochastic variation from one draw per interface; these
+observations provide no accuracy-retention estimate for repository tasks. They
+identify removable fixed context as a practical cost component and motivate a
+separately graded development candidate. The reduction cannot be extrapolated
+to long questions, cached sessions or complete assisted tasks without their own
+measurements. No invoice or subscription-quota saving is inferred.
+
+## A development case about initial routing
+
+On SymPy `17139`, the pre-call router selected Sol for a failure involving an
+imaginary exponent in trigonometric simplification. That run passed at a total
+published-rate scenario cost of US$0.120742, including its routing decision.
+Luna-only also passed, at US$0.005133. All three assisted-controller conditions
+independently passed this issue using Luna with zero consultations. Their
+scenario costs were US$0.002895 to US$0.003593; Sol-only passed at US$0.123572.
+
+These task-matched independent draws illustrate why apparent subject difficulty
+is insufficient evidence for purchasing stronger inference. Cheap local work
+can establish useful capability before a delegation decision. They also show
+that a nominally cooperative arm can succeed entirely through the cheap model;
+its result cannot be credited to an expert conversation. The unobserved
+small-solver continuation of that particular router decision remains a
+counterfactual. This case is descriptive and selected after observation; the
+registered joint target is assessed on the complete matched panel, including
+its failed and expensive cases.
+
+# Fresh metered Luna / Sol routing experiments
+
+The completed live software-engineering panel contains 12 SWE-bench Verified
+tasks, six conditions, and 72 officially graded assignments. Three additional
+prompt-development studies contain four already observed tasks and three arms
+each (36 assignments). A separate held-out panel adds eleven tasks and 33 assignments. All 141
+assignments passed independent audits joining
+native reports to exact patch hashes and reconciling event-level model token
+deltas with final manifests. Historical published replay records and the earlier
+BugsInPy feasibility pilot are separate evidence.
+
+## Original matched panel
+
+| Condition | Resolved | Total model-cost scenario (USD) | Expert requests |
+|---|---:|---:|---:|
+| Luna alone | 9/12 | 0.070117 | 0 |
+| Sol alone | 10/12 | 1.386344 | 0 |
+| Pre-task model selection | 11/12 | 0.955308 | 0 |
+| One-way expert assistance | 9/12 | 0.110168 | 1 |
+| Fresh expert on each request | 8/12 | 0.104738 | 1 |
+| Continuing expert conversation available | 9/12 | 0.062689 | 0 |
+
+The pre-task selector achieved the highest observed resolution count, with
+31.1% lower model-cost scenario than Sol alone. That is a descriptive result on
+this panel, not evidence of population superiority. The continuing-conversation
+arm saved 95.5% but retained only 90% of Sol's aggregate accuracy, missing the
+joint target. It made no expert requests, so its result does not demonstrate
+conversational collaboration. Luna alone saved 94.9% with the same aggregate
+resolution count. There is no observed dialogue benefit in the original panel.
+
+## Prompt development with matched independent solving guidance
+
+Each development study gave its standalone controls the same common solving and
+verification instructions as the assisted agent. The adaptive and bounded
+cheap-first assisted conditions each resolved 4/4 tasks using one expert request
+across the panel. Their respective Luna-only controls resolved 2/4 and 3/4; both
+Sol-only controls resolved 4/4. Assisted scenario savings relative to their own
+Sol control were 87.1% and 89.1%. The compact expert condition saved 95.7% but
+resolved 3/4, matching its Luna-only control; it made no expert requests.
+Because that condition never invoked an expert, its outcome cannot establish
+that expert-context compaction caused either the quality difference or saving.
+
+![Cost versus resolution for each matched panel. Green marks the joint target; separate panels do not pool repeated task outcomes.](../../results/prompt-comparison-001/figures-002/combinations.png){width=100%}
+
+The outcome-first, cost-second development selection rule chose bounded
+cheap-first before held-out inference. These four cases were already observed
+and cannot establish generalization. Across all studies, no assisted arm meets
+both the 95% cost-reduction and 95% relative-accuracy point targets. Costs use
+the frozen published Codex Standard token-rate scenario, include all measured
+controller/expert/integration inference, and exclude setup and grading. They
+are not observed invoices or full deployment costs.
+
+## Completed held-out comparison: eleven tasks, 33 assignments
+
+The frozen study is complete. Independent audit joins all 33 grades to exact
+patches and reconciles native per-model usage; no context-only expert tool
+violations were found. Sol resolves 9/11 (81.8%), Luna 7/11 (63.6%) and assisted
+Luna 8/11 (72.7%). Four expert consultations occur across two tasks. Assisted
+Luna rescues one standalone Luna failure, loses none of Luna's successes and
+closes half the observed two-task Sol–Luna gap. The independently attempted
+runs and missing pre-consultation snapshots preclude causal attribution.
+
+Total published-rate scenario costs are USD 1.63011920 for Sol, 0.06591400 for
+Luna and 0.13945384 for assisted Luna. Assisted savings are 91.4452%, with
+88.8889% relative accuracy retention. Both joint-target components fail. Luna
+alone saves 95.9565% but retains only 77.7778% of Sol accuracy. Assistance costs
+USD 0.07353984 more than Luna for one additional resolved case on this panel.
+These are full assigned-task controller/expert/integration model-inference
+scenarios, not observed invoices or full deployment costs. Eleven public
+historical tasks do not establish population noninferiority or reliable routing.
+
+![Completed held-out cost and quality](../../results/delegation-heldout-001/analysis-002/figures/frontier.png)
+
+The [complete results](../../results/delegation-heldout-001/analysis-002/README.md)
+and `target-95-95.json` supersede all interim denominators. Of twelve originally
+reserved cases, one invalid independent control was excluded before inference,
+without replacement; all eleven scored cases remain in this denominator.
+
+The invalid independent control was `django__django-7530`: its recorded
+fail-to-pass test passed on both base and gold versions. It was excluded under
+the original reservation's eligibility rule before inference, without replacement.
+All eleven eligible cases completed; no scored outcome was removed. The archived
+seven- and ten-task checkpoints remain reproducible historical snapshots rather
+than additional independent experiments or current denominators.
+
+The observed rescue is `sphinx-10673`. Luna requested help while reporting a
+failing regression test; Sol requested exact context, Luna's next message
+identified an earlier directive-parser warning path, and Sol advised on dependency handling and
+a module-index fixture. The final patch passes official evaluation. Both requests
+continue the same expert thread, demonstrating voluntary bidirectional
+consultation on a real benchmark episode. The second handoff still references
+paths rather than supplying all requested source excerpts, limiting what the
+tool-free expert can check. No pre-consultation patch was archived by this old
+runner, so this is a paired independent-attempt rescue, not a causal attribution
+of the entire improvement to Sol. The next Pro protocol captures that snapshot.
+
+
+Two further consultations on `sphinx-11510` did not yield a passing patch;
+all three arms fail that task. The remaining Sol-only success missed by both
+Luna variants is `scikit-learn-25747`, where assisted Luna requested no expert.
+These cases distinguish successful help-seeking, unsuccessful collaboration
+and missed escalation; they do not establish calibrated failure detection.
+
+## Bounded next study
+
+SWE-bench Pro V2 is reserved as twelve repository-diverse development tasks and
+24 disjoint validation tasks, with no automatic 642-task launch. Public inputs
+are acquired for all 36 cases; all twelve development tasks are prepared
+privately. The matched development arms are Luna, Sol, voluntary consultation
+and required review, with common v3 verification guidance. Required review is
+a diagnostic control, not autonomous routing.
+
+Thirty-four framework, handoff and accounting checks pass. A real Harbor fixture
+also verifies public setup, zero actor network attachments with failed peer
+reachability, and restored verifier reachability on this Docker host. Those are
+setup results, not Pro task quality or a universal egress proof. The actual-task
+empty/reference controls and actor-boundary/metering/patch-replay gates remain
+pending behind the registered resource reserve. No Pro model trial has started.
+Use the maintained Harbor integration and official pristine grading protocol.
+Open-weight replication and subsequent distillation/RL follow this proprietary
+comparison; they remain prospective.
+
+## Verification observability and prospective feedback diagnostic
+
+The first completed held-out failure illustrates a limitation of confidence-led
+delegation: assisted Luna reported passing local checks and returned complete
+without consulting Sol, while the independent evaluator rejected its patch.
+The available journal does not retain full tool outputs, so those local test
+counts remain self-reported. The observation supports investigating false
+completion; it does not show that the model ignored a visible failing test.
+
+A separate, unrun verification policy now asks for acceptance criteria, checks
+that could falsify a candidate, and material coverage gaps before completion.
+Its assisted variant permits seeking help for an unsupported correctness property
+even after a narrow check passes. Common verification guidance is matched in
+standalone controls. This candidate was not used in the completed held-out panel.
+
+A prospective Aider Polyglot-derived diagnostic reserves 12 development and
+24 validation tasks across six languages, excluding development exercise
+families from validation across languages. The maintained Aider harness provides
+test-error feedback for repair; this separates handling an observable failure
+from anticipating an unseen case. The custom conversational protocol is not an
+official Aider leaderboard evaluation. Visible-suite fit, automatic test-gate
+detection and model-initiated error recognition must be reported separately.
+No model trials from this diagnostic have run. The executable reservation and
+the [prospective design](../research/verification-feedback-study.md) retain the
+bounded scope and prohibit tuning on validation outcomes.
+
+The next Pro development matrix explicitly contrasts voluntary consultation
+with required review, alongside matched standalone controls. Pre-consultation
+candidate patches and final patches will receive separate pristine-container
+grades after generation. This measures rescue of an observed candidate failure
+and distinguishes routing underuse from failure to transfer or integrate useful
+expert advice. A separate live context-only required-review check completed
+three native calls and demonstrated transfer and integration of an expert-found
+edge case; its six post-hoc checks are mechanism evidence, not benchmark quality
+or autonomous-routing performance. The larger development/validation comparison
+has not started model inference yet.
 
 # Industry-standard benchmark: a 500-task routing replay
 
@@ -864,6 +1292,177 @@ claiming savings. The replay supplies a reproducible benchmark finding and
 better controls; the causal bidirectional-conversation experiment still needs
 fresh metered execution.
 
+# Learning from verified interaction: prospective follow-up
+
+This chapter specifies a follow-up to the fixed-model routing experiment. It
+does not report trained checkpoints, GPU measurements, distillation gains or RL
+results. First establish proprietary Luna/Sol prompt and routing performance;
+then replicate the small-only, large-only and cooperative comparisons with
+open-weight models. Learning is an additional intervention on that replication,
+not an explanation for the current proprietary results. Hosted Luna weights are
+not available to this project for fine-tuning.
+
+## Training data distinct from evaluation
+
+Use executable repository tasks for training, rather than treating the final
+SWE-bench evaluation set as a source of demonstrations. Existing candidates are
+SWE-Gym, which supplies repository tasks with executable environments and test
+verification, and SWE-smith, which supplies generated repair tasks and released
+expert trajectories [@pan2025swegym; @yang2025swesmith]. Inspect pinned releases,
+licensing and provenance before acquisition. These are candidate sources; no
+training corpus from them has yet been assembled for this study. The existing
+LiveCodeBench solution-level training scaffold remains a separate, narrower
+algorithmic-code experiment, not repository-agent training.
+
+Partition data before collecting adaptive trajectories. The training partition
+supports demonstrations, student rollouts, verifier feedback and weight updates.
+A separate development partition selects prompts, reward coefficients,
+checkpoints and stopping rules. A sealed evaluation panel measures the final
+learning curve after those decisions are locked. Tasks used to tune the current
+Pro prompts belong to development history and cannot later be called unseen
+evaluation. The already reserved validation tasks must likewise be retired from
+that role if their outcomes inform another update.
+
+Prevent overlap by task identity, upstream issue/pull request, patch or near-copy
+similarity, and common synthetic ancestor. A mutation of a held-out task is not
+new training data. Group related issue families together. Where practical,
+reserve repositories for a separate cross-repository transfer evaluation;
+distinguish that endpoint from generalization to new issues in familiar
+repositories. Report language and repository composition, exclusions and
+pretraining-contamination limits. Benchmark train/test labels alone do not prove
+that two differently named releases are independent.
+
+## Observable traces and credit assignment
+
+Record task and environment revisions, public instructions, visible assistant
+actions, tool inputs and observations, edits, public checks, failed approaches,
+delegation decisions, selected handoff context, expert messages and subsequent
+integration. Bind the final patch and external verification receipt to the
+trajectory, and record model identities, inference parameters, tokens, latency
+and cost evidence. Preserve unsuccessful episodes for analysis and controlled
+negative examples. Do not collect private model reasoning or place evaluator
+tests and reference patches in the policy context.
+
+The current Codex journals retain structured controller/expert responses and
+tool-status hashes, but deliberately omit full tool inputs/outputs. They support
+routing analysis and selected public conversation examples; they are not a
+complete replayable action dataset. Future collection therefore needs a
+separately versioned observable-trace recorder. Do not retroactively invent
+missing actions or alter frozen trials to imply that complete traces existed.
+
+Final success verifies the episode's patch, not every intermediate action.
+Successful episodes can contain poor requests or incorrect expert suggestions.
+For supervised training, choose explicit targets: investigation/action sequences,
+help-request formulation, expert-answer integration, or verification. At a
+delegation decision the input ends before the expert's future answer; hidden
+final grades cannot become features predicting when to ask. Mask tool and user
+tokens from the student loss. Expert messages are context unless the declared
+training target is a teacher demonstration of the student's own role. Preserve
+state/action boundaries when chunking long trajectories.
+
+## Sequence and on-policy probability distillation
+
+The sequence-distillation baseline trains a compatible student adapter on
+selected verified demonstrations using the maintained TRL/PEFT path. Text
+supervision does not require teacher/student tokenizer identity. Balance distinct
+tasks and disclose rejection rates, target-token exposure and selection bias;
+do not count many traces of one easy task as many independent tasks.
+
+Following prior work on generative-model and on-policy distillation
+[@gu2024minillm; @lu2025onpolicydistillation], the probability-distillation arm generates trajectories with the current student
+and obtains teacher probability feedback conditioned on those same visible
+histories. This tests correction in states reached by the student, rather than
+only imitation of expert-generated histories. Declare whether the objective
+uses full vocabulary distributions, truncated top-k distributions or a
+sampled-token estimator; these are different estimators, not interchangeable
+forms of complete logit access. Verify token-ID alignment, vocabulary, templates,
+temperature, masks and treatment of tool boundaries. Same-family model names do
+not establish compatibility.
+
+Keep teacher and student identities, acquisition tasks and declared budgets
+matched across the sequence and probability arms. Changing teacher strength at
+the same time as the loss would confound the comparison.
+
+Ordinary generation APIs can supply demonstrations. An on-policy scoring service
+must additionally score arbitrary supplied student sequences; log probabilities
+only for the teacher's own sampled completion do not suffice. Self-hosted
+teacher weights or a suitable scoring API can provide that access. Full logits
+are not mandatory for every probability-distillation objective. Compare sample
+and compute efficiency empirically: richer supervision may reduce required
+examples while increasing teacher-scoring cost. Do not promise faster learning
+or software-task transfer from reasoning-benchmark evidence alone.
+
+## Reinforcement learning as a separate intervention
+
+RL requires resettable training environments and fresh policy rollouts, not just
+a static conversation dataset. Use independently executed training-task
+correctness checks as the outcome signal, alongside explicit inference-cost
+accounting. Keep policy access separate from the verifier. Add terminal-state
+and test-integrity checks so editing checks, claiming tests passed, or declining
+all work cannot earn a successful-repair reward. Unavailable dependencies and
+infrastructure failures require a declared disposition, rather than an invented
+model-quality label.
+
+Optimize cost subject to a quality constraint, or use a registered reward family
+and select its operating point on development data. Sweep cost coefficients on
+development only and report the resulting frontier; fewer expert calls alone
+are not success. Hold time, tool permissions and test access constant. Use a
+maintained agent-RL framework after validating its environment and action
+interfaces, rather than introducing an unverified custom optimizer.
+
+Separate RL from base, sequence-SFT and probability-distillation conditions.
+If RL starts from an SFT checkpoint, the matched comparison is that exact SFT
+checkpoint with versus without RL, and the accumulated SFT cost remains in the
+RL condition. RL from the untouched base is a separate arm. Likewise, on-policy
+probability distillation is teacher-supervised learning; sharing rollout code
+with RL does not make the objectives equivalent.
+
+## Factorial controls and learning curves
+
+| Student checkpoint | Small alone | Small with frozen large expert |
+|---|---|---|
+| Untouched base | Required | Required |
+| Sequence-distilled | Required | Required |
+| Probability-distilled | Required | Required |
+| Registered RL treatment | Required | Required |
+
+A fixed large-only model is the common capacity reference. Serve each eligible
+small checkpoint locally and remotely with identical weights/adapters and
+matched inference settings where supported. Document precision, quantization,
+runtime, context length and device differences; do not interpret a hosting or
+precision change as a training gain. Keep the expert revision and common task
+context fixed. Compare a frozen routing prompt with separately recalibrated
+routing only as explicitly separate controls. User memory and preferences are
+the same across arms and remain distinct from learned weights.
+
+Start with a bounded integration pilot and freeze feasible data/compute
+milestones from its measured throughput before claiming a longitudinal study.
+Count distinct eligible task arrivals, verified demonstrations, target tokens,
+student rollouts and optimizer updates separately. Register acquisition order,
+seeds and checkpoint selection before evaluation. Compare incremental updates
+with restarting from the same base on accumulated data when budget permits;
+do not assume that more rounds cause monotonic improvement. Measure forgetting
+and transfer on tasks outside the adapted workload.
+
+Plot resolution against total inference cost at each registered checkpoint,
+separately for independent and cooperative operation. Plot learning against
+distinct tasks, teacher tokens, GPU-hours, elapsed time and measured expenditure.
+Include a lifecycle view: acquisition plus scoring plus training cost, amortized
+over a stated number of later tasks, together with their inference cost. Report
+the break-even workload only when measured training expense and positive
+per-task saving support it; otherwise it is unknown or absent. Distinguish
+published token-rate scenarios from observed charges and local hardware costs.
+
+All arms face the same frozen evaluation tasks and budgets. Report paired
+successes and failures, expert-assisted task fraction, consultation count,
+verification failures, latency and uncertainty. Evaluate frozen checkpoints on
+the sealed panel only after training and analysis choices are locked; use fresh
+development panels for adaptive monitoring. The target remains at least 95%
+relative large-only accuracy with at least 95% lower total task inference cost.
+Training may shift the frontier without reaching that target; lifecycle savings
+require additional evidence. No current result establishes either learning or
+amortized-cost improvement.
+
 # Discussion and limits
 
 The literature makes the central hypothesis plausible without making it new or
@@ -972,35 +1571,39 @@ python -m ttgl.personal --task task.json --condition personal \
 The runbook documents the exact supported arguments, structured responses,
 resumed threads, failure disposition and grading boundary. Completion means
 the controller finished; it does not automatically mean the issue was resolved.
-A unit-tested fake backend verifies the control flow without pretending to be
-an LLM. The installed standalone CLI's read-only-state failure in the present
-managed session remains a known runtime limitation. The actual live trials used
-the collaboration tool instead and do not establish CLI service readiness.
+A fake backend verifies control flow; real native trials separately verify
+runtime availability and per-model token metering. Earlier managed-host
+read-only failures remain archived historical evidence. They are not the state
+of the writable desktop continuation, which completed all 141 fresh assignments
+across the original, development and held-out panels. The earlier BugsInPy pilot
+used the collaboration tool; those records remain distinct from native trials.
 
-The next performance experiment requires a larger frozen task sample, strong
-worker/evaluator isolation, unambiguous artifact rules, a native one-way
-assistance comparator and observable billing. It can use existing hosted Codex
-agents if their usage can be recorded, or compatible open models through an
-existing serving stack. A faithful reproduction of prior large-scale training
-requires additional resources; it is not silently charged to the existing
-US$100 Runpod allocation. No new credential is needed to reproduce the recorded
-analysis. Credentials and connectivity are still required for future paid GPU
-or provider runs.
+The six-condition SWE-bench bridge implements mandatory native model/metering
+preflight, isolated source checkouts, official prediction export and grade
+import. `scripts/collect_codex_usage.py` uses the supported per-thread estimate
+route without new inference. Native completion counters are cumulative, so the
+independent audit checks response identity and validated counter deltas before
+reconciling total and per-model usage. Missing bills remain unknown.
 
-The new `scripts/run_swe_bench.py` bridge implements six frozen conditions,
-mandatory native model-and-metering preflight, clean source checkouts, official
-prediction export and grade import. One-way proposals and reset-expert
-conversations are now software-tested arms. `scripts/collect_codex_usage.py`
-uses the official app-server's per-thread estimate route without new inference.
-The [handover](../research/HANDOVER.md) specifies the suitable writable host,
-official evaluator controls, worker dependency/isolation prerequisites,
-reproduction commands and pending work. Source-code readiness is distinct from
-successful live metering or a completed causal comparison.
+Reproduce the completed held-out audit and target analysis without new models:
 
-Fastest Jira and Confluence synchronization remain unavailable in the current
-tool set. Local task records and an import CSV preserve progress; they are not
-remote issue keys or evidence of publication. The intended Confluence destination
-remains the FASTEST space at fastestswarm.atlassian.net.
+```bash
+PYTHONPATH=src python scripts/audit_live_study.py \
+  --study-dir results/delegation-heldout-001/study-002 \
+  --output artifacts/my-heldout-audit.json
+ttgl_analysis=results/delegation-heldout-001/analysis-002
+python scripts/report_policy_target.py \
+  --records "$ttgl_analysis/published-rate-records.json" \
+  --output artifacts/my-heldout-target.json
+```
+
+Use fresh output paths; these commands must not replace archived evidence.
+The [handover](../research/HANDOVER.md) records source freezes, actual process
+state and gates for continuing the bounded Pro comparison. A passing software
+check or environment fixture is not a task success. The Pro control, real actor
+boundary and pristine patch replay must pass before scored model trials.
+No new GPU or provider purchase is authorized as a workaround. Open-weight
+training remains a later protocol, and its costs must be measured separately.
 
 # Conclusion
 
@@ -1012,14 +1615,22 @@ initial routing and one-way assistance. Personal memory and learned skills can
 be tested as additional interventions.
 
 The present work implements and tests the orchestration and measurement code,
-executes a four-condition historical-bug pilot, demonstrates one live two-round
-clarification exchange, and analyzes all 500 SWE-bench Verified tasks across ten
-published model runs. The primary replay router reduces estimated inference
-cost by 46.1% but loses 8.6 quality points; it fails the joint target. Portfolio
-results also show why an inexpensive strong standalone model is essential as a
-control. These are useful empirical findings without establishing live
-conversational savings or performance noninferiority. The next comparisons test
-that remaining causal claim with observable subscription or inference usage.
+executes a historical-bug pilot and 141 fresh metered assignments, and replays
+all 500 SWE-bench Verified tasks across ten published model runs. The primary
+historical router saves 46.1% in estimated inference cost but loses 8.6 quality
+points. Cheap strong standalone controls explain why model selection alone is
+not evidence for a routing advantage.
+
+The completed eleven-task held-out conversational comparison improves the
+observed Luna resolution count from seven to eight while Sol resolves nine.
+It saves 91.45% of the Sol model-inference scenario cost and retains 88.89% of
+Sol accuracy, missing both 95/95 components. One voluntary bidirectional rescue
+is accompanied by imperfect context transfer, unsuccessful consultation on
+another task, and an unresolved missed escalation. These results show useful
+mechanism behavior and a limited descriptive improvement, not reliable failure
+detection, a causal expert effect or population noninferiority. The prospective
+Pro comparison retains standalone controls and pre-consultation candidate
+patches to test those remaining questions before any learning claims.
 
 # References {.unnumbered}
 

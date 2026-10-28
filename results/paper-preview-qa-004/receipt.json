@@ -1,0 +1,45 @@
+{
+  "status": "working_previews_rebuilt_partial_visual_review_not_final_delivery",
+  "pdf_pages": 55,
+  "docx_rendered_pages": 43,
+  "current_pdf_pages_visually_reviewed": [
+    51
+  ],
+  "current_docx_pages_visually_reviewed": [
+    1,
+    4,
+    5,
+    29,
+    30,
+    40,
+    41
+  ],
+  "docx_pages_inherited_by_exact_png_hash": [
+    1,
+    4,
+    5,
+    29,
+    30
+  ],
+  "prior_build_pdf_pages_reviewed": [
+    5,
+    6,
+    35,
+    36,
+    37,
+    38,
+    51,
+    52
+  ],
+  "fixed_defect": "Reproduction command crossed right text margin; local ttgl_analysis variable now fits in both renderers. Re-rendered PDF51 and DOCX40/41 inspected.",
+  "target_reproduction_matches_archived_json": true,
+  "source_preview_hashes": {
+    "docs/paper/paper.pdf": "b4fb2e7d98079c4d8a6f894890b31783aaaa843d6955b5850ac84c2cc2e3a1b3",
+    "docs/paper/paper.docx": "0476b8bf110a29546518f21bc52e9f7785391c4d088433bf3323dad34497c9aa",
+    "docs/paper/paper.html": "5f68f3e2403767c081c7859706cb4d25646ba98c026a418ed50a9267c89d308f",
+    "docs/paper/paper.md": "b3646c06ffe484cfc3997f9850844fc6936b9d7f1aa476bdf770819ac1a4fad5",
+    "docs/paper/build-manifest.json": "25f43c07499b94d6461ffdee45a78c595f821408d859fcefac6715a39c1e8a66"
+  },
+  "remaining": "Complete all-page 100% visual QA and remaining bounded Pro results; no final deliverable claim",
+  "pro_model_calls": 0
+}
