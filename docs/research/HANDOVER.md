@@ -1281,3 +1281,23 @@ these edits. Generated PDF/DOCX/HTML remain earlier working previews and need
 rebuild plus complete visual QA after bounded experiments; no final document
 completion claim. No new Pro quality result or inference. Queue headroom remains
 the previously reported blocker, so do not issue repetitive unchanged alerts.
+
+## Heartbeat 00:17 UTC: observed host-capacity blocker
+
+Read AGENTS/current handover, inspected real PIDs82715/7341 (live), queue events,
+native invocation absence and actual disk. Free5.1GiB with Xcode and two Swift
+compiler processes active. No image pull, official Pro control or model call
+has begun. Resource gate18GiB now lacks roughly13GiB, a material deterioration
+from earlier10–14GiB observations. Active CI/data preserved; no cache deletion
+or new run this pass. All control003/pipeline004 source bindings still match.
+Snapshot results/swe-pro-prompt-001/resource-blocker-001.json.
+
+User notified once that additional host capacity is required if active CI does
+not release it. Do not keep repeating unchanged blocker updates. Current
+staging supervisor has about33min remaining on its registered2h resource wait;
+if it expires, reconcile stopped.json and pipeline failure, preserve zero-call
+attempts and do not blindly restart. Existing queues are the only continuation
+path while live. No paid services or deletion of user files/live CI is authorized
+as a workaround. Paper source is reconciled; preview rebuild/visual QA and Pro
+quality results are still pending. Heartbeat remains enabled because requested
+bounded studies and final paper are incomplete.

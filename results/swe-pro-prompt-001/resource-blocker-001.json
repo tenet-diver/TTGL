@@ -1,0 +1,14 @@
+{
+  "observed_at": "2026-10-28T00:18:13.402214+00:00",
+  "status": "preparation_blocked_by_host_capacity_no_model_invocation",
+  "free_bytes": 5285613568,
+  "registered_required_bytes": 19327352832,
+  "additional_bytes_needed": 14041739264,
+  "active_ci_preserved": true,
+  "frozen_sources_unchanged": true,
+  "pro_model_calls": 0,
+  "control_supervisor_pid": 82715,
+  "pipeline_pid": 7341,
+  "continuation": "Existing queues only. Capacity must return before preparation; supervisor has registered two-hour resource wait and will stop without model inference if it expires.",
+  "user_action_if_capacity_does_not_return": "Free additional host storage outside active CI and protected data, or provide an existing suitable execution resource; do not provision paid services automatically."
+}
