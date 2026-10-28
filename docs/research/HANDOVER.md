@@ -1334,3 +1334,21 @@ reviewed after fix; earlier build003 PDF5,6,35–38,51,52 inspected. No all-page
 QA intermediates under artifacts/paper-qa-003 and004, not final artifacts.
 Do not disable heartbeat or mark research complete. Keep unchanged capacity
 checks quiet; continue independent paper QA while waiting for sufficient space.
+
+## Heartbeat 01:17 UTC: complete Word preview visual review
+
+Read AGENTS/latest handover and checked real processes and closed queues. No
+research worker remains live; free disk9.9GiB is below registered18GiB Pro
+preparation gate. No cleanup, image pull, model call or restart. Existing
+capacity blocker persists; preserve zero-call stopped attempts and use fresh
+versioned continuation only after capacity returns.
+
+Inspected remaining36 current build004 DOCX page images. Combined with seven
+previously reviewed current pages, all43 Word pages now have visual review.
+No additional clipping, overlap, missing glyph or figure/table defect observed.
+Receipt results/paper-preview-qa-005/receipt.json binds exact current DOCX and
+all43 rendered PNG hashes and records coverage. This is working-preview QA,
+not final paper completion. Main XeLaTeX PDF still has only current page51
+certified; complete its55-page visual review separately. No scientific results
+changed. Pro bounded trials and final research remain incomplete; heartbeat
+stays enabled.
