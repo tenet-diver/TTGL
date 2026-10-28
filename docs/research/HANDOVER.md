@@ -1411,3 +1411,16 @@ overlap or missing glyph observed. Current PDF1–32 reviewed;33–55 remain.
 Receipt results/paper-preview-qa-009/receipt.json binds actual PDF and12page
 PNGs. No scientific results changed; no final completion claim. Existing
 resource blocker unchanged, no repeated user alert. Heartbeat remains enabled.
+
+## Heartbeat 03:48 UTC: PDF results and frontier review
+
+Read AGENTS/latest handover; inspected actual liveness, stopped control receipt
+and33-assignment complete audit. No research worker live, free9.8GiB below18GiB
+gate. No new image/model invocation, restart or cleanup.
+
+Rendered and visually reviewed current main PDF33–44, including results tables
+and three cost-quality figures. No additional clipping, overlap or missing
+glyph observed. Target regions and misses are legible. Current PDF1–44 reviewed;
+45–55 remain. Receipt results/paper-preview-qa-010/receipt.json binds actual PDF
+and12page PNGs. No scientific result changed; existing resource blocker unchanged.
+No final completion claim or repeated alert. Heartbeat stays enabled.
