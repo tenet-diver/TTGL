@@ -1352,3 +1352,18 @@ not final paper completion. Main XeLaTeX PDF still has only current page51
 certified; complete its55-page visual review separately. No scientific results
 changed. Pro bounded trials and final research remain incomplete; heartbeat
 stays enabled.
+
+## Heartbeat 01:47 UTC: PDF review continued
+
+Read AGENTS/latest handover; actual control003/pipeline004 stopped receipts
+still show resource expiry/process exit, no live research workers. Free9.8GiB,
+below18GiB gate. No new queue, cleanup, image pull or inference.
+
+Applied existing PDF skill read-only workflow; rendered and visually reviewed
+current main PDF pages1–8. Body/title fit; contents page3 has cramped separation
+between two-digit chapter numbers10–12 and titles. Repair TOC number-column
+width before final delivery, then re-render affected pages. No source changed
+this pass. Exact PDF/PNG hashes and remaining46-page review coverage recorded
+in results/paper-preview-qa-006/receipt.json. Current main PDF reviewed pages
+are1–8 and51; Word43-page review remains complete for unchanged DOCX. No new
+scientific result or final-document completion claim.
