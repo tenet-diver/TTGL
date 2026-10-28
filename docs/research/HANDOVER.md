@@ -1424,3 +1424,20 @@ glyph observed. Target regions and misses are legible. Current PDF1–44 reviewe
 45–55 remain. Receipt results/paper-preview-qa-010/receipt.json binds actual PDF
 and12page PNGs. No scientific result changed; existing resource blocker unchanged.
 No final completion claim or repeated alert. Heartbeat stays enabled.
+
+## Heartbeat 04:18 UTC: current preview visual QA complete
+
+Read AGENTS/latest handover; inspected actual processes, stopped control003
+receipt and complete33-assignment audit. No research workers live. Disk11GiB
+still below18GiB gate; no image/model call, restart or cleanup.
+
+Rendered and visually inspected remaining main PDF45–55, including learning
+protocol, discussion, reproduction, conclusion and bibliography. All55 current
+PDF page images now reviewed across QA007–011; no further clipping, overlap or
+missing glyph observed. References wrap within text block; reproduction command
+fits. All43 Word pages remain reviewed (only core metadata changed on rebuild).
+Receipt results/paper-preview-qa-011/receipt.json binds current PDF/DOCX and all55
+PDF PNGs; README now distinguishes completed preview QA from pending research.
+No final research delivery or Pro quality result. Next work is capacity recovery
+and fresh versioned staging continuation, preserving stopped zero-call attempts.
+Do not disable heartbeat: bounded Pro trials and final manuscript remain pending.

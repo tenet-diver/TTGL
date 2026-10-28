@@ -31,8 +31,10 @@ Assisted savings are 91.45% and accuracy retention is 88.89%; the joint 95/95
 target fails. All 33 assignments passed independent native usage and official
 patch/grade audit. One invalid independent control was excluded before inference
 without replacement. The earlier interim checkpoints remain archived.
-Generated document previews have been rebuilt from these results; complete visual QA
-and the bounded Pro study remain pending.
+Generated working previews have been rebuilt from these results. All 55 PDF pages
+and all 43 Word pages have visual review recorded in
+[the QA receipt](../../results/paper-preview-qa-011/receipt.json). The bounded Pro
+study remains pending; these are not final research deliverables.
 
 The [verification-feedback study](../research/verification-feedback-study.md)
 adds a separately versioned policy candidate and a 12-development/24-validation
