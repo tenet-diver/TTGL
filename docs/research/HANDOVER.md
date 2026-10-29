@@ -1489,3 +1489,18 @@ log artifacts/pro-controls-queue-005.log. Same pinned image/task and nop/oracle
 only, zero model calls authorized, zero automatic retries. Do not duplicate
 this active supervisor. Inspect pull and native control outputs next; pipeline
 and scored inference remain unlaunched until required gates pass.
+
+## Heartbeat 29 October23:30 UTC: repeat Docker registry IPC blocker
+
+Read AGENTS/latest handover and inspected actual PID71910 (exited), pull stdout
+and stopped receipt. Control005 failed at same Docker Desktop internal
+http://ipc/registry/access backend.sock timeout as004. Free35GiB; capacity no
+longer blocks, Docker registry IPC does. No nop/oracle jobs or model calls.
+Preserve005 evidence. Do not repeatedly launch new identical staging attempts
+based solely on docker version responding: it does not test registry IPC.
+
+Docker Desktop service recovery is required before another pinned pull. Do not
+restart shared daemon while user CI/database containers may be active. User
+notified of concrete blocker and need to recover Docker Desktop when safe.
+No paid service, daemon restart, volume deletion or scored inference performed.
+Heartbeat remains enabled for external recovery; keep unchanged checks quiet.
