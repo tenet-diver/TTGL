@@ -1441,3 +1441,20 @@ PDF PNGs; README now distinguishes completed preview QA from pending research.
 No final research delivery or Pro quality result. Next work is capacity recovery
 and fresh versioned staging continuation, preserving stopped zero-call attempts.
 Do not disable heartbeat: bounded Pro trials and final manuscript remain pending.
+
+## Heartbeat 29 October22:00 UTC: capacity recovered; model-free controls resumed
+
+Read AGENTS/latest handover and inspected real processes, closed control003/
+pipeline004 receipts and complete33-assignment audit. Host free38GiB now exceeds
+18GiB preparation gate; active Xcode/Swift CI preserved. Reconciled both old
+output directories: no invocation files or jobs; original stopped receipts
+retained. Verified every registered control003 source SHA256 still matches.
+
+Registered control-protocol-004.json before launch, preserving same pinned
+image, task, model-free nop/oracle arms, resource gates and zero retries. New
+output environment-controls-004; caffeinate-started supervisor PID6859 is live,
+image-pull invocation recorded. Log artifacts/pro-controls-queue-004.log.
+No model inference authorized by this supervisor; do not duplicate it. Inspect
+actual pull/control results next. Pipeline005 has NOT been registered/launched;
+first require official nop0/oracle1 summary, then real boundary/meter/replay
+gates before any scored block. Old003/004 outputs must remain immutable.
