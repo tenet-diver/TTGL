@@ -1,0 +1,9 @@
+{
+  "at_utc": "2026-10-29T22:30:53.848139+00:00",
+  "model_calls": 0,
+  "diagnostic": "Docker server version query",
+  "docker_restart_attempted": false,
+  "returncode": 0,
+  "stdout": "20.10.23\n",
+  "stderr": ""
+}

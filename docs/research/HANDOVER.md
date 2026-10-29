@@ -1458,3 +1458,20 @@ No model inference authorized by this supervisor; do not duplicate it. Inspect
 actual pull/control results next. Pipeline005 has NOT been registered/launched;
 first require official nop0/oracle1 summary, then real boundary/meter/replay
 gates before any scored block. Old003/004 outputs must remain immutable.
+
+## Heartbeat 29 October22:30 UTC: control004 image pull failed before controls
+
+Read AGENTS/latest handover and inspected real supervisor PID6859: exited.
+Host free34GiB. Actual image-pull stdout reports Docker Desktop internal
+registry/access IPC backend.sock timeout. stopped.json preserves pull exit1;
+no official nop/oracle invocation or job, no model inference.
+
+Read root-cause skill and checked actual Docker service. Initial read-only
+version query hung; terminated only our diagnostic client PIDs35330/35331.
+Fresh bounded10s query returned server20.10.23 successfully, receipt
+environment-controls-004/daemon-diagnostic.json. Docker daemon was NOT restarted;
+user containers/volumes/auth preserved. This establishes recovered daemon
+query availability, not registry pull success. Preserve004 failure; any new
+staging continuation needs fresh protocol005/output005, verify original source
+hashes and absence of model/control execution, then pinned pull again. No
+pipeline005 or scored model trial launched.
