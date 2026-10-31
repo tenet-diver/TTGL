@@ -1,0 +1,123 @@
+{
+    "id": "d83defb6-e8f3-4e47-9cab-55aa82e78c5d",
+    "task_name": "swebench-pro/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+    "trial_name": "instance_flipt-io__flipt-b217034__4BeSXU9",
+    "trial_uri": "file:///Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/flipt-pair-022/jobs/first-block-large-fresh/instance_flipt-io__flipt-b217034__4BeSXU9",
+    "task_id": {
+        "path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/v2/tasks/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5"
+    },
+    "source": "tasks",
+    "task_checksum": "26ad7547deee0fa5faddb27315b337f9327047fda1b6fb04bd2e1294b8a610aa",
+    "config": {
+        "task": {
+            "path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/v2/tasks/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "tasks"
+        },
+        "trial_name": "instance_flipt-io__flipt-b217034__4BeSXU9",
+        "trials_dir": "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/flipt-pair-022/jobs/first-block-large-fresh",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "patch_replay:PatchReplayAgent",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "source_job": "/Users/rustameynaliyev/Developer/ttgl-target90-flipt-022/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/large/43f2fb48b109430b93abda4b5e818871/sealed-replay-source",
+                "patch_name": "model.patch"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": null,
+            "import_path": "ttgl.harbor_docker_network:DetachedNetworkDocker",
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "51b02dae-ca97-45fd-a4bc-82ce91f8f325",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "patch-replay-agent",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-10-31T22:24:03.803456Z",
+    "finished_at": "2026-10-31T22:27:36.260887Z",
+    "environment_setup": {
+        "started_at": "2026-10-31T22:24:04.042937Z",
+        "finished_at": "2026-10-31T22:24:07.444479Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-31T22:24:07.444682Z",
+        "finished_at": "2026-10-31T22:24:07.444856Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-31T22:24:07.445097Z",
+        "finished_at": "2026-10-31T22:24:10.822252Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-31T22:24:12.411552Z",
+        "finished_at": "2026-10-31T22:27:25.168715Z"
+    },
+    "step_results": null
+}

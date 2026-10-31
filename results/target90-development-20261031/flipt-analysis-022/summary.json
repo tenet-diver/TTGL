@@ -1,0 +1,165 @@
+{
+  "status": "audited_development_pair_not_final_target_evidence",
+  "task_id": "instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+  "policy": "v7",
+  "policy_identity": {
+    "src/ttgl/cost_quality_router.py": "a3a8ab49e30b6a171a6608bb2315eb811369b410f5cc17da01b171b91d970e92",
+    "prompts/controller-v7-common.txt": "667cb62034f2497e72f2ddc4670f47816c979e5894803e217be8be0540c5039b",
+    "prompts/controller-v7-routing.txt": "a8edba0611dab0c9c1d401b716ae6a464f6095b57af9e7e16f35a70f82c1df0c",
+    "src/ttgl/harbor_bridge.py": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065"
+  },
+  "arms": {
+    "large": {
+      "assigned": 1,
+      "resolved": 1,
+      "initial_grade": 1.0,
+      "cost_scenario_usd": 0.1233776,
+      "cost_per_resolved_usd": 0.1233776,
+      "usage": {
+        "input_tokens": 465493,
+        "cached_input_tokens": 436736,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2219,
+        "reasoning_output_tokens": 196
+      },
+      "usage_by_model": {
+        "gpt-6.1-sol": {
+          "usage": {
+            "input_tokens": 465493,
+            "cached_input_tokens": 436736,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2219,
+            "reasoning_output_tokens": 196
+          },
+          "observed_partial": {
+            "input_tokens": 465493,
+            "cached_input_tokens": 436736,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2219,
+            "reasoning_output_tokens": 196
+          },
+          "complete": {
+            "input_tokens": true,
+            "cached_input_tokens": true,
+            "cache_write_input_tokens": true,
+            "output_tokens": true,
+            "reasoning_output_tokens": true
+          }
+        }
+      },
+      "expert_requests": 0,
+      "completed_consultations": 0,
+      "pre_handoff_grade": null,
+      "native_requests_by_role": {
+        "controller": 1
+      },
+      "latency_seconds": {
+        "native_model_and_tools": 266.38588999491185,
+        "actor": 280.358361,
+        "generation_start_to_fresh_grade": 527.072476
+      },
+      "final_response": {
+        "action": "complete",
+        "question": "",
+        "context": "",
+        "summary": "Added token to explicit and wildcard audit resource mappings, documented support, and added regression tests for creation/deletion under direct, wildcard, and disabled configurations. Tests failed before the fix and pass afterward. All audit package tests and git diff --check pass. Verification supports the requirements; the full repository suite was not run."
+      },
+      "provenance": {
+        "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/flipt-pair-022.json": "8f794c4e2c327945487cd1736af1ea4af22a5c537d1cdb6949f40b0bdb1756bb",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/flipt-pair-022/jobs/first-block-large/instance_flipt-io__flipt-b217034__DxecGGB/result.json": "a281a39ea3c4f35a4df516b9b59b8a8f0a514618e3c74107e88c4c52991e0622",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/flipt-pair-022/jobs/first-block-large-fresh/instance_flipt-io__flipt-b217034__4BeSXU9/result.json": "59da8d341f2677d07aad79565d37163963c75df9ccb7f440d383088ff3ed5e8d",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/flipt-pair-022/jobs/first-block-large-fresh/instance_flipt-io__flipt-b217034__4BeSXU9/agent/replay.json": "c825e7a301f314c8a8a68c2ef74444a44ddce24cf57250a809a1226b2d39c92f",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-flipt-022/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/large/43f2fb48b109430b93abda4b5e818871/controller/manifest.json": "29639b4b8b948cc69410808b8cec13bdc6444da47142b42736eca374d33bbba5",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-flipt-022/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/large/43f2fb48b109430b93abda4b5e818871/controller/events.jsonl": "8152ad29894736ad0e5e30cdbc9049af8884d13f20a141211199fc5d9af5ae14",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-flipt-022/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/large/43f2fb48b109430b93abda4b5e818871/visible-tool-trace.jsonl": "2822d338088f3b22755c9390d463bae76142293a14fe729167d0e4ca6701b5e9",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-flipt-022/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/large/43f2fb48b109430b93abda4b5e818871/final.patch": "658e208b9d99479a1c868130b745a09c5fa2350909b9ff419699735a8bee5c69",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-flipt-022/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/large/43f2fb48b109430b93abda4b5e818871/sealed-replay-source/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/seal.json": "a0bee6ef188d7b887d61c2a37f0e33ab4d59025db00011b2d7a6b41c55e6ce08"
+      }
+    },
+    "optional": {
+      "assigned": 1,
+      "resolved": 1,
+      "initial_grade": 1.0,
+      "cost_scenario_usd": 0.00947576,
+      "cost_per_resolved_usd": 0.00947576,
+      "usage": {
+        "input_tokens": 529618,
+        "cached_input_tokens": 499456,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2930,
+        "reasoning_output_tokens": 491
+      },
+      "usage_by_model": {
+        "gpt-6-luna": {
+          "usage": {
+            "input_tokens": 529618,
+            "cached_input_tokens": 499456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2930,
+            "reasoning_output_tokens": 491
+          },
+          "observed_partial": {
+            "input_tokens": 529618,
+            "cached_input_tokens": 499456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2930,
+            "reasoning_output_tokens": 491
+          },
+          "complete": {
+            "input_tokens": true,
+            "cached_input_tokens": true,
+            "cache_write_input_tokens": true,
+            "output_tokens": true,
+            "reasoning_output_tokens": true
+          }
+        }
+      },
+      "expert_requests": 0,
+      "completed_consultations": 0,
+      "pre_handoff_grade": null,
+      "native_requests_by_role": {
+        "controller": 1
+      },
+      "latency_seconds": {
+        "native_model_and_tools": 201.9693750119768,
+        "actor": 216.451338,
+        "generation_start_to_fresh_grade": 459.658388
+      },
+      "final_response": {
+        "action": "complete",
+        "question": "",
+        "context": "",
+        "summary": "Added `token` as a recognized audit resource and included it in wildcard resource expansion. Extended checker tests for direct `token:created` and `token:deleted` entries, wildcard inclusion, and disabled token events. Verification: `GOMAXPROCS=1 go test -p=1 ./internal/server/audit` passed, and `git diff --check` passed. The default parallel test attempts were terminated with exit 137; the serial package check completed successfully."
+      },
+      "provenance": {
+        "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/flipt-pair-022.json": "8f794c4e2c327945487cd1736af1ea4af22a5c537d1cdb6949f40b0bdb1756bb",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/flipt-pair-022/jobs/first-block-optional/instance_flipt-io__flipt-b217034__7aY9LhG/result.json": "26244dbc17641d88f7b22cbf15409ef4418fc0c717660fd18f1436883e110c73",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/flipt-pair-022/jobs/first-block-optional-fresh/instance_flipt-io__flipt-b217034__8kF59Nk/result.json": "7aaf7d604e6aa8f8c940b63706233d43635eaebed298f20c3681bd3ef8844706",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/flipt-pair-022/jobs/first-block-optional-fresh/instance_flipt-io__flipt-b217034__8kF59Nk/agent/replay.json": "4b7d18a51b5c2f9780755dd5a25332c12c097392c1d1757ff8c2f42abf249327",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-flipt-022/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/personal/e5da8b9e6db1431ba3178a916b232b1c/controller/manifest.json": "a68807c9db401291968fc8712cae29fe235f0e702e27df3ce8620b180de9fcdf",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-flipt-022/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/personal/e5da8b9e6db1431ba3178a916b232b1c/controller/events.jsonl": "692d0102d28f177539f8c936554271f411a0fdccb1f64b4a6cc56e7f560d47f9",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-flipt-022/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/personal/e5da8b9e6db1431ba3178a916b232b1c/visible-tool-trace.jsonl": "9d0754d980dac094b3f33e111dc6712782c9626bfc98aba0be2f9d75a1e6e70c",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-flipt-022/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/personal/e5da8b9e6db1431ba3178a916b232b1c/final.patch": "0def8ca494ec778c8c2851e9b19f2eae508fb2bcf149c89938cac3b5529ebd45",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-flipt-022/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/personal/e5da8b9e6db1431ba3178a916b232b1c/sealed-replay-source/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/seal.json": "c81171613c622e67e97cf602b628f20a1015fe65bd216ad09071376449794aeb"
+      }
+    }
+  },
+  "comparison": {
+    "status": "single_development_pair_not_final_target_evidence",
+    "task_id": "instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+    "sol_resolved": true,
+    "router_resolved": true,
+    "resolved_delta": 0,
+    "sol_success_lost": false,
+    "router_extra_success": false,
+    "model_cost_ratio": 0.07680292046530326,
+    "scenario_saving": 0.9231970795346968,
+    "actual_cash_saving": null,
+    "population_noninferiority_claim": false,
+    "interpretation": "Keep all registered development pairs; freeze before held-out evaluation"
+  },
+  "actual_cash_saving": null,
+  "subscription_quota_saving": null,
+  "validation_tasks_used": 0,
+  "uncertainty": "One selected public development task, not population equivalence, transfer or confirmatory90% target proof"
+}

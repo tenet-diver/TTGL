@@ -56,3 +56,12 @@ No automatic full642-task run or training/distillation is authorized here.
 Active-chat research continues under the user's objective. Scheduled monitoring
 is PAUSED and must not be resumed or replaced without new instruction. Follow
 latest HANDOVER ownership and immutable claims before launching any worker.
+
+
+First development checkpoint (Flipt022): both Sol and Luna passed initial and
+independent replay. Sol model-rate scenarioUSD0.1233776, LunaUSD0.00947576,
+92.3197% reduction; one assigned/resolved task per arm. Luna made zero expert
+requests. Both traces include exit137 checks and subsequent focused package
+passes; Luna reports the serial check and limitation. This supports independent
+completion on one selected case, not general escalation quality, held-out
+quality retention or the final target. All six registered pairs remain required.

@@ -1,0 +1,7 @@
+{
+ "task": "instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+ "patch": "/Users/rustameynaliyev/Developer/ttgl-target90-flipt-022/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/personal/e5da8b9e6db1431ba3178a916b232b1c/sealed-replay-source/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/agent/model.patch",
+ "apply_rc": 0,
+ "apply_out": "Checking patch internal/server/audit/checker.go...\nChecking patch internal/server/audit/checker_test.go...\nApplied patch internal/server/audit/checker.go cleanly.\nApplied patch internal/server/audit/checker_test.go cleanly.\n",
+ "post_apply_diffstat": " internal/server/audit/checker.go      |  3 ++-\n internal/server/audit/checker_test.go | 16 ++++++++++++++++\n 2 files changed, 18 insertions(+), 1 deletion(-)\n---\n2\n"
+}

@@ -1,0 +1,77 @@
+diff --git a/internal/server/audit/checker.go b/internal/server/audit/checker.go
+index bf223ab2..9b6b2435 100644
+--- a/internal/server/audit/checker.go
++++ b/internal/server/audit/checker.go
+@@ -22,8 +22,9 @@ func NewChecker(eventPairs []string) (*Checker, error) {
+ 		"rollout":      {"rollout"},
+ 		"rule":         {"rule"},
+ 		"segment":      {"segment"},
++		"token":        {"token"},
+ 		"variant":      {"variant"},
+-		"*":            {"constraint", "distribution", "flag", "namespace", "rollout", "rule", "segment", "variant"},
++		"*":            {"constraint", "distribution", "flag", "namespace", "rollout", "rule", "segment", "token", "variant"},
+ 	}
+ 
+ 	verbs := map[string][]string{
+diff --git a/internal/server/audit/checker_test.go b/internal/server/audit/checker_test.go
+index 17e412f8..acfee754 100644
+--- a/internal/server/audit/checker_test.go
++++ b/internal/server/audit/checker_test.go
+@@ -27,6 +27,7 @@ func TestChecker(t *testing.T) {
+ 				"rule:created":         true,
+ 				"segment:created":      true,
+ 				"variant:created":      true,
++				"token:created":        true,
+ 				"constraint:deleted":   false,
+ 				"distribution:deleted": false,
+ 				"flag:deleted":         false,
+@@ -35,6 +36,7 @@ func TestChecker(t *testing.T) {
+ 				"rule:deleted":         false,
+ 				"segment:deleted":      false,
+ 				"variant:deleted":      false,
++				"token:deleted":        false,
+ 				"constraint:updated":   false,
+ 				"distribution:updated": false,
+ 				"flag:updated":         false,
+@@ -58,6 +60,7 @@ func TestChecker(t *testing.T) {
+ 				"rule:created":         false,
+ 				"segment:created":      false,
+ 				"variant:created":      false,
++				"token:created":        false,
+ 				"constraint:deleted":   false,
+ 				"distribution:deleted": false,
+ 				"flag:deleted":         true,
+@@ -66,6 +69,7 @@ func TestChecker(t *testing.T) {
+ 				"rule:deleted":         false,
+ 				"segment:deleted":      false,
+ 				"variant:deleted":      false,
++				"token:deleted":        false,
+ 				"constraint:updated":   false,
+ 				"distribution:updated": false,
+ 				"flag:updated":         true,
+@@ -97,6 +101,7 @@ func TestChecker(t *testing.T) {
+ 				"rule:deleted":         false,
+ 				"segment:deleted":      false,
+ 				"variant:deleted":      false,
++				"token:deleted":        false,
+ 				"constraint:updated":   false,
+ 				"distribution:updated": false,
+ 				"flag:updated":         false,
+@@ -107,6 +112,17 @@ func TestChecker(t *testing.T) {
+ 				"variant:updated":      false,
+ 			},
+ 		},
++		{
++			name:          "token actions",
++			eventPairs:    []string{"token:created", "token:deleted"},
++			expectedError: nil,
++			pairs: map[string]bool{
++				"token:created": true,
++				"token:deleted": true,
++				"token:updated": false,
++				"flag:created":  false,
++			},
++		},
+ 		{
+ 			name:          "error repeating event pairs",
+ 			eventPairs:    []string{"*:created", "flag:created"},

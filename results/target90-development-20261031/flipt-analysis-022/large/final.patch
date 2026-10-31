@@ -1,0 +1,66 @@
+diff --git a/internal/server/audit/README.md b/internal/server/audit/README.md
+index 552ffc20..fd83a4a8 100644
+--- a/internal/server/audit/README.md
++++ b/internal/server/audit/README.md
+@@ -18,6 +18,7 @@ The ability to filter audit events was added in [v1.27.0](https://github.com/fli
+ - `distribution`
+ - `namespace`
+ - `rollout`
++- `token`
+ 
+ ### Verbs
+ 
+diff --git a/internal/server/audit/checker.go b/internal/server/audit/checker.go
+index bf223ab2..9b6b2435 100644
+--- a/internal/server/audit/checker.go
++++ b/internal/server/audit/checker.go
+@@ -22,8 +22,9 @@ func NewChecker(eventPairs []string) (*Checker, error) {
+ 		"rollout":      {"rollout"},
+ 		"rule":         {"rule"},
+ 		"segment":      {"segment"},
++		"token":        {"token"},
+ 		"variant":      {"variant"},
+-		"*":            {"constraint", "distribution", "flag", "namespace", "rollout", "rule", "segment", "variant"},
++		"*":            {"constraint", "distribution", "flag", "namespace", "rollout", "rule", "segment", "token", "variant"},
+ 	}
+ 
+ 	verbs := map[string][]string{
+diff --git a/internal/server/audit/checker_test.go b/internal/server/audit/checker_test.go
+index 17e412f8..4fcc7ea8 100644
+--- a/internal/server/audit/checker_test.go
++++ b/internal/server/audit/checker_test.go
+@@ -127,3 +127,34 @@ func TestChecker(t *testing.T) {
+ 		}
+ 	}
+ }
++
++func TestCheckerTokenEvents(t *testing.T) {
++	testCases := []struct {
++		name       string
++		eventPairs []string
++		created    bool
++		deleted    bool
++	}{
++		{name: "creation only", eventPairs: []string{"token:created"}, created: true},
++		{name: "deletion only", eventPairs: []string{"token:deleted"}, deleted: true},
++		{name: "both explicit", eventPairs: []string{"token:created", "token:deleted"}, created: true, deleted: true},
++		{name: "all token actions", eventPairs: []string{"token:*"}, created: true, deleted: true},
++		{name: "all resources created", eventPairs: []string{"*:created"}, created: true},
++		{name: "all resources deleted", eventPairs: []string{"*:deleted"}, deleted: true},
++		{name: "all events", eventPairs: []string{"*:*"}, created: true, deleted: true},
++		{name: "unrelated resource", eventPairs: []string{"flag:*"}},
++		{name: "unrelated action", eventPairs: []string{"*:updated"}},
++	}
++
++	for _, tc := range testCases {
++		t.Run(tc.name, func(t *testing.T) {
++			checker, err := NewChecker(tc.eventPairs)
++			if !assert.NoError(t, err) {
++				return
++			}
++
++			assert.Equal(t, tc.created, checker.Check("token:created"))
++			assert.Equal(t, tc.deleted, checker.Check("token:deleted"))
++		})
++	}
++}

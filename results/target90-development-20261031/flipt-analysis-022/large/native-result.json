@@ -1,0 +1,156 @@
+{
+    "id": "a1c06f9f-41a4-4079-9bfc-eb596f3ae8bd",
+    "task_name": "swebench-pro/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+    "trial_name": "instance_flipt-io__flipt-b217034__DxecGGB",
+    "trial_uri": "file:///Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/flipt-pair-022/jobs/first-block-large/instance_flipt-io__flipt-b217034__DxecGGB",
+    "task_id": {
+        "path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/v2/tasks/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5"
+    },
+    "source": "tasks",
+    "task_checksum": "26ad7547deee0fa5faddb27315b337f9327047fda1b6fb04bd2e1294b8a610aa",
+    "config": {
+        "task": {
+            "path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/v2/tasks/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "tasks"
+        },
+        "trial_name": "instance_flipt-io__flipt-b217034__DxecGGB",
+        "trials_dir": "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/flipt-pair-022/jobs/first-block-large",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "ttgl.cost_quality_router:CostQualityCodex",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "private_records_root": "/Users/rustameynaliyev/Developer/ttgl-target90-flipt-022",
+                "condition": "large",
+                "policy": "verification"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": null,
+            "import_path": "ttgl.harbor_docker_network:DetachedNetworkDocker",
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "7a33a36b-c8a3-4ef9-9e3c-abf76058f8e5",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "ttgl-cost-quality-v7",
+        "version": "0.1.0-experimental",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": 465493,
+        "n_cache_tokens": 436736,
+        "n_output_tokens": 2219,
+        "cost_usd": null,
+        "model_usage": {
+            "gpt-6.1-sol": {
+                "n_input_tokens": 465493,
+                "n_cache_tokens": 436736,
+                "n_output_tokens": 2219,
+                "cost_usd": null
+            }
+        },
+        "rollout_details": null,
+        "metadata": {
+            "ttgl_task_id": "instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+            "condition": "large",
+            "policy": "verification",
+            "status": "completed_ungraded",
+            "private_records_path": "/Users/rustameynaliyev/Developer/ttgl-target90-flipt-022/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/large/43f2fb48b109430b93abda4b5e818871",
+            "manifest_sha256": "29639b4b8b948cc69410808b8cec13bdc6444da47142b42736eca374d33bbba5",
+            "expert_calls": 0,
+            "grading": "Official fresh-sandbox regrade required",
+            "pre_handoff_snapshot": null,
+            "final_patch_sha256": "658e208b9d99479a1c868130b745a09c5fa2350909b9ff419699735a8bee5c69",
+            "required_review_observed": null,
+            "analysis": "Grade final and pre-handoff patches independently after generation; never send grades to the controller",
+            "fresh_actor_boundary": {
+                "status": "fresh_actor_boundary_passed_before_router_inference",
+                "observations": {
+                    "head": "5d544c9172ccf6c445c16ed333409930d2a1f0ad",
+                    "git_status": "",
+                    "outside_head_commits": 0,
+                    "private_path_visible": false,
+                    "public_endpoint_reachable": false,
+                    "witness_ignored": false
+                },
+                "scope": "Hidden paths plus host sentinel, clean HEAD/history, direct-IP egress probe; not universal isolation proof"
+            }
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-10-31T22:18:49.188411Z",
+    "finished_at": "2026-10-31T22:23:52.879020Z",
+    "environment_setup": {
+        "started_at": "2026-10-31T22:18:49.595963Z",
+        "finished_at": "2026-10-31T22:18:52.906759Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-31T22:18:52.906976Z",
+        "finished_at": "2026-10-31T22:18:53.756994Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-31T22:18:53.757458Z",
+        "finished_at": "2026-10-31T22:23:34.115819Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-31T22:23:35.588819Z",
+        "finished_at": "2026-10-31T22:23:41.826851Z"
+    },
+    "step_results": null
+}

@@ -361,16 +361,16 @@
     "monitor": "PAUSED by explicit user instruction; continue active chat only"
   },
   "current_router_unit": {
-    "task": "flipt",
-    "status": "matched pair022 active; Sol first then voluntary Luna router",
-    "pid": 37864,
-    "protocol": "experiments/target90-development-20261031/flipt-pair-022.json",
+    "task": "navidrome",
+    "status": "model-free controls023 active; Flipt pair022 independently audited",
+    "pid": 55144,
+    "protocol": "experiments/target90-development-20261031/navidrome-control-023.json",
     "owner": "active chat",
     "monitoring": "PAUSED"
   },
   "active_target90": {
     "plan": "experiments/target90-development-20261031/plan.json",
-    "status": "Flipt paired022 active, corrected transport and v7 frozen",
+    "status": "1/6 matched development pairs audited: Sol1/1 router1/1,92.3197% model-rate saving; Navidrome controls023 active; held-out untouched",
     "metric": "at least90% all-role model-rate scenario saving, no observed held-out count loss vs matched Sol; optional stricter statistical criterion question pending",
     "candidate": "v7 consolidated general common/routing policy, corrected transport",
     "validation": "24 tasks untouched until candidate freeze and separate registration",
