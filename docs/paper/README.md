@@ -1,8 +1,10 @@
 # We have to combine — A conversation is all you need
 
-Current Markdown/HTML paper text includes the first NodeBB Pro router result
-and the completed three-case router development series (3/3 fresh passes,
-one completed consultation; pre-handoff candidate also passes). PDF and Word files remain the older pre-episode working previews;
+Current Markdown/HTML paper text includes the Pro router development series,
+the transport-path correction, and two matched target90 development pairs.
+The two pairs resolve2/2 with each arm at93.8785% lower router model-rate scenario
+cost; four development pairs remain and the held-out target is not established.
+PDF and Word files remain the older pre-episode working previews;
 their recorded visual review applies to those unchanged binaries. Use current
 text and the episode audit for the new result. The broader study remains ongoing.
 
