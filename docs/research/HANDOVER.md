@@ -1588,3 +1588,16 @@ completed consultations and still failed. Missing old tool outputs stay unknown.
 Future failure categories: no-call false completion; no-call acknowledged blockage;
 request without completed consultation; failure after completed consultation.
 Do not substitute self-reported checks or private reasoning for visible evidence.
+
+
+## 31 October: handoff continuity amendment before inference
+
+User adds context/attempts/lessons transfer to Sol to avoid repeated work. While
+queue007 had only queue.json, terminated supervisor77215 and preserved zero-call
+stopped receipt. Added compact explicit handoff checklist to routerv4: goal,
+criteria, source/candidate, distinct attempts and hypotheses, checks/results,
+lessons, ruled-out explanations, unknowns and focused question; request no repeats
+without new evidence. Context-only Sol remains bounded; Luna verifies integration.
+Active replacement protocol008, PID80720, output router-development-008,
+log artifacts/pro-router-development-008.log. Source frozen while active.
+Control007 nop passed, oracle executing; do not duplicate. No scored calls yet.
