@@ -347,3 +347,23 @@ quality equivalence, general transfer or the final target. All registered tasks
 remain in the panel; costs aggregate as the ratio of sums, including failures.
 See the [target90 protocol](../research/target90-study.md) and
 [audited pair](../../results/target90-development-20261031/flipt-analysis-022/summary.json).
+
+
+The second matched development pair, Navidrome024, also passes both initial
+and fresh grading. Luna makes zero expert requests. Its model-rate scenario
+isUSD0.0086526 versus SolUSD0.172766 per assigned/resolved task,94.9917% lower.
+Across the two completed pairs, each arm resolves2/2 and the ratio of summed
+costs gives93.8785% reduction. Four registered development pairs remain; the
+full-panel development gate is unset and no held-out target is established.
+Luna's focused packages pass while its broad suite exits137; its completion
+explicitly says full-repository verification remains incomplete. Sol adds
+regression checks that fail with fallback disabled and pass after restoration.
+These observations do not measure general failure-recognition calibration.
+
+A disk-reserve stop occurs after Luna generation but before fresh replay.
+An evidence-bound continuation validates native completion, usage deltas and
+patch seals, then runs only the unstarted replay and Sol stages. It repeats
+no Luna or setup calls. The original stop remains archived. Eleven focused
+recovery/pair-audit/progress checks pass. Generation-start-to-fresh-grade latency includes the interruption
+and is descriptive only; neither pair supports a controlled speed comparison.
+See the [Navidrome audit](../../results/target90-development-20261031/navidrome-analysis-024/summary.json).
