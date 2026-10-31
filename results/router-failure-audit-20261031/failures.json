@@ -1,0 +1,48 @@
+{
+  "status": "posthoc_development_diagnostic_not_new_trials",
+  "source_study": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002",
+  "failures": [
+    {
+      "task_id": "scikit-learn__scikit-learn-25747",
+      "resolved": false,
+      "attempted_expert_requests": 0,
+      "completed_consultations": 0,
+      "last_controller_response": {
+        "action": "complete",
+        "question": "",
+        "context": "",
+        "summary": "Updated pandas output wrapping to preserve a DataFrame\u2019s own index when its row count differs from the input, allowing aggregating transformers in FeatureUnion to return fewer rows. Added a regression test for the reported pattern. Verified the reproducer returns a 4-row DataFrame with the grouped date index; the focused regression and set-output tests passed (15 passed), and the broader pipeline plus set-output suites passed before adding the regression (103 passed)."
+      },
+      "category": "no_consultation_returned_complete",
+      "limit": "Reported passing checks are self-reports; archived hashed tool events do not establish full observed stdout or assertion failures."
+    },
+    {
+      "task_id": "django__django-10999",
+      "resolved": false,
+      "attempted_expert_requests": 0,
+      "completed_consultations": 0,
+      "last_controller_response": {
+        "action": "complete",
+        "question": "",
+        "context": "",
+        "summary": "Updated `standard_duration_re` so its hours lookahead accepts negative minutes and seconds, and added a regression test for `-10:-15:-30`. Verified with `python tests/runtests.py utils_tests.test_dateparse utils_tests.test_duration`: all 29 tests passed."
+      },
+      "category": "no_consultation_returned_complete",
+      "limit": "Reported passing checks are self-reports; archived hashed tool events do not establish full observed stdout or assertion failures."
+    },
+    {
+      "task_id": "sphinx-doc__sphinx-11510",
+      "resolved": false,
+      "attempted_expert_requests": 2,
+      "completed_consultations": 2,
+      "last_controller_response": {
+        "action": "complete",
+        "question": "",
+        "context": "",
+        "summary": "Updated `Include.run()` to emit `source-read` for ordinary reStructuredText included content while preserving docutils\u2019 synthetic end marker and restoring the original insertion method in `finally`. Added a build regression checking that replacement appears in both the included and parent text. The insertion hook does not cover `:literal:`, `:code:`, or `:parser:` includes. Verified with `pytest -q tests/test_directive_other.py` (8 passed) and `git diff --check`."
+      },
+      "category": "failed_after_completed_consultation",
+      "limit": "Reported passing checks are self-reports; archived hashed tool events do not establish full observed stdout or assertion failures."
+    }
+  ]
+}

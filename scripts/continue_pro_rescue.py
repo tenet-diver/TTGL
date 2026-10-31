@@ -184,7 +184,7 @@ def main():
         for arm in protocol['first_block_order']:
             condition = arm if arm in ('small','large') else 'personal'
             mode = 'required_review' if arm=='required_review' else 'verification'
-            path,native,initial = job('first-block-'+arm,'ttgl.harbor_routing_agent:RoutingDiagnosticCodex',
+            path,native,initial = job('first-block-'+arm,protocol.get('agent_import_path', 'ttgl.harbor_routing_agent:RoutingDiagnosticCodex'),
                 [('private_records_root',records_root),('condition',condition),('policy',mode)])
             sealed,manifest,attempted = sealed_source(path,native)
             final,_ = replay('first-block-'+arm+'-fresh',sealed,'model.patch')
@@ -207,7 +207,13 @@ def main():
                 'private_manifest_sha256':digest(Path(native['agent_result']['metadata']['private_records_path'])/'controller/manifest.json')})
             write(out/('completed-'+arm+'.json'),rows[-1])
         write(out/'records.json',rows)
-        write(out/'paired-rescue.json',handoff_metrics.summarize(rows, arms=tuple(protocol.get('analysis_arms', handoff_metrics.ARMS))))
+        if protocol.get('router_only_development'):
+            if len(rows) != 1 or rows[0]['arm'] != 'optional':
+                raise RuntimeError('Router-only unit requires one voluntary router assignment')
+            write(out/'router-observation.json', {'status': 'development_observation_not_matched_comparison',
+                  'assignment': rows[0], 'next_step': 'Inspect visible checks, decision records and consultation before next task or prompt'})
+        else:
+            write(out/'paired-rescue.json',handoff_metrics.summarize(rows, arms=tuple(protocol.get('analysis_arms', handoff_metrics.ARMS))))
         write(out/'completion.json', {'status':'registered_first_block_completed_review_cost_runtime_before_expanding',
               'development_assignments':len(rows),'full_twelve_task_run_started':False,'validation_started':False})
     except BaseException as exc:

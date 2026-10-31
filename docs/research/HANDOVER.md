@@ -1554,3 +1554,37 @@ real Harbor runtime pass. Diff check passes. No automatic retries or full datase
 expansion. After this block review actual grades/tokens/runtime/visible observations
 before next development subset/prompt. Preserve24 validation tasks untouched.
 Generation/pipeline source hashes in protocol005 now frozen while supervisor live.
+
+
+## 31 October: router-only failure detection, checked independent attempts
+
+Latest steering replaces matched comparisons with Luna voluntary router development
+on varied tasks, inspecting failures and improving prompt between units. No new
+standalone Luna/Sol calls. Three-arm queue005 stopped before calls when control006
+failed Harbor daemon preflight (image DID pull successfully). Docker info now passes
+in default and task-local config. Model-free control007 PID72819 is executing nop
+then oracle; preserve it, no duplicate jobs.
+
+Router-only queue006 was deliberately terminated while only queue.json existed;
+stopped receipt records zero invocations. User then added default2–3 meaningful
+independent repair attempts, checked after each, before consulting Sol. Promptv4
+records concise observable evidence/action decisions, discriminating verification,
+early-help exceptions with concrete reason, and preserves integration time.
+New backend ttgl.router_development:RouterDevelopmentCodex preserves unchangedv3
+treatments.17 policy/routing/metrics checks pass in real Harbor runtime.
+
+Active router-only protocol pro-pipeline-protocol-007.json, PID77215, output
+results/swe-pro-prompt-001/router-development-007, log artifacts/pro-router-development-007.log.
+It waits for control007, performs separate setup boundary/native/replay preflight,
+then ONE optional/router assignment on first Pro development task. No matched
+comparison/accuracy-retention claim from this unit. All registered source frozen
+while active. Inspect results/visible host traces, classify failure, then register
+next task/prompt; do not repeat uncertain inference or use validation for tuning.
+
+Actual archived failure audit: results/router-failure-audit-20261031/failures.json.
+Of three heldout router failures, sklearn25747 and django10999 had zero expert
+requests and complete responses claiming passing tests; sphinx11510 had two
+completed consultations and still failed. Missing old tool outputs stay unknown.
+Future failure categories: no-call false completion; no-call acknowledged blockage;
+request without completed consultation; failure after completed consultation.
+Do not substitute self-reported checks or private reasoning for visible evidence.
