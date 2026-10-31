@@ -1847,3 +1847,14 @@ log artifacts/router-series-teleport-controls-017.log. No model registered or
 started. Preserve this worker. After own nop0/oracle1, separately register018
 with frozen v6, explicit cross-task transport-only setup008 reuse, all source
 bindings and fresh actor boundary. Do not reuse another task's readiness.
+
+
+## User disables scheduled monitoring; this chat continues Teleport
+
+Latest user explicitly says continue but disable monitoring. Existing heartbeat
+continue-luna-sol-routing-research is PAUSED through the app (confirmed). Do not
+resume it or create a replacement schedule without new user instruction. Prior
+heartbeat turn ended after launching controls017; this chat now owns the already
+registered Teleport unit. Preserve supervisorPID95296, no duplicate controls.
+Continue exactly one018 router assignment only after own controls pass, using
+frozen general-purpose v6 and validated setup008 transport-only reuse.
