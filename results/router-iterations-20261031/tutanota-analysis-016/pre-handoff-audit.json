@@ -1,0 +1,10 @@
+{
+  "status": "fresh_pre_handoff_grade_bound_to_sealed_patch",
+  "raw_result": "/Users/rustameynaliyev/Developer/TTGL/results/router-iterations-20261031/tutanota-router-016/jobs/first-block-optional-pre-handoff/instance_tutao__tutanota-f373ac3__d4QsB3R/result.json",
+  "raw_result_sha256": "65dea3902e1642bcd4fcd13ffdf5b7e9ded895ded98a0e4e5e31e3d63362853c",
+  "sealed_patch": "/Users/rustameynaliyev/Developer/ttgl-router-tutanota-016/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b/personal/c328660d5db3473f9f51984bbf4157be/sealed-replay-source/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b/agent/pre-handoff.patch",
+  "patch_sha256": "e38653756d59ecf0068537b977c8a5a2722fed892ebec1ca019496fbad26b788",
+  "apply_rc": 0,
+  "grade": 1,
+  "interpretation": "Candidate already passes before consultation; no observed rescue, no causal necessity claim"
+}

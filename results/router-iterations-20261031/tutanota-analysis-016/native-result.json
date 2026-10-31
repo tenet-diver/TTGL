@@ -1,0 +1,162 @@
+{
+    "id": "ab1a555c-af08-449e-8f31-4fb1d1f1d428",
+    "task_name": "swebench-pro/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b",
+    "trial_name": "instance_tutao__tutanota-f373ac3__rqYYAu7",
+    "trial_uri": "file:///Users/rustameynaliyev/Developer/TTGL/results/router-iterations-20261031/tutanota-router-016/jobs/first-block-optional/instance_tutao__tutanota-f373ac3__rqYYAu7",
+    "task_id": {
+        "path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b/v2/tasks/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b"
+    },
+    "source": "tasks",
+    "task_checksum": "0c011cf216761d55e96aaa7494946c76e18d0c0d5042e5d328330813b2691d17",
+    "config": {
+        "task": {
+            "path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b/v2/tasks/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "tasks"
+        },
+        "trial_name": "instance_tutao__tutanota-f373ac3__rqYYAu7",
+        "trials_dir": "/Users/rustameynaliyev/Developer/TTGL/results/router-iterations-20261031/tutanota-router-016/jobs/first-block-optional",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "ttgl.router_contract:RouterContractCodex",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "private_records_root": "/Users/rustameynaliyev/Developer/ttgl-router-tutanota-016",
+                "condition": "personal",
+                "policy": "verification"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": null,
+            "import_path": "ttgl.harbor_docker_network:DetachedNetworkDocker",
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "a9c5dba5-ae4b-4c04-993c-29213089f569",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "ttgl-router-contract-v6",
+        "version": "0.1.0-experimental",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": 7309359,
+        "n_cache_tokens": 7160448,
+        "n_output_tokens": 30311,
+        "cost_usd": null,
+        "model_usage": {
+            "gpt-6-luna": {
+                "n_input_tokens": 7297792,
+                "n_cache_tokens": 7160448,
+                "n_output_tokens": 29809,
+                "cost_usd": null
+            },
+            "gpt-6.1-sol": {
+                "n_input_tokens": 11567,
+                "n_cache_tokens": 0,
+                "n_output_tokens": 502,
+                "cost_usd": null
+            }
+        },
+        "rollout_details": null,
+        "metadata": {
+            "ttgl_task_id": "instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b",
+            "condition": "personal",
+            "policy": "verification",
+            "status": "completed_ungraded",
+            "private_records_path": "/Users/rustameynaliyev/Developer/ttgl-router-tutanota-016/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b/personal/c328660d5db3473f9f51984bbf4157be",
+            "manifest_sha256": "a36c6a0571bda79ddd9ecfba168499e9b21eabe3842337f0b595333b30c5cfa3",
+            "expert_calls": 1,
+            "grading": "Official fresh-sandbox regrade required",
+            "pre_handoff_snapshot": "/Users/rustameynaliyev/Developer/ttgl-router-tutanota-016/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b/personal/c328660d5db3473f9f51984bbf4157be/pre-handoff.json",
+            "final_patch_sha256": "d432666f994e86063a0281d233b2d277c284e4e8c116f96b339873bbb563a9fa",
+            "required_review_observed": null,
+            "analysis": "Grade final and pre-handoff patches independently after generation; never send grades to the controller",
+            "fresh_actor_boundary": {
+                "status": "fresh_actor_boundary_passed_before_router_inference",
+                "observations": {
+                    "head": "a834bd49d148888778075a3a48d3b92d832c4eed",
+                    "git_status": "",
+                    "outside_head_commits": 0,
+                    "private_path_visible": false,
+                    "public_endpoint_reachable": false,
+                    "witness_ignored": false
+                },
+                "scope": "Hidden paths plus host sentinel, clean HEAD/history, direct-IP egress probe; not universal isolation proof"
+            }
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-10-31T19:47:00.556664Z",
+    "finished_at": "2026-10-31T20:21:11.014641Z",
+    "environment_setup": {
+        "started_at": "2026-10-31T19:47:01.090616Z",
+        "finished_at": "2026-10-31T19:47:05.674707Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-31T19:47:05.674988Z",
+        "finished_at": "2026-10-31T19:47:06.917961Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-31T19:47:06.918588Z",
+        "finished_at": "2026-10-31T20:13:15.686051Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-31T20:13:18.117620Z",
+        "finished_at": "2026-10-31T20:20:59.574736Z"
+    },
+    "step_results": null
+}

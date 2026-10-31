@@ -1,0 +1,62 @@
+{
+  "status": "three_registered_development_units_completed",
+  "assigned": 3,
+  "resolved": 3,
+  "caution": "Selected development diagnostics with policy changed between units; no accuracy generalization, causal policy improvement or matched-Sol saving/retention claim",
+  "expert_requests": 1,
+  "completed_consultations": 1,
+  "pre_handoff_successes": 1,
+  "pre_handoff_failures_rescued": 0,
+  "scenario_cost_total_usd": 0.14409084,
+  "scenario_cost_per_assigned_and_resolved_usd": 0.04803028,
+  "actual_cash_cost_usd": null,
+  "subscription_quota_savings": null,
+  "accuracy_retention_vs_sol": null,
+  "validation_tasks_used": 0,
+  "standalone_assignments": 0,
+  "new_setup_calls": 0,
+  "episodes": [
+    {
+      "task_id": "instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86",
+      "fresh_grade": 1.0,
+      "expert_requests": 0,
+      "pre_handoff_grade": null,
+      "scenario_usd": 0.00551832,
+      "latency_seconds": {
+        "native_model_and_tools": 29.33025624905713,
+        "native_actor_phase": 43.49462,
+        "generation_environment_and_initial_grading": 140.484871,
+        "independent_fresh_replay": 100.415275,
+        "generation_start_to_fresh_grade": 248.390814
+      }
+    },
+    {
+      "task_id": "instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan",
+      "fresh_grade": 1.0,
+      "expert_requests": 0,
+      "pre_handoff_grade": null,
+      "scenario_usd": 0.01017514,
+      "latency_seconds": {
+        "native_model_and_tools": 271.6746407710016,
+        "native_actor_phase": 287.765793,
+        "generation_environment_and_initial_grading": 483.439589,
+        "independent_fresh_replay": 297.490251,
+        "generation_start_to_fresh_grade": 801.250227
+      }
+    },
+    {
+      "task_id": "instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b",
+      "fresh_grade": 1.0,
+      "expert_requests": 1,
+      "pre_handoff_grade": true,
+      "scenario_usd": 0.12839738,
+      "latency_seconds": {
+        "native_model_and_tools": 1552.759429805912,
+        "native_actor_phase": 1568.767463,
+        "generation_environment_and_initial_grading": 2050.457977,
+        "independent_fresh_replay": 372.893155,
+        "generation_start_to_fresh_grade": 2444.79689
+      }
+    }
+  ]
+}

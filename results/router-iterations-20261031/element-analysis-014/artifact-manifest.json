@@ -1,0 +1,13 @@
+{
+  "status": "audited_public_episode_export",
+  "files": {
+    "summary.json": "08f109a4846715c5be5a3264dab264036e3a02c40d8a38dc168803fc5c1a9e94",
+    "final.patch": "4f1181a558fb99b1b28ebda9de155f86c93ec45de9b95eb19745e099b979d7f6",
+    "decision-audit.json": "b7c44193d1984114d1d1b8dedf982c6ad0a380e8b900149ac4f9b87213794e98",
+    "README.md": "e0dc33b3a5fd46d9e16dcc0ea508cc2f0bbc70de54bef068feb9b99487799575",
+    "native-result.json": "b279336e3ce6c99ae00d4f1bc97cfbe3191987557492eba1e3984067572b61f7",
+    "fresh-replay.json": "5a6ddf3e0a046d52eee8d6de281b6bde2b8ec9f6c7b29d74c5b01dba4064452c",
+    "manifest.json": "b5b15bb965e230baa2291b30aa4399971d40a6b59945f79f99af6e5e76e6edb5",
+    "fresh-result.json": "2093f5ef1ea76159161c700a5e041173f16f2f991a865d0510499d4749af7a7c"
+  }
+}

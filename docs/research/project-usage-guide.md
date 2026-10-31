@@ -289,3 +289,13 @@ improvement in failure detection or delegation. The next Element Web and Tutanot
 units are sequential, with their own controls and no automatic retries. Observe
 visible commands, results, decisions and handoffs; never feed hidden grades back
 to a live actor. See experiments/router-iterations-20261031/plan.json.
+
+
+The October31 three-case series is complete: Ansible and Element(v5) pass without
+Sol; Tutanota(v6) passes after one voluntary consultation. The pre-handoff candidate
+also passes, so no rescue is established. Tutanota's handoff is detailed but lacks
+some relevant branch source, and behavioral tests remain unexecuted due to build/
+dependency failures. Keep verification status separate from official outcome.
+Retain the general policy for varied fresh tasks rather than add a prompt exception
+for every case. Generality and transfer requirements are in router-generality.md;
+full evidence is in results/router-iterations-20261031/README.md.

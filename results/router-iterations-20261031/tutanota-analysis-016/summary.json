@@ -1,0 +1,134 @@
+{
+  "status": "audited_single_development_episode",
+  "task_id": "instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b",
+  "assigned": 1,
+  "resolved": 1,
+  "initial_grade": 1.0,
+  "fresh_grade": 1.0,
+  "observed_success_fraction": 1.0,
+  "illustrative_exact_binomial_95_interval": [
+    0.025,
+    1.0
+  ],
+  "uncertainty": "Illustrative iid binomial interval only; one selected public development task is not a population sample or evidence of reliable routing/noninferiority.",
+  "outcome_class": "solved_after_consultation",
+  "expert_requests_attempted": 1,
+  "completed_consultations": 1,
+  "native_requests_by_role": {
+    "controller": 2,
+    "expert": 1
+  },
+  "usage": {
+    "input_tokens": 7309359,
+    "cached_input_tokens": 7160448,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 30311,
+    "reasoning_output_tokens": 13737
+  },
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 7297792,
+        "cached_input_tokens": 7160448,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 29809,
+        "reasoning_output_tokens": 13591
+      },
+      "observed_partial": {
+        "input_tokens": 7297792,
+        "cached_input_tokens": 7160448,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 29809,
+        "reasoning_output_tokens": 13591
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    },
+    "gpt-6.1-sol": {
+      "usage": {
+        "input_tokens": 11567,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 502,
+        "reasoning_output_tokens": 146
+      },
+      "observed_partial": {
+        "input_tokens": 11567,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 502,
+        "reasoning_output_tokens": 146
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "published_rate_scenario_cost_per_assigned_usd": 0.12839738,
+  "published_rate_scenario_cost_per_resolved_usd": 0.12839738,
+  "actual_cash_cost_usd": null,
+  "subscription_quota_savings": null,
+  "accuracy_retention_vs_sol": null,
+  "saving_vs_matched_sol": null,
+  "cost_scope": "All episode controller/router/expert/integration inference; frozen historical token rates, not invoice or full deployment cost.",
+  "setup_already_completed_reused": {
+    "new_model_calls": 0,
+    "usage": {
+      "input_tokens": 112615,
+      "cached_input_tokens": 85120,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1631,
+      "reasoning_output_tokens": 298
+    },
+    "historical_scenario_cost_usd": 0.03098282
+  },
+  "latency_seconds": {
+    "native_model_and_tools": 1552.759429805912,
+    "native_actor_phase": 1568.767463,
+    "generation_environment_and_initial_grading": 2050.457977,
+    "independent_fresh_replay": 372.893155,
+    "generation_start_to_fresh_grade": 2444.79689
+  },
+  "visible_tool_requests": 68,
+  "final_controller_response": {
+    "action": "complete",
+    "question": "",
+    "context": "",
+    "summary": "Implemented key propagation through the single and batch loaders, cache forwarding, and the mail details call sites. Removed `CryptoFacade`\u2019s shared session-key cache and limited owner-key precedence to mail details, preserving bucket-key processing for other entity types. Updated obsolete cache tests and added focused loader and key-isolation tests.\n\nVerification is **incomplete**: `npm run types`, `npm run lint:check`, Prettier on the changed files, and `git diff --check` passed. The behavioral tests could not run: the test build was killed with exit 137 during type compilation; bypassing that stage failed while native dependencies attempted to download Node headers (`EAI_AGAIN`). The new tests therefore remain unexecuted."
+  },
+  "fresh_actor_boundary": {
+    "status": "fresh_actor_boundary_passed_before_router_inference",
+    "observations": {
+      "head": "a834bd49d148888778075a3a48d3b92d832c4eed",
+      "git_status": "",
+      "outside_head_commits": 0,
+      "private_path_visible": false,
+      "public_endpoint_reachable": false,
+      "witness_ignored": false
+    },
+    "scope": "Hidden paths plus host sentinel, clean HEAD/history, direct-IP egress probe; not universal isolation proof"
+  },
+  "pre_handoff_grade": true,
+  "provenance": {
+    "/Users/rustameynaliyev/Developer/TTGL/experiments/router-iterations-20261031/tutanota-router-016.json": "f62394aefcbcdad6a53ef0d09211cb411e568dce2aa5f71f70183fecda1230e2",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-iterations-20261031/tutanota-router-016/jobs/first-block-optional/instance_tutao__tutanota-f373ac3__rqYYAu7/result.json": "fdaf0fb4cc458edf487c2cb3a97ced89ba0a0578566cd5d2095f7d02ab90678c",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-iterations-20261031/tutanota-router-016/jobs/first-block-optional-fresh/instance_tutao__tutanota-f373ac3__EhJGS7D/result.json": "847176fad0085447fe7aacdc9ee861bbbac0fe0f9e78f95c3d20eb89d78643b0",
+    "/Users/rustameynaliyev/Developer/ttgl-router-tutanota-016/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b/personal/c328660d5db3473f9f51984bbf4157be/controller/manifest.json": "a36c6a0571bda79ddd9ecfba168499e9b21eabe3842337f0b595333b30c5cfa3",
+    "/Users/rustameynaliyev/Developer/ttgl-router-tutanota-016/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b/personal/c328660d5db3473f9f51984bbf4157be/controller/events.jsonl": "786d1e969c69259c113d94fbcf1aba48e9afd1e6d5e44adb7a5198028dbdbc77",
+    "/Users/rustameynaliyev/Developer/ttgl-router-tutanota-016/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b/personal/c328660d5db3473f9f51984bbf4157be/visible-tool-trace.jsonl": "27e45b1a262e018546e46f27666fbd30e84f77c8d8836906a8228e2cd723668d",
+    "/Users/rustameynaliyev/Developer/ttgl-router-tutanota-016/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b/personal/c328660d5db3473f9f51984bbf4157be/final.patch": "d432666f994e86063a0281d233b2d277c284e4e8c116f96b339873bbb563a9fa",
+    "/Users/rustameynaliyev/Developer/ttgl-router-tutanota-016/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b/personal/c328660d5db3473f9f51984bbf4157be/sealed-replay-source/instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b/seal.json": "db5ad1f291e5cd39fffbed9b13db795b950efc1edfa007c4126c7da2ecb4bd95",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-iterations-20261031/tutanota-router-016/jobs/first-block-optional-fresh/instance_tutao__tutanota-f373ac3__EhJGS7D/agent/replay.json": "a4ac09e43269c9a4c680e1911b7d938515ffa8ececfe77b5791804eecb8ff80d",
+    "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/rate-scenario.json": "24337a4fbe01bd97c0a8034c97e7f940779d207a388111dd3c19601919a49328"
+  },
+  "validation_tasks_used": 0
+}

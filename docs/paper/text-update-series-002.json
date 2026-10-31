@@ -1,0 +1,16 @@
+{
+  "status": "completed_three_case_series_text_update",
+  "created_at": "2026-10-31T20:39:29.874814+00:00",
+  "binary_qa": "PDF and DOCX unchanged older previews; no new binary QA claimed",
+  "files": {
+    "paper.md": "775beafd131dc3724980cffe68fb1883180d2f5a4a449b1d7653de48411ac721",
+    "paper.html": "9970b8d4f387f0d27e135bb1fd8ed3376734caa20a3f95db468bb3981cc7fba6",
+    "live-routing-results.md": "d571ff3d12934cabd520183386ea4d28feb342989943948c9da549842fadbbde",
+    "paper.pdf": "89d35b32a3adeb06cd164f954307a69ab1a5226acda5ebb4d3b916be38ac68dc",
+    "paper.docx": "e411c9ff36381437b758d175d783dcaca32399fbd6584dde7f640f79bfd71ced"
+  },
+  "evidence": {
+    "results/router-iterations-20261031/summary.json": "a614674d1c2f758396ae5919e805e453a17ecd9396976bc1e6391491f8914755"
+  },
+  "html_check": "Contains three-case results and generality constraint; Pandoc generated self-contained HTML; no full visual QA claim"
+}

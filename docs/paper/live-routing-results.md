@@ -211,29 +211,55 @@ and historical 500-task replay remain separate evidence. The contribution remain
 replication and controlled extension of related work, not architectural novelty.
 
 
-## Sequential v5 router development: Ansible checkpoint
+## Sequential router development and generality constraint
 
-A separately registered three-task series uses the next reserved development
-cases in original order: Ansible, Element Web and Tutanota. Standalone comparisons
-and full evaluation remain deferred. Each case requires its own passing empty/
-reference controls and fresh actor-boundary check. Only audited setup008 transport
-and metering evidence is reused across tasks; target quality is never reused.
+Three separately registered selected development tasks completed sequentially,
+with their own empty/reference controls and fresh actor boundaries. Setup008
+transport/metering was audited and reused, with zero new setup calls. Target
+quality was not reused. Standalone comparisons and validation remain deferred.
 
-The first v5 assignment, Ansible, passes initial and independent pristine grading
-without Sol. Actual visible outputs show three selected repository tests passing
-and a corrected reproducer checking traversal rejection and destination-root
-extraction. Luna catches and repairs an earlier quoting error. Its supported
-completion statement matches the retained checks. No missed escalation or false
-completion is established, and no handoff is observed. See the
-[Ansible audit](../../results/router-iterations-20261031/ansible-analysis-012/README.md).
+| Episode | Prompt | Initial/fresh | Sol requests | Pre-handoff | Model-rate scenario USD |
+|---|---|---|---|---|---|
+| Ansible012 | v5 | 1/1 | 0 | not applicable | 0.00551832 |
+| Element014 | v5 | 1/1 | 0 | not applicable | 0.01017514 |
+| Tutanota016 | v6 | 1/1 | 1 completed | 1 | 0.12839738 |
 
-All episode inference uses Luna: 152,455 input tokens (119,552 cached), 2,065 output.
-Frozen published-rate scenario cost is USD 0.00551832 per assigned/resolved task;
-actual cash and quota expense remain unknown. Request elapsed time is 29.33s,
-actor phase 43.49s, and generation start through fresh grading 248.39s. Setup
-inference was not repeated. A different successful task cannot demonstrate causal
-prompt improvement, failure-detection recall or expert integration quality.
-Element Web remains in model-free controls and Tutanota has not started at this
-checkpoint; neither is a scored router result. The 24 validation tasks remain
-untouched. This development checkpoint does not change the completed Verified
-95/95 conclusion or establish a new accuracy/savings frontier.
+Ansible runs three relevant repository tests and a corrected traversal/root
+reproducer. Element's old-contract tests fail and type checking exits137; Luna
+acknowledges incomplete behavioral verification but does not create a new-contract
+check. Its passing grades do not establish false completion or missed escalation.
+This mechanism motivates v6, frozen before Tutanota, rather than a task-specific fix.
+
+Tutanota repairs syntax/type failures, voluntarily consults Sol after bounded
+local work, integrates changes and adds focused raw-byte/key-isolation tests.
+Test execution remains blocked by compilation exit137 and native dependency DNS
+failure, and the final response explicitly states incomplete behavioral coverage.
+Its pre-consultation and final sealed patches both pass pristine grading. This
+is successful consultation followed by passing integration, not an observed rescue,
+proof advice was necessary, or evidence of standalone Sol capability. The handoff
+contains detailed candidate/check/uncertainty summaries but omits some relevant
+source; Sol explicitly limits its conclusion about missing branch side effects.
+No additional prompt revision is activated from this one passing consultation.
+
+The [episode exports and series summary](../../results/router-iterations-20261031/README.md)
+join grades, exact patches and validated cumulative-thread token deltas. All
+router/expert/integration inference totals USD0.14409084 in the frozen published-rate
+scenario, USD0.04803028 per assigned/resolved case. Historical setupUSD0.03098282
+is separately disclosed, not repeated. Actual invoice/quota expense, matched-Sol
+saving and retention, and full deployment cost remain unknown. Per-episode
+latencies include different work and are retained separately rather than treated
+as pure inference speed.
+
+The router must be general-purpose. Episodes diagnose mechanisms; task identifiers,
+expected fixes and hidden-test conventions must not enter the prompt. V6 asks
+for evidence of current requirements, distinguishes contradiction from obsolete
+or unavailable evidence, and uses verification appropriate to the task. Noncoding
+tasks do not require code edits or test suites. The
+[generality rule](../research/router-generality.md) and activation record state
+transfer hypotheses, risks and falsification criteria. Transfer requires a
+separately registered diverse task set with policy frozen beforehand.
+
+Three passing adaptive development cases do not establish causal prompt improvement,
+failure-detection recall, population accuracy or95/95. They are not pooled with
+the earlier NodeBB episode,141 Verified assignments or historical500-task replay.
+All24 validation tasks remain untouched; standalone comparisons remain deferred.

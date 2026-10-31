@@ -1,7 +1,8 @@
 # We have to combine — A conversation is all you need
 
 Current Markdown/HTML paper text includes the first NodeBB Pro router result
-and the Ansible v5 checkpoint, both passing fresh grading with zero Sol calls. PDF and Word files remain the older pre-episode working previews;
+and the completed three-case router development series (3/3 fresh passes,
+one completed consultation; pre-handoff candidate also passes). PDF and Word files remain the older pre-episode working previews;
 their recorded visual review applies to those unchanged binaries. Use current
 text and the episode audit for the new result. The broader study remains ongoing.
 
