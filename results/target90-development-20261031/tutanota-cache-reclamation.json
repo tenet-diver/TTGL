@@ -1,0 +1,132 @@
+{
+  "status": "registered_unused_completed_owned_TTGL_image_cache_only",
+  "image": "sha256:6e8b3eb57e23ba0e9965a6bb5fff391beae14bd0be630c9b6980ff9039c745c1",
+  "inspect": [
+    {
+      "Id": "sha256:6e8b3eb57e23ba0e9965a6bb5fff391beae14bd0be630c9b6980ff9039c745c1",
+      "RepoTags": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2:instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b"
+      ],
+      "RepoDigests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:e7b8d6619890971c47d9b9eac31a8ac3c0d3218f3eba3590b5b1be33d00bbbe3"
+      ],
+      "Parent": "",
+      "Comment": "buildkit.exporter.image.v0",
+      "Created": "2026-09-19T02:27:30.71668331Z",
+      "Container": "",
+      "ContainerConfig": {
+        "Hostname": "",
+        "Domainname": "",
+        "User": "",
+        "AttachStdin": false,
+        "AttachStdout": false,
+        "AttachStderr": false,
+        "Tty": false,
+        "OpenStdin": false,
+        "StdinOnce": false,
+        "Env": null,
+        "Cmd": null,
+        "Image": "",
+        "Volumes": null,
+        "WorkingDir": "",
+        "Entrypoint": null,
+        "OnBuild": null,
+        "Labels": null
+      },
+      "DockerVersion": "",
+      "Author": "",
+      "Config": {
+        "Hostname": "",
+        "Domainname": "",
+        "User": "",
+        "AttachStdin": false,
+        "AttachStdout": false,
+        "AttachStderr": false,
+        "Tty": false,
+        "OpenStdin": false,
+        "StdinOnce": false,
+        "Env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "NODE_VERSION=18.20.8",
+          "YARN_VERSION=1.22.22",
+          "PYTEST_ADDOPTS=--tb=short -v --continue-on-collection-errors --reruns=3",
+          "UV_HTTP_TIMEOUT=60",
+          "PYTHONPATH=/app/lib:/app"
+        ],
+        "Cmd": [
+          "tail",
+          "-f",
+          "/dev/null"
+        ],
+        "ArgsEscaped": true,
+        "Image": "",
+        "Volumes": null,
+        "WorkingDir": "/app",
+        "Entrypoint": null,
+        "OnBuild": null,
+        "Labels": null
+      },
+      "Architecture": "amd64",
+      "Os": "linux",
+      "Size": 3174678189,
+      "VirtualSize": 3174678189,
+      "GraphDriver": {
+        "Data": {
+          "LowerDir": "/var/lib/docker/overlay2/45919730038f011b7a8bc28940d9fd46e8cda305b8a8b31fe603d98772e59ccf/diff:/var/lib/docker/overlay2/7f4b535535b08d6918eb619986eae18da2dee159bee348eb6b5605ad8965947b/diff:/var/lib/docker/overlay2/17cd41a380f70f4e0206b5a9c278239f57eb56c176fa29a6f5595837567d56d6/diff:/var/lib/docker/overlay2/220ccfabdd854cf0d2e30185421e0d326922546de17791aba1a9dadcb9a6bd60/diff:/var/lib/docker/overlay2/a9dee38e04aac5e61798fbc27aacd5f69928e752b12dac003b5ca994adef5de6/diff:/var/lib/docker/overlay2/ca572f6242e36c74ee44890c40e0614babff69fe18729cd9a935c4c1da59c21d/diff:/var/lib/docker/overlay2/77a1ea29f27d294e4ddadfcac59a75c3f2b89af33cda055ac9c9b28fcfd251b7/diff:/var/lib/docker/overlay2/acb42e2115f8b8aa978567e2c0ce11d5b33f5e6872f39d603549f5e5c7d989f8/diff:/var/lib/docker/overlay2/4e96b72773f2e11ad0c4283f3c8c4e6c5cad002bfef6336e3b03950888ec2d33/diff:/var/lib/docker/overlay2/811a9521461b6dd3de63e31a5d35978da91d9fb240977788494f6d1a8638ae1e/diff:/var/lib/docker/overlay2/fd8f19c74f9abcc5e3bc808ede42b3e8d08f1697c3347e8391439c8095a9a77c/diff:/var/lib/docker/overlay2/7329ac38f0352a3dd8084d13c9534ddbbee7fefcc84b16154a04e9db6c4f6d0f/diff:/var/lib/docker/overlay2/d20de468f90a5180e747f806f8da3f93ace863f62146897eeb6e8969a5541fb2/diff:/var/lib/docker/overlay2/c954dcd992b5720c78b6c7682c6d256caf27642061740464c0532683cb127b39/diff:/var/lib/docker/overlay2/809ee7484c7feb5543a4b78cde48c69ef38701578add85215db1a72ceed2a020/diff:/var/lib/docker/overlay2/01b3d6c5ba98b32f1bf224c6f4dcf6ff0126b9fa3c6edd513a1a40e4f6f464e6/diff:/var/lib/docker/overlay2/f69d3b883dd312cd99ad00771517e2057b1664dad28752d3a1b75849f94e3b81/diff:/var/lib/docker/overlay2/eb8f03d6506ede09867ad1f3a9de784cba3fa6bb1cbfc0eac2465c4290e80071/diff:/var/lib/docker/overlay2/5c8973443b74961a0d01ee5cc774a46dbd4d2cd0ef6c3cf860fbc5b8140cf72e/diff:/var/lib/docker/overlay2/fdeb0d78c63185171ccd15d72cce7044e7980941320b9d3d285aecd72cb6389a/diff:/var/lib/docker/overlay2/8e6c44a954f85eea24d7842940735f333bfc6d1dc4c65892888b87a681935588/diff:/var/lib/docker/overlay2/5c2a2fb11541339e45622c0aa5a7e6bd9d0c48b44aa76d6717e9d06cb712be8f/diff:/var/lib/docker/overlay2/c3678c60e30472aec54d0ce4c72c0a4b525e82904e195389f8494015e6f987be/diff:/var/lib/docker/overlay2/e7868b43c73a3e8f6abf53ecb4503511b939f0da3457114edf87a7f796115cf1/diff:/var/lib/docker/overlay2/a7b5550eb45fa7a5ef3b63de66fc12780af60a7d815facef38bc81cfe18b6930/diff:/var/lib/docker/overlay2/2a3f41996afe4c05102dcdbfb3d706ef90905ad9c65b7ad6a6f297a48afa107c/diff:/var/lib/docker/overlay2/ceee870914a82be25d008d8c2bcaa2b55fbdf4fed8533b2a9a4da22db874cc3e/diff:/var/lib/docker/overlay2/5cd256f106f9250f176bd903b2c47f9204e9b711cb61d956d5d1bb1fb19240d1/diff",
+          "MergedDir": "/var/lib/docker/overlay2/676fd9bf0d8e317956ccd4f08f419d1128114f2fc8154117c487cd027daebed5/merged",
+          "UpperDir": "/var/lib/docker/overlay2/676fd9bf0d8e317956ccd4f08f419d1128114f2fc8154117c487cd027daebed5/diff",
+          "WorkDir": "/var/lib/docker/overlay2/676fd9bf0d8e317956ccd4f08f419d1128114f2fc8154117c487cd027daebed5/work"
+        },
+        "Name": "overlay2"
+      },
+      "RootFS": {
+        "Type": "layers",
+        "Layers": [
+          "sha256:46cd9334c732eba726ffed1b7680a375255fecf545c6c27725ac606783b3843c",
+          "sha256:c2bd79eb35895e350cfb6abdaffa174731235985946a5b94fd8dcb9e87c9ebc3",
+          "sha256:cbcdd855543d24cefc41ed2e91fb8f5436fdc2bc8031f9d9b5cc82424aeb885f",
+          "sha256:9e15a12edab08d20723c74644670b8eeb5a759935501a4783fa2068c8f7ee09a",
+          "sha256:73357a6e6376fe3256af2a5b40abbc1bae47d355c9dbe0485c45f2b63d2e04e3",
+          "sha256:079745fc50b64913178581105f9c3638ce513bb84ec76d7874c2bd04aa213f5a",
+          "sha256:150e43e4a614964b8419ff06191acfafa93f475f54fc61c41c10532de0b33c73",
+          "sha256:0b59bf473816a6b1207942e9544d33368c77ed5bb9fa2de9a64bff825f152287",
+          "sha256:d9fd90a80dbde9a4c48a09d2f3c58f26fd2d7f621ce28d631aa7542b39465824",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:cc64bd07cf551f32692fc651270147ec411e55a859a660497ee0fb1ca21d5221",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:a321a233efb57699b3c9a5ab93fe71a3bacc698b5dc0c2f03323dc42ea5a4faa",
+          "sha256:fdfde591f04de245151c7cbf9f1fd2872974323407c58e4ca0e63dffa33c4d4a",
+          "sha256:31ef110f100160d570fb7f13a074a510d427603ac74ef7be246aa9f119dc4cd0",
+          "sha256:75a22c2d2b0c82711824b89e8e5098dac247b6e812009573e68854de37f22e4b",
+          "sha256:9c9f2cde062a055fd4cfc9ff95b359962b42028b34d0cf1a8d3f2d216cf14516",
+          "sha256:bde520006cfcca38e4ca227c7e93f69d702d4ea891521af4ef98d0c4a3ed8b7f",
+          "sha256:74c6c5a57a186246d174a8ac6c4a8a795b4dee7b9e3341d55fb22dc6000a23fb",
+          "sha256:b2349638686c8162282a7f679e30272c34b63659a5149187f70a957296992014",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:788622d22d6edc97e46be5e0032bc87bd441bbb78b574284b7fb1ea3cb9de182",
+          "sha256:e0f1d56a647c19dfb1f635e83d631cbe3c22db34f7f346453d52af49b7ccb23b",
+          "sha256:a212e4a03c1a81a9029744fa8c59c8cbffb0516e2de8436cab599743cd30d15d",
+          "sha256:6a4d1083bad39a99cdfc1af7387b757be79c828f73a84adaf964cb9d913ecaa9",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:ac28d613e46f876c3498deb24a1179105674fd381e5f58756c300faa3d4c6e1a",
+          "sha256:509db4cd9b769f512fde2d24fcdf311012add2a38d7ea2833c15de4ee45abf14",
+          "sha256:ab87c63bb369d629862dbbce181c94c8cfef97d43a53cebf4803508c2e8fb2d5"
+        ]
+      },
+      "Metadata": {
+        "LastTagTime": "2026-10-31T19:29:42.251779859Z"
+      }
+    }
+  ],
+  "evidence_sha256": {
+    "results/router-iterations-20261031/tutanota-router-016/completion.json": "a43d5bc19083aeec9dfcd1030426c8daaf758fceeeb37e3965eff71fe6c9d55c",
+    "results/router-iterations-20261031/tutanota-analysis-016/summary.json": "13372f9f3e1390c71b282d0706bfc673906257291d6da0d150ed68d98f820351"
+  },
+  "reason": "Working margin for fresh replay and still-unstarted Luna before12GiB reserve; all raw/sealed evidence preserved",
+  "command": [
+    "docker",
+    "image",
+    "rm",
+    "sha256:6e8b3eb57e23ba0e9965a6bb5fff391beae14bd0be630c9b6980ff9039c745c1"
+  ]
+}
