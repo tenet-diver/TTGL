@@ -375,6 +375,8 @@
     "candidate": "v7 consolidated general common/routing policy, corrected transport",
     "validation": "24 tasks untouched until candidate freeze and separate registration",
     "monitoring": "PAUSED; active research goal in this chat, not scheduled monitor",
-    "jira_key": "FAST-99"
+    "jira_key": "FAST-99",
+    "confluence_url": "https://fastestswarm.atlassian.net/wiki/spaces/FASTEST/pages/19103791",
+    "confluence_status": "published_and_read_back"
   }
 }
