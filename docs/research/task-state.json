@@ -363,7 +363,10 @@
   "current_router_unit": {
     "plan": "experiments/router-teleport-20261031/plan.json",
     "owner": "current active chat after user disabled heartbeat",
-    "status": "existing controls017 active, no router call yet",
-    "monitoring": "scheduled automation PAUSED"
+    "status": "router018 launched after controls017 pass",
+    "monitoring": "scheduled automation PAUSED",
+    "pid": 3271,
+    "jira_key": "FAST-97",
+    "protocol": "experiments/router-teleport-20261031/teleport-router-018.json"
   }
 }

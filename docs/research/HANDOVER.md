@@ -1858,3 +1858,12 @@ heartbeat turn ended after launching controls017; this chat now owns the already
 registered Teleport unit. Preserve supervisorPID95296, no duplicate controls.
 Continue exactly one018 router assignment only after own controls pass, using
 frozen general-purpose v6 and validated setup008 transport-only reuse.
+
+
+## Teleport018 launched in active chat, monitoring disabled
+
+Controls017 pass0/1. Native cross-task transport-only setup008 reuse audit passed,
+zero new setup calls. Protocol teleport-router-018.json freezes general v6 and
+all target/private/control/source hashes. SupervisorPID3271, claim unique; exactly
+one router assignment. FAST-97 In Progress. Current chat owns through final audit.
+Heartbeat PAUSED by user, do not resume. No retries or other units concurrently.
