@@ -10,5 +10,24 @@
     "prompts/controller-v6-contract-evidence.txt": "7289947d2bbbad040e58b0846b0dddf48423e9d902dde4f23a8d6326b43f18d9",
     "tests/test_router_contract_optional.py": "69237c0b3797d3ed3e5422d0abe5b76194ffdbf84cb1cf87d23b15415f338c22"
   },
-  "generalization_constraint": "User explicitly requires general-purpose routing, no benchmark-specific prompt tuning. Review mechanisms against task-agnostic principles; different development successes do not prove transfer."
+  "generalization_constraint": "User explicitly requires general-purpose routing, no benchmark-specific prompt tuning. Review mechanisms against task-agnostic principles; different development successes do not prove transfer.",
+  "mechanism_review": {
+    "observed": "Actor acknowledged obsolete checks and unavailable broad checking, then stopped with no positive check for current requirements. Final grade passed, so this is a verification-process gap, not established task failure.",
+    "general_rule": "Seek evidence for current requirements; separate contradiction, outdated evidence and unavailable evidence; continue useful bounded work or delegate a specific unresolved question.",
+    "why_transfer_is_plausible": "Old requirements and unsupported completion occur in coding, data analysis, document work and operational tasks; use domain-appropriate observations rather than a benchmark-specific trigger. Plausibility is not demonstrated transfer.",
+    "falsification_and_risks": [
+      "Extra verification consumes budget without improving independent success",
+      "Actor misclassifies a real regression as an obsolete assertion",
+      "Actor asks experts for unavailable execution rather than useful reasoning",
+      "Rigid repair counts produce redundant attempts or consume integration time",
+      "Improvement disappears on a fresh diverse task set"
+    ],
+    "policy_invariants": [
+      "No task identifiers, expected patches or hidden evaluator details",
+      "No automatic escalation based on an evaluator or benchmark outcome",
+      "No forced code changes on noncoding tasks",
+      "Preserve contradictory evidence and unresolved unknowns",
+      "No claims of improvement from prompt text or adapter tests"
+    ]
+  }
 }
