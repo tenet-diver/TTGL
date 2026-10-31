@@ -2,8 +2,8 @@
   "schema_version": 1,
   "destination": "https://fastestswarm.atlassian.net",
   "project_name": "Fastest",
-  "jira_sync_status": "blocked_no_atlassian_mcp_tools_or_authentication",
-  "note": "Local work item IDs below are not Jira issue keys. No remote issues have been created.",
+  "jira_sync_status": "authenticated_current_continuation_tracked",
+  "note": "Historical local work IDs remain local. Current router continuation is tracked in FAST-95; historical tasks were not bulk imported.",
   "tasks": [
     {
       "id": "local-01",
@@ -302,5 +302,13 @@
     "project_usage": "docs/research/project-usage-guide.md",
     "standard_benchmark_audit": "docs/research/swe-replay-audit.md",
     "policy_development": "First four original tasks are development only; v2 prompts frozen with twelve new matched assignments; successful positive-token preflights; no scored development assignments yet."
+  },
+  "current_continuation": {
+    "protocol": "experiments/swe-pro-prompt-001/pro-pipeline-protocol-010.json",
+    "status": "one_router_assignment_started",
+    "setup": "008 reused after evidence audit, zero new setup calls",
+    "jira_key": "FAST-95",
+    "jira_url": "https://fastestswarm.atlassian.net/browse/FAST-95",
+    "confluence_status": "pending_actual_run_analysis"
   }
 }

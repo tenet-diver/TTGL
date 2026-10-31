@@ -2,6 +2,7 @@
 """One registered Pro preflight/replay and four-arm block; never retry inference."""
 import argparse
 import hashlib
+import fcntl
 import json
 import os
 from pathlib import Path
@@ -61,12 +62,157 @@ def audit_native(records):
     return manifest
 
 
+def audit_thread_deltas(records):
+    previous = {}
+    for line in (records/'controller/events.jsonl').read_text().splitlines():
+        event = json.loads(line)
+        if event.get('event') != 'response':
+            continue
+        if (event.get('status') != 'completed' or event.get('usage_accounting_issues')
+                or event.get('usage_scope') != 'thread_cumulative' or not event.get('thread_id')):
+            raise RuntimeError('Reusable setup needs completed, metered cumulative-thread responses')
+        key = (event['model'], event['thread_id'])
+        prior = previous.get(key, {})
+        for field in personal.USAGE_FIELDS:
+            current, delta = event['usage'][field], event['usage_delta'][field]
+            before = prior.get(field, 0)
+            if current is None or before is None:
+                if delta is not None:
+                    raise RuntimeError('Unknown cumulative usage cannot produce a known delta')
+            elif (type(current) is not int or type(before) is not int
+                  or current < before or delta != current-before):
+                raise RuntimeError('Cumulative-thread token delta does not reconcile')
+        previous[key] = event['usage']
+
+
+def audit_reused_setup(protocol, current_image):
+    """Read-only audit; never executes a job, reseals an artifact, or calls a model."""
+    reuse = protocol['reuse_setup']
+    inventory = reuse['artifacts_sha256']
+    for name, expected in inventory.items():
+        if digest(name) != expected:
+            raise RuntimeError('Reusable setup inventory changed: '+name)
+    def bound(path):
+        path = Path(path).resolve()
+        if inventory.get(str(path)) != digest(path):
+            raise RuntimeError('Unbound or changed reusable setup artifact: '+str(path))
+        return path
+    source_protocol_path = bound(reuse['source_protocol'])
+    source = json.loads(source_protocol_path.read_text())
+    old = Path(reuse['source_output']).resolve()
+    if source['task_id'] != protocol['task_id']:
+        raise RuntimeError('Reusable setup belongs to a different task')
+    if source['controls_summary'] != protocol['controls_summary']:
+        raise RuntimeError('Reusable setup controls changed')
+    if list(old.glob('first-block-*')) or list((old/'jobs').glob('first-block-*')):
+        raise RuntimeError('Prior scored assignment exists or is uncertain; do not repeat it')
+    queue = json.loads(bound(old/'queue.json').read_text())
+    if queue['protocol_sha256'] != digest(source_protocol_path):
+        raise RuntimeError('Original setup protocol binding does not match')
+    for name, expected in source['source_sha256'].items():
+        if digest(name) == expected:
+            continue
+        change = reuse.get('allowed_source_changes', {}).get(name)
+        if (name not in (str(ROOT/'scripts/continue_pro_rescue.py'),
+                         str(ROOT/'src/ttgl/router_development.py')) or not change
+                or change['from_sha256'] != expected
+                or change['to_sha256'] != digest(name)
+                or protocol['source_sha256'].get(name) != digest(name)
+                or digest(bound(change['archived_source'])) != expected):
+            raise RuntimeError('Original setup source changed without an audited amendment: '+name)
+    image = json.loads(bound(old/'image-binding.json').read_text())
+    if image['image_id'] != current_image:
+        raise RuntimeError('Reusable setup image differs from current task image')
+    def native(job):
+        paths = list((old/'jobs'/job).glob('*/result.json'))
+        if len(paths) != 1:
+            raise RuntimeError('Ambiguous reusable native job: '+job)
+        path = bound(paths[0])
+        value = json.loads(path.read_text())
+        if (value.get('exception_info') or value.get('task_name', '').split('/')[-1] != protocol['task_id']
+                or value.get('verifier_result', {}).get('rewards', {}).get('reward') != 0):
+            raise RuntimeError('Reusable setup has an invalid task or negative control grade')
+        return path, value
+    native_path, original = native('native-preflight-001')
+    replay_path, replay_native = native('native-preflight-replay-001')
+    meta = original['agent_result']['metadata']
+    records = Path(meta['private_records_path']).resolve()
+    if not records.is_relative_to(Path(source['private_records_root']).resolve()):
+        raise RuntimeError('Reusable private records are outside their registered root')
+    for path in records.rglob('*'):
+        if path.is_file() and path.name != '.lock':
+            bound(path)
+    if digest(records/'controller/manifest.json') != meta['manifest_sha256']:
+        raise RuntimeError('Reusable native manifest changed')
+    manifest = audit_native(records)
+    audit_thread_deltas(records)
+    models = {'gpt-6-luna', 'gpt-6.1-sol'}
+    if (set(manifest['usage_by_model']) != models or manifest['status'] != 'completed_ungraded'
+            or manifest.get('usage_accounting_issues') or manifest['expert_calls'] < 1):
+        raise RuntimeError('Reusable setup model identity, completion, or consultation is invalid')
+    for model in models:
+        usage = manifest['usage_by_model'][model]['usage']
+        if any(type(usage[k]) is not int or usage[k] <= 0 for k in ('input_tokens', 'output_tokens')):
+            raise RuntimeError('Reusable setup needs positive per-model metering')
+        native_usage = original['agent_result']['model_usage'][model]
+        if any(native_usage[k] != usage[field] for k, field in
+               [('n_input_tokens', 'input_tokens'), ('n_cache_tokens', 'cached_input_tokens'),
+                ('n_output_tokens', 'output_tokens')]):
+            raise RuntimeError('Native and private per-model usage disagree')
+    final = records/'final.patch'
+    sealed = records/'sealed-replay-source'/protocol['task_id']
+    seal = json.loads(bound(sealed/'seal.json').read_text())
+    if (not final.stat().st_size or digest(final) != meta['final_patch_sha256']
+            or seal['native_result_sha256'] != digest(native_path)
+            or digest(sealed/'agent/model.patch') != digest(final)):
+        raise RuntimeError('Reusable sealed final patch provenance failed')
+    for name, expected in seal['patches_sha256'].items():
+        if Path(name).name != name or digest(bound(sealed/'agent'/name)) != expected:
+            raise RuntimeError('Reusable sealed patch changed')
+    snapshot = json.loads((records/'pre-handoff.json').read_text())
+    if digest(records/'pre-handoff.patch') != snapshot['patch_sha256']:
+        raise RuntimeError('Reusable pre-handoff patch changed')
+    preflight = meta['preflight']
+    if json.loads((records/'preflight.json').read_text()) != preflight:
+        raise RuntimeError('Private preflight does not match native metadata')
+    observed = preflight['boundary_observations']
+    if (preflight['status'] != 'real_actor_native_handoff_preflight_passed_replay_still_required'
+            or observed['git_status'] != '' or observed['outside_head_commits'] != 0
+            or any(observed[k] is not False for k in
+                   ('private_path_visible', 'public_endpoint_reachable', 'witness_ignored'))):
+        raise RuntimeError('Original actor boundary did not pass')
+    replay = json.loads(bound(replay_path.parent/'agent/replay.json').read_text())
+    if (Path(replay['patch']).resolve() != (sealed/'agent/model.patch').resolve()
+            or not witness_replay_passed(0, 0, replay, preflight['witness'])):
+        raise RuntimeError('Reusable witness replay did not pass')
+    return {'status': 'completed_setup_reused_after_evidence_audit',
+            'source_output': str(old), 'native_result': str(native_path),
+            'native_grade': 0, 'fresh_grade': 0, 'expert_calls': manifest['expert_calls'],
+            'setup_usage': manifest['usage'], 'setup_usage_by_model': manifest['usage_by_model'],
+            'new_setup_model_calls': 0, 'benchmark_accuracy_claim': False,
+            'artifact_count': len(inventory), 'fresh_actor_boundary_required': True}
+
+
+def setup_stage(protocol, current_image, fresh_setup):
+    # Selecting reuse is fail-closed: invalid evidence never falls back to inference.
+    if 'reuse_setup' in protocol:
+        return audit_reused_setup(protocol, current_image)
+    if protocol.get('setup_mode') != 'fresh_authorized':
+        raise RuntimeError('Register explicit setup reuse or fresh setup authorization')
+    return fresh_setup()
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--protocol', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     protocol = json.loads(args.protocol.read_text())
+    lock_path = ROOT/'artifacts'/('pro-pipeline-'+hashlib.sha256(
+        protocol.get('task_id', 'unregistered').encode()).hexdigest()[:16]+'.lock')
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    run_lock = lock_path.open('a+')
+    fcntl.flock(run_lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     out = args.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
     def verify():
@@ -172,24 +318,29 @@ def main():
             return reward,replay_json
 
         records_root = Path(protocol['private_records_root'])
-        pre_path,pre_native,pre_reward = job('native-preflight-001','ttgl.harbor_preflight:NativeProPreflight',
-                                            [('private_records_root',records_root)])
-        pre_meta = pre_native['agent_result']['metadata']
-        if pre_meta.get('preflight',{}).get('status') != 'real_actor_native_handoff_preflight_passed_replay_still_required':
-            raise RuntimeError('Real actor preflight metadata missing')
-        sealed,manifest,_ = sealed_source(pre_path,pre_native)
-        reward,replay_json = replay('native-preflight-replay-001',sealed,'model.patch')
-        witness = pre_meta['preflight']['witness']
-        if not witness_replay_passed(pre_reward, reward, replay_json, witness):
-            raise RuntimeError('Witness replay did not preserve the expected negative task control')
-        write(out/'real-preflight.json', {'status':'real_actor_native_handoff_and_pristine_witness_replay_passed',
-            'native_result':str(pre_path),'native_grade':pre_reward,'fresh_grade':reward,
-            'expert_calls':manifest['expert_calls'],'setup_usage':manifest['usage'],
-            'benchmark_accuracy_claim':False})
+        def fresh_setup():
+            pre_path,pre_native,pre_reward = job('native-preflight-001','ttgl.harbor_preflight:NativeProPreflight',
+                                                [('private_records_root',records_root)])
+            pre_meta = pre_native['agent_result']['metadata']
+            if pre_meta.get('preflight',{}).get('status') != 'real_actor_native_handoff_preflight_passed_replay_still_required':
+                raise RuntimeError('Real actor preflight metadata missing')
+            sealed,manifest,_ = sealed_source(pre_path,pre_native)
+            reward,replay_json = replay('native-preflight-replay-001',sealed,'model.patch')
+            witness = pre_meta['preflight']['witness']
+            if not witness_replay_passed(pre_reward, reward, replay_json, witness):
+                raise RuntimeError('Witness replay did not preserve the expected negative task control')
+            return {'status':'real_actor_native_handoff_and_pristine_witness_replay_passed',
+                'native_result':str(pre_path),'native_grade':pre_reward,'fresh_grade':reward,
+                'expert_calls':manifest['expert_calls'],'setup_usage':manifest['usage'],
+                'benchmark_accuracy_claim':False}
+        write(out/'real-preflight.json', setup_stage(protocol, frozen_image, fresh_setup))
 
         rates = json.loads(Path(protocol['rate_scenario']).read_text())['models']
         rows = []
         for arm in protocol['first_block_order']:
+            if protocol.get('assignment_claim'):
+                write(Path(protocol['assignment_claim']), {'protocol_sha256': digest(args.protocol),
+                      'task_id': task_id, 'arm': arm, 'status': 'claimed_before_scored_invocation'})
             condition = arm if arm in ('small','large') else 'personal'
             mode = 'required_review' if arm=='required_review' else 'verification'
             path,native,initial = job('first-block-'+arm,protocol.get('agent_import_path', 'ttgl.harbor_routing_agent:RoutingDiagnosticCodex'),

@@ -1628,3 +1628,33 @@ private records root, controls007 summary and raw setup008 are absent here;
 remains non-writable. Receipt: `results/host-continuation-20261031/readiness.json`.
 Connect the original desktop or transfer sealed research evidence to a writable
 Codex host before validated setup reuse. Do not rerun completed setup calls.
+
+## Active continuation preparation: setup008 reuse on original Mac
+
+The current user requested exactly one unstarted router assignment. This chat owns
+continuation009 preparation; no other supervisor should launch it. Raw setup008,
+controls007 and all42 registered source paths are present on this original Mac.
+No transfer/credential copying is needed. No research workers were live at audit.
+The old heartbeat chat is idle; its scheduled runs must inspect this entry and
+avoid duplicate work. New pipeline uses a per-task OS lock and an exclusive
+assignment claim before a scored invocation. Setup reuse audit/tests are being
+completed before registration/launch. Do not edit generation sources or launch
+another setup or scored attempt while this continuation is active.
+
+
+## Continuation010 launched: reuse008, one unstarted router assignment
+
+Protocol010 is frozen; supervisor PID18187, log artifacts/pro-router-development-010.log,
+output results/swe-pro-prompt-001/router-development-010. Exactly one optional router
+assignment authorized; no new setup inference. Explicit setup reuse audits60 pinned
+artifacts, native controls, sealed final/pre-handoff patches, actual witness replay,
+original source bindings with archived amended files and cumulative-thread deltas.
+39 reuse/pipeline/boundary/router checks pass; real raw reuse audit passes.
+Actor runs a fresh model-free boundary check before inference. Per-task flock
+and exclusive assignment claim prevent concurrent or repeated starts. Do not
+change frozen generation sources or launch another supervisor. Latest user asks
+to continue through this assignment, independent grading, analysis and documentation.
+Original Mac private evidence exists; no migration/credential transfer needed.
+Codex ChatGPT login and supported model/list confirm both requested model IDs;
+Docker healthy,56GiB free. Fastest Atlassian connector now authenticated; sync
+publication is authorized by latest user, superseding older no-publication note.
