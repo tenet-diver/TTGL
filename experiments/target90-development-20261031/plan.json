@@ -1,0 +1,59 @@
+{
+  "status": "registered_before_new_controls_and_model_calls",
+  "registered_at": "2026-10-31T22:07:40.528085+00:00",
+  "objective": {
+    "model_rate_scenario_cost_ratio_max": 0.1,
+    "observed_accuracy_delta_min": 0,
+    "comparator": "matched gpt-6.1-sol-only",
+    "decision_panel": "fresh held-out panel after candidate freeze; development not final proof",
+    "actual_cash_and_subscription_quota_savings": null
+  },
+  "tasks": [
+    {
+      "task_id": "instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+      "repository": "flipt-io/flipt"
+    },
+    {
+      "task_id": "instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2",
+      "repository": "navidrome/navidrome"
+    },
+    {
+      "task_id": "instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77",
+      "repository": "protonmail/webclients"
+    },
+    {
+      "task_id": "instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+      "repository": "internetarchive/openlibrary"
+    },
+    {
+      "task_id": "instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171",
+      "repository": "qutebrowser/qutebrowser"
+    },
+    {
+      "task_id": "instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+      "repository": "NodeBB/NodeBB"
+    }
+  ],
+  "selection": "All six remaining original development reservations in order, no replacements or outcome selection",
+  "models": [
+    "gpt-6-luna",
+    "gpt-6.1-sol"
+  ],
+  "first_candidate": "v7 consolidated general policy, same common solving/verification guidance for router and Sol",
+  "arms": [
+    "large",
+    "optional"
+  ],
+  "scored_assignment_cap": 12,
+  "per_task_cap": 2,
+  "automatic_retries": 0,
+  "expert_calls_max_per_router": 2,
+  "task_budget_seconds": 2940,
+  "execution": "Sequential task units; order large/optional counterbalanced by original task index before inference; both complete and independently grade before next task. No current-source edits while a unit is active.",
+  "policy_revision": "Only between development units from general mechanisms, separately versioned. No benchmark-specific rules. No favorable stopping or swapping cases. Report adaptive versions separately.",
+  "held_out_inference_authorized_in_this_protocol": 0,
+  "validation_access": "24 reserved tasks remain untouched until selection and separate frozen evaluation registration",
+  "monitoring": "PAUSED; active-chat execution only",
+  "billing_scope": "All controller/router/expert/retry/integration inference included; unknown usage/cost stays null; scenario is not invoice/quota saving",
+  "uncertainty": "Default no observed resolution-count loss; no population noninferiority claim without appropriate statistical evidence"
+}

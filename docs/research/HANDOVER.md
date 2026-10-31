@@ -1955,3 +1955,27 @@ Current unit complete; no active supervisor/next assignment. FAST-98 tracks
 completion. Scheduled monitoring remains PAUSED by user, no replacement. Future
 active-chat continuation requires next original development reservation/new cap.
 Preserve all raw untracked logs, sealed records and archived transport evidence.
+
+
+## New target90/no-quality-drop active research objective
+
+User says keep going until90% cost reduction with no quality drop. Active chat
+objective created; monitor remains PAUSED. Default interpretation communicated:
+>=90% all-role published-rate inference scenario reduction, observed held-out
+resolution count >= matched Sol; not invoice/quota or population equivalence.
+Async optional question pending about statistical noninferiority; development
+continues without touching held-out tasks. Prior95/95 failure evidence immutable.
+
+Registered target90-development-20261031/plan.json covers remaining original
+index6..11 tasks, in order, two arms large/optional,12 assignments cap, zero
+validation inference, no replacements/retries/favorable stopping. First candidate
+v7 consolidates common verification for both arms and voluntary routing separately,
+without stacking older prompt versions. No task-specific triggers; activation
+record has mechanism/risks. Matched Sol is required by new target and supersedes
+prior standalone deferral only for new paired units. Corrected transport shared.
+
+Flipt controls021 supervisorPID62576 active; no scored v7 model call registered
+yet. Current chat owns this development plan. New pair runner validates two
+distinct immutable claims, source freeze and all-role cumulative deltas. Next
+register022 only after own controls pass, test v7/pair wiring and validate amended
+setup008 reuse. No new setup calls. Existing raw histories preserved.

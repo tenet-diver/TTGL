@@ -1,0 +1,23 @@
+{
+  "status": "registered_before_first_v7_inference",
+  "registered_at": "2026-10-31T22:12:15.381459+00:00",
+  "basis": "Vuls early consultation after dependency-only edit with no checked main repair; repeated incomplete verification; separate transport PATH defect already corrected with model-free evidence",
+  "mechanism": "Consolidate general solving/verification once, separate voluntary routing from common policy, require observable attempt record or concrete early exception; self-contained source and verified integration",
+  "generality": "No repository/task identifiers, expected patches, benchmark-specific triggers or hidden grades. Checks fit domain; no mandatory edits/tests for irrelevant tasks.",
+  "comparison": "Same v7 common policy and corrected transport for Sol-only and router; routing guidance only where expert action is available. No forced review.",
+  "change_scope": "Separately versioned backend; archivedv2/v3/v4/v6 prompts not stacked or modified; supported Codex/MCP transport, context-only expert and snapshot mechanism retained",
+  "risks": [
+    "More stated rules may still not improve actual compliance",
+    "Independent work can waste budget or integration time",
+    "Compact packets can omit decisive context",
+    "Comparing different development tasks cannot establish causal prompt gain"
+  ],
+  "falsification": "Keep failures, premature requests, unsupported completion, unnecessary expert use and failed integration. Do not tune held-out outcomes.",
+  "new_model_calls": 0,
+  "sha256": {
+    "src/ttgl/cost_quality_router.py": "a3a8ab49e30b6a171a6608bb2315eb811369b410f5cc17da01b171b91d970e92",
+    "prompts/controller-v7-common.txt": "667cb62034f2497e72f2ddc4670f47816c979e5894803e217be8be0540c5039b",
+    "prompts/controller-v7-routing.txt": "a8edba0611dab0c9c1d401b716ae6a464f6095b57af9e7e16f35a70f82c1df0c",
+    "tests/test_cost_quality_router_optional.py": "7099efc794ad82fd42abef49cfedc14b214ba0241382131dd79bc69019324f71"
+  }
+}

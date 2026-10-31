@@ -1,0 +1,14 @@
+{
+  "status": "48_focused_tests_passed_before_v7_inference",
+  "new_model_calls": 0,
+  "scope": "Policy forwarding/shared common vs routing, resumed/expert behavior and permissions, source freeze, pair scopes/claims/quality/cost/error handling, setup reuse, bridge/isolation fixtures. Not task-quality evidence.",
+  "source_sha256": {
+    "src/ttgl/cost_quality_router.py": "a3a8ab49e30b6a171a6608bb2315eb811369b410f5cc17da01b171b91d970e92",
+    "scripts/continue_pro_rescue.py": "17534af83f48622b536e4479ba4d9e8e3feeb0352db98e73c47a113019fa8a58",
+    "tests/test_cost_quality_router_optional.py": "7099efc794ad82fd42abef49cfedc14b214ba0241382131dd79bc69019324f71",
+    "tests/test_pro_pipeline_audit.py": "99199644ae4b2d6edcf4abbcc6064a19ab7b438001f74a916637f0f8d525c8db",
+    "tests/test_pro_setup_reuse.py": "c8417810a2e4a02365517636e2a4dd0f5e15add808cc448fe2d1ff4f99c93b02",
+    "prompts/controller-v7-common.txt": "667cb62034f2497e72f2ddc4670f47816c979e5894803e217be8be0540c5039b",
+    "prompts/controller-v7-routing.txt": "a8edba0611dab0c9c1d401b716ae6a464f6095b57af9e7e16f35a70f82c1df0c"
+  }
+}

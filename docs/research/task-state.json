@@ -361,18 +361,18 @@
     "monitor": "PAUSED by explicit user instruction; continue active chat only"
   },
   "current_router_unit": {
-    "plan": "experiments/router-vuls-20261031/plan.json",
+    "task": "flipt",
+    "status": "model-free controls021 active",
+    "pid": 62576,
     "owner": "active chat",
-    "status": "completed_Vuls020_final_pass_after_early_delegation",
-    "pid": null,
-    "monitoring": "PAUSED by user, unchanged",
-    "next_action": "Future separately registered task must bind transport-amendment.json and disclose changed transport; v6 unchanged; monitoring PAUSED",
-    "protocol": "experiments/router-vuls-20261031/vuls-router-020.json",
-    "jira_key": "FAST-98",
-    "public_verification_tools": "Fresh image probe finds go and gofmt at /usr/local/go/bin; actor execution still independently observed",
-    "analysis": "results/router-vuls-20261031/vuls-analysis-020/summary.json",
-    "pre_handoff_scope": "dependency-only edit, grade0; no checked substantive repair",
-    "jira_status": "Done",
-    "transport_fix": "Non-login bridge preserves image PATH;10 runtime/transport/isolation/router tests and27 reuse/pipeline tests pass; real amended reuse audit0 new model calls"
+    "monitoring": "PAUSED"
+  },
+  "active_target90": {
+    "plan": "experiments/target90-development-20261031/plan.json",
+    "status": "active_development_before_matched_inference",
+    "metric": "at least90% all-role model-rate scenario saving, no observed held-out count loss vs matched Sol; optional stricter statistical criterion question pending",
+    "candidate": "v7 consolidated general common/routing policy, corrected transport",
+    "validation": "24 tasks untouched until candidate freeze and separate registration",
+    "monitoring": "PAUSED; active research goal in this chat, not scheduled monitor"
   }
 }

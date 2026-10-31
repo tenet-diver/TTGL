@@ -1,0 +1,7 @@
+{
+  "image_tag": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+  "image_pinned": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5@sha256:2f7f1326835b2423e79b7225a9e384c25ff38ada8ea8b3c10da3b0223865b7ee",
+  "architecture": "amd64",
+  "os": "linux",
+  "registry_compressed_layer_bytes": 1839312138
+}

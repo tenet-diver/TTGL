@@ -1,0 +1,77 @@
+{
+  "status": "registered_new_development_task_model_free_controls",
+  "agents": [
+    "nop",
+    "oracle"
+  ],
+  "model_calls_authorized": 0,
+  "scored_assignments_authorized": 0,
+  "prior_native_audit": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/analysis-002/independent-audit.json",
+  "image_tag": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+  "image_pinned": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5@sha256:2f7f1326835b2423e79b7225a9e384c25ff38ada8ea8b3c10da3b0223865b7ee",
+  "registry_compressed_layer_bytes": 1839312138,
+  "incoming_image_allowance_bytes": 6442450944,
+  "incoming_image_allowance_kind": "conservative_staging_budget_not_known_uncompressed_image_size",
+  "disk_guard_bytes": 12884901888,
+  "max_resource_wait_seconds": 7200,
+  "environment_import_path": "ttgl.harbor_docker_network:DetachedNetworkDocker",
+  "docker_config": "/Users/rustameynaliyev/Developer/TTGL/artifacts/harbor-docker-public-config-001",
+  "harbor": "/Users/rustameynaliyev/Developer/TTGL/artifacts/harbor-runtime-001/bin/harbor",
+  "task_directory": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/v2/tasks",
+  "source_sha256": {
+    "/Users/rustameynaliyev/Developer/TTGL/scripts/continue_pro_controls.py": "978ec215d7cf8fd6768fc0d9f97b1d41153cd82707a1eb77385e0b894cabaf4a",
+    "/Users/rustameynaliyev/Developer/TTGL/src/ttgl/harbor_docker_network.py": "33913af0bd8542537b214ba2e7d3655f06172b8a6378672101a61064ca955f21",
+    "/Users/rustameynaliyev/Developer/TTGL/requirements-harbor-macos-intel.lock": "b006cf6da6e345b5f5eff08116028c13ca0cff85245c619ec2ce64667a1646d9",
+    "/Users/rustameynaliyev/Developer/TTGL/results/swe-pro-prompt-001/harbor-network-fixture-004.json": "5454203cc45354aef14c97d879779325e2d3ce7a823c58f2dfd0dbd08d633e40",
+    "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/analysis-002/independent-audit.json": "d9f52b50dcbb528b7fccad2bb5f28f2b31aa10f1a27097b8d3f25202023ea914",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/harbor-docker-public-config-001/config.json": "042bab2aad8ab69bf7226ceb4a443f004311772de877d384db420c4da223f9bd",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/v2/tasks/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/environment/Dockerfile": "13ffb1f5961500774217661e91da64b97266484e4f0051b24ff215d3eaad69b3",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/v2/tasks/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/instruction.md": "dd6f30b5653fbf3318314416a343feba0b03d0731b7c70e06abff80cfc48b7a6",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/v2/tasks/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/solution/gold_patch.diff": "4909d24b751669ea3b4da0951d812dea7faa03d2ef4a63aa3dda0da8374aa96b",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/v2/tasks/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/v2/tasks/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/task.toml": "a328cdb17b4391954ecd6b05e7e29972d5328ebebc006da0594b9033df163163",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/v2/tasks/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/tests/config.json": "d33725106b5c096218f6f9b1942e2ab0728145bc3dd84072d47e870e6e1127eb",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/v2/tasks/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/tests/parser.py": "fedec88f7bb3094f8c694a517fc4894d26cc508a5e932fd2099a0355dbcbd81a",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/v2/tasks/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/tests/run_script.sh": "3eb2c79416c0f25e36109b1295cab7e16aae0433c2e757ebb51525d462086567",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/v2/tasks/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/v2/tasks/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/tests/test_patch.patch": "bd393bd0ed546911be3a254e8086f136390503d410cad3bb4665b79756e3b63a",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/v2/tooling/patch_replay.py": "5c8b344de37164e9723f1724c2573013957fb644c3913a64c12c1718c737d876",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5/preparation.json": "bc74bea7e140c3980408ce6969996bffc63cbd59d08ac9243bd3e8cab5eb39c8",
+    "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/plan.json": "caf311488525d099061f5cba25d62f76a023337344e58d419541a449e9904733",
+    "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/flipt-preparation/image-binding.json": "890a11b724a756c5f707f7adbcad9ea7f14739c1c1f98be2f3a3e87ee6105cee"
+  },
+  "retries": 0,
+  "supersedes_failed_setup": null,
+  "failure_policy": "Preserve unique attempts and stop; no model inference in this supervisor; no automatic scored pipeline",
+  "registered_at": "2026-10-31T22:07:57.154453+00:00",
+  "continuation_reconciliation": [
+    {
+      "directory": "/Users/rustameynaliyev/Developer/TTGL/results/swe-pro-prompt-001/environment-controls-003",
+      "stopped": {
+        "status": "stopped_no_model_calls_authorized",
+        "error": "RuntimeError: Resource wait expired before image preparation; no model call"
+      },
+      "invocations": [],
+      "jobs_present": false
+    },
+    {
+      "directory": "/Users/rustameynaliyev/Developer/TTGL/results/swe-pro-prompt-001/first-block-004",
+      "stopped": {
+        "status": "stopped_preserve_all_attempts_do_not_retry_blindly",
+        "error_type": "ProcessLookupError",
+        "message": "[Errno 3] No such process"
+      },
+      "invocations": [],
+      "jobs_present": false
+    }
+  ],
+  "prior_pull_failure": {
+    "status": "stopped_no_model_calls_authorized",
+    "error": "CalledProcessError: Command '['docker', 'pull', 'ghcr.io/scaleapi/swe-bench_pro-v2:instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e@sha256:0c1bda3771a33dc39070bf3b130b7217a352a144a7e2a9e1360d88113840ed1b']' returned non-zero exit status 1."
+  },
+  "prior_control_execution": false,
+  "recovery_evidence": "control006 pulled pinned image, Harbor daemon preflight failed before jobs; current default/task-config docker info both pass in under 10 seconds",
+  "architecture": "amd64",
+  "os": "linux",
+  "task_id": "instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5"
+}

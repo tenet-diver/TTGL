@@ -77,3 +77,47 @@ def test_new_untracked_witness_is_verified_from_successful_patch_application():
     assert not pipeline.witness_replay_passed(1, 0, replay, 'witness.txt')
     assert not pipeline.witness_replay_passed(0, 0, {**replay, 'apply_rc': 1}, 'witness.txt')
     assert not pipeline.witness_replay_passed(0, 0, {**replay, 'apply_out': 'Checking patch witness.txt...'}, 'witness.txt')
+
+
+def pair_protocol(tmp_path):
+    return {'matched_pair_development':True,'first_block_order':['large','optional'],
+            'scored_assignment_cap':2,'assignment_claims':{
+                'large':str(tmp_path/'sol.json'),'optional':str(tmp_path/'router.json')}}
+
+
+def test_matched_pair_requires_distinct_registered_assignment_claims(tmp_path):
+    protocol=pair_protocol(tmp_path)
+    pipeline.validate_matched_pair(protocol)
+    protocol['assignment_claims']['optional']=protocol['assignment_claims']['large']
+    with pytest.raises(RuntimeError):pipeline.validate_matched_pair(protocol)
+
+
+@pytest.mark.parametrize('fault',['extra-arm','wrong-cap','missing-claim','router-only'])
+def test_invalid_matched_scope_refused_before_inference(tmp_path,fault):
+    protocol=pair_protocol(tmp_path)
+    if fault=='extra-arm':protocol['first_block_order'].append('small')
+    elif fault=='wrong-cap':protocol['scored_assignment_cap']=0
+    elif fault=='missing-claim':protocol['assignment_claims'].pop('large')
+    else:protocol['router_only_development']=True
+    with pytest.raises(RuntimeError):pipeline.validate_matched_pair(protocol)
+
+
+def test_matched_summary_keeps_quality_loss_and_unknown_cost_visible():
+    rows=[{'task_id':'same','arm':'large','resolved':True,'cost_scenario_usd':1.0},
+          {'task_id':'same','arm':'optional','resolved':False,'cost_scenario_usd':0.05}]
+    result=pipeline.matched_pair_observation(rows)
+    assert result['sol_success_lost'] is True
+    assert result['resolved_delta']==-1
+    assert result['scenario_saving']==pytest.approx(0.95)
+    assert result['population_noninferiority_claim'] is False
+    rows[1]['cost_scenario_usd']=None
+    assert pipeline.matched_pair_observation(rows)['scenario_saving'] is None
+    rows[1]['task_id']='other'
+    with pytest.raises(RuntimeError):pipeline.matched_pair_observation(rows)
+
+
+@pytest.mark.parametrize('cost',[-1,float('nan'),float('inf')])
+def test_matched_summary_rejects_invalid_cost(cost):
+    rows=[{'task_id':'same','arm':'large','resolved':True,'cost_scenario_usd':1.0},
+          {'task_id':'same','arm':'optional','resolved':True,'cost_scenario_usd':cost}]
+    with pytest.raises(RuntimeError):pipeline.matched_pair_observation(rows)

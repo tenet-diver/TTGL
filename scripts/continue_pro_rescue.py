@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import fcntl
 import json
+import math
 import os
 from pathlib import Path
 import shutil
@@ -254,6 +255,41 @@ def audit_controls(protocol):
     return summary
 
 
+def validate_matched_pair(protocol):
+    if not protocol.get('matched_pair_development'):
+        return
+    order = protocol['first_block_order']
+    claims = protocol.get('assignment_claims', {})
+    if (len(order) != 2 or set(order) != {'large', 'optional'}
+            or protocol.get('router_only_development')
+            or protocol.get('scored_assignment_cap') != 2
+            or set(claims) != set(order)
+            or len({str(Path(p).resolve()) for p in claims.values()}) != 2):
+        raise RuntimeError('Matched pair requires exactly Sol/router and two distinct claims')
+
+
+def matched_pair_observation(rows):
+    if len(rows) != 2 or {r['arm'] for r in rows} != {'large', 'optional'}:
+        raise RuntimeError('Require one complete matched Sol/router pair')
+    by_arm = {r['arm']:r for r in rows}
+    if len({r['task_id'] for r in rows}) != 1:
+        raise RuntimeError('Matched assignments belong to different tasks')
+    sol, router = by_arm['large'], by_arm['optional']
+    costs = (sol['cost_scenario_usd'], router['cost_scenario_usd'])
+    if any(c is not None and (not math.isfinite(c) or c < 0) for c in costs):
+        raise RuntimeError('Invalid model-cost scenario')
+    ratio = costs[1]/costs[0] if all(c is not None for c in costs) and costs[0] > 0 else None
+    return {'status':'single_development_pair_not_final_target_evidence',
+            'task_id':sol['task_id'], 'sol_resolved':sol['resolved'],
+            'router_resolved':router['resolved'],
+            'resolved_delta':int(router['resolved'])-int(sol['resolved']),
+            'sol_success_lost':bool(sol['resolved'] and not router['resolved']),
+            'router_extra_success':bool(router['resolved'] and not sol['resolved']),
+            'model_cost_ratio':ratio, 'scenario_saving':1-ratio if ratio is not None else None,
+            'actual_cash_saving':None, 'population_noninferiority_claim':False,
+            'interpretation':'Keep all registered development pairs; freeze before held-out evaluation'}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--protocol', type=Path, required=True)
@@ -276,6 +312,7 @@ def main():
                             'protocol_sha256':digest(args.protocol), 'no_automatic_retries':True})
     controls = Path(protocol['controls_summary'])
     try:
+        validate_matched_pair(protocol)
         while not controls.exists():
             os.kill(protocol['controls_queue_pid'], 0)
             time.sleep(10)
@@ -343,6 +380,7 @@ def main():
                     or digest(records/'controller/manifest.json') != meta['manifest_sha256']):
                 raise RuntimeError('Native task/manifest provenance does not match private records')
             manifest = audit_native(records)
+            audit_thread_deltas(records)
             final = records/'final.patch'
             if digest(final) != meta['final_patch_sha256']:
                 raise RuntimeError('Authoritative final patch changed')
@@ -392,8 +430,10 @@ def main():
         rates = json.loads(Path(protocol['rate_scenario']).read_text())['models']
         rows = []
         for arm in protocol['first_block_order']:
-            if protocol.get('assignment_claim'):
-                write(Path(protocol['assignment_claim']), {'protocol_sha256': digest(args.protocol),
+            claim = (protocol['assignment_claims'][arm] if protocol.get('matched_pair_development')
+                     else protocol.get('assignment_claim'))
+            if claim:
+                write(Path(claim), {'protocol_sha256': digest(args.protocol),
                       'task_id': task_id, 'arm': arm, 'status': 'claimed_before_scored_invocation'})
             condition = arm if arm in ('small','large') else 'personal'
             mode = 'required_review' if arm=='required_review' else 'verification'
@@ -420,7 +460,9 @@ def main():
                 'private_manifest_sha256':digest(Path(native['agent_result']['metadata']['private_records_path'])/'controller/manifest.json')})
             write(out/('completed-'+arm+'.json'),rows[-1])
         write(out/'records.json',rows)
-        if protocol.get('router_only_development'):
+        if protocol.get('matched_pair_development'):
+            write(out/'matched-pair.json', matched_pair_observation(rows))
+        elif protocol.get('router_only_development'):
             if len(rows) != 1 or rows[0]['arm'] != 'optional':
                 raise RuntimeError('Router-only unit requires one voluntary router assignment')
             write(out/'router-observation.json', {'status': 'development_observation_not_matched_comparison',
