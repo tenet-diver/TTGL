@@ -2081,3 +2081,17 @@ this explicit path and uses its sibling image-binding. Do not fabricate a summar
 in the stopped original directory. Corrected Sol Navidrome cost USD0.172766.
 Unused completed Navidrome cache removed after artifact-manifest validation.
 24 validation tasks untouched, monitoringPAUSED, active-chat owner continues.
+
+
+## Protonmail026 matched pair ACTIVE
+
+Recovered own controls025 pass nop0/oracle1,0 model calls. Pair026 PID96569
+registered against recovered summary and native results, source-bound; Sol first
+then voluntary Luna by counterbalance. Same general v7, corrected transport,
+fresh actor boundary both arms. Setup008 transport/metering reuse audit0 newcalls.
+Protocol experiments/target90-development-20261031/protonmail-pair-026.json;
+log artifacts/target90-protonmail-026.log. Source freeze until BOTH arms and
+pre/final replays finish. Do not modify bound generation, prompts or metadata.
+Current2/6 audited pairs unchanged; next original index9 Openlibrary027/028
+only after full026 audit. Preserve stopped original025 prejob failure separately,
+no native control or model repeat.24 validation untouched, monitoringPAUSED.

@@ -362,15 +362,15 @@
   },
   "current_router_unit": {
     "task": "protonmail",
-    "status": "model-free controls025-recovery active after prejob Harbor Docker readiness failure; no prior native job or model call",
-    "pid": 87526,
-    "protocol": "experiments/target90-development-20261031/protonmail-control-025-recovery.json",
+    "status": "matched pair026 active after completed model-free recovered controls025; Sol first then Luna",
+    "pid": 96569,
+    "protocol": "experiments/target90-development-20261031/protonmail-pair-026.json",
     "owner": "active chat",
     "monitoring": "PAUSED"
   },
   "active_target90": {
     "plan": "experiments/target90-development-20261031/plan.json",
-    "status": "2/6 matched development pairs audited; Sol2/2 router2/2,93.8785% aggregate scenario saving; Protonmail controls025 active",
+    "status": "2/6 matched development pairs audited; Sol2/2 router2/2,93.8785% aggregate scenario saving; Protonmail026 active",
     "metric": "at least90% all-role model-rate scenario saving, no observed held-out count loss vs matched Sol; optional stricter statistical criterion question pending",
     "candidate": "v7 consolidated general common/routing policy, corrected transport",
     "validation": "24 tasks untouched until candidate freeze and separate registration",
