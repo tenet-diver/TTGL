@@ -2061,3 +2061,23 @@ image compressed5.78GB so watch disk during pull. Pair026 only after own control
 pass; same v7 and Sol first. No task-specific policy amendment. Validation24
 untouched. Monitoring PAUSED, active chat owns series, next held-out separately
 registered only after candidate selection/freeze. Do not rerun completed units.
+
+
+## Protonmail025 prejob control failure; model-free recovery ACTIVE
+
+Image pull complete pinned,11.66GB unpacked. Original025 nop invocation failed
+at Harbor official Docker readiness (generic message conflates called-process
+error and10second timeout), before jobs directory/native task/container creation.
+Zero model calls, no completed/uncertain task execution. Current default and
+task-config Docker info pass, official DetachedNetworkDocker.preflight passes
+in1.48s. No daemon restart required or claimed. Preserve stopped/output markers.
+Evidence-bound protocol protonmail-control-025-recovery.json registered; supervisor
+PID87526 runs ONLY never-started nop/oracle in separate controls025-recovery
+output, explicitly resolves cached image digest using unchanged controls script.
+Proof results/target90-development-20261031/protonmail-preflight-recovery-proof.json.
+Pair026 unregistered; require recovered own controls pass, then register_pair
+helper with controls_override absolute recovered summary path. Helper now accepts
+this explicit path and uses its sibling image-binding. Do not fabricate a summary
+in the stopped original directory. Corrected Sol Navidrome cost USD0.172766.
+Unused completed Navidrome cache removed after artifact-manifest validation.
+24 validation tasks untouched, monitoringPAUSED, active-chat owner continues.

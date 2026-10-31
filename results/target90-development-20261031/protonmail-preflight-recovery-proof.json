@@ -1,0 +1,14 @@
+{
+  "status": "official_Harbor_preflight_now_passes_no_prior_native_job",
+  "original_controls": "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/protonmail-controls-025",
+  "failed_stage": "Harbor10second_Docker_preflight_before_job_creation",
+  "exact_original_cause": "Transient failure or timeout not distinguishable from generic Harbor message; current Docker/official readiness pass, do not assert daemon was stopped",
+  "official_preflight_returncode": 0,
+  "stdout": "official_preflight_passed\n",
+  "stderr": "",
+  "elapsed_seconds": 1.477135385852307,
+  "image_id": "sha256:2350726d86e4249b2cb539f919f62b729dc5852517a8336e90c4c54bcb5bd91f",
+  "no_native_jobs_created": true,
+  "no_model_calls": true,
+  "cached_pull_resolution_explicit": "Existing pinned image revalidated by unchanged controls script; no repeated control/evaluator/model execution"
+}

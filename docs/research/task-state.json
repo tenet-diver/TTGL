@@ -362,9 +362,9 @@
   },
   "current_router_unit": {
     "task": "protonmail",
-    "status": "model-free controls025 active, Navidrome024 independently audited after partial continuation",
-    "pid": 79408,
-    "protocol": "experiments/target90-development-20261031/protonmail-control-025.json",
+    "status": "model-free controls025-recovery active after prejob Harbor Docker readiness failure; no prior native job or model call",
+    "pid": 87526,
+    "protocol": "experiments/target90-development-20261031/protonmail-control-025-recovery.json",
     "owner": "active chat",
     "monitoring": "PAUSED"
   },
