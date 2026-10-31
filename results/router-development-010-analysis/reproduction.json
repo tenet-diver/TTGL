@@ -1,0 +1,6 @@
+{
+  "status": "exact_summary_reproduced_from_real_artifacts",
+  "summary_sha256": "347cb234d7ca2fd4ad3cb172bd37f97595451dec61db65f0fef1ea4ec84ba94b",
+  "new_model_calls": 0,
+  "new_grader_jobs": 0
+}

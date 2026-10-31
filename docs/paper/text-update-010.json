@@ -1,0 +1,28 @@
+{
+  "status": "paper_text_updated_binary_previews_explicitly_older",
+  "result_summary_sha256": "347cb234d7ca2fd4ad3cb172bd37f97595451dec61db65f0fef1ea4ec84ba94b",
+  "files": {
+    "paper.pdf": {
+      "sha256": "89d35b32a3adeb06cd164f954307a69ab1a5226acda5ebb4d3b916be38ac68dc",
+      "status": "unchanged_pre_episode_binary_preview"
+    },
+    "paper.docx": {
+      "sha256": "e411c9ff36381437b758d175d783dcaca32399fbd6584dde7f640f79bfd71ced",
+      "status": "unchanged_pre_episode_binary_preview"
+    },
+    "paper.md": {
+      "sha256": "0a4200ca33e6bde3a6df0c46def399b5f1dbcd1fd38492d23383d6380d4f6778",
+      "status": "updated_with_audited_pro_episode"
+    },
+    "paper.html": {
+      "sha256": "3e39159788084622e9086a5dc3ae90b0cfdc9e2c1cfc32b4b7693f5206a9fa1d",
+      "status": "updated_with_audited_pro_episode"
+    },
+    "live-routing-results.md": {
+      "sha256": "b4b8c45fa97a72d32d291076aaf7f3d1dfa08b48802d6c1c66ae11d5d65a6a17",
+      "status": "updated_with_audited_pro_episode"
+    }
+  },
+  "binary_qa": "Earlier visual-review receipts apply only to unchanged PDF/DOCX; no new visual QA claim",
+  "new_model_inference_for_writing": 0
+}

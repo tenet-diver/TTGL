@@ -1,0 +1,24 @@
+diff --git a/src/controllers/write/users.js b/src/controllers/write/users.js
+index 8b7e483ba..29b5657e8 100644
+--- a/src/controllers/write/users.js
++++ b/src/controllers/write/users.js
+@@ -44,7 +44,18 @@ Users.exists = async (req, res) => {
+ };
+ 
+ Users.get = async (req, res) => {
+-	helpers.formatApiResponse(200, res, await user.getUserData(req.params.uid));
++	const { uid } = req.params;
++	const [userData, settings, isAdmin, isGlobalModerator] = await Promise.all([
++		user.getUserData(uid),
++		user.getSettings(uid),
++		privileges.users.isAdministrator(req.uid),
++		privileges.users.isGlobalModerator(req.uid),
++	]);
++	if (parseInt(req.uid, 10) !== parseInt(uid, 10) && !isAdmin && !isGlobalModerator) {
++		userData.email = settings.showemail && !meta.config.hideEmail ? userData.email : '';
++		userData.fullname = settings.showfullname && !meta.config.hideFullname ? userData.fullname : '';
++	}
++	helpers.formatApiResponse(200, res, userData);
+ };
+ 
+ Users.update = async (req, res) => {

@@ -1,5 +1,11 @@
 # We have to combine — A conversation is all you need
 
+Latest Pro development: **one voluntary Luna-router task passed initial and
+independent fresh grading, with zero Sol consultations**. Setup008 was audited
+and reused with no repeated model calls. This is one selected development task,
+not evidence of routing benefit or 95/95. See the
+[episode audit](results/router-development-010-analysis/README.md).
+
 **Using small language models as conversational routers for agentic software engineering.**
 
 The hypothesis is lower **total cost** with minimal performance degradation through continuing small-model ↔ expert conversations: questions, clarification, challenge, revision and tested integration. Personal memory and learning are optional extensions. Closely related architectures already exist; this is a replication and controlled extension, not a first-architecture claim.

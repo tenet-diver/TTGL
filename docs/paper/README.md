@@ -1,5 +1,10 @@
 # We have to combine — A conversation is all you need
 
+Current Markdown/HTML paper text includes the first Pro router result (1/1,
+zero Sol calls). PDF and Word files remain the older pre-episode working previews;
+their recorded visual review applies to those unchanged binaries. Use current
+text and the episode audit for the new result. The broader study remains ongoing.
+
 **Using small language models as conversational routers for agentic software engineering.**
 
 Working previews: read the [PDF](paper.pdf), edit the [Word document](paper.docx), or open the

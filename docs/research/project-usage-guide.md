@@ -58,6 +58,33 @@ models in this protocol. Record the exact CLI version, requested model and any
 returned service/model revision. See [the metering guide](codex-metering.md) for
 a fresh-thread plus resumed-thread usage check.
 
+## Current verification and handoff lessons
+
+The first Pro router episode passed independent grading without Sol, while Luna
+acknowledged that it had not run endpoint tests. Correctness on that selected task
+does not make lint adequate behavioral verification or prove that consulting Sol
+would help. Record correctness, observed checks, consultation decisions and any
+verified integration separately. The [episode audit](../../results/router-development-010-analysis/README.md)
+contains the evidence and accounting limits.
+
+Prefer a bounded executable check that can distinguish a wrong candidate from a
+correct one. Give Luna 2–3 meaningfully different checked repair attempts before
+help, with a justified exception when no credible useful step is available.
+Do not force extra edits just to reach a count. Distinguish infrastructure from
+reasoning failure and reserve integration time. If help is useful, send Sol the
+goal and constraints, relevant source and candidate patch, prior approaches,
+exact checks and outcomes, lessons, ruled-out explanations and a focused question.
+Sol cannot inspect the workspace or certify checks it did not run; Luna verifies
+any adopted advice. Retain important command exit statuses as well as output.
+
+For experimental continuation, a new output directory is not sufficient to repeat
+completed inference. The Pro runner requires validated setup reuse or explicit
+fresh-setup registration and uses an exclusive assignment claim. Never remove a
+claim to bypass an uncertain call. Transfer research evidence only with authorized
+access and content hashes; never copy credentials. Current one-task inference
+scenario cost is USD 0.00741304, with no measured invoice, quota saving or
+matched-Sol retention estimate. The next verification prompt candidate is unrun.
+
 ## Start with one bounded project task
 
 Create a clean project branch or use your normal isolated development checkout.

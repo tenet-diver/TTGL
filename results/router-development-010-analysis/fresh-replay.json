@@ -1,0 +1,7 @@
+{
+ "task": "instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+ "patch": "/Users/rustameynaliyev/Developer/ttgl-router-development-010/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/personal/f8978837a5664e8b8164303e51d348b7/sealed-replay-source/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/agent/model.patch",
+ "apply_rc": 0,
+ "apply_out": "Checking patch src/controllers/write/users.js...\nApplied patch src/controllers/write/users.js cleanly.\n",
+ "post_apply_diffstat": " src/controllers/write/users.js | 13 ++++++++++++-\n 1 file changed, 12 insertions(+), 1 deletion(-)\n---\n1\n"
+}

@@ -1,5 +1,29 @@
 # Experimental Luna / Sol adapter for SWE-bench Pro V2
 
+## Current completed continuation
+
+Protocol010 ran exactly one voluntary router assignment: initial and independent
+fresh grades pass, with zero Sol requests. Earlier queue and pending-control
+passages below are historical. See the [audited episode](../../results/router-development-010-analysis/README.md).
+
+The runner now requires explicit `reuse_setup` evidence or explicit
+`setup_mode=fresh_authorized`; a new output folder does not authorize repeated
+setup inference. Reuse checks the original protocol/queue, a pinned artifact
+inventory, original source bindings and archived amendments, exact task/image,
+sealed patches, boundary observations, witness replay and cumulative-thread token
+deltas. Missing or corrupt evidence stops without falling back to another call.
+Protocol010 reused setup008 after a 60-artifact audit. All 39 reuse, pipeline,
+router and boundary checks passed; no setup inference was repeated.
+
+A per-task OS lock and exclusive assignment claim prevent concurrent/repeated
+starts. Do not delete a claim merely to retry uncertain inference. The scored
+actor rechecks clean tree/history, hidden paths, a host-only sentinel and direct-IP
+egress before inference. This narrow check is not a universal isolation proof.
+Original Mac records were available; no migration or credential copying was needed.
+A new host must obtain and validate the actual raw records and sealed patches.
+The one successful episode demonstrates no consultation or rescue benefit.
+
+
 The pre-inference amendment `experiments/swe-pro-prompt-001/routing-protocol-002.json`
 now defines the next four-arm matrix: matched v3 standalone Luna/Sol, optional
 routing and required review. `ttgl.harbor_routing_agent:RoutingDiagnosticCodex`

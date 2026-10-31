@@ -257,6 +257,12 @@
       "status": "target_defined_reserving_new_tasks_not_run",
       "artifact": "docs/research/delegation-policy-development.md",
       "study_scope": "general_delegation_policy"
+    },
+    {
+      "id": "local-pro-router-010",
+      "title": "Reuse completed setup008, run and audit exactly one voluntary Pro router episode",
+      "status": "completed",
+      "jira_key": "FAST-95"
     }
   ],
   "runpod_budget": {
@@ -305,10 +311,16 @@
   },
   "current_continuation": {
     "protocol": "experiments/swe-pro-prompt-001/pro-pipeline-protocol-010.json",
-    "status": "one_router_assignment_started",
+    "status": "completed_exactly_one_router_assignment",
     "setup": "008 reused after evidence audit, zero new setup calls",
     "jira_key": "FAST-95",
     "jira_url": "https://fastestswarm.atlassian.net/browse/FAST-95",
-    "confluence_status": "pending_actual_run_analysis"
+    "confluence_status": "published_and_read_back",
+    "outcome": "initial1/fresh1; zero expert requests",
+    "analysis": "results/router-development-010-analysis/summary.json",
+    "next_prompt": "unrun v5 completion-evidence candidate; no next task launched",
+    "confluence_url": "https://fastestswarm.atlassian.net/wiki/spaces/FASTEST/pages/19103748/TTGL+first+voluntary+Pro+router+result",
+    "jira_status": "Done",
+    "confluence_verified": true
   }
 }

@@ -1658,3 +1658,51 @@ Original Mac private evidence exists; no migration/credential transfer needed.
 Codex ChatGPT login and supported model/list confirm both requested model IDs;
 Docker healthy,56GiB free. Fastest Atlassian connector now authenticated; sync
 publication is authorized by latest user, superseding older no-publication note.
+
+
+## Continuation010 complete: one Pro success without consultation
+
+Exactly ONE unstarted voluntary router assignment ran; initial official grade1
+and independent pristine replay grade1. Supervisor18187 exited normally; no
+additional assignment is authorized by protocol010. Never restart010 or remove
+its assignment claim. Setup008 was audited/reused, with zero repeated setup
+model calls. All24 reserved validation tasks remain untouched; no standalone
+comparisons, second task, training or full evaluation launched.
+
+Evidence and deterministic no-inference analyzer:
+results/router-development-010-analysis/README.md and summary.json;
+scripts/analyze_router_episode.py. Exact native/sealed patch/replay provenance
+and cumulative-thread deltas reconcile.39 pre-run reuse/pipeline/boundary/router
+checks and2 analysis cost/latency checks pass. Raw setup/private evidence exists
+on this original Mac; no migration transfer or credential copying was needed.
+
+New episode:333186 input including301184 cached,2402 output including reasoning;
+one outer controller invocation, zero Sol requests/completed consultations.
+Frozen published-rate scenario USD0.00741304 per assigned/resolved task.
+Request elapsed39.73s, actor phase54.15s, generation through fresh grade203.51s.
+Historic setup usage112615 input/1631 output and scenarioUSD0.03098282 remain
+separate; no new setup inference. Invoices, quota saving, matched-Sol saving
+and accuracy retention unknown. One selected public dev task does not prove
+95/95 or generalization; original141 Verified assignments remain unchanged.
+
+12 visible shell requests show lint correction and successful final lint/diff
+checks, no endpoint tests. Luna explicitly acknowledged incomplete runtime
+verification and chose complete. Since independent grade passes, do NOT label
+this a false-success claim or missed failure/escalation. No functional failure
+opportunities or handoffs were observed; failure-detection recall and expert
+integration quality cannot be estimated. Default2–3 checked repairs applies
+before help, not forced extra edits after every candidate.
+
+Prepared UNRUN v5 completion-evidence addition and candidate registration;
+no demonstrated improvement, no backend wired or next-task invocation. Next
+research unit requires a separate development-task/protocol/source freeze;
+keep validation sealed and preserve all existing attempts. While this chat
+finishes publication, heartbeat/other chats must not launch extra inference.
+
+Paper Markdown/HTML, current result chapter and practical project guide updated.
+PDF/Word deliberately remain older, unchanged working previews; their old QA
+receipts apply only to those binaries. text-update-010.json records current
+text hashes and unchanged binary hashes. No new full visual-QA claim.
+Fastest connector is authenticated: FAST-95 completed and Confluence page19103748
+published/read back. Current-user publication authorization supersedes the old
+heartbeat prohibition. No architecture novelty or proven economic gain claimed.

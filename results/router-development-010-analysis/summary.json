@@ -1,0 +1,110 @@
+{
+  "status": "audited_single_development_episode",
+  "task_id": "instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+  "assigned": 1,
+  "resolved": 1,
+  "initial_grade": 1.0,
+  "fresh_grade": 1.0,
+  "observed_success_fraction": 1.0,
+  "illustrative_exact_binomial_95_interval": [
+    0.025,
+    1.0
+  ],
+  "uncertainty": "Illustrative iid binomial interval only; one selected public development task is not a population sample or evidence of reliable routing/noninferiority.",
+  "outcome_class": "solved_without_consultation",
+  "expert_requests_attempted": 0,
+  "completed_consultations": 0,
+  "native_requests_by_role": {
+    "controller": 1
+  },
+  "usage": {
+    "input_tokens": 333186,
+    "cached_input_tokens": 301184,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2402,
+    "reasoning_output_tokens": 479
+  },
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 333186,
+        "cached_input_tokens": 301184,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2402,
+        "reasoning_output_tokens": 479
+      },
+      "observed_partial": {
+        "input_tokens": 333186,
+        "cached_input_tokens": 301184,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2402,
+        "reasoning_output_tokens": 479
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "published_rate_scenario_cost_per_assigned_usd": 0.00741304,
+  "published_rate_scenario_cost_per_resolved_usd": 0.00741304,
+  "actual_cash_cost_usd": null,
+  "subscription_quota_savings": null,
+  "accuracy_retention_vs_sol": null,
+  "saving_vs_matched_sol": null,
+  "cost_scope": "All episode controller/router/expert/integration inference; frozen historical token rates, not invoice or full deployment cost.",
+  "setup_already_completed_reused": {
+    "new_model_calls": 0,
+    "usage": {
+      "input_tokens": 112615,
+      "cached_input_tokens": 85120,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1631,
+      "reasoning_output_tokens": 298
+    },
+    "historical_scenario_cost_usd": 0.03098282
+  },
+  "latency_seconds": {
+    "native_model_and_tools": 39.7273117469158,
+    "native_actor_phase": 54.152819,
+    "generation_environment_and_initial_grading": 118.709004,
+    "independent_fresh_replay": 72.497717,
+    "generation_start_to_fresh_grade": 203.51333
+  },
+  "visible_tool_requests": 12,
+  "final_controller_response": {
+    "action": "complete",
+    "question": "",
+    "context": "",
+    "summary": "Decision record: Acceptance property is that regular users\u2019 requests for another user through `/api/v3/users/:uid` hide email and fullname when the global settings or target\u2019s display settings disable them, while self, admin, and global moderator visibility remains intact. Check: `./node_modules/.bin/eslint src/controllers/write/users.js` and `git diff --check` both passed. The legacy unauthenticated route\u2019s existing privacy behavior is unchanged. Remaining gap: I did not run endpoint tests, so the new v3 response behavior and legacy route behavior were not exercised end to end. Next action: complete. Justification: the v3 handler now applies the privacy filtering rules and the source passes lint; runtime behavior remains unverified.\n\nUpdated `Users.get` in `src/controllers/write/users.js` to retrieve target settings and blank restricted private fields for regular callers viewing another user. The check considered the self-view boundary and privileged callers; those retain their previous fields. Verification status: incomplete for runtime acceptance. No test suite was run."
+  },
+  "fresh_actor_boundary": {
+    "status": "fresh_actor_boundary_passed_before_router_inference",
+    "observations": {
+      "head": "d9e2190a6b4b6bef2d8d2558524dd124be33760f",
+      "git_status": "",
+      "outside_head_commits": 0,
+      "private_path_visible": false,
+      "public_endpoint_reachable": false,
+      "witness_ignored": false
+    },
+    "scope": "Hidden paths plus host sentinel, clean HEAD/history, direct-IP egress probe; not universal isolation proof"
+  },
+  "pre_handoff_grade": null,
+  "provenance": {
+    "/Users/rustameynaliyev/Developer/TTGL/experiments/swe-pro-prompt-001/pro-pipeline-protocol-010.json": "93b19d5d29e68e48d1f068991f8948de76582a1bdc1ac69a15a056752232b8a4",
+    "/Users/rustameynaliyev/Developer/TTGL/results/swe-pro-prompt-001/router-development-010/jobs/first-block-optional/instance_NodeBB__NodeBB-97c8569a__7ceFJdP/result.json": "1b9d4ef74845a7e6368c766ede49e6f3c8987faa0d2057c7a70f1ab3c1009662",
+    "/Users/rustameynaliyev/Developer/TTGL/results/swe-pro-prompt-001/router-development-010/jobs/first-block-optional-fresh/instance_NodeBB__NodeBB-97c8569a__fWEvMeX/result.json": "d67a06a853f47148d5001900baf98af65e3eb99eecaaa85d5346c1a01a4434c1",
+    "/Users/rustameynaliyev/Developer/ttgl-router-development-010/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/personal/f8978837a5664e8b8164303e51d348b7/controller/manifest.json": "8e5c1da7210e2260caa5650ffda12e265050a01ff469cb6fb9f9724ea1303281",
+    "/Users/rustameynaliyev/Developer/ttgl-router-development-010/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/personal/f8978837a5664e8b8164303e51d348b7/controller/events.jsonl": "ef2f446a4028316a441053ea8f3c5355a22f0ee71fafaf0d1c6f061af686140e",
+    "/Users/rustameynaliyev/Developer/ttgl-router-development-010/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/personal/f8978837a5664e8b8164303e51d348b7/visible-tool-trace.jsonl": "0b461c92d49bdf82fc792bdd0080d0fe05e4136569042e6c09eaea96a67fbf3a",
+    "/Users/rustameynaliyev/Developer/ttgl-router-development-010/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/personal/f8978837a5664e8b8164303e51d348b7/final.patch": "2ffad3a488a8a56ef452d2a06d0363902bda46c287125b63323aac2f6c82fb41",
+    "/Users/rustameynaliyev/Developer/ttgl-router-development-010/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/personal/f8978837a5664e8b8164303e51d348b7/sealed-replay-source/instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/seal.json": "205c579177a329af843b04c7feea9fc155afab3ba01bd1f6f2db86406b5add38",
+    "/Users/rustameynaliyev/Developer/TTGL/results/swe-pro-prompt-001/router-development-010/jobs/first-block-optional-fresh/instance_NodeBB__NodeBB-97c8569a__fWEvMeX/agent/replay.json": "4296d5253daf1e2270dcc3ba0304592ec4d0aabb78fd57dd85dcab2106d1f392",
+    "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/rate-scenario.json": "24337a4fbe01bd97c0a8034c97e7f940779d207a388111dd3c19601919a49328"
+  },
+  "validation_tasks_used": 0
+}

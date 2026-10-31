@@ -1,6 +1,54 @@
 # Does routing rescue small-model failures?
 
-The current held-out fallback policy has not improved over standalone Luna.
+## First voluntary Pro router episode
+
+Exactly one new voluntary router assignment ran on the first reserved NodeBB
+SWE-bench Pro development task. Initial official grading and independent pristine
+replay both pass: **1/1**, with one Luna controller invocation and **zero Sol
+requests**. Completed setup008 (including two earlier expert consultations) was
+reused after auditing 60 pinned artifacts, source bindings, sealed patches and
+cumulative-thread metering. No setup model call was repeated. A fresh model-free
+actor isolation probe passed before the scored call. See the
+[episode audit](../../results/router-development-010-analysis/README.md).
+
+Measured input is 333,186 tokens including 301,184 cached; output is 2,402 tokens
+including reasoning. The frozen published-rate inference scenario is
+**USD 0.00741304 per assigned and resolved task**. Request elapsed time is
+39.73 seconds; the actor phase including harness work is 54.15 seconds, and
+initial generation start through fresh grading is 203.51 seconds. These measure
+different work; none is pure model inference latency. Historical setup has a
+separate scenario cost of USD 0.03098282; no new setup inference occurred.
+Actual cash expense, subscription-quota saving, matched-Sol saving and relative
+accuracy retention remain unknown. Hardware, orchestration and grading expenses
+are not included in this model-inference scenario.
+
+The 12 visible shell requests show a lint correction and successful final ESLint
+and diff checks, but no endpoint test execution. Luna explicitly acknowledged
+incomplete runtime verification before choosing complete. Since the independent
+final grade passes, this is an acknowledged verification gap on a successful
+episode, not an observed false-success claim or missed escalation. No functional
+failure opportunities were observed during solving. Failure-detection recall,
+expert handoff and integration quality are therefore not measurable here. Tool
+syntax and lint corrections are not distinct semantic repair strategies.
+
+The default 2–3 checked independent attempts applies before asking Sol, not a
+requirement to invent more changes after every candidate. The next v5 addition
+emphasizes discriminating behavioral checks and a useful response to a material
+verification gap. It is prepared but unrun, with no demonstrated improvement and
+no mandatory expert review. Handoffs still carry relevant source, candidate,
+attempts, exact outcomes, lessons, ruled-out hypotheses and remaining questions.
+
+One selected public development task establishes neither generalization nor the
+joint 95/95 target. An illustrative iid exact-binomial 95% interval after one
+success spans 2.5%–100%; this does not make the selected task a representative
+population sample. All 24 validation cases remain untouched. No second router
+assignment or standalone comparison was launched. The 141 Verified assignments
+and historical 500-task replay remain separate evidence. The contribution remains
+replication and controlled extension of related work, not architectural novelty.
+
+
+The completed held-out policy resolves 8/11 versus Luna 7/11 and Sol 9/11,
+missing the joint cost/quality target.
 The next experiment therefore measures rescue directly, rather than treating
 low cost or availability of an expert as a positive routing result.
 
