@@ -92,7 +92,9 @@ class EnvironmentBridge:
                      'timeout_seconds': timeout})
         try:
             result = await self.environment.exec(
-                command=f'cd {shlex.quote(self.repository)} && timeout --signal=KILL {timeout} bash -lc {shlex.quote(command)}',
+                # Login profiles can replace the image's toolchain PATH. Harbor
+                # already supplies the container environment; preserve it here.
+                command=f'cd {shlex.quote(self.repository)} && timeout --signal=KILL {timeout} bash -c {shlex.quote(command)}',
                 timeout_sec=timeout+5)
             response = {'exit_code': result.return_code,
                         'stdout': (result.stdout or '')[-40000:],

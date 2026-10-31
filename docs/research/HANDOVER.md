@@ -1918,3 +1918,40 @@ results/router-vuls-20261031/public-runtime-probe.json. Registered router020,
 validated setup008 cross-task transport-only reuse (zero new setup calls),
 supervisorPID31913. Claim unique, max one assignment/no retries. Current chat
 owns; monitoring PAUSED; sources frozen through grading. FAST-98 In Progress.
+
+
+## Vuls020 COMPLETE; early delegation and shell PATH defect separated
+
+Initial/fresh1 after1 completed Sol consultation; pre-handoff0 but snapshot is
+ONLY go.mod version bump. Expert packet explicitly says no main edits/checks.
+No concrete early-help exception: premature delegation relative to user's
+2–3 useful checked attempts. Do not call this rescue of a substantive repair.
+Final implementation passes, no behavioral tests added; explicit verification
+incomplete. Export under results/router-vuls-20261031/vuls-analysis-020.
+Input1070045 (cached996864), output8300; scenarioUSD0.04838064, not invoice/quota
+or matched-Sol saving. Request+tools115.87s, actor125.26s, start-to-fresh322.98s;
+host busy/uncontrolled, no speedup or transfer claim.24 validation untouched.
+
+After ALL grading, real-image regression reproduced bridge bash -lc replacing
+image toolchain PATH. Changed extra shell to bash -c, matching Harbor semantics.
+Go now executes; same model-free comparison confirms Teleport image also has Go.
+This corrects verification opportunity, not prompt policy or model competence.
+10 focused runtime/transport/isolation/router tests and27 reuse/pipeline tests
+pass. Original bridge and supervisor archived with hashes matching frozen020.
+No completed model/setup call repeated. General v6 unchanged.
+
+CRITICAL for next unit: old native setup does not validate changed transport.
+Merge experiments/router-vuls-20261031/transport-amendment.json with existing
+reuse metadata, preserving original script/router amendments. Gate now requires
+bridge archive, before/after source hashes, bound validation receipt, actual
+test source and raw regression outputs. Unbound/failed/stale proof refuses
+reuse. Actual amended setup_stage audit on real records passed with0 new calls;
+its stored protocol cap0 is model-free AUDIT ONLY, not an inference registration.
+Each future target still needs own controls/image/boundary and source freeze.
+Disclose corrected transport as changed condition; do not attribute any future
+outcome difference to unchanged v6. Never rerun setup as fallback.
+
+Current unit complete; no active supervisor/next assignment. FAST-98 tracks
+completion. Scheduled monitoring remains PAUSED by user, no replacement. Future
+active-chat continuation requires next original development reservation/new cap.
+Preserve all raw untracked logs, sealed records and archived transport evidence.

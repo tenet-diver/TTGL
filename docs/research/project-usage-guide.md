@@ -309,3 +309,14 @@ working official evaluator from the public verification tools available to the
 actor. Retain evidence of blocked checks; do not ask a larger model merely to
 compensate for unavailable tooling. No demonstrated failure-detection or transfer
 improvement is claimed from this passing case.
+
+
+A later Vuls020 audit found two distinct issues. Luna delegated before main
+implementation or checks, with no concrete early exception; a passing final grade
+does not establish good routing. Independently, the bridge's extra login shell
+removed image toolchain PATH. A non-login shell now preserves it, tested with real
+Vuls and Teleport images. Readiness probes must use the actual actor transport,
+not merely a different shell or a working verifier. General prompt unchanged;
+future trials disclose the transport correction. Reusing setup008 now requires
+the bound transport amendment and real regression evidence; never repeat setup
+inference as a workaround. See the Vuls transport-path-fix evidence README.

@@ -1,6 +1,22 @@
 # Experimental Luna / Sol adapter for SWE-bench Pro V2
 
-## Latest active-chat continuation
+## Latest transport correction and Vuls020 audit
+
+Vuls020 final passes after one Sol call; dependency-only pre-handoff fails, not a
+checked substantive repair rescue. Luna asks before main implementation/checks,
+without a clear early exception. See results/router-vuls-20261031/vuls-analysis-020.
+After grading, a real-image regression proves our extra bash -lc drops the image
+PATH. The bridge now uses non-login bash -c, consistent with Harbor. A model-free
+Teleport crosscheck confirms that historical image also contains usable Go when
+PATH is preserved. Do not blame those tool reports solely on actor competence.
+10 focused transport/runtime/isolation/router checks and27 reuse/pipeline checks
+pass. Archived old sources preserve020; future reuse needs the bound transport
+amendment and validation evidence, not another setup call. See
+results/router-vuls-20261031/transport-path-fix/README.md and
+experiments/router-vuls-20261031/transport-amendment.json. General v6 unchanged;
+new transport is a changed condition. Scheduled monitoring remains PAUSED.
+
+## Earlier active-chat continuation
 
 After the three-case October31 series, Teleport018 uses unchanged v6 and passes
 initial/fresh grades with zero Sol requests. Own controls017 pass0/1. Analysis:

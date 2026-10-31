@@ -1,0 +1,7 @@
+{
+ "task": "instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5",
+ "patch": "/Users/rustameynaliyev/Developer/ttgl-router-vuls-020/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/personal/f6e35e7921364aa0bf4fca13fab70b30/sealed-replay-source/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/agent/pre-handoff.patch",
+ "apply_rc": 0,
+ "apply_out": "Checking patch go.mod...\nApplied patch go.mod cleanly.\n",
+ "post_apply_diffstat": " go.mod | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n---\n1\n"
+}

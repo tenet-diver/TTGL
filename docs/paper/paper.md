@@ -1260,6 +1260,40 @@ and is not pooled with earlier adaptive development as a frozen-policy compariso
 All24 validation cases remain untouched. The user disabled scheduled monitoring;
 the existing heartbeat is paused and this active-chat unit is complete.
 
+
+## Vuls020: early consultation and actor verification confound
+
+The next original reserved Vuls development task passes initial and fresh grading
+after one voluntary Sol consultation. Its sealed pre-handoff snapshot grades0,
+but contains only a dependency-version edit. Luna explicitly says the main
+implementation is not modified and no checks have run when it asks Sol for an
+implementation strategy. No concrete early-help exception is supplied. This
+violates the default of useful checked independent repair attempts before help;
+the0→1 transition is not rescue of a checked substantive repair or proof advice
+was necessary. Sol supplies migration guidance, warns about missing API/source
+context and recommends tests. Luna implements the change, adds no behavioral
+tests and explicitly acknowledges that compile/behavior remain unverified.
+
+The [episode export](../../results/router-vuls-20261031/vuls-analysis-020/README.md)
+audits1,070,045 input tokens (996,864 cached) and8,300 output, including controller,
+expert and integration. Frozen model-rate scenario USD0.04838064 per assigned/
+resolved task is not an invoice/quota or matched-Sol saving. Request+tools115.87s,
+actor125.26s and generation start through fresh grading322.98s are single-episode
+descriptions on a busy, uncontrolled host, not speed comparisons.24 validation
+cases and standalone comparisons remain untouched; no transfer or95/95 claim.
+
+A separate model-free investigation finds a transport confound: the image has
+Go on PATH, but our extra login shell removes it. After all grading, preserving
+the image environment with a non-login shell makes the real-image regression
+pass. The same shell comparison confirms the issue on the earlier Teleport image.
+No model episode is repeated or retroactively changed. Missing-tool behavior is
+therefore partly a harness defect, not solely model competence or absent image
+tooling.10 focused runtime/transport/isolation/router checks and27 reuse/pipeline
+checks pass. The [transport amendment](../../results/router-vuls-20261031/transport-path-fix/README.md)
+binds archived old sources and real model-free proof before future setup reuse.
+General v6 remains unchanged; future trials must disclose the changed transport
+condition and cannot attribute outcome differences to a prompt improvement.
+
 # Industry-standard benchmark: a 500-task routing replay
 
 ## Data and interpretation

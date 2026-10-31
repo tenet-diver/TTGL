@@ -1,0 +1,25 @@
+{
+  "status": "registered_model_free_transport_amendment_no_inference_authorized",
+  "source_sha256": {
+    "/Users/rustameynaliyev/Developer/TTGL/src/ttgl/harbor_bridge.py": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065",
+    "/Users/rustameynaliyev/Developer/TTGL/scripts/continue_pro_rescue.py": "bc32960f3c95cd8756ba63c52f43dbb44e0cf9ef3c0cd1056110a366a8646f85"
+  },
+  "reuse_setup_merge": {
+    "allowed_source_changes": {
+      "/Users/rustameynaliyev/Developer/TTGL/src/ttgl/harbor_bridge.py": {
+        "from_sha256": "d68008ddcad6d3cec3c9d3af71e085c76230638c2ed6b1dff5dd6a9e61e64039",
+        "to_sha256": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065",
+        "archived_source": "/Users/rustameynaliyev/Developer/TTGL/results/router-vuls-20261031/transport-path-fix/harbor_bridge-before.py",
+        "transport_validation": "/Users/rustameynaliyev/Developer/TTGL/results/router-vuls-20261031/transport-path-fix/validation.json"
+      }
+    },
+    "artifacts_sha256": {
+      "/Users/rustameynaliyev/Developer/TTGL/results/router-vuls-20261031/transport-path-fix/harbor_bridge-before.py": "d68008ddcad6d3cec3c9d3af71e085c76230638c2ed6b1dff5dd6a9e61e64039",
+      "/Users/rustameynaliyev/Developer/TTGL/results/router-vuls-20261031/transport-path-fix/validation.json": "395d3a9cc5288cad5ff8efb96f4fe0c29f9f5c5b60d84cb8c95e83cc048abf9e",
+      "/Users/rustameynaliyev/Developer/TTGL/tests/test_harbor_runtime_path_optional.py": "f5b23c02c716bf2ff806407fc96477d9cbc795b7a0da533bc08f1cbeff05e82d",
+      "/Users/rustameynaliyev/Developer/TTGL/results/router-vuls-20261031/transport-path-fix/before-pytest.txt": "76836599af476db38a6c7f21aa4f2dd82bb350d6bf8ad41db058470f4f21c1de",
+      "/Users/rustameynaliyev/Developer/TTGL/results/router-vuls-20261031/transport-path-fix/after-pytest.txt": "ed8a2d42f5afd253b9fa18914ff66f3cecf2a8e03a372806fe0cc0f876a7679d"
+    }
+  },
+  "usage": "Merge with prior setup008 reuse metadata, preserve other amendments, update target controls/image/source bindings and fresh actor boundary before any separately registered future assignment. This is not an inference registration or authorization to repeat completed setup."
+}

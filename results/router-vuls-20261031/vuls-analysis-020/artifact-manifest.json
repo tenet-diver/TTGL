@@ -1,0 +1,16 @@
+{
+  "files": {
+    "summary.json": "a188f2f6ef5b0969d0cedd96e2832377ad206e3d7b630aae08d61db4815e966a",
+    "pre-handoff-result.json": "60c6ce3056a538abbfe816143b39fe98517e9fc567d0d5f27b0aa4a3f9781db1",
+    "final.patch": "af07f2b35c3084ef40ba7dd302808f9f6cd55fb465328ec20c645d9fc76cb4b4",
+    "pre-handoff-replay.json": "7eb20d952dea79b2866949872c2024c4efcd6d7098b43ca8926f8b77c6a24c1f",
+    "decision-audit.json": "5040ad31efe0d332dbf147981e222e93af0de8c4c4fc189ab5bd8f02f9554fa3",
+    "pre-handoff-audit.json": "c0df95c269d3d42e9cbec5b4397d6dd23e1f0bc900efa389e4dd87abc3490631",
+    "README.md": "0ab5290f316cbd0e773cd97cffeee3d8fc919c6c592ab416404ab2a8c367c0e1",
+    "native-result.json": "f1d7a7ce5783d3c6dec51328bd0d275a341c75d146a1d8f4147669fa5ed819aa",
+    "fresh-replay.json": "ebaf0a5b8bee90505eee05f475d10f0ed468fe75a1c98d1a84aebe1e7b365d96",
+    "manifest.json": "bf39615c025c9659bf5c198b642624cfde45ec4f8c859857e9ae85df408ebe21",
+    "pre-handoff.patch": "35cf1d3e595a49469c4ed8a74ae4bcf8dbdc8599297e69da6df5ed4de03f0c6c",
+    "fresh-result.json": "319eae320ab64eaf609a5442dc3ef648321a694a2b7d3057d8da85ca19225bda"
+  }
+}

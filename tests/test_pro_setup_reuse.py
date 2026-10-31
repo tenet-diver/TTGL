@@ -178,3 +178,61 @@ def test_transport_reuse_rejects_unready_target_before_any_inference(registered,
         protocol['source_sha256'][str(summary)]=pipeline.digest(summary)
     with pytest.raises(RuntimeError):
         pipeline.setup_stage(protocol,'new-target-image',lambda:pytest.fail('Must not call a model'))
+
+
+def transport_amendment(registered, monkeypatch):
+    protocol, records, old = registered
+    root = old.parent/'code'
+    monkeypatch.setattr(pipeline, 'ROOT', root)
+    bridge = root/'src/ttgl/harbor_bridge.py'
+    bridge.parent.mkdir(parents=True)
+    before, after = 'original transport', 'validated changed transport'
+    bridge.write_text(after)
+    archive = old.parent/'old-bridge.py'
+    archive.write_text(before)
+    source_path = Path(protocol['reuse_setup']['source_protocol'])
+    source = json.loads(source_path.read_text())
+    source['source_sha256'] = {str(bridge): pipeline.digest(archive)}
+    save(source_path, source)
+    save(old/'queue.json', {'protocol_sha256':pipeline.digest(source_path)})
+    test = old.parent/'regression-test.py'
+    test.write_text('real runtime test fixture')
+    log = old.parent/'regression.txt'
+    log.write_text('retained raw test evidence')
+    validation_path = old.parent/'transport-validation.json'
+    validation = {'status':'model_free_runtime_path_fix_validated','new_model_calls':0,
+                  'source_before_sha256':pipeline.digest(archive),
+                  'source_after_sha256':pipeline.digest(bridge),
+                  'before_returncode':1,'after_returncode':0,
+                  'test_source':str(test),'test_source_sha256':pipeline.digest(test),
+                  'evidence_sha256':{str(log):pipeline.digest(log)}}
+    save(validation_path, validation)
+    change = {'from_sha256':pipeline.digest(archive),'to_sha256':pipeline.digest(bridge),
+              'archived_source':str(archive),'transport_validation':str(validation_path)}
+    protocol['source_sha256'][str(bridge)] = pipeline.digest(bridge)
+    protocol['reuse_setup']['allowed_source_changes'] = {str(bridge):change}
+    inventory = protocol['reuse_setup']['artifacts_sha256']
+    for p in [source_path,old/'queue.json',archive,test,log,validation_path]:
+        inventory[str(p.resolve())] = pipeline.digest(p)
+    return protocol, validation_path, validation, log
+
+
+def test_transport_change_reuses_setup_only_with_bound_model_free_proof(registered,monkeypatch):
+    protocol, _, _, _ = transport_amendment(registered,monkeypatch)
+    result = pipeline.setup_stage(protocol,'image-fixture',lambda:pytest.fail('Repeated setup'))
+    assert result['new_setup_model_calls'] == 0
+
+
+@pytest.mark.parametrize('fault',['missing-proof','failed-check','wrong-source','unbound-log'])
+def test_transport_change_refuses_incomplete_validation_without_model_calls(registered,monkeypatch,fault):
+    protocol, path, validation, log = transport_amendment(registered,monkeypatch)
+    if fault=='missing-proof':
+        next(iter(protocol['reuse_setup']['allowed_source_changes'].values())).pop('transport_validation')
+    elif fault=='unbound-log':
+        protocol['reuse_setup']['artifacts_sha256'].pop(str(log.resolve()))
+    else:
+        validation['after_returncode' if fault=='failed-check' else 'source_after_sha256'] = 1 if fault=='failed-check' else 'wrong'
+        save(path,validation)
+        protocol['reuse_setup']['artifacts_sha256'][str(path.resolve())] = pipeline.digest(path)
+    with pytest.raises(RuntimeError):
+        pipeline.setup_stage(protocol,'image-fixture',lambda:pytest.fail('Must never repeat setup'))

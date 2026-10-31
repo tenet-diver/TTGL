@@ -1,0 +1,123 @@
+{
+    "id": "8c049998-7c60-4604-81f2-8ff442fc363f",
+    "task_name": "swebench-pro/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5",
+    "trial_name": "instance_future-architect__vuls__Zo5Eh6T",
+    "trial_uri": "file:///Users/rustameynaliyev/Developer/TTGL/results/router-vuls-20261031/vuls-router-020/jobs/first-block-optional-fresh/instance_future-architect__vuls__Zo5Eh6T",
+    "task_id": {
+        "path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/v2/tasks/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5"
+    },
+    "source": "tasks",
+    "task_checksum": "4cf35824fa6d55b499df9abec7a562294a2aa81ea84f15c9931afc9da514c8e9",
+    "config": {
+        "task": {
+            "path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/v2/tasks/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "tasks"
+        },
+        "trial_name": "instance_future-architect__vuls__Zo5Eh6T",
+        "trials_dir": "/Users/rustameynaliyev/Developer/TTGL/results/router-vuls-20261031/vuls-router-020/jobs/first-block-optional-fresh",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "patch_replay:PatchReplayAgent",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "source_job": "/Users/rustameynaliyev/Developer/ttgl-router-vuls-020/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/personal/f6e35e7921364aa0bf4fca13fab70b30/sealed-replay-source",
+                "patch_name": "model.patch"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": null,
+            "import_path": "ttgl.harbor_docker_network:DetachedNetworkDocker",
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "fa25d32b-1fb2-406a-a20d-732216bcf25d",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "patch-replay-agent",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-10-31T21:50:14.777902Z",
+    "finished_at": "2026-10-31T21:51:50.261049Z",
+    "environment_setup": {
+        "started_at": "2026-10-31T21:50:15.169712Z",
+        "finished_at": "2026-10-31T21:50:18.484927Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-31T21:50:18.485151Z",
+        "finished_at": "2026-10-31T21:50:18.485325Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-31T21:50:18.485585Z",
+        "finished_at": "2026-10-31T21:50:22.253042Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-31T21:50:24.022549Z",
+        "finished_at": "2026-10-31T21:51:38.642501Z"
+    },
+    "step_results": null
+}

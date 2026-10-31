@@ -1,0 +1,134 @@
+{
+  "status": "audited_single_development_episode",
+  "task_id": "instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5",
+  "assigned": 1,
+  "resolved": 1,
+  "initial_grade": 1.0,
+  "fresh_grade": 1.0,
+  "observed_success_fraction": 1.0,
+  "illustrative_exact_binomial_95_interval": [
+    0.025,
+    1.0
+  ],
+  "uncertainty": "Illustrative iid binomial interval only; one selected public development task is not a population sample or evidence of reliable routing/noninferiority.",
+  "outcome_class": "solved_after_consultation",
+  "expert_requests_attempted": 1,
+  "completed_consultations": 1,
+  "native_requests_by_role": {
+    "controller": 2,
+    "expert": 1
+  },
+  "usage": {
+    "input_tokens": 1070045,
+    "cached_input_tokens": 996864,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 8300,
+    "reasoning_output_tokens": 2330
+  },
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 1058759,
+        "cached_input_tokens": 996864,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7721,
+        "reasoning_output_tokens": 2238
+      },
+      "observed_partial": {
+        "input_tokens": 1058759,
+        "cached_input_tokens": 996864,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7721,
+        "reasoning_output_tokens": 2238
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    },
+    "gpt-6.1-sol": {
+      "usage": {
+        "input_tokens": 11286,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 579,
+        "reasoning_output_tokens": 92
+      },
+      "observed_partial": {
+        "input_tokens": 11286,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 579,
+        "reasoning_output_tokens": 92
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "published_rate_scenario_cost_per_assigned_usd": 0.04838064,
+  "published_rate_scenario_cost_per_resolved_usd": 0.04838064,
+  "actual_cash_cost_usd": null,
+  "subscription_quota_savings": null,
+  "accuracy_retention_vs_sol": null,
+  "saving_vs_matched_sol": null,
+  "cost_scope": "All episode controller/router/expert/integration inference; frozen historical token rates, not invoice or full deployment cost.",
+  "setup_already_completed_reused": {
+    "new_model_calls": 0,
+    "usage": {
+      "input_tokens": 112615,
+      "cached_input_tokens": 85120,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1631,
+      "reasoning_output_tokens": 298
+    },
+    "historical_scenario_cost_usd": 0.03098282
+  },
+  "latency_seconds": {
+    "native_model_and_tools": 115.8749670907855,
+    "native_actor_phase": 125.263357,
+    "generation_environment_and_initial_grading": 214.438648,
+    "independent_fresh_replay": 95.483147,
+    "generation_start_to_fresh_grade": 322.984844
+  },
+  "visible_tool_requests": 25,
+  "final_controller_response": {
+    "action": "complete",
+    "question": "",
+    "context": "",
+    "summary": "Implemented the five-value OVAL matcher signature and migrated its production and test callers. Red Hat-family unfixed packages now look up advisory resolution state using the package name or the module-qualified `name:stream/package` identity; \u201cWill not fix\u201d and \u201cUnder investigation\u201d are excluded from affected results. Threaded fix state into package fix-status records, filtered distro advisories by family prefix, bumped goval-dictionary to v0.9.5, and removed Red Hat-family routing from `NewGostClient`.\n\nVerification status: incomplete. `git diff --check` passed, and a repository-wide caller search showed both production call sites and the existing test caller use the new tuple. Behavioral tests and compilation were not run: `go` is unavailable in the worker container, and its cached goval-dictionary source is the older pseudo-version, so the v0.9.5 API integration remains unverified. I did not add new behavioral tests."
+  },
+  "fresh_actor_boundary": {
+    "status": "fresh_actor_boundary_passed_before_router_inference",
+    "observations": {
+      "head": "827f2cb8d86509c4455b2df2fe79b9d59533d3b0",
+      "git_status": "",
+      "outside_head_commits": 0,
+      "private_path_visible": false,
+      "public_endpoint_reachable": false,
+      "witness_ignored": false
+    },
+    "scope": "Hidden paths plus host sentinel, clean HEAD/history, direct-IP egress probe; not universal isolation proof"
+  },
+  "pre_handoff_grade": false,
+  "provenance": {
+    "/Users/rustameynaliyev/Developer/TTGL/experiments/router-vuls-20261031/vuls-router-020.json": "8ed4c78a420df9e16f4677285941906594e8fecf0e8f4e0337fd47ebe936b711",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-vuls-20261031/vuls-router-020/jobs/first-block-optional/instance_future-architect__vuls__yaTmgYc/result.json": "f1d7a7ce5783d3c6dec51328bd0d275a341c75d146a1d8f4147669fa5ed819aa",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-vuls-20261031/vuls-router-020/jobs/first-block-optional-fresh/instance_future-architect__vuls__Zo5Eh6T/result.json": "319eae320ab64eaf609a5442dc3ef648321a694a2b7d3057d8da85ca19225bda",
+    "/Users/rustameynaliyev/Developer/ttgl-router-vuls-020/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/personal/f6e35e7921364aa0bf4fca13fab70b30/controller/manifest.json": "bf39615c025c9659bf5c198b642624cfde45ec4f8c859857e9ae85df408ebe21",
+    "/Users/rustameynaliyev/Developer/ttgl-router-vuls-020/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/personal/f6e35e7921364aa0bf4fca13fab70b30/controller/events.jsonl": "cf5f6e923e9bb1d910d23c845da1decc5eb0dcef6ccefb6adda1c1f22c4bbae6",
+    "/Users/rustameynaliyev/Developer/ttgl-router-vuls-020/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/personal/f6e35e7921364aa0bf4fca13fab70b30/visible-tool-trace.jsonl": "bb139a2e52f589ba8792e221a11f3e9d1b75e807b8ab22e247ec83ded21e432f",
+    "/Users/rustameynaliyev/Developer/ttgl-router-vuls-020/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/personal/f6e35e7921364aa0bf4fca13fab70b30/final.patch": "af07f2b35c3084ef40ba7dd302808f9f6cd55fb465328ec20c645d9fc76cb4b4",
+    "/Users/rustameynaliyev/Developer/ttgl-router-vuls-020/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/personal/f6e35e7921364aa0bf4fca13fab70b30/sealed-replay-source/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/seal.json": "033e740c1c63f3084ef7089ff0eaadd325654f8a724b36f5a49854ec52e23e8e",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-vuls-20261031/vuls-router-020/jobs/first-block-optional-fresh/instance_future-architect__vuls__Zo5Eh6T/agent/replay.json": "ebaf0a5b8bee90505eee05f475d10f0ed468fe75a1c98d1a84aebe1e7b365d96",
+    "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/rate-scenario.json": "24337a4fbe01bd97c0a8034c97e7f940779d207a388111dd3c19601919a49328"
+  },
+  "validation_tasks_used": 0
+}

@@ -1,0 +1,10 @@
+{
+  "status": "grade_bound_to_sealed_dependency_only_snapshot",
+  "raw_result": "/Users/rustameynaliyev/Developer/TTGL/results/router-vuls-20261031/vuls-router-020/jobs/first-block-optional-pre-handoff/instance_future-architect__vuls__LmijXRW/result.json",
+  "raw_result_sha256": "60c6ce3056a538abbfe816143b39fe98517e9fc567d0d5f27b0aa4a3f9781db1",
+  "sealed_patch": "/Users/rustameynaliyev/Developer/ttgl-router-vuls-020/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/personal/f6e35e7921364aa0bf4fca13fab70b30/sealed-replay-source/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/agent/pre-handoff.patch",
+  "patch_sha256": "35cf1d3e595a49469c4ed8a74ae4bcf8dbdc8599297e69da6df5ed4de03f0c6c",
+  "apply_rc": 0,
+  "grade": 0,
+  "interpretation": "Failed minimally modified baseline, not checked substantive repair"
+}

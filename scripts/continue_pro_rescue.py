@@ -114,12 +114,31 @@ def audit_reused_setup(protocol, current_image):
             continue
         change = reuse.get('allowed_source_changes', {}).get(name)
         if (name not in (str(ROOT/'scripts/continue_pro_rescue.py'),
-                         str(ROOT/'src/ttgl/router_development.py')) or not change
+                         str(ROOT/'src/ttgl/router_development.py'),
+                         str(ROOT/'src/ttgl/harbor_bridge.py')) or not change
                 or change['from_sha256'] != expected
                 or change['to_sha256'] != digest(name)
                 or protocol['source_sha256'].get(name) != digest(name)
                 or digest(bound(change['archived_source'])) != expected):
             raise RuntimeError('Original setup source changed without an audited amendment: '+name)
+        if name == str(ROOT/'src/ttgl/harbor_bridge.py'):
+            # A transport change needs its own real, model-free regression proof;
+            # old native setup alone cannot validate changed command execution.
+            if not change.get('transport_validation'):
+                raise RuntimeError('Changed transport requires bound regression evidence')
+            validation = json.loads(bound(change['transport_validation']).read_text())
+            if (validation['status'] != 'model_free_runtime_path_fix_validated'
+                    or validation['new_model_calls'] != 0
+                    or validation['source_before_sha256'] != expected
+                    or validation['source_after_sha256'] != digest(name)
+                    or validation['before_returncode'] == 0
+                    or validation['after_returncode'] != 0
+                    or digest(bound(validation['test_source'])) != validation['test_source_sha256']
+                    or not validation['evidence_sha256']):
+                raise RuntimeError('Changed transport lacks passing bound regression evidence')
+            for evidence, sha in validation['evidence_sha256'].items():
+                if digest(bound(evidence)) != sha:
+                    raise RuntimeError('Changed transport regression evidence disagrees')
     image = json.loads(bound(old/'image-binding.json').read_text())
     if image['image_id'] != current_image:
         raise RuntimeError('Reusable setup image differs from current task image')

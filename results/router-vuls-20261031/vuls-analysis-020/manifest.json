@@ -1,0 +1,138 @@
+{
+  "schema_version": 3,
+  "run_id": "b1b58c9e-bc77-4bce-bfbc-bca1dca0a106",
+  "task_id": "instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5",
+  "condition": "personal",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-31T21:46:34.630313+00:00",
+  "finished_at": "2026-10-31T21:48:30.633547+00:00",
+  "identity_sha256": "b1557ce0f7172a1bf959a2f954e67488899c2682197245aa72fbcd5c5d85afde",
+  "config": {
+    "condition": "personal",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 2940.0,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "One Harbor environment.exec via authenticated loopback MCP",
+    "server_sha256": "cd207f6da4bfa2c69d171d8a82a41d0f67a2e200f424907a0716f6e17abb571e",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "1d4213bb5cb95525518a924667df2afd177b392e9ca87e17ec173e9f4d651a27",
+    "harbor_bridge_sha256": "d68008ddcad6d3cec3c9d3af71e085c76230638c2ed6b1dff5dd6a9e61e64039",
+    "controller_policy": {
+      "mode": "fallback",
+      "source": "bf163122b4c9769dbec7ef0c9759fc5e07a4453dc6906f75c31dfa41d6eee707",
+      "prompts": {
+        "controller-v2-delegation.txt": "97fa0f26f6477d16ad94e130d0ae33b9909da26598fe72fd9178513f330e568b",
+        "controller-v2-common.txt": "bcab59483071803bd76c6a2125c4892771bafb3f3845b151494732f1b905fd23",
+        "controller-v2-fallback.txt": "b0e31632e6796b582a7982325aca364419cbeeeaa309224b47eae2ccce8a4724"
+      }
+    },
+    "visible_tool_trace": "Bounded public tool actions/observations; no private reasoning or evaluator feedback",
+    "routing_diagnostic": {
+      "mode": "verification",
+      "source_sha256": "cfc8c857ac2a83087d832a07d4aeeb122577e7e23d6d452b9606ac14ab408ad6",
+      "verification_source_sha256": "9b60c1e4656d168db553b992ebd31acf8d0656e9bbdfba070e824fc4f493e4c4",
+      "prompts_sha256": {
+        "controller-v3-required-review.txt": "8ae50e58e4305591fbc087d6b1c3731775a9134e1a4bce5d667f3d3aa0187950",
+        "controller-v3-verification-common.txt": "eb1e579c24b5d26decd2fc1146afc82ab0a87c0fdd06ea0e29b2a98194cbbf07",
+        "controller-v3-verification-delegation.txt": "438004aa752026edd36d7f0f5fcfccbb8141fc0aeee21e1a900f318b4b77cd9f"
+      },
+      "router_development_source_sha256": "9f97f8c05457169f48bcc4a4e919bd30dac3877d7f33676cafc9f24dd7739c67",
+      "router_decisions_prompt_sha256": "8ed993a4066d8a95163d9baf4915dba764965b1dc14a078148cc644f9230a263",
+      "completion_source_sha256": "b1541ace83ef835469b18c9b1ece5b9eb0770420eceacd1ba43bda4cd2de5cce",
+      "completion_prompt_sha256": "7289947d2bbbad040e58b0846b0dddf48423e9d902dde4f23a8d6326b43f18d9"
+    }
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 3,
+  "expert_calls": 1,
+  "elapsed_seconds": 115.8749670907855,
+  "controller_thread_id": "01a193ed-c2e5-76f0-9b9d-bc91f7a13886",
+  "expert_thread_id": "01a193ee-4a20-7491-a19a-ac75f3b85cac",
+  "usage": {
+    "input_tokens": 1070045,
+    "cached_input_tokens": 996864,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 8300,
+    "reasoning_output_tokens": 2330
+  },
+  "observed_usage_partial": {
+    "input_tokens": 1070045,
+    "cached_input_tokens": 996864,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 8300,
+    "reasoning_output_tokens": 2330
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 1058759,
+        "cached_input_tokens": 996864,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7721,
+        "reasoning_output_tokens": 2238
+      },
+      "observed_partial": {
+        "input_tokens": 1058759,
+        "cached_input_tokens": 996864,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7721,
+        "reasoning_output_tokens": 2238
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    },
+    "gpt-6.1-sol": {
+      "usage": {
+        "input_tokens": 11286,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 579,
+        "reasoning_output_tokens": 92
+      },
+      "observed_partial": {
+        "input_tokens": 11286,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 579,
+        "reasoning_output_tokens": 92
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 5,
+  "failure_type": null,
+  "summary": "Implemented the five-value OVAL matcher signature and migrated its production and test callers. Red Hat-family unfixed packages now look up advisory resolution state using the package name or the module-qualified `name:stream/package` identity; “Will not fix” and “Under investigation” are excluded from affected results. Threaded fix state into package fix-status records, filtered distro advisories by family prefix, bumped goval-dictionary to v0.9.5, and removed Red Hat-family routing from `NewGostClient`.\n\nVerification status: incomplete. `git diff --check` passed, and a repository-wide caller search showed both production call sites and the existing test caller use the new tuple. Behavioral tests and compilation were not run: `go` is unavailable in the worker container, and its cached goval-dictionary source is the older pseudo-version, so the v0.9.5 API integration remains unverified. I did not add new behavioral tests.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "cf5f6e923e9bb1d910d23c845da1decc5eb0dcef6ccefb6adda1c1f22c4bbae6",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

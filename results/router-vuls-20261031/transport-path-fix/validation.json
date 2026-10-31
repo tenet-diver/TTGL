@@ -1,0 +1,16 @@
+{
+  "status": "model_free_runtime_path_fix_validated",
+  "new_model_calls": 0,
+  "source_before_sha256": "d68008ddcad6d3cec3c9d3af71e085c76230638c2ed6b1dff5dd6a9e61e64039",
+  "source_after_sha256": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065",
+  "before_returncode": 1,
+  "after_returncode": 0,
+  "test_source": "/Users/rustameynaliyev/Developer/TTGL/tests/test_harbor_runtime_path_optional.py",
+  "test_source_sha256": "f5b23c02c716bf2ff806407fc96477d9cbc795b7a0da533bc08f1cbeff05e82d",
+  "evidence_sha256": {
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-vuls-20261031/transport-path-fix/before-pytest.txt": "76836599af476db38a6c7f21aa4f2dd82bb350d6bf8ad41db058470f4f21c1de",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-vuls-20261031/transport-path-fix/after-pytest.txt": "ed8a2d42f5afd253b9fa18914ff66f3cecf2a8e03a372806fe0cc0f876a7679d"
+  },
+  "real_image_id": "sha256:a52a67cd0a4879a26a120bb84949905102458be58444055d893c69252d78e38c",
+  "interpretation": "Same real-image tool execution fails under login-shell bridge and passes preserving image environment; no model rerun, auth or network policy change; historical setup not evidence of new shell behavior without this amendment."
+}

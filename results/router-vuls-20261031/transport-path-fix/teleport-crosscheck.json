@@ -1,0 +1,19 @@
+{
+  "scope": "Model-free shell PATH reproduction on previously completed Teleport image, not new model/benchmark assignment",
+  "image_id": "sha256:1cf175d0d2b51d48aa8e55a6cc560a3f3009f7e233e20a6478cc39acc39898d3",
+  "checks": [
+    {
+      "shell_flags": "-lc",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "shell_flags": "-c",
+      "returncode": 0,
+      "stdout": "/usr/local/go/bin/go\ngo version go1.16.15 linux/amd64\n",
+      "stderr": ""
+    }
+  ],
+  "new_model_calls": 0
+}
