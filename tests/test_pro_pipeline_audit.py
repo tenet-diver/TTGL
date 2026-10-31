@@ -66,3 +66,14 @@ def test_missing_control_queue_stops_without_launching_any_job(tmp_path,monkeypa
         pipeline.main()
     assert json.loads((output/'stopped.json').read_text())['error_type']=='ProcessLookupError'
     assert not list(output.glob('*-invocation.json'))
+
+
+def test_new_untracked_witness_is_verified_from_successful_patch_application():
+    replay = {'apply_rc': 0, 'apply_out': 'Checking patch witness.txt...\nApplied patch witness.txt cleanly.\n',
+              'post_apply_diffstat': '---\n1\n'}
+    assert pipeline.witness_replay_passed(0, 0, replay, 'witness.txt')
+    assert not pipeline.witness_replay_passed(0, 0, replay, 'other.txt')
+    assert not pipeline.witness_replay_passed(0, 1, replay, 'witness.txt')
+    assert not pipeline.witness_replay_passed(1, 0, replay, 'witness.txt')
+    assert not pipeline.witness_replay_passed(0, 0, {**replay, 'apply_rc': 1}, 'witness.txt')
+    assert not pipeline.witness_replay_passed(0, 0, {**replay, 'apply_out': 'Checking patch witness.txt...'}, 'witness.txt')

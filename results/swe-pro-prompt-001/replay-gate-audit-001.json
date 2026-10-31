@@ -1,0 +1,12 @@
+{
+  "status": "archived_witness_replay_gate_corrected_offline",
+  "source": "router-development-008",
+  "witness": "ttgl_preflight_f34590d293ac4898880f06f44c490a74.txt",
+  "apply_rc": 0,
+  "native_grade": 0,
+  "fresh_grade": 0,
+  "new_model_calls": 0,
+  "new_jobs": 0,
+  "checks_passed": 8,
+  "continuation": "Fresh registered continuation must reuse completed native preflight and witness replay; never rerun setup inference"
+}

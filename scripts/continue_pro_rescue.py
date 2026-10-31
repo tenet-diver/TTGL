@@ -27,6 +27,14 @@ def write(path, value):
         stream.write('\n')
 
 
+def witness_replay_passed(pre_reward, reward, replay, witness):
+    # git diff --stat omits newly created untracked files. git apply --verbose
+    # reports the exact successfully applied path even for that legitimate case.
+    applied_line = f"Applied patch {witness} cleanly."
+    return (pre_reward == 0 and reward == 0 and replay.get('apply_rc') == 0
+            and applied_line in replay.get('apply_out', '').splitlines())
+
+
 def audit_native(records):
     manifest = json.loads((records/'controller/manifest.json').read_text())
     events = [json.loads(s) for s in (records/'controller/events.jsonl').read_text().splitlines()]
@@ -172,7 +180,7 @@ def main():
         sealed,manifest,_ = sealed_source(pre_path,pre_native)
         reward,replay_json = replay('native-preflight-replay-001',sealed,'model.patch')
         witness = pre_meta['preflight']['witness']
-        if pre_reward != 0 or reward != 0 or witness not in replay_json['post_apply_diffstat']:
+        if not witness_replay_passed(pre_reward, reward, replay_json, witness):
             raise RuntimeError('Witness replay did not preserve the expected negative task control')
         write(out/'real-preflight.json', {'status':'real_actor_native_handoff_and_pristine_witness_replay_passed',
             'native_result':str(pre_path),'native_grade':pre_reward,'fresh_grade':reward,

@@ -1601,3 +1601,19 @@ without new evidence. Context-only Sol remains bounded; Luna verifies integratio
 Active replacement protocol008, PID80720, output router-development-008,
 log artifacts/pro-router-development-008.log. Source frozen while active.
 Control007 nop passed, oracle executing; do not duplicate. No scored calls yet.
+
+## 31 October18:03 UTC: replay gate root cause repaired without inference
+
+Control007 completed official nop0/oracle1. Supervisor008 exited after completed
+native setup (two expert consultations) and fresh witness replay; no scored
+router assignment started. Both setup/native and pristine grades0, apply_rc0,
+exact witness path successfully applied. Gate incorrectly searched diffstat,
+which excludes new untracked files. Changed gate to require exact successful
+`git apply --verbose` path line plus apply_rc0 and both negative grades. Eight
+pipeline tests pass in Harbor runtime; archived actual replay passes offline.
+Receipt replay-gate-audit-001.json. Old008 evidence remains unchanged.
+
+Next continuation MUST reuse completed setup/replay after auditing original
+source bindings, sealed patch hashes and metering; register a fresh output and
+explicit reuse path before the ONE unstarted router assignment. Do not restart
+008 or rerun its setup model calls. No scored result or retained-accuracy claim.
