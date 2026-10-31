@@ -36,5 +36,18 @@
     "instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
     "instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2"
   ],
-  "unfinished_invoked_assignments": []
+  "unfinished_invoked_assignments": [
+    {
+      "task_id": "instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77",
+      "arm": "large",
+      "audited_total_cost": null,
+      "status": "invoked_but_complete_pair_not_yet_audited"
+    },
+    {
+      "task_id": "instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77",
+      "arm": "optional",
+      "audited_total_cost": null,
+      "status": "invoked_but_complete_pair_not_yet_audited"
+    }
+  ]
 }
