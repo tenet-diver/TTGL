@@ -1,0 +1,77 @@
+{
+  "status": "registered_new_development_task_model_free_controls",
+  "agents": [
+    "nop",
+    "oracle"
+  ],
+  "model_calls_authorized": 0,
+  "scored_assignments_authorized": 0,
+  "prior_native_audit": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/analysis-002/independent-audit.json",
+  "image_tag": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2",
+  "image_pinned": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2@sha256:faed731d68feab39528cf63606de71210eb2eadd9369c4ad738e28f880724940",
+  "registry_compressed_layer_bytes": 2640191103,
+  "incoming_image_allowance_bytes": 6442450944,
+  "incoming_image_allowance_kind": "conservative_staging_budget_not_known_uncompressed_image_size",
+  "disk_guard_bytes": 12884901888,
+  "max_resource_wait_seconds": 7200,
+  "environment_import_path": "ttgl.harbor_docker_network:DetachedNetworkDocker",
+  "docker_config": "/Users/rustameynaliyev/Developer/TTGL/artifacts/harbor-docker-public-config-001",
+  "harbor": "/Users/rustameynaliyev/Developer/TTGL/artifacts/harbor-runtime-001/bin/harbor",
+  "task_directory": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/v2/tasks",
+  "source_sha256": {
+    "/Users/rustameynaliyev/Developer/TTGL/scripts/continue_pro_controls.py": "978ec215d7cf8fd6768fc0d9f97b1d41153cd82707a1eb77385e0b894cabaf4a",
+    "/Users/rustameynaliyev/Developer/TTGL/src/ttgl/harbor_docker_network.py": "33913af0bd8542537b214ba2e7d3655f06172b8a6378672101a61064ca955f21",
+    "/Users/rustameynaliyev/Developer/TTGL/requirements-harbor-macos-intel.lock": "b006cf6da6e345b5f5eff08116028c13ca0cff85245c619ec2ce64667a1646d9",
+    "/Users/rustameynaliyev/Developer/TTGL/results/swe-pro-prompt-001/harbor-network-fixture-004.json": "5454203cc45354aef14c97d879779325e2d3ce7a823c58f2dfd0dbd08d633e40",
+    "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/analysis-002/independent-audit.json": "d9f52b50dcbb528b7fccad2bb5f28f2b31aa10f1a27097b8d3f25202023ea914",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/harbor-docker-public-config-001/config.json": "042bab2aad8ab69bf7226ceb4a443f004311772de877d384db420c4da223f9bd",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/v2/tasks/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/environment/Dockerfile": "11298e2b984e99302b0501a68156a1a0d3bf9b9e642197d8b64fbf5a4a14bd7e",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/v2/tasks/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/instruction.md": "6aded38a02c1bb15e196c3f4ca9c270b962ba0b387fe5fb9f18a0b2d547a98a5",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/v2/tasks/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/solution/gold_patch.diff": "ac314b4c82e7cbdccf082031d4b70dbdbd6ca311d18b174293eb0def629123e8",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/v2/tasks/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/v2/tasks/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/task.toml": "242d6d491ce93b58410d78de20dcb800a32d899407c2bf5b3c7028efaec320b3",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/v2/tasks/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/tests/config.json": "262ae4833030a6aa25b317412611fb99fe0fa161c7a4e66fd6bc9937ecebc60d",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/v2/tasks/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/tests/parser.py": "9a0f04486e3680a6e2f577e54fa9151da15e5bc0b2cc4804177a9da28adc1b17",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/v2/tasks/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/tests/run_script.sh": "4540a98ec4e49a2f8b9d8b4b523019635f69bc465c28e9f7d04a4aaf99eda20b",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/v2/tasks/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/v2/tasks/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/tests/test_patch.patch": "c2f062e7b7431c3fe43ac8642cc8e9bf449da4409d50ce47541828687de289f2",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/v2/tooling/patch_replay.py": "5c8b344de37164e9723f1724c2573013957fb644c3913a64c12c1718c737d876",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/preparation.json": "a3dd0df807abb778d53e617ecb28ac34d099e535d7bcf1317afd5a50fbc6c747",
+    "/Users/rustameynaliyev/Developer/TTGL/experiments/router-teleport-20261031/plan.json": "978abbe536a5a697ac5a31c2e412d18134cba804277c26875af23e813fcf3028",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-teleport-20261031/teleport-preparation/image-binding.json": "959f996bcb0bf014d98bba7d1faac4ad933d11cfc87a8c3c97186c3023ff9d47"
+  },
+  "retries": 0,
+  "supersedes_failed_setup": null,
+  "failure_policy": "Preserve unique attempts and stop; no model inference in this supervisor; no automatic scored pipeline",
+  "registered_at": "2026-10-31T21:04:44.120485+00:00",
+  "continuation_reconciliation": [
+    {
+      "directory": "/Users/rustameynaliyev/Developer/TTGL/results/swe-pro-prompt-001/environment-controls-003",
+      "stopped": {
+        "status": "stopped_no_model_calls_authorized",
+        "error": "RuntimeError: Resource wait expired before image preparation; no model call"
+      },
+      "invocations": [],
+      "jobs_present": false
+    },
+    {
+      "directory": "/Users/rustameynaliyev/Developer/TTGL/results/swe-pro-prompt-001/first-block-004",
+      "stopped": {
+        "status": "stopped_preserve_all_attempts_do_not_retry_blindly",
+        "error_type": "ProcessLookupError",
+        "message": "[Errno 3] No such process"
+      },
+      "invocations": [],
+      "jobs_present": false
+    }
+  ],
+  "prior_pull_failure": {
+    "status": "stopped_no_model_calls_authorized",
+    "error": "CalledProcessError: Command '['docker', 'pull', 'ghcr.io/scaleapi/swe-bench_pro-v2:instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e@sha256:0c1bda3771a33dc39070bf3b130b7217a352a144a7e2a9e1360d88113840ed1b']' returned non-zero exit status 1."
+  },
+  "prior_control_execution": false,
+  "recovery_evidence": "control006 pulled pinned image, Harbor daemon preflight failed before jobs; current default/task-config docker info both pass in under 10 seconds",
+  "architecture": "amd64",
+  "os": "linux",
+  "task_id": "instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2"
+}

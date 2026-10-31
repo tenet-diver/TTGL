@@ -1830,3 +1830,20 @@ reservations in original order after checking current liveness/claims/ownership.
 Keep v6, own target controls/boundary, audited setup reuse, zero retries; no
 standalone/full evaluation or validation expansion. Preserve all raw untracked
 results and host sealed records. Do not overwrite completed outputs or claims.
+
+## Heartbeat21:04 UTC: next one-task Teleport development unit registered
+
+Read AGENTS/generality/latest owner release, inspected actual processes and
+immutable claims. Prior series committed/pushed d80f49b; no research workers live.
+Next original reserved development index4 is Teleport, no replacement. Registered
+experiments/router-teleport-20261031/plan.json, cap ONE v6 router assignment,
+zero validation/standalone/retries. Heartbeat owns this unit through audit.
+
+Anonymous registry manifest/config digest validated amd64/Linux; pinned digest
+faed731d68feab39528cf63606de71210eb2eadd9369c4ad738e28f880724940,
+compressed layers2640191103 bytes (not unpacked size). Model-free controls017
+supervisorPID95296, results/router-teleport-20261031/teleport-controls-017,
+log artifacts/router-series-teleport-controls-017.log. No model registered or
+started. Preserve this worker. After own nop0/oracle1, separately register018
+with frozen v6, explicit cross-task transport-only setup008 reuse, all source
+bindings and fresh actor boundary. Do not reuse another task's readiness.
