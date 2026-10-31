@@ -320,3 +320,13 @@ not merely a different shell or a working verifier. General prompt unchanged;
 future trials disclose the transport correction. Reusing setup008 now requires
 the bound transport amendment and real regression evidence; never repeat setup
 inference as a workaround. See the Vuls transport-path-fix evidence README.
+
+
+For the current90%/no-observed-quality-loss objective, use matched Sol and Luna
+common guidance and count controller, expert, retries and integration together.
+The first Pro pair passes both arms with92.3197% lower Luna model-rate scenario
+cost, but one development case cannot establish the target. Keep all six fixed
+development cases, then freeze before a separate held-out registration. Do not
+stop on a favorable subset or tune the same validation panel repeatedly. Review
+visible actions, check limitations and final claims, not private reasoning.
+Scheduled monitoring stays paused; active-chat execution owns current units.

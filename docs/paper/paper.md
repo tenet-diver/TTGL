@@ -1294,6 +1294,31 @@ binds archived old sources and real model-free proof before future setup reuse.
 General v6 remains unchanged; future trials must disclose the changed transport
 condition and cannot attribute outcome differences to a prompt improvement.
 
+
+### Prospective90% target: first matched Pro development pair
+
+The user subsequently sets a90% all-role model-inference scenario reduction
+target with no observed held-out resolution-count loss against matched Sol.
+Six remaining original Pro development tasks are registered as12 new assignments,
+with counterbalanced arm order, common verification guidance, voluntary expert
+access only for Luna, and the corrected shell transport. General v7 consolidates
+common guidance rather than stacking archived policies.48 focused software
+checks pass before inference.24 reserved validation tasks remain untouched.
+
+On the first case, Flipt022, Sol and the Luna router both pass native and
+independent sealed-patch replay (1/1 each). Luna requests no expert consultation.
+Validated cumulative-thread model-rate scenarios areUSD0.1233776 for Sol and
+USD0.00947576 for Luna, per assigned and per resolved task:92.3197% lower.
+These include all inference roles and tool-retry activity; actual cash and quota
+savings remain unknown. Both traces include check exits137 and later focused
+package passes. Luna discloses the serial successful check and broader limit.
+The episode supplies no evidence of expert benefit, missed escalation or false
+completion. This is a selected one-task development observation, not proof of
+quality equivalence, general transfer or the final target. All registered tasks
+remain in the panel; costs aggregate as the ratio of sums, including failures.
+See the [target90 protocol](../research/target90-study.md) and
+[audited pair](../../results/target90-development-20261031/flipt-analysis-022/summary.json).
+
 # Industry-standard benchmark: a 500-task routing replay
 
 ## Data and interpretation
