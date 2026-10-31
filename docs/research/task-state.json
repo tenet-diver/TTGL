@@ -374,6 +374,7 @@
     "metric": "at least90% all-role model-rate scenario saving, no observed held-out count loss vs matched Sol; optional stricter statistical criterion question pending",
     "candidate": "v7 consolidated general common/routing policy, corrected transport",
     "validation": "24 tasks untouched until candidate freeze and separate registration",
-    "monitoring": "PAUSED; active research goal in this chat, not scheduled monitor"
+    "monitoring": "PAUSED; active research goal in this chat, not scheduled monitor",
+    "jira_key": "FAST-99"
   }
 }

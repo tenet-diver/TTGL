@@ -103,7 +103,9 @@ def analyze(study, protocol_path):
             exports[arm].update({'pre-handoff.patch':records/'pre-handoff.patch',
                                 'pre-handoff-result.json':pre_path,'pre-handoff-replay.json':pre_replay_path})
     return {'status':'audited_development_pair_not_final_target_evidence','task_id':protocol['task_id'],
-            'policy':'v7','arms':arms,'comparison':diagnostic,'actual_cash_saving':None,
+            'policy':'v7','policy_identity':{p:protocol['source_sha256'][str(ROOT/p)] for p in
+                ['src/ttgl/cost_quality_router.py','prompts/controller-v7-common.txt',
+                 'prompts/controller-v7-routing.txt','src/ttgl/harbor_bridge.py']},'arms':arms,'comparison':diagnostic,'actual_cash_saving':None,
             'subscription_quota_saving':None,'validation_tasks_used':0,
             'uncertainty':'One selected public development task, not population equivalence, transfer or confirmatory90% target proof'},exports
 

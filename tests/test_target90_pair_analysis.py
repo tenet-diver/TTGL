@@ -61,7 +61,9 @@ def complete_pair(tmp_path):
     save(protocol,{'task_id':'task','matched_pair_development':True,'scored_assignment_cap':2,
                    'first_block_order':['large','optional'],'assignment_claims':{
                        'large':str(tmp_path/'sol-claim'),'optional':str(tmp_path/'router-claim')},
-                   'rate_scenario':str(rate_path),'source_sha256':{str(common):common_hash}})
+                   'rate_scenario':str(rate_path),'source_sha256':{str(ROOT/p):analysis.pipeline.digest(ROOT/p) for p in
+                       ['src/ttgl/cost_quality_router.py','prompts/controller-v7-common.txt',
+                        'prompts/controller-v7-routing.txt','src/ttgl/harbor_bridge.py']}})
     return study,protocol,private
 
 
