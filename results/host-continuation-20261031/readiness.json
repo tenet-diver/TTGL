@@ -1,0 +1,18 @@
+{
+  "observed_at": "2026-10-31T18:15:29.324860+00:00",
+  "status": "blocked_missing_original_host_evidence_and_writable_codex_state",
+  "base_commit": "a43c9e7bd27f721b0b90c9fb13c4bed4c9332deb",
+  "model_calls": 0,
+  "scored_assignments_started": 0,
+  "missing_paths": {
+    "private_task_root": "/Users/rustameynaliyev/Developer/ttgl-pro-private-20261027",
+    "private_records_root": "/Users/rustameynaliyev/Developer/ttgl-router-development-20261031",
+    "controls_summary": "/Users/rustameynaliyev/Developer/TTGL/results/swe-pro-prompt-001/environment-controls-007/summary.json"
+  },
+  "raw_setup_tracked_or_present": false,
+  "original_absolute_source_bindings_present": 0,
+  "original_source_bindings_total": 42,
+  "codex_state_writable": false,
+  "next_action": "Connect original desktop or securely transfer raw setup008, sealed records, control evidence and task preparation to a normally authenticated writable Codex host. Implement validated setup reuse before continuing; current script unconditionally repeats setup.",
+  "credentials_transferred": false
+}

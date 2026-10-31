@@ -1617,3 +1617,14 @@ Next continuation MUST reuse completed setup/replay after auditing original
 source bindings, sealed patch hashes and metering; register a fresh output and
 explicit reuse path before the ONE unstarted router assignment. Do not restart
 008 or rerun its setup model calls. No scored result or retained-accuracy claim.
+
+
+## 31 October: managed-host continuation audit
+
+Fetched active work at a43c9e7; preserved older host changes separately on
+`handover-host-20261031`. No model calls launched. Original private task root,
+private records root, controls007 summary and raw setup008 are absent here;
+0/42 original absolute source bindings exist on this Linux host. Codex state
+remains non-writable. Receipt: `results/host-continuation-20261031/readiness.json`.
+Connect the original desktop or transfer sealed research evidence to a writable
+Codex host before validated setup reuse. Do not rerun completed setup calls.
