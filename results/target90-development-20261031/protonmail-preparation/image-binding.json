@@ -1,0 +1,7 @@
+{
+  "image_tag": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77",
+  "image_pinned": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77@sha256:ca4e551334e84cd67d942aa9d74e801c0f1f2be387e9a77c7a73a68e17056526",
+  "architecture": "amd64",
+  "os": "linux",
+  "registry_compressed_layer_bytes": 5784122647
+}

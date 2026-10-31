@@ -1,0 +1,156 @@
+{
+    "id": "a1d63f27-a1cc-4527-a878-07f28c333c5f",
+    "task_name": "swebench-pro/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2",
+    "trial_name": "instance_navidrome__navidrome-89__hBFVQQj",
+    "trial_uri": "file:///Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024/jobs/first-block-optional/instance_navidrome__navidrome-89__hBFVQQj",
+    "task_id": {
+        "path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/v2/tasks/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2"
+    },
+    "source": "tasks",
+    "task_checksum": "913d322d3449073d46be207d9beadf3f878150101c9398ff20f05c87f5a55a59",
+    "config": {
+        "task": {
+            "path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/v2/tasks/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "tasks"
+        },
+        "trial_name": "instance_navidrome__navidrome-89__hBFVQQj",
+        "trials_dir": "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024/jobs/first-block-optional",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "ttgl.cost_quality_router:CostQualityCodex",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "private_records_root": "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024",
+                "condition": "personal",
+                "policy": "verification"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": null,
+            "import_path": "ttgl.harbor_docker_network:DetachedNetworkDocker",
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "578fe6c4-68b4-48b3-89cc-f7dd2c9d217f",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "ttgl-cost-quality-v7",
+        "version": "0.1.0-experimental",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": 334968,
+        "n_cache_tokens": 292480,
+        "n_output_tokens": 2958,
+        "cost_usd": null,
+        "model_usage": {
+            "gpt-6-luna": {
+                "n_input_tokens": 334968,
+                "n_cache_tokens": 292480,
+                "n_output_tokens": 2958,
+                "cost_usd": null
+            }
+        },
+        "rollout_details": null,
+        "metadata": {
+            "ttgl_task_id": "instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2",
+            "condition": "personal",
+            "policy": "verification",
+            "status": "completed_ungraded",
+            "private_records_path": "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/personal/6fd967d3868943b38ef51b4ea3baa4fc",
+            "manifest_sha256": "7e32adc17f513fad246429c6af16ca4e4af1fd54a14ca18eebd38bb8995079d4",
+            "expert_calls": 0,
+            "grading": "Official fresh-sandbox regrade required",
+            "pre_handoff_snapshot": null,
+            "final_patch_sha256": "b4e627fa44ef87ac326af880e0ea636df746104a4523dc2dba12ffc4f6310172",
+            "required_review_observed": null,
+            "analysis": "Grade final and pre-handoff patches independently after generation; never send grades to the controller",
+            "fresh_actor_boundary": {
+                "status": "fresh_actor_boundary_passed_before_router_inference",
+                "observations": {
+                    "head": "4e0177ee5340b888126092d1146c1c7b6a92fed8",
+                    "git_status": "",
+                    "outside_head_commits": 0,
+                    "private_path_visible": false,
+                    "public_endpoint_reachable": false,
+                    "witness_ignored": false
+                },
+                "scope": "Hidden paths plus host sentinel, clean HEAD/history, direct-IP egress probe; not universal isolation proof"
+            }
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-10-31T22:44:03.591916Z",
+    "finished_at": "2026-10-31T22:50:20.531303Z",
+    "environment_setup": {
+        "started_at": "2026-10-31T22:44:05.244491Z",
+        "finished_at": "2026-10-31T22:44:15.248392Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-31T22:44:15.249066Z",
+        "finished_at": "2026-10-31T22:44:17.005467Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-31T22:44:17.006147Z",
+        "finished_at": "2026-10-31T22:49:15.292899Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-31T22:49:17.524151Z",
+        "finished_at": "2026-10-31T22:50:08.731893Z"
+    },
+    "step_results": null
+}

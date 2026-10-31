@@ -1,0 +1,165 @@
+{
+  "status": "audited_development_pair_not_final_target_evidence",
+  "task_id": "instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2",
+  "policy": "v7",
+  "policy_identity": {
+    "src/ttgl/cost_quality_router.py": "a3a8ab49e30b6a171a6608bb2315eb811369b410f5cc17da01b171b91d970e92",
+    "prompts/controller-v7-common.txt": "667cb62034f2497e72f2ddc4670f47816c979e5894803e217be8be0540c5039b",
+    "prompts/controller-v7-routing.txt": "a8edba0611dab0c9c1d401b716ae6a464f6095b57af9e7e16f35a70f82c1df0c",
+    "src/ttgl/harbor_bridge.py": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065"
+  },
+  "arms": {
+    "optional": {
+      "assigned": 1,
+      "resolved": 1,
+      "initial_grade": 1.0,
+      "cost_scenario_usd": 0.0086526,
+      "cost_per_resolved_usd": 0.0086526,
+      "usage": {
+        "input_tokens": 334968,
+        "cached_input_tokens": 292480,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2958,
+        "reasoning_output_tokens": 0
+      },
+      "usage_by_model": {
+        "gpt-6-luna": {
+          "usage": {
+            "input_tokens": 334968,
+            "cached_input_tokens": 292480,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2958,
+            "reasoning_output_tokens": 0
+          },
+          "observed_partial": {
+            "input_tokens": 334968,
+            "cached_input_tokens": 292480,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2958,
+            "reasoning_output_tokens": 0
+          },
+          "complete": {
+            "input_tokens": true,
+            "cached_input_tokens": true,
+            "cache_write_input_tokens": true,
+            "output_tokens": true,
+            "reasoning_output_tokens": true
+          }
+        }
+      },
+      "expert_requests": 0,
+      "completed_consultations": 0,
+      "pre_handoff_grade": null,
+      "native_requests_by_role": {
+        "controller": 1
+      },
+      "latency_seconds": {
+        "native_model_and_tools": 282.1502026519738,
+        "actor": 298.286752,
+        "generation_start_to_fresh_grade": 681.387169
+      },
+      "final_response": {
+        "action": "complete",
+        "question": "",
+        "context": "",
+        "summary": "Implemented typed Last.fm API errors, response error parsing, malformed-body/status handling, and wrapper return types that preserve similar-artist and top-track metadata. Added MBID fallback for biography, similar artists, and top songs on error code 6 or the `[unknown]` sentinel, with a warning before retry. Updated existing tests for the wrapper API. `go test ./utils/lastfm ./core/agents` passed. `go test ./...` did not complete: it exited with code 137 during TagLib C++ compilation (with a deprecation warning), so full-repository verification remains incomplete."
+      },
+      "provenance": {
+        "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/navidrome-pair-024.json": "d25e1c9c30193fe7870a700c3f6505daa58d7ae49395f6a07247384159f0b4c0",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024/jobs/first-block-optional/instance_navidrome__navidrome-89__hBFVQQj/result.json": "780586e7f6dbbc72eb0439065a245aa75e2375d7457c3a15833c9792ac896453",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024/jobs/first-block-optional-fresh/instance_navidrome__navidrome-89__f8mGcYc/result.json": "f0d609dfed9aaf6d88d5720248f32156f477c1157df3a8e9f8316b8aaa7ec075",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024/jobs/first-block-optional-fresh/instance_navidrome__navidrome-89__f8mGcYc/agent/replay.json": "113aa615edc3a78b00e5fdd769d7bf42e6565331694d96f8e746ebf0150d0930",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/personal/6fd967d3868943b38ef51b4ea3baa4fc/controller/manifest.json": "7e32adc17f513fad246429c6af16ca4e4af1fd54a14ca18eebd38bb8995079d4",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/personal/6fd967d3868943b38ef51b4ea3baa4fc/controller/events.jsonl": "31659964ca29c0fbb58a9ce4205b218e48daa69749cf3c55f7d670a310cb4063",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/personal/6fd967d3868943b38ef51b4ea3baa4fc/visible-tool-trace.jsonl": "56de32b61f71616aba528542a46577771fc09273a3032374f1bb1205de67115a",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/personal/6fd967d3868943b38ef51b4ea3baa4fc/final.patch": "b4e627fa44ef87ac326af880e0ea636df746104a4523dc2dba12ffc4f6310172",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/personal/6fd967d3868943b38ef51b4ea3baa4fc/sealed-replay-source/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/seal.json": "91279c630e3557f8706f1fb24fac2d616ef848ccfaa05917ebc380a6f747bf9e"
+      }
+    },
+    "large": {
+      "assigned": 1,
+      "resolved": 1,
+      "initial_grade": 1.0,
+      "cost_scenario_usd": 0.172766,
+      "cost_per_resolved_usd": 0.172766,
+      "usage": {
+        "input_tokens": 453761,
+        "cached_input_tokens": 416640,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5686,
+        "reasoning_output_tokens": 703
+      },
+      "usage_by_model": {
+        "gpt-6.1-sol": {
+          "usage": {
+            "input_tokens": 453761,
+            "cached_input_tokens": 416640,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5686,
+            "reasoning_output_tokens": 703
+          },
+          "observed_partial": {
+            "input_tokens": 453761,
+            "cached_input_tokens": 416640,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5686,
+            "reasoning_output_tokens": 703
+          },
+          "complete": {
+            "input_tokens": true,
+            "cached_input_tokens": true,
+            "cache_write_input_tokens": true,
+            "output_tokens": true,
+            "reasoning_output_tokens": true
+          }
+        }
+      },
+      "expert_requests": 0,
+      "completed_consultations": 0,
+      "pre_handoff_grade": null,
+      "native_requests_by_role": {
+        "controller": 1
+      },
+      "latency_seconds": {
+        "native_model_and_tools": 173.638970465865,
+        "actor": 187.68674,
+        "generation_start_to_fresh_grade": 339.848163
+      },
+      "final_response": {
+        "action": "complete",
+        "question": "",
+        "context": "",
+        "summary": "Implemented MBID fallback with warning logs, typed Last.fm errors, and list wrappers retaining @attr metadata. Verification supported: both affected package suites passed, covering request counts, retry boundaries, preserved biography HTML, parsed entries, URLs, and error handling. Disabling fallback caused regression tests to fail; restoring it passed. git diff --check passed. Full repository suite was not run."
+      },
+      "provenance": {
+        "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/navidrome-pair-024.json": "d25e1c9c30193fe7870a700c3f6505daa58d7ae49395f6a07247384159f0b4c0",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024/jobs/first-block-large/instance_navidrome__navidrome-89__ZYcTnnG/result.json": "a887f8a722bf4d538ac9b68f372fe8f0edf2d914766da9e0ad37b88b2ec8e3b2",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024/jobs/first-block-large-fresh/instance_navidrome__navidrome-89__8W2m7QY/result.json": "09e788108009fab5d6a5e50ef0e54f27cbb830dc47cdf3a424d358ac4af63d81",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024/jobs/first-block-large-fresh/instance_navidrome__navidrome-89__8W2m7QY/agent/replay.json": "69a62e3db27a24bd23ff7e1bc8b59163ac6eaa40488465f618b9432f77eb7c96",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/large/b999c9f782804dc38a6f73060cf51828/controller/manifest.json": "6195525820fd71baf2fcfc59c0545e36317fca0cea6587edc676d50340ae7f24",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/large/b999c9f782804dc38a6f73060cf51828/controller/events.jsonl": "8f20fc95bda35a2b129d7294af8fe747085eb3021714c14d2daac75b9b9e5604",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/large/b999c9f782804dc38a6f73060cf51828/visible-tool-trace.jsonl": "e9dc3df41d93dfa9e3700ac404b3b30ace7e6a074ff838d89fcd9958d529a207",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/large/b999c9f782804dc38a6f73060cf51828/final.patch": "4803611d62c5aa688636edaacb2c6079e79f35ebdbe093f815acff851804afa8",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/large/b999c9f782804dc38a6f73060cf51828/sealed-replay-source/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/seal.json": "1acfcbe9fabb7c4f596a98f89c649bc0f0501082dcaae72a660b740c0de15237"
+      }
+    }
+  },
+  "comparison": {
+    "status": "single_development_pair_not_final_target_evidence",
+    "task_id": "instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2",
+    "sol_resolved": true,
+    "router_resolved": true,
+    "resolved_delta": 0,
+    "sol_success_lost": false,
+    "router_extra_success": false,
+    "model_cost_ratio": 0.050082770915573664,
+    "scenario_saving": 0.9499172290844263,
+    "actual_cash_saving": null,
+    "population_noninferiority_claim": false,
+    "interpretation": "Keep all registered development pairs; freeze before held-out evaluation"
+  },
+  "actual_cash_saving": null,
+  "subscription_quota_saving": null,
+  "validation_tasks_used": 0,
+  "uncertainty": "One selected public development task, not population equivalence, transfer or confirmatory90% target proof"
+}

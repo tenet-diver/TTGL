@@ -1,39 +1,40 @@
 {
   "status": "development_progress_not_held_out_target_proof",
   "planned_tasks": 6,
-  "completed_pairs": 1,
+  "completed_pairs": 2,
   "all_registered_pairs_complete": false,
   "fixed_policy_across_completed_pairs": true,
   "quality": {
-    "sol_resolved": 1,
-    "router_resolved": 1,
-    "assigned_per_arm": 1,
+    "sol_resolved": 2,
+    "router_resolved": 2,
+    "assigned_per_arm": 2,
     "resolved_delta": 0,
     "sol_successes_lost": 0,
     "router_extra_successes": 0
   },
   "cost_scope": "Audited completed pairs only; unfinished assignments are not zero cost and cannot pass the full-panel gate",
   "cost_scenario_usd": {
-    "large": 0.1233776,
-    "optional": 0.00947576
+    "large": 0.2961436,
+    "optional": 0.01812836
   },
   "cost_per_assigned_usd": {
-    "large": 0.1233776,
-    "optional": 0.00947576
+    "large": 0.1480718,
+    "optional": 0.00906418
   },
   "cost_per_resolved_usd": {
-    "large": 0.1233776,
-    "optional": 0.00947576
+    "large": 0.1480718,
+    "optional": 0.00906418
   },
-  "aggregate_model_cost_ratio": 0.07680292046530326,
-  "aggregate_scenario_saving": 0.9231970795346968,
+  "aggregate_model_cost_ratio": 0.061214762027610926,
+  "aggregate_scenario_saving": 0.9387852379723891,
   "development_point_gate": null,
   "held_out_target_achieved": false,
   "actual_cash_saving": null,
   "subscription_quota_saving": null,
   "uncertainty": "Selected development tasks; no population equivalence, final-policy causal improvement or held-out90% proof",
   "tasks": [
-    "instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5"
+    "instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
+    "instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2"
   ],
   "unfinished_invoked_assignments": []
 }

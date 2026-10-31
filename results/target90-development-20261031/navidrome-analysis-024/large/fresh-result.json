@@ -1,0 +1,123 @@
+{
+    "id": "79b71961-e2d1-4db3-a223-11ddb4747e58",
+    "task_name": "swebench-pro/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2",
+    "trial_name": "instance_navidrome__navidrome-89__8W2m7QY",
+    "trial_uri": "file:///Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024/jobs/first-block-large-fresh/instance_navidrome__navidrome-89__8W2m7QY",
+    "task_id": {
+        "path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/v2/tasks/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2"
+    },
+    "source": "tasks",
+    "task_checksum": "913d322d3449073d46be207d9beadf3f878150101c9398ff20f05c87f5a55a59",
+    "config": {
+        "task": {
+            "path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/v2/tasks/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "tasks"
+        },
+        "trial_name": "instance_navidrome__navidrome-89__8W2m7QY",
+        "trials_dir": "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024/jobs/first-block-large-fresh",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "patch_replay:PatchReplayAgent",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "source_job": "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/large/b999c9f782804dc38a6f73060cf51828/sealed-replay-source",
+                "patch_name": "model.patch"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": null,
+            "import_path": "ttgl.harbor_docker_network:DetachedNetworkDocker",
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "f0194499-53e9-4585-bd50-fadb2b70549b",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "patch-replay-agent",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-10-31T22:59:59.971701Z",
+    "finished_at": "2026-10-31T23:01:18.662169Z",
+    "environment_setup": {
+        "started_at": "2026-10-31T23:00:00.604256Z",
+        "finished_at": "2026-10-31T23:00:04.889292Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-31T23:00:04.889793Z",
+        "finished_at": "2026-10-31T23:00:04.890103Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-31T23:00:04.890623Z",
+        "finished_at": "2026-10-31T23:00:09.168141Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-31T23:00:10.886345Z",
+        "finished_at": "2026-10-31T23:01:07.438104Z"
+    },
+    "step_results": null
+}

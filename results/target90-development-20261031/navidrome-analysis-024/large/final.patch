@@ -1,0 +1,410 @@
+diff --git a/core/agents/lastfm.go b/core/agents/lastfm.go
+index 908e4189..c2da1329 100644
+--- a/core/agents/lastfm.go
++++ b/core/agents/lastfm.go
+@@ -2,6 +2,7 @@ package agents
+ 
+ import (
+ 	"context"
++	"errors"
+ 	"net/http"
+ 
+ 	"github.com/navidrome/navidrome/conf"
+@@ -113,29 +114,60 @@ func (l *lastfmAgent) GetTopSongs(id, artistName, mbid string, count int) ([]Son
+ 
+ func (l *lastfmAgent) callArtistGetInfo(name string, mbid string) (*lastfm.Artist, error) {
+ 	a, err := l.client.ArtistGetInfo(l.ctx, name, mbid)
++	unknown := err == nil && a.Name == "[unknown]"
++	if l.shouldRetry(name, mbid, unknown, err) {
++		return l.callArtistGetInfo(name, "")
++	}
+ 	if err != nil {
+ 		log.Error(l.ctx, "Error calling LastFM/artist.getInfo", "artist", name, "mbid", mbid, err)
+ 		return nil, err
+ 	}
++	if unknown {
++		return nil, ErrNotFound
++	}
+ 	return a, nil
+ }
+ 
+ func (l *lastfmAgent) callArtistGetSimilar(name string, mbid string, limit int) ([]lastfm.Artist, error) {
+ 	s, err := l.client.ArtistGetSimilar(l.ctx, name, mbid, limit)
++	unknown := err == nil && s.Attr.Artist == "[unknown]"
++	if l.shouldRetry(name, mbid, unknown, err) {
++		return l.callArtistGetSimilar(name, "", limit)
++	}
+ 	if err != nil {
+ 		log.Error(l.ctx, "Error calling LastFM/artist.getSimilar", "artist", name, "mbid", mbid, err)
+ 		return nil, err
+ 	}
+-	return s, nil
++	if unknown {
++		return nil, ErrNotFound
++	}
++	return s.Artists, nil
+ }
+ 
+ func (l *lastfmAgent) callArtistGetTopTracks(artistName, mbid string, count int) ([]lastfm.Track, error) {
+ 	t, err := l.client.ArtistGetTopTracks(l.ctx, artistName, mbid, count)
++	unknown := err == nil && t.Attr.Artist == "[unknown]"
++	if l.shouldRetry(artistName, mbid, unknown, err) {
++		return l.callArtistGetTopTracks(artistName, "", count)
++	}
+ 	if err != nil {
+ 		log.Error(l.ctx, "Error calling LastFM/artist.getTopTracks", "artist", artistName, "mbid", mbid, err)
+ 		return nil, err
+ 	}
+-	return t, nil
++	if unknown {
++		return nil, ErrNotFound
++	}
++	return t.Track, nil
++}
++
++// shouldRetry only falls back for unresolved MBIDs, never for transport or other API errors.
++func (l *lastfmAgent) shouldRetry(name, mbid string, unknown bool, err error) bool {
++	var apiErr *lastfm.Error
++	if mbid == "" || !(unknown || (errors.As(err, &apiErr) && apiErr.Code == 6)) {
++		return false
++	}
++	log.Warn(l.ctx, "LastFM could not resolve MBID, retrying by artist name", "artist", name, "mbid", mbid)
++	return true
+ }
+ 
+ func init() {
+diff --git a/core/agents/lastfm_fallback_test.go b/core/agents/lastfm_fallback_test.go
+new file mode 100644
+index 00000000..2d502680
+--- /dev/null
++++ b/core/agents/lastfm_fallback_test.go
+@@ -0,0 +1,120 @@
++package agents
++
++import (
++	"context"
++	"errors"
++	"io/ioutil"
++	"net/http"
++	"reflect"
++	"strings"
++	"testing"
++
++	"github.com/navidrome/navidrome/utils/lastfm"
++)
++
++type lastfmSequenceClient struct {
++	requests []*http.Request
++	bodies   []string
++	err      error
++}
++
++func (c *lastfmSequenceClient) Do(req *http.Request) (*http.Response, error) {
++	c.requests = append(c.requests, req)
++	if c.err != nil {
++		return nil, c.err
++	}
++	body := c.bodies[0]
++	if len(c.bodies) > 1 {
++		c.bodies = c.bodies[1:]
++	}
++	return &http.Response{StatusCode: 200, Body: ioutil.NopCloser(strings.NewReader(body))}, nil
++}
++
++func TestLastFMFallback(t *testing.T) {
++	transportErr := errors.New("transport failure")
++	const summary = `Biography <a href="https://last.fm/music/Artist">Read more on Last.fm</a>`
++	operations := []struct {
++		name, success, unknown string
++		call                   func(*lastfmAgent, string) (interface{}, error)
++		want                   interface{}
++	}{
++		{
++			name:    "biography",
++			success: `{"artist":{"name":"Artist","bio":{"summary":"Biography <a href=\"https://last.fm/music/Artist\">Read more on Last.fm</a>"}}}`,
++			unknown: `{"artist":{"name":"[unknown]","bio":{"summary":"placeholder"}}}`,
++			call: func(a *lastfmAgent, mbid string) (interface{}, error) {
++				return a.GetBiography("id", "Artist", mbid)
++			},
++			want: summary,
++		},
++		{
++			name:    "similar",
++			success: `{"similarartists":{"artist":[{"name":"Similar","mbid":"similar-id"}],"@attr":{"artist":"Artist"}}}`,
++			unknown: `{"similarartists":{"artist":[{"name":"placeholder"}],"@attr":{"artist":"[unknown]"}}}`,
++			call: func(a *lastfmAgent, mbid string) (interface{}, error) {
++				return a.GetSimilar("id", "Artist", mbid, 3)
++			},
++			want: []Artist{{Name: "Similar", MBID: "similar-id"}},
++		},
++		{
++			name:    "top songs",
++			success: `{"toptracks":{"track":[{"name":"Song","mbid":"song-id"}],"@attr":{"artist":"Artist"}}}`,
++			unknown: `{"toptracks":{"track":[{"name":"placeholder"}],"@attr":{"artist":"[unknown]"}}}`,
++			call: func(a *lastfmAgent, mbid string) (interface{}, error) {
++				return a.GetTopSongs("id", "Artist", mbid, 3)
++			},
++			want: []Song{{Name: "Song", MBID: "song-id"}},
++		},
++	}
++	for _, op := range operations {
++		t.Run(op.name, func(t *testing.T) {
++			cases := []struct {
++				name, first, second, mbid string
++				transport, wantErr        error
++				count                     int
++			}{
++				{name: "success", first: op.success, mbid: "original", count: 1},
++				{name: "unknown", first: op.unknown, second: op.success, mbid: "original", count: 2},
++				{name: "code 6", first: `{"error":6,"message":"not found"}`, second: op.success, mbid: "original", count: 2},
++				{name: "other API error", first: `{"error":3,"message":"invalid"}`, mbid: "original", wantErr: &lastfm.Error{Code: 3, Message: "invalid"}, count: 1},
++				{name: "transport", mbid: "original", transport: transportErr, wantErr: transportErr, count: 1},
++				{name: "empty MBID unknown", first: op.unknown, wantErr: ErrNotFound, count: 1},
++				{name: "empty MBID code 6", first: `{"error":6,"message":"not found"}`, wantErr: &lastfm.Error{Code: 6, Message: "not found"}, count: 1},
++				{name: "fallback still unknown", first: op.unknown, second: op.unknown, mbid: "original", wantErr: ErrNotFound, count: 2},
++				{name: "fallback still code 6", first: `{"error":6,"message":"not found"}`, second: `{"error":6,"message":"not found"}`, mbid: "original", wantErr: &lastfm.Error{Code: 6, Message: "not found"}, count: 2},
++			}
++			for _, tc := range cases {
++				t.Run(tc.name, func(t *testing.T) {
++					hc := &lastfmSequenceClient{bodies: []string{tc.first}, err: tc.transport}
++					if tc.second != "" {
++						hc.bodies = append(hc.bodies, tc.second)
++					}
++					a := &lastfmAgent{ctx: context.Background(), client: lastfm.NewClient("key", "en", hc)}
++					got, err := op.call(a, tc.mbid)
++					if !errors.Is(err, tc.wantErr) {
++						t.Fatalf("error = %v, want %v", err, tc.wantErr)
++					}
++					if tc.wantErr == nil && !reflect.DeepEqual(got, op.want) {
++						t.Errorf("result = %#v, want %#v", got, op.want)
++					}
++					if len(hc.requests) != tc.count {
++						t.Fatalf("requests = %d, want %d", len(hc.requests), tc.count)
++					}
++					for i, req := range hc.requests {
++						wantMBID := tc.mbid
++						if i > 0 {
++							wantMBID = ""
++						}
++						query := req.URL.Query()
++						if len(query["mbid"]) != 1 || query.Get("mbid") != wantMBID || query.Get("artist") != "Artist" {
++							t.Errorf("request %d query = %v", i, query)
++						}
++						if op.name != "biography" && query.Get("limit") != "3" {
++							t.Errorf("limit = %q, want 3", query.Get("limit"))
++						}
++					}
++				})
++			}
++		})
++	}
++}
+diff --git a/utils/lastfm/client.go b/utils/lastfm/client.go
+index 3603d57d..0abd9168 100644
+--- a/utils/lastfm/client.go
++++ b/utils/lastfm/client.go
+@@ -46,14 +46,17 @@ func (c *Client) makeRequest(params url.Values) (*Response, error) {
+ 		return nil, err
+ 	}
+ 
+-	if resp.StatusCode != 200 {
+-		return nil, c.parseError(data)
+-	}
+-
+ 	var response Response
+-	err = json.Unmarshal(data, &response)
+-
+-	return &response, err
++	if err := json.Unmarshal(data, &response); err != nil {
++		if resp.StatusCode != http.StatusOK {
++			return nil, fmt.Errorf("last.fm http status: (%d)", resp.StatusCode)
++		}
++		return nil, err
++	}
++	if response.Error != 0 {
++		return nil, &Error{Code: response.Error, Message: response.Message}
++	}
++	return &response, nil
+ }
+ 
+ func (c *Client) ArtistGetInfo(ctx context.Context, name string, mbid string) (*Artist, error) {
+@@ -69,7 +72,7 @@ func (c *Client) ArtistGetInfo(ctx context.Context, name string, mbid string) (*
+ 	return &response.Artist, nil
+ }
+ 
+-func (c *Client) ArtistGetSimilar(ctx context.Context, name string, mbid string, limit int) ([]Artist, error) {
++func (c *Client) ArtistGetSimilar(ctx context.Context, name string, mbid string, limit int) (*SimilarArtists, error) {
+ 	params := url.Values{}
+ 	params.Add("method", "artist.getSimilar")
+ 	params.Add("artist", name)
+@@ -79,10 +82,10 @@ func (c *Client) ArtistGetSimilar(ctx context.Context, name string, mbid string,
+ 	if err != nil {
+ 		return nil, err
+ 	}
+-	return response.SimilarArtists.Artists, nil
++	return &response.SimilarArtists, nil
+ }
+ 
+-func (c *Client) ArtistGetTopTracks(ctx context.Context, name string, mbid string, limit int) ([]Track, error) {
++func (c *Client) ArtistGetTopTracks(ctx context.Context, name string, mbid string, limit int) (*TopTracks, error) {
+ 	params := url.Values{}
+ 	params.Add("method", "artist.getTopTracks")
+ 	params.Add("artist", name)
+@@ -92,14 +95,22 @@ func (c *Client) ArtistGetTopTracks(ctx context.Context, name string, mbid strin
+ 	if err != nil {
+ 		return nil, err
+ 	}
+-	return response.TopTracks.Track, nil
++	return &response.TopTracks, nil
+ }
+ 
+-func (c *Client) parseError(data []byte) error {
+-	var e Error
+-	err := json.Unmarshal(data, &e)
+-	if err != nil {
+-		return err
+-	}
+-	return fmt.Errorf("last.fm error(%d): %s", e.Code, e.Message)
++// Error is an error returned by the Last.fm API.
++type Error struct {
++	Code    int    `json:"error"`
++	Message string `json:"message"`
++}
++
++func (e *Error) Error() string {
++	return fmt.Sprintf("last.fm error(%d): %s", e.Code, e.Message)
++}
++
++// Is compares Last.fm errors by their API code and message.
++func (e *Error) Is(target error) bool {
++	other, ok := target.(*Error)
++	return ok && e != nil && other != nil &&
++		e.Code == other.Code && e.Message == other.Message
+ }
+diff --git a/utils/lastfm/client_test.go b/utils/lastfm/client_test.go
+index 3dc74bc8..36502fd9 100644
+--- a/utils/lastfm/client_test.go
++++ b/utils/lastfm/client_test.go
+@@ -68,7 +68,8 @@ var _ = Describe("Client", func() {
+ 
+ 			artists, err := client.ArtistGetSimilar(context.TODO(), "U2", "123", 2)
+ 			Expect(err).To(BeNil())
+-			Expect(len(artists)).To(Equal(2))
++			Expect(len(artists.Artists)).To(Equal(2))
++			Expect(artists.Attr.Artist).To(Equal("U2"))
+ 			Expect(httpClient.savedRequest.URL.String()).To(Equal(apiBaseUrl + "?api_key=API_KEY&artist=U2&format=json&limit=2&mbid=123&method=artist.getSimilar"))
+ 		})
+ 
+@@ -107,7 +108,8 @@ var _ = Describe("Client", func() {
+ 
+ 			tracks, err := client.ArtistGetTopTracks(context.TODO(), "U2", "123", 2)
+ 			Expect(err).To(BeNil())
+-			Expect(len(tracks)).To(Equal(2))
++			Expect(len(tracks.Track)).To(Equal(2))
++			Expect(tracks.Attr.Artist).To(Equal("U2"))
+ 			Expect(httpClient.savedRequest.URL.String()).To(Equal(apiBaseUrl + "?api_key=API_KEY&artist=U2&format=json&limit=2&mbid=123&method=artist.getTopTracks"))
+ 		})
+ 
+diff --git a/utils/lastfm/error_handling_test.go b/utils/lastfm/error_handling_test.go
+new file mode 100644
+index 00000000..1ff000ca
+--- /dev/null
++++ b/utils/lastfm/error_handling_test.go
+@@ -0,0 +1,54 @@
++package lastfm
++
++import (
++	"context"
++	"encoding/json"
++	"errors"
++	"io/ioutil"
++	"net/http"
++	"strings"
++	"testing"
++)
++
++func TestClientResponseErrors(t *testing.T) {
++	for _, status := range []int{200, 400, 500} {
++		for _, code := range []int{3, 6} {
++			body := `{"error":3,"message":"artist unavailable"}`
++			if code == 6 {
++				body = `{"error":6,"message":"artist unavailable"}`
++			}
++			var response Response
++			if err := json.Unmarshal([]byte(body), &response); err != nil || response.Error != code || response.Message != "artist unavailable" {
++				t.Fatalf("structured error: %#v, %v", response, err)
++			}
++			hc := &fakeHttpClient{res: http.Response{StatusCode: status, Body: ioutil.NopCloser(strings.NewReader(body))}}
++			_, err := NewClient("key", "en", hc).ArtistGetInfo(context.Background(), "Artist", "mbid")
++			var apiErr *Error
++			if !errors.As(err, &apiErr) || !errors.Is(err, &Error{Code: code, Message: "artist unavailable"}) {
++				t.Errorf("HTTP %d code %d: got %T %v", status, code, err, err)
++			}
++			if errors.Is(err, &Error{Code: code + 1, Message: "artist unavailable"}) ||
++				errors.Is(err, &Error{Code: code, Message: "different"}) {
++				t.Error("different API errors compared equal")
++			}
++		}
++	}
++	for _, status := range []int{200, 503} {
++		hc := &fakeHttpClient{res: http.Response{StatusCode: status, Body: ioutil.NopCloser(strings.NewReader("<html>"))}}
++		_, err := NewClient("key", "en", hc).ArtistGetInfo(context.Background(), "Artist", "mbid")
++		if status == 200 {
++			var syntaxErr *json.SyntaxError
++			if !errors.As(err, &syntaxErr) {
++				t.Errorf("expected JSON syntax error, got %T %v", err, err)
++			}
++		} else if err == nil || err.Error() != "last.fm http status: (503)" {
++			t.Errorf("unexpected status error: %v", err)
++		}
++	}
++	transportErr := errors.New("transport failure")
++	hc := &fakeHttpClient{err: transportErr}
++	_, err := NewClient("key", "en", hc).ArtistGetInfo(context.Background(), "Artist", "mbid")
++	if err != transportErr {
++		t.Errorf("transport error was changed: %v", err)
++	}
++}
+diff --git a/utils/lastfm/responses.go b/utils/lastfm/responses.go
+index ebfe8f87..468d6297 100644
+--- a/utils/lastfm/responses.go
++++ b/utils/lastfm/responses.go
+@@ -1,6 +1,8 @@
+ package lastfm
+ 
+ type Response struct {
++	Error          int            `json:"error"`
++	Message        string         `json:"message"`
+ 	Artist         Artist         `json:"artist"`
+ 	SimilarArtists SimilarArtists `json:"similarartists"`
+ 	TopTracks      TopTracks      `json:"toptracks"`
+@@ -24,7 +26,8 @@ type Artist struct {
+ }
+ 
+ type SimilarArtists struct {
+-	Artists []Artist `json:"artist"`
++	Attr    ArtistAttributes `json:"@attr"`
++	Artists []Artist         `json:"artist"`
+ }
+ 
+ type ArtistImage struct {
+@@ -49,10 +52,15 @@ type Track struct {
+ }
+ 
+ type TopTracks struct {
+-	Track []Track `json:"track"`
++	Attr  ArtistAttributes `json:"@attr"`
++	Track []Track          `json:"track"`
+ }
+ 
+-type Error struct {
+-	Code    int    `json:"error"`
+-	Message string `json:"message"`
++// ArtistAttributes identifies the artist associated with a list response.
++type ArtistAttributes struct {
++	Artist     string `json:"artist"`
++	Page       string `json:"page"`
++	PerPage    string `json:"perPage"`
++	TotalPages string `json:"totalPages"`
++	Total      string `json:"total"`
+ }

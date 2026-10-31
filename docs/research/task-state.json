@@ -361,17 +361,16 @@
     "monitor": "PAUSED by explicit user instruction; continue active chat only"
   },
   "current_router_unit": {
-    "task": "navidrome",
-    "status": "partial continuation active: reuse completed Luna, unstarted fresh replay then Sol; original disk stop preserved",
-    "pid": 73633,
-    "protocol": "experiments/target90-development-20261031/navidrome-pair-024.json",
+    "task": "protonmail",
+    "status": "model-free controls025 active, Navidrome024 independently audited after partial continuation",
+    "pid": 79408,
+    "protocol": "experiments/target90-development-20261031/protonmail-control-025.json",
     "owner": "active chat",
-    "monitoring": "PAUSED",
-    "recovery": "experiments/target90-development-20261031/navidrome-recovery-024.json"
+    "monitoring": "PAUSED"
   },
   "active_target90": {
     "plan": "experiments/target90-development-20261031/plan.json",
-    "status": "1/6 pairs audited; Navidrome024 disk-stop recovery active, no repeated inference",
+    "status": "2/6 matched development pairs audited; Sol2/2 router2/2,93.8785% aggregate scenario saving; Protonmail controls025 active",
     "metric": "at least90% all-role model-rate scenario saving, no observed held-out count loss vs matched Sol; optional stricter statistical criterion question pending",
     "candidate": "v7 consolidated general common/routing policy, corrected transport",
     "validation": "24 tasks untouched until candidate freeze and separate registration",

@@ -1,0 +1,108 @@
+{
+  "schema_version": 3,
+  "run_id": "daaa0347-2902-448f-97ec-ff6499561f6e",
+  "task_id": "instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2",
+  "condition": "personal",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-31T22:44:19.586540+00:00",
+  "finished_at": "2026-10-31T22:49:02.020536+00:00",
+  "identity_sha256": "4445dc216d0e3a9d28929b55fa5df5fad6f629df3a21b73beb96311355b948d5",
+  "config": {
+    "condition": "personal",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 2940.0,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "One Harbor environment.exec via authenticated loopback MCP",
+    "server_sha256": "cd207f6da4bfa2c69d171d8a82a41d0f67a2e200f424907a0716f6e17abb571e",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "1d4213bb5cb95525518a924667df2afd177b392e9ca87e17ec173e9f4d651a27",
+    "harbor_bridge_sha256": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065",
+    "controller_policy": {
+      "mode": "consolidated-v7",
+      "source_sha256": "a3a8ab49e30b6a171a6608bb2315eb811369b410f5cc17da01b171b91d970e92",
+      "common_sha256": "667cb62034f2497e72f2ddc4670f47816c979e5894803e217be8be0540c5039b",
+      "routing_sha256": "a8edba0611dab0c9c1d401b716ae6a464f6095b57af9e7e16f35a70f82c1df0c",
+      "transport_sha256": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065",
+      "snapshot_source_sha256": "cfc8c857ac2a83087d832a07d4aeeb122577e7e23d6d452b9606ac14ab408ad6"
+    },
+    "visible_tool_trace": "Bounded public tool actions/observations; no private reasoning or evaluator feedback",
+    "routing_diagnostic": {
+      "mode": "consolidated-v7",
+      "source_sha256": "a3a8ab49e30b6a171a6608bb2315eb811369b410f5cc17da01b171b91d970e92",
+      "common_sha256": "667cb62034f2497e72f2ddc4670f47816c979e5894803e217be8be0540c5039b",
+      "routing_sha256": "a8edba0611dab0c9c1d401b716ae6a464f6095b57af9e7e16f35a70f82c1df0c",
+      "transport_sha256": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065",
+      "snapshot_source_sha256": "cfc8c857ac2a83087d832a07d4aeeb122577e7e23d6d452b9606ac14ab408ad6"
+    }
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 1,
+  "expert_calls": 0,
+  "elapsed_seconds": 282.1502026519738,
+  "controller_thread_id": "01a19422-a504-7c41-8502-470d8dabe8a0",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 334968,
+    "cached_input_tokens": 292480,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2958,
+    "reasoning_output_tokens": 0
+  },
+  "observed_usage_partial": {
+    "input_tokens": 334968,
+    "cached_input_tokens": 292480,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2958,
+    "reasoning_output_tokens": 0
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 334968,
+        "cached_input_tokens": 292480,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2958,
+        "reasoning_output_tokens": 0
+      },
+      "observed_partial": {
+        "input_tokens": 334968,
+        "cached_input_tokens": 292480,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2958,
+        "reasoning_output_tokens": 0
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 5,
+  "failure_type": null,
+  "summary": "Implemented typed Last.fm API errors, response error parsing, malformed-body/status handling, and wrapper return types that preserve similar-artist and top-track metadata. Added MBID fallback for biography, similar artists, and top songs on error code 6 or the `[unknown]` sentinel, with a warning before retry. Updated existing tests for the wrapper API. `go test ./utils/lastfm ./core/agents` passed. `go test ./...` did not complete: it exited with code 137 during TagLib C++ compilation (with a deprecation warning), so full-repository verification remains incomplete.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "31659964ca29c0fbb58a9ce4205b218e48daa69749cf3c55f7d670a310cb4063",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

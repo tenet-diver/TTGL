@@ -7,6 +7,7 @@ accounted for; no favorable subset stopping. The24 validation tasks are untouche
 | Completed task | Sol resolved | Luna router resolved | Sol scenario USD | Router scenario USD | Reduction | Expert requests |
 |---|---:|---:|---:|---:|---:|---:|
 | Flipt022 |1|1|0.1233776|0.00947576|92.3197%|0|
+| Navidrome024 |1|1|0.1727668|0.0086526|94.9917%|0|
 
 Each arm passed native grading and fresh sealed-patch replay. All-role native
 usage and cumulative thread deltas were independently validated. The costs are
@@ -23,3 +24,11 @@ Full provenance, seals, grades, metering and visible tool exports are in
 [Flipt pair audit](flipt-analysis-022/summary.json). No private reasoning export.
 Aggregate progress is in [progress.json](progress.json); unfinished calls are
 unknown cost, never zero. Scheduled monitoring remains paused.
+
+After two audited pairs, Sol2/2 and router2/2; ratio of total model-rate costs
+yields93.8785% saving. Four development pairs remain; no held-out target proof.
+Navidrome resumed only unstarted stages after a disk reserve stop. No completed
+Luna/setup inference was repeated. The original stopped record and recovery
+registration remain preserved. Luna focused checks pass; full-suite check exits137,
+explicitly disclosed in completion. No false completion is inferred solely from
+that blocked broader check.

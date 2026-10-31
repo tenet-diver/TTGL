@@ -1,0 +1,244 @@
+diff --git a/core/agents/lastfm.go b/core/agents/lastfm.go
+index 908e4189..1b004edf 100644
+--- a/core/agents/lastfm.go
++++ b/core/agents/lastfm.go
+@@ -65,7 +65,7 @@ func (l *lastfmAgent) GetURL(id, name, mbid string) (string, error) {
+ }
+ 
+ func (l *lastfmAgent) GetBiography(id, name, mbid string) (string, error) {
+-	a, err := l.callArtistGetInfo(name, mbid)
++	a, err := l.getArtistInfoWithFallback(name, mbid)
+ 	if err != nil {
+ 		return "", err
+ 	}
+@@ -76,15 +76,15 @@ func (l *lastfmAgent) GetBiography(id, name, mbid string) (string, error) {
+ }
+ 
+ func (l *lastfmAgent) GetSimilar(id, name, mbid string, limit int) ([]Artist, error) {
+-	resp, err := l.callArtistGetSimilar(name, mbid, limit)
++	resp, err := l.getSimilarWithFallback(name, mbid, limit)
+ 	if err != nil {
+ 		return nil, err
+ 	}
+-	if len(resp) == 0 {
++	if len(resp.Artists) == 0 {
+ 		return nil, ErrNotFound
+ 	}
+ 	var res []Artist
+-	for _, a := range resp {
++	for _, a := range resp.Artists {
+ 		res = append(res, Artist{
+ 			Name: a.Name,
+ 			MBID: a.MBID,
+@@ -94,15 +94,15 @@ func (l *lastfmAgent) GetSimilar(id, name, mbid string, limit int) ([]Artist, er
+ }
+ 
+ func (l *lastfmAgent) GetTopSongs(id, artistName, mbid string, count int) ([]Song, error) {
+-	resp, err := l.callArtistGetTopTracks(artistName, mbid, count)
++	resp, err := l.getTopTracksWithFallback(artistName, mbid, count)
+ 	if err != nil {
+ 		return nil, err
+ 	}
+-	if len(resp) == 0 {
++	if len(resp.Track) == 0 {
+ 		return nil, ErrNotFound
+ 	}
+ 	var res []Song
+-	for _, t := range resp {
++	for _, t := range resp.Track {
+ 		res = append(res, Song{
+ 			Name: t.Name,
+ 			MBID: t.MBID,
+@@ -111,6 +111,34 @@ func (l *lastfmAgent) GetTopSongs(id, artistName, mbid string, count int) ([]Son
+ 	return res, nil
+ }
+ 
++func (l *lastfmAgent) warnFallback(name, mbid string) {
++	log.Warn(l.ctx, "Last.fm MBID lookup failed; retrying by artist name", "artist", name, "mbid", mbid)
++}
++func (l *lastfmAgent) getArtistInfoWithFallback(name, mbid string) (*lastfm.Artist, error) {
++	a, err := l.callArtistGetInfo(name, mbid)
++	if mbid == "" || (err == nil && a.Name != "[unknown]") || (err != nil && !lastfm.IsErrorCode(err, 6)) {
++		return a, err
++	}
++	l.warnFallback(name, mbid)
++	return l.callArtistGetInfo(name, "")
++}
++func (l *lastfmAgent) getSimilarWithFallback(name, mbid string, limit int) (*lastfm.SimilarArtists, error) {
++	a, err := l.callArtistGetSimilar(name, mbid, limit)
++	if mbid == "" || (err == nil && a.Attr.Name != "[unknown]") || (err != nil && !lastfm.IsErrorCode(err, 6)) {
++		return a, err
++	}
++	l.warnFallback(name, mbid)
++	return l.callArtistGetSimilar(name, "", limit)
++}
++func (l *lastfmAgent) getTopTracksWithFallback(name, mbid string, limit int) (*lastfm.TopTracks, error) {
++	a, err := l.callArtistGetTopTracks(name, mbid, limit)
++	if mbid == "" || (err == nil && a.Attr.Name != "[unknown]") || (err != nil && !lastfm.IsErrorCode(err, 6)) {
++		return a, err
++	}
++	l.warnFallback(name, mbid)
++	return l.callArtistGetTopTracks(name, "", limit)
++}
++
+ func (l *lastfmAgent) callArtistGetInfo(name string, mbid string) (*lastfm.Artist, error) {
+ 	a, err := l.client.ArtistGetInfo(l.ctx, name, mbid)
+ 	if err != nil {
+@@ -120,7 +148,7 @@ func (l *lastfmAgent) callArtistGetInfo(name string, mbid string) (*lastfm.Artis
+ 	return a, nil
+ }
+ 
+-func (l *lastfmAgent) callArtistGetSimilar(name string, mbid string, limit int) ([]lastfm.Artist, error) {
++func (l *lastfmAgent) callArtistGetSimilar(name string, mbid string, limit int) (*lastfm.SimilarArtists, error) {
+ 	s, err := l.client.ArtistGetSimilar(l.ctx, name, mbid, limit)
+ 	if err != nil {
+ 		log.Error(l.ctx, "Error calling LastFM/artist.getSimilar", "artist", name, "mbid", mbid, err)
+@@ -129,7 +157,7 @@ func (l *lastfmAgent) callArtistGetSimilar(name string, mbid string, limit int)
+ 	return s, nil
+ }
+ 
+-func (l *lastfmAgent) callArtistGetTopTracks(artistName, mbid string, count int) ([]lastfm.Track, error) {
++func (l *lastfmAgent) callArtistGetTopTracks(artistName, mbid string, count int) (*lastfm.TopTracks, error) {
+ 	t, err := l.client.ArtistGetTopTracks(l.ctx, artistName, mbid, count)
+ 	if err != nil {
+ 		log.Error(l.ctx, "Error calling LastFM/artist.getTopTracks", "artist", artistName, "mbid", mbid, err)
+diff --git a/utils/lastfm/client.go b/utils/lastfm/client.go
+index 3603d57d..80e6efae 100644
+--- a/utils/lastfm/client.go
++++ b/utils/lastfm/client.go
+@@ -3,6 +3,7 @@ package lastfm
+ import (
+ 	"context"
+ 	"encoding/json"
++	"errors"
+ 	"fmt"
+ 	"io/ioutil"
+ 	"net/http"
+@@ -46,14 +47,18 @@ func (c *Client) makeRequest(params url.Values) (*Response, error) {
+ 		return nil, err
+ 	}
+ 
+-	if resp.StatusCode != 200 {
+-		return nil, c.parseError(data)
+-	}
+-
+ 	var response Response
+-	err = json.Unmarshal(data, &response)
+-
+-	return &response, err
++	parseErr := json.Unmarshal(data, &response)
++	if parseErr == nil && response.Error != 0 {
++		return nil, &Error{Code: response.Error, Message: response.Message}
++	}
++	if parseErr != nil {
++		if resp.StatusCode != http.StatusOK {
++			return nil, fmt.Errorf("last.fm http status: (%d)", resp.StatusCode)
++		}
++		return nil, parseErr
++	}
++	return &response, nil
+ }
+ 
+ func (c *Client) ArtistGetInfo(ctx context.Context, name string, mbid string) (*Artist, error) {
+@@ -69,7 +74,7 @@ func (c *Client) ArtistGetInfo(ctx context.Context, name string, mbid string) (*
+ 	return &response.Artist, nil
+ }
+ 
+-func (c *Client) ArtistGetSimilar(ctx context.Context, name string, mbid string, limit int) ([]Artist, error) {
++func (c *Client) ArtistGetSimilar(ctx context.Context, name string, mbid string, limit int) (*SimilarArtists, error) {
+ 	params := url.Values{}
+ 	params.Add("method", "artist.getSimilar")
+ 	params.Add("artist", name)
+@@ -79,10 +84,10 @@ func (c *Client) ArtistGetSimilar(ctx context.Context, name string, mbid string,
+ 	if err != nil {
+ 		return nil, err
+ 	}
+-	return response.SimilarArtists.Artists, nil
++	return &response.SimilarArtists, nil
+ }
+ 
+-func (c *Client) ArtistGetTopTracks(ctx context.Context, name string, mbid string, limit int) ([]Track, error) {
++func (c *Client) ArtistGetTopTracks(ctx context.Context, name string, mbid string, limit int) (*TopTracks, error) {
+ 	params := url.Values{}
+ 	params.Add("method", "artist.getTopTracks")
+ 	params.Add("artist", name)
+@@ -92,14 +97,13 @@ func (c *Client) ArtistGetTopTracks(ctx context.Context, name string, mbid strin
+ 	if err != nil {
+ 		return nil, err
+ 	}
+-	return response.TopTracks.Track, nil
++	return &response.TopTracks, nil
+ }
+ 
+-func (c *Client) parseError(data []byte) error {
+-	var e Error
+-	err := json.Unmarshal(data, &e)
+-	if err != nil {
+-		return err
+-	}
+-	return fmt.Errorf("last.fm error(%d): %s", e.Code, e.Message)
++type Error struct {
++	Code    int    `json:"error"`
++	Message string `json:"message"`
+ }
++
++func (e *Error) Error() string             { return fmt.Sprintf("last.fm error(%d): %s", e.Code, e.Message) }
++func IsErrorCode(err error, code int) bool { var e *Error; return errors.As(err, &e) && e.Code == code }
+diff --git a/utils/lastfm/client_test.go b/utils/lastfm/client_test.go
+index 3dc74bc8..faa252b5 100644
+--- a/utils/lastfm/client_test.go
++++ b/utils/lastfm/client_test.go
+@@ -68,7 +68,7 @@ var _ = Describe("Client", func() {
+ 
+ 			artists, err := client.ArtistGetSimilar(context.TODO(), "U2", "123", 2)
+ 			Expect(err).To(BeNil())
+-			Expect(len(artists)).To(Equal(2))
++			Expect(len(artists.Artists)).To(Equal(2))
+ 			Expect(httpClient.savedRequest.URL.String()).To(Equal(apiBaseUrl + "?api_key=API_KEY&artist=U2&format=json&limit=2&mbid=123&method=artist.getSimilar"))
+ 		})
+ 
+@@ -107,7 +107,7 @@ var _ = Describe("Client", func() {
+ 
+ 			tracks, err := client.ArtistGetTopTracks(context.TODO(), "U2", "123", 2)
+ 			Expect(err).To(BeNil())
+-			Expect(len(tracks)).To(Equal(2))
++			Expect(len(tracks.Track)).To(Equal(2))
+ 			Expect(httpClient.savedRequest.URL.String()).To(Equal(apiBaseUrl + "?api_key=API_KEY&artist=U2&format=json&limit=2&mbid=123&method=artist.getTopTracks"))
+ 		})
+ 
+diff --git a/utils/lastfm/responses.go b/utils/lastfm/responses.go
+index ebfe8f87..f1c88e0e 100644
+--- a/utils/lastfm/responses.go
++++ b/utils/lastfm/responses.go
+@@ -1,6 +1,8 @@
+ package lastfm
+ 
+ type Response struct {
++	Error          int            `json:"error"`
++	Message        string         `json:"message"`
+ 	Artist         Artist         `json:"artist"`
+ 	SimilarArtists SimilarArtists `json:"similarartists"`
+ 	TopTracks      TopTracks      `json:"toptracks"`
+@@ -25,6 +27,9 @@ type Artist struct {
+ 
+ type SimilarArtists struct {
+ 	Artists []Artist `json:"artist"`
++	Attr    struct {
++		Name string `json:"artist"`
++	} `json:"@attr"`
+ }
+ 
+ type ArtistImage struct {
+@@ -50,9 +55,7 @@ type Track struct {
+ 
+ type TopTracks struct {
+ 	Track []Track `json:"track"`
+-}
+-
+-type Error struct {
+-	Code    int    `json:"error"`
+-	Message string `json:"message"`
++	Attr  struct {
++		Name string `json:"artist"`
++	} `json:"@attr"`
+ }

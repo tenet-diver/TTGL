@@ -1,0 +1,7 @@
+{
+ "task": "instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2",
+ "patch": "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/large/b999c9f782804dc38a6f73060cf51828/sealed-replay-source/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/agent/model.patch",
+ "apply_rc": 0,
+ "apply_out": "Checking patch core/agents/lastfm.go...\nChecking patch core/agents/lastfm_fallback_test.go...\nChecking patch utils/lastfm/client.go...\nChecking patch utils/lastfm/client_test.go...\nChecking patch utils/lastfm/error_handling_test.go...\nChecking patch utils/lastfm/responses.go...\nApplied patch core/agents/lastfm.go cleanly.\nApplied patch core/agents/lastfm_fallback_test.go cleanly.\nApplied patch utils/lastfm/client.go cleanly.\nApplied patch utils/lastfm/client_test.go cleanly.\nApplied patch utils/lastfm/error_handling_test.go cleanly.\nApplied patch utils/lastfm/responses.go cleanly.\n",
+ "post_apply_diffstat": " core/agents/lastfm.go       | 36 ++++++++++++++++++++++++++++++++--\n utils/lastfm/client.go      | 47 ++++++++++++++++++++++++++++-----------------\n utils/lastfm/client_test.go |  6 ++++--\n utils/lastfm/responses.go   | 18 ++++++++++++-----\n 4 files changed, 80 insertions(+), 27 deletions(-)\n---\n6\n"
+}
