@@ -7,7 +7,7 @@ accounted for; no favorable subset stopping. The24 validation tasks are untouche
 | Completed task | Sol resolved | Luna router resolved | Sol scenario USD | Router scenario USD | Reduction | Expert requests |
 |---|---:|---:|---:|---:|---:|---:|
 | Flipt022 |1|1|0.1233776|0.00947576|92.3197%|0|
-| Navidrome024 |1|1|0.1727668|0.0086526|94.9917%|0|
+| Navidrome024 |1|1|0.172766|0.0086526|94.9917%|0|
 
 Each arm passed native grading and fresh sealed-patch replay. All-role native
 usage and cumulative thread deltas were independently validated. The costs are

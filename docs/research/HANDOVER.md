@@ -2052,7 +2052,7 @@ Monitoring PAUSED; active chat owns continued target90 development.
 Partial continuation73633 completed only unstarted replay and Sol, no repeated
 Luna/setup inference. Original disk stop preserved, recovery bound to protocol
 and raw artifacts. Initial/fresh grades1 both arms. Luna0 expert requests; scenario
-USD0.0086526 vs Sol0.1727668,94.9917% saving. Complete independent audit joins
+USD0.0086526 vs Sol0.172766,94.9917% saving. Complete independent audit joins
 seals/grades/native metering/cumulative deltas/boundary and fixed v7 commonpolicy.
 Across2/6 pairs Sol2/2/router2/2 and aggregate ratio-of-costs saving93.8785%; not
 held-out target proof, no escalation-benefit evidence from zero-consult cases.
