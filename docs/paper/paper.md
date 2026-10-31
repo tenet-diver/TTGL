@@ -1235,6 +1235,31 @@ failure-detection recall, population accuracy or95/95. They are not pooled with
 the earlier NodeBB episode,141 Verified assignments or historical500-task replay.
 All24 validation tasks remain untouched; standalone comparisons remain deferred.
 
+
+## Separate frozen-v6 Teleport continuation
+
+The next original reserved development task, Teleport018, passes initial and
+independent fresh grading with zero Sol requests. Own empty/reference controls
+pass0/1 and the fresh actor boundary passes. No setup inference or task attempt
+was repeated. Four visible tool requests show one candidate and attempted
+formatting/tests; go/gofmt are unavailable on PATH. Luna explicitly states that
+compilation and behavioral verification are incomplete. git diff --check does not
+cover the untracked new file, although the sealed final patch correctly captures
+it and applies on replay. No false completion, missed escalation or failed
+integration is established on this passing episode. Missing tooling alone does
+not establish a need for expert inference; readiness to grade and ability to run
+public checks are distinct. No case-specific prompt change was made.
+
+The [episode audit](../../results/router-teleport-20261031/teleport-analysis-018/README.md)
+reconciles110,481 input tokens including90,368 cached, and2,719 output tokens.
+The frozen model-rate scenario is USD0.00427448 per assigned/resolved task; invoice,
+quota and matched-Sol savings remain unknown. Native request+tools take34.27s,
+actor50.16s, generation start through fresh grading233.84s. These are different
+latency scopes. This selected diagnostic establishes neither transfer nor95/95
+and is not pooled with earlier adaptive development as a frozen-policy comparison.
+All24 validation cases remain untouched. The user disabled scheduled monitoring;
+the existing heartbeat is paused and this active-chat unit is complete.
+
 # Industry-standard benchmark: a 500-task routing replay
 
 ## Data and interpretation

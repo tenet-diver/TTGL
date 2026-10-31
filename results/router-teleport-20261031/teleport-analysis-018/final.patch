@@ -1,0 +1,118 @@
+diff --git a/lib/utils/concurrentqueue/queue.go b/lib/utils/concurrentqueue/queue.go
+new file mode 100644
+index 000000000..d13f8aaa9
+--- /dev/null
++++ b/lib/utils/concurrentqueue/queue.go
+@@ -0,0 +1,112 @@
++// Package concurrentqueue provides a bounded, order-preserving worker queue.
++package concurrentqueue
++
++import "sync"
++
++// Option configures a Queue.
++type Option func(*config)
++
++type config struct {
++ workers int
++ capacity int
++ inputBuf int
++ outputBuf int
++}
++
++// Workers sets the number of worker goroutines.
++func Workers(w int) Option { return func(c *config) { c.workers = w } }
++
++// Capacity sets the maximum number of items in flight.
++func Capacity(n int) Option { return func(c *config) { c.capacity = n } }
++
++// InputBuf sets the input channel buffer size.
++func InputBuf(n int) Option { return func(c *config) { c.inputBuf = n } }
++
++// OutputBuf sets the output channel buffer size.
++func OutputBuf(n int) Option { return func(c *config) { c.outputBuf = n } }
++
++type job struct { index uint64; value interface{} }
++type result struct { index uint64; value interface{} }
++
++// Queue processes submitted values concurrently and emits results in submission order.
++type Queue struct {
++ input chan interface{}
++ output chan interface{}
++ done chan struct{}
++ once sync.Once
++}
++
++// New constructs a Queue. Capacity defaults to 64 and workers defaults to 1.
++func New(workfn func(interface{}) interface{}, opts ...Option) *Queue {
++ c := config{workers: 1, capacity: 64}
++ for _, opt := range opts { opt(&c) }
++ if c.workers < 1 { c.workers = 1 }
++ if c.capacity < 1 { c.capacity = 1 }
++ if c.inputBuf < 0 { c.inputBuf = 0 }
++ if c.outputBuf < 0 { c.outputBuf = 0 }
++ q := &Queue{input: make(chan interface{}, c.inputBuf), output: make(chan interface{}, c.outputBuf), done: make(chan struct{})}
++ jobs := make(chan job, c.capacity)
++ results := make(chan result, c.capacity)
++ slots := make(chan struct{}, c.capacity)
++
++ // Reserve capacity before receiving input. A reserved slot stays occupied
++ // until the corresponding ordered result is accepted by output.
++ go func() {
++  var next uint64
++  for {
++   select { case slots <- struct{}{}: case <-q.done: return }
++   select {
++   case value := <-q.input:
++    j := job{index: next, value: value}
++    next++
++    select { case jobs <- j: case <-q.done: return }
++   case <-q.done: return
++   }
++  }
++ }()
++ for i := 0; i < c.workers; i++ {
++  go func() {
++   for {
++    select {
++    case j := <-jobs:
++     value := j.value
++     if workfn != nil { value = workfn(value) }
++     select { case results <- result{index:j.index, value:value}: case <-q.done: return }
++    case <-q.done: return
++    }
++   }
++  }()
++ }
++ go func() {
++  defer close(q.output)
++  pending := make(map[uint64]interface{})
++  var next uint64
++  for {
++   var out chan interface{}
++   var value interface{}
++   if v, ok := pending[next]; ok { out, value = q.output, v }
++   select {
++   case r := <-results:
++    pending[r.index] = r.value
++   case out <- value:
++    delete(pending, next)
++    next++
++    <-slots
++   case <-q.done: return
++   }
++  }
++ }()
++ return q
++}
++
++// Push returns the channel used to submit work items.
++func (q *Queue) Push() chan<- interface{} { return q.input }
++
++// Pop returns processed results in submission order.
++func (q *Queue) Pop() <-chan interface{} { return q.output }
++
++// Done is closed when the queue is terminated.
++func (q *Queue) Done() <-chan struct{} { return q.done }
++
++// Close terminates background operations without waiting for workers.
++func (q *Queue) Close() error { q.once.Do(func(){ close(q.done) }); return nil }

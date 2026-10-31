@@ -363,10 +363,13 @@
   "current_router_unit": {
     "plan": "experiments/router-teleport-20261031/plan.json",
     "owner": "current active chat after user disabled heartbeat",
-    "status": "router018 launched after controls017 pass",
-    "monitoring": "scheduled automation PAUSED",
-    "pid": 3271,
+    "status": "completed_initial_and_fresh_pass_zero_expert_requests",
+    "monitoring": "PAUSED by user, no replacement schedule",
+    "pid": null,
     "jira_key": "FAST-97",
-    "protocol": "experiments/router-teleport-20261031/teleport-router-018.json"
+    "protocol": "experiments/router-teleport-20261031/teleport-router-018.json",
+    "analysis": "results/router-teleport-20261031/teleport-analysis-018/summary.json",
+    "jira_status": "Done",
+    "next_action": "Future continuation only in active chat, fresh registration, retain v6; validation untouched"
   }
 }

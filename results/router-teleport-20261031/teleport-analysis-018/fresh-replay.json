@@ -1,0 +1,7 @@
+{
+ "task": "instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2",
+ "patch": "/Users/rustameynaliyev/Developer/ttgl-router-teleport-018/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/personal/f1083d112db846bb8a31b693ad61edf2/sealed-replay-source/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/agent/model.patch",
+ "apply_rc": 0,
+ "apply_out": "Checking patch lib/utils/concurrentqueue/queue.go...\nApplied patch lib/utils/concurrentqueue/queue.go cleanly.\n",
+ "post_apply_diffstat": "---\n1\n"
+}

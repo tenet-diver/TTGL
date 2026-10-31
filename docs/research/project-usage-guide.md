@@ -299,3 +299,13 @@ dependency failures. Keep verification status separate from official outcome.
 Retain the general policy for varied fresh tasks rather than add a prompt exception
 for every case. Generality and transfer requirements are in router-generality.md;
 full evidence is in results/router-iterations-20261031/README.md.
+
+
+Scheduled TTGL monitoring is PAUSED by explicit user instruction. No replacement
+automation is authorized. The active chat completed Teleport018 with frozen v6,
+initial/fresh grades1 and zero Sol. Its actor could not find go/gofmt and explicitly
+left behavioral verification incomplete. Before future trials, distinguish a
+working official evaluator from the public verification tools available to the
+actor. Retain evidence of blocked checks; do not ask a larger model merely to
+compensate for unavailable tooling. No demonstrated failure-detection or transfer
+improvement is claimed from this passing case.

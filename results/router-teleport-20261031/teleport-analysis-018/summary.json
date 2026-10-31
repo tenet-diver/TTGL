@@ -1,0 +1,110 @@
+{
+  "status": "audited_single_development_episode",
+  "task_id": "instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2",
+  "assigned": 1,
+  "resolved": 1,
+  "initial_grade": 1.0,
+  "fresh_grade": 1.0,
+  "observed_success_fraction": 1.0,
+  "illustrative_exact_binomial_95_interval": [
+    0.025,
+    1.0
+  ],
+  "uncertainty": "Illustrative iid binomial interval only; one selected public development task is not a population sample or evidence of reliable routing/noninferiority.",
+  "outcome_class": "solved_without_consultation",
+  "expert_requests_attempted": 0,
+  "completed_consultations": 0,
+  "native_requests_by_role": {
+    "controller": 1
+  },
+  "usage": {
+    "input_tokens": 110481,
+    "cached_input_tokens": 90368,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2719,
+    "reasoning_output_tokens": 997
+  },
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 110481,
+        "cached_input_tokens": 90368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2719,
+        "reasoning_output_tokens": 997
+      },
+      "observed_partial": {
+        "input_tokens": 110481,
+        "cached_input_tokens": 90368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2719,
+        "reasoning_output_tokens": 997
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "published_rate_scenario_cost_per_assigned_usd": 0.00427448,
+  "published_rate_scenario_cost_per_resolved_usd": 0.00427448,
+  "actual_cash_cost_usd": null,
+  "subscription_quota_savings": null,
+  "accuracy_retention_vs_sol": null,
+  "saving_vs_matched_sol": null,
+  "cost_scope": "All episode controller/router/expert/integration inference; frozen historical token rates, not invoice or full deployment cost.",
+  "setup_already_completed_reused": {
+    "new_model_calls": 0,
+    "usage": {
+      "input_tokens": 112615,
+      "cached_input_tokens": 85120,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1631,
+      "reasoning_output_tokens": 298
+    },
+    "historical_scenario_cost_usd": 0.03098282
+  },
+  "latency_seconds": {
+    "native_model_and_tools": 34.265913607086986,
+    "native_actor_phase": 50.161838,
+    "generation_environment_and_initial_grading": 127.256219,
+    "independent_fresh_replay": 89.110575,
+    "generation_start_to_fresh_grade": 233.843637
+  },
+  "visible_tool_requests": 4,
+  "final_controller_response": {
+    "action": "complete",
+    "question": "",
+    "context": "",
+    "summary": "Added `lib/utils/concurrentqueue/queue.go` with configurable workers, capacity (default 64), input and output buffers, ordered result emission, capacity held through output, `Push`, `Pop`, `Done`, and non-waiting `Close`. By inspection, intake reserves capacity before receiving input, and queued jobs can wait for workers without blocking intake. `git diff --check` passed. Verification is incomplete: the environment has neither `go` nor `gofmt`, so I could not compile the package or run a behavioral check for ordering and backpressure."
+  },
+  "fresh_actor_boundary": {
+    "status": "fresh_actor_boundary_passed_before_router_inference",
+    "observations": {
+      "head": "c12ce90636425daef82da2a7fe2a495e9064d1f8",
+      "git_status": "",
+      "outside_head_commits": 0,
+      "private_path_visible": false,
+      "public_endpoint_reachable": false,
+      "witness_ignored": false
+    },
+    "scope": "Hidden paths plus host sentinel, clean HEAD/history, direct-IP egress probe; not universal isolation proof"
+  },
+  "pre_handoff_grade": null,
+  "provenance": {
+    "/Users/rustameynaliyev/Developer/TTGL/experiments/router-teleport-20261031/teleport-router-018.json": "b9836168f02ddfbdf39da09b6aa2d318225bc6f357276012da1aed8b7ee6ad6a",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-teleport-20261031/teleport-router-018/jobs/first-block-optional/instance_gravitational__teleport__cBHknTj/result.json": "c8e1938885ebf88de59998ba3d35f5cece5da98fdf6a8e84ef8edf0204b6c741",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-teleport-20261031/teleport-router-018/jobs/first-block-optional-fresh/instance_gravitational__teleport__36TzY7G/result.json": "f67caf9897f56c56316cb57f2146f07064dae2274267fffc885bec19620cd845",
+    "/Users/rustameynaliyev/Developer/ttgl-router-teleport-018/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/personal/f1083d112db846bb8a31b693ad61edf2/controller/manifest.json": "a2396b7d01eb70c62511279fdceb763c2524ad9b9fe0698c210096b5c7a3ff8b",
+    "/Users/rustameynaliyev/Developer/ttgl-router-teleport-018/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/personal/f1083d112db846bb8a31b693ad61edf2/controller/events.jsonl": "89611d466a9c53c70e058c00b00ecebc44fe911b0b0ea7951bd1e4ef5e2656c2",
+    "/Users/rustameynaliyev/Developer/ttgl-router-teleport-018/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/personal/f1083d112db846bb8a31b693ad61edf2/visible-tool-trace.jsonl": "062aa4c16b8867d0914fb6e88ccdd3576322e793041e49ade612a6ddf1927fdf",
+    "/Users/rustameynaliyev/Developer/ttgl-router-teleport-018/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/personal/f1083d112db846bb8a31b693ad61edf2/final.patch": "06359f9f72b412c8b6c3432aa61832c8fd9f12ee121596fd2c86dc079f4802f5",
+    "/Users/rustameynaliyev/Developer/ttgl-router-teleport-018/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/personal/f1083d112db846bb8a31b693ad61edf2/sealed-replay-source/instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2/seal.json": "775466c9a4fa7d7ec24ef85650edf812ddae6825db20559042570f70ed5d3e9b",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-teleport-20261031/teleport-router-018/jobs/first-block-optional-fresh/instance_gravitational__teleport__36TzY7G/agent/replay.json": "8545a8cae6cdce6f2e445d66da25f753dc0389e604fbcf4e65e6a7d966c34015",
+    "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/rate-scenario.json": "24337a4fbe01bd97c0a8034c97e7f940779d207a388111dd3c19601919a49328"
+  },
+  "validation_tasks_used": 0
+}

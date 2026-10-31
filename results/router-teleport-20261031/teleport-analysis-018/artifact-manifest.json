@@ -1,0 +1,12 @@
+{
+  "files": {
+    "summary.json": "415d58d187018107d01b78ac5397d11cc2458ebed023e54b68033b5621bd0e61",
+    "final.patch": "06359f9f72b412c8b6c3432aa61832c8fd9f12ee121596fd2c86dc079f4802f5",
+    "decision-audit.json": "149af23894d7e2df31e3977d53ec096f9edfc8817822e59248d40bae935623c5",
+    "README.md": "3e0b17fde19d2caaab7c3625091ac3ed1c28ceeb161ea8c23a766d5704a2492f",
+    "native-result.json": "c8e1938885ebf88de59998ba3d35f5cece5da98fdf6a8e84ef8edf0204b6c741",
+    "fresh-replay.json": "8545a8cae6cdce6f2e445d66da25f753dc0389e604fbcf4e65e6a7d966c34015",
+    "manifest.json": "a2396b7d01eb70c62511279fdceb763c2524ad9b9fe0698c210096b5c7a3ff8b",
+    "fresh-result.json": "f67caf9897f56c56316cb57f2146f07064dae2274267fffc885bec19620cd845"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "status": "text_updated_binary_previews_unchanged",
+  "files": {
+    "paper.md": "98313a82b1a150d82578a129b4b6cb5dcc2a97dc58138812af509086be27915c",
+    "paper.html": "d9b235d8ad69a93eb36acf5f9bbbff85b400f4c6fa16f6910f6628bef6a97e03",
+    "live-routing-results.md": "c275517e98b1fe2f803c4ee34cd99a7baf1ed8288e2e1364bf5f9d6d7cf418bb",
+    "paper.pdf": "89d35b32a3adeb06cd164f954307a69ab1a5226acda5ebb4d3b916be38ac68dc",
+    "paper.docx": "e411c9ff36381437b758d175d783dcaca32399fbd6584dde7f640f79bfd71ced"
+  },
+  "summary_sha256": "415d58d187018107d01b78ac5397d11cc2458ebed023e54b68033b5621bd0e61",
+  "binary_qa": "Earlier reviews only apply to unchanged PDF/DOCX; no new visual QA claim"
+}

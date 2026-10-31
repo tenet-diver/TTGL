@@ -1,6 +1,17 @@
 # Experimental Luna / Sol adapter for SWE-bench Pro V2
 
-## Current completed continuation
+## Latest active-chat continuation
+
+After the three-case October31 series, Teleport018 uses unchanged v6 and passes
+initial/fresh grades with zero Sol requests. Own controls017 pass0/1. Analysis:
+results/router-teleport-20261031/teleport-analysis-018. The actor reports go/gofmt
+unavailable on PATH and does not compile/test the candidate; official grading
+success does not establish actor verification capability. Keep runtime readiness
+and grading readiness distinct. No inference was repeated; no new setup calls.
+The user explicitly disables scheduled monitoring: existing heartbeat is PAUSED,
+not replaced. See latest handover before any continuation.
+
+## Earlier completed continuation
 
 Protocol010 ran exactly one voluntary router assignment: initial and independent
 fresh grades pass, with zero Sol requests. Earlier queue and pending-control

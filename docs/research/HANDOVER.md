@@ -1867,3 +1867,31 @@ zero new setup calls. Protocol teleport-router-018.json freezes general v6 and
 all target/private/control/source hashes. SupervisorPID3271, claim unique; exactly
 one router assignment. FAST-97 In Progress. Current chat owns through final audit.
 Heartbeat PAUSED by user, do not resume. No retries or other units concurrently.
+
+
+## Teleport018 COMPLETE; scheduled monitoring remains disabled
+
+Initial/fresh official grades1, zero Sol,4 visible shell requests. Own controls017
+pass0/1, fresh boundary passed, setup008 reuse audited, zero new setup/model
+retries. Cost scenarioUSD0.00427448; input110481 (cached90368), output2719.
+Request+tools34.27s, actor50.16s, start-to-fresh233.84s. Actual cash/quota and
+matched-Sol savings unknown. Evidence export with artifact hashes at
+results/router-teleport-20261031/teleport-analysis-018.
+
+Actor made one new queue candidate, attempted gofmt/go test (not found on PATH),
+then acknowledged incomplete compile/behavioral verification. git diff --check
+does not inspect the untracked new file, but authoritative sealed patch includes
+it and replay passes. No observed false completion, missed escalation, failed
+consultation or integration. No failure-detection recall/transfer claim. Keep
+public verification runtime readiness distinct from evaluator readiness. Do not
+add a task-specific prompt patch or infer lack of tool alone warrants Sol.
+
+This one-task unit is complete; no live supervisor or new pending model assignment.
+Current chat ownership ends after final evidence commit/push. User explicitly
+disabled scheduled monitoring: continue-luna-sol-routing-research is PAUSED,
+confirmed by app and on-disk status; no other TTGL monitor found. Do not resume
+or replace it without new user instruction. Future authorized active-chat work
+requires a new registered unit, remaining development order, frozen v6, own
+controls/boundary, evidence-validated reuse, no retries/validation/standalone run.
+FAST-97 records completion; Confluence19202180 gets a separate follow-up section.
+Preserve all raw untracked result directories and host records.

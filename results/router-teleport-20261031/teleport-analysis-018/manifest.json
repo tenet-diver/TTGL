@@ -1,0 +1,115 @@
+{
+  "schema_version": 3,
+  "run_id": "c03ecafd-0ea5-438c-9f6d-d95733ac3cd7",
+  "task_id": "instance_gravitational__teleport-629dc432eb191ca479588a8c49205debb83e80e2",
+  "condition": "personal",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-31T21:11:26.781331+00:00",
+  "finished_at": "2026-10-31T21:12:01.157570+00:00",
+  "identity_sha256": "c49a63804311cac93af4107608e06b75e71b1f1df81350b37e6fa60408c3ca39",
+  "config": {
+    "condition": "personal",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 2940.0,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "One Harbor environment.exec via authenticated loopback MCP",
+    "server_sha256": "cd207f6da4bfa2c69d171d8a82a41d0f67a2e200f424907a0716f6e17abb571e",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "1d4213bb5cb95525518a924667df2afd177b392e9ca87e17ec173e9f4d651a27",
+    "harbor_bridge_sha256": "d68008ddcad6d3cec3c9d3af71e085c76230638c2ed6b1dff5dd6a9e61e64039",
+    "controller_policy": {
+      "mode": "fallback",
+      "source": "bf163122b4c9769dbec7ef0c9759fc5e07a4453dc6906f75c31dfa41d6eee707",
+      "prompts": {
+        "controller-v2-delegation.txt": "97fa0f26f6477d16ad94e130d0ae33b9909da26598fe72fd9178513f330e568b",
+        "controller-v2-common.txt": "bcab59483071803bd76c6a2125c4892771bafb3f3845b151494732f1b905fd23",
+        "controller-v2-fallback.txt": "b0e31632e6796b582a7982325aca364419cbeeeaa309224b47eae2ccce8a4724"
+      }
+    },
+    "visible_tool_trace": "Bounded public tool actions/observations; no private reasoning or evaluator feedback",
+    "routing_diagnostic": {
+      "mode": "verification",
+      "source_sha256": "cfc8c857ac2a83087d832a07d4aeeb122577e7e23d6d452b9606ac14ab408ad6",
+      "verification_source_sha256": "9b60c1e4656d168db553b992ebd31acf8d0656e9bbdfba070e824fc4f493e4c4",
+      "prompts_sha256": {
+        "controller-v3-required-review.txt": "8ae50e58e4305591fbc087d6b1c3731775a9134e1a4bce5d667f3d3aa0187950",
+        "controller-v3-verification-common.txt": "eb1e579c24b5d26decd2fc1146afc82ab0a87c0fdd06ea0e29b2a98194cbbf07",
+        "controller-v3-verification-delegation.txt": "438004aa752026edd36d7f0f5fcfccbb8141fc0aeee21e1a900f318b4b77cd9f"
+      },
+      "router_development_source_sha256": "9f97f8c05457169f48bcc4a4e919bd30dac3877d7f33676cafc9f24dd7739c67",
+      "router_decisions_prompt_sha256": "8ed993a4066d8a95163d9baf4915dba764965b1dc14a078148cc644f9230a263",
+      "completion_source_sha256": "b1541ace83ef835469b18c9b1ece5b9eb0770420eceacd1ba43bda4cd2de5cce",
+      "completion_prompt_sha256": "7289947d2bbbad040e58b0846b0dddf48423e9d902dde4f23a8d6326b43f18d9"
+    }
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 1,
+  "expert_calls": 0,
+  "elapsed_seconds": 34.265913607086986,
+  "controller_thread_id": "01a193cd-9935-73b0-90fc-58e93bb82f6a",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 110481,
+    "cached_input_tokens": 90368,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2719,
+    "reasoning_output_tokens": 997
+  },
+  "observed_usage_partial": {
+    "input_tokens": 110481,
+    "cached_input_tokens": 90368,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2719,
+    "reasoning_output_tokens": 997
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 110481,
+        "cached_input_tokens": 90368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2719,
+        "reasoning_output_tokens": 997
+      },
+      "observed_partial": {
+        "input_tokens": 110481,
+        "cached_input_tokens": 90368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2719,
+        "reasoning_output_tokens": 997
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 1,
+  "failure_type": null,
+  "summary": "Added `lib/utils/concurrentqueue/queue.go` with configurable workers, capacity (default 64), input and output buffers, ordered result emission, capacity held through output, `Push`, `Pop`, `Done`, and non-waiting `Close`. By inspection, intake reserves capacity before receiving input, and queued jobs can wait for workers without blocking intake. `git diff --check` passed. Verification is incomplete: the environment has neither `go` nor `gofmt`, so I could not compile the package or run a behavioral check for ordering and backpressure.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "89611d466a9c53c70e058c00b00ecebc44fe911b0b0ea7951bd1e4ef5e2656c2",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}
