@@ -1,0 +1,39 @@
+{
+  "status": "registered_evidence_validated_partial_continuation_before_unstarted_jobs",
+  "registered_at": "2026-10-31T22:53:53.223186+00:00",
+  "protocol": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/navidrome-pair-024.json",
+  "output": "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024",
+  "original_supervisor_pid": 63897,
+  "original_stopped_preserved": true,
+  "reused_completed_inference": [
+    "optional"
+  ],
+  "unstarted_jobs_only": [
+    "first-block-optional-fresh",
+    "first-block-large",
+    "first-block-large-fresh"
+  ],
+  "no_setup_inference": true,
+  "no_repeat_of_completed_or_uncertain_calls": true,
+  "software_checks": "11 focused recovery/pair/summary tests passed",
+  "free_bytes": 24062529536,
+  "artifacts_sha256": {
+    "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/navidrome-pair-024.json": "d25e1c9c30193fe7870a700c3f6505daa58d7ae49395f6a07247384159f0b4c0",
+    "/Users/rustameynaliyev/Developer/TTGL/scripts/continue_target90_partial.py": "a4756ef0233910c09301f05b5ba5971f75bb92812d329d82183ee08b72ea9df9",
+    "/Users/rustameynaliyev/Developer/TTGL/tests/test_target90_partial.py": "f7633f9da91a49be7c2db4645d2d15ea5a7511a43347c02b15084d0e76f340b5",
+    "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024/stopped.json": "d11979c9b711167965757eee23384b3d5226cb6476f6b89244f1ef08c90db827",
+    "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024/first-block-optional-invocation.json": "a5456c1e84a367896c13b5068939e0186561634e0154136f6c5302da7bb41740",
+    "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024/image-binding.json": "97008ff9ac4006843356fadaf67a73fe246bf198053433098343ac686280e0df",
+    "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024/queue.json": "14e86e4852670b8419ee92e44cfde03a810ceb76a198da2b868f97ff66c270e4",
+    "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024/real-preflight.json": "94c286d758948deb0fbeb860d738f6ddb995d7be5758dc531c1f6f687b3dde9e",
+    "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/navidrome-pair-024/jobs/first-block-optional/instance_navidrome__navidrome-89__hBFVQQj/result.json": "780586e7f6dbbc72eb0439065a245aa75e2375d7457c3a15833c9792ac896453",
+    "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/personal/6fd967d3868943b38ef51b4ea3baa4fc/controller/manifest.json": "7e32adc17f513fad246429c6af16ca4e4af1fd54a14ca18eebd38bb8995079d4",
+    "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/personal/6fd967d3868943b38ef51b4ea3baa4fc/controller/events.jsonl": "31659964ca29c0fbb58a9ce4205b218e48daa69749cf3c55f7d670a310cb4063",
+    "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/personal/6fd967d3868943b38ef51b4ea3baa4fc/final.patch": "b4e627fa44ef87ac326af880e0ea636df746104a4523dc2dba12ffc4f6310172",
+    "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/personal/6fd967d3868943b38ef51b4ea3baa4fc/visible-tool-trace.jsonl": "56de32b61f71616aba528542a46577771fc09273a3032374f1bb1205de67115a",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/target90-navidrome-v7-optional.json": "3938d087f471b074936f424eca9d8d2a00c2a07f45ace85710552d50854208d3",
+    "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/personal/6fd967d3868943b38ef51b4ea3baa4fc/sealed-replay-source/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/result.json": "b4ff317a3f5f974abaad16eb95a28a22569da549f537b8f7224db1a6a994ecc9",
+    "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/personal/6fd967d3868943b38ef51b4ea3baa4fc/sealed-replay-source/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/seal.json": "91279c630e3557f8706f1fb24fac2d616ef848ccfaa05917ebc380a6f747bf9e",
+    "/Users/rustameynaliyev/Developer/ttgl-target90-navidrome-024/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/personal/6fd967d3868943b38ef51b4ea3baa4fc/sealed-replay-source/instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2/agent/model.patch": "b4e627fa44ef87ac326af880e0ea636df746104a4523dc2dba12ffc4f6310172"
+  }
+}

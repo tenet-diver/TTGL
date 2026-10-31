@@ -2024,3 +2024,24 @@ Next after full024 audit: original index8 Protonmail controls025/pair026, not ye
 registered. Disk last17GiB free, next pull guard18GiB; inspect unused OWNED completed
 Pro image caches only if necessary, preserve all raw/sealed evidence and user
 CI/database volumes. No global prune. Validation24 untouched.
+
+
+## Navidrome024 DISK STOP; evidence-validated continuation ACTIVE
+
+Original supervisor63897 stopped before first-block-optional-fresh (no invocation
+marker/job). Luna native generation/grading completed, sealed patch and positive
+cumulative-thread metering independently audited. Large claim/invocation absent.
+DO NOT rerun continue_pro_rescue.py. Original stopped.json and evidence preserved.
+New scripts/continue_target90_partial.py has exclusive recovery marker, same task
+flock, source/image/inventory checks, rejects ambiguous/started jobs and never
+repeats inference.11 focused recovery/pair/summary tests pass. New registration
+navidrome-recovery-024.json binds original protocol/queue/stop/native/seal/usage,
+permits only unstarted Luna-fresh and Sol generation/fresh. PID73633 ACTIVE, log
+artifacts/target90-navidrome-024-recovery.log. No setup calls or Luna repeats.
+Original generation sources unchanged/frozen until both arms/replays complete.
+Reclaimed unused completed OWNED Flipt and Vuls image caches after checking no
+container references, preserved raw/sealed/transport proof and pinned digests.
+Receipts under target90 results; no global prune/volume/user-CI deletion.
+Actual pair disk_guard is12GiB; preparation pull uses extra6GiB margin, separate.
+Next after full audit unchanged Protonmail original index8;24 validation untouched.
+Monitoring PAUSED; active chat owns continued target90 development.

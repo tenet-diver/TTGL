@@ -1,0 +1,123 @@
+{
+  "status": "registered_unused_completed_TTGL_image_cache_only",
+  "time": "2026-10-31T22:52:03.686858+00:00",
+  "image": "sha256:6943432cab1d37afbf3dbc29b8df757c8186d7344b48a4a69ceee621d0248e09",
+  "inspect": [
+    {
+      "Id": "sha256:6943432cab1d37afbf3dbc29b8df757c8186d7344b48a4a69ceee621d0248e09",
+      "RepoTags": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2:instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5"
+      ],
+      "RepoDigests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:2f7f1326835b2423e79b7225a9e384c25ff38ada8ea8b3c10da3b0223865b7ee"
+      ],
+      "Parent": "",
+      "Comment": "buildkit.dockerfile.v0",
+      "Created": "2026-06-17T05:11:23.938703146Z",
+      "Container": "",
+      "ContainerConfig": {
+        "Hostname": "",
+        "Domainname": "",
+        "User": "",
+        "AttachStdin": false,
+        "AttachStdout": false,
+        "AttachStderr": false,
+        "Tty": false,
+        "OpenStdin": false,
+        "StdinOnce": false,
+        "Env": null,
+        "Cmd": null,
+        "Image": "",
+        "Volumes": null,
+        "WorkingDir": "",
+        "Entrypoint": null,
+        "OnBuild": null,
+        "Labels": null
+      },
+      "DockerVersion": "",
+      "Author": "",
+      "Config": {
+        "Hostname": "",
+        "Domainname": "",
+        "User": "",
+        "AttachStdin": false,
+        "AttachStdout": false,
+        "AttachStderr": false,
+        "Tty": false,
+        "OpenStdin": false,
+        "StdinOnce": false,
+        "Env": [
+          "PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "GOLANG_VERSION=1.24.3",
+          "GOTOOLCHAIN=local",
+          "GOPATH=/go",
+          "PYTEST_ADDOPTS=--tb=short -v --continue-on-collection-errors --reruns=3",
+          "UV_HTTP_TIMEOUT=60"
+        ],
+        "Cmd": [
+          "tail",
+          "-f",
+          "/dev/null"
+        ],
+        "ArgsEscaped": true,
+        "Image": "",
+        "Volumes": null,
+        "WorkingDir": "/app",
+        "Entrypoint": null,
+        "OnBuild": null,
+        "Labels": null
+      },
+      "Architecture": "amd64",
+      "Os": "linux",
+      "Size": 4449245595,
+      "VirtualSize": 4449245595,
+      "GraphDriver": {
+        "Data": {
+          "LowerDir": "/var/lib/docker/overlay2/3d83f64e4d9ae6556859b1c15f20922af62d97a6ee8170fffd3c851d2d9f74fa/diff:/var/lib/docker/overlay2/896389cb5157aeae76eaaa8b25c217568de464464cabed4be29bb0fe5491f6ee/diff:/var/lib/docker/overlay2/e592f58dab305b722e83207e4803af120b032236883b7f70e360fbbc875c2d66/diff:/var/lib/docker/overlay2/0d5c8ea396fa9a72b7768c9e74b801cdeb32078ffe68c6b7844cbfd3488fef4b/diff:/var/lib/docker/overlay2/0c12340fa2ecc242f65046f7a784e6dd68bb3170bd92612f5c21d9459199286d/diff:/var/lib/docker/overlay2/024c76918cea58000c8e43574f6558e3573940ff5dd8517260d31bae6de29f31/diff:/var/lib/docker/overlay2/711dda9c134c5a2bba46270dfa607ba9dcc0f41e27042fb7911a534ecb36fc9b/diff:/var/lib/docker/overlay2/f589fb29a627434cf228b2f70fae135ca23cb879e5e592eb2f1cdc20f1c1dca2/diff:/var/lib/docker/overlay2/e1c2162a477ffbb2a7e65cd774c23b03d4c534af9fcf667de188094627fdde6c/diff:/var/lib/docker/overlay2/5b2239e3aca9fd8e2786c7fed5d68bc03fa7778afe08143231ffdb80987d4cf6/diff:/var/lib/docker/overlay2/5732f0a65bc649eab014f1d9cb7f8ce3c9ea2bca8962207083ee2f5e00513430/diff:/var/lib/docker/overlay2/3ebfb7d70a3b7246472c93f24255909c84b9f9496de1241de703a7e5150f630a/diff:/var/lib/docker/overlay2/873a534501bfe9c3ded03b261ee7a90c075d28b0eb4f34abd87d79d74a31d5a7/diff:/var/lib/docker/overlay2/5b3769107bda79ba93e5d4a763146185809c1abe0ddc4a47bc8586955503ae6d/diff:/var/lib/docker/overlay2/444bddf35b3efd2bcc5d4a52db13f42c7dabfaab7d15aacd70c514a3999d8127/diff:/var/lib/docker/overlay2/1b6e3028c5a1b7541c35f081ec6519d4128e4453538d4d4286e83658f1f626f2/diff:/var/lib/docker/overlay2/c802598b950cb83e31db2e7051d555ab83955ec2411e38b10437bd23095dcccb/diff:/var/lib/docker/overlay2/594504fbe13270ab605afafc6b3147d68b2a0a1506b514b952cec252e6dd4cb7/diff:/var/lib/docker/overlay2/341de474ceef145dbd50db86488949f113ad8e51403b23e1dc1bddc30fda0f2b/diff:/var/lib/docker/overlay2/e64490b13a00cb741adde8c170ef5b2048f1442c209a2fc8aeb20af3f16531c2/diff",
+          "MergedDir": "/var/lib/docker/overlay2/4144087f070afc2f3aedc41c75d3f5b6f172237b357acd21298f5bc7420ddc8e/merged",
+          "UpperDir": "/var/lib/docker/overlay2/4144087f070afc2f3aedc41c75d3f5b6f172237b357acd21298f5bc7420ddc8e/diff",
+          "WorkDir": "/var/lib/docker/overlay2/4144087f070afc2f3aedc41c75d3f5b6f172237b357acd21298f5bc7420ddc8e/work"
+        },
+        "Name": "overlay2"
+      },
+      "RootFS": {
+        "Type": "layers",
+        "Layers": [
+          "sha256:2f7436e79a0bc6cdec6536da54ae6a5863c8e3b5f145e0f8ac0b96306baddbc9",
+          "sha256:6428cc293366f93395949a2d1efd9b89c898c7a4a124051c3793c1faf7664269",
+          "sha256:e4dc8cd9ecc886f56babec383662506d94a28645c1a31085deaf7870366ec225",
+          "sha256:c36fa70bdbbed0c44423c742ac1f5d5e21b1df40562d9e8d780a601236d21c3a",
+          "sha256:469deeced89d3ef303495727a33a854a535ae3fa2c562eccae864e4a5731c6ad",
+          "sha256:7cd15fc55de58d3ea6bd5a033cb8048e34f5fddd68738374532cc8f743e1d15a",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:9beecbaa8b1bc7a3c77e1b1f8618f30c1040e573e68f86513d59695385d6db61",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:83f05eae35de346b2b4323ca3083544260bbbeffb97cbb6276317b7f1369c52c",
+          "sha256:a0f65d68c7f154a36d3fea16814494fb22ec6126cc4326b5b7684162d6237eb6",
+          "sha256:ab25cad6c294a4e5b69d05d2e84307e1cf2a803d0ad0c6c6bd4c5b22e2b6859e",
+          "sha256:d4bfff8149f4f7c62337bc709b83ebb337db9edb9fe25f3345d829af9454f3c7",
+          "sha256:b31be7d4acc3525d08bacbfbb35bb4e2570f047caceaa3c8daaf6a9e9462c1d8",
+          "sha256:afe469cec6b5909864d785f1db3100ac3397daf926a7c507b4e444f7ef6bf2dc",
+          "sha256:ef0e5d1a13ba22e92f51dfbb1840804fa62bf99841325c695ecaba7b889f25d4",
+          "sha256:1f1e3508ae6aa61bd9d11dc73c6d40c67c8f6796de73df9a2b2e7cd4fe0c12d2",
+          "sha256:2ce7d8f0c4492bae6dd692f6b1b53eebcb06bfb89a96dbcbefa9d4744017f44b",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:cf9c1ed6b2d91990c2d827e39722e83e53f5738d3ae0124d57d5e5075ea8e853"
+        ]
+      },
+      "Metadata": {
+        "LastTagTime": "2026-10-31T22:10:50.734837469Z"
+      }
+    }
+  ],
+  "container_refs": "",
+  "completion_sha256": "977a6516dee3c4315f7d6e814a3e5abbf686cae372300d946e3788f15a373118",
+  "raw_and_sealed_records_preserved": true,
+  "command": [
+    "docker",
+    "image",
+    "rm",
+    "sha256:6943432cab1d37afbf3dbc29b8df757c8186d7344b48a4a69ceee621d0248e09"
+  ]
+}
