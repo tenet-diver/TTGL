@@ -1,0 +1,129 @@
+{
+  "status": "registered_unused_completed_owned_TTGL_image_cache_only",
+  "image": "sha256:5e3d6a9ccab2dd3842617a480128b2d6d04dd68c4e5f6818d640e63e32b99bb8",
+  "inspect": [
+    {
+      "Id": "sha256:5e3d6a9ccab2dd3842617a480128b2d6d04dd68c4e5f6818d640e63e32b99bb8",
+      "RepoTags": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2:instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2"
+      ],
+      "RepoDigests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:aba37c7e9f7f929e9ecb6445e6196c024da9e6f5daa544013cc3be56d63c1f12"
+      ],
+      "Parent": "",
+      "Comment": "buildkit.exporter.image.v0",
+      "Created": "2026-06-16T19:12:56.961723903Z",
+      "Container": "",
+      "ContainerConfig": {
+        "Hostname": "",
+        "Domainname": "",
+        "User": "",
+        "AttachStdin": false,
+        "AttachStdout": false,
+        "AttachStderr": false,
+        "Tty": false,
+        "OpenStdin": false,
+        "StdinOnce": false,
+        "Env": null,
+        "Cmd": null,
+        "Image": "",
+        "Volumes": null,
+        "WorkingDir": "",
+        "Entrypoint": null,
+        "OnBuild": null,
+        "Labels": null
+      },
+      "DockerVersion": "",
+      "Author": "",
+      "Config": {
+        "Hostname": "",
+        "Domainname": "",
+        "User": "",
+        "AttachStdin": false,
+        "AttachStdout": false,
+        "AttachStderr": false,
+        "Tty": false,
+        "OpenStdin": false,
+        "StdinOnce": false,
+        "Env": [
+          "PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "GOLANG_VERSION=1.24.3",
+          "GOTOOLCHAIN=local",
+          "GOPATH=/go",
+          "PYTEST_ADDOPTS=--tb=short -v --continue-on-collection-errors --reruns=3",
+          "UV_HTTP_TIMEOUT=60",
+          "PYTHONPATH=/app/lib:/app"
+        ],
+        "Cmd": [
+          "tail",
+          "-f",
+          "/dev/null"
+        ],
+        "ArgsEscaped": true,
+        "Image": "",
+        "Volumes": null,
+        "WorkingDir": "/app",
+        "Entrypoint": null,
+        "OnBuild": null,
+        "Labels": null
+      },
+      "Architecture": "amd64",
+      "Os": "linux",
+      "Size": 3048887150,
+      "VirtualSize": 3048887150,
+      "GraphDriver": {
+        "Data": {
+          "LowerDir": "/var/lib/docker/overlay2/e20b3a7968ba7375c5a88c9172f7114b2765d92352c042af75c0cfb270bc6f3d/diff:/var/lib/docker/overlay2/2c5ad56c769d1af830751b0ae81efe5f9b0b3579229e3b8f0ca6fe504802486e/diff:/var/lib/docker/overlay2/98e8f449a1f3d53866549ebd346ab4ab8bef6c513efa192d920e66672435ecf9/diff:/var/lib/docker/overlay2/ca221d5070b8b35b847c760609bcfa86e913fa162d06436e2ad978321e098839/diff:/var/lib/docker/overlay2/d1e403dc0d737635826afb70c0e4e4412652b35188e855f6e496c1eed4c919c6/diff:/var/lib/docker/overlay2/35a8717089cb4f1a92b2c9c7a3cedf7f10b28f822eaf3afc3ca48d071939b040/diff:/var/lib/docker/overlay2/6a150d5da5a83ac2e49e3ace3ac9120a9fce4534116d36bbbd47558df7824247/diff:/var/lib/docker/overlay2/2a50d98f9dbe878650ac4af4680b6b35e6b25d389b9336ec4d703f86c9679178/diff:/var/lib/docker/overlay2/67f180c7c127e8cd56ae19bd9c27f7bd48af36bf555b5ffb790e5fe3260d2ef4/diff:/var/lib/docker/overlay2/cb62597fb3636e3f9ae8e55e8f8fcc5d515b54c29abcebe516cd4ba0bb1207c9/diff:/var/lib/docker/overlay2/82ca83733c3e6d52d51911427434368026c1473cefa1ec91c971bb3ce1a5c1d7/diff:/var/lib/docker/overlay2/cc0395fc6dbef1fdc5a72b35b2982f6766ab7ff1ffafaea942abbe6907d7b317/diff:/var/lib/docker/overlay2/3b265805ad8a12680a7ebcf22cb9fe8d80ccfa4a30571bf144ca178802f406f9/diff:/var/lib/docker/overlay2/255da80ee86b0cc2d1f1b8d9bf7a13bdba74b656db1bdc44a63088463b7198d6/diff:/var/lib/docker/overlay2/96986e97dcec423731db13e98777a223a5d8d9fc448e9c56fd4a3bc2a272b589/diff:/var/lib/docker/overlay2/0479da19fa07ad7636c4001e2f00f068a2120a7f01b20ef51d8d80f5746ae6e2/diff:/var/lib/docker/overlay2/a5a0a43d58f295e8890f955b7d6d39dcf8e60d4960459a7b38b93580ea13f2ca/diff:/var/lib/docker/overlay2/4344c3e9596e18927e8aaef5327266b80a74f4ab400fa75563e7bbd21b72bbb9/diff:/var/lib/docker/overlay2/e473c8e6797fa9aef2fa33090cbfc69b08ae3c4fd832e651757aa0384c464d3f/diff:/var/lib/docker/overlay2/2f76b22202640665ce93d216e0cb5ecf83697c00eb085ca5cc1fdb389d34b24e/diff:/var/lib/docker/overlay2/6ccb3aed5f6f7112ebdb44eea3c6cfaff9a24dfb6dc41a54ab0e2a39764d9965/diff:/var/lib/docker/overlay2/f51cdc0aa8577b78734adfdabcf6fb59804a766dafe3acd545e7a03b4b4cb444/diff:/var/lib/docker/overlay2/46319687fa54e94d9fafc1d91f7bbb81dce77988e880159bd0a0ddd22343077b/diff:/var/lib/docker/overlay2/3b481652c3ef7c42fd92e42f888fc945646958b22b557e3b7ed87bc92afb24f4/diff:/var/lib/docker/overlay2/d1e5347950e3fb5a0fdc2812f33c724382148f72ccc9fa0cec26f15e96944ad1/diff:/var/lib/docker/overlay2/2964b57f64151358a518243e9de589ea692a2106c6602ebf130e22197c42e76a/diff",
+          "MergedDir": "/var/lib/docker/overlay2/a76b4e544c8f5b30afcfd15800dfe5be9f06dc08f5811a9ff037ae24137730f4/merged",
+          "UpperDir": "/var/lib/docker/overlay2/a76b4e544c8f5b30afcfd15800dfe5be9f06dc08f5811a9ff037ae24137730f4/diff",
+          "WorkDir": "/var/lib/docker/overlay2/a76b4e544c8f5b30afcfd15800dfe5be9f06dc08f5811a9ff037ae24137730f4/work"
+        },
+        "Name": "overlay2"
+      },
+      "RootFS": {
+        "Type": "layers",
+        "Layers": [
+          "sha256:247fffb7158d7a68ad951dfdda7bf8af07ff4078d16abeb05bd3184effcad359",
+          "sha256:8ce3e08e661ad8c5d0ee8bad9f1d75cfdfc9b3e0b308ebf5d2fa334e84447284",
+          "sha256:fcbb8c0ae5d635b2d8bfe231695c679b9a67993a10da935b634b3e3b0a1671d1",
+          "sha256:48496f6f1c662fc26fda6a9a6776b3f220063ee2fb2080ac582debf521179325",
+          "sha256:469deeced89d3ef303495727a33a854a535ae3fa2c562eccae864e4a5731c6ad",
+          "sha256:82f65de187f7f99287b51b16897c4aa64204217ed3bd22c9e1bfc3c32beca4ac",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:e0ef17aaf9decda0f8310e7fa628eb7339519e0e1fe63b32f7080b44d4202190",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:b87fa5c67785b72b30b6e192cabdc23b9aa730465c1eadf7c28edfe11a026dfd",
+          "sha256:caa91982fdd784143f9241e52a950ee0787c288e6fdec713f70c08eaeae8bdcd",
+          "sha256:f23717f2d79e0288e022e27bb454c0130aa5c736392cf979c327e87b757d63f0",
+          "sha256:15f25dba7ddbbf12f182fc67fcf487bf57708c21a32355038b2b6b856804f368",
+          "sha256:446eda0ecc99d952b37d6711cd9117f4b45f3a15b5625d5b51961e90619516f8",
+          "sha256:46de6328190585c67311f43c003abb47f98ddf746cc3e3082bbd6f4e96860b43",
+          "sha256:0c1c66804be1ca51720139069d30ffed9b828e1e75f11a79aa6e39ec17e4d1f4",
+          "sha256:56d04441f9579245b60995faa24acefed2576f3e79550fcce35359cbed6ccd82",
+          "sha256:e2484040756d283329d92a07d62012a7a9e84b66ba12c9dbd785b433754eed39",
+          "sha256:c24b89c7c6f128f4a70fcbbd2cb2e480c7f730b9295e22e6b02a65b09f911db2",
+          "sha256:3be1f3dc177787594683460e9ee9e61c66ad96a6560751d25ce39d56bc857a75",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:7ad39e414c39e9f7ab9582f84b185fb692ac3ebc82031cf62c8b7dcb560efdf1",
+          "sha256:7424f36878fe2985127befe68a0ad5f57b16799420230924ed0721c4419f69e0",
+          "sha256:aedbda771f86da6848af99c5ec79f3fa0635903359e1c9d96271fefe8c8e49f7",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "sha256:d14bdf3bbb5ff0aa80bab19d68be53ab98093f16c4852c472f348ca6f5f7361b"
+        ]
+      },
+      "Metadata": {
+        "LastTagTime": "2026-10-31T22:38:32.288806282Z"
+      }
+    }
+  ],
+  "reason": "Disk margin during large Protonmail image unpack, no native or sealed evidence removed",
+  "completion_sha256": "40ef768fb33e2d7d0cfe3624314d1aef3d12f61eca9ab887145af888bb3cd763",
+  "analysis_manifest_sha256": "2b2715d547eae6091fa8319e608dd40d10d2fda54abcaea298e2e2bf309dac6e",
+  "command": [
+    "docker",
+    "image",
+    "rm",
+    "sha256:5e3d6a9ccab2dd3842617a480128b2d6d04dd68c4e5f6818d640e63e32b99bb8"
+  ]
+}
