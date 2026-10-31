@@ -362,14 +362,15 @@
   },
   "current_router_unit": {
     "task": "flipt",
-    "status": "model-free controls021 active",
-    "pid": 62576,
+    "status": "matched pair022 active; Sol first then voluntary Luna router",
+    "pid": 37864,
+    "protocol": "experiments/target90-development-20261031/flipt-pair-022.json",
     "owner": "active chat",
     "monitoring": "PAUSED"
   },
   "active_target90": {
     "plan": "experiments/target90-development-20261031/plan.json",
-    "status": "active_development_before_matched_inference",
+    "status": "Flipt paired022 active, corrected transport and v7 frozen",
     "metric": "at least90% all-role model-rate scenario saving, no observed held-out count loss vs matched Sol; optional stricter statistical criterion question pending",
     "candidate": "v7 consolidated general common/routing policy, corrected transport",
     "validation": "24 tasks untouched until candidate freeze and separate registration",
