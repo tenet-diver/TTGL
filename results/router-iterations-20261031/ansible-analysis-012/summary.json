@@ -1,0 +1,110 @@
+{
+  "status": "audited_single_development_episode",
+  "task_id": "instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86",
+  "assigned": 1,
+  "resolved": 1,
+  "initial_grade": 1.0,
+  "fresh_grade": 1.0,
+  "observed_success_fraction": 1.0,
+  "illustrative_exact_binomial_95_interval": [
+    0.025,
+    1.0
+  ],
+  "uncertainty": "Illustrative iid binomial interval only; one selected public development task is not a population sample or evidence of reliable routing/noninferiority.",
+  "outcome_class": "solved_without_consultation",
+  "expert_requests_attempted": 0,
+  "completed_consultations": 0,
+  "native_requests_by_role": {
+    "controller": 1
+  },
+  "usage": {
+    "input_tokens": 152455,
+    "cached_input_tokens": 119552,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2065,
+    "reasoning_output_tokens": 244
+  },
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 152455,
+        "cached_input_tokens": 119552,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2065,
+        "reasoning_output_tokens": 244
+      },
+      "observed_partial": {
+        "input_tokens": 152455,
+        "cached_input_tokens": 119552,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2065,
+        "reasoning_output_tokens": 244
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "published_rate_scenario_cost_per_assigned_usd": 0.00551832,
+  "published_rate_scenario_cost_per_resolved_usd": 0.00551832,
+  "actual_cash_cost_usd": null,
+  "subscription_quota_savings": null,
+  "accuracy_retention_vs_sol": null,
+  "saving_vs_matched_sol": null,
+  "cost_scope": "All episode controller/router/expert/integration inference; frozen historical token rates, not invoice or full deployment cost.",
+  "setup_already_completed_reused": {
+    "new_model_calls": 0,
+    "usage": {
+      "input_tokens": 112615,
+      "cached_input_tokens": 85120,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1631,
+      "reasoning_output_tokens": 298
+    },
+    "historical_scenario_cost_usd": 0.03098282
+  },
+  "latency_seconds": {
+    "native_model_and_tools": 29.33025624905713,
+    "native_actor_phase": 43.49462,
+    "generation_environment_and_initial_grading": 140.484871,
+    "independent_fresh_replay": 100.415275,
+    "generation_start_to_fresh_grade": 248.390814
+  },
+  "visible_tool_requests": 7,
+  "final_controller_response": {
+    "action": "complete",
+    "question": "",
+    "context": "",
+    "summary": "**Verification status: supported.** `_extract_tar_file` now resolves the destination and parent with `os.path.abspath()`, permits a parent equal to the destination, and otherwise requires the parent path to start with the destination plus a separator. Traversal raises the specified `AnsibleError` with the offending filename.\n\nChecks: `pytest -q test/units/galaxy/test_collection.py -k 'extract_tar_file'` passed (3 tests). A focused tar-file reproducer confirmed `../outside` is rejected with the exact message and no outside file is created, while extraction directly into the destination root succeeds. `git diff --check` passed. An initial reproducer invocation had a quoting syntax error; the corrected invocation passed. The checks cover traversal rejection and root extraction; other archive path forms were not separately exercised."
+  },
+  "fresh_actor_boundary": {
+    "status": "fresh_actor_boundary_passed_before_router_inference",
+    "observations": {
+      "head": "8c044b846d1ea9e2a9c8870b1eaf6db3775e8e2c",
+      "git_status": "",
+      "outside_head_commits": 0,
+      "private_path_visible": false,
+      "public_endpoint_reachable": false,
+      "witness_ignored": false
+    },
+    "scope": "Hidden paths plus host sentinel, clean HEAD/history, direct-IP egress probe; not universal isolation proof"
+  },
+  "pre_handoff_grade": null,
+  "provenance": {
+    "/Users/rustameynaliyev/Developer/TTGL/experiments/router-iterations-20261031/ansible-router-012.json": "7072173aec37b2de2a03fc219b12be0c0dc43e6189009be69800d38713bd38b7",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-iterations-20261031/ansible-router-012/jobs/first-block-optional/instance_ansible__ansible-a20a52__HnvFbpH/result.json": "ba5f473496ef04daacc6512a0bf11e04b87c36929ad2877bf04e1f7e4aa2d2a1",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-iterations-20261031/ansible-router-012/jobs/first-block-optional-fresh/instance_ansible__ansible-a20a52__ATYDFTA/result.json": "ab3554cc10d778bc1b9e75bbfd14db65155b84e5ad8e65f68eec23d13b4aab30",
+    "/Users/rustameynaliyev/Developer/ttgl-router-ansible-012/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86/personal/8eab457109094b8f81c97d6a523c19a8/controller/manifest.json": "7ef4686bee713ce214b83bec40a6afbf2a0f1522cce19c6936ac5c53ed816840",
+    "/Users/rustameynaliyev/Developer/ttgl-router-ansible-012/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86/personal/8eab457109094b8f81c97d6a523c19a8/controller/events.jsonl": "5ea16fcb2a77b72c36750fd7ea690a3600901f1e71b44e595ef41b0b3049e32e",
+    "/Users/rustameynaliyev/Developer/ttgl-router-ansible-012/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86/personal/8eab457109094b8f81c97d6a523c19a8/visible-tool-trace.jsonl": "2b36e6ad78f19dbf1d83762f858fe93a28855935771597b8a63da76c0c63c6f3",
+    "/Users/rustameynaliyev/Developer/ttgl-router-ansible-012/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86/personal/8eab457109094b8f81c97d6a523c19a8/final.patch": "d0a118ac4b4be313136ac60eea40ff34a415f2ce24a927ac494ec8d7e9046454",
+    "/Users/rustameynaliyev/Developer/ttgl-router-ansible-012/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86/personal/8eab457109094b8f81c97d6a523c19a8/sealed-replay-source/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86/seal.json": "3b9f2c2b1c28bde42deb94a3b1dfbca4522b71427dec7cb3ba90fe8ebfb82bf3",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-iterations-20261031/ansible-router-012/jobs/first-block-optional-fresh/instance_ansible__ansible-a20a52__ATYDFTA/agent/replay.json": "c7746adc32c26304ef4ee32bb18cf1eeec7d8a65b46306378cfcfb30aaf2161f",
+    "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/rate-scenario.json": "24337a4fbe01bd97c0a8034c97e7f940779d207a388111dd3c19601919a49328"
+  },
+  "validation_tasks_used": 0
+}

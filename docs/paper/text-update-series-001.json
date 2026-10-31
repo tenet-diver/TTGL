@@ -1,0 +1,27 @@
+{
+  "status": "text_checkpoint_ansible_complete_element_started",
+  "created_at": "2026-10-31T19:13:58.396694+00:00",
+  "binary_qa": "PDF/DOCX unchanged older previews; prior visual QA only applies to those files",
+  "files": {
+    "paper.md": {
+      "sha256": "fd9c69a1217f9ff8daee1b8f3ab074a3604f86ac590bf61b1444c76498547ef1",
+      "status": "updated_text"
+    },
+    "paper.html": {
+      "sha256": "e1ce2042b4feee0d57ff73bf1f0e5c8cea4f91326b1859e57911642acfddd025",
+      "status": "updated_text"
+    },
+    "live-routing-results.md": {
+      "sha256": "edbf64216735803d78928bf0812f3675973a9aadecb816206e38bad90e822d87",
+      "status": "updated_text"
+    },
+    "paper.pdf": {
+      "sha256": "89d35b32a3adeb06cd164f954307a69ab1a5226acda5ebb4d3b916be38ac68dc",
+      "status": "unchanged_older_binary"
+    },
+    "paper.docx": {
+      "sha256": "e411c9ff36381437b758d175d783dcaca32399fbd6584dde7f640f79bfd71ced",
+      "status": "unchanged_older_binary"
+    }
+  }
+}

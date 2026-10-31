@@ -1,0 +1,123 @@
+{
+    "id": "32d5dbbd-015f-48c5-9929-7896166baf77",
+    "task_name": "swebench-pro/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86",
+    "trial_name": "instance_ansible__ansible-a20a52__ATYDFTA",
+    "trial_uri": "file:///Users/rustameynaliyev/Developer/TTGL/results/router-iterations-20261031/ansible-router-012/jobs/first-block-optional-fresh/instance_ansible__ansible-a20a52__ATYDFTA",
+    "task_id": {
+        "path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86/v2/tasks/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86"
+    },
+    "source": "tasks",
+    "task_checksum": "d8883bab26ebb33228745ee3a94d56ba3fa5dbf49bf7323089b3df3e78a440bc",
+    "config": {
+        "task": {
+            "path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86/v2/tasks/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "tasks"
+        },
+        "trial_name": "instance_ansible__ansible-a20a52__ATYDFTA",
+        "trials_dir": "/Users/rustameynaliyev/Developer/TTGL/results/router-iterations-20261031/ansible-router-012/jobs/first-block-optional-fresh",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "patch_replay:PatchReplayAgent",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "source_job": "/Users/rustameynaliyev/Developer/ttgl-router-ansible-012/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86/personal/8eab457109094b8f81c97d6a523c19a8/sealed-replay-source",
+                "patch_name": "model.patch"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": null,
+            "import_path": "ttgl.harbor_docker_network:DetachedNetworkDocker",
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "55c8537e-54c1-4297-9c04-12206f427427",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "patch-replay-agent",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-10-31T18:58:37.870079Z",
+    "finished_at": "2026-10-31T19:00:18.285354Z",
+    "environment_setup": {
+        "started_at": "2026-10-31T18:58:38.068572Z",
+        "finished_at": "2026-10-31T18:58:41.145442Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-31T18:58:41.145636Z",
+        "finished_at": "2026-10-31T18:58:41.145807Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-31T18:58:41.146047Z",
+        "finished_at": "2026-10-31T18:58:44.782181Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-31T18:58:46.285851Z",
+        "finished_at": "2026-10-31T19:00:07.443534Z"
+    },
+    "step_results": null
+}

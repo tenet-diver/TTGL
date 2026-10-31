@@ -269,3 +269,23 @@ for the larger evaluation and unresolved evidence.
 - [Metering source review](codex-metering-evidence.md) and [runtime diagnosis](codex-runtime-metering.md).
 - [Model and price landscape](../thesis/model-landscape.md), [exact model catalog](../thesis/model-catalog.csv) and [retrieval register](project-usage-sources.json).
 - [Personal-agent CLI details and limitations](personal-harness.md).
+
+
+## Current router-development practice
+
+The active v5 completion guidance asks Luna for a bounded executable behavioral
+check before declaring completion. Lint and diff checks alone do not establish
+behavior. Preserve exact failing output and shell exit status: a later successful
+command can mask an earlier failure. After useful independent repairs, a material
+unverified requirement can justify a focused Sol consultation. Default to two or
+three distinct checked approaches before help, with a concrete early-help reason
+when no useful independent attempt is available; preserve time for integration.
+Transfer source, candidate changes, attempts, exact results, lessons, ruled-out
+hypotheses and remaining questions. Verify Sol's advice after integrating it.
+
+Ansible's first v5 trial passes fresh grading and supplies behavioral checks, but
+uses no expert. This supports that episode's completion claim, not a proven
+improvement in failure detection or delegation. The next Element Web and Tutanota
+units are sequential, with their own controls and no automatic retries. Observe
+visible commands, results, decisions and handoffs; never feed hidden grades back
+to a live actor. See experiments/router-iterations-20261031/plan.json.

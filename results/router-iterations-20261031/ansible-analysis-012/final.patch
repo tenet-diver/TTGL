@@ -1,0 +1,17 @@
+diff --git a/lib/ansible/galaxy/collection.py b/lib/ansible/galaxy/collection.py
+index d571ff455e..ce1175a6c7 100644
+--- a/lib/ansible/galaxy/collection.py
++++ b/lib/ansible/galaxy/collection.py
+@@ -1126,6 +1126,12 @@ def _extract_tar_file(tar, filename, b_dest, b_temp_path, expected_hash=None):
+ 
+         b_dest_filepath = os.path.join(b_dest, to_bytes(filename, errors='surrogate_or_strict'))
+         b_parent_dir = os.path.split(b_dest_filepath)[0]
++        b_abs_dest = os.path.abspath(b_dest)
++        b_abs_parent_dir = os.path.abspath(b_parent_dir)
++        if b_abs_parent_dir != b_abs_dest and not b_abs_parent_dir.startswith(b_abs_dest + os.path.sep.encode('ascii')):
++            raise AnsibleError("Cannot extract tar entry '%s' as it will be placed outside the collection directory"
++                               % to_native(filename, errors='surrogate_or_strict'))
++
+         if not os.path.exists(b_parent_dir):
+             # Seems like Galaxy does not validate if all file entries have a corresponding dir ftype entry. This check
+             # makes sure we create the parent directory even if it wasn't set in the metadata.

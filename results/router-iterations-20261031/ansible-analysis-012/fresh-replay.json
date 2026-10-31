@@ -1,0 +1,7 @@
+{
+ "task": "instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86",
+ "patch": "/Users/rustameynaliyev/Developer/ttgl-router-ansible-012/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86/personal/8eab457109094b8f81c97d6a523c19a8/sealed-replay-source/instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86/agent/model.patch",
+ "apply_rc": 0,
+ "apply_out": "Checking patch lib/ansible/galaxy/collection.py...\nApplied patch lib/ansible/galaxy/collection.py cleanly.\n",
+ "post_apply_diffstat": " lib/ansible/galaxy/collection.py | 6 ++++++\n 1 file changed, 6 insertions(+)\n---\n1\n"
+}

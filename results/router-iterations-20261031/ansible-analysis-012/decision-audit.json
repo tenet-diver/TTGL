@@ -1,0 +1,33 @@
+{
+  "classification": "official_success_without_consultation",
+  "false_completion": "not_observed",
+  "missed_escalation": "not_established_on_passing_task",
+  "failed_consultation": false,
+  "failed_integration": false,
+  "observed_behavioral_verification": "Three relevant public repository tests plus traversal/root-extraction reproducer, supported by retained stdout",
+  "limitation": "No Sol handoff occurred; no causal prompt improvement or failure-detection recall can be inferred from a different selected task",
+  "checks": [
+    {
+      "sequence": 5,
+      "command": "cd /app && pytest -q test/units/galaxy/test_collection.py -k 'extract_tar_file' ",
+      "exit_code": 0,
+      "stdout": "============================= test session starts ==============================\nplatform linux -- Python 3.9.23, pytest-5.4.1, py-1.8.1, pluggy-0.13.1\nrootdir: /app\nplugins: rerunfailures-9.0, xdist-1.31.0, cov-2.8.1, forked-1.1.3, mock-3.0.0\ncollected 57 items / 54 deselected / 3 selected\n\ntest/units/galaxy/test_collection.py ...                                 [100%]\n\n======================= 3 passed, 54 deselected in 1.59s =======================\n",
+      "stderr": ""
+    },
+    {
+      "sequence": 6,
+      "command": "cd /app && PYTHONPATH=lib python - <<'PY'\nimport io, os, tarfile, tempfile\nfrom ansible.galaxy.collection import _extract_tar_file\nfrom ansible.errors import AnsibleError\nroot=tempfile.mkdtemp().encode()\ndef archive(name):\n    f=io.BytesIO()\n    with tarfile.open(fileobj=f, mode='w') as t:\n        d=b'ok'; m=tarfile.TarInfo(name); m.size=len(d); t.addfile(m, io.BytesIO(d))\n    f.seek(0); return tarfile.open(fileobj=f, mode='r')\nt=archive('../outside')\ntry:\n    try: _extract_tar_file(t, '../outside', root, root)\n    except AnsibleError as e:\n        expected=\\\"Cannot extract tar entry '../outside' as it will be placed outside the collection directory\\\"\n        assert e.message == expected, repr(e.message)\n    else: raise AssertionError('traversal accepted')\n    assert not os.path.exists(os.path.join(os.path.dirname(root), b'outside'))\nfinally: t.close()\nt=archive('at-root')\ntry:\n    _extract_tar_file(t, 'at-root', root, root)\n    assert open(os.path.join(root,b'at-root'),'rb').read() == b'ok'\nfinally: t.close()\nprint('traversal rejected with exact message; destination-root extraction succeeded')\nPY\n git diff --check && git diff -- lib/ansible/galaxy/collection.py",
+      "exit_code": 0,
+      "stdout": "  File \"<stdin>\", line 14\n    expected=\\\"Cannot extract tar entry '../outside' as it will be placed outside the collection directory\\\"\n              ^\nSyntaxError: unexpected character after line continuation character\ndiff --git a/lib/ansible/galaxy/collection.py b/lib/ansible/galaxy/collection.py\nindex d571ff455e..ce1175a6c7 100644\n--- a/lib/ansible/galaxy/collection.py\n+++ b/lib/ansible/galaxy/collection.py\n@@ -1126,6 +1126,12 @@ def _extract_tar_file(tar, filename, b_dest, b_temp_path, expected_hash=None):\n \n         b_dest_filepath = os.path.join(b_dest, to_bytes(filename, errors='surrogate_or_strict'))\n         b_parent_dir = os.path.split(b_dest_filepath)[0]\n+        b_abs_dest = os.path.abspath(b_dest)\n+        b_abs_parent_dir = os.path.abspath(b_parent_dir)\n+        if b_abs_parent_dir != b_abs_dest and not b_abs_parent_dir.startswith(b_abs_dest + os.path.sep.encode('ascii')):\n+            raise AnsibleError(\"Cannot extract tar entry '%s' as it will be placed outside the collection directory\"\n+                               % to_native(filename, errors='surrogate_or_strict'))\n+\n         if not os.path.exists(b_parent_dir):\n             # Seems like Galaxy does not validate if all file entries have a corresponding dir ftype entry. This check\n             # makes sure we create the parent directory even if it wasn't set in the metadata.\n",
+      "stderr": ""
+    },
+    {
+      "sequence": 7,
+      "command": "cd /app && PYTHONPATH=lib python - <<'PY'\nimport io, os, tarfile, tempfile\nfrom ansible.galaxy.collection import _extract_tar_file\nfrom ansible.errors import AnsibleError\nroot=tempfile.mkdtemp().encode()\ndef archive(name):\n    f=io.BytesIO()\n    with tarfile.open(fileobj=f, mode='w') as t:\n        d=b'ok'; m=tarfile.TarInfo(name); m.size=len(d); t.addfile(m, io.BytesIO(d))\n    f.seek(0); return tarfile.open(fileobj=f, mode='r')\nt=archive('../outside')\ntry:\n    try: _extract_tar_file(t, '../outside', root, root)\n    except AnsibleError as e:\n        expected=\"Cannot extract tar entry '../outside' as it will be placed outside the collection directory\"\n        assert e.message == expected, repr(e.message)\n    else: raise AssertionError('traversal accepted')\n    assert not os.path.exists(os.path.join(os.path.dirname(root), b'outside'))\nfinally: t.close()\nt=archive('at-root')\ntry:\n    _extract_tar_file(t, 'at-root', root, root)\n    assert open(os.path.join(root,b'at-root'),'rb').read() == b'ok'\nfinally: t.close()\nprint('traversal rejected with exact message; destination-root extraction succeeded')\nPY\n",
+      "exit_code": 0,
+      "stdout": "traversal rejected with exact message; destination-root extraction succeeded\n",
+      "stderr": ""
+    }
+  ],
+  "trace_sha256": "2b36e6ad78f19dbf1d83762f858fe93a28855935771597b8a63da76c0c63c6f3"
+}

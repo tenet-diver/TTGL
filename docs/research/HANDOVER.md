@@ -1729,3 +1729,29 @@ Ansible before any image pull/control/model call. Auditing registry HTTP metadat
 and content digests directly to distinguish CLI behavior from actual image
 availability. Preserve any preparation failure; do not substitute favorable tasks.
 No active research supervisor or new scored assignment yet.
+
+
+## Router series checkpoint: Ansible complete, Element controls active
+
+Ansible controls011 passed0/1. Router012 (PID55711, now complete) used v5 and
+passed initial/fresh official grading without Sol. Scenario costUSD0.00551832.
+Actual trace confirms3 selected public tests passed and a corrected traversal/
+root-extraction reproducer passed; no inference of failure-detection recall or
+causal prompt improvement. Decision audit and exact evidence under
+results/router-iterations-20261031/ansible-analysis-012. No model retries.
+
+Element controls013 supervisorPID60278 is pulling/preparing its pinned image;
+no Element model started yet. Tutanota not launched. Current chat retains
+exclusive series ownership; do not duplicate workers. Existing heartbeat was
+updated through the app to router-only focus and monitor-only while owner active.
+FAST-96 tracks this series. Each model unit is separately registered only after
+its own controls pass; source freezes and immutable assignment claims remain.
+
+
+## Element router014 launched after valid controls
+
+Element controls013 completed with nop0/oracle1 and no exceptions. Registered
+router014 and audited cross-task reuse; supervisorPID47357 owns exactly one
+new assignment, zero setup calls. Do not duplicate or edit frozen model sources.
+V5 retained after Ansible success; no causal improvement claim. Tutanota remains
+unlaunched until this unit is audited. Current chat retains ownership.

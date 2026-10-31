@@ -1,6 +1,7 @@
 # Fresh metered Luna / Sol routing experiments
 
-Current Pro evidence is the single router episode in the final section below.
+Current Pro evidence includes the first NodeBB episode and the sequential
+router-development checkpoint in the final sections below.
 Older prospective Pro matrix passages describe earlier designs; latest steering
 defers standalone comparisons and full evaluation in favor of router development.
 
@@ -196,7 +197,8 @@ syntax and lint corrections are not distinct semantic repair strategies.
 The default 2–3 checked independent attempts applies before asking Sol, not a
 requirement to invent more changes after every candidate. The next v5 addition
 emphasizes discriminating behavioral checks and a useful response to a material
-verification gap. It is prepared but unrun, with no demonstrated improvement and
+verification gap. It was prepared at this checkpoint and subsequently activated in the separate
+series below, with no demonstrated causal improvement and
 no mandatory expert review. Handoffs still carry relevant source, candidate,
 attempts, exact outcomes, lessons, ruled-out hypotheses and remaining questions.
 
@@ -207,3 +209,31 @@ population sample. All 24 validation cases remain untouched. No second router
 assignment or standalone comparison was launched. The 141 Verified assignments
 and historical 500-task replay remain separate evidence. The contribution remains
 replication and controlled extension of related work, not architectural novelty.
+
+
+## Sequential v5 router development: Ansible checkpoint
+
+A separately registered three-task series uses the next reserved development
+cases in original order: Ansible, Element Web and Tutanota. Standalone comparisons
+and full evaluation remain deferred. Each case requires its own passing empty/
+reference controls and fresh actor-boundary check. Only audited setup008 transport
+and metering evidence is reused across tasks; target quality is never reused.
+
+The first v5 assignment, Ansible, passes initial and independent pristine grading
+without Sol. Actual visible outputs show three selected repository tests passing
+and a corrected reproducer checking traversal rejection and destination-root
+extraction. Luna catches and repairs an earlier quoting error. Its supported
+completion statement matches the retained checks. No missed escalation or false
+completion is established, and no handoff is observed. See the
+[Ansible audit](../../results/router-iterations-20261031/ansible-analysis-012/README.md).
+
+All episode inference uses Luna: 152,455 input tokens (119,552 cached), 2,065 output.
+Frozen published-rate scenario cost is USD 0.00551832 per assigned/resolved task;
+actual cash and quota expense remain unknown. Request elapsed time is 29.33s,
+actor phase 43.49s, and generation start through fresh grading 248.39s. Setup
+inference was not repeated. A different successful task cannot demonstrate causal
+prompt improvement, failure-detection recall or expert integration quality.
+Element Web remains in model-free controls and Tutanota has not started at this
+checkpoint; neither is a scored router result. The 24 validation tasks remain
+untouched. This development checkpoint does not change the completed Verified
+95/95 conclusion or establish a new accuracy/savings frontier.

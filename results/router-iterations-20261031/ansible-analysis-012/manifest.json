@@ -1,0 +1,115 @@
+{
+  "schema_version": 3,
+  "run_id": "8d8d2676-0758-49f5-ae7b-eaf178823e16",
+  "task_id": "instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86",
+  "condition": "personal",
+  "status": "completed_ungraded",
+  "created_at": "2026-10-31T18:56:15.650565+00:00",
+  "finished_at": "2026-10-31T18:56:45.051700+00:00",
+  "identity_sha256": "07d9906e6c3577e383926fe2a35821faad1d198e85759ba0ac652df0f395962a",
+  "config": {
+    "condition": "personal",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 2940.0,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "One Harbor environment.exec via authenticated loopback MCP",
+    "server_sha256": "cd207f6da4bfa2c69d171d8a82a41d0f67a2e200f424907a0716f6e17abb571e",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "1d4213bb5cb95525518a924667df2afd177b392e9ca87e17ec173e9f4d651a27",
+    "harbor_bridge_sha256": "d68008ddcad6d3cec3c9d3af71e085c76230638c2ed6b1dff5dd6a9e61e64039",
+    "controller_policy": {
+      "mode": "fallback",
+      "source": "bf163122b4c9769dbec7ef0c9759fc5e07a4453dc6906f75c31dfa41d6eee707",
+      "prompts": {
+        "controller-v2-delegation.txt": "97fa0f26f6477d16ad94e130d0ae33b9909da26598fe72fd9178513f330e568b",
+        "controller-v2-common.txt": "bcab59483071803bd76c6a2125c4892771bafb3f3845b151494732f1b905fd23",
+        "controller-v2-fallback.txt": "b0e31632e6796b582a7982325aca364419cbeeeaa309224b47eae2ccce8a4724"
+      }
+    },
+    "visible_tool_trace": "Bounded public tool actions/observations; no private reasoning or evaluator feedback",
+    "routing_diagnostic": {
+      "mode": "verification",
+      "source_sha256": "cfc8c857ac2a83087d832a07d4aeeb122577e7e23d6d452b9606ac14ab408ad6",
+      "verification_source_sha256": "9b60c1e4656d168db553b992ebd31acf8d0656e9bbdfba070e824fc4f493e4c4",
+      "prompts_sha256": {
+        "controller-v3-required-review.txt": "8ae50e58e4305591fbc087d6b1c3731775a9134e1a4bce5d667f3d3aa0187950",
+        "controller-v3-verification-common.txt": "eb1e579c24b5d26decd2fc1146afc82ab0a87c0fdd06ea0e29b2a98194cbbf07",
+        "controller-v3-verification-delegation.txt": "438004aa752026edd36d7f0f5fcfccbb8141fc0aeee21e1a900f318b4b77cd9f"
+      },
+      "router_development_source_sha256": "9f97f8c05457169f48bcc4a4e919bd30dac3877d7f33676cafc9f24dd7739c67",
+      "router_decisions_prompt_sha256": "8ed993a4066d8a95163d9baf4915dba764965b1dc14a078148cc644f9230a263",
+      "completion_source_sha256": "eedbdae94a20fcb539d047daaee7164a0abc2780dce81a5d8f186dd7a7664995",
+      "completion_prompt_sha256": "12d1d00ae5fa9dd6ce272bffd3c485a00ce450f3af840406699d739b9155896e"
+    }
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 1,
+  "expert_calls": 0,
+  "elapsed_seconds": 29.33025624905713,
+  "controller_thread_id": "01a19351-d464-7aa0-ba5d-ffb062475eca",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 152455,
+    "cached_input_tokens": 119552,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2065,
+    "reasoning_output_tokens": 244
+  },
+  "observed_usage_partial": {
+    "input_tokens": 152455,
+    "cached_input_tokens": 119552,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2065,
+    "reasoning_output_tokens": 244
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 152455,
+        "cached_input_tokens": 119552,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2065,
+        "reasoning_output_tokens": 244
+      },
+      "observed_partial": {
+        "input_tokens": 152455,
+        "cached_input_tokens": 119552,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2065,
+        "reasoning_output_tokens": 244
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 1,
+  "failure_type": null,
+  "summary": "**Verification status: supported.** `_extract_tar_file` now resolves the destination and parent with `os.path.abspath()`, permits a parent equal to the destination, and otherwise requires the parent path to start with the destination plus a separator. Traversal raises the specified `AnsibleError` with the offending filename.\n\nChecks: `pytest -q test/units/galaxy/test_collection.py -k 'extract_tar_file'` passed (3 tests). A focused tar-file reproducer confirmed `../outside` is rejected with the exact message and no outside file is created, while extraction directly into the destination root succeeds. `git diff --check` passed. An initial reproducer invocation had a quoting syntax error; the corrected invocation passed. The checks cover traversal rejection and root extraction; other archive path forms were not separately exercised.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "5ea16fcb2a77b72c36750fd7ea690a3600901f1e71b44e595ef41b0b3049e32e",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}
