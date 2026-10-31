@@ -1907,3 +1907,14 @@ and receipt hashes verified; pinned image digest1aee15022a4e086e0d7929ed1046bddb
 Model-free controls019 supervisorPID24340 active, router020 not yet registered.
 Current chat owns this unit; do not duplicate or enable monitoring. Own controls,
 readiness evidence, validated cross-task setup008 reuse and fresh boundary required.
+
+
+## Vuls020 launched with frozen v6; Go available in image
+
+Controls019 pass0/1, no exceptions. Model-free readonly/no-network public runtime
+probe finds go/gofmt at/usr/local/go/bin; unlike Teleport, image has the expected
+tools. No model/environment mutation from probe. Runtime evidence under
+results/router-vuls-20261031/public-runtime-probe.json. Registered router020,
+validated setup008 cross-task transport-only reuse (zero new setup calls),
+supervisorPID31913. Claim unique, max one assignment/no retries. Current chat
+owns; monitoring PAUSED; sources frozen through grading. FAST-98 In Progress.

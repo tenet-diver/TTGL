@@ -363,9 +363,12 @@
   "current_router_unit": {
     "plan": "experiments/router-vuls-20261031/plan.json",
     "owner": "active chat",
-    "status": "model-free controls019 active",
-    "pid": 24340,
+    "status": "Vuls router020 active after controls pass",
+    "pid": 31913,
     "monitoring": "PAUSED by user, unchanged",
-    "next_action": "Only after target controls pass, register one v6 router020 with validated setup reuse and fresh actor boundary"
+    "next_action": "Only after target controls pass, register one v6 router020 with validated setup reuse and fresh actor boundary",
+    "protocol": "experiments/router-vuls-20261031/vuls-router-020.json",
+    "jira_key": "FAST-98",
+    "public_verification_tools": "Fresh image probe finds go and gofmt at /usr/local/go/bin; actor execution still independently observed"
   }
 }

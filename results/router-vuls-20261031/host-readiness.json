@@ -1,0 +1,6 @@
+{
+  "captured_at": "2026-10-31T21:39:49.286412+00:00",
+  "uptime": "22:39  up 15 days,  9:04, 1 user, load averages: 14.03 13.52 38.62",
+  "logical_cpus": 8,
+  "interpretation": "Host load is not controlled; single-episode timings descriptive, no causal latency or speedup comparison. Do not stop unrelated workloads."
+}

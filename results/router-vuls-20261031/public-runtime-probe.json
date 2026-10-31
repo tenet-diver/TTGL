@@ -1,0 +1,9 @@
+{
+  "scope": "model-free fresh readonly container, no network/mounts/evaluator/auth; checks only PATH and known public Go runtime locations, not exhaustive filesystem discovery",
+  "image_id": "sha256:a52a67cd0a4879a26a120bb84949905102458be58444055d893c69252d78e38c",
+  "returncode": 0,
+  "stdout": "go_on_path=/usr/local/go/bin/go\ngofmt_on_path=/usr/local/go/bin/gofmt\nknown_runtime=/usr/local/go/bin/go\n",
+  "stderr": "",
+  "actor_environment_mutation": false,
+  "new_model_calls": 0
+}
