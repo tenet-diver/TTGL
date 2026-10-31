@@ -1,7 +1,7 @@
 # We have to combine — A conversation is all you need
 
-Current Markdown/HTML paper text includes the first Pro router result (1/1,
-zero Sol calls). PDF and Word files remain the older pre-episode working previews;
+Current Markdown/HTML paper text includes the first NodeBB Pro router result
+and the Ansible v5 checkpoint, both passing fresh grading with zero Sol calls. PDF and Word files remain the older pre-episode working previews;
 their recorded visual review applies to those unchanged binaries. Use current
 text and the episode audit for the new result. The broader study remains ongoing.
 
@@ -93,5 +93,6 @@ the recorded analysis with
 The command creates a new output directory and does not call a model.
 
 Author, institution and supervisor details remain for the author to complete.
-Fastest Jira and Confluence were not reachable through available tools; the
-repository's task register and import CSV preserve pending synchronization.
+Fastest Jira and Confluence are authenticated. FAST-96 tracks the current
+sequential router-development series; FAST-95 and Confluence page19103748
+record the earlier NodeBB episode. The repository preserves the exact evidence.

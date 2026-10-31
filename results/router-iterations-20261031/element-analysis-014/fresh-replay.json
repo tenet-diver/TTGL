@@ -1,0 +1,7 @@
+{
+ "task": "instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan",
+ "patch": "/Users/rustameynaliyev/Developer/ttgl-router-element-014/instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan/personal/4589b68ea49444308e1ce6d37be78928/sealed-replay-source/instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan/agent/model.patch",
+ "apply_rc": 0,
+ "apply_out": "Checking patch src/components/views/messages/MKeyVerificationRequest.tsx...\nApplied patch src/components/views/messages/MKeyVerificationRequest.tsx cleanly.\n",
+ "post_apply_diffstat": " .../views/messages/MKeyVerificationRequest.tsx     | 187 ++-------------------\n 1 file changed, 18 insertions(+), 169 deletions(-)\n---\n1\n"
+}

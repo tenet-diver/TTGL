@@ -1755,3 +1755,20 @@ router014 and audited cross-task reuse; supervisorPID47357 owns exactly one
 new assignment, zero setup calls. Do not duplicate or edit frozen model sources.
 V5 retained after Ansible success; no causal improvement claim. Tutanota remains
 unlaunched until this unit is audited. Current chat retains ownership.
+
+
+## Element complete; v6 registered; Tutanota controls active
+
+Element014 initial/fresh1, no Sol; full native/thread/patch audit complete. Scenario
+USD0.01017514. Old-contract Jest suite fails, broad tsc exits137, Luna explicitly
+acknowledges incomplete behavioral verification. Not false success on passing
+candidate; no failure-detection recall or handoff evidence. Analysis at
+results/router-iterations-20261031/element-analysis-014.
+
+V6 registered separately in v6-activation.json: obsolete old assertions need a
+new-contract executable check; continue useful bounded work before honest but
+unsupported completion, or ask focused Sol test-design help after useful attempts.
+Two optional-backend tests pass. No forced review or demonstrated causal gain.
+Tutanota model-free controls015 supervisorPID15384 active. Router016 not launched.
+Use RouterContractCodex only after its own controls pass; source hashes must include
+new module/prompt/test/activation. Current chat retains ownership; no duplicate work.

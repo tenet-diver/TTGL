@@ -1,0 +1,110 @@
+{
+  "status": "audited_single_development_episode",
+  "task_id": "instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan",
+  "assigned": 1,
+  "resolved": 1,
+  "initial_grade": 1.0,
+  "fresh_grade": 1.0,
+  "observed_success_fraction": 1.0,
+  "illustrative_exact_binomial_95_interval": [
+    0.025,
+    1.0
+  ],
+  "uncertainty": "Illustrative iid binomial interval only; one selected public development task is not a population sample or evidence of reliable routing/noninferiority.",
+  "outcome_class": "solved_without_consultation",
+  "expert_requests_attempted": 0,
+  "completed_consultations": 0,
+  "native_requests_by_role": {
+    "controller": 1
+  },
+  "usage": {
+    "input_tokens": 530896,
+    "cached_input_tokens": 489344,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2253,
+    "reasoning_output_tokens": 371
+  },
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 530896,
+        "cached_input_tokens": 489344,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2253,
+        "reasoning_output_tokens": 371
+      },
+      "observed_partial": {
+        "input_tokens": 530896,
+        "cached_input_tokens": 489344,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2253,
+        "reasoning_output_tokens": 371
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "published_rate_scenario_cost_per_assigned_usd": 0.01017514,
+  "published_rate_scenario_cost_per_resolved_usd": 0.01017514,
+  "actual_cash_cost_usd": null,
+  "subscription_quota_savings": null,
+  "accuracy_retention_vs_sol": null,
+  "saving_vs_matched_sol": null,
+  "cost_scope": "All episode controller/router/expert/integration inference; frozen historical token rates, not invoice or full deployment cost.",
+  "setup_already_completed_reused": {
+    "new_model_calls": 0,
+    "usage": {
+      "input_tokens": 112615,
+      "cached_input_tokens": 85120,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1631,
+      "reasoning_output_tokens": 298
+    },
+    "historical_scenario_cost_usd": 0.03098282
+  },
+  "latency_seconds": {
+    "native_model_and_tools": 271.6746407710016,
+    "native_actor_phase": 287.765793,
+    "generation_environment_and_initial_grading": 483.439589,
+    "independent_fresh_replay": 297.490251,
+    "generation_start_to_fresh_grade": 801.250227
+  },
+  "visible_tool_requests": 10,
+  "final_controller_response": {
+    "action": "complete",
+    "question": "",
+    "context": "",
+    "summary": "Implemented `MKeyVerificationRequest` as a static tile using `useMatrixClientContext()` and the event\u2019s sender and room ID. It throws when the client, sender, or room ID is missing, and selects the sender-specific title using `getSafeUserId()`. Removed request-state tracking and interactive phase controls.\n\nDecision record: Acceptance properties are supported by code inspection, including sender/room validation regardless of `verificationRequest` and distinct sender-based titles. `git diff --check` passed; review confirmed the component no longer references the singleton or verification phase state. The existing focused Jest suite failed because its tests render without the required context and expect the removed phase UI, so it does not verify the new behavior. `yarn tsc --noEmit --jsx react` exited 137 before producing diagnostics. Behavioral coverage remains incomplete; these outcomes do not establish that the new rendering paths pass tests."
+  },
+  "fresh_actor_boundary": {
+    "status": "fresh_actor_boundary_passed_before_router_inference",
+    "observations": {
+      "head": "5a4355059d15053b89eae9d82a2506146c7832c0",
+      "git_status": "",
+      "outside_head_commits": 0,
+      "private_path_visible": false,
+      "public_endpoint_reachable": false,
+      "witness_ignored": false
+    },
+    "scope": "Hidden paths plus host sentinel, clean HEAD/history, direct-IP egress probe; not universal isolation proof"
+  },
+  "pre_handoff_grade": null,
+  "provenance": {
+    "/Users/rustameynaliyev/Developer/TTGL/experiments/router-iterations-20261031/element-router-014.json": "d17e47d6790de2473ba8079bc00ee7265ab6339d687ac146759f9fa95731da5a",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-iterations-20261031/element-router-014/jobs/first-block-optional/instance_element-hq__element-web__LGQVLJJ/result.json": "b279336e3ce6c99ae00d4f1bc97cfbe3191987557492eba1e3984067572b61f7",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-iterations-20261031/element-router-014/jobs/first-block-optional-fresh/instance_element-hq__element-web__9D3QERV/result.json": "2093f5ef1ea76159161c700a5e041173f16f2f991a865d0510499d4749af7a7c",
+    "/Users/rustameynaliyev/Developer/ttgl-router-element-014/instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan/personal/4589b68ea49444308e1ce6d37be78928/controller/manifest.json": "b5b15bb965e230baa2291b30aa4399971d40a6b59945f79f99af6e5e76e6edb5",
+    "/Users/rustameynaliyev/Developer/ttgl-router-element-014/instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan/personal/4589b68ea49444308e1ce6d37be78928/controller/events.jsonl": "ad7ad3d85f43d72c91e7c657f4d0eef795045884f8cbd0796f9d175b6bee89af",
+    "/Users/rustameynaliyev/Developer/ttgl-router-element-014/instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan/personal/4589b68ea49444308e1ce6d37be78928/visible-tool-trace.jsonl": "141a12421c89b604bc3a34483d8bbe391ad5474ee05a3b2bb7060f2b369fd1ee",
+    "/Users/rustameynaliyev/Developer/ttgl-router-element-014/instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan/personal/4589b68ea49444308e1ce6d37be78928/final.patch": "4f1181a558fb99b1b28ebda9de155f86c93ec45de9b95eb19745e099b979d7f6",
+    "/Users/rustameynaliyev/Developer/ttgl-router-element-014/instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan/personal/4589b68ea49444308e1ce6d37be78928/sealed-replay-source/instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan/seal.json": "73d2b9ae8bbd467e43e5b4d895cb5dfbb12ab7e755b83d8b01a590c11af235ef",
+    "/Users/rustameynaliyev/Developer/TTGL/results/router-iterations-20261031/element-router-014/jobs/first-block-optional-fresh/instance_element-hq__element-web__9D3QERV/agent/replay.json": "5a6ddf3e0a046d52eee8d6de281b6bde2b8ec9f6c7b29d74c5b01dba4064452c",
+    "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/rate-scenario.json": "24337a4fbe01bd97c0a8034c97e7f940779d207a388111dd3c19601919a49328"
+  },
+  "validation_tasks_used": 0
+}

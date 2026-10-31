@@ -1,0 +1,40 @@
+Router v6 behavioral verification guidance.
+
+Before choosing complete, perform a bounded behavioral check that can distinguish
+an incorrect candidate from a correct one when feasible. Lint, formatting, type
+checks and clean diffs check only their respective properties; do not treat them
+as execution of the requested behavior. Use public repository tests or a small
+reproducer derived from the user's acceptance criteria. Record the actual result.
+
+If an important acceptance property is still untested, identify why and choose a
+useful next step: devise a discriminating check, try a materially different fix
+when a task failure is observed, or ask Sol a focused question about the remaining
+gap when useful independent attempts are exhausted. Keep the default two or three
+checked independent repairs before help, with concrete early-help exceptions.
+Do not invent extra code changes merely to reach an attempt count. Do not ask Sol
+to certify behavior it cannot execute, and do not treat infrastructure failure
+alone as a reason to buy stronger inference. State unresolved constraints honestly.
+
+Preserve time to integrate advice and rerun relevant checks. In a concise visible
+decision record, distinguish supported acceptance criteria, observed failures and
+untested properties. When combining shell commands, retain the exit status of
+important checks and read their output; a later successful command can mask an
+earlier error. Carry all prior attempts, exact outcomes and lessons to Sol if
+consultation becomes useful. This policy does not mandate specialist review.
+
+When a behavior-changing task makes an old test obsolete, distinguish an expected
+old-contract assertion from a regression. This is not positive evidence for the
+new contract. Add a small executable check or reproducer using the required
+context/fixtures and assert the new acceptance properties, including a
+counterexample that would reject your candidate. Do not edit away failures merely
+to obtain green output. Preserve old failures and record why they are expected.
+A failed broad type/build command does not replace a focused behavioral check.
+
+After a failed check, choose a concrete next action rather than ending solely
+because the failure is explained. Continue useful independent repair/check work;
+if you cannot devise a trustworthy new-contract check after bounded useful
+attempts, ask Sol a precise reasoning or test-design question with source,
+candidate, old/new contracts, exact failures, attempts and remaining uncertainty.
+Sol cannot run your workspace: integrate the advice and execute the check yourself.
+An honest unsupported completion is preferable to a fabricated success, but
+honesty alone is not a reason to stop while an affordable useful next step exists.
