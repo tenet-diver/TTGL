@@ -1,0 +1,8 @@
+{
+  "status": "selected_for_next_fresh_development_task_before_inference",
+  "draft_sha256": "961c5cc57174673cddc8fdd52998db07906de923189c82feee2616a8121e31a7",
+  "active_prompt_sha256": "12d1d00ae5fa9dd6ce272bffd3c485a00ce450f3af840406699d739b9155896e",
+  "change_from_draft": "Status header only; behavioral instructions unchanged",
+  "backend": "ttgl.router_completion:RouterCompletionCodex",
+  "new_model_calls": 0
+}

@@ -196,10 +196,43 @@ def audit_reused_setup(protocol, current_image):
 def setup_stage(protocol, current_image, fresh_setup):
     # Selecting reuse is fail-closed: invalid evidence never falls back to inference.
     if 'reuse_setup' in protocol:
+        if protocol['reuse_setup'].get('scope') == 'transport_metering_only':
+            audit_controls(protocol)
+            reuse = protocol['reuse_setup']
+            source = json.loads(Path(reuse['source_protocol']).read_text())
+            image = json.loads((Path(reuse['source_output'])/'image-binding.json').read_text())
+            original_context = {**protocol, 'task_id': source['task_id'],
+                                'controls_summary': source['controls_summary']}
+            receipt = audit_reused_setup(original_context, image['image_id'])
+            receipt.update(reuse_scope='native_transport_and_metering_only',
+                           original_task_id=source['task_id'], target_task_id=protocol['task_id'],
+                           target_image_id=current_image, target_controls_audited=True,
+                           target_task_quality_claim=False)
+            return receipt
         return audit_reused_setup(protocol, current_image)
     if protocol.get('setup_mode') != 'fresh_authorized':
         raise RuntimeError('Register explicit setup reuse or fresh setup authorization')
     return fresh_setup()
+
+
+def audit_controls(protocol):
+    summary_path = Path(protocol['controls_summary'])
+    if protocol['source_sha256'].get(str(summary_path)) != digest(summary_path):
+        raise RuntimeError('Target control summary must be frozen before inference')
+    summary = json.loads(summary_path.read_text())
+    if (summary['status'] != 'one_task_empty_reference_controls_passed'
+            or len(summary['controls']) != 2
+            or {r['agent'] for r in summary['controls']} != {'nop', 'oracle'}):
+        raise RuntimeError('Require both independent target-task controls')
+    for row in summary['controls']:
+        path = Path(row['native_result'])
+        if digest(path) != row['native_result_sha256']:
+            raise RuntimeError('Target control native evidence changed')
+        native = json.loads(path.read_text())
+        if (native.get('exception_info') or native['task_name'].split('/')[-1] != protocol['task_id']
+                or native['verifier_result']['rewards']['reward'] != (0 if row['agent']=='nop' else 1)):
+            raise RuntimeError('Target task identity or control grade is invalid')
+    return summary
 
 
 def main():
@@ -239,6 +272,8 @@ def main():
             expected = 0 if row['agent']=='nop' else 1
             if native_control.get('exception_info') or native_control['verifier_result']['rewards']['reward'] != expected:
                 raise RuntimeError('Prior control grade is invalid')
+        if protocol.get('require_target_controls'):
+            audit_controls(protocol)
         if shutil.disk_usage(ROOT).free < protocol['disk_guard_bytes']:
             raise RuntimeError('Insufficient reserved disk before Pro pipeline; no model call started')
         harbor = str(ROOT/'artifacts/harbor-runtime-001/bin/harbor')

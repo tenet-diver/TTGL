@@ -1,0 +1,41 @@
+{
+  "status": "registered_before_new_task_controls_or_model_trials",
+  "registered_at": "2026-10-31T18:49:18.011766+00:00",
+  "tasks": [
+    {
+      "task_id": "instance_ansible__ansible-a20a52701402a12f91396549df04ac55809f68e9-v1055803c3a812189a1133297f7f5468579283f86",
+      "repository": "ansible/ansible"
+    },
+    {
+      "task_id": "instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan",
+      "repository": "element-hq/element-web"
+    },
+    {
+      "task_id": "instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b",
+      "repository": "tutao/tutanota"
+    }
+  ],
+  "selection": "Next three existing seeded development reservations in original order, no outcome selection or replacement",
+  "scored_assignment_cap": 3,
+  "execution": "Sequential controls, one router assignment, fresh final/pre-handoff grading and decision audit before next unit; prompt changes only between tasks",
+  "first_candidate": "v4 plus v5 completion-evidence addition",
+  "models": [
+    "gpt-6-luna",
+    "gpt-6.1-sol"
+  ],
+  "max_expert_calls_per_task": 2,
+  "task_budget_seconds": 2940,
+  "validation_tasks_authorized": 0,
+  "standalone_comparisons_authorized": 0,
+  "automatic_retries": 0,
+  "failure_categories": [
+    "no-call claimed success rejected by grader",
+    "no-call acknowledged incomplete",
+    "expert request not completed",
+    "consulted but final still failed",
+    "successful local completion",
+    "verified pre-handoff failure rescued",
+    "pre-handoff correct candidate regressed"
+  ],
+  "sol_failure_caveat": "No separate Sol-only run; inspect response/context and within-episode grades, do not infer Sol independently cannot solve task."
+}

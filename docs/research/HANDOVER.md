@@ -1706,3 +1706,26 @@ text hashes and unchanged binary hashes. No new full visual-QA claim.
 Fastest connector is authenticated: FAST-95 completed and Confluence page19103748
 published/read back. Current-user publication authorization supersedes the old
 heartbeat prohibition. No architecture novelty or proven economic gain claimed.
+
+## Router iteration series authorized by latest user
+
+The user now explicitly requests continued Luna-router trials and prompt
+improvement based on observed failures and delegation behavior. This supersedes
+the previous one-assignment cap for future separately registered units, not for
+retries of completed work. This chat owns a new three-task development series:
+next reserved Ansible, Element Web and Tutanota tasks, in original reservation
+order, one attempt each and no replacements. Plan:
+experiments/router-iterations-20261031/plan.json. No validation or standalone
+comparison authorized. Other heartbeat/chats must not duplicate these units.
+
+V5 completion-evidence backend is implemented separately from v4. Per-target
+empty/reference controls must pass; only original setup008 transport/metering
+is reusable across tasks. Original task grade/image is never reused as target
+readiness. A fresh actor boundary check precedes inference on each task. New
+cross-task reuse and v5 checks pass (31 focused tests). No new scored call yet.
+
+Current preparation note: Docker CLI manifest inspect reported no manifest for
+Ansible before any image pull/control/model call. Auditing registry HTTP metadata
+and content digests directly to distinguish CLI behavior from actual image
+availability. Preserve any preparation failure; do not substitute favorable tasks.
+No active research supervisor or new scored assignment yet.

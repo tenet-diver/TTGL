@@ -1,0 +1,7 @@
+{
+  "image_tag": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan",
+  "image_pinned": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_element-hq__element-web-f63160f38459fb552d00fcc60d4064977a9095a6-vnan@sha256:11d279fa2d98b4940314229e0ae7c7bdd654fe2e28656ab2d6f5d829a714d700",
+  "architecture": "amd64",
+  "os": "linux",
+  "registry_compressed_layer_bytes": 1430541197
+}

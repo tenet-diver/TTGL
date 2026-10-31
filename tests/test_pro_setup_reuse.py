@@ -130,3 +130,51 @@ def test_fresh_setup_requires_explicit_authorization():
     with pytest.raises(RuntimeError, match='explicit'):
         pipeline.setup_stage({}, 'image', lambda:pytest.fail('Implicit setup inference'))
     assert pipeline.setup_stage({'setup_mode':'fresh_authorized'}, 'image', lambda:'fresh') == 'fresh'
+
+
+def transport_target(protocol, old):
+    protocol['reuse_setup']['scope'] = 'transport_metering_only'
+    protocol['task_id'] = 'instance_next-task'
+    summary = old.parent/'target-controls.json'
+    rows = []
+    for agent, grade in [('nop',0),('oracle',1)]:
+        path = old.parent/(agent+'-target.json')
+        save(path, {'task_name':'swebench-pro/instance_next-task','exception_info':None,
+                    'verifier_result':{'rewards':{'reward':grade}}})
+        rows.append({'agent':agent,'native_result':str(path),'native_result_sha256':pipeline.digest(path)})
+    save(summary, {'status':'one_task_empty_reference_controls_passed','controls':rows})
+    protocol['controls_summary'] = str(summary)
+    protocol['source_sha256'][str(summary)] = pipeline.digest(summary)
+    return summary
+
+
+def test_transport_reuse_does_not_reuse_prior_task_readiness_or_quality(registered):
+    protocol, records, old = registered
+    transport_target(protocol, old)
+    receipt = pipeline.setup_stage(protocol, 'new-target-image', lambda:pytest.fail('Repeated native setup'))
+    assert receipt['original_task_id'] == 'instance_fixture'
+    assert receipt['target_task_id'] == 'instance_next-task'
+    assert receipt['target_image_id'] == 'new-target-image'
+    assert receipt['target_task_quality_claim'] is False
+    assert receipt['target_controls_audited'] is True
+    assert receipt['new_setup_model_calls'] == 0
+
+
+@pytest.mark.parametrize('fault', ['wrong-task','bad-reference','unbound-summary'])
+def test_transport_reuse_rejects_unready_target_before_any_inference(registered,fault):
+    protocol, records, old = registered
+    summary = transport_target(protocol, old)
+    if fault=='unbound-summary':
+        del protocol['source_sha256'][str(summary)]
+    else:
+        rows = json.loads(summary.read_text())
+        path = Path(rows['controls'][1]['native_result'])
+        native = json.loads(path.read_text())
+        if fault=='wrong-task':native['task_name']='other-task'
+        else:native['verifier_result']['rewards']['reward']=0
+        save(path,native)
+        rows['controls'][1]['native_result_sha256']=pipeline.digest(path)
+        save(summary,rows)
+        protocol['source_sha256'][str(summary)]=pipeline.digest(summary)
+    with pytest.raises(RuntimeError):
+        pipeline.setup_stage(protocol,'new-target-image',lambda:pytest.fail('Must not call a model'))
