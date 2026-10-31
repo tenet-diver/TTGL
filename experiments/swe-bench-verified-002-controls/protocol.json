@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-10-31T18:04:57.690582+00:00",
+  "purpose": "Continue environment-only controls of frozen12-task panel; no model-performance experiment",
+  "task_manifest_sha256": "e6a43141699e22a0dca4f61fac701c677ee4da74fdb13aca81f451b4a4826f58",
+  "task_order": [
+    "django__django-13297",
+    "scikit-learn__scikit-learn-14141",
+    "pydata__xarray-3095",
+    "django__django-15037",
+    "astropy__astropy-12907",
+    "mwaskom__seaborn-3069",
+    "django__django-17084",
+    "django__django-13121",
+    "pydata__xarray-7229",
+    "sphinx-doc__sphinx-9230"
+  ],
+  "order_reason": "Django13297 first for a small offline public-test control, remaining tasks retain original frozenorder; no candidate-model outcomes used",
+  "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+  "task_revision": "3d07b464b7b311a0cbfb5ed5b2d8a3b96f84a33d",
+  "harness_version": "5.0.2",
+  "grading": "Unmodified official run_evaluation.main; independent gold/base source copies",
+  "runtime_adaptation": "Docker SDK create wrapper mounts system CA bundle readonly and sets REQUESTS_CA_BUNDLE/PIP_CERT/SSL_CERT_FILE. Existing proxydefaults preserved; TLS verification enabled. No test changes.",
+  "resource_limits": {
+    "workers": 1,
+    "test_timeout_seconds": 600,
+    "process_timeout_seconds": 900,
+    "minimum_free_before_pull_gib": 23,
+    "minimum_free_before_container_gib": 6
+  },
+  "docker_driver": "vfs",
+  "model_inference_calls": 0,
+  "gpu_resources": 0,
+  "previous_controls_preserved": "experiments/swe-bench-verified-001/controls/summary.json"
+}

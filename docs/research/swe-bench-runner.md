@@ -25,12 +25,14 @@ printed research environment. Use Docker and the separately pinned official
 SWE-bench environment for evaluation. Read the experiment preparation document
 for the frozen dataset and harness revisions.
 
-**Worker setup is separate from evaluation setup.** Codex's tools in this
-bridge run on the host, in a fresh shallow checkout. Install the corresponding
-repository dependencies and compatible Python tooling before a measured study.
-An official evaluator image alone does not give the solver that environment.
-The bridge records this limitation; it does not pretend host checkouts are
-isolated official containers. For a confirmatory study, give each solver a
+**Worker setup is separate from evaluation setup.** Codex runs on the host,
+with a fresh checkout mounted into a pinned official image for public checks.
+Prepare a complete [worker configuration](worker-environments.md) covering every
+task, with already-present images and passing public dependency probes. Supply
+it through `--worker-config`; generation refuses an absent configuration.
+This tool container does not establish host read isolation or Codex's permission
+to use Docker. Compiled projects may need additional environment preparation.
+For a confirmatory study, give each solver a
 properly isolated, dependency-provisioned runtime and keep gold patches,
 evaluation tests, research outputs and other workers inaccessible.
 
@@ -45,6 +47,7 @@ python scripts/run_swe_bench.py init \
   --tasks experiments/swe-bench-verified-001/tasks.json \
   --output-dir /workspace/study-001 \
   --workspace-root /workspace/workers-001 \
+  --worker-config /absolute/path/worker-config.json \
   --small-model gpt-6-luna --large-model gpt-6.1-sol \
   --reasoning-effort medium --timeout-seconds 900
 

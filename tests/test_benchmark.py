@@ -6,7 +6,7 @@ import subprocess
 
 import pytest
 
-from ttgl import benchmark, personal
+from ttgl import benchmark, personal, worker
 
 
 def local_repo(path):
@@ -28,6 +28,41 @@ def task_manifest(tmp_path):
              "tasks": [{"instance_id": "example__project-1", "repo": "example/project",
                         "base_commit": "a" * 40, "problem_statement": "Fix value."}]}
     path.write_text(json.dumps(value))
+    return path
+
+
+@pytest.fixture
+def fake_worker(task_manifest, tmp_path, monkeypatch):
+    """Dependency lifecycle fixture, not a Docker or model readiness result."""
+    rows = json.loads(task_manifest.read_text())["tasks"]
+    path = tmp_path / "worker-config.json"
+    config = {"schema_version": 1, "mode": "official_image_development_tools", "tasks": {
+        row["instance_id"]: {"image": "swebench/sweb.eval.fixture@sha256:" + "b" * 64,
+            "probe_argv": [worker.PYTHON, "-c", "import sys"], "probe_timeout_seconds": 30}
+        for row in rows}}
+    path.write_text(json.dumps(config))
+
+    class FixtureContainer:
+        def __init__(self, workspace, task, entry, owner, **kwargs):
+            self.workspace, self.task, self.entry = workspace, task, entry
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_):
+            pass
+
+        def probe(self):
+            return {"scope": "dependency_environment_only", "task_id": self.task["instance_id"],
+                    "base_commit": self.task["base_commit"], "workspace": str(self.workspace.resolve()),
+                    "config_sha256": worker.digest(self.entry), "image": self.entry["image"],
+                    "probe_exit_code": 0, "checkout_unchanged": True, "dependency_ready": True,
+                    "confirmatory_study_ready": False}
+
+        def instructions(self):
+            return "Fixture test environment; not a real container."
+
+    monkeypatch.setattr(worker, "ToolContainer", FixtureContainer)
     return path
 
 
@@ -135,14 +170,15 @@ class ScriptedBackend:
                                  usage={"input_tokens": 100, "cached_input_tokens": 0, "output_tokens": 10})
 
 
-def test_full_offline_bridge_resume_exports_standard_predictions(task_manifest, tmp_path, monkeypatch):
+def test_full_offline_bridge_resume_exports_standard_predictions(task_manifest, fake_worker, tmp_path, monkeypatch):
     source = tmp_path / "source"
     base = local_repo(source)
     data = json.loads(task_manifest.read_text())
     data["tasks"][0]["base_commit"] = base
     task_manifest.write_text(json.dumps(data))
     study = tmp_path / "study"
-    benchmark.initialize(task_manifest, study, tmp_path / "workers", small_model="small", large_model="large")
+    benchmark.initialize(task_manifest, study, tmp_path / "workers", small_model="small", large_model="large",
+                         worker_config_path=fake_worker)
 
     def clone_fixture(task, workspace):
         workspace.parent.mkdir(parents=True, exist_ok=True)
@@ -227,6 +263,91 @@ def test_failed_preflight_stops_before_other_model_and_assignments(task_manifest
     with pytest.raises(ValueError, match="did not establish"):
         benchmark.run_study(study, backend=backend)
     assert backend.calls == 1
+
+
+def test_resume_cannot_skip_an_assignment_with_incomplete_metering(task_manifest, fake_worker, tmp_path, monkeypatch):
+    source = tmp_path / "source"
+    base = local_repo(source)
+    data = json.loads(task_manifest.read_text())
+    data["tasks"][0]["base_commit"] = base
+    task_manifest.write_text(json.dumps(data))
+    study = tmp_path / "study"
+    benchmark.initialize(task_manifest, study, tmp_path / "workers", small_model="small", large_model="large",
+                         conditions=("small", "large"), worker_config_path=fake_worker)
+
+    def clone_fixture(task, workspace):
+        workspace.parent.mkdir(parents=True, exist_ok=True)
+        subprocess.run(["git", "clone", "--quiet", str(source), str(workspace)], check=True)
+
+    monkeypatch.setattr(benchmark, "prepare_workspace", clone_fixture)
+
+    class MissingMeterBackend(ScriptedBackend):
+        def complete(self, request):
+            response = super().complete(request)
+            if self.calls > 2:
+                response.usage["output_tokens"] = None
+            return response
+
+    backend = MissingMeterBackend()
+    assert benchmark.preflight(study, backend=backend)["ready"]
+    with pytest.raises(RuntimeError, match="incomplete metering"):
+        benchmark.run_study(study, backend=backend)
+    assert backend.calls == 3
+    with pytest.raises(RuntimeError, match="incomplete metering"):
+        benchmark.run_study(study, backend=backend, resume=True)
+    assert backend.calls == 3  # No second assignment or replay after restart.
+
+
+def test_missing_worker_config_blocks_scored_calls(task_manifest, tmp_path):
+    study = tmp_path / "study"
+    benchmark.initialize(task_manifest, study, tmp_path / "workers", small_model="small", large_model="large")
+    backend = ScriptedBackend()
+    assert benchmark.preflight(study, backend=backend)["ready"]
+    with pytest.raises(ValueError, match="Worker dependency configuration"):
+        benchmark.run_study(study, backend=backend)
+    assert backend.calls == 2
+    assert not (study / "runs").exists()
+
+
+def test_worker_config_is_bound_to_frozen_design(task_manifest, fake_worker, tmp_path):
+    study = tmp_path / "study"
+    benchmark.initialize(task_manifest, study, tmp_path / "workers", small_model="small", large_model="large",
+                         worker_config_path=fake_worker)
+    benchmark.load_design(study)
+    (study / "worker-config.json").write_text("{}")
+    with pytest.raises(ValueError, match="worker configuration"):
+        benchmark.load_design(study)
+
+
+def test_failed_worker_probe_stops_before_model_assignment(task_manifest, fake_worker, tmp_path, monkeypatch):
+    source = tmp_path / "source"
+    base = local_repo(source)
+    data = json.loads(task_manifest.read_text())
+    data["tasks"][0]["base_commit"] = base
+    task_manifest.write_text(json.dumps(data))
+    study = tmp_path / "study"
+    benchmark.initialize(task_manifest, study, tmp_path / "workers", small_model="small", large_model="large",
+                         worker_config_path=fake_worker)
+
+    def clone_fixture(task, workspace):
+        workspace.parent.mkdir(parents=True, exist_ok=True)
+        subprocess.run(["git", "clone", "--quiet", str(source), str(workspace)], check=True)
+
+    original_probe = worker.ToolContainer.probe
+
+    def failed_probe(self):
+        return {**original_probe(self), "probe_exit_code": 1, "dependency_ready": False}
+
+    monkeypatch.setattr(benchmark, "prepare_workspace", clone_fixture)
+    monkeypatch.setattr(worker.ToolContainer, "probe", failed_probe)
+    backend = ScriptedBackend()
+    assert benchmark.preflight(study, backend=backend)["ready"]
+    with pytest.raises(ValueError, match="dependency readiness"):
+        benchmark.run_study(study, backend=backend)
+    assert backend.calls == 2
+    assert not (study / "runs").exists()
+    probe = json.loads((study / "worker-probes.jsonl").read_text())
+    assert probe["report"]["dependency_ready"] is False
 
 
 def test_provider_credit_sums_all_root_roles_and_requires_state_provenance():

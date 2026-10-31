@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "evidence_class": "executed_official_evaluator_controls_not_model_experiment",
+  "model_inference_calls": 0,
+  "control_runs_executed": 2,
+  "instances_control_checked": 1,
+  "control_pairs_valid": 1,
+  "stop_reason": "User requested a handover prompt for execution on a different host",
+  "remaining_tasks_not_started": [
+    "scikit-learn__scikit-learn-14141",
+    "pydata__xarray-3095",
+    "django__django-15037",
+    "astropy__astropy-12907",
+    "mwaskom__seaborn-3069",
+    "django__django-17084",
+    "django__django-13121",
+    "pydata__xarray-7229",
+    "sphinx-doc__sphinx-9230"
+  ],
+  "partial_evaluator_runs": 0,
+  "quality_or_cost_savings_estimate": null,
+  "pairs": [
+    {
+      "instance_id": "django__django-13297",
+      "control_pair_valid": true,
+      "execution_status": "controls_complete",
+      "image_repo_digests": [
+        "swebench/sweb.eval.x86_64.django_1776_django-13297@sha256:1dca304a4ccd9f39df8794fb807c04a4076b5f35aff7d192dc5e0a14f8bf6f43"
+      ]
+    }
+  ],
+  "records": [
+    {
+      "instance_id": "django__django-13297",
+      "control": "gold",
+      "resolved": true,
+      "tests": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 52,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      },
+      "patch_successfully_applied": true,
+      "official_infra_failure": false,
+      "report": "logs/evaluation/ttgl-verified-002-gold-django__django-13297/gold/django__django-13297/report.json",
+      "report_sha256": "880ffaefa81e80d2c225e2de289e292483cf2a17eafe11c7b0bd0f4610392737"
+    },
+    {
+      "instance_id": "django__django-13297",
+      "control": "base",
+      "resolved": false,
+      "tests": {
+        "FAIL_TO_PASS": {
+          "success": 0,
+          "failure": 1
+        },
+        "PASS_TO_PASS": {
+          "success": 52,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      },
+      "patch_successfully_applied": true,
+      "official_infra_failure": false,
+      "report": "logs/evaluation/ttgl-verified-002-base-django__django-13297/base-control/django__django-13297/report.json",
+      "report_sha256": "8184f6fc9895053bf1cfa20d887a8397c44440ee453b6142bb0438304284f7e9"
+    }
+  ],
+  "combined_frozen_panel": {
+    "selected_tasks": 12,
+    "instances_control_checked": 3,
+    "control_pairs_valid": 2,
+    "control_pairs_invalid": 1,
+    "selected_tasks_without_controls": 9,
+    "all_selected_tasks_environment_validated": false,
+    "prior_summary": "../swe-bench-verified-001/controls/summary.json",
+    "invalid_instance": "psf__requests-5414",
+    "invalid_reason": "Gold resolves the target regression but seven declared PASS_TO_PASS checks fail; full pytest log also contains 158 fixture setup errors. Proxy-sensitive behavior and missing httpbin fixture plugin prevent readiness. Original official artifacts retained; tests and proxy not weakened."
+  }
+}

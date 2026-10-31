@@ -1,0 +1,1 @@
+{"instance_id": "django__django-13297", "model_name_or_path": "base-control", "model_patch": "diff --git a/.ttgl_control b/.ttgl_control\nnew file mode 100644\nindex 0000000..ef8d6a6\n--- /dev/null\n+++ b/.ttgl_control\n@@ -0,0 +1 @@\n+environment control only\n"}

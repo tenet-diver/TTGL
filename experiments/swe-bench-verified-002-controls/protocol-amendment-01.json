@@ -1,0 +1,13 @@
+{
+  "at_utc": "2026-10-31T18:08:07.957500+00:00",
+  "after_task": "django__django-13297",
+  "reason": "Observed vfs container execution using approximately twice logical image size beyond pulled image layers; protect shared32GB filesystem. No candidate models evaluated.",
+  "changes": [
+    "Precontainer guard raised from1.5*logical image size+2GiB to2.5*size+2GiB, both minimum6GiB.",
+    "Pull monitors free disk and terminates task-owned pull client below4GiB free or900seconds.",
+    "Process timeout preserves record and only removes exact task/control container.",
+    "Explicit cleanup refuses pre-existing images, changed image IDs, or images referenced by containers."
+  ],
+  "initial_runner_sha256": "4f9c12854d011c78ca47cf2a356d9753a29799cabe7ad5d13ca2500010146a83",
+  "new_runner_sha256": "885a37ca6759a3f8017076127c213fe4cae13683b265edf8a171570221672f6f"
+}

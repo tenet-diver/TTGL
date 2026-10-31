@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "scope": "dependency_environment_only",
+  "task_id": "django__django-13297",
+  "base_commit": "8954f255bbf5f4ee997fd6de62cb50fc9b5dd697",
+  "workspace": "/workspace/scratch/ttgl-worker-smoke-django13297",
+  "config_sha256": "244856bab1d619ca35f51ca65b604b866ea632fe8f89c0ed328d7b3fc7ce29dd",
+  "image": "swebench/sweb.eval.x86_64.django_1776_django-13297@sha256:1dca304a4ccd9f39df8794fb807c04a4076b5f35aff7d192dc5e0a14f8bf6f43",
+  "image_id": "sha256:ca66a7eeb804ce23b06420dd501f6e5fe4149dc62b3efe9ef6a56049852db755",
+  "container_id": "8f8b0cd74da912d3eafadb9e6f76b40daf0b6ef6423fadb03bbb23edffc1a6c0",
+  "owner": "5e95c7df9fd443ae2dc3919309c461124cd382b44bb2377dd44388362a1965b1",
+  "probe_argv": [
+    "/opt/miniconda3/envs/testbed/bin/python",
+    "-c",
+    "import django; assert django.__file__.startswith('/testbed/'); import runpy,sys; sys.path.insert(0,'tests'); sys.argv=['tests/runtests.py','utils_tests.test_encoding','--parallel','1','--verbosity','0']; runpy.run_path('tests/runtests.py',run_name='__main__')"
+  ],
+  "probe_exit_code": 0,
+  "probe_stdout_sha256": "1e3e63f221bde88816c4a4ef7367691607b20cc1d194028a02ec9ae0586cf9b1",
+  "probe_stderr_sha256": "c81ffb119730d622303bb39b495824eb0cb52edb832ee11f2d41625b3764e67f",
+  "elapsed_seconds": 0.6409215919557028,
+  "checkout_unchanged": true,
+  "dependency_ready": true,
+  "controller_docker_access_verified": false,
+  "host_read_isolation_verified": false,
+  "confirmatory_study_ready": false,
+  "limits": [
+    "Only the configured public dependency probe ran; no full test-suite guarantee",
+    "Codex host read isolation and access to this Docker socket are separate checks",
+    "The network-disabled tool container is not a model endpoint or evaluator"
+  ]
+}

@@ -1,0 +1,49 @@
+latest: Pulling from swebench/sweb.eval.x86_64.django_1776_django-13297
+39a945af8df2: Pulling fs layer
+fd3f01088aa8: Pulling fs layer
+079027039e9d: Pulling fs layer
+407de719c2d3: Pulling fs layer
+0ddda5039dab: Pulling fs layer
+53752545c9b2: Pulling fs layer
+00867a1047c8: Pulling fs layer
+c22b3904fa86: Pulling fs layer
+df666ba07674: Pulling fs layer
+407de719c2d3: Waiting
+4f4fb700ef54: Pulling fs layer
+00867a1047c8: Waiting
+c22b3904fa86: Waiting
+df666ba07674: Waiting
+4f4fb700ef54: Waiting
+0ddda5039dab: Waiting
+53752545c9b2: Waiting
+39a945af8df2: Verifying Checksum
+39a945af8df2: Download complete
+407de719c2d3: Verifying Checksum
+407de719c2d3: Download complete
+0ddda5039dab: Download complete
+39a945af8df2: Pull complete
+53752545c9b2: Download complete
+fd3f01088aa8: Verifying Checksum
+fd3f01088aa8: Download complete
+c22b3904fa86: Verifying Checksum
+c22b3904fa86: Download complete
+df666ba07674: Verifying Checksum
+df666ba07674: Download complete
+4f4fb700ef54: Verifying Checksum
+4f4fb700ef54: Download complete
+fd3f01088aa8: Pull complete
+079027039e9d: Verifying Checksum
+079027039e9d: Download complete
+00867a1047c8: Verifying Checksum
+00867a1047c8: Download complete
+079027039e9d: Pull complete
+407de719c2d3: Pull complete
+0ddda5039dab: Pull complete
+53752545c9b2: Pull complete
+00867a1047c8: Pull complete
+c22b3904fa86: Pull complete
+df666ba07674: Pull complete
+4f4fb700ef54: Pull complete
+Digest: sha256:1dca304a4ccd9f39df8794fb807c04a4076b5f35aff7d192dc5e0a14f8bf6f43
+Status: Downloaded newer image for swebench/sweb.eval.x86_64.django_1776_django-13297:latest
+docker.io/swebench/sweb.eval.x86_64.django_1776_django-13297:latest

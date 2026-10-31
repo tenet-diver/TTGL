@@ -243,6 +243,24 @@
       "status": "completed_negative_replay_result_live_conversation_unproven",
       "artifact": "docs/paper/standard-benchmark-results.md",
       "study_scope": "standard_benchmark_routing_and_conversation"
+    },
+    {
+      "id": "local-38",
+      "title": "Guard official worker dependencies and incomplete-meter resume",
+      "status": "software_validated_live_controller_isolation_and_compiled_setup_unverified",
+      "artifact": "docs/research/worker-environments.md"
+    },
+    {
+      "id": "local-39",
+      "title": "Validate remaining official benchmark environments",
+      "status": "partial_three_checked_two_valid_one_invalid_nine_unstarted",
+      "artifact": "experiments/swe-bench-verified-002-controls/summary.json"
+    },
+    {
+      "id": "local-40",
+      "title": "Preserve current state and provide a copyable different-host prompt",
+      "status": "completed",
+      "artifact": "docs/research/NEW_HOST_PROMPT.md"
     }
   ],
   "runpod_budget": {
@@ -254,7 +272,7 @@
     "actual_spend_usd": 0,
     "status": "blocked_missing_api_key_and_runtime_access"
   },
-  "updated_at_utc": "2026-10-26T16:20:53.699725+00:00",
+  "updated_at_utc": "2026-10-31T18:12:26.194621+00:00",
   "evidence": {
     "results": "results/routing-pilot-001",
     "reproduction": "results/reproduction-verification.json",
@@ -276,16 +294,18 @@
     "personal_agent_audit": "docs/thesis/personal-review.json",
     "current_paper": "docs/paper/paper.pdf",
     "current_paper_sources": "docs/paper/README.md",
-    "software_validation": "136 passed, 1 skipped, 2 subtests; official evaluator controls reported separately",
+    "software_validation": "146 passed, 1 skipped, 2 subtests; official evaluator controls reported separately",
     "dollar_cost_results": "primary historical SWE replay46.1% lower estimated inference with8.6pp qualityloss; live conversation dollars/credits unknown",
     "trained_router_comparison": "not_run_in_Codex_pilot",
     "subscription_metering": "Official CLI/SDK and installed app-server account/usage/read schema verified; native ChatGPT login recognized; live counters not exposed in current runtime",
     "metering_software_validation": "96 passed, 1 skipped, 2 subtests; cumulative-thread and per-model accounting tested",
     "standard_benchmark_replay": "results/swe-replay-001/summary.json: all500 tasks and10 models; historical estimated inference costs, not new model calls",
-    "standard_benchmark_controls": "4 official controls across2 tasks; SymPy valid, Requests invalid,10 selected environments unvalidated",
+    "standard_benchmark_controls": "6 official controls across3 tasks; SymPy and Django13297 valid, Requests invalid,9 selected environments unvalidated",
     "standard_benchmark_live": "not_run; native metering preflight failed before inference",
     "handover": "docs/research/HANDOVER.md",
     "project_usage": "docs/research/project-usage-guide.md",
-    "standard_benchmark_audit": "docs/research/swe-replay-audit.md"
+    "standard_benchmark_audit": "docs/research/swe-replay-audit.md",
+    "worker_dependency_smoke": "results/worker-environment-20261031/django13297-probe.json; passed public tests, no inference; controller Docker access and host isolation unverified",
+    "next_host_prompt": "docs/research/NEW_HOST_PROMPT.md"
   }
 }

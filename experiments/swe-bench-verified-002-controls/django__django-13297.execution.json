@@ -1,0 +1,81 @@
+{
+  "instance_id": "django__django-13297",
+  "image_tag": "swebench/sweb.eval.x86_64.django_1776_django-13297:latest",
+  "started_at": "2026-10-31T18:04:06.855397+00:00",
+  "image_owned_by_this_run": true,
+  "model_inference_calls": 0,
+  "controls": [
+    {
+      "control": "gold",
+      "run_id": "ttgl-verified-002-gold-django__django-13297",
+      "process_exit_code": 0,
+      "wall_seconds": 32.803669659013394,
+      "report": "logs/evaluation/ttgl-verified-002-gold-django__django-13297/gold/django__django-13297/report.json",
+      "report_sha256": "880ffaefa81e80d2c225e2de289e292483cf2a17eafe11c7b0bd0f4610392737",
+      "resolved": true,
+      "official_infra_failure": false,
+      "patch_successfully_applied": true,
+      "tests": {
+        "FAIL_TO_PASS": {
+          "success": 1,
+          "failure": 0
+        },
+        "PASS_TO_PASS": {
+          "success": 52,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    },
+    {
+      "control": "base",
+      "run_id": "ttgl-verified-002-base-django__django-13297",
+      "process_exit_code": 0,
+      "wall_seconds": 45.80785264703445,
+      "report": "logs/evaluation/ttgl-verified-002-base-django__django-13297/base-control/django__django-13297/report.json",
+      "report_sha256": "8184f6fc9895053bf1cfa20d887a8397c44440ee453b6142bb0438304284f7e9",
+      "resolved": false,
+      "official_infra_failure": false,
+      "patch_successfully_applied": true,
+      "tests": {
+        "FAIL_TO_PASS": {
+          "success": 0,
+          "failure": 1
+        },
+        "PASS_TO_PASS": {
+          "success": 52,
+          "failure": 0
+        },
+        "FAIL_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        },
+        "PASS_TO_FAIL": {
+          "success": 0,
+          "failure": 0
+        }
+      }
+    }
+  ],
+  "disk_free_before_bytes": 29465841664,
+  "pull_exit_code": 0,
+  "image_id": "sha256:ca66a7eeb804ce23b06420dd501f6e5fe4149dc62b3efe9ef6a56049852db755",
+  "image_repo_digests": [
+    "swebench/sweb.eval.x86_64.django_1776_django-13297@sha256:1dca304a4ccd9f39df8794fb807c04a4076b5f35aff7d192dc5e0a14f8bf6f43"
+  ],
+  "image_logical_size_bytes": 2882014944,
+  "disk_free_after_pull_bytes": 10727219200,
+  "status": "controls_complete",
+  "finished_at": "2026-10-31T18:06:25.997894+00:00",
+  "runner_sha256": "4f9c12854d011c78ca47cf2a356d9753a29799cabe7ad5d13ca2500010146a83",
+  "cleanup_exit_code": 0,
+  "cleanup_at": "2026-10-31T18:09:32.817123+00:00",
+  "disk_free_after_cleanup_bytes": 29383294976
+}

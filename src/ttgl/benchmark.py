@@ -19,7 +19,7 @@ from datetime import datetime, timezone
 
 import numpy as np
 
-from . import personal
+from . import personal, worker
 from .pilot import summarize
 
 
@@ -69,7 +69,8 @@ def read_tasks(path: Path) -> dict:
 def initialize(tasks_path: Path, output: Path, workspaces: Path, *, small_model: str,
                large_model: str, timeout_seconds: float = 900, seed: int = 1729,
                reasoning_effort: str = "medium", max_turns: int = 6,
-               max_expert_calls: int = 2, conditions: tuple[str, ...] = ARMS) -> dict:
+               max_expert_calls: int = 2, conditions: tuple[str, ...] = ARMS,
+               worker_config_path: Path | None = None) -> dict:
     data = read_tasks(tasks_path)
     output, workspaces = output.resolve(), workspaces.resolve()
     if output == workspaces or output.is_relative_to(workspaces) or workspaces.is_relative_to(output):
@@ -85,11 +86,14 @@ def initialize(tasks_path: Path, output: Path, workspaces: Path, *, small_model:
         raise ValueError("Conditions must be distinct supported conditions including the large reference")
     if output.exists() or workspaces.exists():
         raise ValueError("Choose new study and worker directories; existing directories are not reset")
+    if worker_config_path:
+        worker.validate_config(json.loads(worker_config_path.read_text()),
+                               [row["instance_id"] for row in data["tasks"]])
     assignments = [{"instance_id": row["instance_id"], "arm": arm}
                    for row in data["tasks"] for arm in conditions]
     random.Random(seed).shuffle(assignments)
     design = {
-        "schema_version": 1, "created_at": datetime.now(timezone.utc).isoformat(),
+        "schema_version": 2, "created_at": datetime.now(timezone.utc).isoformat(),
         "dataset_id": data["dataset_id"], "dataset_revision": data["dataset_revision"],
         "harness_commit": data["harness_commit"], "tasks_sha256": digest(tasks_path),
         "task_ids": [row["instance_id"] for row in data["tasks"]],
@@ -99,8 +103,10 @@ def initialize(tasks_path: Path, output: Path, workspaces: Path, *, small_model:
                    "timeout_seconds": timeout_seconds, "reasoning_effort": reasoning_effort,
                    "max_turns": max_turns, "max_expert_calls": max_expert_calls},
         "source_sha256": {"personal": digest(Path(personal.__file__)),
-                          "benchmark": digest(Path(__file__))},
-        "worker_environment": "Host Codex tools; dependencies must be provisioned before running",
+                          "benchmark": digest(Path(__file__)), "worker": digest(Path(worker.__file__))},
+        "worker_config_sha256": digest(worker_config_path) if worker_config_path else None,
+        "worker_environment": "Official image dependency containers; host Codex access/isolation remain separate checks",
+        "study_scope": "development_pilot_not_confirmatory_isolation",
         "model_identity": "Requested provider identifiers; immutable model revision not observed by this adapter",
         "isolation": "Independent shallow checkouts; not a hardened cross-role read boundary",
         "evaluation": "Independent official SWE-bench harness reports only",
@@ -112,6 +118,8 @@ def initialize(tasks_path: Path, output: Path, workspaces: Path, *, small_model:
     (output / "design.sha256").write_text(digest(output / "design.json") + "\n")
     # Preserve exact bytes: the design hash identifies the supplied public manifest.
     (output / "tasks.json").write_bytes(tasks_path.read_bytes())
+    if worker_config_path:
+        (output / "worker-config.json").write_bytes(worker_config_path.read_bytes())
     return design
 
 
@@ -122,8 +130,12 @@ def load_design(study: Path) -> tuple[dict, dict]:
     if digest(study / "tasks.json") != design["tasks_sha256"]:
         raise ValueError("Frozen task manifest changed")
     if design["source_sha256"] != {"personal": digest(Path(personal.__file__)),
-                                    "benchmark": digest(Path(__file__))}:
+                                    "benchmark": digest(Path(__file__)), "worker": digest(Path(worker.__file__))}:
         raise ValueError("Runner source changed; preserve the frozen version or create a new study")
+    if design.get("worker_config_sha256"):
+        config_path = study / "worker-config.json"
+        if not config_path.is_file() or digest(config_path) != design["worker_config_sha256"]:
+            raise ValueError("Frozen worker configuration changed or is missing")
     return design, read_tasks(study / "tasks.json")
 
 
@@ -193,6 +205,14 @@ def export_patch(task: dict, workspace: Path) -> str:
     return git(workspace, "diff", "--binary", "--no-ext-diff", task["base_commit"], "--", ".")
 
 
+def require_task_metering(manifest: dict) -> None:
+    """A saved failed meter must still block continuation after process restart."""
+    fields = ("input_tokens", "cached_input_tokens", "output_tokens")
+    usage = manifest.get("usage", {})
+    if any(type(usage.get(key)) is not int or usage[key] < 0 for key in fields):
+        raise RuntimeError("Assigned trial has incomplete metering; artifacts retained. Reconcile before continuing.")
+
+
 def run_study(study: Path, *, resume: bool = False, backend=None) -> None:
     study = study.resolve()
     design, data = load_design(study)
@@ -202,6 +222,9 @@ def run_study(study: Path, *, resume: bool = False, backend=None) -> None:
     readiness = json.loads(preflight_path.read_text())
     if not readiness.get("ready") or readiness.get("design_sha256") != digest(study / "design.json"):
         raise ValueError("Metering preflight did not establish readiness for this design")
+    if not design.get("worker_config_sha256"):
+        raise ValueError("Worker dependency configuration is required before scored generation; freeze a new study with --worker-config")
+    worker_config = worker.validate_config(json.loads((study / "worker-config.json").read_text()), design["task_ids"])
     lookup = {row["instance_id"]: row for row in data["tasks"]}
     with personal._run_lock(study):
         for assignment in design["assignment_order"]:
@@ -217,36 +240,48 @@ def run_study(study: Path, *, resume: bool = False, backend=None) -> None:
                 if (saved["manifest_sha256"] != digest(output / "manifest.json")
                         or saved["patch_sha256"] != hashlib.sha256(saved["model_patch"].encode()).hexdigest()):
                     raise ValueError("Completed assignment artifacts changed")
+                require_task_metering(json.loads((output / "manifest.json").read_text()))
                 continue
             if output.exists() and not resume:
                 raise ValueError("Study has started assignments; use --resume")
+            if output.exists() and json.loads((output / "state.json").read_text()).get("inflight"):
+                raise RuntimeError("Interrupted in-flight turn needs manual reconciliation before worker startup")
             if not workspace.exists():
                 prepare_workspace(task, workspace)
             elif not output.exists():
                 # A failed preparation never becomes an implicit partial checkout.
                 if git(workspace, "rev-parse", "HEAD").strip() != task["base_commit"] or git(workspace, "status", "--porcelain"):
                     raise ValueError("Unregistered or dirty worker checkout; reconcile manually")
-            metadata = {
-                "task_id": task_id, "workspace": str(workspace), "memory": [], "allowed_paths": ["."],
-                "prompt": task["problem_statement"] +
-                    "\n\nRepair this repository at its assigned base. Preserve existing tests; "
-                    "you may add tests. Do not commit, change HEAD, retrieve upstream fixes, "
-                    "or access benchmark data, evaluator artifacts, or other workers. "
-                    "Report unavailable test dependencies honestly.",
-            }
-            output.parent.mkdir(parents=True, exist_ok=True)
-            manifest = personal.run_task(metadata, output, condition=arm, backend=backend,
-                                         resume=output.exists(), **design["config"])
+            entry = worker_config["tasks"][task_id]
+            owner = f"{digest(study / 'design.json')}:{arm}:{task_id}"
+            with worker.ToolContainer(workspace, task, entry, owner, allow_dirty=output.exists()) as container:
+                probe = container.probe()
+                personal._append(study / "worker-probes.jsonl", {
+                    "at": datetime.now(timezone.utc).isoformat(), "arm": arm,
+                    "instance_id": task_id, "report": probe})
+                worker.assert_dependency_ready(probe, task, workspace, entry)
+                metadata = {
+                    "task_id": task_id, "workspace": str(workspace), "memory": [], "allowed_paths": ["."],
+                    "prompt": task["problem_statement"] +
+                        "\n\nRepair this repository at its assigned base. Preserve existing tests; "
+                        "you may add tests. Do not commit, change HEAD, retrieve upstream fixes, "
+                        "or access benchmark data, evaluator artifacts, or other workers. "
+                        "Report unavailable test dependencies honestly.\n\n" + container.instructions(),
+                    "worker_config_sha256": worker.digest(entry),
+                }
+                output.parent.mkdir(parents=True, exist_ok=True)
+                manifest = personal.run_task(metadata, output, condition=arm, backend=backend,
+                                             resume=output.exists(), **design["config"])
             patch = export_patch(task, workspace)
             write_new(finished, {
                 "instance_id": task_id, "model_name_or_path": f"ttgl-{arm}", "model_patch": patch,
                 "manifest_sha256": digest(output / "manifest.json"),
                 "patch_sha256": hashlib.sha256(patch.encode()).hexdigest(),
                 "status": manifest["status"],
+                "worker_probe_sha256": worker.digest(probe),
             })
             export_predictions(study, design)
-            if any(manifest["usage"].get(key) is None for key in ("input_tokens", "cached_input_tokens", "output_tokens")):
-                raise RuntimeError("Assigned trial has incomplete metering; artifacts retained. Reconcile before continuing.")
+            require_task_metering(manifest)
         export_predictions(study, design)
 
 
@@ -452,6 +487,7 @@ def main(argv: list[str] | None = None) -> int:
     init.add_argument("--seed", type=int, default=1729)
     init.add_argument("--reasoning-effort", choices=("low", "medium", "high"), default="medium")
     init.add_argument("--conditions", nargs="+", choices=personal.CONDITIONS, default=list(ARMS))
+    init.add_argument("--worker-config", type=Path, help="Pinned official images and public dependency probes; required for generation")
     run = commands.add_parser("run", help="Generate patches using authenticated Codex (uses plan/API quota)")
     run.add_argument("--study-dir", type=Path, required=True)
     run.add_argument("--resume", action="store_true")
@@ -467,7 +503,8 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "init":
         initialize(args.tasks, args.output_dir, args.workspace_root, small_model=args.small_model,
                    large_model=args.large_model, timeout_seconds=args.timeout_seconds,
-                   seed=args.seed, reasoning_effort=args.reasoning_effort, conditions=tuple(args.conditions))
+                   seed=args.seed, reasoning_effort=args.reasoning_effort, conditions=tuple(args.conditions),
+                   worker_config_path=args.worker_config)
         print(json.dumps({"status": "frozen_not_run", "study": str(args.output_dir.resolve())}))
     elif args.command == "run":
         run_study(args.study_dir, resume=args.resume)

@@ -1,5 +1,7 @@
 # Project preferences
 
+- This `handover-host-20261031` snapshot archives an older host. Active remote `work` has substantial newer live results and Pro routing work; fetch it and read its latest handover before continuing. This branch's historical runtime blockers and unrun-study statements are not the global current state. See docs/research/NEW_HOST_PROMPT.md.
+
 - Prefer existing open-source software and maintained integrations over custom tooling.
 - Paid managed tools are welcome, including tools with a free tier, when they reduce implementation and operational work.
 - Before building a component, evaluate existing software for the requirement. Build only the missing product-specific behavior, and explain why existing options do not suffice.
@@ -24,4 +26,4 @@
 
 - Continuation entry point: docs/research/HANDOVER.md and ADR 0007. The active research branch is `work`; `main` does not contain the latest experiment. User authorization to commit and push persists.
 - The 500-task SWE-bench Verified replay is complete: historical published outcomes/costs for ten models, five-fold routing. Primary estimated inference saving 46.1% accompanies an 8.6-point quality loss; the joint target fails. A cheap strong standalone MiniMax control is crucial. Do not describe these records as new conversational model trials, current quotes or Codex quota savings.
-- Six Codex conditions now exist: small, large, precall_router, oneway, reset_expert, personal. New ablations are software-tested, not live benchmark results. The 12-task official benchmark panel is frozen; only two evaluator environments were checked, one valid. Native metering still fails before inference due read-only state. Finish worker dependency/isolation and all controls on the next writable host before scored runs.
+- Six Codex conditions now exist: small, large, precall_router, oneway, reset_expert, personal. New ablations are software-tested, not live benchmark results. The 12-task official benchmark panel is frozen; three evaluator environments were checked, two valid and Requests invalid. Nine remain unstarted. Native metering still fails before inference due read-only state. Scored generation now requires pinned worker configuration; Django public-test dependency smoke passed, but controller Docker access, compiled-project setup and host read isolation remain unresolved. Read docs/research/NEW_HOST_PROMPT.md and finish these prerequisites and all controls on the next writable host.

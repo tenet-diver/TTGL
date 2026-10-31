@@ -1,8 +1,26 @@
 # Handover: run the metered standard-benchmark study
 
-Updated 26 October 2026. Repository: `tenet-diver/TTGL`, working branch `work`.
+> ARCHIVED OLDER-HOST SNAPSHOT. Remote `work` has advanced to
+> `a43c9e7bd27f721b0b90c9fb13c4bed4c9332deb`, with 141 audited live assignments
+> and newer Pro work. The state below is local to this older host. Use
+> [NEW_HOST_PROMPT.md](NEW_HOST_PROMPT.md), fetch `work` and read its latest
+> handover. This branch preserves independent edits without merging them into
+> the newer runner.
+
+Updated 31 October 2026. Repository: `tenet-diver/TTGL`, working branch `work`.
 Continue from the latest pushed commit on that branch. `main` is not the active
 research branch; do not merge or replace it implicitly.
+
+Copyable continuation prompt: [NEW_HOST_PROMPT.md](NEW_HOST_PROMPT.md).
+The latest work adds mandatory pinned worker-dependency configuration and a
+resume guard for incomplete task metering. It does not add scored model runs.
+Read [worker environments](worker-environments.md) before starting generation.
+Current controls cover three of twelve tasks: SymPy and Django13297 are valid,
+Requests is invalid, and nine are unstarted. The new Django public-test worker
+smoke passed; controller Docker access, compiled-project setup and host read
+isolation still need verification. Docker startup/probe exceptions and timeouts
+also need durable structured failure records; the current journal only records
+probes that return normally. All task-owned Docker resources were cleaned up.
 
 ## The goal and evidence boundary
 
@@ -177,14 +195,22 @@ official gold/test material and must never be passed as an agent prompt or
 placed in the task repository. Do not choose substitute issues based on which
 models already succeeded.
 
-Run official base/gold controls before scored inference. Four controls actually
-ran here. SymPy 17139 is valid: base 0/2 target checks, gold 2/2, and both retain
+Run official base/gold controls before scored inference. Six controls actually
+ran here across two archived control directories. SymPy 17139 is valid: base 0/2 target checks, gold 2/2, and both retain
 67/67 preservation checks. Requests 5414 is invalid: its reference patch passes
 the target check, but only 123/130 preservation checks pass; the full run also
 has 158 missing-fixture errors and proxy-sensitive failures. Retain the failed
 control and fix its environment or predeclare an infrastructure exclusion.
-Ten of the twelve selected environments remain unvalidated. See the complete
-[official control records](../../experiments/swe-bench-verified-001/controls/summary.json).
+Django13297 is also valid: base 0/1 target checks, gold 1/1, both 52/52
+preservation checks. Nine selected environments remain unvalidated. See the
+[original records](../../experiments/swe-bench-verified-001/controls/summary.json)
+and [latest combined status](../../experiments/swe-bench-verified-002-controls/summary.json).
+
+Prepare a complete worker configuration following [worker environments](worker-environments.md).
+It pins already-present official images and public dependency probes for every
+selected task. The bridge refuses scored generation without this configuration.
+An image alone is insufficient: binding the source checkout can hide compiled
+extensions, and access from inside Codex's sandbox must be tested separately.
 
 Initialize the study with exact model IDs available in your Codex account:
 
@@ -193,6 +219,7 @@ python scripts/run_swe_bench.py init \
   --tasks experiments/swe-bench-verified-001/tasks.json \
   --output-dir /absolute/path/study \
   --workspace-root /absolute/path/isolated-workers \
+  --worker-config /absolute/path/worker-config.json \
   --small-model "$TTGL_SMALL_MODEL" \
   --large-model "$TTGL_LARGE_MODEL"
 
