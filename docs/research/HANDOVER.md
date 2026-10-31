@@ -1772,3 +1772,13 @@ Two optional-backend tests pass. No forced review or demonstrated causal gain.
 Tutanota model-free controls015 supervisorPID15384 active. Router016 not launched.
 Use RouterContractCodex only after its own controls pass; source hashes must include
 new module/prompt/test/activation. Current chat retains ownership; no duplicate work.
+
+
+## Explicit user constraint: general-purpose router
+
+User warns against benchmark-overfit prompts. Added router-generality.md and
+AGENTS constraint. V6 has no repository/case-specific rules; added task-appropriate
+verification and old/current requirements principle before any v6 invocation,
+updated activation hashes. Benchmark development diagnoses mechanisms; no transfer
+or causal gain claim without separately registered diverse fresh evaluation.
+Controls015 source unaffected; no model repeat or reserved validation access.

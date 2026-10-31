@@ -7,7 +7,8 @@
   "causal_improvement": "unknown",
   "sha256": {
     "src/ttgl/router_contract.py": "b1541ace83ef835469b18c9b1ece5b9eb0770420eceacd1ba43bda4cd2de5cce",
-    "prompts/controller-v6-contract-evidence.txt": "de3173d640f6f25491ffc8d5fea930a166b130b7681e81b4db04f624ca1b27c7",
+    "prompts/controller-v6-contract-evidence.txt": "7289947d2bbbad040e58b0846b0dddf48423e9d902dde4f23a8d6326b43f18d9",
     "tests/test_router_contract_optional.py": "69237c0b3797d3ed3e5422d0abe5b76194ffdbf84cb1cf87d23b15415f338c22"
-  }
+  },
+  "generalization_constraint": "User explicitly requires general-purpose routing, no benchmark-specific prompt tuning. Review mechanisms against task-agnostic principles; different development successes do not prove transfer."
 }

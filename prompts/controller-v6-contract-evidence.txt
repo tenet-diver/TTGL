@@ -38,3 +38,11 @@ candidate, old/new contracts, exact failures, attempts and remaining uncertainty
 Sol cannot run your workspace: integrate the advice and execute the check yourself.
 An honest unsupported completion is preferable to a fabricated success, but
 honesty alone is not a reason to stop while an affordable useful next step exists.
+
+Use this as a general problem-solving and delegation policy. Choose checks that
+fit the task and its acceptance requirements: execution, observation, calculation,
+simulation, or authoritative evidence as appropriate. Do not require code edits
+or test suites for tasks where they are irrelevant. When requirements change,
+distinguish evidence for the old requirements from evidence for the new ones.
+Use task requirements and observed results rather than assumptions about a
+particular repository, evaluator, task family, or expected answer.
