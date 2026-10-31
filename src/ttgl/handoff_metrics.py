@@ -4,11 +4,14 @@ import math
 ARMS = ('small', 'large', 'optional', 'required_review')
 
 
-def summarize(rows):
+def summarize(rows, *, arms=ARMS):
+    arms = tuple(arms)
+    if arms not in (ARMS, ('small', 'large', 'optional')):
+        raise ValueError('Use the registered three- or four-arm comparison')
     grouped = {}
     for row in rows:
         key, arm = row['task_id'], row['arm']
-        if not isinstance(key, str) or not key or arm not in ARMS or type(row['resolved']) is not bool:
+        if not isinstance(key, str) or not key or arm not in arms or type(row['resolved']) is not bool:
             raise ValueError('Invalid independently graded row')
         if arm in grouped.setdefault(key, {}):
             raise ValueError('Duplicate assignment; no best-of selection')
@@ -25,15 +28,15 @@ def summarize(rows):
         if cost is not None and (type(cost) not in (int, float) or not math.isfinite(cost) or cost < 0):
             raise ValueError('Invalid model-cost scenario')
         grouped[key][arm] = row
-    if not grouped or any(set(group) != set(ARMS) for group in grouped.values()):
-        raise ValueError('Require complete matched four-arm blocks')
+    if not grouped or any(set(group) != set(arms) for group in grouped.values()):
+        raise ValueError('Require complete matched registered-arm blocks')
     blocks = list(grouped.values())
     baseline_failures = sum(not b['small']['resolved'] for b in blocks)
     rescuable = [b for b in blocks if not b['small']['resolved'] and b['large']['resolved']]
     result = {'tasks': len(blocks), 'luna_failures': baseline_failures,
               'luna_fail_sol_succeed': len(rescuable), 'arms': {},
               'scope': 'Paired independent attempts are not identical initial trajectories; pre-handoff grades isolate observed within-run repair, not a randomized causal effect'}
-    for arm in ARMS:
+    for arm in arms:
         values = [b[arm] for b in blocks]
         costs = [r.get('cost_scenario_usd') for r in values]
         result['arms'][arm] = {
@@ -56,5 +59,6 @@ def summarize(rows):
                 'pre_handoff_fail_final_pass': sum(r.get('pre_handoff_resolved') is False and r['resolved'] for r in values),
                 'pre_handoff_pass_final_fail': sum(r.get('pre_handoff_resolved') is True and not r['resolved'] for r in values),
             })
-    result['required_review_noncompliance'] = sum(b['required_review']['expert_calls'] == 0 for b in blocks)
+    result['required_review_noncompliance'] = (sum(b['required_review']['expert_calls'] == 0 for b in blocks)
+                                              if 'required_review' in arms else None)
     return result

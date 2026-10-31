@@ -207,9 +207,9 @@ def main():
                 'private_manifest_sha256':digest(Path(native['agent_result']['metadata']['private_records_path'])/'controller/manifest.json')})
             write(out/('completed-'+arm+'.json'),rows[-1])
         write(out/'records.json',rows)
-        write(out/'paired-rescue.json',handoff_metrics.summarize(rows))
-        write(out/'completion.json', {'status':'first_four_arm_block_completed_review_cost_runtime_before_expanding',
-              'development_assignments':4,'full_twelve_task_run_started':False,'validation_started':False})
+        write(out/'paired-rescue.json',handoff_metrics.summarize(rows, arms=tuple(protocol.get('analysis_arms', handoff_metrics.ARMS))))
+        write(out/'completion.json', {'status':'registered_first_block_completed_review_cost_runtime_before_expanding',
+              'development_assignments':len(rows),'full_twelve_task_run_started':False,'validation_started':False})
     except BaseException as exc:
         write(out/'stopped.json', {'status':'stopped_preserve_all_attempts_do_not_retry_blindly',
                                  'error_type':type(exc).__name__,'message':str(exc)})

@@ -1504,3 +1504,53 @@ restart shared daemon while user CI/database containers may be active. User
 notified of concrete blocker and need to recover Docker Desktop when safe.
 No paid service, daemon restart, volume deletion or scored inference performed.
 Heartbeat remains enabled for external recovery; keep unchanged checks quiet.
+
+
+## 31 October: subset-first prompt iteration and failure diagnosis
+
+User requests larger dataset with multiple prompts, debugging routing on subsets
+before full evaluation, with 95% of matched Sol accuracy as the progression gate.
+Continuation registration: experiments/swe-pro-prompt-001/continuation-20261031.json.
+Retain 12 development / 24 untouched Pro validation tasks, four matched arms,
+and first-block controls/boundary/metering/replay gates. Do not repeatedly tune
+on validation; use fresh reservation after any validation-informed update.
+
+Inspected exact sklearn25747 assisted patch, effective prompt, journal and grade.
+The v2 fallback prompt WAS injected; two expert calls were allowed. Luna completed
+after one turn with zero calls and reported passing tests. Its patch preserves
+DataFrame index only for unequal row counts; official keep-index regression fails
+without infrastructure failure. This is an incomplete semantic fix and false
+completion; full tool outputs are missing, so ignored visible failure is unproven.
+Preserve visible outputs and pre-handoff grades in the new development diagnostic.
+
+User explicitly approved Docker Desktop restart. Normal quit left old backend;
+termination/relaunch produced fresh frontend/backend/VM processes, preserving disk
+and volumes. Daemon still reports missing docker.raw.sock; VM startup not ready.
+No new model/control jobs or identical pinned pulls launched. All 18 prior control
+source hashes match. Resolve VM startup before fresh versioned controls; prior
+failed outputs remain immutable. No new quality or cost result this continuation.
+
+
+## 31 October: autonomous three-arm subset queued
+
+Latest user explicitly prioritizes voluntary router failure detection and switching
+against Luna-only and Sol-only controls. Docker recovered after authorized restart:
+docker ps succeeds, no active containers at preflight, version20.10.23. Fresh model-free
+control006 supervisor PID60801 is downloading pinned Pro image successfully; no
+registry IPC failure so far. Do not duplicate it. Protocol control-protocol-006.json.
+
+Registered pro-pipeline-protocol-005.json before any new model invocation. Supervisor
+PID64600, output results/swe-pro-prompt-001/router-subset-005, log artifacts/pro-router-subset-005.log.
+Waits for control006 nop0/oracle1, then real actor/native handoff and pristine witness
+replay, then exactly three scored arms: large, optional, small. Required-review omitted
+from scored comparison; setup handoff is disclosed separately. Existing v3 prompt
+is baseline candidate; no forced consultation, no policy changes during block.
+Host visible tool traces and sealed pre-handoff/final patches support failure
+recognition, switching and integration audit. No scored result yet.
+
+Generalized paired metrics to explicitly registered three- or four-arm blocks;
+missing/duplicate assignments rejected. 14 policy/metrics checks and25 checks in
+real Harbor runtime pass. Diff check passes. No automatic retries or full dataset
+expansion. After this block review actual grades/tokens/runtime/visible observations
+before next development subset/prompt. Preserve24 validation tasks untouched.
+Generation/pipeline source hashes in protocol005 now frozen while supervisor live.

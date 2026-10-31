@@ -1,0 +1,53 @@
+{
+  "status": "registered_subset_iteration_blocked_on_docker_vm_startup",
+  "registered_at": "2026-10-31T17:05:38.567108+00:00",
+  "request": "Larger dataset and a few different prompts",
+  "dataset": "Existing pinned SWE-bench Pro V2 reservation",
+  "development_tasks": 12,
+  "validation_tasks": 24,
+  "development_arms": [
+    "v3 Luna standalone",
+    "v3 Sol standalone",
+    "v3 optional verification-driven expert consultation",
+    "v3 required specialist review"
+  ],
+  "development_assignment_cap": 48,
+  "validation_assignment_cap": 72,
+  "validation_policy": "Freeze optional policy after development; evaluate once with matched Luna and Sol controls; no tuning on validation",
+  "execution": "Model-free empty/reference controls, actor boundary and native metering/replay, then one four-arm development block and cost/runtime review before expansion",
+  "docker_restart_authorized": true,
+  "current_diagnostic": {
+    "docker_ps": "timeout after 15 seconds",
+    "manifest_inspect": "exit 1 no such manifest; does not establish digest availability",
+    "normal_quit": "old backend remained; TERM/relaunch attempted"
+  },
+  "scored_model_calls_this_continuation": 0,
+  "source_protocol_sha256": "9cb5e9ec6ad4c528f175dcff8592139e6d435bb5296452fddbce5d704ce2e46d",
+  "failure_debug": {
+    "task": "scikit-learn__scikit-learn-25747",
+    "observed": "One controller turn, complete, zero expert consultations; reported passing tests",
+    "patch_gap": "Index preserved only if row counts differ; equal-length transformed DataFrame index still overwritten",
+    "official_failure": "sklearn/utils/tests/test_set_output.py::test_set_output_pandas_keep_index",
+    "infrastructure_failure": false,
+    "unknown": "Full tool outputs not retained; failed tool-event status does not establish observed test assertion failure",
+    "next_diagnostics": [
+      "Retain actual visible commands, stdout, stderr and exit statuses",
+      "Distinguish visible failures from uncovered acceptance criteria",
+      "Compare optional consultation with required review under matched tools and budgets",
+      "Grade sealed pre-handoff and final patches only after generation; never feed evaluator feedback to live controller"
+    ],
+    "effective_prompt_verified": "Archived effective request includes v2 common and fallback guidance; prompt injection was present, two consultations allowed, no time-budget exhaustion observed."
+  },
+  "latest_user_steering": {
+    "execution": "Iterate on development subsets and debug routing before full evaluation",
+    "full_evaluation_gate": "At least 95% of matched Sol accuracy on untouched validation with frozen prompt; small-panel retention is a progression gate, not proof of population noninferiority",
+    "cost": "Report total model inference scenario including all controller, expert and integration usage; retain original 95% savings goal separately",
+    "validation_integrity": "New prompt after validation requires fresh reserved tasks; never tune repeatedly on sealed validation"
+  },
+  "docker_recovery": {
+    "authorized_restart": "New Docker frontend/backend and virtualization processes launched",
+    "latest_daemon_result": "dial unix docker.raw.sock: connect: no such file or directory",
+    "data_preserved": true,
+    "new_model_trials": 0
+  }
+}

@@ -58,3 +58,18 @@ def test_invalid_or_selected_assignments_are_rejected(kind):
         rows[0]['pre_handoff_resolved'] = False
     with pytest.raises(ValueError):
         summarize(rows)
+
+
+def test_registered_three_arm_router_comparison_keeps_rescue_and_no_required_review():
+    rows = [r for r in block('rescue', {'large', 'optional'}, {'optional': 1},
+                             {'optional': False}) if r['arm'] != 'required_review']
+    result = summarize(rows, arms=('small', 'large', 'optional'))
+    assert result['tasks'] == 1
+    assert result['arms']['small']['resolved'] == 0
+    assert result['arms']['large']['resolved'] == 1
+    assert result['arms']['optional']['pre_handoff_fail_final_pass'] == 1
+    assert result['required_review_noncompliance'] is None
+    with pytest.raises(ValueError, match='complete matched'):
+        summarize(rows[:-1], arms=('small', 'large', 'optional'))
+    with pytest.raises(ValueError, match='Duplicate'):
+        summarize(rows + [rows[0]], arms=('small', 'large', 'optional'))
