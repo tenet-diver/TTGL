@@ -1895,3 +1895,15 @@ requires a new registered unit, remaining development order, frozen v6, own
 controls/boundary, evidence-validated reuse, no retries/validation/standalone run.
 FAST-97 records completion; Confluence19202180 gets a separate follow-up section.
 Preserve all raw untracked result directories and host records.
+
+
+## Next active-chat Vuls unit registered
+
+Latest user says continue. No live prior supervisor and monitor remains PAUSED.
+Next original development index5 future-architect/vuls registered, cap one v6
+router assignment, no replacement/validation/standalone/retries. Plan and
+measurement intent under experiments/router-vuls-20261031. Preparation inventory
+and receipt hashes verified; pinned image digest1aee15022a4e086e0d7929ed1046bddb922b4382f9f0a39645fd01d821ae2287.
+Model-free controls019 supervisorPID24340 active, router020 not yet registered.
+Current chat owns this unit; do not duplicate or enable monitoring. Own controls,
+readiness evidence, validated cross-task setup008 reuse and fresh boundary required.

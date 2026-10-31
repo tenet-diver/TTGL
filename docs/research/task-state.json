@@ -361,15 +361,11 @@
     "monitor": "PAUSED by explicit user instruction; continue active chat only"
   },
   "current_router_unit": {
-    "plan": "experiments/router-teleport-20261031/plan.json",
-    "owner": "current active chat after user disabled heartbeat",
-    "status": "completed_initial_and_fresh_pass_zero_expert_requests",
-    "monitoring": "PAUSED by user, no replacement schedule",
-    "pid": null,
-    "jira_key": "FAST-97",
-    "protocol": "experiments/router-teleport-20261031/teleport-router-018.json",
-    "analysis": "results/router-teleport-20261031/teleport-analysis-018/summary.json",
-    "jira_status": "Done",
-    "next_action": "Future continuation only in active chat, fresh registration, retain v6; validation untouched"
+    "plan": "experiments/router-vuls-20261031/plan.json",
+    "owner": "active chat",
+    "status": "model-free controls019 active",
+    "pid": 24340,
+    "monitoring": "PAUSED by user, unchanged",
+    "next_action": "Only after target controls pass, register one v6 router020 with validated setup reuse and fresh actor boundary"
   }
 }

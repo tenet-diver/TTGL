@@ -1,0 +1,21 @@
+{
+  "status": "registered_before_controls_or_inference",
+  "registered_at": "2026-10-31T21:38:04.136169+00:00",
+  "tasks": [
+    {
+      "task_id": "instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5",
+      "repository": "future-architect/vuls"
+    }
+  ],
+  "selection": "Next original development reservation index5, no replacement or outcome selection",
+  "scored_assignment_cap": 1,
+  "policy": "frozen general-purpose v6",
+  "models": [
+    "gpt-6-luna",
+    "gpt-6.1-sol"
+  ],
+  "validation_tasks_authorized": 0,
+  "standalone_comparisons_authorized": 0,
+  "automatic_retries": 0,
+  "ownership": "active chat through controls, one registered assignment and final audit; scheduled monitoring disabled"
+}
