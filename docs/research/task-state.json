@@ -344,7 +344,9 @@
         "verification": "acknowledged old-suite failure and typecheck137; no new-contract behavioral check"
       }
     ],
-    "current": "Tutanota model-free controls015 PID15384",
-    "remaining": "Tutanota only; validation and standalone deferred"
+    "current": "Tutanota router016 launched, controls015 passed; active v6",
+    "remaining": "Tutanota only; validation and standalone deferred",
+    "confluence_url": "https://fastestswarm.atlassian.net/wiki/spaces/FASTEST/pages/19202180",
+    "generality": "Explicit user requirement: task-agnostic mechanisms, no benchmark-specific triggers, transfer unproven"
   }
 }

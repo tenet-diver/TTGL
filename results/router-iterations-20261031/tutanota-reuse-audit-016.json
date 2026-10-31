@@ -1,0 +1,73 @@
+{
+  "status": "completed_setup_reused_after_evidence_audit",
+  "source_output": "/Users/rustameynaliyev/Developer/TTGL/results/swe-pro-prompt-001/router-development-008",
+  "native_result": "/Users/rustameynaliyev/Developer/TTGL/results/swe-pro-prompt-001/router-development-008/jobs/native-preflight-001/instance_NodeBB__NodeBB-97c8569a__bMpFs6n/result.json",
+  "native_grade": 0,
+  "fresh_grade": 0,
+  "expert_calls": 2,
+  "setup_usage": {
+    "input_tokens": 112615,
+    "cached_input_tokens": 85120,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1631,
+    "reasoning_output_tokens": 298
+  },
+  "setup_usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 89481,
+        "cached_input_tokens": 74112,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1364,
+        "reasoning_output_tokens": 275
+      },
+      "observed_partial": {
+        "input_tokens": 89481,
+        "cached_input_tokens": 74112,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1364,
+        "reasoning_output_tokens": 275
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    },
+    "gpt-6.1-sol": {
+      "usage": {
+        "input_tokens": 23134,
+        "cached_input_tokens": 11008,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 267,
+        "reasoning_output_tokens": 23
+      },
+      "observed_partial": {
+        "input_tokens": 23134,
+        "cached_input_tokens": 11008,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 267,
+        "reasoning_output_tokens": 23
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "new_setup_model_calls": 0,
+  "benchmark_accuracy_claim": false,
+  "artifact_count": 60,
+  "fresh_actor_boundary_required": true,
+  "reuse_scope": "native_transport_and_metering_only",
+  "original_task_id": "instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+  "target_task_id": "instance_tutao__tutanota-f373ac3808deefce8183dad8d16729839cc330c1-v2939aa9f4356f0dc9f523ee5ce19d09e08ab979b",
+  "target_image_id": "sha256:6e8b3eb57e23ba0e9965a6bb5fff391beae14bd0be630c9b6980ff9039c745c1",
+  "target_controls_audited": true,
+  "target_task_quality_claim": false
+}

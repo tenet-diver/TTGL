@@ -1782,3 +1782,13 @@ verification and old/current requirements principle before any v6 invocation,
 updated activation hashes. Benchmark development diagnoses mechanisms; no transfer
 or causal gain claim without separately registered diverse fresh evaluation.
 Controls015 source unaffected; no model repeat or reserved validation access.
+
+
+## Tutanota router016 active
+
+Controls015 passed nop0/oracle1, no exceptions. Fresh router016 registered
+with RouterContractCodex v6 and all new module/prompt/test/activation hashes.
+SupervisorPID50975, single claim, zero new setup calls. Frozen sources must not
+change; no duplicate inference. Generality constraint committed at8317da1,
+mechanism/falsification review atcda3afb. Confluence checkpoint19202180 published
+and read back; FAST-96 remains In Progress. Current chat owns until final audit.
