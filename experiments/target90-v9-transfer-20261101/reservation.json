@@ -1,0 +1,130 @@
+{
+  "status": "reserved_public_inputs_only_not_executed",
+  "dataset": "SWE-bench Pro V2",
+  "upstream_repository": "scaleapi/SWE-bench_Pro-os",
+  "revision": "66f92766bba642462d4bbe5479e83f91f9211862",
+  "population_tasks": 642,
+  "inventory_sha256": "8ae8e029cb7cca8237705960d9371593d3e010194515cc264ed64b1e2587d4a8",
+  "seed": "ttgl-target90-v9-transfer-20261101",
+  "development": [
+    {
+      "instance_id": "instance_protonmail__webclients-d8ff92b414775565f496b830c9eb6cc5fa9620e6",
+      "repository": "protonmail/webclients",
+      "files": {
+        "instruction.md": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_protonmail__webclients-d8ff92b414775565f496b830c9eb6cc5fa9620e6/instruction.md",
+          "sha256": "b8ca8cb4b1c9e8388ec5cd9aa2513fb8cb8f03b67768d24bc02203266fc02def"
+        },
+        "task.toml": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_protonmail__webclients-d8ff92b414775565f496b830c9eb6cc5fa9620e6/task.toml",
+          "sha256": "5466d7ec4c6a6adec007639c8be544a4933fbaeeddaf22fec833658c211734f4"
+        },
+        "environment/Dockerfile": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_protonmail__webclients-d8ff92b414775565f496b830c9eb6cc5fa9620e6/environment/Dockerfile",
+          "sha256": "ebb34ec032a65acab85cf51b3b1371d6c0c9ed39ef0b26324be64bb5eb9dd84d"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_element-hq__element-web-18c03daa865d3c5b10e52b669cd50be34c67b2e5-vnan",
+      "repository": "element-hq/element-web",
+      "files": {
+        "instruction.md": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_element-hq__element-web-18c03daa865d3c5b10e52b669cd50be34c67b2e5-vnan/instruction.md",
+          "sha256": "6f52c4e178da2f511247fe12805a19241b77c263bb1784f62914735cef01dcda"
+        },
+        "task.toml": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_element-hq__element-web-18c03daa865d3c5b10e52b669cd50be34c67b2e5-vnan/task.toml",
+          "sha256": "4b23f21b8f712f493c4b4bf4925ed09f9c23e07478e5f4c7effd90663f6edb93"
+        },
+        "environment/Dockerfile": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_element-hq__element-web-18c03daa865d3c5b10e52b669cd50be34c67b2e5-vnan/environment/Dockerfile",
+          "sha256": "965b8100897c0859e4a0958ab316bb0992a90d3415cc751e62a1ebff6bd452e6"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_tutao__tutanota-51818218c6ae33de00cbea3a4d30daac8c34142e-vc4e41fd0029957297843cb9dec4a25c7c756f029",
+      "repository": "tutao/tutanota",
+      "files": {
+        "instruction.md": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_tutao__tutanota-51818218c6ae33de00cbea3a4d30daac8c34142e-vc4e41fd0029957297843cb9dec4a25c7c756f029/instruction.md",
+          "sha256": "d6768968d0f7c1bda1141e12a740b0c60ba0ae276e9321ef112ff72d11767633"
+        },
+        "task.toml": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_tutao__tutanota-51818218c6ae33de00cbea3a4d30daac8c34142e-vc4e41fd0029957297843cb9dec4a25c7c756f029/task.toml",
+          "sha256": "8187611742da207237918cbf99db891fb1a6baaa704a849d2b16a296092ec9bc"
+        },
+        "environment/Dockerfile": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_tutao__tutanota-51818218c6ae33de00cbea3a4d30daac8c34142e-vc4e41fd0029957297843cb9dec4a25c7c756f029/environment/Dockerfile",
+          "sha256": "051e579609b7c8b75027307faa611b0abab17f42c930484091d37df6649b8e08"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_flipt-io__flipt-db1c3b100e231c62f0c90c2ab037614f20a2a63b",
+      "repository": "flipt-io/flipt",
+      "files": {
+        "instruction.md": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_flipt-io__flipt-db1c3b100e231c62f0c90c2ab037614f20a2a63b/instruction.md",
+          "sha256": "9aecfc798546c4957784456f15796615bbf5e593c6b352d4bf2912208ed56bc9"
+        },
+        "task.toml": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_flipt-io__flipt-db1c3b100e231c62f0c90c2ab037614f20a2a63b/task.toml",
+          "sha256": "d19c3b125d25e9fa3d2c450e14704c9527eb9d8a7e8578a014ced472efdf8a0c"
+        },
+        "environment/Dockerfile": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_flipt-io__flipt-db1c3b100e231c62f0c90c2ab037614f20a2a63b/environment/Dockerfile",
+          "sha256": "7c5a31472997e3c07070c5e36a520f337d0dbf824cd892ef53b7feff768ef2fd"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_gravitational__teleport-59d39dee5a8a66e5b8a18a9085a199d369b1fba8-v626ec2a48416b10a88641359a169d99e935ff037",
+      "repository": "gravitational/teleport",
+      "files": {
+        "instruction.md": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_gravitational__teleport-59d39dee5a8a66e5b8a18a9085a199d369b1fba8-v626ec2a48416b10a88641359a169d99e935ff037/instruction.md",
+          "sha256": "f6179085ab03fb95fa7296dd8bf944bf5a7e5d25572ccd291c14b2b57099ba44"
+        },
+        "task.toml": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_gravitational__teleport-59d39dee5a8a66e5b8a18a9085a199d369b1fba8-v626ec2a48416b10a88641359a169d99e935ff037/task.toml",
+          "sha256": "753e4f48c6c5c3ec3315f7846f58ca482fc5b9ab78cd3c5de1a70c2b30a54d3b"
+        },
+        "environment/Dockerfile": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_gravitational__teleport-59d39dee5a8a66e5b8a18a9085a199d369b1fba8-v626ec2a48416b10a88641359a169d99e935ff037/environment/Dockerfile",
+          "sha256": "d22711cd46b1d78698281722c3859da079461d3a578b84c741b424248703909c"
+        }
+      }
+    },
+    {
+      "instance_id": "instance_navidrome__navidrome-66b74c81f115c78cb69910b0472eeb376750efc4",
+      "repository": "navidrome/navidrome",
+      "files": {
+        "instruction.md": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_navidrome__navidrome-66b74c81f115c78cb69910b0472eeb376750efc4/instruction.md",
+          "sha256": "726bd77d1247eb2f55d547b3a4fb84dca6b6bb9e8e9462085009561d156c6184"
+        },
+        "task.toml": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_navidrome__navidrome-66b74c81f115c78cb69910b0472eeb376750efc4/task.toml",
+          "sha256": "5b6448d6bfa9cfa89a38cf43f81c39adcb75346e40f435223441cb55fefcc63c"
+        },
+        "environment/Dockerfile": {
+          "path": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-v9-transfer-20261101/public/instance_navidrome__navidrome-66b74c81f115c78cb69910b0472eeb376750efc4/environment/Dockerfile",
+          "sha256": "2076299871f1093f18c5c39c2e75d81fb1f1e67df2493ecc1fbebc7b6aa3af8d"
+        }
+      }
+    }
+  ],
+  "held_out": [],
+  "selection_sha256": "0ca9100b55197963eeb35533077946d9898fa9827b56286e00913c3be31e44da",
+  "policy_sha256": {
+    "src/ttgl/evidence_decision_router.py": "24dc1469f67a9fd2fd30a9cf504278ae4c0f1d4eb9fc0e94a5d38c7c978d9a10",
+    "prompts/controller-v9-common.txt": "edfd6080ced25b159135c2e02f80dd50fc6ecc118525ef882843cf23b1dd7260",
+    "prompts/controller-v9-routing.txt": "953531923d4dde9a2e796cab5f04ee60a1f4c2e8f96d6d22c0b6bc67adc1a503",
+    "src/ttgl/harbor_bridge.py": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065"
+  },
+  "private_tests_or_reference_solutions_downloaded": false,
+  "inference_calls": 0,
+  "full_population_run_authorized_by_this_manifest": false
+}

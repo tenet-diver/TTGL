@@ -1,0 +1,73 @@
+{
+  "status": "registered_fixed_v9_fresh_development_before_private_preparation_controls_or_inference",
+  "registered_at": "2026-11-01T01:03:44.656023+00:00",
+  "objective": {
+    "model_rate_scenario_cost_ratio_max": 0.1,
+    "observed_accuracy_delta_min": 0,
+    "comparator": "matched gpt-6.1-sol-only",
+    "decision_panel": "separate held-out evaluation only after candidate selection; this block is development"
+  },
+  "selection_sha256": "0ca9100b55197963eeb35533077946d9898fa9827b56286e00913c3be31e44da",
+  "reservation_sha256": "b194888ba39f2be2bd4c77f284b81024bedc76983a1f9b642e56d9ba14484d21",
+  "tasks": [
+    {
+      "task_id": "instance_protonmail__webclients-d8ff92b414775565f496b830c9eb6cc5fa9620e6",
+      "repository": "protonmail/webclients"
+    },
+    {
+      "task_id": "instance_element-hq__element-web-18c03daa865d3c5b10e52b669cd50be34c67b2e5-vnan",
+      "repository": "element-hq/element-web"
+    },
+    {
+      "task_id": "instance_tutao__tutanota-51818218c6ae33de00cbea3a4d30daac8c34142e-vc4e41fd0029957297843cb9dec4a25c7c756f029",
+      "repository": "tutao/tutanota"
+    },
+    {
+      "task_id": "instance_flipt-io__flipt-db1c3b100e231c62f0c90c2ab037614f20a2a63b",
+      "repository": "flipt-io/flipt"
+    },
+    {
+      "task_id": "instance_gravitational__teleport-59d39dee5a8a66e5b8a18a9085a199d369b1fba8-v626ec2a48416b10a88641359a169d99e935ff037",
+      "repository": "gravitational/teleport"
+    },
+    {
+      "task_id": "instance_navidrome__navidrome-66b74c81f115c78cb69910b0472eeb376750efc4",
+      "repository": "navidrome/navidrome"
+    }
+  ],
+  "models": [
+    "gpt-6-luna",
+    "gpt-6.1-sol"
+  ],
+  "arms": [
+    "large",
+    "optional"
+  ],
+  "scored_assignment_cap": 12,
+  "per_task_cap": 2,
+  "policy": "v9",
+  "policy_sha256": {
+    "src/ttgl/evidence_decision_router.py": "24dc1469f67a9fd2fd30a9cf504278ae4c0f1d4eb9fc0e94a5d38c7c978d9a10",
+    "prompts/controller-v9-common.txt": "edfd6080ced25b159135c2e02f80dd50fc6ecc118525ef882843cf23b1dd7260",
+    "prompts/controller-v9-routing.txt": "953531923d4dde9a2e796cab5f04ee60a1f4c2e8f96d6d22c0b6bc67adc1a503",
+    "src/ttgl/harbor_bridge.py": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065"
+  },
+  "policy_revision": "Forbidden throughout this six-task block; retain failures, no favorable stopping, substitutions or repeated inference",
+  "first_block_order": "large/optional on even indices, optional/large on odd indices, fixed before calls",
+  "automatic_retries": 0,
+  "expert_calls_max_per_router": 2,
+  "task_budget_seconds": 2940,
+  "controller_turns_max": 6,
+  "reasoning_effort": "medium",
+  "rate_scenario": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/study-002/rate-scenario.json",
+  "rate_scenario_sha256": "24337a4fbe01bd97c0a8034c97e7f940779d207a388111dd3c19601919a49328",
+  "setup": "Evidence-validated setup008 transport/metering reuse only, fresh own controls and actor boundary on every task/arm",
+  "execution": "Sequential six task units, both arms and pre/final sealed replay audited before next unit",
+  "held_out_inference_authorized_in_this_protocol": 0,
+  "validation_access": "Only administrative IDs used to exclude all original reserved families; no validation task content/solutions/controls/grades/inference",
+  "models_not_selected_from_outcomes": true,
+  "billing_scope": "All controller/expert/retry/integration inference; validated cumulative deltas; unknown cash/quota/cost null",
+  "monitoring": "PAUSED, bounded active-chat research only",
+  "previous_phase": "All original12 assignments retained: Sol6/6 adaptive router4/6,96.4048% model-rate saving fails quality; no causal cross-version comparison",
+  "uncertainty": "Six further selected public development tasks do not prove population noninferiority, general transfer or final target"
+}

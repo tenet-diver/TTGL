@@ -1,0 +1,75 @@
+{
+  "status": "registered_ID_only_selection_before_public_task_download_or_inference",
+  "seed": "ttgl-target90-v9-transfer-20261101",
+  "revision": "66f92766bba642462d4bbe5479e83f91f9211862",
+  "inventory_sha256": "8ae8e029cb7cca8237705960d9371593d3e010194515cc264ed64b1e2587d4a8",
+  "policy": "v9",
+  "policy_sha256": {
+    "src/ttgl/evidence_decision_router.py": "24dc1469f67a9fd2fd30a9cf504278ae4c0f1d4eb9fc0e94a5d38c7c978d9a10",
+    "prompts/controller-v9-common.txt": "edfd6080ced25b159135c2e02f80dd50fc6ecc118525ef882843cf23b1dd7260",
+    "prompts/controller-v9-routing.txt": "953531923d4dde9a2e796cab5f04ee60a1f4c2e8f96d6d22c0b6bc67adc1a503",
+    "src/ttgl/harbor_bridge.py": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065"
+  },
+  "development": [
+    {
+      "instance_id": "instance_protonmail__webclients-d8ff92b414775565f496b830c9eb6cc5fa9620e6",
+      "repository": "protonmail/webclients"
+    },
+    {
+      "instance_id": "instance_element-hq__element-web-18c03daa865d3c5b10e52b669cd50be34c67b2e5-vnan",
+      "repository": "element-hq/element-web"
+    },
+    {
+      "instance_id": "instance_tutao__tutanota-51818218c6ae33de00cbea3a4d30daac8c34142e-vc4e41fd0029957297843cb9dec4a25c7c756f029",
+      "repository": "tutao/tutanota"
+    },
+    {
+      "instance_id": "instance_flipt-io__flipt-db1c3b100e231c62f0c90c2ab037614f20a2a63b",
+      "repository": "flipt-io/flipt"
+    },
+    {
+      "instance_id": "instance_gravitational__teleport-59d39dee5a8a66e5b8a18a9085a199d369b1fba8-v626ec2a48416b10a88641359a169d99e935ff037",
+      "repository": "gravitational/teleport"
+    },
+    {
+      "instance_id": "instance_navidrome__navidrome-66b74c81f115c78cb69910b0472eeb376750efc4",
+      "repository": "navidrome/navidrome"
+    }
+  ],
+  "held_out": [],
+  "eligible_unique_families": 606,
+  "excluded_family_count": 36,
+  "excluded_families_sha256": "3f3ca6b8b5ecdda028436bef41f5e62c5577a496db1a9d2772be6a087ad44b2e",
+  "original_reservation_sha256": "c86b3c9a83e94e4bcc4f5162f6d8bc1eb5849a10074b23073590984fb0d4dc89",
+  "prior_claims_sha256": {
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/target90-protonmail-v7-optional.json": "3dbfe458767d7b359cd00a0b8a6d44496d36d94848f6b175a9ad8111de19be7f",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/target90-nodebb-v9-large.json": "7da24787158d9b792cf6553df5a202d5c1ae1efd35dc78ecc0b9903ad8ec91b0",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/target90-navidrome-v7-large.json": "2f175880990162bead9bda88053c3c85053a513a011c512bea42743b8475cc77",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/target90-protonmail-v7-large.json": "c2c23fa4a343f0459deae6445fcdc79d6013cb76e1dc940a48ab9816f5243a8a",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/NodeBB-router-v4-first.json": "4cd9eb1f50b279e105ce95dd49fed14aadffc755fc6b8ce46098f56dc3205a70",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/vuls-v6-first-vuls20261031.json": "b846fd0418098ff62ff35777cd4a727f15666e4abf1f6a651744067c6c5b6c35",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/target90-qutebrowser-v8-optional.json": "c29338cb2db6168f4bf1c2ba4affeea74b51b196a62d8ceeb5f9467fb59eec10",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/target90-openlibrary-v8-large.json": "cd7bb6e65aacdcd35f0bf567561a6f6cafef486f2a2009ac674ce7263b98b515",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/target90-navidrome-v7-optional.json": "3938d087f471b074936f424eca9d8d2a00c2a07f45ace85710552d50854208d3",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/target90-flipt-v7-optional.json": "3240610412f7a37150b6c4983ae6f6183061580bb6aee115a7da86013e1d51f1",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/teleport-v6-first-teleport20261031.json": "fe0a4fc148565dd0b629d59489ca9ad3a41feace6b3f69acc1b7344bfb877641",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/target90-qutebrowser-v8-large.json": "ea46a199fda783ba003ffc5c7198b81c76224511ca40163c422b87c50b200574",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/target90-flipt-v7-large.json": "eb3092f261b4d8739b974cc91153569c6a156c45d27ccd44a0f2e2b6deaa70f8",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/target90-nodebb-v9-optional.json": "e82698794a73d8a0976b9b59664b751e1c449de1fe39f92925e60c17c75506e9",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/tutanota-v5-first-series20261031.json": "98765e7730028154c33f44d10723a515bde493a7f86a6a75b90cb0ff2684d641",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/ansible-v5-first-series20261031.json": "06889e040319d2fbc740f5e972f634531fe8d73de8482f4d0353051b9f520f74",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/target90-openlibrary-v8-optional.json": "3c4be5f3c7a191d5004ef45b6a9ac119e1771eb8ac4b5bdfd42325c982573632",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/assignment-claims/element-v5-first-series20261031.json": "0347e17a2857bb8c46f4a868c5cd7f3bc50e89c7b130395156a5fb031bea61b1"
+  },
+  "selection_source_sha256": "9fb9918c9a9a590661c0220183900af7001f7b67d9f3479cafbb1f88ab73074d",
+  "scored_assignment_cap": 12,
+  "per_task_cap": 2,
+  "automatic_retries": 0,
+  "no_policy_revision_within_six_task_block": true,
+  "no_favorable_stopping_or_replacement": true,
+  "reserved_validation_content_read": false,
+  "reserved_validation_inference": 0,
+  "no_642_task_run": true,
+  "monitoring": "PAUSED",
+  "registered_at": "2026-11-01T01:02:12.778466+00:00"
+}
