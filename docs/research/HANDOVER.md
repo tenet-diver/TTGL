@@ -2164,3 +2164,19 @@ Sol first. Keep v8 unchanged. Then original NodeBB031/032. No held-out access.
 Completed unused Protonmail image reclaimed after full artifact-manifest check;
 all raw/failed/sealed grading evidence preserved, receipts target90 results.
 MonitoringPAUSED; active chat owns continuation toward target, not reached.
+
+
+## Qutebrowser030 v8 matched pair ACTIVE
+
+Own controls029 pass0/1. Pair030 PID72263, Sol then optionalLuna, v8 unchanged
+from Openlibrary028. Source freeze covers new8 module/prompts/activation/software
+and existing transport/setup/generation dependencies; do not edit while both
+arms/pre/final replays active. Setup008 audited reuse0newcalls. Protocol/log
+under target90 qutebrowser-pair-030 / artifacts/target90-qutebrowser-030.log.
+After full audit, final original development NodeBB controls031/pair032(v8).
+Keep all failed7 evidence, adaptive versions separate, validation24 untouched.
+Official OpenAI docs check used skill source order; exact Luna/Sol IDs preserved,
+no migration/pricing/auth changes. Current family guidance discusses Astra for
+delegation; do not present that as measured Luna behavior. Bounded verification
+and representative eval guidance consistent with existing study, not proof of
+v8 efficacy. MonitoringPAUSED; current active chat owns continuation.

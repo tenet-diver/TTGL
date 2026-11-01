@@ -1,0 +1,18 @@
+{
+  "status": "post_registration_read_only_guidance_check_no_treatment_change",
+  "retrieved_at": "2026-11-01T00:28:28.497861+00:00",
+  "sources": [
+    "https://developers.openai.com/api/docs/guides/latest-model",
+    "https://developers.openai.com/api/docs/guides/deployment-checklist",
+    "https://developers.openai.com/api/docs/guides/prompt-engineering"
+  ],
+  "interpretation": "Calibrate relevant verification, compare representative task outcomes/costs, preserve exact models/effort. Astra-specific delegation statements do not establish Luna behavior.",
+  "unchanged": [
+    "v8 prompts and model IDs",
+    "reasoning and tools",
+    "frozen published-rate scenario",
+    "supported subscription authentication"
+  ],
+  "actual_cash_or_quota_saving": null,
+  "no_new_model_calls_for_docs": true
+}
