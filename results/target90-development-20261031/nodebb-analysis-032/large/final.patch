@@ -1,0 +1,146 @@
+diff --git a/src/controllers/activitypub/actors.js b/src/controllers/activitypub/actors.js
+index fecb7941a4..5d66a23fd7 100644
+--- a/src/controllers/activitypub/actors.js
++++ b/src/controllers/activitypub/actors.js
+@@ -10,7 +10,7 @@ const Actors = module.exports;
+ 
+ Actors.application = async function (req, res) {
+ 	const publicKey = await activitypub.getPublicKey(0);
+-	const name = meta.config.title || 'NodeBB';
++	const name = meta.config.site_title || 'NodeBB';
+ 
+ 	res.status(200).json({
+ 		'@context': [
+@@ -24,7 +24,7 @@ Actors.application = async function (req, res) {
+ 
+ 		type: 'Application',
+ 		name,
+-		preferredUsername: name,
++		preferredUsername: nconf.get('url_parsed').hostname,
+ 
+ 		publicKey: {
+ 			id: `${nconf.get('url')}#key`,
+diff --git a/src/controllers/well-known.js b/src/controllers/well-known.js
+index 590f546b04..3b4f310261 100644
+--- a/src/controllers/well-known.js
++++ b/src/controllers/well-known.js
+@@ -9,9 +9,9 @@ const Controller = module.exports;
+ 
+ Controller.webfinger = async (req, res) => {
+ 	const { resource } = req.query;
+-	const { host } = nconf.get('url_parsed');
++	const { host, hostname } = nconf.get('url_parsed');
+ 
+-	if (!resource || !resource.startsWith('acct:') || !resource.endsWith(host)) {
++	if (typeof resource !== 'string' || !resource.startsWith('acct:') || !resource.endsWith(`@${host}`)) {
+ 		return res.sendStatus(400);
+ 	}
+ 
+@@ -23,18 +23,23 @@ Controller.webfinger = async (req, res) => {
+ 	// Get the slug
+ 	const slug = resource.slice(5, resource.length - (host.length + 1));
+ 
+-	const uid = await user.getUidByUserslug(slug);
+-	if (!uid) {
++	const isInstance = slug === hostname;
++	const uid = isInstance ? 0 : await user.getUidByUserslug(slug);
++	if (!isInstance && !uid) {
+ 		return res.sendStatus(404);
+ 	}
+ 
+ 	const response = {
+ 		subject: `acct:${slug}@${host}`,
+-		aliases: [
++		aliases: isInstance ? [nconf.get('url')] : [
+ 			`${nconf.get('url')}/uid/${uid}`,
+ 			`${nconf.get('url')}/user/${slug}`,
+ 		],
+-		links: [
++		links: isInstance ? [{
++			rel: 'self',
++			type: 'application/activity+json',
++			href: nconf.get('url'),
++		}] : [
+ 			{
+ 				rel: 'http://webfinger.net/rel/profile-page',
+ 				type: 'text/html',
+diff --git a/test/activitypub.js b/test/activitypub.js
+index 61388612bf..1fdde78e73 100644
+--- a/test/activitypub.js
++++ b/test/activitypub.js
+@@ -26,7 +26,7 @@ describe('ActivityPub integration', () => {
+ 	describe('WebFinger endpoint', () => {
+ 		let uid;
+ 		let slug;
+-		const { host } = nconf.get('url_parsed');
++		const { host, hostname } = nconf.get('url_parsed');
+ 
+ 		beforeEach(async () => {
+ 			slug = slugify(utils.generateUUID().slice(0, 8));
+@@ -47,6 +47,24 @@ describe('ActivityPub integration', () => {
+ 			assert.strictEqual(response.statusCode, 400);
+ 		});
+ 
++		it('should reject missing resources, incorrect prefixes, and foreign hosts', async () => {
++			await Promise.all(['', `?resource=${slug}@${host}`, `?resource=acct:${slug}@elsewhere.invalid`].map(async (query) => {
++				const { response } = await request.get(`${nconf.get('url')}/.well-known/webfinger${query}`);
++				assert.strictEqual(response.statusCode, 400);
++			}));
++		});
++
++		it('should resolve the hostname to the instance actor using the configured host including its port', async () => {
++			const { response, body } = await request.get(`${nconf.get('url')}/.well-known/webfinger?resource=acct:${hostname}@${host}`);
++
++			assert.strictEqual(response.statusCode, 200);
++			assert.deepStrictEqual(body, {
++				subject: `acct:${hostname}@${host}`,
++				aliases: [nconf.get('url')],
++				links: [{ rel: 'self', type: 'application/activity+json', href: nconf.get('url') }],
++			});
++		});
++
+ 		it('should return 403 Forbidden if the calling user is not allowed to view the user list/profiles', async () => {
+ 			await privileges.global.rescind(['groups:view:users'], 'guests');
+ 			const { response } = await request.get(`${nconf.get('url')}/.well-known/webfinger?resource=acct:${slug}@${host}`);
+@@ -72,7 +90,10 @@ describe('ActivityPub integration', () => {
+ 			assert(Array.isArray(body.aliases));
+ 			assert([`${nconf.get('url')}/uid/${uid}`, `${nconf.get('url')}/user/${slug}`].every(url => body.aliases.includes(url)));
+ 
+-			assert(Array.isArray(body.links));
++			assert.deepStrictEqual(body.links, [
++				{ rel: 'http://webfinger.net/rel/profile-page', type: 'text/html', href: `${nconf.get('url')}/user/${slug}` },
++				{ rel: 'self', type: 'application/activity+json', href: `${nconf.get('url')}/user/${slug}` },
++			]);
+ 		});
+ 	});
+ 
+@@ -217,6 +238,29 @@ describe('ActivityPub integration', () => {
+ 	});
+ 
+ 	describe('Instance Actor endpoint', () => {
++		it('should use the hostname as its username and the site title as its name', async () => {
++			const originalTitle = meta.config.site_title;
++			try {
++				for (const title of ['Federated Forum', '', undefined]) {
++					meta.config.site_title = title;
++					// Each request must observe its own site title.
++					// eslint-disable-next-line no-await-in-loop
++					const { response, body } = await request.get(nconf.get('url'), {
++						headers: { Accept: 'application/activity+json' },
++					});
++					assert.strictEqual(response.statusCode, 200);
++					assert.strictEqual(body.preferredUsername, nconf.get('url_parsed').hostname);
++					assert.strictEqual(body.name, title || 'NodeBB');
++				}
++			} finally {
++				if (originalTitle === undefined) {
++					delete meta.config.site_title;
++				} else {
++					meta.config.site_title = originalTitle;
++				}
++			}
++		});
++
+ 		let response;
+ 		let body;
+ 

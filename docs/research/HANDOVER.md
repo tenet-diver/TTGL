@@ -2228,3 +2228,29 @@ formatter records full evidence, projects unchanged action, no automaticSol.
 Continue after full audit; don't treat one9 case as proven calibration or
 causal improvement over7/8 different blocks.24 validation untouched.
 Current Sol5/5 vs adaptive router3/5 remains targetNOTmet. MonitoringPAUSED.
+
+
+## Original target90 six-pair development COMPLETE; target NOT MET
+
+032 complete initial/fresh both1,0 experts; v9 enriched schema works live, all
+action/projection/evidence hashes/policy IDs and cumulative metering reconcile.
+Sol scenarioUSD0.1329696 vs router0.00798336,93.9961% saving on ONE9 case only.
+Luna focused mocked checks pass; Redis integration0tests blocked; declares
+incomplete/material gaps and EMPTY escalation reason yet completes, not a
+proven calibrated escalation policy. No backend override or extra model calls.
+Final original phase:12/12 assignments, Sol6/6 vs adaptive router4/6; total
+model-rate scenariosUSD1.3912208 vs0.0500177,96.4048% saving BUT QUALITY LOSS.
+Perassigned Sol0.23187013/router0.00833628; perresolved Sol0.23187013/router
+0.012504425. All failed tasks retained. Different versions/task blocks cannot
+prove prompt improvement:7=2/3vs3/3,8=1/2vs2/2,9=1/1vs1/1. No final target proof.
+All supervisors complete; no active model/control assignment. MonitoringPAUSED.
+
+Next active-chat work: hold9 fixed on a separately preregistered small fresh
+development block before burning24 reserved validation cases. Use pinned642
+metadata IDs only, exclude ALL original development+validation families and any
+prior started Pro family, outcome-independent seeded repository-diverse choice.
+Do not read validation task content/solutions/grades or rerun original failures.
+Reuse existing official preparer/Harbor/controls/replay; separate newcap and
+source freeze, same models/effort/budgets/rates. No full642 automatic run.
+Currentgoal active, cost-only success insufficient. Preserve all failed7/8
+results and9 evidence; update paper/guide/Jira/Confluence with complete phase.

@@ -1,0 +1,110 @@
+diff --git a/src/controllers/activitypub/actors.js b/src/controllers/activitypub/actors.js
+index fecb7941a4..5d66a23fd7 100644
+--- a/src/controllers/activitypub/actors.js
++++ b/src/controllers/activitypub/actors.js
+@@ -10,7 +10,7 @@ const Actors = module.exports;
+ 
+ Actors.application = async function (req, res) {
+ 	const publicKey = await activitypub.getPublicKey(0);
+-	const name = meta.config.title || 'NodeBB';
++	const name = meta.config.site_title || 'NodeBB';
+ 
+ 	res.status(200).json({
+ 		'@context': [
+@@ -24,7 +24,7 @@ Actors.application = async function (req, res) {
+ 
+ 		type: 'Application',
+ 		name,
+-		preferredUsername: name,
++		preferredUsername: nconf.get('url_parsed').hostname,
+ 
+ 		publicKey: {
+ 			id: `${nconf.get('url')}#key`,
+diff --git a/src/controllers/well-known.js b/src/controllers/well-known.js
+index 590f546b04..e44b1cd0e7 100644
+--- a/src/controllers/well-known.js
++++ b/src/controllers/well-known.js
+@@ -9,9 +9,10 @@ const Controller = module.exports;
+ 
+ Controller.webfinger = async (req, res) => {
+ 	const { resource } = req.query;
+-	const { host } = nconf.get('url_parsed');
++	const { host, hostname } = nconf.get('url_parsed');
++	const accountSuffix = `@${host}`;
+ 
+-	if (!resource || !resource.startsWith('acct:') || !resource.endsWith(host)) {
++	if (!resource || !resource.startsWith('acct:') || !resource.endsWith(accountSuffix)) {
+ 		return res.sendStatus(400);
+ 	}
+ 
+@@ -20,33 +21,46 @@ Controller.webfinger = async (req, res) => {
+ 		return res.sendStatus(403);
+ 	}
+ 
+-	// Get the slug
+-	const slug = resource.slice(5, resource.length - (host.length + 1));
++	const slug = resource.slice(5, -accountSuffix.length);
++	const siteUrl = nconf.get('url');
++	let response;
+ 
+-	const uid = await user.getUidByUserslug(slug);
+-	if (!uid) {
+-		return res.sendStatus(404);
+-	}
+-
+-	const response = {
+-		subject: `acct:${slug}@${host}`,
+-		aliases: [
+-			`${nconf.get('url')}/uid/${uid}`,
+-			`${nconf.get('url')}/user/${slug}`,
+-		],
+-		links: [
+-			{
+-				rel: 'http://webfinger.net/rel/profile-page',
+-				type: 'text/html',
+-				href: `${nconf.get('url')}/user/${slug}`,
+-			},
+-			{
++	if (slug === hostname) {
++		response = {
++			subject: `acct:${slug}@${host}`,
++			aliases: [siteUrl],
++			links: [{
+ 				rel: 'self',
+ 				type: 'application/activity+json',
+-				href: `${nconf.get('url')}/user/${slug}`, // actor
+-			},
+-		],
+-	};
++				href: siteUrl,
++			}],
++		};
++	} else {
++		const uid = await user.getUidByUserslug(slug);
++		if (!uid) {
++			return res.sendStatus(404);
++		}
++
++		response = {
++			subject: `acct:${slug}@${host}`,
++			aliases: [
++				`${siteUrl}/uid/${uid}`,
++				`${siteUrl}/user/${slug}`,
++			],
++			links: [
++				{
++					rel: 'http://webfinger.net/rel/profile-page',
++					type: 'text/html',
++					href: `${siteUrl}/user/${slug}`,
++				},
++				{
++					rel: 'self',
++					type: 'application/activity+json',
++					href: `${siteUrl}/user/${slug}`,
++				},
++			],
++		};
++	}
+ 
+ 	res.status(200).json(response);
+ };

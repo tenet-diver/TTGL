@@ -1,0 +1,25 @@
+{
+  "request_id": "7a02953c-21bb-4cfc-82c3-7491531a3767:1",
+  "controller_policy": {
+    "mode": "consolidated-v9",
+    "source_sha256": "24dc1469f67a9fd2fd30a9cf504278ae4c0f1d4eb9fc0e94a5d38c7c978d9a10",
+    "common_sha256": "edfd6080ced25b159135c2e02f80dd50fc6ecc118525ef882843cf23b1dd7260",
+    "routing_sha256": "953531923d4dde9a2e796cab5f04ee60a1f4c2e8f96d6d22c0b6bc67adc1a503",
+    "transport_sha256": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065",
+    "completion_evidence_schema_sha256": "ab09591110fa8b2588c591d624e2af1d124cd55b013f2838acc3f32656aee0b2",
+    "snapshot_source_sha256": "cfc8c857ac2a83087d832a07d4aeeb122577e7e23d6d452b9606ac14ab408ad6"
+  },
+  "native_output_sha256": "3d8a05c15e9a20e665b44dad6d7111db3cd06eb9a5e53d68b76e78f4f2b76e4d",
+  "native_text": "{\"action\":\"complete\",\"question\":\"\",\"context\":\"\",\"summary\":\"Updated WebFinger to resolve the instance actor using the port-less hostname, while preserving the configured host (including any port) in validation and the subject. User responses retain their profile aliases and links. The application actor now uses the hostname as preferredUsername and meta.config.site_title, defaulting to NodeBB, as its name.\",\"verification_status\":\"incomplete\",\"acceptance_evidence\":\"ESLint passed for both modified controllers. A direct mocked-controller check passed for missing and wrong-host resources (400), unknown user (404), a user response with both aliases and links, and an instance response using acct:127.0.0.1@127.0.0.1:4567 with the required self link. The same check confirmed application actor name and preferredUsername when site_title is configured. Actual HTTP integration and the default-name case remain unverified.\",\"attempt_evidence\":\"Candidate: changed src/controllers/well-known.js and src/controllers/activitypub/actors.js. Check: eslint on both files exited 0. Check: mocked-controller assertions exited 0 for the listed port, validation, user, instance, and actor-field cases. Check: `mocha test/activitypub.js --grep 'WebFinger endpoint' --timeout 30000` exited 1 before tests ran because Redis at 127.0.0.1:6379 refused the connection (0 passing).\",\"material_gaps\":\"The repository integration test could not run without Redis, so real HTTP routing and application-level behavior were not verified. The application actor fallback name when site_title is unset was not directly exercised.\",\"escalation_reason\":\"\"}",
+  "decision": {
+    "action": "complete",
+    "question": "",
+    "context": "",
+    "summary": "Updated WebFinger to resolve the instance actor using the port-less hostname, while preserving the configured host (including any port) in validation and the subject. User responses retain their profile aliases and links. The application actor now uses the hostname as preferredUsername and meta.config.site_title, defaulting to NodeBB, as its name.",
+    "verification_status": "incomplete",
+    "acceptance_evidence": "ESLint passed for both modified controllers. A direct mocked-controller check passed for missing and wrong-host resources (400), unknown user (404), a user response with both aliases and links, and an instance response using acct:127.0.0.1@127.0.0.1:4567 with the required self link. The same check confirmed application actor name and preferredUsername when site_title is configured. Actual HTTP integration and the default-name case remain unverified.",
+    "attempt_evidence": "Candidate: changed src/controllers/well-known.js and src/controllers/activitypub/actors.js. Check: eslint on both files exited 0. Check: mocked-controller assertions exited 0 for the listed port, validation, user, instance, and actor-field cases. Check: `mocha test/activitypub.js --grep 'WebFinger endpoint' --timeout 30000` exited 1 before tests ran because Redis at 127.0.0.1:6379 refused the connection (0 passing).",
+    "material_gaps": "The repository integration test could not run without Redis, so real HTTP routing and application-level behavior were not verified. The application actor fallback name when site_title is unset was not directly exercised.",
+    "escalation_reason": ""
+  }
+}

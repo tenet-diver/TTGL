@@ -11,6 +11,7 @@ accounted for; no favorable subset stopping. The24 validation tasks are untouche
 | Protonmail026 (v7) |1|0|0.4970548|0.01136196|97.7141%|0|
 | Openlibrary028 (v8) |1|1|0.1462204|0.00731174|94.9995%|0|
 | Qutebrowser030 (v8) |1|0|0.3188324|0.00523228|98.3589%|0|
+| NodeBB032 (v9) |1|1|0.1329696|0.00798336|93.9961%|0|
 
 Each arm passed native grading and fresh sealed-patch replay. All-role native
 usage and cumulative thread deltas were independently validated. The costs are
@@ -59,3 +60,11 @@ without Sol, and fails fresh replay. General regression tests/compilation did
 not cover the new acceptance behavior. V9 adds structured public evidence and
 gap fields without changing the agent action or adding an automatic Sol gate.
 It is software-tested only at this checkpoint; calibration remains unproven.
+
+All12 original assignments are now independently audited. Sol6/6 vs adaptive
+router4/6 at96.4048% model-rate saving FAILS the quality target. V9 one-case
+pass does not prove failure detection: its evidence explicitly records remaining
+gaps and an empty escalation reason. Structured fields make behavior auditable;
+no backend rewrites the decision. All six pairs used0 expert requests. Keep24
+validation untouched while testing fixed9 on a new outcome-independent disjoint
+development reservation. No original case is rerun or removed.

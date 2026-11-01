@@ -1,0 +1,7 @@
+{
+ "task": "instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+ "patch": "/Users/rustameynaliyev/Developer/ttgl-target90-nodebb-032/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/personal/695da452ffa2421987479065f1b2dfcf/sealed-replay-source/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/agent/model.patch",
+ "apply_rc": 0,
+ "apply_out": "Checking patch src/controllers/activitypub/actors.js...\nChecking patch src/controllers/well-known.js...\nApplied patch src/controllers/activitypub/actors.js cleanly.\nApplied patch src/controllers/well-known.js cleanly.\n",
+ "post_apply_diffstat": " src/controllers/activitypub/actors.js |  4 +--\n src/controllers/well-known.js         | 66 +++++++++++++++++++++--------------\n 2 files changed, 42 insertions(+), 28 deletions(-)\n---\n2\n"
+}

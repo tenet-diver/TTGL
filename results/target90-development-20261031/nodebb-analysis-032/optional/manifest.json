@@ -1,0 +1,110 @@
+{
+  "schema_version": 3,
+  "run_id": "7a02953c-21bb-4cfc-82c3-7491531a3767",
+  "task_id": "instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+  "condition": "personal",
+  "status": "completed_ungraded",
+  "created_at": "2026-11-01T00:51:07.751756+00:00",
+  "finished_at": "2026-11-01T00:51:45.894519+00:00",
+  "identity_sha256": "595235a3d03b9e9d5e368b0c8813ffa2698ddf233a3f31ee4ccd408ece938c50",
+  "config": {
+    "condition": "personal",
+    "small_model": "gpt-6-luna",
+    "large_model": "gpt-6.1-sol",
+    "max_expert_calls": 2,
+    "max_turns": 6,
+    "timeout_seconds": 2940.0,
+    "max_context_characters": 24000,
+    "reasoning_effort": "medium",
+    "orchestrator_sha256": "51c354354f884c697d53018d88898725e429952d24619fbf0410ffd1bd640826"
+  },
+  "backend": {
+    "name": "codex-cli",
+    "version": "codex-cli 0.163.0-alpha.10.2",
+    "event_contract_source_commit": "970111f6cb62cc02fe36a82ea7d71b37a2889c97",
+    "worker_tools": "One Harbor environment.exec via authenticated loopback MCP",
+    "server_sha256": "cd207f6da4bfa2c69d171d8a82a41d0f67a2e200f424907a0716f6e17abb571e",
+    "lock_sha256": "4c10cb45da5e93474fce6e91656f779ccb7b266ccfbd7b34325de129f0e4226e",
+    "adapter_sha256": "1d4213bb5cb95525518a924667df2afd177b392e9ca87e17ec173e9f4d651a27",
+    "harbor_bridge_sha256": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065",
+    "controller_policy": {
+      "mode": "consolidated-v9",
+      "source_sha256": "24dc1469f67a9fd2fd30a9cf504278ae4c0f1d4eb9fc0e94a5d38c7c978d9a10",
+      "common_sha256": "edfd6080ced25b159135c2e02f80dd50fc6ecc118525ef882843cf23b1dd7260",
+      "routing_sha256": "953531923d4dde9a2e796cab5f04ee60a1f4c2e8f96d6d22c0b6bc67adc1a503",
+      "transport_sha256": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065",
+      "completion_evidence_schema_sha256": "ab09591110fa8b2588c591d624e2af1d124cd55b013f2838acc3f32656aee0b2",
+      "snapshot_source_sha256": "cfc8c857ac2a83087d832a07d4aeeb122577e7e23d6d452b9606ac14ab408ad6"
+    },
+    "visible_tool_trace": "Bounded public tool actions/observations; no private reasoning or evaluator feedback",
+    "routing_diagnostic": {
+      "mode": "consolidated-v9",
+      "source_sha256": "24dc1469f67a9fd2fd30a9cf504278ae4c0f1d4eb9fc0e94a5d38c7c978d9a10",
+      "common_sha256": "edfd6080ced25b159135c2e02f80dd50fc6ecc118525ef882843cf23b1dd7260",
+      "routing_sha256": "953531923d4dde9a2e796cab5f04ee60a1f4c2e8f96d6d22c0b6bc67adc1a503",
+      "transport_sha256": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065",
+      "completion_evidence_schema_sha256": "ab09591110fa8b2588c591d624e2af1d124cd55b013f2838acc3f32656aee0b2",
+      "snapshot_source_sha256": "cfc8c857ac2a83087d832a07d4aeeb122577e7e23d6d452b9606ac14ab408ad6"
+    }
+  },
+  "selected_model": "gpt-6-luna",
+  "turns": 1,
+  "expert_calls": 0,
+  "elapsed_seconds": 38.06750672403723,
+  "controller_thread_id": "01a19496-b8d6-74e2-8140-09fc4fe64440",
+  "expert_thread_id": null,
+  "usage": {
+    "input_tokens": 181366,
+    "cached_input_tokens": 129536,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 3010,
+    "reasoning_output_tokens": 450
+  },
+  "observed_usage_partial": {
+    "input_tokens": 181366,
+    "cached_input_tokens": 129536,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 3010,
+    "reasoning_output_tokens": 450
+  },
+  "cost_usd": null,
+  "usage_by_model": {
+    "gpt-6-luna": {
+      "usage": {
+        "input_tokens": 181366,
+        "cached_input_tokens": 129536,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3010,
+        "reasoning_output_tokens": 450
+      },
+      "observed_partial": {
+        "input_tokens": 181366,
+        "cached_input_tokens": 129536,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3010,
+        "reasoning_output_tokens": 450
+      },
+      "complete": {
+        "input_tokens": true,
+        "cached_input_tokens": true,
+        "cache_write_input_tokens": true,
+        "output_tokens": true,
+        "reasoning_output_tokens": true
+      }
+    }
+  },
+  "usage_accounting_issues": [],
+  "cost_status": "not_observed",
+  "tool_failures": 1,
+  "failure_type": null,
+  "summary": "Updated WebFinger to resolve the instance actor using the port-less hostname, while preserving the configured host (including any port) in validation and the subject. User responses retain their profile aliases and links. The application actor now uses the hostname as preferredUsername and meta.config.site_title, defaulting to NodeBB, as its name.",
+  "accepted": null,
+  "grading_status": "not_run",
+  "memory_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "events_sha256": "f4cb801b7b74b3e128065d946d40e2671f754872b55f430e272429b38745cc33",
+  "limitations": [
+    "CLI turns are not internal model-call counts",
+    "Path and context-only read restrictions require independent sandbox enforcement",
+    "No task-quality or dollar-cost result is implied by completion"
+  ]
+}

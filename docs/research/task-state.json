@@ -360,23 +360,17 @@
     "confluence_status": "published_and_read_back",
     "monitor": "PAUSED by explicit user instruction; continue active chat only"
   },
-  "current_router_unit": {
-    "task": "nodebb",
-    "status": "v9 matched pair032 active; Luna first then Sol; own controls031 pass",
-    "pid": 96563,
-    "protocol": "experiments/target90-development-20261031/nodebb-pair-032.json",
-    "owner": "active chat",
-    "monitoring": "PAUSED"
-  },
+  "current_router_unit": null,
   "active_target90": {
     "plan": "experiments/target90-development-20261031/plan.json",
-    "status": "5/6 pairs audited; Sol5/5 router3/5 quality loss; v9 NodeBB032 active with structured public evidence",
+    "status": "All12 original target90 assignments audited: Sol6/6 adaptive router4/6,96.4048% scenario saving; target FAILS quality. Preparing outcome-independent fixed-v9 fresh development before validation.",
     "metric": "at least90% all-role model-rate scenario saving, no observed held-out count loss vs matched Sol; optional stricter statistical criterion question pending",
-    "candidate": "v9 native structured acceptance-evidence decision, same agent action and metering, no automatic escalation",
+    "candidate": "v9 passes one matched case at93.9961% saving, no expert calls; calibration not established",
     "validation": "24 tasks untouched, no held-out registration or inference; adaptive versions reported separately",
     "monitoring": "PAUSED; active research goal in this chat, not scheduled monitor",
     "jira_key": "FAST-99",
     "confluence_url": "https://fastestswarm.atlassian.net/wiki/spaces/FASTEST/pages/19103791",
-    "confluence_status": "published_and_read_back"
+    "confluence_status": "published_and_read_back",
+    "next": "Register disjoint fixed-v9 fresh development, retain24 validation untouched"
   }
 }

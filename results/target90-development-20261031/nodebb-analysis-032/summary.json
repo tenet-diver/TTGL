@@ -1,0 +1,191 @@
+{
+  "status": "audited_development_pair_not_final_target_evidence",
+  "task_id": "instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+  "policy": "v9",
+  "policy_identity": {
+    "src/ttgl/evidence_decision_router.py": "24dc1469f67a9fd2fd30a9cf504278ae4c0f1d4eb9fc0e94a5d38c7c978d9a10",
+    "prompts/controller-v9-common.txt": "edfd6080ced25b159135c2e02f80dd50fc6ecc118525ef882843cf23b1dd7260",
+    "prompts/controller-v9-routing.txt": "953531923d4dde9a2e796cab5f04ee60a1f4c2e8f96d6d22c0b6bc67adc1a503",
+    "src/ttgl/harbor_bridge.py": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065"
+  },
+  "arms": {
+    "optional": {
+      "assigned": 1,
+      "resolved": 1,
+      "initial_grade": 1.0,
+      "cost_scenario_usd": 0.00798336,
+      "cost_per_resolved_usd": 0.00798336,
+      "usage": {
+        "input_tokens": 181366,
+        "cached_input_tokens": 129536,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3010,
+        "reasoning_output_tokens": 450
+      },
+      "usage_by_model": {
+        "gpt-6-luna": {
+          "usage": {
+            "input_tokens": 181366,
+            "cached_input_tokens": 129536,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3010,
+            "reasoning_output_tokens": 450
+          },
+          "observed_partial": {
+            "input_tokens": 181366,
+            "cached_input_tokens": 129536,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3010,
+            "reasoning_output_tokens": 450
+          },
+          "complete": {
+            "input_tokens": true,
+            "cached_input_tokens": true,
+            "cache_write_input_tokens": true,
+            "output_tokens": true,
+            "reasoning_output_tokens": true
+          }
+        }
+      },
+      "expert_requests": 0,
+      "completed_consultations": 0,
+      "pre_handoff_grade": null,
+      "native_requests_by_role": {
+        "controller": 1
+      },
+      "latency_seconds": {
+        "native_model_and_tools": 38.06750672403723,
+        "actor": 52.595591,
+        "generation_start_to_fresh_grade": 129.039001
+      },
+      "final_response": {
+        "action": "complete",
+        "question": "",
+        "context": "",
+        "summary": "Updated WebFinger to resolve the instance actor using the port-less hostname, while preserving the configured host (including any port) in validation and the subject. User responses retain their profile aliases and links. The application actor now uses the hostname as preferredUsername and meta.config.site_title, defaulting to NodeBB, as its name."
+      },
+      "provenance": {
+        "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/nodebb-pair-032.json": "be7fdc6574cf8847a82f4e9b18b59ed61da0cf361b306dfa96d03d63d5320d3f",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/nodebb-pair-032/jobs/first-block-optional/instance_NodeBB__NodeBB-da0211b1__uKFzngT/result.json": "178efa3f2bc69b22840a4918561ba979186aba17303a14e9a7f6590d1f277f1a",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/nodebb-pair-032/jobs/first-block-optional-fresh/instance_NodeBB__NodeBB-da0211b1__s9h9qap/result.json": "7fdc43494a868d5f4df84c1dea777aad77dc9a1c74ee48792cb0379cc10d96a5",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/nodebb-pair-032/jobs/first-block-optional-fresh/instance_NodeBB__NodeBB-da0211b1__s9h9qap/agent/replay.json": "0dee842eb5f29e6f309a2b159b2f73b7a51c3d3151c6e041d3ae7bdc2aef7e2b",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-nodebb-032/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/personal/695da452ffa2421987479065f1b2dfcf/controller/manifest.json": "7b1082e5c34f9b52ac0ee61d9b5e3daea470daea3735273721af8c4a4c6be87d",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-nodebb-032/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/personal/695da452ffa2421987479065f1b2dfcf/controller/events.jsonl": "f4cb801b7b74b3e128065d946d40e2671f754872b55f430e272429b38745cc33",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-nodebb-032/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/personal/695da452ffa2421987479065f1b2dfcf/visible-tool-trace.jsonl": "9b4e29f5edec0a973ca1bb443af950adb6b309e51af7e9a6ce06103f71ebd946",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-nodebb-032/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/personal/695da452ffa2421987479065f1b2dfcf/final.patch": "ffebf168d8a58b5b55d51a00626856a25ac76ef751df55758abe418ccde8e098",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-nodebb-032/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/personal/695da452ffa2421987479065f1b2dfcf/sealed-replay-source/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/seal.json": "9cb2f6895c2d9aec50978d8d4e5323743254b17040754218fd9a3e14521db110"
+      },
+      "structured_decisions": [
+        {
+          "action": "complete",
+          "question": "",
+          "context": "",
+          "summary": "Updated WebFinger to resolve the instance actor using the port-less hostname, while preserving the configured host (including any port) in validation and the subject. User responses retain their profile aliases and links. The application actor now uses the hostname as preferredUsername and meta.config.site_title, defaulting to NodeBB, as its name.",
+          "verification_status": "incomplete",
+          "acceptance_evidence": "ESLint passed for both modified controllers. A direct mocked-controller check passed for missing and wrong-host resources (400), unknown user (404), a user response with both aliases and links, and an instance response using acct:127.0.0.1@127.0.0.1:4567 with the required self link. The same check confirmed application actor name and preferredUsername when site_title is configured. Actual HTTP integration and the default-name case remain unverified.",
+          "attempt_evidence": "Candidate: changed src/controllers/well-known.js and src/controllers/activitypub/actors.js. Check: eslint on both files exited 0. Check: mocked-controller assertions exited 0 for the listed port, validation, user, instance, and actor-field cases. Check: `mocha test/activitypub.js --grep 'WebFinger endpoint' --timeout 30000` exited 1 before tests ran because Redis at 127.0.0.1:6379 refused the connection (0 passing).",
+          "material_gaps": "The repository integration test could not run without Redis, so real HTTP routing and application-level behavior were not verified. The application actor fallback name when site_title is unset was not directly exercised.",
+          "escalation_reason": ""
+        }
+      ]
+    },
+    "large": {
+      "assigned": 1,
+      "resolved": 1,
+      "initial_grade": 1.0,
+      "cost_scenario_usd": 0.1329696,
+      "cost_per_resolved_usd": 0.1329696,
+      "usage": {
+        "input_tokens": 316048,
+        "cached_input_tokens": 281856,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3640,
+        "reasoning_output_tokens": 471
+      },
+      "usage_by_model": {
+        "gpt-6.1-sol": {
+          "usage": {
+            "input_tokens": 316048,
+            "cached_input_tokens": 281856,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3640,
+            "reasoning_output_tokens": 471
+          },
+          "observed_partial": {
+            "input_tokens": 316048,
+            "cached_input_tokens": 281856,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3640,
+            "reasoning_output_tokens": 471
+          },
+          "complete": {
+            "input_tokens": true,
+            "cached_input_tokens": true,
+            "cache_write_input_tokens": true,
+            "output_tokens": true,
+            "reasoning_output_tokens": true
+          }
+        }
+      },
+      "expert_requests": 0,
+      "completed_consultations": 0,
+      "pre_handoff_grade": null,
+      "native_requests_by_role": {
+        "controller": 1
+      },
+      "latency_seconds": {
+        "native_model_and_tools": 105.06116784107871,
+        "actor": 119.258798,
+        "generation_start_to_fresh_grade": 194.320998
+      },
+      "final_response": {
+        "action": "complete",
+        "question": "",
+        "context": "",
+        "summary": "Implemented instance-actor WebFinger responses, hostname-based preferredUsername, site-title naming, and regression tests."
+      },
+      "provenance": {
+        "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/nodebb-pair-032.json": "be7fdc6574cf8847a82f4e9b18b59ed61da0cf361b306dfa96d03d63d5320d3f",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/nodebb-pair-032/jobs/first-block-large/instance_NodeBB__NodeBB-da0211b1__Eu8xnYF/result.json": "5cce44de0b75e617291f48ffc5e9f9ea92aae71efa95807fddb55d26170a6b44",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/nodebb-pair-032/jobs/first-block-large-fresh/instance_NodeBB__NodeBB-da0211b1__DQKFPyS/result.json": "b76f66040bdd257bbb3e94e43ec78a27458ad62e253958da7b3e89250b04c559",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/nodebb-pair-032/jobs/first-block-large-fresh/instance_NodeBB__NodeBB-da0211b1__DQKFPyS/agent/replay.json": "4404ade5244e117b9de6b6888f9e3ace189539e824ebba7f08bfadbd2ea828fe",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-nodebb-032/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/large/e9be8a21700d4b76813d7dab0b5cbecd/controller/manifest.json": "34ee330021adf193e68ec779c3e8a4c3289693100d72f5f630fedf56f4378602",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-nodebb-032/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/large/e9be8a21700d4b76813d7dab0b5cbecd/controller/events.jsonl": "82fe33c65ff349da3a839a2254f0767af213cb045c887667fa877a0765c2667c",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-nodebb-032/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/large/e9be8a21700d4b76813d7dab0b5cbecd/visible-tool-trace.jsonl": "f6f38c0fff919e81455737e543ab89803a3d1d296a4027dcfab416437f8e3c06",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-nodebb-032/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/large/e9be8a21700d4b76813d7dab0b5cbecd/final.patch": "bdd229d3c0455c628101acf59f61b2132a2ac067ac6890a2d6cc80eb63e42084",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-nodebb-032/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/large/e9be8a21700d4b76813d7dab0b5cbecd/sealed-replay-source/instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/seal.json": "c12d1e3d073e6c1858a729ad0e07e9047c6ec625b1d37bc9480082aa896b0cc6"
+      },
+      "structured_decisions": [
+        {
+          "action": "complete",
+          "question": "",
+          "context": "",
+          "summary": "Implemented instance-actor WebFinger responses, hostname-based preferredUsername, site-title naming, and regression tests.",
+          "verification_status": "supported",
+          "acceptance_evidence": "12 HTTP integration tests passed, covering instance discovery with a port-bearing host, exact subject/aliases/self link, user responses, missing-user 404, malformed-resource 400, and actor hostname/title/default naming. ESLint and git diff --check passed.",
+          "attempt_evidence": "New regression tests failed against original code and passed after repair. Initial integration setup required starting local Redis; it was stopped and temporary files removed afterward.",
+          "material_gaps": "The broader ActivityPub suite stops at a pre-existing full-URL resolveLocalUid failure, reproduced against original code. All targeted endpoint tests pass.",
+          "escalation_reason": ""
+        }
+      ]
+    }
+  },
+  "comparison": {
+    "status": "single_development_pair_not_final_target_evidence",
+    "task_id": "instance_NodeBB__NodeBB-da0211b1a001d45d73b4c84c6417a4f1b0312575-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+    "sol_resolved": true,
+    "router_resolved": true,
+    "resolved_delta": 0,
+    "sol_success_lost": false,
+    "router_extra_success": false,
+    "model_cost_ratio": 0.06003898635477583,
+    "scenario_saving": 0.9399610136452242,
+    "actual_cash_saving": null,
+    "population_noninferiority_claim": false,
+    "interpretation": "Keep all registered development pairs; freeze before held-out evaluation"
+  },
+  "actual_cash_saving": null,
+  "subscription_quota_saving": null,
+  "validation_tasks_used": 0,
+  "uncertainty": "One selected public development task, not population equivalence, transfer or confirmatory90% target proof"
+}
