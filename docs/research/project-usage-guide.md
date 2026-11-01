@@ -330,3 +330,15 @@ development cases, then freeze before a separate held-out registration. Do not
 stop on a favorable subset or tune the same validation panel repeatedly. Review
 visible actions, check limitations and final claims, not private reasoning.
 Scheduled monitoring stays paused; active-chat execution owns current units.
+
+
+The third matched v7 case fails after acknowledged incomplete verification and
+zero Sol requests: cost reduction96.2821% over three cases coexists with quality
+loss (router2/3, Sol3/3). Reporting uncertainty is not resolving an acceptance
+gap. General v8 therefore considers focused review when material uncertainty
+remains after useful bounded effort, with explicit early exceptions for blocked
+feedback, adequate actual source/context, and verified integration. It does not
+force expert calls on already supported work. Never insert a case's hidden
+assertion or expected fix into this policy, rerun that failed task as proof, or
+claim a causal improvement from different task blocks. Frozen held-out testing
+remains separate. Retain failed-task cost, and leave cost/resolved null when0.

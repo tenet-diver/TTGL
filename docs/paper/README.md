@@ -1,9 +1,10 @@
 # We have to combine — A conversation is all you need
 
 Current Markdown/HTML paper text includes the Pro router development series,
-the transport-path correction, and two matched target90 development pairs.
-The two pairs resolve2/2 with each arm at93.8785% lower router model-rate scenario
-cost; four development pairs remain and the held-out target is not established.
+the transport-path correction, and three matched target90 development pairs.
+V7 resolves2/3 versus Sol3/3 at96.2821% lower router model-rate scenario cost:
+quality drops, so the target fails. General v8 development is separately versioned;
+the24 validation tasks remain untouched.
 PDF and Word files remain the older pre-episode working previews;
 their recorded visual review applies to those unchanged binaries. Use current
 text and the episode audit for the new result. The broader study remains ongoing.

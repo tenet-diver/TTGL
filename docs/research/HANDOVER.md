@@ -2128,3 +2128,19 @@ only after controls pass and v8 source/software/activation commit, register_pair
 prompts/claims and binds8 activation/amendment/software; defaults7 for history.
 Setup008 amended transport/metering reuse only0 newcalls. MonitoringPAUSED.
 Next Qutebrowser029/030 then NodeBB031/032, same original reservations.
+
+
+## First v8 Openlibrary028 ACTIVE, source freeze
+
+Own controls027 pass0/1, first v8 pair028 PID62079 launched Luna thenSol.
+Registered v8 source/prompts/test/activation/amendment/software hashes,62-test
+receipt/raw log rechecked before launch, amended setup008 reuse0 newcalls.
+Protocol experiments/target90-development-20261031/openlibrary-pair-028.json,
+log artifacts/target90-openlibrary-028.log. DO NOT edit bound sources/metadata
+while both arms, pre/final replays remain active. Own new v8 claims distinct.
+Paper/docs/state files are not in pair source freeze, safe for evidence updates.
+FAST-99 and Confluence19103791 now prominently record v7 QUALITY LOSS:3/3vs2/3,
+96.2821% scenario saving does NOT meet no-quality-drop target. Mixed v7/v8
+development must remain separate, not causal improvement/final-policy evidence.
+Next only after full028 audit: Qutebrowser controls029/pair030(version8).
+24 validation untouched, monitoringPAUSED. Preserve failed Protonmail records.

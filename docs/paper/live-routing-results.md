@@ -367,3 +367,35 @@ no Luna or setup calls. The original stop remains archived. Eleven focused
 recovery/pair-audit/progress checks pass. Generation-start-to-fresh-grade latency includes the interruption
 and is descriptive only; neither pair supports a controlled speed comparison.
 See the [Navidrome audit](../../results/target90-development-20261031/navidrome-analysis-024/summary.json).
+
+
+The third v7 pair, Protonmail026, exposes a quality loss: Sol passes both
+initial/fresh grading while Luna fails both, with no expert request. Model-rate
+scenarios areUSD0.4970548 andUSD0.01136196 respectively; the failed router's
+cost per resolved task is null. Across three pairs, Sol3/3 versus router2/3
+accompanies96.2821% aggregate saving. The cost target is met descriptively,
+but the no-observed-quality-loss target is not. The third failure remains in
+all assigned-task costs and quality denominators.
+
+Luna's final message honestly acknowledges incomplete verification: type/lint
+checks terminate, a script entry point is unavailable and no focused runtime
+check runs. It then finishes without consulting Sol. This is acknowledged
+uncertainty followed by completion without escalation, not a claim that checks
+passed, a failed consultation or failed integration. Matched Sol success does
+not establish the counterfactual effect of advice. Offline evaluator inspection
+finds a rendered-interface ambiguity; raw assertions stay private and no
+task-specific fix or example enters prompts. A parser folds test names, so
+raw Jest reports one failed/two passed rather than two independent functional
+failures inferred from the missing-name summary. Official grade0 is preserved.
+
+A separately versioned general v8 candidate asks the acting router to distinguish
+honest uncertainty disclosure from resolving material acceptance gaps, retain
+bounded independent repair attempts and seek focused source/check-design review
+when useful. Blocked feedback after a credible candidate can justify explicit
+early help; missing infrastructure alone does not. Evidence-sufficient work
+still finishes without compulsory review.62 focused software checks pass before
+any v8 model call; this is not evidence of improved routing behavior. Remaining
+original development tasks keep their order/cap, with common v8 guidance matched
+to Sol. Adaptive task blocks are reported separately, not as causal prompt
+improvement or fixed-policy target proof.24 reserved validation tasks remain
+untouched until selection and a separate frozen registration.

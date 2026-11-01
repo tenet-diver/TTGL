@@ -362,15 +362,15 @@
   },
   "current_router_unit": {
     "task": "openlibrary",
-    "status": "model-free controls027 active; v8 separately registered/tested, zero v8 inference",
-    "pid": 57098,
-    "protocol": "experiments/target90-development-20261031/openlibrary-control-027.json",
+    "status": "v8 matched pair028 active; Luna first then Sol; own controls027 pass",
+    "pid": 62079,
+    "protocol": "experiments/target90-development-20261031/openlibrary-pair-028.json",
     "owner": "active chat",
     "monitoring": "PAUSED"
   },
   "active_target90": {
     "plan": "experiments/target90-development-20261031/plan.json",
-    "status": "3/6 development pairs audited: Sol3/3 router2/3,96.2821% scenario saving but QUALITY LOSS; v8 prepared for remaining3 tasks",
+    "status": "3/6 pairs audited; v7 Sol3/3 router2/3 QUALITY LOSS despite96.2821% saving; first v8 Openlibrary028 active",
     "metric": "at least90% all-role model-rate scenario saving, no observed held-out count loss vs matched Sol; optional stricter statistical criterion question pending",
     "candidate": "v8 material-gap completion review after bounded attempts; current software-only candidate",
     "validation": "24 tasks untouched, no held-out registration or inference; adaptive versions reported separately",
