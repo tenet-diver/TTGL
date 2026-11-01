@@ -362,14 +362,15 @@
   },
   "current_router_unit": {
     "task": "nodebb",
-    "status": "model-free controls031 passed; v9 registered/tested zero model calls, pair032 not started",
-    "protocol": "experiments/target90-development-20261031/nodebb-control-031.json",
+    "status": "v9 matched pair032 active; Luna first then Sol; own controls031 pass",
+    "pid": 96563,
+    "protocol": "experiments/target90-development-20261031/nodebb-pair-032.json",
     "owner": "active chat",
     "monitoring": "PAUSED"
   },
   "active_target90": {
     "plan": "experiments/target90-development-20261031/plan.json",
-    "status": "5/6 adaptive pairs audited: Sol5/5 router3/5; v8 second pair fails, target NOT met; v9 software-only candidate",
+    "status": "5/6 pairs audited; Sol5/5 router3/5 quality loss; v9 NodeBB032 active with structured public evidence",
     "metric": "at least90% all-role model-rate scenario saving, no observed held-out count loss vs matched Sol; optional stricter statistical criterion question pending",
     "candidate": "v9 native structured acceptance-evidence decision, same agent action and metering, no automatic escalation",
     "validation": "24 tasks untouched, no held-out registration or inference; adaptive versions reported separately",

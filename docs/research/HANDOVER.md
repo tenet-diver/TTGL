@@ -2214,3 +2214,17 @@ recheck receipt, register_pair('nodebb',5,32,version='v9'), Luna first. Cap12/
 original tasks unchanged. One9 task cannot establish calibration/improvement;
 additional fresh development may be needed before candidate selection, keep
 validation24 untouched. MonitoringPAUSED; active chat owns goal, not achieved.
+
+
+## Final original v9 NodeBB032 ACTIVE
+
+Pair032 PID96563 registered source/software9 receipt rechecked, own controls031
+pass0/1, Luna then Sol, setup008 reused0newcalls. Freeze all bound9/source/prompt/
+software/activation/generation dependencies until both arms/pre/final replays
+complete. Protocol nodebb-pair-032.json, log artifacts/target90-nodebb-032.log.
+Early visible tool evidence: focused mocked controller behavior checks pass.
+No task-quality/cost conclusion yet. Model must still choose its own action;
+formatter records full evidence, projects unchanged action, no automaticSol.
+Continue after full audit; don't treat one9 case as proven calibration or
+causal improvement over7/8 different blocks.24 validation untouched.
+Current Sol5/5 vs adaptive router3/5 remains targetNOTmet. MonitoringPAUSED.
