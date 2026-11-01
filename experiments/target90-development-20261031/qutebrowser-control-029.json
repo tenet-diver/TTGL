@@ -1,0 +1,77 @@
+{
+  "status": "registered_new_development_task_model_free_controls",
+  "agents": [
+    "nop",
+    "oracle"
+  ],
+  "model_calls_authorized": 0,
+  "scored_assignments_authorized": 0,
+  "prior_native_audit": "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/analysis-002/independent-audit.json",
+  "image_tag": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171",
+  "image_pinned": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171@sha256:4bc0729d57b60c081661c003ec1a58c3051313fb191dfd3c317c1199bcbf8e58",
+  "registry_compressed_layer_bytes": 750108853,
+  "incoming_image_allowance_bytes": 6442450944,
+  "incoming_image_allowance_kind": "conservative_staging_budget_not_known_uncompressed_image_size",
+  "disk_guard_bytes": 12884901888,
+  "max_resource_wait_seconds": 7200,
+  "environment_import_path": "ttgl.harbor_docker_network:DetachedNetworkDocker",
+  "docker_config": "/Users/rustameynaliyev/Developer/TTGL/artifacts/harbor-docker-public-config-001",
+  "harbor": "/Users/rustameynaliyev/Developer/TTGL/artifacts/harbor-runtime-001/bin/harbor",
+  "task_directory": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/v2/tasks",
+  "source_sha256": {
+    "/Users/rustameynaliyev/Developer/TTGL/scripts/continue_pro_controls.py": "978ec215d7cf8fd6768fc0d9f97b1d41153cd82707a1eb77385e0b894cabaf4a",
+    "/Users/rustameynaliyev/Developer/TTGL/src/ttgl/harbor_docker_network.py": "33913af0bd8542537b214ba2e7d3655f06172b8a6378672101a61064ca955f21",
+    "/Users/rustameynaliyev/Developer/TTGL/requirements-harbor-macos-intel.lock": "b006cf6da6e345b5f5eff08116028c13ca0cff85245c619ec2ce64667a1646d9",
+    "/Users/rustameynaliyev/Developer/TTGL/results/swe-pro-prompt-001/harbor-network-fixture-004.json": "5454203cc45354aef14c97d879779325e2d3ce7a823c58f2dfd0dbd08d633e40",
+    "/Users/rustameynaliyev/Developer/TTGL/results/delegation-heldout-001/analysis-002/independent-audit.json": "d9f52b50dcbb528b7fccad2bb5f28f2b31aa10f1a27097b8d3f25202023ea914",
+    "/Users/rustameynaliyev/Developer/TTGL/artifacts/harbor-docker-public-config-001/config.json": "042bab2aad8ab69bf7226ceb4a443f004311772de877d384db420c4da223f9bd",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/v2/tasks/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/environment/Dockerfile": "f2fdd0df135e353a7b2774b94b131e74e7b055b1e9a4686cf7c169f087d431e4",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/v2/tasks/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/instruction.md": "2b6404790b98a54e4f7dfa2e0ac0c4e368ef5aff8d4880ba7794716fa5952887",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/v2/tasks/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/solution/gold_patch.diff": "cdda522fd63410f552d72e368afc5a991482f5946939d0c259bcab71a82c031f",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/v2/tasks/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/v2/tasks/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/task.toml": "787449a53fa8670e567a857beda8ede1cd6f847828ef4d755ea60da77debd23b",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/v2/tasks/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/tests/config.json": "fbc9d37adda3ebdec92166800e23821651dc87e49d7a00c51a0f0354ffc9533f",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/v2/tasks/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/tests/parser.py": "eedbb04d9f71f140c4af38043d3bddb0fc6374799d2b84c95c5b8c8214efd4d6",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/v2/tasks/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/tests/run_script.sh": "3d56cf4e07b5f0fe2f78edc6c759fa2bcb9d2422af64d51b91dc0d676c8f1505",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/v2/tasks/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/v2/tasks/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/tests/test_patch.patch": "8db9949a1d9a0ffd66c515b6c21e9acb1ed1fe3aaad1aca6925885d6d15d933a",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/v2/tooling/patch_replay.py": "5c8b344de37164e9723f1724c2573013957fb644c3913a64c12c1718c737d876",
+    "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/preparation.json": "23d792418bb750fa9d5dbeefba01cf00b5939c05f883ed1a7a7fe029ce464290",
+    "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/plan.json": "caf311488525d099061f5cba25d62f76a023337344e58d419541a449e9904733",
+    "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/qutebrowser-preparation/image-binding.json": "ba62793fd2ff96548a29189cddc749310703e4adb7bfaee56dd0c05fe9ad1d80"
+  },
+  "retries": 0,
+  "supersedes_failed_setup": null,
+  "failure_policy": "Preserve unique attempts and stop; no model inference in this supervisor; no automatic scored pipeline",
+  "registered_at": "2026-11-01T00:23:25.851119+00:00",
+  "continuation_reconciliation": [
+    {
+      "directory": "/Users/rustameynaliyev/Developer/TTGL/results/swe-pro-prompt-001/environment-controls-003",
+      "stopped": {
+        "status": "stopped_no_model_calls_authorized",
+        "error": "RuntimeError: Resource wait expired before image preparation; no model call"
+      },
+      "invocations": [],
+      "jobs_present": false
+    },
+    {
+      "directory": "/Users/rustameynaliyev/Developer/TTGL/results/swe-pro-prompt-001/first-block-004",
+      "stopped": {
+        "status": "stopped_preserve_all_attempts_do_not_retry_blindly",
+        "error_type": "ProcessLookupError",
+        "message": "[Errno 3] No such process"
+      },
+      "invocations": [],
+      "jobs_present": false
+    }
+  ],
+  "prior_pull_failure": {
+    "status": "stopped_no_model_calls_authorized",
+    "error": "CalledProcessError: Command '['docker', 'pull', 'ghcr.io/scaleapi/swe-bench_pro-v2:instance_NodeBB__NodeBB-97c8569a798075c50e93e585ac741ab55cb7c28b-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e@sha256:0c1bda3771a33dc39070bf3b130b7217a352a144a7e2a9e1360d88113840ed1b']' returned non-zero exit status 1."
+  },
+  "prior_control_execution": false,
+  "recovery_evidence": "control006 pulled pinned image, Harbor daemon preflight failed before jobs; current default/task-config docker info both pass in under 10 seconds",
+  "architecture": "amd64",
+  "os": "linux",
+  "task_id": "instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171"
+}

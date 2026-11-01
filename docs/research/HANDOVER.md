@@ -2144,3 +2144,23 @@ FAST-99 and Confluence19103791 now prominently record v7 QUALITY LOSS:3/3vs2/3,
 development must remain separate, not causal improvement/final-policy evidence.
 Next only after full028 audit: Qutebrowser controls029/pair030(version8).
 24 validation untouched, monitoringPAUSED. Preserve failed Protonmail records.
+
+
+## V8 Openlibrary028 audited; Qutebrowser029 controls ACTIVE
+
+Both initial/fresh grades1,0 expert requests. Luna focused vendor suite33pass
+and separate runtime edge/cleanup checks pass; initial ad hoc fixture AttributeError
+is corrected using missing product fields and rechecked. Final accurately records
+the correction. Sol scenarioUSD0.1462204 vs routerUSD0.00731174,94.9995% saving
+on one v8 selected task only; no consultation/rescue evidence or causal prompt
+improvement. V7 quality loss remains Sol3/3 vs router2/3. Four of six adaptive
+pairs completed; mixed cost saving96.0825% is not fixed-policy target proof.
+Analysis openlibrary-analysis-028 independently audits8 mode/common identity,
+usage/deltas/boundary/sealed replays. No duplicate or new setup calls.
+
+Qutebrowser original index4 controls029 PID68491 active. Pair030 unregistered;
+only after own controls pass, register_pair('qutebrowser',4,30,version='v8'),
+Sol first. Keep v8 unchanged. Then original NodeBB031/032. No held-out access.
+Completed unused Protonmail image reclaimed after full artifact-manifest check;
+all raw/failed/sealed grading evidence preserved, receipts target90 results.
+MonitoringPAUSED; active chat owns continuation toward target, not reached.

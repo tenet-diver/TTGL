@@ -1,0 +1,165 @@
+{
+  "status": "audited_development_pair_not_final_target_evidence",
+  "task_id": "instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+  "policy": "v8",
+  "policy_identity": {
+    "src/ttgl/completion_review_router.py": "b5b1ff02a4667d2e6c858980634beec646ef6e945ee4b767d89c79e9fc283653",
+    "prompts/controller-v8-common.txt": "6d73ed9c97f8358ac1bf274698fdfd1f302fc476dd1b167b1434e6391ed20cc6",
+    "prompts/controller-v8-routing.txt": "5222475999e6d912acb84413f0005d678e5b8018475bd76773722cdb676b61ea",
+    "src/ttgl/harbor_bridge.py": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065"
+  },
+  "arms": {
+    "optional": {
+      "assigned": 1,
+      "resolved": 1,
+      "initial_grade": 1.0,
+      "cost_scenario_usd": 0.00731174,
+      "cost_per_resolved_usd": 0.00731174,
+      "usage": {
+        "input_tokens": 307881,
+        "cached_input_tokens": 274304,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2422,
+        "reasoning_output_tokens": 169
+      },
+      "usage_by_model": {
+        "gpt-6-luna": {
+          "usage": {
+            "input_tokens": 307881,
+            "cached_input_tokens": 274304,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2422,
+            "reasoning_output_tokens": 169
+          },
+          "observed_partial": {
+            "input_tokens": 307881,
+            "cached_input_tokens": 274304,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2422,
+            "reasoning_output_tokens": 169
+          },
+          "complete": {
+            "input_tokens": true,
+            "cached_input_tokens": true,
+            "cache_write_input_tokens": true,
+            "output_tokens": true,
+            "reasoning_output_tokens": true
+          }
+        }
+      },
+      "expert_requests": 0,
+      "completed_consultations": 0,
+      "pre_handoff_grade": null,
+      "native_requests_by_role": {
+        "controller": 1
+      },
+      "latency_seconds": {
+        "native_model_and_tools": 38.66999498102814,
+        "actor": 53.793371,
+        "generation_start_to_fresh_grade": 118.649238
+      },
+      "final_response": {
+        "action": "complete",
+        "question": "",
+        "context": "",
+        "summary": "Implemented Amazon language serialization in `openlibrary/core/vendors.py`, using the SDK\u2019s `content_info.languages.display_values`, preserving reported names without duplicates, excluding `Original Language` entries, and omitting `languages` when none remain. Added `languages` to the Amazon metadata cleanup allowlist.\n\nVerified: `python -m pytest openlibrary/tests/core/test_vendors.py -q` passed (33 tests); a focused runtime check passed for duplicate names, original-language exclusion, empty results, and cleanup retention; `git diff --check` passed. An initial ad hoc check used an incomplete mock and raised an attribute error; the corrected check with the required product fields passed."
+      },
+      "provenance": {
+        "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/openlibrary-pair-028.json": "937236538815bc965c69b7e1155258b4b13f0ffad33a73f7862fc66e9d1b320f",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/openlibrary-pair-028/jobs/first-block-optional/instance_internetarchive__openli__wBcjvBN/result.json": "c18f6d26d2272b6abb7d51153a58955f6f86fec9ceb68c5885f66b5583ba92d8",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/openlibrary-pair-028/jobs/first-block-optional-fresh/instance_internetarchive__openli__hgozQ7t/result.json": "73ce13626431f655d2a25be90aceb73f69a62dfc977aca12b013955b8b141cea",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/openlibrary-pair-028/jobs/first-block-optional-fresh/instance_internetarchive__openli__hgozQ7t/agent/replay.json": "7cae6a10e3bb5967777037d5be50f362d8b3c95ee9ca8f88628752e6cad5271a",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-openlibrary-028/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/personal/3d527f3ed4bb4f798781f76f5404dd0a/controller/manifest.json": "7f04d0ceb3c8a2e86b2c4f19ad380ee9cc2adcb669429dc002ad520e0d715764",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-openlibrary-028/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/personal/3d527f3ed4bb4f798781f76f5404dd0a/controller/events.jsonl": "b8cb2feeed00d99581347ca8b5910ab284d05af00fd2fd8c8940aa91ce79669b",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-openlibrary-028/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/personal/3d527f3ed4bb4f798781f76f5404dd0a/visible-tool-trace.jsonl": "131974903940c24d1f1b0c86a61d606c8e22ce16748945cfa9ccc19374b4dc76",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-openlibrary-028/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/personal/3d527f3ed4bb4f798781f76f5404dd0a/final.patch": "9d5d92e877decb5daf53c5c0d404f323550c5cf6b00e08014a83603053156a2f",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-openlibrary-028/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/personal/3d527f3ed4bb4f798781f76f5404dd0a/sealed-replay-source/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/seal.json": "9a958ba4c32832713aefdf04b45589690be2b08f68f3b285671db454e1b63a88"
+      }
+    },
+    "large": {
+      "assigned": 1,
+      "resolved": 1,
+      "initial_grade": 1.0,
+      "cost_scenario_usd": 0.1462204,
+      "cost_per_resolved_usd": 0.1462204,
+      "usage": {
+        "input_tokens": 286861,
+        "cached_input_tokens": 238464,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2558,
+        "reasoning_output_tokens": 512
+      },
+      "usage_by_model": {
+        "gpt-6.1-sol": {
+          "usage": {
+            "input_tokens": 286861,
+            "cached_input_tokens": 238464,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2558,
+            "reasoning_output_tokens": 512
+          },
+          "observed_partial": {
+            "input_tokens": 286861,
+            "cached_input_tokens": 238464,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2558,
+            "reasoning_output_tokens": 512
+          },
+          "complete": {
+            "input_tokens": true,
+            "cached_input_tokens": true,
+            "cache_write_input_tokens": true,
+            "output_tokens": true,
+            "reasoning_output_tokens": true
+          }
+        }
+      },
+      "expert_requests": 0,
+      "completed_consultations": 0,
+      "pre_handoff_grade": null,
+      "native_requests_by_role": {
+        "controller": 1
+      },
+      "latency_seconds": {
+        "native_model_and_tools": 64.19144899304956,
+        "actor": 79.037918,
+        "generation_start_to_fresh_grade": 143.82877
+      },
+      "final_response": {
+        "action": "complete",
+        "question": "",
+        "context": "",
+        "summary": "Implemented Amazon language retention and cleanup preservation. Names remain unchanged and deduplicated; Original Language entries are excluded; empty results omit the languages key. Regression checks failed before the repair and passed afterward. All 39 vendor tests, Ruff, and git diff --check passed. Full repository suite was not run."
+      },
+      "provenance": {
+        "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/openlibrary-pair-028.json": "937236538815bc965c69b7e1155258b4b13f0ffad33a73f7862fc66e9d1b320f",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/openlibrary-pair-028/jobs/first-block-large/instance_internetarchive__openli__JktD6Ch/result.json": "a131119d5ad88b68fab221e03a0befa1fc88e2e13076fe3c1312e11940b07c0b",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/openlibrary-pair-028/jobs/first-block-large-fresh/instance_internetarchive__openli__GSi7qZ3/result.json": "102a1386bc54a39281a01f392b05f6c04b7a27400b910d3d49378b13dde384a9",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/openlibrary-pair-028/jobs/first-block-large-fresh/instance_internetarchive__openli__GSi7qZ3/agent/replay.json": "836ea52ea2adafc2f421b2b338012fbf280a269a373fe0ab03d96727da3c22b4",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-openlibrary-028/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/large/d33b748159994bb4b025e24f7177210f/controller/manifest.json": "02809f9be06328e730df7a23711b0f33ef4634d346311645adea53300f92c7b1",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-openlibrary-028/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/large/d33b748159994bb4b025e24f7177210f/controller/events.jsonl": "de731de5678403b7ffcbcb909f5830fc56ea4c1822d7a05148523d932e3a004f",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-openlibrary-028/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/large/d33b748159994bb4b025e24f7177210f/visible-tool-trace.jsonl": "778e795bd3bf7da18f718aa9b09592ebc23cc43e4569347f8a7c44586bb564c6",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-openlibrary-028/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/large/d33b748159994bb4b025e24f7177210f/final.patch": "48a306aec716f82f534b4d35820562b6eb357eb4f1a847be82845f3b24e151f6",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-openlibrary-028/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/large/d33b748159994bb4b025e24f7177210f/sealed-replay-source/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/seal.json": "9ae64b54887ebc8bb02af4458fee88dafc39fc5aacd5dc73c782e99cf2853bad"
+      }
+    }
+  },
+  "comparison": {
+    "status": "single_development_pair_not_final_target_evidence",
+    "task_id": "instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+    "sol_resolved": true,
+    "router_resolved": true,
+    "resolved_delta": 0,
+    "sol_success_lost": false,
+    "router_extra_success": false,
+    "model_cost_ratio": 0.05000492407352189,
+    "scenario_saving": 0.9499950759264781,
+    "actual_cash_saving": null,
+    "population_noninferiority_claim": false,
+    "interpretation": "Keep all registered development pairs; freeze before held-out evaluation"
+  },
+  "actual_cash_saving": null,
+  "subscription_quota_saving": null,
+  "validation_tasks_used": 0,
+  "uncertainty": "One selected public development task, not population equivalence, transfer or confirmatory90% target proof"
+}

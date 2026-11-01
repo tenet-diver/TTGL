@@ -8,7 +8,8 @@ accounted for; no favorable subset stopping. The24 validation tasks are untouche
 |---|---:|---:|---:|---:|---:|---:|
 | Flipt022 |1|1|0.1233776|0.00947576|92.3197%|0|
 | Navidrome024 |1|1|0.172766|0.0086526|94.9917%|0|
-| Protonmail026 |1|0|0.4970548|0.01136196|97.7141%|0|
+| Protonmail026 (v7) |1|0|0.4970548|0.01136196|97.7141%|0|
+| Openlibrary028 (v8) |1|1|0.1462204|0.00731174|94.9995%|0|
 
 Each arm passed native grading and fresh sealed-patch replay. All-role native
 usage and cumulative thread deltas were independently validated. The costs are
@@ -19,7 +20,7 @@ Population equivalence and final target success are not claimed.
 The router independently completed a candidate and recovered from checks exiting
 137 with a serial package check. It disclosed those limits in its completion.
 There was no consultation, so this case does not demonstrate delegation benefit
-or failure rescue. Retain general v7 unchanged. Later pairs remain required.
+or failure rescue. V7 was retained after the first case; later pairs remained required.
 
 Full provenance, seals, grades, metering and visible tool exports are in
 [Flipt pair audit](flipt-analysis-022/summary.json). No private reasoning export.
@@ -43,3 +44,9 @@ context-only advice would rescue it. Keep all costs, including the failed task;
 its router cost per resolved task is null. V8 is a software-tested general
 material-gap review candidate for remaining original tasks, separately versioned.
 No rerun of this task, no hidden assertion/fix in prompts,24 validation untouched.
+
+First v8 pair passes both arms, with no expert requests. Vendor suite33pass and
+focused runtime checks support Luna completion; a faulty ad hoc fixture was
+corrected and rechecked. One selected task does not establish generality or
+improvement over v7 on a different block. Keep version observations separate.
+Two original development tasks remain; no held-out inference or final target proof.

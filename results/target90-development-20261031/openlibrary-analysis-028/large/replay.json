@@ -1,0 +1,7 @@
+{
+ "task": "instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+ "patch": "/Users/rustameynaliyev/Developer/ttgl-target90-openlibrary-028/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/large/d33b748159994bb4b025e24f7177210f/sealed-replay-source/instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/agent/model.patch",
+ "apply_rc": 0,
+ "apply_out": "Checking patch openlibrary/core/vendors.py...\nChecking patch openlibrary/tests/core/test_vendors.py...\nApplied patch openlibrary/core/vendors.py cleanly.\nApplied patch openlibrary/tests/core/test_vendors.py cleanly.\n",
+ "post_apply_diffstat": " openlibrary/core/vendors.py            | 14 +++++++-\n openlibrary/tests/core/test_vendors.py | 62 +++++++++++++++++++++++++++++++++-\n 2 files changed, 74 insertions(+), 2 deletions(-)\n---\n2\n"
+}

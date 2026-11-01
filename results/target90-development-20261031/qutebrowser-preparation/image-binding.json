@@ -1,0 +1,7 @@
+{
+  "image_tag": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171",
+  "image_pinned": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171@sha256:4bc0729d57b60c081661c003ec1a58c3051313fb191dfd3c317c1199bcbf8e58",
+  "architecture": "amd64",
+  "os": "linux",
+  "registry_compressed_layer_bytes": 750108853
+}

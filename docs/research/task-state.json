@@ -361,16 +361,16 @@
     "monitor": "PAUSED by explicit user instruction; continue active chat only"
   },
   "current_router_unit": {
-    "task": "openlibrary",
-    "status": "v8 matched pair028 active; Luna first then Sol; own controls027 pass",
-    "pid": 62079,
-    "protocol": "experiments/target90-development-20261031/openlibrary-pair-028.json",
+    "task": "qutebrowser",
+    "status": "model-free controls029 active; Openlibrary028 v8 pair audited both pass,0 expert requests",
+    "pid": 68491,
+    "protocol": "experiments/target90-development-20261031/qutebrowser-control-029.json",
     "owner": "active chat",
     "monitoring": "PAUSED"
   },
   "active_target90": {
     "plan": "experiments/target90-development-20261031/plan.json",
-    "status": "3/6 pairs audited; v7 Sol3/3 router2/3 QUALITY LOSS despite96.2821% saving; first v8 Openlibrary028 active",
+    "status": "4/6 adaptive pairs audited: v7 Sol3/3 router2/3 quality loss; v8 Sol1/1 router1/1 at94.9995% scenario saving; Qutebrowser controls029 active",
     "metric": "at least90% all-role model-rate scenario saving, no observed held-out count loss vs matched Sol; optional stricter statistical criterion question pending",
     "candidate": "v8 material-gap completion review after bounded attempts; current software-only candidate",
     "validation": "24 tasks untouched, no held-out registration or inference; adaptive versions reported separately",
