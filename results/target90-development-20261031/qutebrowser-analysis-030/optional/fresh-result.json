@@ -1,0 +1,123 @@
+{
+    "id": "fbeab69e-e823-4586-948b-12730513780a",
+    "task_name": "swebench-pro/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171",
+    "trial_name": "instance_qutebrowser__qutebrowse__ysGbzmG",
+    "trial_uri": "file:///Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/qutebrowser-pair-030/jobs/first-block-optional-fresh/instance_qutebrowser__qutebrowse__ysGbzmG",
+    "task_id": {
+        "path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/v2/tasks/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171"
+    },
+    "source": "tasks",
+    "task_checksum": "6a0b418f337d1b6861c3837c2926b827b4e46f2a69853ffe75ddff25e3838dee",
+    "config": {
+        "task": {
+            "path": "/Users/rustameynaliyev/Developer/ttgl-pro-development-prepared-20261027/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/v2/tasks/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "tasks"
+        },
+        "trial_name": "instance_qutebrowser__qutebrowse__ysGbzmG",
+        "trials_dir": "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/qutebrowser-pair-030/jobs/first-block-optional-fresh",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "patch_replay:PatchReplayAgent",
+            "import_path": null,
+            "model_name": null,
+            "base_url": null,
+            "model_api_key_name": null,
+            "model_api_format": null,
+            "skip_model_parsing": false,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "source_job": "/Users/rustameynaliyev/Developer/ttgl-target90-qutebrowser-030/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/personal/992f35b8bb744b869fe29e48c07cd6ce/sealed-replay-source",
+                "patch_name": "model.patch"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": null,
+            "import_path": "ttgl.harbor_docker_network:DetachedNetworkDocker",
+            "force_build": false,
+            "delete": true,
+            "stream": false,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "9cadb977-e84f-4d70-a1e8-70094a72d72e",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "patch-replay-agent",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-11-01T00:39:14.804345Z",
+    "finished_at": "2026-11-01T00:40:27.793368Z",
+    "environment_setup": {
+        "started_at": "2026-11-01T00:39:15.382321Z",
+        "finished_at": "2026-11-01T00:39:19.323929Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-11-01T00:39:19.324321Z",
+        "finished_at": "2026-11-01T00:39:19.324591Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-11-01T00:39:19.325176Z",
+        "finished_at": "2026-11-01T00:39:23.324939Z"
+    },
+    "verifier": {
+        "started_at": "2026-11-01T00:39:25.342188Z",
+        "finished_at": "2026-11-01T00:40:16.580649Z"
+    },
+    "step_results": null
+}

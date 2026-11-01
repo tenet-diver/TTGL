@@ -1,0 +1,20 @@
+{
+  "status": "registered_between_completed_units_before_final_original_pair",
+  "registered_at": "2026-11-01T00:50:03.914273+00:00",
+  "parent_plan": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/plan.json",
+  "parent_sha256": "caf311488525d099061f5cba25d62f76a023337344e58d419541a449e9904733",
+  "completed_indices": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "remaining_v9_indices": [
+    5
+  ],
+  "task_order_or_cap_changed": false,
+  "total_scored_assignment_cap": 12,
+  "no_repeats_replacements_or_validation": true,
+  "analysis": "Retain failed v7/v8 cases and costs. Report versions separately; adaptive aggregate cannot establish fixed-policy benefit. One v9 task cannot establish calibration or robust frontier; additional fresh development may be needed before held-out candidate selection."
+}

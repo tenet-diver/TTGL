@@ -2180,3 +2180,37 @@ no migration/pricing/auth changes. Current family guidance discusses Astra for
 delegation; do not present that as measured Luna behavior. Bounded verification
 and representative eval guidance consistent with existing study, not proof of
 v8 efficacy. MonitoringPAUSED; current active chat owns continuation.
+
+
+## Qutebrowser030 confirmed v8 FAILURE; v9 registered, NodeBB controls031 pass
+
+030 both grades Sol1/router0,0 expert requests. Sol scenarioUSD0.3188324 vs
+router0.00523228, failed-router cost/resolved null. V8 now Sol2/2/router1/2.
+Across5 adaptive pairs Sol5/5/router3/5,96.6593% scenario saving but quality
+loss; target NOT met. Native/delta/identity/seal/replay audit qutebrowser-analysis-030.
+Visible decision: absent test path collects0, general completion-model6pass,
+compilation/diff pass; explicitly says dedicated new-behavior tests not present
+or run, then completes with no Sol. No failed consultation/integration occurred.
+Do not rerun case or feed specific expected fixes/evaluator assertions to prompts.
+
+V9 evidence_decision_router.py adds native controller output fields for
+verification status, property/evidence scope, attempts, material gaps and
+escalation reason. Applies same schema/common to Sol; only Luna gets routing.
+Backend records full public decision, projects SAME action/question/context/
+summary to unchanged personal harness, preserves all native usage/timing. It
+never turns a gap/grade/exit into an automatic Sol call. Expert schema/read-only
+permissions unchanged; extra fields not automatically forwarded, Luna must
+include decisive evidence in handoff. Known usage retained even malformed
+decision/audit-write errors. No additional inference calls from formatter,
+extra output tokens counted. All7/8 sources/results immutable.
+74 focused checks pass,2 v9-only-inapplicable skips; raw tracked under
+results/target90-development-20261031/v9-software-validation/pytest.txt.
+V9 activation/amendment/software frozen before any9 models. Analyzer supports
+version9 and verifies full native evidence text/hash, unchanged projected
+action, schema/request/policy identity and exports structured decisions.
+
+NodeBB own controls031 passed0/1; pair032 not registered yet. Commit9 artifacts,
+recheck receipt, register_pair('nodebb',5,32,version='v9'), Luna first. Cap12/
+original tasks unchanged. One9 task cannot establish calibration/improvement;
+additional fresh development may be needed before candidate selection, keep
+validation24 untouched. MonitoringPAUSED; active chat owns goal, not achieved.

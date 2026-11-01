@@ -1,0 +1,109 @@
+diff --git a/qutebrowser/completion/models/filepathcategory.py b/qutebrowser/completion/models/filepathcategory.py
+new file mode 100644
+index 000000000..10e3d027e
+--- /dev/null
++++ b/qutebrowser/completion/models/filepathcategory.py
+@@ -0,0 +1,49 @@
++# vim: ft=python fileencoding=utf-8 sts=4 sw=4 et:
++
++"""Completion category for local filesystem paths."""
++
++import os
++from typing import Optional
++
++from PyQt5.QtCore import QAbstractListModel, QModelIndex, Qt
++
++
++class FilePathCategory(QAbstractListModel):
++    """Expose favorite paths or entries in a typed absolute directory."""
++
++    def __init__(self, favorite_paths, parent=None):
++        super().__init__(parent)
++        self.name = 'Filesystem'
++        self.favorite_paths = favorite_paths
++        self.paths = []
++        self.columns_to_filter = []
++        self.delete_func = None
++
++    def set_pattern(self, val: str) -> None:
++        if val == '':
++            paths = list(self.favorite_paths)
++        elif os.path.isabs(val) and val.endswith(os.sep) and os.path.isdir(val):
++            try:
++                paths = [val + name for name in sorted(os.listdir(val))]
++            except OSError:
++                paths = []
++        else:
++            paths = []
++        self.beginResetModel()
++        self.paths = paths
++        self.endResetModel()
++
++    def data(self, index: QModelIndex, role: int = Qt.DisplayRole) -> Optional[str]:
++        if not index.isValid() or index.row() < 0 or index.row() >= len(self.paths):
++            return None
++        if role == Qt.DisplayRole:
++            if index.column() == 0:
++                return self.paths[index.row()]
++            return None
++        return None
++
++    def rowCount(self, parent: QModelIndex = QModelIndex()) -> int:
++        return 0 if parent.isValid() else len(self.paths)
++
++    def columnCount(self, parent=QModelIndex()):
++        return 3
+diff --git a/qutebrowser/completion/models/urlmodel.py b/qutebrowser/completion/models/urlmodel.py
+index 1de336015..011492c7f 100644
+--- a/qutebrowser/completion/models/urlmodel.py
++++ b/qutebrowser/completion/models/urlmodel.py
+@@ -24,7 +24,7 @@ from typing import Dict, Sequence
+ from PyQt5.QtCore import QAbstractItemModel
+ 
+ from qutebrowser.completion.models import (completionmodel, listcategory,
+-                                           histcategory)
++                                           histcategory, filepathcategory)
+ from qutebrowser.browser import history
+ from qutebrowser.utils import log, objreg
+ from qutebrowser.config import config
+@@ -80,6 +80,10 @@ def url(*, info):
+         models['searchengines'] = listcategory.ListCategory(
+             'Search engines', searchengines, sort=False)
+ 
++    if 'filesystem' in categories:
++        models['filesystem'] = filepathcategory.FilePathCategory(
++            config.val.completion.favorite_paths)
++
+     if quickmarks and 'quickmarks' in categories:
+         models['quickmarks'] = listcategory.ListCategory(
+             'Quickmarks', quickmarks, delete_func=_delete_quickmark,
+diff --git a/qutebrowser/config/configdata.yml b/qutebrowser/config/configdata.yml
+index 6d9a1186c..35e1be531 100644
+--- a/qutebrowser/config/configdata.yml
++++ b/qutebrowser/config/configdata.yml
+@@ -1138,16 +1138,24 @@ downloads.location.suggestion:
+       - both: Show download path and filename.
+   desc: What to display in the download filename input.
+ 
++completion.favorite_paths:
++  type:
++    name: List
++    valtype: String
++  default: []
++  desc: Paths to suggest in the :open completion when no path is entered.
++
+ completion.open_categories:
+   type:
+     name: FlagList
+-    valid_values: [searchengines, quickmarks, bookmarks, history]
++    valid_values: [searchengines, quickmarks, bookmarks, history, filesystem]
+     none_ok: true
+   default:
+     - searchengines
+     - quickmarks
+     - bookmarks
+     - history
++    - filesystem
+   desc: Which categories to show (in which order) in the :open completion.
+ 
+ downloads.open_dispatcher:

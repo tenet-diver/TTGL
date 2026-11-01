@@ -10,6 +10,7 @@ accounted for; no favorable subset stopping. The24 validation tasks are untouche
 | Navidrome024 |1|1|0.172766|0.0086526|94.9917%|0|
 | Protonmail026 (v7) |1|0|0.4970548|0.01136196|97.7141%|0|
 | Openlibrary028 (v8) |1|1|0.1462204|0.00731174|94.9995%|0|
+| Qutebrowser030 (v8) |1|0|0.3188324|0.00523228|98.3589%|0|
 
 Each arm passed native grading and fresh sealed-patch replay. All-role native
 usage and cumulative thread deltas were independently validated. The costs are
@@ -50,3 +51,11 @@ focused runtime checks support Luna completion; a faulty ad hoc fixture was
 corrected and rechecked. One selected task does not establish generality or
 improvement over v7 on a different block. Keep version observations separate.
 Two original development tasks remain; no held-out inference or final target proof.
+
+V8 also misses escalation on Qutebrowser: Sol2/2/router1/2 within8. Across all
+five adaptive cases Sol5/5/router3/5; cost reduction96.6593% does NOT meet the
+quality target. Luna acknowledges no dedicated new-behavior checks, completes
+without Sol, and fails fresh replay. General regression tests/compilation did
+not cover the new acceptance behavior. V9 adds structured public evidence and
+gap fields without changing the agent action or adding an automatic Sol gate.
+It is software-tested only at this checkpoint; calibration remains unproven.

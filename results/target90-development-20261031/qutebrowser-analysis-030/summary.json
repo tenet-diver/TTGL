@@ -1,0 +1,165 @@
+{
+  "status": "audited_development_pair_not_final_target_evidence",
+  "task_id": "instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171",
+  "policy": "v8",
+  "policy_identity": {
+    "src/ttgl/completion_review_router.py": "b5b1ff02a4667d2e6c858980634beec646ef6e945ee4b767d89c79e9fc283653",
+    "prompts/controller-v8-common.txt": "6d73ed9c97f8358ac1bf274698fdfd1f302fc476dd1b167b1434e6391ed20cc6",
+    "prompts/controller-v8-routing.txt": "5222475999e6d912acb84413f0005d678e5b8018475bd76773722cdb676b61ea",
+    "src/ttgl/harbor_bridge.py": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065"
+  },
+  "arms": {
+    "large": {
+      "assigned": 1,
+      "resolved": 1,
+      "initial_grade": 1.0,
+      "cost_scenario_usd": 0.3188324,
+      "cost_per_resolved_usd": 0.3188324,
+      "usage": {
+        "input_tokens": 1410979,
+        "cached_input_tokens": 1351424,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6458,
+        "reasoning_output_tokens": 1599
+      },
+      "usage_by_model": {
+        "gpt-6.1-sol": {
+          "usage": {
+            "input_tokens": 1410979,
+            "cached_input_tokens": 1351424,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6458,
+            "reasoning_output_tokens": 1599
+          },
+          "observed_partial": {
+            "input_tokens": 1410979,
+            "cached_input_tokens": 1351424,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 6458,
+            "reasoning_output_tokens": 1599
+          },
+          "complete": {
+            "input_tokens": true,
+            "cached_input_tokens": true,
+            "cache_write_input_tokens": true,
+            "output_tokens": true,
+            "reasoning_output_tokens": true
+          }
+        }
+      },
+      "expert_requests": 0,
+      "completed_consultations": 0,
+      "pre_handoff_grade": null,
+      "native_requests_by_role": {
+        "controller": 1
+      },
+      "latency_seconds": {
+        "native_model_and_tools": 257.37462703115307,
+        "actor": 274.191439,
+        "generation_start_to_fresh_grade": 522.606253
+      },
+      "final_response": {
+        "action": "complete",
+        "question": "",
+        "context": "",
+        "summary": "Implemented filesystem completion, configurable favorites, and default category registration. Verified exact tuple data, sorted directory entries, empty-category visibility, category ordering, and unchanged existing categories. Completion/configuration checks: 324 passed, 1 skipped, 1 expected failure; exit 0. Compilation and diff checks passed. Full repository suite was not run."
+      },
+      "provenance": {
+        "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/qutebrowser-pair-030.json": "8104473f1fc4d923f34b1334e04ee7bff8707c201919d57fb4086000b02f261d",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/qutebrowser-pair-030/jobs/first-block-large/instance_qutebrowser__qutebrowse__8t4ZPq2/result.json": "668e7d51893f40f1386e8bafdb69e067c28064260809486dccc73b2dd3b9b163",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/qutebrowser-pair-030/jobs/first-block-large-fresh/instance_qutebrowser__qutebrowse__eFKyRjb/result.json": "bad567fe4f9d8fb756a027d23641a8823571934ff2b138097b0fd718e1faac70",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/qutebrowser-pair-030/jobs/first-block-large-fresh/instance_qutebrowser__qutebrowse__eFKyRjb/agent/replay.json": "980e40ead972725aba976f06dbde3d8f5edd119736451750caaf534762f4a34b",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-qutebrowser-030/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/large/696ada43058144b68d6d65bb516b13dd/controller/manifest.json": "1ec4fc3503ad3374216337cf472989a3c058664e91233e8f7fdbf6d6290dcc71",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-qutebrowser-030/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/large/696ada43058144b68d6d65bb516b13dd/controller/events.jsonl": "918cecf45bb0e93d95c8202d627827f79ae3b73960d0b31e313e30e08faa9247",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-qutebrowser-030/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/large/696ada43058144b68d6d65bb516b13dd/visible-tool-trace.jsonl": "199a5950f34af4189f42b6616c31e8d9383a2ca5599d4b25c25722c833131b53",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-qutebrowser-030/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/large/696ada43058144b68d6d65bb516b13dd/final.patch": "b4698a9ebfb6bfce57d57ae7ec54170114aada149420e9d5f336544b95f4ffa7",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-qutebrowser-030/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/large/696ada43058144b68d6d65bb516b13dd/sealed-replay-source/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/seal.json": "fc3ca5a1e40f20f003609d85b784d278680c61e42f26f0a5b01cc652236d31af"
+      }
+    },
+    "optional": {
+      "assigned": 1,
+      "resolved": 0,
+      "initial_grade": 0.0,
+      "cost_scenario_usd": 0.00523228,
+      "cost_per_resolved_usd": null,
+      "usage": {
+        "input_tokens": 213945,
+        "cached_input_tokens": 190208,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1913,
+        "reasoning_output_tokens": 160
+      },
+      "usage_by_model": {
+        "gpt-6-luna": {
+          "usage": {
+            "input_tokens": 213945,
+            "cached_input_tokens": 190208,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1913,
+            "reasoning_output_tokens": 160
+          },
+          "observed_partial": {
+            "input_tokens": 213945,
+            "cached_input_tokens": 190208,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1913,
+            "reasoning_output_tokens": 160
+          },
+          "complete": {
+            "input_tokens": true,
+            "cached_input_tokens": true,
+            "cache_write_input_tokens": true,
+            "output_tokens": true,
+            "reasoning_output_tokens": true
+          }
+        }
+      },
+      "expert_requests": 0,
+      "completed_consultations": 0,
+      "pre_handoff_grade": null,
+      "native_requests_by_role": {
+        "controller": 1
+      },
+      "latency_seconds": {
+        "native_model_and_tools": 38.14527623401955,
+        "actor": 53.363365,
+        "generation_start_to_fresh_grade": 228.240785
+      },
+      "final_response": {
+        "action": "complete",
+        "question": "",
+        "context": "",
+        "summary": "Implemented `FilePathCategory`, wired the `Filesystem` category into `:open`, and added `completion.favorite_paths` plus `filesystem` in the default and valid values for `completion.open_categories`. Empty patterns return favorite paths; absolute directory patterns ending in the separator return sorted direct children. Verification: `tests/unit/completion/test_completionmodel.py` passed (6 tests), Python compilation passed, and `git diff --check` passed. An initial pytest command referenced a nonexistent test path and collected no tests; the available completion model test was then run successfully. Dedicated behavior tests for filesystem suggestions were not present or run."
+      },
+      "provenance": {
+        "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/qutebrowser-pair-030.json": "8104473f1fc4d923f34b1334e04ee7bff8707c201919d57fb4086000b02f261d",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/qutebrowser-pair-030/jobs/first-block-optional/instance_qutebrowser__qutebrowse__ai96ybb/result.json": "7920c73b265daf01e66c01c8917ddd91ca94fb1d8f85abd65b55e8efe5fad2b6",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/qutebrowser-pair-030/jobs/first-block-optional-fresh/instance_qutebrowser__qutebrowse__ysGbzmG/result.json": "33731aec9d09a4d3bca267245a853c2d0ac9f04f107a55a88feeb8467624c44e",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/qutebrowser-pair-030/jobs/first-block-optional-fresh/instance_qutebrowser__qutebrowse__ysGbzmG/agent/replay.json": "3ce91fac5dad1d898b3e5337140ba47411caa3457d7e93e5c077402858577324",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-qutebrowser-030/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/personal/992f35b8bb744b869fe29e48c07cd6ce/controller/manifest.json": "f5cba8f414043ca0bf3094bc1ba0f8b97af85de7ea7379faab510d3282c4d411",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-qutebrowser-030/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/personal/992f35b8bb744b869fe29e48c07cd6ce/controller/events.jsonl": "46ecab6d2cb3ecae5c84c12d612d9278e3a95101c01d3b82a464dc9730861ce5",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-qutebrowser-030/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/personal/992f35b8bb744b869fe29e48c07cd6ce/visible-tool-trace.jsonl": "b285f591ac75eb2f1c3b5eb907f95e1d3d175e97028c0869389014a03ce0bcb1",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-qutebrowser-030/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/personal/992f35b8bb744b869fe29e48c07cd6ce/final.patch": "8659180747e1b03965baa366a74515d520c4b6c4e13a39f9f6e595f0cd632a28",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-qutebrowser-030/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/personal/992f35b8bb744b869fe29e48c07cd6ce/sealed-replay-source/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/seal.json": "8060a7fef68bf5d0f78d3dfa9e6009dbc299ed07b40d3217e91633dc0181b550"
+      }
+    }
+  },
+  "comparison": {
+    "status": "single_development_pair_not_final_target_evidence",
+    "task_id": "instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171",
+    "sol_resolved": true,
+    "router_resolved": false,
+    "resolved_delta": -1,
+    "sol_success_lost": true,
+    "router_extra_success": false,
+    "model_cost_ratio": 0.016410753737700436,
+    "scenario_saving": 0.9835892462622996,
+    "actual_cash_saving": null,
+    "population_noninferiority_claim": false,
+    "interpretation": "Keep all registered development pairs; freeze before held-out evaluation"
+  },
+  "actual_cash_saving": null,
+  "subscription_quota_saving": null,
+  "validation_tasks_used": 0,
+  "uncertainty": "One selected public development task, not population equivalence, transfer or confirmatory90% target proof"
+}

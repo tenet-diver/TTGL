@@ -1,0 +1,24 @@
+{
+  "status": "registered_general_v9_candidate_before_any_v9_inference",
+  "registered_at": "2026-11-01T00:50:03.914273+00:00",
+  "policy_version": "v9",
+  "grounding": "v7 and v8 visible decisions acknowledge missing relevant acceptance evidence yet complete without escalation. General existing tests were too narrow for new behavior. Post-generation grades confirm missed Sol successes; no hidden case details enter prompts.",
+  "mechanism": "Native structured controller decision adds verification_status, property-to-evidence, attempt evidence, material gaps and escalation reason. Backend preserves actual action/question/context/summary and all usage/timing, records native evidence and projects unchanged action to existing harness.",
+  "no_backend_escalation_gate": true,
+  "no_automatic_action_rewrite": true,
+  "same_common_guidance_and_evidence_schema_for_matched_sol": true,
+  "expert_schema_and_read_only_permissions_unchanged": true,
+  "default_independent_attempts": "2-3 distinct checked repairs, with justified concrete early exception when feedback blocked after credible candidate/check adaptation",
+  "handoff": "actual source/contracts,candidate,attempts,exact results,lessons,ruled-out hypotheses,remaining questions; extra audit fields not silently forwarded, Luna must include decisive context",
+  "additional_inference_calls_from_format_wrapper": 0,
+  "extra_output_tokens_included_in_cost": true,
+  "no_private_chain_of_thought_requested": true,
+  "no_task_specific_rules_or_hidden_evaluator_examples": true,
+  "risks": [
+    "Self-reported evidence may still be wrong or incomplete",
+    "Prompt/format may not change escalation",
+    "Extra output cost",
+    "No causal version comparison from different development tasks"
+  ],
+  "model_calls_so_far": 0
+}

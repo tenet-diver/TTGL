@@ -1,0 +1,276 @@
+diff --git a/qutebrowser/completion/models/filepathcategory.py b/qutebrowser/completion/models/filepathcategory.py
+new file mode 100644
+index 000000000..d02abafa6
+--- /dev/null
++++ b/qutebrowser/completion/models/filepathcategory.py
+@@ -0,0 +1,80 @@
++# vim: ft=python fileencoding=utf-8 sts=4 sw=4 et:
++
++# Copyright 2014-2020 Florian Bruhin (The Compiler) <mail@qutebrowser.org>
++#
++# This file is part of qutebrowser.
++#
++# qutebrowser is free software: you can redistribute it and/or modify
++# it under the terms of the GNU General Public License as published by
++# the Free Software Foundation, either version 3 of the License, or
++# (at your option) any later version.
++#
++# qutebrowser is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++# GNU General Public License for more details.
++#
++# You should have received a copy of the GNU General Public License
++# along with qutebrowser.  If not, see <http://www.gnu.org/licenses/>.
++
++"""Completion category for local filesystem paths."""
++
++import os
++from typing import List, Optional
++
++from PyQt5.QtCore import QAbstractListModel, QModelIndex, Qt, QUrl
++
++from qutebrowser.config import config
++
++
++class FilePathCategory(QAbstractListModel):
++
++    """Suggest favorite paths or entries matching a local path prefix."""
++
++    def __init__(self, parent=None):
++        super().__init__(parent)
++        self.name = 'Filesystem'
++        self.columns_to_filter = [0]
++        self.delete_func = None
++        self._paths: List[str] = []
++
++    def set_pattern(self, val: str) -> None:
++        """Update suggestions for the partially typed path or file URL."""
++        paths = []
++        if not val:
++            paths = list(config.val.completion.favorite_paths)
++        else:
++            is_url = val.startswith('file://')
++            path = QUrl(val).toLocalFile() if is_url else val
++            expanded = os.path.expanduser(path)
++            if os.path.isabs(expanded):
++                directory, prefix = os.path.split(expanded)
++                typed_directory = path[:len(path) - len(prefix)]
++                try:
++                    names = sorted(os.listdir(directory))
++                except OSError:
++                    # Missing or unreadable directories have no suggestions.
++                    names = []
++                for name in names:
++                    if name.startswith(prefix):
++                        suggestion = typed_directory + name
++                        if is_url:
++                            suggestion = QUrl.fromLocalFile(suggestion).toString()
++                        paths.append(suggestion)
++
++        self.beginResetModel()
++        self._paths = paths
++        self.endResetModel()
++
++    def data(self, index: QModelIndex,
++             role: int = Qt.DisplayRole) -> Optional[str]:
++        """Return the path for a display index, with no other column data."""
++        if (role != Qt.DisplayRole or not index.isValid() or
++                index.column() != 0 or
++                not 0 <= index.row() < len(self._paths)):
++            return None
++        return self._paths[index.row()]
++
++    def rowCount(self, parent: QModelIndex = QModelIndex()) -> int:
++        """Return the number of paths (list entries have no children)."""
++        return 0 if parent.isValid() else len(self._paths)
+diff --git a/qutebrowser/completion/models/urlmodel.py b/qutebrowser/completion/models/urlmodel.py
+index 1de336015..df4e3377c 100644
+--- a/qutebrowser/completion/models/urlmodel.py
++++ b/qutebrowser/completion/models/urlmodel.py
+@@ -24,7 +24,7 @@ from typing import Dict, Sequence
+ from PyQt5.QtCore import QAbstractItemModel
+ 
+ from qutebrowser.completion.models import (completionmodel, listcategory,
+-                                           histcategory)
++                                           histcategory, filepathcategory)
+ from qutebrowser.browser import history
+ from qutebrowser.utils import log, objreg
+ from qutebrowser.config import config
+@@ -62,6 +62,7 @@ def url(*, info):
+     - quickmarks
+     - search engines
+     - web history URLs
++    - filesystem paths
+ 
+     Used for the `open` command.
+     """
+@@ -93,6 +94,9 @@ def url(*, info):
+         hist_cat = histcategory.HistoryCategory(delete_func=_delete_history)
+         models['history'] = hist_cat
+ 
++    if 'filesystem' in categories:
++        models['filesystem'] = filepathcategory.FilePathCategory()
++
+     for category in categories:
+         if category in models:
+             model.add_category(models[category])
+diff --git a/qutebrowser/config/configdata.yml b/qutebrowser/config/configdata.yml
+index 6d9a1186c..0f38d7289 100644
+--- a/qutebrowser/config/configdata.yml
++++ b/qutebrowser/config/configdata.yml
+@@ -1138,16 +1138,25 @@ downloads.location.suggestion:
+       - both: Show download path and filename.
+   desc: What to display in the download filename input.
+ 
++completion.favorite_paths:
++  type:
++    name: List
++    valtype: String
++    none_ok: true
++  default: []
++  desc: Paths shown in the :open completion when no text is entered.
++
+ completion.open_categories:
+   type:
+     name: FlagList
+-    valid_values: [searchengines, quickmarks, bookmarks, history]
++    valid_values: [searchengines, quickmarks, bookmarks, history, filesystem]
+     none_ok: true
+   default:
+     - searchengines
+     - quickmarks
+     - bookmarks
+     - history
++    - filesystem
+   desc: Which categories to show (in which order) in the :open completion.
+ 
+ downloads.open_dispatcher:
+diff --git a/tests/unit/completion/test_models.py b/tests/unit/completion/test_models.py
+index 082cf714a..7ffcb62ba 100644
+--- a/tests/unit/completion/test_models.py
++++ b/tests/unit/completion/test_models.py
+@@ -20,6 +20,7 @@
+ """Tests for completion models."""
+ 
+ import collections
++import os
+ import random
+ import string
+ import time
+@@ -556,6 +557,7 @@ def test_url_completion_no_quickmarks(qtmodeltester, web_history_populated,
+     qtmodeltester.check(model)
+ 
+     _check_completions(model, {
++        "Filesystem": [],
+         "Bookmarks": [
+             ('https://github.com', 'GitHub', None),
+             ('https://python.org', 'Welcome to Python.org', None),
+@@ -577,6 +579,7 @@ def test_url_completion_no_bookmarks(qtmodeltester, web_history_populated,
+     qtmodeltester.check(model)
+ 
+     _check_completions(model, {
++        "Filesystem": [],
+         "Quickmarks": [
+             ('https://wiki.archlinux.org', 'aw', None),
+             ('https://wikipedia.org', 'wiki', None),
+@@ -1358,3 +1361,99 @@ def test_listcategory_hypothesis(text):
+     """Make sure we can't produce invalid patterns."""
+     cat = listcategory.ListCategory("test", [])
+     cat.set_pattern(text)
++
++
++@pytest.mark.parametrize('favorites', [[], ['/some/dir'],
++                                     ['~/z', '/some/dir', '/some/dir']])
++@pytest.mark.parametrize('enabled', [False, True])
++def test_filesystem_favorites(config_stub, info, qtmodeltester,
++                              quickmarks, bookmarks, web_history_populated,
++                              favorites, enabled):
++    """Favorites retain order, spelling and duplicates without changing URLs."""
++    categories = ['quickmarks', 'bookmarks', 'history']
++    config_stub.val.completion.open_categories = categories
++    baseline = urlmodel.url(info=info)
++    baseline.set_pattern('')
++    expected = {}
++    for row in range(baseline.rowCount()):
++        parent = baseline.index(row, 0)
++        expected[baseline.data(parent)] = [
++            tuple(baseline.data(baseline.index(i, col, parent))
++                  for col in range(3))
++            for i in range(baseline.rowCount(parent))]
++
++    config_stub.val.completion.favorite_paths = favorites
++    if enabled:
++        config_stub.val.completion.open_categories = ['filesystem'] + categories
++        expected['Filesystem'] = [(path, None, None) for path in favorites]
++    model = urlmodel.url(info=info)
++    model.set_pattern('')
++    qtmodeltester.check(model)
++    _check_completions(model, expected)
++    if enabled:
++        assert model.data(model.index(0, 0)) == 'Filesystem'
++
++
++def test_filesystem_directory(config_stub, info, qtmodeltester, tmp_path,
++                              quickmark_manager_stub, bookmark_manager_stub):
++    """List direct children by name, then clear stale matches and restore favorites."""
++    config_stub.val.completion.open_categories = ['filesystem']
++    config_stub.val.completion.favorite_paths = ['/favorite']
++    tmp_path = tmp_path / 'files'
++    tmp_path.mkdir()
++    (tmp_path / 'file2.txt').touch()
++    (tmp_path / 'file1.txt').touch()
++    (tmp_path / 'directory').mkdir()
++    (tmp_path / 'directory' / 'nested').touch()
++    val = str(tmp_path) + os.sep
++    model = urlmodel.url(info=info)
++    model.set_pattern(val)
++    qtmodeltester.check(model)
++    _check_completions(model, {'Filesystem': [
++        (val + name, None, None)
++        for name in ['directory', 'file1.txt', 'file2.txt']]})
++
++    model.set_pattern(val + 'file1')
++    _check_completions(model, {'Filesystem': [(val + 'file1.txt', None, None)]})
++    model.set_pattern(val + 'missing' + os.sep)
++    _check_completions(model, {'Filesystem': []})
++    model.set_pattern('https://example.org/')
++    _check_completions(model, {'Filesystem': []})
++    model.set_pattern('')
++    _check_completions(model, {'Filesystem': [('/favorite', None, None)]})
++
++
++def test_filesystem_defaults(config_stub, info, quickmark_manager_stub,
++                             bookmark_manager_stub):
++    """Filesystem is enabled by default even with no favorites or web history."""
++    assert config_stub.val.completion.favorite_paths == []
++    assert config_stub.val.completion.open_categories == [
++        'searchengines', 'quickmarks', 'bookmarks', 'history', 'filesystem']
++    config_stub.val.completion.web_history.max_items = 0
++    config_stub.val.completion.open_categories = ['filesystem']
++    model = urlmodel.url(info=info)
++    model.set_pattern('')
++    _check_completions(model, {'Filesystem': []})
++
++
++@pytest.mark.parametrize('kind', ['file-url', 'home'])
++def test_filesystem_path_forms(config_stub, info, tmp_path, monkeypatch,
++                               quickmark_manager_stub, bookmark_manager_stub,
++                               kind):
++    """File URLs and home-relative paths can complete a filename prefix."""
++    config_stub.val.completion.open_categories = ['filesystem']
++    directory = tmp_path / 'files'
++    directory.mkdir()
++    (directory / 'page one.html').touch()
++    (directory / 'other.html').touch()
++    if kind == 'file-url':
++        pattern = QUrl.fromLocalFile(str(directory)).toString() + '/page'
++        expected = QUrl.fromLocalFile(
++            str(directory / 'page one.html')).toString()
++    else:
++        monkeypatch.setenv('HOME', str(tmp_path))
++        pattern = '~/files/page'
++        expected = '~/files/page one.html'
++    model = urlmodel.url(info=info)
++    model.set_pattern(pattern)
++    _check_completions(model, {'Filesystem': [(expected, None, None)]})

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Audit one complete matched development pair; never execute models or graders."""
 import argparse
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -11,6 +12,11 @@ spec=importlib.util.spec_from_file_location('episode_analysis',ROOT/'scripts/ana
 episode=importlib.util.module_from_spec(spec)
 spec.loader.exec_module(episode)
 pipeline=episode.pipeline
+EVIDENCE_FIELDS={
+    'verification_status':{'type':'string','enum':['supported','contradicted','incomplete']},
+    'acceptance_evidence':{'type':'string'},'attempt_evidence':{'type':'string'},
+    'material_gaps':{'type':'string'},'escalation_reason':{'type':'string'},
+}
 
 
 def analyze(study, protocol_path):
@@ -19,7 +25,7 @@ def analyze(study, protocol_path):
     if not protocol.get('matched_pair_development'):
         raise ValueError('Require registered matched pair')
     version=protocol.get('controller_policy_version','v7')
-    modules={'v7':'src/ttgl/cost_quality_router.py','v8':'src/ttgl/completion_review_router.py'}
+    modules={'v7':'src/ttgl/cost_quality_router.py','v8':'src/ttgl/completion_review_router.py','v9':'src/ttgl/evidence_decision_router.py'}
     if version not in modules:raise ValueError('Unregistered controller policy version')
     policy_files=[modules[version],f'prompts/controller-{version}-common.txt',
                   f'prompts/controller-{version}-routing.txt','src/ttgl/harbor_bridge.py']
@@ -93,9 +99,33 @@ def analyze(study, protocol_path):
             'provenance':{str(p):pipeline.digest(p) for p in [protocol_path,native_path,fresh_path,
                 replay_path,records/'controller/manifest.json',records/'controller/events.jsonl',
                 records/'visible-tool-trace.jsonl',final,sealed/'seal.json']}}
+        evidence_exports={}
+        if version=='v9':
+            if policy.get('completion_evidence_schema_sha256')!=pipeline.personal._digest(EVIDENCE_FIELDS):
+                raise ValueError('Completion evidence schema identity disagrees')
+            controllers=[e for e in final_responses]
+            files=list((records/'decision-evidence').glob('*.json'))
+            if len(files)!=len(controllers):raise ValueError('Missing or extra completion decision evidence')
+            decisions=[]
+            for event in controllers:
+                evidence_path=records/'decision-evidence'/(pipeline.personal._digest(event['request_id'])+'.json')
+                evidence=json.loads(evidence_path.read_text())
+                if evidence['request_id']!=event['request_id'] or evidence['controller_policy']!=policy:
+                    raise ValueError('Completion decision policy/request disagrees')
+                if (hashlib.sha256(evidence['native_text'].encode()).hexdigest()!=evidence['native_output_sha256']
+                        or json.loads(evidence['native_text'])!=evidence['decision']):
+                    raise ValueError('Completion decision native text changed')
+                schema=pipeline.personal._schema({**pipeline.personal.ACTION_SCHEMA['properties'],**EVIDENCE_FIELDS})
+                decision=pipeline.personal._response_json(pipeline.personal.Response(text=evidence['native_text']),schema)
+                if ({k:decision[k] for k in pipeline.personal.ACTION_SCHEMA['properties']}
+                        !=json.loads(event['text'])):
+                    raise ValueError('Completion decision projection changed agent action or evidence')
+                decisions.append(decision)
+                evidence_exports['decision-evidence/'+evidence_path.name]=evidence_path
+            arms[arm]['structured_decisions']=decisions
         exports[arm]={'native-result.json':native_path,'fresh-result.json':fresh_path,
                      'replay.json':replay_path,'manifest.json':records/'controller/manifest.json',
-                     'final.patch':final,'visible-tool-trace.jsonl':records/'visible-tool-trace.jsonl'}
+                     'final.patch':final,'visible-tool-trace.jsonl':records/'visible-tool-trace.jsonl',**evidence_exports}
         if (records/'pre-handoff.patch').exists():
             pre_paths=list((study/'jobs'/('first-block-'+arm+'-pre-handoff')).glob('*/result.json'))
             if len(pre_paths)!=1:raise ValueError('Missing pre-handoff grade')
@@ -123,7 +153,9 @@ def main():
     pipeline.write(args.output/'summary.json',summary)
     for arm,files in exports.items():
         target=args.output/arm;target.mkdir()
-        for name,source in files.items():shutil.copyfile(source,target/name)
+        for name,source in files.items():
+            destination=target/name;destination.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copyfile(source,destination)
     pipeline.write(args.output/'artifact-manifest.json',{'files':{str(p.relative_to(args.output)):pipeline.digest(p) for p in args.output.rglob('*') if p.is_file()}})
     print(json.dumps(summary['comparison']))
 

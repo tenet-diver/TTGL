@@ -1,0 +1,17 @@
+{
+  "files": {
+    "summary.json": "069fd906efc5b96c419ed3bb91e20beb129091b6833f45f98d186ec2c0b6f949",
+    "large/final.patch": "b4698a9ebfb6bfce57d57ae7ec54170114aada149420e9d5f336544b95f4ffa7",
+    "large/replay.json": "980e40ead972725aba976f06dbde3d8f5edd119736451750caaf534762f4a34b",
+    "large/native-result.json": "668e7d51893f40f1386e8bafdb69e067c28064260809486dccc73b2dd3b9b163",
+    "large/visible-tool-trace.jsonl": "199a5950f34af4189f42b6616c31e8d9383a2ca5599d4b25c25722c833131b53",
+    "large/manifest.json": "1ec4fc3503ad3374216337cf472989a3c058664e91233e8f7fdbf6d6290dcc71",
+    "large/fresh-result.json": "bad567fe4f9d8fb756a027d23641a8823571934ff2b138097b0fd718e1faac70",
+    "optional/final.patch": "8659180747e1b03965baa366a74515d520c4b6c4e13a39f9f6e595f0cd632a28",
+    "optional/replay.json": "3ce91fac5dad1d898b3e5337140ba47411caa3457d7e93e5c077402858577324",
+    "optional/native-result.json": "7920c73b265daf01e66c01c8917ddd91ca94fb1d8f85abd65b55e8efe5fad2b6",
+    "optional/visible-tool-trace.jsonl": "b285f591ac75eb2f1c3b5eb907f95e1d3d175e97028c0869389014a03ce0bcb1",
+    "optional/manifest.json": "f5cba8f414043ca0bf3094bc1ba0f8b97af85de7ea7379faab510d3282c4d411",
+    "optional/fresh-result.json": "33731aec9d09a4d3bca267245a853c2d0ac9f04f107a55a88feeb8467624c44e"
+  }
+}

@@ -1,0 +1,7 @@
+{
+ "task": "instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171",
+ "patch": "/Users/rustameynaliyev/Developer/ttgl-target90-qutebrowser-030/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/personal/992f35b8bb744b869fe29e48c07cd6ce/sealed-replay-source/instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171/agent/model.patch",
+ "apply_rc": 0,
+ "apply_out": "Checking patch qutebrowser/completion/models/filepathcategory.py...\nChecking patch qutebrowser/completion/models/urlmodel.py...\nChecking patch qutebrowser/config/configdata.yml...\nApplied patch qutebrowser/completion/models/filepathcategory.py cleanly.\nApplied patch qutebrowser/completion/models/urlmodel.py cleanly.\nApplied patch qutebrowser/config/configdata.yml cleanly.\n",
+ "post_apply_diffstat": " qutebrowser/completion/models/urlmodel.py |  6 +++++-\n qutebrowser/config/configdata.yml         | 10 +++++++++-\n 2 files changed, 14 insertions(+), 2 deletions(-)\n---\n3\n"
+}

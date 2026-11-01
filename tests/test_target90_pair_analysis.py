@@ -16,10 +16,10 @@ def save(p,value):
     p.write_text(json.dumps(value))
 
 
-@pytest.fixture(params=['v7','v8'])
+@pytest.fixture(params=['v7','v8','v9'])
 def complete_pair(tmp_path,request):
     version=request.param
-    module={'v7':'src/ttgl/cost_quality_router.py','v8':'src/ttgl/completion_review_router.py'}[version]
+    module={'v7':'src/ttgl/cost_quality_router.py','v8':'src/ttgl/completion_review_router.py','v9':'src/ttgl/evidence_decision_router.py'}[version]
     study=tmp_path/'study';rows=[];private=tmp_path/'private'
     common=ROOT/f'prompts/controller-{version}-common.txt';common_hash=analysis.pipeline.digest(common)
     rate_path=tmp_path/'rates.json'
@@ -32,12 +32,23 @@ def complete_pair(tmp_path,request):
         manifest={'status':'completed_ungraded','expert_calls':0,'elapsed_seconds':1,
                   'usage':usage,'usage_by_model':{model:{'usage':usage}},'usage_accounting_issues':[],
                   'backend':{'controller_policy':{'mode':'consolidated-'+version,'common_sha256':common_hash}}}
+        if version=='v9':manifest['backend']['controller_policy']['completion_evidence_schema_sha256']=analysis.pipeline.personal._digest(analysis.EVIDENCE_FIELDS)
         save(records/'controller/manifest.json',manifest)
         events=[{'event':'request','request_id':arm,'model':model,'kind':'controller'},
                 {'event':'response','request_id':arm,'model':model,'kind':'controller',
                  'thread_id':arm+'-thread','status':'completed','usage_scope':'thread_cumulative',
                  'usage':usage,'usage_delta':usage,'usage_accounting_issues':[],'tool_events':[],
-                 'text':json.dumps({'action':'complete','summary':'fixture'})}]
+                 'text':json.dumps({'action':'complete','question':'','context':'','summary':'fixture'})}]
+        if version=='v9':
+            import hashlib
+            decision={**json.loads(events[-1]['text']),'verification_status':'incomplete',
+                      'acceptance_evidence':'existing checks','attempt_evidence':'candidate checked',
+                      'material_gaps':'new behavior untested','escalation_reason':'unverified completion'}
+            text=json.dumps(decision)
+            save(records/'decision-evidence'/(analysis.pipeline.personal._digest(arm)+'.json'),
+                 {'request_id':arm,'controller_policy':manifest['backend']['controller_policy'],
+                  'decision':decision,'native_text':text,
+                  'native_output_sha256':hashlib.sha256(text.encode()).hexdigest()})
         (records/'controller/events.jsonl').write_text('\n'.join(map(json.dumps,events)))
         (records/'visible-tool-trace.jsonl').write_text('')
         (records/'final.patch').write_text('sealed fixture patch')
@@ -91,9 +102,21 @@ def test_pair_audit_rejects_wrong_registered_policy(complete_pair):
     study,protocol,_=complete_pair
     d=json.loads(protocol.read_text());d['controller_policy_version']='v8' if d['controller_policy_version']=='v7' else 'v7'
     # Supply the alternate files so rejection is a policy-mode check, not a missing key.
-    v=d['controller_policy_version'];module={'v7':'src/ttgl/cost_quality_router.py','v8':'src/ttgl/completion_review_router.py'}[v]
+    v=d['controller_policy_version'];module={'v7':'src/ttgl/cost_quality_router.py','v8':'src/ttgl/completion_review_router.py','v9':'src/ttgl/evidence_decision_router.py'}[v]
     for name in [module,f'prompts/controller-{v}-common.txt',f'prompts/controller-{v}-routing.txt']:
         d['source_sha256'][str(ROOT/name)]=analysis.pipeline.digest(ROOT/name)
     save(protocol,d)
     with pytest.raises(ValueError,match='common guidance'):
+        analysis.analyze(study,protocol)
+
+
+def test_structured_evidence_is_exported_and_tampering_rejected(complete_pair):
+    study,protocol,private=complete_pair
+    if json.loads(protocol.read_text())['controller_policy_version']!='v9':pytest.skip('Only v9 has structured decision evidence')
+    result,exports=analysis.analyze(study,protocol)
+    assert result['arms']['optional']['structured_decisions'][0]['verification_status']=='incomplete'
+    assert any(k.startswith('decision-evidence/') for k in exports['optional'])
+    path=next((private/'optional/decision-evidence').glob('*.json'));d=json.loads(path.read_text())
+    d['decision']['material_gaps']='changed';save(path,d)
+    with pytest.raises(ValueError,match='native text changed'):
         analysis.analyze(study,protocol)

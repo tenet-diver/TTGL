@@ -1,7 +1,7 @@
 {
   "status": "development_progress_not_held_out_target_proof",
   "planned_tasks": 6,
-  "completed_pairs": 4,
+  "completed_pairs": 5,
   "all_registered_pairs_complete": false,
   "fixed_policy_across_completed_pairs": false,
   "version_observations": {
@@ -31,54 +31,54 @@
       "interpretation": "Descriptive task block only, no randomized cross-version comparison or final target proof"
     },
     "v8": {
-      "completed_pairs": 1,
+      "completed_pairs": 2,
       "quality": {
-        "sol_resolved": 1,
+        "sol_resolved": 2,
         "router_resolved": 1,
-        "assigned_per_arm": 1,
-        "resolved_delta": 0,
-        "sol_successes_lost": 0,
+        "assigned_per_arm": 2,
+        "resolved_delta": -1,
+        "sol_successes_lost": 1,
         "router_extra_successes": 0
       },
       "cost_scenario_usd": {
-        "large": 0.1462204,
-        "optional": 0.00731174
+        "large": 0.4650528,
+        "optional": 0.01254402
       },
       "cost_per_assigned_usd": {
-        "large": 0.1462204,
-        "optional": 0.00731174
+        "large": 0.2325264,
+        "optional": 0.00627201
       },
       "cost_per_resolved_usd": {
-        "large": 0.1462204,
-        "optional": 0.00731174
+        "large": 0.2325264,
+        "optional": 0.01254402
       },
-      "aggregate_scenario_saving": 0.9499950759264781,
+      "aggregate_scenario_saving": 0.9730266756806969,
       "interpretation": "Descriptive task block only, no randomized cross-version comparison or final target proof"
     }
   },
   "quality": {
-    "sol_resolved": 4,
+    "sol_resolved": 5,
     "router_resolved": 3,
-    "assigned_per_arm": 4,
-    "resolved_delta": -1,
-    "sol_successes_lost": 1,
+    "assigned_per_arm": 5,
+    "resolved_delta": -2,
+    "sol_successes_lost": 2,
     "router_extra_successes": 0
   },
   "cost_scope": "Audited completed pairs only; unfinished assignments are not zero cost and cannot pass the full-panel gate",
   "cost_scenario_usd": {
-    "large": 0.9394188,
-    "optional": 0.03680206
+    "large": 1.2582512,
+    "optional": 0.04203434
   },
   "cost_per_assigned_usd": {
-    "large": 0.2348547,
-    "optional": 0.009200515
+    "large": 0.25165024,
+    "optional": 0.008406868
   },
   "cost_per_resolved_usd": {
-    "large": 0.2348547,
-    "optional": 0.012267353333333333
+    "large": 0.25165024,
+    "optional": 0.014011446666666667
   },
-  "aggregate_model_cost_ratio": 0.03917534969493904,
-  "aggregate_scenario_saving": 0.9608246503050609,
+  "aggregate_model_cost_ratio": 0.033406954032708255,
+  "aggregate_scenario_saving": 0.9665930459672918,
   "development_point_gate": null,
   "held_out_target_achieved": false,
   "actual_cash_saving": null,
@@ -88,7 +88,8 @@
     "instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
     "instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2",
     "instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
-    "instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77"
+    "instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77",
+    "instance_qutebrowser__qutebrowser-0fc6d1109d041c69a68a896db87cf1b8c194cef7-v2ef375ac784985212b1805e1d0431dc8f1b3c171"
   ],
   "unfinished_invoked_assignments": []
 }

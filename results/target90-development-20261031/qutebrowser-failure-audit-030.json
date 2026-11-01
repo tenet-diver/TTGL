@@ -1,0 +1,19 @@
+{
+  "status": "post_generation_audit_no_rerun",
+  "policy": "v8",
+  "grades": {
+    "sol": 1,
+    "router": 0
+  },
+  "expert_requests": 0,
+  "failure_mode": "acknowledged_coverage_gap_completion_without_escalation",
+  "missed_escalation": true,
+  "false_claim_that_dedicated_tests_ran": false,
+  "failed_consultation": false,
+  "failed_integration": false,
+  "visible_evidence": "Nonexistent test path collected0;6 general completion-model tests then pass; compilation/diff checks pass; final explicitly says dedicated new-behavior tests not present/run; no expert requested.",
+  "causal_prompt_improvement_established": false,
+  "counterfactual_expert_rescue": "unknown",
+  "next_general_mechanism": "Require concise property-to-observed-evidence and material-gap decision fields, not only prose acknowledgment. Luna still chooses action; no hidden-grade/backend escalation gate.",
+  "no_case_specific_rules_or_hidden_material_to_future_actor": true
+}

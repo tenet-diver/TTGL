@@ -361,18 +361,17 @@
     "monitor": "PAUSED by explicit user instruction; continue active chat only"
   },
   "current_router_unit": {
-    "task": "qutebrowser",
-    "status": "v8 matched pair030 active; Sol first then Luna; own controls029 pass",
-    "pid": 72263,
-    "protocol": "experiments/target90-development-20261031/qutebrowser-pair-030.json",
+    "task": "nodebb",
+    "status": "model-free controls031 passed; v9 registered/tested zero model calls, pair032 not started",
+    "protocol": "experiments/target90-development-20261031/nodebb-control-031.json",
     "owner": "active chat",
     "monitoring": "PAUSED"
   },
   "active_target90": {
     "plan": "experiments/target90-development-20261031/plan.json",
-    "status": "4/6 adaptive pairs audited; v7 quality loss3/3vs2/3, first v8 pair1/1both; Qutebrowser030 active",
+    "status": "5/6 adaptive pairs audited: Sol5/5 router3/5; v8 second pair fails, target NOT met; v9 software-only candidate",
     "metric": "at least90% all-role model-rate scenario saving, no observed held-out count loss vs matched Sol; optional stricter statistical criterion question pending",
-    "candidate": "v8 material-gap completion review after bounded attempts; current software-only candidate",
+    "candidate": "v9 native structured acceptance-evidence decision, same agent action and metering, no automatic escalation",
     "validation": "24 tasks untouched, no held-out registration or inference; adaptive versions reported separately",
     "monitoring": "PAUSED; active research goal in this chat, not scheduled monitor",
     "jira_key": "FAST-99",
