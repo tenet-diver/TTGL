@@ -65,3 +65,13 @@ requests. Both traces include exit137 checks and subsequent focused package
 passes; Luna reports the serial check and limitation. This supports independent
 completion on one selected case, not general escalation quality, held-out
 quality retention or the final target. All six registered pairs remain required.
+
+
+At the third completed v7 pair, the router loses a Sol success: Sol3/3 versus
+router2/3 despite96.2821% aggregate model-rate saving. The current target fails
+on quality. A separately registered v8 development amendment addresses material
+uncertainty followed by completion without review; it retains bounded independent
+attempts, justified early exceptions and optional help when evidence suffices.
+The remaining original tasks and12-assignment cap do not change. Versions are
+reported by task block; their mixed aggregate is not a final-policy effect.
+No new task-specific rule, evaluator clue or rerun is used.24 validation untouched.

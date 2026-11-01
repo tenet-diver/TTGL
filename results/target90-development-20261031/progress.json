@@ -1,32 +1,59 @@
 {
   "status": "development_progress_not_held_out_target_proof",
   "planned_tasks": 6,
-  "completed_pairs": 2,
+  "completed_pairs": 3,
   "all_registered_pairs_complete": false,
   "fixed_policy_across_completed_pairs": true,
+  "version_observations": {
+    "v7": {
+      "completed_pairs": 3,
+      "quality": {
+        "sol_resolved": 3,
+        "router_resolved": 2,
+        "assigned_per_arm": 3,
+        "resolved_delta": -1,
+        "sol_successes_lost": 1,
+        "router_extra_successes": 0
+      },
+      "cost_scenario_usd": {
+        "large": 0.7931984,
+        "optional": 0.02949032
+      },
+      "cost_per_assigned_usd": {
+        "large": 0.2643994666666667,
+        "optional": 0.009830106666666666
+      },
+      "cost_per_resolved_usd": {
+        "large": 0.2643994666666667,
+        "optional": 0.01474516
+      },
+      "aggregate_scenario_saving": 0.9628210041775173,
+      "interpretation": "Descriptive task block only, no randomized cross-version comparison or final target proof"
+    }
+  },
   "quality": {
-    "sol_resolved": 2,
+    "sol_resolved": 3,
     "router_resolved": 2,
-    "assigned_per_arm": 2,
-    "resolved_delta": 0,
-    "sol_successes_lost": 0,
+    "assigned_per_arm": 3,
+    "resolved_delta": -1,
+    "sol_successes_lost": 1,
     "router_extra_successes": 0
   },
   "cost_scope": "Audited completed pairs only; unfinished assignments are not zero cost and cannot pass the full-panel gate",
   "cost_scenario_usd": {
-    "large": 0.2961436,
-    "optional": 0.01812836
+    "large": 0.7931984,
+    "optional": 0.02949032
   },
   "cost_per_assigned_usd": {
-    "large": 0.1480718,
-    "optional": 0.00906418
+    "large": 0.2643994666666667,
+    "optional": 0.009830106666666666
   },
   "cost_per_resolved_usd": {
-    "large": 0.1480718,
-    "optional": 0.00906418
+    "large": 0.2643994666666667,
+    "optional": 0.01474516
   },
-  "aggregate_model_cost_ratio": 0.061214762027610926,
-  "aggregate_scenario_saving": 0.9387852379723891,
+  "aggregate_model_cost_ratio": 0.03717899582248275,
+  "aggregate_scenario_saving": 0.9628210041775173,
   "development_point_gate": null,
   "held_out_target_achieved": false,
   "actual_cash_saving": null,
@@ -34,20 +61,8 @@
   "uncertainty": "Selected development tasks; no population equivalence, final-policy causal improvement or held-out90% proof",
   "tasks": [
     "instance_flipt-io__flipt-b2170346dc37cf42fda1386cd630f24821ad2ac5",
-    "instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2"
+    "instance_navidrome__navidrome-89b12b34bea5687c70e4de2109fd1e7330bb2ba2",
+    "instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77"
   ],
-  "unfinished_invoked_assignments": [
-    {
-      "task_id": "instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77",
-      "arm": "large",
-      "audited_total_cost": null,
-      "status": "invoked_but_complete_pair_not_yet_audited"
-    },
-    {
-      "task_id": "instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77",
-      "arm": "optional",
-      "audited_total_cost": null,
-      "status": "invoked_but_complete_pair_not_yet_audited"
-    }
-  ]
+  "unfinished_invoked_assignments": []
 }

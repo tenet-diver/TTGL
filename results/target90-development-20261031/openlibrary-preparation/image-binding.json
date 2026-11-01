@@ -1,0 +1,7 @@
+{
+  "image_tag": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+  "image_pinned": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-2fe532a33635aab7a9bfea5d977f6a72b280a30c-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4@sha256:efc9d7538d27d5400a984bd13787e6e3b3f5940e1af802def7dabaa7a48ad906",
+  "architecture": "amd64",
+  "os": "linux",
+  "registry_compressed_layer_bytes": 867382670
+}

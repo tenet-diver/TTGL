@@ -1,0 +1,165 @@
+{
+  "status": "audited_development_pair_not_final_target_evidence",
+  "task_id": "instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77",
+  "policy": "v7",
+  "policy_identity": {
+    "src/ttgl/cost_quality_router.py": "a3a8ab49e30b6a171a6608bb2315eb811369b410f5cc17da01b171b91d970e92",
+    "prompts/controller-v7-common.txt": "667cb62034f2497e72f2ddc4670f47816c979e5894803e217be8be0540c5039b",
+    "prompts/controller-v7-routing.txt": "a8edba0611dab0c9c1d401b716ae6a464f6095b57af9e7e16f35a70f82c1df0c",
+    "src/ttgl/harbor_bridge.py": "915a9ac46353875990ec8e794ef77ef7ad4e087429111a182a0b5ccf4f226065"
+  },
+  "arms": {
+    "large": {
+      "assigned": 1,
+      "resolved": 1,
+      "initial_grade": 1.0,
+      "cost_scenario_usd": 0.4970548,
+      "cost_per_resolved_usd": 0.4970548,
+      "usage": {
+        "input_tokens": 2579871,
+        "cached_input_tokens": 2530688,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 14562,
+        "reasoning_output_tokens": 4289
+      },
+      "usage_by_model": {
+        "gpt-6.1-sol": {
+          "usage": {
+            "input_tokens": 2579871,
+            "cached_input_tokens": 2530688,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 14562,
+            "reasoning_output_tokens": 4289
+          },
+          "observed_partial": {
+            "input_tokens": 2579871,
+            "cached_input_tokens": 2530688,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 14562,
+            "reasoning_output_tokens": 4289
+          },
+          "complete": {
+            "input_tokens": true,
+            "cached_input_tokens": true,
+            "cache_write_input_tokens": true,
+            "output_tokens": true,
+            "reasoning_output_tokens": true
+          }
+        }
+      },
+      "expert_requests": 0,
+      "completed_consultations": 0,
+      "pre_handoff_grade": null,
+      "native_requests_by_role": {
+        "controller": 1
+      },
+      "latency_seconds": {
+        "native_model_and_tools": 670.6460715150461,
+        "actor": 680.494701,
+        "generation_start_to_fresh_grade": 1415.163627
+      },
+      "final_response": {
+        "action": "complete",
+        "question": "",
+        "context": "",
+        "summary": "Implemented Bitcoin token creation, loading feedback, persisted deposit details, and 10-second polling with one-time validation and cleanup. Added BitcoinInfoMessage and exported fake-timer-safe flushPromises. Verification supported: 21 tests passed; components TypeScript, targeted ESLint, formatting, and git diff checks passed."
+      },
+      "provenance": {
+        "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/protonmail-pair-026.json": "47d78c3881fc58064d723cc2547e087f86e030db8e8e2af83ed8cc4762359eaa",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/protonmail-pair-026/jobs/first-block-large/instance_protonmail__webclients__QyvAaGa/result.json": "45f33d9e22453d4e99b6ffe170b35f6c88800cc4d1dddb63d75b8461f1ddd628",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/protonmail-pair-026/jobs/first-block-large-fresh/instance_protonmail__webclients__ZMiQBap/result.json": "d81d8664049a2288b7bfcc0a423a46d6961585a68e875816323772c1aa320bcc",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/protonmail-pair-026/jobs/first-block-large-fresh/instance_protonmail__webclients__ZMiQBap/agent/replay.json": "0f94f1c88ee10ddd02f06470270bfe3cb03e20b891c4104ff5596fbc99223190",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-protonmail-026/instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77/large/c4e82237f31349f28a6889118695567f/controller/manifest.json": "114e901821572f827bbe754441de6b3529fab8aae72da3722db5a2ec9294a4fc",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-protonmail-026/instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77/large/c4e82237f31349f28a6889118695567f/controller/events.jsonl": "1a1b44c6696d32f87976c89fcca493982e98bfd9a972fb74c17a28040d5d8c28",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-protonmail-026/instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77/large/c4e82237f31349f28a6889118695567f/visible-tool-trace.jsonl": "cdf802c4df3ef502b1c2848cee32282abcd94607c511bb1d83a4f2da00e6c176",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-protonmail-026/instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77/large/c4e82237f31349f28a6889118695567f/final.patch": "7605263c655d05da12ce57c8aaaae28401ed04e02ed22a3d0097d51db77e0a6f",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-protonmail-026/instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77/large/c4e82237f31349f28a6889118695567f/sealed-replay-source/instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77/seal.json": "f0064fd1a7cf00933454e568c01b1a7c2f92cc4c0bc4dea47eebe99a78f6e002"
+      }
+    },
+    "optional": {
+      "assigned": 1,
+      "resolved": 0,
+      "initial_grade": 0.0,
+      "cost_scenario_usd": 0.01136196,
+      "cost_per_resolved_usd": null,
+      "usage": {
+        "input_tokens": 621712,
+        "cached_input_tokens": 587136,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4066,
+        "reasoning_output_tokens": 568
+      },
+      "usage_by_model": {
+        "gpt-6-luna": {
+          "usage": {
+            "input_tokens": 621712,
+            "cached_input_tokens": 587136,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4066,
+            "reasoning_output_tokens": 568
+          },
+          "observed_partial": {
+            "input_tokens": 621712,
+            "cached_input_tokens": 587136,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4066,
+            "reasoning_output_tokens": 568
+          },
+          "complete": {
+            "input_tokens": true,
+            "cached_input_tokens": true,
+            "cache_write_input_tokens": true,
+            "output_tokens": true,
+            "reasoning_output_tokens": true
+          }
+        }
+      },
+      "expert_requests": 0,
+      "completed_consultations": 0,
+      "pre_handoff_grade": null,
+      "native_requests_by_role": {
+        "controller": 1
+      },
+      "latency_seconds": {
+        "native_model_and_tools": 336.5739365098998,
+        "actor": 350.138445,
+        "generation_start_to_fresh_grade": 1259.82809
+      },
+      "final_response": {
+        "action": "complete",
+        "question": "",
+        "context": "",
+        "summary": "Implemented Bitcoin token creation, loading and error states, persisted address/amount rendering, opt-in 10-second status polling with one-time chargeable callback, a Bitcoin info message, and exported `flushPromises` using microtasks rather than timers. `git diff --check` passed. The component type check and lint were attempted but both exited 137; a direct `yarn eslint` attempt failed because no root script exists. Verification is incomplete: the repository checks did not finish, and no focused runtime test was run."
+      },
+      "provenance": {
+        "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/protonmail-pair-026.json": "47d78c3881fc58064d723cc2547e087f86e030db8e8e2af83ed8cc4762359eaa",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/protonmail-pair-026/jobs/first-block-optional/instance_protonmail__webclients__rx6vsV7/result.json": "a593ae3766421c0e5b3fd97e2e071d040296b476bb13301758282715443159cd",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/protonmail-pair-026/jobs/first-block-optional-fresh/instance_protonmail__webclients__L7oVULt/result.json": "6aeb634818b6cae5d3daf1d0695526597d38b300576f068999e790ed49188e0c",
+        "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/protonmail-pair-026/jobs/first-block-optional-fresh/instance_protonmail__webclients__L7oVULt/agent/replay.json": "5c0548c2d5e56c114946b2c11905659a8adef822e28a56ac9bb2392614e069f3",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-protonmail-026/instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77/personal/282d866ea8154d0ba07aad36e25869f3/controller/manifest.json": "93f5f48d186155ffe03c1248b5969c8a4188c30f87fa06f158d98a17fd98060c",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-protonmail-026/instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77/personal/282d866ea8154d0ba07aad36e25869f3/controller/events.jsonl": "f922af206087353e1d601d9affe2167a59ebf3a9fdfff2c635c36cdcfb2f2c22",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-protonmail-026/instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77/personal/282d866ea8154d0ba07aad36e25869f3/visible-tool-trace.jsonl": "16c81e5bff23950d54fef4d7775320afd71789869a9f7094310d598a60239393",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-protonmail-026/instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77/personal/282d866ea8154d0ba07aad36e25869f3/final.patch": "3400ca1f5f067e0e3abddc790119ff822ab2ca9d3bb58f1586d0a08c21e4ff11",
+        "/Users/rustameynaliyev/Developer/ttgl-target90-protonmail-026/instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77/personal/282d866ea8154d0ba07aad36e25869f3/sealed-replay-source/instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77/seal.json": "5ca1fe9bc76976f185f75a2be59d8f0acd3789e9570f7813de568e53fab05a45"
+      }
+    }
+  },
+  "comparison": {
+    "status": "single_development_pair_not_final_target_evidence",
+    "task_id": "instance_protonmail__webclients-5f0745dd6993bb1430a951c62a49807c6635cd77",
+    "sol_resolved": true,
+    "router_resolved": false,
+    "resolved_delta": -1,
+    "sol_success_lost": true,
+    "router_extra_success": false,
+    "model_cost_ratio": 0.022858566097742138,
+    "scenario_saving": 0.9771414339022578,
+    "actual_cash_saving": null,
+    "population_noninferiority_claim": false,
+    "interpretation": "Keep all registered development pairs; freeze before held-out evaluation"
+  },
+  "actual_cash_saving": null,
+  "subscription_quota_saving": null,
+  "validation_tasks_used": 0,
+  "uncertainty": "One selected public development task, not population equivalence, transfer or confirmatory90% target proof"
+}

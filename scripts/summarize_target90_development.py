@@ -7,7 +7,7 @@ import hashlib
 from pathlib import Path
 
 
-def summarize(plan,pairs):
+def summarize(plan,pairs,include_versions=True):
     expected={t['task_id'] for t in plan['tasks']}
     observed=[p['task_id'] for p in pairs]
     if len(set(observed))!=len(observed) or not set(observed)<=expected:
@@ -27,9 +27,17 @@ def summarize(plan,pairs):
     gate=(bool(fixed and ratio is not None and ratio<=Decimal('0.10') and quality['large']>0
                and quality['optional']>=quality['large']) if complete else None)
     count=len(pairs)
+    versions={}
+    if include_versions:
+        for version in sorted({p['policy'] for p in pairs}):
+            subset=[p for p in pairs if p['policy']==version]
+            panel=summarize({'tasks':[{'task_id':p['task_id']} for p in subset]},subset,False)
+            versions[version]={k:panel[k] for k in ['completed_pairs','quality','cost_scenario_usd',
+                'cost_per_assigned_usd','cost_per_resolved_usd','aggregate_scenario_saving']}
+            versions[version]['interpretation']='Descriptive task block only, no randomized cross-version comparison or final target proof'
     return {'status':'development_progress_not_held_out_target_proof',
             'planned_tasks':len(expected),'completed_pairs':count,'all_registered_pairs_complete':complete,
-            'fixed_policy_across_completed_pairs':fixed,
+            'fixed_policy_across_completed_pairs':fixed,'version_observations':versions,
             'quality':{'sol_resolved':quality['large'],'router_resolved':quality['optional'],
                 'assigned_per_arm':count,'resolved_delta':quality['optional']-quality['large'],
                 'sol_successes_lost':sum(p['comparison']['sol_success_lost'] for p in pairs),

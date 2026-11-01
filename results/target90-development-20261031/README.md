@@ -8,6 +8,7 @@ accounted for; no favorable subset stopping. The24 validation tasks are untouche
 |---|---:|---:|---:|---:|---:|---:|
 | Flipt022 |1|1|0.1233776|0.00947576|92.3197%|0|
 | Navidrome024 |1|1|0.172766|0.0086526|94.9917%|0|
+| Protonmail026 |1|0|0.4970548|0.01136196|97.7141%|0|
 
 Each arm passed native grading and fresh sealed-patch replay. All-role native
 usage and cumulative thread deltas were independently validated. The costs are
@@ -32,3 +33,13 @@ Luna/setup inference was repeated. The original stopped record and recovery
 registration remain preserved. Luna focused checks pass; full-suite check exits137,
 explicitly disclosed in completion. No false completion is inferred solely from
 that blocked broader check.
+
+The third v7 pair loses a Sol success: Sol3/3, router2/3. Aggregate reduction
+is96.2821%, but quality drops, so the target is NOT met. Luna explicitly
+reports no focused runtime check and blocked type/lint checks, then completes
+without Sol. This is acknowledged-unverified completion/missed escalation; no
+consultation or integration failed. An independent Sol success does not prove
+context-only advice would rescue it. Keep all costs, including the failed task;
+its router cost per resolved task is null. V8 is a software-tested general
+material-gap review candidate for remaining original tasks, separately versioned.
+No rerun of this task, no hidden assertion/fix in prompts,24 validation untouched.

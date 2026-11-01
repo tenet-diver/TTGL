@@ -2095,3 +2095,36 @@ pre/final replays finish. Do not modify bound generation, prompts or metadata.
 Current2/6 audited pairs unchanged; next original index9 Openlibrary027/028
 only after full026 audit. Preserve stopped original025 prejob failure separately,
 no native control or model repeat.24 validation untouched, monitoringPAUSED.
+
+
+## Protonmail026 audited FAILURE; Openlibrary027 controls ACTIVE, v8 registered
+
+026 complete both initial/fresh: Sol1, Luna0,0 expert requests. Sol scenario
+USD0.4970548; routerUSD0.01136196 (per-resolved router null). Across first3 v7
+pairs Sol3/3 router2/3,96.2821% aggregate saving BUT QUALITY LOSS; target NOT met.
+Full native/delta/seal/replay audit in protonmail-analysis-026. Failure-audit-026
+classifies acknowledged-unverified completion without escalation, not false claim
+that checks passed, failed consultation or failed integration. Sol-only success
+does not prove advice would rescue. No scored experiment rerun. Raw Jest1fail/
+2pass; output parser folds names, do not infer2 functional failures from names.
+Offline specific defect is a duplicate loading marker across wrapper/child. Keep
+hidden assertions private, never feed this fix/example into routing prompts.
+
+V8 completion_review_router.py/new common/routing prompts registered separately;
+62 focused checks pass (raw artifacts/target90-v8-software-checks.txt). No v8
+model calls yet. General mechanism: an honest admission of uncertainty does not
+resolve material acceptance gaps; useful bounded attempts then focused review
+when source/check design can help, explicit early exception for blocked feedback
+after a candidate, complete handoff and verified integration. No mandatory call
+for adequate evidence, no task-specific rules. V7 sources/outputs immutable.
+Amendment permits v8 on remaining original indices3..5, same task order/cap12,
+no replacements/repeats/validation. Analyzer now accepts registered v7/v8 and
+summary separates adaptive blocks; mixed aggregate cannot pass fixed-policy gate
+or establish causal prompt improvement. Held-out evaluation separately frozen.
+
+Openlibrary own model-free controls027 PID57098 active. Pair028 NOT registered;
+only after controls pass and v8 source/software/activation commit, register_pair
+('openlibrary',3,28,version='v8'). Helper updated explicit version whitelist/agent/
+prompts/claims and binds8 activation/amendment/software; defaults7 for history.
+Setup008 amended transport/metering reuse only0 newcalls. MonitoringPAUSED.
+Next Qutebrowser029/030 then NodeBB031/032, same original reservations.

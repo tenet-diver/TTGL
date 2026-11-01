@@ -1,0 +1,22 @@
+{
+  "status": "registered_between_completed_development_units_before_remaining_inference",
+  "parent_plan": "/Users/rustameynaliyev/Developer/TTGL/experiments/target90-development-20261031/plan.json",
+  "parent_sha256": "caf311488525d099061f5cba25d62f76a023337344e58d419541a449e9904733",
+  "completed_v7_indices": [
+    0,
+    1,
+    2
+  ],
+  "remaining_v8_indices": [
+    3,
+    4,
+    5
+  ],
+  "task_order_or_cap_changed": false,
+  "total_scored_assignment_cap": 12,
+  "no_repeats_or_replacements": true,
+  "version_change_allowed_by_parent_plan": "Only between development units from general mechanisms, separately versioned",
+  "analysis": "Retain v7 quality failure and costs; report v7/v8 blocks separately. Adaptive aggregate is not fixed-policy proof or causal prompt improvement. Separate frozen held-out registration required after development selection.",
+  "held_out_tasks_used": 0,
+  "monitoring": "PAUSED"
+}

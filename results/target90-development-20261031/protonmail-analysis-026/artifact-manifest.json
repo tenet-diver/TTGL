@@ -1,0 +1,17 @@
+{
+  "files": {
+    "summary.json": "5b3279b91cacd1fb96a327a4f4d21da182e13f237d9c236650a594159c1053f0",
+    "large/final.patch": "7605263c655d05da12ce57c8aaaae28401ed04e02ed22a3d0097d51db77e0a6f",
+    "large/replay.json": "0f94f1c88ee10ddd02f06470270bfe3cb03e20b891c4104ff5596fbc99223190",
+    "large/native-result.json": "45f33d9e22453d4e99b6ffe170b35f6c88800cc4d1dddb63d75b8461f1ddd628",
+    "large/visible-tool-trace.jsonl": "cdf802c4df3ef502b1c2848cee32282abcd94607c511bb1d83a4f2da00e6c176",
+    "large/manifest.json": "114e901821572f827bbe754441de6b3529fab8aae72da3722db5a2ec9294a4fc",
+    "large/fresh-result.json": "d81d8664049a2288b7bfcc0a423a46d6961585a68e875816323772c1aa320bcc",
+    "optional/final.patch": "3400ca1f5f067e0e3abddc790119ff822ab2ca9d3bb58f1586d0a08c21e4ff11",
+    "optional/replay.json": "5c0548c2d5e56c114946b2c11905659a8adef822e28a56ac9bb2392614e069f3",
+    "optional/native-result.json": "a593ae3766421c0e5b3fd97e2e071d040296b476bb13301758282715443159cd",
+    "optional/visible-tool-trace.jsonl": "16c81e5bff23950d54fef4d7775320afd71789869a9f7094310d598a60239393",
+    "optional/manifest.json": "93f5f48d186155ffe03c1248b5969c8a4188c30f87fa06f158d98a17fd98060c",
+    "optional/fresh-result.json": "6aeb634818b6cae5d3daf1d0695526597d38b300576f068999e790ed49188e0c"
+  }
+}

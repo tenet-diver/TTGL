@@ -1,0 +1,22 @@
+{
+  "status": "registered_general_v8_candidate_before_any_v8_model_call",
+  "registered_at": "2026-11-01T00:16:30.925712+00:00",
+  "policy_version": "v8",
+  "grounding": "Visible v7 completed decision disclosed unverified material behavior after blocked checks yet chose completion without consultation. Post-generation paired native/fresh grades confirm a Sol success lost. No task-specific fix or hidden evaluator content enters policy.",
+  "mechanism": "Separate honest uncertainty disclosure from resolving a material acceptance gap. Bounded independent attempts, then focused source/check-design review when it can help; concrete early exception when usable feedback is blocked after a candidate and practical check adaptation. No forced edits to fill a count or universal expert call.",
+  "matched_common_policy": true,
+  "routing_only_for_luna": true,
+  "default_independent_repairs": "2-3 distinct checked attempts; preserve justified early exceptions and integration time",
+  "handoff": "actual source/contracts, candidate, attempts, exact outcomes, lessons, ruled-out hypotheses, missing evidence and focused question; continuing dialogue; verified integration",
+  "not_a_hard_grader_or_backend_escalation_gate": true,
+  "risks": [
+    "Additional expert cost",
+    "Expert cannot execute checks and may miss defects",
+    "Model may still stop under uncertainty",
+    "Different development tasks cannot establish causal prompt improvement"
+  ],
+  "benchmark_specific_examples_or_rules": false,
+  "hidden_grades_to_live_actor": false,
+  "model_calls_so_far": 0,
+  "historical_v7_immutable": true
+}

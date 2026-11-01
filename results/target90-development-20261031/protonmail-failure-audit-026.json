@@ -1,0 +1,25 @@
+{
+  "status": "post_generation_failure_audit_no_model_or_grade_rerun",
+  "final_grades": {
+    "sol": 1,
+    "luna_router": 0
+  },
+  "failure_mode": "acknowledged_unverified_completion_without_escalation",
+  "missed_escalation": true,
+  "false_claim_that_checks_passed": false,
+  "failed_consultation": false,
+  "failed_integration": false,
+  "expert_requests": 0,
+  "counterfactual_expert_rescue": "unknown; Sol-only success does not establish advice would rescue",
+  "visible_evidence": "Candidate submitted after type/lint137 and unsupported script; no focused runtime test; final summary explicitly incomplete",
+  "offline_defect": "Rendered loading-marker duplicated across wrapper and existing child, causing an ambiguous single-element query. Hidden raw assertion/source stays private and is not a prompt ingredient.",
+  "grader_parser_caveat": "Parsed output folds one failed test into a neighboring passed name; raw Jest reports1 failed/2 passed. Preserve official grade0; do not infer two functional failures from missing-name list.",
+  "evaluator_material_sent_to_actor": false,
+  "no_benchmark_specific_prompt_rule": true,
+  "private_evidence_sha256": {
+    "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/protonmail-pair-026/jobs/first-block-optional/instance_protonmail__webclients__rx6vsV7/verifier/run-script-stderr.txt": "8277a86dddb0ca7d4efc4383c10b9dce0a5dd8cce736562d37dcb42e3a4ccd43",
+    "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/protonmail-pair-026/jobs/first-block-optional/instance_protonmail__webclients__rx6vsV7/verifier/test-stdout.txt": "d89498889d41298d313ce070b9a607af30d69d0c5d4c18d686986c8d3b849608",
+    "/Users/rustameynaliyev/Developer/TTGL/results/target90-development-20261031/protonmail-pair-026/jobs/first-block-optional/instance_protonmail__webclients__rx6vsV7/verifier/output.json": "173a0cd8f240095aebadc8a1d908b7a63ca60cfe3ffe154bdfe4e0a7ef563106"
+  },
+  "public_sealed_patch_sha256": "3400ca1f5f067e0e3abddc790119ff822ab2ca9d3bb58f1586d0a08c21e4ff11"
+}

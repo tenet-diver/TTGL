@@ -361,19 +361,19 @@
     "monitor": "PAUSED by explicit user instruction; continue active chat only"
   },
   "current_router_unit": {
-    "task": "protonmail",
-    "status": "matched pair026 active after completed model-free recovered controls025; Sol first then Luna",
-    "pid": 96569,
-    "protocol": "experiments/target90-development-20261031/protonmail-pair-026.json",
+    "task": "openlibrary",
+    "status": "model-free controls027 active; v8 separately registered/tested, zero v8 inference",
+    "pid": 57098,
+    "protocol": "experiments/target90-development-20261031/openlibrary-control-027.json",
     "owner": "active chat",
     "monitoring": "PAUSED"
   },
   "active_target90": {
     "plan": "experiments/target90-development-20261031/plan.json",
-    "status": "2/6 matched development pairs audited; Sol2/2 router2/2,93.8785% aggregate scenario saving; Protonmail026 active",
+    "status": "3/6 development pairs audited: Sol3/3 router2/3,96.2821% scenario saving but QUALITY LOSS; v8 prepared for remaining3 tasks",
     "metric": "at least90% all-role model-rate scenario saving, no observed held-out count loss vs matched Sol; optional stricter statistical criterion question pending",
-    "candidate": "v7 consolidated general common/routing policy, corrected transport",
-    "validation": "24 tasks untouched until candidate freeze and separate registration",
+    "candidate": "v8 material-gap completion review after bounded attempts; current software-only candidate",
+    "validation": "24 tasks untouched, no held-out registration or inference; adaptive versions reported separately",
     "monitoring": "PAUSED; active research goal in this chat, not scheduled monitor",
     "jira_key": "FAST-99",
     "confluence_url": "https://fastestswarm.atlassian.net/wiki/spaces/FASTEST/pages/19103791",

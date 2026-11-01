@@ -18,6 +18,11 @@ def analyze(study, protocol_path):
     pipeline.validate_matched_pair(protocol)
     if not protocol.get('matched_pair_development'):
         raise ValueError('Require registered matched pair')
+    version=protocol.get('controller_policy_version','v7')
+    modules={'v7':'src/ttgl/cost_quality_router.py','v8':'src/ttgl/completion_review_router.py'}
+    if version not in modules:raise ValueError('Unregistered controller policy version')
+    policy_files=[modules[version],f'prompts/controller-{version}-common.txt',
+                  f'prompts/controller-{version}-routing.txt','src/ttgl/harbor_bridge.py']
     completion=json.loads((study/'completion.json').read_text())
     rows=json.loads((study/'records.json').read_text())
     if completion['development_assignments']!=2:
@@ -65,8 +70,8 @@ def analyze(study, protocol_path):
         if arm=='optional' and any(e['model']!=('gpt-6.1-sol' if e['kind']=='expert' else 'gpt-6-luna') for e in requests):
             raise ValueError('Router model identity disagrees')
         policy=manifest['backend']['controller_policy']
-        expected_common=protocol['source_sha256'][str(ROOT/'prompts/controller-v7-common.txt')]
-        if policy.get('mode')!='consolidated-v7' or policy.get('common_sha256')!=expected_common:
+        expected_common=protocol['source_sha256'][str(ROOT/f'prompts/controller-{version}-common.txt')]
+        if policy.get('mode')!='consolidated-'+version or policy.get('common_sha256')!=expected_common:
             raise ValueError('Matched common guidance not bound')
         boundary=meta['fresh_actor_boundary']
         if boundary['status']!='fresh_actor_boundary_passed_before_router_inference':
@@ -103,9 +108,7 @@ def analyze(study, protocol_path):
             exports[arm].update({'pre-handoff.patch':records/'pre-handoff.patch',
                                 'pre-handoff-result.json':pre_path,'pre-handoff-replay.json':pre_replay_path})
     return {'status':'audited_development_pair_not_final_target_evidence','task_id':protocol['task_id'],
-            'policy':'v7','policy_identity':{p:protocol['source_sha256'][str(ROOT/p)] for p in
-                ['src/ttgl/cost_quality_router.py','prompts/controller-v7-common.txt',
-                 'prompts/controller-v7-routing.txt','src/ttgl/harbor_bridge.py']},'arms':arms,'comparison':diagnostic,'actual_cash_saving':None,
+            'policy':version,'policy_identity':{p:protocol['source_sha256'][str(ROOT/p)] for p in policy_files},'arms':arms,'comparison':diagnostic,'actual_cash_saving':None,
             'subscription_quota_saving':None,'validation_tasks_used':0,
             'uncertainty':'One selected public development task, not population equivalence, transfer or confirmatory90% target proof'},exports
 

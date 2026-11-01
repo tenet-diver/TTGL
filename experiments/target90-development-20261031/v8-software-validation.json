@@ -1,0 +1,18 @@
+{
+  "status": "62_focused_tests_passed_before_v8_inference",
+  "new_model_calls": 0,
+  "scope": "v7/v8 forwarding, permissions, policy identity, resumed/expert behavior, pair joins and wrong-version rejection, adaptive-block accounting, setup reuse, pipeline and partial recovery. Not behavioral quality evidence.",
+  "source_sha256": {
+    "src/ttgl/completion_review_router.py": "b5b1ff02a4667d2e6c858980634beec646ef6e945ee4b767d89c79e9fc283653",
+    "prompts/controller-v8-common.txt": "6d73ed9c97f8358ac1bf274698fdfd1f302fc476dd1b167b1434e6391ed20cc6",
+    "prompts/controller-v8-routing.txt": "5222475999e6d912acb84413f0005d678e5b8018475bd76773722cdb676b61ea",
+    "tests/test_completion_review_router_optional.py": "24585676b2080a2c2076fc8286e73ff8a105806dac84b5702f4ad9d8f5a5055a",
+    "scripts/analyze_target90_pair.py": "84eeb6bafc9581a39392956854c0dc4c50e096e28f2754fccd0cda22fa949d55",
+    "scripts/summarize_target90_development.py": "783b24f77a70bf9f65ba6194356094af56a21870db22ae9e8949de65ad58a0aa",
+    "tests/test_target90_pair_analysis.py": "afc6fc74e97afe815edb20f0161e5d6e1a3c5b37c32cfe3ad7f9ee7dd16903ba",
+    "tests/test_target90_summary.py": "a22ffb0e9388bf99818fbcda9af409f0802e48b33166b9400bfeaf86e21e33db",
+    "tests/test_target90_partial.py": "f7633f9da91a49be7c2db4645d2d15ea5a7511a43347c02b15084d0e76f340b5"
+  },
+  "raw_stdout": "/Users/rustameynaliyev/Developer/TTGL/artifacts/target90-v8-software-checks.txt",
+  "raw_stdout_sha256": "5c7c1f1ef8eb06a24e9a2a461d7131582b530a1de9cec8907b4ecce79eeac937"
+}

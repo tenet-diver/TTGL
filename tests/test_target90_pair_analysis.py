@@ -16,10 +16,12 @@ def save(p,value):
     p.write_text(json.dumps(value))
 
 
-@pytest.fixture
-def complete_pair(tmp_path):
+@pytest.fixture(params=['v7','v8'])
+def complete_pair(tmp_path,request):
+    version=request.param
+    module={'v7':'src/ttgl/cost_quality_router.py','v8':'src/ttgl/completion_review_router.py'}[version]
     study=tmp_path/'study';rows=[];private=tmp_path/'private'
-    common=ROOT/'prompts/controller-v7-common.txt';common_hash=analysis.pipeline.digest(common)
+    common=ROOT/f'prompts/controller-{version}-common.txt';common_hash=analysis.pipeline.digest(common)
     rate_path=tmp_path/'rates.json'
     save(rate_path,{'models':{
         'gpt-6.1-sol':{'input_per_million':1,'cached_input_per_million':0.1,'output_per_million':2},
@@ -29,7 +31,7 @@ def complete_pair(tmp_path):
         usage.update(input_tokens=100,output_tokens=5)
         manifest={'status':'completed_ungraded','expert_calls':0,'elapsed_seconds':1,
                   'usage':usage,'usage_by_model':{model:{'usage':usage}},'usage_accounting_issues':[],
-                  'backend':{'controller_policy':{'mode':'consolidated-v7','common_sha256':common_hash}}}
+                  'backend':{'controller_policy':{'mode':'consolidated-'+version,'common_sha256':common_hash}}}
         save(records/'controller/manifest.json',manifest)
         events=[{'event':'request','request_id':arm,'model':model,'kind':'controller'},
                 {'event':'response','request_id':arm,'model':model,'kind':'controller',
@@ -58,12 +60,12 @@ def complete_pair(tmp_path):
                      'native_result':str(native_path),'private_manifest_sha256':meta['manifest_sha256']})
     save(study/'records.json',rows);save(study/'completion.json',{'development_assignments':2})
     protocol=tmp_path/'protocol.json'
-    save(protocol,{'task_id':'task','matched_pair_development':True,'scored_assignment_cap':2,
+    save(protocol,{'controller_policy_version':version,'task_id':'task','matched_pair_development':True,'scored_assignment_cap':2,
                    'first_block_order':['large','optional'],'assignment_claims':{
                        'large':str(tmp_path/'sol-claim'),'optional':str(tmp_path/'router-claim')},
                    'rate_scenario':str(rate_path),'source_sha256':{str(ROOT/p):analysis.pipeline.digest(ROOT/p) for p in
-                       ['src/ttgl/cost_quality_router.py','prompts/controller-v7-common.txt',
-                        'prompts/controller-v7-routing.txt','src/ttgl/harbor_bridge.py']}})
+                       [module,f'prompts/controller-{version}-common.txt',
+                        f'prompts/controller-{version}-routing.txt','src/ttgl/harbor_bridge.py']}})
     return study,protocol,private
 
 
@@ -82,4 +84,16 @@ def test_pair_audit_rejects_altered_final_patch(complete_pair):
     study,protocol,private=complete_pair
     (private/'optional/final.patch').write_text('changed after grading')
     with pytest.raises(ValueError,match='provenance'):
+        analysis.analyze(study,protocol)
+
+
+def test_pair_audit_rejects_wrong_registered_policy(complete_pair):
+    study,protocol,_=complete_pair
+    d=json.loads(protocol.read_text());d['controller_policy_version']='v8' if d['controller_policy_version']=='v7' else 'v7'
+    # Supply the alternate files so rejection is a policy-mode check, not a missing key.
+    v=d['controller_policy_version'];module={'v7':'src/ttgl/cost_quality_router.py','v8':'src/ttgl/completion_review_router.py'}[v]
+    for name in [module,f'prompts/controller-{v}-common.txt',f'prompts/controller-{v}-routing.txt']:
+        d['source_sha256'][str(ROOT/name)]=analysis.pipeline.digest(ROOT/name)
+    save(protocol,d)
+    with pytest.raises(ValueError,match='common guidance'):
         analysis.analyze(study,protocol)

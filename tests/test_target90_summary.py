@@ -9,7 +9,7 @@ m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
 
 def pair(task,sol_cost,router_cost,router_resolved=1):
     return {'status':'audited_development_pair_not_final_target_evidence','task_id':task,
-            'policy_identity':{'v7':'fixed'},'arms':{
+            'policy':'v7','policy_identity':{'v7':'fixed'},'arms':{
                 'large':{'resolved':1,'cost_scenario_usd':sol_cost},
                 'optional':{'resolved':router_resolved,'cost_scenario_usd':router_cost}},
             'comparison':{'sol_success_lost':not router_resolved,'router_extra_success':False}}
@@ -44,3 +44,15 @@ def test_quality_loss_or_unknown_cost_cannot_pass_target_gate():
 def test_duplicate_tasks_are_rejected():
     p=pair('one',1,0.01)
     with pytest.raises(ValueError):m.summarize({'tasks':[{'task_id':'one'}]},[p,p])
+
+
+def test_adaptive_versions_cannot_masquerade_as_fixed_policy_success():
+    old=pair('one',1,0.01);new=pair('two',1,0.01)
+    new['policy']='v8';new['policy_identity']={'v8':'fixed'}
+    result=m.summarize({'tasks':[{'task_id':'one'},{'task_id':'two'}]},[old,new])
+    assert result['all_registered_pairs_complete'] is True
+    assert result['fixed_policy_across_completed_pairs'] is False
+    assert result['development_point_gate'] is False
+    assert result['held_out_target_achieved'] is False
+    assert result['version_observations']['v7']['completed_pairs']==1
+    assert result['version_observations']['v8']['completed_pairs']==1
