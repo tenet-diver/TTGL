@@ -2286,3 +2286,8 @@ Langfuse v4 immutable observations require positive counter increments and persi
 ## Native runtime audit — 4 November
 
 Timing audit correction: `usage-tools` start/completion timestamps are lifecycle windows, not trustworthy execution latency. Timing widgets now use `usage-runtime-v2` from explicit native item.duration (secs/nanos), with shell command/action groups and separate outcomes. Unknown native durations are excluded. Completed operation stats show count/median/p95; investigate failure outliers separately. Mixed batches remain one shared runtime, and process runtime still is not agent-blocking or end-to-end task latency. Do not rank bottlenecks using the old monitor duration/lifecycle totals. Token and tool-frequency accounting is unchanged. See runtime_enrichment.py and the README audit examples.
+
+
+## Runtime distribution preference — 4 November
+
+Latest user choice: preserve outliers and use runtime distributions instead of filtering. Primary timing widgets show median by operation/outcome plus count, p50, p95, p99 and maximum. All outcomes stay included, grouped separately. No minimum-count cohort or individual clipping is applied; its temporary refresh is removed. Read quantiles alongside sample counts, especially for rare operations. Token/cost accounting is unchanged.

@@ -14,8 +14,8 @@ def definitions():
  ('API-equivalent cost buckets — total is a reference','costType','costByType','sum','HORIZONTAL_BAR',daily),
  ('Tokens by model — measured','providedModelName','totalTokens','sum','HORIZONTAL_BAR',daily),
  ('API-equivalent cost by model — current prices','providedModelName','totalCost','sum','HORIZONTAL_BAR',daily),
- ('Runtime by operation and outcome','name','latency','sum','HORIZONTAL_BAR',timed),
- ('Completed operations: count, median, p95 and max','name','latency','p95','PIVOT_TABLE',timed+[{'column':'name','operator':'ends with','type':'string','value':' · completed'}]),
+ ('Median runtime by operation and outcome','name','latency','p50','HORIZONTAL_BAR',timed),
+ ('Runtime distribution: count, median, p95, p99 and max','name','latency','p95','PIVOT_TABLE',timed),
  ('Most frequent native tools','name','count','count','HORIZONTAL_BAR',tools),
  ('Typical argument patterns — derived shape occurrences','name','count','count','HORIZONTAL_BAR',patterns),
  ('Session lifetime tokens — last active in selected range','sessionId','totalTokens','sum','HORIZONTAL_BAR',sessions),
@@ -37,16 +37,16 @@ def configure(credentials,dashboard_id,state):
   'Langfuse model-price estimates. The total bar summarizes the other bars. These are not subscription charges.',
   'Measured model token totals for selected calendar days, including cache reads.',
   'API price scenario, not invoices. Models without a price match have unknown cost.',
-  'Recorded native runtime, split by command/action and success or failure. Event lifecycle gaps are excluded. Parallel process runtimes may overlap.',
-  'Completed operations only. Compare call count, typical duration and slow-call duration. Failures and timeouts are shown separately in the runtime ranking.',
+  'Median recorded runtime by operation and outcome. All recorded outcomes remain included. For groups with few calls, consult the count and distribution table. Process runtimes may overlap and include background jobs.',
+  'All recorded outcomes, grouped separately. Median describes typical runtime; p95/p99 describe the slow tail; maximum preserves extreme cases. Read percentiles alongside sample counts. Runtime is not agent waiting time.',
   'Completed native operations. Parent batch wrappers are excluded when child events are available.',
   'One summary per tool call. Private values are omitted; safe options such as result limits and compact/full remain.',
   'Lifetime session tokens selected by last activity. This is an alternative view of daily usage; do not add them.',
   'Calendar-day totals from retained logs using Europe/Amsterdam source days. This is not an hourly usage chart.']
  for i,(name,dim,measure,agg,chart,filters) in enumerate(definitions()):
   definition={'name':name,'description':descriptions[i],'view':'observations','dimensions':[{'field':dim}],'metrics':[{'measure':measure,'agg':agg}],'filters':filters,'chartType':chart,'chartConfig':{'row_limit':15}}
-  if name.startswith('Completed operation'):
-   definition['metrics']=[{'measure':'count','agg':'count'},{'measure':'latency','agg':'p50'},{'measure':'latency','agg':'p95'},{'measure':'latency','agg':'max'}]
+  if name.startswith('Runtime distribution'):
+   definition['metrics']=[{'measure':'count','agg':'count'},{'measure':'latency','agg':'p50'},{'measure':'latency','agg':'p95'},{'measure':'latency','agg':'p99'},{'measure':'latency','agg':'max'}]
   if name in cache:w=api('/api/public/unstable/dashboard-widgets/'+cache[name],definition,'PATCH')
   else:
    w=api('/api/public/unstable/dashboard-widgets',definition);cache[name]=w['id'];state.write_text(json.dumps(cache))
