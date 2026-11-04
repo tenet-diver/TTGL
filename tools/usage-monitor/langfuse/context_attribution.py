@@ -255,7 +255,7 @@ def run(args):
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--codex-root',type=Path,default=Path.home()/'.codex');p.add_argument('--monitor-data',type=Path,required=True);p.add_argument('--credentials',type=Path,required=True);p.add_argument('--state',type=Path,required=True);p.add_argument('--watch',action='store_true');a=p.parse_args();os.umask(0o077);a.state.mkdir(parents=True,exist_ok=True)
  import fcntl
- lock=(a.state/'run.lock').open('w');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+ lock=(a.state/'run.lock').open('w');fcntl.flock(lock,fcntl.LOCK_EX|(0 if a.watch else fcntl.LOCK_NB))
  while True:
   try:run(a)
   except Exception as ex:
