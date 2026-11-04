@@ -1,3 +1,7 @@
+# Superseded: AI Observer pilot
+
+Stopped on 4 November 2026. Its container and feed/projection LaunchAgents are inactive. Use [Langfuse](../langfuse/README.md) for session replay and traces. The following records the previous pilot; it is not the current startup runbook.
+
 # OSS dashboard: AI Observer
 
 AI Observer 0.6.0 (MIT) is now the companion OSS observability UI at http://127.0.0.1:8080. TTGL's review UI remains at http://127.0.0.1:8766, using ccusage 20.0.48. A navigation link opens the OSS reports directly.

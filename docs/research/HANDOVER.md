@@ -2269,3 +2269,8 @@ Implemented tools/usage-monitor: ccusage20.0.48 session/daily accounting, SQLite
 ## 4 November: start the OSS observability dashboard
 
 On explicit user request, started Docker Desktop and the pinned official AI Observer0.6.0 amd64 image as ttgl-ai-observer, loopback8080, watch codex --backfill. Existing ccusage/TTGL report stays on8766. AI Observer lacks direct compressed-file support in this release: separate local expanded copies cover468 compressed histories, originals remain read-only. All expansion completed without errors. The source setup and helper are under tools/usage-monitor/observer; no private histories are tracked. AI Observer pricing/reconstruction is independent of ccusage and not actual billed charges. A sidebar link opens the OSS dashboard.
+
+
+## 4 November: native OSS session observability
+
+Langfuse now runs locally in six containers, replacing the stopped AI Observer usage-only pilot as the primary trace/session UI. The official verified Codex plugin imported two real sessions/four completed turns; the full historical aggregate report and reviewed suggestions remain in the TTGL companion. Live capture awaits restart and normal vendor-hook trust in Codex. Prefer existing OSS replay/tracing capabilities; do not build a custom trace viewer. See [deployment and security limits](../../tools/usage-monitor/langfuse/README.md). Dependency scans have residual and unscored findings; provenance does not establish absence of malicious code. No optimization executor, benchmark rerun, or heartbeat change was introduced.
