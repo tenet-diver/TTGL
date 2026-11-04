@@ -98,3 +98,23 @@ and the mandatory dependency rules in the repository and global `AGENTS.md`.
 ## 5 November Cloud continuation
 
 Read the [continuation and ten-idea backlog](../../../docs/research/context-experiment-continuation-20261105.md). The supplied package is preserved as reference, not execution authority. Nine offline adapter checks pass after a JSON-text serialization fix; live Headroom and masking trials remain gated.
+
+
+### Offline comparisons and native dataset publication
+
+`offline_component_study.py` compares original observations, failure-row projection
+with/without recovery, older-output references and reversible handles on two
+synthetic formats. It uses oracle-guided source selection and serialized bytes,
+not model decisions/tokens. Projection without recovery intentionally loses details.
+See the continuation record for the blocked native canary and full ten-technique status.
+
+Publish finalized component evidence with the existing local native Langfuse API:
+
+```sh
+python3 tools/usage-monitor/experiments/publish_component_results.py --report results/context-cloud-20261105/offline-components.json --credentials "$TTGL_LOCAL_LANGFUSE_CREDENTIALS_FILE" --state work/context-pilot-cloud-dataset
+```
+
+`publish_offline_diagnostics.py` can publish finalized adapter checks through the
+existing immutable observation exporter. A timed-out batch is uncertain: preserve
+its outbox and reconcile, never change state directories to force a retry. Current
+cloud ingestion is paused for disk capacity; native dataset rows remain readable.

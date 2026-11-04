@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-11-04T23:48:37.648871+00:00",
+  "decision": "blocked",
+  "candidate": "headroom-ai==0.42.0",
+  "resolved_distributions": 69,
+  "mandatory_litellm_version": "1.103.10",
+  "resolution_sha256": "dc3a899da35fd4b349c6eb86067e3cf1327e71fd635f77b3b0bd9a0f47defd10",
+  "installation_performed": false,
+  "execution_performed": false,
+  "full_graph_reviewed": false,
+  "os_image_scan_complete": false,
+  "malicious_release_review_complete": false,
+  "artifact_integrity_verified": false,
+  "scripts_reviewed": false,
+  "known_findings": null,
+  "blocking_evidence": [
+    "OSV querybatch proxy CONNECT rejected with HTTP 403",
+    "No existing OSV/Trivy/Grype/Syft scanner or Docker Scout command",
+    "No complete current base-OS and publisher incident review",
+    "No approved immutable experiment image"
+  ],
+  "note": "Resolution metadata is not artifact integrity verification or security approval. Null findings do not mean clean."
+}

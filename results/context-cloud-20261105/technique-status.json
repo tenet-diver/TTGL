@@ -1,0 +1,65 @@
+{
+  "techniques": [
+    {
+      "name": "observation masking",
+      "offline_status": "constructed-envelope and oracle-recovery checks executed",
+      "live_status": "blocked: history mutation unverified and provider denied"
+    },
+    {
+      "name": "tool-output compression",
+      "offline_status": "deterministic failure-row projection executed; lost requested details without recovery",
+      "live_status": "blocked: provider denied; Headroom runtime review incomplete"
+    },
+    {
+      "name": "hierarchical compaction",
+      "offline_status": "proposal only; not implemented or tested",
+      "live_status": "ineligible until implementation and coverage/protection gates"
+    },
+    {
+      "name": "reversible compression",
+      "offline_status": "synthetic checksum-verified handle recovery executed, oracle chooses source",
+      "live_status": "blocked: provider denied and real context mutation unverified"
+    },
+    {
+      "name": "self-hosted Mem0",
+      "offline_status": "proposal only; not installed",
+      "live_status": "ineligible: dependency/runtime review and frozen memory corpus missing"
+    },
+    {
+      "name": "generalizable principles",
+      "offline_status": "proposal only; not implemented or tested",
+      "live_status": "ineligible: verified frozen episodes and curator missing"
+    },
+    {
+      "name": "stage-aware retrieval",
+      "offline_status": "proposal only; not implemented or tested",
+      "live_status": "ineligible: classifier, fixed corpus and matched retrieval control missing"
+    },
+    {
+      "name": "knowledge graph",
+      "offline_status": "proposal only; not implemented or tested",
+      "live_status": "ineligible: commit-scoped graph and traversal gates missing"
+    },
+    {
+      "name": "local lightweight models",
+      "offline_status": "proposal only; not downloaded or executed",
+      "live_status": "ineligible: approved weights/runtime, named service and resource budget missing"
+    },
+    {
+      "name": "cache-aware compaction",
+      "offline_status": "proposal only; provider-cache mechanism unverified",
+      "live_status": "blocked: provider denied and metering unavailable"
+    }
+  ],
+  "complete_all_experiments": false,
+  "evidence_based_deployment_recommendation": null,
+  "next_live_candidate": "deterministic tool-output projection with exact recovery references; hypothesis only",
+  "required_environment_changes": [
+    "Allow api.osv.dev and chatgpt.com through supported environment configuration",
+    "Increase disk from 32 GB to at least 64 GB before restoring concurrent Langfuse worker and experiment runs"
+  ],
+  "requires_additional_design": [
+    "Freeze live task suite, owner budget/rate route and primary comparison",
+    "Implement and validate remaining proposed components before calling them experiments"
+  ]
+}

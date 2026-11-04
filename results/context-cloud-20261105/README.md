@@ -12,3 +12,11 @@ Reproduce from the repository root:
 python3 tools/usage-monitor/experiments/offline_context_probe.py --output work/context-pilot-cloud-probe/offline-mechanisms.json
 python3 -m unittest discover -s tools/usage-monitor/experiments -p 'test_*.py'
 ```
+
+The later `offline-components.json` contains ten exploratory comparisons and
+46/50 deterministic oracle checks; projection without recovery intentionally
+fails four detail questions. These are not model trials. `runtime-review-status.json`,
+`native-canary-status.json` and `technique-status.json` expose actual blocking
+conditions and distinguish unimplemented proposals from completed diagnostics.
+Native Langfuse's `context-offline-diagnostics-20261105` dataset has all ten rows;
+the dashboard description explains why live trace charts remain unpopulated.
