@@ -7,15 +7,15 @@ def definitions():
  def env(name):return [{'column':'environment','operator':'=','type':'string','value':name}]
  def typ(name):return [{'column':'type','operator':'any of','type':'stringOptions','value':[name]}]
  daily=env('usage-daily-v3')+typ('GENERATION');sessions=env('usage-sessions-v2')+typ('GENERATION')
- tools=env('usage-tools')+typ('TOOL');timed=tools+[{'column':'metadata','key':'timing_known','operator':'=','type':'stringObject','value':'true'}]
+ tools=env('usage-tools')+typ('TOOL');timed=env('usage-runtime-v2')+typ('TOOL')
  patterns=env('usage-tools')+typ('EVENT')+[{'column':'metadata','key':'record_kind','operator':'=','type':'stringObject','value':'argument_pattern'}]
  return [
  ('Measured token buckets — total is a reference','usageType','usageByType','sum','HORIZONTAL_BAR',daily),
  ('API-equivalent cost buckets — total is a reference','costType','costByType','sum','HORIZONTAL_BAR',daily),
  ('Tokens by model — measured','providedModelName','totalTokens','sum','HORIZONTAL_BAR',daily),
  ('API-equivalent cost by model — current prices','providedModelName','totalCost','sum','HORIZONTAL_BAR',daily),
- ('Total native tool time — overlaps are not elapsed time','name','latency','sum','HORIZONTAL_BAR',timed),
- ('Slow native tools — p95 known durations','name','latency','p95','HORIZONTAL_BAR',timed),
+ ('Runtime by operation and outcome','name','latency','sum','HORIZONTAL_BAR',timed),
+ ('Completed operations: count, median, p95 and max','name','latency','p95','PIVOT_TABLE',timed+[{'column':'name','operator':'ends with','type':'string','value':' · completed'}]),
  ('Most frequent native tools','name','count','count','HORIZONTAL_BAR',tools),
  ('Typical argument patterns — derived shape occurrences','name','count','count','HORIZONTAL_BAR',patterns),
  ('Session lifetime tokens — last active in selected range','sessionId','totalTokens','sum','HORIZONTAL_BAR',sessions),
@@ -37,18 +37,24 @@ def configure(credentials,dashboard_id,state):
   'Langfuse model-price estimates. The total bar summarizes the other bars. These are not subscription charges.',
   'Measured model token totals for selected calendar days, including cache reads.',
   'API price scenario, not invoices. Models without a price match have unknown cost.',
-  'Sum of known tool execution durations. Parallel calls overlap; this is not elapsed session time.',
-  '95% of measured calls finish within this duration. Unknown timings are excluded.',
+  'Recorded native runtime, split by command/action and success or failure. Event lifecycle gaps are excluded. Parallel process runtimes may overlap.',
+  'Completed operations only. Compare call count, typical duration and slow-call duration. Failures and timeouts are shown separately in the runtime ranking.',
   'Completed native operations. Parent batch wrappers are excluded when child events are available.',
   'One summary per tool call. Private values are omitted; safe options such as result limits and compact/full remain.',
   'Lifetime session tokens selected by last activity. This is an alternative view of daily usage; do not add them.',
   'Calendar-day totals from retained logs using Europe/Amsterdam source days. This is not an hourly usage chart.']
  for i,(name,dim,measure,agg,chart,filters) in enumerate(definitions()):
   definition={'name':name,'description':descriptions[i],'view':'observations','dimensions':[{'field':dim}],'metrics':[{'measure':measure,'agg':agg}],'filters':filters,'chartType':chart,'chartConfig':{'row_limit':15}}
+  if name.startswith('Completed operation'):
+   definition['metrics']=[{'measure':'count','agg':'count'},{'measure':'latency','agg':'p50'},{'measure':'latency','agg':'p95'},{'measure':'latency','agg':'max'}]
   if name in cache:w=api('/api/public/unstable/dashboard-widgets/'+cache[name],definition,'PATCH')
   else:
    w=api('/api/public/unstable/dashboard-widgets',definition);cache[name]=w['id'];state.write_text(json.dumps(cache))
-  placements.append({'id':'analytics-'+str(i),'type':'widget','widgetId':w['id'],'x':(i%2)*6,'y':(i//2)*6,'width':6,'height':6})
+  if i<4:x,y,width,height=(i%2)*6,(i//2)*6,6,6
+  elif i==4:x,y,width,height=0,12,12,8
+  elif i==5:x,y,width,height=0,20,12,8
+  else:x,y,width,height=((i-6)%2)*6,28+((i-6)//2)*6,6,6
+  placements.append({'id':'analytics-'+str(i),'type':'widget','widgetId':w['id'],'x':x,'y':y,'width':width,'height':height})
  api('/api/public/unstable/dashboards/'+dashboard_id,{'name':'Codex Token and Time Breakdown','description':'Retained Codex history. Model tokens are measured; dollar values are API price scenarios. Tool times can overlap and are not elapsed session time. Argument summaries omit private values. Choose a date range to compare periods.','definition':{'widgets':placements},'filters':[]},'PATCH')
  print(c['base_url']+'/project/ttgl-codex/dashboards/'+dashboard_id)
 if __name__=='__main__':

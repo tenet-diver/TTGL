@@ -13,6 +13,8 @@ from pathlib import Path
 HERE=Path(__file__).resolve().parent
 spec=importlib.util.spec_from_file_location('ttgl_monitor',HERE.parent/'server.py')
 monitor=importlib.util.module_from_spec(spec);spec.loader.exec_module(monitor)
+runtime_spec=importlib.util.spec_from_file_location('ttgl_runtime',HERE/'runtime_enrichment.py')
+runtime=importlib.util.module_from_spec(runtime_spec);runtime_spec.loader.exec_module(runtime)
 VERSION='ttgl-analytics-v1'
 NATIVE={'CommandExecution','McpToolCall','DynamicToolCall','FileChange','WebSearch','ImageView','Extension'}
 SAFE_COMMANDS=set('rg grep find cat sed head tail git pytest python python3 node npm npx pnpm yarn docker swift xcodebuild cargo go curl ls du df zstd codex sleep'.split())
@@ -54,7 +56,7 @@ def arg_summary(args,command=None):
  result['argument_pattern']='; '.join(parts)[:700]
  return result
 
-def tool_records(path):
+def tool_records(path,runtime_only=False):
  meta=None;native={};fallback={};requests={};native_seen=False;bad=0
  for line,r in monitor.lines(path):
   if not r:bad+=1;continue
@@ -71,7 +73,7 @@ def tool_records(path):
    if not ident:continue
    name='shell' if kind=='CommandExecution' else (str(i.get('server',''))+'.'+str(i.get('tool',''))).strip('.') if kind=='McpToolCall' else str(i.get('kind') or kind)
    output=i.get('aggregated_output') if kind=='CommandExecution' else i.get('result')
-   size,_=monitor.size_text(output)
+   size=None if runtime_only else monitor.size_text(output)[0]
    a,z=p.get('started_at_ms'),p.get('completed_at_ms')
    known=isinstance(a,(int,float)) and isinstance(z,(int,float)) and z>=a and a>0
    # Unknown duration is a zero-width event, always excluded from timing charts.
@@ -81,9 +83,9 @@ def tool_records(path):
    failure=code!=0 if isinstance(code,int) else status in ['failed','error'] if status in ['completed','failed','error'] else None
    if kind=='McpToolCall' and isinstance(output,dict) and output.get('isError') is not None:failure=bool(output['isError'])
    args=i.get('arguments');command=i.get('command') if kind=='CommandExecution' else None
-   summary=arg_summary(args,command)
-   native[ident]={'id':ident,'sid':sid,'name':name,'start':start,'end':end,'line':line,'timing_known':known,'output_bytes':size,'failed':failure,'kind':kind,**summary}
-  if typ=='response_item':
+   summary={'argument_pattern':'See original tool record for argument summary'} if runtime_only else arg_summary(args,command)
+   native[ident]={'id':ident,'sid':sid,'name':name,'start':start,'end':end,'line':line,'timing_known':known,'output_bytes':size,'failed':failure,'kind':kind,'native_runtime_ns':runtime.native_ns(i.get('duration')),'operation':runtime.operation(i,name),**summary}
+  if typ=='response_item' and not runtime_only:
    kind=p.get('type');ident=p.get('call_id')
    if not ident:continue
    if kind in ['function_call','custom_tool_call']:
@@ -145,7 +147,7 @@ class Exporter:
   self.config=json.loads(credentials.read_text());url=urllib.parse.urlparse(self.config['base_url'])
   if url.scheme!='http' or url.hostname not in ['localhost','127.0.0.1']:raise ValueError('Only local Langfuse is allowed')
   self.db=sqlite3.connect(state/'export.sqlite',timeout=30)
-  self.db.executescript("CREATE TABLE IF NOT EXISTS sent(id TEXT PRIMARY KEY,hash TEXT); CREATE TABLE IF NOT EXISTS files(path TEXT PRIMARY KEY,size INTEGER,mtime INTEGER); CREATE TABLE IF NOT EXISTS cursors(id TEXT PRIMARY KEY,counters TEXT); CREATE TABLE IF NOT EXISTS outbox(id TEXT PRIMARY KEY,hash TEXT,span TEXT,cursor TEXT);")
+  self.db.executescript("CREATE TABLE IF NOT EXISTS sent(id TEXT PRIMARY KEY,hash TEXT); CREATE TABLE IF NOT EXISTS files(path TEXT PRIMARY KEY,size INTEGER,mtime INTEGER); CREATE TABLE IF NOT EXISTS runtime_files_v2(path TEXT PRIMARY KEY,size INTEGER,mtime INTEGER); CREATE TABLE IF NOT EXISTS cursors(id TEXT PRIMARY KEY,counters TEXT); CREATE TABLE IF NOT EXISTS outbox(id TEXT PRIMARY KEY,hash TEXT,span TEXT,cursor TEXT);")
   self.buffer=[];self.pending=[];self.exported=0;self.skipped=0
   if self.db.execute('SELECT count(*) FROM outbox').fetchone()[0]:self.reconcile()
  def request(self,path,data=None):
@@ -192,11 +194,11 @@ class Exporter:
   self.commit(self.pending)
   self.exported+=len(self.buffer);self.buffer=[];self.pending=[]
   time.sleep(.02)
- def file_done(self,path,stat):
+ def file_done(self,path,stat,table='files'):
   self.flush()
-  with self.db:self.db.execute('INSERT OR REPLACE INTO files VALUES(?,?,?)',(str(path),stat.st_size,stat.st_mtime_ns))
- def unchanged(self,path,stat):
-  return self.db.execute('SELECT 1 FROM files WHERE path=? AND size=? AND mtime=?',(str(path),stat.st_size,stat.st_mtime_ns)).fetchone() is not None
+  with self.db:self.db.execute('INSERT OR REPLACE INTO '+table+' VALUES(?,?,?)',(str(path),stat.st_size,stat.st_mtime_ns))
+ def unchanged(self,path,stat,table='files'):
+  return self.db.execute('SELECT 1 FROM '+table+' WHERE path=? AND size=? AND mtime=?',(str(path),stat.st_size,stat.st_mtime_ns)).fetchone() is not None
  def usage(self,report,kind):
   # Append positive counter increments, never re-send growing snapshots.
   # v2 environments quarantine the initial snapshot canaries from analytics.
@@ -232,12 +234,18 @@ def run(args):
  fs=m.discover()
  for idx,path in enumerate(fs):
   stat=path.stat();status['files']+=1
-  if exporter.unchanged(path,stat):continue
+  old_done=exporter.unchanged(path,stat);runtime_done=exporter.unchanged(path,stat,'runtime_files_v2')
+  if old_done and runtime_done:continue
   try:
-   meta,records,bad=tool_records(path)
+   meta,records,bad=tool_records(path,runtime_only=old_done and not runtime_done)
    if bad:raise ValueError(str(bad)+' malformed or oversize lines')
-   for s in tool_spans(meta,records):exporter.add(s)
-   exporter.file_done(path,stat);status['changed_files']+=1;status['tool_calls']+=len(records)
+   if not old_done:
+    for s in tool_spans(meta,records):exporter.add(s)
+    exporter.file_done(path,stat)
+   if not runtime_done:
+    for s in runtime.spans(meta,records,span):exporter.add(s)
+    exporter.file_done(path,stat,'runtime_files_v2')
+   status['changed_files']+=1;status['tool_calls']+=len(records)
   except Exception as e:
    status['errors'].append({'file':path.name,'error':type(e).__name__+': '+str(e)[:120]})
    # A transport failure leaves buffered data unsent; fail instead of mixing receipts.
@@ -253,7 +261,7 @@ def run(args):
    if sum(usage_buckets(u)['total'] for u in row.get('models',{}).values())!=row['totalTokens']:raise ValueError('Report model mismatch')
   exporter.usage(report,kind)
   status[kind]={'rows':len(rows),'total_tokens':total,'source_mtime':datetime.fromtimestamp((args.monitor_data/('ccusage-'+kind+'.json')).stat().st_mtime,timezone.utc).isoformat()}
- status.update(finished=monitor.now(),exported=exporter.exported,unchanged=exporter.skipped)
+ status.update(finished=monitor.now(),exported=exporter.exported,unchanged=exporter.skipped,runtime_files_completed=exporter.db.execute('SELECT count(*) FROM runtime_files_v2').fetchone()[0])
  (args.state/'status.json').write_text(json.dumps(status,indent=2));(args.state/'error.json').write_text(jsontext({'state':'clear','at':monitor.now()}));print(jsontext(status),flush=True)
  exporter.db.close()
  return status
