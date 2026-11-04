@@ -1,0 +1,29 @@
+schema_version: 1
+# Template only. Discover and freeze roughly ten real tasks before live runs.
+# REQUIRED values must fail validation. Do not run this example.
+tasks:
+  - id: T01
+    title: REQUIRED_REAL_REPOSITORY_TASK
+    repo_path: REQUIRED
+    base_commit: REQUIRED
+    prompt_file: REQUIRED
+    prompt_sha256: REQUIRED
+    split: test
+    cohort: ordinary
+    dependency_lock_sha256: REQUIRED
+    environment_manifest: REQUIRED
+    install_argv: []
+    public_test_argv: []
+    private_grader_id: REQUIRED
+    private_grader_sha256: REQUIRED
+    reference_validation: REQUIRED
+    required_behaviors: []
+    forbidden_changes: [trusted_grader, acceptance_expectations]
+    memory_snapshot: empty-v1
+    history_cutoff: null
+    budgets:
+      wall_seconds: 1800
+      max_tool_calls: 150
+      max_request_attempts: 100
+      max_agent_output_tokens: 20000
+      task_usd: REQUIRED

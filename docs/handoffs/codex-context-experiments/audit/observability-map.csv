@@ -1,0 +1,10 @@
+metric,existing_source,existing_field_or_query,units,authority,status,validation,evidence_ref
+run_identity,,,,,missing,,
+input_tokens,,,,,missing,,
+cached_input_tokens,,,,,missing,,
+cache_write_tokens,,,,,unverifiable,,
+output_tokens,,,,,missing,,
+paid_cost,,,,,unverifiable,,
+api_equivalent_cost,,,,,missing,,
+acceptance_result,,,,,missing,,
+original_content,,,,,missing,,

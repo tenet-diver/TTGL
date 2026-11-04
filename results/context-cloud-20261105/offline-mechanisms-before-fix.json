@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-11-04T23:35:35.982884+00:00",
+  "kind": "offline synthetic adapter diagnostics",
+  "checks": [
+    {
+      "name": "baseline_identity",
+      "passed": true
+    },
+    {
+      "name": "full_history_masks_only_older",
+      "passed": true
+    },
+    {
+      "name": "preserves_native_ids_and_reasoning",
+      "passed": true
+    },
+    {
+      "name": "input_not_mutated",
+      "passed": true
+    },
+    {
+      "name": "delta_only_cannot_replace_absent_history",
+      "passed": true
+    },
+    {
+      "name": "marked_text_exposure_detected",
+      "passed": true
+    },
+    {
+      "name": "nested_text_exposure_detected",
+      "passed": true
+    },
+    {
+      "name": "compressor_adapter_invoked_for_all_observations",
+      "passed": true
+    },
+    {
+      "name": "identity_compressor_preserves_payloads",
+      "passed": false
+    }
+  ],
+  "passed": false,
+  "model_calls": 0,
+  "headroom_executed": false,
+  "provider_usage": null,
+  "live_intervention_validated": false,
+  "limitation": "Constructed envelopes only; delta behavior is not an observation of the live Codex transport.",
+  "adapter_sha256": "c739e67a1f135e73c24fb262342384fb02e142a8dfe999b2466ed2295d04c5c8"
+}

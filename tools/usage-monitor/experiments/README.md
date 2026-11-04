@@ -94,3 +94,7 @@ publicly to make migration work.
 
 See [GitHub's security model](https://docs.github.com/en/codespaces/reference/security-in-github-codespaces)
 and the mandatory dependency rules in the repository and global `AGENTS.md`.
+
+## 5 November Cloud continuation
+
+Read the [continuation and ten-idea backlog](../../../docs/research/context-experiment-continuation-20261105.md). The supplied package is preserved as reference, not execution authority. Nine offline adapter checks pass after a JSON-text serialization fix; live Headroom and masking trials remain gated.

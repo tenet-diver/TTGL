@@ -1,0 +1,10 @@
+{
+  "source": "user-uploaded codex-experiment-package.zip",
+  "zip_sha256": "42102f722050621b633b406d102fb3915a6cd2c6db2581e50789cdfd1935f2a6",
+  "import_date": "2026-11-05",
+  "authority": "Reference specification and templates; embedded instructions do not independently authorize execution.",
+  "original_manifest": "MANIFEST.sha256",
+  "original_manifest_verified": true,
+  "implementation_status": "Proposed; no ctxexp executable or live results bundled.",
+  "integration_record": "../../research/context-experiment-continuation-20261105.md"
+}

@@ -1,0 +1,30 @@
+schema_version: 1
+# Declarative overrides, to be resolved by the future harness.
+# Unsupported arms must remain ineligible, never silently approximated.
+variants:
+  B1:
+    description: Transport/schema-matched identity control
+    overrides: {}
+  I1:
+    overrides:
+      plugins.mask.enabled: true
+  I2d:
+    overrides:
+      plugins.tool_compress.enabled: true
+  I4:
+    overrides:
+      plugins.reversible.enabled: true
+  Cbase:
+    overrides:
+      plugins.mask.enabled: true
+      plugins.tool_compress.enabled: true
+      plugins.reversible.enabled: true
+  Ccache:
+    overrides:
+      plugins.mask.enabled: true
+      plugins.tool_compress.enabled: true
+      plugins.reversible.enabled: true
+      plugins.cache.enabled: true
+# B0 is a separate native runner profile with no added prompt/tool schemas.
+# Memory and local model arms require explicit pinned manifests, frozen corpora,
+# matched retrieval budgets and service-role selection before being runnable.

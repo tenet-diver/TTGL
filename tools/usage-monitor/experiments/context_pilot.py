@@ -113,7 +113,9 @@ def alter_text(text, transform):
         if text.get('pilot')=='ttgl_context_pilot' and 'rows' in text:return transform(text)
         return {k:alter_text(v,transform) for k,v in text.items()}
     if isinstance(text,str) and ('ttgl_context_pilot' in text or 'TTGL_OBSERVATION_BEGIN' in text):
-        try:return json.dumps(alter_text(json.loads(text),transform),ensure_ascii=False)
+        try:
+            changed=alter_text(json.loads(text),transform)
+            return changed if isinstance(changed,str) else json.dumps(changed,ensure_ascii=False)
         except json.JSONDecodeError:pass
         pattern=r'TTGL_OBSERVATION_BEGIN ([a-z_]+/[0-2])\n(.*?)\nTTGL_OBSERVATION_END \1'
         def replace(match):

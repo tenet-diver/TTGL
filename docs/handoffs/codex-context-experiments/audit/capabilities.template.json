@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "status": "template_not_audited",
+  "codex_version": "REQUIRED",
+  "auth_route": "REQUIRED",
+  "evidence": [],
+  "capabilities": {
+    "launch_jsonl": {
+      "status": "unverifiable",
+      "evidence_ref": null
+    },
+    "exact_archive": {
+      "status": "unverifiable",
+      "evidence_ref": null
+    },
+    "tool_output_transform": {
+      "status": "unverifiable",
+      "evidence_ref": null
+    },
+    "history_rewrite": {
+      "status": "unverifiable",
+      "evidence_ref": null
+    },
+    "mcp_retrieval": {
+      "status": "unverifiable",
+      "evidence_ref": null
+    },
+    "stable_prefix_layout": {
+      "status": "unverifiable",
+      "evidence_ref": null
+    },
+    "usage_details": {
+      "status": "unverifiable",
+      "evidence_ref": null
+    },
+    "metered_charge_reconciliation": {
+      "status": "unverifiable",
+      "evidence_ref": null
+    },
+    "desktop_compatibility": {
+      "status": "unverifiable",
+      "evidence_ref": null
+    }
+  }
+}

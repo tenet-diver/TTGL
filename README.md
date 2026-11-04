@@ -1,5 +1,7 @@
 # We have to combine — A conversation is all you need
 
+**Context experiment update, 5 November 2026:** [Cloud continuation, offline adapter evidence and ten proposed experiments](docs/research/context-experiment-continuation-20261105.md). Live trials remain security/mechanism gated.
+
 **Current priority, 4 November 2026:** [measure existing coding-agent usage, then automate evidence-backed improvements](docs/research/usage-optimizer.md). The original handoff is retained; a real usage baseline is the first milestone.
 
 Latest Pro development: **one voluntary Luna-router task passed initial and

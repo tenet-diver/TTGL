@@ -1,0 +1,65 @@
+schema_version: 1
+experiment:
+  id: codex-context-pilot-v1
+  protocol: EXPERIMENT_DESCRIPTION.md
+  seed: 41017                 # scheduler seed, not a claimed model seed
+  mode: shadow
+  pricing_snapshot: REQUIRED
+  max_total_usd: REQUIRED
+runner:
+  adapter: codex_cli
+  binary_version: REQUIRED
+  model: REQUIRED
+  auth_route: REQUIRED        # metered_api | subscription
+  profile: REQUIRED
+  concurrency: 1
+  isolated_home: true
+  matched_native_compaction: true
+observability:
+  mode: reuse_existing
+  adapter: REQUIRED
+  source_of_truth: REQUIRED
+  add_missing_tags_only: true
+archive:
+  backend: local_content_addressed
+  root: ./state/archive
+  index: sqlite_fts5
+  verify_on_read: true
+  retention_days: 90
+memory:
+  adapter: none               # none | raw_fts | self_hosted_mem0
+  snapshot: empty-v1
+  writes: false
+  namespace_template: '{experiment}/{split}/{variant}/{run}'
+plugins:
+  mask: {enabled: false, recent_observations: 10, recent_tokens: 8000, pin_unresolved: true}
+  tool_compress: {enabled: false, strategy: deterministic, min_tokens: 2000, max_output_tokens: 1500}
+  hierarchy: {enabled: false, strategy: extractive, trigger_fraction: 0.70, target_fraction: 0.50, max_depth: 3, fanout: 8}
+  reversible: {enabled: false, min_span_tokens: 4000, manifest_tokens: 256, expand_budget: 4000}
+  mem0: {enabled: false, endpoint: null, version: null}
+  principles: {enabled: false, max_per_episode: 5, evidence_required: true}
+  stage: {enabled: false, strategy: deterministic, confidence_floor: 0.70, max_tokens: 2000}
+  graph: {enabled: false, max_hops: 2, max_candidates: 50, max_tokens: 2000}
+  local_model: {enabled: false, roles: [], model_manifest: null}
+  cache: {enabled: false, strategy: stable_prefix, planning_horizon_turns: 5}
+pipeline:
+  phases:
+    capture: [archive_original]
+    observation: [protect, tool_compress]
+    retrieval: [stage, mem0, principles, graph, retrieval_budget]
+    context: [hierarchy, mask, reversible, cache, validate]
+    post_episode: [principle_extraction, memory_snapshot]
+  disabled_nodes: identity
+  on_error: previous_valid_view
+sidecar: {enabled: false, max_queue: 16, max_workers: 1}
+budgets:
+  task_wall_seconds: 1800
+  max_tool_calls: 150
+  max_request_attempts: 100
+  max_agent_output_tokens: 20000
+  task_usd: REQUIRED
+  overhead_usd: REQUIRED
+acceptance:
+  executor: isolated_trusted_grader
+  timeout_seconds: 600
+  reject_test_tampering: true
