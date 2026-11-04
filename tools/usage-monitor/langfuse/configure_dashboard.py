@@ -56,6 +56,11 @@ def configure(credentials,dashboard_id,state):
   else:x,y,width,height=((i-6)%2)*6,28+((i-6)//2)*6,6,6
   placements.append({'id':'analytics-'+str(i),'type':'widget','widgetId':w['id'],'x':x,'y':y,'width':width,'height':height})
  api('/api/public/unstable/dashboards/'+dashboard_id,{'name':'Codex Token and Time Breakdown','description':'Retained Codex history. Model tokens are measured; dollar values are API price scenarios. Tool times can overlap and are not elapsed session time. Argument summaries omit private values. Choose a date range to compare periods.','definition':{'widgets':placements},'filters':[]},'PATCH')
+ if (state.parent/'context-widgets.json').exists():
+  import context_dashboard
+  status_path=state.parent/'context/status.json'
+  status=json.loads(status_path.read_text()) if status_path.exists() else {}
+  context_dashboard.configure(credentials,state.parent/'context-widgets.json',{'represented_sessions':status.get('represented_sessions',0),'expected_sessions':status.get('expected_sessions',0)},force=True)
  print(c['base_url']+'/project/ttgl-codex/dashboards/'+dashboard_id)
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--credentials',type=Path,required=True);p.add_argument('--dashboard',required=True);p.add_argument('--state',type=Path,required=True);a=p.parse_args();configure(a.credentials,a.dashboard,a.state)
