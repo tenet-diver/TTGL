@@ -2254,3 +2254,8 @@ Reuse existing official preparer/Harbor/controls/replay; separate newcap and
 source freeze, same models/effort/budgets/rates. No full642 automatic run.
 Currentgoal active, cost-only success insufficient. Preserve all failed7/8
 results and9 evidence; update paper/guide/Jira/Confluence with complete phase.
+
+
+## 4 November: measurement-first usage optimizer direction
+
+The user supplied Codex Usage Optimizer v1.1 and prioritizes measuring existing usage before automating improvements. Read [usage-optimizer.md](usage-optimizer.md); track [FAST-102](https://fastestswarm.atlassian.net/browse/FAST-102). The original pack is retained at docs/handoffs/codex-usage-optimizer/ with checksums intact. First work is source discovery, versioned read-only import, accounting reconciliation and a real ordinary-usage baseline; then incremental analysis, review and bounded verified trials with durable history. Adoption is not a deployed collector or measured saving. Existing research results, frozen artifacts and validation reservations remain intact; no new benchmark or inference launch follows from the handoff. Monitoring remains paused.

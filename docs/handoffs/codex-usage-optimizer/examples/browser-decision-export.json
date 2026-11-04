@@ -1,0 +1,14 @@
+[
+  {
+    "schema_version": 1,
+    "suggestion_id": "demo-ready",
+    "suggestion_version": 1,
+    "decision": "later",
+    "patch_sha256": null,
+    "scope": "task-local demo-repo",
+    "budget_usd": 0,
+    "idempotency_key": "demo-demo-ready-later",
+    "reason": null,
+    "synthetic": true
+  }
+]

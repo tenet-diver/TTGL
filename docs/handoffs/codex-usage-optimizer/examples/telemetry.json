@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "window": {
+    "from": "2026-10-28",
+    "to": "2026-11-04"
+  },
+  "tool_calls": [
+    {
+      "id": "demo-call-1",
+      "source_id": "fixture",
+      "repository_id": "demo-repo",
+      "session_id": "demo-session-1",
+      "tool_family": "test_runner",
+      "command_family": "pytest",
+      "success": true,
+      "duration_ms": 1000,
+      "model_facing_output_tokens_estimate": 12000,
+      "tokenizer": "synthetic-counts-not-real-tokenization",
+      "raw_output_ref": "fixture://log/1",
+      "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "id": "demo-call-2",
+      "source_id": "fixture",
+      "repository_id": "demo-repo",
+      "session_id": "demo-session-2",
+      "tool_family": "test_runner",
+      "command_family": "pytest",
+      "success": true,
+      "duration_ms": 1100,
+      "model_facing_output_tokens_estimate": 10000,
+      "tokenizer": "synthetic-counts-not-real-tokenization",
+      "raw_output_ref": "fixture://log/2",
+      "source_sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    {
+      "id": "demo-call-3",
+      "source_id": "fixture",
+      "repository_id": "demo-repo",
+      "session_id": "demo-session-3",
+      "tool_family": "test_runner",
+      "command_family": "pytest",
+      "success": true,
+      "duration_ms": 1200,
+      "model_facing_output_tokens_estimate": 8000,
+      "tokenizer": "synthetic-counts-not-real-tokenization",
+      "raw_output_ref": "fixture://log/3",
+      "source_sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+    },
+    {
+      "id": "demo-call-4",
+      "source_id": "fixture",
+      "repository_id": "demo-repo",
+      "session_id": "demo-session-4",
+      "tool_family": "test_runner",
+      "command_family": "pytest",
+      "success": true,
+      "duration_ms": 1300,
+      "model_facing_output_tokens_estimate": null,
+      "tokenizer": "synthetic-counts-not-real-tokenization",
+      "raw_output_ref": "fixture://log/4",
+      "source_sha256": "3333333333333333333333333333333333333333333333333333333333333333"
+    }
+  ]
+}

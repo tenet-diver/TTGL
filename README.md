@@ -1,5 +1,7 @@
 # We have to combine — A conversation is all you need
 
+**Current priority, 4 November 2026:** [measure existing coding-agent usage, then automate evidence-backed improvements](docs/research/usage-optimizer.md). The original handoff is retained; a real usage baseline is the first milestone.
+
 Latest Pro development: **one voluntary Luna-router task passed initial and
 independent fresh grading, with zero Sol consultations**. Setup008 was audited
 and reused with no repeated model calls. This is one selected development task,

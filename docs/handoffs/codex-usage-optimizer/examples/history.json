@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "optimization_id": "demo-history-1",
+  "proposal_id": "demo-ready",
+  "proposal_version": 1,
+  "decision": "accepted",
+  "implementation": "implemented",
+  "evaluation": "collecting",
+  "outcome": null,
+  "target": {
+    "repo_id": "demo-repo",
+    "tool_key": "pytest",
+    "operation": "run_tests"
+  },
+  "comparison_plan_id": "demo-plan-1",
+  "implementation_receipt_ref": "fixture://effective-config-verified",
+  "state_version": 3,
+  "event_refs": [
+    "event-1",
+    "event-2"
+  ],
+  "synthetic": true
+}

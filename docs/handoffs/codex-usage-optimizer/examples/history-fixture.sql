@@ -1,0 +1,12 @@
+INSERT INTO optimization_history VALUES ('demo-history-1',1,'accepted','implemented','collecting',NULL,'pytest','OPT-001','demo-repo');
+INSERT INTO optimization_history VALUES ('demo-history-rejected',1,'declined','not_started','not_planned',NULL,'pytest','OPT-008','demo-repo');
+INSERT INTO optimization_events VALUES ('event-1','demo-history-1','decision_recorded','2026-10-31T12:00:00Z','2026-10-31T12:00:00Z','decision-1','{"decision":"accepted"}');
+INSERT INTO optimization_events VALUES ('event-2','demo-history-1','effective_config_verified','2026-11-01T00:00:00Z','2026-11-01T00:00:01Z','receipt-1','{"effective_profile":"profile-quiet","synthetic":true}');
+INSERT INTO comparison_tool_calls VALUES ('b1','demo-repo','pytest','run_tests','2026-10-29T00:00:00Z','profile-original',1,10000,1000,1);
+INSERT INTO comparison_tool_calls VALUES ('b2','demo-repo','pytest','run_tests','2026-10-30T00:00:00Z','profile-original',1,10000,1000,1);
+INSERT INTO comparison_tool_calls VALUES ('a1','demo-repo','pytest','run_tests','2026-11-02T00:00:00Z','profile-quiet',1,2000,1100,1);
+INSERT INTO comparison_tool_calls VALUES ('a2','demo-repo','pytest','run_tests','2026-11-03T00:00:00Z','profile-quiet',1,2000,1100,1);
+INSERT INTO comparison_tool_calls VALUES ('a3','demo-repo','pytest','run_tests','2026-11-03T01:00:00Z','profile-quiet',1,NULL,NULL,NULL);
+INSERT INTO comparison_tool_calls VALUES ('wrong-repo','other-repo','pytest','run_tests','2026-11-03T00:00:00Z','profile-quiet',1,50000,9999,1);
+INSERT INTO comparison_tool_calls VALUES ('wrong-profile','demo-repo','pytest','run_tests','2026-11-03T00:00:00Z','profile-unrelated',1,50000,9999,1);
+INSERT INTO comparison_tool_calls VALUES ('unverified','demo-repo','pytest','run_tests','2026-11-03T00:00:00Z','profile-quiet',0,50000,9999,1);

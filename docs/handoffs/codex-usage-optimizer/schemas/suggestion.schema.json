@@ -1,0 +1,353 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://optimizer.invalid/suggestion.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recipe_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^OPT-[0-9]{3}$"
+      },
+      "minItems": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "needs_evidence",
+        "needs_preparation",
+        "ready_for_review",
+        "accepted",
+        "declined",
+        "deferred",
+        "trial_running",
+        "measured",
+        "adopted",
+        "rolled_back",
+        "inconclusive"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "repository_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "command_family": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "task_local",
+            "project",
+            "global"
+          ]
+        }
+      },
+      "required": [
+        "repository_id",
+        "command_family",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "window": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string",
+          "minLength": 1
+        },
+        "to": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "from",
+        "to"
+      ],
+      "additionalProperties": false
+    },
+    "observed": {
+      "type": "object",
+      "properties": {
+        "eligible_calls": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "payload_tokens_estimate": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "metric_provenance": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "eligible_calls",
+        "payload_tokens_estimate",
+        "metric_provenance"
+      ],
+      "additionalProperties": false
+    },
+    "expected": {
+      "type": "object",
+      "properties": {
+        "basis": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "scenario",
+            "replay_estimate",
+            "measured_trial"
+          ]
+        },
+        "payload_tokens_saved": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lower_payload_tokens_saved": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "upper_payload_tokens_saved": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "assumed_reduction_fraction": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "model_tokens_saved": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cost_saved_usd": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "elapsed_seconds_saved": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "basis",
+        "payload_tokens_saved",
+        "lower_payload_tokens_saved",
+        "upper_payload_tokens_saved",
+        "assumed_reduction_fraction",
+        "model_tokens_saved",
+        "cost_saved_usd",
+        "elapsed_seconds_saved",
+        "assumptions"
+      ],
+      "additionalProperties": false
+    },
+    "concrete_change": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "command_profile",
+                "config_patch",
+                "code_patch"
+              ]
+            },
+            "scope_path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "before": {
+              "type": "string",
+              "minLength": 1
+            },
+            "after": {
+              "type": "string",
+              "minLength": 1
+            },
+            "preimage_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "patch_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "trial_budget_usd": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "kind",
+            "scope_path",
+            "before",
+            "after",
+            "preimage_sha256",
+            "patch_sha256",
+            "trial_budget_usd"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "quality_checks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "rollback": {
+      "type": "string",
+      "minLength": 1
+    },
+    "overlap_group": {
+      "type": "string",
+      "minLength": 1
+    },
+    "coverage_notes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "optimization_history_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "comparison_plan_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "version",
+    "title",
+    "recipe_ids",
+    "status",
+    "scope",
+    "evidence_refs",
+    "window",
+    "observed",
+    "expected",
+    "concrete_change",
+    "quality_checks",
+    "rollback",
+    "overlap_group",
+    "coverage_notes"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://optimizer.invalid/comparison-plan.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "optimization_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "design": {
+      "type": "string",
+      "enum": [
+        "observational_windows",
+        "paired_tasks"
+      ]
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "repo_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tool_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "operation": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "repo_id",
+        "tool_key",
+        "operation"
+      ],
+      "additionalProperties": false
+    },
+    "baseline_profile": {
+      "type": "string",
+      "minLength": 1
+    },
+    "treatment_profile": {
+      "type": "string",
+      "minLength": 1
+    },
+    "query_file": {
+      "type": "string",
+      "minLength": 1
+    },
+    "query_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "parameters_file": {
+      "type": "string",
+      "minLength": 1
+    },
+    "primary_metric": {
+      "type": "string",
+      "enum": [
+        "mean_payload_tokens",
+        "mean_duration_ms",
+        "whole_task_cost_per_success"
+      ]
+    },
+    "minimum_calls_per_arm": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "minimum_metric_coverage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "require_verified_exposure": {
+      "const": true
+    },
+    "quality_checks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "confound_policy": {
+      "type": "string",
+      "enum": [
+        "report_only_observational",
+        "exclude_overlapping_changes",
+        "explicit_combined_arm"
+      ]
+    },
+    "synthetic": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "version",
+    "optimization_id",
+    "design",
+    "target",
+    "baseline_profile",
+    "treatment_profile",
+    "query_file",
+    "query_sha256",
+    "parameters_file",
+    "primary_metric",
+    "minimum_calls_per_arm",
+    "minimum_metric_coverage",
+    "require_verified_exposure",
+    "quality_checks",
+    "confound_policy",
+    "synthetic"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,62 @@
+{
+  "synthetic": true,
+  "detector": "oversized_passing_test_output_v1",
+  "suggestions": [
+    {
+      "schema_version": 1,
+      "id": "proposal-0d8e821bbaa7e62a",
+      "version": 1,
+      "title": "Prepare a concise successful-test reporter",
+      "recipe_ids": [
+        "OPT-001"
+      ],
+      "status": "needs_preparation",
+      "scope": {
+        "repository_id": "demo-repo",
+        "command_family": "pytest",
+        "kind": "task_local"
+      },
+      "evidence_refs": [
+        "demo-call-1",
+        "demo-call-2",
+        "demo-call-3"
+      ],
+      "window": {
+        "from": "2026-10-28",
+        "to": "2026-11-04"
+      },
+      "observed": {
+        "eligible_calls": 3,
+        "payload_tokens_estimate": 30000,
+        "metric_provenance": "tokenizer_estimated_model_facing_payload"
+      },
+      "expected": {
+        "basis": "scenario",
+        "payload_tokens_saved": 18000.0,
+        "lower_payload_tokens_saved": 0,
+        "upper_payload_tokens_saved": 18000.0,
+        "assumed_reduction_fraction": 0.6,
+        "model_tokens_saved": null,
+        "cost_saved_usd": null,
+        "elapsed_seconds_saved": null,
+        "assumptions": [
+          "Same eligible calls/window; assumed fractional payload reduction.",
+          "No measured reduction in billed tokens, total time or cost."
+        ]
+      },
+      "concrete_change": null,
+      "quality_checks": [
+        "Verify installed reporter options and config precedence.",
+        "Preserve failure diagnostics and exit status.",
+        "Run required final task verification."
+      ],
+      "rollback": "Capture and restore exact task-local preimage; avoid overwriting later user edits.",
+      "overlap_group": "passing-test-output:demo-repo:pytest",
+      "coverage_notes": [
+        "Across dataset, eligible calls with unknown output size: 1",
+        "Reference detector only; tool version and a concrete patch still required."
+      ]
+    }
+  ],
+  "unknown_eligible_sizes": 1
+}

@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://optimizer.invalid/history.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "optimization_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "proposal_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "proposal_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "accepted",
+        "declined",
+        "deferred",
+        "withdrawn"
+      ]
+    },
+    "implementation": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "applying",
+        "applied_unverified",
+        "implemented",
+        "failed",
+        "rolled_back",
+        "superseded"
+      ]
+    },
+    "evaluation": {
+      "type": "string",
+      "enum": [
+        "not_planned",
+        "baseline_ready",
+        "collecting",
+        "ready",
+        "complete",
+        "inconclusive",
+        "invalidated"
+      ]
+    },
+    "outcome": {
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "better",
+            "worse",
+            "mixed",
+            "no_detected_change",
+            "inconclusive"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "repo_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tool_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "operation": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "repo_id",
+        "tool_key",
+        "operation"
+      ],
+      "additionalProperties": false
+    },
+    "comparison_plan_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "implementation_receipt_ref": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "state_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "event_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "synthetic": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "optimization_id",
+    "proposal_id",
+    "proposal_version",
+    "decision",
+    "implementation",
+    "evaluation",
+    "outcome",
+    "target",
+    "comparison_plan_id",
+    "implementation_receipt_ref",
+    "state_version",
+    "event_refs",
+    "synthetic"
+  ],
+  "additionalProperties": false
+}

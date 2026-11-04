@@ -1,0 +1,3062 @@
+[
+  {
+    "id": "OPT-001",
+    "category": "output",
+    "title": "Concise successful-test reporter",
+    "trigger": "Passing test logs dominate model-visible output",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use a supported compact reporter while retaining failures and exit status",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Compare passing and deliberately failing fixtures",
+    "risk": "May hide diagnostic context",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://docs.pytest.org/en/stable/how-to/output.html",
+      "https://vitest.dev/guide/reporters",
+      "https://jestjs.io/docs/cli"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "output",
+    "tags": [
+      "output",
+      "pytest",
+      "vitest",
+      "jest"
+    ]
+  },
+  {
+    "id": "OPT-002",
+    "category": "output",
+    "title": "Capture noisy subprocess stdout",
+    "trigger": "Application prints swamp otherwise useful test results",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Capture stdout and show it on failure instead of streaming every print",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Inject a failing assertion and confirm captured output is accessible",
+    "risk": "Some tests depend on terminal behavior",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://docs.pytest.org/en/stable/how-to/output.html",
+      "https://jestjs.io/docs/cli"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "output",
+    "tags": [
+      "output",
+      "pytest",
+      "jest"
+    ]
+  },
+  {
+    "id": "OPT-003",
+    "category": "output",
+    "title": "Reduce routine runtime log level",
+    "trigger": "INFO or DEBUG repeats on successful runs",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Set the task-local log level to warning or equivalent when debugging detail is unnecessary",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Confirm warnings and errors survive; compare a debug-needed task",
+    "risk": "Root cause clues may need debug logs",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "output",
+    "tags": [
+      "output",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-004",
+    "category": "output",
+    "title": "Suppress terminal progress redraws",
+    "trigger": "Progress bars or carriage-return updates inflate output",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Select noninteractive progress-free output for agent commands",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Compare final result and failures against original",
+    "risk": "Some progress contains useful status",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "output",
+    "tags": [
+      "output",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-005",
+    "category": "output",
+    "title": "Remove ANSI and terminal control noise",
+    "trigger": "Captured output contains escape sequences or screen rewrites",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use supported plain-text/no-color output",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Compare readable messages and byte/token counts",
+    "risk": "Text normalization may alter snapshots",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "output",
+    "tags": [
+      "output",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-006",
+    "category": "output",
+    "title": "Deduplicate repeated warnings",
+    "trigger": "Identical warnings recur many times in one run",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Show each warning signature with count and first/last location; archive originals",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Verify unique warnings and counts remain recoverable",
+    "risk": "Different warnings may share text",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "output",
+    "tags": [
+      "output",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-007",
+    "category": "output",
+    "title": "Bound successful build chatter",
+    "trigger": "Successful build steps print routine command banners",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use the build tool's verified quiet/summary option",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Compare artifacts and a failing-build diagnostic fixture",
+    "risk": "Global quiet mode may suppress errors",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "output",
+    "tags": [
+      "output",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-008",
+    "category": "output",
+    "title": "Present large logs as structured excerpts",
+    "trigger": "A few failures are buried in large logs",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Show exit status, failing sections and original-log reference",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Verify protected diagnostics and exact original retrieval",
+    "risk": "Parser may omit an unfamiliar error",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "output",
+    "tags": [
+      "output",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-009",
+    "category": "output",
+    "title": "Keep structured output instead of duplicate formats",
+    "trigger": "The same operation prints JSON plus a human report",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Return only the format needed by the agent; retain other artifacts on disk",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Compare fields needed for task decisions",
+    "risk": "The selected format may omit interpretation",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "output",
+    "tags": [
+      "output",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-010",
+    "category": "output",
+    "title": "Archive verbose dependency installation logs",
+    "trigger": "Install logs repeatedly dominate context",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Keep completion/error summary and filesystem log; expand on failure",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Exercise missing dependency and lifecycle-script failure",
+    "risk": "Installer scripts may emit important warnings",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "output",
+    "tags": [
+      "output",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-011",
+    "category": "tests",
+    "title": "Run the relevant test target during iteration",
+    "trigger": "Full suite is rerun after every small scoped edit",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use a justified focused test target during iteration and full required verification at the end",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Final full checks pass on same patch",
+    "risk": "Target selection can miss interactions",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://docs.pytest.org/en/stable/how-to/output.html",
+      "https://vitest.dev/guide/reporters",
+      "https://jestjs.io/docs/cli"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "tests",
+    "tags": [
+      "tests",
+      "pytest",
+      "vitest",
+      "jest"
+    ]
+  },
+  {
+    "id": "OPT-012",
+    "category": "tests",
+    "title": "Run failed tests first",
+    "trigger": "A known failing subset is preceded by many passing tests",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Rerun recorded failures first before the required broader checks",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Match failure identity and retain final verification",
+    "risk": "Failure cache can be stale",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "tests",
+    "tags": [
+      "tests",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-013",
+    "category": "tests",
+    "title": "Use test collection to select cases",
+    "trigger": "Broad test guesses cause repeated unsuccessful runs",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Inspect bounded test names/collection output once and select explicitly",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Selected test exists and checks intended behavior",
+    "risk": "Names alone may not reveal coverage",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://docs.pytest.org/en/stable/how-to/output.html"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "tests",
+    "tags": [
+      "tests",
+      "pytest"
+    ]
+  },
+  {
+    "id": "OPT-014",
+    "category": "tests",
+    "title": "Disable watch mode in agent jobs",
+    "trigger": "Test command stays resident waiting for edits",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use the runner's supported one-shot mode",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Command exits with correct status and same relevant coverage",
+    "risk": "Interactive development may need watch mode",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://vitest.dev/guide/reporters",
+      "https://jestjs.io/docs/cli"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "tests",
+    "tags": [
+      "tests",
+      "vitest",
+      "jest"
+    ]
+  },
+  {
+    "id": "OPT-015",
+    "category": "tests",
+    "title": "Avoid repeated coverage instrumentation",
+    "trigger": "Every exploratory test run generates expensive coverage",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Keep coverage for declared verification runs; omit during narrow debugging",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Required final coverage check still runs",
+    "risk": "Coverage-dependent bugs may behave differently",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "tests",
+    "tags": [
+      "tests",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-016",
+    "category": "tests",
+    "title": "Separate artifact-heavy tests from smoke checks",
+    "trigger": "Screenshots/videos/reports are generated on every successful iteration",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Produce heavy artifacts only under the declared failure/final-run policy",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "A failing browser test still yields required evidence",
+    "risk": "May lose useful passing-run evidence",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "tests",
+    "tags": [
+      "tests",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-017",
+    "category": "tests",
+    "title": "Reduce oversized assertion diffs",
+    "trigger": "Huge object diffs obscure the mismatching fields",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use a focused assertion or reporter preserving key differences and original artifact",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "A planted nested mismatch remains diagnosable",
+    "risk": "An overly narrow assertion weakens the test",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "tests",
+    "tags": [
+      "tests",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-018",
+    "category": "tests",
+    "title": "Choose bounded test concurrency",
+    "trigger": "Tests contend for memory and run slower in parallel",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Tune worker count to measured dev-machine capacity",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Compare wall time, memory and flakiness at fixed test set",
+    "risk": "Lower workers can also be slower",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "tests",
+    "tags": [
+      "tests",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-019",
+    "category": "tests",
+    "title": "Reuse safe test-service setup",
+    "trigger": "Repeated service startup dominates short test runs",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Reuse a task-isolated service with explicit state reset",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "State-leak and fresh-start control tests pass",
+    "risk": "Shared state can corrupt correctness",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "tests",
+    "tags": [
+      "tests",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-020",
+    "category": "tests",
+    "title": "Use early failure for exploratory runs",
+    "trigger": "Long test suites continue after a known blocker",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use supported fail-fast for diagnosis; preserve complete final verification",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Full required checks run before claiming completion",
+    "risk": "Later independent failures are hidden temporarily",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://docs.pytest.org/en/stable/how-to/output.html"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "tests",
+    "tags": [
+      "tests",
+      "pytest"
+    ]
+  },
+  {
+    "id": "OPT-021",
+    "category": "search",
+    "title": "Restrict search to relevant roots",
+    "trigger": "Repository-wide results mostly come from unrelated packages",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Search likely package directories first and widen if needed",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Known relevant fixture remains discoverable",
+    "risk": "Initial package assumption can be wrong",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "search",
+    "tags": [
+      "search",
+      "rg"
+    ]
+  },
+  {
+    "id": "OPT-022",
+    "category": "search",
+    "title": "Exclude generated and vendored trees",
+    "trigger": "Most matches are build artifacts or dependencies",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use repository-aware excludes for generated paths",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Required source matches remain and exclusions are explicit",
+    "risk": "Generated output may itself be the bug",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "search",
+    "tags": [
+      "search",
+      "rg"
+    ]
+  },
+  {
+    "id": "OPT-023",
+    "category": "search",
+    "title": "List matching filenames before contents",
+    "trigger": "Only file discovery is needed but full matching lines are returned",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use filename-only search then inspect selected files",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Chosen files contain the intended match",
+    "risk": "Names may not distinguish relevant occurrences",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "search",
+    "tags": [
+      "search",
+      "rg"
+    ]
+  },
+  {
+    "id": "OPT-024",
+    "category": "search",
+    "title": "Use a fixed-string query when appropriate",
+    "trigger": "Literal symbols are treated as expensive broad regex patterns",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use verified fixed-string mode for literal queries",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Compare literal match set on fixtures",
+    "risk": "Escapes may have been intended as regex",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "search",
+    "tags": [
+      "search",
+      "rg"
+    ]
+  },
+  {
+    "id": "OPT-025",
+    "category": "search",
+    "title": "Cap per-file search output with counts",
+    "trigger": "One file contributes hundreds of repetitive matches",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Return bounded examples plus omitted-match count and expansion path",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Important matches outside the cap can be retrieved",
+    "risk": "Top matches may not represent all cases",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "search",
+    "tags": [
+      "search",
+      "rg"
+    ]
+  },
+  {
+    "id": "OPT-026",
+    "category": "search",
+    "title": "Reduce search context lines",
+    "trigger": "Each match includes large overlapping code windows",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use smaller context and expand around selected matches",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Retain enough syntax for interpretation",
+    "risk": "Local context may be insufficient",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "search",
+    "tags": [
+      "search",
+      "rg"
+    ]
+  },
+  {
+    "id": "OPT-027",
+    "category": "search",
+    "title": "Avoid minified and binary search noise",
+    "trigger": "Search results contain minified bundles or unreadable data",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Restrict initial searches to appropriate source types",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "A source-map/generated-code investigation can opt back in",
+    "risk": "Exclusions can hide needed assets",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "search",
+    "tags": [
+      "search",
+      "rg"
+    ]
+  },
+  {
+    "id": "OPT-028",
+    "category": "search",
+    "title": "Combine compatible search queries",
+    "trigger": "Several independent searches reread the same tree",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Batch bounded patterns with labeled results",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Each pattern's match set is identifiable",
+    "risk": "Combined output may grow too large",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "search",
+    "tags": [
+      "search",
+      "rg"
+    ]
+  },
+  {
+    "id": "OPT-029",
+    "category": "search",
+    "title": "Cache search results by repository revision",
+    "trigger": "Identical searches repeat with no relevant file changes",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Reuse bounded results keyed by query and tree/file hashes",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Editing a searched file invalidates the cache",
+    "risk": "Stale results can mislead",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "search",
+    "tags": [
+      "search",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-030",
+    "category": "search",
+    "title": "Locate symbols before reading whole files",
+    "trigger": "Definition lookup repeatedly reads broad files",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use supported symbol/AST lookup to choose exact ranges",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Resolve overloads and generated definitions correctly",
+    "risk": "Index may lag behind edits",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "search",
+    "tags": [
+      "search",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-031",
+    "category": "mcp",
+    "title": "Filter records at the source",
+    "trigger": "MCP results return many rows the agent ignores",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use supported server-side filters before returning records",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Compare selected rows against unfiltered control",
+    "risk": "Filter assumptions may exclude necessary rows",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "mcp",
+    "tags": [
+      "mcp",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-032",
+    "category": "mcp",
+    "title": "Project only required fields",
+    "trigger": "Large nested fields are fetched but unused",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Request explicit necessary fields when the tool supports projection",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Required identifiers and error fields remain",
+    "risk": "Later steps may need omitted fields",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "mcp",
+    "tags": [
+      "mcp",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-033",
+    "category": "mcp",
+    "title": "Paginate large MCP responses",
+    "trigger": "Tool returns an entire collection for a small lookup",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use bounded pages with total/continuation metadata",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Navigation reaches later pages without lost records",
+    "risk": "Too-small pages increase round trips",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "mcp",
+    "tags": [
+      "mcp",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-034",
+    "category": "mcp",
+    "title": "Prefer count or aggregate operations",
+    "trigger": "Raw records are fetched only to calculate a total",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use a supported count/aggregate endpoint",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Check aggregate against a bounded raw sample",
+    "risk": "Aggregation semantics may differ",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "mcp",
+    "tags": [
+      "mcp",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-035",
+    "category": "mcp",
+    "title": "Defer rarely needed tool schemas",
+    "trigger": "Rare tool definitions are eagerly loaded in prompts",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use supported deferred exposure for the relevant server/tool profile",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Needed tools remain discoverable; compare rendered schema size",
+    "risk": "Discovery overhead can outweigh savings",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://learn.chatgpt.com/docs/config-file/config-reference"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "mcp",
+    "tags": [
+      "mcp",
+      "codex"
+    ]
+  },
+  {
+    "id": "OPT-036",
+    "category": "mcp",
+    "title": "Narrow task-specific tool exposure",
+    "trigger": "Large eager tool set is unused for a task family",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use a reversible project/task profile exposing needed tools",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Representative tasks still have necessary capabilities",
+    "risk": "Unused historically does not mean unnecessary",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://learn.chatgpt.com/docs/config-file/config-reference"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "mcp",
+    "tags": [
+      "mcp",
+      "codex"
+    ]
+  },
+  {
+    "id": "OPT-037",
+    "category": "mcp",
+    "title": "Simplify overly verbose tool descriptions",
+    "trigger": "Long repeated descriptions add measured prompt overhead",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Remove redundant prose while preserving schemas and constraints",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Tool selection/argument correctness remains acceptable",
+    "risk": "Shorter descriptions can worsen tool use",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "mcp",
+    "tags": [
+      "mcp",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-038",
+    "category": "mcp",
+    "title": "Offer a task-specific batch read tool",
+    "trigger": "Repeated small related MCP reads incur overhead",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use an available bounded batch operation with per-item outcomes",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Match individual responses and partial failures",
+    "risk": "Batch tool can enlarge a single payload",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "mcp",
+    "tags": [
+      "mcp",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-039",
+    "category": "mcp",
+    "title": "Cache immutable MCP resources",
+    "trigger": "Same stable resource is repeatedly downloaded",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Cache by resource identity/version and freshness policy",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Updated resource invalidates or bypasses cache",
+    "risk": "Incorrect freshness harms results",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "mcp",
+    "tags": [
+      "mcp",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-040",
+    "category": "mcp",
+    "title": "Avoid fetching attachment bodies prematurely",
+    "trigger": "MCP listings eagerly include large attachments",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Return metadata and explicit fetch references first",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Needed attachments remain accessible under same permissions",
+    "risk": "Extra retrieval may add latency",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "mcp",
+    "tags": [
+      "mcp",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-041",
+    "category": "files",
+    "title": "Read line ranges instead of whole files",
+    "trigger": "Only a local region is needed in repeatedly large reads",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Read bounded relevant ranges and expand on demand",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Preserve enclosing definitions and constraints",
+    "risk": "Cross-file dependencies may matter",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "files",
+    "tags": [
+      "files",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-042",
+    "category": "files",
+    "title": "Preview size before reading large artifacts",
+    "trigger": "Unexpectedly huge file consumes a tool response",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Inspect type/size and choose a bounded read strategy",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Binary and text artifacts are classified correctly",
+    "risk": "Size alone does not indicate relevance",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "files",
+    "tags": [
+      "files",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-043",
+    "category": "files",
+    "title": "Use change summaries before full diffs",
+    "trigger": "Agent prints the full patch merely to discover changed paths",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Inspect names/statistics first, then selected hunks",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Final review still covers required changes",
+    "risk": "A summary is not a full review",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://git-scm.com/docs/git-diff"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "files",
+    "tags": [
+      "files",
+      "git"
+    ]
+  },
+  {
+    "id": "OPT-044",
+    "category": "files",
+    "title": "Scope diffs to the current task",
+    "trigger": "Unrelated changes inflate patch inspection",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Select task paths/base revision explicitly",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Unrelated user changes remain preserved",
+    "risk": "Incorrect base hides relevant edits",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://git-scm.com/docs/git-diff"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "files",
+    "tags": [
+      "files",
+      "git"
+    ]
+  },
+  {
+    "id": "OPT-045",
+    "category": "files",
+    "title": "Avoid redisplaying already reviewed unchanged code",
+    "trigger": "Same content hash is repeatedly sent to the model",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Reuse an evidence reference and fetch only if needed",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "File changes invalidate the reference",
+    "risk": "Agent may need content back after compaction",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "files",
+    "tags": [
+      "files",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-046",
+    "category": "files",
+    "title": "Extract configuration keys selectively",
+    "trigger": "Whole config file is read for one setting",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use a parser to return exact key values and source paths",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Missing/duplicate/overridden values handled correctly",
+    "risk": "Parsing may differ from actual tool precedence",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "files",
+    "tags": [
+      "files",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-047",
+    "category": "files",
+    "title": "Read structured documents by sections",
+    "trigger": "Whole large documentation page is fetched for one topic",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Retrieve headings/selected section with original references",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Cross-section prerequisites remain accessible",
+    "risk": "Section extraction can omit caveats",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "files",
+    "tags": [
+      "files",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-048",
+    "category": "files",
+    "title": "Avoid lockfile and generated-file dumps",
+    "trigger": "Large generated files dominate exploration",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Inspect dependency metadata or targeted entries first",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Actual lock resolution remains authoritative",
+    "risk": "Generated files can contain the relevant defect",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "files",
+    "tags": [
+      "files",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-049",
+    "category": "files",
+    "title": "Return exact diagnostic slices from artifacts",
+    "trigger": "Large compiler/report files are read wholesale",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Parse needed errors/metrics with source ranges",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "A planted uncommon diagnostic is preserved",
+    "risk": "Parser may be tool-version dependent",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "files",
+    "tags": [
+      "files",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-050",
+    "category": "files",
+    "title": "Deduplicate identical file content across worktrees",
+    "trigger": "Same blob is read from many equivalent snapshots",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Cache by content hash with scope-safe references",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Different versions/permissions never collide",
+    "risk": "Path identity alone is insufficient",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "files",
+    "tags": [
+      "files",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-051",
+    "category": "context",
+    "title": "Remove duplicated task instructions",
+    "trigger": "The same instructions appear in several injected layers",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Consolidate redundant text without changing priority or constraints",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Effective requirements remain identical",
+    "risk": "Subtle instruction precedence can change",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://learn.chatgpt.com/docs/config-file/config-reference"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "context",
+    "tags": [
+      "context",
+      "codex"
+    ]
+  },
+  {
+    "id": "OPT-052",
+    "category": "context",
+    "title": "Make project guidance relevant by directory",
+    "trigger": "Every task loads extensive unrelated project guidance",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use supported scoped instructions for relevant subtrees",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Applicable constraints remain loaded at the right paths",
+    "risk": "Scope boundaries can omit critical rules",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://learn.chatgpt.com/docs/config-file/config-reference"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "context",
+    "tags": [
+      "context",
+      "codex"
+    ]
+  },
+  {
+    "id": "OPT-053",
+    "category": "context",
+    "title": "Use progressive disclosure for optimizer recipes",
+    "trigger": "All 100 recipes are injected into every analysis",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Load a compact index and only evidence-matched recipe details",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Relevant recipes remain discoverable",
+    "risk": "Poor retrieval can miss a useful technique",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "context",
+    "tags": [
+      "context",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-054",
+    "category": "context",
+    "title": "Replace stale working narrative with evidence-backed state",
+    "trigger": "Repeated status prose grows while goals are stable",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Maintain a bounded objective/constraints/progress summary with sources",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Recover exact constraints and unresolved failures",
+    "risk": "Summarization can lose detail",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "context",
+    "tags": [
+      "context",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-055",
+    "category": "context",
+    "title": "Preserve stable prompt prefixes",
+    "trigger": "Volatile IDs/timestamps rewrite reused prompt prefixes",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Move genuinely dynamic metadata after stable instructions where controllable",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Measure cached input and task behavior",
+    "risk": "Prefix changes may not be fully controllable",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://learn.chatgpt.com/docs/config-file/config-reference"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "context",
+    "tags": [
+      "context",
+      "codex"
+    ]
+  },
+  {
+    "id": "OPT-056",
+    "category": "context",
+    "title": "Compact only when useful and supported",
+    "trigger": "Frequent compaction costs exceed observed benefit",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Tune supported compaction boundaries using measured context pressure",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "No overflow or loss of task constraints",
+    "risk": "Delaying compaction can cause overflow",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://learn.chatgpt.com/docs/config-file/config-reference"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "context",
+    "tags": [
+      "context",
+      "codex"
+    ]
+  },
+  {
+    "id": "OPT-057",
+    "category": "context",
+    "title": "Use exact archived references for older large observations",
+    "trigger": "Old tool outputs stay large but are rarely revisited",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "In a verified context-control adapter replace eligible bodies with retrieval refs",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Protocol closure, detail recovery and task success preserved",
+    "risk": "Stock Codex may not expose this control",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://learn.chatgpt.com/docs/config-file/config-reference"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "context",
+    "tags": [
+      "context",
+      "codex"
+    ]
+  },
+  {
+    "id": "OPT-058",
+    "category": "context",
+    "title": "Avoid repeated verbose progress messages",
+    "trigger": "Frequent narration is long and rarely used by the user",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use concise milestone updates while retaining actionable changes",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "User still receives useful progress/requests",
+    "risk": "Too little communication hurts collaboration",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "context",
+    "tags": [
+      "context",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-059",
+    "category": "context",
+    "title": "Separate independent tasks into fresh sessions",
+    "trigger": "Unrelated prior task history burdens new requests",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Start an independent session with explicit minimal handoff",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Necessary shared decisions are carried forward",
+    "risk": "Unnecessary resets cause rediscovery",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [
+      "https://learn.chatgpt.com/docs/config-file/config-reference"
+    ],
+    "source_status": "official_documentation_family_checked",
+    "overlap_group": "context",
+    "tags": [
+      "context",
+      "codex"
+    ]
+  },
+  {
+    "id": "OPT-060",
+    "category": "context",
+    "title": "Bound subagent handoff and result content",
+    "trigger": "Delegated tasks return entire transcripts",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Return findings, paths and evidence references instead of full logs",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Parent can expand evidence and verify results",
+    "risk": "Compressed results may hide important uncertainty",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "context",
+    "tags": [
+      "context",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-061",
+    "category": "repetition",
+    "title": "Reuse unchanged verification evidence",
+    "trigger": "Same checks rerun after no relevant changes",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Reuse checks only when input/environment hashes match",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Relevant change invalidates prior evidence",
+    "risk": "Insufficient dependency tracking creates false confidence",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "repetition",
+    "tags": [
+      "repetition",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-062",
+    "category": "repetition",
+    "title": "Stop identical failure loops",
+    "trigger": "Same command fails repeatedly with identical cause",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Detect repeated error signature and change diagnostic strategy",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Next action addresses new evidence instead of blind retry",
+    "risk": "Transient failures may legitimately need retry",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "repetition",
+    "tags": [
+      "repetition",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-063",
+    "category": "repetition",
+    "title": "Bound polling frequency",
+    "trigger": "Many status checks return no change",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use adaptive intervals or completion notifications",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Completion/failure detection remains within acceptable delay",
+    "risk": "Long intervals slow reaction",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "repetition",
+    "tags": [
+      "repetition",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-064",
+    "category": "repetition",
+    "title": "Avoid duplicate dependency installation",
+    "trigger": "Install command repeats with unchanged lock/environment",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Reuse verified task-isolated installation keyed by lock/toolchain",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Changed lock and missing dependency trigger installation",
+    "risk": "Cache corruption can conceal differences",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "repetition",
+    "tags": [
+      "repetition",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-065",
+    "category": "repetition",
+    "title": "Batch independent read-only tool calls",
+    "trigger": "Independent reads are executed serially",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Run bounded concurrent reads with labeled results",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Respect rate limits and consistent snapshot",
+    "risk": "Parallel outputs may race with edits",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "repetition",
+    "tags": [
+      "repetition",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-066",
+    "category": "repetition",
+    "title": "Avoid parallelizing memory-heavy tools",
+    "trigger": "Concurrent tests/builds cause swapping and longer runtime",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Serialize or lower concurrency for measured resource-heavy steps",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Compare critical-path time and peak memory",
+    "risk": "Serialization can increase latency on capable machines",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "repetition",
+    "tags": [
+      "repetition",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-067",
+    "category": "repetition",
+    "title": "Debounce verification during rapid edits",
+    "trigger": "Checks run after every tiny edit burst",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Run after a coherent change boundary or debounce window",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Required final checks still complete",
+    "risk": "Long debounce delays defect discovery",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "repetition",
+    "tags": [
+      "repetition",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-068",
+    "category": "repetition",
+    "title": "Reuse prepared repository indexes",
+    "trigger": "Every session rebuilds the same read-only index",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Reuse a versioned index with explicit invalidation",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Edits and branch changes invalidate affected entries",
+    "risk": "Stale symbol data can mislead",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "repetition",
+    "tags": [
+      "repetition",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-069",
+    "category": "repetition",
+    "title": "Prefer event-driven job completion",
+    "trigger": "Agent repeatedly reads logs to learn whether a job ended",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use supported completion/status events and one final log fetch",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Lost-event fallback and failures handled",
+    "risk": "Completion events may be unreliable",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "repetition",
+    "tags": [
+      "repetition",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-070",
+    "category": "repetition",
+    "title": "Avoid redundant agent delegation",
+    "trigger": "Several agents explore the same files without distinct questions",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Assign distinct scopes or reuse one evidence summary",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Coverage of required investigation preserved",
+    "risk": "Overpartitioning misses shared dependencies",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "repetition",
+    "tags": [
+      "repetition",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-071",
+    "category": "execution",
+    "title": "Use incremental builds with valid cache keys",
+    "trigger": "Full rebuilds dominate repeated local iterations",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Enable supported incremental artifacts keyed by source/toolchain",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Clean-build verification confirms identical result",
+    "risk": "Incorrect cache invalidation causes stale binaries",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "execution",
+    "tags": [
+      "execution",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-072",
+    "category": "execution",
+    "title": "Skip unnecessary package-manager network checks",
+    "trigger": "Repeated install/start commands spend time checking registries",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use supported offline/prepared-cache mode when dependencies are complete",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Missing package fails explicitly; no stale resolution claim",
+    "risk": "Offline mode cannot fetch new dependencies",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "execution",
+    "tags": [
+      "execution",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-073",
+    "category": "execution",
+    "title": "Use a narrow lint target while iterating",
+    "trigger": "Full repository lint repeats for one changed module",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Lint relevant files early and run required full lint at completion",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Full final check remains mandatory when specified",
+    "risk": "Cross-file rules may need broader analysis",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "execution",
+    "tags": [
+      "execution",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-074",
+    "category": "execution",
+    "title": "Avoid duplicate formatting passes",
+    "trigger": "Multiple wrappers run the same formatter sequentially",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Keep one equivalent formatting invocation per boundary",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Final formatted content matches original pipeline",
+    "risk": "Wrappers may apply distinct options",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "execution",
+    "tags": [
+      "execution",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-075",
+    "category": "execution",
+    "title": "Reuse compiled test binaries safely",
+    "trigger": "Tests recompile unchanged code every run",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use supported build/test cache with explicit toolchain/input keys",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Clean control and changed-source invalidation pass",
+    "risk": "Cache state may alter behavior",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "execution",
+    "tags": [
+      "execution",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-076",
+    "category": "execution",
+    "title": "Reduce unnecessary service readiness waits",
+    "trigger": "Fixed sleeps exceed actual startup time",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use bounded readiness probes instead of fixed delays",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Probe captures real readiness and timeout diagnostics",
+    "risk": "A shallow probe can return too early",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "execution",
+    "tags": [
+      "execution",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-077",
+    "category": "execution",
+    "title": "Right-size timeout budgets",
+    "trigger": "Commands hang long after a deterministic failure",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Set task-specific timeout with cancellation and preserved partial logs",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Slow valid fixture still has adequate budget",
+    "risk": "Aggressive timeout creates false failures",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "execution",
+    "tags": [
+      "execution",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-078",
+    "category": "execution",
+    "title": "Preserve a warm local helper when beneficial",
+    "trigger": "Repeated local model/helper cold loads dominate processing",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Reuse one bounded resident helper across authorized jobs",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Measure memory contention and warm/cold latency",
+    "risk": "Resident model can starve development tools",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "execution",
+    "tags": [
+      "execution",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-079",
+    "category": "execution",
+    "title": "Remove duplicate transpilation layers",
+    "trigger": "Tests/build scripts run equivalent transforms twice",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use one supported transformation path",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Artifacts, sourcemaps and tests remain correct",
+    "risk": "Transforms may have subtly different semantics",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "execution",
+    "tags": [
+      "execution",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-080",
+    "category": "execution",
+    "title": "Avoid unnecessary container/image rebuilds",
+    "trigger": "Image rebuild occurs without Dockerfile/dependency changes",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Reuse pinned prepared image keyed by build context",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Relevant context change invalidates the image",
+    "risk": "Mutable image tags can conceal differences",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "execution",
+    "tags": [
+      "execution",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-081",
+    "category": "data",
+    "title": "Select structured response fields before serialization",
+    "trigger": "Large JSON includes fields unused by the task",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Project fields at source or in a verified wrapper",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Required data and error metadata remain",
+    "risk": "Wrapper may change tool semantics",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "data",
+    "tags": [
+      "data",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-082",
+    "category": "data",
+    "title": "Return bounded table previews with totals",
+    "trigger": "Large tables are dumped for initial exploration",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Provide schema/counts/sample and explicit query/expansion route",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Sampling bias and omitted rows are visible",
+    "risk": "Sample may not reveal rare important records",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "data",
+    "tags": [
+      "data",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-083",
+    "category": "data",
+    "title": "Retrieve specific documentation sections",
+    "trigger": "Browser fetch includes navigation and unrelated page content",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use semantic section extraction with URL/source references",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Required caveats and version context preserved",
+    "risk": "Extractor may remove important page state",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "data",
+    "tags": [
+      "data",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-084",
+    "category": "data",
+    "title": "Prefer DOM/text evidence when images are unnecessary",
+    "trigger": "High-resolution screenshots are used for text-only questions",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use supported accessible text/DOM extraction where sufficient",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Visual-only information is not needed for the decision",
+    "risk": "Layout/state may require a screenshot",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "data",
+    "tags": [
+      "data",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-085",
+    "category": "data",
+    "title": "Crop screenshots to the relevant region",
+    "trigger": "Large images show mostly unrelated interface area",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Capture the relevant region at sufficient resolution",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Controls, labels and state remain identifiable",
+    "risk": "Crop can omit context needed to act safely",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "data",
+    "tags": [
+      "data",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-086",
+    "category": "data",
+    "title": "Avoid duplicate browser captures with unchanged state",
+    "trigger": "Identical screenshots/snapshots repeat between no-op actions",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Reuse state evidence until navigation/mutation/time-sensitive change",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "State-change detection invalidates correctly",
+    "risk": "Dynamic pages can change without an action",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "data",
+    "tags": [
+      "data",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-087",
+    "category": "data",
+    "title": "Limit debug traces to relevant components",
+    "trigger": "Verbose distributed traces include unrelated services",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Query a bounded time/component/error scope first",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Correlated upstream/downstream cause still accessible",
+    "risk": "Narrow scope can hide propagation",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "data",
+    "tags": [
+      "data",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-088",
+    "category": "data",
+    "title": "Fetch referenced attachments on demand",
+    "trigger": "Messages include all file bodies before relevance is known",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "List attachment IDs/types/sizes first; retrieve selected ones",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Necessary documents remain reachable",
+    "risk": "Discovery adds a round trip",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "data",
+    "tags": [
+      "data",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-089",
+    "category": "data",
+    "title": "Compress transport without confusing model savings",
+    "trigger": "Network time is high for compressible tool payloads",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use supported transport compression and measure bytes/latency",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Response semantics unchanged; model tokens reported separately",
+    "risk": "Network compression does not reduce model context by itself",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "data",
+    "tags": [
+      "data",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-090",
+    "category": "data",
+    "title": "Choose an existing specialized tool over broad raw scraping",
+    "trigger": "General scraping returns noisy data available via a narrow API",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use the authorized specialized endpoint with explicit fields",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Match accuracy, permissions and task capability",
+    "risk": "New tool schemas or fees may outweigh benefits",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "data",
+    "tags": [
+      "data",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-091",
+    "category": "knowledge",
+    "title": "Retrieve known project commands from verified evidence",
+    "trigger": "Agent repeatedly rediscovers identical build/test commands",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Keep a small version-aware project command reference",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Commands validated after toolchain/config changes",
+    "risk": "Stale guidance can cause failures",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "knowledge",
+    "tags": [
+      "knowledge",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-092",
+    "category": "knowledge",
+    "title": "Keep task constraints in a bounded checklist",
+    "trigger": "Agent requires repeated reminders of existing requirements",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Maintain exact active constraints outside optional retrieval",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Later scope changes supersede prior constraints correctly",
+    "risk": "Checklist itself adds context",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "knowledge",
+    "tags": [
+      "knowledge",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-093",
+    "category": "knowledge",
+    "title": "Retrieve prior failures only when applicable",
+    "trigger": "Repeated debugging rediscovers a documented failure mode",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Retrieve evidence-backed lesson matching repository/version/symptom",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Inapplicable or outdated advice is rejected",
+    "risk": "Negative transfer can waste time",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "knowledge",
+    "tags": [
+      "knowledge",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-094",
+    "category": "knowledge",
+    "title": "Improve query formulation before increasing top-k",
+    "trigger": "Memory results are irrelevant despite large returned batches",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Include current objective/error/file context in retrieval query",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Compare relevance and downstream success at fixed budget",
+    "risk": "Query may overfit to a wrong hypothesis",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "knowledge",
+    "tags": [
+      "knowledge",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-095",
+    "category": "knowledge",
+    "title": "Reduce redundant retrieved chunks",
+    "trigger": "Top results repeat overlapping source content",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Deduplicate or diversify with source/range tracking",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Unique required evidence remains",
+    "risk": "Nearby chunks may contain necessary nuance",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "knowledge",
+    "tags": [
+      "knowledge",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-096",
+    "category": "knowledge",
+    "title": "Set retrieval budgets from observed usefulness",
+    "trigger": "Many returned memories are never expanded or used",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Test smaller top-k/token budgets with a broader-search fallback",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Held-out task quality and recovery preserved",
+    "risk": "Observed non-use is not proof of uselessness",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "knowledge",
+    "tags": [
+      "knowledge",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-097",
+    "category": "knowledge",
+    "title": "Defer costly reflection on trivial tasks",
+    "trigger": "Local synthesis overhead exceeds likely saved work",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Use importance/size thresholds and background scheduling",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Useful high-impact lessons still qualify",
+    "risk": "Deferred insight may matter sooner than expected",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "knowledge",
+    "tags": [
+      "knowledge",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-098",
+    "category": "knowledge",
+    "title": "Use deterministic extraction before an LLM summary",
+    "trigger": "Regular log formats are summarized by a model each time",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Parse known structures mechanically and reserve local LLM for unstructured synthesis",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Critical detail retention and parser-version tests pass",
+    "risk": "Mechanical patterns can miss novel content",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "knowledge",
+    "tags": [
+      "knowledge",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-099",
+    "category": "knowledge",
+    "title": "Avoid optimizer observation feedback loops",
+    "trigger": "Optimizer sessions dominate the data they analyze",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Tag and separate optimizer activity and its overhead from target sessions",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Totals reconcile without excluding actual target cost",
+    "risk": "Filtering can hide real overhead if reported poorly",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "knowledge",
+    "tags": [
+      "knowledge",
+      "probe"
+    ]
+  },
+  {
+    "id": "OPT-100",
+    "category": "knowledge",
+    "title": "Prevent overlapping recommendations from double counting savings",
+    "trigger": "Several proposals modify the same output/context region",
+    "required_evidence": [
+      "Matched tool/session event IDs and source hashes",
+      "Observed frequency over a declared window",
+      "Relevant payload/timing/configuration fields with provenance",
+      "Installed tool/version and supported option or adapter capability"
+    ],
+    "proposed_change": "Track overlap groups; test combinations before summing benefits",
+    "compatibility_gate": "Inspect repository policy, installed help/config precedence and matching version documentation; do not assume a universal silent flag.",
+    "validation": "Combined measurement replaces additive forecasts",
+    "risk": "Conservative aggregation may understate useful interactions",
+    "rollback": "Restore the exact preimage/config profile captured for this proposal; do not overwrite intervening user changes.",
+    "expected_effect": {
+      "context": "hypothesis_only",
+      "latency": "hypothesis_only",
+      "default_savings_percent": null
+    },
+    "automation": "proposal_only_until_scoped_acceptance",
+    "source_urls": [],
+    "source_status": "requires_tool_specific_verification",
+    "overlap_group": "knowledge",
+    "tags": [
+      "knowledge",
+      "probe"
+    ]
+  }
+]

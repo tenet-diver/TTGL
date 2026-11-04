@@ -1,0 +1,26 @@
+{
+  "synthetic": true,
+  "result": {
+    "before_calls": 2,
+    "after_calls": 3,
+    "before_known_payload": 2,
+    "after_known_payload": 2,
+    "before_known_duration": 2,
+    "after_known_duration": 2,
+    "before_known_outcome": 2,
+    "after_known_outcome": 2,
+    "before_failures": 0,
+    "after_failures": 0,
+    "before_payload_total": 20000,
+    "after_payload_total": 4000,
+    "before_mean_payload": 10000.0,
+    "after_mean_payload": 2000.0,
+    "before_mean_duration_ms": 1000.0,
+    "after_mean_duration_ms": 1100.0,
+    "absolute_payload_reduction_per_call": 8000.0,
+    "payload_reduction_fraction": 0.8,
+    "duration_reduction_fraction": -0.1
+  },
+  "verdict": "inconclusive",
+  "reason": "Too few calls, incomplete coverage and no independent quality evidence; observational comparison only."
+}

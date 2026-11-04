@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "suggestion_id": "demo-ready",
+  "suggestion_version": 1,
+  "decision": "accept_trial",
+  "patch_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "scope": "task-local demo-repo",
+  "budget_usd": 0,
+  "idempotency_key": "fixture-decision-1",
+  "reason": null,
+  "synthetic": true
+}

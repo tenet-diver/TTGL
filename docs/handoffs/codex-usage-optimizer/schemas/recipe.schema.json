@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://optimizer.invalid/recipe.schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trigger": {
+      "type": "string",
+      "minLength": 1
+    },
+    "required_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "proposed_change": {
+      "type": "string",
+      "minLength": 1
+    },
+    "compatibility_gate": {
+      "type": "string",
+      "minLength": 1
+    },
+    "validation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "risk": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rollback": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expected_effect": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "const": "hypothesis_only"
+        },
+        "latency": {
+          "const": "hypothesis_only"
+        },
+        "default_savings_percent": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "context",
+        "latency",
+        "default_savings_percent"
+      ],
+      "additionalProperties": false
+    },
+    "automation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_urls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "source_status": {
+      "type": "string",
+      "minLength": 1
+    },
+    "overlap_group": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "id",
+    "category",
+    "title",
+    "trigger",
+    "required_evidence",
+    "proposed_change",
+    "compatibility_gate",
+    "validation",
+    "risk",
+    "rollback",
+    "expected_effect",
+    "automation",
+    "source_urls",
+    "source_status",
+    "overlap_group",
+    "tags"
+  ],
+  "additionalProperties": false
+}

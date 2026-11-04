@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "demo-plan-1",
+  "version": 1,
+  "optimization_id": "demo-history-1",
+  "design": "observational_windows",
+  "target": {
+    "repo_id": "demo-repo",
+    "tool_key": "pytest",
+    "operation": "run_tests"
+  },
+  "baseline_profile": "profile-original",
+  "treatment_profile": "profile-quiet",
+  "query_file": "before-after.sql",
+  "query_sha256": "22d9e9c142de72f92aba330a9f9cca4bddd06edecfe198221ae5269b5f11b2bb",
+  "parameters_file": "comparison-parameters.json",
+  "primary_metric": "mean_payload_tokens",
+  "minimum_calls_per_arm": 10,
+  "minimum_metric_coverage": 0.95,
+  "require_verified_exposure": true,
+  "quality_checks": [
+    "Preserve failure diagnostics and exit status.",
+    "Required task checks pass."
+  ],
+  "confound_policy": "report_only_observational",
+  "synthetic": true
+}

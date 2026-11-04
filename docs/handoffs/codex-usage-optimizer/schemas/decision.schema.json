@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://optimizer.invalid/decision.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "suggestion_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "suggestion_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "accept_trial",
+        "decline",
+        "later"
+      ]
+    },
+    "patch_sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "budget_usd": {
+      "type": "number",
+      "minimum": 0
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reason": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "synthetic": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "suggestion_id",
+    "suggestion_version",
+    "decision",
+    "patch_sha256",
+    "scope",
+    "budget_usd",
+    "idempotency_key",
+    "reason",
+    "synthetic"
+  ],
+  "additionalProperties": false
+}

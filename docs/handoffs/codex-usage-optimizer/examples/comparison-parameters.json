@@ -1,0 +1,11 @@
+{
+  "repo_id": "demo-repo",
+  "tool_key": "pytest",
+  "operation": "run_tests",
+  "baseline_profile": "profile-original",
+  "treatment_profile": "profile-quiet",
+  "before_start": "2026-10-28T00:00:00Z",
+  "before_end": "2026-11-01T00:00:00Z",
+  "after_start": "2026-11-01T00:00:00Z",
+  "after_end": "2026-11-05T00:00:00Z"
+}
