@@ -5,6 +5,13 @@ Use this existing repository; do not create another repository or a Codespace.
 Implementation commit: `1c79a75`; also read subsequent policy/handoff changes on
 `work`. This handoff distinguishes completed evidence from plans and blockers.
 
+## Setup instructions
+
+Follow [Codex Cloud setup](context-compression-cloud-setup.md) before trials.
+The initial command is `sh tools/usage-monitor/experiments/cloud_setup.sh`; it
+only inspects existing capabilities and runs dependency-free tests. It does not
+install anything or approve the blocked image.
+
 ## Objective
 
 Find what consumes tokens, API-equivalent cost and time, then test improvements

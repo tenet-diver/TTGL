@@ -66,3 +66,5 @@
 
 
 - Dependency security (user requirement, 5 November 2026): before any install/upgrade/first execution of downloaded tools, plugins, images or one-shot package runners, resolve and pin the complete graph, scan current advisories including base OS and unscored findings, review publisher incidents/provenance and automatic scripts, and save a dated receipt. Known findings, failed/incomplete checks or missing required evidence block installation/execution. Isolation and matching registry hashes are not substitutes. Use existing scanners; review a new scanner before installing it. Read docs/security/dependency-security-policy.md (also installed globally on the local machine); do not infer exceptions from ordinary task authorization.
+
+- Codex Cloud context-experiment setup: read docs/research/context-compression-cloud-setup.md. Initial setup is inspection-only via tools/usage-monitor/experiments/cloud_setup.sh; do not auto-install the full TTGL dependency set or run blocked images.

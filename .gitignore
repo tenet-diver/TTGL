@@ -9,3 +9,8 @@ artifacts/
 .coverage
 node_modules/
 results/**/.lock
+
+# Private Cloud setup/security evidence and experiment journals
+/work/cloud-setup/
+/work/context-pilot-cloud-*/
+/work/security/

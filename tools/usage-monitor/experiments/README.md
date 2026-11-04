@@ -66,6 +66,13 @@ Dependency-free local checks:
 python3 -m unittest discover -s tools/usage-monitor/experiments -p 'test_*.py'
 ```
 
+## Codex Cloud setup
+
+The user selected Codex Cloud. Follow the [setup guide](../../../docs/research/context-compression-cloud-setup.md)
+and run `sh tools/usage-monitor/experiments/cloud_setup.sh` for inspection-only
+checks. This does not install dependencies or start experiments. The older
+Codespaces notes below are background, not the requested deployment target.
+
 ## Codespaces
 
 Use **this existing TTGL repository**, not a second repository. A disposable
