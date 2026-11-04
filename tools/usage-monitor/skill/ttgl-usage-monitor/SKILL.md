@@ -3,7 +3,9 @@ name: ttgl-usage-monitor
 description: Inspect the local TTGL Codex usage monitor, explain historical usage, and prepare evidence-backed optimization suggestions. Use for usage-monitor questions and suggestion review; unrelated coding work does not need monitoring queries.
 ---
 
-The user's local companion runs at http://127.0.0.1:8766. It reads retained Codex sessions and archives without modifying originals. Use `scripts/context.py` for bounded current totals, coverage and suggestions. Open the URL when the user wants the UI. If unavailable, report that the service is offline; do not manufacture usage.
+AI Observer (OSS native dashboard) runs at http://127.0.0.1:8080, with Metrics and Sessions views and a selectable time range. Its Docker container is `ttgl-ai-observer`; `docker start ttgl-ai-observer` starts it when Docker Desktop is running. Historical `.zst` files are expanded locally, then a metadata/token-only projection feeds AI Observer. Its usage view intentionally omits full conversation/tool transcripts. Do not run a second importer/OTLP path against the same data. Treat its cost estimates as modeled prices, not subscription bills.
+
+The user's local TTGL companion runs at http://127.0.0.1:8766. It reads retained Codex sessions and archives without modifying originals. Use `scripts/context.py` for bounded current totals, coverage and suggestions. Open the URL when the user wants the UI. If unavailable, report that the service is offline; do not manufacture usage.
 
 Token accounting uses pinned ccusage 20.0.48; its `inputTokens` excludes cache reads. Cache reads and reasoning output are subsets of their respective provider input/output concepts. Tool retained output bytes are not provider tokens. Read coverage and report time before interpreting results. Never call these totals account-wide quota or billed charges.
 

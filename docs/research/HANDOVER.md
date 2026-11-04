@@ -2264,3 +2264,8 @@ The user supplied Codex Usage Optimizer v1.1 and prioritizes measuring existing 
 ## 4 November: local usage monitor started on explicit user request
 
 Implemented tools/usage-monitor: ccusage20.0.48 session/daily accounting, SQLite tool metadata, custom local UI, stable review decisions, deterministic opportunities and agent-authored reviews. Actual private history import and UI navigation/evidence views were verified on this Mac; no private totals or histories are committed. User LaunchAgent local.ttgl.usage-monitor serves127.0.0.1:8766; data/app under ~/Library/Application Support/TTGL Usage Monitor. Installed personal ttgl-usage-monitor skill reads /api/agent-context. Five focused adapter/HTTP tests pass; source/coverage/reconciliation limitations remain visible. The user authorized this new local monitor; the older benchmark heartbeat remains paused. No optimization executor, paid background analysis or proven savings. See tool README for install/status/stop and exact supported scope.
+
+
+## 4 November: start the OSS observability dashboard
+
+On explicit user request, started Docker Desktop and the pinned official AI Observer0.6.0 amd64 image as ttgl-ai-observer, loopback8080, watch codex --backfill. Existing ccusage/TTGL report stays on8766. AI Observer lacks direct compressed-file support in this release: separate local expanded copies cover468 compressed histories, originals remain read-only. All expansion completed without errors. The source setup and helper are under tools/usage-monitor/observer; no private histories are tracked. AI Observer pricing/reconstruction is independent of ccusage and not actual billed charges. A sidebar link opens the OSS dashboard.

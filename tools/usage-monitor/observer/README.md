@@ -1,0 +1,15 @@
+# OSS dashboard: AI Observer
+
+AI Observer 0.6.0 (MIT) is now the companion OSS observability UI at http://127.0.0.1:8080. TTGL's review UI remains at http://127.0.0.1:8766, using ccusage 20.0.48. A navigation link opens the OSS reports directly.
+
+On this Intel Mac the official release has no macOS x86_64 binary, so Docker runs the published amd64 image pinned to digest `sha256:01c84f99157f5a5688bcf7c96cd01fe24d56958c16d711d8f1afc05c43d8993a` (`tobilg/ai-observer:0.6.0`). Container: `ttgl-ai-observer`; persistent active volume: `ttgl-ai-observer-usage`. Only port8080 is published, on127.0.0.1. It runs `watch codex --backfill`; no parallel OTLP ingestion or second import writes to this database.
+
+AI Observer mounts a read-only usage projection under `~/Library/Application Support/TTGL AI Observer/usage-history`. `project_usage.py` keeps recorded session metadata, model contexts, token counters and compaction records; it omits conversation text, tool payloads and account balances. The projection is for usage reporting, not full transcripts/traces. It polls source changes every20seconds and appends growing usage projections without invalidating watcher cursors. The source corpus includes local expanded copies of compressed history under `~/Library/Application Support/TTGL AI Observer/expanded-history`. This release discovers `.jsonl`, not `.jsonl.zst`. `expand_history.py` deduplicates filenames, gives plain/active copies precedence and expands only compressed histories into the separate staging folder, atomically. It does not edit original histories. Expansion status stays in that local folder's `expansion-status.json`. The projector observes new uncompressed sessions, and AI Observer watches its projected records. Later compressed-only histories need another expansion pass; they are not automatically expanded by the watcher.
+
+Start: `docker start ttgl-ai-observer` (Docker Desktop must be running). Stop: `docker stop ttgl-ai-observer`. Restart policy is unless-stopped. Initial backfill can delay HTTP availability. Use the dashboard time range (recent activity vs full history), select Codex, and inspect dashboards/metrics/sessions. Cost values are AI Observer's pricing estimates, not subscription bills; unknown models/pricing and parser differences require reconciliation against ccusage. No equality between the two tools' reconstructed counts is assumed.
+
+Private expanded histories, telemetry databases and screenshots are not committed. Only the setup description and expansion helper are retained in TTGL.
+
+Upstream references inspected: https://github.com/tobilg/ai-observer/tree/v0.6.0 ; importer `backend/internal/importer/codex.go`; watch server `backend/cmd/server/cmd_watch.go`; docs/import.md and README. Latest release queried4November2026 wasv0.6.0.
+
+Full-transcript backfill was too slow for an interactive report, so it was stopped and replaced with the usage projection in a separate database. The stopped owned containers and original partial volume are retained; they are not serving or added to the usage totals.
