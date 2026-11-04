@@ -138,9 +138,11 @@ class Monitor:
    try:
     for view in ['session','daily']:
      self.ccstatus='Refreshing '+view+' usage'
-     cmd=['npx','--yes','ccusage@20.0.48','codex',view,'--json','--offline','--no-cost']
+     cmd=['npx','--no','--offline','ccusage@20.0.48','codex',view,'--json','--offline','--no-cost']
      if view=='daily':cmd+=['--timezone','Europe/Amsterdam']
-     # No credentials are read or changed. This subprocess only reads local rollouts.
+     # Refuse package installation and network fetching during refresh.
+     # The pinned, previously reviewed ccusage must already be present.
+     # No credentials are read or changed; only local rollouts are read.
      r=subprocess.run(cmd,capture_output=True,timeout=180,env={**os.environ,'CODEX_HOME':str(self.root)})
      if r.returncode:raise ValueError('ccusage exited '+str(r.returncode))
      obj=json.loads(r.stdout)
