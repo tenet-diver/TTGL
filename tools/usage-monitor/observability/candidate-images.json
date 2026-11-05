@@ -1,0 +1,35 @@
+{
+  "langfuse-worker": {
+    "tag": "docker.langfuse.com/langfuse/langfuse-worker:4.75.0",
+    "image": "docker.langfuse.com/langfuse/langfuse-worker@sha256:348d49987181238ba86c654510b29672dec48ddf5c9cfebc9c66bb2d3ac80ea2",
+    "digest": "sha256:348d49987181238ba86c654510b29672dec48ddf5c9cfebc9c66bb2d3ac80ea2"
+  },
+  "postgres": {
+    "tag": "postgres:17-alpine",
+    "image": "postgres@sha256:e4cb93687b062cd25a0e8f672d85a7708235009d70d31f8a7698d9370092a9c4",
+    "digest": "sha256:e4cb93687b062cd25a0e8f672d85a7708235009d70d31f8a7698d9370092a9c4"
+  },
+  "redis": {
+    "tag": "redis:7-alpine",
+    "image": "redis@sha256:1cf73a2f04808e55a8bd2f5706c2aa0ebb0f71938f93deb7af79f48311cd5cb9",
+    "digest": "sha256:1cf73a2f04808e55a8bd2f5706c2aa0ebb0f71938f93deb7af79f48311cd5cb9"
+  },
+  "clickhouse": {
+    "tag": "clickhouse/clickhouse-server:26.3.62.3-alpine",
+    "image": "clickhouse/clickhouse-server@sha256:874bd5e04df7026d0f3146a1ec4a3b07dd01e3ddadfcaf8bf94c334ec9066857",
+    "digest": "sha256:874bd5e04df7026d0f3146a1ec4a3b07dd01e3ddadfcaf8bf94c334ec9066857"
+  },
+  "s3": {
+    "tag": "chrislusf/seaweedfs:4.52",
+    "image": "chrislusf/seaweedfs@sha256:a54ba35b44895a449f5cdd415999062201b17b9835ec0ffc19ea605b72ffa3d1",
+    "digest": "sha256:a54ba35b44895a449f5cdd415999062201b17b9835ec0ffc19ea605b72ffa3d1"
+  },
+  "langfuse-web": {
+    "tag": "docker.langfuse.com/langfuse/langfuse:4.75.0",
+    "image": "docker.langfuse.com/langfuse/langfuse@sha256:282c8736d00700e2e804c170870b58a12073783ba8ecebc4de2b98f16add404b"
+  },
+  "cli-proxy-api": {
+    "tag": "eceasy/cli-proxy-api:v8.0.56",
+    "image": "eceasy/cli-proxy-api@sha256:2b299042c82e1dcb18b465dda25dbe21e7565d18d6810571da87a51bb9486002"
+  }
+}
