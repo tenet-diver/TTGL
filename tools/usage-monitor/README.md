@@ -1,5 +1,45 @@
 # TTGL Usage Observatory
 
+## Codex is the analyst
+
+The **Codex analysis** view contains agent-authored findings with evidence IDs,
+recommended actions, validation plans, confidence and a frozen source cutoff.
+The analyst reads actual command intent and failure excerpts rather than relying
+on the fallback substring categories. Its event interpretations are versioned
+separately from original traces. Agent-reviewed category/role labels take
+precedence in workspace views; new unreviewed events remain explicitly unreviewed.
+
+Background service lifetime, reviewed finite operation runtime and unreviewed or
+uncertain runtime are shown separately. Finite operations can also overlap, so
+their sum is still not elapsed task time or proven agent-blocking time. Historic
+Langfuse records stay unchanged; these are analysis interpretations over them.
+
+Run an on-demand review of a task (or omit `--task` for the available source):
+
+```sh
+python3 tools/usage-monitor/observability/agent_review.py run --task TASK_ID
+```
+
+The runner freezes evidence, strips configured local secrets, invokes the existing
+Codex CLI through the capture adapter in read-only mode, validates complete event
+coverage and finding references, then publishes the result. Its instructions and
+output schema are checked in under `config/analyst-prompt.txt` and
+`config/analyst-output.schema.json`. It attempts one bounded run, with no automatic
+model-call retries. Failed or uncertain runs are preserved for inspection. The
+analyst's own native token usage is saved separately and its source turns are
+assigned to a separate analysis task; it is excluded from the frozen baseline.
+Actual cash expense and improvement savings remain unknown.
+
+By default subsequent runs review only unreviewed events, preserving earlier
+interpretations and avoiding repeated model work. `--full` requests an intentional
+complete re-review. Aggregate usage in an incremental snapshot still describes
+the selected task/project scope and is labeled accordingly.
+
+Private evidence, final JSON, logs and manifest are stored under
+`work/security/analyses/`. For an already completed output, `agent_review.py publish
+--directory PATH` validates and publishes it without another model call. No
+scheduled analysis or automatic optimization executor is enabled.
+
 ## Reproduce this deployment
 
 All non-secret deployment configuration is checked in:

@@ -17,7 +17,7 @@ def schema(properties, required=()):
 
 TOOLS = [
     dict(name='query_activity', description='Query native Codex task/project evidence. Tokens are measured; model latency and cash charges unknown.',
-         inputSchema=schema(dict(project='Optional project ID', task='Optional task ID', category='Optional category', section='all, summary, events, turns, projects, tasks, opportunities, rules, wire_captures or sources'))),
+         inputSchema=schema(dict(project='Optional project ID', task='Optional task ID', category='Optional category', section='all, summary, events, turns, projects, tasks, opportunities, rules, wire_captures, agent_analyses, runtime_accounting or sources'))),
     dict(name='create_project', description='Define a project and repository scope. Does not authorize collection from new sources.',
          inputSchema=schema(dict(name='Project name', repo='Repository path', scope='Analysis scope'), ('name', 'repo'))),
     dict(name='create_task', description='Define intended outcome and acceptance criteria before task efficiency analysis.',
@@ -95,9 +95,9 @@ def handle(store, request):
                 result = store.report(**{k: arguments[k] for k in ('project', 'task', 'category') if k in arguments})
                 section = arguments.get('section', 'summary')
                 if section == 'summary':
-                    result = {k: result[k] for k in ('usage', 'categories', 'models', 'event_count', 'sources', 'limitations')}
+                    result = {k: result[k] for k in ('usage', 'categories', 'models', 'event_count', 'sources', 'limitations', 'runtime_accounting', 'agent_analyses')}
                 elif section != 'all':
-                    if section not in ('events', 'turns', 'projects', 'tasks', 'opportunities', 'rules', 'sources', 'wire_captures'):
+                    if section not in ('events', 'turns', 'projects', 'tasks', 'opportunities', 'rules', 'sources', 'wire_captures', 'agent_analyses', 'runtime_accounting'):
                         raise ValueError('Unsupported section')
                     result = {section: result[section]}
                 # Bound analyst payload; a section filter avoids oversized context.

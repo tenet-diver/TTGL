@@ -1,0 +1,132 @@
+{
+  "type": "object",
+  "properties": {
+    "summary": {
+      "type": "string"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "observation": {
+            "type": "string"
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommended_action": {
+            "type": "string"
+          },
+          "verification_plan": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          }
+        },
+        "required": [
+          "title",
+          "observation",
+          "evidence_ids",
+          "recommended_action",
+          "verification_plan",
+          "confidence"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "annotations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "event_id": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "runtime_role": {
+            "type": "string",
+            "enum": [
+              "finite_operation",
+              "background_service_lifetime",
+              "uncertain"
+            ]
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          }
+        },
+        "required": [
+          "event_id",
+          "category",
+          "runtime_role",
+          "rationale",
+          "confidence"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "suggested_general_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "validation_required": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "description",
+          "evidence_ids",
+          "validation_required"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "summary",
+    "findings",
+    "annotations",
+    "limitations",
+    "suggested_general_rules"
+  ],
+  "additionalProperties": false
+}

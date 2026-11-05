@@ -137,6 +137,52 @@ class WorkspaceTests(unittest.TestCase):
         self.assertEqual(failure.exception.code, 403)
         failure.exception.close()
 
+    def analysis_fixture(self, role='background_service_lifetime'):
+        self.store.scan()
+        report = self.store.report()
+        evidence = dict(tools=[e for e in report['events'] if e['kind'] == 'tool'],
+                        snapshot_at='2026-11-05T00:00:01Z', scope='Fixture only', usage=report['usage'])
+        analysis = dict(summary='Fixture review', findings=[dict(title='Separate process lifetime', observation='Recorded process duration',
+            evidence_ids=['s:tool:tool'], recommended_action='Keep lifetime separate', verification_plan='Check accounting', confidence='high')],
+            annotations=[dict(event_id='s:tool:tool', category='service operation', runtime_role=role, rationale='Reviewed command evidence', confidence='high')],
+            limitations=['No savings measured'])
+        return evidence, analysis
+
+    def test_agent_categories_preserve_measurements_and_separate_background_runtime(self):
+        evidence, analysis = self.analysis_fixture()
+        before = self.source.read_bytes()
+        self.store.publish_analysis(analysis, evidence, dict(id='review-1', model='test', snapshot_hash='fixture'))
+        report = self.store.report()
+        event = next(e for e in report['events'] if e['kind'] == 'tool')
+        self.assertEqual(event['category'], 'service operation')
+        self.assertEqual(event['category_basis'], 'Codex agent interpretation')
+        self.assertEqual(event['runtime'], 2)
+        self.assertEqual(report['runtime_accounting']['background_runtime_seconds'], 2)
+        self.assertEqual(report['runtime_accounting']['finite_runtime_seconds'], 0)
+        self.assertEqual(report['usage']['total_tokens'], 110)
+        self.assertEqual(self.source.read_bytes(), before)
+        self.assertEqual(report['agent_analyses'][0]['id'], 'review-1')
+
+    def test_agent_report_rejects_invented_or_incomplete_evidence(self):
+        evidence, analysis = self.analysis_fixture()
+        analysis['annotations'] = []
+        with self.assertRaises(ValueError):
+            self.store.publish_analysis(analysis, evidence, dict(id='review-1', model='test', snapshot_hash='fixture'))
+        evidence, analysis = self.analysis_fixture()
+        analysis['findings'][0]['evidence_ids'] = ['invented']
+        with self.assertRaises(ValueError):
+            self.store.publish_analysis(analysis, evidence, dict(id='review-1', model='test', snapshot_hash='fixture'))
+
+    def test_incremental_snapshot_does_not_repeat_reviewed_events(self):
+        import agent_review
+        evidence, analysis = self.analysis_fixture()
+        self.store.publish_analysis(analysis, evidence, dict(id='review-1', model='test', snapshot_hash='fixture'))
+        with self.assertRaisesRegex(ValueError, 'No unreviewed tool evidence'):
+            agent_review.snapshot(self.store, self.root / 'incremental')
+        snapshot = agent_review.snapshot(self.store, self.root / 'full', include_reviewed=True)
+        self.assertEqual(len(snapshot['tools']), 1)
+        self.assertEqual(snapshot['tools'][0]['id'], 's:tool:tool')
+
 
 if __name__ == '__main__':
     unittest.main()

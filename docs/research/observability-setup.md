@@ -4,6 +4,18 @@ Current scope, 5 November 2026: consolidate history and continuously collect fut
 
 ## Latest Codespaces deployment — running
 
+The user clarified that Codex itself should perform the analysis rather than
+requiring the user to interpret fallback category charts. An actual read-only
+Codex CLI review has now been run against a frozen private snapshot and published
+in the workspace's **Codex analysis** view. Agent annotations carry evidence IDs,
+rationale and confidence, and distinguish finite operations from background
+service lifetime. They are separate versioned interpretations; original native
+records and Langfuse observations are preserved. Findings include concrete
+recommendations and validation plans, not measured savings. Analyst-native usage
+is recorded separately and its turns assigned to a separate task. The reproducible
+runner is `observability/agent_review.py`; subsequent runs are incremental unless
+`--full` is explicitly selected. No scheduled model calls were enabled.
+
 Reproducible configuration is now checked in under
 `tools/usage-monitor/config/`: the active deployment lock, secret-free Compose
 template, runtime defaults, Codex provider TOML and analyst MCP template.

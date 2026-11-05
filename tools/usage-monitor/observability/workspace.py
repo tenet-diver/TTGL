@@ -45,6 +45,8 @@ CREATE TABLE IF NOT EXISTS decisions(id TEXT PRIMARY KEY,decision TEXT,implement
 CREATE TABLE IF NOT EXISTS audit(id INTEGER PRIMARY KEY,at TEXT,action TEXT,entity TEXT,details TEXT);
 CREATE TABLE IF NOT EXISTS files(path TEXT PRIMARY KEY,size INTEGER,mtime INTEGER,error TEXT);
 CREATE TABLE IF NOT EXISTS settings(key TEXT PRIMARY KEY,value TEXT);
+CREATE TABLE IF NOT EXISTS analyses(id TEXT PRIMARY KEY,created TEXT,model TEXT,snapshot_hash TEXT,report TEXT,overhead TEXT);
+CREATE TABLE IF NOT EXISTS agent_annotations(analysis_id TEXT REFERENCES analyses(id),event_id TEXT REFERENCES events(id),category TEXT,runtime_role TEXT,rationale TEXT,confidence TEXT,PRIMARY KEY(analysis_id,event_id));
 CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
 ''')
             c.execute('INSERT OR IGNORE INTO settings VALUES(?,?)', ('collection_enabled', 'true'))
@@ -138,6 +140,36 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
             with self.connection() as c:
                 c.execute('INSERT OR REPLACE INTO files VALUES(?,?,?,?)', (str(path), stat.st_size, stat.st_mtime_ns, error))
 
+    def publish_analysis(self, analysis, snapshot, metadata):
+        expected = {event['id'] for event in snapshot['tools']}
+        annotations = analysis.get('annotations', [])
+        identities = [item.get('event_id') for item in annotations]
+        if set(identities) != expected or len(identities) != len(expected):
+            raise ValueError('Agent annotations must cover every frozen tool event exactly once')
+        for item in annotations:
+            if item.get('runtime_role') not in ('finite_operation', 'background_service_lifetime', 'uncertain') or item.get('confidence') not in ('high', 'medium', 'low'):
+                raise ValueError('Invalid agent interpretation')
+            if not isinstance(item.get('category'), str) or not 0 < len(item['category']) <= 120 or not item.get('rationale'):
+                raise ValueError('Category and evidence rationale are required')
+        evidence_ids = expected | {capture['id'] for capture in snapshot.get('capture_summary', [])}
+        for finding in analysis.get('findings', []):
+            if not finding.get('evidence_ids') or not set(finding['evidence_ids']) <= evidence_ids:
+                raise ValueError('Every finding must cite frozen event identities')
+        ident = metadata['id']
+        with self.connection() as c:
+            known = {row['id'] for row in c.execute('SELECT id FROM events')}
+            if not expected <= known:
+                raise ValueError('Analysis references events outside the ingested source')
+            # An analysis is an immutable, versioned interpretation; measurements stay unchanged.
+            c.execute('INSERT INTO analyses VALUES(?,?,?,?,?,?)', (ident, now(), metadata['model'], metadata['snapshot_hash'],
+                json.dumps(dict(analysis, snapshot_at=snapshot['snapshot_at'], scope=snapshot['scope'], tool_events=len(expected),
+                                measured_snapshot_usage=snapshot['usage'])), json.dumps(metadata.get('overhead', {}))))
+            for item in annotations:
+                c.execute('INSERT INTO agent_annotations(analysis_id,event_id,category,runtime_role,rationale,confidence) VALUES(?,?,?,?,?,?)',
+                    (ident, item['event_id'], item['category'], item['runtime_role'], item['rationale'], item['confidence']))
+            self.audit(c, 'publish_agent_analysis', ident, dict(snapshot_hash=metadata['snapshot_hash'], tool_events=len(expected), model=metadata['model']))
+        return ident
+
     def ingest(self, path):
         meta, tools, bad = bridge.tool_records(path)
         if bad:
@@ -213,6 +245,9 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
             files = [dict(r) for r in c.execute('SELECT * FROM files')]
             enabled = c.execute("SELECT value FROM settings WHERE key='collection_enabled'").fetchone()[0] == 'true'
             audit = [dict(r) for r in c.execute('SELECT * FROM audit ORDER BY id DESC LIMIT 50')]
+            analyses = [dict(r) for r in c.execute('SELECT * FROM analyses ORDER BY created DESC')]
+            annotation_rows = [dict(r) for r in c.execute('SELECT a.* FROM agent_annotations a JOIN analyses b ON a.analysis_id=b.id ORDER BY b.created')]
+        annotations = {row['event_id']: row for row in annotation_rows}
         task_map = {t['id']: t for t in tasks}
         project_map = {p['id']: p for p in projects}
         for turn in turns:
@@ -222,12 +257,19 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
         selected_turns = [t for t in turns if (not task or t['task_id'] == task) and (not project or t['project_id'] == project)]
         selected_ids = {(t['session_id'], t['turn_id']) for t in selected_turns}
         totals = dict(input_tokens=0, cached_input_tokens=0, output_tokens=0, total_tokens=0)
-        groups = collections.defaultdict(lambda: dict(count=0, runtime_seconds=0, timed=0, bytes=0, failures=0))
+        groups = collections.defaultdict(lambda: dict(count=0, runtime_seconds=0, finite_runtime_seconds=0, background_runtime_seconds=0, unreviewed_runtime_seconds=0, timed=0, bytes=0, failures=0))
         events, models = [], collections.Counter()
         for row in rows:
             if (row['session_id'], row['turn_id']) not in selected_ids:
                 continue
             row['category'] = 'model inference' if row['kind'] == 'generation' else next((r['category'] for r in rules if r['enabled'] and r['pattern'].lower() in row['name'].lower()), 'other tools')
+            annotation = annotations.get(row['id'])
+            row['category_basis'] = 'fallback rule'
+            row['runtime_role'] = 'unreviewed'
+            if annotation:
+                row.update(category=annotation['category'], category_basis='Codex agent interpretation',
+                           analysis_id=annotation['analysis_id'], category_confidence=annotation['confidence'],
+                           category_rationale=annotation['rationale'], runtime_role=annotation['runtime_role'])
             if category and row['category'] != category:
                 continue
             row['task_id'] = assignments.get((row['session_id'], row['turn_id']))
@@ -243,11 +285,21 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
             group['failures'] += int(row['failed'] == 1)
             if row['runtime'] is not None:
                 group['runtime_seconds'] += row['runtime']
+                if row['runtime_role'] == 'finite_operation':
+                    group['finite_runtime_seconds'] += row['runtime']
+                elif row['runtime_role'] == 'background_service_lifetime':
+                    group['background_runtime_seconds'] += row['runtime']
+                else:
+                    group['unreviewed_runtime_seconds'] += row['runtime']
                 group['timed'] += 1
             events.append(row)
         total_runtime = sum(g['runtime_seconds'] for g in groups.values())
         categories = [dict(name=name, **g, runtime_share=g['runtime_seconds'] / total_runtime if total_runtime else None) for name, g in groups.items()]
         categories.sort(key=lambda r: -r['runtime_seconds'])
+        accounting = {key: sum(group[key] for group in groups.values()) for key in
+                      ('runtime_seconds', 'finite_runtime_seconds', 'background_runtime_seconds', 'unreviewed_runtime_seconds')}
+        accounting['reviewed_tool_events'] = sum(e['id'] in annotations for e in events if e['kind'] == 'tool')
+        accounting['tool_events'] = sum(e['kind'] == 'tool' for e in events)
         opportunities = []
         large = [e for e in events if e['kind'] == 'tool' and (e['bytes'] or 0) > 32000]
         if large:
@@ -294,11 +346,23 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
                     elapsed_seconds=(record['ended_ns'] - record['started_ns']) / 1e9 if record.get('ended_ns') else None,
                     first_body_byte_seconds=(record['first_byte_ns'] - record['started_ns']) / 1e9 if record.get('first_byte_ns') else None,
                     langfuse_url=self.langfuse_url + '/project/ttgl-codex/traces/' + bridge.digest('transport-v1:' + record['id'])))
+        selected_events = {e['id'] for e in events} | {capture['id'] for capture in captures}
+        agent_reports = []
+        for row in analyses:
+            result = json.loads(row['report'])
+            relevant = [finding for finding in result['findings'] if selected_events.intersection(finding['evidence_ids'])]
+            if not relevant:
+                continue
+            agent_reports.append(dict(id=row['id'], created=row['created'], model=row['model'], snapshot_hash=row['snapshot_hash'],
+                summary=result['summary'], findings=relevant, limitations=result['limitations'], scope=result['scope'],
+                snapshot_at=result['snapshot_at'], tool_events=result['tool_events'],
+                measured_snapshot_usage=result['measured_snapshot_usage'], overhead=json.loads(row['overhead'])))
         return dict(projects=projects, tasks=tasks, turns=selected_turns, inbox=[t for t in turns if not t['task_id']],
             usage=totals, models=dict(models), categories=categories, events=events[-1000:], event_count=len(events),
             sequences=[dict(sequence=list(k), count=v) for k, v in sequences.most_common(20)],
             opportunities=opportunities, rules=rules, decisions=list(decisions.values()), audit=audit,
             wire_captures=captures,
+            agent_analyses=agent_reports, runtime_accounting=accounting,
             sources=dict(root=str(self.root), collection_enabled=enabled, files=len(files), errors=[dict(file=Path(f['path']).name, error=f['error']) for f in files if f['error']],
                          last_scan=max((f['mtime'] for f in files), default=None)),
             langfuse_url=self.langfuse_url + '/project/ttgl-codex', at=now(),
