@@ -1,6 +1,6 @@
 # Cross-machine session and request observability
 
-Status: requested architecture, not a deployed system. Preserve existing research protocols and paused schedules. Prefer Langfuse and maintained integrations; build only the missing capture/export adapter after establishing its need.
+Status: DEFERRED. The user's later instruction is one development machine; follow [the active single-device setup](observability-setup.md). This document preserves the earlier exploration and is not deployment authorization. Preserve existing research protocols and paused schedules. Prefer Langfuse and maintained integrations; build only the missing capture/export adapter after establishing its need.
 
 ## Collection and aggregation
 
