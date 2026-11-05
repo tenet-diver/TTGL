@@ -5,6 +5,8 @@ import threading
 import unittest
 import urllib.request
 import urllib.error
+import urllib.parse
+from unittest.mock import patch, MagicMock
 from http.server import ThreadingHTTPServer
 
 from workspace import Store, Handler
@@ -182,6 +184,50 @@ class WorkspaceTests(unittest.TestCase):
         snapshot = agent_review.snapshot(self.store, self.root / 'full', include_reviewed=True)
         self.assertEqual(len(snapshot['tools']), 1)
         self.assertEqual(snapshot['tools'][0]['id'], 's:tool:tool')
+
+    def test_legacy_capture_links_by_session_time_without_claiming_a_response_body(self):
+        self.store.scan()
+        project, task = self.define_task()
+        self.store.mutate('assign', dict(session_id='s', turn_id='t', task_id=task))
+        captures = self.root / 'captures'
+        captures.mkdir()
+        self.store.capture_root = captures
+        from workspace import bridge
+        capture = dict(id='a'*32, path='/responses', state='complete', status=200,
+            started_ns=bridge.nanos('2026-11-05T00:00:00Z'), ended_ns=bridge.nanos('2026-11-05T00:00:02Z'),
+            request=dict(prompt_cache_key='s', model='test-model'), response=dict(unparsed_body=True, bytes=100),
+            request_bytes=10, response_bytes=100, response_truncated=False)
+        (captures / 'capture.json').write_text(json.dumps(capture))
+        report = self.store.report(task=task, category='search')
+        self.assertEqual(len(report['wire_captures']), 1)
+        row = report['wire_captures'][0]
+        self.assertEqual(row['correlation'], 'session + time (inferred)')
+        self.assertFalse(row['response_body_available'])
+        self.assertEqual(report['usage']['total_tokens'], 0)
+        self.assertEqual(report['usage_scope']['all_sources']['total_tokens'], 110)
+
+    def test_task_total_and_unassigned_total_are_explicit_subsets(self):
+        self.store.scan()
+        _, task = self.define_task()
+        report = self.store.report(task=task)
+        self.assertEqual(report['usage']['total_tokens'], 0)
+        self.assertEqual(report['usage_scope']['all_sources']['total_tokens'], 110)
+        self.assertEqual(report['usage_scope']['unassigned']['total_tokens'], 110)
+
+    def test_reconciliation_includes_first_response_at_time_boundary(self):
+        self.store.scan()
+        self.store.capture_root = self.root / 'stack/captures'
+        self.store.capture_root.mkdir(parents=True)
+        (self.store.capture_root.parent / 'local-access.json').write_text(json.dumps(dict(base_url='http://localhost:3000', public_key='fixture', secret_key='fixture')))
+        response = MagicMock()
+        response.read.return_value = b'{"data":[{"sum_totalTokens":110}]}'
+        with patch('workspace.urllib.request.urlopen') as opener:
+            opener.return_value.__enter__.return_value = response
+            result = self.store.reconcile()
+            query = json.loads(urllib.parse.parse_qs(urllib.parse.urlparse(opener.call_args.args[0].full_url).query)['query'][0])
+        self.assertLess(query['fromTimestamp'], '2026-11-05T00:00:01Z')
+        self.assertEqual(result['difference'], 0)
+        self.assertEqual(result['status'], 'matched')
 
 
 if __name__ == '__main__':

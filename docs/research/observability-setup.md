@@ -4,6 +4,28 @@ Current scope, 5 November 2026: consolidate history and continuously collect fut
 
 ## Latest Codespaces deployment — running
 
+The compact workspace now uses the private EVLV plain-DOM distribution (producer
+commit and hashes in `config/design-system.lock.json`). Shared assets remain in
+the ignored private state directory because the producer forbids public
+redistribution. Consumer layout uses dense tables, local search/sorting/pagination,
+accessible shared row menus and add/edit dialogs. See the usage-monitor README
+for authenticated sync and browser verification.
+
+A subsequent audit corrected an earlier capture claim: the first six model HTTP
+exchanges have retained requests and byte/timing metadata, but no retained raw
+response bodies. The old Content-Type-dependent parser discarded octet-stream
+SSE; those missing bodies are unrecoverable from the capture files. They are now
+shown as partial historical coverage, with session/time correlation explicitly
+inferred. Schema-2 capture parses SSE regardless of Content-Type and retains
+provider response IDs. A new real canary verified correct body retention and
+exact ID correlation. Native transcripts remain distinct from proxy evidence.
+
+Selected task/project/category totals are now displayed alongside all-source and
+unassigned totals. The reconciliation endpoint queries the same Langfuse native
+generation scope and includes the first retained response across the Metrics API
+time boundary. A stable live check reconciled all-source totals exactly; active
+generation/ingestion lag can still create temporary differences.
+
 The user clarified that Codex itself should perform the analysis rather than
 requiring the user to interpret fallback category charts. An actual read-only
 Codex CLI review has now been run against a frozen private snapshot and published

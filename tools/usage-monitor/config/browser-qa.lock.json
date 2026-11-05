@@ -1,0 +1,198 @@
+{
+  "scope": "Optional browser QA only; not product dependencies",
+  "python_packages": [
+    {
+      "name": "playwright",
+      "version": "1.64.1",
+      "artifact": {
+        "url": "https://files.pythonhosted.org/packages/15/b9/e481a34572933b5cf179d5637c98da488c732ee339dff5b73a0624d2e42b/playwright-1.64.1-py3-none-manylinux1_x86_64.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "577b8d88778c245cfbd145ae17cf53044f084b1b46c55c69081d4069d56057e2"
+          },
+          "hash": "sha256=577b8d88778c245cfbd145ae17cf53044f084b1b46c55c69081d4069d56057e2"
+        }
+      }
+    },
+    {
+      "name": "greenlet",
+      "version": "3.5.6",
+      "artifact": {
+        "url": "https://files.pythonhosted.org/packages/45/ac/28fa7a9e50f2859466214c4ac584d776db52c1604ad4dd158960a5af2a1f/greenlet-3.5.6-cp314-cp314-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "9a09d59bef1db94f384b5bcc2d523694d338f3df6b757aeeaf7baca5d0c0be88"
+          },
+          "hash": "sha256=9a09d59bef1db94f384b5bcc2d523694d338f3df6b757aeeaf7baca5d0c0be88"
+        }
+      }
+    },
+    {
+      "name": "pyee",
+      "version": "14.0.0",
+      "artifact": {
+        "url": "https://files.pythonhosted.org/packages/81/12/5347938b1f9a6453f0dbdfcc3e2388a1320ef9b9ec17fbefbc4ab647ea98/pyee-14.0.0-py3-none-any.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "3ac2d3229a9677f7de2c33d7f52fe25b638a46b19c413fea2edc8c6d0a644e4d"
+          },
+          "hash": "sha256=3ac2d3229a9677f7de2c33d7f52fe25b638a46b19c413fea2edc8c6d0a644e4d"
+        }
+      }
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0",
+      "artifact": {
+        "url": "https://files.pythonhosted.org/packages/49/d3/b8441a820a491ddfc024b0b0cf0393375b75ea13866d9c66727e54c2fc80/typing_extensions-4.16.0-py3-none-any.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
+          },
+          "hash": "sha256=481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
+        }
+      }
+    }
+  ],
+  "browser": [
+    {
+      "name": "chromium-headless-shell",
+      "revision": "1248",
+      "installByDefault": true,
+      "browserVersion": "156.0.8078.4",
+      "title": "Chrome Headless Shell"
+    },
+    {
+      "name": "ffmpeg",
+      "revision": "1013",
+      "installByDefault": true
+    }
+  ],
+  "advisory_check_date": "2026-11-05",
+  "python_package_findings": [],
+  "limitations": [
+    "Browser executable and native OS graph need separate review; Codespaces user permits incomplete checks but confirmed findings block"
+  ],
+  "native_packages": [
+    {
+      "name": "xkb-data",
+      "version": "2.41-2ubuntu1.1"
+    },
+    {
+      "name": "libdrm-common",
+      "version": "2.4.125-1ubuntu0.1~24.04.2"
+    },
+    {
+      "name": "libdrm2",
+      "version": "2.4.125-1ubuntu0.1~24.04.2"
+    },
+    {
+      "name": "libsensors-config",
+      "version": "1:3.6.0-9build1"
+    },
+    {
+      "name": "libsensors5",
+      "version": "1:3.6.0-9build1"
+    },
+    {
+      "name": "libxkbcommon0",
+      "version": "1.6.0-1build1"
+    },
+    {
+      "name": "at-spi2-common",
+      "version": "2.52.0-1build1"
+    },
+    {
+      "name": "libasound2-data",
+      "version": "1.2.11-1ubuntu0.3"
+    },
+    {
+      "name": "libasound2t64",
+      "version": "1.2.11-1ubuntu0.3"
+    },
+    {
+      "name": "libatk1.0-0t64",
+      "version": "2.52.0-1build1"
+    },
+    {
+      "name": "libxi6",
+      "version": "2:1.8.1-1build1"
+    },
+    {
+      "name": "libatspi2.0-0t64",
+      "version": "2.52.0-1build1"
+    },
+    {
+      "name": "libatk-bridge2.0-0t64",
+      "version": "2.52.0-1build1"
+    },
+    {
+      "name": "libdrm-amdgpu1",
+      "version": "2.4.125-1ubuntu0.1~24.04.2"
+    },
+    {
+      "name": "libpciaccess0",
+      "version": "0.17-3ubuntu0.24.04.3"
+    },
+    {
+      "name": "libdrm-intel1",
+      "version": "2.4.125-1ubuntu0.1~24.04.2"
+    },
+    {
+      "name": "libllvm20",
+      "version": "1:20.1.2-0ubuntu1~24.04.3"
+    },
+    {
+      "name": "libx11-xcb1",
+      "version": "2:1.8.7-1ubuntu0.1"
+    },
+    {
+      "name": "libxcb-dri3-0",
+      "version": "1.15-1ubuntu2"
+    },
+    {
+      "name": "libxcb-present0",
+      "version": "1.15-1ubuntu2"
+    },
+    {
+      "name": "libxcb-randr0",
+      "version": "1.15-1ubuntu2"
+    },
+    {
+      "name": "libxcb-sync1",
+      "version": "1.15-1ubuntu2"
+    },
+    {
+      "name": "libxcb-xfixes0",
+      "version": "1.15-1ubuntu2"
+    },
+    {
+      "name": "libxshmfence1",
+      "version": "1.3-1build5"
+    },
+    {
+      "name": "mesa-libgallium",
+      "version": "25.2.8-0ubuntu0.24.04.4"
+    },
+    {
+      "name": "libgbm1",
+      "version": "25.2.8-0ubuntu0.24.04.4"
+    },
+    {
+      "name": "libxcomposite1",
+      "version": "1:0.4.5-1build3"
+    },
+    {
+      "name": "libxdamage1",
+      "version": "1:1.1.6-1build1"
+    },
+    {
+      "name": "libxfixes3",
+      "version": "1:6.0.0-2build1"
+    },
+    {
+      "name": "libxrandr2",
+      "version": "2:1.5.2-2build1"
+    }
+  ]
+}

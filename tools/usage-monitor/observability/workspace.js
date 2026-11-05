@@ -1,34 +1,299 @@
-const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const fmt=n=>n==null?'Unknown':Number(n).toLocaleString('en',{maximumFractionDigits:2}),short=n=>n==null?'Unknown':Intl.NumberFormat('en',{notation:'compact',maximumFractionDigits:2}).format(n),date=s=>s?new Date(s).toLocaleString():'Unknown';
-let data=null,view='overview',project='',task='',category='',busy=false;
-const titles={analysis:['What Codex found.','Agent-authored findings, source evidence, and explicit uncertainty.'],overview:['Understand the work.','Defined tasks, measured usage, and evidence you can inspect.'],projects:['Give the work a home.','Set the repository and analysis scope before evaluating tasks.'],tasks:['Define a useful outcome.','A task can span multiple prompts, turns and agent runs.'],activity:['Follow the evidence.','Filter activities, inspect recurring sequences, and open the source in Langfuse.'],opportunities:['Make the next change measurable.','Separate the review decision, implementation and evaluation.'],rules:['Turn patterns into categories.','Versioned literal rules classify operations without changing source evidence.'],setup:['Know what is connected.','Collection health, source permission, and remaining coverage gaps.']};
-const panel=(title,body)=>`<section class="panel"><div class="panelhead"><h2>${esc(title)}</h2></div>${body}</section>`;
-const link=(url,label)=>`<a href="${esc(url)}" target="_blank" rel="noopener">${esc(label)} ↗</a>`;
-function toast(text){$('#toast').textContent=text;$('#toast').style.display='block';setTimeout(()=>$('#toast').style.display='none',4000)}
-async function post(action,body){const response=await fetch('/api/'+action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const result=await response.json();if(!response.ok)throw Error(result.error||'Request failed');return result}
-function options(rows,value,label,selected){return rows.map(r=>`<option value="${esc(r[value])}" ${r[value]===selected?'selected':''}>${esc(r[label])}</option>`).join('')}
-async function load(){if(busy)return;try{let query=new URLSearchParams();if(project)query.set('project',project);if(task)query.set('task',task);if(category)query.set('category',category);const r=await fetch('/api/workspace?'+query);if(!r.ok)throw Error('Connection failed');data=await r.json();render()}catch(error){$('#live').textContent='Connection interrupted';toast(error.message)}}
-function metrics(){const u=data.usage;return `<div class="metrics">${[['Reported tokens',short(u.total_tokens),'Fresh input + cached input + output'],['Cache fraction',u.input_tokens?(100*u.cached_input_tokens/u.input_tokens).toFixed(1)+'%':'Unknown','Cached input is an input subset'],['Recorded events',fmt(data.event_count),'Model responses and native tool completions'],['Actual charges','Unknown','No subscription cash allocation inferred']].map(([label,value,note])=>`<div class="metric"><div class="kpi-label">${label}</div><div class="number">${value}</div><small>${note}</small></div>`).join('')}</div>`}
-function agentAssessment(){const report=(data.agent_analyses||[])[0];if(!report)return panel('Codex analysis','<p>No agent assessment has been published for this selection yet. Categories currently use fallback rules.</p>');return panel('Codex assessment',`<p>${esc(report.summary)}</p><small>${esc(report.model)} · frozen snapshot ${date(report.snapshot_at)} · ${report.tool_events} reviewed tool events</small><p class="message">${esc(report.scope)}</p><button data-view="analysis">Read findings and recommendations</button>`)}
-function findings(report){return report.findings.map(f=>panel(f.title,`<span class="tag">CODEX ANALYSIS · ${esc(f.confidence)} confidence</span><h3>Evidence</h3><p>${esc(f.observation)}</p><h3>Recommended action</h3><p>${esc(f.recommended_action)}</p><h3>How to verify it helps</h3><p>${esc(f.verification_plan)}</p><details><summary>Supporting records (${f.evidence_ids.length})</summary>${f.evidence_ids.map(id=>{const event=data.events.find(e=>e.id===id);const capture=data.wire_captures.find(c=>c.id===id);return event?`<p>${link(event.langfuse_url,event.name)} · ${event.runtime==null?'duration unknown':fmt(event.runtime)+'s recorded runtime'}</p>`:capture?`<p>${link(capture.langfuse_url,'Captured model HTTP exchange')}</p>`:`<p class="mono">${esc(id)}</p>`}).join('')}</details>`)).join('')}
-function breakdown(){const a=data.runtime_accounting||{},finite=a.finite_runtime_seconds||0;return panel('Agent-reviewed operation runtime',`<p class="message">${a.reviewed_tool_events||0} / ${a.tool_events||0} tool events reviewed by Codex. Finite operation runtimes can overlap; they are not elapsed task time or proven agent-blocking time.</p><div class="subtle"><p>Finite operations: <strong>${fmt(finite)}s</strong> · Background service lifetime: <strong>${fmt(a.background_runtime_seconds||0)}s</strong> · Unreviewed/uncertain: <strong>${fmt(a.unreviewed_runtime_seconds||0)}s</strong></p><p>Background lifetime is kept separately and excluded from these percentage bars.</p></div>${data.categories.filter(r=>r.finite_runtime_seconds>0).sort((a,b)=>b.finite_runtime_seconds-a.finite_runtime_seconds).map(r=>`<div class="activity-bar"><span>${esc(r.name)}</span><div class="track"><div class="fill" style="width:${finite?100*r.finite_runtime_seconds/finite:0}%"></div></div><span class="muted">${fmt(r.finite_runtime_seconds)}s · ${finite?(100*r.finite_runtime_seconds/finite).toFixed(1):0}%</span></div>`).join('')||'<div class="empty">No agent-reviewed finite runtime in this selection. Raw event durations remain available in the timeline.</div>'}`)}
-function taskCard(t){const p=data.projects.find(p=>p.id===t.project_id);return `<article class="listrow"><div class="taskhead"><h3>${esc(t.title)}</h3><span class="status">${esc(t.status)}</span></div><p>${esc(t.goal)}</p><small>${esc(p?.name||'Project')} · ${date(t.updated)}</small><details><summary>Acceptance and verification</summary><p>${esc(t.acceptance||'Not specified')}</p><p>Outcome: ${esc(t.outcome||'Not verified')}</p></details><div class="actions"><button data-open-task="${esc(t.id)}">Open task evidence</button><button data-status="waiting" data-task-id="${esc(t.id)}">Waiting</button><button data-status="active" data-task-id="${esc(t.id)}">Active</button><button data-complete="${esc(t.id)}">Complete with evidence</button></div></article>`}
-function captures(){return panel('Captured model HTTP exchanges',`<p class="message">Only explicitly proxied calls. HTTP transport timings are not pure inference latency; native usage is counted once.</p>${data.wire_captures.map(c=>`<div class="listrow"><strong>HTTP ${c.status??'unknown'} · ${esc(c.state)}</strong><p>${fmt(c.request_bytes)} request bytes · ${fmt(c.response_bytes)} response bytes${c.response_truncated?' · truncated':''}</p><p>${fmt(c.elapsed_seconds)}s total · ${fmt(c.first_body_byte_seconds)}s to first body byte</p>${link(c.langfuse_url,'Inspect request / response')}</div>`).join('')||'<p>No HTTP captures match this selection. Native transcript evidence is still available below.</p>'}`)}
-function timeline(){return panel('Task timeline',`<p class="message">${data.event_count>1000?'Showing the latest 1,000 events. ':''}Steps are native event labels, without generated descriptions. Detailed transcript inputs/results are in Langfuse.</p><div class="timeline">${data.events.slice(-150).reverse().map(e=>`<article class="listrow"><div class="taskhead"><strong>${esc(e.name)}</strong><span class="tag">${esc(e.category)}</span></div><small>${date(e.ts)} · ${esc(e.runtime_role||'unreviewed')} · ${e.runtime==null?'runtime unknown':fmt(e.runtime)+'s native runtime'}${e.failed===1?' · nonzero/failed operation':''}</small>${e.usage?`<p>${fmt(e.usage.input_tokens)} input (${fmt(e.usage.cached_input_tokens)} cached) · ${fmt(e.usage.output_tokens)} output · ${esc(e.model||'unknown model')}</p>`:`<p>${e.bytes==null?'Output size unknown':fmt(e.bytes)+' retained output bytes'}</p>`}${e.category_rationale?`<details><summary>Why this category? ${esc(e.category_confidence)} confidence</summary><p>${esc(e.category_rationale)}</p><small>${esc(e.category_basis)}</small></details>`:''}${link(e.langfuse_url,'Inspect evidence')}</article>`).join('')||'<div class="empty">Assign a turn to this task to see its evidence.</div>'}</div>`)}
-function render(){if(!data)return;$('#title').textContent=titles[view][0];$('#subtitle').textContent=titles[view][1];$('#crumb').textContent=view;$('#live').textContent=data.sources.collection_enabled?'Collecting · '+date(data.at):'Collection paused';$('#langfuse').href=data.langfuse_url;document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
-$('#project').innerHTML='<option value="">All projects</option>'+options(data.projects,'id','name',project);$('#task').innerHTML='<option value="">All tasks</option>'+options(data.tasks.filter(t=>!project||t.project_id===project),'id','title',task);$('#category').innerHTML='<option value="">All categories</option>'+[...new Set(['model inference','other tools',...data.rules.map(r=>r.category),...data.categories.map(r=>r.name)])].map(name=>`<option ${category===name?'selected':''}>${esc(name)}</option>`).join('');
-let html='';
-if(view==='overview'){html=agentAssessment()+metrics()+`<div class="split">${breakdown()}${panel('Defined work',`<p>${data.projects.length} projects · ${data.tasks.length} tasks · ${data.inbox.length} unassigned turns</p>${data.tasks.slice(0,4).map(taskCard).join('')||'<div class="empty">Create a project and task to start scoped analysis.</div>'}`)}</div>`+panel('Measurement boundaries',data.limitations.map(x=>`<p>• ${esc(x)}</p>`).join(''));}
-if(view==='analysis'){html=agentAssessment()+(data.agent_analyses||[]).map(r=>findings(r)+panel('Scope, limits and analyst overhead',`<p>${esc(r.scope)}</p>${r.limitations.map(x=>`<p>• ${esc(x)}</p>`).join('')}<p>Analyst overhead is recorded separately: ${fmt(r.overhead.total_tokens)} reported tokens${r.overhead.cached_input_tokens!=null?' ('+fmt(r.overhead.cached_input_tokens)+' cached input)':''}. Actual charges and measured savings remain unknown.</p><small>Snapshot SHA-256: ${esc(r.snapshot_hash)}</small>`)).join('');}
-if(view==='projects'){html=`<div class="split">${panel('Your projects',data.projects.map(p=>`<article class="listrow"><h3>${esc(p.name)}</h3><p class="mono">${esc(p.repo)}</p><p>${esc(p.scope)}</p><button data-open-project="${esc(p.id)}">Open project</button></article>`).join('')||'<p>No projects yet.</p>')}${panel('Create a project',`<form data-action="project"><label>Name<input name="name" required maxlength="200"></label><label>Repository / working folder<input name="repo" required placeholder="/workspaces/my-repository"></label><label>Analysis scope<textarea name="scope" placeholder="What work and agents belong here?"></textarea></label><button class="primary">Create project</button></form>`)}</div>`;}
-if(view==='tasks'){const tasks=data.tasks.filter(t=>!project||t.project_id===project);html=`<div class="split">${panel('Tasks',tasks.map(taskCard).join('')||'<p>No tasks in this project.</p>')}${panel('Define a task',`<form data-action="task"><label>Project<select name="project_id" required>${options(data.projects,'id','name',project)}</select></label><label>Title<input name="title" required maxlength="200"></label><label>Intended outcome<textarea name="goal" required></textarea></label><label>Acceptance / verification<textarea name="acceptance" placeholder="What evidence would establish success?"></textarea></label><button class="primary" ${!data.projects.length?'disabled':''}>Start task</button></form>`)}</div>`+panel('Unassigned activity inbox',data.inbox.map(t=>`<article class="listrow"><strong>${date(t.start)}</strong><p class="prompt">${esc(t.prompt||'Prompt unavailable')}</p><small>${esc(t.repo)} · ${t.completed?'Agent turn completed; task outcome unknown':'Open agent turn'}</small><form class="inlineform" data-action="assign"><input name="session_id" type="hidden" value="${esc(t.session_id)}"><input name="turn_id" type="hidden" value="${esc(t.turn_id)}"><select name="task_id" required><option value="">Choose a task</option>${options(data.tasks,'id','title','')}</select><button ${!data.tasks.length?'disabled':''}>Assign turn</button>${link(t.langfuse_url,'Open transcript')}</form></article>`).join('')||'<p>All collected turns are assigned.</p>');}
-if(view==='activity'){html=metrics()+breakdown()+panel('Recurring category sequences',`<table><thead><tr><th>Sequence</th><th>Occurrences</th></tr></thead><tbody>${data.sequences.map(s=>`<tr><td>${s.sequence.map(esc).join(' → ')}</td><td>${s.count}</td></tr>`).join('')}</tbody></table><p class="message">Adjacent recorded events, not proof of causal order for parallel work.</p>`)+captures()+timeline();}
-if(view==='opportunities'){html=(data.agent_analyses||[]).map(findings).join('')+`<div class="note">Each opportunity needs source evidence, a concrete change, a comparison plan, quality checks and rollback. Review choices do not apply changes. Savings remain unmeasured.</div>`+data.opportunities.map(o=>panel(o.title,`<p>${esc(o.observation)}</p><h3>Proposed action</h3><p>${esc(o.action)}</p><h3>Quality guardrail</h3><p>${esc(o.guardrail)}</p><details><summary>Evidence (${o.evidence.length} records)</summary>${o.evidence.map(id=>{const e=data.events.find(e=>e.id===id);return e?`<p>${link(e.langfuse_url,e.name)} · ${fmt(e.bytes)} bytes</p>`:`<p>${esc(id)}</p>`}).join('')}</details><form data-action="decision"><input type="hidden" name="id" value="${esc(o.id)}"><label>Review decision<select name="decision">${['review','declined','deferred'].map(v=>`<option ${o.state.decision===v?'selected':''}>${v}</option>`).join('')}</select></label><label>Implementation<select name="implementation">${['not_started','prepared','applied','reverted'].map(v=>`<option ${o.state.implementation===v?'selected':''}>${v}</option>`).join('')}</select></label><label>Evaluation<select name="evaluation">${['not_measured','trial_planned','in_progress','improved','regressed','inconclusive'].map(v=>`<option ${o.state.evaluation===v?'selected':''}>${v}</option>`).join('')}</select></label><label>Evidence / trial plan / result notes<textarea name="notes">${esc(o.state.notes||'')}</textarea></label><button class="primary">Save review state</button></form>`)).join('');if(!data.opportunities.length)html+='<div class="empty">No current detector findings in this selection. This does not establish optimal behavior.</div>';html+=panel('Review history',data.decisions.map(d=>`<div class="listrow"><strong>${esc(d.decision)}</strong> · ${esc(d.implementation)} · ${esc(d.evaluation)}<p>${esc(d.notes)}</p><small>${date(d.updated)}</small></div>`).join('')||'<p>No review decisions yet.</p>');}
-if(view==='rules'){html=`<div class="split">${panel('Versioned category rules',`<p class="message">Agent-reviewed labels take precedence and include evidence/confidence in the timeline. These are fallback rules for unreviewed events; the first matching enabled rule wins. Changes reclassify views and never modify source records.</p>${data.rules.map(r=>`<form class="listrow" data-action="rule"><input type="hidden" name="id" value="${esc(r.id)}"><label>Category<input name="category" value="${esc(r.category)}" required></label><label>Operation contains<input name="pattern" value="${esc(r.pattern)}" required></label><small>Version ${r.version}</small><label>Enabled<select name="enabled"><option value="true" ${r.enabled?'selected':''}>Yes</option><option value="false" ${!r.enabled?'selected':''}>No</option></select></label><button>Save new version</button></form>`).join('')}`)}${panel('Add a category rule',`<form data-action="rule"><label>Category<input name="category" required></label><label>Operation contains<input name="pattern" required></label><button class="primary">Add rule</button></form>`)}</div>`;}
-if(view==='setup'){html=panel('Collection and permission',`<p><strong>${data.sources.collection_enabled?'Enabled for this Codex source':'Paused'}</strong> · ${data.sources.files} retained files</p><p class="mono">${esc(data.sources.root)}</p><p>Collection was authorized in this chat. Pausing stops workspace ingestion and new Langfuse exports within 15 seconds; existing evidence is retained. The capture route rejects new calls while collection is paused. No other machine is connected.</p><button data-collection="${!data.sources.collection_enabled}">${data.sources.collection_enabled?'Pause collection':'Resume collection'}</button>${data.sources.errors.map(e=>`<p class="danger">${esc(e.file)}: ${esc(e.error)}</p>`).join('')}`)+panel('Langfuse stack',`<p>Web UI, worker, PostgreSQL, Redis, ClickHouse and S3 run in Docker with persistent volumes.</p><p>${link(data.langfuse_url,'Open Langfuse')}</p><p>Run configuration and login credentials are private under <code>work/security/langfuse-stack/</code>.</p>`)+panel('Analyst AI connection',`<p>Read-only analysis endpoint: <code>/api/agent-context</code>. Use <code>analyst_mcp.py --data … --codex-root … --langfuse-url …</code> as a local stdio MCP server for task creation, assignment, category rules and evidence queries.</p><p>Source collection is authorized for this root only; importing another machine requires its data and approval.</p>`)+panel('Coverage limits',data.limitations.map(x=>`<p>• ${esc(x)}</p>`).join(''))+panel('Audit trail',data.audit.slice(0,15).map(a=>`<div class="listrow">${date(a.at)} · ${esc(a.action)}<small>${esc(a.entity)}</small></div>`).join(''));}
-$('#content').innerHTML=html;
+import { collectionPage } from '/design-system/collection.js';
+import { createActionMenu } from '/design-system/dom.js';
+
+const $ = selector => document.querySelector(selector);
+const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+const fmt = value => value == null ? 'Unknown' : Number(value).toLocaleString('en', {maximumFractionDigits: 2});
+const compact = value => value == null ? 'Unknown' : Intl.NumberFormat('en', {notation:'compact',maximumFractionDigits:2}).format(value);
+const date = value => value ? new Date(value).toLocaleString() : 'Unknown';
+const seconds = value => value == null ? 'Unknown' : fmt(value) + 's';
+const external = (url, title='Inspect in Langfuse') => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(title)} ↗</a>`;
+const badge = value => `<span class="badge">${esc(value)}</span>`;
+const button = (title, attributes='', primary=false) => `<button class="evlv-button ${primary?'evlv-primary':'evlv-secondary'} evlv-compact" ${attributes}>${esc(title)}</button>`;
+const section = (title, body, action='', note='') => `<section class="section"><div class="section-heading"><h2>${esc(title)}</h2>${action}</div>${note?`<p class="section-note">${note}</p>`:''}${body}</section>`;
+const clip = value => `<span class="clip" title="${esc(value)}">${esc(value)}</span>`;
+const config = {
+  overview:['Overview','Selected task usage, collection coverage, and Codex findings.'],
+  analysis:['Codex analysis','Agent-authored recommendations with evidence and validation plans.'],
+  projects:['Projects','Repository scope for defined work.'],
+  tasks:['Tasks','Goals, verification evidence, and usage across assigned turns.'],
+  inbox:['Unassigned inbox','Collected turns that have not been assigned to a task.'],
+  activity:['Activity','Compact native-event timeline and model HTTP exchanges.'],
+  rules:['Categories & rules','Codex interpretations and explicit fallback text-matching rules.'],
+  opportunities:['Opportunities','Evidence-backed proposals; decisions do not apply changes.'],
+  setup:['Setup & coverage','Source permission, collector coverage, and configuration.']
+};
+const query = new URLSearchParams(location.search);
+let view = config[location.hash.slice(1)] ? location.hash.slice(1) : 'overview';
+let project = query.get('project') || '', task = query.get('task') || '', category = query.get('category') || '';
+let data = null, busy = false, tableMenus = [], toastTimer;
+const tables = {};
+
+function toast(message) {
+  $('#toast').textContent = message;
+  $('#toast').style.display = 'block';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => $('#toast').style.display = 'none', 4500);
 }
-document.addEventListener('submit',async event=>{const form=event.target.closest('form[data-action]');if(!form)return;event.preventDefault();const body=Object.fromEntries(new FormData(form));if('enabled'in body)body.enabled=body.enabled==='true';busy=true;try{await post(form.dataset.action,body);toast('Saved. Source evidence retained.');busy=false;await load()}catch(error){toast(error.message)}finally{busy=false}});
-document.addEventListener('click',async event=>{const b=event.target.closest('button');if(!b)return;try{if(b.dataset.view){view=b.dataset.view;render();window.scrollTo(0,0)}if(b.dataset.openTask){task=b.dataset.openTask;project=data.tasks.find(t=>t.id===task).project_id;category='';view='activity';await load()}if(b.dataset.openProject){project=b.dataset.openProject;task='';category='';view='overview';await load()}if(b.dataset.status){await post('task_status',{id:b.dataset.taskId,status:b.dataset.status});await load()}if(b.dataset.complete){const outcome=prompt('What evidence verifies the task outcome?');if(outcome){await post('task_status',{id:b.dataset.complete,status:'completed',outcome});await load()}}if(b.dataset.collection){await post('collection',{enabled:b.dataset.collection==='true'});await load()}}catch(error){toast(error.message)}});
-for(const name of ['project','task','category'])$('#'+name).addEventListener('change',async event=>{if(name==='project'){project=event.target.value;task=''}if(name==='task')task=event.target.value;if(name==='category')category=event.target.value;await load()});
-$('#refresh').onclick=load;load();setInterval(()=>{if(!document.activeElement?.closest('form')&&!busy)load()},10000);
+function syncURL() {
+  const params = new URLSearchParams();
+  if (project) params.set('project', project);
+  if (task) params.set('task', task);
+  if (category) params.set('category', category);
+  history.replaceState(null, '', location.pathname + (params.size?'?'+params:'') + '#' + view);
+}
+async function load() {
+  if (busy) return;
+  try {
+    const params = new URLSearchParams();
+    if(project) params.set('project',project);
+    if(task) params.set('task',task);
+    if(category) params.set('category',category);
+    const response = await fetch('/api/workspace?' + params);
+    if(!response.ok) throw Error('Workspace request failed');
+    data = await response.json();
+    render();
+  } catch(error) { $('#live').textContent = 'Connection interrupted'; toast(error.message); }
+}
+async function post(action, values) {
+  const response = await fetch('/api/'+action, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(values)});
+  const result = await response.json();
+  if(!response.ok) throw Error(result.error || 'Could not save');
+  return result;
+}
+function options(rows, key, label, selected) {
+  return rows.map(row => `<option value="${esc(row[key])}" ${row[key]===selected?'selected':''}>${esc(row[label])}</option>`).join('');
+}
+function titleForTask(id) { return data.tasks.find(t=>t.id===id)?.title || 'Unassigned'; }
+function openView(next) { view=next; syncURL(); render(); window.scrollTo(0,0); }
+async function openTask(id) {
+  task=id; project=data.tasks.find(t=>t.id===id)?.project_id || ''; category=''; view='activity'; syncURL(); await load();
+}
+function table(id, columns, rows, actions, searchable=true) {
+  const state=tables[id] ||= {search:'',page:1,sort:null,direction:1};
+  const result=collectionPage(rows, {
+    search:state.search, searchText:row=>Object.entries(row).filter(([k,v])=>typeof v==='string'||typeof v==='number').map(([,v])=>v).join(' '),
+    page:state.page,pageSize:id==='overview-categories'?10:20,
+    compare:state.sort?(a,b)=>{
+      const left=a[state.sort],right=b[state.sort];
+      return state.direction*(typeof left==='number'&&typeof right==='number'?left-right:String(left??'').localeCompare(String(right??'')));
+    }:undefined
+  });
+  state.page=result.page;
+  const toolbar=searchable?`<div class="list-toolbar"><div class="list-search evlv-search"><input class="evlv-input" data-search="${id}" value="${esc(state.search)}" placeholder="Search these rows" aria-label="Search ${esc(id)}"><button data-clear-search="${id}" aria-label="Clear search">×</button></div><span class="muted">${fmt(result.total)} rows</span></div>`:'';
+  const head=columns.map(column=>`<th scope="col" class="${column.numeric?'numeric':''}"><button data-sort="${id}" data-key="${column.key}">${esc(column.label)}${state.sort===column.key?(state.direction===1?' ↑':' ↓'):''}</button></th>`).join('');
+  const body=result.items.map((row,index)=>{
+    const cells=columns.map(column=>`<td class="${column.numeric?'numeric':''}">${column.cell?column.cell(row):esc(row[column.key])}</td>`).join('');
+    let menu='';
+    if(actions) {const key=id+'-'+index; tableMenus.push({key,label:'Actions for '+(row.title||row.name||row.id||'row'),actions:actions(row).map(action=>({...action,onSelect:()=>{try{Promise.resolve(action.onSelect()).catch(error=>toast(error.message));}catch(error){toast(error.message);}}}))}); menu=`<td class="row-menu"><span data-row-menu="${key}"></span></td>`;}
+    return `<tr>${cells}${menu}</tr>`;
+  }).join('');
+  return toolbar+`<div class="table-container evlv-table-scroll"><table class="evlv-table"><thead><tr>${head}${actions?'<th scope="col"><span class="evlv-sr-only">Actions</span></th>':''}</tr></thead><tbody>${body||`<tr><td colspan="${columns.length+(actions?1:0)}" class="table-empty">No matching rows.</td></tr>`}</tbody></table></div>`+
+    (result.pages>1?`<div class="pagination"><span>${(result.page-1)*result.pageSize+1}–${Math.min(result.page*result.pageSize,result.total)} of ${result.total}</span>${button('Previous',`data-page="${id}" data-delta="-1" ${result.page===1?'disabled':''}`)}<span>${result.page} / ${result.pages}</span>${button('Next',`data-page="${id}" data-delta="1" ${result.page===result.pages?'disabled':''}`)}</div>`:'');
+}
+function showModal(title, body) {
+  $('#modal-content').innerHTML=`<div class="modal-heading"><h2 id="modal-title">${esc(title)}</h2>${button('Close','data-close')}</div><div class="modal-body">${body}</div>`;
+  if(!$('#modal').open) $('#modal').showModal();
+}
+function field(label, name, value='', {textarea=false,required=false,hint=''}={}) {
+  const control=textarea?`<textarea class="evlv-input" aria-label="${esc(label)}" name="${name}" ${required?'required':''}>${esc(value)}</textarea>`:`<input class="evlv-input" aria-label="${esc(label)}" name="${name}" value="${esc(value)}" ${required?'required':''}>`;
+  return `<label>${esc(label)}${control}${hint?`<small>${esc(hint)}</small>`:''}</label>`;
+}
+function form(action, body, submit='Save') {return `<form data-form="${action}">${body}<div class="modal-actions">${button('Cancel','type="button" data-close')}${button(submit,'type="submit"',true)}</div></form>`;}
+function newProject() {showModal('Add project',form('project',field('Project name','name','',{required:true})+field('Repository / working folder','repo','',{required:true})+field('Analysis scope','scope','',{textarea:true}),'Add project'));}
+function newTask() {
+  if(!data.projects.length) return newProject();
+  showModal('Add task',form('task',`<label>Project<select class="evlv-input evlv-select" aria-label="Project" name="project_id">${options(data.projects,'id','name',project)}</select></label>`+field('Task title','title','',{required:true})+field('Intended outcome','goal','',{textarea:true,required:true})+field('Acceptance / verification criteria','acceptance','',{textarea:true}),'Start task'));
+}
+function assignTurn(turn) {
+  if(!data.tasks.length) return toast('Create a task before assigning a turn.');
+  showModal('Assign collected turn',`<p>${esc((turn.prompt||'Prompt unavailable').slice(0,300))}</p>`+form('assign',`<input type="hidden" name="session_id" value="${esc(turn.session_id)}"><input type="hidden" name="turn_id" value="${esc(turn.turn_id)}"><label>Task<select class="evlv-input evlv-select" aria-label="Task" name="task_id" required>${options(data.tasks,'id','title',task)}</select></label>`,'Assign turn'));
+}
+function taskDetails(row) {
+  showModal(row.title,`<dl class="detail-grid"><dt>Status</dt><dd>${badge(row.status)}</dd><dt>Goal</dt><dd>${esc(row.goal)}</dd><dt>Acceptance</dt><dd>${esc(row.acceptance||'Not specified')}</dd><dt>Outcome evidence</dt><dd>${esc(row.outcome||'Not verified')}</dd><dt>Measured tokens</dt><dd>${fmt(row.usage?.total_tokens)}</dd></dl><div class="modal-actions">${button('Open task evidence',`data-open-task="${esc(row.id)}"`)}</div>`);
+}
+function completeTask(row) {showModal('Record verified completion',form('task_status',`<input type="hidden" name="id" value="${esc(row.id)}"><input type="hidden" name="status" value="completed">`+field('Outcome / verification evidence','outcome',row.outcome||'',{textarea:true,required:true})));}
+function ruleDialog(rule={}) {
+  showModal(rule.id?'Edit fallback category rule':'Add fallback category rule',form('rule',
+    (rule.id?`<input type="hidden" name="id" value="${esc(rule.id)}">`:'')+
+    field('Category name','category',rule.category||'',{required:true})+
+    field('Operation label contains — plain text','pattern',rule.pattern||'',{required:true,hint:'Case-insensitive literal text. No regex, wildcards, or LLM call. This checks the operation label, not the full command.'})+
+    `<div class="rule-preview"><strong>Example:</strong> <code>tests</code> matches <code>shell / tests (pytest)</code>. <code>pytest|jest</code> is literal text, not an OR expression. Use separate rules for alternatives.<p class="muted">Codex-reviewed labels take precedence; these rules classify only unreviewed events.</p>${button('Preview matches','type="button" data-preview-rule')}<div id="rule-preview-result" aria-live="polite"></div></div>`+
+    `<label>Enabled<select class="evlv-input evlv-select" aria-label="Enabled" name="enabled"><option value="true" ${rule.enabled!==0?'selected':''}>Yes</option><option value="false" ${rule.enabled===0?'selected':''}>No</option></select></label>`));
+}
+async function previewRule() {
+  const input=$('#modal [name="pattern"]');const pattern=input.value;
+  const result=await(await fetch('/api/rule-preview?'+new URLSearchParams({pattern}))).json();
+  if(!$('#rule-preview-result')||input.value!==pattern) return;
+  $('#rule-preview-result').innerHTML=`<p>${result.total} operation-label matches; ${result.unreviewed} unreviewed events eligible for fallback categorization.</p><ul>${result.matches.map(m=>`<li>${esc(m.operation)} · ${esc(m.basis)}</li>`).join('')}</ul>${!result.total?'<p>No labels match this literal text.</p>':''}<small>Preview covers the latest ${result.window} source events.</small>`;
+}
+function eventDetails(row) {
+  showModal(row.name,`<dl class="detail-grid"><dt>When</dt><dd>${date(row.ts)}</dd><dt>Task</dt><dd>${esc(titleForTask(row.task_id))}</dd><dt>Category</dt><dd>${esc(row.category)}</dd><dt>Assigned by</dt><dd>${esc(row.category_basis)}</dd><dt>Runtime role</dt><dd>${esc(row.runtime_role)}</dd><dt>Recorded runtime</dt><dd>${seconds(row.runtime)}</dd><dt>Output size</dt><dd>${fmt(row.bytes)} retained bytes</dd><dt>Operation outcome</dt><dd>${row.failed===1?'Nonzero / failed operation; not proof of task failure':row.failed===0?'Completed operation':'Unknown'}</dd>${row.usage?`<dt>Measured usage</dt><dd>${fmt(row.usage.input_tokens)} input (${fmt(row.usage.cached_input_tokens)} cached) + ${fmt(row.usage.output_tokens)} output = ${fmt(row.usage.total_tokens)} total</dd>`:''}</dl>${row.category_rationale?`<h3>Codex rationale · ${esc(row.category_confidence)} confidence</h3><p>${esc(row.category_rationale)}</p>`:''}<h3>Source evidence</h3><p>${external(row.langfuse_url)}</p><small>${esc(row.id)}</small>`);
+}
+function findingDetails(finding, report) {
+  showModal(finding.title,`<p>${badge('Codex · '+finding.confidence+' confidence')}</p><h3>What the evidence shows</h3><p>${esc(finding.observation)}</p><h3>Recommended action</h3><p>${esc(finding.recommended_action)}</p><h3>How to verify an improvement</h3><p>${esc(finding.verification_plan)}</p><h3>Supporting records</h3><ul>${finding.evidence_ids.map(id=>{const event=data.events.find(e=>e.id===id),capture=data.wire_captures.find(c=>c.id===id);return `<li>${event?external(event.langfuse_url,event.name):capture?external(capture.langfuse_url,'HTTP exchange'):esc(id)}</li>`;}).join('')}</ul><small>Frozen snapshot ${date(report.snapshot_at)}. Findings are proposals; no measured savings.</small>`);
+}
+async function reconcile() {
+  showModal('Compare token totals','<p>Checking the same all-source native-generation scope in Langfuse…</p>');
+  const result=await(await fetch('/api/reconciliation')).json();
+  if(!$('#modal').open) return;
+  showModal('Compare token totals',`<dl class="detail-grid"><dt>Selected workspace</dt><dd>${fmt(data.usage.total_tokens)} tokens</dd><dt>All native sources</dt><dd>${fmt(result.local_all_sources??data.usage_scope.all_sources.total_tokens)} tokens</dd><dt>Langfuse, same scope</dt><dd>${fmt(result.langfuse_native_tokens)} tokens</dd><dt>Difference</dt><dd>${fmt(result.difference)} tokens</dd><dt>Check</dt><dd>${esc(result.status)}</dd><dt>Unassigned activity</dt><dd>${fmt(data.usage_scope.unassigned.total_tokens)} tokens</dd></dl><h3>Why totals can differ</h3><p>A selected task excludes other tasks and unassigned turns. A category filter can also exclude model-response events entirely. Langfuse date/environment filters must match before comparing totals.</p><p>${esc(result.definition||result.reason)}</p><p class="muted">${esc(result.note||'')}</p><small>Checked ${date(result.checked_at)}. No daily/session/transport counters are added together.</small>`);
+}
+function statLine() {
+  const u=data.usage;
+  return `<div class="stats"><div class="stat"><small>Selected scope · tokens</small><strong>${compact(u.total_tokens)}</strong><span>${fmt(u.total_tokens)} measured total</span></div><div class="stat"><small>Fresh / cached input</small><strong>${compact(u.input_tokens-u.cached_input_tokens)} / ${compact(u.cached_input_tokens)}</strong><span>Output: ${compact(u.output_tokens)} · cache is a subset</span></div><div class="stat"><small>All-source tokens</small><strong>${compact(data.usage_scope.all_sources.total_tokens)}</strong><span>Includes other tasks and unassigned turns</span></div><div class="stat"><small>Unassigned tokens</small><strong>${compact(data.usage_scope.unassigned.total_tokens)}</strong><span>${data.inbox.length} turns awaiting task assignment</span></div></div>`;
+}
+function categoryTable(id='categories') {
+  return table(id,[{key:'name',label:'Category'},{key:'count',label:'Events',numeric:true,cell:r=>fmt(r.count)},
+    {key:'finite_runtime_seconds',label:'Finite runtime',numeric:true,cell:r=>seconds(r.finite_runtime_seconds)},
+    {key:'background_runtime_seconds',label:'Service lifetime',numeric:true,cell:r=>seconds(r.background_runtime_seconds)},
+    {key:'unreviewed_runtime_seconds',label:'Unreviewed runtime',numeric:true,cell:r=>seconds(r.unreviewed_runtime_seconds)},
+    {key:'bytes',label:'Output bytes',numeric:true,cell:r=>compact(r.bytes)}],data.categories,r=>[
+      {id:'open',label:'Show matching events',onSelect:async()=>{category=r.name;view='activity';syncURL();await load();}}
+    ]);
+}
+function capturesTable() {
+  const coverage=data.capture_coverage;
+  let notice=`${coverage.matched_selection} exchanges match this task/project; ${coverage.total_model_exchanges} across all sources. Tool-category filters do not hide model HTTP exchanges.`;
+  if(data.wire_captures.some(c=>!c.response_body_available)) notice+=' Historical parser failures retained requests and timings but lost response bodies. Those rows are explicitly marked; bodies cannot be recovered from the capture files.';
+  return section('Captured model HTTP exchanges',table('captures',[
+    {key:'started_at',label:'When',cell:r=>date(r.started_at)},
+    {key:'task_id',label:'Task',cell:r=>clip(titleForTask(r.task_id))},
+    {key:'status',label:'HTTP',cell:r=>badge(r.status??r.state)},
+    {key:'response_body_state',label:'Response body',cell:r=>`<span class="${r.response_body_available?'':'danger'}">${esc(r.response_body_state)}</span>`},
+    {key:'correlation',label:'Matched by'},
+    {key:'request_bytes',label:'Request / response bytes',numeric:true,cell:r=>compact(r.request_bytes)+' / '+compact(r.response_bytes)},
+    {key:'elapsed_seconds',label:'HTTP duration',numeric:true,cell:r=>seconds(r.elapsed_seconds)},
+    {key:'first_body_byte_seconds',label:'First body byte',numeric:true,cell:r=>seconds(r.first_body_byte_seconds)}
+  ],data.wire_captures,r=>[{id:'open',label:'Inspect retained request / response',onSelect:()=>window.open(r.langfuse_url,'_blank','noopener')}]),'',esc(notice)+(data.wire_captures.length?'':' This selection may be transcript-only; clear task/project filters to see other captured exchanges.'));
+}
+function tasksTable(rows) {
+  return table('tasks',[{key:'title',label:'Task',cell:r=>`<button class="inline-link" data-task-details="${esc(r.id)}">${esc(r.title)}</button>`},
+    {key:'project_id',label:'Project',cell:r=>esc(data.projects.find(p=>p.id===r.project_id)?.name||'Unknown')},
+    {key:'status',label:'Status',cell:r=>badge(r.status)},
+    {key:'total_tokens',label:'Measured tokens',numeric:true,cell:r=>compact(r.usage?.total_tokens)},
+    {key:'updated',label:'Updated',cell:r=>date(r.updated)}],rows.map(r=>({...r,total_tokens:r.usage?.total_tokens||0})),r=>[
+      {id:'open',label:'Open task evidence',onSelect:()=>openTask(r.id)},
+      {id:'details',label:'Goal and verification',onSelect:()=>taskDetails(r)},
+      {id:'status',label:'Mark active',onSelect:async()=>{await post('task_status',{id:r.id,status:'active'});await load();}},
+      {id:'complete',label:'Complete with evidence',onSelect:()=>completeTask(r)}
+    ]);
+}
+function reviewOpportunity(row) {
+  const select=(label,name,values,current)=>`<label>${label}<select class="evlv-input evlv-select" aria-label="${esc(label)}" name="${name}">${values.map(v=>`<option ${v===current?'selected':''}>${v}</option>`).join('')}</select></label>`;
+  showModal('Review opportunity',`<p>${esc(row.observation)}</p><p>${esc(row.action)}</p><p class="muted">${esc(row.guardrail)}</p>`+form('decision',`<input name="id" type="hidden" value="${esc(row.id)}">`+
+    select('Decision','decision',['review','declined','deferred'],row.state.decision)+
+    select('Implementation','implementation',['not_started','prepared','applied','reverted'],row.state.implementation)+
+    select('Evaluation','evaluation',['not_measured','trial_planned','in_progress','improved','regressed','inconclusive'],row.state.evaluation)+
+    field('Evidence, comparison plan and result notes','notes',row.state.notes||'',{textarea:true})));
+}
+function findingsTable() {
+  const report=data.agent_analyses[0];
+  if(!report) return '<div class="notice">No Codex assessment matches this selection. Clear filters or run an on-demand review for the task.</div>';
+  return table('findings',[{key:'title',label:'Finding',cell:r=>`<button class="inline-link" data-finding="${r.index}">${esc(r.title)}</button>`},
+    {key:'confidence',label:'Confidence',cell:r=>badge(r.confidence)},
+    {key:'recommended_action',label:'Recommended action',cell:r=>clip(r.recommended_action)},
+    {key:'count',label:'Evidence records',numeric:true}],report.findings.map((f,index)=>({...f,index,count:f.evidence_ids.length})),r=>[
+      {id:'open',label:'Evidence and validation plan',onSelect:()=>findingDetails(r,report)}
+    ]);
+}
+function render() {
+  if(!data) return;
+  tableMenus=[];
+  $('#title').textContent=config[view][0]; $('#subtitle').textContent=config[view][1];
+  $('#live').textContent=(data.sources.collection_enabled?'Collecting · ':'Paused · ')+date(data.at);
+  $('#inbox-count').textContent=data.inbox.length||'';
+  $('#langfuse').href=data.langfuse_url;
+  document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
+  $('#project').innerHTML='<option value="">All projects</option>'+options(data.projects,'id','name',project);
+  $('#task').innerHTML='<option value="">All tasks</option>'+options(data.tasks.filter(t=>!project||t.project_id===project),'id','title',task);
+  const categories=[...new Set(['model inference','other tools',...data.categories.map(c=>c.name),...data.rules.map(r=>r.category)])].sort();
+  $('#category').innerHTML='<option value="">All categories</option>'+categories.map(name=>`<option ${category===name?'selected':''}>${esc(name)}</option>`).join('');
+  const scope=task?titleForTask(task):project?data.projects.find(p=>p.id===project)?.name:'All collected sources';
+  $('#scope-summary').innerHTML=`<span>Scope: <strong>${esc(scope)}</strong>${category?' · '+esc(category):''}</span><span>Selected: <strong>${fmt(data.usage.total_tokens)}</strong> tokens</span><span>All sources: <strong>${fmt(data.usage_scope.all_sources.total_tokens)}</strong></span><button class="inline-link" data-reconcile>Why totals differ / reconcile</button>`;
+  $('#page-actions').innerHTML=view==='projects'?button('Add project','data-add-project',true):view==='tasks'?button('Add task','data-add-task',true):'';
+  let html='';
+  if(view==='overview') {
+    const accounting=data.runtime_accounting;
+    html=statLine()+section('Codex recommendations',findingsTable(),button('Open full analysis','data-view="analysis"'),data.agent_analyses[0]?esc(data.agent_analyses[0].summary):'No analysis for the current scope.')+
+      section('Activity categories',categoryTable('overview-categories'),'',`${accounting.reviewed_tool_events} / ${accounting.tool_events} tool events reviewed. ${seconds(accounting.finite_runtime_seconds)} finite operations; ${seconds(accounting.background_runtime_seconds)} background service lifetime. These overlapping sums are not task elapsed time.`);
+  }
+  if(view==='analysis') {
+    const report=data.agent_analyses[0];
+    html=section('Latest Codex review',findingsTable(),'',report?`${esc(report.model)} · snapshot ${date(report.snapshot_at)} · ${report.tool_events} reviewed tool events`:'');
+    if(report) html+=section('Scope and analyst overhead',`<dl class="detail-grid"><dt>Source scope</dt><dd>${esc(report.scope)}</dd><dt>Analyst token overhead</dt><dd>${fmt(report.overhead.total_tokens)} total; ${fmt(report.overhead.cached_input_tokens)} cached input</dd><dt>Snapshot</dt><dd>${esc(report.snapshot_hash)}</dd></dl><details><summary>Limits of this review</summary><ul>${report.limitations.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></details><p class="muted">Subsequent reviews inspect unreviewed events by default. No scheduled model calls or savings claims.</p>`);
+  }
+  if(view==='projects') html=section('Projects',table('projects',[{key:'name',label:'Project'},{key:'repo',label:'Repository',cell:r=>clip(r.repo)},{key:'scope',label:'Scope',cell:r=>clip(r.scope)},{key:'created',label:'Created',cell:r=>date(r.created)}],data.projects,r=>[{id:'open',label:'Open project',onSelect:async()=>{project=r.id;task='';category='';view='overview';syncURL();await load();}}]));
+  if(view==='tasks') html=section('Defined tasks',tasksTable(data.tasks.filter(t=>!project||t.project_id===project)),button('Open unassigned inbox','data-view="inbox"'),'Tasks are explicit goals. Their measured usage comes from assigned turns, not automatically inferred boundaries.');
+  if(view==='inbox') html=section('Unassigned turns',table('inbox',[{key:'prompt',label:'Prompt / activity',cell:r=>clip((r.prompt||'Prompt unavailable').replace(/\s+/g,' '))},{key:'repo',label:'Working folder',cell:r=>clip(r.repo)},{key:'start',label:'Started',cell:r=>date(r.start)},{key:'tokens',label:'Measured tokens',numeric:true,cell:r=>compact(r.usage?.total_tokens)},{key:'completed',label:'Agent turn',cell:r=>badge(r.completed?'Completed':'Open')}],data.inbox.map(r=>({...r,id:r.session_id+':'+r.turn_id,tokens:r.usage?.total_tokens||0})),r=>[{id:'assign',label:'Assign to a task',onSelect:()=>assignTurn(r)},{id:'open',label:'Open transcript',onSelect:()=>window.open(r.langfuse_url,'_blank','noopener')}]),'', 'Unassigned usage is included in all-source totals, but excluded from project/task totals. Agent turn completion is not verified task success.');
+  if(view==='activity') {
+    html=statLine()+capturesTable()+section('Native event timeline',table('events',[
+      {key:'ts',label:'When',cell:r=>date(r.ts)},
+      {key:'name',label:'Operation',cell:r=>`<button class="inline-link clip" data-event="${esc(r.id)}">${esc(r.name)}</button>`},
+      {key:'category',label:'Category',cell:r=>clip(r.category)},
+      {key:'category_basis',label:'Assigned by',cell:r=>r.category_basis==='Codex agent interpretation'?badge('Codex · '+r.category_confidence):badge(r.kind==='generation'?'Native usage':'Text rule / unmatched')},
+      {key:'runtime_role',label:'Runtime role',cell:r=>esc(r.kind==='generation'?'Model latency unknown':r.runtime_role)},
+      {key:'runtime',label:'Runtime',numeric:true,cell:r=>seconds(r.runtime)},
+      {key:'tokens',label:'Tokens',numeric:true,cell:r=>r.usage?compact(r.usage.total_tokens):'—'},
+      {key:'bytes',label:'Output bytes',numeric:true,cell:r=>r.bytes==null?'—':compact(r.bytes)}
+    ],data.events.slice().reverse().map(e=>({...e,tokens:e.usage?.total_tokens||0})),r=>[{id:'open',label:'Category rationale and event details',onSelect:()=>eventDetails(r)},{id:'trace',label:'Inspect in Langfuse',onSelect:()=>window.open(r.langfuse_url,'_blank','noopener')}]),'',`${data.event_count} matching events; latest ${data.events.length} available in this table. Search applies to these rows. Model tokens are not attributed to individual tools.`);
+  }
+  if(view==='rules') {
+    html='<div class="notice"><strong>Two separate mechanisms:</strong> Codex reads event evidence and assigns purpose labels with rationale/confidence. Unreviewed events use the plain-text rules below. Rules do not invoke an LLM, do not search full commands, and do not override Codex-reviewed labels.</div>'+
+      section('Current categories',categoryTable('reviewed-categories'),'', 'Open an event to inspect who assigned its category and why. Category rows summarize the currently selected scope.')+
+      section('Fallback text rules',table('rules',[{key:'priority',label:'Order',numeric:true},{key:'category',label:'Category'},{key:'pattern',label:'Operation label contains (literal)',cell:r=>`<code>${esc(r.pattern)}</code>`},{key:'enabled',label:'Enabled',cell:r=>badge(r.enabled?'Yes':'No')},{key:'version',label:'Version',numeric:true},{key:'matches',label:'Matching labels',numeric:true},{key:'eligible',label:'Unreviewed matches',numeric:true}],data.rules.map((r,index)=>({...r,priority:index+1,matches:data.events.filter(e=>e.kind==='tool'&&e.name.toLowerCase().includes(r.pattern.toLowerCase())).length,eligible:data.events.filter(e=>e.kind==='tool'&&e.category_basis!=='Codex agent interpretation'&&e.name.toLowerCase().includes(r.pattern.toLowerCase())).length})),r=>[{id:'edit',label:'Edit rule and preview matches',onSelect:()=>ruleDialog(r)}]),button('Add rule','data-add-rule',true),'First enabled match wins in listed priority order. Matching is case-insensitive substring matching, not regex. Match counts use the current event window.');
+  }
+  if(view==='opportunities') html=section('Codex recommendations',findingsTable())+section('Additional detector signals',table('opportunities',[{key:'title',label:'Signal'},{key:'observation',label:'Evidence',cell:r=>clip(r.observation)},{key:'decision',label:'Decision',cell:r=>badge(r.state.decision)},{key:'implementation',label:'Implementation',cell:r=>badge(r.state.implementation)},{key:'evaluation',label:'Evaluation',cell:r=>badge(r.state.evaluation)}],data.opportunities,r=>[{id:'review',label:'Review proposal and record decision',onSelect:()=>reviewOpportunity(r)}]),'','Detectors flag large or repeated results. A signal is not proof of waste; measured savings require a controlled comparison.');
+  if(view==='setup') html=section('Collection',`<dl class="detail-grid"><dt>State</dt><dd>${badge(data.sources.collection_enabled?'Enabled':'Paused')}</dd><dt>Authorized source</dt><dd>${esc(data.sources.root)}</dd><dt>Retained files</dt><dd>${data.sources.files}</dd><dt>Model HTTP exchanges</dt><dd>${data.capture_coverage.total_model_exchanges}</dd><dt>Source errors</dt><dd>${data.sources.errors.length}</dd></dl><div class="modal-actions">${button(data.sources.collection_enabled?'Pause collection':'Resume collection',`data-collection="${!data.sources.collection_enabled}"`)}</div>`, '', 'Pausing stops new exports and rejects new capture-route calls. Existing data is retained.')+section('Coverage limits',`<ul>${data.limitations.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><p>Private setup and credentials: <code>work/security/langfuse-stack/</code>. The app uses the pinned private EVLV DOM design-system distribution.</p>`)+section('Audit log',table('audit',[{key:'at',label:'When',cell:r=>date(r.at)},{key:'action',label:'Action'},{key:'entity',label:'Entity',cell:r=>clip(r.entity)}],data.audit,null));
+  $('#content').innerHTML=html;
+  for(const menu of tableMenus) {
+    const target=document.querySelector(`[data-row-menu="${menu.key}"]`);
+    if(target) target.append(createActionMenu(document,menu.label,menu.actions));
+  }
+}
+
+document.addEventListener('click',async event=>{
+  const target=event.target.closest('button'); if(!target) return;
+  try {
+    if(target.hasAttribute('data-close')) return $('#modal').close();
+    if(target.dataset.view) return openView(target.dataset.view);
+    if(target.hasAttribute('data-add-project')) return newProject();
+    if(target.hasAttribute('data-add-task')) return newTask();
+    if(target.hasAttribute('data-add-rule')) return ruleDialog();
+    if(target.hasAttribute('data-preview-rule')) return await previewRule();
+    if(target.hasAttribute('data-reconcile')) return await reconcile();
+    if(target.dataset.taskDetails) return taskDetails(data.tasks.find(t=>t.id===target.dataset.taskDetails));
+    if(target.dataset.openTask) {$('#modal').close();return await openTask(target.dataset.openTask);}
+    if(target.dataset.event) return eventDetails(data.events.find(e=>e.id===target.dataset.event));
+    if(target.hasAttribute('data-finding')) {const report=data.agent_analyses[0];return findingDetails(report.findings[Number(target.dataset.finding)],report);}
+    if(target.dataset.page) {tables[target.dataset.page].page+=Number(target.dataset.delta);return render();}
+    if(target.dataset.sort) {const state=tables[target.dataset.sort];state.direction=state.sort===target.dataset.key?-state.direction:1;state.sort=target.dataset.key;return render();}
+    if(target.dataset.clearSearch) {tables[target.dataset.clearSearch].search='';tables[target.dataset.clearSearch].page=1;return render();}
+    if(target.hasAttribute('data-clear-filters')) {project='';task='';category='';syncURL();return await load();}
+    if(target.dataset.collection) {await post('collection',{enabled:target.dataset.collection==='true'});return await load();}
+  } catch(error) {toast(error.message);}
+});
+document.addEventListener('input',event=>{
+  const id=event.target.dataset.search;if(!id) return;
+  const position=event.target.selectionStart;tables[id].search=event.target.value;tables[id].page=1;render();
+  const field=document.querySelector(`[data-search="${id}"]`);field?.focus();field?.setSelectionRange(position,position);
+});
+document.addEventListener('submit',async event=>{
+  const element=event.target.closest('form[data-form]');if(!element)return;event.preventDefault();
+  const values=Object.fromEntries(new FormData(element));if('enabled' in values)values.enabled=values.enabled==='true';
+  busy=true;
+  try {await post(element.dataset.form,values);$('#modal').close();toast('Saved. Original evidence is unchanged.');}
+  catch(error) {toast(error.message);}
+  finally {busy=false;await load();}
+});
+for(const name of ['project','task','category']) $('#'+name).addEventListener('change',async event=>{
+  if(name==='project'){project=event.target.value;task='';}
+  if(name==='task'){task=event.target.value;if(task)project=data.tasks.find(t=>t.id===task)?.project_id||project;}
+  if(name==='category')category=event.target.value;
+  syncURL();await load();
+});
+$('#refresh').onclick=load;
+$('#theme').onclick=()=>{const value=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=value;localStorage.setItem('ttgl-theme',value);};
+try {const theme=localStorage.getItem('ttgl-theme');if(theme==='dark'||theme==='light')document.documentElement.dataset.theme=theme;}catch{}
+load();
+setInterval(()=>{if(!document.hidden&&!$('#modal').open&&!document.activeElement?.matches('input,textarea,select')&&!busy)load();},10000);

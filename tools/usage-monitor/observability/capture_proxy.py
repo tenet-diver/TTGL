@@ -30,6 +30,11 @@ MAX_CAPTURE = DEFAULTS['capture']['response_capture_limit_bytes']
 
 def sanitized(value):
     if isinstance(value, dict):
+        kind = value.get('type', '')
+        if isinstance(kind, str) and 'reasoning' in kind and 'summary' not in kind:
+            if kind == 'reasoning':
+                return {key: sanitized(item) for key, item in value.items() if key in ('type', 'id', 'summary')}
+            return {'type': kind, 'content': '[OMITTED reasoning protocol data]'}
         return {k: '[OMITTED]' if k.lower() in ('authorization', 'cookie', 'api_key', 'access_token', 'refresh_token', 'encrypted_content', 'raw_content') else sanitized(v) for k, v in value.items()}
     if isinstance(value, list):
         return [sanitized(v) for v in value]
@@ -40,7 +45,10 @@ def sanitized(value):
 
 def body_evidence(raw, content_type):
     try:
-        if 'text/event-stream' in content_type:
+        # Some compatible gateways label SSE application/octet-stream or omit
+        # Content-Type. Detect protocol framing as well as the advertised type.
+        probe = raw.lstrip()
+        if 'text/event-stream' in content_type or probe.startswith((b'data:', b'event:', b':')):
             events = []
             for line in raw.decode('utf-8', errors='strict').splitlines():
                 if line.startswith('data:'):
@@ -52,9 +60,69 @@ def body_evidence(raw, content_type):
                     except ValueError:
                         events.append({'unparsed_frame': True})
             return {'sse_events': events}
-        return sanitized(json.loads(raw))
+        parsed = sanitized(json.loads(raw))
+        return parsed if isinstance(parsed, dict) else {'json_body': parsed}
     except (ValueError, UnicodeError):
         return {'unparsed_body': True, 'bytes': len(raw)}
+
+
+class StreamEvidence:
+    """Bounded SSE framing independent of transport Content-Type.
+
+    Forwarding never depends on parsing. Keep small sanitized frames, extract
+    response IDs throughout the stream, and explicitly flag dropped big frames.
+    """
+    def __init__(self):
+        self.line = bytearray()
+        self.discard_line = False
+        self.events = []
+        self.response_ids = []
+        self.retained = 0
+        self.is_sse = False
+        self.truncated = False
+
+    def feed(self, chunk):
+        for part in chunk.splitlines(keepends=True):
+            ended = part.endswith((b'\n', b'\r'))
+            if not self.discard_line:
+                if len(self.line) + len(part) > MAX_CAPTURE:
+                    self.discard_line = True
+                    self.line.clear()
+                    self.truncated = True
+                else:
+                    self.line.extend(part)
+            if ended:
+                if not self.discard_line:
+                    self.consume(bytes(self.line).strip())
+                self.line.clear()
+                self.discard_line = False
+
+    def consume(self, line):
+        if line.startswith((b'event:', b':')):
+            self.is_sse = True
+        if not line.startswith(b'data:'):
+            return
+        self.is_sse = True
+        payload = line[5:].strip()
+        if payload == b'[DONE]':
+            return
+        try:
+            event = json.loads(payload)
+        except (ValueError, UnicodeError):
+            self.truncated = True
+            return
+        if isinstance(event, dict):
+            response = event.get('response') or {}
+            ident = response.get('id') if isinstance(response, dict) else None
+            if isinstance(ident, str) and ident.startswith('resp_') and ident not in self.response_ids:
+                self.response_ids.append(ident)
+        event = sanitized(event)
+        size = len(json.dumps(event).encode())
+        if self.retained + size <= MAX_CAPTURE:
+            self.events.append(event)
+            self.retained += size
+        else:
+            self.truncated = True
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -132,6 +200,7 @@ class Handler(BaseHTTPRequestHandler):
         upstream = None
         response_started = False
         captured = bytearray()
+        stream_evidence = StreamEvidence()
         first_byte = None
         try:
             opener = urllib.request.build_opener(NoRedirect())
@@ -159,6 +228,7 @@ class Handler(BaseHTTPRequestHandler):
                     first_byte = time.time_ns()
                 count += len(chunk)
                 captured.extend(chunk[:max(0, MAX_CAPTURE - len(captured))])
+                stream_evidence.feed(chunk)
                 self.wfile.write(f'{len(chunk):x}\r\n'.encode() + chunk + b'\r\n')
                 self.wfile.flush()
             self.wfile.write(b'0\r\n\r\n')
@@ -172,8 +242,13 @@ class Handler(BaseHTTPRequestHandler):
         finally:
             if upstream:
                 upstream.close()
-            record.update(ended_ns=time.time_ns(), first_byte_ns=first_byte,
-                          response=body_evidence(bytes(captured), record.get('content_type', '')))
+            if stream_evidence.line and not stream_evidence.discard_line:
+                stream_evidence.consume(bytes(stream_evidence.line).strip())
+            response = {'sse_events': stream_evidence.events} if stream_evidence.is_sse else body_evidence(bytes(captured), record.get('content_type', ''))
+            record.update(ended_ns=time.time_ns(), first_byte_ns=first_byte, response=response,
+                          response_ids=stream_evidence.response_ids, capture_schema=2,
+                          response_body_available=bool(stream_evidence.events) if stream_evidence.is_sse else not (isinstance(response, dict) and response.get('unparsed_body', False)),
+                          response_truncated=bool(record.get('response_truncated')) or stream_evidence.truncated)
             self.persist(record)
             self.close_connection = True
 

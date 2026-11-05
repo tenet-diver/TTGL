@@ -1,0 +1,22 @@
+{
+  "package": "@evlv/design-system",
+  "version": "0.1.0",
+  "repository": "https://github.com/tenet-diver/design-system",
+  "commit": "d8dedfe891fcd8a462770957f7002c0cc603b6dc",
+  "files": {
+    "styles.css": "0044bc61f1981ac5cd945e0245afefeee8411e17caed47ef477803a1680c824e",
+    "dom.js": "5a97e9321a4c65c97b75762e7faeab048e505803b7ea75203da494ab93d90fcf",
+    "collection.js": "b82874260c10dbf35398128dc3f93dfa08a908a1b3002d34f3c0baa03c793a1c"
+  },
+  "private_distribution": true,
+  "local_directory": "work/security/design-system",
+  "runtime_dependencies": [],
+  "review": {
+    "date": "2026-11-05",
+    "execution_hooks": false,
+    "network_dependencies": false,
+    "modules": "dom.js imports only collection.js; both reviewed as browser source; CSS has only an inline data URI",
+    "known_vulnerabilities": [],
+    "coverage": "Manual source/dependency inspection of the three generated DOM artifacts; not a full package audit"
+  }
+}

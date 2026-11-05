@@ -56,6 +56,24 @@ class CaptureTests(unittest.TestCase):
     def test_unknown_binary_body_is_not_persisted(self):
         self.assertEqual(capture_proxy.body_evidence(b'PRIVATE_BINARY', 'application/octet-stream'),
                          {'unparsed_body': True, 'bytes': 14})
+        self.assertEqual(capture_proxy.body_evidence(b'["error"]', 'application/json'), {'json_body': ['error']})
+
+    def test_octet_stream_sse_is_parsed_and_response_ids_survive_chunks(self):
+        raw = b'event: response.created\ndata: {"type":"response.created","response":{"id":"resp_real","encrypted_content":"OPAQUE"}}\n\ndata: {"type":"response.output_text.delta","delta":"hello"}\n\n'
+        self.assertIn('sse_events', capture_proxy.body_evidence(raw, 'application/octet-stream'))
+        recorder = capture_proxy.StreamEvidence()
+        for offset in range(0, len(raw), 7):
+            recorder.feed(raw[offset:offset+7])
+        self.assertEqual(recorder.response_ids, ['resp_real'])
+        self.assertEqual(len(recorder.events), 2)
+        self.assertNotIn('OPAQUE', json.dumps(recorder.events))
+
+    def test_oversize_frame_is_flagged_without_losing_following_frames(self):
+        recorder = capture_proxy.StreamEvidence()
+        recorder.feed(b'data: ' + b'x' * (capture_proxy.MAX_CAPTURE + 10) + b'\n')
+        recorder.feed(b'data: {"response":{"id":"resp_after"}}\n\n')
+        self.assertTrue(recorder.truncated)
+        self.assertEqual(recorder.response_ids, ['resp_after'])
 
 
 if __name__ == '__main__':

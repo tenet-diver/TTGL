@@ -5,6 +5,7 @@ Requires the prepared/pulled Langfuse stack. Never installs packages or pulls im
 """
 import argparse
 import fcntl
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -27,6 +28,10 @@ def main():
     args = parser.parse_args()
     args.state = args.state.resolve()
     args.workspace_data = args.workspace_data.resolve()
+    design = json.loads((HERE.parent / 'config/design-system.lock.json').read_text())
+    asset_root = HERE.parents[2] / design['local_directory']
+    if any(not (asset_root / name).exists() or hashlib.sha256((asset_root / name).read_bytes()).hexdigest() != digest for name, digest in design['files'].items()):
+        raise RuntimeError('Sync the pinned private design-system distribution first: sync_design_system.py --source /path/to/design-system')
     args.state.mkdir(parents=True, exist_ok=True, mode=0o700)
     os.umask(0o077)
     lock = (args.state / 'supervisor.lock').open('w')

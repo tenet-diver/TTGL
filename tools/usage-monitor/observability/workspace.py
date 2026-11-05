@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Local project/task analysis over native Codex evidence. Python stdlib only."""
 import argparse
+import base64
 import collections
 import contextlib
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import hashlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import importlib.util
@@ -13,8 +14,9 @@ from pathlib import Path
 import sqlite3
 import threading
 import time
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import urlparse, parse_qs, urlencode
 import uuid
+import urllib.request
 
 import baseline
 bridge = baseline.bridge
@@ -258,7 +260,26 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
         selected_ids = {(t['session_id'], t['turn_id']) for t in selected_turns}
         totals = dict(input_tokens=0, cached_input_tokens=0, output_tokens=0, total_tokens=0)
         groups = collections.defaultdict(lambda: dict(count=0, runtime_seconds=0, finite_runtime_seconds=0, background_runtime_seconds=0, unreviewed_runtime_seconds=0, timed=0, bytes=0, failures=0))
-        events, models = [], collections.Counter()
+        events, models, scope_generations = [], collections.Counter(), []
+        all_usage = dict.fromkeys(totals, 0)
+        unassigned_usage = dict.fromkeys(totals, 0)
+        task_usage = collections.defaultdict(lambda: dict.fromkeys(totals, 0))
+        turn_usage = collections.defaultdict(lambda: dict.fromkeys(totals, 0))
+        for row in rows:
+            if row['usage']:
+                usage = json.loads(row['usage'])
+                for key in totals:
+                    all_usage[key] += usage.get(key, 0)
+                    turn_usage[(row['session_id'], row['turn_id'])][key] += usage.get(key, 0)
+                    assigned = assignments.get((row['session_id'], row['turn_id']))
+                    if assigned:
+                        task_usage[assigned][key] += usage.get(key, 0)
+                    if (row['session_id'], row['turn_id']) not in assignments:
+                        unassigned_usage[key] += usage.get(key, 0)
+        for turn in turns:
+            turn['usage'] = turn_usage[(turn['session_id'], turn['turn_id'])]
+        for defined_task in tasks:
+            defined_task['usage'] = task_usage[defined_task['id']]
         for row in rows:
             if (row['session_id'], row['turn_id']) not in selected_ids:
                 continue
@@ -270,9 +291,11 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
                 row.update(category=annotation['category'], category_basis='Codex agent interpretation',
                            analysis_id=annotation['analysis_id'], category_confidence=annotation['confidence'],
                            category_rationale=annotation['rationale'], runtime_role=annotation['runtime_role'])
+            row['task_id'] = assignments.get((row['session_id'], row['turn_id']))
+            if row['kind'] == 'generation':
+                scope_generations.append(dict(row))
             if category and row['category'] != category:
                 continue
-            row['task_id'] = assignments.get((row['session_id'], row['turn_id']))
             row['usage'] = json.loads(row['usage']) if row['usage'] else None
             row['langfuse_url'] = self.langfuse_url + '/project/ttgl-codex/traces/' + row['trace'] + '?observation=' + row['span']
             if row['usage']:
@@ -330,21 +353,36 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
             if key in previous:
                 sequences[(previous[key], event['category'])] += 1
             previous[key] = event['category']
-        captures = []
+        captures, capture_total = [], 0
         if self.capture_root:
             for path in self.capture_root.glob('*.json'):
                 record = json.loads(path.read_text())
                 if not record['path'].endswith('/responses'):
                     continue
-                response_ids = {event.get('response', {}).get('id') for event in record.get('response', {}).get('sse_events', []) if isinstance(event, dict)}
-                matching = next((e for e in events if e['kind'] == 'generation' and any(ident and e['id'].endswith(':' + ident) for ident in response_ids)), None)
-                if (project or task or category) and not matching:
+                capture_total += 1
+                response = record.get('response') or {}
+                response_ids = set(record.get('response_ids', [])) | {event.get('response', {}).get('id') for event in response.get('sse_events', []) if isinstance(event, dict) and isinstance(event.get('response', {}), dict)}
+                matching = next((e for e in scope_generations if any(ident and e['id'].endswith(':' + ident) for ident in response_ids)), None)
+                correlation = 'response ID' if matching else 'unmatched'
+                request = record.get('request') or {}
+                session_id = request.get('prompt_cache_key') if isinstance(request, dict) else None
+                if not matching and isinstance(session_id, str):
+                    start, end = record['started_ns'], record.get('ended_ns', record['started_ns'])
+                    candidates = [e for e in scope_generations if e['session_id'] == session_id and start <= bridge.nanos(e['ts']) <= end + 2_000_000_000]
+                    if len(candidates) == 1:
+                        matching, correlation = candidates[0], 'session + time (inferred)'
+                if (project or task) and not matching:
                     continue
+                body_available = record.get('response_body_available', not response.get('unparsed_body', False) and bool(response))
                 captures.append(dict(id=record['id'], task_id=matching['task_id'] if matching else None,
                     state=record['state'], status=record.get('status'), request_bytes=record.get('request_bytes'),
                     response_bytes=record.get('response_bytes'), response_truncated=record.get('response_truncated'),
                     elapsed_seconds=(record['ended_ns'] - record['started_ns']) / 1e9 if record.get('ended_ns') else None,
                     first_body_byte_seconds=(record['first_byte_ns'] - record['started_ns']) / 1e9 if record.get('first_byte_ns') else None,
+                    response_body_available=body_available, correlation=correlation,
+                    response_body_state=('partial' if record.get('response_truncated') else 'available') if body_available else ('not retained by legacy parser' if record.get('capture_schema', 1) < 2 else 'unsupported response format'),
+                    model=request.get('model') if isinstance(request, dict) else None,
+                    started_at=datetime.fromtimestamp(record['started_ns'] / 1e9, timezone.utc).isoformat(),
                     langfuse_url=self.langfuse_url + '/project/ttgl-codex/traces/' + bridge.digest('transport-v1:' + record['id'])))
         selected_events = {e['id'] for e in events} | {capture['id'] for capture in captures}
         agent_reports = []
@@ -362,6 +400,12 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
             sequences=[dict(sequence=list(k), count=v) for k, v in sequences.most_common(20)],
             opportunities=opportunities, rules=rules, decisions=list(decisions.values()), audit=audit,
             wire_captures=captures,
+            capture_coverage=dict(total_model_exchanges=capture_total, matched_selection=len(captures),
+                selected_with_response_body=sum(c['response_body_available'] for c in captures),
+                category_filter_applies=False, note='Task/project filters apply. Tool categories do not filter model HTTP exchanges. Legacy response bodies were not retained and cannot be reconstructed.'),
+            usage_scope=dict(project_id=project, task_id=task, category=category, selected=totals,
+                all_sources=all_usage, unassigned=unassigned_usage,
+                note='Selected scope and all-source totals differ when tasks, projects or categories are filtered. Unassigned turns are included only in all-source totals.'),
             agent_analyses=agent_reports, runtime_accounting=accounting,
             sources=dict(root=str(self.root), collection_enabled=enabled, files=len(files), errors=[dict(file=Path(f['path']).name, error=f['error']) for f in files if f['error']],
                          last_scan=max((f['mtime'] for f in files), default=None)),
@@ -369,6 +413,35 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
             limitations=['Native transcripts plus explicitly proxied HTTP/SSE captures; existing chat traffic is not retroactively proxied.', 'Runtime shares describe recorded tool-runtime sums; overlapping work is not task elapsed time.',
                           'Model latency, per-tool token attribution and actual charges are unknown.', 'Agent turn completion is not verified task success.',
                           'Unassigned turns stay in the inbox. History from other machines is not connected.', 'Opportunities are proposals; no automatic changes or savings claims.'])
+
+    def reconcile(self):
+        report = self.report()
+        if not self.capture_root:
+            return dict(status='unavailable', reason='No Langfuse credentials configured')
+        try:
+            c = json.loads((self.capture_root.parent / 'local-access.json').read_text())
+            if c['base_url'] not in ('http://localhost:3000', 'http://127.0.0.1:3000'):
+                raise ValueError('Expected loopback Langfuse')
+            with self.connection() as db:
+                first = db.execute("SELECT min(ts) FROM events WHERE kind='generation'").fetchone()[0]
+            query = dict(view='observations', dimensions=[], metrics=[dict(measure='totalTokens', aggregation='sum')],
+                filters=[dict(column='environment', operator='=', type='string', value='codex-native'),
+                         dict(column='type', operator='any of', type='stringOptions', value=['GENERATION'])],
+                # Metrics lower bounds can exclude an observation exactly on the
+                # boundary. Include the first retained response with a small margin.
+                fromTimestamp=(datetime.fromisoformat(first.replace('Z', '+00:00')) - timedelta(seconds=1)).isoformat() if first else now(), toTimestamp=now())
+            auth = base64.b64encode((c['public_key'] + ':' + c['secret_key']).encode()).decode()
+            request = urllib.request.Request(c['base_url'] + '/api/public/v2/metrics?' + urlencode({'query': json.dumps(query)}), headers={'Authorization': 'Basic ' + auth})
+            with urllib.request.urlopen(request, timeout=15) as response:
+                data = json.load(response)
+            backend = sum(row.get('sum_totalTokens') or 0 for row in data.get('data', []))
+            local = report['usage_scope']['all_sources']['total_tokens']
+            return dict(status='matched' if backend == local else 'difference', local_all_sources=local,
+                        langfuse_native_tokens=backend, difference=local - backend, checked_at=now(),
+                        definition='All retained sources; environment codex-native; GENERATION only. Excludes transport observations and analysis snapshot summaries.',
+                        note='Active generation and ingestion lag can produce a temporary difference; task filters describe smaller subsets. Persistent differences require source/date/environment reconciliation and are not silently adjusted.')
+        except (OSError, ValueError, KeyError) as exc:
+            return dict(status='unavailable', reason=type(exc).__name__ + ': ' + str(exc)[:180])
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -399,10 +472,29 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(result)
         if path.path == '/api/health':
             return self.send({'status': 'OK'})
+        if path.path == '/api/reconciliation':
+            return self.send(self.server.store.reconcile())
+        if path.path == '/api/rule-preview':
+            pattern = parse_qs(path.query).get('pattern', [''])[0][:200]
+            report = self.server.store.report()
+            matches = [dict(id=e['id'], operation=e['name'], basis=e['category_basis']) for e in report['events']
+                       if e['kind'] == 'tool' and pattern and pattern.lower() in e['name'].lower()]
+            return self.send(dict(matches=matches[:10], total=len(matches),
+                unreviewed=sum(m['basis'] != 'Codex agent interpretation' for m in matches),
+                semantics='Case-insensitive literal substring of the operation label; not regex, not full command search, no LLM call.',
+                window=1000))
+        design_assets = {'/design-system/styles.css': 'text/css; charset=utf-8',
+                         '/design-system/dom.js': 'text/javascript; charset=utf-8',
+                         '/design-system/collection.js': 'text/javascript; charset=utf-8'}
+        if path.path in design_assets:
+            target = HERE.parents[2] / 'work/security/design-system' / path.path.rsplit('/', 1)[-1]
+            if not target.exists():
+                return self.send({'error': 'Private design-system distribution not synced; see sync_design_system.py'}, 503)
+            return self.send(target.read_bytes(), content=design_assets[path.path])
         assets = {'/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8')}
         if path.path in assets:
             name, mime = assets[path.path]
-            return self.send((HERE / name).read_bytes(), content=mime)
+            return self.send((getattr(self.server, 'ui_root', HERE) / name).read_bytes(), content=mime)
         if path.path == '/base.css':
             return self.send((HERE.parent / 'style.css').read_bytes(), content='text/css; charset=utf-8')
         self.send({'error': 'Not found'}, 404)

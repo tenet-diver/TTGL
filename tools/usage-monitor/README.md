@@ -1,5 +1,59 @@
 # TTGL Usage Observatory
 
+## Compact workspace and data coverage
+
+The workspace uses compact, searchable/sortable/paginated tables for tasks,
+unassigned turns, activity, categories, rules and opportunities. Add/edit forms
+open native modal dialogs. EVLV's shared plain-DOM collection and keyboard/menu
+behavior, control/table classes, and light/dark tokens come from the private
+`tenet-diver/design-system` distribution pinned in
+`config/design-system.lock.json`. App-specific layout stays in this repository.
+No React, Radix or npm runtime install is required for the plain-DOM artifacts.
+
+The producer's license prohibits public redistribution. Its three generated
+assets are deliberately kept under ignored `work/security/design-system/`, not
+copied into this public repository. To reproduce the UI, use an authenticated
+local checkout of the private repository containing the pinned commit:
+
+```sh
+python3 tools/usage-monitor/observability/sync_design_system.py --source /path/to/design-system
+python3 tools/usage-monitor/observability/sync_design_system.py --check
+```
+
+The sync reads only the locked `dist/styles.css`, `dist/collection.js` and
+`dist/dom.js` via `git show`, validates their hashes, and does not run producer
+scripts. Startup and doctor check require those private assets. Tokens/components
+are never fetched from the network by the browser.
+
+The token header displays **selected scope**, **all retained sources**, and
+**unassigned usage**. A task total excludes other tasks and unassigned turns;
+category filters can exclude model generations. “Why totals differ / reconcile”
+queries Langfuse v2 Metrics using the same native-generation environment and
+shows the all-source difference explicitly. Temporary ingestion lag remains
+visible; daily/session rollups and HTTP captures are never added to model usage.
+
+Categories have two independent assignment mechanisms. Codex reviews inspect
+event evidence and record purpose/rationale/confidence. Fallback rules use a
+case-insensitive **literal substring of the operation label**, not regex, not
+full command search and not another LLM call. The first matching enabled rule
+wins for unreviewed events. Reviewed labels take precedence. The rule dialog
+includes examples and previews both matching labels and eligible unreviewed
+events. Table search is a separate shared collection feature.
+
+**Historical capture correction:** the first six model exchanges retained request
+bodies and transport byte/timing metadata, but their response bodies were lost
+because the old parser treated `application/octet-stream` SSE as unknown binary.
+Earlier claims of complete response-body coverage for those exchanges were
+incorrect. The app now labels them “not retained by legacy parser”; it does not
+reconstruct raw responses from native transcripts. Session/time associations are
+explicitly marked inferred. Capture schema 2 detects and parses SSE framing
+independently of Content-Type, retains response IDs across chunk boundaries,
+omits opaque/private reasoning data and flags dropped/oversize frames. A new
+real `CAPTURE_V2_OK` canary verified retained response events, exact provider-ID
+correlation and no truncation. HTTP exchange tables use task/project scope and
+deliberately ignore tool-category filters, since per-tool model attribution is
+not measured.
+
 ## Codex is the analyst
 
 The **Codex analysis** view contains agent-authored findings with evidence IDs,
@@ -51,6 +105,7 @@ All non-secret deployment configuration is checked in:
 | [defaults.json](config/defaults.json) | Private state paths, ports, collector intervals, upstream and capture limits |
 | [codex-provider.toml](config/codex-provider.toml) | Responses API provider, existing ChatGPT authentication, HTTP/SSE mode and disabled request compression |
 | [mcp.template.json](config/mcp.template.json) | Analyst MCP command and portable path placeholders |
+| [design-system.lock.json](config/design-system.lock.json) | Private EVLV DOM distribution commit, artifact hashes and source review |
 | [Codespaces settings](../../.vscode/settings.json) | Port labels and automatic-forwarding behavior |
 
 The active lock is separate from `observability/candidate-images.json`, which
@@ -62,7 +117,7 @@ is required for the checked-in TOML configuration; the tested interpreter is
 3.14.2 and Codex CLI is 0.166.0.
 
 From the repository root, on a machine where the dependency policy permits the
-locked images:
+locked images, first sync the private design-system assets as described above:
 
 ```sh
 # Generate private credentials/config; repeated preparation preserves secrets.
@@ -196,8 +251,13 @@ are not connected by this deployment.
 
 Checks: `python3 -m unittest discover -s tools/usage-monitor/observability -p
 'test_*.py'`, the Langfuse adapter tests, and `node --check
-tools/usage-monitor/observability/workspace.js`. UI views received a JavaScript
-render smoke check; a graphical browser was unavailable for layout inspection.
+tools/usage-monitor/observability/workspace.js`. The compact UI received actual
+Chromium browser checks for all views, dialog submissions in an isolated database,
+EVLV keyboard/focus behavior, literal rule previews, shared collection search,
+task-filtered capture visibility, token reconciliation, light/dark and mobile
+layout. QA tool versions are in `config/browser-qa.lock.json`; QA dependencies
+are optional and not app runtime dependencies. Screenshots/results and the
+isolated QA environment remain private under `work/security/browser-qa/`.
 
 The sections below describe the earlier Mac companion and remain historical;
 do not start its automatic `npx` dependency installation for this setup.

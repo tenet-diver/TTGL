@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Reproduce the repository-pinned local observability deployment without package installers."""
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -56,6 +57,9 @@ def doctor(state):
             checks[name] = False
     checks['tested_codex_version'] = observed.get('codex_cli') == lock['tested_host']['codex_cli']
     checks['prepared_compose'] = (state / 'compose.json').exists()
+    design = json.loads((CONFIG / 'design-system.lock.json').read_text())
+    assets = REPO / design['local_directory']
+    checks['private_design_system_synced'] = all((assets / name).exists() and hashlib.sha256((assets / name).read_bytes()).hexdigest() == digest for name, digest in design['files'].items())
     if checks['prepared_compose']:
         stack = json.loads((state / 'compose.json').read_text())
         actual_images = {name: service['image'] for name, service in stack['services'].items()}

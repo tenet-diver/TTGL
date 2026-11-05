@@ -20,6 +20,7 @@ LIMIT = DEFAULTS['capture']['content_display_limit_bytes']
 
 def safe_content(value):
     text = value if isinstance(value, str) else json.dumps(value, ensure_ascii=False)
+    text = re.sub(r'(?i)([?&](?:token|access_token|api_key|signature|X-Amz-Signature)=)[^&\s"\x27]+', r'\1[REDACTED]', text)
     text = re.sub(r'(?i)(authorization\s*[:=]\s*[\"\x27]?)(?:bearer|basic)\s+[^\s\"\x27]+', r'\1[REDACTED]', text)
     text = re.sub(r'\b(?:sk-lf-|pk-lf-|sk-proj-|sk-)[A-Za-z0-9_-]{16,}', '[REDACTED]', text)
     text = re.sub(r'(?i)([\"\x27]?(?:password|secret_key|access_token|refresh_token|api_key)[\"\x27]?\s*[:=]\s*)[\"\x27][^\"\x27\n]+[\"\x27]', r'\1"[REDACTED]"', text)
@@ -132,6 +133,8 @@ def capture_spans(root):
                   failed=record.get('state') in ('error', 'cancelled') or (record.get('status') or 0) >= 400,
                   capture_state=record['state'], response_ids=response_ids,
                   response_truncated=record.get('response_truncated', False),
+                  response_body_available=record.get('response_body_available', not record.get('response', {}).get('unparsed_body', False)),
+                  capture_schema=record.get('capture_schema', 1),
                   first_body_byte_seconds=(record['first_byte_ns'] - record['started_ns']) / 1e9 if record.get('first_byte_ns') else None,
                   timing_scope='HTTP transport; not pure inference latency', token_accounting='Native generation records only; never add proxy usage',
                   headers_persisted=False, opaque_reasoning_omitted=True, redaction='best effort')
