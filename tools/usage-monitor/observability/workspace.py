@@ -1,0 +1,397 @@
+#!/usr/bin/env python3
+"""Local project/task analysis over native Codex evidence. Python stdlib only."""
+import argparse
+import collections
+import contextlib
+from datetime import datetime, timezone
+import hashlib
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+import importlib.util
+import json
+import os
+from pathlib import Path
+import sqlite3
+import threading
+import time
+from urllib.parse import urlparse, parse_qs
+import uuid
+
+import baseline
+bridge = baseline.bridge
+HERE = Path(__file__).resolve().parent
+
+
+def now():
+    return datetime.now(timezone.utc).isoformat()
+
+
+class Store:
+    def __init__(self, data, codex_root, langfuse_url, capture_root=None):
+        self.data, self.root, self.langfuse_url = data, codex_root, langfuse_url.rstrip('/')
+        self.capture_root = capture_root
+        data.mkdir(parents=True, exist_ok=True, mode=0o700)
+        os.chmod(data, 0o700)
+        self.db = data / 'workspace.sqlite'
+        with self.connection() as c:
+            c.executescript('''
+CREATE TABLE IF NOT EXISTS projects(id TEXT PRIMARY KEY,name TEXT NOT NULL,repo TEXT NOT NULL,scope TEXT,created TEXT);
+CREATE TABLE IF NOT EXISTS tasks(id TEXT PRIMARY KEY,project_id TEXT REFERENCES projects(id),title TEXT,goal TEXT,acceptance TEXT,status TEXT,created TEXT,updated TEXT,outcome TEXT);
+CREATE TABLE IF NOT EXISTS assignments(session_id TEXT,turn_id TEXT,task_id TEXT REFERENCES tasks(id),PRIMARY KEY(session_id,turn_id));
+CREATE TABLE IF NOT EXISTS turns(session_id TEXT,turn_id TEXT,repo TEXT,prompt TEXT,start TEXT,end TEXT,completed INTEGER,PRIMARY KEY(session_id,turn_id));
+CREATE TABLE IF NOT EXISTS events(id TEXT PRIMARY KEY,session_id TEXT,turn_id TEXT,kind TEXT,name TEXT,ts TEXT,runtime REAL,bytes INTEGER,failed INTEGER,usage TEXT,model TEXT,trace TEXT,span TEXT,source_line INTEGER,output_hash TEXT);
+CREATE TABLE IF NOT EXISTS rules(id TEXT PRIMARY KEY,category TEXT,pattern TEXT,version INTEGER,enabled INTEGER);
+CREATE TABLE IF NOT EXISTS decisions(id TEXT PRIMARY KEY,decision TEXT,implementation TEXT,evaluation TEXT,notes TEXT,updated TEXT);
+CREATE TABLE IF NOT EXISTS audit(id INTEGER PRIMARY KEY,at TEXT,action TEXT,entity TEXT,details TEXT);
+CREATE TABLE IF NOT EXISTS files(path TEXT PRIMARY KEY,size INTEGER,mtime INTEGER,error TEXT);
+CREATE TABLE IF NOT EXISTS settings(key TEXT PRIMARY KEY,value TEXT);
+CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
+''')
+            c.execute('INSERT OR IGNORE INTO settings VALUES(?,?)', ('collection_enabled', 'true'))
+            defaults = [('verification', 'tests'), ('build', 'build'), ('search', 'search'), ('reading', 'file inspection'),
+                        ('version control', 'git '), ('setup', 'dependency install'), ('waiting', 'intentional wait'),
+                        ('external services', 'network requests'), ('editing', 'FileChange')]
+            for index, (category, pattern) in enumerate(defaults):
+                c.execute('INSERT OR IGNORE INTO rules VALUES(?,?,?,?,?)', (f'default-{index}', category, pattern, 1, 1))
+
+    @contextlib.contextmanager
+    def connection(self):
+        c = sqlite3.connect(self.db, timeout=30)
+        c.row_factory = sqlite3.Row
+        c.execute('PRAGMA foreign_keys=ON')
+        c.execute('PRAGMA journal_mode=WAL')
+        try:
+            with c:
+                yield c
+        finally:
+            c.close()
+
+    def audit(self, c, action, entity, details):
+        c.execute('INSERT INTO audit(at,action,entity,details) VALUES(?,?,?,?)', (now(), action, entity, json.dumps(details)))
+
+    def mutate(self, action, values):
+        with self.connection() as c:
+            ident = values.get('id') or uuid.uuid4().hex
+            if action == 'project':
+                name, repo = str(values.get('name', '')).strip(), str(values.get('repo', '')).strip()
+                if not name or not repo:
+                    raise ValueError('Project name and repository path are required')
+                c.execute('INSERT INTO projects VALUES(?,?,?,?,?)', (ident, name[:200], repo[:2000], str(values.get('scope', ''))[:4000], now()))
+            elif action == 'task':
+                title, goal = str(values.get('title', '')).strip(), str(values.get('goal', '')).strip()
+                if not title or not goal:
+                    raise ValueError('Task title and intended outcome are required')
+                c.execute('INSERT INTO tasks VALUES(?,?,?,?,?,?,?,?,?)',
+                    (ident, values['project_id'], title[:200], goal[:8000], str(values.get('acceptance', ''))[:8000], 'active', now(), now(), None))
+            elif action == 'assign':
+                ident = values['task_id']
+                if not c.execute('SELECT 1 FROM turns WHERE session_id=? AND turn_id=?', (values['session_id'], values['turn_id'])).fetchone():
+                    raise ValueError('Unknown turn')
+                c.execute('INSERT OR REPLACE INTO assignments VALUES(?,?,?)', (values['session_id'], values['turn_id'], ident))
+            elif action == 'task_status':
+                status = values['status']
+                if status not in ('active', 'waiting', 'completed', 'cancelled', 'unresolved'):
+                    raise ValueError('Invalid task status')
+                outcome = values.get('outcome')
+                if status == 'completed' and not outcome:
+                    raise ValueError('Completion requires outcome/verification evidence')
+                if not c.execute('UPDATE tasks SET status=?,outcome=?,updated=? WHERE id=?', (status, outcome, now(), ident)).rowcount:
+                    raise ValueError('Unknown task')
+            elif action == 'rule':
+                category, pattern = str(values.get('category', '')).strip(), str(values.get('pattern', '')).strip()
+                if not category or not pattern:
+                    raise ValueError('Category and a literal operation pattern are required')
+                old = c.execute('SELECT version FROM rules WHERE id=?', (ident,)).fetchone()
+                c.execute('INSERT OR REPLACE INTO rules VALUES(?,?,?,?,?)', (ident, category[:100], pattern[:200], old['version'] + 1 if old else 1, int(values.get('enabled', True))))
+            elif action == 'decision':
+                decision = values.get('decision', 'review')
+                implementation = values.get('implementation', 'not_started')
+                evaluation = values.get('evaluation', 'not_measured')
+                if decision not in ('review', 'declined', 'deferred') or implementation not in ('not_started', 'prepared', 'applied', 'reverted') or evaluation not in ('not_measured', 'trial_planned', 'in_progress', 'improved', 'regressed', 'inconclusive'):
+                    raise ValueError('Invalid review state')
+                if evaluation in ('improved', 'regressed', 'inconclusive') and not str(values.get('notes', '')).strip():
+                    raise ValueError('Evaluation requires comparison evidence in the notes')
+                c.execute('INSERT OR REPLACE INTO decisions VALUES(?,?,?,?,?,?)', (ident, decision, implementation, evaluation, str(values.get('notes', ''))[:8000], now()))
+            elif action == 'collection':
+                c.execute('UPDATE settings SET value=? WHERE key=?', (json.dumps(bool(values['enabled'])), 'collection_enabled'))
+            else:
+                raise ValueError('Unknown action')
+            self.audit(c, action, ident, values)
+        return {'id': ident, 'ok': True}
+
+    def scan(self):
+        with self.connection() as c:
+            if c.execute("SELECT value FROM settings WHERE key='collection_enabled'").fetchone()[0] != 'true':
+                return
+        paths = list(self.root.joinpath('sessions').rglob('*.jsonl')) + list(self.root.joinpath('archived_sessions').rglob('*.jsonl'))
+        for path in paths:
+            stat = path.stat()
+            with self.connection() as c:
+                old = c.execute('SELECT * FROM files WHERE path=?', (str(path),)).fetchone()
+                if old and old['size'] == stat.st_size and old['mtime'] == stat.st_mtime_ns and not old['error']:
+                    continue
+            try:
+                self.ingest(path)
+                error = None
+            except Exception as exc:
+                error = type(exc).__name__ + ': ' + str(exc)[:200]
+            with self.connection() as c:
+                c.execute('INSERT OR REPLACE INTO files VALUES(?,?,?,?)', (str(path), stat.st_size, stat.st_mtime_ns, error))
+
+    def ingest(self, path):
+        meta, tools, bad = bridge.tool_records(path)
+        if bad:
+            raise ValueError(f'{bad} malformed or oversized lines')
+        sid, repo = meta['id'], meta.get('cwd', '')
+        tools = {tool['id']: tool for tool in tools}
+        turns, events = {}, {}
+        model = None
+        for line, record in bridge.monitor.lines(path):
+            if not record:
+                continue
+            p = record.get('payload') or {}
+            ts = record.get('timestamp') or meta.get('timestamp')
+            if ts < meta.get('timestamp', '') or p.get('thread_id') and p['thread_id'] != sid:
+                continue
+            if record.get('type') == 'turn_context':
+                model = p.get('model')
+            turn = p.get('turn_id')
+            if not turn:
+                continue
+            row = turns.setdefault(turn, dict(prompt=[], start=ts, end=ts, completed=0))
+            row['end'] = ts
+            trace = bridge.digest('native-turn-v1:' + sid + ':' + turn)
+            if record.get('type') == 'event_msg':
+                if p.get('type') == 'task_complete':
+                    row['completed'] = 1
+                item = p.get('item') or {}
+                if item.get('type') == 'UserMessage':
+                    for content in item.get('content') or []:
+                        if isinstance(content, dict) and content.get('type') == 'text':
+                            row['prompt'].append(content.get('text', '')[:4000])
+                ident = item.get('id')
+                if p.get('type') == 'item_completed' and ident in tools:
+                    tool = tools[ident]
+                    output = item.get('aggregated_output', item.get('result'))
+                    output_hash = hashlib.sha256(json.dumps(output, sort_keys=True).encode()).hexdigest() if output is not None else None
+                    events[sid + ':tool:' + ident] = (sid + ':tool:' + ident, sid, turn, 'tool', tool['operation'], ts,
+                        tool['native_runtime_ns'] / 1e9 if tool['native_runtime_ns'] is not None else None,
+                        tool['output_bytes'], tool['failed'], None, None, trace,
+                        bridge.digest(sid + ':native-content:' + ident, 16), line, output_hash)
+            if record.get('type') == 'token_usage_record' and p.get('response_id'):
+                ident, usage = p['response_id'], p.get('usage') or {}
+                keys = ('input_tokens', 'cached_input_tokens', 'output_tokens', 'total_tokens')
+                if any(not isinstance(usage.get(k), int) or usage[k] < 0 for k in keys):
+                    raise ValueError('Unsupported response usage')
+                if usage['cached_input_tokens'] > usage['input_tokens'] or usage['total_tokens'] != usage['input_tokens'] + usage['output_tokens']:
+                    raise ValueError('Non-reconciling response usage')
+                key = sid + ':response:' + ident
+                event = (key, sid, turn, 'generation', 'Model response', ts, None, None, None, json.dumps(usage), model,
+                         trace, bridge.digest(key, 16), line, None)
+                if key in events and events[key][9] != event[9]:
+                    raise ValueError('Conflicting response usage')
+                events[key] = event
+        with self.connection() as c:
+            for turn, row in turns.items():
+                c.execute('INSERT OR REPLACE INTO turns VALUES(?,?,?,?,?,?,?)',
+                    (sid, turn, repo, '\n'.join(row['prompt'])[:12000], row['start'], row['end'], row['completed']))
+            for event in events.values():
+                existing = c.execute('SELECT usage FROM events WHERE id=?', (event[0],)).fetchone()
+                if existing and existing['usage'] != event[9]:
+                    raise ValueError('Response changed after ingestion; reconciliation required')
+                c.execute('INSERT OR IGNORE INTO events VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', event)
+
+    def report(self, project=None, task=None, category=None):
+        with self.connection() as c:
+            projects = [dict(r) for r in c.execute('SELECT * FROM projects ORDER BY created')]
+            tasks = [dict(r) for r in c.execute('SELECT * FROM tasks ORDER BY created DESC')]
+            rules = [dict(r) for r in c.execute('SELECT * FROM rules ORDER BY id')]
+            assignments = {(r['session_id'], r['turn_id']): r['task_id'] for r in c.execute('SELECT * FROM assignments')}
+            turns = [dict(r) for r in c.execute('SELECT * FROM turns ORDER BY start DESC')]
+            rows = [dict(r) for r in c.execute('SELECT * FROM events ORDER BY ts')]
+            decisions = {r['id']: dict(r) for r in c.execute('SELECT * FROM decisions')}
+            files = [dict(r) for r in c.execute('SELECT * FROM files')]
+            enabled = c.execute("SELECT value FROM settings WHERE key='collection_enabled'").fetchone()[0] == 'true'
+            audit = [dict(r) for r in c.execute('SELECT * FROM audit ORDER BY id DESC LIMIT 50')]
+        task_map = {t['id']: t for t in tasks}
+        project_map = {p['id']: p for p in projects}
+        for turn in turns:
+            turn['task_id'] = assignments.get((turn['session_id'], turn['turn_id']))
+            turn['project_id'] = task_map.get(turn['task_id'], {}).get('project_id')
+            turn['langfuse_url'] = self.langfuse_url + '/project/ttgl-codex/traces/' + bridge.digest('native-turn-v1:' + turn['session_id'] + ':' + turn['turn_id'])
+        selected_turns = [t for t in turns if (not task or t['task_id'] == task) and (not project or t['project_id'] == project)]
+        selected_ids = {(t['session_id'], t['turn_id']) for t in selected_turns}
+        totals = dict(input_tokens=0, cached_input_tokens=0, output_tokens=0, total_tokens=0)
+        groups = collections.defaultdict(lambda: dict(count=0, runtime_seconds=0, timed=0, bytes=0, failures=0))
+        events, models = [], collections.Counter()
+        for row in rows:
+            if (row['session_id'], row['turn_id']) not in selected_ids:
+                continue
+            row['category'] = 'model inference' if row['kind'] == 'generation' else next((r['category'] for r in rules if r['enabled'] and r['pattern'].lower() in row['name'].lower()), 'other tools')
+            if category and row['category'] != category:
+                continue
+            row['task_id'] = assignments.get((row['session_id'], row['turn_id']))
+            row['usage'] = json.loads(row['usage']) if row['usage'] else None
+            row['langfuse_url'] = self.langfuse_url + '/project/ttgl-codex/traces/' + row['trace'] + '?observation=' + row['span']
+            if row['usage']:
+                for k in totals:
+                    totals[k] += row['usage'].get(k, 0)
+                models[row['model'] or 'Unknown'] += row['usage']['total_tokens']
+            group = groups[row['category']]
+            group['count'] += 1
+            group['bytes'] += row['bytes'] or 0
+            group['failures'] += int(row['failed'] == 1)
+            if row['runtime'] is not None:
+                group['runtime_seconds'] += row['runtime']
+                group['timed'] += 1
+            events.append(row)
+        total_runtime = sum(g['runtime_seconds'] for g in groups.values())
+        categories = [dict(name=name, **g, runtime_share=g['runtime_seconds'] / total_runtime if total_runtime else None) for name, g in groups.items()]
+        categories.sort(key=lambda r: -r['runtime_seconds'])
+        opportunities = []
+        large = [e for e in events if e['kind'] == 'tool' and (e['bytes'] or 0) > 32000]
+        if large:
+            opportunities.append(dict(id='large-output', title='Review large tool results',
+                evidence=[e['id'] for e in sorted(large, key=lambda e: -e['bytes'])[:5]],
+                observation=f'{len(large)} results exceed 32 KB. These are retained bytes, not attributed tokens.',
+                action='Prepare narrower result selection or summaries, preserving needed diagnostics.',
+                guardrail='Compare task quality, full model usage, elapsed time and optimization overhead.'))
+        repeated = collections.defaultdict(list)
+        for e in events:
+            if e['output_hash'] and (e['bytes'] or 0) > 8000:
+                repeated[(e['session_id'], e['name'], e['output_hash'])].append(e['id'])
+        duplicates = [ids for ids in repeated.values() if len(ids) >= 3]
+        if duplicates:
+            opportunities.append(dict(id='repeated-results', title='Review repeated unchanged results',
+                evidence=[ident for ids in duplicates for ident in ids][:10],
+                observation=f'{len(duplicates)} groups repeat an identical result at least three times.',
+                action='Investigate reusable evidence or a bounded workflow/skill.',
+                guardrail='Repeated reads may be necessary polling or revalidation. Verify freshness.'))
+        for opportunity in opportunities:
+            evidence_fingerprint = hashlib.sha256('|'.join(sorted(opportunity['evidence'])).encode()).hexdigest()[:16]
+            opportunity['id'] += ':' + (task or project or 'all') + ':' + evidence_fingerprint
+            opportunity['state'] = decisions.get(opportunity['id'], dict(decision='pending', implementation='not_started', evaluation='not_measured'))
+        sequences = collections.Counter()
+        previous = {}
+        for event in events:
+            key = (event['session_id'], event['turn_id'])
+            if key in previous:
+                sequences[(previous[key], event['category'])] += 1
+            previous[key] = event['category']
+        captures = []
+        if self.capture_root:
+            for path in self.capture_root.glob('*.json'):
+                record = json.loads(path.read_text())
+                if not record['path'].endswith('/responses'):
+                    continue
+                response_ids = {event.get('response', {}).get('id') for event in record.get('response', {}).get('sse_events', []) if isinstance(event, dict)}
+                matching = next((e for e in events if e['kind'] == 'generation' and any(ident and e['id'].endswith(':' + ident) for ident in response_ids)), None)
+                if (project or task or category) and not matching:
+                    continue
+                captures.append(dict(id=record['id'], task_id=matching['task_id'] if matching else None,
+                    state=record['state'], status=record.get('status'), request_bytes=record.get('request_bytes'),
+                    response_bytes=record.get('response_bytes'), response_truncated=record.get('response_truncated'),
+                    elapsed_seconds=(record['ended_ns'] - record['started_ns']) / 1e9 if record.get('ended_ns') else None,
+                    first_body_byte_seconds=(record['first_byte_ns'] - record['started_ns']) / 1e9 if record.get('first_byte_ns') else None,
+                    langfuse_url=self.langfuse_url + '/project/ttgl-codex/traces/' + bridge.digest('transport-v1:' + record['id'])))
+        return dict(projects=projects, tasks=tasks, turns=selected_turns, inbox=[t for t in turns if not t['task_id']],
+            usage=totals, models=dict(models), categories=categories, events=events[-1000:], event_count=len(events),
+            sequences=[dict(sequence=list(k), count=v) for k, v in sequences.most_common(20)],
+            opportunities=opportunities, rules=rules, decisions=list(decisions.values()), audit=audit,
+            wire_captures=captures,
+            sources=dict(root=str(self.root), collection_enabled=enabled, files=len(files), errors=[dict(file=Path(f['path']).name, error=f['error']) for f in files if f['error']],
+                         last_scan=max((f['mtime'] for f in files), default=None)),
+            langfuse_url=self.langfuse_url + '/project/ttgl-codex', at=now(),
+            limitations=['Native transcripts plus explicitly proxied HTTP/SSE captures; existing chat traffic is not retroactively proxied.', 'Runtime shares describe recorded tool-runtime sums; overlapping work is not task elapsed time.',
+                          'Model latency, per-tool token attribution and actual charges are unknown.', 'Agent turn completion is not verified task success.',
+                          'Unassigned turns stay in the inbox. History from other machines is not connected.', 'Opportunities are proposals; no automatic changes or savings claims.'])
+
+
+class Handler(BaseHTTPRequestHandler):
+    def log_message(self, *args):
+        pass
+
+    def send(self, value, status=200, content='application/json'):
+        body = json.dumps(value).encode() if content == 'application/json' else value
+        self.send_response(status)
+        self.send_header('Content-Type', content)
+        self.send_header('Cache-Control', 'no-store')
+        self.send_header('X-Content-Type-Options', 'nosniff')
+        self.send_header('Content-Security-Policy', "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-ancestors 'none'")
+        self.end_headers()
+        self.wfile.write(body)
+
+    def valid(self):
+        return self.headers.get('Host') in self.server.allowed_hosts
+
+    def do_GET(self):
+        if not self.valid():
+            return self.send({'error': 'Invalid host'}, 403)
+        path = urlparse(self.path)
+        if path.path in ('/api/workspace', '/api/agent-context'):
+            query = parse_qs(path.query)
+            filters = {k: query[k][0] for k in ('project', 'task', 'category') if k in query}
+            result = self.server.store.report(**filters)
+            return self.send(result)
+        if path.path == '/api/health':
+            return self.send({'status': 'OK'})
+        assets = {'/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8')}
+        if path.path in assets:
+            name, mime = assets[path.path]
+            return self.send((HERE / name).read_bytes(), content=mime)
+        if path.path == '/base.css':
+            return self.send((HERE.parent / 'style.css').read_bytes(), content='text/css; charset=utf-8')
+        self.send({'error': 'Not found'}, 404)
+
+    def do_POST(self):
+        origin = self.headers.get('Origin')
+        if not self.valid() or origin not in self.server.allowed_origins:
+            return self.send({'error': 'Same-origin request required'}, 403)
+        action = self.path.removeprefix('/api/')
+        if '/' in action:
+            return self.send({'error': 'Not found'}, 404)
+        try:
+            length = int(self.headers.get('Content-Length', '0'))
+            if not 0 < length <= 32768:
+                raise ValueError('Invalid request size')
+            values = json.loads(self.rfile.read(length))
+            if not isinstance(values, dict):
+                raise ValueError('Expected an object')
+            result = self.server.store.mutate(action, values)
+            return self.send(result)
+        except (ValueError, KeyError, sqlite3.IntegrityError) as exc:
+            return self.send({'error': str(exc)}, 400)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--data', type=Path, required=True)
+    parser.add_argument('--codex-root', type=Path, default=Path.home() / '.codex')
+    parser.add_argument('--langfuse-url', default='http://localhost:3000')
+    parser.add_argument('--port', type=int, default=8766)
+    parser.add_argument('--capture-root', type=Path)
+    args = parser.parse_args()
+    os.umask(0o077)
+    store = Store(args.data, args.codex_root, args.langfuse_url, args.capture_root)
+    store.scan()
+    def watch():
+        while True:
+            try:
+                store.scan()
+            except Exception as exc:
+                print(type(exc).__name__, str(exc)[:200], flush=True)
+            time.sleep(5)
+    threading.Thread(target=watch, daemon=True).start()
+    server = ThreadingHTTPServer(('127.0.0.1', args.port), Handler)
+    server.store = store
+    server.allowed_hosts = {f'127.0.0.1:{args.port}', f'localhost:{args.port}'}
+    server.allowed_origins = {'http://' + host for host in server.allowed_hosts}
+    if os.environ.get('CODESPACE_NAME'):
+        host = f"{os.environ['CODESPACE_NAME']}-{args.port}.{os.environ.get('GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN', 'app.github.dev')}"
+        server.allowed_hosts.add(host)
+        server.allowed_origins.add('https://' + host)
+    print(f'Project/task workspace: http://127.0.0.1:{args.port}', flush=True)
+    server.serve_forever()
+
+
+if __name__ == '__main__':
+    main()

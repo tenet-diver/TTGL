@@ -1,0 +1,142 @@
+import json
+from pathlib import Path
+import tempfile
+import threading
+import unittest
+import urllib.request
+import urllib.error
+from http.server import ThreadingHTTPServer
+
+from workspace import Store, Handler
+import analyst_mcp
+
+
+class WorkspaceTests(unittest.TestCase):
+    def setUp(self):
+        self.directory = tempfile.TemporaryDirectory()
+        self.addCleanup(self.directory.cleanup)
+        self.root = Path(self.directory.name)
+        self.store = Store(self.root / 'data', self.root / 'codex', 'http://localhost:3000')
+        source = self.root / 'codex/sessions/sample.jsonl'
+        source.parent.mkdir(parents=True)
+        self.source = source
+        rows = [
+            dict(type='session_meta', payload=dict(id='s', cwd='/repo', timestamp='2026-11-05T00:00:00Z')),
+            dict(type='turn_context', payload=dict(turn_id='t', model='test-model')),
+            dict(type='event_msg', payload=dict(type='task_started', turn_id='t')),
+            dict(type='event_msg', payload=dict(type='item_completed', turn_id='t', item=dict(type='UserMessage', content=[dict(type='text', text='Fix the problem')]))),
+            dict(type='event_msg', payload=dict(type='item_completed', thread_id='s', turn_id='t', item=dict(type='CommandExecution', id='tool', command=['rg', 'foo'], aggregated_output='x' * 40000, exit_code=0, duration=dict(secs=2, nanos=0)))),
+            dict(type='token_usage_record', payload=dict(thread_id='s', turn_id='t', response_id='r', usage=dict(input_tokens=100, cached_input_tokens=80, output_tokens=10, total_tokens=110))),
+            dict(type='token_usage_record', payload=dict(thread_id='s', turn_id='t', response_id='r', usage=dict(input_tokens=100, cached_input_tokens=80, output_tokens=10, total_tokens=110))),
+            dict(type='token_usage_record', payload=dict(thread_id='foreign', turn_id='other', response_id='foreign', usage=dict(input_tokens=1000, cached_input_tokens=0, output_tokens=10, total_tokens=1010))),
+            dict(type='event_msg', payload=dict(type='task_complete', turn_id='t')),
+        ]
+        self.rows = [dict(r, timestamp='2026-11-05T00:00:01Z') for r in rows]
+        self.source.write_text(''.join(json.dumps(r) + '\n' for r in self.rows))
+
+    def define_task(self):
+        project = self.store.mutate('project', dict(name='Test', repo='/repo'))['id']
+        task = self.store.mutate('task', dict(project_id=project, title='Fix', goal='Resolve failure', acceptance='Checks pass'))['id']
+        return project, task
+
+    def test_idempotent_import_reconciled_usage_and_native_runtime(self):
+        self.store.scan()
+        self.store.ingest(self.source)
+        report = self.store.report()
+        self.assertEqual(report['event_count'], 2)
+        self.assertEqual(report['usage']['total_tokens'], 110)
+        self.assertEqual(len(report['inbox']), 1)
+        self.assertEqual(report['categories'][0]['name'], 'search')
+        self.assertEqual(report['categories'][0]['runtime_seconds'], 2)
+        self.assertIsNone(next(e for e in report['events'] if e['kind'] == 'generation')['runtime'])
+
+    def test_assignment_and_project_task_category_filters(self):
+        self.store.scan()
+        project, task = self.define_task()
+        self.assertEqual(self.store.report(task=task)['event_count'], 0)
+        self.store.mutate('assign', dict(session_id='s', turn_id='t', task_id=task))
+        self.assertEqual(self.store.report(project=project)['event_count'], 2)
+        self.assertEqual(self.store.report(task=task, category='search')['usage']['total_tokens'], 0)
+        self.assertEqual(self.store.report(task=task, category='model inference')['usage']['total_tokens'], 110)
+        self.assertEqual(self.store.report()['inbox'], [])
+
+    def test_completion_requires_verification_and_review_states_are_separate(self):
+        _, task = self.define_task()
+        with self.assertRaises(ValueError):
+            self.store.mutate('task_status', dict(id=task, status='completed'))
+        self.store.mutate('task_status', dict(id=task, status='completed', outcome='Verified checks'))
+        self.store.mutate('decision', dict(id='opportunity', decision='review'))
+        state = self.store.report()['decisions'][0]
+        self.assertEqual(state['implementation'], 'not_started')
+        self.assertEqual(state['evaluation'], 'not_measured')
+
+    def test_rules_version_without_mutating_evidence(self):
+        self.store.scan()
+        before = self.source.read_bytes()
+        self.store.mutate('rule', dict(id='default-2', category='investigation', pattern='search'))
+        report = self.store.report()
+        self.assertEqual(report['categories'][0]['name'], 'investigation')
+        self.assertEqual(next(r for r in report['rules'] if r['id'] == 'default-2')['version'], 2)
+        self.assertEqual(self.source.read_bytes(), before)
+
+    def test_pause_prevents_ingestion(self):
+        self.store.mutate('collection', dict(enabled=False))
+        self.store.scan()
+        self.assertEqual(self.store.report()['event_count'], 0)
+
+    def test_mcp_task_creation_and_bounded_queries(self):
+        self.store.scan()
+        response = analyst_mcp.handle(self.store, dict(method='initialize', params={'protocolVersion': '2025-06-18'}))
+        self.assertEqual(response['protocolVersion'], '2025-06-18')
+        self.assertEqual(len(analyst_mcp.handle(self.store, dict(method='tools/list'))['tools']), 8)
+        result = analyst_mcp.handle(self.store, dict(method='tools/call', params=dict(name='query_activity', arguments={'section': 'summary'})))
+        self.assertFalse(result['isError'])
+        data = json.loads(result['content'][0]['text'])
+        self.assertEqual(data['usage']['total_tokens'], 110)
+        self.assertNotIn('events', data)
+        invalid = analyst_mcp.handle(self.store, dict(method='tools/call', params=dict(name='query_activity', arguments={'sql': 'SELECT *'})))
+        self.assertTrue(invalid['isError'])
+        evidence = analyst_mcp.handle(self.store, dict(method='tools/call', params=dict(name='read_evidence', arguments={'id': 's:tool:tool'})))
+        self.assertFalse(evidence['isError'])
+        self.assertIn('CommandExecution', evidence['content'][0]['text'])
+
+    def test_conflicting_usage_is_not_silently_overwritten(self):
+        self.store.scan()
+        changed = json.loads(json.dumps(self.rows))
+        for row in changed:
+            if row['type'] == 'token_usage_record' and row['payload'].get('thread_id') == 's':
+                row['payload']['usage'].update(input_tokens=101, total_tokens=111)
+        self.source.write_text(''.join(json.dumps(r) + '\n' for r in changed))
+        self.store.scan()
+        report = self.store.report()
+        self.assertEqual(report['usage']['total_tokens'], 110)
+        self.assertEqual(len(report['sources']['errors']), 1)
+
+    def test_http_mutations_require_valid_host_and_origin(self):
+        server = ThreadingHTTPServer(('127.0.0.1', 0), Handler)
+        host = f'127.0.0.1:{server.server_port}'
+        origin = 'http://' + host
+        server.allowed_hosts = {host}
+        server.allowed_origins = {origin}
+        server.store = self.store
+        threading.Thread(target=server.serve_forever, daemon=True).start()
+        self.addCleanup(server.server_close)
+        self.addCleanup(server.shutdown)
+        body = json.dumps(dict(name='Project', repo='/repo')).encode()
+        request = urllib.request.Request(origin + '/api/project', data=body, headers={'Content-Type': 'application/json'})
+        with self.assertRaises(urllib.error.HTTPError) as failure:
+            urllib.request.urlopen(request, timeout=5)
+        self.assertEqual(failure.exception.code, 403)
+        failure.exception.close()
+        request.add_header('Origin', origin)
+        with urllib.request.urlopen(request, timeout=5) as response:
+            self.assertTrue(json.load(response)['ok'])
+        hostile = urllib.request.Request(origin + '/api/workspace', headers={'Host': 'attacker.invalid'})
+        with self.assertRaises(urllib.error.HTTPError) as failure:
+            urllib.request.urlopen(hostile, timeout=5)
+        self.assertEqual(failure.exception.code, 403)
+        failure.exception.close()
+
+
+if __name__ == '__main__':
+    unittest.main()

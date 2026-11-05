@@ -1,5 +1,83 @@
 # TTGL Usage Observatory
 
+## Current Codespaces workspace — 5 November 2026
+
+The project/task application is `observability/workspace.py`, backed by private
+SQLite and Python's standard library. The six-service Langfuse Docker stack is
+the detailed evidence UI. Current startup is supervised by:
+
+```sh
+python3 tools/usage-monitor/observability/start_local.py \
+  --state work/security/langfuse-stack --workspace-data work/security/workspace \
+  --langfuse-url https://YOUR-CODESPACE-3000.app.github.dev
+```
+
+This requires the existing prepared/pulled stack; it never installs packages or
+pulls images. `langfuse/prepare_stack.py --destination work/security/langfuse-stack`
+generates six digest-pinned services and private credentials. The running instance
+was explicitly authorized by the user despite incomplete security reviews;
+confirmed findings still block affected candidates. Do not treat it as a complete
+security clearance. See `docs/research/observability-setup.md`.
+
+Forward **8766** for projects/tasks and **3000** for Langfuse; keep both private.
+Login details are in `work/security/langfuse-stack/local-access.json` (`email`,
+`password`). PostgreSQL, Redis and ClickHouse have no host-published ports. S3
+uses MinIO on loopback ports 9090/9091. All database/object data uses named Docker
+volumes; do not delete volumes or the export ledger during restart.
+
+The workspace implements project scope, explicit task goals/acceptance/outcomes,
+turn assignment and an unassigned inbox, task/project/category filters, measured
+response tokens and cache use, native tool-runtime distributions/shares, recurring
+category pairs, evidence-linked timelines, versioned literal category rules,
+collection pause/resume, and opportunity review with separate decision,
+implementation and evaluation states. Rules do not alter source records; reviews
+do not apply optimizations. Task completion requires outcome evidence. Agent turn
+completion alone is not task success. Actual charges and per-tool token allocation
+remain unknown.
+
+`langfuse/live_export.py` automatically polls retained native records every 15
+seconds and uses the existing immutable OTLP receipt/outbox ledger. Failed or
+uncertain delivery is visible and requires reconciliation, not blind replay.
+Workspace ingestion polls every five seconds; the supervisor restarts failed
+processes. The source transcripts and captures are durable local queues; there
+is no remote delivery if this Codespace is stopped. The supervisor stops when
+its process or Codespace stops; this is not OS-login autostart.
+
+For **future explicitly proxied Codex sessions**, launch:
+
+```sh
+python3 tools/usage-monitor/observability/codex_traced.py
+```
+
+The launcher uses the existing ChatGPT login and command-local provider settings;
+normal routing/configuration is unchanged. The local HTTP/SSE adapter on 8317
+does not implement OAuth or TLS interception. Streaming is forwarded unchanged;
+private stored bodies are redacted with opaque reasoning fields omitted. Headers
+and credentials are not journaled. Redaction is best effort, not a guarantee.
+Requests are capped at 4 MiB, response capture at 1 MiB, and retained capture
+storage at 128 MiB. Oversize/unsupported requests fail explicitly; capture
+truncation is flagged. No WebSocket support or compressed request capture is
+claimed. Transport durations/first-body-byte timing are not pure inference time.
+Proxy observations never contribute additional usage counts. Existing active
+chats remain transcript-only; they cannot be retroactively routed.
+
+The `ttgl-analyst` stdio MCP server is registered in the Codespace's Codex CLI.
+New Codex sessions can query filtered activity and bounded raw evidence, create
+projects/tasks, assign turns, revise rules, record verified outcomes and manage
+opportunity review states. Its entry point is `observability/analyst_mcp.py`.
+It does not run an autonomous background model or apply changes. Optional SLM
+summaries, screenshots, automatic task-boundary inference, optimization execution
+and controlled comparative trials are not implemented. Other-machine histories
+are not connected by this deployment.
+
+Checks: `python3 -m unittest discover -s tools/usage-monitor/observability -p
+'test_*.py'`, the Langfuse adapter tests, and `node --check
+tools/usage-monitor/observability/workspace.js`. UI views received a JavaScript
+render smoke check; a graphical browser was unavailable for layout inspection.
+
+The sections below describe the earlier Mac companion and remain historical;
+do not start its automatic `npx` dependency installation for this setup.
+
 A working local Codex companion: retained session usage, daily/model/session views, tool evidence, recurring-opportunity rules, agent-authored reviews and durable review/decline/defer history. This is an initial monitor, not the complete handoff executor.
 
 ## Run

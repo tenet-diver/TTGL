@@ -2,7 +2,79 @@
 
 Current scope, 5 November 2026: consolidate history and continuously collect future records from TWO MacBooks and cloud runs into ONE central analysis stack. Each source needs only appropriate capture/export components with offline queues, not its own full stack. Headroom/compression experiments are deferred; focus on data quality and security clearance. The sections below describing one-machine-only scope or merely optional remote imports are superseded by this current scope.
 
+## Latest Codespaces deployment — running
+
+The user explicitly authorized installation/execution in this Codespace unless
+confirmed vulnerabilities are present. This supersedes the earlier stop on
+incomplete reviews for this environment only. The existing Langfuse app candidate
+has incomplete review coverage, not a security clearance. Rejected CLIProxyAPI
+and mitmproxy candidates remain unused; LiteLLM is not installed.
+
+Langfuse 4.75.0 web/worker, PostgreSQL, Redis, ClickHouse and MinIO now run in six
+digest-pinned containers. MinIO is the S3-compatible object store; its digest is
+`sha256:cee9a8e35885e93f14b3cb32960e5017aff74e2adfb52ba87c65003b0163886b`.
+Ports 3000, 9090 and 9091 bind to loopback; Codespaces forwarding is private.
+Databases are network-internal. Health, authenticated login, S3 object creation,
+public v2 observation ingestion/query, and all eight native dashboard metric
+queries have been observed working. Use the v2 Metrics API: v1 is unavailable in
+this deployment's v4 events-only mode.
+
+Native turns, operation inputs/results and per-response measured usage are
+continuously exported, with durable immutable receipts and exact IDs. A real
+Codex CLI canary also completed through a standard-library HTTP/SSE capture
+adapter, returning `TRACE_CANARY_OK`. Its single `/responses` exchange returned
+HTTP 200, captured 81,747 request bytes and 96,328 response bytes without capture
+truncation, took 2.367 seconds end-to-end and 0.922 seconds to first body byte.
+Those are transport observations, not pure inference latency or an efficiency
+result. Two `/models` fetches were also captured. Proxy records carry no extra
+token usage; native generation records remain the accounting source. Headers,
+credentials and opaque reasoning fields are excluded from stored captures;
+body redaction remains best effort. Existing chat traffic is not retroactively
+proxied. `codex_traced.py` enables HTTP/SSE capture on new explicit CLI launches.
+
+The task/project workspace runs on 8766. A supervisor owns its importer, capture
+adapter and Langfuse exporter; its private `runtime.json`, logs, credentials,
+capture files, SQLite database and export receipts live under `work/security/`.
+The `ttgl-analyst` local stdio MCP server is registered for new Codex CLI sessions.
+See `tools/usage-monitor/README.md` for operation, feature boundaries and restart.
+No other-machine histories or paused research schedules were activated. Native
+subagent identity/parent capture needs a dedicated live validation before claiming
+complete cross-subagent coverage.
+
 ## Intended flow
+
+### Cloud preflight and native baseline, 5 November 2026
+
+The user clarified that the primary objective is optimizing Codex task time,
+performance and cost efficiency; Langfuse remains the intended visualization
+backend, while CLIProxyAPI may be replaced. Capture must support decisions about
+context growth, repeated work, model latency, cache use, tool runtime, retries and
+task outcomes. Raw pairs alone are insufficient, and lower token counts alone do
+not establish an improvement.
+
+The cloud checkout is on `work`. Docker responds, but no images are present and
+no stack has been started. Fresh metadata-only checks found advisory results for
+CLIProxyAPI v8.0.57 and for Tornado 6.5.10 in mitmproxy 12.3.1's resolved 41-package
+wheel graph. These are candidate rejection evidence, not complete artifact or
+exploitability reviews. Receipts are in `tools/usage-monitor/observability/`.
+LiteLLM was also evaluated; its publisher reports an October 21 compromised
+1.107.0 release. It has not been installed or cleared. None of these checks
+clears the separate Langfuse stack review.
+
+`tools/usage-monitor/observability/baseline.py` provides a standard-library-only,
+read-only baseline from one retained rollout, reusing the existing native tool
+reader. It deduplicates response IDs, excludes foreign-thread events, flags
+conflicting usage, reconciles per-response counters against native thread totals,
+and reports native tool-runtime distributions. Legacy token-count events can lag
+the newer response records; their residual is reported separately. Cached input
+and reasoning output remain subsets. Unknown cash cost and task outcome remain
+null. Private snapshot output from this chat is under
+`work/security/observability/own-run-baseline.json` (ignored by Git).
+
+This is real transcript-derived evidence from the active cloud session, not raw
+wire capture, a completed task result, a deployed visualization or proof of
+savings. Model latency/time to first token and wire retry coverage remain missing.
+No normal Codex routing, credentials or paused schedules were changed.
 
 Codex -> CLIProxyAPI -> the configured model provider.
 

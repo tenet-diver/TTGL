@@ -1,0 +1,42 @@
+{
+  "checked_at": "2026-11-05T16:22:16.206159+00:00",
+  "status": "blocked",
+  "candidate": "v8.0.57",
+  "source": "https://raw.githubusercontent.com/router-for-me/CLIProxyAPI/v8.0.57/go.mod",
+  "go_mod_sha256": "0bde88cb0885b76451e1e000dab3ede1a2e8e37ef9800fe620d3394c1b1df941",
+  "scope": "Declared Go module versions only; not a resolved complete build graph or image scan.",
+  "declared_modules": 110,
+  "limitations": [
+    "OS/base image not scanned",
+    "Build-selected module versions not resolved",
+    "Publisher/provenance and entrypoints not reviewed",
+    "Langfuse full Node/RPM graph not cleared",
+    "No installation or execution authorized by this receipt"
+  ],
+  "findings": [
+    {
+      "package": "github.com/klauspost/compress",
+      "version": "v1.17.4",
+      "advisories": [
+        "GHSA-259r-337f-4rfw",
+        "GO-2026-5841"
+      ]
+    },
+    {
+      "package": "golang.org/x/crypto",
+      "version": "v0.57.0",
+      "advisories": [
+        "GO-2026-5932"
+      ]
+    },
+    {
+      "package": "golang.org/x/net",
+      "version": "v0.60.0",
+      "advisories": [
+        "GO-2026-6860",
+        "GO-2026-6866"
+      ]
+    }
+  ],
+  "advisory_source": "https://api.osv.dev/v1/querybatch"
+}
