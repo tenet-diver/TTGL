@@ -2,21 +2,24 @@
 """Launch Codex through the local HTTP/SSE capture adapter; global config unchanged."""
 import os
 import sys
+import json
+from pathlib import Path
+import tomllib
 
 arguments = sys.argv[1:]
 if arguments[:1] == ['--']:
     arguments = arguments[1:]
-settings = {
-    'model_provider': 'ttgl_capture',
-    'model_providers.ttgl_capture.name': 'TTGL Capture',
-    'model_providers.ttgl_capture.base_url': 'http://127.0.0.1:8317',
-    'model_providers.ttgl_capture.wire_api': 'responses',
-    'model_providers.ttgl_capture.requires_openai_auth': True,
-    'model_providers.ttgl_capture.supports_websockets': False,
-}
+config = Path(__file__).resolve().parents[1] / 'config/codex-provider.toml'
+settings = tomllib.loads(config.read_text())
+def flatten(values, prefix=''):
+    for key, value in values.items():
+        key = prefix + key
+        if isinstance(value, dict):
+            yield from flatten(value, key + '.')
+        else:
+            yield key, value
 command = ['codex']
-for key, value in settings.items():
-    import json
+for key, value in flatten(settings):
     command += ['-c', key + '=' + json.dumps(value)]
-command += ['--disable', 'enable_request_compression'] + arguments
+command += arguments
 os.execvp(command[0], command)

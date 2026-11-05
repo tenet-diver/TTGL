@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-05",
+  "platform": "linux/amd64",
+  "images": {
+    "postgres": {
+      "version": "17.11",
+      "image": "postgres@sha256:e4cb93687b062cd25a0e8f672d85a7708235009d70d31f8a7698d9370092a9c4"
+    },
+    "redis": {
+      "version": "7.4.12",
+      "image": "redis@sha256:1cf73a2f04808e55a8bd2f5706c2aa0ebb0f71938f93deb7af79f48311cd5cb9"
+    },
+    "clickhouse": {
+      "version": "26.3.62.3",
+      "image": "clickhouse/clickhouse-server@sha256:874bd5e04df7026d0f3146a1ec4a3b07dd01e3ddadfcaf8bf94c334ec9066857"
+    },
+    "minio": {
+      "version": "RELEASE.2026-10-23T20-06-51Z",
+      "image": "cgr.dev/chainguard/minio@sha256:cee9a8e35885e93f14b3cb32960e5017aff74e2adfb52ba87c65003b0163886b"
+    },
+    "langfuse-worker": {
+      "version": "4.75.0",
+      "image": "docker.langfuse.com/langfuse/langfuse-worker@sha256:348d49987181238ba86c654510b29672dec48ddf5c9cfebc9c66bb2d3ac80ea2"
+    },
+    "langfuse-web": {
+      "version": "4.75.0",
+      "image": "docker.langfuse.com/langfuse/langfuse@sha256:282c8736d00700e2e804c170870b58a12073783ba8ecebc4de2b98f16add404b"
+    }
+  },
+  "tested_host": {
+    "os": "Ubuntu 24.04.5 LTS",
+    "python": "3.14.2",
+    "codex_cli": "0.166.0",
+    "docker_client": "29.9.2-2",
+    "docker_engine": "29.9.2-2",
+    "docker_compose": "5.6.1",
+    "node_for_js_checks": "24.22.2"
+  },
+  "application_runtime": {
+    "python_minimum": "3.11",
+    "python_packages": [],
+    "npm_packages": [],
+    "container_node": "24.22.1",
+    "tested_model": "gpt-6.1-sol"
+  },
+  "security": {
+    "complete_review": false,
+    "authorization": "Explicit user approval in this Codespace allows incomplete checks; confirmed vulnerability findings still block affected candidates.",
+    "candidate_receipts": [
+      "../observability/preflight-20261105.json",
+      "../observability/mitmproxy-preflight-20261105.json"
+    ],
+    "excluded": [
+      "CLIProxyAPI",
+      "mitmproxy",
+      "LiteLLM"
+    ]
+  }
+}

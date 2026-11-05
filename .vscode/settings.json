@@ -1,0 +1,9 @@
+{
+  "remote.portsAttributes": {
+    "3000": {"label": "Langfuse", "onAutoForward": "notify"},
+    "8766": {"label": "TTGL projects and tasks", "onAutoForward": "notify"},
+    "9090": {"label": "Langfuse S3 API", "onAutoForward": "silent"},
+    "9091": {"label": "Langfuse S3 console", "onAutoForward": "silent"},
+    "8317": {"label": "Local Codex capture (keep unforwarded)", "onAutoForward": "ignore"}
+  }
+}

@@ -4,6 +4,16 @@ Current scope, 5 November 2026: consolidate history and continuously collect fut
 
 ## Latest Codespaces deployment — running
 
+Reproducible configuration is now checked in under
+`tools/usage-monitor/config/`: the active deployment lock, secret-free Compose
+template, runtime defaults, Codex provider TOML and analyst MCP template.
+`observability/setup_local.py` prepares private files, explicitly downloads the
+fixed images when requested, checks installed versions, registers MCP, installs
+the owned `ttgl-observability` user profile, starts the supervisor and configures
+the dashboard. See the linked usage-monitor README for the complete sequence.
+The template was verified to reproduce the existing private Compose document
+exactly while retaining its credentials. Runtime data remains outside Git.
+
 The user explicitly authorized installation/execution in this Codespace unless
 confirmed vulnerabilities are present. This supersedes the earlier stop on
 incomplete reviews for this environment only. The existing Langfuse app candidate

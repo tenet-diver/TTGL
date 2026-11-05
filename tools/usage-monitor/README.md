@@ -1,5 +1,89 @@
 # TTGL Usage Observatory
 
+## Reproduce this deployment
+
+All non-secret deployment configuration is checked in:
+
+| Source | Purpose |
+|---|---|
+| [deployment.lock.json](config/deployment.lock.json) | Six active image digests and observed service versions; tested Python, Codex, Docker/Compose and Node versions |
+| [compose.template.json](config/compose.template.json) | Networks, volumes, ports, memory/CPU limits, health checks, application settings and secret placeholders |
+| [defaults.json](config/defaults.json) | Private state paths, ports, collector intervals, upstream and capture limits |
+| [codex-provider.toml](config/codex-provider.toml) | Responses API provider, existing ChatGPT authentication, HTTP/SSE mode and disabled request compression |
+| [mcp.template.json](config/mcp.template.json) | Analyst MCP command and portable path placeholders |
+| [Codespaces settings](../../.vscode/settings.json) | Port labels and automatic-forwarding behavior |
+
+The active lock is separate from `observability/candidate-images.json`, which
+preserves rejected/historical candidates. No floating image tags or third-party
+Python/npm packages are needed by the current app. Container digests pin the
+service artifacts; host tools are pre-existing prerequisites whose tested
+versions are recorded, not automatically installed or upgraded. Python 3.11+
+is required for the checked-in TOML configuration; the tested interpreter is
+3.14.2 and Codex CLI is 0.166.0.
+
+From the repository root, on a machine where the dependency policy permits the
+locked images:
+
+```sh
+# Generate private credentials/config; repeated preparation preserves secrets.
+python3 tools/usage-monitor/observability/setup_local.py prepare
+
+# Explicit first-time image download. Skip if the locked images are present.
+python3 tools/usage-monitor/observability/setup_local.py pull
+
+# Verify prerequisites, the tested Codex version and all six local images.
+python3 tools/usage-monitor/observability/setup_local.py doctor
+
+# Register analyst MCP and install the explicitly selected, owned Codex profile.
+python3 tools/usage-monitor/observability/setup_local.py configure-codex
+
+# Foreground supervisor: preserves the existing named volumes and delivery ledger.
+python3 tools/usage-monitor/observability/setup_local.py start
+```
+
+In another terminal, create/update the native dashboard after Langfuse becomes
+healthy, or inspect process/container status:
+
+```sh
+python3 tools/usage-monitor/observability/setup_local.py dashboard
+python3 tools/usage-monitor/observability/setup_local.py status
+```
+
+URLs are derived from the Codespaces environment; ordinary local machines use
+localhost. Overrides are available via `--langfuse-url`, `--media-url`, `--state`,
+`--workspace-data` and `--codex-root`. `--codex-root` chooses the transcript source;
+profile installation uses the active user's existing Codex configuration home.
+Provider keys belong in a user profile or CLI overrides, not a project-local
+`.codex/config.toml`, as specified in the
+[official OpenAI configuration reference](https://learn.chatgpt.com/docs/config-file/config-reference).
+
+Start a new traced Codex session with either:
+
+```sh
+codex --profile ttgl-observability
+python3 tools/usage-monitor/observability/codex_traced.py
+```
+
+The profile includes analyst MCP and the capture provider. The wrapper applies
+the checked-in provider settings to its invocation and uses any existing user
+MCP configuration. Neither changes the default provider in user configuration.
+Existing Codex login is reused; no API/OAuth credentials are stored in Git.
+
+Forward 3000/8766 and keep forwarded ports private. In Codespaces this can be
+made explicit without publishing anything:
+
+```sh
+gh codespace ports visibility 3000:private 8766:private 9090:private 9091:private
+```
+
+Use Ctrl-C on the supervisor to stop its three local processes; Docker services
+and persistent data remain. Stop those services without removing data using
+`docker compose -f work/security/langfuse-stack/compose.json stop`. Never use
+`down --volumes` or remove the export ledger for an ordinary restart. Preserve
+private credentials/encryption keys, database/S3 volumes, workspace SQLite and
+delivery receipts together when migrating an existing deployment. Fresh setup
+recreates software/configuration, not private history or login credentials.
+
 ## Current Codespaces workspace — 5 November 2026
 
 The project/task application is `observability/workspace.py`, backed by private

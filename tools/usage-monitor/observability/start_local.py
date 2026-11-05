@@ -15,6 +15,7 @@ import time
 import urllib.request
 
 HERE = Path(__file__).resolve().parent
+DEFAULTS = json.loads((HERE.parent / 'config/defaults.json').read_text())
 
 
 def main():
@@ -70,7 +71,7 @@ def main():
             runtime = dict(pid=os.getpid(), children={name: p.pid for name, p in processes.items()},
                            langfuse_url=args.langfuse_url, workspace_port=8766, capture_port=8317)
             (args.state / 'runtime.json').write_text(json.dumps(runtime, indent=2))
-            time.sleep(5)
+            time.sleep(DEFAULTS['collection']['supervisor_poll_seconds'])
     finally:
         for process in processes.values():
             if process.poll() is None:

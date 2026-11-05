@@ -19,6 +19,7 @@ import uuid
 import baseline
 bridge = baseline.bridge
 HERE = Path(__file__).resolve().parent
+DEFAULTS = json.loads((HERE.parent / 'config/defaults.json').read_text())
 
 
 def now():
@@ -367,7 +368,7 @@ def main():
     parser.add_argument('--data', type=Path, required=True)
     parser.add_argument('--codex-root', type=Path, default=Path.home() / '.codex')
     parser.add_argument('--langfuse-url', default='http://localhost:3000')
-    parser.add_argument('--port', type=int, default=8766)
+    parser.add_argument('--port', type=int, default=DEFAULTS['ports']['workspace'])
     parser.add_argument('--capture-root', type=Path)
     args = parser.parse_args()
     os.umask(0o077)
@@ -379,7 +380,7 @@ def main():
                 store.scan()
             except Exception as exc:
                 print(type(exc).__name__, str(exc)[:200], flush=True)
-            time.sleep(5)
+            time.sleep(DEFAULTS['collection']['workspace_poll_seconds'])
     threading.Thread(target=watch, daemon=True).start()
     server = ThreadingHTTPServer(('127.0.0.1', args.port), Handler)
     server.store = store

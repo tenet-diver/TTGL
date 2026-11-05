@@ -14,7 +14,8 @@ import time
 
 import bridge
 
-LIMIT = 256 * 1024
+DEFAULTS = json.loads((Path(__file__).resolve().parents[1] / 'config/defaults.json').read_text())
+LIMIT = DEFAULTS['capture']['content_display_limit_bytes']
 
 
 def safe_content(value):
@@ -183,7 +184,7 @@ def run(args):
             raise RuntimeError('Export stopped; see private status and reconcile delivery before retrying')
         if not args.watch:
             break
-        time.sleep(15)
+        time.sleep(DEFAULTS['collection']['native_poll_seconds'])
 
 
 if __name__ == '__main__':

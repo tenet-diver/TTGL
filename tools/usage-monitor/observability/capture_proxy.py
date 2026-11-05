@@ -23,8 +23,9 @@ import uuid
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'langfuse'))
 from live_export import safe_content
 
-MAX_BODY = 4 * 1024 * 1024
-MAX_CAPTURE = 1024 * 1024
+DEFAULTS = json.loads((Path(__file__).resolve().parents[1] / 'config/defaults.json').read_text())
+MAX_BODY = DEFAULTS['capture']['request_limit_bytes']
+MAX_CAPTURE = DEFAULTS['capture']['response_capture_limit_bytes']
 
 
 def sanitized(value):
@@ -109,7 +110,7 @@ class Handler(BaseHTTPRequestHandler):
         if not 0 <= length <= MAX_BODY:
             return self.error(413, 'Request too large')
         # Preserve existing private captures rather than silently rotating evidence.
-        if sum(p.stat().st_size for p in self.server.destination.glob('*.json')) > 128 * 1024 * 1024:
+        if sum(p.stat().st_size for p in self.server.destination.glob('*.json')) > DEFAULTS['capture']['retained_capture_quota_bytes']:
             return self.error(507, 'Private capture quota reached; archive evidence before continuing')
         raw = self.rfile.read(length)
         ident = uuid.uuid4().hex
@@ -188,8 +189,8 @@ class Handler(BaseHTTPRequestHandler):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--destination', type=Path, required=True)
-    p.add_argument('--upstream', default='https://chatgpt.com/backend-api/codex')
-    p.add_argument('--port', type=int, default=8317)
+    p.add_argument('--upstream', default=DEFAULTS['capture']['upstream'])
+    p.add_argument('--port', type=int, default=DEFAULTS['ports']['capture'])
     p.add_argument('--collection-state', type=Path)
     args = p.parse_args()
     upstream = urllib.parse.urlsplit(args.upstream)

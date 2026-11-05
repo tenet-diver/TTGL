@@ -1,0 +1,13 @@
+# Tested with Codex CLI 0.166.0. Used by codex_traced.py as command-local overrides.
+# This is not a project-local .codex/config.toml: provider keys are user/CLI scoped.
+model_provider = "ttgl_capture"
+
+[features]
+enable_request_compression = false
+
+[model_providers.ttgl_capture]
+name = "TTGL Capture"
+base_url = "http://127.0.0.1:8317"
+wire_api = "responses"
+requires_openai_auth = true
+supports_websockets = false

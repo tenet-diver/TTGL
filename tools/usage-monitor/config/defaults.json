@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "state_directory": "work/security/langfuse-stack",
+  "workspace_directory": "work/security/workspace",
+  "codex_directory": "~/.codex",
+  "ports": {"langfuse": 3000, "workspace": 8766, "capture": 8317, "s3": 9090, "s3_console": 9091},
+  "collection": {"native_poll_seconds": 15, "workspace_poll_seconds": 5, "supervisor_poll_seconds": 5},
+  "capture": {
+    "upstream": "https://chatgpt.com/backend-api/codex",
+    "request_limit_bytes": 4194304,
+    "response_capture_limit_bytes": 1048576,
+    "retained_capture_quota_bytes": 134217728,
+    "content_display_limit_bytes": 262144
+  }
+}

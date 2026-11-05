@@ -1,0 +1,11 @@
+{
+  "name": "ttgl-analyst",
+  "command": "${PYTHON}",
+  "args": [
+    "${REPO}/tools/usage-monitor/observability/analyst_mcp.py",
+    "--data", "${WORKSPACE_DATA}",
+    "--codex-root", "${CODEX_ROOT}",
+    "--langfuse-url", "${PUBLIC_URL}",
+    "--capture-root", "${STATE}/captures"
+  ]
+}
