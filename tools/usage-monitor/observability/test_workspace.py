@@ -90,7 +90,7 @@ class WorkspaceTests(unittest.TestCase):
         self.store.scan()
         response = analyst_mcp.handle(self.store, dict(method='initialize', params={'protocolVersion': '2025-06-18'}))
         self.assertEqual(response['protocolVersion'], '2025-06-18')
-        self.assertEqual(len(analyst_mcp.handle(self.store, dict(method='tools/list'))['tools']), 9)
+        self.assertEqual(len(analyst_mcp.handle(self.store, dict(method='tools/list'))['tools']), 10)
         result = analyst_mcp.handle(self.store, dict(method='tools/call', params=dict(name='query_activity', arguments={'section': 'summary'})))
         self.assertFalse(result['isError'])
         data = json.loads(result['content'][0]['text'])
@@ -154,6 +154,41 @@ class WorkspaceTests(unittest.TestCase):
         self.assertTrue(any(r['bytes'] == 40000 for r in frozen['baseline']['events']))
         self.assertIsNone(frozen['baseline']['cash_cost'])
         self.assertEqual(list_experiments(self.store, project='unrelated'), [])
+
+    def test_compact_evidence_keeps_original_access_and_coverage(self):
+        original = ' abcdef012345 Downloading 12B\nError: disk quota\n... command output truncated for persistence ...\n'
+        self.rows[4]['payload']['item']['aggregated_output'] = original
+        self.source.write_text(''.join(json.dumps(r) + '\n' for r in self.rows))
+        before = self.source.read_bytes()
+        self.store.scan()
+        def read(view):
+            response = analyst_mcp.handle(self.store, dict(method='tools/call', params=dict(
+                name='read_evidence', arguments=dict(id='s:tool:tool', view=view))))
+            self.assertFalse(response['isError'])
+            return json.loads(response['content'][0]['text'])
+        result = read('pull_progress')
+        self.assertTrue(result['retention']['incomplete'])
+        self.assertEqual(result['presentation']['removed_lines'], 1)
+        self.assertIn('Error: disk quota', result['evidence'])
+        self.assertNotIn('Downloading 12B', result['evidence'])
+        self.assertEqual(json.loads(read('raw')['evidence'])['aggregated_output'], original)
+        self.assertEqual(self.source.read_bytes(), before)
+
+    def test_trial_measurements_are_immutable_and_keep_requires_gate(self):
+        from analyst_experiments import plan_experiment, record_evaluation, review_experiment, list_experiments
+        self.store.scan()
+        _, task = self.define_task()
+        self.store.mutate('assign', dict(session_id='s', turn_id='t', task_id=task))
+        proposal = plan_experiment(self.store, dict(task_id=task, title='Trial', change='One change',
+            metrics='Total tokens', quality_gate='All checks', overhead='Count it', rollback='Restore'))
+        evaluation = record_evaluation(self.store, proposal['id'], dict(id='trial'),
+            dict(acceptance_passed=False, raw_total_tokens=100, compact_total_tokens=50), 'a'*64)
+        with self.assertRaises(ValueError):
+            review_experiment(self.store, dict(evaluation_id=evaluation, verdict='keep', notes='Looks cheap'))
+        review_experiment(self.store, dict(evaluation_id=evaluation, verdict='inconclusive', notes='Quality failed'))
+        result = list_experiments(self.store)[0]
+        self.assertFalse(result['evaluations'][0]['measurements']['acceptance_passed'])
+        self.assertEqual(result['evaluations'][0]['reviews'][0]['verdict'], 'inconclusive')
 
     def test_conflicting_usage_is_not_silently_overwritten(self):
         self.store.scan()

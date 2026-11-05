@@ -1,0 +1,20 @@
+{
+  "id": "progress-replay-001",
+  "registered_at": "2026-11-05",
+  "hypothesis": "The observed analyst's narrow Docker progress filter reduces total Codex tokens for interpreting the retained pull result without losing required facts.",
+  "scope": "A diagnostic replay, not a fresh image pull or full coding task. One historical success log and two explicitly synthetic failure variants of that log.",
+  "source_event": "01a1ac82-5936-7301-9d02-53f0b436139d:tool:exec-8d2df99c-c711-4ed0-8e17-57d079260e36",
+  "proposal_id": "1d394c92734f457f91d4fb201b2f5e69",
+  "model": "gpt-6.1-sol",
+  "conditions": ["raw", "compact"],
+  "cases": [
+    {"id":"recorded-success", "order":["raw","compact"], "synthetic":false, "exit_code":0, "action":"verify_services", "diagnostic_contains":"truncat"},
+    {"id":"credential-failure", "order":["compact","raw"], "synthetic":true, "exit_code":1, "append":"\nError response from daemon: unauthorized: authentication required for registry.example.test/private\n", "action":"fix_credentials", "diagnostic_contains":"auth"},
+    {"id":"unrecognized-diagnostic", "order":["raw","compact"], "synthetic":true, "exit_code":1, "append":"\nOperator diagnostic: Downloading is blocked by disk quota; do not start stack until disk quota is fixed.\n", "action":"investigate", "diagnostic_contains":"quota"}
+  ],
+  "quality_gate": "Every run reports exit code, all six image digests, incomplete source log, expected action and required diagnostic. Exact automated checks are frozen before invocation. Both arms must pass every case.",
+  "acceptance": "At least 10% lower pooled native total model tokens and all quality checks pass. Report every pair and every failure. Timing descriptive only. No statistical generalization.",
+  "accounting": "Deduplicate native response IDs. Include all model input/output and fallback retrievals. Cached input is a subset, not extra. Record wall time, tool response bytes, compaction CPU time and raw hashes. Account for analyst/evaluation overhead separately; actual USD unknown.",
+  "execution": "Fresh Codex session per cell, same prompt/tools/model/settings; sequential alternating order. One attempt per cell, no retries. Fixed recorded input; full raw retrieval available in both arms. Stop on ambiguous invocation. Captured model request/response pairs retained.",
+  "rollback": "Do not enable filtering on any quality regression, missing original log, unknown format loss, or failure to meet the token gate. Keep the original logs."
+}

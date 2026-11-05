@@ -314,3 +314,43 @@ calls, interviews, research overhead, failures and limitations. The reusable stu
 uses a private database clone; its command-local MCP approval applies only to that clone.
 It makes real model calls through the local proxy. Do not automatically repeat failed or
 ambiguous invocations. Model authorization remains necessary for new studies.
+
+### Measured progress-output improvement
+
+The analyst completed a measured improvement cycle: it rejected a failed first trial,
+recommended an explicit coverage fix, then reviewed a passing comparison and tried the
+candidate against the original evidence. The registered diagnostic replay used **45.6%
+fewer native model tokens**, with all six runs passing their required quality checks. This is a bounded
+log-interpretation result, not proof of whole coding-task or cash savings.
+
+```sh
+ttgl read_evidence --args '{"id":"EVENT_ID","view":"pull_progress","limit":"16000"}'
+ttgl query_activity --args '{"section":"experiments"}'
+ttgl query_activity --args '{"section":"experiment_accounting"}'
+```
+
+The view removes only recognized transient Docker plain-text progress lines. It retains
+terminal outcomes, digests, errors, warnings, unfamiliar lines, source truncation markers
+and raw access. `view=raw` remains the default. Known native truncation is surfaced outside
+the excerpt; absence of a marker does not establish complete coverage. For saved log files,
+`python3 tools/usage-monitor/observability/progress_output.py PATH` emits the same presentation
+without changing the file. This does not automatically filter ordinary Codex shell output.
+
+The app's Experiments dialog contains both trials, immutable measured results, analyst
+verdicts and an accrued research-cost ledger. The ledger shows no net first-use saving.
+See [measured results and limitations](studies/progress-replay-results-002.md).
+
+Registered replay execution is explicit, makes real model calls, has no automatic retries,
+and refuses to reuse an existing run directory:
+
+```sh
+python3 tools/usage-monitor/observability/progress_trial.py run PRIVATE_DIRECTORY \
+  --protocol tools/usage-monitor/studies/progress-replay-protocol-002.json
+python3 tools/usage-monitor/observability/publish_progress_trial.py PRIVATE_DIRECTORY
+```
+
+`publish_analyst_session.py DIRECTORY` imports observed analyst reviews and meters their
+native overhead. `account_progress_trial.py` appends the current setup's accrued token
+accounting snapshot. These local pilot utilities target this registered study and existing
+proposal; they are not a general distributed experiment scheduler. Completed/ambiguous runs
+must not be retried or silently replaced.

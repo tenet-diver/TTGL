@@ -8,7 +8,8 @@ import sys
 from workspace import Store
 from workspace import bridge
 from capture_proxy import sanitized
-from analyst_experiments import list_experiments, plan_experiment
+from progress_output import compact
+from analyst_experiments import list_experiments, plan_experiment, review_experiment
 
 
 def schema(properties, required=()):
@@ -18,7 +19,7 @@ def schema(properties, required=()):
 
 TOOLS = [
     dict(name='query_activity', description='Query native Codex task/project evidence. Tokens are measured; model latency and cash charges unknown.',
-         inputSchema=schema(dict(project='Optional project ID', task='Optional task ID', category='Optional category', section='summary (compact), events, turns, projects, tasks, opportunities, rules, wire_captures, agent_analyses, runtime_accounting, experiments or sources', offset='Zero-based events offset (default 0)', limit='Events page size 1..100 (default 20)', sort='Events sort: ts, runtime or bytes (descending)', kind='Events kind: tool or generation', search='Case-insensitive substring of operation name'))),
+         inputSchema=schema(dict(project='Optional project ID', task='Optional task ID', category='Optional category', section='summary (compact), events, turns, projects, tasks, opportunities, rules, wire_captures, agent_analyses, runtime_accounting, experiments, experiment_accounting or sources', offset='Zero-based events offset (default 0)', limit='Events page size 1..100 (default 20)', sort='Events sort: ts, runtime or bytes (descending)', kind='Events kind: tool or generation', search='Case-insensitive substring of operation name'))),
     dict(name='create_project', description='Define a project and repository scope. Does not authorize collection from new sources.',
          inputSchema=schema(dict(name='Project name', repo='Repository path', scope='Analysis scope'), ('name', 'repo'))),
     dict(name='create_task', description='Define intended outcome and acceptance criteria before task efficiency analysis.',
@@ -33,9 +34,10 @@ TOOLS = [
          inputSchema=schema(dict(id='Opportunity ID', decision='review, declined or deferred', implementation='not_started, prepared, applied or reverted',
                                  evaluation='not_measured, trial_planned, in_progress, improved, regressed or inconclusive', notes='Evidence, concrete plan, trial results and rollback notes'), ('id',))),
     dict(name='read_evidence', description='Read one retained native operation or one redacted captured HTTP pair by its evidence ID. Opaque reasoning is omitted. Output is bounded.',
-         inputSchema=schema(dict(id='Event ID from query_activity events, or capture ID from wire_captures', offset='Character offset, default 0', limit='Characters 1..16000, default 4000'), ('id',))),
+         inputSchema=schema(dict(id='Event ID from query_activity events, or capture ID from wire_captures', offset='Character offset, default 0', limit='Characters 1..16000, default 4000', view='raw (default) or pull_progress; removes only recognized transient Docker progress and preserves raw access'), ('id',))),
 ]
 TOOLS.append(dict(name='plan_experiment', description='Save a proposed experiment with a frozen assigned-task baseline, measurement plan and quality/rollback guards. List experiments and opportunities first to check for existing proposals. Does not execute anything.', inputSchema=schema(dict(task_id='Assigned baseline task ID', title='Short experiment title', change='One changed harness variable', metrics='Primary metric, comparison design and decision threshold', quality_gate='Acceptance criteria and quality retention threshold', overhead='Account for analyst, implementation and evaluation costs', rollback='When and how to revert'), ('task_id', 'title', 'change', 'metrics', 'quality_gate', 'overhead', 'rollback'))))
+TOOLS.append(dict(name='review_experiment', description='Record an evidence-based keep, reject or inconclusive verdict on measured trial results. Measurements cannot be edited by agents. Keep requires the registered acceptance gate to pass.', inputSchema=schema(dict(evaluation_id='Measured evaluation ID from experiments', verdict='keep, reject or inconclusive', notes='Evidence IDs, interpretation, scope, overhead and remaining limitations'), ('evaluation_id', 'verdict', 'notes'))))
 for tool in TOOLS:
     tool['annotations'] = dict(readOnlyHint=tool['name'] in ('query_activity', 'read_evidence'), destructiveHint=False, openWorldHint=False)
 
@@ -94,19 +96,46 @@ def handle(store, request):
                         result = sanitized(json.loads(path.read_text()))
                 if result is None:
                     raise ValueError('Evidence unavailable in this authorized source')
+                view = arguments.get('view', 'raw')
+                if view not in ('raw', 'pull_progress'):
+                    raise ValueError('view must be raw or pull_progress')
+                presentation = None
+                retention = None
+                if isinstance(result, dict) and isinstance(result.get('aggregated_output'), str):
+                    retention = dict(incomplete=True if 'command output truncated for persistence' in result['aggregated_output'] else None,
+                                     exit_code=result.get('exit_code'), coverage_basis='Known native persistence marker; absence does not prove completeness')
+                    if view == 'pull_progress':
+                        presentation = compact(result['aggregated_output'])
+                        result = {**result, 'aggregated_output': presentation.pop('output')}
+                elif view == 'pull_progress':
+                    raise ValueError('pull_progress requires native command output; use raw for other evidence')
                 text = json.dumps(result)
                 offset, limit = int(arguments.get('offset', '0')), int(arguments.get('limit', '4000'))
                 if offset < 0 or not 1 <= limit <= 16000:
                     raise ValueError('offset must be >=0 and limit 1..16000')
                 end = min(offset + limit, len(text))
                 result = dict(id=ident, evidence=text[offset:end], offset=offset, total_characters=len(text),
-                              next_offset=end if end < len(text) else None, truncated=end < len(text), source='native or explicit proxy evidence', raw_reasoning_included=False)
+                              next_offset=end if end < len(text) else None, truncated=end < len(text), source='native or explicit proxy evidence', raw_reasoning_included=False,
+                              retention=retention, presentation=presentation, view=view, raw_access='Same ID with view=raw; missing original content cannot be recovered')
+            elif name == 'review_experiment':
+                result = review_experiment(store, arguments)
             elif name == 'plan_experiment':
                 result = plan_experiment(store, arguments)
             elif name == 'query_activity':
-                if arguments.get('section') == 'experiments':
+                if arguments.get('section') in ('experiments', 'experiment_accounting'):
                     records = list_experiments(store, arguments.get('task'), arguments.get('project'))
-                    result = dict(experiments=[{**r, 'baseline': {k: v for k, v in r['baseline'].items() if k != 'events'}} for r in records])
+                    if arguments.get('section') == 'experiment_accounting':
+                        result = dict(experiment_accounting=[])
+                        for record in records:
+                            if not record['accounting']:
+                                continue
+                            latest = record['accounting'][-1]
+                            payload = latest['payload']
+                            components = {name: {**value, 'native_response_ids': value['native_response_ids'][:1]+value['native_response_ids'][-1:],
+                                'native_response_count': len(value['native_response_ids'])} for name, value in payload['components'].items()}
+                            result['experiment_accounting'].append(dict(experiment_id=record['id'], **{**latest, 'payload': {**payload, 'components': components}}))
+                    else:
+                        result = dict(experiments=[{**r, 'baseline': {k: v for k, v in r['baseline'].items() if k != 'events'}} for r in records])
                     return dict(content=[dict(type='text', text=json.dumps(result))], isError=False)
                 result = store.report(event_limit=None, **{k: arguments[k] for k in ('project', 'task', 'category') if k in arguments})
                 scope_count, prior_count = result['event_count'], len(result['agent_analyses'])

@@ -1,0 +1,376 @@
+{
+  "model": "gpt-6.1-sol",
+  "codex_cli": "0.166.0",
+  "evaluations": [
+    {
+      "id": "progress-replay-001",
+      "protocol_sha256": "6341a57356e244ede15faab393552b516e06f94e6f6086415ca5686e95da3978",
+      "candidate_sha256": "172459c1bb09d58e17d1ea9cfc49ef01803abd392e1075b8e5381265c6706c77",
+      "source_sha256": "3475bf08b2afe168e2c910e7cca3652df93913558649537ad8cbbc186e5fc114",
+      "scope": "A diagnostic replay, not a fresh image pull or full coding task. One historical success log and two explicitly synthetic failure variants of that log.",
+      "raw_total_tokens": 406043,
+      "compact_total_tokens": 177054,
+      "token_reduction_fraction": 0.5639525863024359,
+      "raw_wall_seconds": 71.015651695001,
+      "compact_wall_seconds": 52.58883385499939,
+      "quality_passed": false,
+      "acceptance_passed": false,
+      "cash_cost": null,
+      "cells": [
+        {
+          "case": "recorded-success",
+          "condition": "raw",
+          "synthetic": false,
+          "task_id": "426e6110b838494a9ec548d2b3018d47",
+          "usage": {
+            "input_tokens": 162969,
+            "cached_input_tokens": 121216,
+            "output_tokens": 500,
+            "total_tokens": 163469
+          },
+          "wall_seconds": 27.118360188000224,
+          "compaction_seconds": 0,
+          "presented_bytes": 65536,
+          "original_bytes": 65536,
+          "tool_calls": 3,
+          "quality": {
+            "checks": {
+              "exit_code": true,
+              "all_digests": true,
+              "incomplete": false,
+              "action": true,
+              "diagnostic": false
+            },
+            "passed": false
+          },
+          "captures_complete": true
+        },
+        {
+          "case": "recorded-success",
+          "condition": "compact",
+          "synthetic": false,
+          "task_id": "cbbc66b45c194a01b1d6b5c59d36de37",
+          "usage": {
+            "input_tokens": 49823,
+            "cached_input_tokens": 31488,
+            "output_tokens": 414,
+            "total_tokens": 50237
+          },
+          "wall_seconds": 17.21306546699998,
+          "compaction_seconds": 0.0013524369987862883,
+          "presented_bytes": 4750,
+          "original_bytes": 65536,
+          "tool_calls": 1,
+          "quality": {
+            "checks": {
+              "exit_code": true,
+              "all_digests": true,
+              "incomplete": true,
+              "action": true,
+              "diagnostic": true
+            },
+            "passed": true
+          },
+          "captures_complete": true
+        },
+        {
+          "case": "credential-failure",
+          "condition": "compact",
+          "synthetic": true,
+          "task_id": "2cffa1796356405c94938d8b4ba33591",
+          "usage": {
+            "input_tokens": 49940,
+            "cached_input_tokens": 31488,
+            "output_tokens": 384,
+            "total_tokens": 50324
+          },
+          "wall_seconds": 15.977275418999852,
+          "compaction_seconds": 0.001474022999900626,
+          "presented_bytes": 4851,
+          "original_bytes": 65637,
+          "tool_calls": 1,
+          "quality": {
+            "checks": {
+              "exit_code": true,
+              "all_digests": true,
+              "incomplete": true,
+              "action": true,
+              "diagnostic": true
+            },
+            "passed": true
+          },
+          "captures_complete": true
+        },
+        {
+          "case": "credential-failure",
+          "condition": "raw",
+          "synthetic": true,
+          "task_id": "b9f5e50ea53a4d4d9966bcd8273984e1",
+          "usage": {
+            "input_tokens": 100895,
+            "cached_input_tokens": 50048,
+            "output_tokens": 485,
+            "total_tokens": 101380
+          },
+          "wall_seconds": 18.2978405319991,
+          "compaction_seconds": 0,
+          "presented_bytes": 65637,
+          "original_bytes": 65637,
+          "tool_calls": 2,
+          "quality": {
+            "checks": {
+              "exit_code": true,
+              "all_digests": true,
+              "incomplete": false,
+              "action": true,
+              "diagnostic": true
+            },
+            "passed": false
+          },
+          "captures_complete": true
+        },
+        {
+          "case": "unrecognized-diagnostic",
+          "condition": "raw",
+          "synthetic": true,
+          "task_id": "54661ae900794814848585f0ff6891ba",
+          "usage": {
+            "input_tokens": 140626,
+            "cached_input_tokens": 102528,
+            "output_tokens": 568,
+            "total_tokens": 141194
+          },
+          "wall_seconds": 25.599450975001673,
+          "compaction_seconds": 0,
+          "presented_bytes": 65642,
+          "original_bytes": 65642,
+          "tool_calls": 3,
+          "quality": {
+            "checks": {
+              "exit_code": true,
+              "all_digests": true,
+              "incomplete": true,
+              "action": true,
+              "diagnostic": true
+            },
+            "passed": true
+          },
+          "captures_complete": true
+        },
+        {
+          "case": "unrecognized-diagnostic",
+          "condition": "compact",
+          "synthetic": true,
+          "task_id": "9b55a2982890427e9eaec2bd75b69b64",
+          "usage": {
+            "input_tokens": 76064,
+            "cached_input_tokens": 49664,
+            "output_tokens": 429,
+            "total_tokens": 76493
+          },
+          "wall_seconds": 19.398492968999562,
+          "compaction_seconds": 0.00135280999893439,
+          "presented_bytes": 4856,
+          "original_bytes": 65642,
+          "tool_calls": 2,
+          "quality": {
+            "checks": {
+              "exit_code": true,
+              "all_digests": true,
+              "incomplete": true,
+              "action": true,
+              "diagnostic": true
+            },
+            "passed": true
+          },
+          "captures_complete": true
+        }
+      ]
+    },
+    {
+      "id": "progress-replay-002",
+      "protocol_sha256": "bfe2660fd9feeec57da9220f1fb7d001a2ab17aa4a9a69a39e40d42af7769e52",
+      "candidate_sha256": "172459c1bb09d58e17d1ea9cfc49ef01803abd392e1075b8e5381265c6706c77",
+      "source_sha256": "3475bf08b2afe168e2c910e7cca3652df93913558649537ad8cbbc186e5fc114",
+      "scope": "Development diagnostic replay with explicit native-log completeness metadata in both arms. Same historical success log and two synthetic failure variants; not an independent validation or full coding task.",
+      "raw_total_tokens": 306143,
+      "compact_total_tokens": 166612,
+      "token_reduction_fraction": 0.4557706692624035,
+      "raw_wall_seconds": 68.3213549989996,
+      "compact_wall_seconds": 54.79208765600197,
+      "quality_passed": true,
+      "acceptance_passed": true,
+      "cash_cost": null,
+      "cells": [
+        {
+          "case": "recorded-success",
+          "condition": "raw",
+          "synthetic": false,
+          "task_id": "a9023e4b17424ddd8eae73638902fa11",
+          "usage": {
+            "input_tokens": 101252,
+            "cached_input_tokens": 65664,
+            "output_tokens": 543,
+            "total_tokens": 101795
+          },
+          "wall_seconds": 22.944843130000663,
+          "compaction_seconds": 0,
+          "presented_bytes": 65536,
+          "original_bytes": 65536,
+          "tool_calls": 2,
+          "quality": {
+            "checks": {
+              "exit_code": true,
+              "all_digests": true,
+              "incomplete": true,
+              "action": true,
+              "diagnostic": true
+            },
+            "passed": true
+          },
+          "captures_complete": true
+        },
+        {
+          "case": "recorded-success",
+          "condition": "compact",
+          "synthetic": false,
+          "task_id": "ddde36c9c841493491b11bc3253b86b2",
+          "usage": {
+            "input_tokens": 49969,
+            "cached_input_tokens": 31488,
+            "output_tokens": 403,
+            "total_tokens": 50372
+          },
+          "wall_seconds": 16.531795299000805,
+          "compaction_seconds": 0.002327465999769629,
+          "presented_bytes": 4750,
+          "original_bytes": 65536,
+          "tool_calls": 1,
+          "quality": {
+            "checks": {
+              "exit_code": true,
+              "all_digests": true,
+              "incomplete": true,
+              "action": true,
+              "diagnostic": true
+            },
+            "passed": true
+          },
+          "captures_complete": true
+        },
+        {
+          "case": "credential-failure",
+          "condition": "compact",
+          "synthetic": true,
+          "task_id": "1d2440087c704511a950e33c88b45ce3",
+          "usage": {
+            "input_tokens": 65465,
+            "cached_input_tokens": 41728,
+            "output_tokens": 393,
+            "total_tokens": 65858
+          },
+          "wall_seconds": 19.52082574400083,
+          "compaction_seconds": 0.002521395001167548,
+          "presented_bytes": 4851,
+          "original_bytes": 65637,
+          "tool_calls": 1,
+          "quality": {
+            "checks": {
+              "exit_code": true,
+              "all_digests": true,
+              "incomplete": true,
+              "action": true,
+              "diagnostic": true
+            },
+            "passed": true
+          },
+          "captures_complete": true
+        },
+        {
+          "case": "credential-failure",
+          "condition": "raw",
+          "synthetic": true,
+          "task_id": "789c3a7eb7664923a510e92454fca850",
+          "usage": {
+            "input_tokens": 101331,
+            "cached_input_tokens": 65664,
+            "output_tokens": 589,
+            "total_tokens": 101920
+          },
+          "wall_seconds": 24.241803917999277,
+          "compaction_seconds": 0,
+          "presented_bytes": 65637,
+          "original_bytes": 65637,
+          "tool_calls": 2,
+          "quality": {
+            "checks": {
+              "exit_code": true,
+              "all_digests": true,
+              "incomplete": true,
+              "action": true,
+              "diagnostic": true
+            },
+            "passed": true
+          },
+          "captures_complete": true
+        },
+        {
+          "case": "unrecognized-diagnostic",
+          "condition": "raw",
+          "synthetic": true,
+          "task_id": "4ff9b085ce324355ac6ce93074909ce1",
+          "usage": {
+            "input_tokens": 101982,
+            "cached_input_tokens": 59520,
+            "output_tokens": 446,
+            "total_tokens": 102428
+          },
+          "wall_seconds": 21.134707950999655,
+          "compaction_seconds": 0,
+          "presented_bytes": 65642,
+          "original_bytes": 65642,
+          "tool_calls": 2,
+          "quality": {
+            "checks": {
+              "exit_code": true,
+              "all_digests": true,
+              "incomplete": true,
+              "action": true,
+              "diagnostic": true
+            },
+            "passed": true
+          },
+          "captures_complete": true
+        },
+        {
+          "case": "unrecognized-diagnostic",
+          "condition": "compact",
+          "synthetic": true,
+          "task_id": "0ebcbb0b58a641b788c0c6fc983e255c",
+          "usage": {
+            "input_tokens": 49980,
+            "cached_input_tokens": 31488,
+            "output_tokens": 402,
+            "total_tokens": 50382
+          },
+          "wall_seconds": 18.73946661300033,
+          "compaction_seconds": 0.0013596059998235432,
+          "presented_bytes": 4856,
+          "original_bytes": 65642,
+          "tool_calls": 1,
+          "quality": {
+            "checks": {
+              "exit_code": true,
+              "all_digests": true,
+              "incomplete": true,
+              "action": true,
+              "diagnostic": true
+            },
+            "passed": true
+          },
+          "captures_complete": true
+        }
+      ]
+    }
+  ]
+}

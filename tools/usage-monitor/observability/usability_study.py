@@ -40,7 +40,7 @@ def serve(directory):
         print(encoded, flush=True)
 
 
-def run(directory, source):
+def run(directory, source, prompt_path=None):
     directory.mkdir(parents=True, exist_ok=False, mode=0o700)
     (directory / 'data').mkdir(mode=0o700)
     with sqlite3.connect(source / 'workspace.sqlite') as origin, sqlite3.connect(directory / 'data/workspace.sqlite') as target:
@@ -61,6 +61,8 @@ What were you trying to find at any sticking point? What did you expect there?
 Which evidence changed your recommendation? What remains unknown? What would you do next?
 We are testing the product, not your competence. Do not invent measurements or claim savings.
 '''
+    if prompt_path:
+        prompt = prompt_path.read_text()
     (directory / 'prompt.txt').write_text(prompt)
     command = [sys.executable, str(HERE/'codex_traced.py'), 'exec', '--ignore-user-config',
         '--skip-git-repo-check', '-C', str(directory), '-m', 'gpt-6.1-sol', '-s', 'read-only',
@@ -88,8 +90,9 @@ if __name__ == '__main__':
     parser.add_argument('action', choices=['run', 'serve'])
     parser.add_argument('directory', type=Path)
     parser.add_argument('--source', type=Path, default=Path('/workspaces/TTGL/work/security/workspace'))
+    parser.add_argument('--prompt-file', type=Path, help='Optional task script for an observed follow-up')
     args = parser.parse_args()
     if args.action == 'serve':
         serve(args.directory.resolve())
     else:
-        run(args.directory.resolve(), args.source)
+        run(args.directory.resolve(), args.source, args.prompt_file)
