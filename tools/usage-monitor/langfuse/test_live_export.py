@@ -31,6 +31,24 @@ class LiveExportTests(unittest.TestCase):
         self.assertEqual(usage, dict(input=2, input_cached_tokens=8, output=2, total=12))
         self.assertEqual(spans[0]['startTimeUnixNano'], spans[0]['endTimeUnixNano'])
 
+    def test_compression_is_additive_and_never_rewrites_transport_or_usage(self):
+        record=dict(id='capture',state='complete',started_ns=1,ended_ns=2,path='/compress/progress/responses',
+            status=200,request=dict(original='raw tool output'),response=dict(sse_events=[]),capture_schema=2)
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'capture.json';path.write_text(json.dumps(record))
+            legacy=list(live_export.capture_spans(Path(directory)))
+            record.update(compression=dict(policy='progress',changes=[dict(kind='docker-plain-progress-v1')],elapsed_seconds=.001),
+                forwarded_request=dict(original='smaller view'),forwarded_request_bytes=50,request_bytes=100)
+            path.write_text(json.dumps(record))
+            updated=list(live_export.capture_spans(Path(directory)))
+        self.assertEqual(legacy[0],updated[0])
+        self.assertEqual(len(updated),2)
+        raw=json.dumps(updated[1])
+        self.assertIn('smaller view',raw)
+        self.assertIn('raw tool output',raw)
+        self.assertNotIn('usage_details',raw)
+        self.assertNotEqual(updated[0]['spanId'],updated[1]['spanId'])
+
     def test_redaction_and_truncation(self):
         text, truncated = live_export.safe_content('Authorization: Bearer planted-secret ' + 'x' * (live_export.LIMIT + 1))
         self.assertNotIn('planted-secret', text)

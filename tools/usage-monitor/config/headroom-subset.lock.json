@@ -1,0 +1,47 @@
+{
+  "source": "https://github.com/headroomlabs-ai/headroom",
+  "commit": "2d3ee51846435ef5b320eea4806af14e602b0d8c",
+  "license": "Apache-2.0",
+  "upstream_path": "headroom/transforms/lossless_compaction.py",
+  "upstream_sha256": "8d0af03bd1ba93e37822e32ff1146c0794d796c5bdb7040f1cf5bfaa19ce1739",
+  "vendored_sha256": "8f2b1bce1223553fb604d51391f4a53fdb394cbf9301f403772d9242d1e3f7ae",
+  "changes": [
+    "Relative logging import points to local minimal content-safe adapter; transform source otherwise unchanged."
+  ],
+  "dependency_graph": {
+    "lossless_compaction": [
+      "Python stdlib logging, os, re",
+      "local log_safety adapter"
+    ],
+    "local_log_safety": []
+  },
+  "excluded": [
+    "package __init__",
+    "SmartCrusher native extension",
+    "LiteLLM",
+    "tokenizers",
+    "model downloads",
+    "network/telemetry/TOIN",
+    "pip/build/install hooks"
+  ],
+  "review": {
+    "at": "2026-11-05T21:20:09.522514+00:00",
+    "status": "Reviewed source subset; no execution/file/network primitives, no third-party runtime dependencies. This does not security-clear the complete upstream package.",
+    "confirmed_findings_in_subset": [],
+    "advisories": [
+      {
+        "id": "GHSA-h46j-26q3-rggf",
+        "finding": "WebSocket proxy origin validation, affected 0.23.0, patched 0.35.0",
+        "applicability": "Excluded server/provider code; vendored transform module has no sockets, HTTP handlers or credential injection. Not applicable to this subset."
+      }
+    ],
+    "osv_commit_findings": 0
+  },
+  "vendored_files": {
+    "lossless_compaction.py": "8f2b1bce1223553fb604d51391f4a53fdb394cbf9301f403772d9242d1e3f7ae",
+    "log_safety.py": "3b1ebd685bef3f324fdd17ce15ed9036089f63ed6fbfabfba640319f017c67e9",
+    "__init__.py": "acde16765657bc13a9ffca0e9866edeee022162a794a95b140bbd170f5b55e9d",
+    "LICENSE": "f14dd440c8e3152b4d4d324615de8251ddb011dc81f484daad0b6902093539cc",
+    "NOTICE": "3fa8b0af4fc16349a3c0382105618dfcff4e3fbbaee1a6dc497387a62a0a8fc7"
+  }
+}

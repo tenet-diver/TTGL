@@ -376,13 +376,14 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
                     continue
                 body_available = record.get('response_body_available', not response.get('unparsed_body', False) and bool(response))
                 captures.append(dict(id=record['id'], task_id=matching['task_id'] if matching else None,
-                    state=record['state'], status=record.get('status'), request_bytes=record.get('request_bytes'),
+                    state=record['state'], status=record.get('status'), request_bytes=record.get('request_bytes'), forwarded_request_bytes=record.get('forwarded_request_bytes',record.get('request_bytes')), compression=record.get('compression',dict(policy='off',changes=[])),
                     response_bytes=record.get('response_bytes'), response_truncated=record.get('response_truncated'),
                     elapsed_seconds=(record['ended_ns'] - record['started_ns']) / 1e9 if record.get('ended_ns') else None,
                     first_body_byte_seconds=(record['first_byte_ns'] - record['started_ns']) / 1e9 if record.get('first_byte_ns') else None,
                     response_body_available=body_available, correlation=correlation,
                     response_body_state=('partial' if record.get('response_truncated') else 'available') if body_available else ('not retained by legacy parser' if record.get('capture_schema', 1) < 2 else 'unsupported response format'),
                     model=request.get('model') if isinstance(request, dict) else None,
+                    compression_url=self.langfuse_url + '/project/ttgl-codex/traces/' + bridge.digest('compression-v1:' + record['id']) if record.get('compression', {}).get('changes') else None,
                     started_at=datetime.fromtimestamp(record['started_ns'] / 1e9, timezone.utc).isoformat(),
                     langfuse_url=self.langfuse_url + '/project/ttgl-codex/traces/' + bridge.digest('transport-v1:' + record['id'])))
         selected_events = {e['id'] for e in events} | {capture['id'] for capture in captures}
@@ -396,6 +397,10 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
                 summary=result['summary'], findings=relevant, limitations=result['limitations'], scope=result['scope'],
                 snapshot_at=result['snapshot_at'], tool_events=result['tool_events'],
                 measured_snapshot_usage=result['measured_snapshot_usage'], overhead=json.loads(row['overhead'])))
+        install = None
+        if self.capture_root and (self.capture_root.parent / 'live-codex-install.json').exists():
+            receipt = json.loads((self.capture_root.parent / 'live-codex-install.json').read_text())
+            install = {k: receipt[k] for k in ('at','policy','base_url','scope')}
         return dict(projects=projects, tasks=tasks, turns=selected_turns, inbox=[t for t in turns if not t['task_id']],
             usage=totals, models=dict(models), categories=categories, events=events[-event_limit:] if event_limit else events, event_count=len(events),
             sequences=[dict(sequence=list(k), count=v) for k, v in sequences.most_common(20)],
@@ -409,7 +414,7 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
                 note='Selected scope and all-source totals differ when tasks, projects or categories are filtered. Unassigned turns are included only in all-source totals.'),
             agent_analyses=agent_reports, runtime_accounting=accounting,
             experiments=[{**r, "baseline": {k: v for k, v in r["baseline"].items() if k != "events"}} for r in list_experiments(self, task) if not project or task_map.get(r["task_id"], {}).get("project_id") == project],
-            sources=dict(root=str(self.root), collection_enabled=enabled, files=len(files), errors=[dict(file=Path(f['path']).name, error=f['error']) for f in files if f['error']],
+            sources=dict(live_compression_install=install, root=str(self.root), collection_enabled=enabled, files=len(files), errors=[dict(file=Path(f['path']).name, error=f['error']) for f in files if f['error']],
                          last_scan=max((f['mtime'] for f in files), default=None)),
             langfuse_url=self.langfuse_url + '/project/ttgl-codex', at=now(),
             limitations=['Native transcripts plus explicitly proxied HTTP/SSE captures; existing chat traffic is not retroactively proxied.', 'Runtime shares describe recorded tool-runtime sums; overlapping work is not task elapsed time.',

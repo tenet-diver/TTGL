@@ -1,0 +1,124 @@
+{
+  "id": "live-harness-001",
+  "model": "gpt-6.1-sol",
+  "protocol_sha256": "d212062ed9ed39e79b59d63d367187d245caca20fddff8aa5bca7186cbeddee2",
+  "headroom_commit": "2d3ee51846435ef5b320eea4806af14e602b0d8c",
+  "implementation": {
+    "live_compression.py": "8a303d4971245ff7f5abc59bc2331930b4033d3f623d2b05636c65ffc662776f",
+    "progress_output.py": "86d1c4d7c9cfdb37f35598cf959619b82a24ae03f8d75d2ebe4b045637ba4c1c",
+    "capture_proxy.py": "4555ed0a65e96ca6c6cf37df19b75d2180be5d1022ab1449616f5fb45796f1e4",
+    "live_harness_trial.py": "e52cebbc209afbd6bb98b7b2e3b23eb67331ce7dbf7b28b18e10482acb946e09"
+  },
+  "scope": "Two generated development coding tasks using normal Codex shell/edit tools. Both arms actually edit app.py and execute tests. Not a benchmark score or a whole-project estimate.",
+  "raw_total_tokens": 212187,
+  "compact_total_tokens": 190809,
+  "token_reduction_fraction": 0.10075075287364443,
+  "raw_wall_seconds": 39.36521505099881,
+  "compact_wall_seconds": 39.39645042399934,
+  "quality_passed": true,
+  "actual_transforms_in_both_cells": true,
+  "acceptance_passed": true,
+  "cash_cost": null,
+  "cells": [
+    {
+      "case": "search-calculation",
+      "condition": "raw",
+      "policy": "off",
+      "usage": {
+        "input_tokens": 109780,
+        "cached_input_tokens": 89728,
+        "output_tokens": 350,
+        "total_tokens": 110130
+      },
+      "wall_seconds": 19.977359986998636,
+      "compaction_seconds": 0,
+      "quality": {
+        "checks": {
+          "fixtures_unchanged": true,
+          "visible_tests": true,
+          "independent_checks": true
+        },
+        "passed": true
+      },
+      "captures_complete": true,
+      "original_bytes": 513188,
+      "presented_bytes": 513188,
+      "task_id": "c1b1264dccfa4e41af5fed8dbda01595"
+    },
+    {
+      "case": "search-calculation",
+      "condition": "compact",
+      "policy": "headroom-lossless",
+      "usage": {
+        "input_tokens": 102490,
+        "cached_input_tokens": 84864,
+        "output_tokens": 357,
+        "total_tokens": 102847
+      },
+      "wall_seconds": 20.451808380999864,
+      "compaction_seconds": 0.010375339999882272,
+      "quality": {
+        "checks": {
+          "fixtures_unchanged": true,
+          "visible_tests": true,
+          "independent_checks": true
+        },
+        "passed": true
+      },
+      "captures_complete": true,
+      "original_bytes": 513338,
+      "presented_bytes": 478890,
+      "task_id": "1dc8e8ea39f047a485873698380be481"
+    },
+    {
+      "case": "repeated-worker-log",
+      "condition": "compact",
+      "policy": "headroom-lossless",
+      "usage": {
+        "input_tokens": 87633,
+        "cached_input_tokens": 75008,
+        "output_tokens": 329,
+        "total_tokens": 87962
+      },
+      "wall_seconds": 18.944642042999476,
+      "compaction_seconds": 0.0070904609965509735,
+      "quality": {
+        "checks": {
+          "fixtures_unchanged": true,
+          "visible_tests": true,
+          "independent_checks": true
+        },
+        "passed": true
+      },
+      "captures_complete": true,
+      "original_bytes": 532409,
+      "presented_bytes": 438162,
+      "task_id": "cd4d7e79fe364ec781bc169ea30504a9"
+    },
+    {
+      "case": "repeated-worker-log",
+      "condition": "raw",
+      "policy": "off",
+      "usage": {
+        "input_tokens": 101723,
+        "cached_input_tokens": 84224,
+        "output_tokens": 334,
+        "total_tokens": 102057
+      },
+      "wall_seconds": 19.387855064000178,
+      "compaction_seconds": 0,
+      "quality": {
+        "checks": {
+          "fixtures_unchanged": true,
+          "visible_tests": true,
+          "independent_checks": true
+        },
+        "passed": true
+      },
+      "captures_complete": true,
+      "original_bytes": 532289,
+      "presented_bytes": 532289,
+      "task_id": "f753d5b12e1849a9b0caa0b10bdd176a"
+    }
+  ]
+}

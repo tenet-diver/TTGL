@@ -53,6 +53,40 @@ class CaptureTests(unittest.TestCase):
             self.assertFalse(record['response_truncated'])
             self.assertIsNotNone(record['first_byte_ns'])
 
+    def test_live_route_forwards_compressed_body_and_journals_both_versions(self):
+        received=[]
+        class Upstream(BaseHTTPRequestHandler):
+            def log_message(self,*args): pass
+            def do_POST(self):
+                received.append((self.path,json.loads(self.rfile.read(int(self.headers['Content-Length'])))))
+                raw=b'data: {"response":{"id":"resp_compressed"}}\n\n'
+                self.send_response(200);self.send_header('Content-Length',str(len(raw)));self.end_headers();self.wfile.write(raw)
+        with tempfile.TemporaryDirectory() as directory:
+            upstream=ThreadingHTTPServer(('127.0.0.1',0),Upstream)
+            proxy=ThreadingHTTPServer(('127.0.0.1',0),capture_proxy.Handler)
+            proxy.destination=Path(directory);proxy.collection_state=None;proxy.upstream=f'http://127.0.0.1:{upstream.server_port}'
+            for server in (upstream,proxy):
+                threading.Thread(target=server.serve_forever,daemon=True).start()
+                self.addCleanup(server.server_close);self.addCleanup(server.shutdown)
+            text=' abcdef012345 Downloading 12B\n'*200+'Error: disk quota\n'
+            body=dict(input=[dict(type='message',role='user',content=text),dict(type='custom_tool_call_output',call_id='c',output=text)])
+            request=urllib.request.Request(f'http://127.0.0.1:{proxy.server_port}/compress/progress/responses',data=json.dumps(body).encode(),headers={'Content-Type':'application/json'})
+            urllib.request.urlopen(request,timeout=5).read()
+            self.assertEqual(received[0][0],'/responses')
+            self.assertEqual(received[0][1]['input'][0],body['input'][0])
+            self.assertNotIn('Downloading 12B',received[0][1]['input'][1]['output'])
+            self.assertIn('Error: disk quota',received[0][1]['input'][1]['output'])
+            import time
+            for _ in range(50):
+                captures=list(Path(directory).glob('*.json'))
+                if captures and json.loads(captures[0].read_text())['state']=='complete': break
+                time.sleep(.01)
+            record=json.loads(captures[0].read_text())
+            self.assertEqual(record['request'],body)
+            self.assertEqual(record['forwarded_request'],received[0][1])
+            self.assertTrue(record['compression']['changes'])
+            self.assertEqual(len(list(Path(directory).joinpath('compression_sources').glob('*.json'))),1)
+
     def test_unknown_binary_body_is_not_persisted(self):
         self.assertEqual(capture_proxy.body_evidence(b'PRIVATE_BINARY', 'application/octet-stream'),
                          {'unparsed_body': True, 'bytes': 14})

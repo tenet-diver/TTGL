@@ -7,7 +7,7 @@ enable_request_compression = false
 
 [model_providers.ttgl_capture]
 name = "TTGL Capture"
-base_url = "http://127.0.0.1:8317"
+base_url = "http://127.0.0.1:8317/compress/headroom-lossless"
 wire_api = "responses"
 requires_openai_auth = true
 supports_websockets = false

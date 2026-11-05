@@ -90,7 +90,7 @@ class WorkspaceTests(unittest.TestCase):
         self.store.scan()
         response = analyst_mcp.handle(self.store, dict(method='initialize', params={'protocolVersion': '2025-06-18'}))
         self.assertEqual(response['protocolVersion'], '2025-06-18')
-        self.assertEqual(len(analyst_mcp.handle(self.store, dict(method='tools/list'))['tools']), 10)
+        self.assertEqual(len(analyst_mcp.handle(self.store, dict(method='tools/list'))['tools']), 11)
         result = analyst_mcp.handle(self.store, dict(method='tools/call', params=dict(name='query_activity', arguments={'section': 'summary'})))
         self.assertFalse(result['isError'])
         data = json.loads(result['content'][0]['text'])
@@ -189,6 +189,35 @@ class WorkspaceTests(unittest.TestCase):
         result = list_experiments(self.store)[0]
         self.assertFalse(result['evaluations'][0]['measurements']['acceptance_passed'])
         self.assertEqual(result['evaluations'][0]['reviews'][0]['verdict'], 'inconclusive')
+
+    def test_compact_experiment_discovery_keeps_full_measurements_available(self):
+        from analyst_experiments import plan_experiment
+        self.store.scan();_, task=self.define_task()
+        self.store.mutate('assign',dict(session_id='s',turn_id='t',task_id=task))
+        proposal=plan_experiment(self.store,dict(task_id=task,title='Trial',change='One change',metrics='Native tokens',
+            quality_gate='Checks',overhead='Count it',rollback='Restore'))
+        def query(detail):
+            response=analyst_mcp.handle(self.store,dict(method='tools/call',params=dict(name='query_activity',arguments=dict(section='experiments',detail=detail))))
+            self.assertFalse(response['isError'])
+            return json.loads(response['content'][0]['text'])['experiments'][0]
+        summary=query('summary');full=query('full')
+        self.assertEqual(summary['id'],proposal['id'])
+        self.assertNotIn('baseline',summary)
+        self.assertEqual(full['baseline']['usage']['total_tokens'],110)
+
+    def test_raw_compression_retrieval_validates_hash_and_is_bounded(self):
+        import hashlib
+        self.store.capture_root=self.root/'captures'
+        directory=self.store.capture_root/'compression_sources';directory.mkdir(parents=True)
+        text='retained text'*1000;digest=hashlib.sha256(text.encode()).hexdigest()
+        (directory/(digest+'.json')).write_text(json.dumps(dict(content=text,retained_sha256=digest,retention='test')))
+        result=analyst_mcp.handle(self.store,dict(method='tools/call',params=dict(name='read_compression_source',arguments=dict(sha256=digest,limit='100'))))
+        data=json.loads(result['content'][0]['text'])
+        self.assertTrue(data['TTGL_RAW_EVIDENCE'])
+        self.assertEqual(len(data['content']),100)
+        self.assertEqual(data['next_offset'],100)
+        invalid=analyst_mcp.handle(self.store,dict(method='tools/call',params=dict(name='read_compression_source',arguments=dict(sha256='../escape'))))
+        self.assertTrue(invalid['isError'])
 
     def test_conflicting_usage_is_not_silently_overwritten(self):
         self.store.scan()

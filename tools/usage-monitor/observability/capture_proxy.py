@@ -6,6 +6,9 @@ third-party packages. Credentials are forwarded to the fixed upstream, never
 persisted. Bodies are redacted and opaque reasoning protocol fields omitted.
 """
 import argparse
+import hashlib
+
+from live_compression import transform_request
 import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
@@ -165,7 +168,14 @@ class Handler(BaseHTTPRequestHandler):
             if row and row[0] != 'true':
                 return self.error(503, 'Collection is paused; resume it in the workspace before using the capture route')
         parsed = urllib.parse.urlsplit(self.path)
-        if parsed.scheme or parsed.netloc or parsed.path not in ('/responses', '/models', '/v1/responses', '/v1/models'):
+        policy = 'off'
+        route = parsed.path
+        for candidate in ('progress', 'headroom-lossless'):
+            prefix = '/compress/' + candidate
+            if route.startswith(prefix + '/'):
+                policy, route = candidate, route[len(prefix):]
+                break
+        if parsed.scheme or parsed.netloc or route not in ('/responses', '/models', '/v1/responses', '/v1/models'):
             return self.error(404, 'Unsupported capture route')
         if self.headers.get('Upgrade'):
             return self.error(426, 'Use HTTP/SSE; WebSockets are not supported by this adapter')
@@ -178,7 +188,7 @@ class Handler(BaseHTTPRequestHandler):
         if not 0 <= length <= MAX_BODY:
             return self.error(413, 'Request too large')
         # Preserve existing private captures rather than silently rotating evidence.
-        if sum(p.stat().st_size for p in self.server.destination.glob('*.json')) > DEFAULTS['capture']['retained_capture_quota_bytes']:
+        if sum(p.stat().st_size for p in self.server.destination.rglob('*.json')) > DEFAULTS['capture']['retained_capture_quota_bytes']:
             return self.error(507, 'Private capture quota reached; archive evidence before continuing')
         raw = self.rfile.read(length)
         ident = uuid.uuid4().hex
@@ -187,15 +197,43 @@ class Handler(BaseHTTPRequestHandler):
                       method=self.command, path=parsed.path, request=body_evidence(raw, self.headers.get('Content-Type', '')),
                       headers_persisted=False, opaque_reasoning_omitted=True, redaction='best effort',
                       request_bytes=len(raw), websocket_supported=False)
+        forwarded = raw
+        if self.command == 'POST' and route.endswith('/responses') and policy != 'off':
+            try:
+                document = json.loads(raw)
+                def retain_source(digest, text):
+                    directory = self.server.destination / 'compression_sources'
+                    directory.mkdir(mode=0o700, exist_ok=True)
+                    path = directory / (digest + '.json')
+                    if not path.exists():
+                        content = sanitized(text)
+                        temporary = directory / (digest + '.' + uuid.uuid4().hex + '.tmp')
+                        fd = os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+                        with os.fdopen(fd, 'w') as stream:
+                            json.dump(dict(source_sha256=digest, content=content,
+                                retained_sha256=hashlib.sha256(content.encode()).hexdigest(),
+                                retention='Redacted and bounded tool output; raw reasoning is never included'), stream)
+                        temporary.replace(path)
+                updated, compression = transform_request(document, policy, retain_source)
+                record['compression'] = compression
+                if compression['changes']:
+                    forwarded = json.dumps(updated, ensure_ascii=False).encode()
+                    record['forwarded_request'] = body_evidence(forwarded, 'application/json')
+            except (ValueError, UnicodeError) as exc:
+                record['compression'] = dict(policy=policy, changes=[], passthrough_reason=type(exc).__name__)
+        else:
+            record['compression'] = dict(policy=policy, changes=[])
+        record.update(forwarded_request_bytes=len(forwarded), original_request_sha256=hashlib.sha256(raw).hexdigest(),
+                      forwarded_request_sha256=hashlib.sha256(forwarded).hexdigest())
         self.persist(record)
         # Credentials remain only in memory and only go to the configured upstream.
         headers = {k: v for k, v in self.headers.items() if k.lower() not in
                    ('host', 'connection', 'content-length', 'accept-encoding', 'transfer-encoding', 'proxy-authorization', 'cookie')}
         headers['Accept-Encoding'] = 'identity'
-        suffix = parsed.path.removeprefix('/v1')
+        suffix = route.removeprefix('/v1')
         if parsed.query:
             suffix += '?' + parsed.query
-        request = urllib.request.Request(self.server.upstream + suffix, data=raw if self.command == 'POST' else None,
+        request = urllib.request.Request(self.server.upstream + suffix, data=forwarded if self.command == 'POST' else None,
                                          method=self.command, headers=headers)
         upstream = None
         response_started = False

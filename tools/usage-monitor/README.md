@@ -103,7 +103,7 @@ All non-secret deployment configuration is checked in:
 | [deployment.lock.json](config/deployment.lock.json) | Six active image digests and observed service versions; tested Python, Codex, Docker/Compose and Node versions |
 | [compose.template.json](config/compose.template.json) | Networks, volumes, ports, memory/CPU limits, health checks, application settings and secret placeholders |
 | [defaults.json](config/defaults.json) | Private state paths, ports, collector intervals, upstream and capture limits |
-| [codex-provider.toml](config/codex-provider.toml) | Responses API provider, existing ChatGPT authentication, HTTP/SSE mode and disabled request compression |
+| [codex-provider.toml](config/codex-provider.toml) | Responses provider, live tool-result compression route, existing ChatGPT auth and uncompressed HTTP/SSE transport |
 | [mcp.template.json](config/mcp.template.json) | Analyst MCP command and portable path placeholders |
 | [design-system.lock.json](config/design-system.lock.json) | Private EVLV DOM distribution commit, artifact hashes and source review |
 | [Codespaces settings](../../.vscode/settings.json) | Port labels and automatic-forwarding behavior |
@@ -129,7 +129,7 @@ python3 tools/usage-monitor/observability/setup_local.py pull
 # Verify prerequisites, the tested Codex version and all six local images.
 python3 tools/usage-monitor/observability/setup_local.py doctor
 
-# Register analyst MCP and install the explicitly selected, owned Codex profile.
+# Register analyst MCP and enable the reviewed live route for new local Codex CLI sessions.
 python3 tools/usage-monitor/observability/setup_local.py configure-codex
 
 # Foreground supervisor: preserves the existing named volumes and delivery ledger.
@@ -161,7 +161,7 @@ python3 tools/usage-monitor/observability/codex_traced.py
 
 The profile includes analyst MCP and the capture provider. The wrapper applies
 the checked-in provider settings to its invocation and uses any existing user
-MCP configuration. Neither changes the default provider in user configuration.
+MCP configuration. `configure-codex` now also installs the real named profile and makes the live capture/compression provider the default for new local CLI sessions, with private config backups. Existing managed chat sessions and other machines are outside this scope.
 Existing Codex login is reused; no API/OAuth credentials are stored in Git.
 
 Forward 3000/8766 and keep forwarded ports private. In Codespaces this can be
@@ -229,7 +229,7 @@ python3 tools/usage-monitor/observability/codex_traced.py
 ```
 
 The launcher uses the existing ChatGPT login and command-local provider settings;
-normal routing/configuration is unchanged. The local HTTP/SSE adapter on 8317
+after `configure-codex`, normal new local CLI sessions use the same reviewed live route. The local HTTP/SSE adapter on 8317
 does not implement OAuth or TLS interception. Streaming is forwarded unchanged;
 private stored bodies are redacted with opaque reasoning fields omitted. Headers
 and credentials are not journaled. Redaction is best effort, not a guarantee.
@@ -334,7 +334,7 @@ terminal outcomes, digests, errors, warnings, unfamiliar lines, source truncatio
 and raw access. `view=raw` remains the default. Known native truncation is surfaced outside
 the excerpt; absence of a marker does not establish complete coverage. For saved log files,
 `python3 tools/usage-monitor/observability/progress_output.py PATH` emits the same presentation
-without changing the file. This does not automatically filter ordinary Codex shell output.
+without changing the file. That evidence-view feature alone does not filter ordinary shell output; the subsequent live integration below now handles the ordinary CLI request path.
 
 The app's Experiments dialog contains both trials, immutable measured results, analyst
 verdicts and an accrued research-cost ledger. The ledger shows no net first-use saving.
@@ -354,3 +354,62 @@ native overhead. `account_progress_trial.py` appends the current setup's accrued
 accounting snapshot. These local pilot utilities target this registered study and existing
 proposal; they are not a general distributed experiment scheduler. Completed/ambiguous runs
 must not be retried or silently replaced.
+
+
+### Installed live Codex compression
+
+`setup_local.py configure-codex` now installs the reviewed live provider in the active
+user's Codex configuration, preserves unrelated settings, creates a real
+`profiles.ttgl-observability` entry and keeps private backups. Plain **`codex`** in a
+new local CLI session and `codex_traced.py` both use the running loopback proxy's
+`/compress/headroom-lossless` route. No special evidence read or command wrapper is
+required. This does not reconfigure an already-running managed chat or other machines.
+
+Only completed tool-result text is eligible before upstream inference. System/user
+messages, reasoning, tool arguments, exit codes and identifiers are preserved. Two
+presentations are supported: exact-format transient Docker progress filtering, and
+Headroom's actual reversible search-heading/repeated-log-line folds with runtime inverse
+checks. Unknown formats, non-beneficial folds and retention errors pass through. The
+original and forwarded requests and hashes are captured separately. Each distinct
+changed source is retained privately and can be retrieved without being compressed again:
+
+```sh
+ttgl read_compression_source --args '{"sha256":"SOURCE_SHA256","offset":"0","limit":"4000"}'
+```
+
+These are retained **pre-proxy model-facing tool results**; the CLI may already have
+clipped terminal output. Secret redaction and retention bounds still apply. The raw
+retrieval marker explicitly bypasses compression. Repeated presentations in conversation
+history are deterministic and reference the same source hash.
+
+The full Headroom package is not installed. The Apache-2.0 stdlib-only subset is pinned
+in [headroom-subset.lock.json](config/headroom-subset.lock.json); license, notice and the
+one import adjustment are retained under `observability/vendor/headroom/`. SmartCrusher's
+native extension, ML/code models, package initialization and network/telemetry stack are
+excluded. The public WebSocket-server advisory reviewed for Headroom affects excluded
+server code; this is not a security clearance for the complete distribution.
+
+Controlled overrides and rollback keep collection active:
+
+```sh
+python3 tools/usage-monitor/observability/codex_traced.py --ttgl-compression off exec ...
+python3 tools/usage-monitor/observability/codex_traced.py --ttgl-compression progress exec ...
+python3 tools/usage-monitor/observability/install_live_codex.py --policy off
+```
+
+Restore live lossless mode with `install_live_codex.py --policy headroom-lossless`.
+The install receipt records the first private config backup. The local stack must be
+running; there is no silent unlogged fallback. No package installation or auto-update
+is performed by these commands.
+
+The measured normal coding-task comparison used **212,187 → 190,809 native tokens
+(10.08% fewer)**, all four repairs passing operator checks, and no observed speedup.
+The analyst inspected source/capture evidence and recorded keep. A subsequent analyst
+verified the installed default and declined to duplicate already-covered proposals.
+See [live harness results and limits](studies/live-harness-results-001.md).
+
+The UI Activity table links live before/after request observations in Langfuse.
+`codex-compression` spans are additive audit records with no usage, preserving earlier
+transport receipts; native model generations remain the sole token-accounting source.
+Experiments discovery in MCP is compact by default; request `detail=full` with project
+scope for measured cells, source IDs and analyst reviews.

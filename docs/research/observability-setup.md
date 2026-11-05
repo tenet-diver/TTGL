@@ -1,6 +1,21 @@
 # Single-device observability setup
 
-Current scope, 5 November 2026: consolidate history and continuously collect future records from TWO MacBooks and cloud runs into ONE central analysis stack. Each source needs only appropriate capture/export components with offline queues, not its own full stack. Headroom/compression experiments are deferred; focus on data quality and security clearance. The sections below describing one-machine-only scope or merely optional remote imports are superseded by this current scope.
+Current scope, 5 November 2026: consolidate history and continuously collect future records from TWO MacBooks and cloud runs into ONE central analysis stack. Each source needs only appropriate capture/export components with offline queues, not its own full stack. The latest explicit user instruction now authorizes live Codex compression and continued analyst-led experiments; the earlier deferral is superseded. Data quality, provenance and the current Codespace vulnerability rule still apply. The sections below describing one-machine-only scope or merely optional remote imports are superseded by this current scope.
+
+## Live harness update — 5 November 2026
+
+Live tool-result compression is installed for new local Codex CLI sessions, including
+plain `codex`, through the existing proxy. It runs before upstream inference and retains
+original/forwarded requests plus source hashes. The reviewed Headroom stdlib-only
+lossless module is pinned and vendored without installing its complete package.
+
+A four-run matched code-edit-and-test development study used 10.08% fewer pooled native
+tokens; all visible/independent checks passed and wall time was unchanged. The analyst
+reviewed and kept the bounded candidate; another verified default-route captures and
+found no justified additional change. This is not broad coding/cash/first-use savings.
+See [results](../../tools/usage-monitor/studies/live-harness-results-001.md) and the
+usage-monitor README for install/rollback and measured research costs. Other machines
+and the current managed chat are not reconfigured. Existing inference schedules stay paused.
 
 ## Latest Codespaces deployment — running
 

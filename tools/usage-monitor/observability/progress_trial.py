@@ -120,7 +120,7 @@ calls, only this MCP. Return the requested structured result, without extraneous
             (cell/'input.json').write_text(json.dumps(dict(source_id=protocol['source_event'],exit_code=case['exit_code'],
                 raw=original,presented=original if condition=='raw' else presentation['output'],
                 explicit_retention_metadata=protocol.get('explicit_retention_metadata',False))))
-            command=[sys.executable,str(HERE/'codex_traced.py'),'exec','--ignore-user-config','--skip-git-repo-check',
+            command=[sys.executable,str(HERE/'codex_traced.py'),'--ttgl-compression','off','exec','--ignore-user-config','--skip-git-repo-check',
                 '-C',str(cell),'-m',protocol['model'],'-s','read-only',
                 '-c','model_providers.ttgl_capture.request_max_retries=0','-c','model_providers.ttgl_capture.stream_max_retries=0',
                 '-c','mcp_servers.pull-replay.default_tools_approval_mode="approve"',

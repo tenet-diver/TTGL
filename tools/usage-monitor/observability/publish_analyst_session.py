@@ -12,7 +12,7 @@ from analyst_experiments import REVIEW_SCHEMA
 REPO=Path(__file__).resolve().parents[3]
 
 
-def publish(directory):
+def publish(directory, project_id=None):
     if (directory/'published-session.json').exists():
         raise ValueError('Session already published')
     completion=json.loads((directory/'completion.json').read_text())
@@ -42,7 +42,7 @@ def publish(directory):
             usage.update({k:event['usage'].get(k,0) for k in ('input_tokens','cached_input_tokens','output_tokens','total_tokens')})
     if not turns or not usage['total_tokens']:
         raise ValueError('Analyst native metering unavailable')
-    task=store.mutate('task',dict(project_id=report['projects'][0]['id'],title='Evaluate measured harness improvement: '+directory.name,
+    task=store.mutate('task',dict(project_id=project_id or report['projects'][0]['id'],title='Evaluate measured harness improvement: '+directory.name,
         goal='Use the product to inspect registered trial evidence and record an evidence-based verdict.',
         acceptance='Verdict references immutable measurements, quality gates, scope and overhead.'))['id']
     for turn in turns:
@@ -58,4 +58,6 @@ def publish(directory):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('directory',type=Path)
-    publish(parser.parse_args().directory.resolve())
+    parser.add_argument('--project-id')
+    args=parser.parse_args()
+    publish(args.directory.resolve(),args.project_id)

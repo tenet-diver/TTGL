@@ -1,0 +1,6 @@
+Headroom lossless compaction
+Copyright Headroom Contributors
+Source: https://github.com/headroomlabs-ai/headroom at 2d3ee51846435ef5b320eea4806af14e602b0d8c
+Licensed under Apache License 2.0; see LICENSE.
+Local modification: logging import and minimal logging adapter only.
+The full Headroom distribution is not installed.

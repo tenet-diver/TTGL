@@ -94,11 +94,11 @@ function table(id, columns, rows, actions, searchable=true) {
 }
 function experimentResults(experiment) {
   const accounting=experiment.accounting?.at(-1)?.payload;
-  const cost=accounting?`<section class="section"><h3>Accrued research overhead</h3><p>${fmt(accounting.current_research_tokens)} native tokens through ${esc(accounting.as_of)}; ${fmt(accounting.illustrative_repetitions_to_recover_current_tokens)} similar diagnostic repetitions to recover that token count at the observed mean saving. This is not cash break-even. First use has no net saving.</p><details><summary>Accounting scope and limitations</summary><p>${esc(accounting.limitations)}</p></details></section>`:'';
+  const cost=accounting?`<section class="section"><h3>Accrued research overhead</h3><p>${fmt(accounting.current_research_tokens)} native tokens through ${esc(accounting.as_of)}; ${fmt(accounting.illustrative_repetitions_to_recover_current_tokens)} similar ${esc(accounting.unit||'diagnostic cases')} to recover that token count at the observed mean saving. This is not cash break-even. First use has no net saving.</p><details><summary>Accounting scope and limitations</summary><p>${esc(accounting.limitations)}</p></details></section>`:'';
   return cost+(experiment.evaluations||[]).map(evaluation=>{
     const m=evaluation.measurements;
     const rows=m.cells.map(c=>`<tr><td>${esc(c.case)}</td><td>${esc(c.condition)}</td><td>${fmt(c.usage.total_tokens)}</td><td>${seconds(c.wall_seconds)}</td><td>${c.quality.passed?'Pass':'Fail'}</td></tr>`).join('');
-    return `<section class="section"><h3>${esc(evaluation.protocol.id)}</h3><p>${esc(m.scope)}</p><p>Registered gate: <strong>${m.acceptance_passed?'Passed':'Failed'}</strong>. Token reduction: ${fmt(m.token_reduction_fraction*100)}%. Trial inference is included per arm; analyst, implementation and evaluation overhead is separate.</p><div class="table-container evlv-table-scroll"><table class="evlv-table"><thead><tr><th>Case</th><th>Presentation</th><th>Total tokens</th><th>Wall time</th><th>Quality</th></tr></thead><tbody>${rows}</tbody></table></div>${evaluation.reviews.map(review=>`<h4>Analyst verdict: ${esc(review.verdict)}</h4><p>${esc(review.notes)}</p>`).join('')}<details><summary>Protocol and evidence references</summary><pre>${esc(JSON.stringify(evaluation,null,2))}</pre></details></section>`;
+    return `<section class="section"><h3>${esc(evaluation.protocol.id)}</h3><p>${esc(m.scope)}</p><p>Native total tokens: <strong>${fmt(m.raw_total_tokens)} → ${fmt(m.compact_total_tokens)}</strong>. Registered gate: <strong>${m.acceptance_passed?'Passed':'Failed'}</strong>. Token reduction: ${fmt(m.token_reduction_fraction*100)}%. Trial inference is included per arm; analyst, implementation and evaluation overhead is separate.</p><div class="table-container evlv-table-scroll"><table class="evlv-table"><thead><tr><th>Case</th><th>Presentation</th><th>Total tokens</th><th>Wall time</th><th>Quality</th></tr></thead><tbody>${rows}</tbody></table></div>${evaluation.reviews.map(review=>`<h4>Analyst verdict: ${esc(review.verdict)}</h4><p>${esc(review.notes)}</p>`).join('')}<details><summary>Protocol and evidence references</summary><pre>${esc(JSON.stringify(evaluation,null,2))}</pre></details></section>`;
   }).join('') || '<p>Proposal only; no measured trial results.</p>';
 }
 function showModal(title, body) {
@@ -172,6 +172,7 @@ function capturesTable() {
     {key:'status',label:'HTTP',cell:r=>badge(r.status??r.state)},
     {key:'response_body_state',label:'Response body',cell:r=>`<span class="${r.response_body_available?'':'danger'}">${esc(r.response_body_state)}</span>`},
     {key:'correlation',label:'Matched by'},
+    {key:'compression',label:'Live compression',cell:r=>r.compression?.changes?.length?external(r.compression_url,r.compression.policy+' · '+fmt(r.request_bytes)+' → '+fmt(r.forwarded_request_bytes)+' B'):esc(r.compression?.policy||'off')},
     {key:'request_bytes',label:'Request / response bytes',numeric:true,cell:r=>compact(r.request_bytes)+' / '+compact(r.response_bytes)},
     {key:'elapsed_seconds',label:'HTTP duration',numeric:true,cell:r=>seconds(r.elapsed_seconds)},
     {key:'first_body_byte_seconds',label:'First body byte',numeric:true,cell:r=>seconds(r.first_body_byte_seconds)}

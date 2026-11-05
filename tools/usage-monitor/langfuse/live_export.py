@@ -143,6 +143,23 @@ def capture_spans(root):
         content(span, 'input', record.get('request'))
         content(span, 'output', record.get('response'))
         yield span
+        # Add a distinct immutable observation. Never rewrite an already-exported
+        # transport span or count tokens a second time.
+        compression = record.get('compression') or {}
+        if compression.get('changes'):
+            compression_id = 'compression-v1:' + record['id']
+            metadata = dict(record_kind='live_tool_compression', capture_id=record['id'],
+                trace_name='Codex live tool compression', source='proxy_before_upstream',
+                policy=compression['policy'], changes=compression['changes'], response_ids=response_ids,
+                original_request_bytes=record.get('request_bytes'), forwarded_request_bytes=record.get('forwarded_request_bytes'),
+                original_request_sha256=record.get('original_request_sha256'),forwarded_request_sha256=record.get('forwarded_request_sha256'),
+                transform_seconds=compression.get('elapsed_seconds'),token_accounting='No additional usage; see native model response',
+                original_capture_id=record['id'], timing_scope='Transformation CPU wall time, not inference latency')
+            audit = bridge.span(compression_id,compression_id,'Tool output compressed before model inference',
+                'span',record['started_ns'],record['ended_ns'],'codex-compression',metadata)
+            content(audit,'input',record.get('request'))
+            content(audit,'output',record.get('forwarded_request'))
+            yield audit
 
 
 def run(args):

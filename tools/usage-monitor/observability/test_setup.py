@@ -60,3 +60,21 @@ class SetupTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class LiveConfigTests(unittest.TestCase):
+    def test_provider_install_preserves_unrelated_config_and_has_real_profile(self):
+        from install_live_codex import install
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory); config=root/'config.toml'
+            config.write_text('model = "my-existing-model"\n[features]\nother_feature = true\n[mcp_servers.other]\ncommand = "unchanged"\n')
+            import contextlib,io
+            with contextlib.redirect_stdout(io.StringIO()): install(config,'progress',root/'private')
+            parsed=tomllib.loads(config.read_text())
+            self.assertEqual(parsed['model'],'my-existing-model')
+            self.assertTrue(parsed['features']['other_feature'])
+            self.assertEqual(parsed['mcp_servers']['other']['command'],'unchanged')
+            self.assertEqual(parsed['model_provider'],'ttgl_capture')
+            self.assertEqual(parsed['profiles']['ttgl-observability']['model_provider'],'ttgl_capture')
+            self.assertTrue(parsed['model_providers']['ttgl_capture']['base_url'].endswith('/compress/progress'))
+            self.assertEqual(len(list((root/'private').glob('codex-config-before-live-*'))),1)

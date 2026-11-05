@@ -1,0 +1,18 @@
+{
+  "id": "live-harness-001",
+  "registered_at": "2026-11-05",
+  "model": "gpt-6.1-sol",
+  "scope": "Two generated development coding tasks using normal Codex shell/edit tools. Both arms actually edit app.py and execute tests. Not a benchmark score or a whole-project estimate.",
+  "hypothesis": "Reviewed Headroom reversible search/run folds reduce whole-task native model tokens without losing observed repair quality when applied to real shell output before inference.",
+  "conditions": {"raw":"existing capture route, no transform", "compact":"live headroom-lossless route, same prompts and environment"},
+  "cases": [
+    {"id":"search-calculation", "order":["raw","compact"]},
+    {"id":"repeated-worker-log", "order":["compact","raw"]}
+  ],
+  "quality_gate": "All four cells must preserve fixtures/tests, pass visible tests and independent post-run checks. No retrospective fixture edits or repeats.",
+  "acceptance": "All quality checks pass and pooled whole-task native total tokens are at least 5% lower. Candidate route must demonstrably transform actual model-facing shell results in both compact cells. Report per-case results and any regression. Timing descriptive only.",
+  "accounting": "Count every native response once by ID, all input/output and extra tool calls/retrievals. Cached input is already included. Record original and forwarded request bodies/hashes and source hashes, transform CPU time, wall time and all failed attempts. Analyst/development costs are additional research overhead, not first-use savings.",
+  "security": "No Headroom package installation. Apache-2.0 stdlib-only lossless_compaction.py pinned at 2d3ee51846435ef5b320eea4806af14e602b0d8c, with a reviewed local logging adapter. No native extension, package initialization, network telemetry or model downloads.",
+  "execution": "Sequential alternating order, fresh workspace/session per cell, same model, no automatic request or stream retries. Stop on uncertain invocation. Preserve every attempt and grade. Ordinary Codex tools only; no special read_evidence views or replay MCP.",
+  "rollback": "Keep global default at verified progress-only unless both compact coding cells transform and the complete quality/token gate passes. The full-lossless route remains experimental on any failure. Baseline route always available."
+}
