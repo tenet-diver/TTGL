@@ -90,7 +90,7 @@ class WorkspaceTests(unittest.TestCase):
         self.store.scan()
         response = analyst_mcp.handle(self.store, dict(method='initialize', params={'protocolVersion': '2025-06-18'}))
         self.assertEqual(response['protocolVersion'], '2025-06-18')
-        self.assertEqual(len(analyst_mcp.handle(self.store, dict(method='tools/list'))['tools']), 8)
+        self.assertEqual(len(analyst_mcp.handle(self.store, dict(method='tools/list'))['tools']), 9)
         result = analyst_mcp.handle(self.store, dict(method='tools/call', params=dict(name='query_activity', arguments={'section': 'summary'})))
         self.assertFalse(result['isError'])
         data = json.loads(result['content'][0]['text'])
@@ -101,6 +101,59 @@ class WorkspaceTests(unittest.TestCase):
         evidence = analyst_mcp.handle(self.store, dict(method='tools/call', params=dict(name='read_evidence', arguments={'id': 's:tool:tool'})))
         self.assertFalse(evidence['isError'])
         self.assertIn('CommandExecution', evidence['content'][0]['text'])
+
+    def test_evidence_pages_reconstruct_the_retained_record(self):
+        self.store.scan()
+        chunks, offset, total = [], 0, None
+        while True:
+            response = analyst_mcp.handle(self.store, dict(method='tools/call', params=dict(
+                name='read_evidence', arguments=dict(id='s:tool:tool', offset=str(offset), limit='16000'))))
+            self.assertFalse(response['isError'])
+            result = json.loads(response['content'][0]['text'])
+            chunks.append(result['evidence'])
+            total = result['total_characters']
+            if result['next_offset'] is None:
+                break
+            offset = result['next_offset']
+        evidence = ''.join(chunks)
+        self.assertEqual(len(evidence), total)
+        self.assertEqual(json.loads(evidence)['aggregated_output'], 'x' * 40000)
+
+    def test_pagination_reaches_events_older_than_ui_window(self):
+        self.store.scan()
+        with self.store.connection() as connection:
+            template = dict(connection.execute("SELECT * FROM events WHERE kind='tool'").fetchone())
+            for index in range(1100):
+                row = {**template, 'id': 'extra'+str(index), 'bytes': index}
+                connection.execute('INSERT INTO events VALUES('+','.join('?' for _ in row)+')', tuple(row.values()))
+        response = analyst_mcp.handle(self.store, dict(method='tools/call', params=dict(name='query_activity',
+            arguments=dict(section='events', kind='tool', sort='bytes', offset='1000', limit='100'))))
+        result = json.loads(response['content'][0]['text'])
+        self.assertEqual(len(result['events']), 100)
+        self.assertEqual(result['pagination']['matched_in_window'], 1101)
+        self.assertEqual(result['pagination']['next_offset'], 1100)
+
+    def test_experiment_freezes_evidence_and_rejects_incomplete_proposals(self):
+        from analyst_experiments import plan_experiment, list_experiments
+        self.store.scan()
+        _, task = self.define_task()
+        self.store.mutate('assign', dict(session_id='s', turn_id='t', task_id=task))
+        values = dict(task_id=task, title='Compact progress', change='Progress lines only',
+                      metrics='Matched full-task tokens', quality_gate='All acceptance checks pass',
+                      overhead='Include analyst inference', rollback='Restore original output on regression')
+        with self.assertRaises(ValueError):
+            plan_experiment(self.store, {**values, 'quality_gate': ''})
+        proposal = plan_experiment(self.store, values)
+        with self.store.connection() as connection:
+            connection.execute('DELETE FROM assignments')
+            connection.execute("UPDATE events SET bytes=1 WHERE kind='tool'")
+        frozen = list_experiments(self.store)[0]
+        self.assertEqual(frozen['baseline']['usage']['total_tokens'], 110)
+        self.assertEqual(frozen['baseline']['event_count'], 2)
+        self.assertEqual(frozen['baseline_sha256'], proposal['baseline_sha256'])
+        self.assertTrue(any(r['bytes'] == 40000 for r in frozen['baseline']['events']))
+        self.assertIsNone(frozen['baseline']['cash_cost'])
+        self.assertEqual(list_experiments(self.store, project='unrelated'), [])
 
     def test_conflicting_usage_is_not_silently_overwritten(self):
         self.store.scan()

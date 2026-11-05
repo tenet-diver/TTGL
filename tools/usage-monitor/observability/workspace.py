@@ -19,6 +19,7 @@ import uuid
 import urllib.request
 
 import baseline
+from analyst_experiments import list_experiments
 bridge = baseline.bridge
 HERE = Path(__file__).resolve().parent
 DEFAULTS = json.loads((HERE.parent / 'config/defaults.json').read_text())
@@ -235,7 +236,7 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
                     raise ValueError('Response changed after ingestion; reconciliation required')
                 c.execute('INSERT OR IGNORE INTO events VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', event)
 
-    def report(self, project=None, task=None, category=None):
+    def report(self, project=None, task=None, category=None, event_limit=1000):
         with self.connection() as c:
             projects = [dict(r) for r in c.execute('SELECT * FROM projects ORDER BY created')]
             tasks = [dict(r) for r in c.execute('SELECT * FROM tasks ORDER BY created DESC')]
@@ -396,7 +397,7 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
                 snapshot_at=result['snapshot_at'], tool_events=result['tool_events'],
                 measured_snapshot_usage=result['measured_snapshot_usage'], overhead=json.loads(row['overhead'])))
         return dict(projects=projects, tasks=tasks, turns=selected_turns, inbox=[t for t in turns if not t['task_id']],
-            usage=totals, models=dict(models), categories=categories, events=events[-1000:], event_count=len(events),
+            usage=totals, models=dict(models), categories=categories, events=events[-event_limit:] if event_limit else events, event_count=len(events),
             sequences=[dict(sequence=list(k), count=v) for k, v in sequences.most_common(20)],
             opportunities=opportunities, rules=rules, decisions=list(decisions.values()), audit=audit,
             wire_captures=captures,
@@ -407,6 +408,7 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
                 all_sources=all_usage, unassigned=unassigned_usage,
                 note='Selected scope and all-source totals differ when tasks, projects or categories are filtered. Unassigned turns are included only in all-source totals.'),
             agent_analyses=agent_reports, runtime_accounting=accounting,
+            experiments=[{**r, "baseline": {k: v for k, v in r["baseline"].items() if k != "events"}} for r in list_experiments(self, task) if not project or task_map.get(r["task_id"], {}).get("project_id") == project],
             sources=dict(root=str(self.root), collection_enabled=enabled, files=len(files), errors=[dict(file=Path(f['path']).name, error=f['error']) for f in files if f['error']],
                          last_scan=max((f['mtime'] for f in files), default=None)),
             langfuse_url=self.langfuse_url + '/project/ttgl-codex', at=now(),

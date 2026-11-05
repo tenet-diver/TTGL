@@ -286,3 +286,31 @@ For a foreground service: `python3 tools/usage-monitor/server.py --data /absolut
 `python3 tools/usage-monitor/test_monitor.py` checks replay exclusion, duplicate completions, legacy joins, unknown fields and import idempotency. `node --check tools/usage-monitor/app.js` checks UI syntax. Actual UI overview, suggestion navigation and evidence dialogs were inspected with local history. The original handoff fixtures passed separately. Private runtime totals are intentionally not committed here.
 
 Source evaluation: [ccusage Codex source documentation](https://github.com/ccusage/ccusage/blob/main/docs/guide/codex/index.md), [MIT license](https://github.com/ccusage/ccusage/blob/main/LICENSE), and [v20.0.48 release](https://github.com/ccusage/ccusage/releases/tag/v20.0.48). Codex interface review: [official developer commands](https://learn.chatgpt.com/docs/developer-commands?surface=cli); local rollout field support was established from the selected local corpus.
+
+### Agent-facing analysis and usability pilot
+
+The local workspace includes an **Experiments** table for proposed trials. Codex can
+use the registered `ttgl-analyst` MCP or the same engine through the local CLI:
+
+```sh
+python3 tools/usage-monitor/observability/setup_local.py configure-cli
+ttgl tools
+ttgl query_activity --args '{"section":"tasks"}'
+ttgl query_activity --args '{"section":"events","task":"TASK_ID","kind":"tool","sort":"bytes","limit":"10"}'
+ttgl read_evidence --args '{"id":"EVENT_ID","offset":"0","limit":"4000"}'
+ttgl query_activity --args '{"section":"experiments"}'
+```
+
+`ttgl plan_experiment --args -` reads a JSON protocol from stdin. Required string fields:
+`task_id`, `title`, `change`, `metrics`, `quality_gate`, `overhead`, `rollback`. List existing
+experiments and opportunities before adding a proposal. The task must have assigned
+activity; its definition, events and measured usage are frozen with a baseline hash.
+Planning does not execute a benchmark or establish savings. Task/project filters select
+scope; category tokens are not attributed tool costs. Evidence offsets count characters.
+
+[Observed agent usability results](studies/agent-usability-results-001.md) document actual
+calls, interviews, research overhead, failures and limitations. The reusable study runner
+`observability/usability_study.py run PRIVATE_DIRECTORY --source WORKSPACE_DATA`
+uses a private database clone; its command-local MCP approval applies only to that clone.
+It makes real model calls through the local proxy. Do not automatically repeat failed or
+ambiguous invocations. Model authorization remains necessary for new studies.

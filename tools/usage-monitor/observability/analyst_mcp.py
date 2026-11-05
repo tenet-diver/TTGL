@@ -8,6 +8,7 @@ import sys
 from workspace import Store
 from workspace import bridge
 from capture_proxy import sanitized
+from analyst_experiments import list_experiments, plan_experiment
 
 
 def schema(properties, required=()):
@@ -17,7 +18,7 @@ def schema(properties, required=()):
 
 TOOLS = [
     dict(name='query_activity', description='Query native Codex task/project evidence. Tokens are measured; model latency and cash charges unknown.',
-         inputSchema=schema(dict(project='Optional project ID', task='Optional task ID', category='Optional category', section='all, summary, events, turns, projects, tasks, opportunities, rules, wire_captures, agent_analyses, runtime_accounting or sources'))),
+         inputSchema=schema(dict(project='Optional project ID', task='Optional task ID', category='Optional category', section='summary (compact), events, turns, projects, tasks, opportunities, rules, wire_captures, agent_analyses, runtime_accounting, experiments or sources', offset='Zero-based events offset (default 0)', limit='Events page size 1..100 (default 20)', sort='Events sort: ts, runtime or bytes (descending)', kind='Events kind: tool or generation', search='Case-insensitive substring of operation name'))),
     dict(name='create_project', description='Define a project and repository scope. Does not authorize collection from new sources.',
          inputSchema=schema(dict(name='Project name', repo='Repository path', scope='Analysis scope'), ('name', 'repo'))),
     dict(name='create_task', description='Define intended outcome and acceptance criteria before task efficiency analysis.',
@@ -32,8 +33,12 @@ TOOLS = [
          inputSchema=schema(dict(id='Opportunity ID', decision='review, declined or deferred', implementation='not_started, prepared, applied or reverted',
                                  evaluation='not_measured, trial_planned, in_progress, improved, regressed or inconclusive', notes='Evidence, concrete plan, trial results and rollback notes'), ('id',))),
     dict(name='read_evidence', description='Read one retained native operation or one redacted captured HTTP pair by its evidence ID. Opaque reasoning is omitted. Output is bounded.',
-         inputSchema=schema(dict(id='Event ID from query_activity events, or capture ID from wire_captures'), ('id',))),
+         inputSchema=schema(dict(id='Event ID from query_activity events, or capture ID from wire_captures', offset='Character offset, default 0', limit='Characters 1..16000, default 4000'), ('id',))),
 ]
+TOOLS.append(dict(name='plan_experiment', description='Save a proposed experiment with a frozen assigned-task baseline, measurement plan and quality/rollback guards. List experiments and opportunities first to check for existing proposals. Does not execute anything.', inputSchema=schema(dict(task_id='Assigned baseline task ID', title='Short experiment title', change='One changed harness variable', metrics='Primary metric, comparison design and decision threshold', quality_gate='Acceptance criteria and quality retention threshold', overhead='Account for analyst, implementation and evaluation costs', rollback='When and how to revert'), ('task_id', 'title', 'change', 'metrics', 'quality_gate', 'overhead', 'rollback'))))
+for tool in TOOLS:
+    tool['annotations'] = dict(readOnlyHint=tool['name'] in ('query_activity', 'read_evidence'), destructiveHint=False, openWorldHint=False)
+
 ACTION = dict(create_project='project', create_task='task', assign_turn='assign', set_task_status='task_status',
               update_category_rule='rule', record_opportunity_review='decision')
 
@@ -45,7 +50,7 @@ def handle(store, request):
         supported = ['2024-11-05', '2025-03-26', '2025-06-18']
         version = params.get('protocolVersion')
         return dict(protocolVersion=version if version in supported else supported[-1],
-                    capabilities={'tools': {'listChanged': False}}, serverInfo=dict(name='ttgl-codex-analyst', version='1.0.0'))
+                    capabilities={'tools': {'listChanged': False}}, serverInfo=dict(name='ttgl-codex-analyst', version='1.1.0'))
     if method == 'ping':
         return {}
     if method == 'tools/list':
@@ -90,20 +95,49 @@ def handle(store, request):
                 if result is None:
                     raise ValueError('Evidence unavailable in this authorized source')
                 text = json.dumps(result)
-                result = dict(evidence=text[:64000], truncated=len(text) > 64000, source='native or explicit proxy evidence', raw_reasoning_included=False)
+                offset, limit = int(arguments.get('offset', '0')), int(arguments.get('limit', '4000'))
+                if offset < 0 or not 1 <= limit <= 16000:
+                    raise ValueError('offset must be >=0 and limit 1..16000')
+                end = min(offset + limit, len(text))
+                result = dict(id=ident, evidence=text[offset:end], offset=offset, total_characters=len(text),
+                              next_offset=end if end < len(text) else None, truncated=end < len(text), source='native or explicit proxy evidence', raw_reasoning_included=False)
+            elif name == 'plan_experiment':
+                result = plan_experiment(store, arguments)
             elif name == 'query_activity':
-                result = store.report(**{k: arguments[k] for k in ('project', 'task', 'category') if k in arguments})
+                if arguments.get('section') == 'experiments':
+                    records = list_experiments(store, arguments.get('task'), arguments.get('project'))
+                    result = dict(experiments=[{**r, 'baseline': {k: v for k, v in r['baseline'].items() if k != 'events'}} for r in records])
+                    return dict(content=[dict(type='text', text=json.dumps(result))], isError=False)
+                result = store.report(event_limit=None, **{k: arguments[k] for k in ('project', 'task', 'category') if k in arguments})
+                scope_count, prior_count = result['event_count'], len(result['agent_analyses'])
+                timestamps = [e['ts'] for e in result['events'] if e['ts']]
+                time_range = dict(first_at=min(timestamps) if timestamps else None, last_at=max(timestamps) if timestamps else None)
                 section = arguments.get('section', 'summary')
                 if section == 'summary':
-                    result = {k: result[k] for k in ('usage', 'categories', 'models', 'event_count', 'sources', 'limitations', 'runtime_accounting', 'agent_analyses')}
+                    result = {k: result[k] for k in ('usage', 'categories', 'models', 'event_count', 'sources', 'limitations', 'runtime_accounting', 'usage_scope', 'capture_coverage')}
+                    result['time_range'] = time_range
+                    result['prior_analysis_count'] = prior_count
+                    result['navigation'] = 'List tasks and exact categories first; events supports offset/limit/sort/kind/search. Read original records with read_evidence. Prior interpretations available via agent_analyses. Save trials via plan_experiment.'
                 elif section != 'all':
                     if section not in ('events', 'turns', 'projects', 'tasks', 'opportunities', 'rules', 'sources', 'wire_captures', 'agent_analyses', 'runtime_accounting'):
                         raise ValueError('Unsupported section')
                     result = {section: result[section]}
                 # Bound analyst payload; a section filter avoids oversized context.
                 if isinstance(result.get('events'), list):
-                    result['events'] = result['events'][-100:]
-                    result['events_limit'] = 100
+                    offset, limit = int(arguments.get('offset', '0')), int(arguments.get('limit', '20'))
+                    if offset < 0 or not 1 <= limit <= 100:
+                        raise ValueError('offset must be >=0 and limit 1..100')
+                    sort = arguments.get('sort', 'ts')
+                    if sort not in ('ts', 'runtime', 'bytes'):
+                        raise ValueError('sort must be ts, runtime or bytes')
+                    if arguments.get('kind') not in (None, 'tool', 'generation'):
+                        raise ValueError('kind must be tool or generation')
+                    events = [e for e in result['events'] if (not arguments.get('kind') or e['kind'] == arguments['kind']) and arguments.get('search', '').lower() in e['name'].lower()]
+                    events.sort(key=lambda e: e[sort] or ('' if sort == 'ts' else 0), reverse=True)
+                    result['events'] = events[offset:offset+limit]
+                    result['pagination'] = dict(offset=offset, limit=limit, matched_in_window=len(events), next_offset=offset+limit if offset+limit < len(events) else None, window_limit=None, scope_event_count=scope_count)
+                    if not events:
+                        result['hint'] = 'No matches. List tasks and summary categories for exact IDs/names; remove category or search filters. Events are paginated across the full selected scope.'
             else:
                 result = store.mutate(ACTION[name], arguments)
             return dict(content=[dict(type='text', text=json.dumps(result))], isError=False)
