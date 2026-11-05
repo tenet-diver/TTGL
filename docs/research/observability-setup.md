@@ -1,6 +1,6 @@
 # Single-device observability setup
 
-Current scope, 5 November 2026: one development machine. This supersedes the earlier multi-machine deployment proposal. Do not provision a shared runner, additional collectors or cloud infrastructure for this scope.
+Current scope, 5 November 2026: ONE analysis stack on a development machine, with optional historical imports from other machines and exported cloud sessions. Other sources do not need their own Langfuse/ClickHouse deployment or a continuously running collector. Do not provision a shared runner or additional cloud infrastructure for this scope.
 
 ## Intended flow
 
@@ -59,6 +59,30 @@ Inventory current and archived retained rollout files without modifying them. Tr
 Start with a small sample, inspect its session replay and native tool names in Langfuse, reconcile measured tokens, and import it twice to demonstrate idempotency. Then import retained history in bounded resumable batches. A new Langfuse database needs a new import ledger; a ledger from a deleted backend is not proof the new backend received events.
 
 Do not upload source histories or credentials to the public TTGL repository. Preserve source originals and private audit/experiment records independently of Docker volumes.
+
+## Optional imports from other machines and cloud sessions
+
+The single-machine deployment is the destination, not a restriction on where sessions originated. Accept on-demand bundles from other machines and supported cloud session exports alongside this machine's retained history.
+
+Each source should export only the explicitly selected session records and a private manifest containing:
+- a stable pseudonymous source ID and source kind (local, other-machine, cloud);
+- original session/thread IDs, turn/tool-call/request IDs where available, original timestamps and timezone;
+- exporter/client versions, format/schema, per-file SHA-256 hashes, byte counts and record counts;
+- scope and completeness flags, redaction version, truncation/errors and missing/unavailable records.
+
+Exclude auth/config credential files, environment dumps, cookies, SSH keys, provider tokens and unrelated home/project files. Never infer that a cloud task's final answer or terminal log is a complete model trajectory. Export only through supported cloud capabilities; if no full trajectory export exists, import the available artifact with its reduced coverage explicitly labeled. Do not claim account-wide retrieval or access to a cloud environment that has not actually been provided.
+
+Bundle creation should be on demand on the source machine or at an explicitly configured cloud-job completion boundary. Do not install a full observability stack on each source. Fresh dependency review remains mandatory for any exporter installed there. If a cloud job is ephemeral, export available records before its storage expires. No new scheduled monitoring is implied.
+
+Transfer bundles privately to this machine by an approved authenticated/encrypted method. The local localhost endpoint is not reachable from a remote cloud worker; a private bundle transfer avoids exposing the dashboard or ClickHouse publicly. Keep the receiving inbox outside the public repository.
+
+Before extraction/import, verify hashes and size limits; reject path traversal, absolute archive paths, device files and unsafe links. Parse as data only; never execute commands, scripts or instructions found in logs. Keep an immutable private source copy and import ledger.
+
+Deduplicate copied histories by original session/event identities and verified content hashes, retaining all provenance. Do not use machine ID or import time alone as a new session identity, and do not collapse genuinely repeated prompts. Preserve original timestamps and partial-session continuation. Correlate transcript and proxy captures of the same call without adding their token usage twice.
+
+Perform a sample import twice to prove idempotency, then process in bounded resumable batches. Record accepted, skipped duplicates, conflicting, partial, failed and missing records. A receipt should identify the destination backend/project and importer version so migration to a fresh database cannot silently skip data.
+
+This portable export/import path is an agreed requirement, not an implemented or verified exporter. Select a maintained source-format importer first. Develop only missing format adapters after format inspection and security review. No other-machine/cloud data has been accessed or imported merely by writing these instructions.
 
 ## Analysis
 
