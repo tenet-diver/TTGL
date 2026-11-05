@@ -1,6 +1,6 @@
 # Single-device observability setup
 
-Current scope, 5 November 2026: ONE analysis stack on a development machine, with optional historical imports from other machines and exported cloud sessions. Other sources do not need their own Langfuse/ClickHouse deployment or a continuously running collector. Do not provision a shared runner or additional cloud infrastructure for this scope.
+Current scope, 5 November 2026: consolidate history and continuously collect future records from TWO MacBooks and cloud runs into ONE central analysis stack. Each source needs only appropriate capture/export components with offline queues, not its own full stack. Headroom/compression experiments are deferred; focus on data quality and security clearance. The sections below describing one-machine-only scope or merely optional remote imports are superseded by this current scope.
 
 ## Intended flow
 
@@ -60,7 +60,7 @@ Start with a small sample, inspect its session replay and native tool names in L
 
 Do not upload source histories or credentials to the public TTGL repository. Preserve source originals and private audit/experiment records independently of Docker volumes.
 
-## Optional imports from other machines and cloud sessions
+## Historical imports from other machines and cloud sessions
 
 The single-machine deployment is the destination, not a restriction on where sessions originated. Accept on-demand bundles from other machines and supported cloud session exports alongside this machine's retained history.
 
@@ -72,7 +72,7 @@ Each source should export only the explicitly selected session records and a pri
 
 Exclude auth/config credential files, environment dumps, cookies, SSH keys, provider tokens and unrelated home/project files. Never infer that a cloud task's final answer or terminal log is a complete model trajectory. Export only through supported cloud capabilities; if no full trajectory export exists, import the available artifact with its reduced coverage explicitly labeled. Do not claim account-wide retrieval or access to a cloud environment that has not actually been provided.
 
-Bundle creation should be on demand on the source machine or at an explicitly configured cloud-job completion boundary. Do not install a full observability stack on each source. Fresh dependency review remains mandatory for any exporter installed there. If a cloud job is ephemeral, export available records before its storage expires. No new scheduled monitoring is implied.
+Historical bundle creation may be on demand; future capture/export should be automatic at supported lifecycle or cloud-job boundaries, with durable local queuing, retry and delivery receipts. Do not install a full observability stack on each source. Fresh dependency review remains mandatory for any exporter installed there. If a cloud job is ephemeral, export available records before its storage expires. No new scheduled monitoring is implied.
 
 Transfer bundles privately to this machine by an approved authenticated/encrypted method. The local localhost endpoint is not reachable from a remote cloud worker; a private bundle transfer avoids exposing the dashboard or ClickHouse publicly. Keep the receiving inbox outside the public repository.
 
