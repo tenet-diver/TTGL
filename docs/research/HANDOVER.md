@@ -2291,3 +2291,35 @@ Timing audit correction: `usage-tools` start/completion timestamps are lifecycle
 ## Runtime distribution preference — 4 November
 
 Latest user choice: preserve outliers and use runtime distributions instead of filtering. Primary timing widgets show median by operation/outcome plus count, p50, p95, p99 and maximum. All outcomes stay included, grouped separately. No minimum-count cohort or individual clipping is applied; its temporary refresh is removed. Read quantiles alongside sample counts, especially for rare operations. Token/cost accounting is unchanged.
+
+## 6 November: harness tools queue and rejected retrieval guidance
+
+User authorized existing-tool research and bounded experiments. See
+tools/usage-monitor/studies/harness-optimization-backlog.md and its JSON registry.
+Normal Codex remains on the built-in provider after the preserved startup recovery;
+capture/compression is opt-in. Do not infer global live compression from older text.
+Schedules remain paused. Existing pre-turn source edits were preserved.
+
+retrieval-guidance-001 is COMPLETE: three fresh public-source investigation pairs,
+six native Sol sessions, all exact facts/source checks pass; native/CLI counts
+reconcile. Neutral269570 vs scoped301326 tokens (+11.7802%), only1/3 pair wins:
+registered gate FAIL, reject recorded. Output bytes28577->24125 but calls9->11;
+extra31360 cached input/286 fresh/110 output. No cash/general coding-quality claim.
+Never repeat/replace these runs. Evaluation7866ead9b08644889f34396949d68fa1,
+proposal1f5732e17b4e452fa1d2a5024fa47c27 in TTGL Experiments.
+
+Offline pre-registration audit:683 indexed tools matched,446 retained command
+outputs/413 distinct; existing transforms change6 distinct,1925451->1742273 bytes.
+Not measured model-token savings; opaque MCP bodies excluded, research mixed in.
+RTK1.1.0 pinned753a3b0 release lock255 packages/251 registry queries has OSV
+matches in8 package versions, including vulnerability and maintenance findings;
+BLOCKED, no install/execution. CLI Apache2, engine BUSL additional-use restrictions.
+Aider/LLMLingua remain uninstalled/unreviewed candidates. Metadata/security receipts
+and all private trials under work/security/harness-optimization-20261106/.
+
+Four next-step proposals saved (independent-read batching, security-blockedRTK,
+Aider map, LLMLingua), none launched. No development winner yet. Next prefer
+bounded batching tests with existing tools; freeze a separate fresh protocol first.
+17:25UTC accounting lower bound: parent2358148+trials570896=2929044 native tokens;
+parent active, no net first-use saving. No extra analyst model session spawned.
+Six-cell identity/hash/type/accounting audit and4 existing compression checks pass.

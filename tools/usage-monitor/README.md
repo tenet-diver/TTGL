@@ -1,5 +1,11 @@
 # TTGL Usage Observatory
 
+The [harness tool and experiment queue](studies/harness-optimization-backlog.md)
+records current candidates, security blocks, registered comparisons and measured
+reject/keep decisions. Its first new retrieval-guidance comparison is complete:
+all six answers passed, but total native tokens increased 11.78%, so the change
+was rejected. Normal native-provider routing remains unchanged.
+
 ## Compact workspace and data coverage
 
 The workspace uses compact, searchable/sortable/paginated tables for tasks,
