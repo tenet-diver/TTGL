@@ -19,7 +19,11 @@ aggregate difference, and the search tool is never queried. Every trial's native
 counters and unique generation identities reconcile with both CLI summaries and
 Langfuse. These small, unreplicated development results nominate candidates;
 they do not establish causal memory benefits, statistical noninferiority,
-long-horizon transfer, cash savings or an optimal system. A separate adapted
+long-horizon transfer, cash savings or an optimal system. A subsequent cache-aware
+cost audit changes the practical interpretation: raw history saves only3.24%
+under published Codex Standard credit rates, while the FTS and notes conditions
+cost slightly more despite fewer tokens. Subsequent blocks optimize total
+quality-constrained inference cost. A separate adapted
 Mem0 setup demonstrates metered extraction, persistence, retrieval and tenant
 separation, with integration failures and missing optional components preserved.
 
@@ -157,8 +161,8 @@ budgets. Operator grades, reference code and future prompts never enter memory.
 Directory restrictions combine prompt/sandbox constraints; no cryptographic or
 unmounted actor-isolation claim is made for this generated diagnostic.
 
-The development nomination gate requires no lost milestone against None, at
-least 10% pooled reduction and a win on both sequences. It is not a statistical
+The original token-based development nomination gate requires no lost milestone against None, at
+least 10% pooled token reduction and a win on both sequences. It is not a statistical
 noninferiority test. Existing reserved routing validation cases remain untouched.
 
 ### 3.4 Mem0 mechanism preflight and security
@@ -186,8 +190,11 @@ a separate gate. No mock embeddings are used for efficacy.
 
 ### 3.5 Outcomes, costs and uncertainty
 
-Primary outcomes are independently verified task/sequence success and complete
-sequence native input plus output tokens. Cached input is a subset counted once;
+The completed blocks originally registered independently verified task/sequence
+success and complete-sequence native input plus output tokens. Following explicit
+user steering, the added cost analysis is post hoc for these blocks; their original
+gates remain unchanged. **Subsequent protocols make quality-constrained total
+model inference cost the primary efficiency outcome**, with tokens secondary. Cached input is a subset counted once;
 fresh input and output are reported separately. Memory extraction, summarization,
 retrieval calls, retries and integration count whenever used. Local embedding
 inferences, CPU runtime and model-loading overhead remain explicit separate
@@ -197,6 +204,23 @@ Elapsed process time includes orchestration; native finite tool runtime and
 background service lifetime are different quantities. Parent and child durations
 can overlap and must not be summed into task latency. Token-rate scenarios,
 subscription charges, quota effects and full deployment cost are distinct.
+
+For each actual response, the published Codex Standard scenario is
+`[(input − cached_input) × 50 + cached_input × 2.5 + output × 250] / 1,000,000`
+credits. These rates were verified on7 November in
+[official Codex pricing](https://learn.chatgpt.com/docs/pricing).
+Codex credit billing has no separate cache-write charge or subscription
+long-context surcharge for this model. This scenario does not establish the
+account's actual consumed credits, included allowance or cash expense.
+
+A separate [API-rate sensitivity](https://developers.openai.com/api/docs/models/gpt-6.1-sol)
+uses2/.10/10 USD per million fresh/cached/output tokens. API requests above272K
+input tokens have different rates; that threshold is assessed per response,
+never from cumulative task tokens. API cache-write categories and behavior
+cannot be inferred from subscription usage. Unknown categories block exact API
+costing; observed native zero-write reports support only the labeled sensitivity.
+[Versioned rates and amendment](../../../tools/usage-monitor/studies/context-memory-pricing-20261107.json)
+preserve these distinctions.
 
 No confidence interval from this two-sequence diagnostic can establish broad
 quality retention. We report every registered cell, including adverse outcomes
@@ -248,7 +272,37 @@ difference arises before memory can have an effect. The nomination gate was
 predefined, but passing it does not identify a causal 17.47% memory benefit.
 Fresh replication and a same-information control are necessary.
 
-### 4.3 Preserved integration failures and Mem0 setup
+### 4.3 Cache-aware cost audit added after completion
+
+| Condition | Fresh input | Cached input | Output | Cache-hit fraction | Published Standard credit scenario | Cost change |
+|---|---:|---:|---:|---:|---:|---:|
+| None |89,101|562,432|5,051|86.3244%|7.12388|Reference|
+| Raw history |97,074|441,088|3,748|81.9619%|6.89342|−3.2350%|
+| FTS availability |92,169|553,344|4,683|85.7216%|7.16256|+0.5430%|
+| Agent notes |90,988|557,184|4,736|85.9624%|7.12636|+0.0348%|
+
+Raw history's17.47%token reduction becomes only3.24%lower cost in this scenario:
+it uses7,973more fresh-input tokens while eliminating mostly cheap cached input.
+Both FTS availability and notes have lower token totals but slightly higher
+rate-weighted costs. These small differences do not support broad superiority.
+The original token gate passes for Raw history; an added10%cost-reduction gate
+would not. **No memory condition is currently nominated under the new cost
+criterion.** This qualification supersedes any token-only reading of nomination.
+
+Holding the observed counters and output/fresh rate ratio5fixed, Raw history's
+cost breaks even when the cache/fresh input price ratio is about0.0120. Below
+that ratio it costs more than None despite fewer total tokens. This is a
+sensitivity calculation, not a prediction of future cache behavior. Current
+published ratio0.05lies above that point. Cache ratio alone is also insufficient:
+absolute fresh/cached/output counts and all auxiliary model calls determine cost.
+
+Batching remains favorable in the added cost audit:3.20342→2.66323scenario credits,
+a16.8629%reduction with all source checks passing. No actual subscription bill,
+quota reduction or end-to-end deployment saving is inferred. All original trial
+artifacts and the initial token gates remain preserved; the new audit is a
+separate TTGL evaluation with its own dated receipt and three accounting tests.
+
+### 4.4 Preserved integration failures and Mem0 setup
 
 Chronological block001 fails during CLI configuration loading because built-in
 provider IDs cannot be overridden. No model thread was created; its exact error
@@ -264,7 +318,7 @@ LLM calls. The failed call and missing optional components remain recorded.
 This is a mechanism result, not task accuracy, economic benefit or a completed
 Mem0 comparison against the controls.
 
-### 4.4 Analyst and research expense
+### 4.5 Analyst and research expense
 
 An on-demand local Codex analyst reviews a frozen 74-tool-event snapshot and
 publishes in TTGL. It distinguishes finite experiment orchestration from model
@@ -299,6 +353,11 @@ requires task-level evaluation rather than inference from shorter outputs.
 Second, preserving more prior evidence can coexist with lower aggregate task
 tokens, but this diagnostic cannot isolate the benefit from stochastic behavior,
 initial-stage differences and path-dependent implementations.
+
+The cache-aware audit further shows that token savings can overstate or reverse
+the cost conclusion. Future selection requires at least10%lower complete-system
+rate-weighted cost, retained matched successes and a majority of paired cost wins;
+quality uncertainty must be evaluated separately on fresh data.
 
 No result yet supports selecting Mem0, Letta, Graphiti or a learned compressor
 as the production optimum. The useful outcome of the preflight is a compatible,

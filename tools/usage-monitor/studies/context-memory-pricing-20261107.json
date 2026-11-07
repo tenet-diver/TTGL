@@ -1,0 +1,36 @@
+{
+  "id": "context-memory-cost-001",
+  "checked_at": "2026-11-07",
+  "model": "gpt-6.1-sol",
+  "sources": [
+    "https://learn.chatgpt.com/docs/pricing",
+    "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+    "https://developers.openai.com/api/docs/pricing"
+  ],
+  "primary_scenario": {
+    "name": "Published Codex Standard credit-rate scenario",
+    "unit": "credits",
+    "fresh_input_per_million": 50.0,
+    "cached_input_per_million": 2.5,
+    "output_per_million": 250.0,
+    "separate_cache_write_charge": false,
+    "long_context_surcharge": false,
+    "scope": "Apply published Standard Codex credit rates to measured native response counters. This does not establish this account's actual allowance/credits consumed or subscription cash expense."
+  },
+  "secondary_scenario": {
+    "name": "API Standard rate sensitivity applied to observed Codex counters",
+    "unit": "USD scenario",
+    "fresh_input_per_million": 2.0,
+    "cached_input_per_million": 0.1,
+    "output_per_million": 10.0,
+    "cache_write_30m_per_million": 2.5,
+    "cache_write_12h_per_million": 5.0,
+    "long_context_threshold_input_tokens": 272000,
+    "long_context_input_multiplier": 2.0,
+    "long_context_output_multiplier": 1.5,
+    "scope": "Counterfactual pricing sensitivity only. Observed subscription cache behavior is not guaranteed under API requests. Unknown cache-write accounting blocks an exact API scenario rather than silently becoming zero. Native Codex credit scenario remains separate."
+  },
+  "accounting": "Credit cost is sum over every actual model response of ((input-cached_input)*fresh_rate + cached_input*cached_rate + output*output_rate)/1e6. Cached input is included within input; reasoning is included within output. Include memory extraction, summaries, ranking, failed calls, recovery and integration; evaluation/research overhead separate. Never aggregate per-response long-context thresholds from whole-task totals.",
+  "study_amendment": "Added after user steering and after development blocks completed. Original token-only registered gates remain preserved. Cost audit is explicitly post hoc for those blocks. Every subsequent protocol uses quality-constrained complete-system cost as its primary efficiency criterion; token counts and hit ratios are secondary.",
+  "future_selection": "Among candidates retaining all matched baseline successes on development, require >=10% lower total task Codex credit-rate scenario and a majority of paired task cost wins before nomination. Freeze candidate/policy and statistical margin before held-out inference; a tiny development no-loss result is not noninferiority. Include all memory-system inference; do not choose a candidate solely on token reductions."
+}

@@ -34,14 +34,18 @@ Each live block still has a frozen allocation, failure policy and complete accou
 | cache-aware-layout | Stable prefix/compaction timing with same semantic information | Planned | Measured fresh/cached/output buckets; no cash/quota inference. Shorter context can increase rate-weighted cost. |
 | verification-selection | Focused initial tests with mandatory full final verification | Planned | Three fresh paired repair tasks; independent final checks in every arm. |
 | rtk-output | Maintained output filtering | Security blocked | Prior pinned release has confirmed dependency advisories; no install/execute. A patched candidate needs a new review. |
+| longmemeval-local-codex-development-001 | Full-history vs ordinary file-search vs exact FTS excerpts vs adapted Mem0-dense, all with identical raw files | Running |8 development questions spanning all6 types;72 registered model processes including8 memory extractions and32 blinded judges. Primary criterion is total cost with retained matched successes. Each history is about503–520k characters.24 held-out cases reserved and untouched. [Protocol](../../tools/usage-monitor/studies/longmemeval-codex-protocol-001.json). |
 | public-benchmark-screen | Screen SWE-bench and Terminal-Bench for long-horizon/context and memory tracks | In progress; no model runs | Pin dataset/harness/resources, audit empty/reference controls and image security; separate official score from chronological memory extensions. Exclude all reserved routing validation families. |
 | heldout-context-memory | Frozen selected configurations on fresh tasks | Planned; untouched | Register selection rule, noninferiority margin, sample size and paired uncertainty before exposure; no tuning/stopping on held-out results. |
 | scientific-report | Detailed methods, all results/failures, uncertainty, costs and reproduction artifacts | Planned; repository publication | Publish Markdown plus self-contained HTML when results exist. No external journal/arXiv submission requested. State best among tested configurations, not universal optimality. |
 
 ## Measurement and fairness rules
 
-- Primary: independently verified task success and complete-task native model
-  inference usage; report input, cached-input subset, fresh input and output separately.
+- Primary for subsequent blocks: independently verified task success and **total
+  rate-weighted model inference cost**, including memory creation/retrieval/integration.
+  Report input, cached-input subset, fresh input, writes where observable, output and
+  cache-hit ratio separately. Fewer tokens can cost more. Original token-only gates
+  stay frozen; the added cost analysis is explicitly post hoc for completed blocks.
 - Memory track: include episode extraction, summaries, embeddings, indexing,
   retrieval/ranking, retries, integration and recovery. Report cold-start totals and
   amortized curves separately. Unknown usage remains null, never zero.
@@ -61,12 +65,14 @@ Each live block still has a frozen allocation, failure policy and complete accou
 
 ## Current activity and next actions
 
-1. Run the frozen six-cell independent-read batching block with existing Codex.
-2. Execute a scoped on-demand analyst review and reconcile its overhead.
-3. Finish Mem0 dependency review; register chronological controls before inference.
-4. Audit actual transform/capture application, then freeze the fresh context block.
-5. Update this document after each block and publish all supported results, including
-   rejected candidates. Prior study details remain in their original reports.
+1. Completed: batching, analyst review,24 chronological cells and exact Langfuse audits.
+2. Complete the Mem0 configuration gates and register the harder memory comparison.
+3. Use cost as the primary efficiency metric: preserve the token-only gates already
+   run, but apply the dated cost amendment before any new inference.
+4. Audit actual transform/capture application, then freeze fresh context/long-horizon
+   blocks and separate held-out evaluation.
+5. Publish every block, failure, cost/cache breakdown and uncertainty here and in
+   the scientific manuscript. Existing routing validation remains untouched.
 
 ## Activity log
 
@@ -109,3 +115,29 @@ Started processes include preserved configuration failures. Missing grades/usage
 
 - 7 November: published initial scientific-format manuscript at [docs/paper/context-memory/report.md](../paper/context-memory/report.md). It explicitly analyzes stage-one variation before memory exposure, zero FTS use, integration failures and research expense. At15:56:53UTC this active cycle has13,911,128 accrued native tokens (lower bound), with local embedding inferences separate; no net/cash saving claim.
 - 7 November: next supplemental memory track selected for preparation: pinned MIT LongMemEval-S, native local-Codex reader/judge adaptation with full-history and file-search controls. No benchmark inference yet. LongMemEval-V2 full distribution is about7.12GB including screenshots, larger than available disk; no full download or image omission presented as an official result. Coding/terminal long-horizon track still pending.
+
+## Cost-aware steering and completed-block audit
+
+User steering on7 November explicitly prioritizes total cost: fewer tokens can
+lose cache reuse and cost more. [Verified rate scenarios](../../tools/usage-monitor/studies/context-memory-pricing-20261107.json)
+use per-response native counters; actual account credits/quota and cash remain unknown.
+The added audit is post hoc and does not rewrite completed registered token gates.
+
+| Block/arm | Native token change | Codex Standard credit-rate scenario | Cost change vs matched control |
+|---|---:|---:|---:|
+| Batching neutral | Reference |3.20342 credits|Reference|
+| Batching candidate |−13.7703%|2.66323 credits|−16.8629%|
+| Chronological none |Reference|7.12388 credits|Reference|
+| Raw history |−17.4652%|6.89342 credits|−3.2350%|
+| FTS availability |−0.9729%|7.16256 credits|+0.5430%|
+| Agent notes |−0.5599%|7.12636 credits|+0.0348%|
+
+Raw-history cache-hit ratio falls from86.3244% to81.9619%, and fresh input rises
+89,101→97,074 tokens. It passes only the original token nomination gate; it does
+**not** meet a10%cost-reduction gate. No memory configuration is selected as the
+optimum. FTS has0actual retrievals. Future selection includes all memory-system
+inference and quality retention, with cache-price and context-length sensitivity.
+Both cost audits are also attached as separate evaluations in TTGL Experiments.
+
+- 7 November: user cost steering implemented through response-level primary Codex credit scenarios, cache break-even/sensitivity and separate API pricing;3 new accounting tests pass. The original token-only gates remain frozen.
+- 7 November: LongMemEval-S data pinned/hash checked as JSON-only MIT data; no dataset scripts run. Outcome-independent stratified reservation002 covers all6 types, excludes shared answer-support sessions and sibling ID families. Three label-boundary/rubric tests pass; eight history schema checks pass. Registered72-process development block started;24 validation questions remain reserved. No official-score or coding-quality claim.

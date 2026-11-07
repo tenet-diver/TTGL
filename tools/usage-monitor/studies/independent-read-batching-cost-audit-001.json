@@ -1,0 +1,176 @@
+{
+  "id": "context-memory-cost-001",
+  "at": "2026-11-07T16:05:58.079206+00:00",
+  "study": "independent-read-batching-001",
+  "pricing": {
+    "id": "context-memory-cost-001",
+    "checked_at": "2026-11-07",
+    "model": "gpt-6.1-sol",
+    "sources": [
+      "https://learn.chatgpt.com/docs/pricing",
+      "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+      "https://developers.openai.com/api/docs/pricing"
+    ],
+    "primary_scenario": {
+      "name": "Published Codex Standard credit-rate scenario",
+      "unit": "credits",
+      "fresh_input_per_million": 50.0,
+      "cached_input_per_million": 2.5,
+      "output_per_million": 250.0,
+      "separate_cache_write_charge": false,
+      "long_context_surcharge": false,
+      "scope": "Apply published Standard Codex credit rates to measured native response counters. This does not establish this account's actual allowance/credits consumed or subscription cash expense."
+    },
+    "secondary_scenario": {
+      "name": "API Standard rate sensitivity applied to observed Codex counters",
+      "unit": "USD scenario",
+      "fresh_input_per_million": 2.0,
+      "cached_input_per_million": 0.1,
+      "output_per_million": 10.0,
+      "cache_write_30m_per_million": 2.5,
+      "cache_write_12h_per_million": 5.0,
+      "long_context_threshold_input_tokens": 272000,
+      "long_context_input_multiplier": 2.0,
+      "long_context_output_multiplier": 1.5,
+      "scope": "Counterfactual pricing sensitivity only. Observed subscription cache behavior is not guaranteed under API requests. Unknown cache-write accounting blocks an exact API scenario rather than silently becoming zero. Native Codex credit scenario remains separate."
+    },
+    "accounting": "Credit cost is sum over every actual model response of ((input-cached_input)*fresh_rate + cached_input*cached_rate + output*output_rate)/1e6. Cached input is included within input; reasoning is included within output. Include memory extraction, summaries, ranking, failed calls, recovery and integration; evaluation/research overhead separate. Never aggregate per-response long-context thresholds from whole-task totals.",
+    "study_amendment": "Added after user steering and after development blocks completed. Original token-only registered gates remain preserved. Cost audit is explicitly post hoc for those blocks. Every subsequent protocol uses quality-constrained complete-system cost as its primary efficiency criterion; token counts and hit ratios are secondary.",
+    "future_selection": "Among candidates retaining all matched baseline successes on development, require >=10% lower total task Codex credit-rate scenario and a majority of paired task cost wins before nomination. Freeze candidate/policy and statistical margin before held-out inference; a tiny development no-loss result is not noninferiority. Include all memory-system inference; do not choose a candidate solely on token reductions."
+  },
+  "totals": {
+    "baseline": {
+      "usage": {
+        "input_tokens": 307298,
+        "cached_input_tokens": 259968,
+        "output_tokens": 748,
+        "total_tokens": 308046,
+        "fresh_input_tokens": 47330
+      },
+      "cache_hit_fraction": 0.8459801235283015,
+      "credit_rate_scenario": 3.2034200000000004,
+      "api_rate_sensitivity_usd": 0.1281368,
+      "cost_reduction_fraction": 0.0,
+      "token_reduction_fraction": 0.0,
+      "cache_to_fresh_break_even_ratio": null,
+      "sensitivity": {
+        "0": 0.05107,
+        "0.01": 0.05366968,
+        "0.05": 0.0640684,
+        "0.1": 0.0770668,
+        "0.25": 0.116062,
+        "1": 0.311038
+      }
+    },
+    "scoped": {
+      "usage": {
+        "input_tokens": 264788,
+        "cached_input_tokens": 227072,
+        "output_tokens": 839,
+        "total_tokens": 265627,
+        "fresh_input_tokens": 37716
+      },
+      "cache_hit_fraction": 0.857561520914845,
+      "credit_rate_scenario": 2.66323,
+      "api_rate_sensitivity_usd": 0.10652919999999999,
+      "cost_reduction_fraction": 0.16862915259316613,
+      "token_reduction_fraction": 0.13770345987287613,
+      "cache_to_fresh_break_even_ratio": -0.27842290856031127,
+      "sensitivity": {
+        "0": 0.041911,
+        "0.01": 0.04418172,
+        "0.05": 0.053264599999999995,
+        "0.1": 0.0646182,
+        "0.25": 0.098679,
+        "1": 0.268983
+      }
+    }
+  },
+  "baseline": "baseline",
+  "primary": "Total quality-constrained published Codex credit-rate scenario; fresh/cached/output per actual response, not raw token count.",
+  "design_status": "Post-hoc cost audit of completed development evidence; does not rewrite the frozen token gate.",
+  "cash_expense": null,
+  "actual_account_credit_consumption": null,
+  "quota_saving": null,
+  "limitation": "Deployment cost and local embedding compute are not monetized. API sensitivity uses observed native zero-write reports and is not a recreation of API cache behavior. Subsequent memory trials must add all extraction/ranking inference before comparing total system cost.",
+  "cells": [
+    {
+      "case": "compression-and-supervisor",
+      "stage": null,
+      "condition": "baseline",
+      "usage": {
+        "input_tokens": 127180,
+        "cached_input_tokens": 111232,
+        "output_tokens": 307,
+        "total_tokens": 127487
+      },
+      "credit_rate_scenario": 1.15223,
+      "api_rate_sensitivity_usd": 0.0460892
+    },
+    {
+      "case": "compression-and-supervisor",
+      "stage": null,
+      "condition": "scoped",
+      "usage": {
+        "input_tokens": 101570,
+        "cached_input_tokens": 90240,
+        "output_tokens": 331,
+        "total_tokens": 101901
+      },
+      "credit_rate_scenario": 0.87485,
+      "api_rate_sensitivity_usd": 0.034994
+    },
+    {
+      "case": "capture-and-polling",
+      "stage": null,
+      "condition": "scoped",
+      "usage": {
+        "input_tokens": 87145,
+        "cached_input_tokens": 63360,
+        "output_tokens": 294,
+        "total_tokens": 87439
+      },
+      "credit_rate_scenario": 1.42115,
+      "api_rate_sensitivity_usd": 0.056846
+    },
+    {
+      "case": "capture-and-polling",
+      "stage": null,
+      "condition": "baseline",
+      "usage": {
+        "input_tokens": 79233,
+        "cached_input_tokens": 62720,
+        "output_tokens": 211,
+        "total_tokens": 79444
+      },
+      "credit_rate_scenario": 1.0352000000000001,
+      "api_rate_sensitivity_usd": 0.041408
+    },
+    {
+      "case": "compression-contract",
+      "stage": null,
+      "condition": "baseline",
+      "usage": {
+        "input_tokens": 100885,
+        "cached_input_tokens": 86016,
+        "output_tokens": 230,
+        "total_tokens": 101115
+      },
+      "credit_rate_scenario": 1.01599,
+      "api_rate_sensitivity_usd": 0.0406396
+    },
+    {
+      "case": "compression-contract",
+      "stage": null,
+      "condition": "scoped",
+      "usage": {
+        "input_tokens": 76073,
+        "cached_input_tokens": 73472,
+        "output_tokens": 214,
+        "total_tokens": 76287
+      },
+      "credit_rate_scenario": 0.36723,
+      "api_rate_sensitivity_usd": 0.0146892
+    }
+  ]
+}

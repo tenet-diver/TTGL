@@ -1,0 +1,502 @@
+{
+  "id": "context-memory-cost-001",
+  "at": "2026-11-07T16:05:58.196990+00:00",
+  "study": {
+    "id": "chronological-memory-002",
+    "registered_date": "2026-11-07",
+    "scope": "Generated development diagnostic: two independent three-stage evolving Python projects. This checks real native code editing, chronological memory exposure and accounting; it is not a long-horizon public benchmark or confirmatory efficacy study.",
+    "model": "gpt-6.1-sol",
+    "effort": "low",
+    "provider": "existing authenticated native Codex; built-in openai provider",
+    "conditions": [
+      "none",
+      "raw_history",
+      "fts",
+      "notes"
+    ],
+    "sequences": [
+      "eventlog",
+      "buildgraph"
+    ],
+    "maximum_model_processes": 24,
+    "timeout_seconds_per_run": 600,
+    "automatic_process_retries": 0,
+    "order": "In listed sequence order. Rotate listed conditions left by the sequence index; stages remain chronological within each condition. All registered cells run regardless of functional outcome; stop on infrastructure ambiguity or protected-file changes.",
+    "common": "Implement the requested APIs in the single application module named eventlog.py or buildgraph.py in this working directory. Inspect current source and visible test_stage*.py as needed, edit only the application module, and verify the full visible suite with python3 -m unittest discover -p 'test_stage*.py'. Preserve previously implemented APIs. Use only this working directory and normal shell/edit tools; no network, installations, analytics tools, delegation, sibling/parent directories or access to the experiment runner or operator artifacts. Tests and memory files are read-only inputs; memory.py may append its own query log. Optional prior-episode retrieval is available in every condition through python3 memory.py 'search terms'; it may return no records. Use remembered information only as fallible evidence and check current source. Every current requirement is in this task or visible tests; memory contains no privileged requirements. Finish with a concise verification result and reusable verified implementation facts, failed approaches and unresolved issues. Do not claim checks you did not run.",
+    "memory": {
+      "none": "Fresh session and evolving code/tests; identical search interface returns no history.",
+      "raw_history": "All prior visible episodes of this arm injected verbatim; includes prompt, answer, before/after code and native CLI events. No operator grades or future prompts.",
+      "fts": "Same prior episode representation, searched using standard-library SQLite FTS5 BM25; three nonoverlapping exact 3000-character chunks by default, max 10 hits and 12000 characters per query. All retrieval model turns count.",
+      "notes": "All prior final agent notes injected; note generation is included in each task's native usage. This is agent-authored notes, not Mem0 or an unmetered summarizer."
+    },
+    "matching": "Same initial project and chronological tasks, model, effort, tools, tests and fresh-session policy. Each condition evolves its own implementation/history; path dependence is part of this diagnostic and will be separated from same-corpus comparisons in later blocks. No hidden-memory advantage.",
+    "primary": [
+      "Independent task success at each stage and complete sequence success",
+      "Complete sequence native input plus output tokens, cached input counted once"
+    ],
+    "secondary": [
+      "Fresh input, cached input and output separately",
+      "Per-stage tokens and elapsed process seconds",
+      "Retrieval calls/runtime and memory size",
+      "Quality loss, failed attempts and stale-memory effects"
+    ],
+    "development_gate": "No task success lost against matched none; at least 10% pooled complete-sequence native-token reduction and a win on both sequences. Passing nominates a candidate only; it does not prove statistical noninferiority or authorize a universal optimality claim.",
+    "failure_policy": "Zero automatic retries or replacements. Preserve every started attempt. Wrong solutions remain and subsequent stages continue, exposing error propagation. Nonzero/timeout/missing usage/ambiguous thread or protected-input mutation stops this block. Reconcile native generation counters exactly with each fresh CLI turn before economic claims.",
+    "controls": "Compile all tests and independent checks before inference; empty implementation must fail and independent hand-written reference must pass every stage. Keep reference/independent artifacts outside agent work directories; native directory restriction is an instruction and sandbox constraint, not an asserted air gap.",
+    "overhead": "All 24 processes are research expense. Raw history injection is charged on every inference where native provider reports it. Notes are produced by every condition in the common final response. FTS is stdlib CPU work, not inference. Include parent implementation/analyst overhead separately; cash/quota and provider latency remain unknown.",
+    "heldout": "None in this diagnostic. No reserved routing-validation content may be used. Freeze and separately register later fresh transfer tasks before exposure.",
+    "rollback": "No global Codex provider, guidance, memory or compression default changes. Preserve all transcripts and chronological artifacts privately; public report contains aggregate measurements and reproducible generated task definitions.",
+    "amendment": "001 preserved a configuration-loader rejection before model invocation. Remove unsupported built-in-provider retry overrides; native transport defaults apply. Fresh block002, same tasks/arms/allocation, no prior model outcomes available."
+  },
+  "pricing": {
+    "id": "context-memory-cost-001",
+    "checked_at": "2026-11-07",
+    "model": "gpt-6.1-sol",
+    "sources": [
+      "https://learn.chatgpt.com/docs/pricing",
+      "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+      "https://developers.openai.com/api/docs/pricing"
+    ],
+    "primary_scenario": {
+      "name": "Published Codex Standard credit-rate scenario",
+      "unit": "credits",
+      "fresh_input_per_million": 50.0,
+      "cached_input_per_million": 2.5,
+      "output_per_million": 250.0,
+      "separate_cache_write_charge": false,
+      "long_context_surcharge": false,
+      "scope": "Apply published Standard Codex credit rates to measured native response counters. This does not establish this account's actual allowance/credits consumed or subscription cash expense."
+    },
+    "secondary_scenario": {
+      "name": "API Standard rate sensitivity applied to observed Codex counters",
+      "unit": "USD scenario",
+      "fresh_input_per_million": 2.0,
+      "cached_input_per_million": 0.1,
+      "output_per_million": 10.0,
+      "cache_write_30m_per_million": 2.5,
+      "cache_write_12h_per_million": 5.0,
+      "long_context_threshold_input_tokens": 272000,
+      "long_context_input_multiplier": 2.0,
+      "long_context_output_multiplier": 1.5,
+      "scope": "Counterfactual pricing sensitivity only. Observed subscription cache behavior is not guaranteed under API requests. Unknown cache-write accounting blocks an exact API scenario rather than silently becoming zero. Native Codex credit scenario remains separate."
+    },
+    "accounting": "Credit cost is sum over every actual model response of ((input-cached_input)*fresh_rate + cached_input*cached_rate + output*output_rate)/1e6. Cached input is included within input; reasoning is included within output. Include memory extraction, summaries, ranking, failed calls, recovery and integration; evaluation/research overhead separate. Never aggregate per-response long-context thresholds from whole-task totals.",
+    "study_amendment": "Added after user steering and after development blocks completed. Original token-only registered gates remain preserved. Cost audit is explicitly post hoc for those blocks. Every subsequent protocol uses quality-constrained complete-system cost as its primary efficiency criterion; token counts and hit ratios are secondary.",
+    "future_selection": "Among candidates retaining all matched baseline successes on development, require >=10% lower total task Codex credit-rate scenario and a majority of paired task cost wins before nomination. Freeze candidate/policy and statistical margin before held-out inference; a tiny development no-loss result is not noninferiority. Include all memory-system inference; do not choose a candidate solely on token reductions."
+  },
+  "totals": {
+    "fts": {
+      "usage": {
+        "input_tokens": 645513,
+        "cached_input_tokens": 553344,
+        "output_tokens": 4683,
+        "total_tokens": 650196,
+        "fresh_input_tokens": 92169
+      },
+      "cache_hit_fraction": 0.8572158887582434,
+      "credit_rate_scenario": 7.16256,
+      "api_rate_sensitivity_usd": 0.2865024,
+      "cost_reduction_fraction": -0.005429625428839291,
+      "token_reduction_fraction": 0.009729143567312026,
+      "cache_to_fresh_break_even_ratio": 0.13512323943661972,
+      "sensitivity": {
+        "0": 0.115584,
+        "0.01": 0.12111744,
+        "0.05": 0.14325120000000002,
+        "0.1": 0.1709184,
+        "0.25": 0.25392,
+        "1": 0.668928
+      }
+    },
+    "none": {
+      "usage": {
+        "input_tokens": 651533,
+        "cached_input_tokens": 562432,
+        "output_tokens": 5051,
+        "total_tokens": 656584,
+        "fresh_input_tokens": 89101
+      },
+      "cache_hit_fraction": 0.8632440720577469,
+      "credit_rate_scenario": 7.12388,
+      "api_rate_sensitivity_usd": 0.2849552,
+      "cost_reduction_fraction": 0.0,
+      "token_reduction_fraction": 0.0,
+      "cache_to_fresh_break_even_ratio": null,
+      "sensitivity": {
+        "0": 0.114356,
+        "0.01": 0.11998032,
+        "0.05": 0.1424776,
+        "0.1": 0.1705992,
+        "0.25": 0.254964,
+        "1": 0.676788
+      }
+    },
+    "notes": {
+      "usage": {
+        "input_tokens": 648172,
+        "cached_input_tokens": 557184,
+        "output_tokens": 4736,
+        "total_tokens": 652908,
+        "fresh_input_tokens": 90988
+      },
+      "cache_hit_fraction": 0.8596236801342854,
+      "credit_rate_scenario": 7.12636,
+      "api_rate_sensitivity_usd": 0.2850544,
+      "cost_reduction_fraction": -0.0003481248982295515,
+      "token_reduction_fraction": 0.005598674350882793,
+      "cache_to_fresh_break_even_ratio": 0.05945121951219512,
+      "sensitivity": {
+        "0": 0.114668,
+        "0.01": 0.12023984,
+        "0.05": 0.14252720000000002,
+        "0.1": 0.1703864,
+        "0.25": 0.253964,
+        "1": 0.671852
+      }
+    },
+    "raw_history": {
+      "usage": {
+        "input_tokens": 538162,
+        "cached_input_tokens": 441088,
+        "output_tokens": 3748,
+        "total_tokens": 541910,
+        "fresh_input_tokens": 97074
+      },
+      "cache_hit_fraction": 0.8196193711187337,
+      "credit_rate_scenario": 6.89342,
+      "api_rate_sensitivity_usd": 0.2757368,
+      "cost_reduction_fraction": 0.0323503484056441,
+      "token_reduction_fraction": 0.17465244355634613,
+      "cache_to_fresh_break_even_ratio": 0.012015427215189873,
+      "sensitivity": {
+        "0": 0.115814,
+        "0.01": 0.12022488,
+        "0.05": 0.1378684,
+        "0.1": 0.15992279999999998,
+        "0.25": 0.226086,
+        "1": 0.556902
+      }
+    }
+  },
+  "baseline": "none",
+  "primary": "Total quality-constrained published Codex credit-rate scenario; fresh/cached/output per actual response, not raw token count.",
+  "design_status": "Post-hoc cost audit of completed development evidence; does not rewrite the frozen token gate.",
+  "cash_expense": null,
+  "actual_account_credit_consumption": null,
+  "quota_saving": null,
+  "limitation": "Deployment cost and local embedding compute are not monetized. API sensitivity uses observed native zero-write reports and is not a recreation of API cache behavior. Subsequent memory trials must add all extraction/ranking inference before comparing total system cost.",
+  "cells": [
+    {
+      "case": "eventlog",
+      "stage": 1,
+      "condition": "none",
+      "usage": {
+        "input_tokens": 80176,
+        "cached_input_tokens": 71808,
+        "output_tokens": 521,
+        "total_tokens": 80697
+      },
+      "credit_rate_scenario": 0.72817,
+      "api_rate_sensitivity_usd": 0.029126799999999998
+    },
+    {
+      "case": "eventlog",
+      "stage": 2,
+      "condition": "none",
+      "usage": {
+        "input_tokens": 129033,
+        "cached_input_tokens": 114944,
+        "output_tokens": 983,
+        "total_tokens": 130016
+      },
+      "credit_rate_scenario": 1.23756,
+      "api_rate_sensitivity_usd": 0.0495024
+    },
+    {
+      "case": "eventlog",
+      "stage": 3,
+      "condition": "none",
+      "usage": {
+        "input_tokens": 82026,
+        "cached_input_tokens": 65408,
+        "output_tokens": 609,
+        "total_tokens": 82635
+      },
+      "credit_rate_scenario": 1.1466699999999999,
+      "api_rate_sensitivity_usd": 0.0458668
+    },
+    {
+      "case": "eventlog",
+      "stage": 1,
+      "condition": "raw_history",
+      "usage": {
+        "input_tokens": 101231,
+        "cached_input_tokens": 74368,
+        "output_tokens": 533,
+        "total_tokens": 101764
+      },
+      "credit_rate_scenario": 1.66232,
+      "api_rate_sensitivity_usd": 0.0664928
+    },
+    {
+      "case": "eventlog",
+      "stage": 2,
+      "condition": "raw_history",
+      "usage": {
+        "input_tokens": 66270,
+        "cached_input_tokens": 56064,
+        "output_tokens": 513,
+        "total_tokens": 66783
+      },
+      "credit_rate_scenario": 0.77871,
+      "api_rate_sensitivity_usd": 0.0311484
+    },
+    {
+      "case": "eventlog",
+      "stage": 3,
+      "condition": "raw_history",
+      "usage": {
+        "input_tokens": 75869,
+        "cached_input_tokens": 62208,
+        "output_tokens": 470,
+        "total_tokens": 76339
+      },
+      "credit_rate_scenario": 0.95607,
+      "api_rate_sensitivity_usd": 0.0382428
+    },
+    {
+      "case": "eventlog",
+      "stage": 1,
+      "condition": "fts",
+      "usage": {
+        "input_tokens": 101194,
+        "cached_input_tokens": 87552,
+        "output_tokens": 515,
+        "total_tokens": 101709
+      },
+      "credit_rate_scenario": 1.02973,
+      "api_rate_sensitivity_usd": 0.0411892
+    },
+    {
+      "case": "eventlog",
+      "stage": 2,
+      "condition": "fts",
+      "usage": {
+        "input_tokens": 128954,
+        "cached_input_tokens": 114688,
+        "output_tokens": 935,
+        "total_tokens": 129889
+      },
+      "credit_rate_scenario": 1.23377,
+      "api_rate_sensitivity_usd": 0.0493508
+    },
+    {
+      "case": "eventlog",
+      "stage": 3,
+      "condition": "fts",
+      "usage": {
+        "input_tokens": 81989,
+        "cached_input_tokens": 72704,
+        "output_tokens": 608,
+        "total_tokens": 82597
+      },
+      "credit_rate_scenario": 0.79801,
+      "api_rate_sensitivity_usd": 0.0319204
+    },
+    {
+      "case": "eventlog",
+      "stage": 1,
+      "condition": "notes",
+      "usage": {
+        "input_tokens": 101168,
+        "cached_input_tokens": 74880,
+        "output_tokens": 518,
+        "total_tokens": 101686
+      },
+      "credit_rate_scenario": 1.6311,
+      "api_rate_sensitivity_usd": 0.065244
+    },
+    {
+      "case": "eventlog",
+      "stage": 2,
+      "condition": "notes",
+      "usage": {
+        "input_tokens": 102654,
+        "cached_input_tokens": 88448,
+        "output_tokens": 607,
+        "total_tokens": 103261
+      },
+      "credit_rate_scenario": 1.08317,
+      "api_rate_sensitivity_usd": 0.0433268
+    },
+    {
+      "case": "eventlog",
+      "stage": 3,
+      "condition": "notes",
+      "usage": {
+        "input_tokens": 82674,
+        "cached_input_tokens": 73344,
+        "output_tokens": 642,
+        "total_tokens": 83316
+      },
+      "credit_rate_scenario": 0.81036,
+      "api_rate_sensitivity_usd": 0.032414399999999996
+    },
+    {
+      "case": "buildgraph",
+      "stage": 1,
+      "condition": "none",
+      "usage": {
+        "input_tokens": 127217,
+        "cached_input_tokens": 100864,
+        "output_tokens": 829,
+        "total_tokens": 128046
+      },
+      "credit_rate_scenario": 1.7770599999999999,
+      "api_rate_sensitivity_usd": 0.0710824
+    },
+    {
+      "case": "buildgraph",
+      "stage": 2,
+      "condition": "none",
+      "usage": {
+        "input_tokens": 128904,
+        "cached_input_tokens": 114688,
+        "output_tokens": 985,
+        "total_tokens": 129889
+      },
+      "credit_rate_scenario": 1.24377,
+      "api_rate_sensitivity_usd": 0.0497508
+    },
+    {
+      "case": "buildgraph",
+      "stage": 3,
+      "condition": "none",
+      "usage": {
+        "input_tokens": 104177,
+        "cached_input_tokens": 94720,
+        "output_tokens": 1124,
+        "total_tokens": 105301
+      },
+      "credit_rate_scenario": 0.99065,
+      "api_rate_sensitivity_usd": 0.039626
+    },
+    {
+      "case": "buildgraph",
+      "stage": 1,
+      "condition": "raw_history",
+      "usage": {
+        "input_tokens": 80160,
+        "cached_input_tokens": 63872,
+        "output_tokens": 632,
+        "total_tokens": 80792
+      },
+      "credit_rate_scenario": 1.13208,
+      "api_rate_sensitivity_usd": 0.045283199999999996
+    },
+    {
+      "case": "buildgraph",
+      "stage": 2,
+      "condition": "raw_history",
+      "usage": {
+        "input_tokens": 109918,
+        "cached_input_tokens": 94336,
+        "output_tokens": 745,
+        "total_tokens": 110663
+      },
+      "credit_rate_scenario": 1.20119,
+      "api_rate_sensitivity_usd": 0.048047599999999996
+    },
+    {
+      "case": "buildgraph",
+      "stage": 3,
+      "condition": "raw_history",
+      "usage": {
+        "input_tokens": 104714,
+        "cached_input_tokens": 90240,
+        "output_tokens": 855,
+        "total_tokens": 105569
+      },
+      "credit_rate_scenario": 1.16305,
+      "api_rate_sensitivity_usd": 0.046522
+    },
+    {
+      "case": "buildgraph",
+      "stage": 1,
+      "condition": "fts",
+      "usage": {
+        "input_tokens": 100956,
+        "cached_input_tokens": 84224,
+        "output_tokens": 826,
+        "total_tokens": 101782
+      },
+      "credit_rate_scenario": 1.25366,
+      "api_rate_sensitivity_usd": 0.050146399999999994
+    },
+    {
+      "case": "buildgraph",
+      "stage": 2,
+      "condition": "fts",
+      "usage": {
+        "input_tokens": 102358,
+        "cached_input_tokens": 93312,
+        "output_tokens": 849,
+        "total_tokens": 103207
+      },
+      "credit_rate_scenario": 0.89783,
+      "api_rate_sensitivity_usd": 0.0359132
+    },
+    {
+      "case": "buildgraph",
+      "stage": 3,
+      "condition": "fts",
+      "usage": {
+        "input_tokens": 130062,
+        "cached_input_tokens": 100864,
+        "output_tokens": 950,
+        "total_tokens": 131012
+      },
+      "credit_rate_scenario": 1.94956,
+      "api_rate_sensitivity_usd": 0.0779824
+    },
+    {
+      "case": "buildgraph",
+      "stage": 1,
+      "condition": "notes",
+      "usage": {
+        "input_tokens": 127284,
+        "cached_input_tokens": 100224,
+        "output_tokens": 873,
+        "total_tokens": 128157
+      },
+      "credit_rate_scenario": 1.8218100000000002,
+      "api_rate_sensitivity_usd": 0.0728724
+    },
+    {
+      "case": "buildgraph",
+      "stage": 2,
+      "condition": "notes",
+      "usage": {
+        "input_tokens": 102847,
+        "cached_input_tokens": 93696,
+        "output_tokens": 873,
+        "total_tokens": 103720
+      },
+      "credit_rate_scenario": 0.91004,
+      "api_rate_sensitivity_usd": 0.0364016
+    },
+    {
+      "case": "buildgraph",
+      "stage": 3,
+      "condition": "notes",
+      "usage": {
+        "input_tokens": 131545,
+        "cached_input_tokens": 126592,
+        "output_tokens": 1223,
+        "total_tokens": 132768
+      },
+      "credit_rate_scenario": 0.86988,
+      "api_rate_sensitivity_usd": 0.0347952
+    }
+  ]
+}
