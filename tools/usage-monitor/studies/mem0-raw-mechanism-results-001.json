@@ -11,5 +11,13 @@
   "cash_cost": null,
   "local_compute_monetary_cost": null,
   "note": "Mechanism only; no agent answer, economic or benchmark result. Dated raw records preserved, no extraction/consolidation. Optional NLP/BM25 absent.",
-  "shutdown_warning": "Qdrant destructor ImportError during Python shutdown after result and exit0; mechanism checks pass but cleanup not clean. Preserve stderr; verify explicit close in future protocol."
+  "shutdown_warning": "Qdrant destructor ImportError during Python shutdown after result and exit0; mechanism checks pass but cleanup not clean. Preserve stderr; verify explicit close in future protocol.",
+  "read_only_persistence_followup": {
+    "passed": true,
+    "records": 3,
+    "LLM_calls": 0,
+    "embedding_calls": 0,
+    "explicit_close_completed": true,
+    "stderr": "ONNX PCI-discovery warning; no Qdrant destructor exception"
+  }
 }

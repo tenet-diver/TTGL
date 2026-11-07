@@ -432,6 +432,6 @@ No candidate is promoted from this panel. Cash/quota impact remains unknown.
 - Mem0 infer=False raw-record mechanism passes exact retention, latest-record
   retrieval and tenant separation with0 LLM calls. First process exits0 but emits
   a Qdrant shutdown-destructor warning; preserved. A read-only reopen verifies
-  all3 records and explicit close with0 embeddings/LLM calls and clean stderr.
+  all3 records and explicit close with0 embeddings/LLM calls; only an ONNX PCI-discovery warning remains.
   No agent-quality or cost-saving result follows; a fresh matched comparison
   remains necessary. Existing reviewed runtime and pinned local encoder only.

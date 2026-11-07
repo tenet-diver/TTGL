@@ -2638,7 +2638,7 @@ New infer=False Mem0 mechanism uses existing reviewed runtime, rawdatedrecords
 with no extraction, LLMmethodguardraisesbeforeinvocation.3exactrecords,latest
 retrieved,cross-tenant0. Firstexit0hasQdrantdestructorImportErroratshutdown;
 preserved. Follow-upreopenonlyreads3records,explicitvector/historyclose,0LLM
-and0embeddings,cleanstderr. Publicmechanismreceiptpreserveswarning; no efficacy.
+and0embeddings; only ONNX PCI-discovery warning remains, no shutdown exception. Publicmechanismreceiptpreserveswarning; no efficacy.
 A fresh registeredraw-memorycostcomparison/long-horizoncodepanel remainsneeded.
 
 Graphiti[ku zu]28wheelgraph/OSV0butKuzudeprecated/upstreamarchived,notinstalled.
