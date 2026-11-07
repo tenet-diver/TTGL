@@ -1,0 +1,296 @@
+{
+  "protocol": "independent-read-batching-001",
+  "scope": "Three fresh development investigations of independently located source facts. Neutral vs general independent-read batching guidance; no code-edit/long-horizon quality claim.",
+  "cells": [
+    {
+      "case": "compression-and-supervisor",
+      "condition": "baseline",
+      "session_id": "01a1b6a6-c60b-71d3-acbd-e046ba451246",
+      "usage": {
+        "input_tokens": 127180,
+        "cached_input_tokens": 111232,
+        "output_tokens": 307,
+        "total_tokens": 127487
+      },
+      "cli_usage": {
+        "input_tokens": 127180,
+        "cached_input_tokens": 111232,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 307,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6a6-c60b-71d3-acbd-e046ba451246:response:resp_0a65b4b26951282a016aef45565b9087d2bfd9dfadc73c5b37",
+        "01a1b6a6-c60b-71d3-acbd-e046ba451246:response:resp_0a65b4b26951282a016aef455b0a3c87d288ba880a44d1add0",
+        "01a1b6a6-c60b-71d3-acbd-e046ba451246:response:resp_0a65b4b26951282a016aef455ec6d487d289106312b16fa76b",
+        "01a1b6a6-c60b-71d3-acbd-e046ba451246:response:resp_0a65b4b26951282a016aef45628e0887d2ab0c0d094e34489e",
+        "01a1b6a6-c60b-71d3-acbd-e046ba451246:response:resp_0a65b4b26951282a016aef4565d4c487d2b062a5ff3b944734"
+      ],
+      "tool_evidence_ids": [
+        "01a1b6a6-c60b-71d3-acbd-e046ba451246:tool:exec-43ad98c1-4ee1-48bb-af27-81f579c18742",
+        "01a1b6a6-c60b-71d3-acbd-e046ba451246:tool:exec-3722b309-00d0-44de-822d-6e0feda79fba",
+        "01a1b6a6-c60b-71d3-acbd-e046ba451246:tool:exec-6af8d672-50f8-4f02-86fd-1efc4be1cdbb",
+        "01a1b6a6-c60b-71d3-acbd-e046ba451246:tool:exec-58629ba9-8f40-4c3e-a9b1-8fc9b092e119"
+      ],
+      "tool_calls": 4,
+      "retained_tool_bytes": 11901,
+      "elapsed_seconds": 25.26190185400003,
+      "quality": {
+        "answer": {
+          "minimum_text_characters": 1000,
+          "maximum_forwarded_fraction": 0.8,
+          "minimum_saved_bytes": 256,
+          "supervisor_log_rotation_bytes": 10485760
+        },
+        "exact_fields": true,
+        "source_unchanged": true,
+        "passed": true
+      }
+    },
+    {
+      "case": "compression-and-supervisor",
+      "condition": "scoped",
+      "session_id": "01a1b6a7-23c1-7f21-83fc-bbdacb0591bb",
+      "usage": {
+        "input_tokens": 101570,
+        "cached_input_tokens": 90240,
+        "output_tokens": 331,
+        "total_tokens": 101901
+      },
+      "cli_usage": {
+        "input_tokens": 101570,
+        "cached_input_tokens": 90240,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 331,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6a7-23c1-7f21-83fc-bbdacb0591bb:response:resp_034c327675b6435c016aef456bf8bc87d29855ad21087eae5e",
+        "01a1b6a7-23c1-7f21-83fc-bbdacb0591bb:response:resp_034c327675b6435c016aef456f7f2087d2b0ef450ae823c0d4",
+        "01a1b6a7-23c1-7f21-83fc-bbdacb0591bb:response:resp_034c327675b6435c016aef4572136c87d2ae3b750b7539166e",
+        "01a1b6a7-23c1-7f21-83fc-bbdacb0591bb:response:resp_034c327675b6435c016aef4575656887d2a1b6fc125200009a",
+        "01a1b6a7-23c1-7f21-83fc-bbdacb0591bb:response:resp_034c327675b6435c016aef457918f087d293ce12c08b105e9c"
+      ],
+      "tool_evidence_ids": [
+        "01a1b6a7-23c1-7f21-83fc-bbdacb0591bb:tool:exec-f1b2e076-39df-4f76-8440-3767204195c3",
+        "01a1b6a7-23c1-7f21-83fc-bbdacb0591bb:tool:exec-42eaa25b-817c-4ce1-9a57-7e4eea629442",
+        "01a1b6a7-23c1-7f21-83fc-bbdacb0591bb:tool:exec-aea2c454-d53b-4831-a8e2-7ad2596f31a0",
+        "01a1b6a7-23c1-7f21-83fc-bbdacb0591bb:tool:exec-39f23087-5fc3-4556-82ff-0af80eec644a",
+        "01a1b6a7-23c1-7f21-83fc-bbdacb0591bb:tool:exec-65ded6e6-15ef-449a-8e0d-801b6ccc5f77"
+      ],
+      "tool_calls": 5,
+      "retained_tool_bytes": 13505,
+      "elapsed_seconds": 19.023070367999935,
+      "quality": {
+        "answer": {
+          "minimum_text_characters": 1000,
+          "maximum_forwarded_fraction": 0.8,
+          "minimum_saved_bytes": 256,
+          "supervisor_log_rotation_bytes": 10485760
+        },
+        "exact_fields": true,
+        "source_unchanged": true,
+        "passed": true
+      }
+    },
+    {
+      "case": "capture-and-polling",
+      "condition": "scoped",
+      "session_id": "01a1b6a7-71e7-7d53-b60e-600166db16a8",
+      "usage": {
+        "input_tokens": 87145,
+        "cached_input_tokens": 63360,
+        "output_tokens": 294,
+        "total_tokens": 87439
+      },
+      "cli_usage": {
+        "input_tokens": 87145,
+        "cached_input_tokens": 63360,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 294,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6a7-71e7-7d53-b60e-600166db16a8:response:resp_054f27fc475af92e016aef4580f94c87d2ad4a5a9b95a12e2c",
+        "01a1b6a7-71e7-7d53-b60e-600166db16a8:response:resp_054f27fc475af92e016aef45849f7087d280a47c0b3902d987",
+        "01a1b6a7-71e7-7d53-b60e-600166db16a8:response:resp_054f27fc475af92e016aef4588b07887d28d34b39a131fac7b",
+        "01a1b6a7-71e7-7d53-b60e-600166db16a8:response:resp_054f27fc475af92e016aef458b2fc087d296da322deadec752"
+      ],
+      "tool_evidence_ids": [
+        "01a1b6a7-71e7-7d53-b60e-600166db16a8:tool:exec-9e246296-266b-4c3e-ba34-19f2e43ea010",
+        "01a1b6a7-71e7-7d53-b60e-600166db16a8:tool:exec-087ee6ca-70b7-4d97-8669-eac7a6ff4187",
+        "01a1b6a7-71e7-7d53-b60e-600166db16a8:tool:exec-05d523e5-ab6a-4945-8370-c19c321ad74b",
+        "01a1b6a7-71e7-7d53-b60e-600166db16a8:tool:exec-d9cb3be3-6467-41da-a47a-f63b45093b75"
+      ],
+      "tool_calls": 4,
+      "retained_tool_bytes": 20062,
+      "elapsed_seconds": 19.46817571600002,
+      "quality": {
+        "answer": {
+          "request_limit_bytes": 4194304,
+          "response_capture_limit_bytes": 1048576,
+          "retained_capture_quota_bytes": 134217728,
+          "workspace_poll_seconds": 5,
+          "supervisor_poll_seconds": 5
+        },
+        "exact_fields": true,
+        "source_unchanged": true,
+        "passed": true
+      }
+    },
+    {
+      "case": "capture-and-polling",
+      "condition": "baseline",
+      "session_id": "01a1b6a7-b9c1-7bf3-92d6-356d387ac78a",
+      "usage": {
+        "input_tokens": 79233,
+        "cached_input_tokens": 62720,
+        "output_tokens": 211,
+        "total_tokens": 79444
+      },
+      "cli_usage": {
+        "input_tokens": 79233,
+        "cached_input_tokens": 62720,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 211,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6a7-b9c1-7bf3-92d6-356d387ac78a:response:resp_0cfd14654db3b6da016aef45932f0c87d2ac4f87094459169e",
+        "01a1b6a7-b9c1-7bf3-92d6-356d387ac78a:response:resp_0cfd14654db3b6da016aef459867a887d2bcf3457d4dec2613",
+        "01a1b6a7-b9c1-7bf3-92d6-356d387ac78a:response:resp_0cfd14654db3b6da016aef459de41c87d2803e04bfae35e93d"
+      ],
+      "tool_evidence_ids": [
+        "01a1b6a7-b9c1-7bf3-92d6-356d387ac78a:tool:exec-1f499595-bd93-4a43-8ecb-0acb00b04082",
+        "01a1b6a7-b9c1-7bf3-92d6-356d387ac78a:tool:exec-708e865d-3ac2-4e2f-90af-18d70311ff3e"
+      ],
+      "tool_calls": 2,
+      "retained_tool_bytes": 16467,
+      "elapsed_seconds": 18.837894686000027,
+      "quality": {
+        "answer": {
+          "request_limit_bytes": 4194304,
+          "response_capture_limit_bytes": 1048576,
+          "retained_capture_quota_bytes": 134217728,
+          "workspace_poll_seconds": 5,
+          "supervisor_poll_seconds": 5
+        },
+        "exact_fields": true,
+        "source_unchanged": true,
+        "passed": true
+      }
+    },
+    {
+      "case": "compression-contract",
+      "condition": "baseline",
+      "session_id": "01a1b6a8-029e-71e2-8d0b-a9232ee8b382",
+      "usage": {
+        "input_tokens": 100885,
+        "cached_input_tokens": 86016,
+        "output_tokens": 230,
+        "total_tokens": 101115
+      },
+      "cli_usage": {
+        "input_tokens": 100885,
+        "cached_input_tokens": 86016,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 230,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6a8-029e-71e2-8d0b-a9232ee8b382:response:resp_01d651af4e03c82c016aef45a5340087d28d1c4cf7c5168992",
+        "01a1b6a8-029e-71e2-8d0b-a9232ee8b382:response:resp_01d651af4e03c82c016aef45a8c98c87d2badba3766917a9c1",
+        "01a1b6a8-029e-71e2-8d0b-a9232ee8b382:response:resp_01d651af4e03c82c016aef45ab904487d29599c4f9bad01ef8",
+        "01a1b6a8-029e-71e2-8d0b-a9232ee8b382:response:resp_01d651af4e03c82c016aef45addf6887d2b04e5e234f746df0"
+      ],
+      "tool_evidence_ids": [
+        "01a1b6a8-029e-71e2-8d0b-a9232ee8b382:tool:exec-e0b28212-cecd-4e81-889f-a63accaa8c0e",
+        "01a1b6a8-029e-71e2-8d0b-a9232ee8b382:tool:exec-e2496344-18eb-4c79-9ef6-07d5d14b4c12",
+        "01a1b6a8-029e-71e2-8d0b-a9232ee8b382:tool:exec-0fa612aa-b064-4feb-a93a-13023b3a357e"
+      ],
+      "tool_calls": 3,
+      "retained_tool_bytes": 7884,
+      "elapsed_seconds": 16.050861818000044,
+      "quality": {
+        "answer": {
+          "raw_bypass_marker": "TTGL_RAW_EVIDENCE",
+          "progress_policy_name": "docker-plain-progress-v1",
+          "allowed_live_policies": [
+            "off",
+            "progress",
+            "headroom-lossless"
+          ],
+          "transforms_prompts": false
+        },
+        "exact_fields": true,
+        "source_unchanged": true,
+        "passed": true
+      }
+    },
+    {
+      "case": "compression-contract",
+      "condition": "scoped",
+      "session_id": "01a1b6a8-4085-7c42-8cbf-18437ccd5ed1",
+      "usage": {
+        "input_tokens": 76073,
+        "cached_input_tokens": 73472,
+        "output_tokens": 214,
+        "total_tokens": 76287
+      },
+      "cli_usage": {
+        "input_tokens": 76073,
+        "cached_input_tokens": 73472,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 214,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6a8-4085-7c42-8cbf-18437ccd5ed1:response:resp_073efd9cb19c1ac2016aef45b4f54c87d2842c4a9f811de966",
+        "01a1b6a8-4085-7c42-8cbf-18437ccd5ed1:response:resp_073efd9cb19c1ac2016aef45b8f7cc87d2aa6ce6bab5da228e",
+        "01a1b6a8-4085-7c42-8cbf-18437ccd5ed1:response:resp_073efd9cb19c1ac2016aef45bcba8c87d29b760b1e986a6bf7"
+      ],
+      "tool_evidence_ids": [
+        "01a1b6a8-4085-7c42-8cbf-18437ccd5ed1:tool:exec-dabeabb4-e0e3-4d5f-b071-a7a31bdaa360",
+        "01a1b6a8-4085-7c42-8cbf-18437ccd5ed1:tool:exec-8144e240-3560-45d2-8621-9edc894fa485",
+        "01a1b6a8-4085-7c42-8cbf-18437ccd5ed1:tool:exec-57e4f7e5-4005-4cf7-b80e-a98bd751124f"
+      ],
+      "tool_calls": 3,
+      "retained_tool_bytes": 7741,
+      "elapsed_seconds": 13.536351967999963,
+      "quality": {
+        "answer": {
+          "raw_bypass_marker": "TTGL_RAW_EVIDENCE",
+          "progress_policy_name": "docker-plain-progress-v1",
+          "allowed_live_policies": [
+            "off",
+            "progress",
+            "headroom-lossless"
+          ],
+          "transforms_prompts": false
+        },
+        "exact_fields": true,
+        "source_unchanged": true,
+        "passed": true
+      }
+    }
+  ],
+  "totals": {
+    "baseline": 308046,
+    "scoped": 265627
+  },
+  "token_reduction_fraction": 0.13770345987287613,
+  "pair_wins": 2,
+  "quality_passed": true,
+  "acceptance_passed": true,
+  "cash_cost": null,
+  "model_latency": null,
+  "net_saving": null,
+  "implementation_overhead": null,
+  "limitations": "All six trial sessions are research expense. Parent implementation, analysis and any reviews recorded separately as an accrued lower bound; unknown overhead stays unknown. No cash, quota, model-latency, net or general speed claim."
+}

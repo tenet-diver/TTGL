@@ -1,0 +1,902 @@
+{
+  "protocol": {
+    "id": "chronological-memory-002",
+    "registered_date": "2026-11-07",
+    "scope": "Generated development diagnostic: two independent three-stage evolving Python projects. This checks real native code editing, chronological memory exposure and accounting; it is not a long-horizon public benchmark or confirmatory efficacy study.",
+    "model": "gpt-6.1-sol",
+    "effort": "low",
+    "provider": "existing authenticated native Codex; built-in openai provider",
+    "conditions": [
+      "none",
+      "raw_history",
+      "fts",
+      "notes"
+    ],
+    "sequences": [
+      "eventlog",
+      "buildgraph"
+    ],
+    "maximum_model_processes": 24,
+    "timeout_seconds_per_run": 600,
+    "automatic_process_retries": 0,
+    "order": "In listed sequence order. Rotate listed conditions left by the sequence index; stages remain chronological within each condition. All registered cells run regardless of functional outcome; stop on infrastructure ambiguity or protected-file changes.",
+    "common": "Implement the requested APIs in the single application module named eventlog.py or buildgraph.py in this working directory. Inspect current source and visible test_stage*.py as needed, edit only the application module, and verify the full visible suite with python3 -m unittest discover -p 'test_stage*.py'. Preserve previously implemented APIs. Use only this working directory and normal shell/edit tools; no network, installations, analytics tools, delegation, sibling/parent directories or access to the experiment runner or operator artifacts. Tests and memory files are read-only inputs; memory.py may append its own query log. Optional prior-episode retrieval is available in every condition through python3 memory.py 'search terms'; it may return no records. Use remembered information only as fallible evidence and check current source. Every current requirement is in this task or visible tests; memory contains no privileged requirements. Finish with a concise verification result and reusable verified implementation facts, failed approaches and unresolved issues. Do not claim checks you did not run.",
+    "memory": {
+      "none": "Fresh session and evolving code/tests; identical search interface returns no history.",
+      "raw_history": "All prior visible episodes of this arm injected verbatim; includes prompt, answer, before/after code and native CLI events. No operator grades or future prompts.",
+      "fts": "Same prior episode representation, searched using standard-library SQLite FTS5 BM25; three nonoverlapping exact 3000-character chunks by default, max 10 hits and 12000 characters per query. All retrieval model turns count.",
+      "notes": "All prior final agent notes injected; note generation is included in each task's native usage. This is agent-authored notes, not Mem0 or an unmetered summarizer."
+    },
+    "matching": "Same initial project and chronological tasks, model, effort, tools, tests and fresh-session policy. Each condition evolves its own implementation/history; path dependence is part of this diagnostic and will be separated from same-corpus comparisons in later blocks. No hidden-memory advantage.",
+    "primary": [
+      "Independent task success at each stage and complete sequence success",
+      "Complete sequence native input plus output tokens, cached input counted once"
+    ],
+    "secondary": [
+      "Fresh input, cached input and output separately",
+      "Per-stage tokens and elapsed process seconds",
+      "Retrieval calls/runtime and memory size",
+      "Quality loss, failed attempts and stale-memory effects"
+    ],
+    "development_gate": "No task success lost against matched none; at least 10% pooled complete-sequence native-token reduction and a win on both sequences. Passing nominates a candidate only; it does not prove statistical noninferiority or authorize a universal optimality claim.",
+    "failure_policy": "Zero automatic retries or replacements. Preserve every started attempt. Wrong solutions remain and subsequent stages continue, exposing error propagation. Nonzero/timeout/missing usage/ambiguous thread or protected-input mutation stops this block. Reconcile native generation counters exactly with each fresh CLI turn before economic claims.",
+    "controls": "Compile all tests and independent checks before inference; empty implementation must fail and independent hand-written reference must pass every stage. Keep reference/independent artifacts outside agent work directories; native directory restriction is an instruction and sandbox constraint, not an asserted air gap.",
+    "overhead": "All 24 processes are research expense. Raw history injection is charged on every inference where native provider reports it. Notes are produced by every condition in the common final response. FTS is stdlib CPU work, not inference. Include parent implementation/analyst overhead separately; cash/quota and provider latency remain unknown.",
+    "heldout": "None in this diagnostic. No reserved routing-validation content may be used. Freeze and separately register later fresh transfer tasks before exposure.",
+    "rollback": "No global Codex provider, guidance, memory or compression default changes. Preserve all transcripts and chronological artifacts privately; public report contains aggregate measurements and reproducible generated task definitions.",
+    "amendment": "001 preserved a configuration-loader rejection before model invocation. Remove unsupported built-in-provider retry overrides; native transport defaults apply. Fresh block002, same tasks/arms/allocation, no prior model outcomes available."
+  },
+  "totals": {
+    "none": {
+      "tokens": 656584,
+      "passed": 6,
+      "runs": 6,
+      "seconds": 179.0172376209996
+    },
+    "raw_history": {
+      "tokens": 541910,
+      "passed": 6,
+      "runs": 6,
+      "seconds": 151.8146147529999
+    },
+    "fts": {
+      "tokens": 650196,
+      "passed": 6,
+      "runs": 6,
+      "seconds": 173.84425807499997
+    },
+    "notes": {
+      "tokens": 652908,
+      "passed": 6,
+      "runs": 6,
+      "seconds": 178.88438227300003
+    }
+  },
+  "cash_cost": null,
+  "model_latency": null,
+  "net_saving": null,
+  "limitation": "Generated development diagnostic. Fresh sessions over three-stage evolving code; not a long-horizon benchmark score, fixed-policy validation, or noninferiority proof. Each arm has its own prior trajectories. Raw history/notes injection and FTS are distinct treatments. Setup/analysis overhead additional.",
+  "cells": [
+    {
+      "sequence": "eventlog",
+      "condition": "none",
+      "stage": 1,
+      "session_id": "01a1b6ad-619e-7560-ab34-e10aef326ea6",
+      "usage": {
+        "input_tokens": 80176,
+        "cached_input_tokens": 71808,
+        "output_tokens": 521,
+        "total_tokens": 80697
+      },
+      "cli_usage": {
+        "input_tokens": 80176,
+        "cached_input_tokens": 71808,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 521,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6ad-619e-7560-ab34-e10aef326ea6:response:resp_0da1bfd18c645cce016aef470459a087d294e4640037821256",
+        "01a1b6ad-619e-7560-ab34-e10aef326ea6:response:resp_0da1bfd18c645cce016aef4708138887d29ad78af746c2f2b4",
+        "01a1b6ad-619e-7560-ab34-e10aef326ea6:response:resp_0da1bfd18c645cce016aef470a979c87d2a1229c0bcd8d68bd",
+        "01a1b6ad-619e-7560-ab34-e10aef326ea6:response:resp_0da1bfd18c645cce016aef4712b00087d2aebfbb10c05b9886"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 21.54747247699993
+    },
+    {
+      "sequence": "eventlog",
+      "condition": "none",
+      "stage": 2,
+      "session_id": "01a1b6ad-b513-7d62-abc1-e66ae6864973",
+      "usage": {
+        "input_tokens": 129033,
+        "cached_input_tokens": 114944,
+        "output_tokens": 983,
+        "total_tokens": 130016
+      },
+      "cli_usage": {
+        "input_tokens": 129033,
+        "cached_input_tokens": 114944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 983,
+        "reasoning_output_tokens": 11
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6ad-b513-7d62-abc1-e66ae6864973:response:resp_01d016decd4e0c9c016aef471a2d7487d28f6753acdcc05344",
+        "01a1b6ad-b513-7d62-abc1-e66ae6864973:response:resp_01d016decd4e0c9c016aef471dc45087d2b0811480100132d0",
+        "01a1b6ad-b513-7d62-abc1-e66ae6864973:response:resp_01d016decd4e0c9c016aef471ff1f487d2a2f2c96ca836e3fb",
+        "01a1b6ad-b513-7d62-abc1-e66ae6864973:response:resp_01d016decd4e0c9c016aef472a057087d2a1a24179e9d7e158",
+        "01a1b6ad-b513-7d62-abc1-e66ae6864973:response:resp_01d016decd4e0c9c016aef473261ec87d2b1e8eb6558f82b4a"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 30.6844898060001
+    },
+    {
+      "sequence": "eventlog",
+      "condition": "none",
+      "stage": 3,
+      "session_id": "01a1b6ae-2d33-7281-9ba0-4b152e4c68c1",
+      "usage": {
+        "input_tokens": 82026,
+        "cached_input_tokens": 65408,
+        "output_tokens": 609,
+        "total_tokens": 82635
+      },
+      "cli_usage": {
+        "input_tokens": 82026,
+        "cached_input_tokens": 65408,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 609,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6ae-2d33-7281-9ba0-4b152e4c68c1:response:resp_0f0044438709ca1d016aef4738f82c87d2b112c25290fd6116",
+        "01a1b6ae-2d33-7281-9ba0-4b152e4c68c1:response:resp_0f0044438709ca1d016aef473c264487d2bafe0623372f1c98",
+        "01a1b6ae-2d33-7281-9ba0-4b152e4c68c1:response:resp_0f0044438709ca1d016aef473e4f9887d293727256d15b686d",
+        "01a1b6ae-2d33-7281-9ba0-4b152e4c68c1:response:resp_0f0044438709ca1d016aef4748047c87d28789c47cdfeeeef1"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 21.07852494199983
+    },
+    {
+      "sequence": "eventlog",
+      "condition": "raw_history",
+      "stage": 1,
+      "session_id": "01a1b6ae-7fa5-7a30-8dc3-bddcdb0465fe",
+      "usage": {
+        "input_tokens": 101231,
+        "cached_input_tokens": 74368,
+        "output_tokens": 533,
+        "total_tokens": 101764
+      },
+      "cli_usage": {
+        "input_tokens": 101231,
+        "cached_input_tokens": 74368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 533,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6ae-7fa5-7a30-8dc3-bddcdb0465fe:response:resp_02e7ff42cb9694e8016aef474f2e7087d2b7c78b0416e87ba4",
+        "01a1b6ae-7fa5-7a30-8dc3-bddcdb0465fe:response:resp_02e7ff42cb9694e8016aef47540bfc87d2a9b3280516e1970b",
+        "01a1b6ae-7fa5-7a30-8dc3-bddcdb0465fe:response:resp_02e7ff42cb9694e8016aef475664b087d2802f9a364c0a20a4",
+        "01a1b6ae-7fa5-7a30-8dc3-bddcdb0465fe:response:resp_02e7ff42cb9694e8016aef475f0e2887d2b63fa5cbdae7cb79"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 23.227324125999985
+    },
+    {
+      "sequence": "eventlog",
+      "condition": "raw_history",
+      "stage": 2,
+      "session_id": "01a1b6ae-da90-7821-850f-ac2c8845f2a1",
+      "usage": {
+        "input_tokens": 66270,
+        "cached_input_tokens": 56064,
+        "output_tokens": 513,
+        "total_tokens": 66783
+      },
+      "cli_usage": {
+        "input_tokens": 66270,
+        "cached_input_tokens": 56064,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 513,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6ae-da90-7821-850f-ac2c8845f2a1:response:resp_065074e2e0eb4c14016aef4764fe6887d2b1dfd22b59c9276c",
+        "01a1b6ae-da90-7821-850f-ac2c8845f2a1:response:resp_065074e2e0eb4c14016aef4768cdd487d29efb461bf88ae4a1",
+        "01a1b6ae-da90-7821-850f-ac2c8845f2a1:response:resp_065074e2e0eb4c14016aef4770b27487d29a12946dc40b67f3"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 17.74310402900005
+    },
+    {
+      "sequence": "eventlog",
+      "condition": "raw_history",
+      "stage": 3,
+      "session_id": "01a1b6af-217d-7463-a930-7b9cd76f9512",
+      "usage": {
+        "input_tokens": 75869,
+        "cached_input_tokens": 62208,
+        "output_tokens": 470,
+        "total_tokens": 76339
+      },
+      "cli_usage": {
+        "input_tokens": 75869,
+        "cached_input_tokens": 62208,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 470,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6af-217d-7463-a930-7b9cd76f9512:response:resp_052ebbdc75656516016aef4777619887d2b554c1bd3651a63c",
+        "01a1b6af-217d-7463-a930-7b9cd76f9512:response:resp_052ebbdc75656516016aef477ab13487d2a412f9d3e0cd1177",
+        "01a1b6af-217d-7463-a930-7b9cd76f9512:response:resp_052ebbdc75656516016aef4782fecc87d2b0a15805408758af"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 19.43660767199981
+    },
+    {
+      "sequence": "eventlog",
+      "condition": "fts",
+      "stage": 1,
+      "session_id": "01a1b6af-6c8e-7113-8cd6-2fac4616ef1d",
+      "usage": {
+        "input_tokens": 101194,
+        "cached_input_tokens": 87552,
+        "output_tokens": 515,
+        "total_tokens": 101709
+      },
+      "cli_usage": {
+        "input_tokens": 101194,
+        "cached_input_tokens": 87552,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 515,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6af-6c8e-7113-8cd6-2fac4616ef1d:response:resp_0710fdc9c7cae656016aef478a730c87d2b708d46087fee74f",
+        "01a1b6af-6c8e-7113-8cd6-2fac4616ef1d:response:resp_0710fdc9c7cae656016aef478e213087d280366c3b1b06047a",
+        "01a1b6af-6c8e-7113-8cd6-2fac4616ef1d:response:resp_0710fdc9c7cae656016aef47904af487d2bd81973fdcea23eb",
+        "01a1b6af-6c8e-7113-8cd6-2fac4616ef1d:response:resp_0710fdc9c7cae656016aef4799391487d29d5c55cb95b903d2"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 21.22573833599995
+    },
+    {
+      "sequence": "eventlog",
+      "condition": "fts",
+      "stage": 2,
+      "session_id": "01a1b6af-bfdd-76b2-9a96-fcdb5dbdf60e",
+      "usage": {
+        "input_tokens": 128954,
+        "cached_input_tokens": 114688,
+        "output_tokens": 935,
+        "total_tokens": 129889
+      },
+      "cli_usage": {
+        "input_tokens": 128954,
+        "cached_input_tokens": 114688,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 935,
+        "reasoning_output_tokens": 13
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6af-bfdd-76b2-9a96-fcdb5dbdf60e:response:resp_04761d55cea8e5e7016aef47a0934c87d2997e4e85b35257d6",
+        "01a1b6af-bfdd-76b2-9a96-fcdb5dbdf60e:response:resp_04761d55cea8e5e7016aef47a405e887d2b469d635dad23c59",
+        "01a1b6af-bfdd-76b2-9a96-fcdb5dbdf60e:response:resp_04761d55cea8e5e7016aef47a694d487d2a75ee254672f7dcb",
+        "01a1b6af-bfdd-76b2-9a96-fcdb5dbdf60e:response:resp_04761d55cea8e5e7016aef47b00b1487d29f3ceab115394385",
+        "01a1b6af-bfdd-76b2-9a96-fcdb5dbdf60e:response:resp_04761d55cea8e5e7016aef47b9c4b087d2ba8f93c6459999c7"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 32.35368679899989
+    },
+    {
+      "sequence": "eventlog",
+      "condition": "fts",
+      "stage": 3,
+      "session_id": "01a1b6b0-3eb9-75c0-9c79-e50893b8a25d",
+      "usage": {
+        "input_tokens": 81989,
+        "cached_input_tokens": 72704,
+        "output_tokens": 608,
+        "total_tokens": 82597
+      },
+      "cli_usage": {
+        "input_tokens": 81989,
+        "cached_input_tokens": 72704,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 608,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6b0-3eb9-75c0-9c79-e50893b8a25d:response:resp_07c64d99b6eb18a1016aef47c00aa087d2b524d1cb4504c06a",
+        "01a1b6b0-3eb9-75c0-9c79-e50893b8a25d:response:resp_07c64d99b6eb18a1016aef47c3eb9c87d2bed0144349ba7237",
+        "01a1b6b0-3eb9-75c0-9c79-e50893b8a25d:response:resp_07c64d99b6eb18a1016aef47c68e5087d2bfa0edf078316567",
+        "01a1b6b0-3eb9-75c0-9c79-e50893b8a25d:response:resp_07c64d99b6eb18a1016aef47d11a4487d28199df70569cff55"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 23.132051750000073
+    },
+    {
+      "sequence": "eventlog",
+      "condition": "notes",
+      "stage": 1,
+      "session_id": "01a1b6b0-9a21-7602-9d09-ad7551869dae",
+      "usage": {
+        "input_tokens": 101168,
+        "cached_input_tokens": 74880,
+        "output_tokens": 518,
+        "total_tokens": 101686
+      },
+      "cli_usage": {
+        "input_tokens": 101168,
+        "cached_input_tokens": 74880,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 518,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6b0-9a21-7602-9d09-ad7551869dae:response:resp_0f09dcde1ac2843b016aef47d82ba887d2b1e62491d36fb4c8",
+        "01a1b6b0-9a21-7602-9d09-ad7551869dae:response:resp_0f09dcde1ac2843b016aef47dc583887d28055b1741d01d6ed",
+        "01a1b6b0-9a21-7602-9d09-ad7551869dae:response:resp_0f09dcde1ac2843b016aef47e0259487d2a735197a974ac4d1",
+        "01a1b6b0-9a21-7602-9d09-ad7551869dae:response:resp_0f09dcde1ac2843b016aef47e87a5087d2b34bdc87f82413c1"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 23.954473803000155
+    },
+    {
+      "sequence": "eventlog",
+      "condition": "notes",
+      "stage": 2,
+      "session_id": "01a1b6b0-fad1-7660-9ee5-6b9eb1bcdb90",
+      "usage": {
+        "input_tokens": 102654,
+        "cached_input_tokens": 88448,
+        "output_tokens": 607,
+        "total_tokens": 103261
+      },
+      "cli_usage": {
+        "input_tokens": 102654,
+        "cached_input_tokens": 88448,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 607,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6b0-fad1-7660-9ee5-6b9eb1bcdb90:response:resp_074f4fbec484f25d016aef47f0c1b087d297d219ea6f5b161c",
+        "01a1b6b0-fad1-7660-9ee5-6b9eb1bcdb90:response:resp_074f4fbec484f25d016aef47f6581087d29805b41a464d3f96",
+        "01a1b6b0-fad1-7660-9ee5-6b9eb1bcdb90:response:resp_074f4fbec484f25d016aef47f90e4887d2a873a88a55894885",
+        "01a1b6b0-fad1-7660-9ee5-6b9eb1bcdb90:response:resp_074f4fbec484f25d016aef4802bf3887d2ab9d1ed380d340a9"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 25.806332044999863
+    },
+    {
+      "sequence": "eventlog",
+      "condition": "notes",
+      "stage": 3,
+      "session_id": "01a1b6b1-5ed4-7801-a088-894d082a8d48",
+      "usage": {
+        "input_tokens": 82674,
+        "cached_input_tokens": 73344,
+        "output_tokens": 642,
+        "total_tokens": 83316
+      },
+      "cli_usage": {
+        "input_tokens": 82674,
+        "cached_input_tokens": 73344,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 642,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6b1-5ed4-7801-a088-894d082a8d48:response:resp_0583027aa539a8fe016aef480a990087d29bd091bb0b66e7f3",
+        "01a1b6b1-5ed4-7801-a088-894d082a8d48:response:resp_0583027aa539a8fe016aef480ee36887d2aa62ea643013cd22",
+        "01a1b6b1-5ed4-7801-a088-894d082a8d48:response:resp_0583027aa539a8fe016aef481135a487d2925e63cb030ee1c7",
+        "01a1b6b1-5ed4-7801-a088-894d082a8d48:response:resp_0583027aa539a8fe016aef481bd8c887d2bf82756702f4fba8"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 24.336652677000075
+    },
+    {
+      "sequence": "buildgraph",
+      "condition": "none",
+      "stage": 1,
+      "session_id": "01a1b6b6-3c70-7ae2-8ce1-9d7ece351297",
+      "usage": {
+        "input_tokens": 127217,
+        "cached_input_tokens": 100864,
+        "output_tokens": 829,
+        "total_tokens": 128046
+      },
+      "cli_usage": {
+        "input_tokens": 127217,
+        "cached_input_tokens": 100864,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 829,
+        "reasoning_output_tokens": 9
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6b6-3c70-7ae2-8ce1-9d7ece351297:response:resp_0124cdae790e6ce4016aef494943c487d2ac57bc2c9152bc1e",
+        "01a1b6b6-3c70-7ae2-8ce1-9d7ece351297:response:resp_0124cdae790e6ce4016aef494dd8e487d2925ddf75cd59e98f",
+        "01a1b6b6-3c70-7ae2-8ce1-9d7ece351297:response:resp_0124cdae790e6ce4016aef4950fec087d2829112b03bb1b7c6",
+        "01a1b6b6-3c70-7ae2-8ce1-9d7ece351297:response:resp_0124cdae790e6ce4016aef495ddb1487d2a7733c49f5186c14",
+        "01a1b6b6-3c70-7ae2-8ce1-9d7ece351297:response:resp_0124cdae790e6ce4016aef49642a5087d294c4a8d95d85ade8"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 33.12790223999991
+    },
+    {
+      "sequence": "buildgraph",
+      "condition": "none",
+      "stage": 2,
+      "session_id": "01a1b6b6-becf-76c3-8e90-95724787110f",
+      "usage": {
+        "input_tokens": 128904,
+        "cached_input_tokens": 114688,
+        "output_tokens": 985,
+        "total_tokens": 129889
+      },
+      "cli_usage": {
+        "input_tokens": 128904,
+        "cached_input_tokens": 114688,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 985,
+        "reasoning_output_tokens": 81
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6b6-becf-76c3-8e90-95724787110f:response:resp_033047f9126471e0016aef496a2d4c87d2984a7f00d54bf950",
+        "01a1b6b6-becf-76c3-8e90-95724787110f:response:resp_033047f9126471e0016aef496f27a887d2ab0cecdb8b3d4680",
+        "01a1b6b6-becf-76c3-8e90-95724787110f:response:resp_033047f9126471e0016aef4971c71487d28f1defecb7d074f8",
+        "01a1b6b6-becf-76c3-8e90-95724787110f:response:resp_033047f9126471e0016aef497e554887d2b46ae80575bc8e7d",
+        "01a1b6b6-becf-76c3-8e90-95724787110f:response:resp_033047f9126471e0016aef498853fc87d2ac9c2c1b74fde24d"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 36.140968018999956
+    },
+    {
+      "sequence": "buildgraph",
+      "condition": "none",
+      "stage": 3,
+      "session_id": "01a1b6b7-4c05-7260-9c3f-3fd02ffb4c17",
+      "usage": {
+        "input_tokens": 104177,
+        "cached_input_tokens": 94720,
+        "output_tokens": 1124,
+        "total_tokens": 105301
+      },
+      "cli_usage": {
+        "input_tokens": 104177,
+        "cached_input_tokens": 94720,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1124,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6b7-4c05-7260-9c3f-3fd02ffb4c17:response:resp_0ed1148ac3bb79f5016aef498e4a3c87d2ad31795eb9c28ada",
+        "01a1b6b7-4c05-7260-9c3f-3fd02ffb4c17:response:resp_0ed1148ac3bb79f5016aef4992520887d2b2afb41d5a4acd48",
+        "01a1b6b7-4c05-7260-9c3f-3fd02ffb4c17:response:resp_0ed1148ac3bb79f5016aef49955ff087d2bf9bb2ac82b11416",
+        "01a1b6b7-4c05-7260-9c3f-3fd02ffb4c17:response:resp_0ed1148ac3bb79f5016aef49a3a87487d2b1dd28ef673832ec",
+        "01a1b6b7-4c05-7260-9c3f-3fd02ffb4c17:response:resp_0ed1148ac3bb79f5016aef49ac241487d2a8285d48c5172a22"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 36.437880136999865
+    },
+    {
+      "sequence": "buildgraph",
+      "condition": "raw_history",
+      "stage": 1,
+      "session_id": "01a1b6b1-bdab-7440-826c-7cb21d240e4b",
+      "usage": {
+        "input_tokens": 80160,
+        "cached_input_tokens": 63872,
+        "output_tokens": 632,
+        "total_tokens": 80792
+      },
+      "cli_usage": {
+        "input_tokens": 80160,
+        "cached_input_tokens": 63872,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 632,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6b1-bdab-7440-826c-7cb21d240e4b:response:resp_00f98efa7647616a016aef4822470887d2a50b6084a5ac8203",
+        "01a1b6b1-bdab-7440-826c-7cb21d240e4b:response:resp_00f98efa7647616a016aef4826253c87d280677e30a545438d",
+        "01a1b6b1-bdab-7440-826c-7cb21d240e4b:response:resp_00f98efa7647616a016aef4828da9c87d2b6a70dc7083b6015",
+        "01a1b6b1-bdab-7440-826c-7cb21d240e4b:response:resp_00f98efa7647616a016aef4833739887d2be7bfb3a61a72f07"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 22.576012034000087
+    },
+    {
+      "sequence": "buildgraph",
+      "condition": "raw_history",
+      "stage": 2,
+      "session_id": "01a1b6b2-1689-7211-88f8-21213ebe8752",
+      "usage": {
+        "input_tokens": 109918,
+        "cached_input_tokens": 94336,
+        "output_tokens": 745,
+        "total_tokens": 110663
+      },
+      "cli_usage": {
+        "input_tokens": 109918,
+        "cached_input_tokens": 94336,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 745,
+        "reasoning_output_tokens": 13
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6b2-1689-7211-88f8-21213ebe8752:response:resp_0f43501e877c649d016aef48394e2487d2ac2e650b11303041",
+        "01a1b6b2-1689-7211-88f8-21213ebe8752:response:resp_0f43501e877c649d016aef48444d6887d28fec7a85932ce1b5",
+        "01a1b6b2-1689-7211-88f8-21213ebe8752:response:resp_0f43501e877c649d016aef4851674887d2955db39f5c64b9e1",
+        "01a1b6b2-1689-7211-88f8-21213ebe8752:response:resp_0f43501e877c649d016aef4859aa5487d29038e978ab22b675"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 39.044685543000014
+    },
+    {
+      "sequence": "buildgraph",
+      "condition": "raw_history",
+      "stage": 3,
+      "session_id": "01a1b6b2-af61-7ed0-aaed-efc730b021d9",
+      "usage": {
+        "input_tokens": 104714,
+        "cached_input_tokens": 90240,
+        "output_tokens": 855,
+        "total_tokens": 105569
+      },
+      "cli_usage": {
+        "input_tokens": 104714,
+        "cached_input_tokens": 90240,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 855,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6b2-af61-7ed0-aaed-efc730b021d9:response:resp_030c8c55fdce1e93016aef485fd34487d2961d2a088d7a8ea1",
+        "01a1b6b2-af61-7ed0-aaed-efc730b021d9:response:resp_030c8c55fdce1e93016aef4863c18487d2aaa2890edd49adc4",
+        "01a1b6b2-af61-7ed0-aaed-efc730b021d9:response:resp_030c8c55fdce1e93016aef486da57887d2a0717294b6ada2b3",
+        "01a1b6b2-af61-7ed0-aaed-efc730b021d9:response:resp_030c8c55fdce1e93016aef4876295087d2bf2c8df77a273f77"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 29.78688134899994
+    },
+    {
+      "sequence": "buildgraph",
+      "condition": "fts",
+      "stage": 1,
+      "session_id": "01a1b6b3-241e-76f3-9487-272145b33bcc",
+      "usage": {
+        "input_tokens": 100956,
+        "cached_input_tokens": 84224,
+        "output_tokens": 826,
+        "total_tokens": 101782
+      },
+      "cli_usage": {
+        "input_tokens": 100956,
+        "cached_input_tokens": 84224,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 826,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6b3-241e-76f3-9487-272145b33bcc:response:resp_076eed159a155e60016aef487ded9487d293d8a51adabe7acd",
+        "01a1b6b3-241e-76f3-9487-272145b33bcc:response:resp_076eed159a155e60016aef48844d7887d2a769aa90f15da5b0",
+        "01a1b6b3-241e-76f3-9487-272145b33bcc:response:resp_076eed159a155e60016aef488697e087d2922e2a8102a38f63",
+        "01a1b6b3-241e-76f3-9487-272145b33bcc:response:resp_076eed159a155e60016aef4890b5b887d2af4a24ba7a5b7ed7",
+        "01a1b6b3-241e-76f3-9487-272145b33bcc:response:resp_076eed159a155e60016aef4895bc0c87d29c2bcec955acb44c"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 29.173510909000015
+    },
+    {
+      "sequence": "buildgraph",
+      "condition": "fts",
+      "stage": 2,
+      "session_id": "01a1b6b3-968f-70e1-9f48-3ee6afa291cb",
+      "usage": {
+        "input_tokens": 102358,
+        "cached_input_tokens": 93312,
+        "output_tokens": 849,
+        "total_tokens": 103207
+      },
+      "cli_usage": {
+        "input_tokens": 102358,
+        "cached_input_tokens": 93312,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 849,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6b3-968f-70e1-9f48-3ee6afa291cb:response:resp_012975d1cd7e2991016aef489b35f487d29d2fc8addccd6c7c",
+        "01a1b6b3-968f-70e1-9f48-3ee6afa291cb:response:resp_012975d1cd7e2991016aef48a1aa3487d2906633fa40b87c68",
+        "01a1b6b3-968f-70e1-9f48-3ee6afa291cb:response:resp_012975d1cd7e2991016aef48a3db7487d29f9fdc38529c0722",
+        "01a1b6b3-968f-70e1-9f48-3ee6afa291cb:response:resp_012975d1cd7e2991016aef48ae063087d2b797960cb831d4bd",
+        "01a1b6b3-968f-70e1-9f48-3ee6afa291cb:response:resp_012975d1cd7e2991016aef48b4dd8487d2beb596a3a0445bb2"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 33.02555275899999
+    },
+    {
+      "sequence": "buildgraph",
+      "condition": "fts",
+      "stage": 3,
+      "session_id": "01a1b6b4-187d-7a32-b7a2-3638ab53c03a",
+      "usage": {
+        "input_tokens": 130062,
+        "cached_input_tokens": 100864,
+        "output_tokens": 950,
+        "total_tokens": 131012
+      },
+      "cli_usage": {
+        "input_tokens": 130062,
+        "cached_input_tokens": 100864,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 950,
+        "reasoning_output_tokens": 10
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6b4-187d-7a32-b7a2-3638ab53c03a:response:resp_0178cee438c47f88016aef48bd34a487d2b9a02c88750e8789",
+        "01a1b6b4-187d-7a32-b7a2-3638ab53c03a:response:resp_0178cee438c47f88016aef48c23cd487d2b2d8ab6d8d3b71df",
+        "01a1b6b4-187d-7a32-b7a2-3638ab53c03a:response:resp_0178cee438c47f88016aef48c654f087d29dfeebe3db43f7f8",
+        "01a1b6b4-187d-7a32-b7a2-3638ab53c03a:response:resp_0178cee438c47f88016aef48d053d487d2b14eae1701a189a5",
+        "01a1b6b4-187d-7a32-b7a2-3638ab53c03a:response:resp_0178cee438c47f88016aef48d9a84887d28c9834a43f1c0560"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 34.93371752200005
+    },
+    {
+      "sequence": "buildgraph",
+      "condition": "notes",
+      "stage": 1,
+      "session_id": "01a1b6b4-a181-7940-a21f-d3db6f21866d",
+      "usage": {
+        "input_tokens": 127284,
+        "cached_input_tokens": 100224,
+        "output_tokens": 873,
+        "total_tokens": 128157
+      },
+      "cli_usage": {
+        "input_tokens": 127284,
+        "cached_input_tokens": 100224,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 873,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6b4-a181-7940-a21f-d3db6f21866d:response:resp_004947459d96c82a016aef48dff10087d29fb29eee9746f7de",
+        "01a1b6b4-a181-7940-a21f-d3db6f21866d:response:resp_004947459d96c82a016aef48e3f17887d2920c26b543c0e460",
+        "01a1b6b4-a181-7940-a21f-d3db6f21866d:response:resp_004947459d96c82a016aef48e65c0887d2a5f01138b31a5be0",
+        "01a1b6b4-a181-7940-a21f-d3db6f21866d:response:resp_004947459d96c82a016aef48f1b1d487d2b8c2acbb6560b291",
+        "01a1b6b4-a181-7940-a21f-d3db6f21866d:response:resp_004947459d96c82a016aef48f91b0487d2b545c8179544fe38"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 31.956429568999965
+    },
+    {
+      "sequence": "buildgraph",
+      "condition": "notes",
+      "stage": 2,
+      "session_id": "01a1b6b5-1f3f-7962-9854-017363742336",
+      "usage": {
+        "input_tokens": 102847,
+        "cached_input_tokens": 93696,
+        "output_tokens": 873,
+        "total_tokens": 103720
+      },
+      "cli_usage": {
+        "input_tokens": 102847,
+        "cached_input_tokens": 93696,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 873,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6b5-1f3f-7962-9854-017363742336:response:resp_037d840fd0b45596016aef49031b4c87d2993b01eeab2783cf",
+        "01a1b6b5-1f3f-7962-9854-017363742336:response:resp_037d840fd0b45596016aef4907326087d29d492dd3522de4f0",
+        "01a1b6b5-1f3f-7962-9854-017363742336:response:resp_037d840fd0b45596016aef490a1d1087d2bfd86d166ff67430",
+        "01a1b6b5-1f3f-7962-9854-017363742336:response:resp_037d840fd0b45596016aef491272f487d288a3bf005fbdc249",
+        "01a1b6b5-1f3f-7962-9854-017363742336:response:resp_037d840fd0b45596016aef491a881487d28a50f84dab8ce4ac"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 33.05357211399996
+    },
+    {
+      "sequence": "buildgraph",
+      "condition": "notes",
+      "stage": 3,
+      "session_id": "01a1b6b5-a102-7e01-a44f-bd841b39887e",
+      "usage": {
+        "input_tokens": 131545,
+        "cached_input_tokens": 126592,
+        "output_tokens": 1223,
+        "total_tokens": 132768
+      },
+      "cli_usage": {
+        "input_tokens": 131545,
+        "cached_input_tokens": 126592,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1223,
+        "reasoning_output_tokens": 0
+      },
+      "native_reconciled": true,
+      "native_response_ids": [
+        "01a1b6b5-a102-7e01-a44f-bd841b39887e:response:resp_08d8d6e3a81a0da2016aef4921b1b087d2a476b0a85ef1be07",
+        "01a1b6b5-a102-7e01-a44f-bd841b39887e:response:resp_08d8d6e3a81a0da2016aef4926695487d2941bf0fd2119e9d9",
+        "01a1b6b5-a102-7e01-a44f-bd841b39887e:response:resp_08d8d6e3a81a0da2016aef4929004087d2946b31416d366d01",
+        "01a1b6b5-a102-7e01-a44f-bd841b39887e:response:resp_08d8d6e3a81a0da2016aef4939444487d2b313ca64a0aff3a6",
+        "01a1b6b5-a102-7e01-a44f-bd841b39887e:response:resp_08d8d6e3a81a0da2016aef4942f8c487d280c7a15b1cee306e"
+      ],
+      "grade": {
+        "visible": true,
+        "independent": true,
+        "protected": true,
+        "passed": true
+      },
+      "elapsed_seconds": 39.77692206500001
+    }
+  ],
+  "memory_retrieval_calls": 0,
+  "memory_tool_used": false,
+  "assignment_vs_application": "FTS arm offered searchable memory but agents never queried it; it is a memory-availability result, not retrieval efficacy.",
+  "candidate_results": {
+    "raw_history": {
+      "reduction_fraction": 0.17465244355634613,
+      "paired_sequence_wins": 2,
+      "all_quality_passed": true
+    },
+    "fts": {
+      "reduction_fraction": 0.009729143567312026,
+      "paired_sequence_wins": 1,
+      "all_quality_passed": true
+    },
+    "notes": {
+      "reduction_fraction": 0.005598674350882793,
+      "paired_sequence_wins": 1,
+      "all_quality_passed": true
+    }
+  }
+}

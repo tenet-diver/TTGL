@@ -1,0 +1,30 @@
+{
+  "id": "chronological-memory-001",
+  "registered_date": "2026-11-07",
+  "scope": "Generated development diagnostic: two independent three-stage evolving Python projects. This checks real native code editing, chronological memory exposure and accounting; it is not a long-horizon public benchmark or confirmatory efficacy study.",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "provider": "existing authenticated native Codex; built-in openai provider",
+  "conditions": ["none", "raw_history", "fts", "notes"],
+  "sequences": ["eventlog", "buildgraph"],
+  "maximum_model_processes": 24,
+  "timeout_seconds_per_run": 600,
+  "automatic_process_retries": 0,
+  "order": "In listed sequence order. Rotate listed conditions left by the sequence index; stages remain chronological within each condition. All registered cells run regardless of functional outcome; stop on infrastructure ambiguity or protected-file changes.",
+  "common": "Implement the requested APIs in the single application module named eventlog.py or buildgraph.py in this working directory. Inspect current source and visible test_stage*.py as needed, edit only the application module, and verify the full visible suite with python3 -m unittest discover -p 'test_stage*.py'. Preserve previously implemented APIs. Use only this working directory and normal shell/edit tools; no network, installations, analytics tools, delegation, sibling/parent directories or access to the experiment runner or operator artifacts. Tests and memory files are read-only inputs; memory.py may append its own query log. Optional prior-episode retrieval is available in every condition through python3 memory.py 'search terms'; it may return no records. Use remembered information only as fallible evidence and check current source. Every current requirement is in this task or visible tests; memory contains no privileged requirements. Finish with a concise verification result and reusable verified implementation facts, failed approaches and unresolved issues. Do not claim checks you did not run.",
+  "memory": {
+    "none": "Fresh session and evolving code/tests; identical search interface returns no history.",
+    "raw_history": "All prior visible episodes of this arm injected verbatim; includes prompt, answer, before/after code and native CLI events. No operator grades or future prompts.",
+    "fts": "Same prior episode representation, searched using standard-library SQLite FTS5 BM25; three nonoverlapping exact 3000-character chunks by default, max 10 hits and 12000 characters per query. All retrieval model turns count.",
+    "notes": "All prior final agent notes injected; note generation is included in each task's native usage. This is agent-authored notes, not Mem0 or an unmetered summarizer."
+  },
+  "matching": "Same initial project and chronological tasks, model, effort, tools, tests and fresh-session policy. Each condition evolves its own implementation/history; path dependence is part of this diagnostic and will be separated from same-corpus comparisons in later blocks. No hidden-memory advantage.",
+  "primary": ["Independent task success at each stage and complete sequence success", "Complete sequence native input plus output tokens, cached input counted once"],
+  "secondary": ["Fresh input, cached input and output separately", "Per-stage tokens and elapsed process seconds", "Retrieval calls/runtime and memory size", "Quality loss, failed attempts and stale-memory effects"],
+  "development_gate": "No task success lost against matched none; at least 10% pooled complete-sequence native-token reduction and a win on both sequences. Passing nominates a candidate only; it does not prove statistical noninferiority or authorize a universal optimality claim.",
+  "failure_policy": "Zero automatic retries or replacements. Preserve every started attempt. Wrong solutions remain and subsequent stages continue, exposing error propagation. Nonzero/timeout/missing usage/ambiguous thread or protected-input mutation stops this block. Reconcile native generation counters exactly with each fresh CLI turn before economic claims.",
+  "controls": "Compile all tests and independent checks before inference; empty implementation must fail and independent hand-written reference must pass every stage. Keep reference/independent artifacts outside agent work directories; native directory restriction is an instruction and sandbox constraint, not an asserted air gap.",
+  "overhead": "All 24 processes are research expense. Raw history injection is charged on every inference where native provider reports it. Notes are produced by every condition in the common final response. FTS is stdlib CPU work, not inference. Include parent implementation/analyst overhead separately; cash/quota and provider latency remain unknown.",
+  "heldout": "None in this diagnostic. No reserved routing-validation content may be used. Freeze and separately register later fresh transfer tasks before exposure.",
+  "rollback": "No global Codex provider, guidance, memory or compression default changes. Preserve all transcripts and chronological artifacts privately; public report contains aggregate measurements and reproducible generated task definitions."
+}
