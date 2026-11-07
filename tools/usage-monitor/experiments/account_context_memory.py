@@ -44,6 +44,21 @@ def main():
         parent_turns={t['turn_id'] for t in turns if t['start']>=cutoff}
         rows=[dict(r) for r in db.execute("SELECT * FROM events WHERE kind='generation'")]
     sessions=long_history_sessions(ROOT)
+    for path in (ROOT/'native-resume-metering-001').glob('call-*/agent.jsonl'):
+        for line in path.read_bytes().split(b'\n'):
+            if not line.startswith(b'{'):continue
+            row=json.loads(line)
+            if row.get('type')=='thread.started':sessions[row['thread_id']]='resume_metering_preflight'
+    for path in ROOT.glob('longmemeval-neutral-judge-audit-*/*/agent.jsonl'):
+        for line in path.read_bytes().split(b'\n'):
+            if not line.startswith(b'{'):continue
+            row=json.loads(line)
+            if row.get('type')=='thread.started':sessions[row['thread_id']]='evaluation_judges'
+    for path in ROOT.glob('archive-native-canary-*/reader/agent.jsonl'):
+        for line in path.read_text().splitlines():
+            try:row=json.loads(line)
+            except json.JSONDecodeError:continue
+            if row.get('type')=='thread.started':sessions[row['thread_id']]='context_mechanism_preflight'
     for name in ('batching-001','chronological-002'):
         result=json.loads((ROOT/name/'results.json').read_text())
         for cell in result['cells']:sessions[cell['session_id']]='registered_trials'
@@ -65,9 +80,10 @@ def main():
     unknown_sessions=[dict(session_id=sid,role=role,usage=None,cost=None) for sid,role in sessions.items() if sid not in metered_sessions]
     rates=json.loads((REPO/'tools/usage-monitor/studies/context-memory-pricing-20261107.json').read_text())['primary_scenario']
     known_cost=sum(((g['usage']['input_tokens']-g['usage']['cached_input_tokens'])*rates['fresh_input_per_million']+g['usage']['cached_input_tokens']*rates['cached_input_per_million']+g['usage']['output_tokens']*rates['output_per_million'])/1e6 for g in groups.values())
-    payload=dict(as_of=datetime.now(timezone.utc).isoformat(),scope='Cumulative snapshot of this active research turn, original30 completed trial cells, all discovered long-history readers/extractors/judges including failed or active calls, one analyst and Mem0 preflight. Initial service-start turn excluded.',
+    payload=dict(as_of=datetime.now(timezone.utc).isoformat(),scope='Cumulative snapshot of this active research turn, original30 completed trial cells, all discovered long-history readers/extractors/judges including failed or active calls, archive mechanism canaries, one analyst and Mem0 preflight. Initial service-start turn excluded.',
         components=dict(groups),native_tokens=sum(g['usage']['total_tokens'] for g in groups.values()),unique_responses=len(seen),
         local_embedding_inferences=len((ROOT/'embedding-inferences.jsonl').read_text().splitlines()),
+        local_embedding_count_scope='Logged adapter operations only; standalone model-load/probe work is separately receipted. Not a complete hardware/energy cost or a Codex-token equivalent.',
         unknown_sessions=unknown_sessions,total_program_cost=None,known_native_credit_rate_scenario=known_cost,
         cash_cost=None,subscription_quota_impact=None,operational_cost=None,net_saving=None,
         snapshot_semantics='Cumulative lower bound while parent is active. Alternative snapshots must not be added together. Local embedding model inferences have separately measured runtime, not native Codex tokens. Installation/security/human costs not monetized.')

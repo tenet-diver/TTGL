@@ -1,0 +1,14 @@
+{
+  "id": "native-resume-metering-001",
+  "scope": "Two-call native transport/accounting diagnostic before warm-cache/repeated-memory comparisons; not task-quality or savings evidence.",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "maximum_model_processes": 2,
+  "automatic_process_retries": 0,
+  "timeout_seconds": 180,
+  "method": "Fresh native Codex thread then explicit resume of that exact ID, same cwd/provider/model/effort. Reply fixed different marker each time, no tools. Preserve source/CLI/native records. Do not use --last or create another thread as fallback.",
+  "acceptance": "Both markers exact, same unique thread ID, each CLI invocation completes with positive usage and no tools. Native response identities unique. First CLI counters reconcile first turn; second counters must reconcile either cumulative unique native totals or second-turn native totals, with actual semantics recorded before any warm-cache comparison. Any other pattern remains unresolved, never inferred zero.",
+  "cost": "Both calls are research/transport overhead; price native unique responses once with frozen published rates. Account cash and subscription quota remain unknown. No token/cost saving claimed.",
+  "failure": "Stop and preserve any failed/ambiguous call. Zero automatic process retries, no repeat of started invocation. Native provider HTTP/stream defaults remain distinct from process retry policy.",
+  "rollback": "No global provider/configuration, active frozen validation sources or paused schedules changed. Private evidence stays in ignored work/security."
+}

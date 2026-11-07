@@ -480,3 +480,95 @@ held-out questions remain untouched. Raw histories, answers and gold stay
 private; the [public aggregate](../../../tools/usage-monitor/studies/longmemeval-codex-development-results-002.json)
 contains no private transcript. Published-rate cost scenarios are distinct from
 actual account credits, subscription expense and full deployment costs.
+
+A post-hoc price-ratio sweep over cached/fresh input prices0 through1, holding
+observed behavior and the output/fresh ratio5 fixed, leaves FTS cheaper than
+both controls on development002. The [role-aware audit](../../../tools/usage-monitor/studies/longmemeval-cost-sensitivity-002.json)
+prices extraction as deployment and judges separately. Its API sensitivity
+checks the272k threshold per response; no observed response crosses it.
+Counterfactual prices do not recreate provider caching behavior.
+
+The first native archive-handle canary fails before efficacy measurement: actual
+requests advertise no recovery-tool declarations, so the strict proxy guard
+passes through all observations. The model reports UNAPPLIED, zero requests
+transform and zero sources are retrieved. Its47,116 native tokens and0.86096
+scenario credits are retained research expense. Offline contracts alone therefore
+do not establish model-facing applicability; the attempt is preserved without a
+saving claim or silent retry.
+
+### Validation integrity amendments before quality outcomes
+
+The original validation runner stops on the61st reader while splitting JSONL.
+The native output is intact: seven literal U+2028 characters inside JSON strings
+are incorrectly treated as record boundaries by str.splitlines(). A separately
+registered physical-LF parser recovers the same completed call without model
+inference; actual truncation still fails. All61 existing reader sessions reconcile
+CLI/native/Langfuse IDs and counters. Continuation003 reuses their sealed answers
+and generates only11 unstarted readers and72 unstarted judges. No existing call
+or question is repeated/replaced, and all original failure artifacts remain.
+
+We also identify incomplete grader blinding: prompts omit conditions, but judge
+working directories contain condition names. Earlier blinded-grading descriptions
+refer only to prompt blinding. Before any validation grade, neutral audit002 is
+registered for all72 answers, with randomized condition-neutral directories and
+the exact same rubric/model. Both original and audit labels, disagreement and
+paired quality losses will be reported; neither favorable set can replace an
+unfavorable set. Nomination requires the no-observed-loss quality criterion under
+both assessments. These additional judges are research overhead; same-model and
+answer-style biases remain. A prepared audit and a protocol-path preflight failure
+have zero model calls and are preserved separately.
+
+### Model-facing archive mechanism, with retained failed attempts
+
+Native canaries001–003 fail the observable recovery gate and pass through all
+context. Native app-server catalogs confirm MCP loading, but HTTP tool schemas
+remain unavailable to this proxy; absence does not establish tool unavailability.
+A separate method uses the existing TTGL raw-source CLI via an already completed
+native shell tool. Canary004 applies three real provider-request transformations
+and recovers exact source, but its first read fails on a relative path and the
+agent repairs it in a second call. Its clean-installation gate fails; all93,010
+native tokens /1.07998 scenario credits include this recovery overhead.
+
+After an absolute-scope fix, fresh canary005 passes: two real outbound requests
+are transformed, one source is durably hash-verified, one successful CLI call
+recovers the requested value and marked raw recovery is forwarded unchanged.
+Its69,890 native tokens cost1.54366 scenario credits. The shorter run costs more
+than004 because its measured fresh/cached mix differs; these unmatched canaries
+are not a causal efficiency comparison. They establish model-facing applicability
+for this scoped method, not coding quality, cost savings or safe default adoption.
+Raw-source CLI reads avoid creating an analytics database in a read-only agent.
+The normal provider remains unchanged; quality/cost comparisons are still needed.
+
+## Reserved validation: original grading and cost gate
+
+All24 reserved questions completed in all three conditions, across the six
+question types. The lineage contains144 completed model processes,61 readers
+reused from the stopped parser run and83 previously unstarted processes; no
+model call is repeated. All144 sessions reconcile native/CLI/Langfuse usage and
+unique identities. [Original graded aggregate](../../../tools/usage-monitor/studies/longmemeval-codex-validation-results-003.json):
+
+| System | Local rubric successes | Deployment native tokens | Published credit-rate scenario | Cost change vs full history |
+|---|---:|---:|---:|---:|
+| Full history |24/24|3,277,610|146.19174|reference|
+| Plain raw-file search |24/24|1,735,040|20.23384|−86.16%|
+| FTS excerpts with raw fallback |23/24|1,074,030|15.11030|−89.66%|
+
+FTS wins24/24 paired costs versus full history and22/24 versus plain search,
+and costs25.32% less than plain search in aggregate. It nevertheless loses one
+matched-control success in the original rubric and therefore **fails the frozen
+no-loss nomination gate**. The favorable seven-question development result does
+not replace this validation outcome. The predeclared plain-file control has no
+observed loss under these labels and lower cost in every pair versus full
+history; this is a descriptive control result, not a post-hoc selected treatment
+or demonstrated broad coding-task benefit. Cost efficiency depends strongly on
+both context strategy and actual cache reuse, not token count alone.
+
+Original grading costs a separate26.16577 scenario credits. The72-assessment
+neutral-directory audit was fixed before any validation label and is running
+in full; it cannot overwrite an unfavorable original label set. Final reporting
+will include both labels and their disagreements. Same-model judging, public
+benchmark contamination, a finite stratified sample and one attempt per cell
+limit quality inference. No tight population noninferiority margin or actual
+subscription cash saving is established. A subsequent reuse comparison needs an
+actual continued full-context cache control, whose current native cumulative
+metering was separately validated before scored reuse trials.

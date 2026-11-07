@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 import sys
+from types import SimpleNamespace
 
 from analyst_mcp import handle, TOOLS
 from workspace import Store
@@ -22,7 +23,11 @@ def main():
         return
     try:
         arguments = json.loads(sys.stdin.read() if args.args == '-' else args.args)
-        result = handle(Store(args.data, args.codex_root, 'http://localhost:3000', args.capture_root),
+        # Raw source retrieval requires only its explicit archive scope. Avoid
+        # creating/migrating an analytics database in a read-only agent sandbox.
+        store=(SimpleNamespace(capture_root=args.capture_root) if args.tool=='read_compression_source'
+               else Store(args.data, args.codex_root, 'http://localhost:3000', args.capture_root))
+        result = handle(store,
                         dict(method='tools/call', params=dict(name=args.tool, arguments=arguments)))
         for block in result.get('content', []):
             if block.get('type') == 'text':

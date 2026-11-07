@@ -13,20 +13,21 @@ from workspace import Store
 from analyst_experiments import plan_experiment,record_evaluation
 
 
-def publish(directory):
+def publish(directory,store=None,report=None):
     if (directory/'publication.json').exists():raise ValueError('Publication already exists; preserve receipt')
     raw=(directory/'results.json').read_bytes();result=json.loads(raw)
     if not (directory/'complete.json').exists() or not result.get('cells'):
         raise ValueError('Incomplete trial')
     if not all(c.get('native_reconciled') for c in result['cells']):
         raise ValueError('Native reconciliation required')
-    store=Store(REPO/'work/security/workspace',Path.home()/'.codex','http://localhost:3000',REPO/'work/security/langfuse-stack/captures')
-    store.scan();report=store.report(event_limit=None)
+    store=store or Store(REPO/'work/security/workspace',Path.home()/'.codex','http://localhost:3000',REPO/'work/security/langfuse-stack/captures')
+    if report is None:
+        store.scan();report=store.report(event_limit=None)
     project=next((p['id'] for p in report['projects'] if p['name']=='Context and memory optimization'),None)
     if project is None:project=store.mutate('project',dict(name='Context and memory optimization',repo=str(REPO),scope='Registered context/memory trials with independent checks, native usage and research overhead; not cash or quota measurement.'))['id']
     protocol=json.loads((directory/'protocol.json').read_text())
     conditions={c['condition'] for c in result['cells']}
-    baseline='baseline' if 'baseline' in conditions else 'full_history' if 'full_history' in conditions else 'none'
+    baseline='baseline' if 'baseline' in conditions else 'full_history' if 'full_history' in conditions else 'none' if 'none' in conditions else next(iter(conditions)) if len(conditions)==1 else 'none'
     task_ids={}
     for cell in result['cells']:
         role=cell.get('role')
@@ -45,8 +46,8 @@ def publish(directory):
     anchor=next(task for label,task in task_ids.items() if (' '+baseline+' ') in label)
     experiment=plan_experiment(store,dict(task_id=anchor,title=protocol['id'],change='Registered context/memory representation or independent-read guidance; see frozen protocol for treatment/comparator.',
         metrics='Complete-run native tokens, cached/fresh/output, registered quality method and process wall time. All actual cells retained; model-rubric grades remain distinct from programmatic checks.',
-        quality_gate=protocol.get('development_gate',protocol.get('acceptance','All independent checks pass.')),
-        overhead=protocol['overhead'],rollback=protocol['rollback']))['id']
+        quality_gate=protocol.get('development_gate',protocol.get('acceptance',protocol.get('primary','Registered quality method and accounting checks pass; model rubric is not programmatic ground truth.'))),
+        overhead=protocol.get('overhead',protocol.get('cost','All actual experiment inference is research expense; cash unknown.')),rollback=protocol['rollback']))['id']
     evaluation=record_evaluation(store,experiment,protocol,result,hashlib.sha256(raw).hexdigest())
     receipt=dict(project_id=project,experiment_id=experiment,evaluation_id=evaluation,task_ids=task_ids,result_sha256=hashlib.sha256(raw).hexdigest(),
         note='Metadata publication links existing unique native response evidence; no new generation observations or usage inserted.')

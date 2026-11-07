@@ -1,0 +1,17 @@
+{
+  "id": "archive-native-canary-005",
+  "scope": "One live native Codex diagnostic, not a coding benchmark or autonomous retrieval efficacy result.",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "maximum_model_processes": 1,
+  "timeout_seconds": 300,
+  "automatic_retries": 0,
+  "intervention": "Separate loopback8322 experimental reversible-shell-handles route. Require a completed native shell call in actual request history. Use existing analyst_cli.py read_compression_source with explicit private capture-root; raw reads avoid analytics database creation. Exact durable hash-verified archive and raw bypass required; normal8317 unchanged.",
+  "fixture": "Fresh160-record nonsecret fixture. Read it once with cat, then use the scoped read-only CLI command in the actual archive marker to recover requested record-0073. This is explicit diagnostic retrieval, not autonomous efficacy.",
+  "acceptance": "At least one actual outbound provider request transformed, exact persisted source hashes, a native shell invocation of the provided scoped read_compression_source command, marked recovered text passed through unchanged, correct requested value, positive reconciled native usage. Report explicit pagination where source exceeds16000characters. No substitution of a simulated upstream. Clean gate additionally requires exactly one CLI recovery attempt with exit0 and no other file read after the initial cat.",
+  "cost": "All native inference is research/mechanism overhead. Record fresh/cached/output and published-rate scenario. No raw-vs-treatment saving comparison, cash or latency claim.",
+  "failure": "Preserve every started process/capture/thread; no repeat of started or uncertain model call. Stop on failure/ambiguity.",
+  "rollback": "Stop only owned separate proxy/canary after completion; no global configuration, paused schedules, database volumes or historical artifacts changed. Private evidence remains ignored.",
+  "amendment": "Preserve actual004 transformations/exact recovery and its failed first read: capture-root was relative to proxy cwd, so agent repaired it with an extra tool/model round trip. Fix command to canonical absolute archive scope, with relative-path/space-quoting regression check. Fresh005 must recover using exactly one CLI retrieval with exit0 and no path repair; all inference remains research expense. No global activation or savings claim.",
+  "documentation": "https://learn.chatgpt.com/docs/extend/mcp"
+}

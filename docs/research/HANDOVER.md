@@ -2425,3 +2425,97 @@ Accounting discovery now includes partial/failed long-history calls, keeps
 unknowns null and deduplicates native response IDs. Snapshot17:43UTC known
 50,808,716 tokens /434 responses /383.578 scenario credits; parent active,
 unknown001 extraction and local costs make this lower-bound accounting only.
+
+### 7 November: continuation003 and neutral audit002, native archive005 gate
+
+Validation002 stopped after61 completed readers, zero grades. Cause reproduced:
+str.splitlines splits literal U+2028 inside valid JSON strings; physical-LF parser
+(native_jsonl.py,2 focused checks) recovers unchanged completion. All61 existing
+sessions now reconcile native/CLI AND Langfuse: validation-recovery-audit-001.
+Original002 stdout/answers/source unchanged, failure preserved. New frozen
+continue_longmemeval_validation.py/protocol003 seals61 existing answer/stdout
+hashes and runs only11 unstarted readers plus72 unstarted rubric judges,83 new
+processes /144 across lineage. No model retry/replacement. Worker session55728;
+inspect work/security/context-memory-20261107/longmemeval-validation-003 started,
+complete/stopped and processes. Original84072 and28040 are finished; don't retry.
+After complete, run continuation script measure, Langfuse audit, then publish.
+Frozen sources include native_jsonl.py, original LME sources, FTS, pricing and
+continuation runner: do not edit while active.
+
+Original judge cwd contains condition despite rubric prompt hiding it. Report
+prompt-only blinding. Separately registered BEFORE ANY validation grade:
+longmemeval-neutral-judge-audit-002,72 anonymous assessments, all exact original
+random IDs/order retained, same model/rubrics. Original labels preserved; require
+no observed baseline-success loss under BOTH labels plus frozen cost gates.
+neutral_memory_judge.py prepared and FROZEN; run only AFTER continuation003 has
+complete + measured results, then measure and audit all72 additional judge
+sessions. No tools allowed. Same-model/answer-style limitations remain.
+Audit001 prepared0calls retained. First audit002 prep copied protocol001 path;
+preserved as ...002-preparation-protocol-path-error, zero model calls; corrected
+002 prepare has identity guard. Do not launch duplicate judges or reprepare.
+
+Native archive canaries001–003 UNAPPLIED: guard cannot establish recovery from
+HTTP schemas, though native app-server catalog probes prove MCP loading. Preserve
+all failures/usage.004 separate shell/TTGL-CLI method actually transforms3requests,
+exact source and raw recovery work; first relative-path read fails, agent fixes
+absolute path, so clean gate FAILS.005 absolute-scope fix passes:2 transformations,
+1exact source,1successful CLI recovery, raw bypass,69,890native tokens /1.54366
+published-rate scenario credits.00493,010 /1.07998; fewer tokens005 costs more
+because cache differs—unmatched configurations, NOT saving evidence.8 policy/
+persistence +3 HTTP/CLI checks pass. analyst_cli.py raw-source read avoids Store
+DB writes. Experimental routes require explicit opt-in; normal8317 unaffected.
+
+Current owned experimental proxy sessions:37135 port8319(canary002),94934 port8320
+(003),92961 port8321(004),28256 port8322(005), all canary models finished. Stop only
+these owned proxies after receipts audited.001 proxy8318 already stopped.
+Supervisor4332 and normal8317/8766/Langfuse3000 must stay running. Optional profile
+~/.codex/ttgl-archive-canary-003.config.toml is explicit-only, never default; archive
+and remove only if exact owned contents unchanged. Current005 reader worker16891
+finished; no retry. Detailed private mechanism audits004/005 reconcile CLI/native;
+public aggregate JSONs exist. Need canonical TTGL role-aware canary publication,
+Langfuse audit and updated full expense accounting. New helper/parser/canary/
+protocol/report changes are currently uncommitted: commit/push after inspection.
+No schedule restarted. Unknown original LME001 extraction usage remains NULL.
+
+### 7 November19:00UTC checkpoint: validation original gate FAILS; neutral audit active
+
+Continuation003 completed all83 new processes;144 total across lineage.
+Measured original local rubric: full_history24/24, file_search24/24, FTS23/24.
+Deployment scenario credits146.19174 /20.23384 /15.11030. FTS wins24/24 paired
+costs vs full and22/24 vs files but loses1baseline success, so reject frozen
+nominee regardless of later favorable labels. Plain-file control saves86.159%
+with24/24 original labels; descriptive control, not newly selected held-out arm.
+All144 native/CLI/Langfuse IDs/counters reconcile. Public original aggregate is
+longmemeval-codex-validation-results-003.json. Original rubric judge cost26.16577
+scenario credits is research expense. Native rubric scores are not official
+benchmark scores or independent programmatic truth.
+
+Neutral audit002 is NOW RUNNING, exec session57938. Registered72 assessments,
+random anonymous cwd/order sealed before any original grade, identical rubric/
+model and immutable original answers. No retries/selective regrade. Run its
+measure action only after complete, then Langfuse audit and joint original/neutral
+summary. Audit raw-source/lookup code is FROZEN; do not edit. Primary worker55728
+ended normally, no need to wait/restart. Main original-validation publication:
+experiment366c50179968421091bdec23ac71a9bb/eval7ed6cb08a3244e6e8fdd1505a32b5ffb.
+An additional immutable cost/quality rejection review was recorded, preserving
+original generic-import fallback wording and clarifying actual frozen primary
+rule / model rubric / no independent programmatic answer-grade claim.
+
+All5 archive canaries now have canonical results.json, native reconciliation and
+TTGL publication.json.005 measurement helper measure_archive_canary.py derives
+public filename from registered ID; earlier public004 filename collision was
+corrected from separate private004/005 audited receipts before publication/commit.
+All5 public IDs/path identities now checked. Source snapshots preserved privately
+for001–005; failed001–003 and004repair retained. Owned experimental proxies
+8319–8322 stopped; exact owned explicit profile003 archived/removed. Normal
+services/supervisor4332 remain. Need grouped Langfuse audit for5canary sessions.
+
+native_resume_metering.py preflight001 completed2 actual calls with same exact
+thread,2 unique native responses. Current CLI remains cumulative:24411 then48852
+input; actual second turn24441. Total48866native /0.38498 scenario credits,
+research overhead only. Public protocol/results exist. Account source maps this
+SID once and unique native rows, never adds cumulative snapshots. Next reuse
+study is DESIGN ONLY in docs/research/cache-and-memory-reuse.md; actual continued
+full-context cache control is required before claiming extraction amortization.
+No hook installed; official PostToolUse feedback interface merely screened as
+another future maintained integration, not a working output-update API.

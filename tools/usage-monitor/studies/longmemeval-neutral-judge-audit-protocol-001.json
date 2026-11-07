@@ -1,0 +1,16 @@
+{
+  "id": "longmemeval-neutral-judge-audit-001",
+  "registered_before": "Any validation002 grade. All reader generation and frozen original scoring remain unchanged.",
+  "problem": "Original judge rubric prompts omit conditions but cwd names include full_history/file_search/fts. They are prompt-blinded, not fully condition-blinded. Native environment context can expose the directory.",
+  "scope": "All72 answers from the24 reserved validation questions and3 frozen conditions. No replacements, selective regrading or tuning; original grades retained. Original block must complete before this audit starts.",
+  "maximum_model_processes": 72,
+  "automatic_process_retries": 0,
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "timeout_seconds": 300,
+  "methods": "Same exact original judge_prompt rubric/reference/response logic. Each judge gets a random condition-neutral assessment directory and no tool use. Random assessment IDs and shuffled grading order are frozen before validation grades. Host mapping and gold stay outside assessment directories. Inputs/source-answer hashes sealed before first audit judge.",
+  "interpretation": "Report original versus neutral-directory grades, disagreements, both complete success tables, and paired quality losses. Original gate remains preserved. Nomination is accepted for this validation only if the frozen no-observed-baseline-loss quality criterion holds under BOTH grade sets, in addition to the original cost/paired-win gates. A favorable judge set cannot replace an unfavorable set. Same-model grading and style cues remain limitations; no official score, causal memory advantage or statistical noninferiority claim.",
+  "cost": "Every audit judge is additional research expense, excluded from deployment savings and included in full research accounting. Positive native counters/CLI reconciliation required; cash/local-compute costs remain unknown.",
+  "failure": "Stop on any timeout, invalid grade, forbidden tool, missing/ambiguous completion or changed sources/inputs. Preserve every started call without retries or replacements.",
+  "rollback": "No normal provider, model settings, global configuration, historical study or paused schedule changed. Store private answers/reference/mapping in ignored work/security. Publish aggregates only."
+}

@@ -1,0 +1,22 @@
+{
+  "id": "archive-native-canary-003",
+  "acceptance_passed": false,
+  "answer_correct": false,
+  "transformations": 0,
+  "unique_archived_sources": 0,
+  "all_archived_sources_exact": false,
+  "raw_bypasses": 0,
+  "recovery_attempts": 0,
+  "recovery_exit_codes": [],
+  "clean_installation_gate_passed": false,
+  "native_reconciled": true,
+  "usage": {
+    "input_tokens": 47028,
+    "cached_input_tokens": 31744,
+    "output_tokens": 42,
+    "total_tokens": 47070
+  },
+  "credit_rate_scenario": 0.8540599999999999,
+  "cash_cost": null,
+  "note": "Mechanism-only research expense, not quality/cost saving evidence.001\u2013003 pass through without observable recovery schemas;004 needs path repair;005 uses fixed absolute scope. Preserve every failure and all added inference."
+}

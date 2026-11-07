@@ -1,0 +1,112 @@
+{
+  "id": "longmemeval-local-codex-validation-003",
+  "scope": "24 pre-reserved public-memory QA questions, all6 types; same raw files available to all systems. Not official LongMemEval or coding-task scores.",
+  "conditions": {
+    "full_history": {
+      "local_rubric_successes": 24,
+      "questions": 24,
+      "usage": {
+        "input_tokens": 3276313,
+        "cached_input_tokens": 377856,
+        "output_tokens": 1297,
+        "total_tokens": 3277610,
+        "fresh_input_tokens": 2898457,
+        "cache_hit_fraction": 0.11532964036097894
+      },
+      "task_credit_rate_scenario": 146.19174,
+      "judge_overhead_credits": 8.44693,
+      "cli_process_elapsed_sum_seconds": 648.2462923580024,
+      "cli_process_elapsed_median_seconds": 27.290752984999926,
+      "contrasts": {
+        "full_history": {
+          "baseline_successes_lost": 0,
+          "paired_cost_wins": 0,
+          "pooled_cost_reduction_fraction": 0.0
+        },
+        "file_search": {
+          "baseline_successes_lost": 0,
+          "paired_cost_wins": 0,
+          "pooled_cost_reduction_fraction": -6.225111002162714
+        }
+      }
+    },
+    "file_search": {
+      "local_rubric_successes": 24,
+      "questions": 24,
+      "usage": {
+        "input_tokens": 1730586,
+        "cached_input_tokens": 1419136,
+        "output_tokens": 4454,
+        "total_tokens": 1735040,
+        "fresh_input_tokens": 311450,
+        "cache_hit_fraction": 0.8200320585050381
+      },
+      "task_credit_rate_scenario": 20.23384,
+      "judge_overhead_credits": 9.09982,
+      "cli_process_elapsed_sum_seconds": 758.3663679639922,
+      "cli_process_elapsed_median_seconds": 28.287080830999912,
+      "contrasts": {
+        "full_history": {
+          "baseline_successes_lost": 0,
+          "paired_cost_wins": 24,
+          "pooled_cost_reduction_fraction": 0.8615938219218131
+        },
+        "file_search": {
+          "baseline_successes_lost": 0,
+          "paired_cost_wins": 0,
+          "pooled_cost_reduction_fraction": 0.0
+        }
+      }
+    },
+    "fts": {
+      "local_rubric_successes": 23,
+      "questions": 24,
+      "usage": {
+        "input_tokens": 1071970,
+        "cached_input_tokens": 821120,
+        "output_tokens": 2060,
+        "total_tokens": 1074030,
+        "fresh_input_tokens": 250850,
+        "cache_hit_fraction": 0.7659915855854175
+      },
+      "task_credit_rate_scenario": 15.1103,
+      "judge_overhead_credits": 8.61902,
+      "cli_process_elapsed_sum_seconds": 678.067891864006,
+      "cli_process_elapsed_median_seconds": 27.607908141500047,
+      "contrasts": {
+        "full_history": {
+          "baseline_successes_lost": 1,
+          "paired_cost_wins": 24,
+          "pooled_cost_reduction_fraction": 0.8966405352313339
+        },
+        "file_search": {
+          "baseline_successes_lost": 1,
+          "paired_cost_wins": 22,
+          "pooled_cost_reduction_fraction": 0.2532163939222609
+        }
+      }
+    }
+  },
+  "development_nominee": "fts",
+  "frozen_nominee_accepted": false,
+  "gate_reason": "One matched baseline success is lost in original registered rubric grading. Neutral-directory audit is required and cannot replace an unfavorable original label set.",
+  "neutral_audit_status": "Preregistered before any validation grade; all72 assessments running.",
+  "langfuse": {
+    "sessions": 144,
+    "all_reconciled": true,
+    "unique_native_responses": 197
+  },
+  "lineage": {
+    "reused_readers_from002": 61,
+    "new_readers003": 11,
+    "judges003": 72,
+    "total_processes": 144,
+    "no_model_retries": true
+  },
+  "limits": [
+    "Original local same-model rubric prompt hides condition but cwd can reveal it; neutral audit will also be reported.",
+    "Single attempts, public-benchmark contamination possible, no population noninferiority or cash/quota claim.",
+    "CLI elapsed is finite process time, not model latency or full deployment time; excludes preprocessing and research pause.",
+    "Local compute and original failed001 extraction are unpriced/unknown; research expense is separate."
+  ]
+}

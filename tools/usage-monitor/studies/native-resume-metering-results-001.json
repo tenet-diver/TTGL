@@ -1,0 +1,46 @@
+{
+  "id": "native-resume-metering-001",
+  "acceptance_passed": true,
+  "model_processes": 2,
+  "cli_snapshots": [
+    {
+      "input_tokens": 24411,
+      "cached_input_tokens": 19200,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 7,
+      "reasoning_output_tokens": 0
+    },
+    {
+      "input_tokens": 48852,
+      "cached_input_tokens": 43392,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 14,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "native_per_turn": [
+    {
+      "input_tokens": 24411,
+      "cached_input_tokens": 19200,
+      "output_tokens": 7,
+      "total_tokens": 24418
+    },
+    {
+      "input_tokens": 24441,
+      "cached_input_tokens": 24192,
+      "output_tokens": 7,
+      "total_tokens": 24448
+    }
+  ],
+  "unique_native_responses": 2,
+  "native_total": {
+    "input_tokens": 48852,
+    "cached_input_tokens": 43392,
+    "output_tokens": 14,
+    "total_tokens": 48866
+  },
+  "resume_cli_semantics": "cumulative-thread",
+  "credit_rate_scenario": 0.38498,
+  "cash_cost": null,
+  "note": "Transport/metering only; not task performance, cache efficiency or saving evidence. Deduplicate native responses; never add cumulative CLI snapshots."
+}

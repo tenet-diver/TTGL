@@ -1,0 +1,17 @@
+{
+  "id": "archive-native-canary-004",
+  "scope": "One live native Codex diagnostic, not a coding benchmark or autonomous retrieval efficacy result.",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "maximum_model_processes": 1,
+  "timeout_seconds": 300,
+  "automatic_retries": 0,
+  "intervention": "Separate loopback8321 experimental reversible-shell-handles route. Require a completed native shell call in actual request history. Use existing analyst_cli.py read_compression_source with explicit private capture-root; raw reads avoid analytics database creation. Exact durable hash-verified archive and raw bypass required; normal8317 unchanged.",
+  "fixture": "Fresh160-record nonsecret fixture. Read it once with cat, then use the scoped read-only CLI command in the actual archive marker to recover requested record-0073. This is explicit diagnostic retrieval, not autonomous efficacy.",
+  "acceptance": "At least one actual outbound provider request transformed, exact persisted source hashes, a native shell invocation of the provided scoped read_compression_source command, marked recovered text passed through unchanged, correct requested value, positive reconciled native usage. Report explicit pagination where source exceeds16000characters. No substitution of a simulated upstream.",
+  "cost": "All native inference is research/mechanism overhead. Record fresh/cached/output and published-rate scenario. No raw-vs-treatment saving comparison, cash or latency claim.",
+  "failure": "Preserve every started process/capture/thread; no repeat of started or uncertain model call. Stop on failure/ambiguity.",
+  "rollback": "Stop only owned separate proxy/canary after completion; no global configuration, paused schedules, database volumes or historical artifacts changed. Private evidence remains ignored.",
+  "amendment": "MCP-schema observation gate remains failed in001\u2013003, all preserved. New separate shell-based recovery method reuses the existing CLI and a native tool actually observed working. No relaxation of MCP guard. Raw source CLI is made database-write-free for read-only agents. One fresh model process, zero custom-provider request/stream retries; no repeated uncertain call.",
+  "documentation": "https://learn.chatgpt.com/docs/extend/mcp"
+}

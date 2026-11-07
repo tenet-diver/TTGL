@@ -9,12 +9,12 @@ import hashlib
 import json
 import time
 
-POLICIES=('off','older-mask','reversible-handles')
+POLICIES=('off','older-mask','reversible-handles','reversible-shell-handles')
 RAW_MARKER='TTGL_RAW_EVIDENCE'
 TEXT_KEYS={'output','aggregated_output','text','content','result','content_blocks'}
 
 
-def rewrite(document,policy,retain_source=None,keep_last=4,minimum_characters=1000):
+def rewrite(document,policy,retain_source=None,keep_last=4,minimum_characters=1000,recovery_command=None):
     """Only completed tool-output TEXT is eligible; never remove tool-call items.
 
     The callback must durably retain the exact source before returning. A
@@ -32,9 +32,11 @@ def rewrite(document,policy,retain_source=None,keep_last=4,minimum_characters=10
     if not isinstance(document,dict) or not isinstance(document.get('input'),list):
         return finish(document,completed_outputs_present=None,passthrough_reason='unsupported request envelope')
     if retain_source is None:return finish(document,passthrough_reason='durable archive callback unavailable')
+    if policy=='reversible-shell-handles' and not callable(recovery_command):
+        return finish(document,passthrough_reason='scoped recovery command unavailable')
     indices=[i for i,item in enumerate(document['input']) if isinstance(item,dict)
              and item.get('type') in ('custom_tool_call_output','function_call_output') and 'output' in item]
-    selected=set(indices if policy=='reversible-handles' else indices[:-keep_last] if keep_last else indices)
+    selected=set(indices if policy in ('reversible-handles','reversible-shell-handles') else indices[:-keep_last] if keep_last else indices)
 
     def text(value,path,call_id):
         if isinstance(value,str):
@@ -51,6 +53,12 @@ def rewrite(document,policy,retain_source=None,keep_last=4,minimum_characters=10
             replacement=(f'[TTGL archived tool observation; mode={policy}; exact raw SHA256={digest}; '
                 f'original UTF-8 bytes={len(value.encode())}. Retrieve the original with read_compression_source '
                 'when any omitted detail is needed. This archive handle is not evidence that the tool succeeded.]')
+            if policy=='reversible-shell-handles':
+                command=recovery_command(digest)
+                if not isinstance(command,str) or not command:raise ValueError('Missing scoped recovery command')
+                replacement=(f'[TTGL archived tool observation; mode={policy}; exact raw SHA256={digest}; '
+                    f'original UTF-8 bytes={len(value.encode())}. When omitted detail is needed, recover exact text with this read-only shell command: '
+                    f'{command}\nThis archive handle is not evidence that the tool succeeded.]')
             if len(replacement.encode())>=len(value.encode())*.8:return value
             retain_source(digest,value)
             changes.append(dict(call_id=call_id,path=path,source_sha256=digest,

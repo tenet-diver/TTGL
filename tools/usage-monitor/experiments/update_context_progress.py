@@ -23,7 +23,7 @@ def main():
         result=json.loads((root/'results.json').read_text()) if (root/'results.json').exists() else None
         status='Complete; native counters reconciled' if result else 'Complete; final reconciliation pending' if (root/'complete.json').exists() else 'Stopped; preserved preparation failure' if (root/'stopped.json').exists() else 'Running' if (root/'run-started.json').exists() or started else 'Registered'
         rows.append(f'| {name} | {status} | {started} | {len(grades)} | {sum(bool(g.get("passed")) for g in grades)} |')
-    for name in ('longmemeval-001','longmemeval-002'):
+    for name in ('longmemeval-001','longmemeval-002','longmemeval-validation-001','longmemeval-validation-002','longmemeval-validation-003'):
         root=ROOT/name
         if not root.exists():continue
         readers=[p for case in root.glob('case-*') for p in case.iterdir() if p.is_dir() and p.name in ('full_history','file_search','fts','mem0_dense')]
@@ -31,10 +31,18 @@ def main():
         judges=[p/'judge' for p in readers if (p/'judge').exists()]
         started=sum((p/'started.json').exists() for p in readers+extractions+judges)
         grades=[json.loads((p/'grade.json').read_text()) for p in readers if (p/'grade.json').exists()]
-        status='Complete; reconciled' if (root/'results.json').exists() else 'Complete; audit pending' if (root/'complete.json').exists() else 'Stopped; inspect preserved evidence' if (root/'stopped.json').exists() else 'Started; readers precede all blinded judges'
-        maximum=json.loads((root/'protocol.json').read_text())['maximum_model_processes']
-        reader_cap=maximum//9*4
+        status='Complete; reconciled' if (root/'results.json').exists() else 'Complete; audit pending' if (root/'complete.json').exists() else 'Stopped; inspect preserved evidence' if (root/'stopped.json').exists() or (root/'preparation-stopped.json').exists() else 'Started; readers precede all blinded judges' if (root/'started.json').exists() else 'Preparation only'
+        protocol=json.loads((root/'protocol.json').read_text());maximum=protocol.get('maximum_new_model_processes',protocol['maximum_model_processes'])
+        reservation=json.loads((root/'reservation.json').read_text())
+        reader_cap=len(reservation[protocol['split']])*len(protocol['conditions'])
+        if name.endswith('validation-003'):status+=';61 completed reader calls reused, never repeated'
         rows.append(f'| {name} | {status} | {started}/{maximum} | {len(grades)}/{reader_cap} | {sum(g["passed"] for g in grades)} |')
+    root=ROOT/'longmemeval-neutral-judge-audit-002'
+    if root.exists():
+        cells=[p for p in root.iterdir() if p.is_dir() and len(p.name)==32]
+        grades=[json.loads((p/'grade.json').read_text()) for p in cells if (p/'grade.json').exists()]
+        status='Complete; reconciled' if (root/'results.json').exists() else 'Complete; audit pending' if (root/'complete.json').exists() else 'Running' if (root/'started.json').exists() else 'Registered before any validation grades'
+        rows.append(f'| {root.name} | {status} | {sum((p/"started.json").exists() for p in cells)}/72 | {len(grades)}/72 | {sum(g["passed"] for g in grades)} |')
     stamp=datetime.now(timezone.utc).isoformat()
     block='\n'.join([START,'## Current filesystem snapshot','',f'Updated {stamp}. Partial checks are provisional; final usage requires reconciliation.','',
         '| Block | Status | Started processes | Graded cells | Passing cells |',

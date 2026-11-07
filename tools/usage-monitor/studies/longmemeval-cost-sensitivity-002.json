@@ -1,0 +1,85 @@
+{
+  "study": "longmemeval-local-codex-development-002",
+  "arms": {
+    "full_history": {
+      "usage": {
+        "input_tokens": 956195,
+        "cached_input_tokens": 92928,
+        "output_tokens": 314
+      },
+      "api_rate_sensitivity_usd": 1.7389668,
+      "api_long_context_responses": 0,
+      "primary_credit_rate_scenario": 43.47417,
+      "normalized_cache_price_sensitivity": {
+        "0": 0.864837,
+        "0.01": 0.86576628,
+        "0.05": 0.8694834,
+        "0.1": 0.8741298000000001,
+        "0.25": 0.888069,
+        "1": 0.957765
+      }
+    },
+    "file_search": {
+      "usage": {
+        "input_tokens": 594727,
+        "cached_input_tokens": 443136,
+        "output_tokens": 1356
+      },
+      "api_rate_sensitivity_usd": 0.3610555999999999,
+      "api_long_context_responses": 0,
+      "primary_credit_rate_scenario": 9.02639,
+      "normalized_cache_price_sensitivity": {
+        "0": 0.158371,
+        "0.01": 0.16280235999999998,
+        "0.05": 0.1805278,
+        "0.1": 0.2026846,
+        "0.25": 0.269155,
+        "1": 0.601507
+      }
+    },
+    "fts": {
+      "usage": {
+        "input_tokens": 439148,
+        "cached_input_tokens": 309120,
+        "output_tokens": 818
+      },
+      "api_rate_sensitivity_usd": 0.299148,
+      "api_long_context_responses": 0,
+      "primary_credit_rate_scenario": 7.4787,
+      "normalized_cache_price_sensitivity": {
+        "0": 0.134118,
+        "0.01": 0.1372092,
+        "0.05": 0.149574,
+        "0.1": 0.16503,
+        "0.25": 0.211398,
+        "1": 0.443238
+      }
+    },
+    "mem0_dense": {
+      "usage": {
+        "input_tokens": 1437902,
+        "cached_input_tokens": 356864,
+        "output_tokens": 107461
+      },
+      "api_rate_sensitivity_usd": 3.2723724,
+      "api_long_context_responses": 0,
+      "primary_credit_rate_scenario": 81.80931,
+      "normalized_cache_price_sensitivity": {
+        "0": 1.618343,
+        "0.01": 1.62191164,
+        "0.05": 1.6361862,
+        "0.1": 1.6540294,
+        "0.25": 1.707559,
+        "1": 1.975207
+      }
+    }
+  },
+  "native_responses": 92,
+  "judges_excluded_from_deployment": true,
+  "method": "Per-response API threshold; all deployment roles including extraction; frozen observed cache counters under counterfactual rates.",
+  "limitations": [
+    "Cache-ratio sweep holds observed behavior fixed; it is not measured behavior under different providers or prices.",
+    "API values require explicit native zero-write counters, remain scenarios rather than invoices, and do not reproduce API caching.",
+    "Unknown monetary local compute and research overhead remain separate."
+  ]
+}

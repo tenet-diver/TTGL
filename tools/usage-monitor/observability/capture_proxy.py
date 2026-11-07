@@ -9,12 +9,15 @@ import argparse
 import hashlib
 
 from live_compression import transform_request
+from context_archive_policy import rewrite as rewrite_archive
+from exact_source_archive import ExactSourceArchive
 import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import os
 from pathlib import Path
 import re
+import shlex
 import sqlite3
 import sys
 import time
@@ -44,6 +47,30 @@ def sanitized(value):
     if isinstance(value, str):
         return safe_content(value)[0]
     return value
+
+
+def experimental_archive_transform(document, policy, destination):
+    """Opt-in only: require model-visible recovery before hiding any observation."""
+    destination=destination.resolve()
+    if policy=='reversible-shell-handles':
+        items=document.get('input',[]) if isinstance(document,dict) else []
+        if not isinstance(items,list):items=[]
+        executed={i.get('call_id') for i in items if isinstance(i,dict) and isinstance(i.get('call_id'),str) and i.get('type') in ('custom_tool_call','function_call') and i.get('name') in ('exec','exec_command','shell_command') and i.get('status')=='completed'}
+        if not any(isinstance(i,dict) and i.get('type') in ('custom_tool_call_output','function_call_output') and i.get('call_id') in executed for i in items):
+            return document,dict(policy=policy,changes=[],passthrough_reason='completed native shell call unavailable')
+        def command(digest):
+            return shlex.join([sys.executable,str(Path(__file__).with_name('analyst_cli.py')),
+                '--capture-root',str(destination),'read_compression_source','--args',json.dumps(dict(sha256=digest,limit=16000))])
+        return rewrite_archive(document,policy,ExactSourceArchive(destination/'compression_sources',sanitized),recovery_command=command)
+    tools=document.get('tools',[]) if isinstance(document,dict) else []
+    names=[]
+    for tool in tools if isinstance(tools,list) else []:
+        if not isinstance(tool,dict):continue
+        function=tool.get('function')
+        names.append(tool.get('name',function.get('name','') if isinstance(function,dict) else ''))
+    if not any(name=='read_compression_source' or name.endswith('__read_compression_source') for name in names if isinstance(name,str)):
+        return document,dict(policy=policy,changes=[],passthrough_reason='model-visible raw recovery tool unavailable')
+    return rewrite_archive(document,policy,ExactSourceArchive(destination/'compression_sources',sanitized))
 
 
 def body_evidence(raw, content_type):
@@ -170,7 +197,9 @@ class Handler(BaseHTTPRequestHandler):
         parsed = urllib.parse.urlsplit(self.path)
         policy = 'off'
         route = parsed.path
-        for candidate in ('progress', 'headroom-lossless'):
+        policies=('progress', 'headroom-lossless')
+        if getattr(self.server,'experimental_archive',False):policies+=('older-mask','reversible-handles','reversible-shell-handles')
+        for candidate in policies:
             prefix = '/compress/' + candidate
             if route.startswith(prefix + '/'):
                 policy, route = candidate, route[len(prefix):]
@@ -214,7 +243,10 @@ class Handler(BaseHTTPRequestHandler):
                                 retained_sha256=hashlib.sha256(content.encode()).hexdigest(),
                                 retention='Redacted and bounded tool output; raw reasoning is never included'), stream)
                         temporary.replace(path)
-                updated, compression = transform_request(document, policy, retain_source)
+                if policy in ('older-mask','reversible-handles','reversible-shell-handles'):
+                    updated, compression = experimental_archive_transform(document,policy,self.server.destination)
+                else:
+                    updated, compression = transform_request(document, policy, retain_source)
                 record['compression'] = compression
                 if compression['changes']:
                     forwarded = json.dumps(updated, ensure_ascii=False).encode()
@@ -305,6 +337,7 @@ def main():
     p.add_argument('--upstream', default=DEFAULTS['capture']['upstream'])
     p.add_argument('--port', type=int, default=DEFAULTS['ports']['capture'])
     p.add_argument('--collection-state', type=Path)
+    p.add_argument('--enable-experimental-archive',action='store_true',help='Enable separately gated archive routes; normal routes/defaults unchanged')
     args = p.parse_args()
     upstream = urllib.parse.urlsplit(args.upstream)
     if upstream.scheme != 'https' and upstream.hostname not in ('localhost', '127.0.0.1'):
@@ -316,6 +349,7 @@ def main():
     server = ThreadingHTTPServer(('127.0.0.1', args.port), Handler)
     server.destination, server.upstream = args.destination, args.upstream.rstrip('/')
     server.collection_state = args.collection_state
+    server.experimental_archive = args.enable_experimental_archive
     print(f'HTTP/SSE capture adapter: http://127.0.0.1:{args.port}; credentials are not persisted', flush=True)
     server.serve_forever()
 

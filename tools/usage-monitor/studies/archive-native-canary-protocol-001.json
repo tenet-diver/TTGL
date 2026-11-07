@@ -1,0 +1,15 @@
+{
+  "id": "archive-native-canary-001",
+  "scope": "One live native Codex diagnostic, not a coding benchmark or autonomous retrieval efficacy result.",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "maximum_model_processes": 1,
+  "timeout_seconds": 300,
+  "automatic_retries": 0,
+  "intervention": "Separate loopback8318 capture proxy with explicit experimental reversible-handles opt-in; default8317 and normal provider unchanged. Only completed tool text with an advertised read_compression_source recovery tool is eligible. Exact durable archive, hash and raw bypass required.",
+  "fixture": "Fresh generated nonsecret diagnostic text,160 records, one requested value. Native reader must cat the fixture once and retrieve omitted text via the advertised MCP source tool if an archive handle is observed. No second file read, installs or network tools.",
+  "acceptance": "At least one actual outbound provider request transformation, exact archived-source hashes, native call to read_compression_source, recovered marked output forwarded unchanged, correct requested fixture value, successful native completion and reconciled positive usage. Unapplied routes are failed mechanism checks, never zero savings.",
+  "cost": "All native inference is research/mechanism overhead. Record fresh/cached/output and published-rate scenario. No raw-vs-treatment saving comparison, cash or latency claim.",
+  "failure": "Preserve every started process/capture/thread; no repeat of started or uncertain model call. Stop on failure/ambiguity.",
+  "rollback": "Stop only owned separate proxy/canary after completion; no global configuration, paused schedules, database volumes or historical artifacts changed. Private evidence remains ignored."
+}
