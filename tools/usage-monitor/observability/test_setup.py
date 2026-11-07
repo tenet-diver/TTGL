@@ -33,6 +33,7 @@ class SetupTests(unittest.TestCase):
             self.assertTrue('${' not in (root / 'compose.json').read_text(), 'Unresolved template variable')
             self.assertEqual(stack['services']['langfuse-web']['environment']['NEXTAUTH_URL'], 'http://localhost:3000')
             profile = tomllib.loads((root / 'ttgl-observability.config.toml').read_text())
+            self.assertEqual(profile['model_provider'], 'openai')
             self.assertFalse(profile['features']['enable_request_compression'])
             self.assertEqual(profile['mcp_servers']['ttgl-analyst']['args'][2], str(root / 'workspace'))
 
@@ -74,7 +75,23 @@ class LiveConfigTests(unittest.TestCase):
             self.assertEqual(parsed['model'],'my-existing-model')
             self.assertTrue(parsed['features']['other_feature'])
             self.assertEqual(parsed['mcp_servers']['other']['command'],'unchanged')
-            self.assertEqual(parsed['model_provider'],'ttgl_capture')
-            self.assertEqual(parsed['profiles']['ttgl-observability']['model_provider'],'ttgl_capture')
+            self.assertEqual(parsed['model_provider'],'openai')
+            self.assertEqual(tomllib.loads((config.parent/'ttgl-observability.config.toml').read_text())['model_provider'],'openai')
+            self.assertEqual(tomllib.loads((config.parent/'ttgl-capture-experimental.config.toml').read_text())['model_provider'],'ttgl_capture')
             self.assertTrue(parsed['model_providers']['ttgl_capture']['base_url'].endswith('/compress/progress'))
             self.assertEqual(len(list((root/'private').glob('codex-config-before-live-*'))),1)
+
+    def test_existing_global_capture_is_migrated_without_removing_analyst(self):
+        from install_live_codex import install
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            config = root / 'config.toml'
+            config.write_text('model_provider = "ttgl_capture"\n[mcp_servers.ttgl-analyst]\ncommand = "python3"\n[profiles.ttgl-observability]\nmodel_provider = "ttgl_capture"\n')
+            with contextlib.redirect_stdout(io.StringIO()):
+                install(config, 'headroom-lossless', root / 'private')
+            parsed = tomllib.loads(config.read_text())
+            self.assertEqual(parsed['model_provider'], 'openai')
+            self.assertEqual(tomllib.loads((config.parent/'ttgl-observability.config.toml').read_text())['model_provider'], 'openai')
+            self.assertEqual(parsed['mcp_servers']['ttgl-analyst']['command'], 'python3')
+            self.assertIn('ttgl_capture', parsed['model_providers'])
+            self.assertNotIn('ttgl-observability', parsed.get('profiles', {}))

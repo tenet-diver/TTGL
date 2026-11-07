@@ -102,6 +102,80 @@ class WorkspaceTests(unittest.TestCase):
         self.assertFalse(evidence['isError'])
         self.assertIn('CommandExecution', evidence['content'][0]['text'])
 
+    def test_turn_queries_page_and_keep_prompts_opt_in(self):
+        self.store.scan()
+        def query(**args):
+            response = analyst_mcp.handle(self.store, dict(method='tools/call', params=dict(name='query_activity', arguments=dict(section='turns', **args))))
+            self.assertFalse(response['isError'])
+            return json.loads(response['content'][0]['text'])
+        compact = query(limit='1')
+        self.assertEqual(len(compact['turns']), 1)
+        self.assertNotIn('prompt', compact['turns'][0])
+        full = query(limit='1', detail='full')
+        self.assertIn('prompt', full['turns'][0])
+        self.assertEqual(full['turns'][0]['session_id'], compact['turns'][0]['session_id'])
+        self.assertEqual(query(offset='100', limit='1')['turns'], [])
+
+    def test_session_query_refreshes_and_intersects_scope_without_duplicate_usage(self):
+        def query(**args):
+            response = analyst_mcp.handle(self.store, dict(method='tools/call', params=dict(name='query_activity', arguments=args)))
+            self.assertFalse(response['isError'])
+            return json.loads(response['content'][0]['text'])
+        self.assertEqual(query(section='events', session='s')['events'], [])
+        refreshed = query(section='summary', session='s', refresh='true')
+        self.assertEqual(refreshed['usage']['total_tokens'], 110)
+        self.assertEqual(refreshed['usage_scope']['session_id'], 's')
+        self.assertEqual(query(section='summary', session='s', refresh='true')['usage']['total_tokens'], 110)
+        self.assertEqual(query(section='summary', session='missing')['usage']['total_tokens'], 0)
+        self.assertEqual(query(section='turns', session='missing')['turns'], [])
+        project, task = self.define_task()
+        self.assertEqual(query(section='summary', session='s', project=project)['usage']['total_tokens'], 0)
+        self.store.mutate('assign', dict(session_id='s', turn_id='t', task_id=task))
+        self.assertEqual(query(section='summary', session='s', project=project)['usage']['total_tokens'], 110)
+        self.store.mutate('collection', dict(enabled=False))
+        other = [dict(r) for r in self.rows]
+        other[0] = dict(other[0], payload=dict(other[0]['payload'], id='new'))
+        (self.source.parent/'new.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in other))
+        self.assertEqual(query(section='turns', session='new', refresh='true')['turns'], [])
+
+    def test_session_task_discovery_is_compact_isolated_and_full_retrievable(self):
+        second = json.loads(json.dumps(self.rows).replace('"s"', '"second"'))
+        (self.source.parent/'second.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in second))
+        self.store.scan()
+        project, task = self.define_task()
+        other = self.store.mutate('task', dict(project_id=project, title='Other', goal='Other', acceptance='Other'))['id']
+        self.store.mutate('assign', dict(session_id='s', turn_id='t', task_id=task))
+        self.store.mutate('assign', dict(session_id='second', turn_id='t', task_id=other))
+        def query(**args):
+            response = analyst_mcp.handle(self.store, dict(method='tools/call', params=dict(name='query_activity', arguments=args)))
+            self.assertFalse(response['isError'])
+            return json.loads(response['content'][0]['text'])
+        compact = query(section='tasks', session='s', limit='1')
+        self.assertEqual([t['id'] for t in compact['tasks']], [task])
+        self.assertNotIn('acceptance', compact['tasks'][0])
+        full = query(section='tasks', session='s', detail='full')
+        self.assertEqual(full['tasks'][0]['acceptance'], 'Checks pass')
+        events = query(section='events', session='second')['events']
+        self.assertEqual({e['session_id'] for e in events}, {'second'})
+        self.assertEqual(query(section='summary', session='second')['usage']['total_tokens'], 110)
+        self.assertEqual(query(section='summary')['usage']['total_tokens'], 220)
+        absent = query(section='turns', session='absent')
+        self.assertEqual(absent['session_coverage']['indexed_turns'], 0)
+        self.assertIn('do not establish zero inference', absent['session_coverage']['note'])
+        self.assertEqual(len(query(section='tasks', detail='full')['tasks']), 2)
+
+    def test_pagination_accepts_native_integer_arguments_but_rejects_booleans(self):
+        self.store.scan()
+        def call(args):
+            return analyst_mcp.handle(self.store, dict(method='tools/call', params=dict(name='query_activity', arguments=args)))
+        numeric = call(dict(section='turns', limit=1, offset=0))
+        text = call(dict(section='turns', limit='1', offset='0'))
+        self.assertFalse(numeric['isError'])
+        self.assertEqual(numeric, text)
+        self.assertTrue(call(dict(section='turns', limit=True))['isError'])
+        self.assertTrue(call(dict(section='turns', limit=1.5))['isError'])
+        self.assertTrue(call(dict(section='turns', limit=0))['isError'])
+
     def test_evidence_pages_reconstruct_the_retained_record(self):
         self.store.scan()
         chunks, offset, total = [], 0, None

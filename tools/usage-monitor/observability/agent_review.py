@@ -132,11 +132,11 @@ def main():
     print('Prepared frozen evidence:', directory, flush=True)
     if args.action == 'prepare':
         return
-    command = [sys.executable, str(Path(__file__).with_name('codex_traced.py')), 'exec', '--skip-git-repo-check',
+    command = ['codex', 'exec', '-p', 'ttgl-observability', '-c', 'model_provider="openai"', '--skip-git-repo-check',
                '-C', str(directory), '-m', args.model, '-s', 'read-only',
-               '-c', 'model_providers.ttgl_capture.request_max_retries=0', '-c', 'model_providers.ttgl_capture.stream_max_retries=0',
                '--output-schema', str(directory / 'schema.json'), '--output-last-message', str(directory / 'analysis.json'), '-']
-    # One bounded attempt, never automatically repeat a started or ambiguous model call.
+    # One bounded process attempt; native transport retry defaults apply.
+    # Never automatically repeat a started or ambiguous analyst process.
     with (directory / 'prompt.txt').open() as prompt, (directory / 'agent.log').open('w') as log:
         result = subprocess.run(command, stdin=prompt, stdout=log, stderr=subprocess.STDOUT, timeout=900)
     if result.returncode:

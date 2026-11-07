@@ -236,7 +236,7 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
                     raise ValueError('Response changed after ingestion; reconciliation required')
                 c.execute('INSERT OR IGNORE INTO events VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', event)
 
-    def report(self, project=None, task=None, category=None, event_limit=1000):
+    def report(self, project=None, task=None, category=None, event_limit=1000, session=None):
         with self.connection() as c:
             projects = [dict(r) for r in c.execute('SELECT * FROM projects ORDER BY created')]
             tasks = [dict(r) for r in c.execute('SELECT * FROM tasks ORDER BY created DESC')]
@@ -257,7 +257,7 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
             turn['task_id'] = assignments.get((turn['session_id'], turn['turn_id']))
             turn['project_id'] = task_map.get(turn['task_id'], {}).get('project_id')
             turn['langfuse_url'] = self.langfuse_url + '/project/ttgl-codex/traces/' + bridge.digest('native-turn-v1:' + turn['session_id'] + ':' + turn['turn_id'])
-        selected_turns = [t for t in turns if (not task or t['task_id'] == task) and (not project or t['project_id'] == project)]
+        selected_turns = [t for t in turns if (not task or t['task_id'] == task) and (not project or t['project_id'] == project) and (not session or t['session_id'] == session)]
         selected_ids = {(t['session_id'], t['turn_id']) for t in selected_turns}
         totals = dict(input_tokens=0, cached_input_tokens=0, output_tokens=0, total_tokens=0)
         groups = collections.defaultdict(lambda: dict(count=0, runtime_seconds=0, finite_runtime_seconds=0, background_runtime_seconds=0, unreviewed_runtime_seconds=0, timed=0, bytes=0, failures=0))
@@ -372,7 +372,7 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
                     candidates = [e for e in scope_generations if e['session_id'] == session_id and start <= bridge.nanos(e['ts']) <= end + 2_000_000_000]
                     if len(candidates) == 1:
                         matching, correlation = candidates[0], 'session + time (inferred)'
-                if (project or task) and not matching:
+                if (project or task or session) and not matching:
                     continue
                 body_available = record.get('response_body_available', not response.get('unparsed_body', False) and bool(response))
                 captures.append(dict(id=record['id'], task_id=matching['task_id'] if matching else None,
@@ -409,7 +409,7 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
             capture_coverage=dict(total_model_exchanges=capture_total, matched_selection=len(captures),
                 selected_with_response_body=sum(c['response_body_available'] for c in captures),
                 category_filter_applies=False, note='Task/project filters apply. Tool categories do not filter model HTTP exchanges. Legacy response bodies were not retained and cannot be reconstructed.'),
-            usage_scope=dict(project_id=project, task_id=task, category=category, selected=totals,
+            usage_scope=dict(project_id=project, task_id=task, session_id=session, category=category, selected=totals,
                 all_sources=all_usage, unassigned=unassigned_usage,
                 note='Selected scope and all-source totals differ when tasks, projects or categories are filtered. Unassigned turns are included only in all-source totals.'),
             agent_analyses=agent_reports, runtime_accounting=accounting,

@@ -13,13 +13,13 @@ from analyst_experiments import list_experiments, plan_experiment, review_experi
 
 
 def schema(properties, required=()):
-    return dict(type='object', properties={k: {'type': 'string', 'description': v} for k, v in properties.items()},
+    return dict(type='object', properties={k: {'type': ['string', 'integer'] if k in ('offset', 'limit') else 'string', 'description': v} for k, v in properties.items()},
                 required=list(required), additionalProperties=False)
 
 
 TOOLS = [
     dict(name='query_activity', description='Query native Codex task/project evidence. Tokens are measured; model latency and cash charges unknown.',
-         inputSchema=schema(dict(project='Optional project ID', task='Optional task ID', category='Optional category', section='summary (compact), events, turns, projects, tasks, opportunities, rules, wire_captures, agent_analyses, runtime_accounting, experiments, experiment_accounting or sources', offset='Zero-based events offset (default 0)', limit='Events page size 1..100 (default 20)', sort='Events sort: ts, runtime or bytes (descending)', kind='Events kind: tool or generation', search='Case-insensitive substring of operation name', detail='For experiments: summary (default) or full. Discovery is compact; request full for measured cells, sources and reviews'))),
+         inputSchema=schema(dict(project='Optional project ID', task='Optional task ID', session='Optional exact native session ID; intersects project/task scope', refresh='true to scan authorized native sources incrementally before query; default false', category='Optional category', section='summary (compact), events, turns, projects, tasks, opportunities, rules, wire_captures, agent_analyses, runtime_accounting, experiments, experiment_accounting or sources', offset='Zero-based events offset (default 0)', limit='Events/turns/tasks page size 1..100 (default 20)', sort='Events sort: ts, runtime or bytes (descending)', kind='Events kind: tool or generation', search='Case-insensitive substring of operation name', detail='summary (default) or full. Turns omit prompts and tasks omit goal/acceptance in summary; full preserves them. Experiments full includes measured cells, sources and reviews'))),
     dict(name='create_project', description='Define a project and repository scope. Does not authorize collection from new sources.',
          inputSchema=schema(dict(name='Project name', repo='Repository path', scope='Analysis scope'), ('name', 'repo'))),
     dict(name='create_task', description='Define intended outcome and acceptance criteria before task efficiency analysis.',
@@ -68,8 +68,9 @@ def handle(store, request):
                 raise ValueError('Unsupported arguments')
             if any(k not in arguments for k in definition['inputSchema']['required']):
                 raise ValueError('Missing required argument')
-            if any(not isinstance(v, str) for v in arguments.values()):
-                raise ValueError('Arguments must be strings')
+            if any(not isinstance(v, str) and not (k in ('offset', 'limit') and type(v) is int) for k, v in arguments.items()):
+                raise ValueError('Arguments must be strings, or integers for offset/limit')
+            arguments = {k: str(v) if type(v) is int else v for k, v in arguments.items()}
             if name == 'read_compression_source':
                 digest = arguments['sha256']
                 if len(digest) != 64 or any(c not in '0123456789abcdef' for c in digest) or not store.capture_root:
@@ -140,7 +141,13 @@ def handle(store, request):
             elif name == 'plan_experiment':
                 result = plan_experiment(store, arguments)
             elif name == 'query_activity':
+                if arguments.get('refresh', 'false') not in ('true', 'false'):
+                    raise ValueError('refresh must be true or false')
+                if arguments.get('refresh') == 'true':
+                    store.scan()
                 if arguments.get('section') in ('experiments', 'experiment_accounting'):
+                    if arguments.get('session'):
+                        raise ValueError('Session filtering is supported for native activity, not experiment records')
                     records = list_experiments(store, arguments.get('task'), arguments.get('project'))
                     if arguments.get('section') == 'experiment_accounting':
                         result = dict(experiment_accounting=[])
@@ -169,8 +176,10 @@ def handle(store, request):
                                         latest_verdict=latest['reviews'][-1]['verdict'] if latest['reviews'] else None) if latest else None))
                             result = dict(experiments=summaries, navigation='Request section=experiments, project=PROJECT_ID, detail=full for original measured cells, source IDs and reviews.')
                     return dict(content=[dict(type='text', text=json.dumps(result))], isError=False)
-                result = store.report(event_limit=None, **{k: arguments[k] for k in ('project', 'task', 'category') if k in arguments})
+                result = store.report(event_limit=None, **{k: arguments[k] for k in ('project', 'task', 'category', 'session') if k in arguments})
+                associated = {t['task_id'] for t in result['turns']}
                 scope_count, prior_count = result['event_count'], len(result['agent_analyses'])
+                coverage = dict(session_id=arguments.get('session'), indexed_turns=len(result['turns']), indexed_events=scope_count, refresh_requested=arguments.get('refresh') == 'true', note='Indexed authorized native records only; no matches do not establish zero inference. Live completion/usage can lag.')
                 timestamps = [e['ts'] for e in result['events'] if e['ts']]
                 time_range = dict(first_at=min(timestamps) if timestamps else None, last_at=max(timestamps) if timestamps else None)
                 section = arguments.get('section', 'summary')
@@ -183,6 +192,21 @@ def handle(store, request):
                     if section not in ('events', 'turns', 'projects', 'tasks', 'opportunities', 'rules', 'sources', 'wire_captures', 'agent_analyses', 'runtime_accounting'):
                         raise ValueError('Unsupported section')
                     result = {section: result[section]}
+                if section == 'tasks' and arguments.get('session'):
+                    result['tasks'] = [t for t in result['tasks'] if t['id'] in associated]
+                if section in ('turns', 'tasks'):
+                    offset, limit = int(arguments.get('offset', '0')), int(arguments.get('limit', '20'))
+                    if offset < 0 or not 1 <= limit <= 100:
+                        raise ValueError('offset must be >=0 and limit 1..100')
+                    detail = arguments.get('detail', 'summary')
+                    if detail not in ('summary', 'full'):
+                        raise ValueError('detail must be summary or full')
+                    records = result[section]
+                    page = records[offset:offset+limit]
+                    omitted = ('prompt',) if section == 'turns' else ('goal', 'acceptance', 'outcome')
+                    result[section] = page if detail == 'full' else [{k: v for k, v in t.items() if k not in omitted} for t in page]
+                    result['pagination'] = dict(offset=offset, limit=limit, matched_in_window=len(records), next_offset=offset+limit if offset+limit < len(records) else None)
+                    result['navigation'] = 'Use detail=full for retained prompts or task details, with the same offset/limit.'
                 # Bound analyst payload; a section filter avoids oversized context.
                 if isinstance(result.get('events'), list):
                     offset, limit = int(arguments.get('offset', '0')), int(arguments.get('limit', '20'))
@@ -199,6 +223,8 @@ def handle(store, request):
                     result['pagination'] = dict(offset=offset, limit=limit, matched_in_window=len(events), next_offset=offset+limit if offset+limit < len(events) else None, window_limit=None, scope_event_count=scope_count)
                     if not events:
                         result['hint'] = 'No matches. List tasks and summary categories for exact IDs/names; remove category or search filters. Events are paginated across the full selected scope.'
+                if arguments.get('session'):
+                    result['session_coverage'] = coverage
             else:
                 result = store.mutate(ACTION[name], arguments)
             return dict(content=[dict(type='text', text=json.dumps(result))], isError=False)

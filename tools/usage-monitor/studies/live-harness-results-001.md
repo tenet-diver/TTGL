@@ -156,3 +156,94 @@ setup doctor, real default CLI checks and Chromium views of live results/capture
 Further claims should use preregistered fresh diverse tasks with independent quality
 checks and repetitions. Both earlier failed evidence and successful development results
 remain preserved; no inference schedule was enabled.
+
+
+### Startup recovery, 5 November 2026
+
+After a reported provider-related failure in another Codex session, the local
+installation was changed to use the built-in `openai` provider by default and in
+`ttgl-observability`. The analyst MCP remains installed. The earlier experiment
+measurements and raw captures are preserved, but their successful CLI trials do
+not establish compatibility with every Codex client or session-resume path.
+Capture/compression is now opt-in through `codex -p ttgl-capture-experimental`
+or `codex_traced.py`; `configure-codex` preserves this boundary. The `--policy off`
+option controls transformation on the experimental route, not native-provider
+restoration. Existing sessions may retain their earlier provider selection;
+restart with the built-in provider explicitly if necessary.
+
+The follow-up startup investigation found that CLI 0.166.0 rejects an owned named
+profile file when the same name also exists under the legacy `[profiles.*]` table.
+The named analyst profile additionally retained the capture provider, overriding
+the recovered global default. Setup now generates an OpenAI analyst profile and
+migrates the two owned legacy tables to named files. The experimental capture
+profile remains explicit. Six setup checks pass. Two pre-inference configuration
+failures were retained privately; the second came from unsupported command-local
+retry overrides for the reserved built-in provider. Removing those overrides lets
+the analyst start on native transport, whose own retry defaults still apply.
+
+### Native analyst usability follow-up
+
+A new native-provider analyst completed 14 TTGL product calls and four source
+inspections. MCP queries and evidence reads worked. CLI schema discovery worked;
+data queries failed under the read-only shell because Store initialization writes
+local bookkeeping. This is separate from gateway availability. The analyst
+observed repeated identical 65,542-byte evidence wrappers and a turns query that
+ignored its limit and included full prompts. It switched to scoped event pages,
+bounded previews, direct source IDs and local field projection during the run.
+Its native completion reports 221,735 input tokens (194,560 cached subset) and
+2,313 output tokens: 224,048 total, recorded as analyst overhead, not savings.
+
+The observed turns issue is fixed: offset/limit now apply, summary omits prompts,
+and detail=full preserves access. Twenty-two workspace tests and six setup tests
+pass. The standard agent_review runner also uses the native analyst profile
+instead of forcing the experimental gateway. Historical trials are unchanged;
+this usability check is not a matched token-saving experiment.
+
+A separate native analyst verification then successfully queried data through both
+CLI and MCP: limit=1 returned the same single turn, omitted prompts, and exposed
+next_offset=1. CLI output was 652 bytes including its newline. It used two product
+calls and independently checked the prior analyst native completion counters.
+CLI local bookkeeping required workspace-write access. The current analyst was
+not established as MCP-indexed; current-session coverage remains a limitation.
+Verification native usage: 106932 input (including 96256 cached) plus 1047 output tokens, additional analyst overhead.
+
+### Continued analyst context loop
+
+Two further observed analyst sessions proposed and verified exact session scoping
+and compact task discovery. Session queries now intersect task/project scopes;
+refresh=true incrementally ingests authorized native logs and respects collection
+pause. Explicit coverage distinguishes missing indexed records from zero inference.
+Task pages omit goal/acceptance/outcome by default; detail=full preserves them.
+The standard analyst prompt now describes these retrieval choices. No gateway or
+schedule change was needed.
+
+The first registered matched retrieval pair failed both task-list calls because
+the model sent integer pagination values to the string-only interface. Both failed
+attempts and their 129,042 native tokens remain preserved. Pagination schemas and
+validation now accept integers or strings, rejecting booleans, floats and invalid
+ranges. This was a usability failure, not a successful optimization comparison.
+
+A separately registered corrected pair, analyst-interface-002, reversed condition
+order and used the same frozen 29-task records and prior analyst session. Both
+gpt-6.1-sol runs made exactly two successful MCP calls and returned all five
+expected facts correctly. Native indexed counters reconcile exactly with CLI
+completion usage; task records and implementation hashes remained unchanged.
+
+| Corrected condition | Input | Cached subset | Output | Total | Quality |
+|---|---:|---:|---:|---:|---|
+| Full task records | 87,201 | 67,328 | 203 | 87,404 | 5/5 fields |
+| Compact task records | 81,163 | 64,384 | 232 | 81,395 | 5/5 fields |
+
+Observed whole-run reduction: 6,009 native tokens, or 6.875%, on ONE existing-data
+analyst retrieval task. Full versus compact discovery payloads were 24,319 versus
+11,180 bytes with identical task IDs. This is reused development evidence with
+explicit query forms, not a coding benchmark, general quality guarantee, latency
+result or cash/net saving. Full/raw evidence remains accessible.
+
+The two proposal/verification sessions consumed another 246,656 and 79,767 native
+tokens. Including the failed and corrected pairs, this continuation's observed
+spawned-agent overhead is 624,264 tokens. Parent implementation/supervision usage
+is additional and not included: there is no demonstrated net research saving.
+Private protocols, source snapshots, final responses, native events, evaluations
+and reconciliation receipts are under work/security/analyst-self-review/.
+Forty-five observability tests pass. Research schedules remain paused.
