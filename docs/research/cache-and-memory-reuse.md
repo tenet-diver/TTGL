@@ -1,7 +1,8 @@
-# Cache-aware reuse: next controlled comparison
+# Cache-aware reuse: registered controlled comparison
 
-Status: design, no scored trials. The current24-case validation and neutral
-judging stay frozen. This next comparison must be registered before inference.
+Status: registered reuse001 running; no reconciled score yet. The completed
+24-case validation and neutral judgments remain frozen. The protocol and source
+manifest were committed and pushed before the first model invocation.
 It addresses a limitation of the completed one-query-per-history Mem0 block:
 extraction is paid once, but subsequent queries may also make the full-history
 control cheaper through cached prefixes.
