@@ -643,3 +643,20 @@ transformations on these actual tasks: their contrasts are UNAPPLIED and cannot
 establish a compression effect. Their differing action sequences and token/cost
 totals remain visible, rather than being presented as savings or removed.
 No candidate is promoted from this panel. Cash/quota impact remains unknown.
+
+## Harness scope and cache limitations
+
+The native host trials use ordinary local CLI context. A read-only inspection of
+all60 coding-panel request captures finds inherited research-instruction markers
+in every request; the initial serialized messages contain about80k characters,
+including a23,231-byte repository instruction file. This is context-coverage
+evidence, not an attribution of token cost to individual files. Working-directory
+labels and actor-visible representations can affect behavior and cache keys.
+Actors are not blinded; neutral validation judging is separately described above.
+The host trials use prompt scope and native CLI permissions rather than the
+independent container boundary planned for long-horizon tasks. Parent supervision
+continues and is separately metered; shared-account cache state and provider load
+are uncontrolled. These conditions limit causal and deployment generalization.
+A six-call, reused-development setup comparison is registered before inference
+to test task-scoped actor instructions; ordinary user-agent instructions remain
+unchanged. No scoped-harness saving has been measured yet.

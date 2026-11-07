@@ -455,3 +455,19 @@ No candidate is promoted from this panel. Cash/quota impact remains unknown.
   Public readiness pool reserves3 development/6 validation tasks from pinned
   metadata before task-source inspection. Development metadata/Dockerfiles match
   Git blob hashes; Python3.11 base manifest pinned, no image pull/build/run.
+
+- Captured-harness inspection found research-instruction markers on60/60 completed
+  coding requests and about80k initial serialized message characters, including
+  the23,231-byte repository AGENTS file. Characters are not token/cost savings.
+  Registered harness-scope001 compares inherited versus task-scoped experimental
+  actor instructions on the three reused development exercises,6 calls maximum,
+  anonymous working directories and same explicit task/security constraints.
+  Own6 empty/reference controls pass,48 reference tests;0 model calls yet. Run
+  after the active storage block. Normal user instructions/config stay intact.
+  Shared-account cache/provider load and parent supervision remain uncontrolled.
+- Static Python3.11 base review:81 extracted Debian/Python component queries
+  find22 affected package/version entries, including pip24.0 and vendored packages.
+  Candidate is blocked; no image pull/build/run. Targeted task-dependency graph
+  also flags task-pinned pytest8.4.1. Keep these findings and review maintained
+  hardened/runtime-patched alternatives with explicit compatibility controls.
+  No official LHTB environment or result is claimed for a changed runtime.
