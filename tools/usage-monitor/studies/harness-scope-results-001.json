@@ -1,0 +1,201 @@
+{
+  "id": "harness-scope-001",
+  "model_processes": 6,
+  "unique_native_responses": 25,
+  "totals": {
+    "inherited": {
+      "native_tokens": 319118,
+      "credit_rate_scenario": 3.8019,
+      "passed": 3,
+      "cells": 3,
+      "applied_cells": 0
+    },
+    "scoped": {
+      "native_tokens": 238757,
+      "credit_rate_scenario": 3.3955699999999998,
+      "passed": 3,
+      "cells": 3,
+      "applied_cells": 3
+    }
+  },
+  "cells": [
+    {
+      "case": "connect",
+      "condition": "inherited",
+      "usage": {
+        "input_tokens": 94532,
+        "cached_input_tokens": 79360,
+        "output_tokens": 774,
+        "total_tokens": 95306
+      },
+      "cost": 1.1505,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.6380291019995639
+      },
+      "application": {
+        "kind": "Experimental actor project-instruction scope",
+        "applied": false,
+        "research_marker_requests": 4,
+        "requests": 4,
+        "message_character_range": [
+          79968,
+          80428
+        ],
+        "status": "inherited control"
+      }
+    },
+    {
+      "case": "connect",
+      "condition": "scoped",
+      "usage": {
+        "input_tokens": 77241,
+        "cached_input_tokens": 55936,
+        "output_tokens": 847,
+        "total_tokens": 78088
+      },
+      "cost": 1.4168399999999999,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.23460594399875845
+      },
+      "application": {
+        "kind": "Experimental actor project-instruction scope",
+        "applied": true,
+        "research_marker_requests": 0,
+        "requests": 4,
+        "message_character_range": [
+          56442,
+          56630
+        ],
+        "status": "APPLIED"
+      }
+    },
+    {
+      "case": "dominoes",
+      "condition": "scoped",
+      "usage": {
+        "input_tokens": 77871,
+        "cached_input_tokens": 66688,
+        "output_tokens": 741,
+        "total_tokens": 78612
+      },
+      "cost": 0.9111199999999999,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.17995410699950298
+      },
+      "application": {
+        "kind": "Experimental actor project-instruction scope",
+        "applied": true,
+        "research_marker_requests": 0,
+        "requests": 4,
+        "message_character_range": [
+          56442,
+          56914
+        ],
+        "status": "APPLIED"
+      }
+    },
+    {
+      "case": "dominoes",
+      "condition": "inherited",
+      "usage": {
+        "input_tokens": 95215,
+        "cached_input_tokens": 79616,
+        "output_tokens": 637,
+        "total_tokens": 95852
+      },
+      "cost": 1.13824,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.17136817399659776
+      },
+      "application": {
+        "kind": "Experimental actor project-instruction scope",
+        "applied": false,
+        "research_marker_requests": 4,
+        "requests": 4,
+        "message_character_range": [
+          79968,
+          80159
+        ],
+        "status": "inherited control"
+      }
+    },
+    {
+      "case": "sgf-parsing",
+      "condition": "inherited",
+      "usage": {
+        "input_tokens": 126453,
+        "cached_input_tokens": 109184,
+        "output_tokens": 1507,
+        "total_tokens": 127960
+      },
+      "cost": 1.51316,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.22330671799863921
+      },
+      "application": {
+        "kind": "Experimental actor project-instruction scope",
+        "applied": false,
+        "research_marker_requests": 5,
+        "requests": 5,
+        "message_character_range": [
+          79968,
+          80431
+        ],
+        "status": "inherited control"
+      }
+    },
+    {
+      "case": "sgf-parsing",
+      "condition": "scoped",
+      "usage": {
+        "input_tokens": 81030,
+        "cached_input_tokens": 68224,
+        "output_tokens": 1027,
+        "total_tokens": 82057
+      },
+      "cost": 1.06761,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.2194721110026876
+      },
+      "application": {
+        "kind": "Experimental actor project-instruction scope",
+        "applied": true,
+        "research_marker_requests": 0,
+        "requests": 4,
+        "message_character_range": [
+          56442,
+          56895
+        ],
+        "status": "APPLIED"
+      }
+    }
+  ],
+  "native_token_reduction_percent": 25.18222099662194,
+  "modeled_credit_reduction_percent": 10.687550961361424,
+  "cash_cost": null,
+  "note": "Reused three-case development setup diagnostic; task-only experimental actors, no global user instruction changes or general quality/saving claim."
+}

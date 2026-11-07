@@ -660,3 +660,46 @@ are uncontrolled. These conditions limit causal and deployment generalization.
 A six-call, reused-development setup comparison is registered before inference
 to test task-scoped actor instructions; ordinary user-agent instructions remain
 unchanged. No scoped-harness saving has been measured yet.
+
+## Extraction versus raw persistent storage: block001
+
+All75 calls complete, with72/72 exact independent reader checks passing.
+All134 unique responses reconcile native/CLI/Langfuse across66 sessions.
+The three corpus sizes and four actual questions each use fresh values in the
+same generated family as reuse001; this is development characterization, not
+a held-out result or coding transfer. Every arm retains access to the raw files.
+
+| Condition | Native tokens incl. extraction | Scenario credits | Change vs continued |
+|---|---:|---:|---:|
+| continued_full | 647,377 | 5.56269 | +0.00% |
+| file_search | 499,151 | 5.45635 | -1.91% |
+| fts | 553,469 | 6.48917 | +16.66% |
+| mcp_graph_raw | 528,494 | 6.35546 | +14.25% |
+| mem0_dense | 843,849 | 20.02849 | +260.05% |
+| mem0_raw | 662,108 | 8.10584 | +45.72% |
+
+Disabling Mem0 extraction reduces its modeled LLM cost59.53% relative to the
+extracted variant in this panel, but raw Mem0 remains45.72% above continued
+context. The maintained MCP raw graph arm costs14.25% more despite fewer tokens;
+its lexical retrieval adapter stores chronological edges but does not establish
+a graph-reasoning advantage. Ordinary files are cheapest in this pooled panel,
+only1.91% below continued context. No new memory default is promoted.
+
+Actual1–4 question curves are published, including extraction once per corpus.
+Local embedding/loading, indexing and MCP process/RPC time remain separate from
+native LLM rates, with unknown monetary compute prices. Full system-cost
+optimality, cash/quota savings and cross-benchmark quality are not established.
+This result does not replace the earlier failed FTS held-out quality gate.
+
+
+## Experimental actor instruction scope001
+
+The registered six-call reused-development comparison completes with3/3 original
+test/artifact successes in each arm. Research-instruction markers disappear on
+all three scoped actors' actual captures. Native tokens decline319,118→238,757
+(25.18%), while modeled credits decline3.80190→3.39557
+(10.69%). The unequal reductions again show why native tokens alone
+are insufficient. All25 responses reconcile native/CLI; Langfuse is separately
+audited. The repository instruction file and ordinary user-agent configuration
+remain unchanged. This is an experimental actor setup improvement on reused
+cases; broader quality and monetary savings remain unproven.

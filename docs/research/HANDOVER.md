@@ -2708,3 +2708,41 @@ ca67d6311bd97c9389a2c5fe4da0511fc652642366cd pinnedregistrymetadata. Noimagepull
 builtorstarted. Taskdepspytest8.4.1/coverage/pandasplusdebianpackagesneedreview.
 No tasksolution/verifier/instructionread yet. AvoidfullHarborinstallorSDK1install;
 reviewnativeadapter/owncontrols/imagessafely. Docsreadinessupdated.SchedulesPAUSED.
+
+### Storage/scoping complete and next reader-boundary canary prepared
+
+Storage001all75complete,72/72independentexactchecks.134responsesreconcileCLI/
+native/LF66sessions; TTGLexperiment78fcf67b43ff482c87ca0bd29a941493. Scenario
+creditscontinued5.56269/files5.45635/FTS6.48917/MCPraw6.35546/Mem0dense20.02849/
+Mem0raw8.10584. RawMem059.53%lessLLMcostthanextracted,but45.72%morethancontinued;
+MCP14.25%moredespitefewertokens. No memorydefaultpromoted. Publicresultswritten.
+
+Scope001all6complete,3/3hosttest/artifactsuccesseseach. Markerremovedall3scoped.
+319118→238757tokens(-25.18%),3.80190→3.39557credits(-10.69%).25native responses
+reconcileCLI;LFaudit40915andpublisher97906pendingpoll. Proxy8325exec8377still
+running,stopownedafteraudit. Actorworkdirsanonymous;onlyexperimentinstruction
+scopechanged;globalAGENTSunchanged. Reused3developmenttasks,notheldout/global
+userinstructionremoval. Allold generation/measurement sourcesfrozen.
+
+Native-reader-boundary001 prepared0models;1CLImax,noautoretry. Source
+native_reader_boundary.py +protocol pinned. Customnamedprofile:rootdeny/minimal
+read/assignedworkread,networkdisabled,ignore-rules/noAGENTSforactor,unrelated
+featuresdisabled. No-sandboxshorthandthatcouldoverrideprofile. Randomownedallowed
+anddeniednonsecretsentinels;mustactuallyreadallowedandfailoutsideattemptwith
+nosecretintooloutput. Needcommit/pushBEFORErun, ownproxy8326offtransform,then
+positiveCLI/native/LFmeter. Notgeneralactorcertification.Don'tretryifstarted.
+
+Standardpython3.11base static81componentOSVqueries22source/Pythonversionmatches,
+includingactualpip24/setuptools79;imageblocked,neverexecuted. Taskdep13graphalso
+flagsPytest8.4.1(GHSA6w46/PYSEC2026-1845);patchcompatibilityrequired,noofficial
+unchangedenvironmentclaim. ChainguardPythonlatest-devmanifestpublicaccessworks
+butlatestis3.15,notoriginal3.11. DHIanonymous401preserved;existingDockerHubauth
+wasavailable. TemporaryprivateDHIconfigreusesexistingaccountperofficialDocker
+docs,no normalconfigchanges(secretchecksumverified),nonewaccount/subscription.
+DHIpython3.11-debian13-devamd64digest440a9e19228819eb1645de6b0707eeb4c31016513d
+3007ab7c83a7556de73d92,5layers40.3MBcompressed. Metadataonly,noimagepull/runyet.
+PrefermaintainedDHIforfuturecontainercontrolsafteractualcomponentreview. Do not
+print/commitprivateDockerconfigorcredentials. Freecommunitycoreverifiedofficial
+DockerDocsApache2.0; notSLApaidvariant. Currentfreeworkspace3.197GiBvsLHTB4–6GiB
+configuredstorage;fullresource-matchedreproductionneedscapacityreview. Continue
+localreadiness/eligibleexperimentswithoutinterruptingservices. SchedulesPAUSED.
