@@ -51,6 +51,13 @@ def main():
         grade_text='72/72' if result else f'Pending final reconciliation ({len(progress.get("readers",[]))}/72 readers completed)'
         passing=sum(c['grade']['passed'] for c in result['cells'] if c.get('role')=='reader') if result else 'Unknown'
         rows.append(f'| {root.name} | {status} | {progress.get("processes",0)}/75 | {grade_text} | {passing} |')
+    root=ROOT/'memory-storage-ablation-001'
+    if root.exists():
+        progress=json.loads((root/'progress.json').read_text()) if (root/'progress.json').exists() else {}
+        grades=[json.loads(p.read_text()) for p in root.glob('corpus-*/*/query-*/grade.json')]
+        started=sum(1 for p in root.rglob('started.json'))-int((root/'started.json').exists())
+        status='Complete; reconciled' if (root/'results.json').exists() else 'Complete; audit pending' if (root/'complete.json').exists() else 'Stopped; preserve, no retry' if (root/'stopped.json').exists() else 'Running; includes extraction and local stores' if (root/'started.json').exists() else 'Prepared'
+        rows.append(f'| {root.name} | {status} | {started}/75 ({len(progress.get("readers",[]))} readers completed) | {len(grades)}/72 | {sum(g["passed"] for g in grades)} |')
     root=ROOT/'coding-context-transfer-001'
     if root.exists():
         progress=json.loads((root/'progress.json').read_text()) if (root/'progress.json').exists() else {}

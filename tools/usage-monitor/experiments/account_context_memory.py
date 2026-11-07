@@ -63,6 +63,11 @@ def main():
             if not line.startswith(b'{'):continue
             row=json.loads(line)
             if row.get('type')=='thread.started':sessions[row['thread_id']]='evaluation_judges'
+    for path in (ROOT/'memory-storage-ablation-001').rglob('agent.jsonl'):
+        for line in path.read_bytes().split(b'\n'):
+            if not line.startswith(b'{'):continue
+            row=json.loads(line)
+            if row.get('type')=='thread.started':sessions[row['thread_id']]='storage_memory_extraction' if 'extractions' in path.parts else 'storage_readers'
     for path in ROOT.glob('coding-context-transfer-*/*/*/agent.jsonl'):
         for line in path.read_bytes().split(b'\n'):
             if not line.startswith(b'{'):continue
@@ -101,7 +106,7 @@ def main():
     unknown_sessions=[dict(session_id=sid,role=role,usage=None,cost=None) for sid,role in sessions.items() if sid not in metered_sessions]
     rates=json.loads((REPO/'tools/usage-monitor/studies/context-memory-pricing-20261107.json').read_text())['primary_scenario']
     known_cost=sum(((g['usage']['input_tokens']-g['usage']['cached_input_tokens'])*rates['fresh_input_per_million']+g['usage']['cached_input_tokens']*rates['cached_input_per_million']+g['usage']['output_tokens']*rates['output_per_million'])/1e6 for g in groups.values())
-    payload=dict(as_of=datetime.now(timezone.utc).isoformat(),scope='Cumulative snapshot of this active research turn, original30 completed trial cells, all discovered long-history readers/extractors/judges including failed or active calls, archive mechanism canaries, repeated-query/cache readers and extractions, one analyst and Mem0 preflight. Initial service-start turn excluded.',
+    payload=dict(as_of=datetime.now(timezone.utc).isoformat(),scope='Cumulative snapshot of this active research turn, original30 completed trial cells, all discovered long-history readers/extractors/judges including failed or active calls, archive mechanism canaries, repeated-query/cache and storage-ablation readers/extractions, coding transfer, one analyst and Mem0 preflight. Initial service-start turn excluded.',
         components=dict(groups),priced_response_models=dict(priced_models),native_tokens=sum(g['usage']['total_tokens'] for g in groups.values()),unique_responses=len(seen),
         local_embedding_inferences=len((ROOT/'embedding-inferences.jsonl').read_text().splitlines()),
         local_embedding_count_scope='Logged adapter operations only; standalone model-load/probe work is separately receipted. Not a complete hardware/energy cost or a Codex-token equivalent.',

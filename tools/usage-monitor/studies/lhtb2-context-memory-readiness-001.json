@@ -1,0 +1,22 @@
+{
+  "id": "lhtb2-context-memory-readiness-001",
+  "at": "2026-11-07T21:37:34.817287+00:00",
+  "source_commit": "7ca0cacea9bf6a0694eaad7306bed794eaaaabce",
+  "selection_evidence": "Pinned tree names only, before task instructions/solution/test contents; mixed systems/configuration/data/puzzle domains and initially plausible resource footprint. No score/outcome selection.",
+  "development": [
+    "tasks/unknown-config-semantics",
+    "tasks-2.0/sqlite_wal_recovery_audit__02",
+    "tasks/grammar-fuzz-coverage-hunt"
+  ],
+  "validation_reserved": [
+    "tasks-2.0/duckdb_recursive_hierarchy_report__03",
+    "tasks-2.0/nginx_location_regex_tryfiles_precedence__06",
+    "tasks/spot-scheduler-traces",
+    "tasks-2.0/opa_rbac_namespace_boundary__05",
+    "tasks/sudoku-recovery",
+    "tasks/rush_hour_campaign"
+  ],
+  "allocation": "Readiness reservation only;0 model assignments. Freeze actual arm allocation, eligibility, controls, feedback and horizon before inference. No validation task instructions/golds inspected while developing.",
+  "exclusion": "Known affected dependencies/images block candidate execution; record resource/controls failures before model calls. No silent replacement or positive-subset benchmark claim. Existing routing/Aider reservations untouched.",
+  "model_calls": 0
+}

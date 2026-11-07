@@ -102,7 +102,7 @@ Source specifications: [ten-idea experiment description](../handoffs/codex-conte
 <!-- current-block-snapshot:start -->
 ## Current filesystem snapshot
 
-Updated 2026-11-07T21:23:46.878149+00:00. Partial checks are provisional; final usage requires reconciliation.
+Updated 2026-11-07T21:40:50.171189+00:00. Partial checks are provisional; final usage requires reconciliation.
 
 | Block | Status | Started processes | Graded cells | Passing cells |
 |---|---|---:|---:|---:|
@@ -116,6 +116,7 @@ Updated 2026-11-07T21:23:46.878149+00:00. Partial checks are provisional; final 
 | longmemeval-validation-003 | Complete; reconciled;61 completed reader calls reused, never repeated | 83/83 | 72/72 | 71 |
 | longmemeval-neutral-judge-audit-002 | Complete; reconciled | 72/72 | 72/72 | 70 |
 | cache-memory-reuse-001 | Complete; reconciled | 75/75 | 72/72 | 72 |
+| memory-storage-ablation-001 | Running; includes extraction and local stores | 26/75 (24 readers completed) | 0/72 | 0 |
 | coding-context-transfer-001 | Complete; reconciled | 12/12 (12 completed) | 12/12 | 12 |
 
 Started processes include preserved configuration failures. Missing grades/usage are unknown. This reader does not launch work or alter frozen study sources.
@@ -446,3 +447,11 @@ No candidate is promoted from this panel. Cash/quota impact remains unknown.
   corrected fresh preflight002 stores3 records and retrieves the latest fact.
   No model invocation was repeated. Complete model-cost and local-runtime
   accounting remains required before interpreting any reader result.
+- Native long-horizon readiness: versioned TTGL Docker/MCP stdio port reuses
+  existing reviewed server2.4.0 runtime. Two catalog/error/name checks pass with
+ 0 models,0 containers and0 image executions; real actor isolation still gated.
+  Old SDK95-package graph OSV0/tarball-hash95/95, not installed; open unscored
+  OAuth report retained, modern server chosen without legacy OAuth package.
+  Public readiness pool reserves3 development/6 validation tasks from pinned
+  metadata before task-source inspection. Development metadata/Dockerfiles match
+  Git blob hashes; Python3.11 base manifest pinned, no image pull/build/run.

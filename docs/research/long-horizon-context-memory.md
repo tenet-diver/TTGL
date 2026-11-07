@@ -57,3 +57,21 @@ success is not approval to execute. Preserve this failed candidate and examine a
 maintained compatible patched runtime; do not silently override its declared
 constraint or claim the entire benchmark is permanently unavailable. No LHTB
 model/image/harness execution has occurred.
+
+A narrower route is under review: reuse TTGL's existing Docker/MCP tool adapter
+with the already reviewed modern MCP server2.4.0 runtime. Its versioned stdio
+port passes two no-model catalog/error/name checks; no container/image executes
+and this is not the real actor-boundary gate. The older95-package SDK graph has
+no OSV matches and verified tarballs, but is not installed; its open unscored
+OAuth hardening report is retained separately. The modern adapter uses the
+existing four-package memory-server installation, without the legacy OAuth
+server package. No normal provider or old research adapter is changed.
+
+The public readiness reservation names three development tasks and six distinct
+validation tasks before task-source inspection. Only development task metadata
+and Dockerfiles were fetched and checked against pinned Git blob hashes. Their
+base tag resolves to an architecture-specific Python3.11 manifest in the private
+receipt, but no base image was pulled or executed. Exact runtime dependencies,
+container/evaluator separation, source safety and own controls still require
+review before model assignments. This is a readiness pool, not scored allocation
+or permission to replace blocked tasks silently.

@@ -2676,3 +2676,35 @@ source/graphhashbindings and12reference/empty/staleoraclecheckseach. Mustcommit/
 push beforeinference, useoneworker,75max,zeroautoretry. Oldcacheallocatorallocates
 continuednativeperturn; newmeasurerboundtofreshstudy. UseaggregatedSIDLangfuse
 readonlyaudit androle-awareTTGLpublisher aftercompletion. Keepallfailures.
+
+### Native benchmark preparation while storage ablation runs
+
+Storageworker exec65214 owns memory-storage-ablation001. At last snapshot31/72
+readers/33completedprocesses; inspectactualprogress/stopped/complete. Do notedit
+itsfrozen sourcesorstartanothermodelworker. Sources/accounting/snapshothelpers
+nowdiscovernewstoragecells,continuedSIDdedupunchanged. Latestaccounting21:33
+108610717knownnativetokens/928.40349scenario credits,lowerbound;timedoutextraction
+unknown,then-activeunmeteredreaderunknown. Neveraddcumulativesnapshots.
+
+TTGLexistingContainerBackendcanbridgehostauthenticatedCodex tooneDockerworker
+withhosttoolsdisabled. FullHarborstillblockedfilelockconstraint. NativeSDK1
+95-packageexactlock reviewed:OSV0,95tarballhashes/3.4MB,nonativefiles,nounsafe
+members,ninesourcepreparehooks(notexecuted).Notinstalled. UnscoredopenOAuth
+reportSDK1.32.2/server-legacy2.4.0issue3142 retained; GitHubRESTrate403,webprimary
+pagefetched. Don'tcallitaconfirmedmodernserver2.4.0vulnerability.
+
+Newnative_worker_v2.mjs adapts onlyimports/stdio,containercwdandPATHpreservation
+ofexistingworkerMCPserver; usesexistingprivate4-packageMCPmemoryreviewruntime,
+not95newpackages. Privatecopyinmcp-memory-review matchespublicsource. Probe001
+passesoneboundedtoolcatalog/absent-containererrorandinvalid-namecontrols,
+0models/0containers/0imageexecution. Notrealactorboundary. Existinglegacyfrozen
+sourceunchanged. CurrentMCPmemorystudy'score/lock/entryfilesuntouched.
+
+lhtb2-context-memory-readiness001 publicJSON reserves3devunknown-config/
+sqlite-WAL/grammar-fuzz and6validationtasks fromtree-onlymetadata,beforeanytask
+instructions/golds. Onlydevtask.toml/environmentDockerfilesfetchednow,exact
+Gitblobhashes. AllFROMpython3.11-slim; currentamd64base digestb701198cb708b68d9413
+ca67d6311bd97c9389a2c5fe4da0511fc652642366cd pinnedregistrymetadata. Noimagepulled,
+builtorstarted. Taskdepspytest8.4.1/coverage/pandasplusdebianpackagesneedreview.
+No tasksolution/verifier/instructionread yet. AvoidfullHarborinstallorSDK1install;
+reviewnativeadapter/owncontrols/imagessafely. Docsreadinessupdated.SchedulesPAUSED.
