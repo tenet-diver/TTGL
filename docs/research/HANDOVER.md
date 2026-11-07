@@ -2519,3 +2519,40 @@ study is DESIGN ONLY in docs/research/cache-and-memory-reuse.md; actual continue
 full-context cache control is required before claiming extraction amortization.
 No hook installed; official PostToolUse feedback interface merely screened as
 another future maintained integration, not a working output-update API.
+
+### 7 November: neutral audit complete; warm-reuse registration prepared
+
+Neutral audit002 completed72, measured and Langfuse audited72/72 exact. Labels:
+full24/24, file_search24/24, FTS22/24;1 disagreement vs original FTS23/24. Extra
+25.87580 scenario credits research expense. Gate rejects FTS under BOTH sets.
+No model worker remains from validation/neutral/canary/resume phases. Need final
+joint public aggregate/evaluation, updated expense snapshot and cohesive paper
+update. Original and neutral labels must both remain, no cherry-pick/adjudication.
+
+New cache_memory_reuse.py / cache_reuse_measure.py and protocol001 prepared,
+private cache-memory-reuse-001, zero models so far.3 generated corpus sizes
+(24/96/240 entities, two dated records),4 actual different questions each,6 arms:
+continued_full / fresh_full_head / fresh_full_tail / file_search / FTS / Mem0dense.
+72 reader CLI calls +3 true per-corpus Mem0 extracts=75maximum. Raw files equal;
+fresh arms see own priorQA, continued retains real conversation. Extraction never
+gets future questions. Latest-field gold independently parsed from dated source;
+12 reference+12 empty-rejection+12 stale-rejection controls and2 source/schema
+checks pass. Per-turn allocator was tested READ-ONLY on existing resume preflight:
+2native calls,48866total/0.38498credits, no new model call. Native cumulative CLI
+snapshots are compared with native prefixes, not added together. Data/code hashes
+sealed. Prepared zero-model earlier source and process-timer amendment retained.
+Need commit/push prepared protocol/source BEFORE launching this scored block;
+then run cache_memory_reuse.py run (no retries). After complete, run
+cache_reuse_measure.py, aggregate continued per-turn cells by SID for Langfuse
+read-only audit (generic auditor expects complete SID), and publish. Do not edit
+its manifest-listed sources while running. No scored reuse result exists yet.
+
+A broad metadata-search command also hit monolithic JSON in old delegation-heldout
+files and produced excessive output. Subsequent file-only audit confirms matches
+were those old files plus verification-feedback reservation/tree metadata. Do not
+repeat broad text scans over experiments JSON. Parse explicit metadata fields;
+all36 reserved Aider family names are excluded across languages for any new code
+transfer selection (notably Forth/react are reserved). No new routing/Aider model
+trial or policy tuning performed; their sources/schedules remain untouched.
+Potential fresh public-source code candidates: connect, dominoes, sgf-parsing;
+only source/provenance screening considered, zero code benchmark inference.

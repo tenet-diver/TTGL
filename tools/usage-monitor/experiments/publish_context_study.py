@@ -27,16 +27,17 @@ def publish(directory,store=None,report=None):
     if project is None:project=store.mutate('project',dict(name='Context and memory optimization',repo=str(REPO),scope='Registered context/memory trials with independent checks, native usage and research overhead; not cash or quota measurement.'))['id']
     protocol=json.loads((directory/'protocol.json').read_text())
     conditions={c['condition'] for c in result['cells']}
-    baseline='baseline' if 'baseline' in conditions else 'full_history' if 'full_history' in conditions else 'none' if 'none' in conditions else next(iter(conditions)) if len(conditions)==1 else 'none'
+    baseline=protocol.get('baseline_condition') or next((a for a in ('baseline','full_history','continued_full','none') if a in conditions),next(iter(conditions)) if len(conditions)==1 else None)
+    if baseline not in conditions:raise ValueError('Explicit baseline condition required')
     task_ids={}
     for cell in result['cells']:
         role=cell.get('role')
-        label=str(cell.get('case') or cell.get('sequence'))+' '+cell['condition']+' '+str(cell.get('stage',''))+' '+str(role or '')
+        label=str(cell.get('case') or cell.get('sequence'))+' '+cell['condition']+' '+str(cell.get('stage',cell.get('query','')))+' '+str(role or '')
         task=store.mutate('task',dict(project_id=project,title=protocol['id']+' '+label,
             goal='Execute the frozen comparison cell and account for every native response.',
             acceptance='Registered role-specific quality checks and exact native/CLI reconciliation; local model rubric grades are not independent programmatic checks.'))['id']
         for turn in report['turns']:
-            if turn['session_id']==cell['session_id']:
+            if turn['session_id']==cell['session_id'] and (not cell.get('turn_id') or turn['turn_id']==cell['turn_id']):
                 store.mutate('assign',dict(session_id=turn['session_id'],turn_id=turn['turn_id'],task_id=task))
         quality=cell.get('quality',cell.get('grade',{}))
         passed=quality.get('passed',False) if role not in ('judge_overhead','memory_extraction') else True

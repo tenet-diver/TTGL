@@ -295,3 +295,18 @@ input. No cash, quality-transfer or default-adoption claim follows.
   identity paths are checked against registered study IDs. Owned canary proxies
  8319–8322 are stopped after audits; explicit-only profile003 was archived and
   removed only after exact owned-content verification. Normal services remain.
+
+- Neutral audit002 completed all72 assessments and reconciles native/CLI/Langfuse.
+  Full history24/24, plain files24/24, FTS22/24; one judgment differs from original
+  (FTS23/24). Both sets remain immutable. The frozen FTS nominee fails under
+  both, and no favorable subset/label set replaces either. Additional audit cost
+ 25.87580 scenario credits is research expense, not deployment cost.
+- Cache-memory-reuse001 is prepared before inference:3 fresh corpus sizes ×4
+  actual questions ×6 conditions (continued full context, fresh stable versus
+  changing-prefix full context, ordinary files, FTS and reused adapted Mem0).
+ 75 CLI processes maximum including3 extractions; all real extraction/recovery
+  cost and observed cached/fresh/output buckets count.12 reference/empty/stale
+  oracle controls per type pass without model calls;2 new data/schema checks pass.
+  The new per-turn allocator reconciles the existing2-call native-resume preflight
+  without repeating inference. No scored reuse result yet. A first zero-model
+  preparation and a versioned process-timer preparation amendment are retained.
