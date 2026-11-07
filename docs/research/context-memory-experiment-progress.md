@@ -524,3 +524,12 @@ cases; broader quality and monetary savings remain unproven.
   no secret output and no new account/subscription. Pinned Python3.11-dev amd64
   manifest440a9e19228819eb1645de6b0707eeb4c31016513d3007ab7c83a7556de73d92,
   five layers/40,288,854 compressed bytes. Metadata only; no image executed.
+- Scoped-actor001 all25 responses reconcile Langfuse across6 sessions; published
+  in TTGL experiment9602b4b52d484e3c984ce41be4de3fc3. Owned8325 proxy stopped.
+- Reader-boundary001 completed with positive33,048 native tokens/0.76368 scenario
+  credits but fails its gate: both cat calls fail before launch because the
+  restricted filesystem hides the Codex runtime helper. No isolation conclusion.
+  Fresh registered002 permits only that exact pinned executable in addition to
+  minimal runtime/assigned files. Its native sandbox software controls pass an
+  allowed read and blocked outside read with0 LLM calls. One fresh model canary
+  remains to verify the actual tool path;001 is preserved, no model retries.
