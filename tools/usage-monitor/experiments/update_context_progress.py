@@ -23,6 +23,18 @@ def main():
         result=json.loads((root/'results.json').read_text()) if (root/'results.json').exists() else None
         status='Complete; native counters reconciled' if result else 'Complete; final reconciliation pending' if (root/'complete.json').exists() else 'Stopped; preserved preparation failure' if (root/'stopped.json').exists() else 'Running' if (root/'run-started.json').exists() or started else 'Registered'
         rows.append(f'| {name} | {status} | {started} | {len(grades)} | {sum(bool(g.get("passed")) for g in grades)} |')
+    for name in ('longmemeval-001','longmemeval-002'):
+        root=ROOT/name
+        if not root.exists():continue
+        readers=[p for case in root.glob('case-*') for p in case.iterdir() if p.is_dir() and p.name in ('full_history','file_search','fts','mem0_dense')]
+        extractions=list(root.glob('case-*/mem0-build/extractions/extract-*'))
+        judges=[p/'judge' for p in readers if (p/'judge').exists()]
+        started=sum((p/'started.json').exists() for p in readers+extractions+judges)
+        grades=[json.loads((p/'grade.json').read_text()) for p in readers if (p/'grade.json').exists()]
+        status='Complete; reconciled' if (root/'results.json').exists() else 'Complete; audit pending' if (root/'complete.json').exists() else 'Stopped; inspect preserved evidence' if (root/'stopped.json').exists() else 'Started; readers precede all blinded judges'
+        maximum=json.loads((root/'protocol.json').read_text())['maximum_model_processes']
+        reader_cap=maximum//9*4
+        rows.append(f'| {name} | {status} | {started}/{maximum} | {len(grades)}/{reader_cap} | {sum(g["passed"] for g in grades)} |')
     stamp=datetime.now(timezone.utc).isoformat()
     block='\n'.join([START,'## Current filesystem snapshot','',f'Updated {stamp}. Partial checks are provisional; final usage requires reconciliation.','',
         '| Block | Status | Started processes | Graded cells | Passing cells |',

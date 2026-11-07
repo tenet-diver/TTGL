@@ -10,7 +10,7 @@ Each live block still has a frozen allocation, failure policy and complete accou
 ## Experiment register
 
 | Experiment | Description / comparison | Status | Results / next gate |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | progress-replay-001 | First progress-output filtering trial | Complete; preserved | Failed trial; never replace with the revised result. See subsequent report. |
 | progress-replay-002 | Revised progress representation versus raw evidence on three matched log investigations | Complete | 45.58% fewer native tokens; all six checks pass. Reused development cases, not coding-task/general savings. [Report](../../tools/usage-monitor/studies/progress-replay-results-002.md). |
 | live-harness-001 | Actual code edits/tests with raw versus reviewed Headroom lossless subset | Complete | Four runs, two generated tasks; 10.075% fewer pooled native tokens, all checks pass, no observed speedup. [Report](../../tools/usage-monitor/studies/live-harness-results-001.md). Later recovery made capture/compression opt-in; older default-installation claims are historical. |
@@ -27,6 +27,7 @@ Each live block still has a frozen allocation, failure policy and complete accou
 | mem0-memory | Pinned stock self-hosted Mem0 versus no memory and raw-history retrieval | Dependency review | Mem0 2.2.1 + FastEmbed 0.9.1: 50 exact packages, 50/50 OSV queries with no matches, 50 wheel hashes checked; no .pth or installer scripts. Installed only in private experiment target under Codespace incomplete-evidence allowance; not security-cleared. Pinned MIT ONNX embedder loads offline and returns384 dimensions. One local-Codex extraction completed (32,935 native tokens); two facts persisted/retrieved and tenant isolation passed. API search failure preserved and corrected through reads only. Optional NLP/BM25 unavailable in this configuration; not full-feature/default hosted Mem0. |
 | letta-memory | Maintained stateful-agent alternative | Discovery | Pin actual runtime and distinguish replacing the agent from changing its memory. Verify current license, dependencies and inference compatibility. |
 | graphiti-memory | Temporal graph memory versus flat retrieval of the same corpus | Discovery | Inspect maintained integration, backend requirements, license and complete dependency graph; count extraction/embedding/ranking. |
+| mcp-graph-memory-mechanism | Maintained server-memory2.1.0 with an isolated JSONL knowledge graph, no vector DB or model calls | Probe003 passes; efficacy pending | 4 exact packages have no OSV matches; hashes/provenance and mixed Apache/MIT transition recorded.7 protocol/persistence checks pass, including observations/relations and restart. Earlier test-client parser/schema failures001/002 preserved. No global Codex integration or memory-quality result. |
 | principles-and-stage | Evidence-backed principles and stage-aware retrieval, each ablated | Planned | Same frozen episodes and equal retrieval budget; stale/contradictory/irrelevant memory controls; no hidden grader information. |
 | repository-map | Maintained Aider map versus normal retrieval | Dependency review | Current metadata candidate 0.86.2; complete graph and runtime review pending. Preserve prior 0.86.0 discovery as historical. |
 | learned-compression | LLMLingua versus deterministic/raw documentation context | Dependency review | Candidate 0.2.2; model-weight/runtime security, license and factual guards pending. Count compressor compute/inference. |
@@ -34,7 +35,8 @@ Each live block still has a frozen allocation, failure policy and complete accou
 | cache-aware-layout | Stable prefix/compaction timing with same semantic information | Planned | Measured fresh/cached/output buckets; no cash/quota inference. Shorter context can increase rate-weighted cost. |
 | verification-selection | Focused initial tests with mandatory full final verification | Planned | Three fresh paired repair tasks; independent final checks in every arm. |
 | rtk-output | Maintained output filtering | Security blocked | Prior pinned release has confirmed dependency advisories; no install/execute. A patched candidate needs a new review. |
-| longmemeval-local-codex-development-001 | Full-history vs ordinary file-search vs exact FTS excerpts vs adapted Mem0-dense, all with identical raw files | Running |8 development questions spanning all6 types;72 registered model processes including8 memory extractions and32 blinded judges. Primary criterion is total cost with retained matched successes. Each history is about503–520k characters.24 held-out cases reserved and untouched. [Protocol](../../tools/usage-monitor/studies/longmemeval-codex-protocol-001.json). |
+| longmemeval-local-codex-development-001 | Full-history vs ordinary file-search vs exact FTS excerpts vs adapted Mem0-dense, all with identical raw files | Stopped; failure preserved | 3 readers completed, first memory extraction timed out at300 seconds;0 grades. Extraction usage/cost unknown, not zero. No calls repeated. Original eight cases span all 6 types; first case excluded from continuation without replacement. Each history is about503–520k characters.24 held-out cases reserved and untouched. [Protocol](../../tools/usage-monitor/studies/longmemeval-codex-protocol-001.json). |
+| longmemeval-local-codex-development-002 | Same prompts/model and remaining7 originally unstarted cases; memory-extraction timeout1800 seconds | Running | 63 registered processes. General timeout amendment before inference; no first-case retry/replacement, no held-out access, no all-six completed-coverage claim. [Protocol](../../tools/usage-monitor/studies/longmemeval-codex-protocol-002.json). |
 | public-benchmark-screen | Screen SWE-bench and Terminal-Bench for long-horizon/context and memory tracks | In progress; no model runs | Pin dataset/harness/resources, audit empty/reference controls and image security; separate official score from chronological memory extensions. Exclude all reserved routing validation families. |
 | heldout-context-memory | Frozen selected configurations on fresh tasks | Planned; untouched | Register selection rule, noninferiority margin, sample size and paired uncertainty before exposure; no tuning/stopping on held-out results. |
 | scientific-report | Detailed methods, all results/failures, uncertainty, costs and reproduction artifacts | Planned; repository publication | Publish Markdown plus self-contained HTML when results exist. No external journal/arXiv submission requested. State best among tested configurations, not universal optimality. |
@@ -94,50 +96,58 @@ Source specifications: [ten-idea experiment description](../handoffs/codex-conte
 - 7 November: analyst-001 published with 178,274 native tokens separately metered. chronological001 stopped on an explicit configuration-loader rejection before model invocation; archived exact runner/error and registered002 before corrected execution. No uncertain/model attempt was repeated.
 
 - 7 November: Langfuse v2 read-only audit verifies all six batching sessions, exact unique generation IDs and all cached/fresh/output/total counters. Legacy read404 receipts retained. Added reusable audit/publisher using existing native rows, without duplicating measured usage.
-- 7 November: installed isolated Mem0/FastEmbed candidate after dated receipt; all50 exact OSV queries had no matches and wheel hashes match. Recorded incomplete OS/native/provenance evidence under explicit Codespace allowance. Downloaded pinned MIT ONNX model as data only; local embedding runtime check completed (3 local model inferences, no Codex LLM calls).
+- 7 November: installed isolated Mem0/FastEmbed candidate after dated receipt; all 50 exact OSV queries had no matches and wheel hashes match. Recorded incomplete OS/native/provenance evidence under explicit Codespace allowance. Downloaded pinned MIT ONNX model as data only; local embedding runtime check completed (3 local model inferences, no Codex LLM calls).
 
 
 <!-- current-block-snapshot:start -->
 ## Current filesystem snapshot
 
-Updated 2026-11-07T16:00:39.808330+00:00. Partial checks are provisional; final usage requires reconciliation.
+Updated 2026-11-07T16:52:21.280142+00:00. Partial checks are provisional; final usage requires reconciliation.
 
 | Block | Status | Started processes | Graded cells | Passing cells |
 |---|---|---:|---:|---:|
 | batching-001 | Complete; native counters reconciled | 6 | 6 | 6 |
 | chronological-001 | Stopped; preserved preparation failure | 1 | 0 | 0 |
 | chronological-002 | Complete; native counters reconciled | 24 | 24 | 24 |
+| longmemeval-001 | Stopped; inspect preserved evidence | 4/72 | 0/32 | 0 |
+| longmemeval-002 | Started; readers precede all blinded judges | 16/63 | 0/28 | 0 |
 
 Started processes include preserved configuration failures. Missing grades/usage are unknown. This reader does not launch work or alter frozen study sources.
 <!-- current-block-snapshot:end -->
 
-- 7 November: chronological002 complete: all24 task checks pass and all24 sessions reconcile exactly with Langfuse unique generation IDs and usage. Total native tokens: none656,584; raw history541,910 (17.4652% fewer); FTS650,196 (0.9729% fewer); notes652,908 (0.5599% fewer). Raw history wins both generated sequences and passes the development nomination gate. FTS was never queried (0calls), so no retrieval efficacy claim. Single replicates and differing stage-one usage limit causal interpretation; no held-out/noninferiority/optimality claim.
+- 7 November: chronological002 complete: all 24 task checks pass and all 24 sessions reconcile exactly with Langfuse unique generation IDs and usage. Total native tokens: none 656,584; raw history 541,910 (17.4652% fewer); FTS 650,196 (0.9729% fewer); notes 652,908 (0.5599% fewer). Raw history wins both generated sequences and passes the development nomination gate. FTS was never queried (0calls), so no retrieval efficacy claim. Single replicates and differing stage-one usage limit causal interpretation; no held-out/noninferiority/optimality claim.
 
 - 7 November: published initial scientific-format manuscript at [docs/paper/context-memory/report.md](../paper/context-memory/report.md). It explicitly analyzes stage-one variation before memory exposure, zero FTS use, integration failures and research expense. At15:56:53UTC this active cycle has13,911,128 accrued native tokens (lower bound), with local embedding inferences separate; no net/cash saving claim.
 - 7 November: next supplemental memory track selected for preparation: pinned MIT LongMemEval-S, native local-Codex reader/judge adaptation with full-history and file-search controls. No benchmark inference yet. LongMemEval-V2 full distribution is about7.12GB including screenshots, larger than available disk; no full download or image omission presented as an official result. Coding/terminal long-horizon track still pending.
 
 ## Cost-aware steering and completed-block audit
 
-User steering on7 November explicitly prioritizes total cost: fewer tokens can
+User steering on 7 November explicitly prioritizes total cost: fewer tokens can
 lose cache reuse and cost more. [Verified rate scenarios](../../tools/usage-monitor/studies/context-memory-pricing-20261107.json)
 use per-response native counters; actual account credits/quota and cash remain unknown.
 The added audit is post hoc and does not rewrite completed registered token gates.
 
 | Block/arm | Native token change | Codex Standard credit-rate scenario | Cost change vs matched control |
-|---|---:|---:|---:|
-| Batching neutral | Reference |3.20342 credits|Reference|
-| Batching candidate |−13.7703%|2.66323 credits|−16.8629%|
-| Chronological none |Reference|7.12388 credits|Reference|
-| Raw history |−17.4652%|6.89342 credits|−3.2350%|
-| FTS availability |−0.9729%|7.16256 credits|+0.5430%|
-| Agent notes |−0.5599%|7.12636 credits|+0.0348%|
+| --- | ---: | ---: | ---: |
+| Batching neutral | Reference | 3.20342 credits | Reference |
+| Batching candidate | −13.7703% | 2.66323 credits | −16.8629% |
+| Chronological none | Reference | 7.12388 credits | Reference |
+| Raw history | −17.4652% | 6.89342 credits | −3.2350% |
+| FTS availability | −0.9729% | 7.16256 credits | +0.5430% |
+| Agent notes | −0.5599% | 7.12636 credits | +0.0348% |
 
 Raw-history cache-hit ratio falls from86.3244% to81.9619%, and fresh input rises
 89,101→97,074 tokens. It passes only the original token nomination gate; it does
-**not** meet a10%cost-reduction gate. No memory configuration is selected as the
+**not** meet a10% cost-reduction gate. No memory configuration is selected as the
 optimum. FTS has0actual retrievals. Future selection includes all memory-system
 inference and quality retention, with cache-price and context-length sensitivity.
 Both cost audits are also attached as separate evaluations in TTGL Experiments.
 
 - 7 November: user cost steering implemented through response-level primary Codex credit scenarios, cache break-even/sensitivity and separate API pricing;3 new accounting tests pass. The original token-only gates remain frozen.
-- 7 November: LongMemEval-S data pinned/hash checked as JSON-only MIT data; no dataset scripts run. Outcome-independent stratified reservation002 covers all6 types, excludes shared answer-support sessions and sibling ID families. Three label-boundary/rubric tests pass; eight history schema checks pass. Registered72-process development block started;24 validation questions remain reserved. No official-score or coding-quality claim.
+- 7 November: LongMemEval-S data pinned/hash checked as JSON-only MIT data; no dataset scripts run. Outcome-independent stratified reservation002 covers all 6 types, excludes shared answer-support sessions and sibling ID families. Three label-boundary/rubric tests pass; eight history schema checks pass. Registered72-process development block started;24 validation questions remain reserved. No official-score or coding-quality claim.
+
+- 7 November: LME001 stopped on first Mem0 extraction timeout300s after3 completed readers. Failed thread has no completed native response counters; usage/cost remains null. Exact failure/source/partial readers retained. New LME002 registered on only the seven originally unstarted cases, longer1800s extraction timeout,63 process cap; first case excluded without replacement. Frozen prompts/models unchanged;24 held-out cases untouched.
+- 7 November: existing TTGL subscription collector queried supported per-thread backend estimates for all 6 batching sessions without inference. Backend returned unavailable for every selected thread; actual credits/USD remain null. No account-wide query or inference inferred from missing estimates.
+
+- 7 November: LME002 first long-history extraction completed in 422.939 s, with 238 stored facts; ingestion 464.326 s and retrieval 0.192 s. Native extraction144,291input (12,288cached) +20,685output tokens,11.80212 published scenario credits. These are component measurements, not accuracy/economic conclusions. Stock engine returned 20 hits when limit 10 was requested; actual context/cost retained without mid-run changes.
+- 7 November: maintained MCP graph server probe003 passes 7 mechanism/persistence checks with 0 model calls. Two explicit test-client failures remain preserved (multi-text JSON parsing and wrong add-observations argument). Probe003 durably journals each request/response before interpretation, including errors/notices. Security receipt records incomplete evidence and source Apache/MIT licensing transition; no security or efficacy claim.

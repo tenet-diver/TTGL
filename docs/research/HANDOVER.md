@@ -2323,3 +2323,64 @@ bounded batching tests with existing tools; freeze a separate fresh protocol fir
 17:25UTC accounting lower bound: parent2358148+trials570896=2929044 native tokens;
 parent active, no net first-use saving. No extra analyst model session spawned.
 Six-cell identity/hash/type/accounting audit and4 existing compression checks pass.
+
+
+## 7 November: active context/memory program; cost-aware selection
+
+User explicitly authorizes all planned context/memory experiments using local
+Codex with no spend/runtime ceiling, report publication in TTGL repo, and a
+Markdown progress doc. Main entry:
+`docs/research/context-memory-experiment-progress.md`; living scientific report:
+`docs/paper/context-memory/report.md`. Commits8e3ac69/e477c0d are pushed to work.
+Preserve the nine pre-existing modified observability files; they were not
+included in these commits. Native provider remains the default; proxy/compression
+opt-in. Research schedules remain PAUSED; active chat/goal owns continuation.
+
+Completed new blocks: batching001 six exact fact checks,308046->265627native
+ tokens; chronological002 twenty-four generated coding cells,all24checks pass.
+Every completed session's unique IDs and native/CLI/cache buckets reconcile
+exactly with Langfuse v2. Old v1 trace/session read404s are an API mismatch;
+explicit v2 usage fields work. TTGL Experiments contains results plus separate
+post-hoc cost evaluations. One actual existing Codex analyst review is published,
+178274native tokens,74tools annotated; its expense is separate.
+
+User steering explicitly requires cost, including cache loss. Versioned rates:
+`tools/usage-monitor/studies/context-memory-pricing-20261107.json`, verified
+Codex Standard50/2.5/250 credits per1M fresh/cached/output. Actual cash/quota and
+backend credit estimates remain unknown: existing subscription collector returned
+no thread estimates for all six batching sessions. Cost scenarios, not token
+counts, govern future nomination. Raw history saves17.47%tokens but only3.24%
+scenario cost; FTS/notes cost slightly MORE despite fewer tokens. FTS was never
+queried. Original token gates remain frozen; no memory optimum selected.
+
+Mem0/FastEmbed isolated runtime under ignored
+`work/security/context-memory-20261107`:50exact packages,50OSVqueries no matches,
+wheel hashes reviewed, no .pth/install scripts; explicit Codespace incomplete
+security-evidence allowance, NOT clearance. Local pinned MIT ONNX model works.
+Stock engine uses explicitly adapted Codex transport/local model paths; optional
+NLP/BM25 unavailable, semantic fallback disclosed. Small preflight one extraction
+32935tokens, two persisted/retrieved facts, other-tenant empty. Search API error
+preserved; corrected reads used zero new LLM calls.
+
+LongMemEval-S MIT JSON data pinned to98d7416c and SHA d6f21ea9..., eight
+stratified development plus24held-out reservations before inference. No routing
+validation reused. LME001 stopped after three reader completions on first case
+and an uncertain300s extraction timeout; usage is null, NOT zero. Never repeat
+that case/call. LME002 is RUNNING on ONLY the seven originally unstarted cases,
+no replacement,63process cap,1800s memory timeout, same prompts/model. First
+extraction completed423s,238facts,actual20hits despite requested10; keep observed
+context/cost unchanged and disclose deviation. All readers precede blinded
+judges; no accuracy/official score/economic result yet. Read processes and
+`longmemeval-002/{started.json,complete.json,stopped.json}` before any continuation.
+Do not duplicate/retry or alter frozen code while running: longmemeval_codex_trial,
+mem0_codex_adapter,memory_retrieval,longitudinal_memory_trial,cost_context_study,
+and pricing JSON. All24held-out cases untouched. Preserve001 partial artifacts.
+
+Maintained MCP graph server2.1.0 also installed ONLY in private experiment review
+folder, four locked packages no OSV matches, scripts disabled, attestation and
+source licensing transition documented (Apache/MIT, do not call uniformly MIT).
+Probe003 passes7protocol/persistence checks with0model calls; failed test-client
+probes001/002 preserved. Full RPCs now journaled on each response. No Codex global
+MCP integration or efficacy result.17software tests pass. Longer coding/terminal,
+Headroom transfer, masking/hierarchy and other planned comparisons remain pending;
+see progress doc. Never claim all experiments completed or optimality yet.

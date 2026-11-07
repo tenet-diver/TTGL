@@ -1,0 +1,31 @@
+{
+  "manifest": {
+    "at": "2026-11-07T16:34:37.362880+00:00",
+    "entry_sha256": "018a7d47cbb4352ad97885754964dc32f195a075317f55b7bc84abc3891a445d",
+    "lock_sha256": "4fd23ba66e5e58dbc294f684a401c25e8a853baac9e3dcba2d52b17cd0de8748",
+    "security_receipt_sha256": "668ade785833f3828a668c394b19c85d90fa6895eba3460a39ae25d7bce6cd8c",
+    "model_calls": 0,
+    "scope": "Synthetic local server protocol/persistence check only; not an agent efficacy or isolation/security benchmark."
+  },
+  "checks": {
+    "write_tools_available": true,
+    "search_finds_correct_entity": true,
+    "idempotent_entity_creation": true,
+    "relation_stored": true,
+    "observations_preserved": true,
+    "reopen_tools_available": true,
+    "persisted_across_process_restart": true
+  },
+  "passed": true,
+  "model_calls": 0,
+  "memory_sha256": "8565f120643c04d42c75bfd7d063994fd53de0375f40a9c1fbbf2638e9472f74",
+  "cash_cost": null,
+  "note": "Actual maintained server, explicit private file, two owned stdio processes. No Codex/plugin/global config change. No model, embedding or efficacy trial.",
+  "request_count": 11,
+  "summed_request_seconds": 4.337018730999262,
+  "limitations": [
+    "Synthetic protocol/persistence fixture, not LLM/task-quality/tenant-isolation evaluation",
+    "No model/embedding calls; local runtime still consumes hardware",
+    "Earlier test-client failures001/002 and incomplete RPC receipts preserved; probe003 journals requests and responses before parsing"
+  ]
+}

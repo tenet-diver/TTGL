@@ -1,0 +1,84 @@
+{
+  "id": "historical-context-cost-audit-20261107",
+  "scope": "Post-hoc aggregate-only cost audit of frozen published development results. No trials rerun, no source/quality/gates overwritten, no new raw/response-level audit of historical cells. Uses verified7Nov Codex Standard50/2.5/250 credit rates on observed buckets. Subscription cash/quota unknown.",
+  "results": [
+    {
+      "id": "live-harness-001",
+      "source_file": "live-harness-results-001.json",
+      "source_sha256": "3983330bc469a865a672f5000fb82dc57d609db0253f5515bd996bd624eab503",
+      "quality_passed": true,
+      "native_token_reduction_fraction": 0.10075075287364443,
+      "credit_rate_scenario_reduction_fraction": 0.1609467550927547,
+      "groups": {
+        "raw": {
+          "input_tokens": 211503,
+          "cached_input_tokens": 173952,
+          "output_tokens": 684,
+          "total_tokens": 212187,
+          "fresh_input_tokens": 37551,
+          "credit_rate_scenario": 2.48343
+        },
+        "compact": {
+          "input_tokens": 190123,
+          "cached_input_tokens": 159872,
+          "output_tokens": 686,
+          "total_tokens": 190809,
+          "fresh_input_tokens": 30251,
+          "credit_rate_scenario": 2.08373
+        }
+      }
+    },
+    {
+      "id": "progress-replay-001",
+      "source_file": "progress-replay-results-002.json",
+      "source_sha256": "5892fd0d9e778fea5b14a92c9a8d5f83cb31435c3f79a9ae5e93d1a4e6c6caff",
+      "quality_passed": false,
+      "native_token_reduction_fraction": 0.5639525863024359,
+      "credit_rate_scenario_reduction_fraction": 0.50737614736784,
+      "groups": {
+        "raw": {
+          "input_tokens": 404490,
+          "cached_input_tokens": 273792,
+          "output_tokens": 1553,
+          "total_tokens": 406043,
+          "fresh_input_tokens": 130698,
+          "credit_rate_scenario": 7.60763
+        },
+        "compact": {
+          "input_tokens": 175827,
+          "cached_input_tokens": 112640,
+          "output_tokens": 1227,
+          "total_tokens": 177054,
+          "fresh_input_tokens": 63187,
+          "credit_rate_scenario": 3.7477
+        }
+      }
+    },
+    {
+      "id": "progress-replay-002",
+      "source_file": "progress-replay-results-002.json",
+      "source_sha256": "5892fd0d9e778fea5b14a92c9a8d5f83cb31435c3f79a9ae5e93d1a4e6c6caff",
+      "quality_passed": true,
+      "native_token_reduction_fraction": 0.4557706692624035,
+      "credit_rate_scenario_reduction_fraction": 0.4515018749609224,
+      "groups": {
+        "raw": {
+          "input_tokens": 304565,
+          "cached_input_tokens": 190848,
+          "output_tokens": 1578,
+          "total_tokens": 306143,
+          "fresh_input_tokens": 113717,
+          "credit_rate_scenario": 6.55747
+        },
+        "compact": {
+          "input_tokens": 165414,
+          "cached_input_tokens": 104704,
+          "output_tokens": 1198,
+          "total_tokens": 166612,
+          "fresh_input_tokens": 60710,
+          "credit_rate_scenario": 3.59676
+        }
+      }
+    }
+  ]
+}

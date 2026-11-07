@@ -1,24 +1,179 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-06",
+  "updated": "2026-11-07",
   "scope": "Active-chat development research. Scheduled inference remains paused. Proposed work is not a completed trial or authorization to ignore dependency findings.",
   "tools": [
-    {"id":"ripgrep","source":"https://github.com/BurntSushi/ripgrep","license":"MIT OR Unlicense","candidate_version":"15.2.0","latest_release_date":"2026-07-15","latest_commit_date":"2026-10-27","license_fee":"none for this OSS use; compute/model costs separate","state":"existing installed tool; tested"},
-    {"id":"headroom","source":"https://github.com/headroomlabs-ai/headroom","license":"Apache-2.0","candidate_version":"existing stdlib subset at 2d3ee51846435ef5b320eea4806af14e602b0d8c","upstream_latest_release":"0.43.1","latest_release_date":"2026-11-05","latest_commit_date":"2026-11-06","license_fee":"none for OSS subset; no managed plan provisioned","state":"subset already installed; full distribution not reviewed; live route opt-in"},
-    {"id":"rtk","source":"https://github.com/rtk-ai/rtk","license":"CLI Apache-2.0; embedded engine BUSL-1.1 with additional-use terms; review before paid/hosted embedding","candidate_version":"1.1.0","candidate_commit":"753a3b0e939f2e4490fc24e3a1984010f40a103c","latest_release_date":"2026-10-25","latest_commit_date":"2026-11-06","license_fee":"engine additional-use grant permits specified production use without charge; paid/hosted derivative rights require separate review","state":"blocked: OSV findings in 8 of 251 queried registry packages in 255-package release lock; not installed or executed"},
-    {"id":"aider-repomap","source":"https://aider.chat/docs/repomap.html","license":"Apache-2.0 repository; dependencies separately reviewed before execution","candidate_version":"0.86.0","latest_release_date":"2025-08-09","latest_commit_date":"2026-05-22","license_fee":"none for OSS; inference/compute separate","state":"candidate only; slower observed release cadence; no install or graph clearance"},
-    {"id":"llmlingua","source":"https://github.com/microsoft/LLMLingua","license":"MIT repository; model weights and dependencies separately reviewed","candidate_version":"0.2.2","latest_release_date":"2024-04-09","latest_commit_date":"2026-11-06","license_fee":"none for OSS code; compression-model compute and selected weight license separate","state":"candidate only; old latest tagged release despite recent source activity; no install or graph clearance"},
-    {"id":"langfuse-experiments","source":"https://langfuse.com/docs/evaluation/experiments/datasets","candidate_version":"existing pinned local 4.75.0 deployment","license":"existing self-hosted deployment; verify feature licensing before any new component","license_fee":"no new hosted plan or paid evaluator enabled","state":"running; evaluate existing dataset/score APIs before adding another evaluation backend"}
+    {
+      "id": "ripgrep",
+      "source": "https://github.com/BurntSushi/ripgrep",
+      "license": "MIT OR Unlicense",
+      "candidate_version": "15.2.0",
+      "latest_release_date": "2026-07-15",
+      "latest_commit_date": "2026-10-27",
+      "license_fee": "none for this OSS use; compute/model costs separate",
+      "state": "existing installed tool; tested"
+    },
+    {
+      "id": "headroom",
+      "source": "https://github.com/headroomlabs-ai/headroom",
+      "license": "Apache-2.0",
+      "candidate_version": "existing stdlib subset at 2d3ee51846435ef5b320eea4806af14e602b0d8c",
+      "upstream_latest_release": "0.43.1",
+      "latest_release_date": "2026-11-05",
+      "latest_commit_date": "2026-11-06",
+      "license_fee": "none for OSS subset; no managed plan provisioned",
+      "state": "subset already installed; full distribution not reviewed; live route opt-in"
+    },
+    {
+      "id": "rtk",
+      "source": "https://github.com/rtk-ai/rtk",
+      "license": "CLI Apache-2.0; embedded engine BUSL-1.1 with additional-use terms; review before paid/hosted embedding",
+      "candidate_version": "1.1.0",
+      "candidate_commit": "753a3b0e939f2e4490fc24e3a1984010f40a103c",
+      "latest_release_date": "2026-10-25",
+      "latest_commit_date": "2026-11-06",
+      "license_fee": "engine additional-use grant permits specified production use without charge; paid/hosted derivative rights require separate review",
+      "state": "blocked: OSV findings in 8 of 251 queried registry packages in 255-package release lock; not installed or executed"
+    },
+    {
+      "id": "aider-repomap",
+      "source": "https://aider.chat/docs/repomap.html",
+      "license": "Apache-2.0 repository; dependencies separately reviewed before execution",
+      "candidate_version": "0.86.0",
+      "latest_release_date": "2025-08-09",
+      "latest_commit_date": "2026-05-22",
+      "license_fee": "none for OSS; inference/compute separate",
+      "state": "candidate only; slower observed release cadence; no install or graph clearance"
+    },
+    {
+      "id": "llmlingua",
+      "source": "https://github.com/microsoft/LLMLingua",
+      "license": "MIT repository; model weights and dependencies separately reviewed",
+      "candidate_version": "0.2.2",
+      "latest_release_date": "2024-04-09",
+      "latest_commit_date": "2026-11-06",
+      "license_fee": "none for OSS code; compression-model compute and selected weight license separate",
+      "state": "candidate only; old latest tagged release despite recent source activity; no install or graph clearance"
+    },
+    {
+      "id": "langfuse-experiments",
+      "source": "https://langfuse.com/docs/evaluation/experiments/datasets",
+      "candidate_version": "existing pinned local 4.75.0 deployment",
+      "license": "existing self-hosted deployment; verify feature licensing before any new component",
+      "license_fee": "no new hosted plan or paid evaluator enabled",
+      "state": "running; evaluate existing dataset/score APIs before adding another evaluation backend"
+    }
   ],
   "experiments": [
-    {"id":"retrieval-guidance-001","priority":1,"tool":"ripgrep","state":"completed_rejected","question":"Does generic discover-then-read guidance reduce complete-run usage?","comparison":"Neutral vs scoped guidance; three fresh source-investigation pairs, six native sessions, alternating order","gate":"All six exact fact/source checks pass; >=5% pooled native-token reduction; >=2 pair wins","result":"All quality checks pass, but 269570 -> 301326 total native tokens (+11.78%); 1/3 wins. No adoption.","model_process_cap":6,"automatic_process_retries":0},
-    {"id":"output-audit-001","priority":1,"tool":"headroom","state":"completed_offline","question":"What retained output coverage do existing lossless transforms actually have?","comparison":"Retrospective source-preserving audit; unique outputs separated from event presentations","gate":"Report coverage, retained-byte effect and gaps; never infer token/task savings","result":"6/413 unique outputs transformed; 1925451 -> 1742273 retained bytes. No model calls.","model_process_cap":0},
-    {"id":"independent-read-batching-001","priority":2,"tool":"existing shell and ripgrep","state":"proposed","question":"Can one call for genuinely independent reads avoid extra model round trips?","comparison":"Three fresh investigations, sequential vs batched independent reads, same source/model/facts, reversed order across cases","gate":"Freeze protocol before inference; all exact checks pass, >=5% complete-run token reduction and >=2/3 pair wins; preserve each command exit status; no batching of dependent reads","model_process_cap":6,"automatic_process_retries":0,"rollback":"Keep native defaults unless fresh confirmation supports adoption"},
-    {"id":"rtk-output-001","priority":3,"tool":"rtk","state":"security_blocked","question":"Do maintained command filters preserve errors, warnings and edge cases while reducing whole-task usage?","comparison":"Offline raw-vs-filtered fixture checks first: successful, failing and unfamiliar test/search/git outputs; then at most three paired repair tasks","gate":"Resolve all advisory findings and artifact/provenance/script review before execution. No automatic rewrite hooks. Retain raw output/exit codes. Every independent repair check passes and >=10% whole-task model-token reduction","model_process_cap":6,"automatic_process_retries":0,"rollback":"Remove explicit wrapper; native commands remain default"},
-    {"id":"repomap-retrieval-001","priority":4,"tool":"aider-repomap","state":"proposed_dependency_review","question":"Does a token-budgeted symbol map reduce broad repository exploration?","comparison":"Map off vs fixed-budget map on three fresh multi-file navigation/repair tasks; full file reads available in both arms","gate":"Review/pin complete dependency graph; count map generation/cache refresh and all inference; same independent quality checks; source edits invalidate map; >=10% complete-task token reduction","model_process_cap":6,"automatic_process_retries":0,"rollback":"Remove supplied map; retain normal file/search tools"},
-    {"id":"verification-selection-001","priority":4,"tool":"existing test runner","state":"proposed","question":"Can focused checks reduce finite test runtime without missing regressions?","comparison":"Full suite vs affected-test-first with mandatory full final check; three fresh dependency-free repair tasks","gate":"Independent final full suite in both arms; failures and cross-file regressions retained; measure total runtime and inference, not focused-test runtime alone","model_process_cap":6,"automatic_process_retries":0,"rollback":"Use full verification immediately when dependency mapping is uncertain"},
-    {"id":"learned-compression-001","priority":5,"tool":"llmlingua","state":"proposed_dependency_review","question":"Does learned compression help irregular documentation output beyond reversible folds?","comparison":"Offline guards for numeric values, negation, exceptions, citations and truncation; only then raw vs compressed documentation investigations","gate":"Pin/review model weights and runtime graph. Never compress source edits/system/user constraints. Include compressor runtime, model use and retrieval overhead; all quality checks pass and >=10% total inference-cost scenario reduction","model_process_cap":6,"automatic_process_retries":0,"rollback":"Raw output remains available; no default deployment from offline ratios"},
-    {"id":"langfuse-evaluation-storage-001","priority":3,"tool":"langfuse-experiments","state":"proposed_no_inference","question":"Can native datasets/scores display matched trials without a second evaluation system?","comparison":"Use synthetic nonprivate experiment metadata to verify dataset item, run, trace and score identity against existing immutable local results","gate":"No evaluator model calls, no duplicate token observations, idempotent receipts and no private log exposure; inspect installed API compatibility first","model_process_cap":0},
-    {"id":"fresh-transfer-001","priority":6,"tool":"selected winning approach only","state":"waiting_for_development_winner","question":"Does a frozen selected improvement transfer to real coding tasks?","comparison":"Separately preregister fresh varied repositories/tasks and independent checks; exclude tasks used to choose/tune the candidate","gate":"No tuning or stopping on held-out outcomes; include all calls/retries/integration and research overhead; do not claim broad quality from source fact retrieval","model_process_cap":0,"note":"Cap and sample size must be set in a separate protocol; zero here means not launched"}
-  ]
+    {
+      "id": "retrieval-guidance-001",
+      "priority": 1,
+      "tool": "ripgrep",
+      "state": "completed_rejected",
+      "question": "Does generic discover-then-read guidance reduce complete-run usage?",
+      "comparison": "Neutral vs scoped guidance; three fresh source-investigation pairs, six native sessions, alternating order",
+      "gate": "All six exact fact/source checks pass; >=5% pooled native-token reduction; >=2 pair wins",
+      "result": "All quality checks pass, but 269570 -> 301326 total native tokens (+11.78%); 1/3 wins. No adoption.",
+      "model_process_cap": 6,
+      "automatic_process_retries": 0
+    },
+    {
+      "id": "output-audit-001",
+      "priority": 1,
+      "tool": "headroom",
+      "state": "completed_offline",
+      "question": "What retained output coverage do existing lossless transforms actually have?",
+      "comparison": "Retrospective source-preserving audit; unique outputs separated from event presentations",
+      "gate": "Report coverage, retained-byte effect and gaps; never infer token/task savings",
+      "result": "6/413 unique outputs transformed; 1925451 -> 1742273 retained bytes. No model calls.",
+      "model_process_cap": 0
+    },
+    {
+      "id": "independent-read-batching-001",
+      "priority": 2,
+      "tool": "existing shell and ripgrep",
+      "state": "completed_development_gate_passed",
+      "question": "Can one call for genuinely independent reads avoid extra model round trips?",
+      "comparison": "Three fresh investigations, sequential vs batched independent reads, same source/model/facts, reversed order across cases",
+      "gate": "Freeze protocol before inference; all exact checks pass, >=5% complete-run token reduction and >=2/3 pair wins; preserve each command exit status; no batching of dependent reads",
+      "model_process_cap": 6,
+      "automatic_process_retries": 0,
+      "rollback": "Keep native defaults unless fresh confirmation supports adoption",
+      "result": "All six exact checks/native counters pass;308046->265627tokens(-13.7703%),2/3pair wins. Added cache-aware audit:3.20342->2.66323published Codex Standard scenario credits(-16.8629%). Development source investigation, not coding-quality/global-adoption proof.",
+      "protocol": "independent-read-batching-protocol-001.json",
+      "measurements": "independent-read-batching-results-001.json",
+      "cost_audit": "independent-read-batching-cost-audit-001.json"
+    },
+    {
+      "id": "rtk-output-001",
+      "priority": 3,
+      "tool": "rtk",
+      "state": "security_blocked",
+      "question": "Do maintained command filters preserve errors, warnings and edge cases while reducing whole-task usage?",
+      "comparison": "Offline raw-vs-filtered fixture checks first: successful, failing and unfamiliar test/search/git outputs; then at most three paired repair tasks",
+      "gate": "Resolve all advisory findings and artifact/provenance/script review before execution. No automatic rewrite hooks. Retain raw output/exit codes. Every independent repair check passes and >=10% whole-task model-token reduction",
+      "model_process_cap": 6,
+      "automatic_process_retries": 0,
+      "rollback": "Remove explicit wrapper; native commands remain default"
+    },
+    {
+      "id": "repomap-retrieval-001",
+      "priority": 4,
+      "tool": "aider-repomap",
+      "state": "proposed_dependency_review",
+      "question": "Does a token-budgeted symbol map reduce broad repository exploration?",
+      "comparison": "Map off vs fixed-budget map on three fresh multi-file navigation/repair tasks; full file reads available in both arms",
+      "gate": "Review/pin complete dependency graph; count map generation/cache refresh and all inference; same independent quality checks; source edits invalidate map; >=10% complete-task token reduction",
+      "model_process_cap": 6,
+      "automatic_process_retries": 0,
+      "rollback": "Remove supplied map; retain normal file/search tools"
+    },
+    {
+      "id": "verification-selection-001",
+      "priority": 4,
+      "tool": "existing test runner",
+      "state": "proposed",
+      "question": "Can focused checks reduce finite test runtime without missing regressions?",
+      "comparison": "Full suite vs affected-test-first with mandatory full final check; three fresh dependency-free repair tasks",
+      "gate": "Independent final full suite in both arms; failures and cross-file regressions retained; measure total runtime and inference, not focused-test runtime alone",
+      "model_process_cap": 6,
+      "automatic_process_retries": 0,
+      "rollback": "Use full verification immediately when dependency mapping is uncertain"
+    },
+    {
+      "id": "learned-compression-001",
+      "priority": 5,
+      "tool": "llmlingua",
+      "state": "proposed_dependency_review",
+      "question": "Does learned compression help irregular documentation output beyond reversible folds?",
+      "comparison": "Offline guards for numeric values, negation, exceptions, citations and truncation; only then raw vs compressed documentation investigations",
+      "gate": "Pin/review model weights and runtime graph. Never compress source edits/system/user constraints. Include compressor runtime, model use and retrieval overhead; all quality checks pass and >=10% total inference-cost scenario reduction",
+      "model_process_cap": 6,
+      "automatic_process_retries": 0,
+      "rollback": "Raw output remains available; no default deployment from offline ratios"
+    },
+    {
+      "id": "langfuse-evaluation-storage-001",
+      "priority": 3,
+      "tool": "langfuse-experiments",
+      "state": "proposed_no_inference",
+      "question": "Can native datasets/scores display matched trials without a second evaluation system?",
+      "comparison": "Use synthetic nonprivate experiment metadata to verify dataset item, run, trace and score identity against existing immutable local results",
+      "gate": "No evaluator model calls, no duplicate token observations, idempotent receipts and no private log exposure; inspect installed API compatibility first",
+      "model_process_cap": 0
+    },
+    {
+      "id": "fresh-transfer-001",
+      "priority": 6,
+      "tool": "selected winning approach only",
+      "state": "waiting_for_development_winner",
+      "question": "Does a frozen selected improvement transfer to real coding tasks?",
+      "comparison": "Separately preregister fresh varied repositories/tasks and independent checks; exclude tasks used to choose/tune the candidate",
+      "gate": "No tuning or stopping on held-out outcomes; include all calls/retries/integration and research overhead; do not claim broad quality from source fact retrieval",
+      "model_process_cap": 0,
+      "note": "Cap and sample size must be set in a separate protocol; zero here means not launched"
+    }
+  ],
+  "active_continuation": "docs/research/context-memory-experiment-progress.md",
+  "selection_amendment": "Future blocks optimize quality-constrained complete-system rate-weighted cost, not total tokens. Original gates remain frozen; added audits are post hoc. Cache losses can reverse token-only conclusions."
 }

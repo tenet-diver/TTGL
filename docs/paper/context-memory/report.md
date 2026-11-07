@@ -20,7 +20,7 @@ counters and unique generation identities reconcile with both CLI summaries and
 Langfuse. These small, unreplicated development results nominate candidates;
 they do not establish causal memory benefits, statistical noninferiority,
 long-horizon transfer, cash savings or an optimal system. A subsequent cache-aware
-cost audit changes the practical interpretation: raw history saves only3.24%
+cost audit changes the practical interpretation: raw history saves only 3.24%
 under published Codex Standard credit rates, while the FTS and notes conditions
 cost slightly more despite fewer tokens. Subsequent blocks optimize total
 quality-constrained inference cost. A separate adapted
@@ -134,7 +134,7 @@ are available without memory. Prior code and visible regression tests remain in
 the worktree; the next milestone starts a fresh Codex session.
 
 | Condition | Prior information outside evolving source/tests |
-|---|---|
+| --- | --- |
 | None | No external episode history; identical retrieval interface returns no records |
 | Raw history | All earlier visible episodes injected verbatim: task, answer, before/after code and CLI agent events |
 | FTS availability | Same episode representation available through SQLite FTS5/BM25; agent chooses whether to query |
@@ -207,14 +207,14 @@ subscription charges, quota effects and full deployment cost are distinct.
 
 For each actual response, the published Codex Standard scenario is
 `[(input − cached_input) × 50 + cached_input × 2.5 + output × 250] / 1,000,000`
-credits. These rates were verified on7 November in
+credits. These rates were verified on 7 November in
 [official Codex pricing](https://learn.chatgpt.com/docs/pricing).
 Codex credit billing has no separate cache-write charge or subscription
 long-context surcharge for this model. This scenario does not establish the
 account's actual consumed credits, included allowance or cash expense.
 
 A separate [API-rate sensitivity](https://developers.openai.com/api/docs/models/gpt-6.1-sol)
-uses2/.10/10 USD per million fresh/cached/output tokens. API requests above272K
+uses 2/.10/10 USD per million fresh/cached/output tokens. API requests above 272K
 input tokens have different rates; that threshold is assessed per response,
 never from cumulative task tokens. API cache-write categories and behavior
 cannot be inferred from subscription usage. Unknown categories block exact API
@@ -232,7 +232,7 @@ requires a separate frozen protocol and no outcome-driven stopping.
 ### 4.1 Independent reads
 
 | Investigation | Neutral tokens | Batching tokens | Exact checks |
-|---|---:|---:|---|
+| --- | ---: | ---: | --- |
 | Compression and supervisor | 127,487 | 101,901 | Both pass |
 | Capture and polling | 79,444 | 87,439 | Both pass |
 | Compression contract | 101,115 | 76,287 | Both pass |
@@ -247,7 +247,7 @@ or general coding tasks.
 ### 4.2 Chronological coding
 
 | Condition | Event ledger tokens | Build graph tokens | Total tokens | Change vs None | Milestones passed | Summed process seconds |
-|---|---:|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | None | 293,348 | 363,236 | 656,584 | Reference | 6/6 | 179.017 |
 | Raw history | 244,886 | 297,024 | 541,910 | −17.4652% | 6/6 | 151.815 |
 | FTS availability | 314,195 | 336,001 | 650,196 | −0.9729% | 6/6 | 173.844 |
@@ -275,29 +275,29 @@ Fresh replication and a same-information control are necessary.
 ### 4.3 Cache-aware cost audit added after completion
 
 | Condition | Fresh input | Cached input | Output | Cache-hit fraction | Published Standard credit scenario | Cost change |
-|---|---:|---:|---:|---:|---:|---:|
-| None |89,101|562,432|5,051|86.3244%|7.12388|Reference|
-| Raw history |97,074|441,088|3,748|81.9619%|6.89342|−3.2350%|
-| FTS availability |92,169|553,344|4,683|85.7216%|7.16256|+0.5430%|
-| Agent notes |90,988|557,184|4,736|85.9624%|7.12636|+0.0348%|
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| None | 89,101 | 562,432 | 5,051 | 86.3244% | 7.12388 | Reference |
+| Raw history | 97,074 | 441,088 | 3,748 | 81.9619% | 6.89342 | −3.2350% |
+| FTS availability | 92,169 | 553,344 | 4,683 | 85.7216% | 7.16256 | +0.5430% |
+| Agent notes | 90,988 | 557,184 | 4,736 | 85.9624% | 7.12636 | +0.0348% |
 
-Raw history's17.47%token reduction becomes only3.24%lower cost in this scenario:
-it uses7,973more fresh-input tokens while eliminating mostly cheap cached input.
+Raw history's17.47% token reduction becomes only 3.24% lower cost in this scenario:
+it uses 7,973 more fresh-input tokens while eliminating mostly cheap cached input.
 Both FTS availability and notes have lower token totals but slightly higher
 rate-weighted costs. These small differences do not support broad superiority.
-The original token gate passes for Raw history; an added10%cost-reduction gate
+The original token gate passes for Raw history; an added 10% cost-reduction gate
 would not. **No memory condition is currently nominated under the new cost
 criterion.** This qualification supersedes any token-only reading of nomination.
 
-Holding the observed counters and output/fresh rate ratio5fixed, Raw history's
-cost breaks even when the cache/fresh input price ratio is about0.0120. Below
+Holding the observed counters and output/fresh rate ratio 5 fixed, Raw history's
+cost breaks even when the cache/fresh input price ratio is about 0.0120. Below
 that ratio it costs more than None despite fewer total tokens. This is a
 sensitivity calculation, not a prediction of future cache behavior. Current
-published ratio0.05lies above that point. Cache ratio alone is also insufficient:
+published ratio 0.05 lies above that point. Cache ratio alone is also insufficient:
 absolute fresh/cached/output counts and all auxiliary model calls determine cost.
 
-Batching remains favorable in the added cost audit:3.20342→2.66323scenario credits,
-a16.8629%reduction with all source checks passing. No actual subscription bill,
+Batching remains favorable in the added cost audit:3.20342 → 2.66323 scenario credits,
+a 16.8629% reduction with all source checks passing. No actual subscription bill,
 quota reduction or end-to-end deployment saving is inferred. All original trial
 artifacts and the initial token gates remain preserved; the new audit is a
 separate TTGL evaluation with its own dated receipt and three accounting tests.
@@ -329,7 +329,7 @@ expense, excluded from the reviewed snapshot and included separately here.
 At **2026-11-07 15:56:53 UTC**, while implementation remains active:
 
 | Component | Accrued native tokens |
-|---|---:|
+| --- | ---: |
 | Implementation and supervision, current research turn | 10,624,648 |
 | Thirty completed trial cells | 3,075,271 |
 | Analyst review | 178,274 |
@@ -344,6 +344,44 @@ programs are excluded. Alternative accounting snapshots must not be added.
 The research has no demonstrated net first-use saving, and no cash ROI is
 calculated from token counts.
 
+### 4.6 Historical cost sensitivity without rerunning trials
+
+The same verified 7 November rates were applied to the published native buckets
+of the earlier frozen studies. This aggregate-only audit does not replace their
+original protocols, quality decisions or native audits.
+
+| Frozen study | Token reduction | Credit-rate scenario reduction | Original quality |
+| --- | ---: | ---: | --- |
+| Headroom coding pilot, live-harness-001 | 10.0751% | 16.0947% | All registered checks pass |
+| Progress replay-001 | 56.3953% | 50.7376% | **Fails; remains rejected** |
+| Revised progress replay-002 | 45.5771% | 45.1502% | All registered checks pass |
+
+[Machine-readable audit](../../../tools/usage-monitor/studies/historical-context-cost-audit-20261107.json)
+records source hashes and fresh/cached/output buckets. Cost reduction cannot
+rescue the failed-quality first replay, and results on reused/generated cases
+remain development evidence.
+
+### 4.7 Long-history setup failure and registered continuation
+
+The supplemental LongMemEval-S block001 completed three readers on its first
+case before the adapted Mem0 extractor hit its 300-second timeout. The failed
+thread has no completed native response counters. Total extraction inference
+and cost remain **unknown**, not zero. No reader was graded before the block
+stopped; there is no completed benchmark/economic comparison. Original partial
+readers, timeout, engine state and exact frozen source are preserved.
+
+A separately registered block002 uses only the seven originally unstarted
+cases, with the same model and extraction/reader/judge prompts and an 1,800-second
+memory-extraction timeout. The failed first case is excluded without replacement;
+its calls are never repeated. The amendment reduces the completed-case domain
+coverage available for this continuation and does not justify an all-six-type
+claim. All 24 reserved validation cases remain untouched. Results are pending.
+
+The existing read-only subscription collector also queried Codex's supported
+per-thread backend usage endpoint for all six completed batching threads. It
+returned no estimates for any selected thread. These missing estimates remain
+null; the rate-weighted scenario is not promoted to actual credits or cash.
+
 ## 5. Discussion
 
 Two findings guide the next work. First, modest control over independent reads
@@ -355,7 +393,7 @@ tokens, but this diagnostic cannot isolate the benefit from stochastic behavior,
 initial-stage differences and path-dependent implementations.
 
 The cache-aware audit further shows that token savings can overstate or reverse
-the cost conclusion. Future selection requires at least10%lower complete-system
+the cost conclusion. Future selection requires at least 10% lower complete-system
 rate-weighted cost, retained matched successes and a majority of paired cost wins;
 quality uncertainty must be evaluated separately on fresh data.
 

@@ -47,6 +47,10 @@ def prepare(directory,protocol_path):
     os.umask(0o077);directory.mkdir(parents=True,exist_ok=False,mode=0o700)
     p=json.loads(protocol_path.read_text());split=json.loads((ROOT/p['reservation']).read_text())
     if p['split']!='development':raise ValueError('Held-out execution requires a separately implemented/frozen selection protocol')
+    excluded=set(map(str,p.get('development_exclude_ids',[])))
+    if excluded:
+        split['development']=[c for c in split['development'] if str(c['id']) not in excluded]
+        split['development_exclusion_record']=p['exclusion_record']
     data_path=ROOT/'longmemeval_s_cleaned.json';receipt=json.loads((ROOT/'longmemeval-data-receipt.json').read_text())
     if sha(data_path)!=receipt['sha256']:raise ValueError('Dataset hash mismatch')
     source_files=[Path(__file__),HERE/'mem0_codex_adapter.py',HERE/'memory_retrieval.py',HERE/'longitudinal_memory_trial.py',HERE/'cost_context_study.py']
@@ -96,7 +100,7 @@ def validate_native_completion(cell,no_tools=False):
     return ids[0]
 
 
-def mem0_context(case_root,episodes,question):
+def mem0_context(case_root,episodes,question,extraction_timeout):
     builder=case_root/'mem0-build';builder.mkdir(mode=0o700)
     write(builder/'input.json',dict(episodes=episodes,question=question))
     # Build/query occur inside the reviewed isolated runtime. The extractor sees
@@ -113,9 +117,10 @@ start=time.monotonic();hits=m.search(data['question'],filters={'user_id':'case'}
     (builder/'builder.py').write_text(code)
     env=os.environ.copy();env.update(MEM0_TELEMETRY='false',ANONYMIZED_TELEMETRY='false',HF_HUB_OFFLINE='1',
         TTGL_MEMORY_EXPERIMENT_ROOT=str(ROOT),TTGL_MEMORY_LLM_ROOT=str(builder/'extractions'),
+        TTGL_MEMORY_TIMEOUT_SECONDS=str(extraction_timeout),
         PYTHONPATH=str(HERE)+os.pathsep+str(ROOT/'memory-runtime'))
     with (builder/'stdout.log').open('x') as out,(builder/'stderr.log').open('x') as err:
-        result=subprocess.run([sys.executable,'-S',str(builder/'builder.py')],cwd=builder,env=env,stdout=out,stderr=err,timeout=660)
+        result=subprocess.run([sys.executable,'-S',str(builder/'builder.py')],cwd=builder,env=env,stdout=out,stderr=err,timeout=extraction_timeout+360)
     if result.returncode:raise RuntimeError('Mem0 build failed; preserve started extraction, never repeat')
     calls=list((builder/'extractions').glob('extract-*'))
     if len(calls)!=1 or not (calls[0]/'validated.json').exists():raise ValueError('Unexpected extraction count; stop without retry')
@@ -157,7 +162,7 @@ def run(directory):
                 prompt+='\nAutomatically retrieved exact prior-history excerpts (fallible, full files remain available):\n'+json.dumps(hits,ensure_ascii=False)
             elif arm=='mem0_dense':
                 if count+1>=p['maximum_model_processes']:raise ValueError('Frozen process cap')
-                memory=mem0_context(case_root,episodes,row['question']);count+=1
+                memory=mem0_context(case_root,episodes,row['question'],p.get('memory_extraction_timeout_seconds',300));count+=1
                 prompt+='\nAutomatically retrieved extracted Mem0 facts (fallible, full raw files remain available):\n'+memory
             elif arm!='file_search':raise ValueError('Unknown arm')
             if count>=p['maximum_model_processes']:raise ValueError('Frozen process cap')

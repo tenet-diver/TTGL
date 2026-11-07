@@ -7,6 +7,7 @@ Only import in the reviewed private runtime with telemetry/downloads disabled.
 """
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import signal
@@ -34,11 +35,14 @@ class CodexLLM(LLMBase):
              '-m',self.config.model or 'gpt-6.1-sol','-s','read-only','-c','model_provider="openai"',
              '-c','model_reasoning_effort="low"','--json','--output-last-message',str(cell/'answer.json'),'-']
         started=time.monotonic()
+        timeout=float(os.environ.get('TTGL_MEMORY_TIMEOUT_SECONDS','300'))
+        if not math.isfinite(timeout) or not 1<=timeout<=3600:
+            raise ValueError('Registered memory timeout must be between1 and3600 seconds')
         with (cell/'agent.jsonl').open('x') as out,(cell/'stderr.log').open('x') as err:
             p=subprocess.Popen(cmd,stdin=subprocess.PIPE,stdout=out,stderr=err,text=True,start_new_session=True)
-            (cell/'started.json').write_text(json.dumps(dict(pid=p.pid,command=cmd)))
+            (cell/'started.json').write_text(json.dumps(dict(pid=p.pid,command=cmd,timeout_seconds=timeout)))
             try:
-                p.communicate(prompt,timeout=300)
+                p.communicate(prompt,timeout=timeout)
             except subprocess.TimeoutExpired:
                 os.killpg(p.pid,signal.SIGTERM)
                 try:p.wait(timeout=10)

@@ -1,6 +1,6 @@
 # Harness tools and experiment queue
 
-Updated 6 November 2026. The [machine-readable queue](harness-optimization-backlog.json)
+Updated 7 November 2026. The [machine-readable queue](harness-optimization-backlog.json)
 tracks candidates, comparisons, gates and bounded model-process caps. Entries are
 proposals unless marked completed. Research schedules remain paused.
 
@@ -105,3 +105,21 @@ the preserved startup recovery; this work does not re-enable it globally.
 Private metadata receipts, native logs, frozen source, grades and full audit results
 are under ignored `work/security/harness-optimization-20261106/`. Public documents
 contain aggregate findings, not private histories or credentials.
+
+
+## 7 November continuation
+
+The pending independent-read batching block is complete: all six checks pass,
+308,046 → 265,627 native tokens (13.7703% fewer), two pair wins. Its added
+cache-aware audit is 3.20342 → 2.66323 published Standard Codex scenario credits
+(16.8629% fewer). Original token gates are preserved; future selection uses total
+quality-constrained inference cost. No global prompt/provider change is made.
+
+The active context/memory program is now tracked in the filesystem
+[progress register](../../../docs/research/context-memory-experiment-progress.md)
+and [scientific manuscript](../../../docs/paper/context-memory/report.md).
+Chronological generated diagnostics, preserved setup failures, exact Langfuse
+reconciliation, local Mem0 integration, the current LongMemEval development
+continuation and held-out reservations are recorded there. Do not start another
+batching block, duplicate the active LongMemEval worker or resume the paused
+research heartbeat. This queue's remaining proposals are still proposals.
