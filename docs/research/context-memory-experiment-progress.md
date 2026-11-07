@@ -566,3 +566,6 @@ response-ID capture, separate operation labels and opaque-data omission. Normal
 configuration and frozen historical capture source remain unchanged. Any missing
 compaction counters are an unresolved cost gap, never zero inference. This is a
 mechanism/accounting gate, not quality or efficiency evidence.
+
+- Compaction001 stopped before model inference: native turn/start rejects inconsistent process/thread providers;0 proxy requests and no accepted turn. Failed configuration preserved. Fresh registered002 sets the same explicit process/thread provider on owned8331; unchanged three-operation cap, no retry of001.
+- DHI vendor VEX crosscheck finds425 advisory/source pairs,411 with exact-version statements;4 statements remain under investigation and384 mention no-dsa. Some source matches concern absent binaries/backports; these counts are not425 confirmed vulnerabilities. Known unpatched component issues remain, so the dev image stays unexecuted; generic suppression/no-dsa does not clear it.

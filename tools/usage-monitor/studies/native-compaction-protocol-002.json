@@ -1,0 +1,27 @@
+{
+  "id": "native-compaction-canary-002",
+  "registered_before_inference": true,
+  "purpose": "Native compaction transport and counter reconciliation gate before long-horizon trials; not a quality benchmark or savings comparison.",
+  "model": "gpt-6.1-sol",
+  "max_native_operations": 3,
+  "phases": [
+    "one seed turn",
+    "one explicit thread/compact/start",
+    "one followup turn"
+  ],
+  "synthetic_background_records": 240,
+  "normal_configuration_unchanged": true,
+  "transport": "Owned opt-in port8331 versioned stdlib capture adapter, identical bytes to fixed authenticated upstream; opaque protocol data omitted from private evidence.",
+  "measurement": [
+    "unique returned response IDs and usage from normal and compact endpoints",
+    "native rollout event counters and cumulative thread counters before/after compaction",
+    "Langfuse reconciliation where supported",
+    "exact READY seed answer and R7Q2 retained fact",
+    "no subject tools"
+  ],
+  "acceptance": "Actual compact endpoint completes; all observed operations have positive accounted usage or an explicit unresolved metering gap; durable fact exact. Do not approve long-horizon all-in cost claims if compaction usage is unresolved.",
+  "failure_policy": "Zero automatic retries. Preserve each started operation and stop on unknown state. A failed canary is evidence, never a zero inference assumption.",
+  "pricing": "context-memory-pricing-20261107.json",
+  "cash_cost": null,
+  "preserved_predecessor": "001 thread created but turn/start rejected with modelProviderMismatch before a model request; zero proxy requests. Fresh002 sets session and process provider consistently. Never repeat001."
+}
