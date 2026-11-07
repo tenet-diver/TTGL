@@ -556,3 +556,13 @@ under uncontrolled provider cache/load conditions, rather than guaranteed saving
 
 - DHI Python runtime review: data-only image export remains unexecuted. Vendor consolidated VEX was fetched and crosschecked against exact source versions; no-dsa or generic suppression alone is not evidence of an applied fix. Digest/signature and patch applicability checks remain open. Existing Docker Scout/DHI plugins are absent; no scanner was installed.
 - Research accounting snapshot23:26UTC:145,221,156 known native tokens/1,450 unique responses and1,139.83028 published-rate scenario credits, including implementation and evaluation. Active-parent work and one unknown timed-out extraction make it a lower bound; no cash/quota or net-saving claim.
+
+## Native compaction accounting gate001
+
+Registered before inference: one seed turn, one explicit native compaction and one
+followup, using a separately versioned capture adapter on owned port8330. The
+loopback test verifies exact upstream/downstream bytes, compaction usage and
+response-ID capture, separate operation labels and opaque-data omission. Normal
+configuration and frozen historical capture source remain unchanged. Any missing
+compaction counters are an unresolved cost gap, never zero inference. This is a
+mechanism/accounting gate, not quality or efficiency evidence.
