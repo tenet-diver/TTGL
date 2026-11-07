@@ -2746,3 +2746,7 @@ print/commitprivateDockerconfigorcredentials. Freecommunitycoreverifiedofficial
 DockerDocsApache2.0; notSLApaidvariant. Currentfreeworkspace3.197GiBvsLHTB4–6GiB
 configuredstorage;fullresource-matchedreproductionneedscapacityreview. Continue
 localreadiness/eligibleexperimentswithoutinterruptingservices. SchedulesPAUSED.
+
+
+### 7 November: reader002 reconciled and cost-first decisions
+Reader-boundary002 passes the assigned read and blocked outside read through actual native tooling;2 responses reconcile native/CLI/Langfuse,22,027 native tokens/0.19323 scenario credits. Failed001 is retained. TTGL experiment eef0160b292046b7868910379328a89f. Cache-cost steering is explicit: decisions use verified quality and all-in model inference rate scenarios, not token counts; unknown cash/quota/local compute remain null. Reuse001 observed1.07% fewer tokens but159.86% greater scenario cost for changing prefix versus continued context. No scheduled research resumed.

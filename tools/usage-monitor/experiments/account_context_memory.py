@@ -68,6 +68,12 @@ def main():
             if not line.startswith(b'{'):continue
             row=json.loads(line)
             if row.get('type')=='thread.started':sessions[row['thread_id']]='storage_memory_extraction' if 'extractions' in path.parts else 'storage_readers'
+    for pattern,role in [('harness-scope-*/*/*/agent.jsonl','actor_scope_setup'),('native-reader-boundary-*/reader/agent.jsonl','reader_boundary_preflight')]:
+        for path in ROOT.glob(pattern):
+            for line in path.read_bytes().split(b'\n'):
+                if not line.startswith(b'{'):continue
+                row=json.loads(line)
+                if row.get('type')=='thread.started':sessions[row['thread_id']]=role
     for path in ROOT.glob('coding-context-transfer-*/*/*/agent.jsonl'):
         for line in path.read_bytes().split(b'\n'):
             if not line.startswith(b'{'):continue
@@ -109,7 +115,7 @@ def main():
     payload=dict(as_of=datetime.now(timezone.utc).isoformat(),scope='Cumulative snapshot of this active research turn, original30 completed trial cells, all discovered long-history readers/extractors/judges including failed or active calls, archive mechanism canaries, repeated-query/cache and storage-ablation readers/extractions, coding transfer, one analyst and Mem0 preflight. Initial service-start turn excluded.',
         components=dict(groups),priced_response_models=dict(priced_models),native_tokens=sum(g['usage']['total_tokens'] for g in groups.values()),unique_responses=len(seen),
         local_embedding_inferences=len((ROOT/'embedding-inferences.jsonl').read_text().splitlines()),
-        local_embedding_count_scope='Logged adapter operations only; standalone model-load/probe work is separately receipted. Not a complete hardware/energy cost or a Codex-token equivalent.',
+        local_embedding_count_scope='All adapter-logged operations, including mechanism probes. Direct encoder probes and model loading outside the adapter are separately receipted and excluded. Not complete hardware/energy cost or a Codex-token equivalent.',
         unknown_sessions=unknown_sessions,total_program_cost=None,known_native_credit_rate_scenario=known_cost,
         cash_cost=None,subscription_quota_impact=None,operational_cost=None,net_saving=None,
         snapshot_semantics='Cumulative lower bound while parent is active. Alternative snapshots must not be added together. Local embedding model inferences have separately measured runtime, not native Codex tokens. Installation/security/human costs not monetized.')

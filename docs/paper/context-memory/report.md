@@ -703,3 +703,22 @@ are insufficient. All25 responses reconcile native/CLI; Langfuse is separately
 audited. The repository instruction file and ordinary user-agent configuration
 remain unchanged. This is an experimental actor setup improvement on reused
 cases; broader quality and monetary savings remain unproven.
+
+
+## Cost interpretation and current research expense
+
+Cached and fresh input receive different published rates; output, extraction,
+summary and recovery inference are included where measured. The repeated-query
+panel observes1.07% fewer tokens but159.86% greater modeled cost for a changing
+prefix than continued context. The raw MCP memory panel likewise uses fewer
+tokens but costs14.25% more. These are observed development comparisons with
+uncontrolled provider cache/load, not guaranteed savings.
+
+Two read-only native account/usage/read calls succeed but both return
+threadUsage=null; backend estimates, subscription cash and quota effects remain
+unknown. The7 November23:26UTC cumulative accounting snapshot contains
+145,221,156 known native tokens across1,450 unique responses and1,139.83028
+published-rate scenario credits, including implementation/supervision and
+evaluation overhead. One timed-out extraction remains unmetered; this active
+research snapshot is a lower bound, not net savings or a complete operational
+price. Alternative cumulative snapshots must never be added together.

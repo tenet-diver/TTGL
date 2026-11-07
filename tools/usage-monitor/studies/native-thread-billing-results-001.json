@@ -1,0 +1,12 @@
+{
+  "id": "native-thread-billing-001",
+  "model_calls": 0,
+  "thread_mutations": 0,
+  "checked_threads": 2,
+  "rpc_errors": 0,
+  "thread_usage_available": 0,
+  "backend_estimated_cost": null,
+  "cash_cost": null,
+  "subscription_quota_impact": null,
+  "note": "Read-only account/usage/read succeeds for two completed metered threads but returns threadUsage=null for both. No zero-cost or billing reconciliation claim; published-rate scenarios remain separate."
+}

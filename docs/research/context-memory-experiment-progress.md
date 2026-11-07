@@ -19,8 +19,8 @@ Each live block still has a frozen allocation, failure policy and complete accou
 | independent-read-batching-001 | Neutral versus batching genuinely independent source reads | Complete; development gate passed | All six checks pass; 308,046 → 265,627 native tokens (13.7703% reduction), 2/3 pair wins. No global adoption or coding-quality claim. Published in TTGL Experiments; six-session Langfuse audit passes. [Protocol](../../tools/usage-monitor/studies/independent-read-batching-protocol-001.json). |
 | analyst-context-memory-001 | Existing Codex analyst reviews scoped real evidence for capture gaps and experiment opportunities | Complete; published in TTGL | 74 tool events annotated; parent/child runtime overlap, workspace-root mistakes and selective evidence retrieval identified. Analyst overhead: 178,274 native tokens; proposals are not measured savings. |
 | telemetry-readiness-001 | Audit TTGL/Langfuse usage, IDs, capture coverage and immutable receipts | Batching block passes; ongoing per block | All six sessions reconcile exactly between CLI, unique native generations and Langfuse v2 observation IDs/usage (573,673 total native tokens). Old trace/session API routes return404; use v2 with explicit usage fields. No observations re-ingested. |
-| observation-masking | Remove older observations with exact recovery | Offline tested; native age gate prepared |8 policy/persistence and4 proxy/CLI contracts pass. Older-shell-mask keeps the newest four; registered two-call native age gate awaits current reuse completion. Actual input reduction and recovery are required, not byte changes. |
-| headroom-transfer | Fresh varied coding/long-context tasks, raw versus existing reviewed lossless subset | Planned | Verify live route and cache accounting first; do not rerun/replace live-harness-001. Full old Headroom image remains blocked. |
+| observation-masking | Remove older observations with exact recovery | Complete; age mechanism passes, cost gate fails |Age canary reduces native input at the intended boundary, but recovery raises total scenario cost17.09%. Coding transfer age arm is unapplied; no default adoption. |
+| headroom-transfer | Varied Exercism coding tasks across four context policies | Coding development complete; long horizon pending | All12 coding checks pass; Headroom is UNAPPLIED on these3 cases. Reversible handles apply but cost38.17% more than raw. Full old Headroom image remains blocked. |
 | reversible-retrieval | Exact content archive, compact handles and agent-selected recovery | Native005 clean mechanism gate passes |001–003 UNAPPLIED,004 requires a repaired recovery command; all preserved.005 actually transforms and recovers exact source through one successful CLI call. Five canaries reconcile native/CLI/Langfuse; mechanism expense, no coding/cost saving claim. |
 | hierarchical-context | Exact archive plus summary hierarchy versus native compaction | Planned | Require actual whole-history control, protected-fact checks and separately metered summary inference. Unsupported rewriting is not a completed comparison. |
 | chronological-memory-001 / corrected 002 | Fresh-session no memory, full prior history, bounded SQLite FTS retrieval, agent-written notes | 001 configuration failure preserved; 002 complete | First CLI rejected reserved built-in provider override before model invocation. New registered002 removes it and uses native transport defaults; 24 processes across two three-stage generated coding sequences. All six empty controls fail as expected and all six reference/independent controls pass. Three FTS contract tests pass. [Protocol](../../tools/usage-monitor/studies/chronological-memory-protocol-001.json). Unrelated/stale controls and fresh long-horizon benchmarks remain separate pending work. |
@@ -32,7 +32,7 @@ Each live block still has a frozen allocation, failure policy and complete accou
 | repository-map | Maintained Aider map versus normal retrieval | Dependency review | Current metadata candidate 0.86.2; complete graph and runtime review pending. Preserve prior 0.86.0 discovery as historical. |
 | learned-compression | LLMLingua versus deterministic/raw documentation context | Dependency review | Candidate 0.2.2; model-weight/runtime security, license and factual guards pending. Count compressor compute/inference. |
 | local-selection | Lightweight local ranking/summary substitution | Planned | No model install before review; compare exact same pipeline and include local loading/runtime costs. |
-| cache-aware-layout | Continued native thread versus stable/changing prefixes, files, FTS and reused Mem0 | Registered reuse001 running |3 corpus sizes ×4 actual questions ×6 arms;75 process maximum includes3 extractions. Native turn allocator validated with actual resumed calls. No partial cost/quality conclusion. |
+| cache-aware-layout | Continued native thread versus stable/changing prefixes, files, FTS and reused Mem0 | Complete; reconciled |72/72 reader checks pass,75 calls including3 extractions. Changing prefix uses1.07% fewer tokens but159.86% more scenario cost than continued context. All115 responses reconcile; no Mem0 break-even after4 actual queries. |
 | verification-selection | Focused initial tests with mandatory full final verification | Planned | Three fresh paired repair tasks; independent final checks in every arm. |
 | rtk-output | Maintained output filtering | Security blocked | Prior pinned release has confirmed dependency advisories; no install/execute. A patched candidate needs a new review. |
 | longmemeval-local-codex-development-001 | Full-history vs ordinary file-search vs exact FTS excerpts vs adapted Mem0-dense, all with identical raw files | Stopped; failure preserved | 3 readers completed, first memory extraction timed out at300 seconds;0 grades. Extraction usage/cost unknown, not zero. No calls repeated. Original eight cases span all 6 types; first case excluded from continuation without replacement. Each history is about503–520k characters.24 held-out cases reserved and untouched. [Protocol](../../tools/usage-monitor/studies/longmemeval-codex-protocol-001.json). |
@@ -102,7 +102,7 @@ Source specifications: [ten-idea experiment description](../handoffs/codex-conte
 <!-- current-block-snapshot:start -->
 ## Current filesystem snapshot
 
-Updated 2026-11-07T21:40:50.171189+00:00. Partial checks are provisional; final usage requires reconciliation.
+Updated 2026-11-07T23:24:44.486632+00:00. Partial checks are provisional; final usage requires reconciliation.
 
 | Block | Status | Started processes | Graded cells | Passing cells |
 |---|---|---:|---:|---:|
@@ -116,8 +116,11 @@ Updated 2026-11-07T21:40:50.171189+00:00. Partial checks are provisional; final 
 | longmemeval-validation-003 | Complete; reconciled;61 completed reader calls reused, never repeated | 83/83 | 72/72 | 71 |
 | longmemeval-neutral-judge-audit-002 | Complete; reconciled | 72/72 | 72/72 | 70 |
 | cache-memory-reuse-001 | Complete; reconciled | 75/75 | 72/72 | 72 |
-| memory-storage-ablation-001 | Running; includes extraction and local stores | 26/75 (24 readers completed) | 0/72 | 0 |
+| memory-storage-ablation-001 | Complete; reconciled | 75/75 (72 readers completed) | 72/72 | 72 |
 | coding-context-transfer-001 | Complete; reconciled | 12/12 (12 completed) | 12/12 | 12 |
+| harness-scope-001 | Complete; reconciled | 6/6 completed | 6/6 | 6 |
+| native-reader-boundary-001 | Gate failed; preserved | 1/1 | 1/1 | 0 |
+| native-reader-boundary-002 | Gate passed | 1/1 | 1/1 | 1 |
 
 Started processes include preserved configuration failures. Missing grades/usage are unknown. This reader does not launch work or alter frozen study sources.
 <!-- current-block-snapshot:end -->
@@ -533,3 +536,23 @@ cases; broader quality and monetary savings remain unproven.
   minimal runtime/assigned files. Its native sandbox software controls pass an
   allowed read and blocked outside read with0 LLM calls. One fresh model canary
   remains to verify the actual tool path;001 is preserved, no model retries.
+
+## Reader boundary002 and cache-cost decision update
+
+The fresh registered reader002 passes its actual native tool gate: the assigned
+marker is read exactly and the outside sentinel read fails for the intended
+filesystem permission reason. All2 unique responses reconcile native/CLI/Langfuse;
+22,027 native tokens and0.19323 scenario credits are mechanism overhead.
+Failed001 remains preserved; this is not a cost comparison or a general security
+certification. Published TTGL experiment: eef0160b292046b7868910379328a89f.
+
+Candidate decisions use independently checked quality and rate-weighted inference
+cost, including cache misses, extraction, summaries, retrieval and recovery calls.
+Actual cash, subscription quota and unpriced local compute remain unknown. A
+token reduction alone cannot pass an economic gate. Cache-hit results are observed
+under uncontrolled provider cache/load conditions, rather than guaranteed savings.
+
+- Native billing availability001: two read-only account/usage/read requests for completed metered threads succeed but both return threadUsage=null. Zero model calls and no thread mutations. Backend cost, cash and quota remain unknown; rate-weighted cost scenarios are explicitly labeled.
+
+- DHI Python runtime review: data-only image export remains unexecuted. Vendor consolidated VEX was fetched and crosschecked against exact source versions; no-dsa or generic suppression alone is not evidence of an applied fix. Digest/signature and patch applicability checks remain open. Existing Docker Scout/DHI plugins are absent; no scanner was installed.
+- Research accounting snapshot23:26UTC:145,221,156 known native tokens/1,450 unique responses and1,139.83028 published-rate scenario credits, including implementation and evaluation. Active-parent work and one unknown timed-out extraction make it a lower bound; no cash/quota or net-saving claim.
