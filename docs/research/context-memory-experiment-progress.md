@@ -190,3 +190,12 @@ actual existing MCP source retrieval; no live cache/efficacy claim follows.
   diagnostic exited143, cause unknown. Preserve that preparation. Validation002
   uses bounded stdlib JSON iteration (3 contract checks) without changing records,
   prompts, allocation or scoring. No validation model calls repeated.
+
+- Long-history002 now appears in TTGL Experiments with distinct reader, extraction
+  and evaluation roles; publication links existing unique responses without
+  inserting duplicate usage. Research accounting snapshot17:43:20UTC records
+  50,808,716 known native tokens /434 unique responses and383.578 published-rate
+  scenario credits across supervision, trials and analysis. This is an accrued
+  lower bound, not savings or cash expense; the timed-out001 extraction has
+  unknown usage/cost, parent implementation continues, and local compute is not
+  monetized. Snapshot totals must not be added together.

@@ -25,22 +25,26 @@ def publish(directory):
     project=next((p['id'] for p in report['projects'] if p['name']=='Context and memory optimization'),None)
     if project is None:project=store.mutate('project',dict(name='Context and memory optimization',repo=str(REPO),scope='Registered context/memory trials with independent checks, native usage and research overhead; not cash or quota measurement.'))['id']
     protocol=json.loads((directory/'protocol.json').read_text())
-    baseline='baseline' if any(c['condition']=='baseline' for c in result['cells']) else 'none'
+    conditions={c['condition'] for c in result['cells']}
+    baseline='baseline' if 'baseline' in conditions else 'full_history' if 'full_history' in conditions else 'none'
     task_ids={}
     for cell in result['cells']:
-        label=str(cell.get('case') or cell.get('sequence'))+' '+cell['condition']+' '+str(cell.get('stage',''))
+        role=cell.get('role')
+        label=str(cell.get('case') or cell.get('sequence'))+' '+cell['condition']+' '+str(cell.get('stage',''))+' '+str(role or '')
         task=store.mutate('task',dict(project_id=project,title=protocol['id']+' '+label,
             goal='Execute the frozen comparison cell and account for every native response.',
-            acceptance='Registered independent quality checks and exact native/CLI reconciliation.'))['id']
+            acceptance='Registered role-specific quality checks and exact native/CLI reconciliation; local model rubric grades are not independent programmatic checks.'))['id']
         for turn in report['turns']:
             if turn['session_id']==cell['session_id']:
                 store.mutate('assign',dict(session_id=turn['session_id'],turn_id=turn['turn_id'],task_id=task))
-        quality=cell.get('quality',cell.get('grade',{}));passed=quality.get('passed',False)
-        store.mutate('task_status',dict(id=task,status='completed' if passed else 'unresolved',outcome='Independent checks: '+json.dumps(quality)+'; native/CLI reconciled.'))
+        quality=cell.get('quality',cell.get('grade',{}))
+        passed=quality.get('passed',False) if role not in ('judge_overhead','memory_extraction') else True
+        outcome=('Local model rubric: ' if role=='reader' else 'Metered auxiliary inference, not a reader quality score: ' if role else 'Independent checks: ')
+        store.mutate('task_status',dict(id=task,status='completed' if passed else 'unresolved',outcome=outcome+json.dumps(quality)+'; native/CLI reconciled.'))
         task_ids[label]=task
     anchor=next(task for label,task in task_ids.items() if (' '+baseline+' ') in label)
     experiment=plan_experiment(store,dict(task_id=anchor,title=protocol['id'],change='Registered context/memory representation or independent-read guidance; see frozen protocol for treatment/comparator.',
-        metrics='Complete-run native tokens, cached/fresh/output, independent quality and process wall time. All actual cells retained.',
+        metrics='Complete-run native tokens, cached/fresh/output, registered quality method and process wall time. All actual cells retained; model-rubric grades remain distinct from programmatic checks.',
         quality_gate=protocol.get('development_gate',protocol.get('acceptance','All independent checks pass.')),
         overhead=protocol['overhead'],rollback=protocol['rollback']))['id']
     evaluation=record_evaluation(store,experiment,protocol,result,hashlib.sha256(raw).hexdigest())

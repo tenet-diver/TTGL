@@ -14,6 +14,24 @@ from workspace import Store
 from analyst_experiments import record_accounting
 
 
+def long_history_sessions(root):
+    """Discover started calls, including failed/unfinished calls, without retrying."""
+    sessions={}
+    for block in root.glob('longmemeval-*'):
+        if not block.is_dir():continue
+        paths=list(block.glob('case-*/*/agent.jsonl'))+list(block.glob('case-*/*/judge/agent.jsonl'))+list(block.glob('case-*/mem0-build/extractions/extract-*/agent.jsonl'))
+        for path in paths:
+            for line in path.read_text().splitlines():
+                try:row=json.loads(line)
+                except json.JSONDecodeError:continue
+                if row.get('type')!='thread.started':continue
+                role='evaluation_judges' if path.parent.name=='judge' else 'memory_extraction' if path.parent.name.startswith('extract-') else 'long_history_readers'
+                sid=row['thread_id']
+                if sid in sessions:raise ValueError('Duplicate thread across long-history artifacts')
+                sessions[sid]=role
+    return sessions
+
+
 def main():
     store=Store(REPO/'work/security/workspace',Path.home()/'.codex','http://localhost:3000');store.scan()
     parent=os.environ.get('CODEX_THREAD_ID')
@@ -25,7 +43,7 @@ def main():
         cutoff=min(t['start'] for t in selected)
         parent_turns={t['turn_id'] for t in turns if t['start']>=cutoff}
         rows=[dict(r) for r in db.execute("SELECT * FROM events WHERE kind='generation'")]
-    sessions={}
+    sessions=long_history_sessions(ROOT)
     for name in ('batching-001','chronological-002'):
         result=json.loads((ROOT/name/'results.json').read_text())
         for cell in result['cells']:sessions[cell['session_id']]='registered_trials'
@@ -43,9 +61,14 @@ def main():
         seen.add(row['id']);usage=json.loads(row['usage'])
         groups[group]['usage'].update({k:usage.get(k,0) for k in ('input_tokens','cached_input_tokens','output_tokens','total_tokens')})
         groups[group]['response_ids'].append(row['id'])
-    payload=dict(as_of=datetime.now(timezone.utc).isoformat(),scope='Cumulative snapshot of this active research turn, all30 completed trial cells, one analyst and one Mem0 extraction. Initial service-start turn excluded.',
+    metered_sessions={r['session_id'] for r in rows if r['id'] in seen and json.loads(r['usage']).get('total_tokens',0)>0}
+    unknown_sessions=[dict(session_id=sid,role=role,usage=None,cost=None) for sid,role in sessions.items() if sid not in metered_sessions]
+    rates=json.loads((REPO/'tools/usage-monitor/studies/context-memory-pricing-20261107.json').read_text())['primary_scenario']
+    known_cost=sum(((g['usage']['input_tokens']-g['usage']['cached_input_tokens'])*rates['fresh_input_per_million']+g['usage']['cached_input_tokens']*rates['cached_input_per_million']+g['usage']['output_tokens']*rates['output_per_million'])/1e6 for g in groups.values())
+    payload=dict(as_of=datetime.now(timezone.utc).isoformat(),scope='Cumulative snapshot of this active research turn, original30 completed trial cells, all discovered long-history readers/extractors/judges including failed or active calls, one analyst and Mem0 preflight. Initial service-start turn excluded.',
         components=dict(groups),native_tokens=sum(g['usage']['total_tokens'] for g in groups.values()),unique_responses=len(seen),
         local_embedding_inferences=len((ROOT/'embedding-inferences.jsonl').read_text().splitlines()),
+        unknown_sessions=unknown_sessions,total_program_cost=None,known_native_credit_rate_scenario=known_cost,
         cash_cost=None,subscription_quota_impact=None,operational_cost=None,net_saving=None,
         snapshot_semantics='Cumulative lower bound while parent is active. Alternative snapshots must not be added together. Local embedding model inferences have separately measured runtime, not native Codex tokens. Installation/security/human costs not monetized.')
     publication=json.loads((ROOT/'chronological-002/publication.json').read_text())

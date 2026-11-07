@@ -2402,3 +2402,26 @@ superseding the earlier note that those nine files remained uncommitted. New
 experimental archive/age policy and exact persistence have8 offline checks;
 MCP read_compression_source recovery works, normal provider remains unchanged,
 and actual model-facing/cache/coding trials remain pending.
+
+### 7 November17:42UTC: reserved long-history validation active
+
+Frozen separate validation runner/protocol002, commitd33630e.24 prior reserved
+questions x3arms (full_history/file_search/exactFTS),72 readers then72 blinded
+judges,144 maximum processes, no automatic retries. Same prompts/models/methods;
+primary added-value comparator plain search, require every control success
+retained, >=10% pooled scenario saving and >=13/24 paired cost wins versus each
+control. No policy changes based on validation. Original source002 remains
+frozen; new runner and its manifest-listed dependencies now also frozen.
+Worker exec session28040, PID233572, private longmemeval-validation-002. Inspect
+actual started/complete/artifacts/processes before any continuation; never
+repeat. First preparation longmemeval-validation-001 ended before preflight,
+zero model calls; independent full-JSON decode exited143 with cause unknown.
+Preserved and replaced with tested bounded stdlib reader, not a model retry.
+
+Development002 published to TTGL project4ad15b1e75834af6a4656f2f7e4e6225,
+experimentf3b623afd5f54aa796537ee8310d800f, eval95a19e6556aa4e5a8254b0e786940b43.
+Role-aware publication does not mark extractors/judges as failed reader grades.
+Accounting discovery now includes partial/failed long-history calls, keeps
+unknowns null and deduplicates native response IDs. Snapshot17:43UTC known
+50,808,716 tokens /434 responses /383.578 scenario credits; parent active,
+unknown001 extraction and local costs make this lower-bound accounting only.
