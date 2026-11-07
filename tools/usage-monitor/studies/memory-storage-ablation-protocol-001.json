@@ -1,0 +1,38 @@
+{
+  "id": "memory-storage-ablation-001",
+  "scope": "Fresh generated factual-recall development ablation of extraction versus raw persistent retrieval, not coding/held-out validation or official benchmark.",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "seed": 20261108,
+  "entities_per_corpus": [
+    24,
+    96,
+    240
+  ],
+  "questions_per_corpus": 4,
+  "conditions": [
+    "continued_full",
+    "file_search",
+    "fts",
+    "mem0_dense",
+    "mem0_raw",
+    "mcp_graph_raw"
+  ],
+  "maximum_model_processes": 75,
+  "allocation": "72 reader calls plus3 extracted-Mem0 calls; raw-Mem0 and MCP guard0LLM calls. Actual4 queries percorpus,3 fresh corpus sizes, no repeated previous invocation.",
+  "automatic_process_retries": 0,
+  "timeout_seconds_per_reader": 600,
+  "memory_extraction_timeout_seconds": 1800,
+  "corpus": "Two dated records per fictional service with changing owner/route. Random unguessable nonsecret values; current questions require the latest recorded field. Corpus and deterministic question selection sealed before inference. Gold checked independently by parsing dated source records; empty/reference oracle controls run without models.",
+  "matching": "Identical raw files available in every arm. Fresh arms also receive their own earlier visible question/answer pairs; continued control retains its actual conversation. No private grades, expected values or future queries enter an actor or extraction prompt. Mem0 sees only prior corpus, before query-based search; no prior questions in extraction. Same generic grounding/verification instructions for every arm.",
+  "layout": "Same complete continued-thread baseline, plain files, FTS, adapted extracted Mem0, Mem0 infer=False exact raw records, maintained MCP server-memory raw record graph with generic inverse-hit-frequency lexical search union (10 nodes/12000 chars). All raw working files available equally. MCP stores chronological edges but no graph reasoning benefit is assumed.",
+  "ordering": "Build one Mem0 store before any questions for each corpus; rotate condition order by (corpus index + question index) modulo6. All four rounds run in full; no stopping on a favorable reuse count. No parallel inference inside block. Corpus sizes are experimental factors, not replicated population estimates.",
+  "grading": "After all calls, parse final JSON value and compare exact expected field derived independently from dated raw records. Format errors/wrong answers retained. Native tool use is permitted only within raw working files and normal local shell; no installs/network/outside sources. No model rubric judges.",
+  "primary": "Characterize observed cumulative complete model-rate inference cost after1\u20134 actual questions, retaining every matched continued control success; include real extraction once, every answer/recovery and failures. Fresh development values in reused generator family; no new policy validation or population noninferiority.",
+  "metering": "Current native resume preflight001 confirmed cumulative CLI snapshots. Map each ordered CLI invocation to its native turn in the same exact thread, validate cumulative counters against unique native response prefixes, and price each response only once. Ambiguous turns/counters stop interpretation; never add cumulative snapshots.",
+  "local_cost": "Measure raw embedding/indexing/query and maintained MCP RPC/process runtime including model loading; local monetary compute unknown. Extraction disabled arm0LLM is enforced by guard; not0totalcompute.",
+  "failure": "Preserve every started call. Stop block on timeout/nonzero exit/ambiguous completion, changed frozen inputs/code, unexpected Mem0 extraction count or missing metering. No automatic retry, question replacement or favorable subset. Wrong answers do not stop remaining registered calls.",
+  "overhead": "All75 actual model calls plus local embedding/graph work and implementation/review are research expense. No net research saving claim.",
+  "rollback": "No normal provider/configuration, frozen completed study source, user memory or paused schedule changes. All private evidence in ignored work/security. Publish generated methods/aggregates, not unrelated source histories.",
+  "baseline_condition": "continued_full"
+}

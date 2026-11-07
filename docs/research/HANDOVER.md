@@ -2657,3 +2657,22 @@ runtimeorfullyreviewedexistingnativeadapterbeforetrials; don'tdeclareallbenchmar
 permanentlyblocked. ExistingMem0filelock4.2.9isadifferentcleangraph.
 
 NormalTTGL/LFsupervisor4332remains; researchschedulesPAUSED. Remaininggoalactive.
+
+### Next registered storage ablation, zero inference at preparation
+
+memory-storage-ablation001 uses freshseed20261108 with old factual generator,
+3sizes×4actualqueries×6arms=72readers+3Mem0extractions. Continued/files/FTS/
+Mem0extracted/Mem0inferFalse/MCPgraphraw. Notheldout,notcoding. Sourceforks
+memory_storage_ablation.py andmeasure_memory_storage.py leave all old frozen
+sources intact. raw_memory_backends.py only missing transport/ranking glue:
+stockMem0inferFalse withLLMguard, maintainedMCPcreate/search_nodes andchronology
+edges; genericinverse-hit-frequency lexicalunion10nodes/12000chars, notgraph
+reasoning. Localtimeincludesloading; localmonetarypricesunknown.
+
+Rawbackendpreflight001 Mem0build/querypass; MCPstores3buthelpermiscountswrapper
+keys as1. ExplicitacceptanceFAILpreserved. Correctedpreflight002freshMCPstore3
+andlatestvaluepass,0models. No modelretries. Preparedstudyhasprotocol/corpora/
+source/graphhashbindings and12reference/empty/staleoraclecheckseach. Mustcommit/
+push beforeinference, useoneworker,75max,zeroautoretry. Oldcacheallocatorallocates
+continuednativeperturn; newmeasurerboundtofreshstudy. UseaggregatedSIDLangfuse
+readonlyaudit androle-awareTTGLpublisher aftercompletion. Keepallfailures.

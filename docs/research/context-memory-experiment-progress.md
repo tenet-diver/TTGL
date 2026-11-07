@@ -435,3 +435,14 @@ No candidate is promoted from this panel. Cash/quota impact remains unknown.
   all3 records and explicit close with0 embeddings/LLM calls; only an ONNX PCI-discovery warning remains.
   No agent-quality or cost-saving result follows; a fresh matched comparison
   remains necessary. Existing reviewed runtime and pinned local encoder only.
+
+- Memory-storage-ablation001 prepared before inference:3 fresh corpora in the
+  reused generator family ×4 actual questions ×6 arms (continued full context,
+  ordinary files, FTS, extracted Mem0, Mem0 infer=False and maintained MCP graph
+  raw records).75 native calls maximum incl3 extractions. Same raw files and
+  exact latest-record oracle; no model rubric, no held-out or coding claim.
+  Actual raw storage/query mechanisms use existing reviewed installations.
+  First zero-LLM helper preflight preserved an MCP wrapper-count parsing error;
+  corrected fresh preflight002 stores3 records and retrieves the latest fact.
+  No model invocation was repeated. Complete model-cost and local-runtime
+  accounting remains required before interpreting any reader result.
