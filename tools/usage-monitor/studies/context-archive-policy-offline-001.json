@@ -1,0 +1,22 @@
+{
+  "id": "context-archive-policy-offline-001",
+  "at": "2026-11-07T17:12:20.511921+00:00",
+  "source_sha256": "2c5021a560d7fece132c0c95dd7f8d97cff43da3318a4fb818b0c55a212bc506",
+  "tests_sha256": "42dd5618928343fe47e06d79c20edda2feb7636ecbf0a11f2b752126f675a844",
+  "passed_tests": 4,
+  "model_calls": 0,
+  "active_provider_integration": false,
+  "checks": [
+    "Protect system/user/reasoning and structured tool identifiers/status/unknown keys",
+    "Keep recent outputs and archive only eligible completed tool text; raw retrieval bypass",
+    "Archive failures including partial writes fail open with no transformed request",
+    "Stable handles preserve earlier presentation across appended turns; aging boundary changes earlier presentation"
+  ],
+  "limitations": [
+    "In-memory callbacks exercise a contract; not proof of live durable storage or recovery",
+    "Opaque provider references stay untouched; live applicability must be demonstrated",
+    "Prefix equality is not a measured provider cache hit/cost outcome",
+    "No coding quality, token/cost reduction or deployment claim"
+  ],
+  "reuse_rationale": "Existing Codex/SQLite handle execution/search and reviewed Headroom handles lossless folds. Inspected upstream Headroom masks module is a structural-token helper, not an older-observation policy or compressor. This module adds only missing archive/history-age selection glue, leaving live integration gated."
+}

@@ -2384,3 +2384,21 @@ probes001/002 preserved. Full RPCs now journaled on each response. No Codex glob
 MCP integration or efficacy result.17software tests pass. Longer coding/terminal,
 Headroom transfer, masking/hierarchy and other planned comparisons remain pending;
 see progress doc. Never claim all experiments completed or optimality yet.
+
+### 7 November: cache-aware long-memory development002 completed
+
+All63 LME002 processes completed; measure results and read-only Langfuse audit001
+reconcile every session/unique generation/counter.28/28 local rubric successes.
+Full-history43.47417, plain search9.02639, FTS7.47870, adapted Mem0 dense81.80931
+published Codex scenario credits, including extraction. FTS nominated by the
+pre-grade conservative >=5 paired wins rule (actual7/7 wins), not held-out proof.
+24 reserved cases untouched. Failed001 extraction usage remains unknown; no
+repeat. Worker84072 ended normally. No schedules resumed. Public progress/report
+and aggregate JSON updated. Actual cash/quota/local CPU costs remain unknown.
+
+Existing native-provider recovery and session-scoped evidence-query modifications
+are preserved separately in commit9f24cf7 (25 workspace and6 setup checks passed),
+superseding the earlier note that those nine files remained uncommitted. New
+experimental archive/age policy and exact persistence have8 offline checks;
+MCP read_compression_source recovery works, normal provider remains unchanged,
+and actual model-facing/cache/coding trials remain pending.

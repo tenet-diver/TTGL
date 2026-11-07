@@ -1,0 +1,94 @@
+{
+  "study": "longmemeval-local-codex-development-002",
+  "readers": 28,
+  "processes": 63,
+  "conditions": {
+    "full_history": {
+      "task_credit_rate_scenario": 43.47417,
+      "task_native_tokens": 956509,
+      "reader_successes": 7,
+      "reader_count": 7,
+      "judge_overhead_credits": 2.62199,
+      "usage": {
+        "input_tokens": 956195,
+        "cached_input_tokens": 92928,
+        "output_tokens": 314,
+        "total_tokens": 956509,
+        "fresh_input_tokens": 863267,
+        "cache_hit_ratio": 0.09718519757999153
+      },
+      "cost_saving_vs_full_history": 0.0,
+      "paired_cost_wins_vs_full_history": 0,
+      "eligible": false
+    },
+    "file_search": {
+      "task_credit_rate_scenario": 9.02639,
+      "task_native_tokens": 596083,
+      "reader_successes": 7,
+      "reader_count": 7,
+      "judge_overhead_credits": 3.54018,
+      "usage": {
+        "input_tokens": 594727,
+        "cached_input_tokens": 443136,
+        "output_tokens": 1356,
+        "total_tokens": 596083,
+        "fresh_input_tokens": 151591,
+        "cache_hit_ratio": 0.745108259756157
+      },
+      "cost_saving_vs_full_history": 0.7923734944220902,
+      "paired_cost_wins_vs_full_history": 7,
+      "eligible": true
+    },
+    "fts": {
+      "task_credit_rate_scenario": 7.4787,
+      "task_native_tokens": 439966,
+      "reader_successes": 7,
+      "reader_count": 7,
+      "judge_overhead_credits": 3.21226,
+      "usage": {
+        "input_tokens": 439148,
+        "cached_input_tokens": 309120,
+        "output_tokens": 818,
+        "total_tokens": 439966,
+        "fresh_input_tokens": 130028,
+        "cache_hit_ratio": 0.7039084773242734
+      },
+      "cost_saving_vs_full_history": 0.8279737140467547,
+      "paired_cost_wins_vs_full_history": 7,
+      "eligible": true
+    },
+    "mem0_dense": {
+      "task_credit_rate_scenario": 81.80931,
+      "task_native_tokens": 1545363,
+      "reader_successes": 7,
+      "reader_count": 7,
+      "judge_overhead_credits": 3.54238,
+      "usage": {
+        "input_tokens": 1437902,
+        "cached_input_tokens": 356864,
+        "output_tokens": 107461,
+        "total_tokens": 1545363,
+        "fresh_input_tokens": 1081038,
+        "cache_hit_ratio": 0.24818381224867897
+      },
+      "cost_saving_vs_full_history": -0.8817911877328537,
+      "paired_cost_wins_vs_full_history": 0,
+      "eligible": false
+    }
+  },
+  "development_nominee": "fts",
+  "selection": "Pre-grade clarification retains >=5 cost wins, >=10% pooled reduction and all matched full-history successes. Seven cases, five types, no replacement.",
+  "limitations": [
+    "Same-model local rubric judging; not official LongMemEval results or coding-task accuracy.",
+    "Cold-start extraction included; local embedding compute monetary cost unknown.",
+    "Published credit-rate scenarios, not measured subscription cash/quota.",
+    "Failed block001 uncertain extraction remains separately unknown; no program-wide exact total.",
+    "24 reserved held-out cases untouched."
+  ],
+  "langfuse_audit": {
+    "sessions": 63,
+    "all_reconciled": true,
+    "at": "2026-11-07T17:38:09.259958+00:00",
+    "api": "Langfuse v2 observations, explicit usage fields and bounded dates"
+  }
+}

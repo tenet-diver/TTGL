@@ -443,3 +443,40 @@ hashes and per-attempt manifests identify the configuration actually tested.
 Mem0 setup is private and separately security-gated; the runner's simple controls
 do not require it. The scientific report is published only in the TTGL repository;
 no journal, arXiv or leaderboard submission is implied.
+
+## Supplemental result: long-history development002
+
+The registered seven-case continuation completed63 native Codex processes:
+28 readers, seven Mem0 extraction calls and28 separate blinded local judges.
+Every reader passed the local rubric. All63 sessions reconcile unique native
+response identities and measured usage with both CLI and Langfuse; no usage is
+counted twice. The excluded first case and its uncertain timed-out extraction
+remain preserved in block001, without replacement or inferred zero cost.
+
+| System | Local rubric successes | Deployment native tokens | Cache-hit ratio | Published credit-rate scenario |
+|---|---:|---:|---:|---:|
+| Full history |7/7|956,509|9.72%|43.47417|
+| Plain raw-file search |7/7|596,083|74.51%|9.02639|
+| FTS excerpts with identical raw fallback |7/7|439,966|70.39%|7.47870|
+| Adapted Mem0 dense with identical raw fallback |7/7|1,545,363|24.82%|81.80931|
+
+Deployment inference includes every memory extraction, rather than only the
+answering call. Evaluation judges cost a separate12.91681 scenario credits.
+FTS reduces the deployment credit-rate scenario82.80% versus full history and
+17.15% versus plain file search. It wins all seven paired costs versus full
+history and is nominated by the rule clarified before any grades (at least
+five cost wins, at least10% pooled reduction, every baseline success retained).
+The more elaborate adapted Mem0 system costs88.18% more than full history in
+this cold-start comparison. This is evidence against assuming derived memory
+pays for itself on a single query; no measured repeated-query amortization is
+available. Monetary local-embedding compute remains unknown.
+
+These are development measurements on public LongMemEval-S histories using
+an adapted native reader and same-model rubric judge. They are neither official
+LongMemEval scores nor coding-task performance, and they do not establish
+statistical noninferiority, broad transfer or a universal optimum. Five question
+types are represented after the excluded failed case. Twenty-four reserved
+held-out questions remain untouched. Raw histories, answers and gold stay
+private; the [public aggregate](../../../tools/usage-monitor/studies/longmemeval-codex-development-results-002.json)
+contains no private transcript. Published-rate cost scenarios are distinct from
+actual account credits, subscription expense and full deployment costs.
