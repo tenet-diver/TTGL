@@ -9,7 +9,7 @@ import hashlib
 import json
 import time
 
-POLICIES=('off','older-mask','reversible-handles','reversible-shell-handles')
+POLICIES=('off','older-mask','reversible-handles','reversible-shell-handles','older-shell-mask')
 RAW_MARKER='TTGL_RAW_EVIDENCE'
 TEXT_KEYS={'output','aggregated_output','text','content','result','content_blocks'}
 
@@ -32,7 +32,7 @@ def rewrite(document,policy,retain_source=None,keep_last=4,minimum_characters=10
     if not isinstance(document,dict) or not isinstance(document.get('input'),list):
         return finish(document,completed_outputs_present=None,passthrough_reason='unsupported request envelope')
     if retain_source is None:return finish(document,passthrough_reason='durable archive callback unavailable')
-    if policy=='reversible-shell-handles' and not callable(recovery_command):
+    if policy in ('reversible-shell-handles','older-shell-mask') and not callable(recovery_command):
         return finish(document,passthrough_reason='scoped recovery command unavailable')
     indices=[i for i,item in enumerate(document['input']) if isinstance(item,dict)
              and item.get('type') in ('custom_tool_call_output','function_call_output') and 'output' in item]
@@ -53,7 +53,7 @@ def rewrite(document,policy,retain_source=None,keep_last=4,minimum_characters=10
             replacement=(f'[TTGL archived tool observation; mode={policy}; exact raw SHA256={digest}; '
                 f'original UTF-8 bytes={len(value.encode())}. Retrieve the original with read_compression_source '
                 'when any omitted detail is needed. This archive handle is not evidence that the tool succeeded.]')
-            if policy=='reversible-shell-handles':
+            if policy in ('reversible-shell-handles','older-shell-mask'):
                 command=recovery_command(digest)
                 if not isinstance(command,str) or not command:raise ValueError('Missing scoped recovery command')
                 replacement=(f'[TTGL archived tool observation; mode={policy}; exact raw SHA256={digest}; '

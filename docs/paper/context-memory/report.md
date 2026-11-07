@@ -1,34 +1,34 @@
 # Context and persistent memory for coding agents: an instrumented development study
 
-**Status:** living scientific-format report, 7 November 2026. Long-horizon public
-benchmark and held-out comparisons are pending. Author and affiliation to be supplied.
+**Status:** living scientific-format report, 7 November 2026. The registered
+LongMemEval validation and neutral grading audit are complete; repeated-query
+cache/reuse trials are running. Public coding-transfer model trials remain pending.
+Author and affiliation to be supplied.
 
 ## Abstract
 
-We study whether context handling and persistent memory reduce complete-task
-model inference while retaining coding-agent performance. We reuse a local
-authenticated Codex client and existing TTGL/Langfuse instrumentation, separating
-native model counters from retained bytes, runtime and subscription expense.
-Two new development blocks comprise six source-investigation runs and 24 coding
-runs over two three-stage generated projects. Independent-read batching reduces
-pooled native tokens from 308,046 to 265,627 (13.77%), with all exact checks passing.
-In the chronological diagnostic, full prior-episode history uses 541,910 tokens
-versus 656,584 without external memory (17.47% fewer); all six milestones pass in
-both conditions. Agent-written notes and optional searchable history show little
-aggregate difference, and the search tool is never queried. Every trial's native
-counters and unique generation identities reconcile with both CLI summaries and
-Langfuse. These small, unreplicated development results nominate candidates;
-they do not establish causal memory benefits, statistical noninferiority,
-long-horizon transfer, cash savings or an optimal system. A subsequent cache-aware
-cost audit changes the practical interpretation: raw history saves only 3.24%
-under published Codex Standard credit rates, while the FTS and notes conditions
-cost slightly more despite fewer tokens. Subsequent blocks optimize total
-quality-constrained inference cost. A separate adapted
-Mem0 setup demonstrates metered extraction, persistence, retrieval and tenant
-separation, with integration failures and missing optional components preserved.
+We evaluate context handling and persistent memory with authenticated local Codex
+and TTGL/Langfuse instrumentation. Complete-task inference cost is the primary
+efficiency measure, conditional on retained quality. We price fresh input, cached
+input and output separately and include memory extraction and recovery. Native
+counters are distinct from published-rate scenarios and unknown subscription
+cash expense. In 24 generated chronological coding runs, raw history reduces
+native tokens by17.47% but modeled credits by only3.24%; searchable history and
+notes use slightly fewer tokens yet cost slightly more. On seven LongMemEval
+development cases, bounded FTS nominates against ordinary file search, whereas
+adapted Mem0 with one extraction per question costs substantially more. The
+registered24-case validation finds full history24/24, files24/24 and FTS23/24
+under the original rubric; a separately registered anonymous audit finds24/24,
+24/24 and22/24. FTS therefore fails the frozen no-observed-loss gate despite
+25.32% lower modeled deployment cost than files. Both label sets and all failed
+attempts remain preserved. Native/CLI/Langfuse counters reconcile for all144
+validation calls and72 audit calls. An ongoing registered comparison tests
+continued threads, prompt-prefix placement, files, FTS and actual Mem0 reuse
+across four questions at three corpus sizes. Current evidence supports neither
+a universal optimal configuration nor broad coding, cash or net-research savings.
 
-**Keywords:** coding agents; context compression; persistent memory; inference
-accounting; chronological evaluation; reproducibility.
+**Keywords:** coding agents; context compression; persistent memory; prompt caching;
+inference cost; chronological evaluation; reproducibility.
 
 ## 1. Research questions
 

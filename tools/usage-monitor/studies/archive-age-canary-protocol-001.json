@@ -1,0 +1,17 @@
+{
+  "id": "archive-age-canary-001",
+  "scope": "Two-invocation raw/older-output mechanism check, not a quality/cost optimization trial. Run only after current reuse block ends.",
+  "conditions": ["off", "older-shell-mask"],
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "maximum_model_processes": 2,
+  "automatic_process_retries": 0,
+  "timeout_seconds": 600,
+  "fixture": "Identical fresh nonsecret240-record file in both conditions. Read once, run five separate small shell commands, then recover through the supplied CLI if a handle appears and answer the requested record. Never reread the original file.",
+  "mechanism_gate": "Older-output requests must actually transform an output outside the most recent four; all latest-four fields, tool IDs/status and raw recovery remain intact. Archived source hashes must match exactly. Native per-response input counts must show an effective decrease of at least256 tokens at the first age transform compared with the preceding response, while raw control at the corresponding completed-output boundary does not show that decrease. A byte-only rewrite without effective token reduction is not applied whole-history compression. Verify every request/response count and counter before interpreting.",
+  "quality_gate": "Both requested fixture values correct. This explicit diagnostic recovery is not autonomous task-performance evidence.",
+  "cost": "All actual native responses, tool/recovery calls and failures are research expense; report fresh/cached/output and whole-invocation published-rate scenario. Different model action sequences forbid a broad causal savings claim. Effective input drop alone does not imply cheaper inference.",
+  "failure": "Stop on timeout/ambiguous completion/counter alignment/invalid source recovery; preserve every started call. No retries or repeated started invocation. Unsupported/opaque old history is a failed application gate, not zero savings.",
+  "overhead": "Both model invocations and all implementation/analysis are research expense, no deployment-saving claim.",
+  "rollback": "Separate explicit loopback experimental proxy only; normal provider8317 and paused schedules unchanged. Preserve private originals/forwarded requests and raw-source records."
+}

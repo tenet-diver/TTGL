@@ -2556,3 +2556,37 @@ transfer selection (notably Forth/react are reserved). No new routing/Aider mode
 trial or policy tuning performed; their sources/schedules remain untouched.
 Potential fresh public-source code candidates: connect, dominoes, sgf-parsing;
 only source/provenance screening considered, zero code benchmark inference.
+
+### 7 November: cache-aware continuation and reuse block running
+
+The user explicitly requires cost, including cache loss, rather than token-only
+optimization. The living paper abstract now incorporates completed24-case
+validation and72-call neutral audit: full/files24/24; FTS23/24 original and22/24
+neutral, so the frozen nominee remains rejected. Both labels are preserved.
+`update_context_progress.py` now reads actual reuse-worker progress; no partial
+quality/cost result is inferred. The existing worker PID461630 owns
+cache-memory-reuse001; inspect completion/stopped/progress before any action.
+Its generation and allocator sources remain frozen. Do not duplicate/retry.
+
+Accounting now discovers repeated-query readers and Mem0 extractions, deduplicates
+continued sessions, and refuses unregistered model rates. The21:04UTC snapshot
+has91,769,661 known native tokens /833.41517 published-rate scenario credits,
+including implementation/supervision. It is a cumulative lower bound, not cash,
+quota or net saving. One historical timed-out extraction remains unknown.
+Five native archive canaries and the actual two-call resumed-thread preflight
+also reconcile against Langfuse:6sessions, all exact, readonly audit receipt in
+private mechanism-langfuse-audit001. No new generation observations inserted.
+A three-contract session aggregation helper supports resumed-thread LF audits.
+
+Older-shell-mask is an explicit experimental variant, preserving the latest four
+completed outputs and supplying scoped exact-source CLI recovery. Four proxy/CLI
+contracts pass. Archive-age-canary001 is PREPARED ONLY, zero model calls; source
+manifest includes its read-only measurer under a preserved pre-inference amendment.
+Run only after reuse001 ends, through separate experimental proxy8323, to avoid
+cache interference. The registered gate requires actual native effective input
+drop and exact recovery, not just request byte changes. No default route change.
+
+Pinned unreserved Exercism Python Connect/Dominoes/SGF source controls pass all
+six expected empty/reference outcomes,48 official reference tests total; no coding
+model trials yet. Dated source/advisory/provenance reviews and private artifacts
+are retained. No new dependency install. Schedules remain PAUSED.

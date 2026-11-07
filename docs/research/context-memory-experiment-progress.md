@@ -102,7 +102,7 @@ Source specifications: [ten-idea experiment description](../handoffs/codex-conte
 <!-- current-block-snapshot:start -->
 ## Current filesystem snapshot
 
-Updated 2026-11-07T18:58:25.180531+00:00. Partial checks are provisional; final usage requires reconciliation.
+Updated 2026-11-07T21:05:49.807451+00:00. Partial checks are provisional; final usage requires reconciliation.
 
 | Block | Status | Started processes | Graded cells | Passing cells |
 |---|---|---:|---:|---:|
@@ -114,7 +114,8 @@ Updated 2026-11-07T18:58:25.180531+00:00. Partial checks are provisional; final 
 | longmemeval-validation-001 | Stopped; inspect preserved evidence | 0/144 | 0/72 | 0 |
 | longmemeval-validation-002 | Stopped; inspect preserved evidence | 61/144 | 0/72 | 0 |
 | longmemeval-validation-003 | Complete; reconciled;61 completed reader calls reused, never repeated | 83/83 | 72/72 | 71 |
-| longmemeval-neutral-judge-audit-002 | Running | 4/72 | 3/72 | 3 |
+| longmemeval-neutral-judge-audit-002 | Complete; reconciled | 72/72 | 72/72 | 70 |
+| cache-memory-reuse-001 | Running; quality and cost pending | 64/75 | Pending final reconciliation (61/72 readers completed) | Unknown |
 
 Started processes include preserved configuration failures. Missing grades/usage are unknown. This reader does not launch work or alter frozen study sources.
 <!-- current-block-snapshot:end -->
@@ -310,3 +311,16 @@ input. No cash, quality-transfer or default-adoption claim follows.
   The new per-turn allocator reconciles the existing2-call native-resume preflight
   without repeating inference. No scored reuse result yet. A first zero-model
   preparation and a versioned process-timer preparation amendment are retained.
+
+- Cache-aware continuation update: reuse001 is running its full registered75-call
+  maximum, with52/72 readers complete at the latest filesystem snapshot. No
+  quality or cost result is inferred from this partial state. Primary efficiency
+  compares observed fresh/cached/output cost plus actual memory extraction and
+  recovery; cache-hit percentage and token count are explanatory measurements.
+  Stable/changing prefixes and a continued-thread control test cache effects.
+  Local compute prices and subscription cash/quota impact remain unknown.
+- Coding-transfer preparation reviewed pinned MIT Exercism sources for Connect,
+  Dominoes and SGF Parsing, excluding all previously reserved exercise families.
+  Six empty/reference native controls behave as expected; references pass48
+  official tests. Zero coding-transfer model trials have started. These controls
+  are neither official benchmark scores nor evidence of agent performance.

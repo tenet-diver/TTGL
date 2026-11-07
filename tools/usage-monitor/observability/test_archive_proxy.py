@@ -8,6 +8,16 @@ from capture_proxy import Handler,experimental_archive_transform
 from exact_source_archive import ExactSourceArchive
 
 class ArchiveProxyTests(unittest.TestCase):
+    def test_age_route_preserves_recent_four_and_does_not_require_http_schema(self):
+        with tempfile.TemporaryDirectory() as d:
+            items=[]
+            for index in range(5):
+                items.extend([dict(type='custom_tool_call',name='exec',status='completed',call_id=str(index)),dict(type='custom_tool_call_output',call_id=str(index),output=('source '+str(index)+' ')*500)])
+            document=dict(input=items)
+            updated,meta=experimental_archive_transform(document,'older-shell-mask',Path(d))
+            self.assertEqual(len(meta['changes']),1)
+            self.assertIn('read_compression_source',updated['input'][1]['output'])
+            self.assertEqual(updated['input'][2:],document['input'][2:])
     def test_relative_archive_scope_is_absolute_and_shell_quoted(self):
         with tempfile.TemporaryDirectory(prefix='ttgl archive ') as d:
             captures=Path(d)/'private captures';text='Verified safe diagnostic record.\n'*120

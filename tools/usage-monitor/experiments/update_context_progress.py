@@ -43,6 +43,11 @@ def main():
         grades=[json.loads((p/'grade.json').read_text()) for p in cells if (p/'grade.json').exists()]
         status='Complete; reconciled' if (root/'results.json').exists() else 'Complete; audit pending' if (root/'complete.json').exists() else 'Running' if (root/'started.json').exists() else 'Registered before any validation grades'
         rows.append(f'| {root.name} | {status} | {sum((p/"started.json").exists() for p in cells)}/72 | {len(grades)}/72 | {sum(g["passed"] for g in grades)} |')
+    root=ROOT/'cache-memory-reuse-001'
+    if root.exists():
+        progress=json.loads((root/'progress.json').read_text()) if (root/'progress.json').exists() else {}
+        status='Complete; reconciled' if (root/'results.json').exists() else 'Complete; audit pending' if (root/'complete.json').exists() else 'Stopped; inspect preserved evidence' if (root/'stopped.json').exists() else 'Running; quality and cost pending' if (root/'started.json').exists() else 'Prepared'
+        rows.append(f'| {root.name} | {status} | {progress.get("processes",0)}/75 | Pending final reconciliation ({len(progress.get("readers",[]))}/72 readers completed) | Unknown |')
     stamp=datetime.now(timezone.utc).isoformat()
     block='\n'.join([START,'## Current filesystem snapshot','',f'Updated {stamp}. Partial checks are provisional; final usage requires reconciliation.','',
         '| Block | Status | Started processes | Graded cells | Passing cells |',

@@ -52,7 +52,7 @@ def sanitized(value):
 def experimental_archive_transform(document, policy, destination):
     """Opt-in only: require model-visible recovery before hiding any observation."""
     destination=destination.resolve()
-    if policy=='reversible-shell-handles':
+    if policy in ('reversible-shell-handles','older-shell-mask'):
         items=document.get('input',[]) if isinstance(document,dict) else []
         if not isinstance(items,list):items=[]
         executed={i.get('call_id') for i in items if isinstance(i,dict) and isinstance(i.get('call_id'),str) and i.get('type') in ('custom_tool_call','function_call') and i.get('name') in ('exec','exec_command','shell_command') and i.get('status')=='completed'}
@@ -198,7 +198,7 @@ class Handler(BaseHTTPRequestHandler):
         policy = 'off'
         route = parsed.path
         policies=('progress', 'headroom-lossless')
-        if getattr(self.server,'experimental_archive',False):policies+=('older-mask','reversible-handles','reversible-shell-handles')
+        if getattr(self.server,'experimental_archive',False):policies+=('older-mask','reversible-handles','reversible-shell-handles','older-shell-mask')
         for candidate in policies:
             prefix = '/compress/' + candidate
             if route.startswith(prefix + '/'):
@@ -243,7 +243,7 @@ class Handler(BaseHTTPRequestHandler):
                                 retained_sha256=hashlib.sha256(content.encode()).hexdigest(),
                                 retention='Redacted and bounded tool output; raw reasoning is never included'), stream)
                         temporary.replace(path)
-                if policy in ('older-mask','reversible-handles','reversible-shell-handles'):
+                if policy in ('older-mask','reversible-handles','reversible-shell-handles','older-shell-mask'):
                     updated, compression = experimental_archive_transform(document,policy,self.server.destination)
                 else:
                     updated, compression = transform_request(document, policy, retain_source)
