@@ -572,3 +572,25 @@ mechanism/accounting gate, not quality or efficiency evidence.
 
 - Compaction002 completes three operations with exact durable-fact retention and67,055 native tokens/0.85683 scenario credits. All3 responses reconcile transport/native/cumulative/Langfuse. Actual branch uses /responses for local compaction; remote endpoint gate remains unpassed. A zero-field post-compaction context-size notification is not a free response. Read-only measurement revision002 corrects a checker that accidentally treated userMessage notifications as tools; first measurement preserved.
 - Fresh compaction003 is registered before inference to exercise built-in openai with the supported openai_base_url override, rather than custom-provider fallback. Three logical operations maximum; no process retry. Built-in internal transport defaults are observed through wire requests, not falsely asserted disabled. Normal settings remain unchanged.
+
+## Verification selection001: registered fresh repair panel
+
+Three fresh unreserved Exercism families (alphametics, word-search, tournament)
+were selected before source fetch. The same pinned MIT source commit is used,
+with13 files verified and9 Python files inspected as stdlib-only. Own six
+empty/reference controls pass (46 reference tests); three deterministic seeded
+bugs cause real test failures. Full initial suite versus focused initial checks,
+mandatory full final suite in both arms;6 sequential native actors, no retries,
+host grades only after all generation. Cost includes every native response and
+cache bucket. This is a development repair diagnostic, not long-horizon evidence.
+
+Assigned-write/outside-deny sandbox software control002 passes with0 model calls.
+Control001 failed because a Python symlink was outside the mounted runtime; it is
+preserved. Actors use the resolved existing Python executable and native root-deny
+permissions. No new package/image execution. Base OS/provenance security coverage
+remains incomplete under the Codespace allowance, not a clearance. An inherited
+overhead-count typo was corrected12→6 with a preserved pre-inference amendment.
+
+Compaction003 terminates at initialize timeout before thread creation or any proxy
+request. No model turn started; preserve this bounded startup failure without
+repeating it. Built-in remote compaction remains unverified.
