@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "raw_records_exact": true,
+  "native_LLM_calls": 0,
+  "llm_guard": "raises before any invocation",
+  "ingestion_seconds": 0.21842182500040508,
+  "query_seconds": 0.04560006800238625,
+  "requested_hits": 3,
+  "actual_hits": 3,
+  "cross_tenant_hits": 0,
+  "cash_cost": null,
+  "local_compute_monetary_cost": null,
+  "note": "Mechanism only; no agent answer, economic or benchmark result. Dated raw records preserved, no extraction/consolidation. Optional NLP/BM25 absent.",
+  "shutdown_warning": "Qdrant destructor ImportError during Python shutdown after result and exit0; mechanism checks pass but cleanup not clean. Preserve stderr; verify explicit close in future protocol."
+}

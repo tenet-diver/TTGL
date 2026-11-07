@@ -2622,3 +2622,38 @@ sealed before inference; complete transform dependencies and read-only measureme
 added in preserved pre-inference amendment. Source controls remain6/6,48tests.
 Next run uses8324 experimental proxy, all4arms common transport. Do not infer
 compression efficacy from0transforms or public coding quality from controls.
+
+### 7 November: coding transfer complete; memory/backend continuation
+
+Coding-context-transfer001 completes12 calls,12/12 host original-test and
+artifact-policy passes.60 responses reconcileCLI/native/LF across12sessions.
+Raw315134tokens/3.68218scenario credits;Headroom341896/3.83520;age369345/4.15041;
+reversible443592/5.08760. Only reversible actually transforms3/3cells; each6
+changes/2exact sources/2successful recoveries. OthersUNAPPLIED. Appliedreversible
+costs38.17%more; no default adoption, no official benchmark/population claim.
+TTGLexperiment4d3cf1dd3f9442328da6d46b798168b6; owned8324proxy stopped.
+All generation/measurement sources remain frozen; no active model worker now.
+
+New infer=False Mem0 mechanism uses existing reviewed runtime, rawdatedrecords
+with no extraction, LLMmethodguardraisesbeforeinvocation.3exactrecords,latest
+retrieved,cross-tenant0. Firstexit0hasQdrantdestructorImportErroratshutdown;
+preserved. Follow-upreopenonlyreads3records,explicitvector/historyclose,0LLM
+and0embeddings,cleanstderr. Publicmechanismreceiptpreserveswarning; no efficacy.
+A fresh registeredraw-memorycostcomparison/long-horizoncodepanel remainsneeded.
+
+Graphiti[ku zu]28wheelgraph/OSV0butKuzudeprecated/upstreamarchived,notinstalled.
+FalkorDBLitecandidate35PythonOSV0butbundledRedis8.10.2affected byupstream8.10.3
+securityfix; pinnedpackagingsourcedownloadsunpatchedtag. Blockedbeforeinstall,
+neverexecute. UbuntuOpenSSL3.0.13-0ubuntu3.16backportsarenotupstream3.0.13
+unpatched; don'tmisflagversionstring. Fullprivatewheel/SBOM/source receipts.
+
+LHTB2pin7ca0cacea9bf6a0694eaad7306bed794eaaaabce,Apache2,77taskconfigs;
+onlymetadata/README/license/harnesspyprojectread,notgolds/hidden-tests/tasks.
+ForkHarbor0.7runtime102packagesresolves,butfilelock3.32.7selectedbyLiteLLM<4
+constraintmatches13OSVadvisories(fixed4.0.9/4.2.1).Blockedbeforeinstall,nooverride.
+No benchmarkimage/code/modelrun. Newdocs/research/long-horizon-context-memory.md
+recordsfeedback/stopping/fairness/readinessrequirements. Findmaintainedpatched
+runtimeorfullyreviewedexistingnativeadapterbeforetrials; don'tdeclareallbenchmarks
+permanentlyblocked. ExistingMem0filelock4.2.9isadifferentcleangraph.
+
+NormalTTGL/LFsupervisor4332remains; researchschedulesPAUSED. Remaininggoalactive.

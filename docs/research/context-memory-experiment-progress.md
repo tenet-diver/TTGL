@@ -102,7 +102,7 @@ Source specifications: [ten-idea experiment description](../handoffs/codex-conte
 <!-- current-block-snapshot:start -->
 ## Current filesystem snapshot
 
-Updated 2026-11-07T21:09:42.128735+00:00. Partial checks are provisional; final usage requires reconciliation.
+Updated 2026-11-07T21:23:46.878149+00:00. Partial checks are provisional; final usage requires reconciliation.
 
 | Block | Status | Started processes | Graded cells | Passing cells |
 |---|---|---:|---:|---:|
@@ -116,6 +116,7 @@ Updated 2026-11-07T21:09:42.128735+00:00. Partial checks are provisional; final 
 | longmemeval-validation-003 | Complete; reconciled;61 completed reader calls reused, never repeated | 83/83 | 72/72 | 71 |
 | longmemeval-neutral-judge-audit-002 | Complete; reconciled | 72/72 | 72/72 | 70 |
 | cache-memory-reuse-001 | Complete; reconciled | 75/75 | 72/72 | 72 |
+| coding-context-transfer-001 | Complete; reconciled | 12/12 (12 completed) | 12/12 | 12 |
 
 Started processes include preserved configuration failures. Missing grades/usage are unknown. This reader does not launch work or alter frozen study sources.
 <!-- current-block-snapshot:end -->
@@ -378,3 +379,59 @@ Both complete invocations count as research expense. Normal routing is unchanged
  12 fresh calls maximum. Same48 original tests across tasks; host grades after
   all generation, artifact-policy checks, zero retries, actual transform counts
   and complete inference cost. No official benchmark or long-horizon claim.
+
+- Graphiti0.31.2 embedded-backend review: exact28-package Kuzu candidate resolves,
+  all28 OSV queries show no matches, and28 downloaded wheels match registry hashes
+  with no automatic scripts. Nothing installed/executed. Rejected this backend
+  on maintenance grounds: [Graphiti](https://github.com/getzep/graphiti) deprecates
+  Kuzu and [upstream Kuzu](https://github.com/kuzudb/kuzu) is archived. This is not
+  a vulnerability finding against the selected Graphiti version; the historical
+  [Cypher advisory](https://github.com/advisories/GHSA-gg5m-55jj-8m5g) affects earlier
+  versions. Reviewing the supported FalkorDB Lite alternative before installation.
+- FalkorDB Lite candidate is blocked before installation/execution:35 Python
+  packages have no OSV matches, but wheel metadata and its pinned build source
+  identify bundled Redis8.10.2, while [upstream8.10.3](https://github.com/redis/redis/releases/tag/8.10.3)
+  fixes a heap-overflow issue. This is a component finding, not a claim that a
+  Python package scan found it. Scope/isolation does not waive the standing
+  confirmed-vulnerability rule. OpenSSL's Ubuntu backports were distinguished
+  from its upstream version string. Continue Graphiti review with a patched
+  maintained backend; neither rejected backend was installed or executed.
+- LHTB2 source is pinned at7ca0cacea9bf6a0694eaad7306bed794eaaaabce
+  (Apache-2.0,77 task configs; metadata/README/license/declarations only).
+  First fork runtime resolves102 packages; OSV finds13 advisories on filelock3.32.7
+  selected by LiteLLM's filelock<4 constraint. That candidate is blocked before
+  install/execute; no incompatible dependency override. Existing reviewed Mem0
+  uses filelock4.2.9 and is a different graph. See
+  [long-horizon readiness](long-horizon-context-memory.md). No LHTB score exists.
+
+## Fresh public coding transfer001
+
+The complete12-run panel passes all sealed original tests and protected-file
+checks on Connect, Dominoes and SGF Parsing. All60 unique native responses
+reconcile with CLI counters; Langfuse auditing is separate. Three tasks share
+public48-test suites, with actor self-validation and fresh host execution.
+These public exercises may be familiar to pretrained models; this is a small
+development transfer diagnostic, not an official benchmark or long-horizon study.
+
+| Condition | Passing tasks | Applied tasks | Native tokens | Modeled credits |
+|---|---:|---:|---:|---:|
+| headroom-lossless | 3/3 | 0/3 | 341,896 | 3.83520 |
+| off | 3/3 | 0/3 | 315,134 | 3.68218 |
+| older-shell-mask | 3/3 | 0/3 | 369,345 | 4.15041 |
+| reversible-shell-handles | 3/3 | 3/3 | 443,592 | 5.08760 |
+
+Reversible handles apply on3/3 tasks but cost38.17% more in aggregate, including all actual recovery inference.
+Exact retained-source hashes are verified. Headroom and age masking have zero
+transformations on these actual tasks: their contrasts are UNAPPLIED and cannot
+establish a compression effect. Their differing action sequences and token/cost
+totals remain visible, rather than being presented as savings or removed.
+No candidate is promoted from this panel. Cash/quota impact remains unknown.
+
+- Coding-transfer001 all60 native responses reconcile Langfuse across12sessions;
+  TTGL experiment4d3cf1dd3f9442328da6d46b798168b6. Owned8324 proxy stopped.
+- Mem0 infer=False raw-record mechanism passes exact retention, latest-record
+  retrieval and tenant separation with0 LLM calls. First process exits0 but emits
+  a Qdrant shutdown-destructor warning; preserved. A read-only reopen verifies
+  all3 records and explicit close with0 embeddings/LLM calls and clean stderr.
+  No agent-quality or cost-saving result follows; a fresh matched comparison
+  remains necessary. Existing reviewed runtime and pinned local encoder only.

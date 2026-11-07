@@ -1,0 +1,349 @@
+{
+  "id": "coding-context-transfer-001",
+  "model_processes": 12,
+  "independent_test_successes": 12,
+  "unique_native_responses": 60,
+  "totals": {
+    "headroom-lossless": {
+      "native_tokens": 341896,
+      "credit_rate_scenario": 3.8351999999999995,
+      "passed": 3,
+      "cells": 3,
+      "applied_cells": 0
+    },
+    "off": {
+      "native_tokens": 315134,
+      "credit_rate_scenario": 3.6821800000000002,
+      "passed": 3,
+      "cells": 3,
+      "applied_cells": 0
+    },
+    "older-shell-mask": {
+      "native_tokens": 369345,
+      "credit_rate_scenario": 4.15041,
+      "passed": 3,
+      "cells": 3,
+      "applied_cells": 0
+    },
+    "reversible-shell-handles": {
+      "native_tokens": 443592,
+      "credit_rate_scenario": 5.0876,
+      "passed": 3,
+      "cells": 3,
+      "applied_cells": 3
+    }
+  },
+  "cells": [
+    {
+      "case": "connect",
+      "condition": "off",
+      "usage": {
+        "input_tokens": 93828,
+        "cached_input_tokens": 78720,
+        "output_tokens": 820,
+        "total_tokens": 94648
+      },
+      "cost": 1.1572,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.3206416409993835
+      },
+      "application": {
+        "transformations": 0,
+        "unique_exact_sources": 0,
+        "status": "raw control",
+        "recovery_attempts": 0,
+        "recovery_exit_codes": []
+      }
+    },
+    {
+      "case": "connect",
+      "condition": "headroom-lossless",
+      "usage": {
+        "input_tokens": 118558,
+        "cached_input_tokens": 103296,
+        "output_tokens": 728,
+        "total_tokens": 119286
+      },
+      "cost": 1.2033399999999999,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.11734957800217671
+      },
+      "application": {
+        "transformations": 0,
+        "unique_exact_sources": 0,
+        "status": "UNAPPLIED",
+        "recovery_attempts": 0,
+        "recovery_exit_codes": []
+      }
+    },
+    {
+      "case": "connect",
+      "condition": "reversible-shell-handles",
+      "usage": {
+        "input_tokens": 144235,
+        "cached_input_tokens": 127872,
+        "output_tokens": 883,
+        "total_tokens": 145118
+      },
+      "cost": 1.3585800000000001,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.1748015109988046
+      },
+      "application": {
+        "transformations": 6,
+        "unique_exact_sources": 2,
+        "status": "APPLIED",
+        "recovery_attempts": 2,
+        "recovery_exit_codes": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "case": "connect",
+      "condition": "older-shell-mask",
+      "usage": {
+        "input_tokens": 118737,
+        "cached_input_tokens": 103424,
+        "output_tokens": 774,
+        "total_tokens": 119511
+      },
+      "cost": 1.21771,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.12390999000126612
+      },
+      "application": {
+        "transformations": 0,
+        "unique_exact_sources": 0,
+        "status": "UNAPPLIED",
+        "recovery_attempts": 0,
+        "recovery_exit_codes": []
+      }
+    },
+    {
+      "case": "dominoes",
+      "condition": "headroom-lossless",
+      "usage": {
+        "input_tokens": 94560,
+        "cached_input_tokens": 79232,
+        "output_tokens": 651,
+        "total_tokens": 95211
+      },
+      "cost": 1.12723,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.11918471099852468
+      },
+      "application": {
+        "transformations": 0,
+        "unique_exact_sources": 0,
+        "status": "UNAPPLIED",
+        "recovery_attempts": 0,
+        "recovery_exit_codes": []
+      }
+    },
+    {
+      "case": "dominoes",
+      "condition": "reversible-shell-handles",
+      "usage": {
+        "input_tokens": 145255,
+        "cached_input_tokens": 113024,
+        "output_tokens": 960,
+        "total_tokens": 146215
+      },
+      "cost": 2.13411,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.11764296100227511
+      },
+      "application": {
+        "transformations": 6,
+        "unique_exact_sources": 2,
+        "status": "APPLIED",
+        "recovery_attempts": 2,
+        "recovery_exit_codes": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "case": "dominoes",
+      "condition": "older-shell-mask",
+      "usage": {
+        "input_tokens": 94532,
+        "cached_input_tokens": 79232,
+        "output_tokens": 658,
+        "total_tokens": 95190
+      },
+      "cost": 1.12758,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.21816570499868249
+      },
+      "application": {
+        "transformations": 0,
+        "unique_exact_sources": 0,
+        "status": "UNAPPLIED",
+        "recovery_attempts": 0,
+        "recovery_exit_codes": []
+      }
+    },
+    {
+      "case": "dominoes",
+      "condition": "off",
+      "usage": {
+        "input_tokens": 94375,
+        "cached_input_tokens": 78976,
+        "output_tokens": 611,
+        "total_tokens": 94986
+      },
+      "cost": 1.1201400000000001,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.1183524479965854
+      },
+      "application": {
+        "transformations": 0,
+        "unique_exact_sources": 0,
+        "status": "raw control",
+        "recovery_attempts": 0,
+        "recovery_exit_codes": []
+      }
+    },
+    {
+      "case": "sgf-parsing",
+      "condition": "reversible-shell-handles",
+      "usage": {
+        "input_tokens": 150946,
+        "cached_input_tokens": 132224,
+        "output_tokens": 1313,
+        "total_tokens": 152259
+      },
+      "cost": 1.59491,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.1695646760017553
+      },
+      "application": {
+        "transformations": 6,
+        "unique_exact_sources": 2,
+        "status": "APPLIED",
+        "recovery_attempts": 2,
+        "recovery_exit_codes": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "case": "sgf-parsing",
+      "condition": "older-shell-mask",
+      "usage": {
+        "input_tokens": 153089,
+        "cached_input_tokens": 131328,
+        "output_tokens": 1555,
+        "total_tokens": 154644
+      },
+      "cost": 1.8051199999999998,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.2253479499995592
+      },
+      "application": {
+        "transformations": 0,
+        "unique_exact_sources": 0,
+        "status": "UNAPPLIED",
+        "recovery_attempts": 0,
+        "recovery_exit_codes": []
+      }
+    },
+    {
+      "case": "sgf-parsing",
+      "condition": "off",
+      "usage": {
+        "input_tokens": 124406,
+        "cached_input_tokens": 107136,
+        "output_tokens": 1094,
+        "total_tokens": 125500
+      },
+      "cost": 1.40484,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.1721741870023834
+      },
+      "application": {
+        "transformations": 0,
+        "unique_exact_sources": 0,
+        "status": "raw control",
+        "recovery_attempts": 0,
+        "recovery_exit_codes": []
+      }
+    },
+    {
+      "case": "sgf-parsing",
+      "condition": "headroom-lossless",
+      "usage": {
+        "input_tokens": 125916,
+        "cached_input_tokens": 108672,
+        "output_tokens": 1483,
+        "total_tokens": 127399
+      },
+      "cost": 1.50463,
+      "grade": {
+        "passed": true,
+        "kind": "Independent sealed original unittest execution plus artifact policy",
+        "test_exit_code": 0,
+        "modified_protected_files": [],
+        "host_test_seconds": 0.269529239001713
+      },
+      "application": {
+        "transformations": 0,
+        "unique_exact_sources": 0,
+        "status": "UNAPPLIED",
+        "recovery_attempts": 0,
+        "recovery_exit_codes": []
+      }
+    }
+  ],
+  "cash_cost": null,
+  "note": "Three public exercise development cases; zero-transform cells are unapplied, not compression efficacy. No official benchmark, population noninferiority or long-horizon memory claim."
+}

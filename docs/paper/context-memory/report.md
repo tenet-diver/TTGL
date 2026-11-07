@@ -2,7 +2,8 @@
 
 **Status:** living scientific-format report, 7 November 2026. The registered
 LongMemEval validation and neutral grading audit are complete; repeated-query
-cache/reuse trials are complete. Public coding-transfer model trials remain pending.
+cache/reuse trials are complete. The12-call public coding-transfer diagnostic is complete. Broader long-horizon
+coding/memory validation remains pending.
 Author and affiliation to be supplied.
 
 ## Abstract
@@ -619,3 +620,26 @@ Raw costs1.39721 modeled credits (185,493 tokens); masking plus recovery costs
 1.63609 (202,361 tokens),17.09% more. The native history mechanism works but does
 not establish cost savings, autonomous recovery or coding-task performance.
 Both complete invocations count as research expense. Normal routing is unchanged.
+
+## Fresh public coding transfer001
+
+The complete12-run panel passes all sealed original tests and protected-file
+checks on Connect, Dominoes and SGF Parsing. All60 unique native responses
+reconcile with CLI counters and Langfuse across12 sessions. Three tasks share
+public48-test suites, with actor self-validation and fresh host execution.
+These public exercises may be familiar to pretrained models; this is a small
+development transfer diagnostic, not an official benchmark or long-horizon study.
+
+| Condition | Passing tasks | Applied tasks | Native tokens | Modeled credits |
+|---|---:|---:|---:|---:|
+| headroom-lossless | 3/3 | 0/3 | 341,896 | 3.83520 |
+| off | 3/3 | 0/3 | 315,134 | 3.68218 |
+| older-shell-mask | 3/3 | 0/3 | 369,345 | 4.15041 |
+| reversible-shell-handles | 3/3 | 3/3 | 443,592 | 5.08760 |
+
+Reversible handles apply on3/3 tasks but cost38.17% more in aggregate, including all actual recovery inference.
+Exact retained-source hashes are verified. Headroom and age masking have zero
+transformations on these actual tasks: their contrasts are UNAPPLIED and cannot
+establish a compression effect. Their differing action sequences and token/cost
+totals remain visible, rather than being presented as savings or removed.
+No candidate is promoted from this panel. Cash/quota impact remains unknown.

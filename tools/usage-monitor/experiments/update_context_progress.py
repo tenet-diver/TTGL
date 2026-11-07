@@ -51,6 +51,13 @@ def main():
         grade_text='72/72' if result else f'Pending final reconciliation ({len(progress.get("readers",[]))}/72 readers completed)'
         passing=sum(c['grade']['passed'] for c in result['cells'] if c.get('role')=='reader') if result else 'Unknown'
         rows.append(f'| {root.name} | {status} | {progress.get("processes",0)}/75 | {grade_text} | {passing} |')
+    root=ROOT/'coding-context-transfer-001'
+    if root.exists():
+        progress=json.loads((root/'progress.json').read_text()) if (root/'progress.json').exists() else {}
+        grades=[json.loads(p.read_text()) for p in root.glob('*/*/grade.json')]
+        started=sum(1 for p in root.glob('*/*/started.json'))
+        status='Complete; reconciled' if (root/'results.json').exists() else 'Complete; audit pending' if (root/'complete.json').exists() else 'Stopped; preserved, no retry' if (root/'stopped.json').exists() else 'Running; host grades follow all generation' if (root/'started.json').exists() else 'Prepared'
+        rows.append(f'| {root.name} | {status} | {started}/12 ({len(progress.get("cells",[]))} completed) | {len(grades)}/12 | {sum(g["passed"] for g in grades)} |')
     stamp=datetime.now(timezone.utc).isoformat()
     block='\n'.join([START,'## Current filesystem snapshot','',f'Updated {stamp}. Partial checks are provisional; final usage requires reconciliation.','',
         '| Block | Status | Started processes | Graded cells | Passing cells |',
