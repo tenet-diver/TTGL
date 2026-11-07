@@ -180,3 +180,13 @@ untouched pending separately registered frozen validation.
 [Aggregate source](../../tools/usage-monitor/studies/longmemeval-codex-development-results-002.json).
 The archive integration now passes8 offline policy/persistence checks, including
 actual existing MCP source retrieval; no live cache/efficacy claim follows.
+
+- Validation registration: freeze exact FTS nominee against plain file search and
+  full history on the24 previously reserved cases,144 processes including judges.
+  Primary added-value control is plain search. Require every matched baseline
+  success retained, >=10% pooled scenario-cost reduction and >=13/24 paired cost
+  wins against each control; otherwise report failure without tuning/replacement.
+  First preparation ended before preflight/model invocation; a full-JSON parse
+  diagnostic exited143, cause unknown. Preserve that preparation. Validation002
+  uses bounded stdlib JSON iteration (3 contract checks) without changing records,
+  prompts, allocation or scoring. No validation model calls repeated.
