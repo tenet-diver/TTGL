@@ -1,0 +1,141 @@
+{
+  "id": "archive-age-canary-001",
+  "acceptance_passed": true,
+  "first_transform_effective_input_drop": 4494,
+  "raw_corresponding_drop": -88,
+  "arms": {
+    "off": {
+      "trajectory": [
+        {
+          "response_id": "resp_0157d5c7ec0ddea1016aef93628ec087d285cd06a3a06b8fa2",
+          "completed_outputs": 0,
+          "transformations": 0,
+          "input_tokens": 22066
+        },
+        {
+          "response_id": "resp_0157d5c7ec0ddea1016aef936739d887d2bda134c8419e55c6",
+          "completed_outputs": 1,
+          "transformations": 0,
+          "input_tokens": 26978
+        },
+        {
+          "response_id": "resp_0157d5c7ec0ddea1016aef936a02a487d2bee9a62b067107d6",
+          "completed_outputs": 2,
+          "transformations": 0,
+          "input_tokens": 27067
+        },
+        {
+          "response_id": "resp_0157d5c7ec0ddea1016aef936d133c87d2bd587268a504fda6",
+          "completed_outputs": 3,
+          "transformations": 0,
+          "input_tokens": 27156
+        },
+        {
+          "response_id": "resp_0157d5c7ec0ddea1016aef937014a487d2a67fc2087d38b613",
+          "completed_outputs": 4,
+          "transformations": 0,
+          "input_tokens": 27246
+        },
+        {
+          "response_id": "resp_0157d5c7ec0ddea1016aef9372eb1c87d2afa2fbad76fb7d7f",
+          "completed_outputs": 5,
+          "transformations": 0,
+          "input_tokens": 27334
+        },
+        {
+          "response_id": "resp_0157d5c7ec0ddea1016aef9375e29487d2ab57490c1d21d9e5",
+          "completed_outputs": 6,
+          "transformations": 0,
+          "input_tokens": 27422
+        }
+      ],
+      "unique_sources": 0,
+      "raw_bypasses": 0,
+      "recovery_exit_codes": [],
+      "answer_correct": true
+    },
+    "older-shell-mask": {
+      "trajectory": [
+        {
+          "response_id": "resp_0d19e25f52f674a0016aef9380dd9887d2a23c2cedba48f147",
+          "completed_outputs": 0,
+          "transformations": 0,
+          "input_tokens": 22075
+        },
+        {
+          "response_id": "resp_0d19e25f52f674a0016aef938515dc87d29d534cbe32c1f526",
+          "completed_outputs": 1,
+          "transformations": 0,
+          "input_tokens": 26988
+        },
+        {
+          "response_id": "resp_0d19e25f52f674a0016aef9387aa4087d2842dc7522b4783bd",
+          "completed_outputs": 2,
+          "transformations": 0,
+          "input_tokens": 27078
+        },
+        {
+          "response_id": "resp_0d19e25f52f674a0016aef938a2d5c87d2a95b01c8a82779b8",
+          "completed_outputs": 3,
+          "transformations": 0,
+          "input_tokens": 27167
+        },
+        {
+          "response_id": "resp_0d19e25f52f674a0016aef938c8b0087d2b5466026e837de47",
+          "completed_outputs": 4,
+          "transformations": 0,
+          "input_tokens": 27257
+        },
+        {
+          "response_id": "resp_0d19e25f52f674a0016aef938f42b487d28bd68f925594cc0e",
+          "completed_outputs": 5,
+          "transformations": 1,
+          "input_tokens": 22763
+        },
+        {
+          "response_id": "resp_0d19e25f52f674a0016aef9392c76887d2980c05d05b18d4fb",
+          "completed_outputs": 6,
+          "transformations": 1,
+          "input_tokens": 22851
+        },
+        {
+          "response_id": "resp_0d19e25f52f674a0016aef9398ef6887d29fb0ed833a25b25f",
+          "completed_outputs": 7,
+          "transformations": 1,
+          "input_tokens": 25819
+        }
+      ],
+      "unique_sources": 1,
+      "raw_bypasses": 1,
+      "recovery_exit_codes": [
+        0
+      ],
+      "answer_correct": true
+    }
+  },
+  "note": "Actual native input application gate only. No token/cost saving or coding-performance inference; all calls are research expense.",
+  "complete_invocation_cost": [
+    {
+      "condition": "off",
+      "usage": {
+        "input_tokens": 185269,
+        "cached_input_tokens": 166784,
+        "output_tokens": 224,
+        "total_tokens": 185493
+      },
+      "credit_rate_scenario": 1.39721
+    },
+    {
+      "condition": "older-shell-mask",
+      "usage": {
+        "input_tokens": 201998,
+        "cached_input_tokens": 180096,
+        "output_tokens": 363,
+        "total_tokens": 202361
+      },
+      "credit_rate_scenario": 1.63609
+    }
+  ],
+  "cost_interpretation": "Treated complete invocation costs17.09% more than raw; extra recovery inference included. Successful application is not a deployment saving.",
+  "native_cli_reconciled": true
+}

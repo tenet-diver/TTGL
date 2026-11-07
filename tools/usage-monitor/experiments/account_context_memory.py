@@ -63,6 +63,11 @@ def main():
             if not line.startswith(b'{'):continue
             row=json.loads(line)
             if row.get('type')=='thread.started':sessions[row['thread_id']]='evaluation_judges'
+    for path in ROOT.glob('archive-age-canary-*/*/agent.jsonl'):
+        for line in path.read_bytes().split(b'\n'):
+            if not line.startswith(b'{'):continue
+            row=json.loads(line)
+            if row.get('type')=='thread.started':sessions[row['thread_id']]='context_mechanism_preflight'
     for path in ROOT.glob('archive-native-canary-*/reader/agent.jsonl'):
         for line in path.read_text().splitlines():
             try:row=json.loads(line)

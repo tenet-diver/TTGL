@@ -2,7 +2,7 @@
 
 **Status:** living scientific-format report, 7 November 2026. The registered
 LongMemEval validation and neutral grading audit are complete; repeated-query
-cache/reuse trials are running. Public coding-transfer model trials remain pending.
+cache/reuse trials are complete. Public coding-transfer model trials remain pending.
 Author and affiliation to be supplied.
 
 ## Abstract
@@ -22,9 +22,11 @@ under the original rubric; a separately registered anonymous audit finds24/24,
 24/24 and22/24. FTS therefore fails the frozen no-observed-loss gate despite
 25.32% lower modeled deployment cost than files. Both label sets and all failed
 attempts remain preserved. Native/CLI/Langfuse counters reconcile for all144
-validation calls and72 audit calls. An ongoing registered comparison tests
+validation calls and72 audit calls. A registered75-call comparison tests
 continued threads, prompt-prefix placement, files, FTS and actual Mem0 reuse
-across four questions at three corpus sizes. Current evidence supports neither
+across four questions at three corpus sizes; all72 reader checks pass. Changing-
+prefix fresh sessions use1.07% fewer tokens yet cost159.86% more than continued
+full context. Mem0 costs271.81% more including actual extraction and reuse. Current evidence supports neither
 a universal optimal configuration nor broad coding, cash or net-research savings.
 
 **Keywords:** coding agents; context compression; persistent memory; prompt caching;
@@ -572,3 +574,48 @@ limit quality inference. No tight population noninferiority margin or actual
 subscription cash saving is established. A subsequent reuse comparison needs an
 actual continued full-context cache control, whose current native cumulative
 metering was separately validated before scored reuse trials.
+
+## Actual cache and memory reuse: registered block001
+
+All75 calls complete:72 readers and3 actual Mem0 extractions. Every arm passes
+12/12 independent exact checks. All115 unique native responses reconcile with
+CLI per-turn counters and Langfuse across66 sessions; cumulative resumed-thread
+snapshots are never added. These are generated factual-recall diagnostics at
+three corpus sizes, not coding tasks or a population-quality validation.
+
+| Condition | Native tokens incl. extraction | Scenario credits | Change vs continued |
+|---|---:|---:|---:|
+| continued_full | 480,951 | 5.46879 | +0.00% |
+| file_search | 572,597 | 5.50505 | +0.66% |
+| fresh_full_head | 605,027 | 13.72351 | +150.94% |
+| fresh_full_tail | 475,801 | 14.21133 | +159.86% |
+| fts | 632,529 | 6.59329 | +20.56% |
+| mem0_dense | 850,894 | 20.33354 | +271.81% |
+
+Fresh changing-prefix full context uses1.07% fewer tokens than continued full
+context yet costs159.86% more in this scenario. Its observed cached-input fraction
+is42.64%, compared with81.52% for the continued control. Thus fewer tokens do not
+establish lower cost. Stable-prefix fresh sessions also cost more than continued
+context in this finite run; ordering and stochastic/cache-state variation limit
+causal attribution to prefix placement alone.
+
+Mem0 includes extraction once per corpus and four actual questions each. Its
+pooled model-rate cost is271.81% above the continued control after these queries;
+no extrapolated future break-even or optimal reuse count is claimed. Actual
+per-corpus curves after1–4 questions remain in the public result. Local embedding,
+indexing/loading and retrieval runtime are separate; monetary local cost and
+subscription cash/quota remain unknown. FTS passing this generated diagnostic
+does not reverse its failed registered LongMemEval validation.
+
+
+## Actual older-history application gate001
+
+Both registered calls completed and answered correctly. The first old-output
+transform reduces native response input by4,494 tokens; corresponding raw input
+increases88. The newest four observations remain intact, one archived source is
+exact, and one successful CLI retrieval passes through raw. All15 native responses
+reconcile CLI; the separate bounded Langfuse audit checks both sessions.
+Raw costs1.39721 modeled credits (185,493 tokens); masking plus recovery costs
+1.63609 (202,361 tokens),17.09% more. The native history mechanism works but does
+not establish cost savings, autonomous recovery or coding-task performance.
+Both complete invocations count as research expense. Normal routing is unchanged.

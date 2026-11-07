@@ -102,7 +102,7 @@ Source specifications: [ten-idea experiment description](../handoffs/codex-conte
 <!-- current-block-snapshot:start -->
 ## Current filesystem snapshot
 
-Updated 2026-11-07T21:05:49.807451+00:00. Partial checks are provisional; final usage requires reconciliation.
+Updated 2026-11-07T21:09:42.128735+00:00. Partial checks are provisional; final usage requires reconciliation.
 
 | Block | Status | Started processes | Graded cells | Passing cells |
 |---|---|---:|---:|---:|
@@ -115,7 +115,7 @@ Updated 2026-11-07T21:05:49.807451+00:00. Partial checks are provisional; final 
 | longmemeval-validation-002 | Stopped; inspect preserved evidence | 61/144 | 0/72 | 0 |
 | longmemeval-validation-003 | Complete; reconciled;61 completed reader calls reused, never repeated | 83/83 | 72/72 | 71 |
 | longmemeval-neutral-judge-audit-002 | Complete; reconciled | 72/72 | 72/72 | 70 |
-| cache-memory-reuse-001 | Running; quality and cost pending | 64/75 | Pending final reconciliation (61/72 readers completed) | Unknown |
+| cache-memory-reuse-001 | Complete; reconciled | 75/75 | 72/72 | 72 |
 
 Started processes include preserved configuration failures. Missing grades/usage are unknown. This reader does not launch work or alter frozen study sources.
 <!-- current-block-snapshot:end -->
@@ -324,3 +324,57 @@ input. No cash, quality-transfer or default-adoption claim follows.
   Six empty/reference native controls behave as expected; references pass48
   official tests. Zero coding-transfer model trials have started. These controls
   are neither official benchmark scores nor evidence of agent performance.
+
+## Actual cache and memory reuse: registered block001
+
+All75 calls complete:72 readers and3 actual Mem0 extractions. Every arm passes
+12/12 independent exact checks. All115 unique native responses reconcile with
+CLI per-turn counters and Langfuse across66 sessions; cumulative resumed-thread
+snapshots are never added. These are generated factual-recall diagnostics at
+three corpus sizes, not coding tasks or a population-quality validation.
+
+| Condition | Native tokens incl. extraction | Scenario credits | Change vs continued |
+|---|---:|---:|---:|
+| continued_full | 480,951 | 5.46879 | +0.00% |
+| file_search | 572,597 | 5.50505 | +0.66% |
+| fresh_full_head | 605,027 | 13.72351 | +150.94% |
+| fresh_full_tail | 475,801 | 14.21133 | +159.86% |
+| fts | 632,529 | 6.59329 | +20.56% |
+| mem0_dense | 850,894 | 20.33354 | +271.81% |
+
+Fresh changing-prefix full context uses1.07% fewer tokens than continued full
+context yet costs159.86% more in this scenario. Its observed cached-input fraction
+is42.64%, compared with81.52% for the continued control. Thus fewer tokens do not
+establish lower cost. Stable-prefix fresh sessions also cost more than continued
+context in this finite run; ordering and stochastic/cache-state variation limit
+causal attribution to prefix placement alone.
+
+Mem0 includes extraction once per corpus and four actual questions each. Its
+pooled model-rate cost is271.81% above the continued control after these queries;
+no extrapolated future break-even or optimal reuse count is claimed. Actual
+per-corpus curves after1–4 questions remain in the public result. Local embedding,
+indexing/loading and retrieval runtime are separate; monetary local cost and
+subscription cash/quota remain unknown. FTS passing this generated diagnostic
+does not reverse its failed registered LongMemEval validation.
+
+
+## Actual older-history application gate001
+
+Both registered calls completed and answered correctly. The first old-output
+transform reduces native response input by4,494 tokens; corresponding raw input
+increases88. The newest four observations remain intact, one archived source is
+exact, and one successful CLI retrieval passes through raw. All15 native responses
+reconcile CLI; the separate bounded Langfuse audit checks both sessions.
+Raw costs1.39721 modeled credits (185,493 tokens); masking plus recovery costs
+1.63609 (202,361 tokens),17.09% more. The native history mechanism works but does
+not establish cost savings, autonomous recovery or coding-task performance.
+Both complete invocations count as research expense. Normal routing is unchanged.
+
+- Native age gate001 Langfuse delivery caught up: receipt002 reconciles all15
+  responses across both sessions. Initial lagging receipt001 is preserved; no
+  generation re-ingested or repeated. Owned proxy8323 stopped after verification.
+- Coding-context-transfer001 registered and prepared before inference: three
+  pinned unreserved MIT Exercism exercises × raw/Headroom/reversible/older-mask,
+ 12 fresh calls maximum. Same48 original tests across tasks; host grades after
+  all generation, artifact-policy checks, zero retries, actual transform counts
+  and complete inference cost. No official benchmark or long-horizon claim.

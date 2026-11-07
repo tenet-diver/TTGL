@@ -1,0 +1,23 @@
+{
+  "id": "coding-context-transfer-001",
+  "scope": "Three unreserved pinned MIT Exercism Python exercises, source-only native coding transfer diagnostic. Not official Aider, SWE-bench or Terminal-Bench scores; not long-horizon memory validation.",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "families": ["connect", "dominoes", "sgf-parsing"],
+  "conditions": ["off", "headroom-lossless", "reversible-shell-handles", "older-shell-mask"],
+  "baseline_condition": "off",
+  "maximum_model_processes": 12,
+  "automatic_process_retries": 0,
+  "timeout_seconds": 900,
+  "source": "exercism/python commit479f11b44b02337b0413e805b948491c2179615a;13 reviewed files, exact Gitblob/SHA256 verified, dated pre-execution advisory/provenance receipt; no external packages. All previously reserved36 exercise families excluded before source inspection.",
+  "controls": "Each task own empty/reference checks completed before model inference;12/13/23 tests respectively. All6 controls behave as expected. Reference implementations excluded from actor workspaces.",
+  "matching": "Same source stub, visible official tests, instructions, model/effort, native tool harness, separate raw capture root and provider for every arm. Prompt common. Fresh isolated thread/workspace for every cell. No examples/gold/grades or cross-arm solutions in actor prompts. Host grades occur after all generation.",
+  "ordering": "Task order fixed as listed; rotate condition order left by task index. No parallel model inference and no other research model worker during block. No favorable stopping.",
+  "application": "Count actual transformations and exact-source preservation per cell. Zero transforms are UNAPPLIED, never efficacy evidence. Shell archive recovery commands use the same absolute scoped CLI path tested in native005 and age001. Age001 passed actual4494-input-token reduction and exact raw recovery. Count every response and recovery regardless of outcome.",
+  "primary": "Characterize complete coding-task published-rate inference cost conditional on all matched raw-control successes retained. Report fresh/cached/output plus failed calls, runtime, transform/recovery counts and independent native test outcomes. No treatment nomination or population noninferiority from3 tasks; no guarantee of savings.",
+  "grading": "Fresh host copies of sealed original tests plus only actor solution module, Python -I -S unittest discover;48 assertions across3 tasks. Reject edited official tests/instructions/license as artifact-policy violations even when host tests pass. Visible self-validation is permitted; do not feed host grades into live generation.",
+  "failure": "Stop on process failure/timeout/ambiguous completion/source change/missing counters. Preserve every started or uncertain call, zero automatic retries, no replacement. A wrong solution does not stop remaining cells.",
+  "cost": "Price each unique native response using frozen fresh/cached/output scenario, including recovery; subscription cash/quota and local operational prices remain unknown. Fewer tokens alone never a win.",
+  "overhead": "All12 coding invocations and development/security/analysis are research expense. No net first-use saving assumption.",
+  "rollback": "Separate explicit experimental proxy8324 only. No default provider, normal services, historical source/artifacts or paused schedules changed. Private captures and candidate patches remain in ignored work/security."
+}

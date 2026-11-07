@@ -1,0 +1,736 @@
+{
+  "id": "cache-memory-reuse-001",
+  "model_processes": 75,
+  "reader_calls": 72,
+  "extraction_calls": 3,
+  "unique_native_responses": 115,
+  "langfuse_sessions": 66,
+  "all_native_cli_langfuse_reconciled": true,
+  "totals": {
+    "continued_full": {
+      "task_credit_rate_scenario": 5.46879,
+      "task_native_tokens": 480951,
+      "usage": {
+        "input_tokens": 480760,
+        "cached_input_tokens": 391936,
+        "output_tokens": 191,
+        "total_tokens": 480951
+      },
+      "reader_successes": 12,
+      "reader_count": 12
+    },
+    "file_search": {
+      "task_credit_rate_scenario": 5.50505,
+      "task_native_tokens": 572597,
+      "usage": {
+        "input_tokens": 571941,
+        "cached_input_tokens": 489600,
+        "output_tokens": 656,
+        "total_tokens": 572597
+      },
+      "reader_successes": 12,
+      "reader_count": 12
+    },
+    "fresh_full_head": {
+      "task_credit_rate_scenario": 13.72351,
+      "task_native_tokens": 605027,
+      "usage": {
+        "input_tokens": 604583,
+        "cached_input_tokens": 349824,
+        "output_tokens": 444,
+        "total_tokens": 605027
+      },
+      "reader_successes": 12,
+      "reader_count": 12
+    },
+    "fresh_full_tail": {
+      "task_credit_rate_scenario": 14.21133,
+      "task_native_tokens": 475801,
+      "usage": {
+        "input_tokens": 475541,
+        "cached_input_tokens": 202752,
+        "output_tokens": 260,
+        "total_tokens": 475801
+      },
+      "reader_successes": 12,
+      "reader_count": 12
+    },
+    "fts": {
+      "task_credit_rate_scenario": 6.59329,
+      "task_native_tokens": 632529,
+      "usage": {
+        "input_tokens": 631474,
+        "cached_input_tokens": 531456,
+        "output_tokens": 1055,
+        "total_tokens": 632529
+      },
+      "reader_successes": 12,
+      "reader_count": 12
+    },
+    "mem0_dense": {
+      "task_credit_rate_scenario": 20.33354,
+      "task_native_tokens": 850894,
+      "usage": {
+        "input_tokens": 819313,
+        "cached_input_tokens": 600576,
+        "output_tokens": 31581,
+        "total_tokens": 850894
+      },
+      "reader_successes": 12,
+      "reader_count": 12
+    }
+  },
+  "actual_reuse_curves": [
+    {
+      "case": "corpus-00",
+      "condition": "continued_full",
+      "actual_questions": 1,
+      "credit_rate_scenario": 0.80182,
+      "average_per_actual_question": 0.80182,
+      "correct": 1,
+      "native_tokens": 27650
+    },
+    {
+      "case": "corpus-00",
+      "condition": "continued_full",
+      "actual_questions": 2,
+      "credit_rate_scenario": 0.88262,
+      "average_per_actual_question": 0.44131,
+      "correct": 2,
+      "native_tokens": 55342
+    },
+    {
+      "case": "corpus-00",
+      "condition": "continued_full",
+      "actual_questions": 3,
+      "credit_rate_scenario": 0.9655199999999999,
+      "average_per_actual_question": 0.32183999999999996,
+      "correct": 3,
+      "native_tokens": 83076
+    },
+    {
+      "case": "corpus-00",
+      "condition": "continued_full",
+      "actual_questions": 4,
+      "credit_rate_scenario": 1.05027,
+      "average_per_actual_question": 0.2625675,
+      "correct": 4,
+      "native_tokens": 110851
+    },
+    {
+      "case": "corpus-01",
+      "condition": "continued_full",
+      "actual_questions": 1,
+      "credit_rate_scenario": 0.9374,
+      "average_per_actual_question": 0.9374,
+      "correct": 1,
+      "native_tokens": 36920
+    },
+    {
+      "case": "corpus-01",
+      "condition": "continued_full",
+      "actual_questions": 2,
+      "credit_rate_scenario": 1.04369,
+      "average_per_actual_question": 0.521845,
+      "correct": 2,
+      "native_tokens": 73881
+    },
+    {
+      "case": "corpus-01",
+      "condition": "continued_full",
+      "actual_questions": 3,
+      "credit_rate_scenario": 1.15203,
+      "average_per_actual_question": 0.38401,
+      "correct": 3,
+      "native_tokens": 110883
+    },
+    {
+      "case": "corpus-01",
+      "condition": "continued_full",
+      "actual_questions": 4,
+      "credit_rate_scenario": 2.09538,
+      "average_per_actual_question": 0.523845,
+      "correct": 4,
+      "native_tokens": 147926
+    },
+    {
+      "case": "corpus-02",
+      "condition": "continued_full",
+      "actual_questions": 1,
+      "credit_rate_scenario": 1.86535,
+      "average_per_actual_question": 1.86535,
+      "correct": 1,
+      "native_tokens": 55483
+    },
+    {
+      "case": "corpus-02",
+      "condition": "continued_full",
+      "actual_questions": 2,
+      "credit_rate_scenario": 2.01819,
+      "average_per_actual_question": 1.009095,
+      "correct": 2,
+      "native_tokens": 111007
+    },
+    {
+      "case": "corpus-02",
+      "condition": "continued_full",
+      "actual_questions": 3,
+      "credit_rate_scenario": 2.1728300000000003,
+      "average_per_actual_question": 0.7242766666666668,
+      "correct": 3,
+      "native_tokens": 166571
+    },
+    {
+      "case": "corpus-02",
+      "condition": "continued_full",
+      "actual_questions": 4,
+      "credit_rate_scenario": 2.32314,
+      "average_per_actual_question": 0.580785,
+      "correct": 4,
+      "native_tokens": 222174
+    },
+    {
+      "case": "corpus-00",
+      "condition": "file_search",
+      "actual_questions": 1,
+      "credit_rate_scenario": 0.41074999999999995,
+      "average_per_actual_question": 0.41074999999999995,
+      "correct": 1,
+      "native_tokens": 49343
+    },
+    {
+      "case": "corpus-00",
+      "condition": "file_search",
+      "actual_questions": 2,
+      "credit_rate_scenario": 1.1488399999999999,
+      "average_per_actual_question": 0.5744199999999999,
+      "correct": 2,
+      "native_tokens": 98784
+    },
+    {
+      "case": "corpus-00",
+      "condition": "file_search",
+      "actual_questions": 3,
+      "credit_rate_scenario": 1.89058,
+      "average_per_actual_question": 0.6301933333333333,
+      "correct": 3,
+      "native_tokens": 148294
+    },
+    {
+      "case": "corpus-00",
+      "condition": "file_search",
+      "actual_questions": 4,
+      "credit_rate_scenario": 2.3074500000000002,
+      "average_per_actual_question": 0.5768625000000001,
+      "correct": 4,
+      "native_tokens": 197877
+    },
+    {
+      "case": "corpus-01",
+      "condition": "file_search",
+      "actual_questions": 1,
+      "credit_rate_scenario": 0.41125,
+      "average_per_actual_question": 0.41125,
+      "correct": 1,
+      "native_tokens": 49345
+    },
+    {
+      "case": "corpus-01",
+      "condition": "file_search",
+      "actual_questions": 2,
+      "credit_rate_scenario": 0.82092,
+      "average_per_actual_question": 0.41046,
+      "correct": 2,
+      "native_tokens": 98784
+    },
+    {
+      "case": "corpus-01",
+      "condition": "file_search",
+      "actual_questions": 3,
+      "credit_rate_scenario": 1.23424,
+      "average_per_actual_question": 0.41141333333333335,
+      "correct": 3,
+      "native_tokens": 148296
+    },
+    {
+      "case": "corpus-01",
+      "condition": "file_search",
+      "actual_questions": 4,
+      "credit_rate_scenario": 1.6510099999999999,
+      "average_per_actual_question": 0.41275249999999997,
+      "correct": 4,
+      "native_tokens": 197877
+    },
+    {
+      "case": "corpus-02",
+      "condition": "file_search",
+      "actual_questions": 1,
+      "credit_rate_scenario": 0.4108,
+      "average_per_actual_question": 0.4108,
+      "correct": 1,
+      "native_tokens": 49344
+    },
+    {
+      "case": "corpus-02",
+      "condition": "file_search",
+      "actual_questions": 2,
+      "credit_rate_scenario": 0.82002,
+      "average_per_actual_question": 0.41001,
+      "correct": 2,
+      "native_tokens": 98778
+    },
+    {
+      "case": "corpus-02",
+      "condition": "file_search",
+      "actual_questions": 3,
+      "credit_rate_scenario": 1.18173,
+      "average_per_actual_question": 0.39391,
+      "correct": 3,
+      "native_tokens": 137777
+    },
+    {
+      "case": "corpus-02",
+      "condition": "file_search",
+      "actual_questions": 4,
+      "credit_rate_scenario": 1.54659,
+      "average_per_actual_question": 0.3866475,
+      "correct": 4,
+      "native_tokens": 176843
+    },
+    {
+      "case": "corpus-00",
+      "condition": "fresh_full_head",
+      "actual_questions": 1,
+      "credit_rate_scenario": 0.47365,
+      "average_per_actual_question": 0.47365,
+      "correct": 1,
+      "native_tokens": 27653
+    },
+    {
+      "case": "corpus-00",
+      "condition": "fresh_full_head",
+      "actual_questions": 2,
+      "credit_rate_scenario": 1.05972,
+      "average_per_actual_question": 0.52986,
+      "correct": 2,
+      "native_tokens": 83436
+    },
+    {
+      "case": "corpus-00",
+      "condition": "fresh_full_head",
+      "actual_questions": 3,
+      "credit_rate_scenario": 1.53797,
+      "average_per_actual_question": 0.5126566666666666,
+      "correct": 3,
+      "native_tokens": 111173
+    },
+    {
+      "case": "corpus-00",
+      "condition": "fresh_full_head",
+      "actual_questions": 4,
+      "credit_rate_scenario": 2.01782,
+      "average_per_actual_question": 0.504455,
+      "correct": 4,
+      "native_tokens": 138946
+    },
+    {
+      "case": "corpus-01",
+      "condition": "fresh_full_head",
+      "actual_questions": 1,
+      "credit_rate_scenario": 0.93755,
+      "average_per_actual_question": 0.93755,
+      "correct": 1,
+      "native_tokens": 36923
+    },
+    {
+      "case": "corpus-01",
+      "condition": "fresh_full_head",
+      "actual_questions": 2,
+      "credit_rate_scenario": 1.8772,
+      "average_per_actual_question": 0.9386,
+      "correct": 2,
+      "native_tokens": 73892
+    },
+    {
+      "case": "corpus-01",
+      "condition": "fresh_full_head",
+      "actual_questions": 3,
+      "credit_rate_scenario": 2.81865,
+      "average_per_actual_question": 0.93955,
+      "correct": 3,
+      "native_tokens": 110897
+    },
+    {
+      "case": "corpus-01",
+      "condition": "fresh_full_head",
+      "actual_questions": 4,
+      "credit_rate_scenario": 3.7619,
+      "average_per_actual_question": 0.940475,
+      "correct": 4,
+      "native_tokens": 147938
+    },
+    {
+      "case": "corpus-02",
+      "condition": "fresh_full_head",
+      "actual_questions": 1,
+      "credit_rate_scenario": 2.09176,
+      "average_per_actual_question": 2.09176,
+      "correct": 1,
+      "native_tokens": 100808
+    },
+    {
+      "case": "corpus-02",
+      "condition": "fresh_full_head",
+      "actual_questions": 2,
+      "credit_rate_scenario": 4.138019999999999,
+      "average_per_actual_question": 2.0690099999999996,
+      "correct": 2,
+      "native_tokens": 212230
+    },
+    {
+      "case": "corpus-02",
+      "condition": "fresh_full_head",
+      "actual_questions": 3,
+      "credit_rate_scenario": 6.00737,
+      "average_per_actual_question": 2.0024566666666668,
+      "correct": 3,
+      "native_tokens": 267797
+    },
+    {
+      "case": "corpus-02",
+      "condition": "fresh_full_head",
+      "actual_questions": 4,
+      "credit_rate_scenario": 7.94379,
+      "average_per_actual_question": 1.9859475,
+      "correct": 4,
+      "native_tokens": 318143
+    },
+    {
+      "case": "corpus-00",
+      "condition": "fresh_full_tail",
+      "actual_questions": 1,
+      "credit_rate_scenario": 0.80197,
+      "average_per_actual_question": 0.80197,
+      "correct": 1,
+      "native_tokens": 27653
+    },
+    {
+      "case": "corpus-00",
+      "condition": "fresh_full_tail",
+      "actual_questions": 2,
+      "credit_rate_scenario": 1.27837,
+      "average_per_actual_question": 0.639185,
+      "correct": 2,
+      "native_tokens": 55353
+    },
+    {
+      "case": "corpus-00",
+      "condition": "fresh_full_tail",
+      "actual_questions": 3,
+      "credit_rate_scenario": 1.7566199999999998,
+      "average_per_actual_question": 0.58554,
+      "correct": 3,
+      "native_tokens": 83090
+    },
+    {
+      "case": "corpus-00",
+      "condition": "fresh_full_tail",
+      "actual_questions": 4,
+      "credit_rate_scenario": 2.56479,
+      "average_per_actual_question": 0.6411975,
+      "correct": 4,
+      "native_tokens": 110863
+    },
+    {
+      "case": "corpus-01",
+      "condition": "fresh_full_tail",
+      "actual_questions": 1,
+      "credit_rate_scenario": 0.93755,
+      "average_per_actual_question": 0.93755,
+      "correct": 1,
+      "native_tokens": 36923
+    },
+    {
+      "case": "corpus-01",
+      "condition": "fresh_full_tail",
+      "actual_questions": 2,
+      "credit_rate_scenario": 1.8772,
+      "average_per_actual_question": 0.9386,
+      "correct": 2,
+      "native_tokens": 73892
+    },
+    {
+      "case": "corpus-01",
+      "condition": "fresh_full_tail",
+      "actual_questions": 3,
+      "credit_rate_scenario": 2.81865,
+      "average_per_actual_question": 0.93955,
+      "correct": 3,
+      "native_tokens": 110897
+    },
+    {
+      "case": "corpus-01",
+      "condition": "fresh_full_tail",
+      "actual_questions": 4,
+      "credit_rate_scenario": 3.7704,
+      "average_per_actual_question": 0.9426,
+      "correct": 4,
+      "native_tokens": 147972
+    },
+    {
+      "case": "corpus-02",
+      "condition": "fresh_full_tail",
+      "actual_questions": 1,
+      "credit_rate_scenario": 1.86975,
+      "average_per_actual_question": 1.86975,
+      "correct": 1,
+      "native_tokens": 55503
+    },
+    {
+      "case": "corpus-02",
+      "condition": "fresh_full_tail",
+      "actual_questions": 2,
+      "credit_rate_scenario": 3.80762,
+      "average_per_actual_question": 1.90381,
+      "correct": 2,
+      "native_tokens": 105798
+    },
+    {
+      "case": "corpus-02",
+      "condition": "fresh_full_tail",
+      "actual_questions": 3,
+      "credit_rate_scenario": 6.0052900000000005,
+      "average_per_actual_question": 2.0017633333333333,
+      "correct": 3,
+      "native_tokens": 161365
+    },
+    {
+      "case": "corpus-02",
+      "condition": "fresh_full_tail",
+      "actual_questions": 4,
+      "credit_rate_scenario": 7.8761399999999995,
+      "average_per_actual_question": 1.9690349999999999,
+      "correct": 4,
+      "native_tokens": 216966
+    },
+    {
+      "case": "corpus-00",
+      "condition": "fts",
+      "actual_questions": 1,
+      "credit_rate_scenario": 0.49063999999999997,
+      "average_per_actual_question": 0.49063999999999997,
+      "correct": 1,
+      "native_tokens": 52196
+    },
+    {
+      "case": "corpus-00",
+      "condition": "fts",
+      "actual_questions": 2,
+      "credit_rate_scenario": 0.97893,
+      "average_per_actual_question": 0.489465,
+      "correct": 2,
+      "native_tokens": 104437
+    },
+    {
+      "case": "corpus-00",
+      "condition": "fts",
+      "actual_questions": 3,
+      "credit_rate_scenario": 1.47067,
+      "average_per_actual_question": 0.4902233333333333,
+      "correct": 3,
+      "native_tokens": 156747
+    },
+    {
+      "case": "corpus-00",
+      "condition": "fts",
+      "actual_questions": 4,
+      "credit_rate_scenario": 2.29123,
+      "average_per_actual_question": 0.5728075,
+      "correct": 4,
+      "native_tokens": 209107
+    },
+    {
+      "case": "corpus-01",
+      "condition": "fts",
+      "actual_questions": 1,
+      "credit_rate_scenario": 0.48946999999999996,
+      "average_per_actual_question": 0.48946999999999996,
+      "correct": 1,
+      "native_tokens": 52111
+    },
+    {
+      "case": "corpus-01",
+      "condition": "fts",
+      "actual_questions": 2,
+      "credit_rate_scenario": 0.97571,
+      "average_per_actual_question": 0.487855,
+      "correct": 2,
+      "native_tokens": 104315
+    },
+    {
+      "case": "corpus-01",
+      "condition": "fts",
+      "actual_questions": 3,
+      "credit_rate_scenario": 1.46515,
+      "average_per_actual_question": 0.48838333333333334,
+      "correct": 3,
+      "native_tokens": 156583
+    },
+    {
+      "case": "corpus-01",
+      "condition": "fts",
+      "actual_questions": 4,
+      "credit_rate_scenario": 2.05372,
+      "average_per_actual_question": 0.51343,
+      "correct": 4,
+      "native_tokens": 235392
+    },
+    {
+      "case": "corpus-02",
+      "condition": "fts",
+      "actual_questions": 1,
+      "credit_rate_scenario": 0.82743,
+      "average_per_actual_question": 0.82743,
+      "correct": 1,
+      "native_tokens": 41635
+    },
+    {
+      "case": "corpus-02",
+      "condition": "fts",
+      "actual_questions": 2,
+      "credit_rate_scenario": 1.31552,
+      "average_per_actual_question": 0.65776,
+      "correct": 2,
+      "native_tokens": 93868
+    },
+    {
+      "case": "corpus-02",
+      "condition": "fts",
+      "actual_questions": 3,
+      "credit_rate_scenario": 1.80496,
+      "average_per_actual_question": 0.6016533333333333,
+      "correct": 3,
+      "native_tokens": 146164
+    },
+    {
+      "case": "corpus-02",
+      "condition": "fts",
+      "actual_questions": 4,
+      "credit_rate_scenario": 2.24834,
+      "average_per_actual_question": 0.562085,
+      "correct": 4,
+      "native_tokens": 188030
+    },
+    {
+      "case": "corpus-00",
+      "condition": "mem0_dense",
+      "actual_questions": 1,
+      "credit_rate_scenario": 2.40483,
+      "average_per_actual_question": 2.40483,
+      "correct": 1,
+      "native_tokens": 97519
+    },
+    {
+      "case": "corpus-00",
+      "condition": "mem0_dense",
+      "actual_questions": 2,
+      "credit_rate_scenario": 3.04981,
+      "average_per_actual_question": 1.524905,
+      "correct": 2,
+      "native_tokens": 155569
+    },
+    {
+      "case": "corpus-00",
+      "condition": "mem0_dense",
+      "actual_questions": 3,
+      "credit_rate_scenario": 3.69256,
+      "average_per_actual_question": 1.2308533333333334,
+      "correct": 3,
+      "native_tokens": 213696
+    },
+    {
+      "case": "corpus-00",
+      "condition": "mem0_dense",
+      "actual_questions": 4,
+      "credit_rate_scenario": 4.6674299999999995,
+      "average_per_actual_question": 1.1668574999999999,
+      "correct": 4,
+      "native_tokens": 271903
+    },
+    {
+      "case": "corpus-01",
+      "condition": "mem0_dense",
+      "actual_questions": 1,
+      "credit_rate_scenario": 3.9585600000000003,
+      "average_per_actual_question": 3.9585600000000003,
+      "correct": 1,
+      "native_tokens": 111188
+    },
+    {
+      "case": "corpus-01",
+      "condition": "mem0_dense",
+      "actual_questions": 2,
+      "credit_rate_scenario": 4.59364,
+      "average_per_actual_question": 2.29682,
+      "correct": 2,
+      "native_tokens": 169044
+    },
+    {
+      "case": "corpus-01",
+      "condition": "mem0_dense",
+      "actual_questions": 3,
+      "credit_rate_scenario": 5.23207,
+      "average_per_actual_question": 1.7440233333333335,
+      "correct": 3,
+      "native_tokens": 226967
+    },
+    {
+      "case": "corpus-01",
+      "condition": "mem0_dense",
+      "actual_questions": 4,
+      "credit_rate_scenario": 5.87285,
+      "average_per_actual_question": 1.4682125,
+      "correct": 4,
+      "native_tokens": 284937
+    },
+    {
+      "case": "corpus-02",
+      "condition": "mem0_dense",
+      "actual_questions": 1,
+      "credit_rate_scenario": 7.83471,
+      "average_per_actual_question": 7.83471,
+      "correct": 1,
+      "native_tokens": 131183
+    },
+    {
+      "case": "corpus-02",
+      "condition": "mem0_dense",
+      "actual_questions": 2,
+      "credit_rate_scenario": 8.46997,
+      "average_per_actual_question": 4.234985,
+      "correct": 2,
+      "native_tokens": 188921
+    },
+    {
+      "case": "corpus-02",
+      "condition": "mem0_dense",
+      "actual_questions": 3,
+      "credit_rate_scenario": 9.10518,
+      "average_per_actual_question": 3.03506,
+      "correct": 3,
+      "native_tokens": 246682
+    },
+    {
+      "case": "corpus-02",
+      "condition": "mem0_dense",
+      "actual_questions": 4,
+      "credit_rate_scenario": 9.79326,
+      "average_per_actual_question": 2.448315,
+      "correct": 4,
+      "native_tokens": 294054
+    }
+  ],
+  "cash_cost": null,
+  "local_compute_monetary_cost": null,
+  "note": "Generated static recall with3 corpus sizes/4 actual questions; not coding or population validation. No extrapolated reuse savings. Local compute and research expense separate."
+}

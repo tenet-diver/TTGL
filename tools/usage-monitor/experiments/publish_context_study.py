@@ -41,7 +41,7 @@ def publish(directory,store=None,report=None):
                 store.mutate('assign',dict(session_id=turn['session_id'],turn_id=turn['turn_id'],task_id=task))
         quality=cell.get('quality',cell.get('grade',{}))
         passed=quality.get('passed',False) if role not in ('judge_overhead','memory_extraction') else True
-        outcome=('Local model rubric: ' if role=='reader' else 'Metered auxiliary inference, not a reader quality score: ' if role else 'Independent checks: ')
+        outcome=((quality.get('kind','Local model rubric')+': ') if role=='reader' else 'Metered auxiliary inference, not a reader quality score: ' if role else 'Independent checks: ')
         store.mutate('task_status',dict(id=task,status='completed' if passed else 'unresolved',outcome=outcome+json.dumps(quality)+'; native/CLI reconciled.'))
         task_ids[label]=task
     anchor=next(task for label,task in task_ids.items() if (' '+baseline+' ') in label)

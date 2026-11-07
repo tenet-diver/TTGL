@@ -1,6 +1,6 @@
 # Cache-aware reuse: registered controlled comparison
 
-Status: registered reuse001 running; no reconciled score yet. The completed
+Status: registered reuse001 complete; all75 calls reconciled native/CLI/Langfuse. The completed
 24-case validation and neutral judgments remain frozen. The protocol and source
 manifest were committed and pushed before the first model invocation.
 It addresses a limitation of the completed one-query-per-history Mem0 block:
@@ -44,3 +44,5 @@ HTTP-visible schemas. Its requested-output-update field is unsupported, so it
 cannot be treated as a working replacement API. No hook has been installed or
 executed for this study; native trust, result shape, raw recovery and full token/
 cache cost would need separate checks before scored inference.
+
+Results: all72 independent reader checks pass. Continued full context costs5.46879 scenario credits, files5.50505, FTS6.59329, fresh stable prefix13.72351, fresh changing prefix14.21133 and adapted Mem0 including extraction20.33354. These are generated mechanism diagnostics, not coding transfer or cash savings. See the [public result](../../tools/usage-monitor/studies/cache-memory-reuse-results-001.json) for every actual reuse curve.

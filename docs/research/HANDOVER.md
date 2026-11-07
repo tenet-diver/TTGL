@@ -2590,3 +2590,35 @@ Pinned unreserved Exercism Python Connect/Dominoes/SGF source controls pass all
 six expected empty/reference outcomes,48 official reference tests total; no coding
 model trials yet. Dated source/advisory/provenance reviews and private artifacts
 are retained. No new dependency install. Schedules remain PAUSED.
+
+### 7 November21:10UTC: actual reuse complete and older-history gate passes
+
+Cache-memory-reuse001 completed all75 calls with72/72 exact independent reader
+checks. Source/allocator remains frozen.115 unique responses reconcile CLI/native
+and Langfuse across66sessions (continued threads aggregated once); TTGL experiment
+9de806031e7740138a3d7a7296ccab18/evaluation3bf991182b844045bbd2064c361c5a03.
+Published results include every actual1–4 question curve. Pooled scenario credits:
+continued5.46879, files5.50505, stable-prefix fresh13.72351, changing-prefix
+fresh14.21133, FTS6.59329, Mem0incl3extractions20.33354. Allsamequality on this
+synthetic recall diagnostic. Changing-prefix fresh uses1.07% fewer tokens but
+costs159.86% more than continued; Mem0 is271.81% more after actual reuse.
+No cash/general-coding/optimality claim. Failed LME FTS validation stays rejected.
+
+Archive-age-canary001 then completed both model calls, clean registered native
+input gatePASS: firsttransform input drops4494 versus raw grows88, latest4
+preserved, exactsource andoneCLI recovery0/rawbypass. Complete treated cost1.63609
+versusraw1.39721credits,17.09% higher; no saving.15unique native responses exactCLI.
+First LF audit caught delivery lag: raw7responses reconciled, treated hasonly6of8;
+preserve receipt001 and recheck readonly withfreshreceipt afterdelivery. No rerun,
+retry or duplicate generation. Separate experimental proxy8323 exec11561 remains
+running; stop only this owned proxy when checks finish. No normal route changes.
+Measurer source remains frozen; public result has separate complete-cost fields.
+Accounting discovers both agecalls. Schedules remainPAUSED.
+
+Age LF receipt002 now reconciles both sessions/all15responses after ordinary
+delivery delay. Receipt001 retained. Owned8323 proxy stopped with ownership check.
+Coding-context-transfer001 prepared12 fresh workspaces, protocol/source manifest
+sealed before inference; complete transform dependencies and read-only measurement
+added in preserved pre-inference amendment. Source controls remain6/6,48tests.
+Next run uses8324 experimental proxy, all4arms common transport. Do not infer
+compression efficacy from0transforms or public coding quality from controls.
