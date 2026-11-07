@@ -1,0 +1,53 @@
+{
+  "id": "native-compaction-canary-002",
+  "measurement_revision": 2,
+  "correction": "Read-only correction: original no-tools checker accidentally rejected userMessage notifications; original measurement preserved. No model calls repeated.",
+  "native_compaction_passed": true,
+  "remote_compact_endpoint_exercised": false,
+  "registered_remote_endpoint_gate_passed": false,
+  "actual_branch": "local_compaction_via_responses",
+  "unique_responses": 3,
+  "native_transport_cumulative_reconciled": true,
+  "reset_context_size_notification_present": true,
+  "usage": {
+    "input_tokens": 66949,
+    "cached_input_tokens": 52992,
+    "output_tokens": 106,
+    "total_tokens": 67055
+  },
+  "credit_rate_scenario": 0.85683,
+  "phases": [
+    {
+      "usage": {
+        "input_tokens": 22220,
+        "cached_input_tokens": 8960,
+        "output_tokens": 5,
+        "total_tokens": 22225
+      },
+      "path": "/responses",
+      "phase": "seed"
+    },
+    {
+      "usage": {
+        "input_tokens": 22320,
+        "cached_input_tokens": 22016,
+        "output_tokens": 93,
+        "total_tokens": 22413
+      },
+      "path": "/responses",
+      "phase": "compact"
+    },
+    {
+      "usage": {
+        "input_tokens": 22409,
+        "cached_input_tokens": 22016,
+        "output_tokens": 8,
+        "total_tokens": 22417
+      },
+      "path": "/responses",
+      "phase": "followup"
+    }
+  ],
+  "cash_cost": null,
+  "note": "Explicit compaction inference is included. Context-size reset notifications are not zero-cost responses. A three-operation canary is not a task-quality or savings comparison."
+}

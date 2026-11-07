@@ -1,0 +1,28 @@
+{
+  "id": "native-compaction-canary-003",
+  "registered_before_inference": true,
+  "purpose": "Native compaction transport and counter reconciliation gate before long-horizon trials; not a quality benchmark or savings comparison.",
+  "model": "gpt-6.1-sol",
+  "max_native_operations": 3,
+  "phases": [
+    "one seed turn",
+    "one explicit thread/compact/start",
+    "one followup turn"
+  ],
+  "synthetic_background_records": 240,
+  "normal_configuration_unchanged": true,
+  "transport": "Owned opt-in port8332 versioned capture adapter; built-in openai provider with supported openai_base_url override, not a reserved provider redefinition. Explicitly observe whether native remote compaction uses /responses/compact.",
+  "measurement": [
+    "unique returned response IDs and usage from normal and compact endpoints",
+    "native rollout event counters and cumulative thread counters before/after compaction",
+    "Langfuse reconciliation where supported",
+    "exact READY seed answer and R7Q2 retained fact",
+    "no subject tools"
+  ],
+  "acceptance": "Actual compact endpoint completes; all observed operations have positive accounted usage or an explicit unresolved metering gap; durable fact exact. Do not approve long-horizon all-in cost claims if compaction usage is unresolved.",
+  "failure_policy": "Zero automatic process/operation retries. Built-in native transport retry defaults cannot be overridden through reserved provider redefinition; count every wire request and retain failures. Stop rather than resubmit an ambiguous operation. No assertion of zero internal transport retries.",
+  "pricing": "context-memory-pricing-20261107.json",
+  "cash_cost": null,
+  "preserved_predecessor": "001 pre-inference provider mismatch preserved;002 actual custom-provider local-compaction branch completed, three responses fully reconciled.003 independently tests the previously unexercised built-in remote path, not a repeated assignment.",
+  "rollback": "Stop only the owned diagnostic process/proxy; ordinary configuration and frozen evidence remain unchanged."
+}
