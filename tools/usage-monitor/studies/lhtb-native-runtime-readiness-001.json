@@ -1,0 +1,40 @@
+{
+  "id": "lhtb-native-runtime-readiness-001",
+  "at": "2026-11-08T00:20:14.276033+00:00",
+  "parent_image": "dhi.io/python@sha256:aa73ad1901249b232a4301462add08fb9f5590130d8838e39080e671f9af24f4",
+  "derived_image": "sha256:f2c053a1a31a5d57e875062ccbd33fe79aeedf44043defc11051ee8cbfa62544",
+  "removed_packages": [
+    "py3.11-pip",
+    "py3.11-pip-pyc",
+    "py3.11-setuptools",
+    "py3.11-setuptools-pyc"
+  ],
+  "build_method": "Existing Docker BuildKit scratch/COPY--exclude, verified data-only control. No RUN or donor image execution; APK ownership inventory/world updated to actual retained graph.",
+  "package_queries": 74,
+  "matched_advisories": 0,
+  "first_execution": {
+    "exit_code": 0,
+    "seconds": 4.3445468159989105,
+    "image": "sha256:f2c053a1a31a5d57e875062ccbd33fe79aeedf44043defc11051ee8cbfa62544",
+    "model_calls": 0,
+    "controls": "Offline read-only dropped-caps interpreter/package absence/shell/timeout canary; not benchmark performance or general isolation certification."
+  },
+  "interpreter_checks": {
+    "python": "3.11.18",
+    "sqlite": "3.53.4",
+    "pip_absent": true,
+    "setuptools_absent": true,
+    "shell_timeout_passed": true
+  },
+  "security_clearance": false,
+  "authorization": "Codespace incomplete-evidence exception. Full native/upstream CPE and independent cryptographic attestation/host kernel coverage incomplete.",
+  "model_calls": 0,
+  "benchmark_trials": 0,
+  "remaining_gates": [
+    "Reviewed patched task dependencies",
+    "Task source safety and own empty/reference controls",
+    "Actual native actor/container/memory tool boundary and metering",
+    "Full-horizon continuation/feedback protocol and preregistered allocation"
+  ],
+  "resource_discovery": "Existing /tmp mount has about35GiB available and can host owned actor workspaces; workspace/Docker disk remains about1.3GiB free.2 CPUs available; shared service/host allocation is not dedicated resource proof."
+}

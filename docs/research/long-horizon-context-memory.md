@@ -75,3 +75,19 @@ receipt, but no base image was pulled or executed. Exact runtime dependencies,
 container/evaluator separation, source safety and own controls still require
 review before model assignments. This is a readiness pool, not scored allocation
 or permission to replace blocked tasks silently.
+
+
+## 8 November runtime continuation
+
+The maintained Alpine3.24/Python3.11 donor has one matched setuptools advisory
+and remains unexecuted. A separate scratch/COPY derivative removes unused
+pip/setuptools with all owned paths and consistent APK inventory, without a RUN
+step or donor execution. Actual postbuild metadata yields74 OSV queries with no
+matches. Its first offline dropped-capabilities read-only canary passes Python,
+SQLite and BusyBox shell/timeout checks. Native/upstream/cryptographic coverage
+remains incomplete under the Codespace exception; this is no security clearance.
+The derivative is a disclosed environment adaptation, not the original image.
+An existing /tmp filesystem has35GiB available for private owned actor bind
+mounts, while normal workspace/Docker storage remains constrained. Existing
+services and databases need no relocation. Task source/dependency controls,
+actor/verifier separation and full-horizon feedback/metering still gate models.

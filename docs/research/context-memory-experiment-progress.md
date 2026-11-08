@@ -624,3 +624,28 @@ matched full-initial successes retained, at least10% lower pooled scenario cost
 and a majority of paired cost wins, with complete allocation/accounting. These
 12 seeded repair pairs cannot establish narrow population noninferiority and do
 not replace the still-pending long-horizon memory experiments.
+
+## Long-horizon runtime readiness001
+
+The Alpine donor remains unexecuted because its setuptools84.0.0 source is
+affected. Existing BuildKit scratch/COPY exclusions create a distinct runtime
+without pip/setuptools or their owned files; remaining APK dependencies do not
+require them, and inventory/world reflect actual removal. No RUN or donor code
+execution is used. After a fresh74-query package scan has no matches and the
+actual filesystem audit confirms removal, the derivative passes its first
+offline read-only interpreter/SQLite/shell/timeout canary: Python3.11.18 and
+SQLite3.53.4. This is Codespace-authorized incomplete-evidence use, not security
+clearance or benchmark evidence. Task dependencies, source/controls, native actor
+boundary and full-horizon feedback/metering gates remain.
+
+Resource inspection finds an existing /tmp filesystem with about35GiB free,
+separate from the constrained workspace/Docker volume. Owned actor bind mounts
+can use it without relocating databases or changing normal service storage.
+Two CPUs match the selected tasks’ configured count, but shared-host overhead
+and actual memory/storage usage still need measurement. No LHTB models started.
+
+Graphiti client probe002 now passes actual imports, telemetry disabled and zero
+network attempts/model calls in the isolated29-package runtime. A Neo4j endpoint
+and native extraction/embedding integration remain before efficacy trials.
+
+- Verification validation001 readiness completes with0 model calls:24 own native actor boundary controls,24 empty/reference controls and12 seeded-bug controls pass;236 reference tests per arm. Prompt AST is identical to development. New runner uses modulo rotation so each arm is first on6 tasks; the three-case development order is unchanged. All24 source/workspace allocations are frozen before inference.

@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-08T00:21:43.893544+00:00",
+  "model_calls": 0,
+  "prompt_ast_matches_development": true,
+  "prompt_expression_sha256": "d0f982d19eae9b43ad8701214ce5ce7e790565d9541ec2d20aa0378cfd8bb519",
+  "actor_boundaries_passed": 24,
+  "empty_reference_controls_passed": 24,
+  "seeded_bug_controls_passed": 12,
+  "reference_tests_per_arm": 236,
+  "first_arm_counts": {
+    "full_initial": 6,
+    "focused_initial": 6
+  },
+  "scope": "Pre-inference registration and actual native software controls; no validation model results."
+}
