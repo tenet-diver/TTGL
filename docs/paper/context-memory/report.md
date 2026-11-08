@@ -768,3 +768,9 @@ These are seeded public exercise repairs, not long-horizon memory evidence.
 Supervising Codex records rejection through the connected TTGL analyst tool
 (review d4a0c3818fd140d1b7b5e938ce562f07), separately from immutable measurements.
 TTGL experiment e5ea538280a64aefa7b3707ea1bf4eda.
+
+### Automatic-compaction accounting audit
+
+A fresh synthetic two-turn diagnostic supplied327,917characters directly as user input, avoiding the tool wrapper's output limit found in the preserved predecessor. The built-in provider with a canonical backend URL retained the full redacted capture and completed automatic compaction and exact subsequent marker recall. Compaction used an in-band `/responses` request containing `compaction_trigger`; its response ID matched the native `compacted` event. This is distinct from both local summary prompting and a separate `/responses/compact` endpoint.
+
+Native events, transport response usage and Langfuse reconcile all three unique responses:528,522tokens and16.63802 published-rate scenario credits. Compaction accounts for189,257tokens and0.52017credits. The final CLI completion snapshot contains only339,265cumulative ordinary-response tokens, excluding compaction. Consequently, the measurement rule is to deduplicate native response-level usage including auxiliary compaction, validate the CLI's observed scope, and never assume completion counters are exhaustive or add cumulative snapshots. This diagnostic establishes an accounting mechanism, not benchmark quality, economic benefit or actual account billing.

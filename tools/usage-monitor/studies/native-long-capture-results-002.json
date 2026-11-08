@@ -1,0 +1,52 @@
+{
+  "id": "native-long-capture-canary-002",
+  "gate_passed": true,
+  "answer_exact": true,
+  "large_string_retained_exactly": true,
+  "input_characters": 327917,
+  "automatic_compaction_observed": true,
+  "compaction_branch": "Native in-band /responses compaction_trigger; compacted event matches response ID. Separate /responses/compact endpoint not used.",
+  "unique_responses": 3,
+  "auxiliary_responses": 1,
+  "usage": {
+    "input_tokens": 528336,
+    "cached_input_tokens": 206848,
+    "output_tokens": 186,
+    "total_tokens": 528522
+  },
+  "ordinary_usage": {
+    "input_tokens": 339236,
+    "cached_input_tokens": 17920,
+    "output_tokens": 29,
+    "total_tokens": 339265
+  },
+  "compaction_usage": {
+    "input_tokens": 189100,
+    "cached_input_tokens": 188928,
+    "output_tokens": 157,
+    "total_tokens": 189257
+  },
+  "credit_rate_scenario": 16.63802,
+  "compaction_credit_rate_scenario": 0.52017,
+  "cli_cumulative_snapshots": [
+    {
+      "input_tokens": 189075,
+      "cached_input_tokens": 8960,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5,
+      "reasoning_output_tokens": 0
+    },
+    {
+      "input_tokens": 339236,
+      "cached_input_tokens": 17920,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 29,
+      "reasoning_output_tokens": 0
+    }
+  ],
+  "cli_semantics": "Cumulative ordinary response usage; excludes compaction. Never sum snapshots; use deduplicated native generation IDs including compaction.",
+  "native_cli_transport_reconciled": true,
+  "wire_hashes_equal": true,
+  "cash_cost": null,
+  "limitations": "Synthetic2-turn mechanism only; not benchmark performance, savings, all-host security or separate compact-endpoint proof. Built-in transport fallback attempted; process retries zero."
+}
