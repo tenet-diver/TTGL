@@ -1,0 +1,30 @@
+{
+  "id": "smallville-longmemeval-fresh-validation-001",
+  "registered_before_inference": true,
+  "scope": "Six freshly reserved public LongMemEval questions, one per type, disjoint prior reserved IDs/supporting sessions. New matched readers and blinded local judges; not official leaderboard, statistical noninferiority or long-horizon coding.",
+  "cases": [
+    "7e974930",
+    "1192316e",
+    "3e321797",
+    "fca70973",
+    "001be529",
+    "2ebe6c90"
+  ],
+  "selection": "One per6LongMemEval types, hash order, exclude all prior reservations and answer-support overlap. Metadata only before registration; no task instruction/answer inspected. Reused development selection frozen before fresh inference.",
+  "conditions": [
+    "full_history",
+    "file_search",
+    "evidence_memory"
+  ],
+  "model": "gpt-6.1-sol",
+  "maximum_model_processes": 36,
+  "automatic_process_retries": 0,
+  "timeout_seconds_per_call": 600,
+  "memory": "Self-hosted SQLite exact1200-character source chunks with local reviewed BGE; four existing FTS chunks plus four dense chunks. Source IDs, offsets, hashes and full raw history retained. No future question/gold enters index construction. No LLM importance/reflection in this separately labeled evidence-first candidate. Existing module reused rather than new dependencies.",
+  "original_evidence": "Original41-call mechanism and failures retained; separate original-style3case arm registered and running. No changes to either active source.",
+  "matching": "Identical existing common reader guidance and permitted raw-history files in all arms, same model/effort/transport/permissions. Rotated sequential order across cases. Full-history additionally inline; file-search no injected memory; candidate receives exact retrieval. Own native sandbox read/denial control before reader. Verify all history hashes after each call.",
+  "grading": "All nine readers finish before any of nine blinded judges receive existing reference/rubric. Existing LongMemEval adapted judge prompt; no gold or feedback to memory/reader. Local model judgment, not programmatic correctness. Malformed output or uncertain invocation stops block without retries.",
+  "nomination": "Candidate frozen from completed3-case development before fresh inference. Keep all matched full-history and files successes; require >=10% modeled task inference savings and >=4/6 paired cost wins against both controls. Complete all6cases; no tuning, replacement or favorable-subset stopping. Include all candidate inference; local index time/compute separate. A passing6-case block is bounded evidence, not population noninferiority.",
+  "pricing": "Frozen context-memory-pricing-20261107.json historical scenario; not current quote, cash or quota saving. All native responses including compaction must reconcile capture/Langfuse before approval.",
+  "failure": "Zero automatic retries; any started/uncertain call stops block with all evidence retained. No changes to frozen candidate or access to other reserved tasks."
+}
