@@ -1,0 +1,64 @@
+{
+  "id": "smallville-validation-results-001",
+  "totals": {
+    "full_history": {
+      "credit_rate_scenario": 35.23015,
+      "usage": {
+        "input_tokens": 736821,
+        "cached_input_tokens": 35840,
+        "output_tokens": 366,
+        "total_tokens": 737187
+      },
+      "successes": 6,
+      "tasks": 6,
+      "reader_wall_seconds": 150.69131251999988
+    },
+    "file_search": {
+      "credit_rate_scenario": 3.97731,
+      "usage": {
+        "input_tokens": 297596,
+        "cached_input_tokens": 237184,
+        "output_tokens": 1455,
+        "total_tokens": 299051
+      },
+      "successes": 6,
+      "tasks": 6,
+      "reader_wall_seconds": 148.79744334299994
+    },
+    "evidence_memory": {
+      "credit_rate_scenario": 3.34583,
+      "usage": {
+        "input_tokens": 142684,
+        "cached_input_tokens": 81792,
+        "output_tokens": 387,
+        "total_tokens": 143071
+      },
+      "successes": 6,
+      "tasks": 6,
+      "reader_wall_seconds": 98.19060585099942,
+      "local_build_seconds": 1544.0357664670005,
+      "local_retrieval_seconds": 3.375190178000139,
+      "summed_finite_operation_seconds": 1645.601562496
+    }
+  },
+  "comparisons": {
+    "full_history": {
+      "scenario_saving_fraction": 0.9050293569570382,
+      "baseline_successes_retained": true,
+      "paired_cost_wins": 6
+    },
+    "file_search": {
+      "scenario_saving_fraction": 0.15877062637813,
+      "baseline_successes_retained": true,
+      "paired_cost_wins": 3
+    }
+  },
+  "development_nomination_gate_passed": false,
+  "local_embedding_calls": 2692,
+  "local_embedding_seconds": 1535.4444286799721,
+  "memory_index_bytes": 30646272,
+  "judge_overhead_credits": 2.1743,
+  "cash_cost": null,
+  "quota_saving": null,
+  "limitations": "Six fresh stratified public memory-QA cases, model-judged; fixed policy, no official score, statistical noninferiority or long-horizon coding benefit. Candidate remote memory-creation inference0; all reader/auxiliary inference included. Local embedding inference/index/runtime, original mechanism and analyst research separate; startup not fully attributed."
+}

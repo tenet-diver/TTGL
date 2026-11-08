@@ -2889,11 +2889,42 @@ calls(149taskprocesses),2122977tokens,39.93569scenario credits.3judgeoverheadcal
 0.35720credits. All152sessionsnative/CLI/proxy/LFreconcile, LFreceipt001true.
 No naturalreflection:146observations/0thoughts,remaining41/23/32. Cost2.3472xfull,
 10.2053xfiles;0/3pairedwins,failsnomination. Resultsprivate+public
-smallville-original-results-001.json. Publish_smallville.py original launched
-exec148? (inspectactualpublication.json, do notduplicateifexists); mainworker
+smallville-original-results-001.json. Published original exp930733e43e3944f680b76fa4a5239d50,
+eval55766928d6b24926b57bce3479f4a099,reviewreject; mainworker
 exec16298done. No reruns or policychanges.
 FreshvalidationstillRUNNING:9/18readers(3/6cases),1774localembedsat11:28:50;
 nojuryyet,nofailures. Candidate/methodsfrozen. Awaitall18readers+18judges,
 measure_smallville.py validation, readonlyLF audit thenpublish. Current allsource
 andfailedraw evidencepreserved. Unknownreference003~50/105rounds,stageC,
 minimum50sec pacing unchanged. SchedulesPAUSED;activechatonly.
+
+### 12:04 UTC validation primary COMPLETE, audit active
+
+Fresh6casesall3arms6/6primaryrubricpasses. Creditsfull35.23015/files3.97731/
+evidence3.34583; tokens737187/299051/143071. Candidate90.5029%savingvsfull,
+15.8771%vsfiles;pairedwins6/6vsfullbut3/6vsfiles,soFROZENnominationgateFAILS
+(required4/6). No defaultadoption. Coldlocalbuild1544.036sec,2692local BGEcalls
+1535.444sec;memoryfirstuseoperationtime1645.602secvsfiles148.797sec.
+36sessionsnative/CLI/proxy/LFreconcile;primaryresultsprivate/publicgenerated.
+
+Neutral-directory audit001strictprepareREFUSEDbecause1primarygradealreadyexisted;
+0auditmodels,sourcepreserved. Separately registered002explicitpost-generation
+sensitivityauditbeforeoperatorlabelinspection (manifest2primarygradefiles),
+ALL18answers,unchangedrubricandcondition-neutralitempaths. Primarypromptsomit
+methodnamesbutcwdrevealslabels; auditremovesthatcue withoutreplacingprimarylabels.
+CurrentRUNNING smallville_neutral_audit_002.py run(exec14161),13/18assessmentscomplete
+at12:03;NOresultsinspected/noerrors/no retries. Protocol002/sourcefrozen. Need
+measure_smallville.py neutral -> audit_langfuse_study.py sameusualdatesoutput001.
+Don'trerun startedaudit. Freshpublish waitsneutralLFaudit; measurementkeepbothlabel
+sets,globalpromotionvetoifqualitylossundereither. Candidatealreadyfailscostgate.
+
+Unknownreference003stillRUNNING90/105pacedrounds,stageE. Awaitcomplete.json;
+noagentmodeltrials started. Report_smallville.py prepared:requiresall5blocksresults
++LFaudits andreferencecompletion; aggregatesdedupnative/proxyallIDs,pending/final
+receipts,localops,researchlowerbound; writespublicfinalaccounting001and
+ docs/research/smallville-results.md. It doesNOTre-runmodels. Actualreferencefailure
+mustbereportedifitoccurs,notrepeated. Afterallstudiesexported,stoponlyowned8338
+proxy25846andreturnSAME native-exportwatcherledger tonormalglobalcapturepath.
+KeepTTGL8766,Langfuse6servicesandnormal8317capture running. ResearchschedulesPAUSED.
+Originaluntrackedinspect_memory_artifacts.pystillpreserved. Pendingsourcechanges
+aremeasurement/publication/reportandthesehandoverupdates;commit/pushfinish.

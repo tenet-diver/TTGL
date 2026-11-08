@@ -25,12 +25,21 @@ def main(kind):
   quality_gate='Full frozen protocol; do not promote from mechanism-only or reused development evidence.',
   overhead='Original41calls, compatibility/replay and analyst/setup are research expense; judge inference separate; cash/quota unknown.',
   rollback='No global routing/memory change. Optional modules remain opt-in. Preserve all logs and immutable failures.'))['id']
+ neutral=None
+ if kind=='validation':
+  neutral_root=GLOBAL/'smallville-neutral-validation-audit-002'
+  if not json.loads((neutral_root/'langfuse-audit-001.json').read_text())['all_reconciled']:raise ValueError('Neutral audit not reconciled')
+  neutral=json.loads((neutral_root/'results.json').read_text())
  protocol=json.loads((root/'protocol.json').read_text());measurements={**result,'langfuse_reconciled':True,'acceptance_passed':result.get('development_nomination_gate_passed',False)}
+ if neutral:
+  measurements['neutral_audit']={k:v for k,v in neutral.items() if k!='cells'}
+  measurements['acceptance_passed']=measurements['acceptance_passed'] and neutral['neutral_quality_gate_passed']
  digest=hashlib.sha256(json.dumps(measurements,sort_keys=True).encode()).hexdigest();evaluation=record_evaluation(store,exp,protocol,measurements,digest)
  if kind=='mechanism':
   verdict='inconclusive';notes='Original importance/focal/insight/triple prompts produced useful evidence-linked memory and exact recall. Original parser failed twice;005stored malformed triple fields.006exact-prompt replay corrects all41existing outputs with0newLLMcalls. Forced trigger with natural135remaining.421840tokens/5.1868scenario credits; no task efficacy/savings or production promotion.'
  else:
-  verdict='inconclusive' if result['development_nomination_gate_passed'] else 'reject';notes=('Registered six-case fresh validation result; ' if kind=='validation' else 'Registered direct original-style three-case development arm; ' if kind=='original' else 'Registered three-case reused development memory-QA result; ')+json.dumps(result['comparisons'])+'. Local indexing and original mechanism research cost remain separate. No official benchmark, fresh transfer, coding-task benefit or cash/quota claim. No deployment promotion without separately frozen evidence.'
+  verdict='inconclusive' if measurements['acceptance_passed'] else 'reject';notes=('Registered six-case fresh validation result; ' if kind=='validation' else 'Registered direct original-style three-case development arm; ' if kind=='original' else 'Registered three-case reused development memory-QA result; ')+json.dumps(result['comparisons'])+'. Local indexing and original mechanism research cost remain separate. No official benchmark, fresh transfer, coding-task benefit or cash/quota claim. No deployment promotion without separately frozen evidence.'
+ if neutral:notes+=' Neutral-cwd audit: '+json.dumps(neutral['scores'])+'; disagreements='+str(len(neutral['disagreements']))+'; both label sets preserved; post-generation sensitivity audit.'
  review=review_experiment(store,dict(evaluation_id=evaluation,verdict=verdict,notes=notes))
  store.mutate('task_status',dict(id=task,status='completed',outcome=notes))
  publication=dict(project_id=project,task_id=task,experiment_id=exp,evaluation_id=evaluation,review=review,artifact_sha256=digest)

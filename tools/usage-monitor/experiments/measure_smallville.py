@@ -11,7 +11,7 @@ KEYS=('input_tokens','cached_input_tokens','output_tokens','total_tokens')
 def write(p,v):
  with p.open('x') as f:json.dump(v,f,indent=2);f.write('\n')
 def measure(kind):
- root=GLOBAL/({'mechanism':'smallville-native-mechanism-005','benchmark':'smallville-benchmark-001','original':'smallville-original-benchmark-001','validation':'smallville-validation-001'}[kind])
+ root=GLOBAL/({'mechanism':'smallville-native-mechanism-005','benchmark':'smallville-benchmark-001','original':'smallville-original-benchmark-001','validation':'smallville-validation-001','neutral':'smallville-neutral-validation-audit-002'}[kind])
  if not (root/'complete.json').exists():raise ValueError('Incomplete block')
  if (root/'results.json').exists():raise ValueError('Preserve immutable results')
  store=Store(REPO/'work/security/workspace',Path.home()/'.codex','http://localhost:3000');store.scan();rates=json.loads(PRICING.read_text())['primary_scenario']
@@ -51,6 +51,16 @@ def measure(kind):
   pointer=json.loads((root/'memory/current.json').read_text())['checkpoint'];nodes=json.loads((root/'memory'/pointer/'nodes.json').read_text())
   malformed=[k for k,n in nodes.items() if n.get('predicate','').startswith('(TTGL')]
   result=dict(id='smallville-mechanism-results-001',cells=cells,completed_calls=len(cells),usage={k:sum(c['usage'][k] for c in cells) for k in KEYS},credit_rate_scenario=sum(c['cost'] for c in cells),observations=6,thoughts=15,reader_exact=True,reflection_forced=True,original_trigger_evidence=evidence,completion_remaining_field_correction='005natural_remaining0is copied forced state from003failure snapshot; use original003audit original_remaining for natural trigger. Frozen completion preserved.',malformed_triple_nodes=malformed,gate='recall/storage/evidence mechanism observed; semantic triple fidelity not approved',limitations='Synthetic forced reflection; not benchmark/savings. All original9+continuation32calls retained; parsing failures preserved.',cash_cost=None,quota_saving=None)
+ elif kind=='neutral':
+  plan=json.loads((root/'plan.json').read_text());source=GLOBAL/'smallville-validation-001';scores={a:0 for a in ('full_history','file_search','evidence_memory')};disagreements=[]
+  for item in plan:
+   p=root/item['assessment'];grade=json.loads((p/'grade.json').read_text());prior=json.loads((source/f'case-{item["case"]:02d}'/item['condition']/'grade.json').read_text());scores[item['condition']]+=grade['passed']
+   cells.append(meter(p/'call-001',case=item['question_id'],condition=item['condition'],role='neutral_judge_overhead',grade=grade,primary_grade=prior))
+   if grade['passed']!=prior['passed']:disagreements.append(dict(case=item['question_id'],condition=item['condition'],primary=prior['passed'],neutral=grade['passed']))
+  retained={}
+  for arm in ('full_history','file_search'):
+   retained[arm]=all(not next(c for c in cells if c['case']==key and c['condition']==arm)['grade']['passed'] or next(c for c in cells if c['case']==key and c['condition']=='evidence_memory')['grade']['passed'] for key in {x['question_id'] for x in plan})
+  result=dict(id='smallville-neutral-audit-results-002',cells=cells,scores=scores,disagreements=disagreements,baseline_successes_retained=retained,neutral_quality_gate_passed=all(retained.values()),research_credit_rate_scenario=sum(c['cost'] for c in cells),registration_timing=json.loads((root/'manifest.json').read_text())['registration_timing'],cash_cost=None,limitations='Same-model unchanged-rubric condition-neutral cwd audit; post-generation after primary grading began but before label inspection/audit inference. Primary grades preserved. Not independent human/programmatic truth or new solver trials.')
  elif kind=='original':
   registry=json.loads((root/'readers-complete.json').read_text())
   for item in registry:
@@ -90,5 +100,5 @@ def measure(kind):
   result=dict(id=('smallville-validation-results-001' if kind=='validation' else 'smallville-benchmark-results-001'),cells=cells,totals=totals,comparisons=comparisons,development_nomination_gate_passed=eligible,local_embedding_calls=len(embed),local_embedding_seconds=sum(x['seconds'] for x in embed),memory_index_bytes=sum(p.stat().st_size for p in root.glob('case-*/memory.sqlite')),judge_overhead_credits=sum(c['cost'] for c in cells if c['role']=='judge_overhead'),cash_cost=None,quota_saving=None,limitations=('Six fresh stratified public memory-QA cases, model-judged; fixed policy, no official score, statistical noninferiority or long-horizon coding benefit.' if kind=='validation' else 'Three reused development memory-QA cases, model-judged; no official score, held-out transfer or long-horizon coding benefit.')+' Candidate remote memory-creation inference0; all reader/auxiliary inference included. Local embedding inference/index/runtime, original mechanism and analyst research separate; startup not fully attributed.')
  ids=[i for c in cells for i in c['native_response_ids']]
  if len(ids)!=len(set(ids)):raise ValueError('Response counted twice')
- write(root/'results.json',result);public={k:v for k,v in result.items() if k!='cells'};write(HERE.parent/'studies'/('smallville-'+kind+'-results-001.json'),public);print(json.dumps(public,indent=2))
+ write(root/'results.json',result);public={k:v for k,v in result.items() if k!='cells'};write(HERE.parent/'studies'/('smallville-neutral-audit-results-002.json' if kind=='neutral' else 'smallville-'+kind+'-results-001.json'),public);print(json.dumps(public,indent=2))
 if __name__=='__main__':measure(sys.argv[1])
