@@ -802,3 +802,34 @@ explicit adaptations. This is not reproduction of the Smallville simulation,
 proof that its original models have these costs, or a coding-task score. Sol used
 for importance scoring; another scorer would require a separately registered
 study. Fresh6-case candidate validation remains running and untouched.
+
+### Final Smallville result, 8 November: do not promote
+
+All registered model blocks and audits complete, including the neutral-directory
+sensitivity audit. Primary fresh grades6/6all; neutral gradesfull6/files6/memory5,
+with one preference-item disagreement. Both label sets preserved; same-model
+sensitivity does not establish independent ground truth. Candidate90.50%modeled
+remote-cost savingvsfull and15.88%vsfiles still fails the frozen>=4/6paired-wins
+gate (3/6), and quality retention is not robust across graders. No held-out rerun,
+label replacement, policy tuning or global adoption. Original adapter also
+rejected:39.93569credits,3/3development,146ratings,0naturalreflection.
+
+Final accounting:265modelprocesses,298unique responses,4,815,960native tokens,
+115.36792historical-scenario credits across all study arms/graders/mechanism;
+additional parent/setup inference unknown.4,248recorded local embedding calls,
+2,421.995sec. All native/CLI/transport/Langfuse responses allocated exactly once;
+0unfinished capture operations. Cash/quota/local money/net first-use saving unknown.
+Native read/outside-denial controls pass for all30readers;17software tests pass;
+frozen model sources unchanged. A working retrieval archive is observed, not
+training, autonomously learned planning or coding-agent efficacy.
+
+Paced reference003finishes105rounds/50secminimum,5,259.55sec,reward1(expected1),
+0modelcalls;empty003expected0passes. This is adapted framework readiness, not
+an official/model/memory score. Earlier failed/interrupted controls remain.
+
+[Final report](smallville-results.md), including all methods/failures/limits and
+source-linked results. TTGL fresh validation experimentd1754620509248cb97922ecb0b769a5e,
+evaluation9e218093b62d4a11b77262d0eadbb40d,reviewreject10146a0250f34bf1a30d1221b5bce4a5.
+Study-only8338proxy stopped after all calls completed; normal8317andTTGL/Langfuse
+retained. Metadata exporter returns to normal capture root using SAME delivery
+ledger after idle/flushed handoff. Research schedules stay paused.

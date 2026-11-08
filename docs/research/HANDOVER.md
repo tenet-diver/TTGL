@@ -2928,3 +2928,43 @@ proxy25846andreturnSAME native-exportwatcherledger tonormalglobalcapturepath.
 KeepTTGL8766,Langfuse6servicesandnormal8317capture running. ResearchschedulesPAUSED.
 Originaluntrackedinspect_memory_artifacts.pystillpreserved. Pendingsourcechanges
 aremeasurement/publication/reportandthesehandoverupdates;commit/pushfinish.
+
+### FINAL Smallville checkpoint, 8 November 2026, 12:15 UTC
+
+All registered memory-QA model assignments/audits and paced control COMPLETE.
+DO NOTre-run/retry/replace any. Final docs/research/smallville-results.md and
+smallville-final-accounting-001.json.17software tests pass, frozen sources
+unchanged,all30native reader scope controls pass. No global memory adoption.
+
+Original3dev arm3/3,39.93569credits (146importance ratings34.72764 +3readers5.20805),
+2122977tokens;0naturalreflections/146observations. Nominationreject.
+Evidence-first3dev3/3,1.00715credits vsfull17.01395/files3.91324.
+Fresh6primaryall6/6;creditsfull35.23015/files3.97731/memory3.34583;memory90.5029%
+vsfull/15.8771%vsfiles,3/6pairedfilescostwinsfails>=4gate. ColdBGEindex1544sec.
+Neutral002all18assessmentscomplete:full6/files6/memory5;singlepreferenceitem
+fca70973disagrees(primarytrue,neutralfalse). Bothlabelsretained,no"corrected"grade,
+noheldouttuning/repeat. Same-modelrater sensitivity,notprovenhumantruth. Audit
+post-generation registrationbeforelabelinspectionexplicit;001strictpre-grade
+prepare refusal0modelcalls preserved. Freshpromotionrejectdespitepooledsavings.
+
+All5blocksresults+LFreadonlyaudits reconcile:265processes/298unique responses,
+4815960tokens/115.36792frozenNov7ratecreditslowerbound;parent/setupinferenceextra
+unknown,cash/quotaunknown.4248recordedlocalembeddingops2421.995sec. No unresolved
+captureoperations. Signed finalaccounting retained, report can regenerateonlyif
+identicalaccounting receipt. Pub/report helperchanges areanalysis,notfrozenworkers.
+TTGLfreshexpd1754620509248cb97922ecb0b769a5e,
+eval9e218093b62d4a11b77262d0eadbb40d,reviewreject10146a0250f34bf1a30d1221b5bce4a5.
+
+Unknownreference003COMPLETEreward1(expected1),105rounds,min50sec,
+wall5259.551975685,0modelcalls. Empty003expected0pass. All priorinterrupted/
+permissionfailurespreserved. No actual LHTBmodelactor orcoding-memoryefficacytrial;
+reserved6LHTBvalidationcontentsuntouched. Do notmistakereadinessforagent score.
+
+Ownedstudy8338proxy25846STOPPEDonlyafterallmodelblockscomplete and0pending
+operations. NativeLFexporter50015stoppedonlyatnaturalidleafterflush, sameledger
+retained;normalcapture-rootwatcher restartedexec56398. Normal8317proxy127075,
+TTGL8766process21156,and6Langfusecontainers retainedrunning. No globalCodex
+provider/memoryconfigchanged. ResearchschedulesremainPAUSED. All raw private
+histories/prompts/memory nodes/captures/receiptsremainignored work/security.
+Prioruntrackedinspect_memory_artifacts.pypreserveduntouched. Finishcommit/push
+ofreport/summary/publicresultsifnotyetdone; no moreinference isneededforthisblock.

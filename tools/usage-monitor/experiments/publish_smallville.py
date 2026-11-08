@@ -5,7 +5,7 @@ from pathlib import Path
 from smallville_native_mechanism import GLOBAL,HERE
 from cost_context_study import REPO
 from workspace import Store
-from analyst_experiments import plan_experiment,record_evaluation,review_experiment
+from analyst_experiments import plan_experiment,record_evaluation,review_experiment,record_accounting
 
 def main(kind):
  root=GLOBAL/({'mechanism':'smallville-native-mechanism-005','benchmark':'smallville-benchmark-001','validation':'smallville-validation-001','original':'smallville-original-benchmark-001'}[kind])
@@ -41,6 +41,8 @@ def main(kind):
   verdict='inconclusive' if measurements['acceptance_passed'] else 'reject';notes=('Registered six-case fresh validation result; ' if kind=='validation' else 'Registered direct original-style three-case development arm; ' if kind=='original' else 'Registered three-case reused development memory-QA result; ')+json.dumps(result['comparisons'])+'. Local indexing and original mechanism research cost remain separate. No official benchmark, fresh transfer, coding-task benefit or cash/quota claim. No deployment promotion without separately frozen evidence.'
  if neutral:notes+=' Neutral-cwd audit: '+json.dumps(neutral['scores'])+'; disagreements='+str(len(neutral['disagreements']))+'; both label sets preserved; post-generation sensitivity audit.'
  review=review_experiment(store,dict(evaluation_id=evaluation,verdict=verdict,notes=notes))
+ if neutral:
+  record_accounting(store,exp,dict(kind='additional neutral-grading research overhead',credit_rate_scenario=neutral['research_credit_rate_scenario'],model_processes=len(neutral['cells']),cash_cost=None,source='smallville-neutral-validation-audit-002/results.json',note='Separate from deployment reader costs; primary grades preserved.'))
  store.mutate('task_status',dict(id=task,status='completed',outcome=notes))
  publication=dict(project_id=project,task_id=task,experiment_id=exp,evaluation_id=evaluation,review=review,artifact_sha256=digest)
  with (root/'publication.json').open('x') as f:json.dump(publication,f,indent=2)

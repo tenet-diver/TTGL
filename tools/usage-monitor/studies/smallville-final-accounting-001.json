@@ -1,0 +1,32 @@
+{
+  "unique_native_responses": 298,
+  "model_processes": 265,
+  "all_responses_allocated": true,
+  "native_cli_transport_langfuse_reconciled": true,
+  "unfinished_transport_operations": 0,
+  "measured_study_usage": {
+    "input_tokens": 4808784,
+    "cached_input_tokens": 2670848,
+    "output_tokens": 7176,
+    "total_tokens": 4815960
+  },
+  "measured_study_credit_rate_scenario_lower_bound": 115.36792,
+  "local_recorded_embedding_calls": 4248,
+  "local_recorded_embedding_seconds": 2421.995364063965,
+  "research_parent_and_setup_inference": null,
+  "cash_cost": null,
+  "quota_saving": null,
+  "accounting": "All completed study arms, judges and mechanism included once. Parent analysis/setup overhead and incomplete local startup accounting remain additional/unknown; not net first-use savings.",
+  "reference_control": {
+    "condition": "reference",
+    "reward": 1.0,
+    "expected": 1.0,
+    "passed": true,
+    "verifier_exit_code": 0,
+    "wall_seconds": 5259.551975685001,
+    "model_calls": 0,
+    "minimum_interval_seconds": 50,
+    "required_stage_rounds": 105,
+    "adapter": "Reviewed Alpine/Python3.11.18 patched pytest9.2.0 runtime; no tmux/Harbor/official leaderboard claim"
+  }
+}

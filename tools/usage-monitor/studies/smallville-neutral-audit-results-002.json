@@ -1,0 +1,25 @@
+{
+  "id": "smallville-neutral-audit-results-002",
+  "scores": {
+    "full_history": 6,
+    "file_search": 6,
+    "evidence_memory": 5
+  },
+  "disagreements": [
+    {
+      "case": "fca70973",
+      "condition": "evidence_memory",
+      "primary": true,
+      "neutral": false
+    }
+  ],
+  "baseline_successes_retained": {
+    "full_history": false,
+    "file_search": false
+  },
+  "neutral_quality_gate_passed": false,
+  "research_credit_rate_scenario": 2.1484,
+  "registration_timing": "Post-generation sensitivity audit; primary labels not inspected; not pre-primary registration",
+  "cash_cost": null,
+  "limitations": "Same-model unchanged-rubric condition-neutral cwd audit; post-generation after primary grading began but before label inspection/audit inference. Primary grades preserved. Not independent human/programmatic truth or new solver trials."
+}
