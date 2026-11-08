@@ -91,3 +91,25 @@ An existing /tmp filesystem has35GiB available for private owned actor bind
 mounts, while normal workspace/Docker storage remains constrained. Existing
 services and databases need no relocation. Task source/dependency controls,
 actor/verifier separation and full-horizon feedback/metering still gate models.
+
+### 8 November compatibility and first benchmark control
+
+A reviewed Bash5.3.9-r1 APK installs offline with scripts disabled; its six exact
+transitive packages already match the clean base.10fresh Alpine package/source
+queries have no matches. Patched Python dependencies are isolated outside the
+normal project: pytest9.2.0, coverage7.17.2, pandas3.1.1, NumPy2.4.6 and six pinned
+transitives. Their10-package OSV scan has no matches. Native component coverage
+and independent attestations remain incomplete under the Codespace allowance;
+this is not security clearance. Actual imports and small numerical checks pass
+in a network-disabled read-only container. First import attempt failed directory
+traversal permissions and remains preserved separately.
+
+Unknown-config control001 failed on host access to a container-root-owned key
+before grading. New002 uses UID1000 for actor and verifier. The empty control
+receives reward0 as expected; verifier exit1 here records expected assertion
+failure, not an actor task result. The registered reference control retains105
+required rounds at50seconds; no pacing shortcuts. Verifier files are introduced
+only in a separate container after actor shutdown and state sealing. These are
+adapted harness controls, not model performance or an official benchmark score.
+No LHTB subject inference has started. All six reserved validation task contents remain uninspected; only the three
+separately declared development tasks have been read.

@@ -1,6 +1,6 @@
 # Context and memory optimization: experiment progress
 
-Updated: 7 November 2026 (UTC). Owner: active Codex chat. Research schedules remain paused.
+Updated: 8 November 2026 (UTC). Owner: active Codex chat. Research schedules remain paused.
 
 The user authorized local authenticated Codex experiments without a spend/runtime
 ceiling and publication in the TTGL repository. This is an ongoing research program,
@@ -67,14 +67,20 @@ Each live block still has a frozen allocation, failure policy and complete accou
 
 ## Current activity and next actions
 
-1. Completed: batching, analyst review,24 chronological cells and exact Langfuse audits.
-2. Complete the Mem0 configuration gates and register the harder memory comparison.
-3. Use cost as the primary efficiency metric: preserve the token-only gates already
-   run, but apply the dated cost amendment before any new inference.
-4. Audit actual transform/capture application, then freeze fresh context/long-horizon
-   blocks and separate held-out evaluation.
-5. Publish every block, failure, cost/cache breakdown and uncertainty here and in
-   the scientific manuscript. Existing routing validation remains untouched.
+1. Completed: generated chronological/reuse/storage panels, LongMemEval development
+   and held-out comparisons, coding transfer, verification development/held-out,
+   cache-cost audits and response-level compaction accounting. Detailed results and
+   failed attempts remain below and in the paper; no overall winner selected.
+2. Long-horizon LHTB adaptation: reviewed patched runtime imports pass. Empty
+   unknown-config control002 scores0 as expected. Reference control is next and
+   must honor105 paced50-second rounds. First control001 host key-permission
+   failure is preserved; no LHTB model trials yet.
+3. Finish Graphiti local Neo4j deployment review and native extraction integration;
+   user chose local deployment review. No graph efficacy result yet.
+4. Freeze remaining long-horizon/context comparisons only after own reference,
+   actor/evaluator separation, full capture and all-in usage gates pass.
+5. Complete fresh held-out evidence and final scientific report/HTML; no universal
+   optimality, cash savings or quality retention claims from small diagnostics.
 
 ## Activity log
 
