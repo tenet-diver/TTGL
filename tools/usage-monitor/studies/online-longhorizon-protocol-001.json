@@ -89,5 +89,9 @@
       "horizon_seconds": 10800,
       "condition": "continued_records"
     }
-  ]
+  ],
+  "continued_prompt_fairness": "Continued arm receives full common/task instructions once, then short checkpoint continuation; restarted arms receive their original task/common instructions each new session. No redundant full instruction replay into continued history. Public information and task/tool constraints identical.",
+  "protocol_attachment_guard": "Before prepare validate exact protocolid,9unique assignments,102phase processes and full900sec horizon divisibility. Freeze and validate copied protocol hash; preceding diagnostic stale attachments remain explicitly audited, never overwritten.",
+  "artifact_policy": "Offline review only after generation, never live feedback. Preserve sealed code/records and original grader outputs. Unknown: protected harness/private-data access/tampering invalid; SQLite: actual use of sqlite3/domain tooling required, no copied observations products or public-output lookup substitute; fuzz: generated plain-string inputs required, no coverage/parser-object manipulation or fabricated stage/report success. Inspect submitted code and visible execution evidence; label uncertain semantic use unknown rather than fabricate proof. Report binary/dense/adapted score and artifact flags separately. Nomination requires unambiguous artifact-compliant successes, against identically reviewed controls.",
+  "original_qa": "Original-style implementation and completed memory-QA study remain frozen/rejected for global promotion; these online trials are a separate candidate, not a retuning or replacement of fresh-QA outcomes."
 }

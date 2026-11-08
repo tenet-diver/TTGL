@@ -2968,3 +2968,108 @@ provider/memoryconfigchanged. ResearchschedulesremainPAUSED. All raw private
 histories/prompts/memory nodes/captures/receiptsremainignored work/security.
 Prioruntrackedinspect_memory_artifacts.pypreserveduntouched. Finishcommit/push
 ofreport/summary/publicresultsifnotyetdone; no moreinference isneededforthisblock.
+
+### Online-memory continuation, 8 November 2026, 14:08 UTC
+
+User explicitly requested continued full testing after the QA result. DO NOT stop
+at the integration checkpoint or rerun any completed model assignment. New plan:
+docs/research/smallville-online-plan.md; checkpoint report:
+docs/research/smallville-online-results.md. Prior QA studies/failed evidence stay
+frozen, original scorer still rejected, reserved LHTB validation six untouched,
+no global memory adoption, schedules PAUSED. No subagents. This active chat owns
+the new work. Original untracked inspect_memory_artifacts.py remains untouched.
+
+Native integration diagnostics all COMPLETE, no retries:
+001: two CLI processes/6responses, MCPapproval blocked,0actualtools.
+002: two/17responses, firstedit/check/note succeeds; restart calls search with
+limits10/20 outside8 and assumes taskreadonly without attempting write, finalfail.
+003: two/13responses, scoped4toolpermissions, bounded search and general task
+workspace guidance; bothfreshsessions actualedit/check/remember/search/read,
+independent saved-codecheck PASS,0toolerrors. Continuation001: two/13responses in
+one resumednativeSID, lexical-onlyfilesmode, independentcheck PASS,0toolerrors.
+All8processes/49unique responses native/CLI/proxy/Langfuse reconcile:
+633879tokens/7.70659frozenNov7scenario credits. Research cost, not efficacy/saving.
+Parent/setupinference additionalunknown;cash/quota unknown. Seven local BGEops
+3.3647712409965606sec, coldstartup additional. Four actual results/reviews and
+accounting published in TTGL Experiments (failedonesreject, successesinconclusive).
+
+IMPORTANT linkage defect retained/audited: 003/continuation worker constants copied
+002protocol into output directories. Intended003/continuation protocols AND actual
+generation sources committedbeforeinference (877a56d/79488fd); private
+protocol-linkage-audit-001.json proves exactbytes/timestamps. Do not edit frozen
+workers/manifests/protocol.json or rerun. Append-only corrected TTGL evaluations
+published by annotate_online_protocol.py; original evaluations preserved. No
+measurement/accounting replaced or duplicated. New matrix has explicit ID,
+allocation and copiedprotocolhash guards.
+
+Incremental memory online_task_memory.py: immutable SHA sources, SQLiteFTS, optional
+reviewed offline BGE only instructions/agentnotes; agent_assertion neververified
+byclaim/sourcepointer. task_terminal_mcp_v2.py fixes boundsearchusability, explicit
+writabletask vs readonlyhost guidance; UID1000fixedcontainer, noarbitraryhostpath,
+rawpaging, durableRPCintent/idempotency, no uncertain replay. Runtimev3 actual
+nativeCLI and scopedinvocationlocalapproval4tools only, no globalpolicy/hookchange.
+24storage/bridge checks pass; 5scheduler controls pass (fullhorizon, resume/fresh,
+uncertaincallstop, startedmatrixreplayrefusal). New analysis helpers:
+measure_online_memory.py, audit_online_memory.py, publish_online_memory.py,
+annotate_online_protocol.py, measure_online_longhorizon.py.
+
+Actor controls:
+- Unknown FINAL runtime_v5 plus controls010: empty expected0PASS. FULL reference
+  STILL RUNNING PID338427, exec51364, rootlhtb2-source-review-001/actor-controls-010/
+  reference. At14:07 latest70/105pacedrounds, nofailure. Began13:06, minimum50sec,
+  expectedfinish~14:34UTC. Check actualcomplete/stopped/process, NEVERduplicate.
+  Do not edit imports runtime.py/runtime_v2/runtime_v5/controls010 whileactive.
+- SQLite FINAL lhtb_sqlite_actor_v2.py + controls002: emptybinaryfail/dense.1667,
+  referencebinarypass/reward1.0; ownboundary/privatechildchecks pass. Originaljudge
+  compare/dense unchanged, candidate subprocess dropsUID1000.001mountprep failure
+  preserved,0models. Immutableobservations separate from writableworkspace.
+- Fuzz FINAL lhtb_fuzz_actor_v2.py + controls002, fuzz_worker.py and
+  fuzz_verifier_bridge.py: empty.2119FAILexpected, reference.9154PASS. Separate
+  UID1000JSONIPCworker cannot introspect rootcoverage/parsers; original scorebody
+  andthreshold unchanged butthroughput differs => adaptedLHTB-derivedNOTofficial.
+  Two actual verifier workers in fuzz-adversarial-control-001 confirm UID1000,
+  CapEff0, privatecoverage/reward/testwritesdenied,no parentobjects. Trustedgrader
+  alone hasKILL toterminate droppedUIDchild.001prepprivatecoveragepath/kill failure
+  preserved0models. Alltaskimages/Harbor remainblocked; onlyexistingreviewedimage
+  and taskwheels reused, noinstall/pull/download execution this continuation.
+
+NEXT required full matrix: online_longhorizon_trial.py and
+tools/usage-monitor/studies/online-longhorizon-protocol-001.json. Not prepared/
+started yet: ONLY missinggate=unknown_reference. Actual gate command confirms.
+Nine assignments, three originalreserveddevelopmenttasks unknown14400s,
+SQLite5400s,fuzz10800s xcontinued_records/restarted_records/restarted_memory.
+LexicalFTS/rawrecords/falliblenotes/publicinfo in ALLarms; memory addslocalBGE.
+102maxnativeprocesses,900seccheckpoints,60tools/phase,toolsclose600s,timeout840s,
+25.5actorhours sequential. Continued arm originalinstruction once, shortlater
+continuation; fresh arms fullinstruction eachtime. Noearlysuccessstop, no private
+livefeedback, no uncertainstartedcallreplay. Offlineartifactreview for everyarm
+separatefrom binary/dense/score. Source/evaluation/protocol/source-task hashes
+freeze at prepare before first benchmarkcall. Finishall9 before selection;
+retainallbaseline successes, >=10%costsaving and >=2/3pairedwins vs BOTHcontrols.
+Ifnonequalifiesrejectpromotion; onlyqualifierfrozen beforefresh6validation.
+Do NOT claimpreparedmatrix as scoredmodeltrials or stopatthis checkpoint.
+
+After referencecontrol finishes andallgatespass: commit finalsource/protocol,
+run online_longhorizon_trial.py prepare then run ONE worker. Pointer
+work/security/context-memory-20261107/online-longhorizon-development-001.json
+will identify private /tmp output root. Do not edit listed frozen sources while
+matrixactive, duplicateworkers or resume schedules. Need monitor/audit allactual
+assignments, offlineartifactreview, measure_online_longhorizon.py afterfullmatrix,
+groupedLangfuseaudit, publishandfinalreport/summary. Registered modeloutputcost
+counts allresponses+compaction, validated cumulativeCLIdeltas, rejectsorphans.
+
+Services: TTGL8766 PID21156 and6Langfusecontainers retained. Normal8317capture
+PID127075 unchanged. Owned8370proxy old358049 stoppedONLYafterallrequestscomplete;
+new PID398985/exec48902 destination /tmp/ttgl-online-memory-captures-wryycodk
+(private online-capture-storage-002.json). Old001/captures remainretained; early
+002507reserve rejections notsubmitted then SAMEinvocation began when spacegrew,
+allcompletedresponses counted. Fullcanonicalcaptureworks, preserveCAS+pending
+receipts. Thisproxyserves onlydiagnostics/matrix; no normalroutingchanges.
+Exporter238891 stoppedONLYatfreshflushedidle; SAME native-exportledger exported
+29old+33newtransportobservations,0newmodelusage, noerrors. Normalcapture-root
+watcher restored PID430384/exec9293. Newprivate
+online-transport-export-handoff-001.json records handoff; noledgerduplication.
+Workspace nearlyfull; private corpus longmemeval_s_cleaned.json relocated
+byteidentical to /tmp/ttgl-preserved-memory-corpus-*/ with verifiedSHA and original
+pathsymlink; relocationreceipt retained. No frozenstudydeleted. Newcaptures and
+matrix use roomy /tmp. Preserve all raw histories, credentials and DBvolumes.
