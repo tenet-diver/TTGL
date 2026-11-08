@@ -1,0 +1,20 @@
+{
+  "id": "online-memory-native-canary-003",
+  "registered_before_inference": true,
+  "purpose": "Actual native code-edit/check/note/restart/recall canary of incremental task memory and UID1000container MCP boundary. Synthetic development fixture; not coding benchmark, autonomous memory use or savings evidence.",
+  "model": "gpt-6.1-sol",
+  "maximum_model_processes": 2,
+  "timeout_seconds_per_process": 900,
+  "per_phase_tool_budget": 24,
+  "per_phase_soft_close_seconds": 600,
+  "automatic_process_retries": 0,
+  "allocation": "Two fresh native sessions on one persistent synthetic code workspace. First implement/check label normalization and remember fallible evidence-linked note. Restart; search/read prior source, preserve old behavior and add join helper; verify update and record note. All tools/outputs captured, no hidden checks fed to actor. Own empty/private UID boundary and no-inference native MCP catalog required first.",
+  "memory": "Self-hosted SQLite/FTS exact immutable visible source plus fallible notes; local reviewed BGE indexes only instruction/note chunks. No scoring, extraction or reflection LLM. Notes cannot assert their own verification status; source references/revisions local to namespace. Command nonzero exit is not task failure. Raw output accessible via paging.",
+  "acceptance": "Two actual fresh native IDs with positive metering; actual terminal/remember/search_records/read_record calls; unmodified public fixture; independent post-generation function checks pass; raw/index/source provenance and all responses reconcile CLI/native/proxy/Langfuse. Forced memory-tool use labeled diagnostic.",
+  "failure": "No automatic model process retry. Explicit approval/transport blocks stop before next phase; all failed operations/usage retained. No circumventing host filesystem/network or managed restrictions.",
+  "pricing": "Frozen7Novcontext-memory credit-rate scenario for measured native counters, all tool/model integration responses included; local embedding/runtime and research overhead separate; cash/quota unknown.",
+  "scope": "No normal provider/memory configuration change. No paid/hosted memory or dependency install. Current long-horizon full reference control continues independently; no scored task model inference before its gate.",
+  "continuation": "002 completed both native calls. Positive tools/notes/readback, but all search calls requested limits10/20 outside max8, and restarted actor assumed read-only host sandbox also forbade task writes without attempting one. Preserve failure/usage.003fresh development diagnostic tests bounded search usability and general host/task workspace guidance, not held-out tuning or benchmark quality.",
+  "tool_policy": "Only invocation-local mcp_servers.ttgl_task.tools.<name>.approval_mode=approve for terminal/remember/search_records/read_record, with exact enabled_tools allowlist. These execute exclusively inside the owned no-network UID1000container or namespace-local SQLite. User explicitly authorizes this benchmark integration. No global approval, filesystem, network or hook trust policy changed. Official https://learn.chatgpt.com/docs/extend/mcp and config reference fetched before use. Annotation safety labels are not fabricated.",
+  "changes": "Bridge clamps positive integer requested search limits to8 and reports requested/effective limits; empty queries get actionable error. General task tool/runtime guidance explicitly distinguishes writable task workspace from read-only host sandbox. No filesystem or approval policy relaxation."
+}
