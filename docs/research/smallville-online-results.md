@@ -66,6 +66,10 @@ Twenty-four storage/bridge software checks pass. Five scheduler checks cover ful
 horizon retention, fresh/continued native identities, refusing replay of a started
 matrix and stopping uncertain model calls before grading. A pre-generation
 allocation/hash guard also prevents the earlier protocol-attachment mistake.
+Two additional native scope checks reject another server using an allowed tool
+name and preserve failed calls as evidence. This stricter result validator was
+also replayed successfully against all eight actual prior CLI outputs with zero
+new model calls; it uses the same tested generation command.
 
 ## Private grader and task controls
 
@@ -75,14 +79,28 @@ after actor state is sealed and the actor stops.
 
 | Task | Empty control | Known-correct reference | Additional boundary |
 |---|---|---|---|
-| Configuration semantics | Expected failure passes | Full paced reference still running at this checkpoint | Root daemon; candidate runner drops to UID1000; data/key/private tests denied |
+| Configuration semantics | Expected failure passes | Full 105-round reference passes, reward 1.0 | Root daemon; candidate runner drops to UID1000; data/key/private tests denied |
 | SQLite reconstruction | Binary fail, dense reward 0.1667 | Binary pass, reward 1.0 | Private grader launches candidate as UID1000; comparison logic unchanged |
-| Grammar fuzzing | Fail, score 0.2119 | Pass, score 0.9154 | Separate UID1000 fuzzer process; parent retains parser/coverage state |
+| Grammar fuzzing | Fail, score 0.2380 | Pass, score 0.9154 | Separate UID1000 fuzzer process; parent retains parser/coverage state |
+
+Final fuzz controls 003 preserve the original module name and access to the
+already reviewed Python dependency directory. Earlier controls 002 (empty score
+0.2119/reference 0.9154) remain retained; the empty fuzzer uses randomness and its
+score is not expected to be identical between independent controls.
 
 Two actual verifier-launched adversarial fuzz workers also confirm UID1000, zero
 effective capabilities, denied writes to private grader/coverage/reward paths and
 no access to parent parser/wrapper objects. The trusted fuzz supervisor alone can
 terminate its child; the untrusted worker retains no such capability.
+
+The final configuration/SQLite adapters also give only the trusted root
+supervisor the capability needed to terminate a child after it drops UID. Actual
+timeout controls reap both children and confirm that task actors still have zero
+effective capabilities. Configuration empty/private control 011 passes; SQLite
+003 repeats its expected empty failure/reference 1.0. The completed full reference
+010 is retained and reused with a strict source-equivalence audit: only versioned
+imports and the supervisor cleanup capability differ, not the daemon, candidate
+runner or verifier bodies. No successful witness is silently rerun or replaced.
 
 All preparation failures are retained: directory traversal/permissions, read-only
 nested mount preparation, root-only coverage output placement and reference bind
@@ -99,8 +117,8 @@ specify nine assignments: three reserved development tasks crossed with continue
 native context/lexical records, fresh checkpoints/lexical records, and fresh
 checkpoints/incremental semantic memory. Original 4h/1.5h/3h horizons are preserved:
 25.5 actor-hours, 15-minute checkpoints and at most 102 native processes. This
-matrix has not started at this checkpoint; the full paced reference is still a
-gate. No reserved validation task contents have been inspected.
+matrix has not started at this checkpoint; all 13 readiness gates now pass. No
+reserved validation task contents have been inspected.
 
 Continued sessions receive full task instructions once and short continuation
 messages thereafter; they do not pay for redundant instruction replay. All arms

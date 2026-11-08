@@ -3085,3 +3085,24 @@ from0events/oldQA. Preserve any metadata-failure receipts; they never trigger
 another model call. First full control creates actual baseline; final comparison
 still uses ALLmatched cases. Five scheduler tests pass after this hook. This
 source/protocol remains pre-inference; matrix still NOTprepared/started.
+
+14:41UTC: FULL reference010COMPLETE reward1.0, all105rounds/50sec,5264.5928sec;
+PID338427exited. Finalcleanupreview fixed root-supervisor child timeout cleanup
+beforeanybenchmarkinference. FinalUnknownruntime_v6 uses newbase_v6/private_v6
+copies; ONLY rootKILLcap + importversion changes. lhtb_supervisor_timeout_control.py
+actually timesout/reaps UID1000engine andSQLitechild; actorsCapEff0. Strictsource
+equivalence receipt permits explicit reuse of fullreference010; originaldaemon/
+runner/grader bodiesunchanged, notsilent repeat. Newempty/private011passes.
+SQLitefinalv3,controls003ownempty/referencepass. Fuzzfinalv3worker_v2 restores
+reviewedPythondependencyimports+upstreammodulename; controls003empty.2380expected
+FAIL/reference.9154PASS; actualadversarial002confirmsimports+UID1000CapEff0private
+writesdenied. Earlier002/001controls preserved. Runtimev4 adds stricterMCPserver/
+tool validation after SAME v3generationcommand; deterministicreplayall8priorCLI
+outputsPASS,0newmodelcalls. Two securityscopeunittestsplus5schedulerpass.
+ALL13gate checks NOWPASS, matrixstillNOTprepared/started atthisaddendum. Commit
+allpendingfinalsource/protocol FIRST, then prepare, plan helper(root), ONErun.
+RuntimeSOURCES includesnewbase6/private6/v6,SQLitev3,Fuzzv3/worker_v2,nativev4,
+meterandTTGLplanhelper. Onceprepared/activeDONOTeditfrozenfiles. Remainingwork
+isactualfull9assignmentmatrix+offlineartifactreview/meter/LFaudit/selection, NOT
+anotherprep-onlysummary. Scope/protocolattachmentfixedbeforegeneration; all
+researchschedulesstillPAUSED. Userexpectsfinishedexperimentsandresultsummary.
