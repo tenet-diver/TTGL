@@ -71,7 +71,7 @@ class OnlineMemory:
   if not r:raise ValueError('Record outside this namespace')
   if hashlib.sha256(r['body'].encode()).hexdigest()!=r['sha']:raise ValueError('Raw source corrupted')
   end=min(len(r['body']),offset+limit)
-  return dict(id=ident,kind=r['kind'],body=r['body'][offset:end],offset=offset,next_offset=end if end<len(r['body']) else None,total_characters=len(r['body']),sha256=r['sha'],refs=json.loads(r['refs']),supersedes=json.loads(r['supersedes']),active=bool(r['active']),epistemic_status='agent_assertion_not_semantically_verified' if r['kind']=='agent_note' else 'recorded_visible_source_not_a_truth_label')
+  return dict(id=ident,kind=r['kind'],created_ns=r['created_ns'],body=r['body'][offset:end],offset=offset,next_offset=end if end<len(r['body']) else None,total_characters=len(r['body']),sha256=r['sha'],refs=json.loads(r['refs']),supersedes=json.loads(r['supersedes']),active=bool(r['active']),epistemic_status='agent_assertion_not_semantically_verified' if r['kind']=='agent_note' else 'recorded_visible_source_not_a_truth_label')
  def search(self,query,limit=8,budget=12000):
   if not isinstance(query,str) or not query.strip() or len(query)>6000 or type(limit)is not int or not 1<=limit<=8:raise ValueError('Invalid memory query')
   def validate_hit(row):
@@ -94,13 +94,13 @@ class OnlineMemory:
   for r in ordered:
    key=(r['record_id'],r['offset'])
    if key in seen or used+len(r['body'])>budget:continue
-   validate_hit(r);parent=self.read(r['record_id']);seen.add(key);used+=len(r['body']);hits.append(dict(id=key[0],offset=key[1],text=r['body'],sha256=hashlib.sha256(r['body'].encode()).hexdigest(),kind=parent['kind'],epistemic_status=parent['epistemic_status'],refs=parent['refs']))
+   validate_hit(r);parent=self.read(r['record_id']);seen.add(key);used+=len(r['body']);hits.append(dict(id=key[0],offset=key[1],text=r['body'],sha256=hashlib.sha256(r['body'].encode()).hexdigest(),kind=parent['kind'],created_ns=parent['created_ns'],epistemic_status=parent['epistemic_status'],refs=parent['refs']))
    if len(hits)==limit:break
   # If dense notes are sparse, exact lexical records fill remaining slots.
   if self.embed and len(hits)<limit:
    for r in lex[4:]:
     key=(r['record_id'],r['offset'])
     if key in seen or used+len(r['body'])>budget:continue
-    validate_hit(r);p=self.read(key[0]);hits.append(dict(id=key[0],offset=key[1],text=r['body'],kind=p['kind'],epistemic_status=p['epistemic_status'],refs=p['refs'],sha256=hashlib.sha256(r['body'].encode()).hexdigest()));seen.add(key);used+=len(r['body'])
+    validate_hit(r);p=self.read(key[0]);hits.append(dict(id=key[0],offset=key[1],text=r['body'],kind=p['kind'],created_ns=p['created_ns'],epistemic_status=p['epistemic_status'],refs=p['refs'],sha256=hashlib.sha256(r['body'].encode()).hexdigest()));seen.add(key);used+=len(r['body'])
     if len(hits)==limit:break
   return dict(hits=hits,seconds=time.perf_counter()-start,remote_model_calls=0,raw_access='read_record with the returned source ID and offsets')
