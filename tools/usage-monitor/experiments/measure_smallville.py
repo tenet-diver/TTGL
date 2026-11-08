@@ -11,7 +11,7 @@ KEYS=('input_tokens','cached_input_tokens','output_tokens','total_tokens')
 def write(p,v):
  with p.open('x') as f:json.dump(v,f,indent=2);f.write('\n')
 def measure(kind):
- root=GLOBAL/('smallville-native-mechanism-005' if kind=='mechanism' else 'smallville-benchmark-001')
+ root=GLOBAL/({'mechanism':'smallville-native-mechanism-005','benchmark':'smallville-benchmark-001','original':'smallville-original-benchmark-001','validation':'smallville-validation-001'}[kind])
  if not (root/'complete.json').exists():raise ValueError('Incomplete block')
  if (root/'results.json').exists():raise ValueError('Preserve immutable results')
  store=Store(REPO/'work/security/workspace',Path.home()/'.codex','http://localhost:3000');store.scan();rates=json.loads(PRICING.read_text())['primary_scenario']
@@ -51,6 +51,23 @@ def measure(kind):
   pointer=json.loads((root/'memory/current.json').read_text())['checkpoint'];nodes=json.loads((root/'memory'/pointer/'nodes.json').read_text())
   malformed=[k for k,n in nodes.items() if n.get('predicate','').startswith('(TTGL')]
   result=dict(id='smallville-mechanism-results-001',cells=cells,completed_calls=len(cells),usage={k:sum(c['usage'][k] for c in cells) for k in KEYS},credit_rate_scenario=sum(c['cost'] for c in cells),observations=6,thoughts=15,reader_exact=True,reflection_forced=True,original_trigger_evidence=evidence,completion_remaining_field_correction='005natural_remaining0is copied forced state from003failure snapshot; use original003audit original_remaining for natural trigger. Frozen completion preserved.',malformed_triple_nodes=malformed,gate='recall/storage/evidence mechanism observed; semantic triple fidelity not approved',limitations='Synthetic forced reflection; not benchmark/savings. All original9+continuation32calls retained; parsing failures preserved.',cash_cost=None,quota_saving=None)
+ elif kind=='original':
+  registry=json.loads((root/'readers-complete.json').read_text())
+  for item in registry:
+   case=root/f'case-{item["case"]:02d}';grade=json.loads((case/'grade.json').read_text())
+   for p in sorted((case/'build').glob('call-*')):
+    role=json.loads((p/'complete.json').read_text())['role'];cells.append(meter(p,case=item['question_id'],condition='original_memory',role=role))
+   if not item['memory_failed']:
+    cells.append(meter(case/'reader/call-001',case=item['question_id'],condition='original_memory',role='reader',grade=grade))
+    cells.append(meter(case/'judge/call-001',case=item['question_id'],condition='original_memory',role='judge_overhead'))
+  task=[c for c in cells if c['role']!='judge_overhead'];baseline=json.loads((GLOBAL/'smallville-benchmark-001/results.json').read_text());cost=sum(c['cost'] for c in task);comparisons={}
+  for arm in ('full_history','file_search','evidence_memory'):
+   controls=[c for c in baseline['cells'] if c['role']=='reader' and c['condition']==arm];wins=0;retained=True
+   for item in registry:
+    control=next(c for c in controls if c['case']==item['question_id']);case_cost=sum(c['cost'] for c in task if c['case']==item['question_id']);passed=json.loads((root/f'case-{item["case"]:02d}'/'grade.json').read_text())['passed'];wins+=case_cost<control['cost'];retained=retained and (not control['grade']['passed'] or passed)
+   comparisons[arm]=dict(scenario_saving_fraction=1-cost/sum(c['cost'] for c in controls),baseline_successes_retained=retained,paired_cost_wins=wins)
+  builds=[json.loads(p.read_text()) for p in root.glob('case-*/memory-build.json')]
+  result=dict(id='smallville-original-benchmark-results-001',cells=cells,cases=len(registry),successes=sum(json.loads((root/f'case-{i["case"]:02d}'/'grade.json').read_text())['passed'] for i in registry),memory_contract_failures=sum(i['memory_failed'] for i in registry),task_credit_rate_scenario=cost,task_usage={k:sum(c['usage'][k] for c in task) for k in KEYS},task_model_processes=len(task),judge_overhead_credits=sum(c['cost'] for c in cells if c['role']=='judge_overhead'),comparisons=comparisons,natural_reflection_events=sum(len(b['natural_reflections']) for b in builds),observations=sum(b['observations'] for b in builds),thoughts=sum(b['thoughts'] for b in builds),cash_cost=None,quota_saving=None,limitations='Original-style session adapter on3reused development memory-QA cases, model-judged. Original prompts/ranking/threshold with compatibleV3parsers and local BGE; no forced benchmark reflection. Full source fallback. Published scenario notcash/quota. Setup/mechanism/analyst/judges separate; no long-horizon coding or held-out claim.')
  else:
   registry=json.loads((root/'readers-complete.json').read_text())
   for item in registry:
@@ -67,9 +84,9 @@ def measure(kind):
   for base in ('full_history','file_search'):
    pairs=[(next(c for c in cells if c['case']==key and c['condition']==base and c['role']=='reader'),next(c for c in cells if c['case']==key and c['condition']=='evidence_memory' and c['role']=='reader')) for key in json.loads((root/'protocol.json').read_text())['cases']]
    comparisons[base]=dict(scenario_saving_fraction=1-candidate['credit_rate_scenario']/totals[base]['credit_rate_scenario'],baseline_successes_retained=all(not a['grade']['passed'] or b['grade']['passed'] for a,b in pairs),paired_cost_wins=sum(b['cost']<a['cost'] for a,b in pairs))
-  eligible=all(x['baseline_successes_retained'] and x['scenario_saving_fraction']>=.1 and x['paired_cost_wins']>=2 for x in comparisons.values())
+  eligible=all(x['baseline_successes_retained'] and x['scenario_saving_fraction']>=.1 and x['paired_cost_wins']>len(json.loads((root/'protocol.json').read_text())['cases'])/2 for x in comparisons.values())
   embed=[json.loads(x) for x in (root/'embedding-inferences.jsonl').read_text().splitlines()]
-  result=dict(id='smallville-benchmark-results-001',cells=cells,totals=totals,comparisons=comparisons,development_nomination_gate_passed=eligible,local_embedding_calls=len(embed),local_embedding_seconds=sum(x['seconds'] for x in embed),memory_index_bytes=sum(p.stat().st_size for p in root.glob('case-*/memory.sqlite')),judge_overhead_credits=sum(c['cost'] for c in cells if c['role']=='judge_overhead'),cash_cost=None,quota_saving=None,limitations='Three reused development memory-QA cases, model-judged; no official score, held-out transfer or long-horizon coding benefit. All candidate memory inference0, reader inference included. Local indexing/time and original mechanism research separate.')
+  result=dict(id=('smallville-validation-results-001' if kind=='validation' else 'smallville-benchmark-results-001'),cells=cells,totals=totals,comparisons=comparisons,development_nomination_gate_passed=eligible,local_embedding_calls=len(embed),local_embedding_seconds=sum(x['seconds'] for x in embed),memory_index_bytes=sum(p.stat().st_size for p in root.glob('case-*/memory.sqlite')),judge_overhead_credits=sum(c['cost'] for c in cells if c['role']=='judge_overhead'),cash_cost=None,quota_saving=None,limitations=('Six fresh stratified public memory-QA cases, model-judged; fixed policy, no official score, statistical noninferiority or long-horizon coding benefit.' if kind=='validation' else 'Three reused development memory-QA cases, model-judged; no official score, held-out transfer or long-horizon coding benefit.')+' Candidate remote memory-creation inference0; all reader/auxiliary inference included. Local embedding inference/index/runtime, original mechanism and analyst research separate; startup not fully attributed.')
  ids=[i for c in cells for i in c['native_response_ids']]
  if len(ids)!=len(set(ids)):raise ValueError('Response counted twice')
  write(root/'results.json',result);public={k:v for k,v in result.items() if k!='cells'};write(HERE.parent/'studies'/('smallville-'+kind+'-results-001.json'),public);print(json.dumps(public,indent=2))

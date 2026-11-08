@@ -1,0 +1,64 @@
+{
+  "id": "smallville-benchmark-results-001",
+  "totals": {
+    "full_history": {
+      "credit_rate_scenario": 17.01395,
+      "usage": {
+        "input_tokens": 364970,
+        "cached_input_tokens": 26880,
+        "output_tokens": 169,
+        "total_tokens": 365139
+      },
+      "successes": 3,
+      "tasks": 3,
+      "reader_wall_seconds": 43.26519907699981
+    },
+    "file_search": {
+      "credit_rate_scenario": 3.91324,
+      "usage": {
+        "input_tokens": 187774,
+        "cached_input_tokens": 119936,
+        "output_tokens": 886,
+        "total_tokens": 188660
+      },
+      "successes": 3,
+      "tasks": 3,
+      "reader_wall_seconds": 89.45412772700001
+    },
+    "evidence_memory": {
+      "credit_rate_scenario": 1.00715,
+      "usage": {
+        "input_tokens": 44814,
+        "cached_input_tokens": 26880,
+        "output_tokens": 173,
+        "total_tokens": 44987
+      },
+      "successes": 3,
+      "tasks": 3,
+      "reader_wall_seconds": 41.17994259000011,
+      "local_build_seconds": 697.4621248970004,
+      "local_retrieval_seconds": 1.1579416459999265,
+      "summed_finite_operation_seconds": 739.8000091330005
+    }
+  },
+  "comparisons": {
+    "full_history": {
+      "scenario_saving_fraction": 0.9408044575186832,
+      "baseline_successes_retained": true,
+      "paired_cost_wins": 3
+    },
+    "file_search": {
+      "scenario_saving_fraction": 0.7426301479081273,
+      "baseline_successes_retained": true,
+      "paired_cost_wins": 3
+    }
+  },
+  "development_nomination_gate_passed": true,
+  "local_embedding_calls": 1351,
+  "local_embedding_seconds": 693.7181613099933,
+  "memory_index_bytes": 15400960,
+  "judge_overhead_credits": 1.0779,
+  "cash_cost": null,
+  "quota_saving": null,
+  "limitations": "Three reused development memory-QA cases, model-judged; no official score, held-out transfer or long-horizon coding benefit. All candidate memory inference0, reader inference included. Local indexing/time and original mechanism research separate."
+}

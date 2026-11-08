@@ -2829,3 +2829,42 @@ empty003passes expected0(~18sec). reference003PID31207exec96261RUNNING105paced
 sources frozen; readactualcomplete/stopped/progress before continuation.
 
 Prior untracked inspect_memory_artifacts.py preserved, not overwritten/staged.
+
+### Smallville active update, 8 November, 11:11 UTC
+
+Developmentbenchmark001COMPLETE:3/3all3arms, creditsfull17.01395/files3.91324/
+evidence1.00715; tokens365139/188660/44987.18sessions native/CLI/proxy/LFreconcile.
+Candidate94.0804%modeledremote inference savingvsfull,74.2630%vsfiles; coldlocal
+index697.462sec,1351actual BGEcalls693.718sec,sofirst-uselatencyworse. Do NOT call
+"memory inference0" local0: means0remotememory-creationLLMcalls. Signedraw preserved,
+clarificationregister. TTGL expd992c5f9fc8048748f4df75c4bb01890 eval6bfaa31f95db413f8a04a33671e92436,
+inconclusive pendingfresh; no globaladoption.
+
+NEW registered/frozen RUNNING original-style direct arm:
+smallville_original_benchmark.py,protocolsmallville-original-benchmark-protocol-001,
+outputsmallville-original-benchmark-001,exec16298. max384processes,128percase,
+3sameolddevelopmentIDs,originalsocialprompts/releasedranking/threshold150,
+compatibleV3outputparsers,chronologicalfull-sessionobservations. Literalparentheses
+encodedstandardJSONUnicodeescapessoobserve()doesn'tdiscardrecordtext;rawfiles
+unchanged. LocalBGEtruncationoflongsessionsembeddingsdisclosed. Naturalreflection
+only,neverforce. Firstcase41/44observationsremaining50,0thoughtsat11:09. Allscoring/
+reflection/readerscount;grade3originalreadersafterallgeneration. Frozen source
+imports smallville_benchmark.py too;don'teditit. Completedcontractfailureisrecorded
+casefailure,nextindependentcaseallowed;started/uncertainprocessfailurestopsblock.
+Needmeasure_smallville.py original AFTERbothblockscomplete;LFreadonlyauditand
+combinedpublication/reportnotyetimplementedfororiginal. Preserveallcurrentcalls.
+
+NEW frozen freshvalidation:
+smallville_validation.py,smallville-validation-protocol-001.json,
+outputsmallville-validation-001,exec17351.RUNNING6newIDsoneper6types,hashseed
+andmetadata-onlyreservationprivate smallville-fresh-validation-reservation-001.json,
+excludingpriorreservations/IDfamilies/supportingsessions.36modelprocessesmax,
+18readersTHEN18blindedjudges,0retries. Sameunchangedevidence-memorymethods,
+readercommonandownnativeboundaries. Firstindexbuilding,nooutcomesyet. All6complete;
+no tuning/replacement/favorable stopping. Measure_smallville.py validation
+implemented(dynamicmajority>n/2);audit_langfuse_study.py;publish_smallville.py
+validationimplemented. Latestmeasurement/publicationchangesnotyetcommitted.
+Do notmodifyfrozenbenchmark/validation/originalsourcesduringruns. Existingowned
+8338canonicalcapture(root003),8766TTGLandLangfuseexporterSAMEledgercontinue.
+Unknownreference003stillRUNNING,30/105pacedroundsseen,stageB;noactortrialyet.
+ResearchschedulesPAUSED. Workonlyactivechat; no duplicateworkers.

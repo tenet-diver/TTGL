@@ -747,3 +747,38 @@ judges. Local embedding/index work and all model/analyst research are separate.
 No new held-out access, paid memory, global routing change or scheduled inference.
 Full-horizon LHTB reference003running after host interruption002; empty003passes
 expected0. Model actor trials remain gated. No long-horizon coding gain claimed.
+
+### Evidence-first development comparison complete; direct original and fresh validation active
+
+All9new readers/9blinded adapted judges complete and18sessions reconcile exactly
+with Langfuse. Scores3/3for full history, ordinary raw-file search and evidence-first
+memory. Frozen-rate credits17.01395/3.91324/1.00715; native tokens365139/188660/44987.
+Candidate saves94.0804%remote-model scenario cost against full history and74.2630%
+against files, with3/3paired cost wins and no observed label loss. **Reused3-case
+development only**, not the final result or a reason to stop. Candidate cold builds
+697.462sec plus1.158sec retrieval and41.180sec reader processes, versus43.265sec
+full-history and89.454sec files readers. Local1351embedding calls take693.718sec;
+15.4MBindex. Thus first-use latency is worse despite reduced remote inference.
+Cash/quota/energy/local hardware cost remain unknown. Raw result wording
+"memory inference0" means **remote memory-creation LLMcalls0**, not local inference0;
+local calls/runtime remain explicit. Preserve signed raw result, clarify here.
+TTGL expd992c5f9fc8048748f4df75c4bb01890/eval6bfaa31f95db413f8a04a33671e92436,
+interpretation inconclusive until fresh test; no global adoption.
+
+Direct original-style3-case memory arm registered BEFORE its calls in
+smallville-original-benchmark-protocol-001.json; uses original prompts/ranking/
+threshold with V3output parsers, chronological full-session observations, exact
+standard JSON parenthesis escapes to avoid simulation description stripping,
+local BGE and same raw-file fallback/reader guidance. Natural reflection only,
+never force threshold. Every importance/focal/insight/triple/thought-rating/reader
+call counted. No control repeated. Current source frozen while running.
+
+Frozen evidence-first candidate is now separately registered on6fresh public
+LongMemEval cases, one per type. Metadata-only hash selection excludes previous
+reservations/IDfamilies and answer-support overlap; no content/outcome selection.
+Separate private reservation before inference, max36processes,0automatic retries.
+All18readers precede18blinded judges. Registered no observed baseline loss,
+>=10%scenario saving and>=4/6paired wins against bothcontrols. No tuning/replacement
+or favorable-subset stopping. See smallville-validation-protocol-001.json and
+smallville_validation.py; running, no validation outcome yet. Passing6questions
+would still not establish narrow noninferiority or long-horizon coding benefit.
