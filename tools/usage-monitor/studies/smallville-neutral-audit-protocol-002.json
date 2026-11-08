@@ -1,0 +1,13 @@
+{
+  "id": "smallville-neutral-validation-audit-002",
+  "registered_before_audit_inference": true,
+  "purpose": "Condition-neutral-directory sensitivity audit using unchanged existing rubric; assess all18answers, retain primary labels. No primary label has been inspected to choose audit scope.",
+  "model": "gpt-6.1-sol",
+  "maximum_model_processes": 18,
+  "automatic_process_retries": 0,
+  "allocation": "All18fresh validation reader answers exactly once, condition-neutral item paths in deterministic hash order. No reader reruns, answer edits, selective assessment or controller feedback. Audit follows completed native-reconciled validation.",
+  "blinding": "Primary prompt omits method labels but its cwd contains condition names. Audit removes that path cue; rubric unchanged. Judge tools/skills/plugins disabled. Operator mapping/hash receipts remain outside allowed cwd.",
+  "interpretation": "Preserve both label sets and every disagreement; do not replace primary frozen results. Global promotion vetoed if candidate loses any matched success under either set. This is a same-model sensitivity audit, not independent human/programmatic ground truth or new solver trials. All audit inference is research overhead.",
+  "failure": "No started/uncertain call repeated. Malformed output stops with all artifacts retained. All native/CLI/proxy/Langfuseusage must reconcile.",
+  "registration_timing": "After primary grading began (one grade file existed at failed001prepare), before operator label inspection and all audit inference. This is a post-generation sensitivity audit, NOT pre-primary-grade registration.001preparation refused its strict pre-grade guard,0audit model calls; failed source preserved."
+}
