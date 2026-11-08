@@ -3153,3 +3153,62 @@ sourcehashes+rationale/status, runFROZENmeasure_online_longhorizon.py, grouped
 Langfuseaudit, publishactualwholematrixandreport; applyfrozenbothcontroljointgate.
 Onlyqualifieradvancestoseparatelyfrozenfresh6validation. AllfailedQA/canaries/
 linkageannotations staypreserved. Parentinference/cash/quotaunknown.
+
+18:22UTC addendum: firstcontrol15/16nativecheckpoints COMPLETE, next/finalphase
+starts~18:28; whole4hgrade stillwaitsuntil~18:43. QueuePID508386/exec13061healthy,
+no fatal/stopped markers, frozen28sourcehashesremainunchanged. Useraskedprogress
+at17:44; answered12/16, nofinalgrade, matchedmemorynext, full9blockexpectedNov9
+afternoon(~16:15). Keepgoinguntilfulltesting/summary; statusquestiondidnotcancel.
+
+Read-only55secmonitor process exec85298 continues (checksphasecounts/PID/source
+hashes/fatal markers). Last V8wrapper352was terminated ONLYto do offlineanalysis;
+theactualmodelworker wasNOTstopped. No V8wrapperactiveatthisaddendum. Canread
+85298orstartnewreaderwrapper, nottwo simultaneousreaders. Monitorhas0modelcalls,
+notascheduledheartbeat. Sourcecode/generationprotocol STILLFROZEN.
+
+Offlinehelper extract_online_artifacts.py +4privacy tests committed/pushed73b71de.
+UseONLYaftereachassignmentcomplete: exports submittedengine.py only forunknown
+(neverprivateoracle/key/verifier), submittedsource forSQLite/Fuzz; validatesarchive
+againstactualsealedgradingfiles. Outputartifact-view-001/ plus
+artifact-view-001-provenance.json. Refuseslive/traversal/changedsources. No automatic
+artifactPASSorgradechange; mainmustreviewcode+visiblecommands andwrite explicit
+artifact-review.json statuspass/fail/unknown+rationale+source_hashes. Thishelperis
+analysisonly, notafrozen generator/scorerchange. Olduntrackedinspect_memory_artifacts
+remainsuntouched.
+
+TTGLmetadataonly literalcategoryrules added viaexistingMCPtools; IDs/private
+receiptcontext-memory.../online-observability-labels-001.json. Names:
+ttgl_task.terminal=>taskterminalcalls; .search_records=>memorysearchcalls;
+.remember=>memorynotecalls; .read_record=>memorysourcereads. Actualterminal/search
+viewsverifylabels. Rawmeasurements/inference unchanged; callsarenotassumed
+successfulcommands orverifiednotes. Currenttokenandtimingcountersremainnative.
+
+Diskpressurehandled WITHOUTtouchingactiveruntimes/credentials/.codexhistories/
+DBvolumes/Copilotcache. Rootfell~487MiB; now~1.7GiBfree, /tmp~30GiBfree. Cold
+browserQA vendorbulk +reviewed-wheels +graphiti-reviewed-wheels movedbitidentical
+to /tmp/ttgl-preserved-cold-artifacts-yvmfz6ks, originalslogicalpathsymlinked.
+Allfilehashes/links, copiedtree+fulltararchives verified; noactiveFDs, ownedfiles,
+noclones/specialfiles. Browseruniquescreenshots/preview/securityreceipts additionally
+copiedpersistentlyunderwork/security/cold-storage-relocation-001/
+browser-qa-unique-and-receipts. Vendorbulktars liveon/tmp; alloriginalbytesretained.
+
+Six COMPLETED priorstudyoutputtrees likewisepreservedandlinked: smallville-original-
+benchmark001, smallville-validation001, smallville-benchmark001,
+verification-selection-validation001, cache-memory-reuse001,memory-storage-ablation001.
+TheirFULLverifiedcompressedarchivesarePERSISTENT under
+work/security/cold-storage-relocation-001/completed-study-archives; perfilehash
+receipts thereparent. No oldmodelrerun/metricrewrite/uniquedata loss.
+Coldverifierattempt001stoppedbeforerenamebecauseinefficientgziprandomseeks;
+streaming002verifiedandfinished. Legacyrelocationattempt stoppedatmissing
+complete markerforlongmemeval-validation002 BEFOREchangingthatthirdsource;
+itscopy/tmpretained, originalleftintact. Alloperationalfailures0modelcalls.
+
+Corpusrawlivefile/tmp+originallogicalsymlinkretained; compressedbyteverified
+workspacebackup longmemeval-s-preserved-001.json.gz(77800679bytes) and
+corpus-durable-backup-001.json allowrestorationif/tmpgone. Currentstudyregistration
+also copiedbyteidenticalonto workspace at online-longhorizon-registration-preserved-001
+(protocol/manifest/TTGLplan/started/intent+hashreceipt); noactivefilesmodified.
+NeedarchiveEACHcompletedcurrentassignmentandfinalcanonicalcapturesonto workspace
+afterstable/fullresult, preservingprivateevidenceandallfailedcalls. Restore/export
+normal8317capture inputafterfullmatrix via SAME native-exportledger. Study8370
+andallnativecapturecontinue; lastLangfusestatus18:11noerrors.
