@@ -2783,3 +2783,49 @@ Bashruntime001buildPASSsha256:9ed8bd351e618aa9075306abee2a94a14954f35c23dbdc2290
 ### User priority: record original-style Smallville plan FIRST; no paid memory
 Userexplicit8Nov: NEVERpaid/hostedmemory,onlyself-hostedopensource. CloudCodexinferenceauthorizedunchanged; no paid memoryservicehasbeenused. Original-styleSmallvilleimplementationandtestingrequested,includingactualupstreamprompts/ranking/storage. ThenuserasksFIRSTrecordwhat/how/progress. DONEnewdocs/research/smallville-memory-implementation-plan.md,componentS01–S15statusandgates. NoSmallvillecoreimplementation/modeltrialsstarted. Sourcereadonlypinfe05a71d3e4ed7d10bf68aa4eda6dd995ec070f4(2023Aug11),Apache2. FullGitHubrecursive44150treeTRUNCATEDbeforebackend;useexactreveriesubtreeforfiles,doNOTassumeabsence. Actualwebsourcecurrentnew_retrieveweights0.5/3/2diffpaperall1; auditrecencyordering/defaults,keepvariantsdistinct,doNOTsilentlyfix. Templatesmustpreserveoriginalcallerformatting;nativeauth/localembedadapterexplicit. Langchainexperimentalupstreamsunset,don'tinstalloldstack. Planlinkedmainregister. Existingread-onlyinspect_memory_artifacts.pyuncommitted:360extractedgeneratedMem0memoriesallpasslexicalsame-service old/newvalues;notsemanticquality. Useraskedinspectactualmemories;showcodingnotesandfactexamplesafterdocumentedinspection.
 Unknownreference002RUNNINGexec67702,105paced50secrounds;actorloginitialA0/21atstart. Neverduplicate/editlhtb_unknown_controls_002duringrun. Empty002expected0PASS. Source001hostrootkeypermissionfailurepreserved. Currentreferencehasnograderfiles;separateverifierafteractorstops.0LHTBmodelcalls. Ownedcapture8337maybealivecompletedcanary002;stoponlyexactownedafteraudits(done). SchedulesPAUSED.
+
+### Active Smallville continuation, 8 November 2026, 10:56 UTC
+
+Current chat restored TTGL UI8766 (process21156) and retained running six-service
+Langfuse health3000. No schedule resumed. Exporter restarted with SAME immutable
+native-export ledger and Smallville canonical capture root003; keep receipts.
+Owned canonical proxy25846port8338stores all003/004/005/benchmark HTTP captures.
+No full dependency installation, paid memory, or global routing change.
+
+Strict original mechanism003:6importance+1focal completed, stopped list-string
+parser on actual JSON list.004reuses focal,2new completed calls, stops comma
+object parser.005reuses all9,32newcalls, completes6obs/15thoughts/21nodes/exactfix
+recall. Inspection finds malformed full subject tuple fields; preserve snapshot.
+006newparser accepts suffix/full tuple, reconstructs with41exact-prompt/role output
+reuses,0newLLMcalls; all thought tuple shapes valid and same correct recall.
+Actual41responses reconcile native/CLI/proxy/Langfuse;421840tokens,5.1868frozen
+Nov7credit-scenario. Actualcash/quota unknown. Reflection FORCED; original remaining
+135.005natural_remaining0is copied forced state, correction in measurement, raw
+completion unchanged. TTGL mechanism experiment69a92858c9ae4d8da711c2a10a906cb3,
+eval8ce619d13a1c4e459c67b438f4145a0f,inconclusive efficacy,not savings.
+Results tools/usage-monitor/studies/smallville-mechanism-results-001.json.
+17software checks pass. Original sources and failed evidence unchanged.
+
+RUNNING registered smallville-benchmark-001 (PID48510; exec11079):3previously used
+eligible LongMemEval dev IDs60036106,c7cf7dfd,35a27287,first3after excluded uncertain
+case.9new readers(full-history/raw-files/evidence-first)then9blinded judges;
+max18CLIprocesses,0processretries. First3readers complete at checkpoint; second
+case indexing. Source/protocol frozen. Modern evidence-first memory distinct from
+originalSmallville:exact1200char chunks,SQLiteFTS4+BGE4,full rawfilefallback,0LLM
+importance/reflection. Need ALLreaders/judges,measure_smallville.py benchmark,
+audit_langfuse_study.py withresults,thenpublish_smallville.py benchmark. Do not
+repeat any started/uncertain call or touchreservedvalidation. Native boundary each
+reader ownscope passes. Local model/index runtime separately recorded (~250sec
+first corpus),not model tokens or pureinference latency. Do not infer benefit
+before completed paired evidence. Benchmark memoryQA not long-horizoncoding.
+
+LHTB unknownreference002was hostinterrupted after20rounds;containerexit255 and
+missing/tmpreviewedPythondeps retained. FreshOSV10queries0findings+samehashes,
+restorationreceipt dated8Nov,exactpreviouslyreviewed wheels restored original
+/tmp/ttgl-lhtb-python-gf35lks6,no downloads/lifecycle scripts. Freshzero-model
+empty003passes expected0(~18sec). reference003PID31207exec96261RUNNING105paced
+50secrounds;initial10/105observed. Keep pacing, neverduplicate. Preserved frozen
+002source and live003wrapper; noactortrialsuntilgate. Current benchmark/native
+sources frozen; readactualcomplete/stopped/progress before continuation.
+
+Prior untracked inspect_memory_artifacts.py preserved, not overwritten/staged.
