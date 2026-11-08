@@ -1,0 +1,19 @@
+{
+ "id":"smallville-longmemeval-development-001",
+ "registered_before_inference":true,
+ "scope":"Three reused development LongMemEval-S questions. New matched full-history, raw-files and evidence-first adaptation trials. Memory QA only; not long-horizon coding completion or official leaderboard scores.",
+ "cases":["60036106","c7cf7dfd","35a27287"],
+ "selection":"First three eligible cases in existing development reservation002, excluding originally uncertain a2f3aa27. No held-out contents or outcomes used. Public reused development evidence cannot establish transfer.",
+ "conditions":["full_history","file_search","evidence_memory"],
+ "model":"gpt-6.1-sol",
+ "maximum_model_processes":18,
+ "automatic_process_retries":0,
+ "timeout_seconds_per_call":600,
+ "memory":"Self-hosted SQLite exact1200-character source chunks with local reviewed BGE; four existing FTS chunks plus four dense chunks. Source IDs, offsets, hashes and full raw history retained. No future question/gold enters index construction. No LLM importance/reflection in this separately labeled evidence-first candidate. Existing module reused rather than new dependencies.",
+ "original_evidence":"Original-style native mechanism003 plus compatibility004/005 test original storage, ranking, scoring/reflection prompts. Both actual parser failures retained; all9prior calls plus005calls charged to mechanism research. This benchmark does not silently label modern hybrid as original Smallville or compare its task efficacy against an unrun original arm.",
+ "matching":"Identical existing common reader guidance and permitted raw-history files in all arms, same model/effort/transport/permissions. Rotated sequential order across cases. Full-history additionally inline; file-search no injected memory; candidate receives exact retrieval. Own native sandbox read/denial control before reader. Verify all history hashes after each call.",
+ "grading":"All nine readers finish before any of nine blinded judges receive existing reference/rubric. Existing LongMemEval adapted judge prompt; no gold or feedback to memory/reader. Local model judgment, not programmatic correctness. Malformed output or uncertain invocation stops block without retries.",
+ "nomination":"Retain every full-history and raw-files baseline success, >=10% lower total model credit-rate scenario than both and majority paired cost wins. Include all memory/reader inference; judge/local compute/setup/analyst separate. Passing three reused development questions is insufficient for held-out or long-task deployment claims. No held-out launch here.",
+ "pricing":"Frozen context-memory-pricing-20261107.json historical scenario; not current quote, cash or quota saving. All native responses including compaction must reconcile capture/Langfuse before approval.",
+ "failure":"No repeated started/uncertain model call. Preserve whole failed block. Source frozen during inference. No global memory/routing installation; paused schedules unchanged."
+}

@@ -140,3 +140,26 @@ Core source and native/local callbacks are implemented after this plan was first
 pushed in efeaa7a. See [source-fidelity map](smallville-source-fidelity.md) for
 actual original behaviors and explicit adaptations. No benchmark efficacy claim;
 native mechanism001 is prepared and must be committed before execution.
+
+### Active continuation, 8 November, original before adaptation
+
+Langfuse health and TTGL UI restored in the current chat. Original mechanism001
+was host-interrupted before calls;002 was rejected entirely by a wrong local URL
+handler (no upstream submission);003 completed six ratings and a focal response,
+then the original list-string parser rejected modern JSON-list output.004 reuses
+that response and accepts both forms, then preserves an actual comma-in-object
+triple parsing failure.005 splits the first comma and reuses all nine completed
+prior responses with exact prompt equality. Original sources remain unchanged.
+Fourteen software controls pass; native mechanism005 is running, not yet efficacy.
+
+Separately registered `smallville-benchmark-protocol-001.json` compares matched
+full-history/raw-files readers against a self-hosted evidence-first adaptation on
+three previously used LongMemEval development questions. Exact source chunks,
+SQLite FTS and reviewed local BGE replace per-item social importance and proactive
+reflection for this distinct candidate. This evaluates reuse of existing software,
+not an invented production memory service or original Smallville efficacy claim.
+All nine readers precede blinded reference grading. No held-out contents are used.
+Original-style mechanism cost remains research expense, not erased or amortized
+into invented future uses. Full long-horizon LHTB actor trials remain separately
+gated: interrupted reference002 is preserved; fresh empty003 passes0 as expected,
+and105-paced-round reference003 is running. No duplicated model assignment.
