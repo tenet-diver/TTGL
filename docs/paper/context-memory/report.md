@@ -768,4 +768,3 @@ These are seeded public exercise repairs, not long-horizon memory evidence.
 Supervising Codex records rejection through the connected TTGL analyst tool
 (review d4a0c3818fd140d1b7b5e938ce562f07), separately from immutable measurements.
 TTGL experiment e5ea538280a64aefa7b3707ea1bf4eda.
-

@@ -1,0 +1,18 @@
+{
+  "id": "native-long-capture-canary-002",
+  "registered_before_inference": true,
+  "model": "gpt-6.1-sol",
+  "maximum_cli_processes": 2,
+  "timeout_seconds_per_process": 900,
+  "purpose": "Fresh synthetic315k user-input seed and resumed recall; test capture completeness and native automatic compaction before long-horizon inference. Not benchmark/savings evidence.",
+  "preserved_predecessor": "001 correct answer and native full stdout, but outer code-mode output truncated before inference; full-string/automatic-compaction gates unexercised. Never repeat001.",
+  "transport": "Owned8337 capture-only canonical backend prefix wrapper. Built-in OpenAI provider and supported openai_base_url ending/backend-api/codex preserve capability detection. Normal services/config unchanged.",
+  "configuration": "auto-compaction50000 scope total; root-deny minimal actor read profile, no tools requested, no global instructions for synthetic actor. Opaque reasoning and credentials omitted from private decoded-redacted capture.",
+  "acceptance": "Correct READY/marker, retained request string longer262144characters, actual automatic compaction, original/forwarded wire hashes equal, every normal and auxiliary inference response accounted without adding cumulative CLI snapshots. Missing remote usage blocks all-in cost readiness.",
+  "measurement": "Native unique IDs, CLI cumulative snapshots, decoded transport objects, compact endpoint usage and branch, Langfuse reconciliation, attempts/rejections. Internal built-in transport defaults are observed, not claimed disabled.",
+  "software_controls": "11 passing capture/object/privacy/prefix controls; source hashes frozen in private manifest before inference.",
+  "failure_policy": "Zero automatic process retries. Preserve started/uncertain calls and stop without repeating. No claim of no upstream call from absent response receipts.",
+  "pricing": "context-memory-pricing-20261107.json; unregistered model or usage remains unresolved",
+  "cash_cost": null,
+  "rollback": "Stop only owned diagnostic proxy8337/process. Preserve normal capture8317, research schedules paused and all historical evidence."
+}

@@ -1,0 +1,21 @@
+{
+  "id": "native-long-capture-canary-001",
+  "gate_passed": false,
+  "answer_exact": true,
+  "native_full_stdout_retained": true,
+  "fixture_in_model_visible_transport": false,
+  "automatic_compaction_observed": false,
+  "reason": "Native code-mode exec wrapper limits model-visible tool output despite the nested exec_command budget200000. Full315070-character stdout exists in native CLI evidence, but serialized tool output is40757 characters and active request context stays below50000 tokens. Full-string and automatic-compaction gates unexercised, not a demonstrated proxy loss.",
+  "model_processes": 1,
+  "unique_responses": 3,
+  "usage": {
+    "input_tokens": 77290,
+    "cached_input_tokens": 50944,
+    "output_tokens": 113,
+    "total_tokens": 77403
+  },
+  "credit_rate_scenario": 1.47291,
+  "native_cli_transport_reconciled": true,
+  "wire_hashes_equal": true,
+  "cash_cost": null
+}

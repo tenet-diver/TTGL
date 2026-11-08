@@ -591,8 +591,8 @@ permissions. No new package/image execution. Base OS/provenance security coverag
 remains incomplete under the Codespace allowance, not a clearance. An inherited
 overhead-count typo was corrected12→6 with a preserved pre-inference amendment.
 
-Compaction003 terminates at initialize timeout before thread creation or any proxy
-request. No model turn started; preserve this bounded startup failure without
+Compaction003 terminates at initialize timeout before thread creation or any retained proxy
+request record. No model turn started; preserve this bounded startup failure without
 repeating it. Built-in remote compaction remains unverified.
 
 ## Verification selection001: complete development result
@@ -692,3 +692,8 @@ actual compaction and all-in usage must be observed. Normal routing and frozen
 capture sources remain unchanged. Pre-inference amendment001 records connection
 cleanup, transient WAL-size handling and runtime-path binding before any model
 call. Remote built-in-provider compaction remains a separate unresolved gate.
+
+### Large-input native capture gate, 8 November
+
+- **native-long-capture001: completed, gate unexercised.** Correct answer;77,403 native tokens/1.47291 scenario credits. Full315,070-character native stdout was shortened by the outer tool wrapper before inference, so automatic compaction did not occur. This is not proxy data loss or savings evidence.
+- **native-long-capture002: registered/prepared, not yet run.** Fresh315k synthetic input supplied directly through stdin, then one same-thread recall. Tests full-string retention, actual automatic compaction, canonical built-in provider behavior and all normal/auxiliary inference accounting. Maximum2CLI processes; no process retries.11 capture software checks pass; no normal configuration changes.
