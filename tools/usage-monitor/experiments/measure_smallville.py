@@ -58,7 +58,12 @@ def measure(kind):
   totals={}
   for arm in ('full_history','file_search','evidence_memory'):
    selected=[c for c in cells if c['condition']==arm and c['role']=='reader'];totals[arm]=dict(credit_rate_scenario=sum(c['cost'] for c in selected),usage={k:sum(c['usage'][k] for c in selected) for k in KEYS},successes=sum(c['grade']['passed'] for c in selected),tasks=len(selected),reader_wall_seconds=sum(c['wall_seconds'] for c in selected))
-  candidate=totals['evidence_memory'];comparisons={}
+  build_seconds=sum(json.loads(p.read_text())['seconds'] for p in root.glob('case-*/memory-build.json'))
+  retrieval_seconds=sum(json.loads(p.read_text())['seconds'] for p in root.glob('case-*/retrieval.json'))
+  totals['evidence_memory']['local_build_seconds']=build_seconds
+  totals['evidence_memory']['local_retrieval_seconds']=retrieval_seconds
+  totals['evidence_memory']['summed_finite_operation_seconds']=totals['evidence_memory']['reader_wall_seconds']+build_seconds+retrieval_seconds
+  candidate=totals['evidence_memory'];comparisons={} 
   for base in ('full_history','file_search'):
    pairs=[(next(c for c in cells if c['case']==key and c['condition']==base and c['role']=='reader'),next(c for c in cells if c['case']==key and c['condition']=='evidence_memory' and c['role']=='reader')) for key in json.loads((root/'protocol.json').read_text())['cases']]
    comparisons[base]=dict(scenario_saving_fraction=1-candidate['credit_rate_scenario']/totals[base]['credit_rate_scenario'],baseline_successes_retained=all(not a['grade']['passed'] or b['grade']['passed'] for a,b in pairs),paired_cost_wins=sum(b['cost']<a['cost'] for a,b in pairs))

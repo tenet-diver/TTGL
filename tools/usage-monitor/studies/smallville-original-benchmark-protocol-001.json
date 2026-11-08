@@ -1,0 +1,17 @@
+{
+ "id":"smallville-original-longmemeval-development-001",
+ "registered_before_inference":true,
+ "cases":["60036106","c7cf7dfd","35a27287"],
+ "scope":"Direct original-style memory arm on same3reused development questions as benchmark001. Prior original native mechanism and compatibility failures already recorded. No held-out content or outcome selection.",
+ "model":"gpt-6.1-sol",
+ "maximum_model_processes":384,
+ "per_case_call_cap":128,
+ "automatic_process_retries":0,
+ "memory":"Original source storage/retrieval/reflection bodies, original social importance/focal/insight/triple prompts and released0.5/3/2ranking. One observation per whole dated source session, chronological by source date. Local reviewed BGE replaces original hosted embeddings and truncates long sessions to its runtime limit. Native Codex replaces old GPT; compatibleV3parsers accept modern list/fulltriples. These are explicit terminal/conversation adaptations, not original social-world reproduction.",
+ "input_compatibility":"Sessions serialized as JSON with literal parentheses encoded as standard JSON Unicode escapes to avoid simulation observe()parenthesis stripping discarding content. Source files unchanged; complete decoded source content recoverable. Dates parsed from known source date format. No question/reference/answer-support labels used in building/scoring/reflection.",
+ "reflection":"Call original reflect_if_due after every observation. Threshold150untouched; NO forced reflection in benchmark. Record actual natural triggers and all derived rating/triple calls. Do not claim natural reflection if threshold never crossed.",
+ "reader":"Same common guidance, native tool profile, model/effort and complete raw-file fallback as benchmark001. Inject top8original ranked full records with evidence pointers. Own actual read/outside-denial control before each reader. Sealed raw files verified after. All3original readers finish before their3blinded adapted reference judges. Existing benchmark001matched controls retained, no repetition.",
+ "cost":"Original task total includes ALLimportance/focal/insight/triple/thought-rating/reader inference. Judges/research overhead separate; original41-call mechanism not erased. Frozen Nov7credit-rate scenario not actualcash/quota. Reconcile all native/CLI/transport/Langfuseincludingcompaction.",
+ "failure":"Zero automatic retries. Started/uncertain process failure stopsblock. A completed output rejected by memory contract is retained, metered and recorded as a memory-system failure for that case; no reader is invented, next independent case may proceed. Do not silently repair/reissue output mid-block. Frozen sources remain unchanged.",
+ "decision":"Retain every matched full-history/raw-file success and require10%lower total scenario cost plus majority paired wins for promotion. Compare evidence-first candidate separately, including its local indexing overhead. Three reused development cases cannot establish fresh generalization or long-horizon coding benefit. No deployment promotion or new held-out launch in this block."
+}
