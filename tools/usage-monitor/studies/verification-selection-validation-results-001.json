@@ -1,0 +1,135 @@
+{
+  "id": "verification-selection-validation-001",
+  "totals": {
+    "full_initial": {
+      "cells": 12,
+      "passed": 12,
+      "native_tokens": 829472,
+      "credit_rate_scenario": 10.11332,
+      "process_wall_seconds": 556.0668627059968
+    },
+    "focused_initial": {
+      "cells": 12,
+      "passed": 12,
+      "native_tokens": 990245,
+      "credit_rate_scenario": 12.26397,
+      "process_wall_seconds": 580.7007308740103
+    }
+  },
+  "joint_gate": {
+    "allocation_complete": true,
+    "matched_baseline_successes": 12,
+    "baseline_successes_lost": [],
+    "paired_cost_wins": 4,
+    "matched_success_retention": 1.0,
+    "pooled_cost_saving": -0.21265519137137967,
+    "zero_observed_loss_one_sided95_upper_loss_rate": 0.22092219194555585,
+    "passed": false,
+    "interpretation": "Frozen observed-quality/cost selection gate only; small visible-test repair panel does not establish population noninferiority or long-horizon efficacy."
+  },
+  "pairs": [
+    {
+      "case": "bank-account",
+      "baseline_passed": true,
+      "focused_passed": true,
+      "baseline_cost": 0.78398,
+      "focused_cost": 1.4058,
+      "focused_cost_win": false
+    },
+    {
+      "case": "book-store",
+      "baseline_passed": true,
+      "focused_passed": true,
+      "baseline_cost": 0.74733,
+      "focused_cost": 0.71807,
+      "focused_cost_win": true
+    },
+    {
+      "case": "complex-numbers",
+      "baseline_passed": true,
+      "focused_passed": true,
+      "baseline_cost": 0.67238,
+      "focused_cost": 1.37512,
+      "focused_cost_win": false
+    },
+    {
+      "case": "diffie-hellman",
+      "baseline_passed": true,
+      "focused_passed": true,
+      "baseline_cost": 1.09337,
+      "focused_cost": 0.57087,
+      "focused_cost_win": true
+    },
+    {
+      "case": "flatten-array",
+      "baseline_passed": true,
+      "focused_passed": true,
+      "baseline_cost": 0.6923900000000001,
+      "focused_cost": 0.66605,
+      "focused_cost_win": true
+    },
+    {
+      "case": "protein-translation",
+      "baseline_passed": true,
+      "focused_passed": true,
+      "baseline_cost": 0.68186,
+      "focused_cost": 0.69867,
+      "focused_cost_win": false
+    },
+    {
+      "case": "rational-numbers",
+      "baseline_passed": true,
+      "focused_passed": true,
+      "baseline_cost": 0.89044,
+      "focused_cost": 1.36777,
+      "focused_cost_win": false
+    },
+    {
+      "case": "rectangles",
+      "baseline_passed": true,
+      "focused_passed": true,
+      "baseline_cost": 0.69845,
+      "focused_cost": 1.342,
+      "focused_cost_win": false
+    },
+    {
+      "case": "saddle-points",
+      "baseline_passed": true,
+      "focused_passed": true,
+      "baseline_cost": 0.73251,
+      "focused_cost": 0.87494,
+      "focused_cost_win": false
+    },
+    {
+      "case": "spiral-matrix",
+      "baseline_passed": true,
+      "focused_passed": true,
+      "baseline_cost": 1.51219,
+      "focused_cost": 0.55696,
+      "focused_cost_win": true
+    },
+    {
+      "case": "transpose",
+      "baseline_passed": true,
+      "focused_passed": true,
+      "baseline_cost": 0.97338,
+      "focused_cost": 1.41095,
+      "focused_cost_win": false
+    },
+    {
+      "case": "yacht",
+      "baseline_passed": true,
+      "focused_passed": true,
+      "baseline_cost": 0.63504,
+      "focused_cost": 1.27677,
+      "focused_cost_win": false
+    }
+  ],
+  "cost_change_percent": 21.265519137137968,
+  "token_change_percent": 19.38257108136261,
+  "unique_responses": 139,
+  "all_native_cli_transport_reconciled": true,
+  "cash_cost": null,
+  "local_operational_cost": null,
+  "note": "Twelve previously uninspected public exercise families with seeded bugs; frozen-policy held-out repair validation. Full final tests shared. No long-horizon, official benchmark, cash or population noninferiority claim."
+}

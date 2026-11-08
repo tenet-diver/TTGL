@@ -33,7 +33,7 @@ Each live block still has a frozen allocation, failure policy and complete accou
 | learned-compression | LLMLingua versus deterministic/raw documentation context | Dependency review | Candidate 0.2.2; model-weight/runtime security, license and factual guards pending. Count compressor compute/inference. |
 | local-selection | Lightweight local ranking/summary substitution | Planned | No model install before review; compare exact same pipeline and include local loading/runtime costs. |
 | cache-aware-layout | Continued native thread versus stable/changing prefixes, files, FTS and reused Mem0 | Complete; reconciled |72/72 reader checks pass,75 calls including3 extractions. Changing prefix uses1.07% fewer tokens but159.86% more scenario cost than continued context. All115 responses reconcile; no Mem0 break-even after4 actual queries. |
-| verification-selection | Focused initial tests with mandatory full final verification | Development complete; reconciled | Six fresh seeded repair attempts pass all original test/artifact checks. Focused costs28.61% less with3/3 paired cost wins; all46 responses reconcile CLI/native/transport/Langfuse. Broader/long-horizon validation remains pending. |
+| verification-selection | Focused initial tests with mandatory full final verification | Development and held-out validation complete; rejected | Development costs28.61% less on3 pairs; frozen12-pair validation costs21.27% more and wins4/12 pairs, while both arms pass12/12 original test/artifact checks. All139 validation responses reconcile native/CLI/transport/Langfuse. No default adoption. |
 | rtk-output | Maintained output filtering | Security blocked | Prior pinned release has confirmed dependency advisories; no install/execute. A patched candidate needs a new review. |
 | longmemeval-local-codex-development-001 | Full-history vs ordinary file-search vs exact FTS excerpts vs adapted Mem0-dense, all with identical raw files | Stopped; failure preserved | 3 readers completed, first memory extraction timed out at300 seconds;0 grades. Extraction usage/cost unknown, not zero. No calls repeated. Original eight cases span all 6 types; first case excluded from continuation without replacement. Each history is about503–520k characters.24 held-out cases reserved and untouched. [Protocol](../../tools/usage-monitor/studies/longmemeval-codex-protocol-001.json). |
 | longmemeval-local-codex-development-002 | Same prompts/model and remaining7 originally unstarted cases; memory-extraction timeout1800 seconds | Complete; audited |63 processes,28/28 local rubric passes; all native/CLI/Langfuse usage and IDs reconcile. FTS nominee:82.80% lower scenario cost vs full history,17.15% vs plain search. All extraction counted. No first-case retry/replacement or all-six-type completed claim. [Protocol](../../tools/usage-monitor/studies/longmemeval-codex-protocol-002.json). |
@@ -649,3 +649,46 @@ network attempts/model calls in the isolated29-package runtime. A Neo4j endpoint
 and native extraction/embedding integration remain before efficacy trials.
 
 - Verification validation001 readiness completes with0 model calls:24 own native actor boundary controls,24 empty/reference controls and12 seeded-bug controls pass;236 reference tests per arm. Prompt AST is identical to development. New runner uses modulo rotation so each arm is first on6 tasks; the three-case development order is unchanged. All24 source/workspace allocations are frozen before inference.
+
+## Verification validation001: joint gate fails
+
+All24 frozen assignments complete; both arms pass12/12 independent original
+test/artifact checks (236 reference tests per arm). All139 unique responses
+reconcile CLI/native/transport/Langfuse across24 sessions.
+
+| Arm | Native tokens | Scenario credits | Successful tasks |
+|---|---:|---:|---:|
+| Full initial suite |829,472|10.11332|12/12|
+| Focused initial checks |990,245|12.26397|12/12|
+
+Focused costs21.27% more, uses19.38% more tokens and wins cost on4/12 pairs.
+It fails the frozen joint selection gate. Preserve the favorable3-case
+development result separately; no held-out case is repeated or used to tune
+this policy. Actual final full suites are observed in every cell; one focused
+initial invocation is a loader error. Cache fractions84.47% versus83.99% and
+fresh input127,587 versus157,024 are descriptive measured buckets, not proof
+that one loader error or caching alone caused the aggregate increase.
+
+Zero observed test-success loss on12 pairs still allows a22.09% one-sided95%
+upper loss-rate bound; it does not establish narrow population noninferiority.
+These are seeded public exercise repairs, not long-horizon memory evidence.
+Supervising Codex records rejection through the connected TTGL analyst tool
+(review d4a0c3818fd140d1b7b5e938ce562f07), separately from immutable measurements.
+TTGL experiment e5ea538280a64aefa7b3707ea1bf4eda.
+
+## Long-capture/automatic-compaction canary001 prepared
+
+A separately versioned capture-only adapter uses maintained SQLite/gzip with
+small hash-reference glue to retain repeated decoded-redacted JSON histories,
+without changing model inputs. Five software controls pass, including complete
+large-string retention, secret/opaque-field omission, exact wire passthrough,
+corruption rejection and unchanged normal-service redaction limits. Immutable
+pending/final receipts and rejected GET/POST metadata distinguish pre-upstream
+failures from unknown submissions. This is no inference-saving treatment.
+
+One registered native CLI process will read a315k-character synthetic fixture
+and exercise automatic compaction at50k context tokens. Full retained data,
+actual compaction and all-in usage must be observed. Normal routing and frozen
+capture sources remain unchanged. Pre-inference amendment001 records connection
+cleanup, transient WAL-size handling and runtime-path binding before any model
+call. Remote built-in-provider compaction remains a separate unresolved gate.

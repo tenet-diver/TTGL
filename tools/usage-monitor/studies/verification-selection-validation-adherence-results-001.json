@@ -1,0 +1,270 @@
+{
+  "id": "verification-selection-validation-adherence-001",
+  "model_calls": 0,
+  "cells": [
+    {
+      "case": "bank-account",
+      "condition": "full_initial",
+      "first_attempt_tests": 16,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 16
+    },
+    {
+      "case": "bank-account",
+      "condition": "focused_initial",
+      "first_attempt_tests": 4,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 16
+    },
+    {
+      "case": "book-store",
+      "condition": "focused_initial",
+      "first_attempt_tests": 3,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 20
+    },
+    {
+      "case": "book-store",
+      "condition": "full_initial",
+      "first_attempt_tests": 20,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 20
+    },
+    {
+      "case": "complex-numbers",
+      "condition": "full_initial",
+      "first_attempt_tests": 43,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 43
+    },
+    {
+      "case": "complex-numbers",
+      "condition": "focused_initial",
+      "first_attempt_tests": 4,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 43
+    },
+    {
+      "case": "diffie-hellman",
+      "condition": "focused_initial",
+      "first_attempt_tests": 3,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 6
+    },
+    {
+      "case": "diffie-hellman",
+      "condition": "full_initial",
+      "first_attempt_tests": 0,
+      "first_attempt_exit": 5,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": false,
+      "final_full_observed": true,
+      "expected_full_tests": 6
+    },
+    {
+      "case": "flatten-array",
+      "condition": "full_initial",
+      "first_attempt_tests": 11,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 11
+    },
+    {
+      "case": "flatten-array",
+      "condition": "focused_initial",
+      "first_attempt_tests": 3,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 11
+    },
+    {
+      "case": "protein-translation",
+      "condition": "focused_initial",
+      "first_attempt_tests": 4,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 26
+    },
+    {
+      "case": "protein-translation",
+      "condition": "full_initial",
+      "first_attempt_tests": 26,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 26
+    },
+    {
+      "case": "rational-numbers",
+      "condition": "full_initial",
+      "first_attempt_tests": 43,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 43
+    },
+    {
+      "case": "rational-numbers",
+      "condition": "focused_initial",
+      "first_attempt_tests": 4,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 43
+    },
+    {
+      "case": "rectangles",
+      "condition": "focused_initial",
+      "first_attempt_tests": 4,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 14
+    },
+    {
+      "case": "rectangles",
+      "condition": "full_initial",
+      "first_attempt_tests": 0,
+      "first_attempt_exit": 5,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": false,
+      "final_full_observed": true,
+      "expected_full_tests": 14
+    },
+    {
+      "case": "saddle-points",
+      "condition": "full_initial",
+      "first_attempt_tests": 10,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 10
+    },
+    {
+      "case": "saddle-points",
+      "condition": "focused_initial",
+      "first_attempt_tests": 3,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 10
+    },
+    {
+      "case": "spiral-matrix",
+      "condition": "focused_initial",
+      "first_attempt_tests": 3,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 6
+    },
+    {
+      "case": "spiral-matrix",
+      "condition": "full_initial",
+      "first_attempt_tests": 6,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 6
+    },
+    {
+      "case": "transpose",
+      "condition": "full_initial",
+      "first_attempt_tests": 12,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 12
+    },
+    {
+      "case": "transpose",
+      "condition": "focused_initial",
+      "first_attempt_tests": 3,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 12
+    },
+    {
+      "case": "yacht",
+      "condition": "focused_initial",
+      "first_attempt_tests": 4,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": true,
+      "first_attempt_real_tests": false,
+      "final_full_observed": true,
+      "expected_full_tests": 29
+    },
+    {
+      "case": "yacht",
+      "condition": "full_initial",
+      "first_attempt_tests": 29,
+      "first_attempt_exit": 1,
+      "first_attempt_loader_error": false,
+      "first_attempt_real_tests": true,
+      "final_full_observed": true,
+      "expected_full_tests": 29
+    }
+  ],
+  "usage_buckets": {
+    "full_initial": {
+      "input_tokens": 821475,
+      "cached_input_tokens": 693888,
+      "output_tokens": 7997,
+      "total_tokens": 829472,
+      "cached_fraction": 0.8446854742992788,
+      "fresh_input_tokens": 127587
+    },
+    "focused_initial": {
+      "input_tokens": 980832,
+      "cached_input_tokens": 823808,
+      "output_tokens": 9413,
+      "total_tokens": 990245,
+      "cached_fraction": 0.8399073439692016,
+      "fresh_input_tokens": 157024
+    }
+  },
+  "first_loader_errors": {
+    "full_initial": 0,
+    "focused_initial": 1
+  },
+  "all_final_full_observed": true,
+  "scope": "Post-run read-only mechanism audit; no filtering or rerunning validation assignments. Nonzero initial commands may be loader failures rather than genuine task-test failures. Aggregate bucket differences do not prove their causal origin."
+}

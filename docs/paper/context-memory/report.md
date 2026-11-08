@@ -741,3 +741,31 @@ speed improvement. These are seeded public-source development repairs, not real
 issue, long-horizon or held-out evidence. Extra self-selected checks and patch
 changes differ; passing visible tests does not prove identical general quality.
 No global default is promoted. TTGL experiment e80d44550db84c669499cc95ae4c06e7.
+
+
+## Verification validation001: joint gate fails
+
+All24 frozen assignments complete; both arms pass12/12 independent original
+test/artifact checks (236 reference tests per arm). All139 unique responses
+reconcile CLI/native/transport/Langfuse across24 sessions.
+
+| Arm | Native tokens | Scenario credits | Successful tasks |
+|---|---:|---:|---:|
+| Full initial suite |829,472|10.11332|12/12|
+| Focused initial checks |990,245|12.26397|12/12|
+
+Focused costs21.27% more, uses19.38% more tokens and wins cost on4/12 pairs.
+It fails the frozen joint selection gate. Preserve the favorable3-case
+development result separately; no held-out case is repeated or used to tune
+this policy. Actual final full suites are observed in every cell; one focused
+initial invocation is a loader error. Cache fractions84.47% versus83.99% and
+fresh input127,587 versus157,024 are descriptive measured buckets, not proof
+that one loader error or caching alone caused the aggregate increase.
+
+Zero observed test-success loss on12 pairs still allows a22.09% one-sided95%
+upper loss-rate bound; it does not establish narrow population noninferiority.
+These are seeded public exercise repairs, not long-horizon memory evidence.
+Supervising Codex records rejection through the connected TTGL analyst tool
+(review d4a0c3818fd140d1b7b5e938ce562f07), separately from immutable measurements.
+TTGL experiment e5ea538280a64aefa7b3707ea1bf4eda.
+

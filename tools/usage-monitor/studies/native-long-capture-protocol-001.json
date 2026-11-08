@@ -1,0 +1,23 @@
+{
+  "id": "native-long-capture-canary-001",
+  "registered_before_inference": true,
+  "model": "gpt-6.1-sol",
+  "maximum_cli_processes": 1,
+  "timeout_seconds": 900,
+  "scope": "Synthetic mechanism/accounting canary, not benchmark performance or token/cost saving evidence.",
+  "source_fixture": "4200 deterministic SHA rows plus a Unicode line-separator and random last marker; expected value outside actor read profile.",
+  "transport": "New capture-only wrapper of frozen HTTP adapter: SQLite/gzip content-addressed decoded-redacted JSON,16MiB request bound,4MiB SSE retention bound,512MiB private quota and576MiB free-space reserve. No input transformations; normal services unchanged.",
+  "software_controls": "Five passing object/HTTP/privacy controls: history sharing and roundtrip, corruption fail-closed, missing DB read-only, long strings/compaction exact wire passthrough/rejection audit, original redaction limit unchanged.",
+  "native_configuration": "Explicit isolated local Codex provider port8336, project instructions ignored for experimental actor, root-deny read permissions, tool output budget200000, auto-compaction threshold50000; native request/stream/process retries disabled.",
+  "acceptance": [
+    "Correct marker and intended two shell operations",
+    "Original/forwarded wire hashes equal for every inference request",
+    "Complete fixture survives decoded-redacted capture beyond old262144-character clip",
+    "Actual native automatic compaction observed, not merely a configured threshold",
+    "Every unique response incl summarization reconciles native/CLI/transport/Langfuse"
+  ],
+  "failure": "Preserve every completed/failed/uncertain operation; no automatic process retry, no repeated started assignment. Missing compaction or full output is unexercised/failed gate, not zero inference or proxy efficacy.",
+  "pricing": "context-memory-pricing-20261107.json; refuse unregistered response models before pricing",
+  "rollback": "Stop only owned8336 proxy/one diagnostic process. No normal routing, schedules, original source or historical trials changed.",
+  "cash_cost": null
+}
