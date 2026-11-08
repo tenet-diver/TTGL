@@ -117,12 +117,18 @@ specify nine assignments: three reserved development tasks crossed with continue
 native context/lexical records, fresh checkpoints/lexical records, and fresh
 checkpoints/incremental semantic memory. Original 4h/1.5h/3h horizons are preserved:
 25.5 actor-hours, 15-minute checkpoints and at most 102 native processes. This
-matrix has not started at this checkpoint; all 13 readiness gates now pass. No
-reserved validation task contents have been inspected.
+matrix started at 14:43 UTC on 8 November after all 13 readiness gates passed.
+The first continued-context assignment is running; no final task grade is yet
+available. Its first phase reconciles 35 unique responses, 767,014 native tokens
+and 4.5317 frozen-rate scenario credits. These are interim counters, not an
+additional cost to add again when the full assignment is measured. No reserved
+validation task contents have been inspected.
 
 Continued sessions receive full task instructions once and short continuation
 messages thereafter; they do not pay for redundant instruction replay. All arms
 have the same public task information, visible artifacts and own records/notes.
+The continued control uses the same fixed checkpoints and pauses as the other
+conditions; comparisons apply to that harness and its observed cache behavior.
 Private grades never feed live decisions. A candidate must preserve every matched
 control success, lower total model-rate scenario cost by at least 10% against each
 control, and win at least two of three paired costs against each before nomination.
@@ -134,3 +140,9 @@ chat work. Raw captures, source/permission receipts, private grading data and
 delivery ledgers remain private. The original corpus was relocated byte-for-byte
 to the larger temporary volume with a verified hash and retained original-path
 link; no completed study was deleted or rerun.
+
+During this matrix, the existing Langfuse exporter focuses its HTTP capture input
+on the dedicated study proxy while continuing to import all native sessions.
+Normal HTTP captures remain queued and will be flushed through the same ledger
+when the normal capture input is restored. Model counters are never summed with
+the proxy-span dataset.

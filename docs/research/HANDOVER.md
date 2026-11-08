@@ -3106,3 +3106,50 @@ meterandTTGLplanhelper. Onceprepared/activeDONOTeditfrozenfiles. Remainingwork
 isactualfull9assignmentmatrix+offlineartifactreview/meter/LFaudit/selection, NOT
 anotherprep-onlysummary. Scope/protocolattachmentfixedbeforegeneration; all
 researchschedulesstillPAUSED. Userexpectsfinishedexperimentsandresultsummary.
+
+### ACTIVE full online matrix, 8 November 2026, 14:58 UTC
+
+Allfinalsource/protocol committedandpushed256fdd3 BEFORE benchmarkgeneration.
+`prepare` COMPLETE: pointer
+work/security/context-memory-20261107/online-longhorizon-development-001.json
+root=/tmp/ttgl-online-longhorizon-development-c58pqefb. Frozenmanifest28sourcefiles,
+13green gate receipts, copiedprotocolSHA and ALL3tasksourcehashes. TTGLplan helper
+completedbeforemodelcall, projectbfaaccd058ca411d89ce6ab551ea469a, nine task IDs in
+root/ttgl-plan.json, first task79b99c3dc7d84a75a37faf5379803c65. ExperimentIDnull
+untilfirstfullcontrol(actualbaseline)completes; thisisintentionalguard.
+
+ONE worker RUNNING PID508386, exec13061: online_longhorizon_trial.py run.
+Started14:42:52; firstactorready/phase0about14:43:06. Originalfirstcondition
+unknown/continued_records assignmentb359d2728417ad1b, horizon4h,16phases.
+DO NOT startanotherworker, editANYmanifest sourcefiles, retuneprompts, repeatcalls,
+inspectreservedvalidation, stoponfavorable subset or resume schedules.
+All9assignments25.5actorhours sequential; expectedfinish~Nov9 16:15UTC if no
+ambiguity. Needcontinueactivechatuntilfullmatrix/analysisdone, notprep-onlyfinal.
+
+FirstCLIphasecall-00COMPLETE, SID01a1bb9d-389d-7e01-b3fd-ccbf743251df,15MCPcalls
+(includesphaseclosureanswers, not15assumedexecutedcommands),0MCPerrors,0remember
+calls. Taskstillunfinished; do notinferagent/taskfailureorsuccessfromthis.
+Actualnative/CLI/proxyreadonlyaudit35unique responses767014tokens(input764501,
+cached722560,output2513),4.5317scenario credits. Immutable
+call-00/interim-accounting-001.json retained. ThisisPHASEONLY, includedlaterinfull
+assignmenttotal, NEVERadditagaintoresults. TTGLturnassignmentreceiptpasses;
+nativeeventtasksummarymeasuresmatchingusage. No privategraderlivefeedback.
+Phase1nextstarts~14:58:06; sourceprogressJSON/rootstopmarkers inspectbeforeactions.
+
+Langfuse exporter430384 stoppedONLYafterflushedidle14:47:47; sameledger nowwatcher
+PID519613/exec47562 with --capture-root /tmp/ttgl-online-memory-captures-wryycodk,
+allnative/.codex imports continue. Status14:56noerrors; studypairs nowLIVE.
+Normal8317rawcapturesstillspoolunchanged, restore/exportnormalroot atmatrixfinish
+throughSAMEledger(notnewone). Proxy8370PID398985retained; TTGL8766PID21156,
+normal8317PID127075,and6Langfusecontainersretained. No normalmodelroutingchange.
+Earlier handoff receipt records previous restoration; this addendum supersedes
+its normal-rootwatcherstate duringnewmatrix. SchedulesremainPAUSED.
+
+Finalsoftware31checksPASS (24storage/bridge+5schedule+2scope), actualfullreference
+010PASS, empty011+supervisorcleanup/reference-reuseauditPASS, SQLite003controls
+PASS,Fuzz003/reference.9154+adversarial002PASS. No furtherpreparation needed.
+Laterwork: letALL9finish; offlineartifact-review.json forEVERYarm with sealed
+sourcehashes+rationale/status, runFROZENmeasure_online_longhorizon.py, grouped
+Langfuseaudit, publishactualwholematrixandreport; applyfrozenbothcontroljointgate.
+Onlyqualifieradvancestoseparatelyfrozenfresh6validation. AllfailedQA/canaries/
+linkageannotations staypreserved. Parentinference/cash/quotaunknown.
