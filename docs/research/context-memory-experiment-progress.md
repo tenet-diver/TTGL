@@ -614,3 +614,13 @@ speed improvement. These are seeded public-source development repairs, not real
 issue, long-horizon or held-out evidence. Extra self-selected checks and patch
 changes differ; passing visible tests does not prove identical general quality.
 No global default is promoted. TTGL experiment e80d44550db84c669499cc95ae4c06e7.
+
+## Frozen verification validation001 reservation
+
+Twelve fresh families are reserved before instruction/test/reference reads, with
+24 paired assignments after source/security/own controls. Exact development
+guidance is frozen, with no validation tuning. The joint gate requires all
+matched full-initial successes retained, at least10% lower pooled scenario cost
+and a majority of paired cost wins, with complete allocation/accounting. These
+12 seeded repair pairs cannot establish narrow population noninferiority and do
+not replace the still-pending long-horizon memory experiments.
