@@ -1,0 +1,22 @@
+{
+  "id": "lhtb-online-actor-controls-009",
+  "at": "2026-11-08T12:52:48.435058+00:00",
+  "registered_before_reference": true,
+  "model_calls": 0,
+  "full_reference_required_rounds": 105,
+  "minimum_interval_seconds": 50,
+  "automatic_retries": 0,
+  "empty_expected_reward": 0,
+  "reference_expected_reward": 1,
+  "method": "Original verifier body/runner behavior with trusted UID-drop wrapper, private root daemon and separate pause-sealed snapshot; model code1000cannotread private data,key or mounted golds.",
+  "sources": {
+    "tools/usage-monitor/experiments/lhtb_actor_runtime.py": "14daa531b15914be384c2e000edf60b998ebb3e48e2e6c9d32811f990044093c",
+    "tools/usage-monitor/experiments/lhtb_actor_runtime_v2.py": "41cc8578681a87a950c32bd29bd5cdea5ca14fc31ee4eccd2a80ad20ee2041ee",
+    "tools/usage-monitor/experiments/lhtb_actor_runtime_v3.py": "f8ff00d8920783275db04e3c53d38f41090c51023d8a94a97e3e1fc1e2125ba5",
+    "tools/usage-monitor/experiments/lhtb_actor_runtime_v4.py": "b097ef63497668b52de62d532b69624eaf15db1649f7904e9253edae62fa24e9",
+    "tools/usage-monitor/experiments/lhtb_actor_runtime_v5.py": "18f6bd31353035dd301d617c2ccb5718a589beff87a1fa14b2ca261d647149a7",
+    "tools/usage-monitor/experiments/lhtb_actor_controls.py": "eeefb6d13df56f576a3e82039efef0d615c7eb022ba76a0686481aa21d92e023",
+    "tools/usage-monitor/experiments/lhtb_actor_controls_009.py": "e42b7127e5151a6253757d21021ed6010583dc0df039996730708c11300f1c52"
+  },
+  "failure": "Stop on uncertain preparation/execution; preserve failed controls. No benchmark model assignment before complete reference success. All previous controls retained."
+}
