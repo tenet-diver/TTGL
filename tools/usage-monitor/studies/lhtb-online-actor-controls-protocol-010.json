@@ -1,0 +1,20 @@
+{
+  "id": "lhtb-online-actor-controls-010",
+  "at": "2026-11-08T13:06:18.742363+00:00",
+  "registered_before_reference": true,
+  "model_calls": 0,
+  "full_reference_required_rounds": 105,
+  "minimum_interval_seconds": 50,
+  "automatic_retries": 0,
+  "empty_expected_reward": 0,
+  "reference_expected_reward": 1,
+  "method": "Original verifier body/runner behavior with trusted UID-drop wrapper, private root daemon and separate pause-sealed snapshot; model code1000cannotread private data,key or mounted golds.",
+  "sources": {
+    "tools/usage-monitor/experiments/lhtb_actor_runtime.py": "14daa531b15914be384c2e000edf60b998ebb3e48e2e6c9d32811f990044093c",
+    "tools/usage-monitor/experiments/lhtb_actor_runtime_v2.py": "41cc8578681a87a950c32bd29bd5cdea5ca14fc31ee4eccd2a80ad20ee2041ee",
+    "tools/usage-monitor/experiments/lhtb_actor_runtime_v5.py": "18f6bd31353035dd301d617c2ccb5718a589beff87a1fa14b2ca261d647149a7",
+    "tools/usage-monitor/experiments/lhtb_actor_controls_010.py": "dad3fa81de1edaf180dd826d7e369b9ef05979e8adaac6d3b07cfa06386f163c"
+  },
+  "failure": "Stop on uncertain preparation/execution; preserve failed controls. No benchmark model assignment before complete reference success. All previous controls retained.",
+  "continuation": "009reference stopped before any probe: reference solve.sh uses cp which cannot replace an individually mounted engine.010uses unchanged reference_engine bytes written in place, then unchanged solve_client.py. Actual actor in-place write control added. Empty010passes expected0; private boundaries and sealed-copy grading unchanged.0model calls repeated."
+}
