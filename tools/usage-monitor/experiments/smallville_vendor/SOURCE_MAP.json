@@ -1,0 +1,179 @@
+{
+  "commit": "fe05a71d3e4ed7d10bf68aa4eda6dd995ec070f4",
+  "license": "Apache-2.0",
+  "origin": "https://github.com/joonspk-research/generative_agents",
+  "files": [
+    {
+      "file": "memory.py",
+      "upstream": "reverie/backend_server/persona/memory_structures/associative_memory.py",
+      "upstream_sha256": "bf05caf83661c1f870a26f80d326c104500763e77a54eee05368e56bd7daa791",
+      "vendored_sha256": "f5a9006d56400f35e868d67adda96b84a88bd513b930f1f591a4ff2b7ba5e6b6",
+      "definitions": [
+        {
+          "name": "ConceptNode",
+          "source_sha256": "3e000653b06c9ed612c5d68a2220ec541147b780869832e989f1ae6e66e8c7af"
+        },
+        {
+          "name": "AssociativeMemory",
+          "source_sha256": "6b52ba0fd2517ec4a5374c62d251e8b106f9c971bd1119725d396402b64e28c7"
+        }
+      ],
+      "changes": "Remove simulation/global/numpy/provider imports. Use standard-library math dot/norm; inject native/local callbacks. Function/class bodies unchanged."
+    },
+    {
+      "file": "retrieval.py",
+      "upstream": "reverie/backend_server/persona/cognitive_modules/retrieve.py",
+      "upstream_sha256": "a609d9ba431dd8cb0f3ec804d128ff9d1755719221127b45a248d20c51dc7120",
+      "vendored_sha256": "49774e2297f54abf2db416b1d3a96bf94b7d21226a9748759017a28b3c3d57ba",
+      "definitions": [
+        {
+          "name": "retrieve",
+          "source_sha256": "8181b825731a2f3657d017ffbf5a00e6f40f56a7646c90d93a77d6873b148cdd"
+        },
+        {
+          "name": "cos_sim",
+          "source_sha256": "c85e04be1723241e6c02ebc6be6d993af5b3e479558915834e15ae0fe86692dc"
+        },
+        {
+          "name": "normalize_dict_floats",
+          "source_sha256": "946db8169cd6d9847ac053d639804de251c030d651519d4797310142d4dcdc46"
+        },
+        {
+          "name": "top_highest_x_values",
+          "source_sha256": "07eca9cfcfd7d39a1d270bc4823edecaadf8e8dbea7ce50e1eb06b49eae33247"
+        },
+        {
+          "name": "extract_recency",
+          "source_sha256": "eafe4ae55ec3a0e305bc35968e6e3226d0f6dc2ec596dda81cf439fd22f8154f"
+        },
+        {
+          "name": "extract_importance",
+          "source_sha256": "261c4b4114965daf27023dbba153e1fd07ef4bee639a4790b3cdc087ed4ab96c"
+        },
+        {
+          "name": "extract_relevance",
+          "source_sha256": "a9af97bc234c186e3615aef6e8c3504d91896df3f207616a79c8f51a6d388be5"
+        },
+        {
+          "name": "new_retrieve",
+          "source_sha256": "76965aa068cae0d91be2d392a73d2a0261bcc77962f9e77e0aca863fe97af113"
+        }
+      ],
+      "changes": "Remove simulation/global/numpy/provider imports. Use standard-library math dot/norm; inject native/local callbacks. Function/class bodies unchanged."
+    },
+    {
+      "file": "reflection.py",
+      "upstream": "reverie/backend_server/persona/cognitive_modules/reflect.py",
+      "upstream_sha256": "5e2658a90f658ce4f42f6a7c3859fe47fd08925eb77c179a4c38e9233d1c205c",
+      "vendored_sha256": "ccd168112de3403e066afb0d5f7ffa5dd316cff0f4d3314e42cd1aee019347c4",
+      "definitions": [
+        {
+          "name": "generate_focal_points",
+          "source_sha256": "2a2081e7c38796d6ac8226dd5e41378d84d9fa0e8210a615cf1e0fbf40a9acae"
+        },
+        {
+          "name": "generate_insights_and_evidence",
+          "source_sha256": "70c8c7f35fca1bef7224717ad9aee1e2d541588e3fa21e3fde511afdbd39deb5"
+        },
+        {
+          "name": "generate_action_event_triple",
+          "source_sha256": "8f1e6d801c37fc8a188d1c158ce3538d6a7fa8639bf4ecc0d60083cfceda9ca9"
+        },
+        {
+          "name": "generate_poig_score",
+          "source_sha256": "0fba152610a881aa22b54ea7ddaf937d1c21d4fd99a40d29194856c8436b51cc"
+        },
+        {
+          "name": "run_reflect",
+          "source_sha256": "628f553cb1e6ee54090db9b9907622f42df6d594732c11e8a9845ce8497328b0"
+        },
+        {
+          "name": "reflection_trigger",
+          "source_sha256": "4029f9667f124ac0a9cb90c6378ee7e04931b4d1045dddb17c61b5ee11fa47b7"
+        },
+        {
+          "name": "reset_reflection_counter",
+          "source_sha256": "8c49c1f438bc74d807ed50ca1dc680632961eb69c88a002602a3749b4a51cea7"
+        }
+      ],
+      "changes": "Remove simulation/global/numpy/provider imports. Use standard-library math dot/norm; inject native/local callbacks. Function/class bodies unchanged."
+    },
+    {
+      "file": "prompts/v2/generate_focal_pt_v1.txt",
+      "upstream": "reverie/backend_server/persona/prompt_template/v2/generate_focal_pt_v1.txt",
+      "upstream_sha256": "3857c7d4549d8e044297b5dd166ab05fa006a16216052af589254ab5add266aa",
+      "vendored_sha256": "3857c7d4549d8e044297b5dd166ab05fa006a16216052af589254ab5add266aa",
+      "changes": "None; original prompt template bytes."
+    },
+    {
+      "file": "prompts/v2/poignancy_event_v1.txt",
+      "upstream": "reverie/backend_server/persona/prompt_template/v2/poignancy_event_v1.txt",
+      "upstream_sha256": "553edbf4cdf6878ea0ecea3ca04a92d1e9953068062e6de7557ce135df55d808",
+      "vendored_sha256": "553edbf4cdf6878ea0ecea3ca04a92d1e9953068062e6de7557ce135df55d808",
+      "changes": "None; original prompt template bytes."
+    },
+    {
+      "file": "prompts/v2/poignancy_thought_v1.txt",
+      "upstream": "reverie/backend_server/persona/prompt_template/v2/poignancy_thought_v1.txt",
+      "upstream_sha256": "05e4196bd6025f9610c27a99603ee1b6fbd96e60804b46fce07e917a57bb7a47",
+      "vendored_sha256": "05e4196bd6025f9610c27a99603ee1b6fbd96e60804b46fce07e917a57bb7a47",
+      "changes": "None; original prompt template bytes."
+    },
+    {
+      "file": "prompts/v2/poignancy_chat_v1.txt",
+      "upstream": "reverie/backend_server/persona/prompt_template/v2/poignancy_chat_v1.txt",
+      "upstream_sha256": "107a91dcbf7c8dce8d1a69cf7f7c1aaae4c840c9a2e991319862820f023d8b1a",
+      "vendored_sha256": "107a91dcbf7c8dce8d1a69cf7f7c1aaae4c840c9a2e991319862820f023d8b1a",
+      "changes": "None; original prompt template bytes."
+    },
+    {
+      "file": "prompts/v2/insight_and_evidence_v1.txt",
+      "upstream": "reverie/backend_server/persona/prompt_template/v2/insight_and_evidence_v1.txt",
+      "upstream_sha256": "712e56cfca41b27cbae946f6f6a6054b62ab7bf8faf7d8df008992da9470cbe2",
+      "vendored_sha256": "712e56cfca41b27cbae946f6f6a6054b62ab7bf8faf7d8df008992da9470cbe2",
+      "changes": "None; original prompt template bytes."
+    },
+    {
+      "file": "prompts/v2/generate_event_triple_v1.txt",
+      "upstream": "reverie/backend_server/persona/prompt_template/v2/generate_event_triple_v1.txt",
+      "upstream_sha256": "6ec467695305c3f977f0c882ef0a13c594b58034b5f21676ec6b1e6af3faed00",
+      "vendored_sha256": "6ec467695305c3f977f0c882ef0a13c594b58034b5f21676ec6b1e6af3faed00",
+      "changes": "None; original prompt template bytes."
+    },
+    {
+      "file": "prompts/v3_ChatGPT/generate_focal_pt_v1.txt",
+      "upstream": "reverie/backend_server/persona/prompt_template/v3_ChatGPT/generate_focal_pt_v1.txt",
+      "upstream_sha256": "40a5a54af1b84b9272dfa5486cf1d0a4494cdee3826b83994bb979daf9012ac8",
+      "vendored_sha256": "40a5a54af1b84b9272dfa5486cf1d0a4494cdee3826b83994bb979daf9012ac8",
+      "changes": "None; original prompt template bytes."
+    },
+    {
+      "file": "prompts/v3_ChatGPT/poignancy_event_v1.txt",
+      "upstream": "reverie/backend_server/persona/prompt_template/v3_ChatGPT/poignancy_event_v1.txt",
+      "upstream_sha256": "553edbf4cdf6878ea0ecea3ca04a92d1e9953068062e6de7557ce135df55d808",
+      "vendored_sha256": "553edbf4cdf6878ea0ecea3ca04a92d1e9953068062e6de7557ce135df55d808",
+      "changes": "None; original prompt template bytes."
+    },
+    {
+      "file": "prompts/v3_ChatGPT/poignancy_thought_v1.txt",
+      "upstream": "reverie/backend_server/persona/prompt_template/v3_ChatGPT/poignancy_thought_v1.txt",
+      "upstream_sha256": "05e4196bd6025f9610c27a99603ee1b6fbd96e60804b46fce07e917a57bb7a47",
+      "vendored_sha256": "05e4196bd6025f9610c27a99603ee1b6fbd96e60804b46fce07e917a57bb7a47",
+      "changes": "None; original prompt template bytes."
+    },
+    {
+      "file": "prompts/v3_ChatGPT/poignancy_chat_v1.txt",
+      "upstream": "reverie/backend_server/persona/prompt_template/v3_ChatGPT/poignancy_chat_v1.txt",
+      "upstream_sha256": "107a91dcbf7c8dce8d1a69cf7f7c1aaae4c840c9a2e991319862820f023d8b1a",
+      "vendored_sha256": "107a91dcbf7c8dce8d1a69cf7f7c1aaae4c840c9a2e991319862820f023d8b1a",
+      "changes": "None; original prompt template bytes."
+    },
+    {
+      "file": "prompts/v3_ChatGPT/insight_and_evidence_v1.txt",
+      "upstream": "reverie/backend_server/persona/prompt_template/v3_ChatGPT/insight_and_evidence_v1.txt",
+      "upstream_sha256": "712e56cfca41b27cbae946f6f6a6054b62ab7bf8faf7d8df008992da9470cbe2",
+      "vendored_sha256": "712e56cfca41b27cbae946f6f6a6054b62ab7bf8faf7d8df008992da9470cbe2",
+      "changes": "None; original prompt template bytes."
+    }
+  ]
+}

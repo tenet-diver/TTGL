@@ -1,0 +1,5 @@
+Portions derived from Generative Agents: Interactive Simulacra of Human Behavior.
+Joon Sung Park and original contributors,2023.
+https://github.com/joonspk-research/generative_agents
+Pinned commit fe05a71d3e4ed7d10bf68aa4eda6dd995ec070f4. Licensed under Apache License2.0.
+TTGL compatibility import layer and native/local callbacks are separate.

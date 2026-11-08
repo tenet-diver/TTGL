@@ -712,3 +712,15 @@ call. Remote built-in-provider compaction remains a separate unresolved gate.
 ### User scope update: Smallville and open-source-only memory
 
 8 November: user explicitly excludes all paid/hosted memory systems, including hosted free tiers. Retain self-hosted open-source backends; cloud authenticated Codex inference remains authorized. Smallville implementation must be similar to the original, including prompts and ranking. The detailed [implementation/progress plan](smallville-memory-implementation-plan.md) is recorded BEFORE coding: source pin/fidelity map, original templates, storage/embeddings/ranking/importance/reflection, isolation, software/native tests, comparisons, cost and publication. No Smallville model trials yet. No paid memory service was used or configured.
+
+### Smallville implementation checkpoint
+
+Original-style core now implemented after the plan publication: original storage,
+ranking and reflection definition bodies,11 exact licensed templates, explicit
+native-Codex/local-BGE callbacks and operation audits.10 semantic software tests
+pass with stubs; original loader ResourceWarnings retained. Source/template
+fingerprint test added. [Fidelity map](smallville-source-fidelity.md) documents
+rank-based recency/weights, prompt callers, restart reset and safety adaptations.
+Native mechanism001 registered/prepared: expected41/max48calls; zero inference at
+this checkpoint. Any forced reflection is explicitly diagnostic. Long-horizon
+model trials and optimization efficacy remain pending.

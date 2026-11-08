@@ -1,0 +1,21 @@
+{
+ "id":"smallville-native-mechanism-001",
+ "registered_before_inference":true,
+ "purpose":"Original-style Smallville prompt/storage/ranking/reflection synthetic mechanism, not terminal benchmark performance or savings evidence",
+ "upstream_commit":"fe05a71d3e4ed7d10bf68aa4eda6dd995ec070f4",
+ "model":"gpt-6.1-sol",
+ "maximum_model_processes":48,
+ "timeout_seconds_per_call":600,
+ "allocation":"Six deterministic synthetic observations scored separately by original event-poignancy prompt. Original ranked retrieval. Three focal questions, five evidence-linked insights per question, original triple and importance prompts for every thought; then one diagnostic reader. Expected41calls, max48. No benchmark reference/hidden tests or personal logs ingested.",
+ "ranking":"Original new_retrieve functions: ascending last_accessed then0.99**rank recency, min-max normalization with0.5 for degenerate range, cosine relevance, originalweights0.5recency/3relevance/2importance, scratchmultipliers1. Original idle filtering/ties/access renewal, not a silently corrected paper formula.",
+ "prompts":"Exact licensed pinned templates and caller-specific JSON wrapper/format substitutions. Original v3 event-poignancy used for thoughts too; v3 focal questions, v2 insights and event-triple. No coding-specific rewrite of social importance examples.",
+ "reflection":"Default threshold150 preserved. With six actual scored observations natural trigger likely unexercised: explicitly force counter0 for diagnostic reflection if needed, recording original remaining value. This is NOT evidence of naturally triggered reflection. Software stub test separately crosses150; no stub output used as model evidence.",
+ "storage":"Original ConceptNode/AssociativeMemory class bodies and three JSON exports preserved; snapshot pointer and trace sidecar added. Primary reload retains original last_accessed reset behavior. Optional access-preserving extension is software-tested separately, not silently enabled.",
+ "adaptations":"Old simulation/import/provider dependencies excluded. Stdlib dot/norm replaces NumPy math; local pinned BGE/FastEmbed replaces original hosted embeddings, cloud authenticated Codex replaces obsolete GPT backend. Zero automatic process retries/fail-safe invented memories; malformed ratings/citations stop without resubmission. No claims of reproducing model sampling/temperature or Smallville social evaluation.",
+ "acceptance":"Six valid scored observations, actual local embeddings, original ranked retrieval,15thoughts with valid evidence IDs,21persisted nodes, correct synthetic recalled identifier reported separately, all observed normal/auxiliary response IDs allocated and reconciled native/transport/Langfuse. Forced reflection scope explicit. Missing or uncertain usage blocks accounting approval.",
+ "software_controls":"10passing storage/ranking/importance/reflection/namespace/restart/citation tests with stub callbacks; upstream open-file ResourceWarnings retained, not hidden. No model-quality conclusion from software tests.",
+ "pricing":"context-memory-pricing-20261107.json; all scoring, questions, insights, triples, thought ratings and reader inference are research expense; local compute distinct; cash unknown",
+ "failure_policy":"No automatic process retry or repeated started/uncertain call. Preserve raw prompt/output, failed parsing and partial memory; new protocol/source needed for a fresh diagnostic after failure.",
+ "rollback":"Stop only owned8338proxy/canary. No normal routing/instructions changes, no paid or hosted memory systems, no background schedules.",
+ "cash_cost":null
+}
