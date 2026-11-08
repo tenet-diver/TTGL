@@ -724,3 +724,26 @@ rank-based recency/weights, prompt callers, restart reset and safety adaptations
 Native mechanism001 registered/prepared: expected41/max48calls; zero inference at
 this checkpoint. Any forced reflection is explicitly diagnostic. Long-horizon
 model trials and optimization efficacy remain pending.
+
+### Smallville actual mechanism, compatibility and benchmark continuation
+
+8November: strict original-style outputs expose list-string and comma tuple
+parser failures, preserved in003/004.005completes original storage/ranking/scoring/
+reflection prompts and exact synthetic recall, but inspection finds malformed
+triple fields.006deterministically replays41exact-matching completed prompts and
+outputs using a full-tuple/suffix parser;0newLLMcalls, corrected structure and same
+recall. Reflection is forced:135natural importance points remain, not a naturally
+crossed trigger. All41actual responses reconcile native/transport/Langfuse:
+421840tokens,5.1868historical-scenario credits; cash/quota unknown. TTGL experiment
+69a92858c9ae4d8da711c2a10a906cb3records inconclusive optimization interpretation.
+17software controls pass. Frozen failures and semantic-field correction retained.
+
+New registered `smallville-benchmark-protocol-001.json` runs three reused eligible
+LongMemEval development questions, matching full-history and raw-file search to a
+separately labeled evidence-first SQLite/FTS/local-BGE candidate. Original social
+importance/proactive-reflection model work is removed in this candidate; it is
+not silently relabeled original Smallville. All9readers precede9blinded adapted
+judges. Local embedding/index work and all model/analyst research are separate.
+No new held-out access, paid memory, global routing change or scheduled inference.
+Full-horizon LHTB reference003running after host interruption002; empty003passes
+expected0. Model actor trials remain gated. No long-horizon coding gain claimed.

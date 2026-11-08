@@ -72,3 +72,36 @@ All normal/auxiliary native response IDs must reconcile with private captures an
 Langfuse. All calls are research expense. Correct recall alone does not establish
 quality/cost readiness for benchmarks. Long-horizon development and held-out
 comparisons remain separate phases in the plan.
+
+## Actual native mechanism and dated compatibility findings, 8 November
+
+The strict original-style path failed on modern output before complete reflection:
+003's focal output is an actual JSON list instead of a list encoded in a string;
+004's object contains a comma. Each stopped attempt and completed response remains
+immutable.005accepts either focal representation and splits the first comma, then
+completes6observations/15thoughts/21persisted nodes and exact identifier recall.
+Inspection nevertheless finds malformed triple fields because the modern model
+sometimes emits the full subject tuple rather than only the original completion
+suffix. This prevents semantic fidelity approval of005; correct recall alone does
+not validate those fields.
+
+006uses a separate parser accepting the observed full subject tuple or completion
+suffix. A fresh local memory is rebuilt by replaying all41existing responses in
+order, requiring exact prompt and role equality and having no inference fallback.
+All41match, all thought subject/predicate shapes are valid, and recall stays exact.
+This is a deterministic compatibility correction, not41new independent trials.
+It replaces neither failed evidence nor original source definitions.
+
+All41actual native responses reconcile CLI/transport/Langfuse:420350input,
+341120cached-input subset,1490output,421840total tokens;5.1868credits under the
+frozen7November rate scenario. Actual cash/quota remain unknown. Six events used
+15importance points, leaving135; reflection was deliberately forced.005's raw
+`natural_remaining:0` field reflects reloaded already-forced003state; measurement
+corrects this from original audit evidence while preserving that completion file.
+
+Stored useful memories include the LF/CRLF distinction, rejected filename/blank
+record hypotheses, trailing-carriage-return diagnosis, the exact fix identifier,
+and the observed empty-field regression check. They are synthetic evidence-linked
+records, not observations of a successful external coding task. Social poignancy
+ratings and the150threshold did not naturally produce reflection in this example.
+The mechanism's inference expense is research overhead, not an economic benefit.
