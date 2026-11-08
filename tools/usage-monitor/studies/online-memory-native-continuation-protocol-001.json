@@ -1,0 +1,20 @@
+{
+  "id": "online-memory-native-continuation-001",
+  "registered_before_inference": true,
+  "purpose": "Actual native code-edit/check/note/restart/recall canary of incremental task memory and UID1000container MCP boundary. Synthetic development fixture; not coding benchmark, autonomous memory use or savings evidence.",
+  "model": "gpt-6.1-sol",
+  "maximum_model_processes": 2,
+  "timeout_seconds_per_process": 900,
+  "per_phase_tool_budget": 24,
+  "per_phase_soft_close_seconds": 600,
+  "automatic_process_retries": 0,
+  "allocation": "Two native CLI invocations resuming SAME thread on synthetic fixture. First normalization edit/check/note; second extension/check/search/read/note. No automatic retries.",
+  "memory": "Files-mode lexical FTS own records and fallible notes, no BGE indexing",
+  "acceptance": "Two completed CLI turns in one session, positive per-turn native/proxy counts and validated CLI deltas, all4tooltypes observed, independent final fixture passed and all Langfuse responses reconcile.",
+  "failure": "No automatic model process retry. Explicit approval/transport blocks stop before next phase; all failed operations/usage retained. No circumventing host filesystem/network or managed restrictions.",
+  "pricing": "Frozen7Novcontext-memory credit-rate scenario for measured native counters, all tool/model integration responses included; local embedding/runtime and research overhead separate; cash/quota unknown.",
+  "scope": "No normal provider/memory configuration change. No paid/hosted memory or dependency install. Current long-horizon full reference control continues independently; no scored task model inference before its gate.",
+  "continuation": "Fresh restart canary003passed. This separately registered control diagnostic tests continued native session transport/cumulative-counter validation before benchmark, not an efficacy study.",
+  "tool_policy": "Only invocation-local mcp_servers.ttgl_task.tools.<name>.approval_mode=approve for terminal/remember/search_records/read_record, with exact enabled_tools allowlist. These execute exclusively inside the owned no-network UID1000container or namespace-local SQLite. User explicitly authorizes this benchmark integration. No global approval, filesystem, network or hook trust policy changed. Official https://learn.chatgpt.com/docs/extend/mcp and config reference fetched before use. Annotation safety labels are not fabricated.",
+  "changes": "Native second exec uses resume same session, all cumulative CLI counters validated as deltas against per-response metering. Same sandbox/MCP permissions; no global changes."
+}

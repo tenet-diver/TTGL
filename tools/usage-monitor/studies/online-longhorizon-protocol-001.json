@@ -1,0 +1,93 @@
+{
+  "id": "online-longhorizon-protocol-001",
+  "registered_before_inference": true,
+  "split": "development",
+  "candidate": "Incremental local semantic instruction/note retrieval over immutable own records; no scorer/reflection LLM",
+  "model": "gpt-6.1-sol",
+  "reasoning": "low",
+  "checkpoint_seconds": 900,
+  "tools_close_seconds": 600,
+  "native_process_timeout_seconds": 840,
+  "tool_budget_per_phase": 60,
+  "maximum_native_processes": 102,
+  "total_actor_hours": 25.5,
+  "automatic_process_retries": 0,
+  "conditions": [
+    "continued_records",
+    "restarted_records",
+    "restarted_memory"
+  ],
+  "control_affordances": "Same own raw command records, fallible notes, lexical SQLite FTS search, source paging and public task feedback for every arm; continued_records retains native thread. Memory arm additionally indexes instructions/notes with reviewed local BGE. Do not call lexical control plain files without this qualification.",
+  "allocation": "All9assignments fixed now; original14400/5400/10800sec horizons,15min checkpoints; no early stopping on success; no private live feedback. Sequential; no additional queue/heartbeat. All9grades kept; uncertain call or harness failure stops queue, never rerun.",
+  "quality": "Unknown binary reward1; SQLite original binary pass, dense reward reported separately; fuzz adapted score>=.70. All require separate artifact policy review. Candidate cannot lose any matched baseline success for nomination.",
+  "selection": "After all development assignments, retain all successes of BOTH controls, >=10%lower complete model-rate scenario against each control and >=2/3paired cost wins against each. If no candidate qualifies reject promotion. Freeze candidate before six reserved validation task contents. Small development result cannot establish noninferiority.",
+  "measurement": "Each actual native response counted once, reconciled to CLI deltas and captured response usage and Langfuse. Continued CLI counters may be cumulative; subtract validated previous completion only for same native thread, preserve per-response events including compaction. All intermediate/failed/model responses included. FrozenNov7credit-rate scenario, cash/quota null; local embedding, actor operations/runtime and research overhead separate.",
+  "failure": "Any started/uncertain model turn is preserved and never automatically retried. Transport all-zero/missing usage remains unknown. No new images/packages, hidden source/grade in memory or host routing/config changes.",
+  "gates": "Own actor/private empty/reference for all3tasks; successful fresh restart native memorycanary003 and continued-thread transportcanary001 plus reconciled accounting. Sources/phasebudget/protocol frozen before first benchmark generation.",
+  "score_limitation": "Reviewed existing runtime replaces upstream images. Fuzz verifier executes fuzzer via JSON IPC underUID1000 instead of privileged same-process import, changing throughput; these are adapted LHTB-derived scores, not official leaderboard results.",
+  "assignments": [
+    {
+      "id": "b359d2728417ad1b",
+      "task": "unknown",
+      "source": "tasks/unknown-config-semantics",
+      "horizon_seconds": 14400,
+      "condition": "continued_records"
+    },
+    {
+      "id": "ad36b92adbad8dfa",
+      "task": "unknown",
+      "source": "tasks/unknown-config-semantics",
+      "horizon_seconds": 14400,
+      "condition": "restarted_memory"
+    },
+    {
+      "id": "47b65d198e4a6b13",
+      "task": "unknown",
+      "source": "tasks/unknown-config-semantics",
+      "horizon_seconds": 14400,
+      "condition": "restarted_records"
+    },
+    {
+      "id": "e64f25552aa2f1c9",
+      "task": "sqlite",
+      "source": "tasks-2.0/sqlite_wal_recovery_audit__02",
+      "horizon_seconds": 5400,
+      "condition": "restarted_records"
+    },
+    {
+      "id": "9475b5ecc1b98bef",
+      "task": "sqlite",
+      "source": "tasks-2.0/sqlite_wal_recovery_audit__02",
+      "horizon_seconds": 5400,
+      "condition": "continued_records"
+    },
+    {
+      "id": "bea4e516ff59053a",
+      "task": "sqlite",
+      "source": "tasks-2.0/sqlite_wal_recovery_audit__02",
+      "horizon_seconds": 5400,
+      "condition": "restarted_memory"
+    },
+    {
+      "id": "d3ad85ef90adfc24",
+      "task": "fuzz",
+      "source": "tasks/grammar-fuzz-coverage-hunt",
+      "horizon_seconds": 10800,
+      "condition": "restarted_memory"
+    },
+    {
+      "id": "8fcaf4c8f28ad8bc",
+      "task": "fuzz",
+      "source": "tasks/grammar-fuzz-coverage-hunt",
+      "horizon_seconds": 10800,
+      "condition": "restarted_records"
+    },
+    {
+      "id": "198d1027440f3bab",
+      "task": "fuzz",
+      "source": "tasks/grammar-fuzz-coverage-hunt",
+      "horizon_seconds": 10800,
+      "condition": "continued_records"
+    }
+  ]
+}
