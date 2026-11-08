@@ -3073,3 +3073,15 @@ Workspace nearlyfull; private corpus longmemeval_s_cleaned.json relocated
 byteidentical to /tmp/ttgl-preserved-memory-corpus-*/ with verifiedSHA and original
 pathsymlink; relocationreceipt retained. No frozenstudydeleted. Newcaptures and
 matrix use roomy /tmp. Preserve all raw histories, credentials and DBvolumes.
+
+14:21UTC addendum: reference010now90/105,laststageE,PID338427stillactive, no
+completion/stopped yet. Final benchmark runner also imports
+plan_online_longhorizon.py: after `prepare`, run that helper with the new private
+root BEFORE `online_longhorizon_trial.py run`. It creates TTGLproject/nine tasks
+and immutable protocol linkage, then phases attach actual native turns. Existing
+experiment framework correctly requires real baseline evidence; experiment row
+is deferred until first full control completes (activate helper), not fabricated
+from0events/oldQA. Preserve any metadata-failure receipts; they never trigger
+another model call. First full control creates actual baseline; final comparison
+still uses ALLmatched cases. Five scheduler tests pass after this hook. This
+source/protocol remains pre-inference; matrix still NOTprepared/started.
