@@ -1,0 +1,73 @@
+{
+  "scope": "Read-only actual command-output audit; no trial repeated, no new model inference. First reported file_change is not universal proof against all shell-based edits.",
+  "cells": [
+    {
+      "case": "alphametics",
+      "condition": "full_initial",
+      "initial_tests": 10,
+      "final_tests": 10,
+      "expected_full_tests": 10,
+      "initial_command_exit": 1,
+      "final_command_exit": 0,
+      "initial_test_before_first_reported_file_change": true,
+      "final_full_observed": true
+    },
+    {
+      "case": "alphametics",
+      "condition": "focused_initial",
+      "initial_tests": 1,
+      "final_tests": 10,
+      "expected_full_tests": 10,
+      "initial_command_exit": 1,
+      "final_command_exit": 0,
+      "initial_test_before_first_reported_file_change": true,
+      "final_full_observed": true
+    },
+    {
+      "case": "word-search",
+      "condition": "focused_initial",
+      "initial_tests": 3,
+      "final_tests": 24,
+      "expected_full_tests": 24,
+      "initial_command_exit": 1,
+      "final_command_exit": 0,
+      "initial_test_before_first_reported_file_change": true,
+      "final_full_observed": true
+    },
+    {
+      "case": "word-search",
+      "condition": "full_initial",
+      "initial_tests": 24,
+      "final_tests": 24,
+      "expected_full_tests": 24,
+      "initial_command_exit": 1,
+      "final_command_exit": 0,
+      "initial_test_before_first_reported_file_change": true,
+      "final_full_observed": true
+    },
+    {
+      "case": "tournament",
+      "condition": "full_initial",
+      "initial_tests": 12,
+      "final_tests": 12,
+      "expected_full_tests": 12,
+      "initial_command_exit": 1,
+      "final_command_exit": 0,
+      "initial_test_before_first_reported_file_change": true,
+      "final_full_observed": true
+    },
+    {
+      "case": "tournament",
+      "condition": "focused_initial",
+      "initial_tests": 2,
+      "final_tests": 12,
+      "expected_full_tests": 12,
+      "initial_command_exit": 1,
+      "final_command_exit": 0,
+      "initial_test_before_first_reported_file_change": true,
+      "final_full_observed": true
+    }
+  ],
+  "all_final_full": true,
+  "all_initial_assigned_counts": true
+}

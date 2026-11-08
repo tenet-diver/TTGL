@@ -722,3 +722,22 @@ published-rate scenario credits, including implementation/supervision and
 evaluation overhead. One timed-out extraction remains unmetered; this active
 research snapshot is a lower bound, not net savings or a complete operational
 price. Alternative cumulative snapshots must never be added together.
+## Verification selection001: complete development result
+
+All six repairs pass independent sealed original tests and artifact checks. All46
+unique responses reconcile native/CLI/transport and Langfuse. Initial full-suite
+counts10/24/12 contrast with focused1/3/2; every initial run detects failure, and
+every actor actually completes the full final suite. These are46 tests per arm
+across three tasks, not46 independent task successes.
+
+| Arm | Native tokens | Scenario credits | Successful tasks |
+|---|---:|---:|---:|
+| Full initial suite |429,772|4.15052|3/3|
+| Focused initial checks |282,537|2.96321|3/3|
+
+Focused uses34.26% fewer tokens and28.61% lower modeled inference cost, with3/3
+paired cost wins. Process-wall sums203.55s and195.71s do not establish a general
+speed improvement. These are seeded public-source development repairs, not real
+issue, long-horizon or held-out evidence. Extra self-selected checks and patch
+changes differ; passing visible tests does not prove identical general quality.
+No global default is promoted. TTGL experiment e80d44550db84c669499cc95ae4c06e7.

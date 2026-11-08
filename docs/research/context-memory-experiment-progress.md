@@ -26,14 +26,14 @@ Each live block still has a frozen allocation, failure policy and complete accou
 | chronological-memory-001 / corrected 002 | Fresh-session no memory, full prior history, bounded SQLite FTS retrieval, agent-written notes | 001 configuration failure preserved; 002 complete | First CLI rejected reserved built-in provider override before model invocation. New registered002 removes it and uses native transport defaults; 24 processes across two three-stage generated coding sequences. All six empty controls fail as expected and all six reference/independent controls pass. Three FTS contract tests pass. [Protocol](../../tools/usage-monitor/studies/chronological-memory-protocol-001.json). Unrelated/stale controls and fresh long-horizon benchmarks remain separate pending work. |
 | mem0-memory | Pinned stock self-hosted Mem0 versus no memory and raw-history retrieval | Adapted dense development comparison complete | Mem0 2.2.1 + FastEmbed 0.9.1: 50 exact packages, 50/50 OSV queries with no matches, 50 wheel hashes checked; no .pth or installer scripts. Installed only in private experiment target under Codespace incomplete-evidence allowance; not security-cleared. Pinned MIT ONNX embedder loads offline and returns384 dimensions. One local-Codex extraction completed (32,935 native tokens); two facts persisted/retrieved and tenant isolation passed. API search failure preserved and corrected through reads only. Optional NLP/BM25 unavailable in this configuration; not full-feature/default hosted Mem0. Completed long-history002 scores7/7 local checks but cold-start deployment scenario cost88.18% above full history; no cost-gate nomination. |
 | letta-memory | Maintained stateful-agent alternative | Discovery | Pin actual runtime and distinguish replacing the agent from changing its memory. Verify current license, dependencies and inference compatibility. |
-| graphiti-memory | Temporal graph memory versus flat retrieval of the same corpus | Discovery | Inspect maintained integration, backend requirements, license and complete dependency graph; count extraction/embedding/ranking. |
-| mcp-graph-memory-mechanism | Maintained server-memory2.1.0 with an isolated JSONL knowledge graph, no vector DB or model calls | Probe003 passes; efficacy pending | 4 exact packages have no OSV matches; hashes/provenance and mixed Apache/MIT transition recorded.7 protocol/persistence checks pass, including observations/relations and restart. Earlier test-client parser/schema failures001/002 preserved. No global Codex integration or memory-quality result. |
+| graphiti-memory | Temporal graph memory versus flat retrieval of the same corpus | Neo4j client installed; backend/integration pending | Kuzu deprecated/archived; FalkorLite blocked by bundled Redis. Maintained Neo4j client graph29 packages has no current OSV matches, isolated only. Probe001 reveals missing upstream httpx dependency; actual reviewed compatibility packages added, no namespace alias. No graph/model-quality result. |
+| mcp-graph-memory-mechanism | Maintained server-memory2.1.0 raw-record graph versus ordinary files and other memory stores | Mechanism and generated development panel complete | Probe003 passes; all12 generated reader checks pass. MCP raw graph costs14.25% more than continued context despite fewer tokens. Lexical retrieval over stored graph does not establish graph-reasoning benefit; no default adoption. |
 | principles-and-stage | Evidence-backed principles and stage-aware retrieval, each ablated | Planned | Same frozen episodes and equal retrieval budget; stale/contradictory/irrelevant memory controls; no hidden grader information. |
 | repository-map | Maintained Aider map versus normal retrieval | Dependency review | Current metadata candidate 0.86.2; complete graph and runtime review pending. Preserve prior 0.86.0 discovery as historical. |
 | learned-compression | LLMLingua versus deterministic/raw documentation context | Dependency review | Candidate 0.2.2; model-weight/runtime security, license and factual guards pending. Count compressor compute/inference. |
 | local-selection | Lightweight local ranking/summary substitution | Planned | No model install before review; compare exact same pipeline and include local loading/runtime costs. |
 | cache-aware-layout | Continued native thread versus stable/changing prefixes, files, FTS and reused Mem0 | Complete; reconciled |72/72 reader checks pass,75 calls including3 extractions. Changing prefix uses1.07% fewer tokens but159.86% more scenario cost than continued context. All115 responses reconcile; no Mem0 break-even after4 actual queries. |
-| verification-selection | Focused initial tests with mandatory full final verification | Planned | Three fresh paired repair tasks; independent final checks in every arm. |
+| verification-selection | Focused initial tests with mandatory full final verification | Development complete; reconciled | Six fresh seeded repair attempts pass all original test/artifact checks. Focused costs28.61% less with3/3 paired cost wins; all46 responses reconcile CLI/native/transport/Langfuse. Broader/long-horizon validation remains pending. |
 | rtk-output | Maintained output filtering | Security blocked | Prior pinned release has confirmed dependency advisories; no install/execute. A patched candidate needs a new review. |
 | longmemeval-local-codex-development-001 | Full-history vs ordinary file-search vs exact FTS excerpts vs adapted Mem0-dense, all with identical raw files | Stopped; failure preserved | 3 readers completed, first memory extraction timed out at300 seconds;0 grades. Extraction usage/cost unknown, not zero. No calls repeated. Original eight cases span all 6 types; first case excluded from continuation without replacement. Each history is about503–520k characters.24 held-out cases reserved and untouched. [Protocol](../../tools/usage-monitor/studies/longmemeval-codex-protocol-001.json). |
 | longmemeval-local-codex-development-002 | Same prompts/model and remaining7 originally unstarted cases; memory-extraction timeout1800 seconds | Complete; audited |63 processes,28/28 local rubric passes; all native/CLI/Langfuse usage and IDs reconcile. FTS nominee:82.80% lower scenario cost vs full history,17.15% vs plain search. All extraction counted. No first-case retry/replacement or all-six-type completed claim. [Protocol](../../tools/usage-monitor/studies/longmemeval-codex-protocol-002.json). |
@@ -594,3 +594,23 @@ overhead-count typo was corrected12→6 with a preserved pre-inference amendment
 Compaction003 terminates at initialize timeout before thread creation or any proxy
 request. No model turn started; preserve this bounded startup failure without
 repeating it. Built-in remote compaction remains unverified.
+
+## Verification selection001: complete development result
+
+All six repairs pass independent sealed original tests and artifact checks. All46
+unique responses reconcile native/CLI/transport and Langfuse. Initial full-suite
+counts10/24/12 contrast with focused1/3/2; every initial run detects failure, and
+every actor actually completes the full final suite. These are46 tests per arm
+across three tasks, not46 independent task successes.
+
+| Arm | Native tokens | Scenario credits | Successful tasks |
+|---|---:|---:|---:|
+| Full initial suite |429,772|4.15052|3/3|
+| Focused initial checks |282,537|2.96321|3/3|
+
+Focused uses34.26% fewer tokens and28.61% lower modeled inference cost, with3/3
+paired cost wins. Process-wall sums203.55s and195.71s do not establish a general
+speed improvement. These are seeded public-source development repairs, not real
+issue, long-horizon or held-out evidence. Extra self-selected checks and patch
+changes differ; passing visible tests does not prove identical general quality.
+No global default is promoted. TTGL experiment e80d44550db84c669499cc95ae4c06e7.

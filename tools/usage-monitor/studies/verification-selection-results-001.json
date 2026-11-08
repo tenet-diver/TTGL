@@ -1,0 +1,26 @@
+{
+  "id": "verification-selection-001",
+  "totals": {
+    "full_initial": {
+      "cells": 3,
+      "passed": 3,
+      "native_tokens": 429772,
+      "credit_rate_scenario": 4.15052,
+      "process_wall_seconds": 203.55343500599702
+    },
+    "focused_initial": {
+      "cells": 3,
+      "passed": 3,
+      "native_tokens": 282537,
+      "credit_rate_scenario": 2.96321,
+      "process_wall_seconds": 195.7069393549973
+    }
+  },
+  "cost_change_percent": -28.606295114828985,
+  "token_change_percent": -34.258862838900626,
+  "unique_responses": 46,
+  "all_native_cli_transport_reconciled": true,
+  "cash_cost": null,
+  "local_operational_cost": null,
+  "note": "Three fresh public exercise families with seeded bugs; development repair diagnostic only. Full final tests are shared. No long-horizon, official benchmark, held-out, cash or general quality claim."
+}
