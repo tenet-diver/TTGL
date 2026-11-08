@@ -1,0 +1,42 @@
+{
+  "id": "smallville-mechanism-results-001",
+  "completed_calls": 41,
+  "usage": {
+    "input_tokens": 420350,
+    "cached_input_tokens": 341120,
+    "output_tokens": 1490,
+    "total_tokens": 421840
+  },
+  "credit_rate_scenario": 5.1868,
+  "observations": 6,
+  "thoughts": 15,
+  "reader_exact": true,
+  "reflection_forced": true,
+  "original_trigger_evidence": [
+    {
+      "kind": "diagnostic_forced_reflection",
+      "original_remaining": 135,
+      "forced_remaining": 0
+    }
+  ],
+  "completion_remaining_field_correction": "005natural_remaining0is copied forced state from003failure snapshot; use original003audit original_remaining for natural trigger. Frozen completion preserved.",
+  "malformed_triple_nodes": [
+    "node_21",
+    "node_20",
+    "node_18",
+    "node_17",
+    "node_16",
+    "node_15",
+    "node_14",
+    "node_13",
+    "node_12",
+    "node_11",
+    "node_10",
+    "node_9",
+    "node_8"
+  ],
+  "gate": "recall/storage/evidence mechanism observed; semantic triple fidelity not approved",
+  "limitations": "Synthetic forced reflection; not benchmark/savings. All original9+continuation32calls retained; parsing failures preserved.",
+  "cash_cost": null,
+  "quota_saving": null
+}

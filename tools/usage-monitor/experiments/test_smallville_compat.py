@@ -17,3 +17,11 @@ class Compatibility(unittest.TestCase):
    m=CompatibleMemory(Path(t),lambda s:[1.,0.],lambda p,r:'{"output":["incomplete"]}',{})
    with self.assertRaises(ValueError):m._focal(m.persona,'observed',3)
 if __name__=='__main__':unittest.main()
+
+class FullTripleCompatibility(unittest.TestCase):
+ def test_completed_modern_shapes(self):
+  from smallville_compat_v3 import CompatibleMemoryV3
+  for answer in ('is, failure depends on format, not filename)', '(TTGL agent, is, failure depends on format, not filename)', 'TTGL agent, is, failure depends on format, not filename)'):
+   with tempfile.TemporaryDirectory() as t:
+    m=CompatibleMemoryV3(Path(t),lambda s:[1.,0.],lambda p,r:answer,{})
+    self.assertEqual(m._triple('event',m.persona)[0],('TTGL agent','is','failure depends on format, not filename'))
