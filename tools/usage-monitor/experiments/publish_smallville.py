@@ -8,7 +8,7 @@ from workspace import Store
 from analyst_experiments import plan_experiment,record_evaluation,review_experiment
 
 def main(kind):
- root=GLOBAL/({'mechanism':'smallville-native-mechanism-005','benchmark':'smallville-benchmark-001','validation':'smallville-validation-001'}[kind])
+ root=GLOBAL/({'mechanism':'smallville-native-mechanism-005','benchmark':'smallville-benchmark-001','validation':'smallville-validation-001','original':'smallville-original-benchmark-001'}[kind])
  if (root/'publication.json').exists():raise ValueError('Already published')
  result=json.loads((root/'results.json').read_text());audit=json.loads((root/'langfuse-audit-001.json').read_text())
  if not audit['all_reconciled']:raise ValueError('Langfuse accounting not reconciled')
@@ -30,7 +30,7 @@ def main(kind):
  if kind=='mechanism':
   verdict='inconclusive';notes='Original importance/focal/insight/triple prompts produced useful evidence-linked memory and exact recall. Original parser failed twice;005stored malformed triple fields.006exact-prompt replay corrects all41existing outputs with0newLLMcalls. Forced trigger with natural135remaining.421840tokens/5.1868scenario credits; no task efficacy/savings or production promotion.'
  else:
-  verdict='inconclusive' if result['development_nomination_gate_passed'] else 'reject';notes=('Registered six-case fresh validation result; ' if kind=='validation' else 'Registered three-case reused development memory-QA result; ')+json.dumps(result['comparisons'])+'. Local indexing and original mechanism research cost remain separate. No official benchmark, fresh transfer, coding-task benefit or cash/quota claim. No deployment promotion without separately frozen evidence.'
+  verdict='inconclusive' if result['development_nomination_gate_passed'] else 'reject';notes=('Registered six-case fresh validation result; ' if kind=='validation' else 'Registered direct original-style three-case development arm; ' if kind=='original' else 'Registered three-case reused development memory-QA result; ')+json.dumps(result['comparisons'])+'. Local indexing and original mechanism research cost remain separate. No official benchmark, fresh transfer, coding-task benefit or cash/quota claim. No deployment promotion without separately frozen evidence.'
  review=review_experiment(store,dict(evaluation_id=evaluation,verdict=verdict,notes=notes))
  store.mutate('task_status',dict(id=task,status='completed',outcome=notes))
  publication=dict(project_id=project,task_id=task,experiment_id=exp,evaluation_id=evaluation,review=review,artifact_sha256=digest)

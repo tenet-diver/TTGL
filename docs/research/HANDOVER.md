@@ -2868,3 +2868,16 @@ Do notmodifyfrozenbenchmark/validation/originalsourcesduringruns. Existingowned
 8338canonicalcapture(root003),8766TTGLandLangfuseexporterSAMEledgercontinue.
 Unknownreference003stillRUNNING,30/105pacedroundsseen,stageB;noactortrialyet.
 ResearchschedulesPAUSED. Workonlyactivechat; no duplicateworkers.
+
+### 11:22 UTC live checkpoint
+
+Alloriginalsource/adaptationevidence retained. Direct original arm:44+51+47
+observations completed,0naturalreflections,thirdcorpusremaining40;2readerscomplete,
+nojudgesyet. Freshvalidation6/18readerscomplete (first2cases),thirdindexbuilding;
+nojudgesyet. Do notinspectgrades/tunepolicy. Bothnoerrors. Existingpacedreference
+40/105rounds,stageB. No duplicates/retries. Normal existing capture8317also restored
+via capture_proxy.py (exec59927), in addition to study8338; no globalconfigchange.
+After all study capture exports reconcile, return SAME native-export ledger
+watcher to normal global captures rather than leave only studyroot configured.
+All seventeen software tests passed before these calls. Latest measurement and
+publication scripts now support original/validation; don't rerun finished blocks.
