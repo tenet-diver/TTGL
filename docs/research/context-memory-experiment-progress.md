@@ -782,3 +782,23 @@ All18readers precede18blinded judges. Registered no observed baseline loss,
 or favorable-subset stopping. See smallville-validation-protocol-001.json and
 smallville_validation.py; running, no validation outcome yet. Passing6questions
 would still not establish narrow noninferiority or long-horizon coding benefit.
+
+### Direct original-style benchmark arm complete and economically rejected
+
+All3original-style readers and3blinded judges finish;3/3successes,0memory-contract
+failures. All152native sessions reconcile CLI/transport/Langfuse. Entire task cost
+includes146individual original social importance ratings plus3readers:
+2122977native tokens,39.93569frozen-rate credits,149taskmodelprocesses. Judges
+0.35720credits extra. This is2.3472xfull-history cost and10.2053xordinary file
+search cost;0/3paired cost wins against either. Compared with the candidate's
+1.00715credits, original task cost is39.6522x. Quality matches these development
+controls, but original arm fails the joint economic gate. No global promotion.
+
+All146session observations persist(44/51/51),0naturally triggered reflections,
+0thoughts;remaining thresholds41/23/32. Forced synthetic reflection remains
+separate mechanism evidence. Social prompts/threshold/released ranking retained;
+modern V3output compatibility, session perception/JSON escapes/local BGE are
+explicit adaptations. This is not reproduction of the Smallville simulation,
+proof that its original models have these costs, or a coding-task score. Sol used
+for importance scoring; another scorer would require a separately registered
+study. Fresh6-case candidate validation remains running and untouched.

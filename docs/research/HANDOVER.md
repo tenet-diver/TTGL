@@ -2881,3 +2881,19 @@ After all study capture exports reconcile, return SAME native-export ledger
 watcher to normal global captures rather than leave only studyroot configured.
 All seventeen software tests passed before these calls. Latest measurement and
 publication scripts now support original/validation; don't rerun finished blocks.
+
+### 11:29 UTC original benchmark COMPLETE
+
+Directoriginal3case arm all3success,0contractfailures.146socialimportance+3reader
+calls(149taskprocesses),2122977tokens,39.93569scenario credits.3judgeoverheadcalls
+0.35720credits. All152sessionsnative/CLI/proxy/LFreconcile, LFreceipt001true.
+No naturalreflection:146observations/0thoughts,remaining41/23/32. Cost2.3472xfull,
+10.2053xfiles;0/3pairedwins,failsnomination. Resultsprivate+public
+smallville-original-results-001.json. Publish_smallville.py original launched
+exec148? (inspectactualpublication.json, do notduplicateifexists); mainworker
+exec16298done. No reruns or policychanges.
+FreshvalidationstillRUNNING:9/18readers(3/6cases),1774localembedsat11:28:50;
+nojuryyet,nofailures. Candidate/methodsfrozen. Awaitall18readers+18judges,
+measure_smallville.py validation, readonlyLF audit thenpublish. Current allsource
+andfailedraw evidencepreserved. Unknownreference003~50/105rounds,stageC,
+minimum50sec pacing unchanged. SchedulesPAUSED;activechatonly.
