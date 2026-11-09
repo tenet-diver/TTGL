@@ -1,0 +1,14 @@
+{
+  "id": "smallville-luna-mechanism-004",
+  "registered_before_inference": true,
+  "model": "gpt-6-luna",
+  "maximum_model_processes": 40,
+  "automatic_process_retries": 0,
+  "scope": "Replay only first8 exact-prefix outputs from002; these precede first changed triple. Then new v4 prompts/output-dependent calls, no retries.003 replay stopped at first mismatch with0newcalls. All002and003evidence retained.",
+  "original_prompts_and_ranking": true,
+  "reflection": "Reuse forced diagnostic trigger only; zero natural reflection claim. No benchmark inference until complete.",
+  "gate": "15valid evidence-linked thoughts/exactreader;8exactreplayreceipts;nativeusage for allnewcalls",
+  "comparison": "Original Sol mechanism retained as historical development reference, no repeated original calls. Subsequent shared coding benchmark with TokenEconomizer must be independently registered and passed compatibility/security/empty/reference gates.",
+  "source_frozen": "New runner/model-selectable callback plus existing original source/compatV3/localBGE source hashes recorded at preparation.",
+  "preparation_correction": "001 had local unsupported-route rejections only, no pending/response receipts, zero upstream submissions; existing native-route adapter replaces wrong proxy. No completed/uncertain inference repeated."
+}

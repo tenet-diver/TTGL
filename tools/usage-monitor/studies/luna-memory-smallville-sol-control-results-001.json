@@ -1,0 +1,42 @@
+{
+  "id": "smallville-sol-native-control-001",
+  "completed": true,
+  "totals": {
+    "smallville_sol": {
+      "usage": {
+        "input_tokens": 777505,
+        "cached_input_tokens": 637696,
+        "output_tokens": 4565,
+        "total_tokens": 782070
+      },
+      "credit_rate_scenario": 9.72594,
+      "solver_scenario": 4.00954,
+      "maintenance_scenario": 5.7164,
+      "sum_cli_process_wall_seconds_nonadditive": 343.34458179199555,
+      "solver_cli_wall_seconds": 158.0022103379997,
+      "maintenance_cli_wall_seconds": 185.34237145399584,
+      "missing_process_lifecycle_receipts": 0,
+      "assignments": 8,
+      "passes": 8,
+      "reduction_vs_files": -1.2057686899567277,
+      "paired_cost_wins_vs_files": 0,
+      "matched_control_successes_lost": 0,
+      "development_gate_passed": false
+    }
+  },
+  "responses": 71,
+  "local_embedding_operations": 45,
+  "local_embedding_seconds": 7.066885092996927,
+  "rates_checked_at": "2026-11-09",
+  "rate_source": "https://learn.chatgpt.com/docs/pricing",
+  "cash_expense": null,
+  "actual_account_credits": null,
+  "quota_saving": null,
+  "scope": "Adapted HumanEval-derived development coding comparison; see protocol for full-native versus memory-ablation scope",
+  "accounting": "All unique native responses and maintenance included; cached input is a subset of input. Research/diagnostics separate. Local embedding monetary cost and parent implementation overhead unknown.",
+  "timing_accounting": "CLI process lifetimes, not native item.duration operation runtime or pure model latency. Synchronous TE sidecalls overlap their parent solver process; do not add parent/child wall time as task latency. No speedup claim. Source receipt timestamps and native tool runtimes remain separate raw evidence.",
+  "reference_results": "work/security/context-memory-20261107/luna-memory-tokeneconomizer-native-001/reconciled-results.json",
+  "reference_scope": "Earlier matched tasks/interface, separate later-period development arm; not randomized simultaneous assignment or independent validation.",
+  "artifact_review_passed": true,
+  "natural_reflections": 0
+}

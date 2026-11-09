@@ -1,0 +1,10 @@
+{
+  "id": "tokeneconomizer-captured-sidecall-001",
+  "registered_before_inference": true,
+  "model": "gpt-6-luna",
+  "maximum_model_processes": 1,
+  "automatic_process_retries": 0,
+  "purpose": "Upstream codex_call through scoped captured no-tools wrapper; positive native counters and exact JSONreply, not efficacy.",
+  "prompt": "Return only this JSON object, with no tools or explanation: {\"extractors\":[],\"facts\":[]}",
+  "no_global_configuration_change": true
+}

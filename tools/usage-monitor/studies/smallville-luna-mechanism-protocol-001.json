@@ -1,0 +1,13 @@
+{
+  "id": "smallville-luna-mechanism-001",
+  "registered_before_inference": true,
+  "model": "gpt-6-luna",
+  "maximum_model_processes": 48,
+  "automatic_process_retries": 0,
+  "scope": "Same six synthetic visible events as original mechanism; Luna replaces Sol for every importance/reflection/triple call. Separate diagnostic reader remains Sol; not benchmark efficacy or savings.",
+  "original_prompts_and_ranking": true,
+  "reflection": "Original threshold150; if not naturally reached, explicitly force only diagnostic reflection, label it. Preserve malformed completed outputs and stop with no retry.",
+  "gate": "Positive native usage; valid ratings/triples/citations; persist21nodes; recall exact identifier; own no-tool scope. If output contract fails do not proceed to scoring until separately registered correction.",
+  "comparison": "Original Sol mechanism retained as historical development reference, no repeated original calls. Subsequent shared coding benchmark with TokenEconomizer must be independently registered and passed compatibility/security/empty/reference gates.",
+  "source_frozen": "New runner/model-selectable callback plus existing original source/compatV3/localBGE source hashes recorded at preparation."
+}

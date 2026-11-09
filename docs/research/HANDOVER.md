@@ -3212,3 +3212,45 @@ NeedarchiveEACHcompletedcurrentassignmentandfinalcanonicalcapturesonto workspace
 afterstable/fullresult, preservingprivateevidenceandallfailedcalls. Restore/export
 normal8317capture inputafterfullmatrix via SAME native-exportledger. Study8370
 andallnativecapturecontinue; lastLangfusestatus18:11noerrors.
+
+### 9 November: Luna Smallville / TokenEconomizer comparison complete
+
+User requested Luna-maintained Smallville versus Microsoft TokenEconomizer.
+Read docs/research/luna-memory-tokeneconomizer.md and the final aggregate in
+tools/usage-monitor/studies/luna-memory-tokeneconomizer-final-results-001.json.
+All 72 coding assignments passed selected tests: two 32-assignment blocks on
+8 reused public HumanEval functions, plus 8 later-period Sol-maintenance controls.
+Same Sol solver throughout; Luna maintained memory, not independent task solving.
+Native remote-rate totals: source search 4.409320 credits; Smallville/Luna
+5.2218505 (+18.43%); TE defaults 4.676670 (+6.06%); TE micro-skills/Luna
+3.8781115 (-12.05%); later Smallville/Sol 9.725940 (+120.58%). Luna maintenance
+was 0.3834605 versus Sol 5.7164 credits (93.29% lower); whole remote-call scenario
+46.31% lower versus Sol-maintained memory, but still above plain Sol/search.
+TE numerical development gate passes for memory-on, but neither TE arm injected
+skills, applied pruning or issued redirects: do not attribute the difference to
+learned memory or claim broad savings. No coding arm naturally reflected. Forced
+Luna diagnostic stored15 thoughts/exact recall only after v4 JSON-triple wrapper;
+original refusal and all failures preserved. No global memory/provider adoption.
+
+Full native launch stopped after6 progress rows plus a completed7th solver/Luna
+reply whose wrapper exit receipt was missing. Recovery001 verified native/CLI/
+capture, replayed ONLY that exact reply through unchanged TE fold with0 new LLM
+calls, then continuation002 ran only25 never-started cells using upstream async
+folds. Original sources/stopped/progress preserved. One late-seal flag and unknown
+child-process lifetime remain. No started or uncertain call repeated. Control
+was later-period, not simultaneous randomized; all are development, not held-out
+or official SWE-bench/TokenEconomizer paper scores. Target90 not met.
+
+All494 unique responses across270 model-bearing native sessions reconcile;
+5,292,938 native tokens and49.1993445 scenario credits include trials/diagnostics.
+Parent implementation/supervision additional/unknown; local embeddings unpriced;
+cash/quota/full deployment cost unknown. No net first-use research saving.
+20 focused unittests pass; original source ResourceWarnings retained, upstream
+pytest unavailable. Source pin264e7a7 reviewed stdlib only; no new install/image
+pull. Capture port8381 closed and2 OWNED non-model idle-pruning workers stopped.
+All capture bytes copied+hash-verified to workspace work/security/context-memory-20261107/luna-te-captures-preserved-{001,002}; /tmp originals retained. Final
+accounting/preservation/delivery handoff receipts beside them. Langfuse delivery
+not verified; don't claim4-way reconciliation. Existing collection config and
+research schedules unchanged/paused. No more trials/queues running; do not repeat
+these completed attempts, resume the discontinued old long matrix, or launch
+larger/held-out work without a new instruction. Prior user local edits preserved.

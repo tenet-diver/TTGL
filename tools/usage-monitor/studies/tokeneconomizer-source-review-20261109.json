@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-09T19:57:25.876670+00:00",
+  "commit": "264e7a7f32f0112a06aa83a97b9c2c4681563968",
+  "license": "Apache-2.0",
+  "runtime_dependencies": [],
+  "build_dependencies_excluded": [
+    "setuptools"
+  ],
+  "execution": "Reviewed source directly, no package installation, lifecycle/build scripts disabled; optional aider/RTK/Serena and original whole benchmark environment excluded",
+  "checks": {
+    "osv": {
+      "completed": true,
+      "findings": 0
+    },
+    "github_advisories": {
+      "completed": true,
+      "findings": 0
+    }
+  },
+  "publisher": "GitHub microsoft/TokenEconomizer; Git blob identities verified against pinned API tree",
+  "publisher_incident_search": "GitHub security page and current public search reviewed; no repository-specific incident found, not an absence guarantee",
+  "provenance": "No independently verified release attestation/signature; GitHub publisher/source identity plus per-file hashes only",
+  "codespace_exception": "User explicitly permits execution with incomplete evidence in this Codespace; confirmed vulnerabilities still block",
+  "scope": "Core source and selected Python stages only. Existing runtime reused; no new image or CLI/package install",
+  "confirmed_findings": 0,
+  "security_clearance": false,
+  "repository_archived": false,
+  "repository_pushed_at": "2026-11-08T22:09:30Z",
+  "source_files_blob_verified": 144,
+  "unresolved_scope": "Existing host/runtime/baseOS not newly cleared; optional Aider code and full original benchmark installation graphs not executed. Source-only execution under the explicit Codespace incomplete-evidence exception. No blanket security clearance."
+}

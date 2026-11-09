@@ -1,0 +1,45 @@
+{
+  "id": "luna-memory-tokeneconomizer-humaneval-development-001",
+  "registered_at": "2026-11-09T20:02:10.071341+00:00",
+  "registered_before_inference": true,
+  "status": "preparation_requires_all_controls",
+  "benchmark": "HumanEval MIT pinned b9453e8f1865df0a0057a1383767caa400acfbcf, adapted sequential terminal coding stream; not official Pass@k or TokenEconomizer paper replication",
+  "selection": "SHA256(ttgl-luna-memory-te-001:task_id), first8 of164; fixed before task outcomes",
+  "tasks": [
+    "HumanEval/13",
+    "HumanEval/21",
+    "HumanEval/88",
+    "HumanEval/131",
+    "HumanEval/3",
+    "HumanEval/85",
+    "HumanEval/15",
+    "HumanEval/162"
+  ],
+  "arms": [
+    "file_search",
+    "smallville_luna",
+    "te_microskills_sol",
+    "te_microskills_luna"
+  ],
+  "allocation": "Task-major rotated arm order, one fresh native Sol session/task/arm; no retries/replacements; all8tasks completed regardless favorable subset. Own namespace per arm, same preceding visible source archive; no cross-arm memory.",
+  "solver": "gpt-6.1-sol low, same common guidance and terminal/remember/search_records/read_record schemas; network and host tools disabled; UID1000 reviewed container, private grader absent during inference",
+  "actor_limits": {
+    "seconds": 600,
+    "tool_calls": 24
+  },
+  "smallville": "CompatibleV3 original prompts/storage/released ranking and threshold150; chronological actual instruction, terminal records and final answers, one observation each; no private tests/results fed into memory; all maintenance on gpt-6-luna; original threshold only, no forced efficacy reflection; top8context before each fresh task.",
+  "tokeneconomizer": {
+    "commit": "264e7a7f32f0112a06aa83a97b9c2c4681563968",
+    "mechanism": "Unmodified PrefixStage envfacts+distiller, generic vocabulary, proposer cadence3 matching current plugin; upstream lifecycle/grounding and rendered facts preserved. Native terminal MCP results normalized losslessly into command_execution; observed file changes become file_change records.",
+    "scope": "Micro-skills ablation, NOT full product. Tool pruning/loopguard excluded symmetrically to isolate memory; full-plugin Codex0.167 compatibility and SWE/Web-Bench environment gates remain separate.",
+    "maintenance_models": [
+      "gpt-6.1-sol",
+      "gpt-6-luna"
+    ]
+  },
+  "controls": "Before any scored model: each selected task empty must fail, exact pinned canonical solution must pass in same isolated runtime; private source sentinel inaccessible to UID1000. Actor native tools scoped to own server. Dataset scripts AST reviewed; no installs/pulls.",
+  "quality": "Unchanged pinned HumanEval tests after actor stops, sealed candidate source and public instructions verified; private test outcome never enters ongoing memory. Inspect artifacts for answer-key/introspection/test modifications separately.",
+  "cost": "Deduplicate every native response, fresh/cache/output per model. Include all importance/reflection/triple/proposer/solver calls and local embedding runtime. Model-rate scenario Nov9Luna2.5/.25/12.5 Sol50/2.5/250 credits perM; cash/quota null. Judges absent; research/diagnostic overhead separate.",
+  "decision": "Development only. Nomination requires retain EVERY matched source-search success, >=10%lower summed total scenario cost and >=5/8 paired cost wins. Separate preregistered fresh validation required for generalization. No guarantee target achieved.",
+  "freeze": "Hash full common harness, protocol, runtime/source identities, private dataset and selected-source files at prepare; refuse change/started rerun. Stop whole block on uncertain inference/transport/grade ambiguity. Completed malformed memory output retained as arm failure; no automatic invented memories."
+}

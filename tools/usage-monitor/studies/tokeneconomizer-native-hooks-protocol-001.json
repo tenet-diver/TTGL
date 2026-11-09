@@ -1,0 +1,12 @@
+{
+  "id": "tokeneconomizer-native-hooks-001",
+  "registered_before_inference": true,
+  "maximum_model_processes": 1,
+  "model": "gpt-6.1-sol",
+  "automatic_process_retries": 0,
+  "scope": "One native-hook compatibility canary on Codex0.167; forced marker read, not benchmark efficacy.",
+  "source": "Reviewed pinned264e7a7source; unmodified original hook event definitions, only absolute reviewed launcher path substituted for plugin-root environment variable; no global plugin/config install.",
+  "trust": "Official documented per-invocation vetted-automation hook option only after pinned source/security review; no persisted hook trust/global config changes.",
+  "isolation": "Model host sandbox denies root except owned marker work and native runtime. No model network, plugins, apps, browser, imagegen or external MCP. TokenEconomizer state separate TOKENECONOMIZER_HOME. No saved source-history import. Micro-skills envfacts only in canary to guarantee no sidecalls; default toolprune/loopguard retained.",
+  "gate": "Own allow/deny sandbox control without inference; then exactly1completednativecall with positiveusage, correct marker answer, actual native hook session/turn/post-tool events and fold evidence, allcounter/capture reconciliation. Stop on ambiguity; no scoring or sidecalls authorized by this canary."
+}

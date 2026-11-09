@@ -1,0 +1,37 @@
+{
+  "id": "luna-memory-tokeneconomizer-native-001",
+  "registered_at": "2026-11-09T20:16:15.999192+00:00",
+  "registered_before_inference": true,
+  "scope": "Separate common-native-tool32assignment development comparison. Prior MCP micro-skills ablation remains frozen and is not pooled. Reused8development tasks; no fresh validation claim.",
+  "tasks": [
+    "HumanEval/13",
+    "HumanEval/21",
+    "HumanEval/88",
+    "HumanEval/131",
+    "HumanEval/3",
+    "HumanEval/85",
+    "HumanEval/15",
+    "HumanEval/162"
+  ],
+  "arms": [
+    "file_search",
+    "smallville_luna",
+    "te_default",
+    "te_memory_luna"
+  ],
+  "solver": "gpt-6.1-sol low; same native shell/edit tools, own writable repository, immutable history containing all previous own instructions/candidates/final responses/visible tool results. No MCP normalizer needed.",
+  "allocation": "Task-major rotating arm order,8tasksperarm; all32orstoponambiguity; no favorable stopping or retries.",
+  "maintenance": "Smallville original ranking/threshold150 and alloriginalprompts except separately successfulv4tripleformatwrapper; allmaintenancegpt-6-luna. TE real pinned upstream full native hooks264e7a7:defaulttoolprune+loopguard,micro-skillsoff(default)oron(namedarm); paid_modelLunaexplicit inbothTEarms. No hidden grades to any model.",
+  "adaptations": "Pinned reviewed hooks loaded inline through documented invocation-only vetted-automation option; no globalplugininstall/trustchange. TE_FOLD_SYNC=1 makes folds synchronous and included in runtime; ephemeral maintenance sessions retained for audit; scoped PATH shim adds no-tools/capture/nativeusage to upstream sidecalls without rewriting prompts. No idle-time toolprune acceleration, synthetic failures or forced efficacy reflection. The SessionEnd timeout is240seconds for synchronousfolds instead of original3-second async-launch timeout; preserves upstream algorithms, explicitly changes measured hook scheduling/latency.",
+  "limits": {
+    "actor_seconds": 600,
+    "sidecall_seconds": 180,
+    "maximum_actor_processes": 32,
+    "automatic_process_retries": 0,
+    "maximum_maintenance_calls_per_arm": 512
+  },
+  "gates": "Native hooks canary001 actual session/turn/post-tool/fold evidence passes. Reuse exact8empty/reference pairs under unchanged execute()/dataset/image withsourceequivalenceaudit. Each arm actual native source-read/private-denial/write-allowed/history-write-denied controls before inference. Fullnative source frozen bymanifest. Upstream captured sidecall002haspositiveusage/exactJSONreply; local415preflight001retainedwithzeroupstreamsubmissionevidence.",
+  "cost": "Deduplicate every native response, fresh/cache/output per model. Include all importance/reflection/triple/proposer/solver calls and local embedding runtime. Model-rate scenario Nov9Luna2.5/.25/12.5 Sol50/2.5/250 credits perM; cash/quota null. Judges absent; research/diagnostic overhead separate.",
+  "decision": "Development only. Nomination requires retain EVERY matched source-search success, >=10%lower summed total scenario cost and >=5/8 paired cost wins. Separate preregistered fresh validation required for generalization. No guarantee target achieved.",
+  "limitations": "Tiny short functionstream may leave loopguard/pruning/reflection dormant; report actual events,notenabled-featurebenefits. Previous reused public fixtures and currentdevelopment results cannot establish generalization. Totaldeployment/localenergy andactualcash/quota unknown."
+}

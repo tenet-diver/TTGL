@@ -1,0 +1,14 @@
+{
+  "id": "luna-memory-tokeneconomizer-native-continuation-002",
+  "registered_at": "2026-11-09T20:29:02.416124+00:00",
+  "registered_before_additional_inference": true,
+  "parent": "luna-memory-tokeneconomizer-native-001",
+  "reason": "NativeCLIclosedSessionEndwhile synchronousfoldchildhadalreadyreturnedcompletedLunareply; originalstoppedafter6progressrows plus7thcompletedsolver/1completedLunareplywithmissingwrapperexitreceipt. Noactiveprocesses.",
+  "allowed_recovery": "First verify oneLunareply againstnativeCLI/rollout/capture; preserveTEstatebeforecopy. Replay existingexactprompt+model+rawJSONreply ONLY into unchanged upstreamfold; no modelrunnerfallback. Manualstate mustnow1before and2after; exactly1replay; originalmissingprocessreceipt staysmissing/unknown. Append latecandidate seal+independentgrade for completed7thsolver. No modelretry.",
+  "allowed_continuation": "Only25never-startedassignments in originalregisteredorder, same8tasks, solver/memorypolicies/prompts/hookalgorithms/toolboundaries. ReconstructSmallville persistedaccess/state andcompletedcallregistry. ResumeTEfromexactreplayedfold. Originalgenerationsources remainunchanged. New supervisor sourcehashedbeforecalls. Originalstopped/progressfilespreserved; separatecontinuationprogress/completion. No changing grades orfeedingthemtoanymodel.",
+  "operational_amendment": "TE_FOLD_SYNC=0(originalupstreamasyncbehavior), waitforrecordedfoldcompletionbeforedispatchingnextassignment,240secondboundedwait. No acceleratedpruning orsyntheticfailures. Schedulingdiffers from first7sessions; reporttwooperationalsegments, do notclaimfullyuniformruntime.",
+  "automatic_process_retries": 0,
+  "maximum_new_actor_processes": 25,
+  "source_or_receipt_ambiguity": "Stopwithoutinference/retry ifanypromptmismatch,otherstartedunrecordedassignment,unreconciledresponse,statecountmismatchorfailedfold.",
+  "quality_cost_gate": "Originalfrozengateunchanged. Includeeveryactualcallonce,allfailure/recoveryoverheadseparate,noactualcash/quota/netclaims."
+}

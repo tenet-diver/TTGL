@@ -1,0 +1,94 @@
+{
+  "id": "luna-memory-tokeneconomizer-development-002",
+  "completed": true,
+  "totals": {
+    "file_search": {
+      "usage": {
+        "input_tokens": 426563,
+        "cached_input_tokens": 371200,
+        "output_tokens": 3831,
+        "total_tokens": 430394
+      },
+      "credit_rate_scenario": 4.6539,
+      "solver_scenario": 4.6539,
+      "maintenance_scenario": 0,
+      "finite_process_seconds": 189.39197378900053,
+      "assignments": 8,
+      "passes": 8,
+      "reduction_vs_files": 0.0,
+      "paired_cost_wins_vs_files": 0,
+      "matched_control_successes_lost": 0,
+      "development_gate_passed": false
+    },
+    "smallville_luna": {
+      "usage": {
+        "input_tokens": 747790,
+        "cached_input_tokens": 593152,
+        "output_tokens": 4105,
+        "total_tokens": 751895
+      },
+      "credit_rate_scenario": 5.875408,
+      "solver_scenario": 5.61475,
+      "maintenance_scenario": 0.260658,
+      "finite_process_seconds": 282.93933664099904,
+      "assignments": 8,
+      "passes": 8,
+      "reduction_vs_files": -0.2624697565482714,
+      "paired_cost_wins_vs_files": 0,
+      "matched_control_successes_lost": 0,
+      "development_gate_passed": false
+    },
+    "te_microskills_luna": {
+      "usage": {
+        "input_tokens": 419234,
+        "cached_input_tokens": 343808,
+        "output_tokens": 3573,
+        "total_tokens": 422807
+      },
+      "credit_rate_scenario": 4.9681575,
+      "solver_scenario": 4.93612,
+      "maintenance_scenario": 0.0320375,
+      "finite_process_seconds": 165.8906891200004,
+      "assignments": 8,
+      "passes": 8,
+      "reduction_vs_files": -0.06752562367046999,
+      "paired_cost_wins_vs_files": 4,
+      "matched_control_successes_lost": 0,
+      "development_gate_passed": false
+    },
+    "te_microskills_sol": {
+      "usage": {
+        "input_tokens": 412468,
+        "cached_input_tokens": 355968,
+        "output_tokens": 4320,
+        "total_tokens": 416788
+      },
+      "credit_rate_scenario": 4.794919999999999,
+      "solver_scenario": 4.01527,
+      "maintenance_scenario": 0.77965,
+      "finite_process_seconds": 202.10432857500018,
+      "assignments": 8,
+      "passes": 8,
+      "reduction_vs_files": -0.030301467586325348,
+      "paired_cost_wins_vs_files": 4,
+      "matched_control_successes_lost": 0,
+      "development_gate_passed": false
+    }
+  },
+  "responses": 183,
+  "local_embedding_operations": 41,
+  "local_embedding_seconds": 7.762736200003474,
+  "rates_checked_at": "2026-11-09",
+  "rate_source": "https://learn.chatgpt.com/docs/pricing",
+  "cash_expense": null,
+  "actual_account_credits": null,
+  "quota_saving": null,
+  "scope": "Adapted HumanEval-derived development coding comparison; see protocol for full-native versus memory-ablation scope",
+  "accounting": "All unique native responses and maintenance included; cached input is a subset of input. Research/diagnostics separate. Local embedding monetary cost and parent implementation overhead unknown.",
+  "micro_skills_injected_tasks": {
+    "te_microskills_sol": 0,
+    "te_microskills_luna": 0
+  },
+  "natural_reflections": 0,
+  "artifact_review_passed": true
+}

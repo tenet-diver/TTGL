@@ -1,0 +1,43 @@
+{
+  "id": "smallville-luna-mechanism-004",
+  "completed": true,
+  "responses": 64,
+  "totals": {
+    "diagnostic_overhead": {
+      "usage": {
+        "input_tokens": 575144,
+        "cached_input_tokens": 326656,
+        "output_tokens": 1569,
+        "total_tokens": 576713
+      },
+      "credit_rate_scenario": 0.830834,
+      "solver_scenario": 0,
+      "maintenance_scenario": 0.830834,
+      "finite_process_seconds": 221.50082966500077,
+      "assignments": 0,
+      "passes": 0
+    }
+  },
+  "local_embedding_operations": 46,
+  "local_embedding_seconds": 0.8077720480016524,
+  "rates_checked_at": "2026-11-09",
+  "rate_source": "https://learn.chatgpt.com/docs/pricing",
+  "cash_expense": null,
+  "actual_account_credits": null,
+  "quota_saving": null,
+  "scope": "Diagnostic/research overhead",
+  "accounting": "All unique native responses and maintenance included; cached input is a subset of input. Research/diagnostics separate. Local embedding monetary cost and parent implementation overhead unknown.",
+  "mechanism": {
+    "passed": true,
+    "replayed": 8,
+    "new_maintenance_calls": 32,
+    "new_reader_calls": 1,
+    "thoughts": 15,
+    "natural_remaining": 137,
+    "reflection_trigger_forced": true,
+    "prompt_adaptation": "v4 triple wrapper",
+    "scope": "Synthetic recovery mechanism; all prior costs/failures retained; not benchmark efficacy"
+  },
+  "failed_original_prompt_calls_preserved": 31,
+  "replay_003_new_calls": 0
+}

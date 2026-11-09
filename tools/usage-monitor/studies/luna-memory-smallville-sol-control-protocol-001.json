@@ -1,0 +1,26 @@
+{
+  "id": "smallville-sol-native-control-001",
+  "registered_at": "2026-11-09T20:38:39.020152+00:00",
+  "registered_before_inference": true,
+  "purpose": "Isolate maintenance-model choice: same original-styleV4Smallville/nativeSolsolver/localBGE/ranking/threshold/sourcearchive; replaceONLYmaintenanceLuna withSol. All8publicdevelopmenttasks fixed bypriorhash; no favorable subsetselection.",
+  "tasks": [
+    "HumanEval/13",
+    "HumanEval/21",
+    "HumanEval/88",
+    "HumanEval/131",
+    "HumanEval/3",
+    "HumanEval/85",
+    "HumanEval/15",
+    "HumanEval/162"
+  ],
+  "model": "gpt-6.1-sol",
+  "maintenance_model": "gpt-6.1-sol",
+  "maximum_actor_processes": 8,
+  "maximum_maintenance_calls": 512,
+  "automatic_process_retries": 0,
+  "ordering": "Runafterthefullregistered32nativeassignments, freshownnamespace andoriginaltaskorder. Later-perioddevelopmentcontrol, NOT randomizedsimultaneousarm; preserveordering/cacheconfound, nofreshvalidationclaim.",
+  "sources": "Reuse frozencommand/COMMON/archive_and_grade/executablegrader/originalmemoryV4 withoutchanges. Ownnativeboundarybeforefirstcall; exactprior16empty/referencecontrols/data/image reusedwithsha equivalence.",
+  "policy": "No forcedreflection; exactoriginal150threshold. Allimportance/reflection/triple/solvercalls counted. No hidden grades to memory/solver; countactualreflections andsamequalitygate. CompareagainstLunaSmallvilleandplainSolwithoutpoolingearlierMCPblock.",
+  "stop": "Completeall8orstoponuncertainty; neverrepeatstartedcalls. No subsequentarmorheldoutlaunchautomaticallyauthorizedbythisprotocol.",
+  "accounting": "Deduplicate every native response, fresh/cache/output per model. Include all importance/reflection/triple/proposer/solver calls and local embedding runtime. Model-rate scenario Nov9Luna2.5/.25/12.5 Sol50/2.5/250 credits perM; cash/quota null. Judges absent; research/diagnostic overhead separate."
+}

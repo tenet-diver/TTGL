@@ -1,0 +1,222 @@
+{
+  "id": "luna-smallville-tokeneconomizer-final-001",
+  "at": "2026-11-09T20:53:31.507204+00:00",
+  "coding_assignments": 72,
+  "correctness_passes": 72,
+  "unique_native_responses": 494,
+  "model_bearing_native_processes": 270,
+  "native_cli_capture_reconciled": true,
+  "all_retained_response_ids_accounted_exactly_once": true,
+  "observed_trial_and_diagnostic_native_tokens": 5292938,
+  "observed_trial_and_diagnostic_credit_scenario": 49.1993445,
+  "parent_implementation_supervision_inference": "additional/unknown",
+  "cash_expense": null,
+  "actual_account_credits": null,
+  "quota_saving": null,
+  "smallville_comparison": {
+    "sol_total": 9.72594,
+    "luna_total": 5.2218505,
+    "luna_total_reduction_vs_sol_maintenance": 0.46310068743998,
+    "sol_maintenance": 5.7164,
+    "luna_maintenance": 0.3834605,
+    "luna_maintenance_reduction": 0.9329192323840179,
+    "scope": "Later-periodSolmaintenancecontrolversuspairednativeLunaarm;same8developmenttasks/interface,notrandomizedsimultaneousoridentical-historyreplay."
+  },
+  "native_totals": {
+    "file_search": {
+      "usage": {
+        "input_tokens": 358469,
+        "cached_input_tokens": 305408,
+        "output_tokens": 3971,
+        "total_tokens": 362440
+      },
+      "credit_rate_scenario": 4.40932,
+      "solver_scenario": 4.40932,
+      "maintenance_scenario": 0,
+      "sum_cli_process_wall_seconds_nonadditive": 174.12921970200068,
+      "solver_cli_wall_seconds": 174.12921970200068,
+      "maintenance_cli_wall_seconds": 0,
+      "missing_process_lifecycle_receipts": 0,
+      "assignments": 8,
+      "passes": 8,
+      "reduction_vs_files": 0.0,
+      "paired_cost_wins_vs_files": 0,
+      "matched_control_successes_lost": 0,
+      "development_gate_passed": false
+    },
+    "smallville_luna": {
+      "usage": {
+        "input_tokens": 759400,
+        "cached_input_tokens": 576768,
+        "output_tokens": 4832,
+        "total_tokens": 764232
+      },
+      "credit_rate_scenario": 5.2218505,
+      "solver_scenario": 4.83839,
+      "maintenance_scenario": 0.3834605,
+      "sum_cli_process_wall_seconds_nonadditive": 319.62400076000085,
+      "solver_cli_wall_seconds": 173.98276000900069,
+      "maintenance_cli_wall_seconds": 145.64124075100017,
+      "missing_process_lifecycle_receipts": 0,
+      "assignments": 8,
+      "passes": 8,
+      "reduction_vs_files": -0.18427569330418292,
+      "paired_cost_wins_vs_files": 2,
+      "matched_control_successes_lost": 0,
+      "development_gate_passed": false
+    },
+    "te_default": {
+      "usage": {
+        "input_tokens": 359030,
+        "cached_input_tokens": 300928,
+        "output_tokens": 4077,
+        "total_tokens": 363107
+      },
+      "credit_rate_scenario": 4.67667,
+      "solver_scenario": 4.67667,
+      "maintenance_scenario": 0,
+      "sum_cli_process_wall_seconds_nonadditive": 194.26384263800037,
+      "solver_cli_wall_seconds": 194.26384263800037,
+      "maintenance_cli_wall_seconds": 0,
+      "missing_process_lifecycle_receipts": 0,
+      "assignments": 8,
+      "passes": 8,
+      "reduction_vs_files": -0.06063293206208664,
+      "paired_cost_wins_vs_files": 5,
+      "matched_control_successes_lost": 0,
+      "development_gate_passed": false
+    },
+    "te_memory_luna": {
+      "usage": {
+        "input_tokens": 387238,
+        "cached_input_tokens": 332800,
+        "output_tokens": 3821,
+        "total_tokens": 391059
+      },
+      "credit_rate_scenario": 3.8781114999999997,
+      "solver_scenario": 3.84116,
+      "maintenance_scenario": 0.0369515,
+      "sum_cli_process_wall_seconds_nonadditive": null,
+      "solver_cli_wall_seconds": 179.55028834500035,
+      "maintenance_cli_wall_seconds": null,
+      "missing_process_lifecycle_receipts": 1,
+      "assignments": 8,
+      "passes": 8,
+      "reduction_vs_files": 0.12047401866954555,
+      "paired_cost_wins_vs_files": 5,
+      "matched_control_successes_lost": 0,
+      "development_gate_passed": true
+    },
+    "smallville_sol": {
+      "usage": {
+        "input_tokens": 777505,
+        "cached_input_tokens": 637696,
+        "output_tokens": 4565,
+        "total_tokens": 782070
+      },
+      "credit_rate_scenario": 9.72594,
+      "solver_scenario": 4.00954,
+      "maintenance_scenario": 5.7164,
+      "sum_cli_process_wall_seconds_nonadditive": 343.34458179199555,
+      "solver_cli_wall_seconds": 158.0022103379997,
+      "maintenance_cli_wall_seconds": 185.34237145399584,
+      "missing_process_lifecycle_receipts": 0,
+      "assignments": 8,
+      "passes": 8,
+      "reduction_vs_files": -1.2057686899567277,
+      "paired_cost_wins_vs_files": 0,
+      "matched_control_successes_lost": 0,
+      "development_gate_passed": false
+    }
+  },
+  "memory_ablation_totals": {
+    "file_search": {
+      "usage": {
+        "input_tokens": 426563,
+        "cached_input_tokens": 371200,
+        "output_tokens": 3831,
+        "total_tokens": 430394
+      },
+      "credit_rate_scenario": 4.6539,
+      "solver_scenario": 4.6539,
+      "maintenance_scenario": 0,
+      "finite_process_seconds": 189.39197378900053,
+      "assignments": 8,
+      "passes": 8,
+      "reduction_vs_files": 0.0,
+      "paired_cost_wins_vs_files": 0,
+      "matched_control_successes_lost": 0,
+      "development_gate_passed": false
+    },
+    "smallville_luna": {
+      "usage": {
+        "input_tokens": 747790,
+        "cached_input_tokens": 593152,
+        "output_tokens": 4105,
+        "total_tokens": 751895
+      },
+      "credit_rate_scenario": 5.875408,
+      "solver_scenario": 5.61475,
+      "maintenance_scenario": 0.260658,
+      "finite_process_seconds": 282.93933664099904,
+      "assignments": 8,
+      "passes": 8,
+      "reduction_vs_files": -0.2624697565482714,
+      "paired_cost_wins_vs_files": 0,
+      "matched_control_successes_lost": 0,
+      "development_gate_passed": false
+    },
+    "te_microskills_luna": {
+      "usage": {
+        "input_tokens": 419234,
+        "cached_input_tokens": 343808,
+        "output_tokens": 3573,
+        "total_tokens": 422807
+      },
+      "credit_rate_scenario": 4.9681575,
+      "solver_scenario": 4.93612,
+      "maintenance_scenario": 0.0320375,
+      "finite_process_seconds": 165.8906891200004,
+      "assignments": 8,
+      "passes": 8,
+      "reduction_vs_files": -0.06752562367046999,
+      "paired_cost_wins_vs_files": 4,
+      "matched_control_successes_lost": 0,
+      "development_gate_passed": false
+    },
+    "te_microskills_sol": {
+      "usage": {
+        "input_tokens": 412468,
+        "cached_input_tokens": 355968,
+        "output_tokens": 4320,
+        "total_tokens": 416788
+      },
+      "credit_rate_scenario": 4.794919999999999,
+      "solver_scenario": 4.01527,
+      "maintenance_scenario": 0.77965,
+      "finite_process_seconds": 202.10432857500018,
+      "assignments": 8,
+      "passes": 8,
+      "reduction_vs_files": -0.030301467586325348,
+      "paired_cost_wins_vs_files": 4,
+      "matched_control_successes_lost": 0,
+      "development_gate_passed": false
+    }
+  },
+  "natural_reflections_coding_luna": 0,
+  "natural_reflections_coding_sol": 0,
+  "operational_recovery": {
+    "replayed_completed_reply": 1,
+    "new_model_calls_for_replay": 0,
+    "repeated_model_calls": 0,
+    "late_seal_assignments": 1,
+    "missing_child_process_exit_receipts": 1
+  },
+  "capture_preserved_in_workspace": true,
+  "langfuse_delivery": "notverifiedinthisrun;durablelocalcapture/nativeevidencepreservedforreconciliation",
+  "target90_met": false,
+  "no_global_memory_or_provider_change": true,
+  "schedules_unchanged_paused": true,
+  "interpretation": "LunamaintenancecheaperbutSmallvilleend-to-endcostexceedsplainSolsearch.TEmemory-onarmobserved12.05%lowercostwith0injectedskills/pruning/redirects:notcausalmemorybenefit.Nocodingnaturalreflectionbenefit,statisticalnoninferiority,generalization,cash/quotaorfirst-usenet-savingclaim.",
+  "cost_scope": "Published-rate scenario for ALL remote model calls. LocalBGE operations/runtime recorded but not monetized; full model-compute/deployment cost and actualcash/quota unknown."
+}
