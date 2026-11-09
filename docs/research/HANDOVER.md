@@ -3254,3 +3254,42 @@ not verified; don't claim4-way reconciliation. Existing collection config and
 research schedules unchanged/paused. No more trials/queues running; do not repeat
 these completed attempts, resume the discontinued old long matrix, or launch
 larger/held-out work without a new instruction. Prior user local edits preserved.
+
+### 9 November: knowledge accumulation paper and same-repository design
+
+New user instruction requests Mem0/Zep comparison and a Markdown research paper,
+including native memory on/off and a cheap-model editable challenge graph whose
+knowledge can transfer across tasks in one codebase. Read
+docs/research/knowledge-accumulation-study.md and
+docs/paper/knowledge-accumulation/paper.md. The separate routing paper is unchanged.
+Draft includes focused literature, completed historical diagnostics, new metadata
+feasibility audit, methods and conclusions; no new repository model-quality
+results or innovation benefit is claimed. Full head-to-head is still pending.
+
+VibeMemBench metadata audit:111 targets/90 repositories;9 Python repositories
+have multiple targets. Deterministic metadata-only reservation selects cfn-lint5
+development and moto4 validation; validation content not inspected for tuning.
+Own/future history excluded by strict upstream issue-ordinal rule; real PR-time
+chronology not established. Latest8 earlier histories cap is bounded development,
+not the full upstream protocol.13 software checks pass. Private viewer response
+includes grading data, kept ignored and never forwarded; pinned Parquet/viewer
+equivalence remains a pre-inference gate. Installation metadata's targeted test
+commands must stay outside the actor/memory boundary.
+
+repository-memory-protocol-001.json is a prospective design/metadata reservation,
+NOT frozen runnable assignments. First two development targets are the initial
+unit after environment/backend/native-memory/metering/budget gates.0 new model
+trials. First original image blocked: digest-verified base-layer email/generator.py
+matches CPython3.10.19, not the documented3.10.20 security fix for CVE-2024-6923.
+No image installed/executed; complete final-overlay/OS scan not claimed. Prefer a
+patched compatible environment with empty/reference evaluator controls; preserve
+existing services/volumes and scarce root disk. Graphiti real server and native
+eligible extraction/injection controls remain pending, not substituted by generic
+graph storage or a resumed thread. All background inference must be captured.
+
+Fresh exact-package OSV recheck returns no matches for existing50 Mem0/29
+Graphiti/4 MCP graph packages; no whole-stack security clearance. Public source,
+metadata and image receipts accompany protocol. Private inspection evidence lives
+under work/security/knowledge-generalization-20261109/. No new packages, model
+calls, image execution, global memory/provider changes or schedules; monitoring
+remains paused. Original15-line HANDOVER and25-line Smallville user edits retained.

@@ -1,0 +1,35 @@
+{
+  "id": "repository-memory-image-preflight-001",
+  "at": "2026-11-09T21:53:10.196102+00:00",
+  "candidate": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:2387-1c42cb6",
+  "manifest_digest": "sha256:b656c95e09efd49c19fe10547d386562b83a390e23f7a451033ad1c31294b6ad",
+  "config_digest": "sha256:f52ebe5a9a6c43da51772f40e642bcb7a44f045ff5a610bdc6d93eae087d4049",
+  "compressed_layer_bytes": 643119776,
+  "decision": "blocked before installation or execution",
+  "model_calls": 0,
+  "image_executed": false,
+  "image_pulled_into_docker": false,
+  "inspection": "Registry manifest/config fetched as data, one 14.3MB layer downloaded to memory with digest verified; one source member read using stdlib tar reader, no filesystem archive extraction or imported downloaded code.",
+  "finding": {
+    "component": "Base-layer CPython 3.10.19 email.generator",
+    "vendor_identifier": "CVE-2024-6923",
+    "image_source_member": {
+      "path": "usr/local/lib/python3.10/email/generator.py",
+      "sha256": "b9595d3b534944d7c0fc80111ee01dd39471c7d6497b0480dca6a25e40082100"
+    },
+    "upstream_v3_10_19_sha256": "b9595d3b534944d7c0fc80111ee01dd39471c7d6497b0480dca6a25e40082100",
+    "upstream_v3_10_20_sha256": "de706af1044f8b6021263b02cc7325248eeec19614134b21fd2f916f3c56f19c",
+    "matches_3_10_19": true,
+    "matches_fixed_3_10_20": false,
+    "fixed_release_source": "https://www.python.org/downloads/release/python-31020/",
+    "scope": "Confirmed affected source in the selected image base layer. Final overlay overwrite/whiteout and complete OS/package inventory not audited. No claim of exploitability in benchmark task."
+  },
+  "remaining_uncertainty": [
+    "Complete final-overlay inventory and base OS/package advisory coverage not completed",
+    "Independent signature/provenance validation incomplete",
+    "Only first development image inspected; no conclusion about all benchmark images"
+  ],
+  "policy_basis": "Standing user policy blocks confirmed vulnerabilities, including base OS/runtime components. Codespace incomplete-evidence exception does not permit affected candidates.",
+  "next_step": "Prefer reviewed patched compatible task environment; establish empty/reference/evaluator equivalence before any solver trial. Do not waive finding, silently change task, or delete existing Docker services/volumes.",
+  "saved_manifest_json_sha256": "40583bd39803a8a9f1d8d5deb60caa196883576fe8ede209af04140f660f6ef1"
+}

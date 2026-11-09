@@ -1,0 +1,242 @@
+{
+  "status": "metadata reservation; no new model trials or official scores",
+  "target_count": 111,
+  "repository_count": 90,
+  "repeated_python_repositories": [
+    {
+      "repo": "aio-libs/aiohttp",
+      "target_count": 5
+    },
+    {
+      "repo": "aws-cloudformation/cfn-lint",
+      "target_count": 5
+    },
+    {
+      "repo": "getmoto/moto",
+      "target_count": 4
+    },
+    {
+      "repo": "alteryx/woodwork",
+      "target_count": 2
+    },
+    {
+      "repo": "HTTP-APIs/hydrus",
+      "target_count": 2
+    },
+    {
+      "repo": "HypothesisWorks/hypothesis",
+      "target_count": 2
+    },
+    {
+      "repo": "NeurodataWithoutBorders/pynwb",
+      "target_count": 2
+    },
+    {
+      "repo": "pypa/setuptools",
+      "target_count": 2
+    },
+    {
+      "repo": "sdv-dev/RDT",
+      "target_count": 2
+    }
+  ],
+  "selection_rule": "Python; >=2 targets; explicit allowlisted license; descending target count, casefolded repository tie-break. First repository development, second reserved validation. Metadata selection precedes target-content inspection and inference.",
+  "history_rule": "Same repository/language, history issue ordinal strictly less than target ordinal; latest eight eligible histories for bounded development. Ordinals are not verified wall-clock chronology.",
+  "partitions": {
+    "development": {
+      "repo": "aws-cloudformation/cfn-lint",
+      "targets": [
+        {
+          "instance_id": "aws-cloudformation__cfn-lint-2387",
+          "repo": "aws-cloudformation/cfn-lint",
+          "base_commit": "1c42cb657b3c65690b957d944fbf3bdfd62adb7c",
+          "language": "python",
+          "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:2387-1c42cb6",
+          "created_at": "2022-09-29 15:25:28",
+          "license": "MIT-0",
+          "eligible_history_count": 5,
+          "bounded_history_ids": [
+            "aws-cloudformation__cfn-lint-2031",
+            "aws-cloudformation__cfn-lint-2208",
+            "aws-cloudformation__cfn-lint-2226",
+            "aws-cloudformation__cfn-lint-2230",
+            "aws-cloudformation__cfn-lint-2253"
+          ]
+        },
+        {
+          "instance_id": "aws-cloudformation__cfn-lint-3342",
+          "repo": "aws-cloudformation/cfn-lint",
+          "base_commit": "d0aae9bd6e3615e8d1023ca3c5c5aca1992d8a87",
+          "language": "python",
+          "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:3342-d0aae9b",
+          "created_at": "2024-06-20 15:08:09",
+          "license": "MIT-0",
+          "eligible_history_count": 37,
+          "bounded_history_ids": [
+            "aws-cloudformation__cfn-lint-3176",
+            "aws-cloudformation__cfn-lint-3224",
+            "aws-cloudformation__cfn-lint-3293",
+            "aws-cloudformation__cfn-lint-3335",
+            "aws-cloudformation__cfn-lint-3337",
+            "aws-cloudformation__cfn-lint-3338",
+            "aws-cloudformation__cfn-lint-3340",
+            "aws-cloudformation__cfn-lint-3341"
+          ]
+        },
+        {
+          "instance_id": "aws-cloudformation__cfn-lint-3875",
+          "repo": "aws-cloudformation/cfn-lint",
+          "base_commit": "8454bc9a7146e2b648090e866d09054589070599",
+          "language": "python",
+          "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:3875-8454bc9",
+          "created_at": "2024-12-12 18:21:48",
+          "license": "MIT-0",
+          "eligible_history_count": 108,
+          "bounded_history_ids": [
+            "aws-cloudformation__cfn-lint-3805",
+            "aws-cloudformation__cfn-lint-3817",
+            "aws-cloudformation__cfn-lint-3824",
+            "aws-cloudformation__cfn-lint-3854",
+            "aws-cloudformation__cfn-lint-3855",
+            "aws-cloudformation__cfn-lint-3856",
+            "aws-cloudformation__cfn-lint-3862",
+            "aws-cloudformation__cfn-lint-3866"
+          ]
+        },
+        {
+          "instance_id": "aws-cloudformation__cfn-lint-3965",
+          "repo": "aws-cloudformation/cfn-lint",
+          "base_commit": "b4d790dd57b324c20ea9031b4769ba4d75ecd691",
+          "language": "python",
+          "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:3965-b4d790d",
+          "created_at": "2025-02-24 20:09:20",
+          "license": "MIT-0",
+          "eligible_history_count": 117,
+          "bounded_history_ids": [
+            "aws-cloudformation__cfn-lint-3890",
+            "aws-cloudformation__cfn-lint-3898",
+            "aws-cloudformation__cfn-lint-3900",
+            "aws-cloudformation__cfn-lint-3908",
+            "aws-cloudformation__cfn-lint-3920",
+            "aws-cloudformation__cfn-lint-3937",
+            "aws-cloudformation__cfn-lint-3947",
+            "aws-cloudformation__cfn-lint-3952"
+          ]
+        },
+        {
+          "instance_id": "aws-cloudformation__cfn-lint-3972",
+          "repo": "aws-cloudformation/cfn-lint",
+          "base_commit": "fd830c8f2c31c940dc4d425f1bd366eba36dbd85",
+          "language": "python",
+          "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:3972-fd830c8",
+          "created_at": "2025-02-25 21:29:20",
+          "license": "MIT-0",
+          "eligible_history_count": 118,
+          "bounded_history_ids": [
+            "aws-cloudformation__cfn-lint-3898",
+            "aws-cloudformation__cfn-lint-3900",
+            "aws-cloudformation__cfn-lint-3908",
+            "aws-cloudformation__cfn-lint-3920",
+            "aws-cloudformation__cfn-lint-3937",
+            "aws-cloudformation__cfn-lint-3947",
+            "aws-cloudformation__cfn-lint-3952",
+            "aws-cloudformation__cfn-lint-3965"
+          ]
+        }
+      ]
+    },
+    "reserved_validation": {
+      "repo": "getmoto/moto",
+      "targets": [
+        {
+          "instance_id": "getmoto__moto-7035",
+          "repo": "getmoto/moto",
+          "base_commit": "e7156a76422de82342b4673d217004f384f427ed",
+          "language": "python",
+          "image_name": "docker.io/swerebenchv2/getmoto-moto:7035-e7156a7",
+          "created_at": "2023-11-16 19:04:38",
+          "license": "Apache-2.0",
+          "eligible_history_count": 105,
+          "bounded_history_ids": [
+            "getmoto__moto-6920",
+            "getmoto__moto-6923",
+            "getmoto__moto-6953",
+            "getmoto__moto-6988",
+            "getmoto__moto-6998",
+            "getmoto__moto-7012",
+            "getmoto__moto-7023",
+            "getmoto__moto-7029"
+          ]
+        },
+        {
+          "instance_id": "getmoto__moto-7795",
+          "repo": "getmoto/moto",
+          "base_commit": "4c99cbbb9de6179c5d8ff30e0b810ce9f6d206d0",
+          "language": "python",
+          "image_name": "docker.io/swerebenchv2/getmoto-moto:7795-4c99cbb",
+          "created_at": "2024-06-27 21:32:44",
+          "license": "Apache-2.0",
+          "eligible_history_count": 159,
+          "bounded_history_ids": [
+            "getmoto__moto-7646",
+            "getmoto__moto-7647",
+            "getmoto__moto-7650",
+            "getmoto__moto-7704",
+            "getmoto__moto-7721",
+            "getmoto__moto-7728",
+            "getmoto__moto-7729",
+            "getmoto__moto-7773"
+          ]
+        },
+        {
+          "instance_id": "getmoto__moto-8780",
+          "repo": "getmoto/moto",
+          "base_commit": "54ca6d0c7776fb861f8a082e86085d05ebdb82f3",
+          "language": "python",
+          "image_name": "docker.io/swerebenchv2/getmoto-moto:8780-54ca6d0",
+          "created_at": "2025-04-08 07:11:21",
+          "license": "Apache-2.0",
+          "eligible_history_count": 238,
+          "bounded_history_ids": [
+            "getmoto__moto-8551",
+            "getmoto__moto-8581",
+            "getmoto__moto-8609",
+            "getmoto__moto-8621",
+            "getmoto__moto-8645",
+            "getmoto__moto-8739",
+            "getmoto__moto-8745",
+            "getmoto__moto-8751"
+          ]
+        },
+        {
+          "instance_id": "getmoto__moto-9005",
+          "repo": "getmoto/moto",
+          "base_commit": "3a7f5ee899399c10796a0006f3daeba1a72d0987",
+          "language": "python",
+          "image_name": "docker.io/swerebenchv2/getmoto-moto:9005-3a7f5ee",
+          "created_at": "2025-06-22 20:45:05",
+          "license": "Apache-2.0",
+          "eligible_history_count": 247,
+          "bounded_history_ids": [
+            "getmoto__moto-8796",
+            "getmoto__moto-8816",
+            "getmoto__moto-8828",
+            "getmoto__moto-8833",
+            "getmoto__moto-8869",
+            "getmoto__moto-8870",
+            "getmoto__moto-8923",
+            "getmoto__moto-8984"
+          ]
+        }
+      ]
+    }
+  },
+  "model_calls": 0,
+  "official_benchmark_score": false,
+  "dataset_repository": "Tongyi-ConvAI/VibeMemBench",
+  "observed_dataset_revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+  "metadata_allowlist_sha256": "33f643ed9242b97ced1949549fa2562de7c531e7e652a582f6228b9901423470",
+  "provenance_limit": "Rows obtained from dataset-viewer HTTP responses; exact allowlist bytes sealed. Dataset API revision recorded separately. Pinned Parquet/viewer equivalence remains an execution gate.",
+  "target_text_inspected": false,
+  "hidden_grading_fields_used": false
+}

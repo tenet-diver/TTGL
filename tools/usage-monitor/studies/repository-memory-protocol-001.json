@@ -1,0 +1,142 @@
+{
+  "id": "repository-memory-001",
+  "at": "2026-11-09T21:53:10.152723+00:00",
+  "status": "prospective design and metadata reservation; NOT frozen for model execution",
+  "paper": "docs/paper/knowledge-accumulation/paper.md",
+  "model_trials": 0,
+  "scheduled_monitoring": "paused; do not resume",
+  "scope": "Compare accumulated knowledge in repeated executable repository tasks; adapted VibeMemBench frozen-history track and separately named online extension, not an official upstream score.",
+  "metadata_reservation": "repository-memory-metadata-audit-001.json",
+  "dataset": {
+    "repository": "Tongyi-ConvAI/VibeMemBench",
+    "observed_revision": "11164976b4f920cdb0d0cd570ca572e49acea1e8",
+    "code_revision": "7152cf96809b45343ccc1caf7115a7d3fa43f956",
+    "license": "Apache-2.0",
+    "viewer_parquet_equivalence": "pending"
+  },
+  "development": [
+    "aws-cloudformation__cfn-lint-2387",
+    "aws-cloudformation__cfn-lint-3342",
+    "aws-cloudformation__cfn-lint-3875",
+    "aws-cloudformation__cfn-lint-3965",
+    "aws-cloudformation__cfn-lint-3972"
+  ],
+  "reserved_validation": [
+    "getmoto__moto-7035",
+    "getmoto__moto-7795",
+    "getmoto__moto-8780",
+    "getmoto__moto-9005"
+  ],
+  "validation_boundary": "Metadata only inspected. No validation prompts, trajectories, patches or tests for development; existing unrelated reserved studies unchanged. Four tasks/one repository is a pilot, not confirmatory evidence.",
+  "tracks": {
+    "frozen_history": "Same cutoff-specific corpus/namespace and synchronous Add/Search boundary for all engines, no live updates across targets.",
+    "online_accumulation": "Each arm retains only its own public evidence and admissible shared historical corpus; worktrees reset to prescribed target base; hidden evaluator outcomes never enter next task.",
+    "representation_ablation": "Frozen pre-task snapshots with identical facts/evidence rendered graph vs flat. Report separately from divergent online trajectories."
+  },
+  "planned_arms": [
+    "fresh_memory_off",
+    "continued_thread",
+    "native_memory_on",
+    "exact_history_retrieval",
+    "smallville_luna",
+    "mem0_luna",
+    "graphiti_luna",
+    "tokeneconomizer_default",
+    "tokeneconomizer_luna",
+    "task_graph_only",
+    "persistent_challenge_graph",
+    "flat_evidence_snapshot"
+  ],
+  "models": {
+    "solver": "gpt-6.1-sol",
+    "cheap_preparation_maintenance": "gpt-6-luna",
+    "native_memory_models": "must be recorded and metered before execution; no assumption defaults are Luna"
+  },
+  "development_stages": {
+    "initial_feasibility": "First two reserved development targets, complete registered paired block; remaining three keep original order. Final arm/track matrix and budgets must be frozen before any model invocation.",
+    "history": "Latest eight strictly earlier same-repository benchmark-ordinal episodes per target; preserve complete tool/result pairs, explicitly record any truncation. Current/future target trajectories excluded.",
+    "ordering": "Fixed target ordinal sequence; deterministic rotating arm order within blocks; source hashes freeze at launch.",
+    "larger_evaluation": "Separate registration and powered multi-repository analysis after development, no tuning reserved validation or favorable-subset stopping."
+  },
+  "required_freeze_fields": [
+    "exact arm-by-track assignment matrix",
+    "prompts and source hashes",
+    "per-role and whole-block invocation/token/wall caps",
+    "specific model versions/reasoning settings",
+    "all transport and maintenance endpoints",
+    "pricing scenario snapshot",
+    "memory injection budgets and history chunking policy",
+    "independent evaluator and quality criteria",
+    "native-memory cadence and store isolation",
+    "arm ordering"
+  ],
+  "execution_gates": [
+    {
+      "gate": "First target original image",
+      "status": "blocked confirmed vulnerable base component; no installation/execution",
+      "receipt": "repository-memory-image-preflight-001.json"
+    },
+    {
+      "gate": "Compatible patched task environment",
+      "status": "pending dependency graph/security review, empty and reference controls, evaluator equivalence; label adaptation"
+    },
+    {
+      "gate": "Pinned dataset equivalence",
+      "status": "pending immutable Parquet vs dataset-viewer allowlist verification"
+    },
+    {
+      "gate": "Actor boundary",
+      "status": "pending per-environment own source read/write and private reference/test denial, network/credential isolation"
+    },
+    {
+      "gate": "Graphiti real graph backend",
+      "status": "pending maintained supported server review and deployment, native Luna LLM and embedding adapters; generic graph server is not equivalent"
+    },
+    {
+      "gate": "Native memory on/off",
+      "status": "pending real eligible-session extraction/consolidation/injection check in isolated store; source snapshot alone does not validate installed binary"
+    },
+    {
+      "gate": "Metering",
+      "status": "pending all normal and background model endpoint capture and response reconciliation, no unknown usages silently zeroed"
+    },
+    {
+      "gate": "Runnable protocol freeze",
+      "status": "pending software checks, budgets and all source manifest hashes; no frozen model assignments yet"
+    }
+  ],
+  "leakage_controls": {
+    "metadata_only_allowlist": [
+      "instance_id",
+      "repo",
+      "base_commit",
+      "language",
+      "image_name",
+      "created_at",
+      "license"
+    ],
+    "actor_task_fields": [
+      "current public problem statement",
+      "prescribed base source",
+      "available public checks"
+    ],
+    "actor_excluded": [
+      "target patch",
+      "test_patch",
+      "FAIL_TO_PASS",
+      "PASS_TO_PASS",
+      "evaluator logs",
+      "install_config targeted test_cmd",
+      "current/future trajectory",
+      "upstream arbitrary info.config",
+      "other arms private records",
+      "personal/global memory"
+    ],
+    "history_temporality": "issue ordinals are upstream proxy, not verified PR timestamps; strict less-than enforced"
+  },
+  "quality": "Independent target plus regression verification after positive/negative controls; report paired gains/losses, public checks distinct from hidden grades.",
+  "economics": "All preparation, extraction, reflection, retrieval LLM, solver, integration and consolidation included. Initialization amortized over actual observed tasks only. Native/cached/output counters deduplicated. Cash/quota unknown; local embedding/deployment money separate.",
+  "statistics": "Descriptive paired development and four-task validation pilot only. No population noninferiority or broad generalization claim from one repository per split.",
+  "no_retries": "Zero automatic retries. Never repeat started or uncertain model calls; proven pre-inference preparation failures require explicit versioned amendment. Retain all failures and unknown counters.",
+  "success_target": "Lower full task model inference cost with no observed quality loss; aspiration, not guaranteed or established result."
+}
