@@ -1,0 +1,462 @@
+{
+  "id": "repository-memory-longitudinal-reservation-003",
+  "at": "2026-11-10T02:04:10.302Z",
+  "dataset": "nebius/SWE-rebench-V2",
+  "revision": "d7608f017a29ab256400ad4b73d5248d97204966",
+  "source_parquet_sha256": "0e0bf9355f892ad74ae98d4e1c404f39fd6654a8e351ee3e6ab162e4a64cd3ad",
+  "metadata_only": true,
+  "target_content_inspected_for_selection": false,
+  "model_trials": 0,
+  "selection_rule": "Same three explicit Python repositories; latest twelve metadata-eligible tasks per repository, presented in created_at order. Exclude initial nine targets and all their reserved history pools. No task content or model outcomes used. Security/runtime exclusions must precede inference and be reported without favorable replacement. Exact same36 membership; before longitudinal inference, topologically order base commits and partition into deterministic greedy monotonic ancestor chains (longest eligible chain, stable tie order). Cold-start separate memory namespace per repository/lineage/arm. No outcome-based replacement.",
+  "temporal_limit": "All adjacent bases within each lineage verified ancestral through connected GitHub all-pair metadata. Separate divergent histories; no memory transfer between lineages. Experimental task order, not historical issue-arrival chronology.",
+  "repository_inventory": {
+    "aws-cloudformation/cfn-lint": {
+      "eligible": 101,
+      "all": 135,
+      "licenses": [
+        "MIT-0"
+      ]
+    },
+    "pallets/click": {
+      "eligible": 70,
+      "all": 70,
+      "licenses": [
+        "BSD-3-Clause"
+      ]
+    },
+    "python-attrs/attrs": {
+      "eligible": 45,
+      "all": 45,
+      "licenses": [
+        "MIT"
+      ]
+    }
+  },
+  "tasks": [
+    {
+      "instance_id": "aws-cloudformation__cfn-lint-4009",
+      "repo": "aws-cloudformation/cfn-lint",
+      "base_commit": "03f148d7e3c80a9354b5ccf30423a321b85979a9",
+      "created_at": "2025-03-11 15:14:31",
+      "language": "python",
+      "license": "MIT-0",
+      "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:4009-03f148d",
+      "lineage": "lineage-01",
+      "lineage_position": 1
+    },
+    {
+      "instance_id": "aws-cloudformation__cfn-lint-4011",
+      "repo": "aws-cloudformation/cfn-lint",
+      "base_commit": "3cc4012ac76f5c3f7a70caaf6a2548f27ce8c8c1",
+      "created_at": "2025-03-11 21:28:10",
+      "language": "python",
+      "license": "MIT-0",
+      "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:4011-3cc4012",
+      "lineage": "lineage-01",
+      "lineage_position": 2
+    },
+    {
+      "instance_id": "aws-cloudformation__cfn-lint-4023",
+      "repo": "aws-cloudformation/cfn-lint",
+      "base_commit": "0bf508f3474e5f4b4a5ace8a1412bc450fb0bae0",
+      "created_at": "2025-03-18 14:26:15",
+      "language": "python",
+      "license": "MIT-0",
+      "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:4023-0bf508f",
+      "lineage": "lineage-01",
+      "lineage_position": 3
+    },
+    {
+      "instance_id": "aws-cloudformation__cfn-lint-4026",
+      "repo": "aws-cloudformation/cfn-lint",
+      "base_commit": "8ea6c9ccdb70f2ed05c3b61c9f83690ebc079c4c",
+      "created_at": "2025-03-18 16:49:26",
+      "language": "python",
+      "license": "MIT-0",
+      "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:4026-8ea6c9c",
+      "lineage": "lineage-01",
+      "lineage_position": 4
+    },
+    {
+      "instance_id": "aws-cloudformation__cfn-lint-4028",
+      "repo": "aws-cloudformation/cfn-lint",
+      "base_commit": "60a09787d4cc0e538a90c7b4beb5617470d9e9a7",
+      "created_at": "2025-03-18 23:41:07",
+      "language": "python",
+      "license": "MIT-0",
+      "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:4028-60a0978",
+      "lineage": "lineage-01",
+      "lineage_position": 5
+    },
+    {
+      "instance_id": "aws-cloudformation__cfn-lint-4032",
+      "repo": "aws-cloudformation/cfn-lint",
+      "base_commit": "7351d0cf7087d759dd24b06190cb759ec3381da6",
+      "created_at": "2025-03-19 04:18:46",
+      "language": "python",
+      "license": "MIT-0",
+      "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:4032-7351d0c",
+      "lineage": "lineage-01",
+      "lineage_position": 6
+    },
+    {
+      "instance_id": "aws-cloudformation__cfn-lint-4045",
+      "repo": "aws-cloudformation/cfn-lint",
+      "base_commit": "bdec8890372ed4af29075dee22e4dfc8a9f0807f",
+      "created_at": "2025-03-20 19:08:04",
+      "language": "python",
+      "license": "MIT-0",
+      "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:4045-bdec889",
+      "lineage": "lineage-01",
+      "lineage_position": 7
+    },
+    {
+      "instance_id": "aws-cloudformation__cfn-lint-4051",
+      "repo": "aws-cloudformation/cfn-lint",
+      "base_commit": "1863011580c054a6bffa6b94bd0d876df393da35",
+      "created_at": "2025-03-24 20:05:45",
+      "language": "python",
+      "license": "MIT-0",
+      "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:4051-1863011",
+      "lineage": "lineage-01",
+      "lineage_position": 8
+    },
+    {
+      "instance_id": "aws-cloudformation__cfn-lint-4082",
+      "repo": "aws-cloudformation/cfn-lint",
+      "base_commit": "4716882e0be78e22f612719ac81a1eba99393c52",
+      "created_at": "2025-04-07 18:01:43",
+      "language": "python",
+      "license": "MIT-0",
+      "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:4082-4716882",
+      "lineage": "lineage-01",
+      "lineage_position": 9
+    },
+    {
+      "instance_id": "aws-cloudformation__cfn-lint-4094",
+      "repo": "aws-cloudformation/cfn-lint",
+      "base_commit": "72d3c8bf5146e8b3a471d588a682f65cfd88686d",
+      "created_at": "2025-04-10 21:09:06",
+      "language": "python",
+      "license": "MIT-0",
+      "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:4094-72d3c8b",
+      "lineage": "lineage-01",
+      "lineage_position": 10
+    },
+    {
+      "instance_id": "aws-cloudformation__cfn-lint-4116",
+      "repo": "aws-cloudformation/cfn-lint",
+      "base_commit": "b10976aed676cd65e633de58627b1d353d5b4e62",
+      "created_at": "2025-04-19 14:52:01",
+      "language": "python",
+      "license": "MIT-0",
+      "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:4116-b10976a",
+      "lineage": "lineage-01",
+      "lineage_position": 11
+    },
+    {
+      "instance_id": "aws-cloudformation__cfn-lint-4149",
+      "repo": "aws-cloudformation/cfn-lint",
+      "base_commit": "8e57c919f45e57f6b9199aaae415d423ad033c5d",
+      "created_at": "2025-05-21 20:57:24",
+      "language": "python",
+      "license": "MIT-0",
+      "image_name": "docker.io/swerebenchv2/aws-cloudformation-cfn-lint:4149-8e57c91",
+      "lineage": "lineage-01",
+      "lineage_position": 12
+    },
+    {
+      "instance_id": "pallets__click-2555",
+      "repo": "pallets/click",
+      "base_commit": "9a536eebd958558c2cd24c17fb66fac112f1ac91",
+      "created_at": "2023-07-06 16:43:54",
+      "language": "python",
+      "license": "BSD-3-Clause",
+      "image_name": "docker.io/swerebenchv2/pallets-click:2555-9a536ee",
+      "lineage": "lineage-01",
+      "lineage_position": 1
+    },
+    {
+      "instance_id": "pallets__click-2604",
+      "repo": "pallets/click",
+      "base_commit": "b63ace28d50b53e74b5260f6cb357ccfe5560133",
+      "created_at": "2023-09-01 21:14:41",
+      "language": "python",
+      "license": "BSD-3-Clause",
+      "image_name": "docker.io/swerebenchv2/pallets-click:2604-b63ace2",
+      "lineage": "lineage-01",
+      "lineage_position": 2
+    },
+    {
+      "instance_id": "pallets__click-2696",
+      "repo": "pallets/click",
+      "base_commit": "0e0c00324a5af35f8995c7ff88df67b0f5594a58",
+      "created_at": "2024-03-27 23:54:11",
+      "language": "python",
+      "license": "BSD-3-Clause",
+      "image_name": "docker.io/swerebenchv2/pallets-click:2696-0e0c003",
+      "lineage": "lineage-01",
+      "lineage_position": 3
+    },
+    {
+      "instance_id": "pallets__click-2727",
+      "repo": "pallets/click",
+      "base_commit": "c326df95e9e3da0425360e030413f6a3ee25fdee",
+      "created_at": "2024-05-20 22:11:49",
+      "language": "python",
+      "license": "BSD-3-Clause",
+      "image_name": "docker.io/swerebenchv2/pallets-click:2727-c326df9",
+      "lineage": "lineage-01",
+      "lineage_position": 4
+    },
+    {
+      "instance_id": "pallets__click-2788",
+      "repo": "pallets/click",
+      "base_commit": "380008389b32ca2b7de7c73f670a9eee1562004e",
+      "created_at": "2024-10-13 20:47:53",
+      "language": "python",
+      "license": "BSD-3-Clause",
+      "image_name": "docker.io/swerebenchv2/pallets-click:2788-3800083",
+      "lineage": "lineage-01",
+      "lineage_position": 5
+    },
+    {
+      "instance_id": "pallets__click-2622",
+      "repo": "pallets/click",
+      "base_commit": "1787497713fa389435ed732c9b26274c3cdc458d",
+      "created_at": "2023-10-04 21:40:39",
+      "language": "python",
+      "license": "BSD-3-Clause",
+      "image_name": "docker.io/swerebenchv2/pallets-click:2622-1787497",
+      "lineage": "lineage-01",
+      "lineage_position": 6
+    },
+    {
+      "instance_id": "pallets__click-2800",
+      "repo": "pallets/click",
+      "base_commit": "d8763b93021c416549b5f8b4b5497234619410db",
+      "created_at": "2024-11-03 13:31:59",
+      "language": "python",
+      "license": "BSD-3-Clause",
+      "image_name": "docker.io/swerebenchv2/pallets-click:2800-d8763b9",
+      "lineage": "lineage-01",
+      "lineage_position": 7
+    },
+    {
+      "instance_id": "pallets__click-2796",
+      "repo": "pallets/click",
+      "base_commit": "8a47580a00f3404e7071b9ecfec3692a1e18309f",
+      "created_at": "2024-11-02 17:15:44",
+      "language": "python",
+      "license": "BSD-3-Clause",
+      "image_name": "docker.io/swerebenchv2/pallets-click:2796-8a47580",
+      "lineage": "lineage-01",
+      "lineage_position": 8
+    },
+    {
+      "instance_id": "pallets__click-2840",
+      "repo": "pallets/click",
+      "base_commit": "0bf333e1b77b4ae0e85d387531b38930fc657f12",
+      "created_at": "2025-01-09 20:00:38",
+      "language": "python",
+      "license": "BSD-3-Clause",
+      "image_name": "docker.io/swerebenchv2/pallets-click:2840-0bf333e",
+      "lineage": "lineage-01",
+      "lineage_position": 9
+    },
+    {
+      "instance_id": "pallets__click-2935",
+      "repo": "pallets/click",
+      "base_commit": "884af5c20fdc95c9c7352df35c37273391464fb9",
+      "created_at": "2025-05-20 20:12:59",
+      "language": "python",
+      "license": "BSD-3-Clause",
+      "image_name": "docker.io/swerebenchv2/pallets-click:2935-884af5c",
+      "lineage": "lineage-01",
+      "lineage_position": 10
+    },
+    {
+      "instance_id": "pallets__click-2728",
+      "repo": "pallets/click",
+      "base_commit": "e88c11239971d309744fd3f9139259f64787f45a",
+      "created_at": "2024-05-20 23:23:43",
+      "language": "python",
+      "license": "BSD-3-Clause",
+      "image_name": "docker.io/swerebenchv2/pallets-click:2728-e88c112",
+      "lineage": "lineage-02",
+      "lineage_position": 1
+    },
+    {
+      "instance_id": "pallets__click-2730",
+      "repo": "pallets/click",
+      "base_commit": "5b1624bf09947d6f10eaffd63d6fb737dfe7656a",
+      "created_at": "2024-05-21 20:43:18",
+      "language": "python",
+      "license": "BSD-3-Clause",
+      "image_name": "docker.io/swerebenchv2/pallets-click:2730-5b1624b",
+      "lineage": "lineage-02",
+      "lineage_position": 2
+    },
+    {
+      "instance_id": "python-attrs__attrs-1117",
+      "repo": "python-attrs/attrs",
+      "base_commit": "22ae8473fb88d6e585b05c709e81e1a46398a649",
+      "created_at": "2023-04-03 16:19:29",
+      "language": "python",
+      "license": "MIT",
+      "image_name": "docker.io/swerebenchv2/python-attrs-attrs:1117-22ae847",
+      "lineage": "lineage-01",
+      "lineage_position": 1
+    },
+    {
+      "instance_id": "python-attrs__attrs-1165",
+      "repo": "python-attrs/attrs",
+      "base_commit": "a37b556f7d762b7a6229b1fbf985965539571cd2",
+      "created_at": "2023-07-19 17:37:24",
+      "language": "python",
+      "license": "MIT",
+      "image_name": "docker.io/swerebenchv2/python-attrs-attrs:1165-a37b556",
+      "lineage": "lineage-01",
+      "lineage_position": 2
+    },
+    {
+      "instance_id": "python-attrs__attrs-1172",
+      "repo": "python-attrs/attrs",
+      "base_commit": "8f4e7e921bbe68e938989385a563a9af28b71f38",
+      "created_at": "2023-08-04 15:22:28",
+      "language": "python",
+      "license": "MIT",
+      "image_name": "docker.io/swerebenchv2/python-attrs-attrs:1172-8f4e7e9",
+      "lineage": "lineage-01",
+      "lineage_position": 3
+    },
+    {
+      "instance_id": "python-attrs__attrs-1187",
+      "repo": "python-attrs/attrs",
+      "base_commit": "46a03dcef6d2698aa5934a1ee00d9523564dcd8c",
+      "created_at": "2023-09-21 18:22:53",
+      "language": "python",
+      "license": "MIT",
+      "image_name": "docker.io/swerebenchv2/python-attrs-attrs:1187-46a03dc",
+      "lineage": "lineage-01",
+      "lineage_position": 4
+    },
+    {
+      "instance_id": "python-attrs__attrs-1303",
+      "repo": "python-attrs/attrs",
+      "base_commit": "37ac3ef0888bbd9235d17cbc6d284856f5276b44",
+      "created_at": "2024-07-14 15:03:00",
+      "language": "python",
+      "license": "MIT",
+      "image_name": "docker.io/swerebenchv2/python-attrs-attrs:1303-37ac3ef",
+      "lineage": "lineage-01",
+      "lineage_position": 5
+    },
+    {
+      "instance_id": "python-attrs__attrs-1267",
+      "repo": "python-attrs/attrs",
+      "base_commit": "0f045cd231f01716c9c81ac78fa2c237c0dd1933",
+      "created_at": "2024-03-17 12:19:06",
+      "language": "python",
+      "license": "MIT",
+      "image_name": "docker.io/swerebenchv2/python-attrs-attrs:1267-0f045cd",
+      "lineage": "lineage-01",
+      "lineage_position": 6
+    },
+    {
+      "instance_id": "python-attrs__attrs-1319",
+      "repo": "python-attrs/attrs",
+      "base_commit": "689a0e64012d1e576ebd99e786a254bc537582c6",
+      "created_at": "2024-08-02 07:12:18",
+      "language": "python",
+      "license": "MIT",
+      "image_name": "docker.io/swerebenchv2/python-attrs-attrs:1319-689a0e6",
+      "lineage": "lineage-01",
+      "lineage_position": 7
+    },
+    {
+      "instance_id": "python-attrs__attrs-1320",
+      "repo": "python-attrs/attrs",
+      "base_commit": "09161fc9181bf94aa3bbc5509c663d736a9553dc",
+      "created_at": "2024-08-02 07:53:19",
+      "language": "python",
+      "license": "MIT",
+      "image_name": "docker.io/swerebenchv2/python-attrs-attrs:1320-09161fc",
+      "lineage": "lineage-01",
+      "lineage_position": 8
+    },
+    {
+      "instance_id": "python-attrs__attrs-1321",
+      "repo": "python-attrs/attrs",
+      "base_commit": "fd7538f0e23a49ec34b636484de2d1b4b690c7fb",
+      "created_at": "2024-08-02 08:35:52",
+      "language": "python",
+      "license": "MIT",
+      "image_name": "docker.io/swerebenchv2/python-attrs-attrs:1321-fd7538f",
+      "lineage": "lineage-01",
+      "lineage_position": 9
+    },
+    {
+      "instance_id": "python-attrs__attrs-1372",
+      "repo": "python-attrs/attrs",
+      "base_commit": "ee0f19b696c60064c58cdc08b3265aef56d49ff8",
+      "created_at": "2024-11-13 14:54:26",
+      "language": "python",
+      "license": "MIT",
+      "image_name": "docker.io/swerebenchv2/python-attrs-attrs:1372-ee0f19b",
+      "lineage": "lineage-01",
+      "lineage_position": 10
+    },
+    {
+      "instance_id": "python-attrs__attrs-1410",
+      "repo": "python-attrs/attrs",
+      "base_commit": "6bde3618237cdae312e4e7fb006690be2a3ee0f6",
+      "created_at": "2025-02-22 10:44:17",
+      "language": "python",
+      "license": "MIT",
+      "image_name": "docker.io/swerebenchv2/python-attrs-attrs:1410-6bde361",
+      "lineage": "lineage-01",
+      "lineage_position": 11
+    },
+    {
+      "instance_id": "python-attrs__attrs-1417",
+      "repo": "python-attrs/attrs",
+      "base_commit": "19943b775d40c018e844f2cb1728442f58112a3b",
+      "created_at": "2025-03-12 16:48:42",
+      "language": "python",
+      "license": "MIT",
+      "image_name": "docker.io/swerebenchv2/python-attrs-attrs:1417-19943b7",
+      "lineage": "lineage-01",
+      "lineage_position": 12
+    }
+  ],
+  "initial_shared_history": "No historical target/reference trajectories seeded in longitudinal stream. Cold-start each repository; accumulated memories from own preceding public investigations only. Controls have identical source and public task context.",
+  "analysis": "Paired per-position no-memory control, raw-prior-experience control, persistent editable memory and update-frozen/reset ablation; exact execution matrix/budgets still require registration after initial comparison. External-memory/in-context continual learning, no model-weight update claim. All initialization, controller, update and solver inference charged.",
+  "execution_status": "Reserved, not model-execution frozen. Own dependency/source controls and full initial comparison gates required. Preserve order, failures, per-arm experience; no favorable stopping.",
+  "validation": "Original four moto cases remain separately reserved and untouched; these36 tasks are expanded development/transfer evidence, not confirmatory evaluation.",
+  "supersedes": "002 task timestamps caused backward source transitions and two divergent pairs. 001/002 remain preserved; zero longitudinal model trials before003.",
+  "reason_for_pre_inference_amendment": "User explicitly wants repeated work in a shared codebase/environment. Metadata shows original evenly spaced panel spans2017–2025; latest-twelve narrows supported-runtime eras to2023–2025 and increases continuity without choosing by task success. Original reservation retained; zero longitudinal model trials.",
+  "lineages": [
+    {
+      "repository": "aws-cloudformation/cfn-lint",
+      "id": "lineage-01",
+      "tasks": 12
+    },
+    {
+      "repository": "pallets/click",
+      "id": "lineage-01",
+      "tasks": 10
+    },
+    {
+      "repository": "pallets/click",
+      "id": "lineage-02",
+      "tasks": 2
+    },
+    {
+      "repository": "python-attrs/attrs",
+      "id": "lineage-01",
+      "tasks": 12
+    }
+  ],
+  "ancestry_source": "work/security/repository-memory-20261110/long-source-ancestry-allpairs-002.json"
+}

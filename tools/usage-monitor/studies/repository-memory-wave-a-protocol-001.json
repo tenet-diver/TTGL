@@ -1,0 +1,64 @@
+{
+  "id": "repository-memory-wave-a-001",
+  "at": "2026-11-10T01:07:03.405365+00:00",
+  "status": "First bounded frozen-history wave; source hashes seal after all preparation and before any solver invocation",
+  "authorization": "User10November: execute memory comparison then more tasks in fewer repositories; active chat only, schedules remain paused",
+  "tasks": [
+    "aws-cloudformation__cfn-lint-2387",
+    "aws-cloudformation__cfn-lint-3342"
+  ],
+  "arms": [
+    "fresh_no_history",
+    "raw_history",
+    "mem0_luna",
+    "graphiti_luna"
+  ],
+  "solver_assignments": 8,
+  "model": "gpt-6.1-sol",
+  "reasoning": "low",
+  "maintenance_model": "gpt-6-luna",
+  "required_pass_receipts": [
+    "work/security/repository-memory-20261110/controls-first-004/controls.json",
+    "work/security/repository-memory-20261110/controls-second-001/controls.json",
+    "work/security/repository-memory-20261110/mem0-luna-preflight-001/complete.json",
+    "work/security/repository-memory-20261110/graphiti-native-preflight-001/complete.json"
+  ],
+  "tracks": "Frozen prior-history Add/Search; separate fresh namespaces per arm/target, not live accumulation. Native/Smallville/TokenEconomizer/challenge-graph comparisons follow in separate waves with fresh matched controls; do not silently drop them or pool across-period baseline totals.",
+  "history": "Previously reserved latest-eight earlier same-repository ordinals. Original messages only, no upstream config/grading metadata. Raw full histories equally available in raw/Mem0/Graphiti; none in fresh. Compact ingestion keeps complete assistant/observation groups under24000chars per episode, explicit loss receipts. No target/future or original held-out moto content.",
+  "retrieval": "Mem0 stock adapted dense and Graphiti stockRRF, both native Luna/local pinned BGE384. Max8 results/12000chars. No reranker/API fallback/automatic model repair. Historical reference_time for Graphiti is actual ingestion clock, never fabricated PR date.",
+  "budgets": {
+    "solver_tools": 50,
+    "solver_tools_open_seconds": 1200,
+    "solver_process_timeout_seconds": 1500,
+    "terminal_max_seconds": 180,
+    "maintenance_max_native_processes_per_arm_target": 128,
+    "maintenance_per_call_seconds": 600,
+    "backend_worker_seconds": 3600,
+    "all_assignments_finished_before_grading": true
+  },
+  "ordering": "Fixed target order, rotate arm ordering by target index. No favorable stopping or policy changes mid-wave.",
+  "isolation": "Own offline UID1000 task containers/capabilities0, readonly prior history and dependencies, no Docker socket or host credentials. Native host tools disabled. Host Git index unmounted and explicit, never actor-controlled .git/config/hooks/diff drivers. Per-assignment actor boundary before inference.",
+  "environment": "Patched reviewed Python3.11.18 image, exact reviewed32deps plus4 extras; target-source console shim fromdeclaredentrypoint. No affected original image. Unchanged upstream evaluator parser and exact expected-pass matching, adapted runtime not official benchmark score.",
+  "generation_and_grading": "Preserve every candidate. Hidden target tests/patches/grade logs mounted to no actor and run only after all eight assignments complete. No hidden-feedback memory updates. Ordinary nonzero command exits are evidence, not automatic task failure.",
+  "failure": "Zero assignment or maintenance-invocation retries. Ambiguous/started calls preserved, stop wave and inspect. Native built-in provider transport attempts are captured/deduplicated separately, not assumed absent. No implicit memory-off fallback after failed extraction.",
+  "economics": {
+    "source": "https://learn.chatgpt.com/docs/pricing",
+    "verified_date": "2026-11-10",
+    "unit": "published Standard credits per million tokens scenario, not actual account credits/cash/quota",
+    "rates": {
+      "gpt-6.1-sol": {
+        "uncached_input": 50,
+        "cached_input": 2.5,
+        "output": 250
+      },
+      "gpt-6-luna": {
+        "uncached_input": 2.5,
+        "cached_input": 0.25,
+        "output": 12.5
+      }
+    },
+    "formula": "((input-cached)*uncached_rate+cached*cached_rate+output*output_rate)/1e6",
+    "scope": "All assigned memory extraction/update/search LLM and solver/integration calls. Cached subset not additive. Local embedding/runtime monetary cost unknown, measured runtime separate. Preflights/control/implementation/analyst overhead separately recorded; no net first-use saving claim."
+  },
+  "claim_limits": "Two reused development targets; descriptive paired feasibility only. Existing completed tests/native memory seed are mechanism checks, not coding results. Original validation and36longitudinal metadata reservations remain separate."
+}

@@ -1,0 +1,42 @@
+{
+  "id": "repository-memory-longitudinal-001",
+  "at": "2026-11-10T02:04:40.736832+00:00",
+  "authorization": "User10November sustained active-chat experiment; schedules paused",
+  "reservation": "repository-memory-longitudinal-reservation-003",
+  "tasks": 36,
+  "arms": [
+    "fresh_no_history",
+    "raw_history",
+    "mem0_luna",
+    "graphiti_luna",
+    "persistent_graph_luna",
+    "reset_graph_luna"
+  ],
+  "solver_assignments": 216,
+  "solver": "gpt-6.1-sol low",
+  "maintenance": "gpt-6-luna low; GraphCalls native output schema for our graph, stock adapted Mem0/Graphiti JSON boundary retained",
+  "source_order": "198 all-pair metadata comparisons; four monotonic lineages: cfn12,Click10+2,attrs12. Cold-start per repository/lineage/arm; no cross-lineage/arm experience.",
+  "controls": "All36 independent empty/reference controls pass in adapted offline runtime. Only public problem_statement/source available live, no interface/gold/test patch/grader commands. Source archives, package metadata and controls pinned before models.",
+  "budgets": {
+    "solver_tools": 50,
+    "tools_open_seconds": 1200,
+    "solver_process_seconds": 1500,
+    "terminal_max_seconds": 180,
+    "our_graph_preparation_calls_per_task": 1,
+    "our_graph_posttask_calls_per_task": 1,
+    "our_graph_max_claims_per_call": 8,
+    "stock_maintenance_calls_per_lineage_arm": 256,
+    "backend_operation_seconds": 3600,
+    "maintenance_call_seconds": 600
+  },
+  "information": "All persistent arms expose own raw visible records through common ledger/tools; baseline retains only current task. Source public bundle same function in every arm; graph gets paid cheap preparation. No model trained or weights updated. Actor workspaces reset to prescribed current source, not prior candidate patch.",
+  "graph": "Maintained MCP memory server plus thin typed evidence/version policy. Cheap Luna current-task graph before Sol. Sol can search/add/edit via graph tools. Cheap post-task claims from bounded own visible experience. Reset graph rebuilds each task with same raw-history availability; no previous graph nodes.",
+  "stock": "Actual self-hosted Mem0/Graphiti (not hosted Mem0/Zep). Retrieve before current solver; ingest own bounded episode after every task, including last. Separate persistent stores/group_ids, no replay/re-ingestion. All source and maintenance cost counted. Local BGE384; no model repair/reranker fallback.",
+  "raw_episode": "Own issue4000chars/final3000/patch3000 plus latest fitting complete paged terminal records under14000chars; all raw retained with loss receipts. No gold or hidden grade feedback.",
+  "ordering": "Fixed ancestry-lineage task order; rotate six arms by task index. Finish all216 generation/updates before hidden grading. No favorable stopping or mid-study policy edits.",
+  "primary_quality": "Every prescribed FAIL_TO_PASS/PASS_TO_PASS test must pass (nonempty expected set); additional statuses and command exit retained separately. Do not penalize added passing tests. Freeze before longitudinal inference. All earlier wave exact-match failures retained unchanged.",
+  "economics": "All solver/preparation/update/reflection/integration native responses deduplicated/reconciled with CLI/capture. Published Standard credit-rate scenario: Sol50/2.5/250,Luna2.5/.25/12.5 perM uncached/cached/output. Cached subset. Actual cash/account credits/quota unknown. Local compute/parent overhead separate. Unknown calls not zero.",
+  "analysis": "Report per-position matched differences, cumulative verified successes and total scenario inference, repository/lineage curves, memory dose/tool usage, repeated exploration/error/check patterns with evidence. No causal mechanism claim from trend alone;216attempts are36task clusters, not216independenttasks. Reset vs persistent online experience can diverge; fixed-fact graph/flat ablation remains separate.",
+  "failure": "No invocation/assignment retries. Stop on ambiguity, retain started/uncertain calls and failures. Any continuation requires audited pre-upstream preparation failure or separately registered remaining unstarted units, never repeat a model attempt.",
+  "limitations": "Adapted patched Python3.11.18 source-snapshot environment lacks Git CLI/metadata; declared equally up front. Not official SWE-bench/Verified/V2 score. Development panel, no held-out generalization proof. Native/Smallville/TokenEconomizer controls remain separate supplemental waves; do not treat omission as negative result or pool unmatched periods."
+}

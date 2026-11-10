@@ -1,7 +1,39 @@
 # Investigate how knowledge accumulation and generalization frameworks accelerate effective innovation outcomes.
 
-**TTGL research working paper · 9 November 2026 · Version 0.1**  
-**Empirical scope:** completed local memory and cost diagnostics; a metadata-audited design for longitudinal repository experiments. The proposed same-repository head-to-head, native-memory comparison, and editable challenge-graph experiment have **not yet produced model-quality results**. This is an interim paper, not a completed comparative benchmark report.
+**TTGL research working paper · 10 November 2026 · Version 0.2**  
+**Empirical scope:** completed historical diagnostics and an adapted two-target repository-memory comparison. A36-task, six-condition longitudinal development study is running; its quality outcomes remain pending. Native generation/injection diagnostics and Smallville/TokenEconomizer supplemental repository comparisons are separate gates. This is an interim paper, not a completed comparative benchmark report.
+
+## 10 November empirical update
+
+The first adapted same-repository wave is complete: two cfn-lint targets and
+four arms (fresh, raw history, Mem0/Luna, Graphiti/Luna). All arms receive the
+same solver model and execution budget. Each arm passes all prescribed tests
+on one target and fails them on the other. The registered strict upstream
+exact-set matcher instead records0/2 per arm because every successful-target
+candidate adds passing regression tests. The prescribed-tests assessment is
+explicitly post-hoc and does not replace the registered outcome.
+
+Including maintenance, Mem0 costs5.63% and Graphiti46.35% more than fresh context
+in the published model-rate scenario; raw history costs6.96% more. Across84
+completed processes,200 distinct responses and5,038,090 tokens reconcile across
+native/CLI/capture evidence. These are bounded development findings, not evidence
+of learning over time or a broad benchmark score. The separate native-memory
+probe has an unknown-cost cancelled background request, so full research cost
+is incomplete. [Detailed results and limitations](../../research/repository-memory-wave-a-results.md).
+
+A metadata-only extension reserves12 tasks each in cfn-lint, Click and attrs,
+partitioned into verified monotonic source lineages (12,10+2,12 tasks). It starts with empty per-arm repository/lineage stores;
+only earlier own public experience may accumulate. Matched per-position
+controls are required to distinguish memory effects from changing task difficulty
+and cache trends. This is nonparametric knowledge accumulation, not model-weight
+training. Its216 registered solver assignments have started; no longitudinal quality result is available at this update.
+
+An isolated native-memory diagnostic now demonstrates actual phase1 extraction,
+settled phase2 consolidation and automatic injection into a fresh thread. The
+original request contains the exact generated summary, and the agent recalls
+a documented workflow without supplied facts or file tools. This clears a
+mechanism gate only; native coding efficacy and complete background cost remain
+pending, with the earlier cancelled background request retained as unknown.
 
 ## Abstract
 

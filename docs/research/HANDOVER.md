@@ -3293,3 +3293,40 @@ metadata and image receipts accompany protocol. Private inspection evidence live
 under work/security/knowledge-generalization-20261109/. No new packages, model
 calls, image execution, global memory/provider changes or schedules; monitoring
 remains paused. Original15-line HANDOVER and25-line Smallville user edits retained.
+
+### 10 November: repository-memory first results and216-assignment accumulation study
+
+Read docs/research/knowledge-accumulation-study.md latest checkpoint and private
+work/security/repository-memory-20261110/active-continuation.json before acting.
+WaveA eight assignments complete: strict exact-set0/2 each; post-hoc prescribed
+tests1/2 each. Added passing regression tests explain3342 strict failures;2387
+regressions are real. Mem0/Luna+5.63%,Graphiti/Luna+46.35% scenario inference
+cost versus fresh, including maintenance; no quality benefit.84 processes and
+200responses reconcile; separate native-background cancellation remains unknown.
+
+Actual longitudinal001 PID559763/session88796 is running.216 sealed assignments
+(36tasks x6arms), all36 empty/reference controls pass. Reservation003 preserves
+exact36 membership, reorders by verified ancestry, separates cfn12,Click10+2,
+attrs12 lineages.198 all-pair GitHub metadata comparisons; no cross-lineage/arm
+experience. Fresh/raw/Mem0/Graphiti/persistent graph/reset graph; only own public
+work accumulates; all generation precedes hidden grades. DO NOT edit files in
+manifest.json, duplicate workers, retry started/uncertain calls or tune held-out
+data. No longitudinal grade/learning outcome yet. External memory, no weights.
+
+MCP editable graph implements evidence-linked versioned claims. Two real-server
+tests and18 prior checks pass. Cheap preparation001/002 failed (enum omission,
+literal end-token); retained without partial admission.003 supported native
+output-schema passes. Native child-home seed ages naturally; thread-start-only
+probe timedout with zero new model requests. New registered initialization003
+produces actual phase1/settled phase2; fresh-thread004 exact-summary injection
+is confirmed in an unmodified request, with supported cfn-lint/tox recall and no
+file tools. Background accounting and coding efficacy remain pending.
+Never manipulate native jobs/timestamps or normal personal memory.
+
+Paper0.2 and repository-memory-wave-a-results.md record results and limits.
+Smallville/TokenEconomizer/native supplemental repository comparisons remain
+pending, not silently omitted. All maintenance/preparation/background inference
+needs accounting; cash/quota unknown, local/parent overhead separate. Research
+schedules stay paused. Unique /tmp captures/Git/source artifacts require verified
+backup before cleanup; preserve services/volumes. Original user HANDOVER15lines,
+Smallville25lines and inspect_memory_artifacts.py remain untouched/unstaged.
