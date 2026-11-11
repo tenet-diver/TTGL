@@ -1,0 +1,1943 @@
+{
+  "at": "2026-11-11T03:36:50.703243+00:00",
+  "kind": "completed_development_pilot",
+  "tasks": 2,
+  "assignments": 24,
+  "cells": [
+    {
+      "task": "simpy",
+      "condition": "notebook",
+      "total_agent_capacity": 2,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 140,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [
+          "KNOWLEDGE.md"
+        ],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 157.89024815399898,
+      "actual_threads": 2,
+      "observed_active_threads_peak": 2,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        2
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 3,
+      "terminal_calls": 25,
+      "usage": {
+        "input_tokens": 962478,
+        "cached_input_tokens": 864512,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7038,
+        "reasoning_output_tokens": 498,
+        "total_tokens": 969516
+      },
+      "inference_accounting_complete": true,
+      "standard_credit_lower_bound": 8.81908,
+      "full_standard_credit_scenario": 8.81908,
+      "api_equivalent_lower_bound_usd": 0.3527632,
+      "full_standard_api_equivalent_usd": 0.3527632,
+      "memory_mechanism": {
+        "published_observations": 0,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "tinydb",
+      "condition": "notebook",
+      "total_agent_capacity": 4,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 201,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [
+          "KNOWLEDGE.md"
+        ],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 186.36220125399996,
+      "actual_threads": 4,
+      "observed_active_threads_peak": 4,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        4
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 5,
+      "terminal_calls": 35,
+      "usage": {
+        "input_tokens": 1488174,
+        "cached_input_tokens": 1332608,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10710,
+        "reasoning_output_tokens": 921,
+        "total_tokens": 1498884
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 13.78732,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.5514928,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 0,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "simpy",
+      "condition": "notebook",
+      "total_agent_capacity": 8,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 140,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [
+          "KNOWLEDGE.md"
+        ],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 123.18656939500033,
+      "actual_threads": 4,
+      "observed_active_threads_peak": 4,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        8
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 5,
+      "terminal_calls": 32,
+      "usage": {
+        "input_tokens": 1610216,
+        "cached_input_tokens": 1479552,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9399,
+        "reasoning_output_tokens": 556,
+        "total_tokens": 1619615
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 12.58183,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.5032732,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 0,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "simpy",
+      "condition": "native",
+      "total_agent_capacity": 1,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 140,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 160.3096314329996,
+      "actual_threads": 1,
+      "observed_active_threads_peak": 1,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [],
+      "observed_native_multi_agent_versions": [
+        "disabled"
+      ],
+      "peak_overlapping_http_requests": 2,
+      "terminal_calls": 16,
+      "usage": {
+        "input_tokens": 555539,
+        "cached_input_tokens": 495360,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5434,
+        "reasoning_output_tokens": 273,
+        "total_tokens": 560973
+      },
+      "inference_accounting_complete": true,
+      "standard_credit_lower_bound": 5.60585,
+      "full_standard_credit_scenario": 5.60585,
+      "api_equivalent_lower_bound_usd": 0.224234,
+      "full_standard_api_equivalent_usd": 0.224234,
+      "memory_mechanism": {
+        "published_observations": 0,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "simpy",
+      "condition": "notebook",
+      "total_agent_capacity": 4,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 140,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [
+          "KNOWLEDGE.md"
+        ],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 156.24432839700057,
+      "actual_threads": 4,
+      "observed_active_threads_peak": 4,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        4
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 5,
+      "terminal_calls": 45,
+      "usage": {
+        "input_tokens": 2365936,
+        "cached_input_tokens": 2268032,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 12507,
+        "reasoning_output_tokens": 616,
+        "total_tokens": 2378443
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 13.69203,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.5476812,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 0,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "tinydb",
+      "condition": "mcp_memory",
+      "total_agent_capacity": 2,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 201,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 127.03996094899958,
+      "actual_threads": 2,
+      "observed_active_threads_peak": 2,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        2
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 3,
+      "terminal_calls": 20,
+      "usage": {
+        "input_tokens": 939550,
+        "cached_input_tokens": 877952,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7003,
+        "reasoning_output_tokens": 328,
+        "total_tokens": 946553
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 7.02553,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.2810212,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 4,
+        "read_calls": 1,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "simpy",
+      "condition": "mcp_memory",
+      "total_agent_capacity": 4,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 140,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 165.60055534599996,
+      "actual_threads": 4,
+      "observed_active_threads_peak": 4,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        4
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 6,
+      "terminal_calls": 32,
+      "usage": {
+        "input_tokens": 2234734,
+        "cached_input_tokens": 2131712,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 11964,
+        "reasoning_output_tokens": 1065,
+        "total_tokens": 2246698
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 13.47138,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.5388552,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 20,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "tinydb",
+      "condition": "native",
+      "total_agent_capacity": 2,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 201,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 163.27852636600073,
+      "actual_threads": 2,
+      "observed_active_threads_peak": 2,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        2
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 3,
+      "terminal_calls": 23,
+      "usage": {
+        "input_tokens": 1065410,
+        "cached_input_tokens": 963200,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7850,
+        "reasoning_output_tokens": 752,
+        "total_tokens": 1073260
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 9.481,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.37924,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 0,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "simpy",
+      "condition": "notebook",
+      "total_agent_capacity": 1,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 140,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [
+          "KNOWLEDGE.md"
+        ],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 193.63993290500002,
+      "actual_threads": 1,
+      "observed_active_threads_peak": 1,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [],
+      "observed_native_multi_agent_versions": [
+        "disabled"
+      ],
+      "peak_overlapping_http_requests": 2,
+      "terminal_calls": 17,
+      "usage": {
+        "input_tokens": 611706,
+        "cached_input_tokens": 564352,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5953,
+        "reasoning_output_tokens": 594,
+        "total_tokens": 617659
+      },
+      "inference_accounting_complete": true,
+      "standard_credit_lower_bound": 5.26683,
+      "full_standard_credit_scenario": 5.26683,
+      "api_equivalent_lower_bound_usd": 0.2106732,
+      "full_standard_api_equivalent_usd": 0.2106732,
+      "memory_mechanism": {
+        "published_observations": 0,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "simpy",
+      "condition": "mcp_memory",
+      "total_agent_capacity": 2,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 140,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 174.8219010720004,
+      "actual_threads": 2,
+      "observed_active_threads_peak": 2,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        2
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 3,
+      "terminal_calls": 24,
+      "usage": {
+        "input_tokens": 1405879,
+        "cached_input_tokens": 1334400,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8551,
+        "reasoning_output_tokens": 562,
+        "total_tokens": 1414430
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 9.0477,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.361908,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 9,
+        "read_calls": 1,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "simpy",
+      "condition": "native",
+      "total_agent_capacity": 8,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 140,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 128.80781014200147,
+      "actual_threads": 5,
+      "observed_active_threads_peak": 5,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        8
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 6,
+      "terminal_calls": 38,
+      "usage": {
+        "input_tokens": 1824012,
+        "cached_input_tokens": 1687040,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9865,
+        "reasoning_output_tokens": 990,
+        "total_tokens": 1833877
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 13.53245,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.541298,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 0,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "tinydb",
+      "condition": "notebook",
+      "total_agent_capacity": 1,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 201,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [
+          "KNOWLEDGE.md"
+        ],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 237.74111605399958,
+      "actual_threads": 1,
+      "observed_active_threads_peak": 1,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [],
+      "observed_native_multi_agent_versions": [
+        "disabled"
+      ],
+      "peak_overlapping_http_requests": 2,
+      "terminal_calls": 17,
+      "usage": {
+        "input_tokens": 621914,
+        "cached_input_tokens": 560256,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9174,
+        "reasoning_output_tokens": 575,
+        "total_tokens": 631088
+      },
+      "inference_accounting_complete": true,
+      "standard_credit_lower_bound": 6.77704,
+      "full_standard_credit_scenario": 6.77704,
+      "api_equivalent_lower_bound_usd": 0.2710816,
+      "full_standard_api_equivalent_usd": 0.2710816,
+      "memory_mechanism": {
+        "published_observations": 0,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "simpy",
+      "condition": "native",
+      "total_agent_capacity": 2,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 140,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 146.68477005500063,
+      "actual_threads": 2,
+      "observed_active_threads_peak": 2,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        2
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 3,
+      "terminal_calls": 25,
+      "usage": {
+        "input_tokens": 995049,
+        "cached_input_tokens": 921600,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7153,
+        "reasoning_output_tokens": 883,
+        "total_tokens": 1002202
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 7.7647,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.310588,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 0,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "tinydb",
+      "condition": "notebook",
+      "total_agent_capacity": 8,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 201,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [
+          "KNOWLEDGE.md"
+        ],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 130.67144164300043,
+      "actual_threads": 5,
+      "observed_active_threads_peak": 5,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        8
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 6,
+      "terminal_calls": 36,
+      "usage": {
+        "input_tokens": 1627726,
+        "cached_input_tokens": 1453440,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10937,
+        "reasoning_output_tokens": 1253,
+        "total_tokens": 1638663
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 15.08215,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.603286,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 0,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "tinydb",
+      "condition": "native",
+      "total_agent_capacity": 1,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 201,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 226.9045865329972,
+      "actual_threads": 1,
+      "observed_active_threads_peak": 1,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [],
+      "observed_native_multi_agent_versions": [
+        "disabled"
+      ],
+      "peak_overlapping_http_requests": 2,
+      "terminal_calls": 16,
+      "usage": {
+        "input_tokens": 673877,
+        "cached_input_tokens": 623232,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8712,
+        "reasoning_output_tokens": 707,
+        "total_tokens": 682589
+      },
+      "inference_accounting_complete": true,
+      "standard_credit_lower_bound": 6.26833,
+      "full_standard_credit_scenario": 6.26833,
+      "api_equivalent_lower_bound_usd": 0.2507332,
+      "full_standard_api_equivalent_usd": 0.2507332,
+      "memory_mechanism": {
+        "published_observations": 0,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "tinydb",
+      "condition": "native",
+      "total_agent_capacity": 4,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 201,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 130.0013832199984,
+      "actual_threads": 4,
+      "observed_active_threads_peak": 4,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        4
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 5,
+      "terminal_calls": 38,
+      "usage": {
+        "input_tokens": 1797968,
+        "cached_input_tokens": 1620736,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10901,
+        "reasoning_output_tokens": 1512,
+        "total_tokens": 1808869
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 15.63869,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.6255476,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 0,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "simpy",
+      "condition": "mcp_memory",
+      "total_agent_capacity": 1,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 140,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 203.03643352400104,
+      "actual_threads": 1,
+      "observed_active_threads_peak": 1,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [],
+      "observed_native_multi_agent_versions": [
+        "disabled"
+      ],
+      "peak_overlapping_http_requests": 2,
+      "terminal_calls": 18,
+      "usage": {
+        "input_tokens": 826423,
+        "cached_input_tokens": 765952,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6874,
+        "reasoning_output_tokens": 554,
+        "total_tokens": 833297
+      },
+      "inference_accounting_complete": true,
+      "standard_credit_lower_bound": 6.65693,
+      "full_standard_credit_scenario": 6.65693,
+      "api_equivalent_lower_bound_usd": 0.2662772,
+      "full_standard_api_equivalent_usd": 0.2662772,
+      "memory_mechanism": {
+        "published_observations": 6,
+        "read_calls": 1,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "tinydb",
+      "condition": "native",
+      "total_agent_capacity": 8,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 201,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 137.11917590599842,
+      "actual_threads": 4,
+      "observed_active_threads_peak": 4,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        8
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 6,
+      "terminal_calls": 33,
+      "usage": {
+        "input_tokens": 1725660,
+        "cached_input_tokens": 1544448,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10350,
+        "reasoning_output_tokens": 1413,
+        "total_tokens": 1736010
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 15.50922,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.6203688,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 0,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "tinydb",
+      "condition": "mcp_memory",
+      "total_agent_capacity": 4,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 201,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 134.49177198000325,
+      "actual_threads": 4,
+      "observed_active_threads_peak": 4,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        4
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 6,
+      "terminal_calls": 31,
+      "usage": {
+        "input_tokens": 1754318,
+        "cached_input_tokens": 1578368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9882,
+        "reasoning_output_tokens": 958,
+        "total_tokens": 1764200
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 15.21392,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.6085568,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 16,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "simpy",
+      "condition": "mcp_memory",
+      "total_agent_capacity": 8,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 140,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 103.96671248299754,
+      "actual_threads": 4,
+      "observed_active_threads_peak": 4,
+      "parent_native_status": "failed",
+      "rpc_delivery_complete": false,
+      "server_capacity_guidance": [
+        8
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 6,
+      "terminal_calls": 30,
+      "usage": {
+        "input_tokens": 1610431,
+        "cached_input_tokens": 1461504,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8713,
+        "reasoning_output_tokens": 658,
+        "total_tokens": 1619144
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 13.27836,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.5311344,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 9,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "tinydb",
+      "condition": "notebook",
+      "total_agent_capacity": 2,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 201,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [
+          "KNOWLEDGE.md"
+        ],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 201.10803875499914,
+      "actual_threads": 2,
+      "observed_active_threads_peak": 2,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        2
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 3,
+      "terminal_calls": 23,
+      "usage": {
+        "input_tokens": 1025399,
+        "cached_input_tokens": 971904,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8812,
+        "reasoning_output_tokens": 1039,
+        "total_tokens": 1034211
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 7.30751,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.2923004,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 0,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "tinydb",
+      "condition": "mcp_memory",
+      "total_agent_capacity": 8,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 201,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 166.54915515299945,
+      "actual_threads": 5,
+      "observed_active_threads_peak": 5,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        8
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 6,
+      "terminal_calls": 40,
+      "usage": {
+        "input_tokens": 2467392,
+        "cached_input_tokens": 2312960,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 12524,
+        "reasoning_output_tokens": 1171,
+        "total_tokens": 2479916
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 16.635,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.6654,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 22,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "tinydb",
+      "condition": "mcp_memory",
+      "total_agent_capacity": 1,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 201,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 181.07747949599798,
+      "actual_threads": 1,
+      "observed_active_threads_peak": 1,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [],
+      "observed_native_multi_agent_versions": [
+        "disabled"
+      ],
+      "peak_overlapping_http_requests": 1,
+      "terminal_calls": 16,
+      "usage": {
+        "input_tokens": 732626,
+        "cached_input_tokens": 681600,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6599,
+        "reasoning_output_tokens": 307,
+        "total_tokens": 739225
+      },
+      "inference_accounting_complete": true,
+      "standard_credit_lower_bound": 5.90505,
+      "full_standard_credit_scenario": 5.90505,
+      "api_equivalent_lower_bound_usd": 0.236202,
+      "full_standard_api_equivalent_usd": 0.236202,
+      "memory_mechanism": {
+        "published_observations": 5,
+        "read_calls": 1,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    },
+    {
+      "task": "simpy",
+      "condition": "native",
+      "total_agent_capacity": 4,
+      "grade": {
+        "exit_code": 0,
+        "junit": {
+          "tests": 140,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "passed": true,
+        "artifact_policy_clean": true,
+        "excluded_changes": [],
+        "unexpected_changes": [],
+        "scope": "Prescribed public tests restored from sealed base; source-only replay, new root Markdown notes excluded; no hidden-test claim",
+        "model_calls": 0
+      },
+      "wall_seconds": 143.55148103399915,
+      "actual_threads": 4,
+      "observed_active_threads_peak": 4,
+      "parent_native_status": "completed",
+      "rpc_delivery_complete": true,
+      "server_capacity_guidance": [
+        4
+      ],
+      "observed_native_multi_agent_versions": [
+        "v2"
+      ],
+      "peak_overlapping_http_requests": 5,
+      "terminal_calls": 39,
+      "usage": {
+        "input_tokens": 1937685,
+        "cached_input_tokens": 1756032,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9625,
+        "reasoning_output_tokens": 875,
+        "total_tokens": 1947310
+      },
+      "inference_accounting_complete": false,
+      "standard_credit_lower_bound": 15.87898,
+      "full_standard_credit_scenario": null,
+      "api_equivalent_lower_bound_usd": 0.6351591999999999,
+      "full_standard_api_equivalent_usd": null,
+      "memory_mechanism": {
+        "published_observations": 0,
+        "read_calls": 0,
+        "nonempty_read_calls": 0,
+        "peer_observation_read_calls": 0
+      }
+    }
+  ],
+  "grouped": [
+    {
+      "condition": "native",
+      "total_agent_capacity": 1,
+      "assignments": 2,
+      "verified_resolutions": 2,
+      "mean_attempt_seconds": 193.6071089829984,
+      "cost_accounting_complete": true,
+      "total_standard_credit_lower_bound": 11.874179999999999,
+      "total_full_standard_credit_scenario": 11.874179999999999,
+      "cost_per_verified_resolution": 5.9370899999999995,
+      "cost_per_verified_resolution_lower_bound": 5.9370899999999995,
+      "total_api_equivalent_lower_bound_usd": 0.4749672,
+      "mean_actual_threads": 1
+    },
+    {
+      "condition": "native",
+      "total_agent_capacity": 2,
+      "assignments": 2,
+      "verified_resolutions": 2,
+      "mean_attempt_seconds": 154.98164821050068,
+      "cost_accounting_complete": false,
+      "total_standard_credit_lower_bound": 17.2457,
+      "total_full_standard_credit_scenario": null,
+      "cost_per_verified_resolution": null,
+      "cost_per_verified_resolution_lower_bound": 8.62285,
+      "total_api_equivalent_lower_bound_usd": 0.689828,
+      "mean_actual_threads": 2
+    },
+    {
+      "condition": "native",
+      "total_agent_capacity": 4,
+      "assignments": 2,
+      "verified_resolutions": 2,
+      "mean_attempt_seconds": 136.77643212699877,
+      "cost_accounting_complete": false,
+      "total_standard_credit_lower_bound": 31.517670000000003,
+      "total_full_standard_credit_scenario": null,
+      "cost_per_verified_resolution": null,
+      "cost_per_verified_resolution_lower_bound": 15.758835000000001,
+      "total_api_equivalent_lower_bound_usd": 1.2607068,
+      "mean_actual_threads": 4
+    },
+    {
+      "condition": "native",
+      "total_agent_capacity": 8,
+      "assignments": 2,
+      "verified_resolutions": 2,
+      "mean_attempt_seconds": 132.96349302399994,
+      "cost_accounting_complete": false,
+      "total_standard_credit_lower_bound": 29.04167,
+      "total_full_standard_credit_scenario": null,
+      "cost_per_verified_resolution": null,
+      "cost_per_verified_resolution_lower_bound": 14.520835,
+      "total_api_equivalent_lower_bound_usd": 1.1616667999999999,
+      "mean_actual_threads": 4.5
+    },
+    {
+      "condition": "notebook",
+      "total_agent_capacity": 1,
+      "assignments": 2,
+      "verified_resolutions": 2,
+      "mean_attempt_seconds": 215.6905244794998,
+      "cost_accounting_complete": true,
+      "total_standard_credit_lower_bound": 12.04387,
+      "total_full_standard_credit_scenario": 12.04387,
+      "cost_per_verified_resolution": 6.021935,
+      "cost_per_verified_resolution_lower_bound": 6.021935,
+      "total_api_equivalent_lower_bound_usd": 0.4817548,
+      "mean_actual_threads": 1
+    },
+    {
+      "condition": "notebook",
+      "total_agent_capacity": 2,
+      "assignments": 2,
+      "verified_resolutions": 2,
+      "mean_attempt_seconds": 179.49914345449906,
+      "cost_accounting_complete": false,
+      "total_standard_credit_lower_bound": 16.12659,
+      "total_full_standard_credit_scenario": null,
+      "cost_per_verified_resolution": null,
+      "cost_per_verified_resolution_lower_bound": 8.063295,
+      "total_api_equivalent_lower_bound_usd": 0.6450636000000001,
+      "mean_actual_threads": 2
+    },
+    {
+      "condition": "notebook",
+      "total_agent_capacity": 4,
+      "assignments": 2,
+      "verified_resolutions": 2,
+      "mean_attempt_seconds": 171.30326482550026,
+      "cost_accounting_complete": false,
+      "total_standard_credit_lower_bound": 27.47935,
+      "total_full_standard_credit_scenario": null,
+      "cost_per_verified_resolution": null,
+      "cost_per_verified_resolution_lower_bound": 13.739675,
+      "total_api_equivalent_lower_bound_usd": 1.099174,
+      "mean_actual_threads": 4
+    },
+    {
+      "condition": "notebook",
+      "total_agent_capacity": 8,
+      "assignments": 2,
+      "verified_resolutions": 2,
+      "mean_attempt_seconds": 126.92900551900038,
+      "cost_accounting_complete": false,
+      "total_standard_credit_lower_bound": 27.663980000000002,
+      "total_full_standard_credit_scenario": null,
+      "cost_per_verified_resolution": null,
+      "cost_per_verified_resolution_lower_bound": 13.831990000000001,
+      "total_api_equivalent_lower_bound_usd": 1.1065592,
+      "mean_actual_threads": 4.5
+    },
+    {
+      "condition": "mcp_memory",
+      "total_agent_capacity": 1,
+      "assignments": 2,
+      "verified_resolutions": 2,
+      "mean_attempt_seconds": 192.0569565099995,
+      "cost_accounting_complete": true,
+      "total_standard_credit_lower_bound": 12.56198,
+      "total_full_standard_credit_scenario": 12.56198,
+      "cost_per_verified_resolution": 6.28099,
+      "cost_per_verified_resolution_lower_bound": 6.28099,
+      "total_api_equivalent_lower_bound_usd": 0.5024792,
+      "mean_actual_threads": 1
+    },
+    {
+      "condition": "mcp_memory",
+      "total_agent_capacity": 2,
+      "assignments": 2,
+      "verified_resolutions": 2,
+      "mean_attempt_seconds": 150.9309310105,
+      "cost_accounting_complete": false,
+      "total_standard_credit_lower_bound": 16.073230000000002,
+      "total_full_standard_credit_scenario": null,
+      "cost_per_verified_resolution": null,
+      "cost_per_verified_resolution_lower_bound": 8.036615000000001,
+      "total_api_equivalent_lower_bound_usd": 0.6429292,
+      "mean_actual_threads": 2
+    },
+    {
+      "condition": "mcp_memory",
+      "total_agent_capacity": 4,
+      "assignments": 2,
+      "verified_resolutions": 2,
+      "mean_attempt_seconds": 150.0461636630016,
+      "cost_accounting_complete": false,
+      "total_standard_credit_lower_bound": 28.685299999999998,
+      "total_full_standard_credit_scenario": null,
+      "cost_per_verified_resolution": null,
+      "cost_per_verified_resolution_lower_bound": 14.342649999999999,
+      "total_api_equivalent_lower_bound_usd": 1.147412,
+      "mean_actual_threads": 4
+    },
+    {
+      "condition": "mcp_memory",
+      "total_agent_capacity": 8,
+      "assignments": 2,
+      "verified_resolutions": 2,
+      "mean_attempt_seconds": 135.2579338179985,
+      "cost_accounting_complete": false,
+      "total_standard_credit_lower_bound": 29.91336,
+      "total_full_standard_credit_scenario": null,
+      "cost_per_verified_resolution": null,
+      "cost_per_verified_resolution_lower_bound": 14.95668,
+      "total_api_equivalent_lower_bound_usd": 1.1965344,
+      "mean_actual_threads": 4.5
+    }
+  ],
+  "paired": [
+    {
+      "task": "simpy",
+      "condition": "notebook",
+      "capacity": 2,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.0153231963803164,
+      "exact_credit_ratio": 1.5731922901968478,
+      "credit_ratio_lower_bound": 1.5731922901968478,
+      "credit_ratio_upper_bound": 1.5731922901968478,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "simpy",
+      "condition": "notebook",
+      "capacity": 2,
+      "comparison": "versus_native_same_capacity",
+      "both_verified": true,
+      "observed_attempt_speedup": 0.9290299544778152,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": null,
+      "credit_ratio_upper_bound": 1.1357914665086866,
+      "strictly_more_expensive_identified": false,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "notebook",
+      "capacity": 4,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.2175461816086863,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 2.1995204464346965,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "notebook",
+      "capacity": 4,
+      "comparison": "versus_native_same_capacity",
+      "both_verified": true,
+      "observed_attempt_speedup": 0.6975737694942479,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": null,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": false,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "simpy",
+      "condition": "notebook",
+      "capacity": 8,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.3013564077668514,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 2.244410749484913,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "simpy",
+      "condition": "notebook",
+      "capacity": 8,
+      "comparison": "versus_native_same_capacity",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.0456319286640454,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": null,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": false,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "simpy",
+      "condition": "notebook",
+      "capacity": 4,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.0260188838705844,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 2.442453865158718,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "simpy",
+      "condition": "notebook",
+      "capacity": 4,
+      "comparison": "versus_native_same_capacity",
+      "both_verified": true,
+      "observed_attempt_speedup": 0.9187628281088692,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": null,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": false,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "mcp_memory",
+      "capacity": 2,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.7860882893697398,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 1.1207977244337806,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "mcp_memory",
+      "capacity": 2,
+      "comparison": "versus_native_same_capacity",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.28525327893913,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": null,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": false,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "simpy",
+      "condition": "mcp_memory",
+      "capacity": 4,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 0.9680500835160504,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 2.403093197284979,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "simpy",
+      "condition": "mcp_memory",
+      "capacity": 4,
+      "comparison": "versus_native_same_capacity",
+      "both_verified": true,
+      "observed_attempt_speedup": 0.8668538625010511,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": null,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": false,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "native",
+      "capacity": 2,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.3896780647344527,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 1.5125240694092366,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "simpy",
+      "condition": "notebook",
+      "capacity": 1,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 0.827874855294686,
+      "exact_credit_ratio": 0.9395238902218217,
+      "credit_ratio_lower_bound": 0.9395238902218217,
+      "credit_ratio_upper_bound": 0.9395238902218217,
+      "strictly_more_expensive_identified": false,
+      "strictly_cheaper_identified": true
+    },
+    {
+      "task": "simpy",
+      "condition": "notebook",
+      "capacity": 1,
+      "comparison": "versus_native_same_capacity",
+      "both_verified": true,
+      "observed_attempt_speedup": 0.827874855294686,
+      "exact_credit_ratio": 0.9395238902218217,
+      "credit_ratio_lower_bound": 0.9395238902218217,
+      "credit_ratio_upper_bound": 0.9395238902218217,
+      "strictly_more_expensive_identified": false,
+      "strictly_cheaper_identified": true
+    },
+    {
+      "task": "simpy",
+      "condition": "mcp_memory",
+      "capacity": 2,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 0.9169882631980765,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 1.6139746871571663,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "simpy",
+      "condition": "mcp_memory",
+      "capacity": 2,
+      "comparison": "versus_native_same_capacity",
+      "both_verified": true,
+      "observed_attempt_speedup": 0.8390525967029068,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": null,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": false,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "simpy",
+      "condition": "native",
+      "capacity": 8,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.2445645280070332,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 2.413987174112757,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "notebook",
+      "capacity": 1,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 0.9544187824938913,
+      "exact_credit_ratio": 1.081155586894755,
+      "credit_ratio_lower_bound": 1.081155586894755,
+      "credit_ratio_upper_bound": 1.081155586894755,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "notebook",
+      "capacity": 1,
+      "comparison": "versus_native_same_capacity",
+      "both_verified": true,
+      "observed_attempt_speedup": 0.9544187824938913,
+      "exact_credit_ratio": 1.081155586894755,
+      "credit_ratio_lower_bound": 1.081155586894755,
+      "credit_ratio_upper_bound": 1.081155586894755,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "simpy",
+      "condition": "native",
+      "capacity": 2,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.0928853170843178,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 1.3851066296814936,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "notebook",
+      "capacity": 8,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.7364512373936267,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 2.406087426794697,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "notebook",
+      "capacity": 8,
+      "comparison": "versus_native_same_capacity",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.0493431019198016,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": null,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": false,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "native",
+      "capacity": 4,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.7454013250690703,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 2.494873435189277,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "simpy",
+      "condition": "mcp_memory",
+      "capacity": 1,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 0.7895609110669751,
+      "exact_credit_ratio": 1.187496989751777,
+      "credit_ratio_lower_bound": 1.187496989751777,
+      "credit_ratio_upper_bound": 1.187496989751777,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "simpy",
+      "condition": "mcp_memory",
+      "capacity": 1,
+      "comparison": "versus_native_same_capacity",
+      "both_verified": true,
+      "observed_attempt_speedup": 0.7895609110669751,
+      "exact_credit_ratio": 1.187496989751777,
+      "credit_ratio_lower_bound": 1.187496989751777,
+      "credit_ratio_upper_bound": 1.187496989751777,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "native",
+      "capacity": 8,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.6547983535763873,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 2.4742188110708914,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "mcp_memory",
+      "capacity": 4,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.6871261579238783,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 2.4271089747987102,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "mcp_memory",
+      "capacity": 4,
+      "comparison": "versus_native_same_capacity",
+      "both_verified": true,
+      "observed_attempt_speedup": 0.9666121674664788,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": null,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": false,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "simpy",
+      "condition": "mcp_memory",
+      "capacity": 8,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.5419322935619055,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 2.368661309168101,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "simpy",
+      "condition": "mcp_memory",
+      "capacity": 8,
+      "comparison": "versus_native_same_capacity",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.2389331841484013,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": null,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": false,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "notebook",
+      "capacity": 2,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.1282720866738938,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 1.1657825928118015,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "notebook",
+      "capacity": 2,
+      "comparison": "versus_native_same_capacity",
+      "both_verified": true,
+      "observed_attempt_speedup": 0.8118945785400234,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": null,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": false,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "mcp_memory",
+      "capacity": 8,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.3623880969228128,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 2.653816885837217,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "mcp_memory",
+      "capacity": 8,
+      "comparison": "versus_native_same_capacity",
+      "both_verified": true,
+      "observed_attempt_speedup": 0.8232955356635382,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": null,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": false,
+      "strictly_cheaper_identified": false
+    },
+    {
+      "task": "tinydb",
+      "condition": "mcp_memory",
+      "capacity": 1,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.2530801023106357,
+      "exact_credit_ratio": 0.9420451699256421,
+      "credit_ratio_lower_bound": 0.9420451699256421,
+      "credit_ratio_upper_bound": 0.9420451699256421,
+      "strictly_more_expensive_identified": false,
+      "strictly_cheaper_identified": true
+    },
+    {
+      "task": "tinydb",
+      "condition": "mcp_memory",
+      "capacity": 1,
+      "comparison": "versus_native_same_capacity",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.2530801023106357,
+      "exact_credit_ratio": 0.9420451699256421,
+      "credit_ratio_lower_bound": 0.9420451699256421,
+      "credit_ratio_upper_bound": 0.9420451699256421,
+      "strictly_more_expensive_identified": false,
+      "strictly_cheaper_identified": true
+    },
+    {
+      "task": "simpy",
+      "condition": "native",
+      "capacity": 4,
+      "comparison": "versus_native_single",
+      "both_verified": true,
+      "observed_attempt_speedup": 1.1167396551975064,
+      "exact_credit_ratio": null,
+      "credit_ratio_lower_bound": 2.8325731155846126,
+      "credit_ratio_upper_bound": null,
+      "strictly_more_expensive_identified": true,
+      "strictly_cheaper_identified": false
+    }
+  ],
+  "pricing_sources": [
+    "https://learn.chatgpt.com/docs/pricing",
+    "https://developers.openai.com/api/docs/models/gpt-6.1-sol"
+  ],
+  "pricing_checked": "2026-11-11",
+  "limitations": [
+    "Two development repositories, one attempt per cell; descriptive, no population inference",
+    "HTTP overlap includes network/queueing; not a GPU utilization measure",
+    "Exact command repetition can be useful verification; not automatically wasted work",
+    "Standard-rate scenarios are not observed subscription charges or quota savings",
+    "Interrupted native streams can lack usage; completed-response totals are lower bounds, full cost is unknown in those cells",
+    "A lower bound above a fully measured control can identify a cost increase; overlapping unknown bounds cannot establish a ranking",
+    "Knowledge mentions/exposure are not proof of a causal effect",
+    "Attempt time includes failures; success-only latency must not substitute for completion rates"
+  ],
+  "subscription_cash_expense": null,
+  "raw_evidence": "Local ignored study archives; credentials and private transcripts excluded from publication"
+}

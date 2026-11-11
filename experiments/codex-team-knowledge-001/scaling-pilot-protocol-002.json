@@ -1,0 +1,209 @@
+{
+  "id": "codex-team-knowledge-scaling-pilot-002",
+  "registered_at": "2026-11-11T01:29:19.154263+00:00",
+  "state": "frozen_before_comparative_inference",
+  "kind": "development_pilot_not_reserved_evaluation",
+  "rationale": "Two previously reserved development libraries with passing sealed controls, three ready knowledge conditions, four native capacity limits. All24cells fixed; task-level independence is only2.",
+  "tasks": [
+    "commit-0/tinydb",
+    "commit-0/simpy"
+  ],
+  "conditions": [
+    "native",
+    "notebook",
+    "mcp_memory"
+  ],
+  "capacities": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "repetitions": 1,
+  "seed": 20261111,
+  "assignments": [
+    {
+      "task": "simpy",
+      "condition": "notebook",
+      "total_agent_capacity": 2,
+      "directory": "001-simpy-notebook-2"
+    },
+    {
+      "task": "tinydb",
+      "condition": "notebook",
+      "total_agent_capacity": 4,
+      "directory": "002-tinydb-notebook-4"
+    },
+    {
+      "task": "simpy",
+      "condition": "notebook",
+      "total_agent_capacity": 8,
+      "directory": "003-simpy-notebook-8"
+    },
+    {
+      "task": "simpy",
+      "condition": "native",
+      "total_agent_capacity": 1,
+      "directory": "004-simpy-native-1"
+    },
+    {
+      "task": "simpy",
+      "condition": "notebook",
+      "total_agent_capacity": 4,
+      "directory": "005-simpy-notebook-4"
+    },
+    {
+      "task": "tinydb",
+      "condition": "mcp_memory",
+      "total_agent_capacity": 2,
+      "directory": "006-tinydb-mcp_memory-2"
+    },
+    {
+      "task": "simpy",
+      "condition": "mcp_memory",
+      "total_agent_capacity": 4,
+      "directory": "007-simpy-mcp_memory-4"
+    },
+    {
+      "task": "tinydb",
+      "condition": "native",
+      "total_agent_capacity": 2,
+      "directory": "008-tinydb-native-2"
+    },
+    {
+      "task": "simpy",
+      "condition": "notebook",
+      "total_agent_capacity": 1,
+      "directory": "009-simpy-notebook-1"
+    },
+    {
+      "task": "simpy",
+      "condition": "mcp_memory",
+      "total_agent_capacity": 2,
+      "directory": "010-simpy-mcp_memory-2"
+    },
+    {
+      "task": "simpy",
+      "condition": "native",
+      "total_agent_capacity": 8,
+      "directory": "011-simpy-native-8"
+    },
+    {
+      "task": "tinydb",
+      "condition": "notebook",
+      "total_agent_capacity": 1,
+      "directory": "012-tinydb-notebook-1"
+    },
+    {
+      "task": "simpy",
+      "condition": "native",
+      "total_agent_capacity": 2,
+      "directory": "013-simpy-native-2"
+    },
+    {
+      "task": "tinydb",
+      "condition": "notebook",
+      "total_agent_capacity": 8,
+      "directory": "014-tinydb-notebook-8"
+    },
+    {
+      "task": "tinydb",
+      "condition": "native",
+      "total_agent_capacity": 1,
+      "directory": "015-tinydb-native-1"
+    },
+    {
+      "task": "tinydb",
+      "condition": "native",
+      "total_agent_capacity": 4,
+      "directory": "016-tinydb-native-4"
+    },
+    {
+      "task": "simpy",
+      "condition": "mcp_memory",
+      "total_agent_capacity": 1,
+      "directory": "017-simpy-mcp_memory-1"
+    },
+    {
+      "task": "tinydb",
+      "condition": "native",
+      "total_agent_capacity": 8,
+      "directory": "018-tinydb-native-8"
+    },
+    {
+      "task": "tinydb",
+      "condition": "mcp_memory",
+      "total_agent_capacity": 4,
+      "directory": "019-tinydb-mcp_memory-4"
+    },
+    {
+      "task": "simpy",
+      "condition": "mcp_memory",
+      "total_agent_capacity": 8,
+      "directory": "020-simpy-mcp_memory-8"
+    },
+    {
+      "task": "tinydb",
+      "condition": "notebook",
+      "total_agent_capacity": 2,
+      "directory": "021-tinydb-notebook-2"
+    },
+    {
+      "task": "tinydb",
+      "condition": "mcp_memory",
+      "total_agent_capacity": 8,
+      "directory": "022-tinydb-mcp_memory-8"
+    },
+    {
+      "task": "tinydb",
+      "condition": "mcp_memory",
+      "total_agent_capacity": 1,
+      "directory": "023-tinydb-mcp_memory-1"
+    },
+    {
+      "task": "simpy",
+      "condition": "native",
+      "total_agent_capacity": 4,
+      "directory": "024-simpy-native-4"
+    }
+  ],
+  "minutes_per_assignment": 30,
+  "total_terminal_calls_per_team": 80,
+  "observed_ordinary_token_stop": 4000000,
+  "inference_budget_semantics": "All threads share the limit. In-flight requests and compaction can exceed it; all actual inference counted. No claim of exact token budget equality.",
+  "feasibility_excluded": "coding-feasibility-002 is an earlier completed development mechanism run and is not reused as a comparative cell.",
+  "backend_amendment": "Adds existing official MCP server-memory. Graphiti and Cognee remain outside this readiness-gated pilot, without being assigned zero coding success.",
+  "evaluator": "Sealed source-only prescribed-test replay. Tests/config changes excluded and flagged. New root Markdown notes allowed in every arm and excluded from submission.",
+  "fixed_baseline": "Native Codex orchestration with matched constrained repository terminal; native messages and self-created notes remain available.",
+  "primary": [
+    "source-only verified resolution",
+    "parent orchestration wall time",
+    "all-response team inference tokens"
+  ],
+  "secondary": [
+    "actual worker count",
+    "model request overlap",
+    "knowledge tool use",
+    "duplicated tool commands",
+    "integration/failure observations"
+  ],
+  "reservations": "Twelve evaluation libraries untouched; two remaining development libraries not scored here.",
+  "no_automatic_assignment_retries": true,
+  "stop_on_ambiguous_usage": true,
+  "serial_execution": true,
+  "storage": "Lossless private archives byte-hash verified before owned raw files are removed; authentication files untouched.",
+  "uncertainties": "Descriptive pilot; no power claim, no repository-cluster inferential claim, no cash/subscription savings claim.",
+  "frozen_sources": {
+    "/workspaces/TTGL/tools/usage-monitor/experiments/codex_team_queue.py": "64eb85a14c09a6501d0493565ea3f8ee4c63a3f2f19b640ccb3de73fb45057e8",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/codex_team_coding.py": "8525b28f5824acfcecb940b1eb41bccd8c92336053cbd2d3d3d9835e6843e2d2",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/codex_team_terminal.py": "9399e98754b16e353f90255c12658b1beefa254e5c2162d6510762eacbc71e47",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/codex_team_grade.py": "471e2d40bfc454d86fa2182f921f6d0fc1ce1559cb794f3299a316a0aaa53e9b",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/codex_team_evidence.py": "bf65051928f5f2dbbe64a1c4811294731facfbb108641717551ebdbcdade0398",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/codex_team_probe.py": "84e58e289c1f790e53455aa71608956acc20b113b1cb83d84ecb4799af77f0a9",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/mcp_memory_probe.py": "2a088442a61175b0aea975e89f94b41ad4ed47df7569212cf0e8019931445706",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/tokeneconomizer_native_hooks.py": "614e47b9a83b813c70c8acd7abacb842587b43e060396ce00b637f3d5e2b7aa0"
+  },
+  "amended_at": "2026-11-11T01:30:13.939227+00:00",
+  "supersedes": "scaling-pilot-protocol-001.json",
+  "amendment": "Before any comparative inference: retain original capture frames and exact referenced CAS objects per unit, verified against live capture before archival. No task, treatment, budget, prompt or order change."
+}

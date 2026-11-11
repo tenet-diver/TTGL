@@ -1,0 +1,734 @@
+{
+  "id": "codex-team-knowledge-reserved-factorial-001",
+  "registered_at": "2026-11-11T04:29:47.757791+00:00",
+  "registration": "local pre-inference frozen design; not external preregistration",
+  "state": "registered_pending_zero-inference_gates_and_generation",
+  "supersedes_pilot": false,
+  "purpose": "Test added official MCPmemory \u00d7 explicit knowledge-use guidance \u00d7 native capacity on all independently admitted reserved libraries; preserve pilot and failed provider admissions",
+  "hypotheses": [
+    "Explicit guidance increases observed peer-finding retrieval relative to mere memory availability",
+    "Any store-specific improvement relative to explicit native guidance may increase with capacity until maintenance/coordination dominates",
+    "Elapsed-time benefit need not imply lower complete inference cost; null/adverse results retained"
+  ],
+  "sample": {
+    "original_reserved_libraries": 12,
+    "eligible_libraries": 5,
+    "library_names": [
+      "wcwidth",
+      "cachetools",
+      "voluptuous",
+      "imapclient",
+      "babel"
+    ],
+    "cells_per_library": 16,
+    "model_assignments": 80,
+    "attempts_per_cell": 1,
+    "justification": "Complete crossed matrix on all reserved tasks passing the pre-inference source/security/environment gates; not a powered confirmatory sample. Repository, not individual test, is independent unit. Original36task longitudinal design is a different study."
+  },
+  "admission_exclusions": {
+    "deprecated": "legacy pkg_resources runtime dependency with confirmed findings",
+    "marshmallow": "confirmed advisory match",
+    "pyjwt": "confirmed advisory matches",
+    "minitorch": "pinned reference retains unimplemented functions",
+    "parsel": "native XML dependency findings unresolved; no affected runtime used",
+    "chardet": "reference fails a Hypothesis counterexample; no seed/version tuning to hide it",
+    "portalocker": "reference fails multiprocessing timeouts/coverage floor; tests not weakened"
+  },
+  "eligibility": "All five base controls fail, references pass with unchanged original source, fixed known data resources and original tests. No candidate-agent outcome used in selection.",
+  "auxiliary_systems": {
+    "mcp_memory": "official Node server-memory2.1.0, empty isolated per-cell store, no auxiliary LLM",
+    "graphiti": "CPUlocal configuration fails registered fact fidelity, excluded from coding scores",
+    "cognee": "compatible graph has confirmed findings, not installed/executed/scored"
+  },
+  "team_intervention": "Capacity1/2/4/8 including parent; native default subagents choose decomposition/actual participation. Primary estimand is offered capacity, not exact fixed worker count; actual threads/peak activity reported, observed-size associations exploratory.",
+  "worker_model": "gpt-6.1-sol",
+  "reasoning": "low",
+  "source_manifest": "/tmp/ttgl-team-knowledge-20261110/reserved-source-manifest-001.json",
+  "runtime": "/tmp/ttgl-team-knowledge-20261110/alpine-task-runtime-004",
+  "runtime_profile": "reviewed existing AlpinePython3.11.18 image +25pinned test wheels, no lxml/Setuptools, CPU2/memory2GiB/networknone, per-cell writableisolatedactor/read-onlyruntime",
+  "memory_entry": "/workspaces/TTGL/work/security/context-memory-20261107/mcp-memory-review/node_modules/@modelcontextprotocol/server-memory/dist/index.js",
+  "minutes_per_cell": 30,
+  "terminal_budget_per_cell": 120,
+  "observed_token_stop_threshold": 4000000,
+  "threshold_caveat": "In-flight requests may overshoot; full observed usage retained, unknown cancellations remain null",
+  "workspace_reserve_bytes": 134217728,
+  "storage": "persistent workspace; lossless verified archives with exact tar-stream XZ recompression after every cell; auth excluded and untouched; stop before new inference at reserve",
+  "randomization_seed": 2026111102,
+  "assignments": [
+    {
+      "task_name": "cachetools",
+      "task": "commit-0/cachetools",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 1,
+      "directory": "001-cachetools-mcp_memory-standard-1"
+    },
+    {
+      "task_name": "imapclient",
+      "task": "commit-0/imapclient",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 1,
+      "directory": "002-imapclient-native-explicit-1"
+    },
+    {
+      "task_name": "wcwidth",
+      "task": "commit-0/wcwidth",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 2,
+      "directory": "003-wcwidth-mcp_memory-standard-2"
+    },
+    {
+      "task_name": "babel",
+      "task": "commit-0/babel",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 1,
+      "directory": "004-babel-mcp_memory-explicit-1"
+    },
+    {
+      "task_name": "imapclient",
+      "task": "commit-0/imapclient",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 2,
+      "directory": "005-imapclient-native-standard-2"
+    },
+    {
+      "task_name": "cachetools",
+      "task": "commit-0/cachetools",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 1,
+      "directory": "006-cachetools-native-standard-1"
+    },
+    {
+      "task_name": "babel",
+      "task": "commit-0/babel",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 8,
+      "directory": "007-babel-mcp_memory-explicit-8"
+    },
+    {
+      "task_name": "wcwidth",
+      "task": "commit-0/wcwidth",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 4,
+      "directory": "008-wcwidth-native-standard-4"
+    },
+    {
+      "task_name": "wcwidth",
+      "task": "commit-0/wcwidth",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 8,
+      "directory": "009-wcwidth-mcp_memory-explicit-8"
+    },
+    {
+      "task_name": "cachetools",
+      "task": "commit-0/cachetools",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 8,
+      "directory": "010-cachetools-native-standard-8"
+    },
+    {
+      "task_name": "babel",
+      "task": "commit-0/babel",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 8,
+      "directory": "011-babel-native-standard-8"
+    },
+    {
+      "task_name": "cachetools",
+      "task": "commit-0/cachetools",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 8,
+      "directory": "012-cachetools-native-explicit-8"
+    },
+    {
+      "task_name": "babel",
+      "task": "commit-0/babel",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 8,
+      "directory": "013-babel-mcp_memory-standard-8"
+    },
+    {
+      "task_name": "wcwidth",
+      "task": "commit-0/wcwidth",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 1,
+      "directory": "014-wcwidth-native-standard-1"
+    },
+    {
+      "task_name": "imapclient",
+      "task": "commit-0/imapclient",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 8,
+      "directory": "015-imapclient-native-explicit-8"
+    },
+    {
+      "task_name": "cachetools",
+      "task": "commit-0/cachetools",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 2,
+      "directory": "016-cachetools-mcp_memory-explicit-2"
+    },
+    {
+      "task_name": "cachetools",
+      "task": "commit-0/cachetools",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 2,
+      "directory": "017-cachetools-mcp_memory-standard-2"
+    },
+    {
+      "task_name": "babel",
+      "task": "commit-0/babel",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 2,
+      "directory": "018-babel-mcp_memory-standard-2"
+    },
+    {
+      "task_name": "wcwidth",
+      "task": "commit-0/wcwidth",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 4,
+      "directory": "019-wcwidth-mcp_memory-explicit-4"
+    },
+    {
+      "task_name": "voluptuous",
+      "task": "commit-0/voluptuous",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 4,
+      "directory": "020-voluptuous-native-explicit-4"
+    },
+    {
+      "task_name": "voluptuous",
+      "task": "commit-0/voluptuous",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 1,
+      "directory": "021-voluptuous-mcp_memory-explicit-1"
+    },
+    {
+      "task_name": "imapclient",
+      "task": "commit-0/imapclient",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 1,
+      "directory": "022-imapclient-native-standard-1"
+    },
+    {
+      "task_name": "wcwidth",
+      "task": "commit-0/wcwidth",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 8,
+      "directory": "023-wcwidth-mcp_memory-standard-8"
+    },
+    {
+      "task_name": "babel",
+      "task": "commit-0/babel",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 2,
+      "directory": "024-babel-native-standard-2"
+    },
+    {
+      "task_name": "voluptuous",
+      "task": "commit-0/voluptuous",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 8,
+      "directory": "025-voluptuous-mcp_memory-standard-8"
+    },
+    {
+      "task_name": "cachetools",
+      "task": "commit-0/cachetools",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 4,
+      "directory": "026-cachetools-native-standard-4"
+    },
+    {
+      "task_name": "imapclient",
+      "task": "commit-0/imapclient",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 8,
+      "directory": "027-imapclient-native-standard-8"
+    },
+    {
+      "task_name": "babel",
+      "task": "commit-0/babel",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 2,
+      "directory": "028-babel-native-explicit-2"
+    },
+    {
+      "task_name": "wcwidth",
+      "task": "commit-0/wcwidth",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 8,
+      "directory": "029-wcwidth-native-explicit-8"
+    },
+    {
+      "task_name": "voluptuous",
+      "task": "commit-0/voluptuous",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 1,
+      "directory": "030-voluptuous-native-standard-1"
+    },
+    {
+      "task_name": "cachetools",
+      "task": "commit-0/cachetools",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 2,
+      "directory": "031-cachetools-native-standard-2"
+    },
+    {
+      "task_name": "babel",
+      "task": "commit-0/babel",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 4,
+      "directory": "032-babel-native-explicit-4"
+    },
+    {
+      "task_name": "voluptuous",
+      "task": "commit-0/voluptuous",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 1,
+      "directory": "033-voluptuous-mcp_memory-standard-1"
+    },
+    {
+      "task_name": "imapclient",
+      "task": "commit-0/imapclient",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 8,
+      "directory": "034-imapclient-mcp_memory-explicit-8"
+    },
+    {
+      "task_name": "voluptuous",
+      "task": "commit-0/voluptuous",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 4,
+      "directory": "035-voluptuous-native-standard-4"
+    },
+    {
+      "task_name": "imapclient",
+      "task": "commit-0/imapclient",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 2,
+      "directory": "036-imapclient-mcp_memory-explicit-2"
+    },
+    {
+      "task_name": "voluptuous",
+      "task": "commit-0/voluptuous",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 1,
+      "directory": "037-voluptuous-native-explicit-1"
+    },
+    {
+      "task_name": "voluptuous",
+      "task": "commit-0/voluptuous",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 2,
+      "directory": "038-voluptuous-native-explicit-2"
+    },
+    {
+      "task_name": "imapclient",
+      "task": "commit-0/imapclient",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 4,
+      "directory": "039-imapclient-mcp_memory-standard-4"
+    },
+    {
+      "task_name": "imapclient",
+      "task": "commit-0/imapclient",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 2,
+      "directory": "040-imapclient-native-explicit-2"
+    },
+    {
+      "task_name": "wcwidth",
+      "task": "commit-0/wcwidth",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 4,
+      "directory": "041-wcwidth-mcp_memory-standard-4"
+    },
+    {
+      "task_name": "wcwidth",
+      "task": "commit-0/wcwidth",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 1,
+      "directory": "042-wcwidth-native-explicit-1"
+    },
+    {
+      "task_name": "voluptuous",
+      "task": "commit-0/voluptuous",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 8,
+      "directory": "043-voluptuous-native-standard-8"
+    },
+    {
+      "task_name": "wcwidth",
+      "task": "commit-0/wcwidth",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 1,
+      "directory": "044-wcwidth-mcp_memory-explicit-1"
+    },
+    {
+      "task_name": "voluptuous",
+      "task": "commit-0/voluptuous",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 2,
+      "directory": "045-voluptuous-mcp_memory-standard-2"
+    },
+    {
+      "task_name": "babel",
+      "task": "commit-0/babel",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 1,
+      "directory": "046-babel-native-explicit-1"
+    },
+    {
+      "task_name": "imapclient",
+      "task": "commit-0/imapclient",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 4,
+      "directory": "047-imapclient-mcp_memory-explicit-4"
+    },
+    {
+      "task_name": "imapclient",
+      "task": "commit-0/imapclient",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 8,
+      "directory": "048-imapclient-mcp_memory-standard-8"
+    },
+    {
+      "task_name": "voluptuous",
+      "task": "commit-0/voluptuous",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 8,
+      "directory": "049-voluptuous-mcp_memory-explicit-8"
+    },
+    {
+      "task_name": "cachetools",
+      "task": "commit-0/cachetools",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 4,
+      "directory": "050-cachetools-mcp_memory-explicit-4"
+    },
+    {
+      "task_name": "voluptuous",
+      "task": "commit-0/voluptuous",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 4,
+      "directory": "051-voluptuous-mcp_memory-standard-4"
+    },
+    {
+      "task_name": "cachetools",
+      "task": "commit-0/cachetools",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 8,
+      "directory": "052-cachetools-mcp_memory-explicit-8"
+    },
+    {
+      "task_name": "cachetools",
+      "task": "commit-0/cachetools",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 8,
+      "directory": "053-cachetools-mcp_memory-standard-8"
+    },
+    {
+      "task_name": "wcwidth",
+      "task": "commit-0/wcwidth",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 4,
+      "directory": "054-wcwidth-native-explicit-4"
+    },
+    {
+      "task_name": "imapclient",
+      "task": "commit-0/imapclient",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 4,
+      "directory": "055-imapclient-native-standard-4"
+    },
+    {
+      "task_name": "babel",
+      "task": "commit-0/babel",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 4,
+      "directory": "056-babel-mcp_memory-standard-4"
+    },
+    {
+      "task_name": "imapclient",
+      "task": "commit-0/imapclient",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 4,
+      "directory": "057-imapclient-native-explicit-4"
+    },
+    {
+      "task_name": "wcwidth",
+      "task": "commit-0/wcwidth",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 2,
+      "directory": "058-wcwidth-native-explicit-2"
+    },
+    {
+      "task_name": "cachetools",
+      "task": "commit-0/cachetools",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 1,
+      "directory": "059-cachetools-mcp_memory-explicit-1"
+    },
+    {
+      "task_name": "cachetools",
+      "task": "commit-0/cachetools",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 2,
+      "directory": "060-cachetools-native-explicit-2"
+    },
+    {
+      "task_name": "voluptuous",
+      "task": "commit-0/voluptuous",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 4,
+      "directory": "061-voluptuous-mcp_memory-explicit-4"
+    },
+    {
+      "task_name": "babel",
+      "task": "commit-0/babel",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 8,
+      "directory": "062-babel-native-explicit-8"
+    },
+    {
+      "task_name": "babel",
+      "task": "commit-0/babel",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 2,
+      "directory": "063-babel-mcp_memory-explicit-2"
+    },
+    {
+      "task_name": "wcwidth",
+      "task": "commit-0/wcwidth",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 2,
+      "directory": "064-wcwidth-mcp_memory-explicit-2"
+    },
+    {
+      "task_name": "imapclient",
+      "task": "commit-0/imapclient",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 2,
+      "directory": "065-imapclient-mcp_memory-standard-2"
+    },
+    {
+      "task_name": "babel",
+      "task": "commit-0/babel",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 1,
+      "directory": "066-babel-native-standard-1"
+    },
+    {
+      "task_name": "voluptuous",
+      "task": "commit-0/voluptuous",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 2,
+      "directory": "067-voluptuous-mcp_memory-explicit-2"
+    },
+    {
+      "task_name": "cachetools",
+      "task": "commit-0/cachetools",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 1,
+      "directory": "068-cachetools-native-explicit-1"
+    },
+    {
+      "task_name": "babel",
+      "task": "commit-0/babel",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 4,
+      "directory": "069-babel-native-standard-4"
+    },
+    {
+      "task_name": "voluptuous",
+      "task": "commit-0/voluptuous",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 2,
+      "directory": "070-voluptuous-native-standard-2"
+    },
+    {
+      "task_name": "wcwidth",
+      "task": "commit-0/wcwidth",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 2,
+      "directory": "071-wcwidth-native-standard-2"
+    },
+    {
+      "task_name": "babel",
+      "task": "commit-0/babel",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 4,
+      "directory": "072-babel-mcp_memory-explicit-4"
+    },
+    {
+      "task_name": "cachetools",
+      "task": "commit-0/cachetools",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 4,
+      "directory": "073-cachetools-native-explicit-4"
+    },
+    {
+      "task_name": "cachetools",
+      "task": "commit-0/cachetools",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 4,
+      "directory": "074-cachetools-mcp_memory-standard-4"
+    },
+    {
+      "task_name": "imapclient",
+      "task": "commit-0/imapclient",
+      "condition": "mcp_memory",
+      "guidance": "explicit",
+      "total_agent_capacity": 1,
+      "directory": "075-imapclient-mcp_memory-explicit-1"
+    },
+    {
+      "task_name": "wcwidth",
+      "task": "commit-0/wcwidth",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 1,
+      "directory": "076-wcwidth-mcp_memory-standard-1"
+    },
+    {
+      "task_name": "babel",
+      "task": "commit-0/babel",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 1,
+      "directory": "077-babel-mcp_memory-standard-1"
+    },
+    {
+      "task_name": "voluptuous",
+      "task": "commit-0/voluptuous",
+      "condition": "native",
+      "guidance": "explicit",
+      "total_agent_capacity": 8,
+      "directory": "078-voluptuous-native-explicit-8"
+    },
+    {
+      "task_name": "imapclient",
+      "task": "commit-0/imapclient",
+      "condition": "mcp_memory",
+      "guidance": "standard",
+      "total_agent_capacity": 1,
+      "directory": "079-imapclient-mcp_memory-standard-1"
+    },
+    {
+      "task_name": "wcwidth",
+      "task": "commit-0/wcwidth",
+      "condition": "native",
+      "guidance": "standard",
+      "total_agent_capacity": 8,
+      "directory": "080-wcwidth-native-standard-8"
+    }
+  ],
+  "primary_outcome": "Independent source-only prescribed-test resolution after generation; original test/data restored, collection >= reference and skips <=reference, no hidden-test claim",
+  "secondary_outcomes": [
+    "normal parent completion plus verified patch",
+    "fraction of prescribed reference checks passed",
+    "elapsed app-server run including native tools and knowledge operations, failed parent end distinguished",
+    "all native inference including maintenance/compaction; complete costs only when all requests reconciled, otherwise lower bounds and null totals",
+    "actual owned threads/observable active peaks, MCPpublication/retrieval/exactpeer observation exposure, tool repetition and test/config artifact flags"
+  ],
+  "artifact_policy": "New tests/generated files outside implementation are excluded, not treated as quality failures. Existing prescribed test/config/fixed-data changes flagged separately. Actor test copies inside implementation are restored from sealed base.",
+  "analysis": "Per-library paired gains/losses and all-cell durations; no successful-only speedup. Store\u00d7guidance interaction reported by capacity. Descriptive5library evidence, no powered population claims. Cost per resolution undefined when0success; overlapping lowerbounds do not rank unknown totals. Different local provider failures are admission evidence, not efficacy comparisons.",
+  "failure_policy": "Zero assignment/provider retries; preserve every started/uncertain call. Budget/stream-ended artifacts are sealed and graded once; audit ambiguity stops queue. Do not tune policy or replace excluded tasks based on agent outcomes.",
+  "heldout_integrity": "All five drawn from original12reserved before pilot; explicit policy general and frozen before reserved inference. Preparation controls do not provide candidate grades to solver. All cells empty stores and fresh thread homes.",
+  "frozen_sources": {
+    "/workspaces/TTGL/tools/usage-monitor/experiments/codex_team_reserved_queue.py": "88848d4d59e8ec16a9fd7e7d29412c633448a37fce98d8a05ee907d22758607b",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/codex_team_coding_v2.py": "0242784a0a9a05a0cfe5aeb8cdd6e45eb7c2531c3084e53d126625c9b1c766cf",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/codex_team_coding.py": "8525b28f5824acfcecb940b1eb41bccd8c92336053cbd2d3d3d9835e6843e2d2",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/codex_team_grade_v3.py": "78b468bf52f4ffa83def6acd0bcf5241a9f2c10bdcae9c08c98f85d48dee0ed9",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/codex_team_grade_v2.py": "4ef69d9334dc54df79ac9cad21596126e7a502160c53664618ca099beacd9238",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/codex_team_evidence.py": "bf65051928f5f2dbbe64a1c4811294731facfbb108641717551ebdbcdade0398",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/codex_team_probe.py": "84e58e289c1f790e53455aa71608956acc20b113b1cb83d84ecb4799af77f0a9",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/codex_team_terminal.py": "9399e98754b16e353f90255c12658b1beefa254e5c2162d6510762eacbc71e47",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/commit0_compatibility_controls.py": "b04c07cc9e586091a7a5b5e42c623c0fba69f1adfd047c75c4fa2940fe7e310e",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/codex_team_queue.py": "64eb85a14c09a6501d0493565ea3f8ee4c63a3f2f19b640ccb3de73fb45057e8",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/resume_codex_team_scaling.py": "cd94f74d6e268c4764669ac83b7c19bb502e4b1e30745f1a9fd6fc7747cafb7b",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/recompress_codex_team_archives.py": "cb13b1dc34b415dd21d061eba36cb4179f6ba058676a595126146e0e4c35442d",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/continue_codex_team_scaling_v2.py": "a1ef7b7e8af7f3c1d2d2d01069a96d29f93e569a3c45607487e35e7ec41e9d6f",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/mcp_memory_probe.py": "2a088442a61175b0aea975e89f94b41ad4ed47df7569212cf0e8019931445706",
+    "/workspaces/TTGL/tools/usage-monitor/experiments/tokeneconomizer_native_hooks.py": "614e47b9a83b813c70c8acd7abacb842587b43e060396ce00b637f3d5e2b7aa0",
+    "/tmp/ttgl-team-knowledge-20261110/reserved-source-manifest-001.json": "0f841acb162e3f48982120fd8d1486eb46ac05cdc1f9eac362ec5f15ffc18bd4",
+    "/workspaces/TTGL/experiments/codex-team-knowledge-001/reserved-runtime-001.lock": "02d571893c41f89e6ae88e60fbc28b1b6fa184961cd51ff794326f47dfabca31",
+    "/workspaces/TTGL/tools/usage-monitor/observability/capture_proxy_native_routes.py": "e0c5bb2a0d8a33996a423884b43bf9050cd49443fae905c15216a3da99068b3b",
+    "/workspaces/TTGL/tools/usage-monitor/observability/capture_proxy_longhorizon.py": "370e7ad5abdcd82ae82e1fa7a92a9c2c085da99a302ca8feb2d4b8e23111e64b",
+    "/workspaces/TTGL/tools/usage-monitor/observability/capture_proxy.py": "e6eecf6def9828ba58851a696dc0e120a5c9de2e70330f97d5af30f3c298ed51",
+    "/workspaces/TTGL/tools/usage-monitor/observability/capture_objects.py": "3ac3f265848e1e2b41033165ca01051420dd27b4528952b6a99e4efb16fc4bec"
+  }
+}

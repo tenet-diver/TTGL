@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-11T01:37:15.792418+00:00",
+  "pinned_dataset_commit": "944c325cf7899ee75dcf3ec3c42a631a253c7737",
+  "parquet_sha256": "6b2bf3d5d9809d552925878e4d7ea7f2899875cf6d61b1c2c5622e90ea078ebc",
+  "viewer_sha256": "03e3d88dd6e3ca48e29d2ea7fdf69928ec749dd01984fa5831e7ff09622c4e3d",
+  "parquet_rows": 54,
+  "viewer_rows": 54,
+  "row_order_and_all_values_equal": true,
+  "reader": "pyarrow26.0.1",
+  "model_calls": 0
+}

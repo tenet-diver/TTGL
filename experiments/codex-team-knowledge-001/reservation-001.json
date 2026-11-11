@@ -1,0 +1,414 @@
+{
+  "id": "codex-team-knowledge-001-reservation-001",
+  "reserved_at": "2026-11-10T23:02:46.695107+00:00",
+  "state": "task_reservation_only_no_model_invocations",
+  "harness_repo": "https://github.com/commit-0/commit0",
+  "harness_commit": "1123db33219ee1bfcc735304cb4308663e329aeb",
+  "dataset": "wentingzhao/commit0_combined",
+  "dataset_commit": "944c325cf7899ee75dcf3ec3c42a631a253c7737",
+  "metadata_source": "public dataset viewer; pinned parquet equivalence pending",
+  "metadata_sha256": "03e3d88dd6e3ca48e29d2ea7fdf69928ec749dd01984fa5831e7ff09622c4e3d",
+  "standard_lite_membership": [
+    "tinydb",
+    "simpy",
+    "deprecated",
+    "wcwidth",
+    "voluptuous",
+    "cachetools",
+    "imapclient",
+    "marshmallow",
+    "jinja",
+    "cookiecutter",
+    "portalocker",
+    "parsel",
+    "pyjwt",
+    "chardet",
+    "babel",
+    "minitorch"
+  ],
+  "development": [
+    {
+      "instance_id": "commit-0/simpy",
+      "repo": "commit-0/simpy",
+      "original_repo": "wenting-zhao/simpy",
+      "base_commit": "25496719af798e5a276289279651873ea5b6e7d1",
+      "reference_commit": "937f488d8524c15006184979c1977e370788cac7",
+      "setup": {
+        "install": "pip install -e .",
+        "packages": [
+          "requirements-dev.txt"
+        ],
+        "pip_packages": [
+          "py"
+        ],
+        "pre_install": null,
+        "python": "3.10",
+        "specification": "https://simpy.readthedocs.io/en/4.1.1/"
+      },
+      "test": {
+        "test_cmd": "pytest",
+        "test_dir": "tests/"
+      },
+      "src_dir": "src/simpy/"
+    },
+    {
+      "instance_id": "commit-0/cookiecutter",
+      "repo": "commit-0/cookiecutter",
+      "original_repo": "cookiecutter/cookiecutter",
+      "base_commit": "c7a8c70a666270053d848f5664413af1af7a987f",
+      "reference_commit": "da0df9d3a09205749307c403f06a1b4ca3af4cb8",
+      "setup": {
+        "install": "pip install -e .",
+        "packages": [
+          "test_requirements.txt"
+        ],
+        "pip_packages": null,
+        "pre_install": null,
+        "python": "3.10",
+        "specification": "https://cookiecutter.readthedocs.io/_/downloads/en/2.6.0/pdf/"
+      },
+      "test": {
+        "test_cmd": "pytest",
+        "test_dir": "tests/"
+      },
+      "src_dir": "cookiecutter/"
+    },
+    {
+      "instance_id": "commit-0/tinydb",
+      "repo": "commit-0/tinydb",
+      "original_repo": "msiemens/tinydb",
+      "base_commit": "ed761a72c8c1e1cb24ca4dbcc089f35c5264d357",
+      "reference_commit": "429b27a513f0ad301632379e55667dd99865fb16",
+      "setup": {
+        "install": "pip install -e .",
+        "packages": null,
+        "pip_packages": [
+          "pytest>=7.2.0,<8.0.0",
+          "pytest-pycodestyle>=2.3.1,<3.0.0",
+          "pytest-cov>=4.0.0,<5.0.0",
+          "pycodestyle>=2.10.0,<3.0.0",
+          "sphinx>=7.0.0,<8.0.0",
+          "coveralls>=3.3.1,<4.0.0",
+          "pyyaml>=6.0,<7.0",
+          "types-PyYAML>=6.0.0,<7.0.0",
+          "typing-extensions>=4.4.0,<5.0.0"
+        ],
+        "pre_install": null,
+        "python": "3.10",
+        "specification": "https://tinydb.readthedocs.io/_/downloads/en/v4.8.0/pdf/"
+      },
+      "test": {
+        "test_cmd": "pytest",
+        "test_dir": "tests/"
+      },
+      "src_dir": "tinydb/"
+    },
+    {
+      "instance_id": "commit-0/jinja",
+      "repo": "commit-0/jinja",
+      "original_repo": "pallets/jinja",
+      "base_commit": "264454b5141372a2511aafe9d4c5b3d07f913f0b",
+      "reference_commit": "2fc6e52a298ddeef8245098ccee00c3700184d40",
+      "setup": {
+        "install": "pip install -e .",
+        "packages": [
+          "requirements/dev.txt",
+          "requirements/tests.txt"
+        ],
+        "pip_packages": null,
+        "pre_install": null,
+        "python": "3.10",
+        "specification": "https://jinja.palletsprojects.com/en/3.1.x/"
+      },
+      "test": {
+        "test_cmd": "pytest",
+        "test_dir": "tests/"
+      },
+      "src_dir": "src/jinja2/"
+    }
+  ],
+  "evaluation_reserved": [
+    {
+      "instance_id": "commit-0/deprecated",
+      "repo": "commit-0/deprecated",
+      "original_repo": "laurent-laporte-pro/deprecated",
+      "base_commit": "b7e2114c046abb489e4e23ab9f829778b076650d",
+      "reference_commit": "378636d8a1e3d62d5894329c57f44ba0030c2dbd",
+      "setup": {
+        "install": "pip install -e .[dev]",
+        "packages": null,
+        "pip_packages": null,
+        "pre_install": null,
+        "python": "3.10",
+        "specification": "https://deprecated.readthedocs.io/en/latest/"
+      },
+      "test": {
+        "test_cmd": "pytest",
+        "test_dir": "tests/"
+      },
+      "src_dir": "deprecated/"
+    },
+    {
+      "instance_id": "commit-0/wcwidth",
+      "repo": "commit-0/wcwidth",
+      "original_repo": "jquast/wcwidth",
+      "base_commit": "0d0054189bdb0fc7b9de0456fc3cee2b67a6ceba",
+      "reference_commit": "36a625179ed2675287fe6b61c2ad319406449e60",
+      "setup": {
+        "install": "pip install -e .",
+        "packages": null,
+        "pip_packages": null,
+        "pre_install": null,
+        "python": "3.10",
+        "specification": "https://wcwidth.readthedocs.io/en/stable/"
+      },
+      "test": {
+        "test_cmd": "pytest",
+        "test_dir": "tests/"
+      },
+      "src_dir": "wcwidth/"
+    },
+    {
+      "instance_id": "commit-0/voluptuous",
+      "repo": "commit-0/voluptuous",
+      "original_repo": "alecthomas/voluptuous",
+      "base_commit": "d98e0a0b6a909d26dca6ac1a87cf1a3b60fb62d4",
+      "reference_commit": "dcaaf3dd68be156253518a045feb1c4172dbd2d5",
+      "setup": {
+        "install": "pip install -e .",
+        "packages": null,
+        "pip_packages": null,
+        "pre_install": null,
+        "python": "3.10",
+        "specification": "https://alecthomas.github.io/voluptuous/docs/_build/html/"
+      },
+      "test": {
+        "test_cmd": "pytest",
+        "test_dir": "voluptuous/tests"
+      },
+      "src_dir": "voluptuous/"
+    },
+    {
+      "instance_id": "commit-0/cachetools",
+      "repo": "commit-0/cachetools",
+      "original_repo": "tkem/cachetools",
+      "base_commit": "a0a7e2b73f9e146b8a8f2912948b17a918e5fe83",
+      "reference_commit": "d7f79fcdd8129adf34954518d0b47a71ce1cab63",
+      "setup": {
+        "install": "pip install -e .",
+        "packages": null,
+        "pip_packages": null,
+        "pre_install": null,
+        "python": "3.10",
+        "specification": "https://cachetools.readthedocs.io/en/v5.5.0/"
+      },
+      "test": {
+        "test_cmd": "pytest",
+        "test_dir": "tests/"
+      },
+      "src_dir": "src/cachetools/"
+    },
+    {
+      "instance_id": "commit-0/imapclient",
+      "repo": "commit-0/imapclient",
+      "original_repo": "mjs/imapclient",
+      "base_commit": "7ca5a23640bcb0b102673eaaf5eaa6e7fcebd76b",
+      "reference_commit": "9a6a0df2d8d44c1f3d57c222d234740f8d381395",
+      "setup": {
+        "install": "pip install -e .",
+        "packages": [
+          "requirements-dev.txt"
+        ],
+        "pip_packages": null,
+        "pre_install": null,
+        "python": "3.10",
+        "specification": "https://imapclient.readthedocs.io/en/3.0.1/"
+      },
+      "test": {
+        "test_cmd": "pytest",
+        "test_dir": "tests/"
+      },
+      "src_dir": "imapclient/"
+    },
+    {
+      "instance_id": "commit-0/marshmallow",
+      "repo": "commit-0/marshmallow",
+      "original_repo": "marshmallow-code/marshmallow",
+      "base_commit": "bd290d2b49f5030a2369aedc5538cffa4815982d",
+      "reference_commit": "b9646e326c511c11fc07aef4aa0004c14a5d454c",
+      "setup": {
+        "install": "pip install -e .[dev]",
+        "packages": null,
+        "pip_packages": null,
+        "pre_install": null,
+        "python": "3.10",
+        "specification": "https://marshmallow.readthedocs.io/_/downloads/en/stable/pdf/"
+      },
+      "test": {
+        "test_cmd": "pytest",
+        "test_dir": "tests/"
+      },
+      "src_dir": "src/marshmallow/"
+    },
+    {
+      "instance_id": "commit-0/portalocker",
+      "repo": "commit-0/portalocker",
+      "original_repo": "wolph/portalocker",
+      "base_commit": "300136afca11ea23c79ecfd110ed0d2819322f11",
+      "reference_commit": "0b2cfdd781e9e7ba8db0f7d4363da1e57dd12464",
+      "setup": {
+        "install": "pip install -e .[tests]",
+        "packages": null,
+        "pip_packages": null,
+        "pre_install": null,
+        "python": "3.10",
+        "specification": "https://portalocker.readthedocs.io/en/stable/"
+      },
+      "test": {
+        "test_cmd": "pytest",
+        "test_dir": "portalocker_tests/"
+      },
+      "src_dir": "portalocker/"
+    },
+    {
+      "instance_id": "commit-0/parsel",
+      "repo": "commit-0/parsel",
+      "original_repo": "scrapy/parsel",
+      "base_commit": "7e73d60665ef2e3ddfe3c1bb01eed981cd317c6f",
+      "reference_commit": "5e56a86cb5c2e247d02c66e61aa99b11afb1df1f",
+      "setup": {
+        "install": "pip install -e .",
+        "packages": [
+          "tests/requirements.txt"
+        ],
+        "pip_packages": null,
+        "pre_install": [
+          "apt-get update",
+          "apt-get install clang"
+        ],
+        "python": "3.12",
+        "specification": "https://parsel.readthedocs.io/_/downloads/en/latest/pdf/"
+      },
+      "test": {
+        "test_cmd": "pytest --assert=plain --ignore=setup.py",
+        "test_dir": "tests/"
+      },
+      "src_dir": "parsel"
+    },
+    {
+      "instance_id": "commit-0/pyjwt",
+      "repo": "commit-0/pyjwt",
+      "original_repo": "jpadilla/pyjwt",
+      "base_commit": "e2d08907536469bd2f00c30ccffc0b2685f2d6e8",
+      "reference_commit": "72ad55f6d7041ae698dc0790a690804118be50fc",
+      "setup": {
+        "install": "pip install -e .[crypto,tests,dev]",
+        "packages": null,
+        "pip_packages": null,
+        "pre_install": null,
+        "python": "3.12",
+        "specification": "https://pyjwt.readthedocs.io/_/downloads/en/2.8.0/pdf/"
+      },
+      "test": {
+        "test_cmd": "pytest",
+        "test_dir": "tests/"
+      },
+      "src_dir": "jwt"
+    },
+    {
+      "instance_id": "commit-0/chardet",
+      "repo": "commit-0/chardet",
+      "original_repo": "chardet/chardet",
+      "base_commit": "5539fa54d17ec61bacb4d3bb29ec6fba9dfcb882",
+      "reference_commit": "ff5dcb25a59990e43683b8e9057f6f746bfb2658",
+      "setup": {
+        "install": "pip install -e .",
+        "packages": null,
+        "pip_packages": [
+          "hypothesis>=6.0.0,<7.0.0",
+          "pre-commit>=3.5,<4.0",
+          "pytest>=8.3.2,<9.0.0",
+          "ruff>=0.5.5,<0.6.0",
+          "sphinx_rtd_theme>=1.0.0,<2.0.0"
+        ],
+        "pre_install": null,
+        "python": "3.12",
+        "specification": "https://chardet.readthedocs.io/_/downloads/en/stable/pdf/"
+      },
+      "test": {
+        "test_cmd": "pytest",
+        "test_dir": "."
+      },
+      "src_dir": "chardet/"
+    },
+    {
+      "instance_id": "commit-0/babel",
+      "repo": "commit-0/babel",
+      "original_repo": "python-babel/babel",
+      "base_commit": "18c7b9ba45304f654c2e5866c624dc229a18fccf",
+      "reference_commit": "d420ee38d0e5d765478482d077f8aee060db8511",
+      "setup": {
+        "install": "pip install -e .[dev]",
+        "packages": null,
+        "pip_packages": null,
+        "pre_install": [
+          "python scripts/download_import_cldr.py"
+        ],
+        "python": "3.10",
+        "specification": "https://babel.pocoo.org/_/downloads/en/stable/pdf/"
+      },
+      "test": {
+        "test_cmd": "pytest",
+        "test_dir": "tests/"
+      },
+      "src_dir": "babel/"
+    },
+    {
+      "instance_id": "commit-0/minitorch",
+      "repo": "commit-0/minitorch",
+      "original_repo": "minitorch/minitorch",
+      "base_commit": "1fc342c98ef62dec22a5b4c82d68f653320edc75",
+      "reference_commit": "7d35d597ad226e73289e6920fbc1e83ea6148c8b",
+      "setup": {
+        "install": "pip install -e .",
+        "packages": [
+          "requirements.txt",
+          "requirements.extra.txt"
+        ],
+        "pip_packages": [
+          "numba==0.60"
+        ],
+        "pre_install": null,
+        "python": "3.10",
+        "specification": "https://minitorch.github.io/"
+      },
+      "test": {
+        "test_cmd": "pytest",
+        "test_dir": "tests/"
+      },
+      "src_dir": "minitorch/"
+    }
+  ],
+  "selection_rule": "Standard Commit0-Lite minus four named development libraries. Outcome-independent environment/security exclusions must be logged without silent replacement. No evaluation prompts, candidate solutions, reference code or outcomes inspected for policy development.",
+  "team_sizes_total": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "knowledge_conditions": [
+    "native",
+    "notebook",
+    "graphiti_mcp",
+    "cognee_mcp"
+  ],
+  "source_solutions_excluded_from_actors": true,
+  "future_registration_required": [
+    "compatible runtime/dependencies and security receipts",
+    "base/reference evaluator controls",
+    "native tools, cap and all-member MCP visibility",
+    "per-response parent/child usage reconciliation",
+    "immutable generation sources, budget, repetitions and randomized complete blocks"
+  ],
+  "new_scored_assignments_started": 0
+}
