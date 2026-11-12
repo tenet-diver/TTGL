@@ -78,4 +78,39 @@ class WorkspaceBrowserTests(unittest.TestCase):
             page.locator('[data-table="work-subtasks"] [data-subtask]').first.click();expect(page.locator('[data-table="work-subtasks"] [data-subtask]')).to_have_attribute('aria-pressed','true')
             browser.close()
 
+    def test_response_only_unprocessed_data_and_review_navigation(self):
+        from playwright.sync_api import sync_playwright,expect
+        import task_review
+        f,origin,original=self.fixture()
+        with f.store.connection() as c:project=c.execute('SELECT project_id FROM tasks WHERE id=?',(original,)).fetchone()[0]
+        task=f.store.mutate('task',dict(project_id=project,title='Summarize context memory',goal='Raw context '+('long-unbroken-context'*400)))['id']
+        with f.store.connection() as c:
+            c.execute("INSERT INTO turns VALUES('model-only','reply','/repo','Summarize context memory','2026-11-12T00:00:00Z','2026-11-12T00:00:07Z',1)")
+            c.execute('INSERT INTO assignments VALUES(?,?,?)',('model-only','reply',task))
+            c.execute("INSERT INTO events(id,session_id,turn_id,kind,name,ts,usage,model) VALUES('reply','model-only','reply','generation','Model response','2026-11-12T00:00:05Z',?,'gpt-6-luna')",(json.dumps(dict(input_tokens=100,cached_input_tokens=0,output_tokens=20,total_tokens=120)),))
+        manifest=task_review.prepare(f.store,1)
+        with sync_playwright() as p:
+            browser=p.chromium.launch(executable_path=os.environ['TTGL_CHROMIUM'],args=['--no-sandbox'])
+            page=browser.new_page(viewport={'width':1440,'height':1000});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+            page.goto(origin);expect(page.locator('[data-table="work-tasks"] tbody tr')).to_have_count(2)
+            page.get_by_role('button',name='Summarize context memory',exact=True).click()
+            expect(page.locator('.work-metrics').first).to_contain_text('Total steps1')
+            expect(page.locator('.work-metrics').first).to_contain_text('Tool calls0')
+            expect(page.locator('.work-metrics').first).to_contain_text('7s')
+            expect(page.locator('[data-table="task-models"]')).to_contain_text('120')
+            expect(page.locator('[data-table="work-steps"] tbody tr')).to_have_count(1)
+            expect(page.locator('[data-table="work-steps"]')).to_contain_text('0.00002 USD')
+            page.set_viewport_size({'width':390,'height':844})
+            self.assertFalse(page.locator('.task-request').evaluate('(node)=>node.open'))
+            self.assertLessEqual(page.evaluate('document.documentElement.scrollWidth'),390)
+            page.locator('.task-request summary').click();self.assertLessEqual(page.evaluate('document.documentElement.scrollWidth'),390)
+            page.locator('.task-request summary').click()
+            page.get_by_role('button',name='All tasks',exact=True).click()
+            page.get_by_role('button',name='Show reviewed tasks',exact=True).click()
+            expect(page.locator('[data-table="work-tasks"] tbody tr')).to_have_count(1)
+            self.assertIn('review='+manifest['id'],page.url)
+            page.get_by_role('button',name='Show all tasks',exact=True).click()
+            expect(page.locator('[data-table="work-tasks"] tbody tr')).to_have_count(2)
+            self.assertEqual(errors,[]);browser.close()
+
 if __name__=='__main__':unittest.main()

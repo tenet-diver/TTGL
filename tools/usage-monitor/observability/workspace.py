@@ -516,7 +516,7 @@ class Handler(BaseHTTPRequestHandler):
                 elif path.path=='/api/work-task':
                     result=work_analytics.task_data(self.server.store,query.get('task_id'),query.get('attribution','measured'))
                 else:
-                    result=work_analytics.overview(self.server.store,**{k:v for k,v in query.items() if k in ('project','query','status','task_type','attribution','limit','offset')})
+                    result=work_analytics.overview(self.server.store,**{k:v for k,v in query.items() if k in ('project','query','status','task_type','attribution','limit','offset','review')})
                     result['langfuse_url']=self.server.store.langfuse_url
                 return self.send(result)
             except (ValueError,TypeError,KeyError,sqlite3.OperationalError) as exc:

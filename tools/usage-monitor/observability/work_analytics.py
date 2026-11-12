@@ -57,7 +57,7 @@ def measurements(events, scenario):
     priced=[cost(u,e['model'],scenario) for u,e in zip(usages,responses)]
     times=[e['runtime'] for e in steps if e.get('runtime_role')!='background_service_lifetime' if e['runtime'] is not None and math.isfinite(e['runtime']) and e['runtime']>=0]
     anchors=[timestamp(e['ts']) for e in events];anchors=[t for t in anchors if t is not None]
-    return {'steps':len(steps),'responses':len(responses),'tokens':sum(u['total_tokens'] for u in valid) if valid and len(valid)==len(responses) else None,
+    return {'total_steps':len(events),'tool_calls':len(steps),'steps':len(steps),'responses':len(responses),'tokens':sum(u['total_tokens'] for u in valid) if valid and len(valid)==len(responses) else None,
             'known_tokens':sum(u['total_tokens'] for u in valid),'runtime_seconds':sum(times) if times or not steps else None,'timed_steps':len(times),'background_seconds':sum(e['runtime'] or 0 for e in steps if e.get('runtime_role')=='background_service_lifetime'),'unreviewed_steps':sum((e.get('runtime_role') or 'unreviewed') in ('uncertain','unreviewed') for e in steps),
             'activity_span_seconds':max(anchors)-min(anchors) if anchors else None,
             'cost':sum(priced) if priced and all(p is not None for p in priced) else None,
@@ -80,40 +80,50 @@ def task_data(store, task_id, attribution='measured', scenario=None, connection=
         job_rows=[dict(r) for r in c.execute('SELECT id,operation,status,model,usage,error,created FROM task_history_jobs WHERE task_id=? ORDER BY created DESC',(task_id,))]
         manual_members={g['id']:[r['event_id'] for r in c.execute('SELECT event_id FROM task_step_group_members WHERE group_id=? ORDER BY position',(g['id'],))] for g in manual}
         model_members={g['id']:[r['event_id'] for r in c.execute('SELECT event_id FROM task_history_steps WHERE subtask_id=? ORDER BY position',(g['id'],))] for g in model}
-    task=dict(task);steps={e['id']:e for e in events if e['kind']=='tool'};claimed=set();groups=[]
+    task=dict(task);event_map={e['id']:e for e in events};steps={e['id']:e for e in events if e['kind']=='tool'};claimed=set();groups=[]
     saved=json.loads(analysis['snapshot']) if analysis else None
-    analysis_stale=bool(saved and (set(s['id'] for s in saved['steps'])!=set(steps) or any(any(steps.get(s['id'],{}).get(k)!=v for k,v in s.items()) for s in saved['steps']) or any(task.get(k)!=v for k,v in saved['task'].items())))
+    all_scope=bool(saved and saved.get('event_scope')=='all')
+    compared=event_map if all_scope else steps
+    analysis_stale=bool(saved and (set(s['id'] for s in saved['steps'])!=set(compared) or any(any(compared.get(s['id'],{}).get(k)!=v for k,v in s.items()) for s in saved['steps']) or any(task.get(k)!=v for k,v in saved['task'].items())))
     for source,items,members in [('user',manual,manual_members),('model',model,model_members)]:
         for g in items:
-            ids=[i for i in members[g['id']] if i in steps and i not in claimed];claimed.update(ids)
+            ids=[i for i in members[g['id']] if i in event_map and i not in claimed];claimed.update(ids)
             if not ids:continue
-            metrics=measurements([steps[i] for i in ids],scenario)
-            metrics.update(tokens=None,cost=None,known_tokens=0,known_cost=0)
-            groups.append({'id':g['id'],'title':g['title'],'type':g['activity'],'summary':g['summary'],'source':source,'step_ids':ids,
+            metrics=measurements([event_map[i] for i in ids],scenario)
+            owns_responses=any(event_map[i]['kind']=='generation' for i in ids)
+            if not owns_responses:metrics.update(tokens=None,cost=None,known_tokens=0,known_cost=0)
+            groups.append({'id':g['id'],'title':g['title'],'type':g['activity'],'summary':g['summary'],'source':source,'step_ids':[i for i in ids if i in steps],'event_ids':ids,'usage_basis':'native_responses' if owns_responses else 'unattributed',
                            'tags':json.loads(g['tags']) if source=='model' else [],'status':'unverified','stale':analysis_stale if source=='model' else any(any(steps.get(s['id'],{}).get(k)!=v for k,v in s.items()) for s in json.loads(g['snapshot'])),'metrics':metrics})
     turns=defaultdict(list)
     for e in events:turns[(e['session_id'],e['turn_id'])].append(e)
     import task_curation
     for turn,items in turns.items():
-        ids=[e['id'] for e in items if e['kind']=='tool' and e['id'] not in claimed]
+        if all_scope:
+            remaining=[e for e in items if e['id'] not in claimed]
+            if not remaining:continue
+            ids=[e['id'] for e in remaining if e['kind']=='tool']
+            evidence=remaining;whole=len(remaining)==len(items)
+        else:
+            ids=[e['id'] for e in items if e['kind']=='tool' and e['id'] not in claimed]
         turn_steps={e['id'] for e in items if e['kind']=='tool'}
-        whole=not bool(turn_steps & claimed)
-        if not ids and not (whole and any(e['kind']=='generation' for e in items)):continue
-        evidence=items if whole else [steps[i] for i in ids]
+        if not all_scope:
+            whole=not bool(turn_steps & claimed)
+            if not ids and not (whole and any(e['kind']=='generation' for e in items)):continue
+            evidence=items if whole else [steps[i] for i in ids]
         recorded=native_turns.get(turn,{})
         prompt=recorded.get('prompt') or ''
         metrics=measurements(evidence,scenario)
         groups.append({'id':'turn:'+turn[0]+':'+turn[1],'title':task_curation.prompt_title(prompt) if prompt.strip() else 'Recorded turn',
             'type':'unclassified','summary':'Recorded conversation turn. Semantic interpretation is pending.',
             'source':'log','status':'unverified','tags':[],'stale':False,'step_ids':ids,'event_ids':[e['id'] for e in evidence],
-            'usage_basis':'native_turn' if whole else 'unattributed','metrics':metrics})
+            'usage_basis':'native_turn' if whole else 'native_responses' if any(e['kind']=='generation' for e in evidence) else 'unattributed','metrics':metrics})
     for g in groups:
         g.setdefault('event_ids',g['step_ids']);g.setdefault('usage_basis','unattributed')
-        if g['usage_basis']!='native_turn':g['metrics'].update(tokens=None,cost=None,known_tokens=0,known_cost=0)
+        if g['usage_basis'] not in ('native_turn','native_responses'):g['metrics'].update(tokens=None,cost=None,known_tokens=0,known_cost=0)
     unattributed=0
-    if attribution=='step_share':
+    if attribution=='step_share' and not all_scope:
         for g in groups:
-            if g['usage_basis']=='native_turn':continue
+            if g['usage_basis'] in ('native_turn','native_responses'):continue
             shares=defaultdict(int)
             for i in g['step_ids']:shares[(steps[i]['session_id'],steps[i]['turn_id'])]+=1
             token_sum=price_sum=0;tokens_complete=prices_complete=True
@@ -125,13 +135,31 @@ def task_data(store, task_id, attribution='measured', scenario=None, connection=
             g['metrics'].update(tokens=token_sum if tokens_complete else None,cost=price_sum if prices_complete else None,known_tokens=token_sum,known_cost=price_sum)
     metrics=measurements(events,scenario)
     unattributed=max(0,metrics['known_tokens']-sum(g['metrics']['known_tokens'] for g in groups))
+    def span(items, whole_turns=False):
+        anchors=[timestamp(e['ts']) for e in items]
+        if whole_turns:
+            keys={(e['session_id'],e['turn_id']) for e in items}
+            anchors += [timestamp(native_turns.get(key,{}).get(field)) for key in keys for field in ('start','end')]
+        anchors=[v for v in anchors if v is not None]
+        return max(anchors)-min(anchors) if len(set(anchors))>1 else None
+    metrics['elapsed_span_seconds']=span(events,True)
+    for group in groups:
+        members=[event_map[i] for i in group['event_ids']];member_ids=set(group['event_ids'])
+        keys={(e['session_id'],e['turn_id']) for e in members}
+        whole_turns=all({e['id'] for e in turns[key]}<=member_ids for key in keys)
+        group['metrics']['elapsed_span_seconds']=span(members,whole_turns)
+    tool_types=defaultdict(list);model_types=defaultdict(list)
+    for event in events:
+        (tool_types if event['kind']=='tool' else model_types)[event['name'] if event['kind']=='tool' else event['model'] or 'Unknown model'].append(event)
+    tools=[{'name':name,'metrics':measurements(items,scenario),'nonzero_operations':sum(e['failed']==1 for e in items)} for name,items in tool_types.items()]
+    models=[{'name':name,'metrics':measurements(items,scenario)} for name,items in model_types.items()]
     overhead=[]
     for j in job_rows:
         u=json.loads(j['usage']) if j['usage'] else None
         overhead.append({**j,'usage':u,'cost':cost(u,j['model'],scenario)})
     knowledge=json.loads(extra['knowledge']) if extra else []
     for index,k in enumerate(knowledge):k.update(id=analysis['id']+':'+str(index),task_id=task_id,task_title=task['title'],status='candidate',stale=analysis_stale)
-    task.update(analysis_derivation=dict(derivation) if derivation else None,operation_search=' '.join(e['name'] or '' for e in steps.values()),type=extra['task_type'] if extra else 'unclassified',summary=analysis['summary'] if analysis else None,analysis_id=analysis['id'] if analysis else None,
+    task.update(response_grouping=all_scope,tool_breakdown=tools,model_breakdown=models,classification_status='unprocessed' if not analysis else 'processed' if all_scope and not analysis_stale else 'partial',analysis_derivation=dict(derivation) if derivation else None,operation_search=' '.join(e['name'] or '' for e in steps.values()),type=extra['task_type'] if extra else 'unclassified',summary=analysis['summary'] if analysis else None,analysis_id=analysis['id'] if analysis else None,
                 analysis_stale=analysis_stale,metrics=metrics,subtasks=groups,knowledge=knowledge,jobs=overhead[:10],
                 mining_overhead_tokens=sum(j['usage']['total_tokens'] for j in overhead if isinstance(j['usage'],dict) and type(j['usage'].get('total_tokens')) is int),mining_overhead_complete=all(isinstance(j['usage'],dict) and type(j['usage'].get('total_tokens')) is int for j in overhead),
                 unattributed_tokens=unattributed,attribution=attribution)
@@ -142,11 +170,13 @@ def aggregate(rows, kind):
     groups={}
     for row in rows:
         name=row['type'];m=row['metrics']
-        g=groups.setdefault(name,dict(type=name,count=0,steps=0,runtime_seconds=0,tokens=0,cost=0,tokens_complete=True,cost_complete=True,runtime_complete=True))
-        g['count']+=1;g['steps']+=m['steps'];g['runtime_seconds']+=m['runtime_seconds'] or 0
+        g=groups.setdefault(name,dict(type=name,count=0,steps=0,total_steps=0,elapsed_span_seconds=0,span_complete=True,runtime_seconds=0,tokens=0,cost=0,tokens_complete=True,cost_complete=True,runtime_complete=True))
+        g['count']+=1;g['total_steps']+=m['total_steps'];g['elapsed_span_seconds']+=m.get('elapsed_span_seconds') or 0;g['span_complete'] &= m.get('elapsed_span_seconds') is not None;g['steps']+=m['steps'];g['runtime_seconds']+=m['runtime_seconds'] or 0
         g['tokens']+=m['tokens'] or 0;g['cost']+=m['cost'] or 0
         g['tokens_complete'] &= m['tokens'] is not None;g['cost_complete'] &= m['cost'] is not None;g['runtime_complete'] &= m['runtime_seconds'] is not None
     for g in groups.values():
+        g['known_elapsed_span_seconds']=g['elapsed_span_seconds']
+        if not g['span_complete']:g['elapsed_span_seconds']=None
         g['known_cost']=g['cost'];g['known_runtime_seconds']=g['runtime_seconds']
         if not g['runtime_complete']:g['runtime_seconds']=None
         if not g['tokens_complete']:g['tokens']=None
@@ -154,7 +184,7 @@ def aggregate(rows, kind):
     return sorted(groups.values(),key=lambda r:r['steps'],reverse=True)
 
 
-def overview(store, project=None, query='', status=None, task_type=None, attribution='measured', offset=0, limit=40):
+def overview(store, project=None, query='', status=None, task_type=None, attribution='measured', offset=0, limit=40, review=None):
     import task_history as h
     import task_discovery
     h.init(store)
@@ -163,6 +193,11 @@ def overview(store, project=None, query='', status=None, task_type=None, attribu
     with store.connection() as c:
         ids=[r['id'] for r in c.execute('SELECT id FROM tasks'+(' WHERE project_id=?' if project else '')+' ORDER BY updated DESC',(project,) if project else ())]
         if len(ids)>10000:raise ValueError('Narrow the project scope to fewer than 10,000 tasks')
+        review_row=c.execute("SELECT value FROM settings WHERE key='recent_task_review'").fetchone()
+        recent_review=json.loads(review_row['value']) if review_row else None
+        if review:
+            if not recent_review or review not in ('latest',recent_review['id']):raise ValueError('Unknown task review')
+            visible=set(ids);ids=[ident for ident in recent_review['task_ids'] if ident in visible]
         projects=[dict(r) for r in c.execute('SELECT * FROM projects ORDER BY name')]
         undiscovered=c.execute("SELECT count(*) FROM turns t LEFT JOIN assignments a ON a.session_id=t.session_id AND a.turn_id=t.turn_id WHERE a.task_id IS NULL AND trim(t.prompt)!=''").fetchone()[0]
         enabled=json.loads(c.execute("SELECT value FROM settings WHERE key='collection_enabled'").fetchone()[0])
@@ -176,9 +211,9 @@ def overview(store, project=None, query='', status=None, task_type=None, attribu
             if not all(w.casefold() in text.casefold() for w in query.split()):continue
             tasks.append(row)
     subs=[s for t in tasks for s in t['subtasks']];known=sum(t['metrics']['known_tokens'] for t in tasks)
-    summaries=[{k:v for k,v in t.items() if k not in ('subtasks','knowledge','jobs','goal','acceptance','outcome','repo','operation_search')} for t in tasks[offset:offset+limit]]
-    return {'tasks':summaries,'total':len(tasks),'offset':offset,'next_offset':offset+limit if offset+limit<len(tasks) else None,'projects':projects,'undiscovered':undiscovered,'collection_enabled':enabled,'discovery_enabled':discovery_enabled,
-            'totals':{'tasks':len(tasks),'subtasks':len(subs),'steps':sum(t['metrics']['steps'] for t in tasks),'known_tokens':known,'tasks_missing_tokens':sum(t['metrics']['tokens'] is None for t in tasks),'runtime_seconds':sum(t['metrics']['runtime_seconds'] or 0 for t in tasks) if all(t['metrics']['runtime_seconds'] is not None for t in tasks) else None,
+    summaries=[{k:v for k,v in t.items() if k not in ('subtasks','knowledge','jobs','goal','acceptance','outcome','repo','operation_search','tool_breakdown','model_breakdown')} for t in tasks[offset:offset+limit]]
+    return {'tasks':summaries,'total':len(tasks),'offset':offset,'next_offset':offset+limit if offset+limit<len(tasks) else None,'projects':projects,'undiscovered':undiscovered,'collection_enabled':enabled,'discovery_enabled':discovery_enabled,'recent_review':recent_review,'review_scope':review,
+            'totals':{'tasks':len(tasks),'subtasks':len(subs),'total_steps':sum(t['metrics']['total_steps'] for t in tasks),'steps':sum(t['metrics']['steps'] for t in tasks),'known_tokens':known,'tasks_missing_tokens':sum(t['metrics']['tokens'] is None for t in tasks),'runtime_seconds':sum(t['metrics']['runtime_seconds'] or 0 for t in tasks) if all(t['metrics']['runtime_seconds'] is not None for t in tasks) else None,
                       'known_cost':sum(t['metrics']['known_cost'] for t in tasks),'tasks_missing_cost':sum(t['metrics']['cost'] is None for t in tasks),
                       'cost':sum(t['metrics']['cost'] for t in tasks) if tasks and all(t['metrics']['cost'] is not None for t in tasks) else None,'mining_overhead_tokens':sum(t['mining_overhead_tokens'] for t in tasks)},
             'task_types':aggregate(tasks,'task'),'subtask_types':aggregate(subs,'subtask'),'knowledge':[k for t in tasks for k in t['knowledge']][:100],

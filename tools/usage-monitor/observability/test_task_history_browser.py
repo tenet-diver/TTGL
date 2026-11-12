@@ -48,7 +48,7 @@ class HistoryBrowserTests(unittest.TestCase):
                 page.wait_for_selector('dialog [data-subtask]',timeout=20000)
                 assert 'fixture' in page.locator('#modal-content').inner_text().lower()
                 page.locator('dialog [data-subtask] summary').click();page.wait_for_selector('[data-history-evidence]')
-                page.locator('[data-history-evidence]').click();page.wait_for_selector('[data-source-output] pre')
+                page.locator('[data-history-evidence]').filter(has_text='shell').click();page.wait_for_selector('[data-source-output] pre')
                 assert 'aggregated_output' in page.locator('[data-source-output]').inner_text()
                 page.get_by_role('button',name='Close',exact=True).click();page.get_by_role('button',name='All tasks',exact=True).click()
                 page.locator('[name=query]').fill('regression');page.locator('[data-work-search]').get_by_role('button',name='Search',exact=True).click()

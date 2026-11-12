@@ -192,3 +192,65 @@ and raw response remain visible. Future decoding omits unsupported empty groups
 before publication and records that derivation too. The local recovery helper
 requires the exact retained output, source-alias map and known failure condition;
 it cannot turn an arbitrary failed model attempt into a successful one.
+
+## Latest-ten review and always-available measurements
+
+The user-requested latest-ten review freezes task IDs in activity order before
+starting inference. `task_review.py` runs at most two existing Luna miners at a
+time, with one attempt per task and no automatic retries. Its manifest lives in
+the private workspace task-reviews directory and is mirrored in settings for the
+UI. Unchanged analyses can be reused without another model call or counting old
+usage as new batch overhead. This is a finite explicit review, not scheduled
+monitoring. The actual registered review completed all ten entries, with no
+failed assignments; its metered mining overhead is separate from source tasks.
+
+Overview mining now includes both tool events and model-response records. A
+response-only task has one recorded step and zero tool calls, rather than zero
+steps. Large inputs use at most 64 contiguous record blocks; the saved alias
+ledger expands every block back to the exact native IDs. Blocks are indivisible
+for that interpretation. Single-response work need not be split into invented
+internal stages. Up to 40 evenly spaced sanitized record excerpts and 20 user
+requests supply bounded context. No raw model reasoning is included.
+
+For these analyses, subtasks own explicit response records, so tokens and the
+API token estimate follow those records. The association of a response with a
+subtask remains an LLM interpretation; the native counters themselves are not
+estimated. Tool-only groups have no independently recorded model usage. Legacy
+step-share estimation is not applied again to already assigned response records.
+The ten-task audit checks unique complete ownership of every captured record and
+conservation of current steps, tokens, and scenario cost across groups.
+
+Every task, including one never sent to a model for classification, exposes:
+
+- Total recorded steps, with tool calls and model responses distinguished.
+- Recorded tool runtime and a separate elapsed lifecycle span (including gaps).
+- Native tokens and the dated API-equivalent token estimate where rates exist.
+- Per-operation call/runtime counts and per-model response/token/cost tables.
+- Recorded-turn groups and the paginated raw step/response table.
+
+The last-ten cohort is reachable through **Show reviewed tasks** and the `review`
+URL parameter. **Show all tasks** restores the entire collection. This explicit
+scope navigation clears row-search filters while preserving theme, sort and
+column choices. A summary line in each task row makes interpreted work visible
+without adding cards. Unclassified tasks open their raw-record section directly;
+classification is never required to inspect measurements.
+
+The observed latest ten comprise two longer conversations and eight single-
+response maintenance operations. Each of the latter correctly reports zero tool
+calls, while still showing its response, elapsed span, tokens and estimate. No
+successful benchmark or task outcome is inferred from a classification. Raw
+outputs, aliases, manifests and audit receipts remain private.
+
+The completed review has private per-task source-ownership and accounting audits.
+Validation for this revision passes 63 unit checks and five browser workflows.
+A live browser check confirms all ten reviewed rows, return to the full task
+collection, and unprocessed-task measurements/source drill-down at desktop and
+390px widths. Long raw requests are collapsed beneath the summary so measured
+data appears first, and arbitrary unbroken log text wraps without page overflow.
+Response-only tasks show a model-record table instead of a misleading empty tool
+timeline. Classification remains an interpretation of sampled historical logs,
+not an independently verified current research outcome.
+
+Core step, tool-call, elapsed-span, token and cost columns precede administrative
+columns, so they remain visible on desktop without scrolling past classification
+metadata. Saved column visibility and sorting are retained.

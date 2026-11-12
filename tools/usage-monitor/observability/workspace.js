@@ -47,6 +47,8 @@ try {
       filters:Object.fromEntries(Object.entries(value.filters||{}).filter(([,v])=>typeof v==='string'))};
   }
 } catch {}
+if(query.get('review')&&tables['work-tasks']){tables['work-tasks'].search='';tables['work-tasks'].filters={};tables['work-tasks'].page=1;}
+
 function saveTableSettings() {
   try {localStorage.setItem('ttgl-table-settings-v1',JSON.stringify(Object.fromEntries(
     Object.entries(tables).map(([id,{search,sort,direction,filters,hiddenColumns}])=>[id,{search,sort,direction,filters,hiddenColumns}]))));}catch{}
@@ -63,6 +65,7 @@ function syncURL() {
   if (project) params.set('project', project);
   if (task) params.set('task', task);
   if (category) params.set('category', category);
+  const review=new URLSearchParams(location.search).get('review');if(review)params.set('review',review);
   history.replaceState(null, '', location.pathname + (params.size?'?'+params:'') + '#' + view);
 }
 async function load() {
@@ -320,7 +323,8 @@ function renderWork(){
   renderExplorer($('#content'),{view,data:workData,taskId:task,project,table,mountTableMenus,post,onError:toast,onRefresh:load,
     onProject:value=>{project=value;task='';syncURL();load();},
     onTask:id=>{task=id;view='tasks';syncURL();load();},
-    onInspect:(title,body,id)=>id?openTaskHistory(id,showModal):showModal(title,body)});
+    onInspect:(title,body,id)=>id?openTaskHistory(id,showModal):showModal(title,body),
+    onReviewScope:()=>{const state=tables['work-tasks'];if(state){state.search='';state.filters={};state.page=1;saveTableSettings();}}});
 }
 function render() {
   if(primary())return renderWork();
