@@ -419,3 +419,17 @@ The UI Activity table links live before/after request observations in Langfuse.
 transport receipts; native model generations remain the sole token-accounting source.
 Experiments discovery in MCP is compact by default; request `detail=full` with project
 scope for measured cells, source IDs and analyst reviews.
+
+## Searchable task experiences and subtask analysis
+
+The project/task workspace now includes **Experience history** and a task-level
+**Analyze / inspect subtasks** action. It organizes assigned native operations as
+task → model-interpreted subtasks → exact source steps, with activity tags,
+confidence, model/attempt provenance, stale-version notices and separate analysis
+overhead. Keyword search works without inference; optional local embeddings add
+semantic retrieval. The existing MCP exposes `search_task_history`,
+`get_task_history` and `analyze_task_history`, then `read_evidence` for gradual
+source inspection. See [configuration, storage choices and validation](../../docs/research/task-experience-history.md).
+No new dependencies or model downloads are required; a reachable configured
+small model is required to generate real analyses. Existing histories on other
+machines remain at their authorized source locations, not automatically imported.

@@ -14,3 +14,6 @@ results/**/.lock
 /work/cloud-setup/
 /work/context-pilot-cloud-*/
 /work/security/
+
+# Local scratch, model attempts and private observability state
+/work/

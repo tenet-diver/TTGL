@@ -1,3 +1,4 @@
+import { renderHistory, openTaskHistory } from '/task-history.js';
 import { collectionPage } from '/design-system/collection.js';
 import { createActionMenu } from '/design-system/dom.js';
 
@@ -16,6 +17,7 @@ const config = {
   overview:['Overview','Selected task usage, collection coverage, and Codex findings.'],
   analysis:['Codex analysis','Agent-authored recommendations with evidence and validation plans.'],
   projects:['Projects','Repository scope for defined work.'],
+  history:['Experience history','Search completed work and explore task → subtasks → source steps.'],
   tasks:['Tasks','Goals, verification evidence, and usage across assigned turns.'],
   inbox:['Unassigned inbox','Collected turns that have not been assigned to a task.'],
   activity:['Activity','Compact native-event timeline and model HTTP exchanges.'],
@@ -120,7 +122,7 @@ function assignTurn(turn) {
   showModal('Assign collected turn',`<p>${esc((turn.prompt||'Prompt unavailable').slice(0,300))}</p>`+form('assign',`<input type="hidden" name="session_id" value="${esc(turn.session_id)}"><input type="hidden" name="turn_id" value="${esc(turn.turn_id)}"><label>Task<select class="evlv-input evlv-select" aria-label="Task" name="task_id" required>${options(data.tasks,'id','title',task)}</select></label>`,'Assign turn'));
 }
 function taskDetails(row) {
-  showModal(row.title,`<dl class="detail-grid"><dt>Status</dt><dd>${badge(row.status)}</dd><dt>Goal</dt><dd>${esc(row.goal)}</dd><dt>Acceptance</dt><dd>${esc(row.acceptance||'Not specified')}</dd><dt>Outcome evidence</dt><dd>${esc(row.outcome||'Not verified')}</dd><dt>Measured tokens</dt><dd>${fmt(row.usage?.total_tokens)}</dd></dl><div class="modal-actions">${button('Open task evidence',`data-open-task="${esc(row.id)}"`)}</div>`);
+  showModal(row.title,`<dl class="detail-grid"><dt>Status</dt><dd>${badge(row.status)}</dd><dt>Goal</dt><dd>${esc(row.goal)}</dd><dt>Acceptance</dt><dd>${esc(row.acceptance||'Not specified')}</dd><dt>Outcome evidence</dt><dd>${esc(row.outcome||'Not verified')}</dd><dt>Measured tokens</dt><dd>${fmt(row.usage?.total_tokens)}</dd></dl><div class="modal-actions">${button('Analyze / inspect subtasks',`data-history-task="${esc(row.id)}"`)}${button('Open task evidence',`data-open-task="${esc(row.id)}"`)}</div>`);
 }
 function completeTask(row) {showModal('Record verified completion',form('task_status',`<input type="hidden" name="id" value="${esc(row.id)}"><input type="hidden" name="status" value="completed">`+field('Outcome / verification evidence','outcome',row.outcome||'',{textarea:true,required:true})));}
 function ruleDialog(rule={}) {
@@ -185,6 +187,7 @@ function tasksTable(rows) {
     {key:'total_tokens',label:'Measured tokens',numeric:true,cell:r=>compact(r.usage?.total_tokens)},
     {key:'updated',label:'Updated',cell:r=>date(r.updated)}],rows.map(r=>({...r,total_tokens:r.usage?.total_tokens||0})),r=>[
       {id:'open',label:'Open task evidence',onSelect:()=>openTask(r.id)},
+      {id:'history',label:'Analyze / inspect subtasks',onSelect:()=>openTaskHistory(r.id,showModal)},
       {id:'details',label:'Goal and verification',onSelect:()=>taskDetails(r)},
       {id:'status',label:'Mark active',onSelect:async()=>{await post('task_status',{id:r.id,status:'active'});await load();}},
       {id:'complete',label:'Complete with evidence',onSelect:()=>completeTask(r)}
@@ -235,6 +238,7 @@ function render() {
     if(report) html+=section('Scope and analyst overhead',`<dl class="detail-grid"><dt>Source scope</dt><dd>${esc(report.scope)}</dd><dt>Analyst token overhead</dt><dd>${fmt(report.overhead.total_tokens)} total; ${fmt(report.overhead.cached_input_tokens)} cached input</dd><dt>Snapshot</dt><dd>${esc(report.snapshot_hash)}</dd></dl><details><summary>Limits of this review</summary><ul>${report.limitations.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></details><p class="muted">Subsequent reviews inspect unreviewed events by default. No scheduled model calls or savings claims.</p>`);
   }
   if(view==='projects') html=section('Projects',table('projects',[{key:'name',label:'Project'},{key:'repo',label:'Repository',cell:r=>clip(r.repo)},{key:'scope',label:'Scope',cell:r=>clip(r.scope)},{key:'created',label:'Created',cell:r=>date(r.created)}],data.projects,r=>[{id:'open',label:'Open project',onSelect:async()=>{project=r.id;task='';category='';view='overview';syncURL();await load();}}]));
+  if(view==='history') html='<div id="history-root"></div>';
   if(view==='tasks') html=section('Defined tasks',tasksTable(data.tasks.filter(t=>!project||t.project_id===project)),button('Open unassigned inbox','data-view="inbox"'),'Tasks are explicit goals. Their measured usage comes from assigned turns, not automatically inferred boundaries.');
   if(view==='inbox') html=section('Unassigned turns',table('inbox',[{key:'prompt',label:'Prompt / activity',cell:r=>clip((r.prompt||'Prompt unavailable').replace(/\s+/g,' '))},{key:'repo',label:'Working folder',cell:r=>clip(r.repo)},{key:'start',label:'Started',cell:r=>date(r.start)},{key:'tokens',label:'Measured tokens',numeric:true,cell:r=>compact(r.usage?.total_tokens)},{key:'completed',label:'Agent turn',cell:r=>badge(r.completed?'Completed':'Open')}],data.inbox.map(r=>({...r,id:r.session_id+':'+r.turn_id,tokens:r.usage?.total_tokens||0})),r=>[{id:'assign',label:'Assign to a task',onSelect:()=>assignTurn(r)},{id:'open',label:'Open transcript',onSelect:()=>window.open(r.langfuse_url,'_blank','noopener')}]),'', 'Unassigned usage is included in all-source totals, but excluded from project/task totals. Agent turn completion is not verified task success.');
   if(view==='activity') {
@@ -267,6 +271,7 @@ function render() {
   ]),'','Agents create proposals using the MCP plan_experiment tool or analyst_cli.py. The baseline is frozen at proposal creation; live task totals may subsequently change.');
   if(view==='setup') html=section('Collection',`<dl class="detail-grid"><dt>State</dt><dd>${badge(data.sources.collection_enabled?'Enabled':'Paused')}</dd><dt>Authorized source</dt><dd>${esc(data.sources.root)}</dd><dt>Retained files</dt><dd>${data.sources.files}</dd><dt>Model HTTP exchanges</dt><dd>${data.capture_coverage.total_model_exchanges}</dd><dt>Source errors</dt><dd>${data.sources.errors.length}</dd></dl><div class="modal-actions">${button(data.sources.collection_enabled?'Pause collection':'Resume collection',`data-collection="${!data.sources.collection_enabled}"`)}</div>`, '', 'Pausing stops new exports and rejects new capture-route calls. Existing data is retained.')+section('Coverage limits',`<ul>${data.limitations.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><p>Private setup and credentials: <code>work/security/langfuse-stack/</code>. The app uses the pinned private EVLV DOM design-system distribution.</p>`)+section('Audit log',table('audit',[{key:'at',label:'When',cell:r=>date(r.at)},{key:'action',label:'Action'},{key:'entity',label:'Entity',cell:r=>clip(r.entity)}],data.audit,null));
   $('#content').innerHTML=html;
+  if(view==='history') renderHistory($('#history-root'),{project,open:id=>openTaskHistory(id,showModal),onError:toast});
   for(const menu of tableMenus) {
     const target=document.querySelector(`[data-row-menu="${menu.key}"]`);
     if(target) target.append(createActionMenu(document,menu.label,menu.actions));
@@ -283,6 +288,7 @@ document.addEventListener('click',async event=>{
     if(target.hasAttribute('data-add-rule')) return ruleDialog();
     if(target.hasAttribute('data-preview-rule')) return await previewRule();
     if(target.hasAttribute('data-reconcile')) return await reconcile();
+    if(target.dataset.historyTask) return openTaskHistory(target.dataset.historyTask,showModal);
     if(target.dataset.taskDetails) return taskDetails(data.tasks.find(t=>t.id===target.dataset.taskDetails));
     if(target.dataset.openTask) {$('#modal').close();return await openTask(target.dataset.openTask);}
     if(target.dataset.event) return eventDetails(data.events.find(e=>e.id===target.dataset.event));

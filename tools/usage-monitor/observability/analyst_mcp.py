@@ -39,8 +39,13 @@ TOOLS = [
 TOOLS.append(dict(name='plan_experiment', description='Save a proposed experiment with a frozen assigned-task baseline, measurement plan and quality/rollback guards. List experiments and opportunities first to check for existing proposals. Does not execute anything.', inputSchema=schema(dict(task_id='Assigned baseline task ID', title='Short experiment title', change='One changed harness variable', metrics='Primary metric, comparison design and decision threshold', quality_gate='Acceptance criteria and quality retention threshold', overhead='Account for analyst, implementation and evaluation costs', rollback='When and how to revert'), ('task_id', 'title', 'change', 'metrics', 'quality_gate', 'overhead', 'rollback'))))
 TOOLS.append(dict(name='review_experiment', description='Record an evidence-based keep, reject or inconclusive verdict on measured trial results. Measurements cannot be edited by agents. Keep requires the registered acceptance gate to pass.', inputSchema=schema(dict(evaluation_id='Measured evaluation ID from experiments', verdict='keep, reject or inconclusive', notes='Evidence IDs, interpretation, scope, overhead and remaining limitations'), ('evaluation_id', 'verdict', 'notes'))))
 TOOLS.append(dict(name='read_compression_source', description='Retrieve retained pre-compression tool text by SHA256 from a live request transform. Retrieval is never re-compressed. Redaction and retention limits still apply.', inputSchema=schema(dict(sha256='64 lowercase hexadecimal SHA256 from a TTGL live presentation marker', offset='Character offset, default 0', limit='Characters 1..16000, default 4000'), ('sha256',))))
+TOOLS.extend([
+    dict(name='search_task_history', description='Search task goals, outcomes, interpreted subtasks, activity tags and native operation labels. Read-only keyword search by default; semantic mode explicitly invokes the configured local embedding service. Results are summaries; use get_task_history and read_evidence to drill down. Filter status=completed to find completed experiences; completion is user-recorded evidence.', inputSchema=schema(dict(query='Words to search', project='Optional project ID', status='Optional task status, e.g. completed', activity='Optional subtask activity: investigate, plan, implement, test, review, document, operate, other', mode='keyword (default) or semantic (requires configured local embeddings)', limit='1..100, default 20', offset='Zero-based page offset'))),
+    dict(name='get_task_history', description='Progressive history retrieval: task and latest subtask summaries, then bounded source steps for one subtask. Stale interpretations are labeled. Use read_evidence with a returned step ID for raw evidence.', inputSchema=schema(dict(task_id='Task ID', subtask_id='Optional subtask ID from this task', limit='1..100 steps, default 20', offset='Zero-based step offset'), ('task_id',))),
+    dict(name='analyze_task_history', description='Explicitly start one on-demand small-model subtask analysis of an assigned task. Invokes inference; tracks overhead and failed attempts. Unchanged evidence reuses its analysis. No automatic retries or scheduled inference.', inputSchema=schema(dict(task_id='Task ID'), ('task_id',))),
+])
 for tool in TOOLS:
-    tool['annotations'] = dict(readOnlyHint=tool['name'] in ('query_activity', 'read_evidence', 'read_compression_source'), destructiveHint=False, openWorldHint=False)
+    tool['annotations'] = dict(readOnlyHint=tool['name'] in ('query_activity', 'read_evidence', 'read_compression_source', 'search_task_history', 'get_task_history'), destructiveHint=False, openWorldHint=False)
 
 ACTION = dict(create_project='project', create_task='task', assign_turn='assign', set_task_status='task_status',
               update_category_rule='rule', record_opportunity_review='decision')
@@ -53,7 +58,7 @@ def handle(store, request):
         supported = ['2024-11-05', '2025-03-26', '2025-06-18']
         version = params.get('protocolVersion')
         return dict(protocolVersion=version if version in supported else supported[-1],
-                    capabilities={'tools': {'listChanged': False}}, serverInfo=dict(name='ttgl-codex-analyst', version='1.1.0'))
+                    capabilities={'tools': {'listChanged': False}}, serverInfo=dict(name='ttgl-codex-analyst', version='1.2.0'))
     if method == 'ping':
         return {}
     if method == 'tools/list':
@@ -71,7 +76,12 @@ def handle(store, request):
             if any(not isinstance(v, str) and not (k in ('offset', 'limit') and type(v) is int) for k, v in arguments.items()):
                 raise ValueError('Arguments must be strings, or integers for offset/limit')
             arguments = {k: str(v) if type(v) is int else v for k, v in arguments.items()}
-            if name == 'read_compression_source':
+            if name in ('search_task_history','get_task_history','analyze_task_history'):
+                import task_history
+                if name == 'search_task_history':result = task_history.search(store, **arguments)
+                elif name == 'get_task_history':result = task_history.detail(store, **arguments)
+                else:result = task_history.start(store, arguments['task_id'])
+            elif name == 'read_compression_source':
                 digest = arguments['sha256']
                 if len(digest) != 64 or any(c not in '0123456789abcdef' for c in digest) or not store.capture_root:
                     raise ValueError('Invalid SHA256 or no authorized capture source')

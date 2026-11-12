@@ -477,6 +477,25 @@ class Handler(BaseHTTPRequestHandler):
             filters = {k: query[k][0] for k in ('project', 'task', 'category') if k in query}
             result = self.server.store.report(**filters)
             return self.send(result)
+        if path.path in ('/api/task-history', '/api/task-history-detail'):
+            import task_history
+            query = {k: v[0] for k,v in parse_qs(path.query).items()}
+            try:
+                if path.path == '/api/task-history-detail':
+                    result = task_history.detail(self.server.store, query.get('task_id'), query.get('subtask_id'), query.get('limit',20), query.get('offset',0))
+                else:
+                    if query.get('mode') == 'semantic':raise ValueError('Semantic search requires the same-origin POST endpoint')
+                    result = task_history.search(self.server.store, **{k:v for k,v in query.items() if k in ('query','project','status','activity','limit','offset','mode')})
+                return self.send(result)
+            except sqlite3.OperationalError as exc:
+                return self.send({'error': str(exc)}, 503)
+            except (ValueError, TypeError, OSError, KeyError) as exc:
+                return self.send({'error': str(exc)}, 400)
+        if path.path == '/api/task-step-evidence':
+            import analyst_mcp
+            ident = parse_qs(path.query).get('id',[''])[0]
+            result = analyst_mcp.handle(self.server.store, {'method':'tools/call','params':{'name':'read_evidence','arguments':{'id':ident,'limit':8000}}})
+            return self.send(result, 400 if result.get('isError') else 200)
         if path.path == '/api/health':
             return self.send({'status': 'OK'})
         if path.path == '/api/reconciliation':
@@ -498,7 +517,7 @@ class Handler(BaseHTTPRequestHandler):
             if not target.exists():
                 return self.send({'error': 'Private design-system distribution not synced; see sync_design_system.py'}, 503)
             return self.send(target.read_bytes(), content=design_assets[path.path])
-        assets = {'/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8')}
+        assets = {'/task-history.js': ('task-history.js', 'text/javascript; charset=utf-8'), '/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8')}
         if path.path in assets:
             name, mime = assets[path.path]
             return self.send((getattr(self.server, 'ui_root', HERE) / name).read_bytes(), content=mime)
@@ -520,9 +539,19 @@ class Handler(BaseHTTPRequestHandler):
             values = json.loads(self.rfile.read(length))
             if not isinstance(values, dict):
                 raise ValueError('Expected an object')
-            result = self.server.store.mutate(action, values)
+            if action == 'search-task-history':
+                import task_history
+                if set(values)-{'query','project','status','activity','limit','offset','mode'}:raise ValueError('Unsupported search parameter')
+                result = task_history.search(self.server.store, **values)
+            elif action == 'analyze-task':
+                import task_history
+                result = task_history.start(self.server.store, str(values.get('task_id','')))
+            else:
+                result = self.server.store.mutate(action, values)
             return self.send(result)
-        except (ValueError, KeyError, sqlite3.IntegrityError) as exc:
+        except sqlite3.OperationalError as exc:
+            return self.send({'error': str(exc)}, 503)
+        except (ValueError, TypeError, OSError, KeyError, sqlite3.IntegrityError) as exc:
             return self.send({'error': str(exc)}, 400)
 
 
