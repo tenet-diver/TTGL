@@ -109,3 +109,86 @@ existing 46 unit checks, plus four browser workflows covering the current four
 views at desktop/tablet/mobile widths. Model-backed workflows use an explicit
 fake native CLI; they establish wiring and accounting, not live Luna quality.
 Private screenshots and runtime receipts remain in `work/security/ui-review-20261112`.
+
+## Tables and log backfill (12 November, later update)
+
+Entity lists now use the shared table: tasks, subtasks/recorded turns, source steps
+and model responses, knowledge candidates, and explorer integrations. The card
+list/toggle is removed; old saved display preferences cannot restore it. Sorting,
+column filters and column visibility remain local preferences. Common usage
+columns show tool steps, model responses, recorded tool runtime, native tokens,
+and the API-equivalent estimate. Supporting columns remain available in Columns.
+Sorting/filtering can replace the table DOM without losing row drill-down or
+explorer editing. Timelines and statistical charts remain visual.
+
+The missing-data audit found that activity since November 9 had not been
+assigned to tasks. `task_discovery.py` adds opt-in, idempotent discovery by native
+session identity, with the first retained prompt as the task name and recorded
+turns as provisional subtasks. It uses only unassigned turns, preserves existing
+human/research assignments, follows collection pause, and performs no inference.
+Work's “Discover tasks from logs” enables it; the existing collection watcher
+then attaches future activity. The actual local backfill created 754 tasks and
+assigned 818 turns without changing any source event. Session boundaries are
+provisional organizational boundaries, not a claim of semantic task identity or
+verified completion. Nothing changes the frozen experiment artifacts or research
+monitoring schedule.
+
+Unmined work now shows recorded turn groups, including response-only turns.
+Their tokens and token-rate estimates are measured/derived from those exact turn
+responses rather than guessed step shares. Semantic groups retain unknown token
+attribution unless step-share estimates are selected. The source-step table
+includes both tool events and model responses; only response rows have native
+model counters. This keeps model-only work visible. Manual/model groups take
+precedence over remaining logged turns, preventing duplicate accounting.
+
+When no custom scenario is saved, a dated Standard API-equivalent token scenario
+covers the two observed models. Current sources were opened and checked on
+2026-11-12: [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol)
+and [GPT-6 Luna](https://developers.openai.com/api/docs/models/gpt-6-luna).
+Per million: Sol input/cached/output = $2/$0.10/$10; Luna = $0.10/$0.01/$0.50.
+Above 272K input tokens, the scenario applies 2× input/cache and 1.5× output.
+This is a current-price counterfactual applied to retained usage, not historical
+quotes or subscription cash expense. Unrecorded cache-write fees, paid tools,
+region and service premiums remain outside this token scenario. Custom scenarios
+still take precedence. Partial known totals are labeled as partial; missing
+prices/counters do not become zero. The editor loads from a dedicated bounded
+rates endpoint and stays disabled until loaded to prevent overwriting edits.
+
+Live validation preserved a pre-inference source-import failure and a metered
+Luna result rejected for duplicate step ownership. The next contract maps every
+short source alias to exactly one subtask index; canonical IDs are restored
+locally with the mapping and raw/decoded output retained. Two **different** real
+logged tasks completed with this contract (23,317 and 21,083 reported tokens).
+The rejected model call's 25,790 tokens remain mining overhead too. No started
+model assignment was silently repeated, and no rejected output was published.
+No broad model-quality or cost-saving claim follows from these plumbing checks.
+
+Current validation: 59 unit checks plus four browser workflows, including a clean
+server-process regression for source loading, idempotent discovery, preserved
+assignments, model-only accounting, long-context rate arithmetic, exact source
+coverage, and row actions after sorting/filtering. Private receipts, raw attempts,
+and live table screenshots stay in `work/security/ui-review-20261112` and the
+workspace's private task-history attempt directory.
+
+Live overview mining accepts strictly appended steps while retaining its original
+analyzed snapshot and marking the interpretation as needing refresh. Changes to
+existing steps, goals, names or other task facts still reject publication; added
+steps remain visible as unmined log groups. Recorded prompts from at most 20
+assigned turns (2,000 sanitized characters each) provide request context. This
+lets a human inspect an ongoing conversation without freezing collection.
+
+The larger backfill also exposed repeated unindexed joins and one SQLite
+connection per task. The overview now uses indexed assignment/annotation lookups
+and one consistent read transaction. A local 1,252-task snapshot returned in about
+one second after these changes; this is a diagnostic timing, not a general
+performance benchmark.
+
+The longer current UI conversation produced a fully covered 315-step assignment
+plus one empty proposal. Its failed validation and 89,920 reported tokens remain
+unchanged. A separately recorded derivation omits only that empty proposal,
+retains every supported step assignment, and publishes the four supported groups
+without further inference. The UI labels this derivation; the original failed job
+and raw response remain visible. Future decoding omits unsupported empty groups
+before publication and records that derivation too. The local recovery helper
+requires the exact retained output, source-alias map and known failure condition;
+it cannot turn an arbitrary failed model attempt into a successful one.

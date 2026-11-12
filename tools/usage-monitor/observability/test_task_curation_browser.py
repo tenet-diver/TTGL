@@ -45,7 +45,7 @@ print(json.dumps({'type':'turn.completed','usage':{'input_tokens':20,'output_tok
             page.get_by_role('button',name='Start task',exact=True).click()
             expect(page.locator('dialog')).not_to_be_visible()
             page.locator('nav [data-view="tasks"]').click()
-            page.get_by_role('button',name='Explore task',exact=True).click();page.get_by_role('button',name='Task details',exact=True).click()
+            page.locator('[data-table="work-tasks"] [data-work-task]').first.click();page.get_by_role('button',name='Task details',exact=True).click()
             expect(page.locator('#modal-title')).to_have_text('Fix the problem')
             chart=page.locator('dialog [data-task-timeline]')
             expect(chart.locator('[data-step-select]')).to_have_count(2)
@@ -82,7 +82,7 @@ print(json.dumps({'type':'turn.completed','usage':{'input_tokens':20,'output_tok
             page.get_by_role('button',name='All tasks',exact=True).click()
             page.locator('[name=query]').fill('verify')
             page.locator('[data-work-search]').get_by_role('button',name='Search',exact=True).click()
-            expect(page.locator('.task-card')).to_have_count(1)
+            expect(page.locator('[data-table="work-tasks"] tbody tr')).to_have_count(1)
             self.assertEqual(errors,[])
             browser.close()
 

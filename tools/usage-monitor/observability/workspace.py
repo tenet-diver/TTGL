@@ -51,6 +51,8 @@ CREATE TABLE IF NOT EXISTS settings(key TEXT PRIMARY KEY,value TEXT);
 CREATE TABLE IF NOT EXISTS analyses(id TEXT PRIMARY KEY,created TEXT,model TEXT,snapshot_hash TEXT,report TEXT,overhead TEXT);
 CREATE TABLE IF NOT EXISTS agent_annotations(analysis_id TEXT REFERENCES analyses(id),event_id TEXT REFERENCES events(id),category TEXT,runtime_role TEXT,rationale TEXT,confidence TEXT,PRIMARY KEY(analysis_id,event_id));
 CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
+CREATE INDEX IF NOT EXISTS assignments_task ON assignments(task_id);
+CREATE INDEX IF NOT EXISTS annotations_event ON agent_annotations(event_id,analysis_id);
 ''')
             c.execute('INSERT OR IGNORE INTO settings VALUES(?,?)', ('collection_enabled', 'true'))
             defaults = [('verification', 'tests'), ('build', 'build'), ('search', 'search'), ('reading', 'file inspection'),
@@ -158,6 +160,9 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
                 error = type(exc).__name__ + ': ' + str(exc)[:200]
             with self.connection() as c:
                 c.execute('INSERT OR REPLACE INTO files VALUES(?,?,?,?)', (str(path), stat.st_size, stat.st_mtime_ns, error))
+
+        import task_discovery
+        task_discovery.sync(self)
 
     def publish_analysis(self, analysis, snapshot, metadata):
         expected = {event['id'] for event in snapshot['tools']}
@@ -497,13 +502,18 @@ class Handler(BaseHTTPRequestHandler):
             filters = {k: query[k][0] for k in ('project', 'task', 'category') if k in query}
             result = self.server.store.report(**filters)
             return self.send(result)
-        if path.path in ('/api/work-explorer','/api/work-task'):
+        if path.path=='/api/work-cost-rates':
+            import work_analytics
+            return self.send(work_analytics.rates(self.server.store))
+        if path.path in ('/api/work-explorer','/api/work-task','/api/work-steps'):
             import work_analytics
             query={k:v[0] for k,v in parse_qs(path.query).items()}
             try:
                 import task_history
                 task_history.init(self.server.store)
-                if path.path=='/api/work-task':
+                if path.path=='/api/work-steps':
+                    result=work_analytics.source_steps(self.server.store,query.get('task_id'),query.get('subtask_id'),query.get('limit',100),query.get('offset',0))
+                elif path.path=='/api/work-task':
                     result=work_analytics.task_data(self.server.store,query.get('task_id'),query.get('attribution','measured'))
                 else:
                     result=work_analytics.overview(self.server.store,**{k:v for k,v in query.items() if k in ('project','query','status','task_type','attribution','limit','offset')})
@@ -592,6 +602,9 @@ class Handler(BaseHTTPRequestHandler):
             elif action == 'analyze-task':
                 import task_history
                 result = task_history.start(self.server.store, str(values.get('task_id','')),str(values.get('operation','subtasks')))
+            elif action == 'task-discovery':
+                import task_discovery
+                result=task_discovery.configure(self.server.store,values.get('enabled'))
             elif action == 'work-cost-rates':
                 import work_analytics
                 result=work_analytics.save_rates(self.server.store,values)

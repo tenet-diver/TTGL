@@ -23,6 +23,9 @@ class HistoryBrowserTests(unittest.TestCase):
         result={'summary':'Test fixture: searched source to locate the failing behavior; task success unverified.','subtasks':[{'title':'Investigate source behavior','summary':'A search operation inspected the source. This is a fixture interpretation.','activity':'investigate','tags':['regression','source-search'],'confidence':0.8,'step_ids':[s['id'] for s in body['steps']]}]}
         schema=json.loads(pathlib.Path(sys.argv[sys.argv.index('--output-schema')+1]).read_text())
         if 'knowledge' in schema['properties']:result.update(task_type='investigation',knowledge=[{'title':'Fixture search lesson','statement':'Search evidence was collected in this fixture; outcome unverified.','step_ids':[body['steps'][0]['id']],'confidence':0.6}])
+        if 'assignments' in schema['properties']:
+            result['assignments']={s['id']:0 for s in body['steps']}
+            for group in result['subtasks']:group.pop('step_ids')
         pathlib.Path(sys.argv[sys.argv.index('--output-last-message')+1]).write_text(json.dumps(result))
         print(json.dumps({'type':'turn.completed','usage':{'input_tokens':20,'output_tokens':10,'total_tokens':30}}))
         '''.replace('\n        ','\n'));fake.chmod(0o700)
@@ -34,13 +37,13 @@ class HistoryBrowserTests(unittest.TestCase):
             with sync_playwright() as p:
                 browser=p.chromium.launch(executable_path=os.environ.get('TTGL_CHROMIUM','/usr/bin/chromium'),headless=True,args=['--no-sandbox'])
                 page=browser.new_page(viewport={'width':1440,'height':1000});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-                page.goto(f'http://127.0.0.1:{port}/#tasks');page.wait_for_selector('.task-card')
-                page.get_by_role('button',name='Explore task',exact=True).click()
+                page.goto(f'http://127.0.0.1:{port}/#tasks');page.wait_for_selector('[data-table="work-tasks"] [data-work-task]')
+                page.locator('[data-table="work-tasks"] [data-work-task]').first.click()
                 page.get_by_role('button',name='Mine with Luna',exact=True).click()
                 page.wait_for_selector('.task-detail [data-mining-active="true"]')
                 page.wait_for_function('''async () => {const r=await fetch('/api/work-task?task_id='+new URLSearchParams(location.search).get('task'));const d=await r.json();return d.jobs[0]?.status==='completed';}''')
                 page.get_by_role('button',name='Refresh',exact=True).click()
-                page.wait_for_selector('.knowledge-card',timeout=20000)
+                page.wait_for_selector('[data-table="task-knowledge"]',timeout=20000)
                 page.get_by_role('button',name='Task details',exact=True).click()
                 page.wait_for_selector('dialog [data-subtask]',timeout=20000)
                 assert 'fixture' in page.locator('#modal-content').inner_text().lower()
@@ -49,11 +52,11 @@ class HistoryBrowserTests(unittest.TestCase):
                 assert 'aggregated_output' in page.locator('[data-source-output]').inner_text()
                 page.get_by_role('button',name='Close',exact=True).click();page.get_by_role('button',name='All tasks',exact=True).click()
                 page.locator('[name=query]').fill('regression');page.locator('[data-work-search]').get_by_role('button',name='Search',exact=True).click()
-                expect(page.locator('.task-card')).to_have_count(1)
-                assert page.locator('.task-card').count()==1
+                expect(page.locator('[data-table="work-tasks"] tbody tr')).to_have_count(1)
+                assert page.locator('[data-table="work-tasks"] tbody tr').count()==1
                 page.locator('[name=query]').fill('nothingmatches');page.locator('[data-work-search]').get_by_role('button',name='Search',exact=True).click();page.wait_for_selector('.ui-empty')
-                page.locator('[name=query]').fill('regression');page.locator('[data-work-search]').get_by_role('button',name='Search',exact=True).click();page.wait_for_selector('.task-card')
-                page.set_viewport_size({'width':390,'height':844});page.get_by_role('button',name='Explore task',exact=True).click();page.get_by_role('button',name='Task details',exact=True).click();page.wait_for_selector('dialog [data-subtask]')
+                page.locator('[name=query]').fill('regression');page.locator('[data-work-search]').get_by_role('button',name='Search',exact=True).click();page.wait_for_selector('[data-table="work-tasks"] [data-work-task]')
+                page.set_viewport_size({'width':390,'height':844});page.locator('[data-table="work-tasks"] [data-work-task]').first.click();page.get_by_role('button',name='Task details',exact=True).click();page.wait_for_selector('dialog [data-subtask]')
                 assert page.locator('dialog').bounding_box()['width']<=390
                 screenshot=Path('work/security/task-history-qa/mobile.png');screenshot.parent.mkdir(parents=True,exist_ok=True);page.screenshot(path=str(screenshot))
                 assert not errors,errors

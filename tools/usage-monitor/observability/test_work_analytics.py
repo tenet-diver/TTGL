@@ -64,8 +64,9 @@ class WorkAnalyticsTests(unittest.TestCase):
             db.execute('INSERT INTO assignments VALUES(?,?,?)',('session','model-only',self.task))
             db.execute("INSERT INTO events(id,session_id,turn_id,kind,name,usage,model) VALUES('r2','session','model-only','generation','model',?,?)",(json.dumps(dict(input_tokens=10,cached_input_tokens=0,output_tokens=0,total_tokens=10)),'model'))
         task=w.task_data(self.store,self.task,'step_share')
-        self.assertEqual(task['unattributed_tokens'],10)
-        self.assertEqual(sum(s['metrics']['tokens'] for s in task['subtasks'])+10,task['metrics']['tokens'])
+        self.assertEqual(task['unattributed_tokens'],0)
+        self.assertEqual(task['subtasks'][-1]['usage_basis'],'native_turn')
+        self.assertEqual(sum(s['metrics']['tokens'] for s in task['subtasks']),task['metrics']['tokens'])
         report=w.overview(self.store,query='regression',attribution='step_share')
         self.assertEqual(report['total'],1);self.assertEqual(sum(s['steps'] for s in report['subtask_types']),2)
         self.assertEqual(w.overview(self.store,query='Cursor lesson')['total'],1)
@@ -89,5 +90,49 @@ class WorkAnalyticsTests(unittest.TestCase):
         with self.assertRaises(ValueError):c.timeline(self.store,self.task,subtask_id='foreign')
         body,_=h.snapshot(self.store,self.task)
         self.assertEqual(h.overview_evidence(self.store,body)['steps'],{})
+
+    def test_work_contract_has_one_required_owner_for_each_source_step(self):
+        body,_=h.snapshot(self.store,self.task);model_body,aliases,schema=h.work_contract(body)
+        self.assertEqual(schema['properties']['assignments']['required'],list(aliases))
+        self.assertFalse(schema['properties']['assignments']['additionalProperties'])
+        result=copy.deepcopy(self.fixture.result);result.update(task_type='bugfix',knowledge=[],assignments={'S0001':0,'S0002':1})
+        for group in result['subtasks']:group.pop('step_ids')
+        decoded=h.decode_work_result(result,aliases)
+        h.validate({'summary':decoded['summary'],'subtasks':decoded['subtasks']},body)
+        self.assertEqual(decoded['subtasks'][0]['step_ids'],['step0'])
+        result['assignments']['S0002']=4
+        with self.assertRaisesRegex(ValueError,'index'):h.decode_work_result(result,aliases)
+
+    def test_live_overview_accepts_only_appended_evidence_and_keeps_frozen_coverage(self):
+        result=copy.deepcopy(self.fixture.result);result.update(task_type='bugfix',knowledge=[])
+        job=self.fixture.job()
+        with self.store.connection() as db:
+            db.execute("UPDATE task_history_jobs SET operation='overview' WHERE id=?",(job,))
+            db.execute("INSERT INTO events(id,session_id,turn_id,kind,name,ts) VALUES('added','session','turn','tool','Later check','2026-11-12T01:00:04Z')")
+        h.publish(self.store,job,result)
+        task=w.task_data(self.store,self.task)
+        self.assertTrue(task['analysis_stale']);self.assertEqual(sum(g['metrics']['steps'] for g in task['subtasks']),3)
+        self.assertEqual(task['subtasks'][-1]['step_ids'],['added'])
+        before,_=h.snapshot(self.store,self.task)
+        changed=copy.deepcopy(before);changed['steps'][0]['name']='Different operation'
+        self.assertFalse(h.append_only_overview(before,changed))
+
+    def test_empty_proposal_derivation_preserves_failed_attempt_usage_and_raw_output(self):
+        body,_=h.snapshot(self.store,self.task);_,aliases,_=h.work_contract(body)
+        raw=copy.deepcopy(self.fixture.result);raw.update(task_type='bugfix',knowledge=[],assignments={'S0001':0,'S0002':1})
+        for group in raw['subtasks']:group.pop('step_ids')
+        raw['subtasks'].append(dict(title='Unsupported proposal',summary='No evidence assigned.',activity='other',tags=[],confidence=.1))
+        job=self.fixture.job();directory=self.store.data/'task-history-attempts'/job;directory.mkdir(parents=True)
+        source=json.dumps(raw);(directory/'answer.json').write_text(source);(directory/'source-aliases.json').write_text(json.dumps(aliases))
+        with self.store.connection() as db:
+            db.execute("UPDATE task_history_jobs SET operation='overview',status='failed',error='Unknown or missing source step',usage=? WHERE id=?",(json.dumps({'total_tokens':123}),job))
+            before=dict(db.execute('SELECT status,error,usage FROM task_history_jobs WHERE id=?',(job,)).fetchone())
+        h.recover_empty_proposals(self.store,job)
+        with self.store.connection() as db:self.assertEqual(dict(db.execute('SELECT status,error,usage FROM task_history_jobs WHERE id=?',(job,)).fetchone()),before)
+        self.assertEqual((directory/'answer.json').read_text(),source)
+        task=w.task_data(self.store,self.task)
+        self.assertEqual(task['mining_overhead_tokens'],123);self.assertEqual(len(task['subtasks']),2)
+        self.assertEqual(json.loads(task['analysis_derivation']['omitted']),['Unsupported proposal'])
+        self.assertEqual(h.snapshot(self.store,self.task)[0],body)
 
 if __name__=='__main__':unittest.main()
