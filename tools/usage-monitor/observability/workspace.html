@@ -9,26 +9,20 @@
   <link rel="preload" href="/ui/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/ui.css">
   <link rel="stylesheet" href="/workspace.css">
+  <link rel="stylesheet" href="/work-explorer.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <aside class="sidebar" aria-label="Sidebar">
   <div class="brand"><span class="brand-mark" aria-hidden="true">&gt;_</span> TTGL <span class="ui-badge">Observatory</span></div>
   <nav aria-label="Workspace">
-    <span class="nav-label">Workspace</span>
-    <button data-view="overview"><span data-icon="layout-dashboard"></span>Overview</button>
-    <button data-view="projects"><span data-icon="folder"></span>Projects</button>
-    <button data-view="tasks"><span data-icon="list-checks"></span>Tasks</button>
-    <button data-view="history"><span data-icon="database"></span>Experience history</button>
-    <button data-view="inbox"><span data-icon="inbox"></span>Unassigned inbox <span id="inbox-count"></span></button>
-    <span class="nav-label">Insights</span>
-    <button data-view="analysis"><span data-icon="sparkles"></span>Codex analysis</button>
-    <button data-view="activity"><span data-icon="activity"></span>Activity</button>
-    <button data-view="opportunities"><span data-icon="lightbulb"></span>Opportunities</button>
-    <button data-view="experiments"><span data-icon="flask-conical"></span>Experiments</button>
+    <span class="nav-label">Explore</span>
+    <button data-view="tasks"><span data-icon="list-checks"></span>Work</button>
+    <button data-view="analytics"><span data-icon="activity"></span>Analytics</button>
+    <button data-view="knowledge"><span data-icon="database"></span>Knowledge</button>
     <span class="nav-label">Manage</span>
-    <button data-view="rules"><span data-icon="sliders-horizontal"></span>Categories &amp; rules</button>
-    <button data-view="setup"><span data-icon="settings-2"></span>Setup &amp; coverage</button>
+    <button data-view="settings"><span data-icon="settings-2"></span>Settings</button>
+    <span id="inbox-count" hidden></span>
   </nav>
   <footer class="sidebar-footer">
     <a id="langfuse" target="_blank" rel="noopener">Open Langfuse <span data-icon="arrow-up-right"></span></a>

@@ -87,12 +87,18 @@ def collect(store, task_id, step_ids, title, activity='other', summary='', expec
     return {'id':ident,'task_id':task_id,'step_count':len(selected),'status':'unverified'}
 
 
-def timeline(store, task_id, limit=100, offset=0):
+def timeline(store, task_id, limit=100, offset=0, subtask_id=None):
     import task_history as h
     h.init(store);limit,offset=h.page(limit,offset)
     body,digest=h.snapshot(store,task_id);steps=body['steps']
     collected=groups(store,task_id,steps)
     membership={i:g['id'] for g in collected for i in g['step_ids']}
+    if subtask_id:
+        import work_analytics
+        task=work_analytics.task_data(store,task_id)
+        group=next((g for g in task['subtasks'] if g['id']==subtask_id),None)
+        if not group:raise ValueError('Unknown subtask')
+        selected=set(group['step_ids']);steps=[s for s in steps if s['id'] in selected]
     times=[]
     for s in steps:
         try:

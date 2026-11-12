@@ -6,13 +6,13 @@ async function api(path,body) {
 }
 
 /** Recorded tool timing with explicit, user-owned step selection. No model calls. */
-export function renderStepTimeline(root,{taskId,onGrouped=()=>{},onError=()=>{}}) {
+export function renderStepTimeline(root,{taskId,subtaskId=null,onGrouped=()=>{},onError=()=>{}}) {
   let offset=0, epoch=0, snapshot=null, selected=new Map();
   root.innerHTML='<p role="status">Loading source step timeline…</p>';
   const load=async()=>{
     const version=++epoch;
     try {
-      const data=await api('/api/task-timeline?'+new URLSearchParams({task_id:taskId,limit:100,offset}));
+      const data=await api('/api/task-timeline?'+new URLSearchParams({task_id:taskId,...(subtaskId?{subtask_id:subtaskId}:{}),limit:100,offset}));
       if(version!==epoch||!root.isConnected)return;
       const selectionChanged=snapshot&&snapshot!==data.snapshot_hash&&selected.size;
       if(selectionChanged)selected.clear();
@@ -30,8 +30,9 @@ export function renderStepTimeline(root,{taskId,onGrouped=()=>{},onError=()=>{}}
       root.innerHTML=`<div class="timeline-chart" role="group" aria-label="Source step timeline"><div class="section-heading"><h3>Source steps</h3><span class="muted">${data.total} steps · ${data.groups.length} collected subtasks</span></div><p class="section-note">${esc(data.timing_basis)} Select steps to collect a subtask; grouping records your interpretation and does not verify success.</p>
         ${data.total?`<div class="timeline-axis"><span>${data.range_start==null?'Time unknown':esc(new Date(data.range_start).toLocaleString())}</span><span>${data.range_end==null?'Time unknown':esc(new Date(data.range_end).toLocaleString())}</span></div><div class="timeline-rows">${rows}</div>`:emptyState('No source steps yet','Assign a collected turn to this task to chart its operations.')}
         <div class="pagination">${offset?button('Earlier steps','data-timeline-prev'):''}<span>${data.total?offset+1:0}–${Math.min(offset+data.steps.length,data.total)} of ${data.total}</span>${data.next_offset!=null?button('Later steps','data-timeline-next'):''}</div>
-        <form class="timeline-collect-form"><p data-selection-count role="status"></p><div class="timeline-group-fields"><label>Subtask name<input class="ui-input" name="title" maxlength="200" required placeholder="What these steps did"></label><label>Subtask type<select class="ui-input" name="activity" aria-label="Subtask type">${activities.map(a=>`<option>${a}</option>`).join('')}</select></label></div><label>Description (optional)<input class="ui-input" name="summary" maxlength="4000" placeholder="Your interpretation of the selected evidence"></label><div class="ui-actions">${button('Clear selection','type="button" data-clear-steps')}${button('Collect selected into subtask','type="submit" data-collect-steps',true)}</div><p class="section-note" data-timeline-message role="status"></p></form><div data-timeline-evidence></div></div>`;
+        <details class="timeline-curation" data-timeline-curation><summary>Collect selected steps into a subtask</summary><form class="timeline-collect-form"><p data-selection-count role="status"></p><div class="timeline-group-fields"><label>Subtask name<input class="ui-input" name="title" maxlength="200" required placeholder="What these steps did"></label><label>Subtask type<select class="ui-input" name="activity" aria-label="Subtask type">${activities.map(a=>`<option>${a}</option>`).join('')}</select></label></div><label>Description (optional)<input class="ui-input" name="summary" maxlength="4000" placeholder="Your interpretation of the selected evidence"></label><div class="ui-actions">${button('Clear selection','type="button" data-clear-steps')}${button('Collect selected into subtask','type="submit" data-collect-steps',true)}</div><p class="section-note" data-timeline-message role="status"></p></form></details><div data-timeline-evidence></div></div>`;
       const sync=()=>{
+        root.querySelector('[data-timeline-curation]').open=selected.size>0;
         root.querySelector('[data-selection-count]').textContent=selected.size+' steps selected (up to 200, across pages)';
         root.querySelector('[data-collect-steps]').disabled=!selected.size;
         root.querySelector('[data-clear-steps]').disabled=!selected.size;

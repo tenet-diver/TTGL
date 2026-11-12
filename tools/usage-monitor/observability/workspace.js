@@ -1,3 +1,4 @@
+import {renderExplorer,explorerParams} from '/work-explorer.js';
 import { renderStepTimeline } from '/step-timeline.js';
 import { renderHistory, openTaskHistory as showTaskHistory } from '/task-history.js';
 import { collectionPage, normalizeSearch } from '/design-system/collection.js';
@@ -13,6 +14,9 @@ const external = (url, title='Inspect in Langfuse') => `<a href="${esc(url)}" ta
 const section = (title, body, action='', note='') => `<section class="section"><div class="section-heading"><h2>${esc(title)}</h2>${action}</div>${note?`<p class="section-note">${note}</p>`:''}${body}</section>`;
 const clip = value => `<span class="clip" title="${esc(value)}">${esc(value)}</span>`;
 const config = {
+  analytics:['Analytics','Compare time, tokens, steps, and cost by task and subtask type.'],
+  knowledge:['Knowledge','Reusable lessons and examples, with links to the work that supports them.'],
+  settings:['Settings','Collection, task assignment, and cost scenarios.'],
   overview:['Overview','Selected task usage, collection coverage, and Codex findings.'],
   analysis:['Codex analysis','Agent-authored recommendations with evidence and validation plans.'],
   projects:['Projects','Repository scope for defined work.'],
@@ -26,7 +30,10 @@ const config = {
   setup:['Setup & coverage','Source permission, collector coverage, and configuration.']
 };
 const query = new URLSearchParams(location.search);
-let view = config[location.hash.slice(1)] ? location.hash.slice(1) : 'overview';
+const aliases={overview:'tasks',history:'knowledge',activity:'tasks',setup:'settings'};
+let view=aliases[location.hash.slice(1)]|| (config[location.hash.slice(1)]?location.hash.slice(1):'tasks');
+const primary=()=>['tasks','analytics','knowledge'].includes(view);
+let workData=null,loadEpoch=0;
 let project = query.get('project') || '', task = query.get('task') || '', category = query.get('category') || '';
 let data = null, busy = false, tableMenus = [], toastTimer;
 const tables = Object.create(null), tableDefinitions = new Map();
@@ -61,6 +68,12 @@ function syncURL() {
 async function load() {
   if (busy) return;
   try {
+    const epoch=++loadEpoch;
+    if(primary()){
+      const response=await fetch('/api/work-explorer?'+explorerParams(project));
+      if(!response.ok)throw Error('Work explorer request failed');
+      const result=await response.json();if(epoch!==loadEpoch)return;workData=result;renderWork();return;
+    }
     const params = new URLSearchParams();
     if(project) params.set('project',project);
     if(task) params.set('task',task);
@@ -86,7 +99,7 @@ function options(rows, key, label, selected) {
   return rows.map(row => `<option value="${esc(row[key])}" ${row[key]===selected?'selected':''}>${esc(row[label])}</option>`).join('');
 }
 function titleForTask(id) { return data.tasks.find(t=>t.id===id)?.title || 'Unassigned'; }
-function openView(next) { view=next; syncURL(); render(); window.scrollTo(0,0); }
+function openView(next) {view=next;syncURL();load();window.scrollTo(0,0);}
 async function openTask(id) {
   task=id; project=data.tasks.find(t=>t.id===id)?.project_id || ''; category=''; view='activity'; syncURL(); await load();
 }
@@ -194,7 +207,8 @@ function field(label, name, value='', {textarea=false,required=false,hint=''}={}
 }
 function form(action, body, submit='Save') {return `<form data-form="${action}">${body}<div class="modal-actions">${button('Cancel','type="button" data-close')}${button(submit,'type="submit"',true)}</div></form>`;}
 function newProject() {showModal('Add project',form('project',field('Project name','name','',{required:true})+field('Repository / working folder','repo','',{required:true})+field('Analysis scope','scope','',{textarea:true}),'Add project'));}
-function newTask(turn=null) {
+async function newTask(turn=null) {
+  if(primary())data=await(await fetch('/api/workspace')).json();
   if(!data.projects.length) return newProject();
   showModal('Add task',form('task',`<label>Project<select class="ui-input" aria-label="Project" name="project_id">${options(data.projects,'id','name',turn?data.projects.find(p=>p.repo===turn.repo)?.id||project:project)}</select></label>${turn?`<input type="hidden" name="session_id" value="${esc(turn.session_id)}"><input type="hidden" name="turn_id" value="${esc(turn.turn_id)}">`:''}`+field('Task name (optional)','title','',{hint:'Defaults to your request. Luna can format it from the task history.'})+field('Intended outcome','goal',turn?.prompt||'',{textarea:true,required:true})+field('Acceptance / verification criteria','acceptance','',{textarea:true}),'Start task'));
 }
@@ -293,7 +307,24 @@ function findingsTable() {
       {id:'open',label:'Evidence and validation plan',onSelect:()=>findingDetails(r,report)}
     ]);
 }
+function renderWork(){
+  if(!workData)return;
+  tableMenus=[];$('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;
+  $('#title').textContent=view==='tasks'?'Work explorer':config[view][0];$('#subtitle').textContent=view==='tasks'?'Understand the work. Follow a task into its subtasks and source steps.':config[view][1];
+  $('#breadcrumb').textContent=view==='tasks'?'Work':config[view][0];
+  $('#live').textContent=workData.collection_enabled?'Collecting':'Paused';$('#connection-dot').dataset.state=workData.collection_enabled?'collecting':'paused';
+  $('#langfuse').href=workData.langfuse_url;
+  $('#page-actions').innerHTML=view==='tasks'?button('Add task','data-add-task',true,'plus'):'';
+  document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
+  $('#content').setAttribute('aria-busy','false');
+  renderExplorer($('#content'),{view,data:workData,taskId:task,project,table,mountTableMenus,post,onError:toast,onRefresh:load,
+    onProject:value=>{project=value;task='';syncURL();load();},
+    onTask:id=>{task=id;view='tasks';syncURL();load();},
+    onInspect:(title,body,id)=>id?openTaskHistory(id,showModal):showModal(title,body)});
+}
 function render() {
+  if(primary())return renderWork();
+  $('.scope-toolbar').hidden=false;$('#scope-summary').hidden=false;
   if(!data) return;
   tableMenus=[];
   $('#title').textContent=config[view][0]; $('#subtitle').textContent=config[view][1];
@@ -354,8 +385,14 @@ function render() {
       '<dl class="detail-grid">'+Object.entries(r.proposal).map(([key,value])=>'<dt>'+esc(key.replaceAll('_',' '))+'</dt><dd>'+esc(value)+'</dd>').join('')+
       '<dt>Frozen baseline</dt><dd>'+esc(r.baseline_sha256)+'</dd><dt>Evidence window</dt><dd>'+esc(r.baseline.first_at)+' — '+esc(r.baseline.last_at)+'; '+fmt(r.baseline.event_count)+' events</dd></dl><p>Protocol and results below apply only to the recorded evaluation scope. Actual charges and pure model latency remain unknown.</p>'+experimentResults(r))}
   ]),'','Agents create proposals using the MCP plan_experiment tool or analyst_cli.py. The baseline is frozen at proposal creation; live task totals may subsequently change.');
-  if(view==='setup') html=section('Collection',`<dl class="detail-grid"><dt>State</dt><dd>${badge(data.sources.collection_enabled?'Enabled':'Paused')}</dd><dt>Authorized source</dt><dd>${esc(data.sources.root)}</dd><dt>Retained files</dt><dd>${data.sources.files}</dd><dt>Model HTTP exchanges</dt><dd>${data.capture_coverage.total_model_exchanges}</dd><dt>Source errors</dt><dd>${data.sources.errors.length}</dd></dl><div class="modal-actions">${button(data.sources.collection_enabled?'Pause collection':'Resume collection',`data-collection="${!data.sources.collection_enabled}"`)}</div>`, '', 'Pausing stops new exports and rejects new capture-route calls. Existing data is retained.')+section('Coverage limits',`<ul>${data.limitations.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><p>Private setup and credentials: <code>work/security/langfuse-stack/</code>. Shared controls follow the workspace design system.</p>`)+section('Audit log',table('audit',[{key:'at',label:'When',filterText:r=>date(r.at)+' '+(r.at||''),cell:r=>date(r.at)},{key:'action',label:'Action'},{key:'entity',label:'Entity',cell:r=>clip(r.entity)}],data.audit,null));
+  if(view==='setup'||view==='settings') html=section('Collection',`<dl class="detail-grid"><dt>State</dt><dd>${badge(data.sources.collection_enabled?'Enabled':'Paused')}</dd><dt>Authorized source</dt><dd>${esc(data.sources.root)}</dd><dt>Retained files</dt><dd>${data.sources.files}</dd><dt>Model HTTP exchanges</dt><dd>${data.capture_coverage.total_model_exchanges}</dd><dt>Source errors</dt><dd>${data.sources.errors.length}</dd></dl><div class="modal-actions">${button(data.sources.collection_enabled?'Pause collection':'Resume collection',`data-collection="${!data.sources.collection_enabled}"`)}</div>`, '', 'Pausing stops new exports and rejects new capture-route calls. Existing data is retained.')+section('Coverage limits',`<ul>${data.limitations.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><p>Private setup and credentials: <code>work/security/langfuse-stack/</code>. Shared controls follow the workspace design system.</p>`)+section('Audit log',table('audit',[{key:'at',label:'When',filterText:r=>date(r.at)+' '+(r.at||''),cell:r=>date(r.at)},{key:'action',label:'Action'},{key:'entity',label:'Entity',cell:r=>clip(r.entity)}],data.audit,null));
+  if(view==='settings')html=`<div class="settings-links">${button('Projects','data-view="projects"')}${button('Collected prompts / assignments','data-view="inbox"')}${button('Add task','data-add-task')}${button('Codex findings','data-view="analysis"')}</div>`+html+`<section class="section"><h2>Cost-rate scenario</h2><p class="section-note">Exact model names; input / cached / output rates per million tokens. Enter your chosen rates and their date. Scenario estimates are separate from actual cash charges.</p><form data-cost-scenario><textarea class="ui-input rate-editor" aria-label="Cost-rate scenario JSON" spellcheck="false"></textarea><div class="ui-actions">${button('Save rate scenario','type="submit"')}</div><p class="section-note">Example model entry: &quot;exact-model-name&quot;: {&quot;input&quot;: 1, &quot;cached&quot;: 0.1, &quot;output&quot;: 4}. These are illustrative values, not a price quote.</p></form></section>`;
   $('#content').innerHTML=html;
+  if(view==='settings'){
+    fetch('/api/work-explorer?limit=1').then(r=>r.json()).then(d=>{const field=document.querySelector('.rate-editor');if(field&&!field.value)field.value=JSON.stringify(d.cost_scenario,null,2);}).catch(e=>toast(e.message));
+    document.querySelector('[data-cost-scenario]').onsubmit=async e=>{e.preventDefault();try{await post('work-cost-rates',JSON.parse(document.querySelector('.rate-editor').value));toast('Rate scenario saved.');}catch(error){toast(error.message);}};
+  }
+
   $('#content').setAttribute('aria-busy','false');
   if(view==='activity'&&task) renderStepTimeline($('#task-step-timeline'),{taskId:task,onError:toast});
   if(view==='history') renderHistory($('#history-root'),{project,open:id=>openTaskHistory(id,showModal),onError:toast});
@@ -437,4 +474,4 @@ setTheme(document.documentElement.dataset.theme==='dark'?'dark':'light');
 window.addEventListener('storage',event=>{if(event.key==='ttgl-theme')setTheme(event.newValue==='dark'?'dark':'light');});
 $('#content').innerHTML=skeleton();
 load();
-setInterval(()=>{if(!document.hidden&&!$('#modal').open&&!document.activeElement?.matches('input,textarea,select')&&!document.querySelector('[data-step-select]:checked')&&!document.querySelector('.column-picker[open]')&&!busy)load();},10000);
+setInterval(()=>{if((!primary()||!task||document.querySelector('[data-mining-active="true"]'))&&!document.hidden&&!$('#modal').open&&!document.activeElement?.matches('input,textarea,select')&&!document.querySelector('[data-step-select]:checked')&&!document.querySelector('.column-picker[open]')&&!busy)load();},10000);

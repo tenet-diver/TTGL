@@ -497,13 +497,27 @@ class Handler(BaseHTTPRequestHandler):
             filters = {k: query[k][0] for k in ('project', 'task', 'category') if k in query}
             result = self.server.store.report(**filters)
             return self.send(result)
+        if path.path in ('/api/work-explorer','/api/work-task'):
+            import work_analytics
+            query={k:v[0] for k,v in parse_qs(path.query).items()}
+            try:
+                import task_history
+                task_history.init(self.server.store)
+                if path.path=='/api/work-task':
+                    result=work_analytics.task_data(self.server.store,query.get('task_id'),query.get('attribution','measured'))
+                else:
+                    result=work_analytics.overview(self.server.store,**{k:v for k,v in query.items() if k in ('project','query','status','task_type','attribution','limit','offset')})
+                    result['langfuse_url']=self.server.store.langfuse_url
+                return self.send(result)
+            except (ValueError,TypeError,KeyError,sqlite3.OperationalError) as exc:
+                return self.send({'error':str(exc)},400)
         if path.path in ('/api/task-history', '/api/task-history-detail', '/api/task-timeline'):
             import task_history
             query = {k: v[0] for k,v in parse_qs(path.query).items()}
             try:
                 if path.path == '/api/task-timeline':
                     import task_curation
-                    result = task_curation.timeline(self.server.store,query.get('task_id'),query.get('limit',100),query.get('offset',0))
+                    result = task_curation.timeline(self.server.store,query.get('task_id'),query.get('limit',100),query.get('offset',0),query.get('subtask_id'))
                 elif path.path == '/api/task-history-detail':
                     result = task_history.detail(self.server.store, query.get('task_id'), query.get('subtask_id'), query.get('limit',20), query.get('offset',0))
                 else:
@@ -544,6 +558,8 @@ class Handler(BaseHTTPRequestHandler):
                   '/ui.js': ('ui.js', 'text/javascript; charset=utf-8'),
                   '/theme-init.js': ('theme-init.js', 'text/javascript; charset=utf-8'),
                   '/step-timeline.js': ('step-timeline.js', 'text/javascript; charset=utf-8'),
+                  '/work-explorer.js': ('work-explorer.js','text/javascript; charset=utf-8'),
+                  '/work-explorer.css': ('work-explorer.css','text/css; charset=utf-8'),
                   '/ui.css': ('ui.css', 'text/css; charset=utf-8'),
                   '/ui/icons.js': ('ui/icons.js', 'text/javascript; charset=utf-8'),
                   '/ui/geist-latin.woff2': ('ui/geist-latin.woff2', 'font/woff2'),
@@ -576,6 +592,9 @@ class Handler(BaseHTTPRequestHandler):
             elif action == 'analyze-task':
                 import task_history
                 result = task_history.start(self.server.store, str(values.get('task_id','')),str(values.get('operation','subtasks')))
+            elif action == 'work-cost-rates':
+                import work_analytics
+                result=work_analytics.save_rates(self.server.store,values)
             elif action == 'collect-task-steps':
                 import task_history, task_curation
                 task_history.init(self.server.store)
