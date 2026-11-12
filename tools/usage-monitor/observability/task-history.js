@@ -1,3 +1,4 @@
+import { renderStepTimeline } from '/step-timeline.js';
 import { button, badge, emptyState } from '/ui.js';
 const esc = value => String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let searchState={query:'',status:'',activity:'',mode:'keyword',offset:0};
@@ -20,7 +21,7 @@ export function renderHistory(root,{project,open,onError}) {
       const q=new URLSearchParams({...searchState,limit:20});if(project)q.set('project',project);
       const result=await (searchState.mode==='semantic'?api('/api/search-task-history',Object.fromEntries(q)):api('/api/task-history?'+q));if(version!==epoch||!root.isConnected)return;
       root.querySelector('#history-status').textContent=`${result.total??0} matching tasks · ${result.mode} search`;
-      root.querySelector('#history-results').innerHTML=result.items.length?`<div class="history-list">${result.items.map(t=>`<article class="history-card" data-slot="card"><div>${badge(t.status)}${t.similarity!=null?` <small>Similarity ${Number(t.similarity).toFixed(3)}</small>`:''}</div><h3><button class="inline-link" data-history-task="${esc(t.task_id)}">${esc(t.title)}</button></h3><p>${esc(t.summary||'Not analyzed yet. Open this task to collect its steps into subtasks.')}</p><small>${result.mode==='semantic'?'Semantic task match':t.matched_subtasks.length+' matching subtasks'} · ${t.analysis_id?'Analyzed':'Unanalyzed'}${t.stale?' · Updated steps: analysis is stale':''}</small></article>`).join('')}</div>`:'<div class="table-empty">'+emptyState('No matching tasks','Try fewer terms or assign collected turns to a task.',button('Open unassigned inbox','data-view="inbox"'))+'</div>';
+      root.querySelector('#history-results').innerHTML=result.items.length?`<div class="history-list">${result.items.map(t=>`<article class="history-card" data-slot="card"><div>${badge(t.status)}${t.similarity!=null?` <small>Similarity ${Number(t.similarity).toFixed(3)}</small>`:''}</div><h3><button class="inline-link" data-history-task="${esc(t.task_id)}">${esc(t.title)}</button></h3><p>${esc(t.summary||'Not analyzed yet. Open this task to collect its steps into subtasks.')}</p><small>${result.mode==='semantic'?'Semantic task match':t.matched_subtasks.length+' matching subtasks'} · ${t.analysis_id?'Analyzed':t.manual_subtask_count?esc(t.manual_subtask_count)+' collected subtasks':'Unanalyzed'}${t.stale?' · Updated steps: analysis is stale':''}</small></article>`).join('')}</div>`:'<div class="table-empty">'+emptyState('No matching tasks','Try fewer terms or assign collected turns to a task.',button('Open unassigned inbox','data-view="inbox"'))+'</div>';
       root.querySelectorAll('[data-history-task]').forEach(b=>b.onclick=e=>{e.stopPropagation();open(b.dataset.historyTask);});
       root.querySelector('#history-pages').innerHTML=(searchState.offset?button('Previous','data-history-prev'):'')+(result.next_offset!=null?button('Next','data-history-next'):'');
       const prev=root.querySelector('[data-history-prev]'),next=root.querySelector('[data-history-next]');
@@ -31,21 +32,33 @@ export function renderHistory(root,{project,open,onError}) {
   root.querySelector('form').onsubmit=e=>{e.preventDefault();searchState={...Object.fromEntries(new FormData(e.currentTarget)),offset:0};load();};
   load();
 }
-export async function openTaskHistory(taskId,showModal) {
+export async function openTaskHistory(taskId,showModal,onTaskChanged=()=>{}) {
   const epoch=++modalEpoch;
   showModal('Task history',`<span data-history-owner="${epoch}" hidden></span><p role="status">Loading task and subtasks…</p>`);
   try {
     const data=await api('/api/task-history-detail?'+new URLSearchParams({task_id:taskId}));
     if(epoch!==modalEpoch||!document.querySelector(`[data-history-owner="${epoch}"]`)||!document.querySelector('#modal')?.open)return;
-    const job=data.jobs[0];const active=job&&['queued','running'].includes(job.status);
-    const groups=data.subtasks.map(s=>`<details class="history-subtask" data-subtask="${esc(s.id)}"><summary>${badge(s.activity)} <strong>${esc(s.title)}</strong> <small>${s.step_count} steps</small></summary><p>${esc(s.summary)}</p><p>${s.tags.map(esc).join(' · ')} · ${Math.round(s.confidence*100)}% interpretation confidence</p><div data-step-list></div></details>`).join('');
-    showModal(data.task.title,`<span data-history-owner="${epoch}" hidden></span><div class="history-breadcrumb">Task → Subtasks → Source steps</div><p>${esc(data.task.goal)}</p><p>${esc(data.task.outcome||'Task outcome has not been verified.')}</p>${(data.related_prs||[]).length?'<p>Referenced PRs: '+data.related_prs.map(url=>`<a href="${esc(url)}" target="_blank" rel="noopener">${esc(url)}</a>`).join(' · ')+'</p>':''}<div class="modal-actions">${button(data.analysis?'Analyze new steps':'Analyze into subtasks',`data-start-analysis ${active?'disabled':''}`)}</div><p class="section-note">On demand · small-model interpretation · ${data.step_count} collected steps. Source measurements stay unchanged.</p>
-      ${job?`<p role="status">Analysis: ${esc(job.status)} · ${esc(job.model)}${job.error?' — '+esc(job.error):''}</p><p class="section-note">Analysis overhead: ${job.usage?esc(job.usage.total_tokens??'Unknown')+' recorded tokens':'unknown or not yet reported'}. Separate from source task measurements.</p>`:''}
+    const job=data.jobs[0];if(job?.operation==='title'&&job.status==='completed')onTaskChanged();const active=job&&['queued','running'].includes(job.status);
+    const groups=[...(data.manual_subtasks||[]),...data.subtasks].map(s=>`<details class="history-subtask" data-subtask="${esc(s.id)}"><summary>${badge(s.activity)} <strong>${esc(s.title)}</strong> <small>${s.step_count} steps</small> ${badge(s.source==='user'?'Collected · unverified':'Model suggestion')}</summary><p>${esc(s.summary)}</p><p>${s.source==='user'?'User-collected · outcome unverified'+(s.stale?' · Source evidence changed':''):s.tags.map(esc).join(' · ')+' · '+Math.round(s.confidence*100)+'% interpretation confidence'}</p><div data-step-list></div></details>`).join('');
+    showModal(data.task.title,`<span data-history-owner="${epoch}" hidden></span><div class="history-breadcrumb">Task → Subtasks → Source steps</div><p>${badge(data.task.status)}</p><p>${esc(data.task.goal)}</p><details class="task-prompt"><summary>Original user request · name source: ${esc(data.title_provenance?.source||'user')}</summary><p>${esc(data.user_prompt||data.task.goal)}</p></details><div class="ui-actions task-name-actions">${button('Name from user prompt','data-prompt-name')}${button('Format name with Luna',`data-format-name ${active?'disabled':''}`)}</div><p>${esc(data.task.outcome||'Task outcome has not been verified.')}</p>${(data.related_prs||[]).length?'<p>Referenced PRs: '+data.related_prs.map(url=>`<a href="${esc(url)}" target="_blank" rel="noopener">${esc(url)}</a>`).join(' · ')+'</p>':''}<div class="modal-actions">${button(data.analysis?'Analyze new steps':'Analyze into subtasks',`data-start-analysis ${active?'disabled':''}`)}</div><p class="section-note">On demand · small-model interpretation · ${data.step_count} collected steps. Source measurements stay unchanged.</p>
+      ${job?`<p role="status">${job.operation==='title'?'Name formatting':'Subtask analysis'}: ${esc(job.status)} · ${esc(job.model)}${job.error?' — '+esc(job.error):''}</p><p class="section-note">Analysis overhead: ${job.usage?esc(job.usage.total_tokens??'Unknown')+' recorded tokens':'unknown or not yet reported'}. Separate from source task measurements.</p>`:''}
+      ${data.jobs.length?`<details><summary>Naming and analysis attempts (${data.jobs.length} most recent)</summary><ul>${data.jobs.map(j=>`<li>${esc(j.operation==='title'?'Name formatting':'Subtask analysis')} · ${esc(j.status)} · ${esc(j.model)} · ${j.usage?.total_tokens==null?'Usage unknown':esc(j.usage.total_tokens)+' recorded tokens'}${j.error?' · '+esc(j.error):''}</li>`).join('')}</ul></details>`:''}
       ${data.stale?'<div class="notice">New or reassigned evidence exists. This interpretation is stale; analyze the current steps to update it.</div>':''}
-      ${data.analysis?`<p>${esc(data.analysis.summary)}</p><small>Version ${esc(data.analysis.id.slice(0,8))} · ${esc(data.analysis.model)}</small>${groups}`:'<div class="table-empty">No subtask analysis yet. Analyze the task to organize its collected steps.</div>'}`);
+      <div data-task-timeline></div><p class="section-note">Collected groups and model suggestions are separate interpretations; a source step may appear in both.</p>${data.analysis?`<p>${esc(data.analysis.summary)}</p><small>Version ${esc(data.analysis.id.slice(0,8))} · ${esc(data.analysis.model)}</small>`:''}${groups||'<div class="table-empty">No subtasks yet. Select steps above or ask Luna to organize the task.</div>'}`);
+    renderStepTimeline(document.querySelector('[data-task-timeline]'),{taskId,onGrouped:async()=>{await onTaskChanged();await openTaskHistory(taskId,showModal,onTaskChanged);}});
+    document.querySelector('[data-prompt-name]').onclick=async e=>{
+      e.currentTarget.disabled=true;
+      try{await api('/api/task_name',{id:taskId});await onTaskChanged();await openTaskHistory(taskId,showModal,onTaskChanged);}
+      catch(error){showModal('Task name could not update',`<p role="alert">${esc(error.message)}</p>`);}
+    };
+    document.querySelector('[data-format-name]').onclick=async e=>{
+      e.currentTarget.disabled=true;
+      try{await api('/api/analyze-task',{task_id:taskId,operation:'title'});await openTaskHistory(taskId,showModal,onTaskChanged);}
+      catch(error){showModal('Name formatting could not start',`<p role="alert">${esc(error.message)}</p>`);}
+    };
     document.querySelector('[data-start-analysis]').onclick=async e=>{
       e.currentTarget.disabled=true;
-      try{await api('/api/analyze-task',{task_id:taskId});await openTaskHistory(taskId,showModal);}
+      try{await api('/api/analyze-task',{task_id:taskId});await openTaskHistory(taskId,showModal,onTaskChanged);}
       catch(error){showModal('Analysis could not start',`<p role="alert">${esc(error.message)}</p>`);}
     };
     const loadSteps=async(node,offset=0)=>{
@@ -62,6 +75,11 @@ export async function openTaskHistory(taskId,showModal) {
       }catch(error){target.textContent=error.message;}
     };
     document.querySelectorAll('[data-subtask]').forEach(node=>node.ontoggle=()=>{if(node.open&&!node.dataset.loaded){node.dataset.loaded='true';loadSteps(node);}});
-    if(active)setTimeout(()=>{if(epoch===modalEpoch&&document.querySelector(`[data-history-owner="${epoch}"]`)&&document.querySelector('#modal')?.open)openTaskHistory(taskId,showModal);},2500);
+    if(active) {
+      const poll=()=>{if(epoch!==modalEpoch||!document.querySelector(`[data-history-owner="${epoch}"]`)||!document.querySelector('#modal')?.open)return;
+        if(document.querySelector('[data-step-select]:checked')||document.activeElement?.closest('.timeline-collect-form'))setTimeout(poll,2500);
+        else openTaskHistory(taskId,showModal,onTaskChanged);
+      };setTimeout(poll,2500);
+    }
   }catch(error){if(epoch===modalEpoch&&document.querySelector(`[data-history-owner="${epoch}"]`))showModal('Task history unavailable',`<p role="alert">${esc(error.message)}</p>`);}
 }

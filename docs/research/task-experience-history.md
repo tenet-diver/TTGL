@@ -127,10 +127,10 @@ would be a reasonable shared-service migration when cross-machine serving and
 access control require it; ClickHouse remains appropriate for high-volume measured
 telemetry. Neither database is modified by this feature.
 
-The app already uses pinned EVLV DOM/collection assets. The new search page,
-expandable subtask cards, source drill-down and responsive modal reuse those tokens,
-buttons and styles. React/shadcn is not installed just to wrap this existing DOM
-app. All model/source text is escaped before rendering. No new runtime dependency,
+The app uses shadcn-derived native DOM controls and pinned EVLV collection/
+popover behavior. The search page, expandable subtask cards, source drill-down
+and responsive modal reuse the shared tokens, buttons and styles. No React
+runtime is installed just to wrap this existing DOM app. All model/source text is escaped before rendering. No new runtime dependency,
 new trace UI, global configuration overwrite or scheduled inference is introduced.
 
 ## Verification
@@ -149,3 +149,48 @@ modal. A local HTTP fixture verifies the Ollama structured protocol and ensures
 failed validation retains its consumed counters. Other tests cover exact step
 coverage, stale snapshots, cross-task rejection, search scope/pagination, migration,
 no automatic retry, semantic dimensions, local-only endpoints and HTTP origin checks.
+
+## Prompt names and interactive step curation — 12 November
+
+Task creation in the UI/API now accepts an omitted name and derives a compact name from the
+user request/goal. The inbox's **Create task from prompt** action copies the
+collected request and atomically assigns its turn to the new task. Already
+assigned turns are rejected rather than silently moved. Existing user names
+remain intact until explicitly changed. Task history offers **Name from user
+prompt** and **Format name with Luna**. Naming is a separate, explicit analyzer
+operation using a title-only schema and bounded original request, with retained
+attempt status, model, counters, errors and provenance. It does not infer success,
+change the request, or run automatically. The same configured analyzer engine
+and model apply; Luna is the native default. Formatting quality is not established
+by the CLI/HTTP fixture checks.
+
+The selected task's Activity view and history dialog include a paged **step
+timeline**. Recorded completion timestamps anchor recorded native operation
+runtime bars; the implied starts are derived, not separately measured starts.
+Unknown runtime remains unknown, overlapping bars are not summed into task
+latency, and nonzero operations do not imply task failure. Model inference is
+not attributed to these individual tool steps.
+
+Click step checkboxes/bars, enter a name/type/description, then **Collect selected
+into subtask**. Selection spans pages (100 steps/page, up to 200 selected). These
+user-owned groups are stored separately from model suggestions, remain explicitly
+unverified, preserve source order/IDs and captured metadata hashes, and are
+searchable by keyword/activity with progressive source retrieval. A step can
+appear in both a user group and a model suggestion; user groups cannot overlap
+each other within one task. Cross-task IDs, duplicates, changed snapshots and
+invalid inputs are rejected. Original events and usage counters are unchanged.
+Changes to recorded step metadata or task assignments mark groups stale. There are at most 60 collected
+groups per task and the existing 2,000-step task boundary still applies.
+
+SQLite already supplies relational identity, transactions and FTS, so the missing
+behavior extends that store rather than introducing another database. Native DOM
+controls and CSS bars provide keyboard selection tied to exact evidence IDs;
+there is no additional chart runtime or dependency installation. Additive tables
+hold name provenance and user groups. Existing histories and model analyses are
+preserved. Semantic search still requires a model analysis/embedding document;
+manual-only groups are available through keyword search.
+
+Each table also has a **Columns** checklist. Display choices persist locally
+alongside filters and sorting. Hiding a column clears its active column filter
+and sorting; at least one data column remains visible, and row actions stay
+available. **Reset table** restores the default columns and clears table settings.

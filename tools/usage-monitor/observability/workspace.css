@@ -163,3 +163,44 @@ code, pre { font-family: var(--font-mono); font-size: 11px; }
   .detail-grid { grid-template-columns: 100px minmax(0, 1fr); gap: 12px; }
   .clip, .ui-table td .inline-link { max-width: 240px; }
 }
+.column-picker { position: relative; }
+.column-picker summary { list-style: none; cursor: pointer; }
+.column-picker summary::-webkit-details-marker { display: none; }
+.column-options { position: absolute; top: calc(100% + 6px); right: 0; z-index: 200; display: grid; gap: 8px; width: 230px; max-width: calc(100vw - 40px); padding: 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--popover); color: var(--popover-foreground); box-shadow: 0 2px 8px rgb(0 0 0 / 8%); }
+.column-options label { display: flex; align-items: center; gap: 8px; color: inherit; font-size: 13px; }
+.column-options input { accent-color: var(--primary); width: 16px; height: 16px; }
+.column-options strong { font-size: 13px; font-weight: 550; }
+.column-options small { font-size: 11px; }
+.task-prompt { margin-block: 16px; padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--radius); }
+.task-prompt summary { cursor: pointer; font-size: 12px; }
+.task-prompt p { white-space: pre-wrap; max-height: 200px; overflow: auto; margin-top: 12px; }
+.task-name-actions { margin-block: 16px; }
+.timeline-chart { margin-block: 24px; min-width: 0; }
+.timeline-chart .section-heading h3 { margin: 0; }
+.timeline-axis { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; color: var(--muted-foreground); font: 10px/1.6 var(--font-mono); margin-block: 12px; }
+.timeline-rows { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.timeline-step { display: flex; align-items: center; gap: 12px; min-width: 0; padding: 12px; border-bottom: 1px solid var(--border); background: var(--card); }
+.timeline-step:last-child { border-bottom: 0; }
+.timeline-step:has(input:checked) { background: var(--muted); }
+.timeline-step-select { display: grid; grid-template-columns: 18px minmax(120px, 1fr) minmax(70px, 1fr); align-items: center; gap: 8px 12px; flex: 1; min-width: 0; cursor: pointer; }
+.timeline-step-select input { accent-color: var(--ring); width: 16px; height: 16px; margin: 0; }
+.timeline-step-name { min-width: 0; }
+.timeline-step-name strong { display: block; color: var(--foreground); font-size: 12px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.timeline-step-name small { display: block; font-size: 10px; font-weight: 400; overflow-wrap: anywhere; }
+.timeline-track { display: block; position: relative; height: 12px; border-radius: 3px; background: var(--muted); font-size: 9px; white-space: nowrap; }
+.timeline-bar { position: absolute; top: 0; bottom: 0; border-radius: 3px; background: var(--ring); }
+.timeline-point { border: 1px solid var(--muted-foreground); background: transparent; }
+.timeline-nonzero { background: var(--destructive); }
+.timeline-collected { background: var(--muted-foreground); }
+.timeline-runtime { grid-column: 2 / -1; font: 10px/1.6 var(--font-mono); font-weight: 400; }
+.timeline-collect-form { display: grid; gap: 12px; padding: 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
+.timeline-collect-form p { margin: 0; font-size: 12px; }
+.timeline-group-fields { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 12px; }
+[data-timeline-evidence] pre { white-space: pre-wrap; overflow-wrap: anywhere; max-height: 300px; overflow: auto; padding: 16px; background: var(--muted); border-radius: var(--radius); }
+@media (max-width: 767px) {
+  .timeline-step { flex-wrap: wrap; }
+  .timeline-step-select { flex-basis: 100%; grid-template-columns: 18px minmax(0, 1fr); }
+  .timeline-track { grid-column: 2; }
+  .timeline-step > button { margin-left: 30px; }
+  .timeline-group-fields { grid-template-columns: minmax(0, 1fr); }
+}

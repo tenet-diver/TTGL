@@ -13,13 +13,21 @@ unassigned turns, activity, categories, rules and opportunities. Each data colum
 has a filter and an ascending/descending/unsorted header control. Column filters
 combine with global table search before pagination; numeric filters also accept
 comparisons such as `>= 100`. Derived columns use their displayed names or states.
-Table search, column filters and sorting persist per table in browser local
-storage; **Reset table** clears them. These filters cover the rows loaded for the
+The **Columns** checklist chooses visible data columns, with at least one
+remaining visible. Hiding a column clears its filter/sort. Column choices, table
+search, filters and sorting persist per table in browser local storage;
+**Reset table** restores the defaults. These filters cover the rows loaded for the
 current scope, not older events outside the server response window.
 
 The top-bar theme button is available on desktop and mobile. Light/dark choice
 is saved locally, restored before styles paint, and synchronized between tabs.
 If browser storage is unavailable, controls still work for the current page.
+
+Task names default to the user request; the inbox can create and assign a task
+from its original prompt. Task history offers explicit Luna name formatting and
+a selectable step timeline for collecting named, typed subtasks linked to exact
+source evidence. Collected groups are user interpretations, with unverified
+outcomes; original events and measurements stay intact.
 
 Add/edit forms
 open native modal dialogs. Shared controls now use a native-DOM adaptation of

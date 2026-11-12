@@ -1,4 +1,5 @@
-import { renderHistory, openTaskHistory } from '/task-history.js';
+import { renderStepTimeline } from '/step-timeline.js';
+import { renderHistory, openTaskHistory as showTaskHistory } from '/task-history.js';
 import { collectionPage, normalizeSearch } from '/design-system/collection.js';
 import { button, badge, icon, emptyState, skeleton, createActionMenu } from '/ui.js';
 
@@ -35,12 +36,13 @@ try {
     if(!value||typeof value!=='object') continue;
     tables[id]={search:typeof value.search==='string'?value.search:'',page:1,
       sort:typeof value.sort==='string'?value.sort:null,direction:value.direction===-1?-1:1,
+      hiddenColumns:Array.isArray(value.hiddenColumns)?value.hiddenColumns.filter(v=>typeof v==='string'):[],
       filters:Object.fromEntries(Object.entries(value.filters||{}).filter(([,v])=>typeof v==='string'))};
   }
 } catch {}
 function saveTableSettings() {
   try {localStorage.setItem('ttgl-table-settings-v1',JSON.stringify(Object.fromEntries(
-    Object.entries(tables).map(([id,{search,sort,direction,filters}])=>[id,{search,sort,direction,filters}]))));}catch{}
+    Object.entries(tables).map(([id,{search,sort,direction,filters,hiddenColumns}])=>[id,{search,sort,direction,filters,hiddenColumns}]))));}catch{}
 }
 
 function toast(message) {
@@ -106,7 +108,12 @@ function matchesColumn(column,row,query) {
 }
 function table(id, columns, rows, actions, searchable=true) {
   tableDefinitions.set(id,{columns,rows,actions,searchable});
-  const state=tables[id] ||= {search:'',page:1,sort:null,direction:1,filters:{}};
+  const state=tables[id] ||= {search:'',page:1,sort:null,direction:1,filters:{},hiddenColumns:[]};
+  const allColumns=columns;
+  state.hiddenColumns=(state.hiddenColumns||[]).filter(key=>allColumns.some(c=>c.key===key));
+  columns=allColumns.filter(c=>!state.hiddenColumns.includes(c.key));
+  if(!columns.length){columns=allColumns;state.hiddenColumns=[];}
+  const picker=`<details class="column-picker"><summary class="ui-button">Columns</summary><div class="column-options"><strong>Displayed columns</strong>${allColumns.map(c=>`<label><input type="checkbox" data-column-toggle="${id}" data-key="${c.key}" aria-label="Show ${esc(id)} column ${esc(c.label)}" ${state.hiddenColumns.includes(c.key)?'':'checked'} ${columns.length===1&&columns[0].key===c.key?'disabled':''}>${esc(c.label)}</label>`).join('')}<small>Keep at least one column visible.</small></div></details>`;
   if(!columns.some(c=>c.key===state.sort)) state.sort=null;
   const filtered=columns.some(c=>state.filters[c.key]?.trim());
   const sortedColumn=columns.find(c=>c.key===state.sort);
@@ -123,7 +130,7 @@ function table(id, columns, rows, actions, searchable=true) {
     }:undefined
   });
   state.page=result.page;
-  const toolbar=`<div class="list-toolbar">${searchable?`<div class="list-search ui-search"><input class="ui-input" data-search="${id}" value="${esc(state.search)}" placeholder="Search these rows" aria-label="Search ${esc(id)}"><button data-clear-search="${id}" aria-label="Clear search">${icon('x')}</button></div>`:''}<div class="table-controls">${state.search||filtered||state.sort?button('Reset table',`data-reset-table="${id}"`):''}<span class="muted" role="status">${fmt(result.total)} of ${fmt(rows.length)} rows</span></div></div>`;
+  const toolbar=`<div class="list-toolbar">${searchable?`<div class="list-search ui-search"><input class="ui-input" data-search="${id}" value="${esc(state.search)}" placeholder="Search these rows" aria-label="Search ${esc(id)}"><button data-clear-search="${id}" aria-label="Clear search">${icon('x')}</button></div>`:''}<div class="table-controls">${picker}${state.search||filtered||state.sort||state.hiddenColumns.length?button('Reset table',`data-reset-table="${id}"`):''}<span class="muted" role="status">${fmt(result.total)} of ${fmt(rows.length)} rows</span></div></div>`;
   const head=columns.map(column=>`<th scope="col" aria-sort="${state.sort===column.key?(state.direction===1?'ascending':'descending'):'none'}" class="${column.numeric?'numeric':''}"><button data-sort="${id}" data-key="${column.key}" aria-label="Sort by ${esc(column.label)}">${esc(column.label)}<span aria-hidden="true" class="sort-indicator">${state.sort===column.key?(state.direction===1?'↑':'↓'):'↕'}</span></button></th>`).join('');
   const filters=columns.map(column=>`<td><input type="search" class="ui-input column-filter" data-column-filter="${id}" data-key="${column.key}" value="${esc(state.filters[column.key]||'')}" aria-label="Filter ${esc(id)} by ${esc(column.label)}" placeholder="${column.numeric?'e.g. >= 100':'Filter…'}" ${column.numeric?'title="Filter by value, or use =, !=, <, <=, >, >= with a number"':''}></td>`).join('');
   const body=result.items.map((row,index)=>{
@@ -147,14 +154,16 @@ function mountTableMenus() {
 function refreshTable(id) {
   const target=document.querySelector(`[data-table="${CSS.escape(id)}"]`), definition=tableDefinitions.get(id);
   if(!target||!definition) return;
+  const pickerOpen=target.querySelector('.column-picker')?.open;
   const active=document.activeElement, scroll=target.querySelector('.table-container')?.scrollLeft||0;
-  const selector=active?.matches('[data-column-filter]')?`[data-column-filter][data-key="${CSS.escape(active.dataset.key)}"]`:
+  const selector=active?.matches('[data-column-toggle]')?`[data-column-toggle][data-key="${CSS.escape(active.dataset.key)}"]`:active?.matches('[data-column-filter]')?`[data-column-filter][data-key="${CSS.escape(active.dataset.key)}"]`:
     active?.matches('[data-search]')?'[data-search]':active?.matches('[data-sort]')?`[data-sort][data-key="${CSS.escape(active.dataset.key)}"]`:null;
   const position=active?.selectionStart;
   tableMenus=[];
   target.outerHTML=table(id,definition.columns,definition.rows,definition.actions,definition.searchable);
   mountTableMenus();
   const replacement=document.querySelector(`[data-table="${CSS.escape(id)}"]`);
+  if(pickerOpen) replacement.querySelector('.column-picker').open=true;
   const field=selector&&replacement.querySelector(selector);
   if(field) {field.focus({preventScroll:true});if(position!=null) field.setSelectionRange(position,position);}
   replacement.querySelector('.table-container').scrollLeft=scroll;
@@ -185,14 +194,15 @@ function field(label, name, value='', {textarea=false,required=false,hint=''}={}
 }
 function form(action, body, submit='Save') {return `<form data-form="${action}">${body}<div class="modal-actions">${button('Cancel','type="button" data-close')}${button(submit,'type="submit"',true)}</div></form>`;}
 function newProject() {showModal('Add project',form('project',field('Project name','name','',{required:true})+field('Repository / working folder','repo','',{required:true})+field('Analysis scope','scope','',{textarea:true}),'Add project'));}
-function newTask() {
+function newTask(turn=null) {
   if(!data.projects.length) return newProject();
-  showModal('Add task',form('task',`<label>Project<select class="ui-input" aria-label="Project" name="project_id">${options(data.projects,'id','name',project)}</select></label>`+field('Task title','title','',{required:true})+field('Intended outcome','goal','',{textarea:true,required:true})+field('Acceptance / verification criteria','acceptance','',{textarea:true}),'Start task'));
+  showModal('Add task',form('task',`<label>Project<select class="ui-input" aria-label="Project" name="project_id">${options(data.projects,'id','name',turn?data.projects.find(p=>p.repo===turn.repo)?.id||project:project)}</select></label>${turn?`<input type="hidden" name="session_id" value="${esc(turn.session_id)}"><input type="hidden" name="turn_id" value="${esc(turn.turn_id)}">`:''}`+field('Task name (optional)','title','',{hint:'Defaults to your request. Luna can format it from the task history.'})+field('Intended outcome','goal',turn?.prompt||'',{textarea:true,required:true})+field('Acceptance / verification criteria','acceptance','',{textarea:true}),'Start task'));
 }
 function assignTurn(turn) {
   if(!data.tasks.length) return toast('Create a task before assigning a turn.');
   showModal('Assign collected turn',`<p>${esc((turn.prompt||'Prompt unavailable').slice(0,300))}</p>`+form('assign',`<input type="hidden" name="session_id" value="${esc(turn.session_id)}"><input type="hidden" name="turn_id" value="${esc(turn.turn_id)}"><label>Task<select class="ui-input" aria-label="Task" name="task_id" required>${options(data.tasks,'id','title',task)}</select></label>`,'Assign turn'));
 }
+function openTaskHistory(id,modal) {return showTaskHistory(id,modal,load);}
 function taskDetails(row) {
   showModal(row.title,`<dl class="detail-grid"><dt>Status</dt><dd>${badge(row.status)}</dd><dt>Goal</dt><dd>${esc(row.goal)}</dd><dt>Acceptance</dt><dd>${esc(row.acceptance||'Not specified')}</dd><dt>Outcome evidence</dt><dd>${esc(row.outcome||'Not verified')}</dd><dt>Measured tokens</dt><dd>${fmt(row.usage?.total_tokens)}</dd></dl><div class="modal-actions">${button('Analyze / inspect subtasks',`data-history-task="${esc(row.id)}"`)}${button('Open task evidence',`data-open-task="${esc(row.id)}"`)}</div>`);
 }
@@ -253,7 +263,7 @@ function capturesTable() {
   ],data.wire_captures,r=>[{id:'open',label:'Inspect retained request / response',onSelect:()=>window.open(r.langfuse_url,'_blank','noopener')}]),'',esc(notice)+(data.wire_captures.length?'':' This selection may be transcript-only; clear task/project filters to see other captured exchanges.'));
 }
 function tasksTable(rows) {
-  return table('tasks',[{key:'title',label:'Task',cell:r=>`<button class="inline-link" data-task-details="${esc(r.id)}">${esc(r.title)}</button>`},
+  return table('tasks',[{key:'title',label:'Task',cell:r=>`<button class="inline-link" data-history-task="${esc(r.id)}">${esc(r.title)}</button>`},
     {key:'project_id',label:'Project',value:r=>data.projects.find(p=>p.id===r.project_id)?.name||'Unknown',cell:r=>esc(data.projects.find(p=>p.id===r.project_id)?.name||'Unknown')},
     {key:'status',label:'Status',cell:r=>badge(r.status)},
     {key:'total_tokens',label:'Measured tokens',numeric:true,cell:r=>compact(r.usage?.total_tokens)},
@@ -315,9 +325,9 @@ function render() {
   if(view==='projects') html=section('Projects',table('projects',[{key:'name',label:'Project'},{key:'repo',label:'Repository',cell:r=>clip(r.repo)},{key:'scope',label:'Scope',cell:r=>clip(r.scope)},{key:'created',label:'Created',filterText:r=>date(r.created)+' '+(r.created||''),cell:r=>date(r.created)}],data.projects,r=>[{id:'open',label:'Open project',onSelect:async()=>{project=r.id;task='';category='';view='overview';syncURL();await load();}}]));
   if(view==='history') html='<div id="history-root"></div>';
   if(view==='tasks') html=section('Defined tasks',tasksTable(data.tasks.filter(t=>!project||t.project_id===project)),button('Open unassigned inbox','data-view="inbox"'),'Tasks are explicit goals. Their measured usage comes from assigned turns, not automatically inferred boundaries.');
-  if(view==='inbox') html=section('Unassigned turns',table('inbox',[{key:'prompt',label:'Prompt / activity',cell:r=>clip((r.prompt||'Prompt unavailable').replace(/\s+/g,' '))},{key:'repo',label:'Working folder',cell:r=>clip(r.repo)},{key:'start',label:'Started',filterText:r=>date(r.start)+' '+(r.start||''),cell:r=>date(r.start)},{key:'tokens',label:'Measured tokens',numeric:true,cell:r=>compact(r.usage?.total_tokens)},{key:'completed',label:'Agent turn',value:r=>r.completed?'Completed':'Open',cell:r=>badge(r.completed?'Completed':'Open')}],data.inbox.map(r=>({...r,id:r.session_id+':'+r.turn_id,tokens:r.usage?.total_tokens??null})),r=>[{id:'assign',label:'Assign to a task',onSelect:()=>assignTurn(r)},{id:'open',label:'Open transcript',onSelect:()=>window.open(r.langfuse_url,'_blank','noopener')}]),'', 'Unassigned usage is included in all-source totals, but excluded from project/task totals. Agent turn completion is not verified task success.');
+  if(view==='inbox') html=section('Unassigned turns',table('inbox',[{key:'prompt',label:'Prompt / activity',cell:r=>clip((r.prompt||'Prompt unavailable').replace(/\s+/g,' '))},{key:'repo',label:'Working folder',cell:r=>clip(r.repo)},{key:'start',label:'Started',filterText:r=>date(r.start)+' '+(r.start||''),cell:r=>date(r.start)},{key:'tokens',label:'Measured tokens',numeric:true,cell:r=>compact(r.usage?.total_tokens)},{key:'completed',label:'Agent turn',value:r=>r.completed?'Completed':'Open',cell:r=>badge(r.completed?'Completed':'Open')}],data.inbox.map(r=>({...r,id:r.session_id+':'+r.turn_id,tokens:r.usage?.total_tokens??null})),r=>[{id:'create',label:'Create task from prompt',onSelect:()=>newTask(r)},{id:'assign',label:'Assign to a task',onSelect:()=>assignTurn(r)},{id:'open',label:'Open transcript',onSelect:()=>window.open(r.langfuse_url,'_blank','noopener')}]),'', 'Unassigned usage is included in all-source totals, but excluded from project/task totals. Agent turn completion is not verified task success.');
   if(view==='activity') {
-    html=statLine()+capturesTable()+section('Native event timeline',table('events',[
+    html=statLine()+(task?section('Step timeline','<div id="task-step-timeline"></div>','', 'Select steps on the chart to collect them into a named subtask.'):section('Step timeline','<div class="notice">Choose a task above to chart its steps and collect subtasks.</div>'))+capturesTable()+section('Native event timeline',table('events',[
       {key:'ts',label:'When',filterText:r=>date(r.ts)+' '+(r.ts||''),cell:r=>date(r.ts)},
       {key:'name',label:'Operation',cell:r=>`<button class="inline-link clip" data-event="${esc(r.id)}">${esc(r.name)}</button>`},
       {key:'category',label:'Category',cell:r=>clip(r.category)},
@@ -347,6 +357,7 @@ function render() {
   if(view==='setup') html=section('Collection',`<dl class="detail-grid"><dt>State</dt><dd>${badge(data.sources.collection_enabled?'Enabled':'Paused')}</dd><dt>Authorized source</dt><dd>${esc(data.sources.root)}</dd><dt>Retained files</dt><dd>${data.sources.files}</dd><dt>Model HTTP exchanges</dt><dd>${data.capture_coverage.total_model_exchanges}</dd><dt>Source errors</dt><dd>${data.sources.errors.length}</dd></dl><div class="modal-actions">${button(data.sources.collection_enabled?'Pause collection':'Resume collection',`data-collection="${!data.sources.collection_enabled}"`)}</div>`, '', 'Pausing stops new exports and rejects new capture-route calls. Existing data is retained.')+section('Coverage limits',`<ul>${data.limitations.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><p>Private setup and credentials: <code>work/security/langfuse-stack/</code>. Shared controls follow the workspace design system.</p>`)+section('Audit log',table('audit',[{key:'at',label:'When',filterText:r=>date(r.at)+' '+(r.at||''),cell:r=>date(r.at)},{key:'action',label:'Action'},{key:'entity',label:'Entity',cell:r=>clip(r.entity)}],data.audit,null));
   $('#content').innerHTML=html;
   $('#content').setAttribute('aria-busy','false');
+  if(view==='activity'&&task) renderStepTimeline($('#task-step-timeline'),{taskId:task,onError:toast});
   if(view==='history') renderHistory($('#history-root'),{project,open:id=>openTaskHistory(id,showModal),onError:toast});
   mountTableMenus();
 }
@@ -370,10 +381,24 @@ document.addEventListener('click',async event=>{
     if(target.dataset.page) {tables[target.dataset.page].page+=Number(target.dataset.delta);return refreshTable(target.dataset.page);}
     if(target.dataset.sort) {const state=tables[target.dataset.sort];if(state.sort!==target.dataset.key){state.sort=target.dataset.key;state.direction=1;}else if(state.direction===1){state.direction=-1;}else{state.sort=null;state.direction=1;}state.page=1;return refreshTable(target.dataset.sort);}
     if(target.dataset.clearSearch) {tables[target.dataset.clearSearch].search='';tables[target.dataset.clearSearch].page=1;return refreshTable(target.dataset.clearSearch);}
-    if(target.dataset.resetTable) {tables[target.dataset.resetTable]={search:'',page:1,sort:null,direction:1,filters:{}};return refreshTable(target.dataset.resetTable);}
+    if(target.dataset.resetTable) {tables[target.dataset.resetTable]={search:'',page:1,sort:null,direction:1,filters:{},hiddenColumns:[]};return refreshTable(target.dataset.resetTable);}
     if(target.hasAttribute('data-clear-filters')) {project='';task='';category='';syncURL();return await load();}
     if(target.dataset.collection) {await post('collection',{enabled:target.dataset.collection==='true'});return await load();}
   } catch(error) {toast(error.message);}
+});
+document.addEventListener('change',event=>{
+  const id=event.target.dataset.columnToggle;if(!id) return;
+  const state=tables[id], key=event.target.dataset.key;
+  if(event.target.checked) state.hiddenColumns=state.hiddenColumns.filter(c=>c!==key);
+  else {state.hiddenColumns.push(key);delete state.filters[key];if(state.sort===key)state.sort=null;}
+  state.page=1;refreshTable(id);
+});
+document.addEventListener('click',event=>{
+  if(!event.target.closest('.column-picker')) document.querySelectorAll('.column-picker[open]').forEach(p=>p.open=false);
+});
+document.addEventListener('keydown',event=>{
+  const picker=event.target.closest('.column-picker');
+  if(event.key==='Escape'&&picker?.open){event.preventDefault();event.stopPropagation();picker.open=false;picker.querySelector('summary').focus();}
 });
 document.addEventListener('input',event=>{
   const id=event.target.dataset.columnFilter||event.target.dataset.search;if(!id) return;
@@ -412,4 +437,4 @@ setTheme(document.documentElement.dataset.theme==='dark'?'dark':'light');
 window.addEventListener('storage',event=>{if(event.key==='ttgl-theme')setTheme(event.newValue==='dark'?'dark':'light');});
 $('#content').innerHTML=skeleton();
 load();
-setInterval(()=>{if(!document.hidden&&!$('#modal').open&&!document.activeElement?.matches('input,textarea,select')&&!busy)load();},10000);
+setInterval(()=>{if(!document.hidden&&!$('#modal').open&&!document.activeElement?.matches('input,textarea,select')&&!document.querySelector('[data-step-select]:checked')&&!document.querySelector('.column-picker[open]')&&!busy)load();},10000);

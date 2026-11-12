@@ -58,6 +58,8 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
                         ('external services', 'network requests'), ('editing', 'FileChange')]
             for index, (category, pattern) in enumerate(defaults):
                 c.execute('INSERT OR IGNORE INTO rules VALUES(?,?,?,?,?)', (f'default-{index}', category, pattern, 1, 1))
+        import task_curation
+        task_curation.init(self)
 
     @contextlib.contextmanager
     def connection(self):
@@ -83,11 +85,25 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
                     raise ValueError('Project name and repository path are required')
                 c.execute('INSERT INTO projects VALUES(?,?,?,?,?)', (ident, name[:200], repo[:2000], str(values.get('scope', ''))[:4000], now()))
             elif action == 'task':
+                import task_curation
                 title, goal = str(values.get('title', '')).strip(), str(values.get('goal', '')).strip()
-                if not title or not goal:
-                    raise ValueError('Task title and intended outcome are required')
+                source = None
+                if values.get('session_id') or values.get('turn_id'):
+                    source = c.execute('SELECT prompt FROM turns WHERE session_id=? AND turn_id=?',(values.get('session_id'),values.get('turn_id'))).fetchone()
+                    if not source:raise ValueError('Unknown source turn')
+                    if c.execute('SELECT 1 FROM assignments WHERE session_id=? AND turn_id=?',(values['session_id'],values['turn_id'])).fetchone():raise ValueError('Source turn is already assigned')
+                    goal = goal or source['prompt']
+                if not goal:raise ValueError('A user request or intended outcome is required')
+                supplied_title=bool(title)
+                original_prompt=(source['prompt'] or goal) if source else goal
+                title=title or task_curation.prompt_title(original_prompt)
                 c.execute('INSERT INTO tasks VALUES(?,?,?,?,?,?,?,?,?)',
                     (ident, values['project_id'], title[:200], goal[:8000], str(values.get('acceptance', ''))[:8000], 'active', now(), now(), None))
+                c.execute('INSERT INTO task_names VALUES(?,?,?,?,?)',(ident,'user' if supplied_title else 'prompt',original_prompt[:12000],None,time.time()))
+                if source:c.execute('INSERT INTO assignments VALUES(?,?,?)',(values['session_id'],values['turn_id'],ident))
+            elif action == 'task_name':
+                import task_curation
+                return task_curation.rename(self,ident,connection=c)
             elif action == 'assign':
                 ident = values['task_id']
                 if not c.execute('SELECT 1 FROM turns WHERE session_id=? AND turn_id=?', (values['session_id'], values['turn_id'])).fetchone():
@@ -240,6 +256,10 @@ CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
         with self.connection() as c:
             projects = [dict(r) for r in c.execute('SELECT * FROM projects ORDER BY created')]
             tasks = [dict(r) for r in c.execute('SELECT * FROM tasks ORDER BY created DESC')]
+            names = {r['task_id']:dict(r) for r in c.execute('SELECT * FROM task_names')}
+            for defined_task in tasks:
+                metadata=names.get(defined_task['id'],{})
+                defined_task.update(title_source=metadata.get('source','user'),title_model=metadata.get('model'))
             rules = [dict(r) for r in c.execute('SELECT * FROM rules ORDER BY id')]
             assignments = {(r['session_id'], r['turn_id']): r['task_id'] for r in c.execute('SELECT * FROM assignments')}
             turns = [dict(r) for r in c.execute('SELECT * FROM turns ORDER BY start DESC')]
@@ -477,11 +497,14 @@ class Handler(BaseHTTPRequestHandler):
             filters = {k: query[k][0] for k in ('project', 'task', 'category') if k in query}
             result = self.server.store.report(**filters)
             return self.send(result)
-        if path.path in ('/api/task-history', '/api/task-history-detail'):
+        if path.path in ('/api/task-history', '/api/task-history-detail', '/api/task-timeline'):
             import task_history
             query = {k: v[0] for k,v in parse_qs(path.query).items()}
             try:
-                if path.path == '/api/task-history-detail':
+                if path.path == '/api/task-timeline':
+                    import task_curation
+                    result = task_curation.timeline(self.server.store,query.get('task_id'),query.get('limit',100),query.get('offset',0))
+                elif path.path == '/api/task-history-detail':
                     result = task_history.detail(self.server.store, query.get('task_id'), query.get('subtask_id'), query.get('limit',20), query.get('offset',0))
                 else:
                     if query.get('mode') == 'semantic':raise ValueError('Semantic search requires the same-origin POST endpoint')
@@ -520,6 +543,7 @@ class Handler(BaseHTTPRequestHandler):
         assets = {'/task-history.js': ('task-history.js', 'text/javascript; charset=utf-8'), '/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8'),
                   '/ui.js': ('ui.js', 'text/javascript; charset=utf-8'),
                   '/theme-init.js': ('theme-init.js', 'text/javascript; charset=utf-8'),
+                  '/step-timeline.js': ('step-timeline.js', 'text/javascript; charset=utf-8'),
                   '/ui.css': ('ui.css', 'text/css; charset=utf-8'),
                   '/ui/icons.js': ('ui/icons.js', 'text/javascript; charset=utf-8'),
                   '/ui/geist-latin.woff2': ('ui/geist-latin.woff2', 'font/woff2'),
@@ -551,7 +575,11 @@ class Handler(BaseHTTPRequestHandler):
                 result = task_history.search(self.server.store, **values)
             elif action == 'analyze-task':
                 import task_history
-                result = task_history.start(self.server.store, str(values.get('task_id','')))
+                result = task_history.start(self.server.store, str(values.get('task_id','')),str(values.get('operation','subtasks')))
+            elif action == 'collect-task-steps':
+                import task_history, task_curation
+                task_history.init(self.server.store)
+                result = task_curation.collect(self.server.store,str(values.get('task_id','')),values.get('step_ids'),values.get('title'),values.get('activity','other'),values.get('summary',''),values.get('snapshot_hash'))
             else:
                 result = self.server.store.mutate(action, values)
             return self.send(result)
