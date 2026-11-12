@@ -1,0 +1,330 @@
+{
+  "date": "2026-11-12",
+  "scope": "Static source and font review for native-DOM shadcn adaptation; no npm/React/Radix/CLI code installed or executed",
+  "dependencies": [],
+  "automatic_scripts": false,
+  "sources": [
+    {
+      "repository": "shadcn-ui/ui",
+      "commit": "dd41d19e2f80ff6891951f7ced74c2c9a650b065",
+      "path": "LICENSE.md",
+      "url": "https://raw.githubusercontent.com/shadcn-ui/ui/dd41d19e2f80ff6891951f7ced74c2c9a650b065/LICENSE.md",
+      "sha256": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f",
+      "bytes": 1063
+    },
+    {
+      "repository": "shadcn-ui/ui",
+      "commit": "dd41d19e2f80ff6891951f7ced74c2c9a650b065",
+      "path": "apps/v4/registry/new-york-v4/ui/button.tsx",
+      "url": "https://raw.githubusercontent.com/shadcn-ui/ui/dd41d19e2f80ff6891951f7ced74c2c9a650b065/apps/v4/registry/new-york-v4/ui/button.tsx",
+      "sha256": "79dd6f75f8136394442202d6b8b922fb269eaad0a5dba579397c9d5b41f893bb",
+      "bytes": 2382
+    },
+    {
+      "repository": "shadcn-ui/ui",
+      "commit": "dd41d19e2f80ff6891951f7ced74c2c9a650b065",
+      "path": "apps/v4/registry/new-york-v4/ui/input.tsx",
+      "url": "https://raw.githubusercontent.com/shadcn-ui/ui/dd41d19e2f80ff6891951f7ced74c2c9a650b065/apps/v4/registry/new-york-v4/ui/input.tsx",
+      "sha256": "0c9457181f6ddc80969bcf854e92c362903a55b6e889fbef3fd85343ecc4af5b",
+      "bytes": 952
+    },
+    {
+      "repository": "shadcn-ui/ui",
+      "commit": "dd41d19e2f80ff6891951f7ced74c2c9a650b065",
+      "path": "apps/v4/registry/new-york-v4/ui/card.tsx",
+      "url": "https://raw.githubusercontent.com/shadcn-ui/ui/dd41d19e2f80ff6891951f7ced74c2c9a650b065/apps/v4/registry/new-york-v4/ui/card.tsx",
+      "sha256": "ef8305b12c3112dab42a4708b41b1ebcc042fa5ab4c20f039da8d45b09ed5059",
+      "bytes": 1977
+    },
+    {
+      "repository": "shadcn-ui/ui",
+      "commit": "dd41d19e2f80ff6891951f7ced74c2c9a650b065",
+      "path": "apps/v4/registry/new-york-v4/ui/badge.tsx",
+      "url": "https://raw.githubusercontent.com/shadcn-ui/ui/dd41d19e2f80ff6891951f7ced74c2c9a650b065/apps/v4/registry/new-york-v4/ui/badge.tsx",
+      "sha256": "13a9380dfff853ee730c14a52df49f22aecd31f40f2998d7c1e7ec458b6e1650",
+      "bytes": 1766
+    },
+    {
+      "repository": "shadcn-ui/ui",
+      "commit": "dd41d19e2f80ff6891951f7ced74c2c9a650b065",
+      "path": "apps/v4/registry/new-york-v4/ui/table.tsx",
+      "url": "https://raw.githubusercontent.com/shadcn-ui/ui/dd41d19e2f80ff6891951f7ced74c2c9a650b065/apps/v4/registry/new-york-v4/ui/table.tsx",
+      "sha256": "bd1a9fc83a5a2149e504038e274bb7e5a0351af59f6896df52ac4d5b439695ac",
+      "bytes": 2468
+    },
+    {
+      "repository": "shadcn-ui/ui",
+      "commit": "dd41d19e2f80ff6891951f7ced74c2c9a650b065",
+      "path": "apps/v4/registry/new-york-v4/ui/skeleton.tsx",
+      "url": "https://raw.githubusercontent.com/shadcn-ui/ui/dd41d19e2f80ff6891951f7ced74c2c9a650b065/apps/v4/registry/new-york-v4/ui/skeleton.tsx",
+      "sha256": "f51ce0fcd31e5c31437382e80ea0af94b4fc3d64221d27091d36824546780a43",
+      "bytes": 267
+    },
+    {
+      "repository": "shadcn-ui/ui",
+      "commit": "dd41d19e2f80ff6891951f7ced74c2c9a650b065",
+      "path": "apps/v4/registry/new-york-v4/ui/native-select.tsx",
+      "url": "https://raw.githubusercontent.com/shadcn-ui/ui/dd41d19e2f80ff6891951f7ced74c2c9a650b065/apps/v4/registry/new-york-v4/ui/native-select.tsx",
+      "sha256": "4bdbce5575dce610fed747df4547a3d494713f4df8d28e09b3ccee62e4d72f93",
+      "bytes": 1985
+    },
+    {
+      "repository": "shadcn-ui/ui",
+      "commit": "dd41d19e2f80ff6891951f7ced74c2c9a650b065",
+      "path": "apps/v4/registry/new-york-v4/ui/textarea.tsx",
+      "url": "https://raw.githubusercontent.com/shadcn-ui/ui/dd41d19e2f80ff6891951f7ced74c2c9a650b065/apps/v4/registry/new-york-v4/ui/textarea.tsx",
+      "sha256": "5cafcfeeee29534f449387a16b585f5923d2faab1a0cdc50a874416b175f59ce",
+      "bytes": 749
+    },
+    {
+      "repository": "shadcn-ui/ui",
+      "commit": "dd41d19e2f80ff6891951f7ced74c2c9a650b065",
+      "path": "apps/v4/registry/new-york-v4/ui/dropdown-menu.tsx",
+      "url": "https://raw.githubusercontent.com/shadcn-ui/ui/dd41d19e2f80ff6891951f7ced74c2c9a650b065/apps/v4/registry/new-york-v4/ui/dropdown-menu.tsx",
+      "sha256": "d954efb735f13734751207ad22cb0cddd7f6ec53c59d16675d103dae08cb61fb",
+      "bytes": 8408
+    },
+    {
+      "repository": "shadcn-ui/ui",
+      "commit": "dd41d19e2f80ff6891951f7ced74c2c9a650b065",
+      "path": "apps/v4/registry/new-york-v4/ui/dialog.tsx",
+      "url": "https://raw.githubusercontent.com/shadcn-ui/ui/dd41d19e2f80ff6891951f7ced74c2c9a650b065/apps/v4/registry/new-york-v4/ui/dialog.tsx",
+      "sha256": "2ade6074e5fad0a4eb171ead44c43d3301a3c83d186d7236fb1fdbea80ee556b",
+      "bytes": 4304
+    },
+    {
+      "repository": "vercel/geist-font",
+      "commit": "ef2597cfc42f4797676df105517ccc0a1cfa6569",
+      "path": "OFL.txt",
+      "url": "https://raw.githubusercontent.com/vercel/geist-font/ef2597cfc42f4797676df105517ccc0a1cfa6569/OFL.txt",
+      "sha256": "021caa749f89fecd7c2e40a50499de29e84d2bc19251659b47d499c2fbfffc17",
+      "bytes": 4384
+    },
+    {
+      "repository": "vercel/geist-font",
+      "commit": "ef2597cfc42f4797676df105517ccc0a1cfa6569",
+      "path": "packages/next/dist/fonts/geist-sans/Geist-Variable.woff2",
+      "url": "https://raw.githubusercontent.com/vercel/geist-font/ef2597cfc42f4797676df105517ccc0a1cfa6569/packages/next/dist/fonts/geist-sans/Geist-Variable.woff2",
+      "sha256": "2ffebe993e969069a9789d15164b7715d42491b5835516c5e3b935d5f81b05f1",
+      "bytes": 69760
+    },
+    {
+      "repository": "JetBrains/JetBrainsMono",
+      "commit": "19371302b95d218af43299bce79ddbddd0bc364d",
+      "path": "OFL.txt",
+      "url": "https://raw.githubusercontent.com/JetBrains/JetBrainsMono/19371302b95d218af43299bce79ddbddd0bc364d/OFL.txt",
+      "sha256": "a76abf002c49097d146e86740a3105a5d00450b1592e820a1109a8c5680cd697",
+      "bytes": 4399
+    },
+    {
+      "repository": "JetBrains/JetBrainsMono",
+      "commit": "19371302b95d218af43299bce79ddbddd0bc364d",
+      "path": "fonts/archives/variable/JetBrainsMono[wght].woff2",
+      "url": "https://raw.githubusercontent.com/JetBrains/JetBrainsMono/19371302b95d218af43299bce79ddbddd0bc364d/fonts/archives/variable/JetBrainsMono%5Bwght%5D.woff2",
+      "sha256": "d83ad59c4993be97522e002df1e2881459472310e216ad0500e32f22b0044b63",
+      "bytes": 114020
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/LICENSE",
+      "sha256": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57",
+      "bytes": 3208
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/layout-dashboard.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/layout-dashboard.svg",
+      "sha256": "281ab865b4c04dab32a04023473e448f58be6a7ad90769450ac3349d79dc4aed",
+      "bytes": 416
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/sparkles.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/sparkles.svg",
+      "sha256": "f5499f33f09d7158151e9bd2ec0faf79ff8fb57292f84fdd7286d96d0f0424d8",
+      "bytes": 567
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/folder.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/folder.svg",
+      "sha256": "f0d92b94b797a8ab7d4c4ae33c3236c47f64068351b4e14bdb5014ee42898a39",
+      "bytes": 342
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/list-checks.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/list-checks.svg",
+      "sha256": "08d26ab05aaf724222c4c0cd5a19d5eae753b2a5fff0eb2d81759dde11bac6b6",
+      "bytes": 336
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/inbox.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/inbox.svg",
+      "sha256": "1838482c53d0846badef9be96fdcf7a167064241bd4891efa995c77ebec5f187",
+      "bytes": 388
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/activity.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/activity.svg",
+      "sha256": "050fbcda05e13c2051cf857683645e19c6b180861ef4d0cc28a6f09ba1ea1666",
+      "bytes": 346
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/sliders-horizontal.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/sliders-horizontal.svg",
+      "sha256": "e43a00e5eb684e6cbb61083bed2528d7a3fa5f265693eb2b5f314cd432aa65f4",
+      "bytes": 422
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/lightbulb.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/lightbulb.svg",
+      "sha256": "e33bbec15b1e64cca958e086850f951c0dc2201cd5778bb3695fda3cb6ea457d",
+      "bytes": 371
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/flask-conical.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/flask-conical.svg",
+      "sha256": "a2ce857c159bef4c128a6d9f0b6dcbd6504ecf1a2a670ee220efd14fd032b561",
+      "bytes": 383
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/settings-2.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/settings-2.svg",
+      "sha256": "06d06c191bd7eb28afaf9d40acb5c49ef69448fdeda91801d9823d7c440a4e10",
+      "bytes": 324
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/refresh-cw.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/refresh-cw.svg",
+      "sha256": "2e10dd403c85a24f163d59fc6151aa21147fe9402e1305dfc8979208caee8944",
+      "bytes": 392
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/arrow-up-right.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/arrow-up-right.svg",
+      "sha256": "50b2503b9d11881142255466b7e3461d022b919735841c321d72003ac9959fe1",
+      "bytes": 260
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/sun.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/sun.svg",
+      "sha256": "a3955c8b0425fcc5c9ba12d2bdd77fe53b2cd5dd05e7742a56f342e996fb2ef8",
+      "bytes": 485
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/moon.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/moon.svg",
+      "sha256": "205b959e940d5841f0ce1d09c933153da9d9c94130a54d5cc0c68c2af1d403da",
+      "bytes": 334
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/search.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/search.svg",
+      "sha256": "283d371c2e433817bb9c0c8310caa6c77fa4177c0f4f1168d9c83b97af7389dc",
+      "bytes": 275
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/plus.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/plus.svg",
+      "sha256": "7f6af73bf1ff6c4bca3f18351c8d1bdec6749c0c2530c4de5da85d520c21df17",
+      "bytes": 256
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/chevron-right.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/chevron-right.svg",
+      "sha256": "2758143d7b2434e4aa7307dfd34405c87909ff4052f21b5f3f40d45224b4f19b",
+      "bytes": 237
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/ellipsis.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/ellipsis.svg",
+      "sha256": "4f495cc72013ffdfec677f03b33a150f7b4dd741979283fd6853a09024bca112",
+      "bytes": 312
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/circle-check.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/circle-check.svg",
+      "sha256": "9711e045a5999f8a3b0782eb88e09b04e0559bc7b379dcc0a4ae645223e10345",
+      "bytes": 278
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/database.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/database.svg",
+      "sha256": "471eb14bc8d144896a82dfc4aa9daf350f769f0896f4bef33e50aabdbb51130d",
+      "bytes": 329
+    },
+    {
+      "repository": "lucide-icons/lucide",
+      "commit": "c55aab36b553a7de50a0050e7042fd7b2d64664e",
+      "path": "icons/x.svg",
+      "url": "https://raw.githubusercontent.com/lucide-icons/lucide/c55aab36b553a7de50a0050e7042fd7b2d64664e/icons/x.svg",
+      "sha256": "4a9cdab38fbb96162e7dace28e33f4ca0e49d8963a6162abc3d4691b7d675117",
+      "bytes": 260
+    }
+  ],
+  "limitations": [
+    "Manual static-asset review and public repository notices; not a full audit of the upstream npm packages, which are not used."
+  ],
+  "repository_notices": {
+    "shadcn-ui/ui": [],
+    "vercel/geist-font": [],
+    "JetBrains/JetBrainsMono": [],
+    "lucide-icons/lucide": []
+  },
+  "adaptation": "shadcn Tailwind visual primitives translated to CSS and semantic native DOM; not the official React/Radix runtime. Existing EVLV collection/popover behavior retained privately.",
+  "known_asset_findings": [],
+  "checks": [
+    "Reviewed upstream component utility classes and translated visual rules; no upstream TSX executed.",
+    "Reviewed copied SVG geometry; no scripts, event handlers, external references or dynamic SVG imports.",
+    "Self-hosted WOFF2 fonts with SIL OFL license notices; no font package hooks or runtime dependencies.",
+    "Public repository security notice APIs returned no published advisories for the copied source repositories on the review date."
+  ],
+  "bundled_asset_hashes": {
+    "LICENSE-Geist": "055f91395bbf674dc6e1ef4a06ca5bd43d6080eb34dfb53be0831aa950457722",
+    "LICENSE-JetBrainsMono": "c1ab7c666206842a02b35b30770dac0d7a10156ed401c9defc3f02a754d89e90",
+    "LICENSE-lucide": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57",
+    "LICENSE-shadcn": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f",
+    "geist-latin.woff2": "2ffebe993e969069a9789d15164b7715d42491b5835516c5e3b935d5f81b05f1",
+    "icons.js": "676415e9d2a83fff3d06f1e5be14d6ed0abd50828ea8a7ac49777874da5f3d14",
+    "jetbrains-mono.woff2": "d83ad59c4993be97522e002df1e2881459472310e216ad0500e32f22b0044b63"
+  }
+}

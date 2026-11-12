@@ -1,0 +1,100 @@
+/* shadcn/ui visual primitives adapted to native DOM. MIT: ui/LICENSE-shadcn. */
+@font-face { font-family: Geist; src: url('/ui/geist-latin.woff2') format('woff2'); font-style: normal; font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'JetBrains Mono'; src: url('/ui/jetbrains-mono.woff2') format('woff2'); font-style: normal; font-weight: 100 800; font-display: swap; }
+:root {
+  color-scheme: light;
+  --background: #fafafa; --foreground: #171717;
+  --card: #fff; --card-foreground: #171717;
+  --popover: #fff; --popover-foreground: #171717;
+  --primary: #171717; --primary-foreground: #fafafa;
+  --secondary: #f4f4f5; --secondary-foreground: #171717;
+  --muted: #f4f4f5; --muted-foreground: #636363;
+  --accent: #f0f0f0; --accent-foreground: #171717;
+  --destructive: #c5352b; --border: #ebebeb; --input: #dedede; --ring: #5276ab;
+  --workflow-blue: #0a72ef; --workflow-pink: #de1d8d; --workflow-red: #ff5b4f;
+  --radius: 6px; --radius-md: 12px; --radius-lg: 18px;
+  --shadow-border: 0 0 0 1px rgb(0 0 0 / 8%);
+  --shadow-card: 0 0 0 1px rgb(0 0 0 / 6%), 0 2px 8px rgb(0 0 0 / 3%);
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+/* Optional existing preference; the default design is light. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --background: #171717; --foreground: #ededed;
+  --card: #1e1e1e; --card-foreground: #ededed;
+  --popover: #242424; --popover-foreground: #ededed;
+  --primary: #ededed; --primary-foreground: #171717;
+  --secondary: #292929; --secondary-foreground: #ededed;
+  --muted: #242424; --muted-foreground: #aaa;
+  --accent: #303030; --accent-foreground: #ededed;
+  --destructive: #ff8b81; --border: #333; --input: #454545; --ring: #94b6e9;
+  --shadow-border: 0 0 0 1px var(--border);
+  --shadow-card: 0 0 0 1px var(--border), 0 2px 8px rgb(0 0 0 / 8%);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--background); color: var(--foreground); font: 14px/1.6 Geist, system-ui, sans-serif; font-feature-settings: 'liga' 1, 'calt' 1; -webkit-font-smoothing: antialiased; }
+button, input, textarea, select { font: inherit; }
+button, a { touch-action: manipulation; }
+button { cursor: pointer; }
+button:disabled { cursor: default; opacity: .5; }
+a { color: inherit; text-underline-offset: 4px; }
+:where(button, a, summary, input, select, textarea):focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
+::selection { background: var(--primary); color: var(--primary-foreground); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.ui-icon { width: 16px; height: 16px; flex-shrink: 0; pointer-events: none; }
+.ui-button {
+  display: inline-flex; flex-shrink: 0; align-items: center; justify-content: center; gap: 8px;
+  height: 36px; padding: 8px 14px; border: 1px solid var(--input); border-radius: var(--radius);
+  background: var(--card); color: var(--foreground); box-shadow: 0 1px 2px rgb(0 0 0 / 3%);
+  font-size: 13px; line-height: 1; font-weight: 500; white-space: nowrap;
+  transition: color 200ms ease-out, background-color 200ms ease-out, box-shadow 200ms ease-out;
+}
+.ui-button:hover { background: var(--accent); }
+.ui-button:disabled { pointer-events: none; }
+.ui-button[data-variant='default'] { background: var(--primary); color: var(--primary-foreground); border-color: var(--primary); font-weight: 600; }
+.ui-button[data-variant='default']:hover { background: color-mix(in srgb, var(--primary) 92%, var(--background)); }
+.ui-button[data-variant='ghost'] { background: transparent; border-color: transparent; box-shadow: none; }
+.ui-button[data-variant='ghost']:hover { background: var(--accent); }
+.ui-button:active:not(:disabled) { transform: translateY(1px); }
+.ui-icon-button { width: 36px; padding: 0; }
+.ui-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.ui-input {
+  height: 36px; width: 100%; min-width: 0; padding: 6px 12px;
+  border: 1px solid var(--input); border-radius: var(--radius); background: var(--card); color: var(--foreground);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 3%); outline: none;
+  transition: color 200ms ease-out, box-shadow 200ms ease-out;
+}
+.ui-input:focus-visible { border-color: var(--ring); outline: 2px solid var(--ring); outline-offset: 2px; }
+.ui-input::placeholder { color: var(--muted-foreground); }
+.ui-input:disabled { cursor: not-allowed; opacity: .5; }
+.ui-input[aria-invalid='true'] { border-color: var(--destructive); }
+select.ui-input { padding-right: 28px; }
+textarea.ui-input { min-height: 100px; height: auto; padding-block: 10px; resize: vertical; }
+label { display: grid; gap: 7px; color: var(--muted-foreground); font-size: 12px; font-weight: 500; }
+label small { font-weight: 400; }
+.ui-badge { display: inline-flex; width: fit-content; align-items: center; gap: 4px; border: 1px solid var(--border); border-radius: 9999px; background: var(--secondary); color: var(--secondary-foreground); font-size: 11px; font-weight: 500; line-height: 1.5; padding: 2px 8px; white-space: nowrap; }
+.ui-table { width: 100%; min-width: 700px; border-collapse: collapse; font-size: 13px; }
+.ui-table th { height: 44px; padding: 8px 16px; color: var(--muted-foreground); text-align: left; font-size: 11px; font-weight: 500; white-space: nowrap; background: var(--card); border-bottom: 1px solid var(--border); }
+.ui-table td { padding: 10px 16px; vertical-align: middle; border-bottom: 1px solid var(--border); max-width: 480px; white-space: nowrap; }
+.ui-table tbody tr:last-child td { border-bottom: 0; }
+.ui-table tbody tr:hover { background: var(--muted); }
+.ui-table th button { display: flex; align-items: center; gap: 5px; min-height: 28px; padding: 0; border: 0; background: transparent; color: inherit; font-size: inherit; text-align: left; }
+.ui-table .numeric { text-align: right; }
+.ui-table th.numeric button { margin-left: auto; }
+.ui-table .row-title { font-weight: 500; }
+.ui-table .row-subtitle { display: block; margin-top: 3px; font-size: 11px; color: var(--muted-foreground); }
+.ui-menu { position: fixed; inset: auto; margin: 0; min-width: 208px; max-width: calc(100vw - 16px); padding: 4px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--popover); color: var(--popover-foreground); box-shadow: 0 2px 8px rgb(0 0 0 / 8%); z-index: 200; }
+.ui-menu-item { display: flex; align-items: center; gap: 9px; width: 100%; min-height: 36px; padding: 8px; border: 0; border-radius: 4px; background: transparent; color: inherit; font-size: 13px; text-align: left; }
+.ui-menu-item:focus, .ui-menu-item:hover { background: var(--accent); outline: none; }
+.ui-menu-item[data-variant='destructive'] { color: var(--destructive); }
+dialog { width: min(720px, calc(100% - 32px)); max-height: 90dvh; padding: 0; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--card); color: var(--card-foreground); box-shadow: 0 2px 8px rgb(0 0 0 / 8%); z-index: 300; }
+dialog::backdrop { background: rgb(23 23 23 / 40%); }
+.ui-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 40px 24px; text-align: center; white-space: normal; }
+.ui-empty strong { font-size: 14px; font-weight: 500; color: var(--foreground); }
+.ui-empty p { max-width: 45ch; margin: 0 0 8px; color: var(--muted-foreground); font-size: 13px; }
+.empty-icon { display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 4px; border-radius: var(--radius-md); background: var(--muted); color: var(--muted-foreground); }
+.empty-icon svg { width: 20px; height: 20px; }
+.ui-skeleton { position: relative; overflow: hidden; border-radius: var(--radius); background: var(--muted); }
+.ui-skeleton::after { content: ''; position: absolute; inset: 0; background: rgb(255 255 255 / 40%); animation: skeleton-shimmer 1.6s ease-in-out infinite; }
+@keyframes skeleton-shimmer { from { transform: translateX(-100%); opacity: 0; } 50% { opacity: .8; } to { transform: translateX(100%); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }

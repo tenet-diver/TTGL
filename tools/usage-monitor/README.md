@@ -10,11 +10,14 @@ was rejected. Normal native-provider routing remains unchanged.
 
 The workspace uses compact, searchable/sortable/paginated tables for tasks,
 unassigned turns, activity, categories, rules and opportunities. Add/edit forms
-open native modal dialogs. EVLV's shared plain-DOM collection and keyboard/menu
-behavior, control/table classes, and light/dark tokens come from the private
-`tenet-diver/design-system` distribution pinned in
-`config/design-system.lock.json`. App-specific layout stays in this repository.
-No React, Radix or npm runtime install is required for the plain-DOM artifacts.
+open native modal dialogs. Shared controls now use a native-DOM adaptation of
+shadcn/ui, following the repository `DESIGN.md`. Geist and JetBrains Mono fonts,
+Lucide icons, semantic tokens, and component styles are served locally. See
+[the component notes](observability/ui/README.md) for source pins, licenses and
+adaptation scope. EVLV's existing plain-DOM collection and keyboard/popover
+behavior still comes from the private distribution pinned in
+`config/design-system.lock.json`; its stylesheet is no longer loaded.
+No React, Radix or npm runtime installation is required.
 
 The producer's license prohibits public redistribution. Its three generated
 assets are deliberately kept under ignored `work/security/design-system/`, not

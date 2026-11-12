@@ -1,11 +1,62 @@
 <!doctype html>
-<html lang="en" data-evlv-theme="evlv" data-theme="light">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TTGL · Codex Observatory</title><link rel="stylesheet" href="/design-system/styles.css"><link rel="stylesheet" href="/workspace.css"></head>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>TTGL · Codex Observatory</title>
+  <link rel="preload" href="/ui/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/ui.css">
+  <link rel="stylesheet" href="/workspace.css">
+</head>
 <body>
-<aside class="evlv-sidebar"><div class="brand">TTGL <span>Observatory</span></div><nav class="evlv-navigation" aria-label="Workspace"><button data-view="overview">Overview</button><button data-view="analysis">Codex analysis</button><button data-view="projects">Projects</button><button data-view="tasks">Tasks</button><button data-view="history">Experience history</button><button data-view="inbox">Unassigned inbox <span id="inbox-count"></span></button><button data-view="activity">Activity</button><button data-view="rules">Categories & rules</button><button data-view="opportunities">Opportunities</button><button data-view="experiments">Experiments</button><button data-view="setup">Setup & coverage</button></nav><footer class="sidebar-footer"><a id="langfuse" target="_blank" rel="noopener">Open Langfuse ↗</a><button id="theme" class="evlv-button evlv-tertiary evlv-compact">Switch theme</button><small id="live">Connecting…</small></footer></aside>
-<main><header class="page-header"><div><h1 id="title">Overview</h1><p id="subtitle"></p></div><div class="evlv-actions"><button id="refresh" class="evlv-button evlv-secondary evlv-compact">Refresh</button><div id="page-actions"></div></div></header>
-<div class="scope-toolbar"><label>Project<select class="evlv-input evlv-select" id="project"></select></label><label>Task<select class="evlv-input evlv-select" id="task"></select></label><label>Category<select class="evlv-input evlv-select" id="category"></select></label><button data-clear-filters class="evlv-button evlv-tertiary evlv-compact">Clear filters</button></div>
-<div id="scope-summary" class="scope-summary"></div><div id="content" aria-live="polite">Loading collected evidence…</div>
-<footer class="page-footer">Native usage counted once. Cached input is an input subset. Actual charges and savings remain unknown.</footer></main>
-<dialog id="modal" aria-labelledby="modal-title"><div id="modal-content"></div></dialog><div id="toast" role="status"></div><script type="module" src="/workspace.js"></script>
-</body></html>
+<a class="skip-link" href="#main">Skip to content</a>
+<aside class="sidebar" aria-label="Sidebar">
+  <div class="brand"><span class="brand-mark" aria-hidden="true">&gt;_</span> TTGL <span class="ui-badge">Observatory</span></div>
+  <nav aria-label="Workspace">
+    <span class="nav-label">Workspace</span>
+    <button data-view="overview"><span data-icon="layout-dashboard"></span>Overview</button>
+    <button data-view="projects"><span data-icon="folder"></span>Projects</button>
+    <button data-view="tasks"><span data-icon="list-checks"></span>Tasks</button>
+    <button data-view="history"><span data-icon="database"></span>Experience history</button>
+    <button data-view="inbox"><span data-icon="inbox"></span>Unassigned inbox <span id="inbox-count"></span></button>
+    <span class="nav-label">Insights</span>
+    <button data-view="analysis"><span data-icon="sparkles"></span>Codex analysis</button>
+    <button data-view="activity"><span data-icon="activity"></span>Activity</button>
+    <button data-view="opportunities"><span data-icon="lightbulb"></span>Opportunities</button>
+    <button data-view="experiments"><span data-icon="flask-conical"></span>Experiments</button>
+    <span class="nav-label">Manage</span>
+    <button data-view="rules"><span data-icon="sliders-horizontal"></span>Categories &amp; rules</button>
+    <button data-view="setup"><span data-icon="settings-2"></span>Setup &amp; coverage</button>
+  </nav>
+  <footer class="sidebar-footer">
+    <a id="langfuse" target="_blank" rel="noopener">Open Langfuse <span data-icon="arrow-up-right"></span></a>
+    <div class="sidebar-utilities">
+      <div class="connection"><span id="connection-dot" class="status-dot" aria-hidden="true"></span><span id="live" role="status">Connecting…</span></div>
+      <button id="theme" class="ui-button ui-icon-button" data-slot="button" data-variant="ghost" aria-label="Switch to dark theme" title="Switch to dark theme"><span data-icon="moon"></span></button>
+    </div>
+  </footer>
+</aside>
+<main id="main" tabindex="-1">
+  <div class="workspace-bar"><span>Observatory</span><span data-icon="chevron-right"></span><strong id="breadcrumb">Overview</strong><span class="ui-badge">Native evidence</span></div>
+  <div class="page-body">
+    <header class="page-header">
+      <div><h1 id="title">Overview</h1><p id="subtitle"></p></div>
+      <div class="ui-actions"><button id="refresh" class="ui-button" data-slot="button" data-variant="outline"><span data-icon="refresh-cw"></span>Refresh</button><div id="page-actions"></div></div>
+    </header>
+    <div class="scope-toolbar" role="group" aria-label="Evidence filters">
+      <label>Project<select class="ui-input" data-slot="native-select" id="project"></select></label>
+      <label>Task<select class="ui-input" data-slot="native-select" id="task"></select></label>
+      <label>Category<select class="ui-input" data-slot="native-select" id="category"></select></label>
+      <button data-clear-filters class="ui-button" data-slot="button" data-variant="ghost">Clear filters</button>
+    </div>
+    <div id="scope-summary" class="scope-summary"></div>
+    <div id="content" aria-live="polite" aria-busy="true">Loading collected evidence…</div>
+    <footer class="page-footer"><span data-icon="circle-check"></span><span>Native usage counted once. Cached input is an input subset. Actual charges and savings remain unknown.</span></footer>
+  </div>
+</main>
+<dialog id="modal" data-slot="dialog-content" aria-labelledby="modal-title"><div id="modal-content"></div></dialog>
+<div id="toast" role="status"></div>
+<script type="module" src="/workspace.js"></script>
+</body>
+</html>

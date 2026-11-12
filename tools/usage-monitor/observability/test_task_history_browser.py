@@ -30,7 +30,7 @@ class HistoryBrowserTests(unittest.TestCase):
             threading.Thread(target=server.serve_forever,daemon=True).start()
             self.addCleanup(server.server_close);self.addCleanup(server.shutdown)
             with sync_playwright() as p:
-                browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
+                browser=p.chromium.launch(executable_path=os.environ.get('TTGL_CHROMIUM','/usr/bin/chromium'),headless=True,args=['--no-sandbox'])
                 page=browser.new_page(viewport={'width':1440,'height':1000});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
                 page.goto(f'http://127.0.0.1:{port}/#history');page.wait_for_selector('#history-results article')
                 page.locator('#history-results [data-history-task]').click()

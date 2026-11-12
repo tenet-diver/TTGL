@@ -517,7 +517,12 @@ class Handler(BaseHTTPRequestHandler):
             if not target.exists():
                 return self.send({'error': 'Private design-system distribution not synced; see sync_design_system.py'}, 503)
             return self.send(target.read_bytes(), content=design_assets[path.path])
-        assets = {'/task-history.js': ('task-history.js', 'text/javascript; charset=utf-8'), '/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8')}
+        assets = {'/task-history.js': ('task-history.js', 'text/javascript; charset=utf-8'), '/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8'),
+                  '/ui.js': ('ui.js', 'text/javascript; charset=utf-8'),
+                  '/ui.css': ('ui.css', 'text/css; charset=utf-8'),
+                  '/ui/icons.js': ('ui/icons.js', 'text/javascript; charset=utf-8'),
+                  '/ui/geist-latin.woff2': ('ui/geist-latin.woff2', 'font/woff2'),
+                  '/ui/jetbrains-mono.woff2': ('ui/jetbrains-mono.woff2', 'font/woff2')}
         if path.path in assets:
             name, mime = assets[path.path]
             return self.send((getattr(self.server, 'ui_root', HERE) / name).read_bytes(), content=mime)

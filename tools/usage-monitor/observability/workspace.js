@@ -1,6 +1,6 @@
 import { renderHistory, openTaskHistory } from '/task-history.js';
 import { collectionPage } from '/design-system/collection.js';
-import { createActionMenu } from '/design-system/dom.js';
+import { button, badge, icon, emptyState, skeleton, createActionMenu } from '/ui.js';
 
 const $ = selector => document.querySelector(selector);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
@@ -9,8 +9,6 @@ const compact = value => value == null ? 'Unknown' : Intl.NumberFormat('en', {no
 const date = value => value ? new Date(value).toLocaleString() : 'Unknown';
 const seconds = value => value == null ? 'Unknown' : fmt(value) + 's';
 const external = (url, title='Inspect in Langfuse') => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(title)} ↗</a>`;
-const badge = value => `<span class="badge">${esc(value)}</span>`;
-const button = (title, attributes='', primary=false) => `<button class="evlv-button ${primary?'evlv-primary':'evlv-secondary'} evlv-compact" ${attributes}>${esc(title)}</button>`;
 const section = (title, body, action='', note='') => `<section class="section"><div class="section-heading"><h2>${esc(title)}</h2>${action}</div>${note?`<p class="section-note">${note}</p>`:''}${body}</section>`;
 const clip = value => `<span class="clip" title="${esc(value)}">${esc(value)}</span>`;
 const config = {
@@ -56,7 +54,12 @@ async function load() {
     if(!response.ok) throw Error('Workspace request failed');
     data = await response.json();
     render();
-  } catch(error) { $('#live').textContent = 'Connection interrupted'; toast(error.message); }
+  } catch(error) {
+    $('#live').textContent='Disconnected'; $('#connection-dot').dataset.state='error';
+    $('#content').setAttribute('aria-busy','false');
+    if(!data) $('#content').innerHTML=emptyState('Evidence is unavailable','Check the connection and try loading again.',button('Try again','data-refresh'),'database');
+    toast(error.message);
+  }
 }
 async function post(action, values) {
   const response = await fetch('/api/'+action, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(values)});
@@ -83,7 +86,7 @@ function table(id, columns, rows, actions, searchable=true) {
     }:undefined
   });
   state.page=result.page;
-  const toolbar=searchable?`<div class="list-toolbar"><div class="list-search evlv-search"><input class="evlv-input" data-search="${id}" value="${esc(state.search)}" placeholder="Search these rows" aria-label="Search ${esc(id)}"><button data-clear-search="${id}" aria-label="Clear search">×</button></div><span class="muted">${fmt(result.total)} rows</span></div>`:'';
+  const toolbar=searchable?`<div class="list-toolbar"><div class="list-search ui-search"><input class="ui-input" data-search="${id}" value="${esc(state.search)}" placeholder="Search these rows" aria-label="Search ${esc(id)}"><button data-clear-search="${id}" aria-label="Clear search">×</button></div><span class="muted">${fmt(result.total)} rows</span></div>`:'';
   const head=columns.map(column=>`<th scope="col" class="${column.numeric?'numeric':''}"><button data-sort="${id}" data-key="${column.key}">${esc(column.label)}${state.sort===column.key?(state.direction===1?' ↑':' ↓'):''}</button></th>`).join('');
   const body=result.items.map((row,index)=>{
     const cells=columns.map(column=>`<td class="${column.numeric?'numeric':''}">${column.cell?column.cell(row):esc(row[column.key])}</td>`).join('');
@@ -91,7 +94,9 @@ function table(id, columns, rows, actions, searchable=true) {
     if(actions) {const key=id+'-'+index; tableMenus.push({key,label:'Actions for '+(row.title||row.name||row.id||'row'),actions:actions(row).map(action=>({...action,onSelect:()=>{try{Promise.resolve(action.onSelect()).catch(error=>toast(error.message));}catch(error){toast(error.message);}}}))}); menu=`<td class="row-menu"><span data-row-menu="${key}"></span></td>`;}
     return `<tr>${cells}${menu}</tr>`;
   }).join('');
-  return toolbar+`<div class="table-container evlv-table-scroll"><table class="evlv-table"><thead><tr>${head}${actions?'<th scope="col"><span class="evlv-sr-only">Actions</span></th>':''}</tr></thead><tbody>${body||`<tr><td colspan="${columns.length+(actions?1:0)}" class="table-empty">No matching rows.</td></tr>`}</tbody></table></div>`+
+  const emptyAction=state.search?button('Clear search',`data-clear-search="${id}"`):id==='projects'?button('Add project','data-add-project',true):id==='tasks'?button('Add task','data-add-task',true):'';
+  const empty=emptyState(state.search?'No matching rows':'Nothing here yet',state.search?'Try a different search or clear these terms.':'Rows will appear when evidence is available for this scope.',emptyAction);
+  return toolbar+`<div class="table-container ui-table-scroll" data-slot="table-container"><table class="ui-table" data-slot="table"><thead><tr>${head}${actions?'<th scope="col"><span class="sr-only">Actions</span></th>':''}</tr></thead><tbody>${body||`<tr><td colspan="${columns.length+(actions?1:0)}" class="table-empty">${empty}</td></tr>`}</tbody></table></div>`+
     (result.pages>1?`<div class="pagination"><span>${(result.page-1)*result.pageSize+1}–${Math.min(result.page*result.pageSize,result.total)} of ${result.total}</span>${button('Previous',`data-page="${id}" data-delta="-1" ${result.page===1?'disabled':''}`)}<span>${result.page} / ${result.pages}</span>${button('Next',`data-page="${id}" data-delta="1" ${result.page===result.pages?'disabled':''}`)}</div>`:'');
 }
 function experimentResults(experiment) {
@@ -100,7 +105,7 @@ function experimentResults(experiment) {
   return cost+(experiment.evaluations||[]).map(evaluation=>{
     const m=evaluation.measurements;
     const rows=m.cells.map(c=>`<tr><td>${esc(c.case)}</td><td>${esc(c.condition)}</td><td>${fmt(c.usage.total_tokens)}</td><td>${seconds(c.wall_seconds)}</td><td>${c.quality.passed?'Pass':'Fail'}</td></tr>`).join('');
-    return `<section class="section"><h3>${esc(evaluation.protocol.id)}</h3><p>${esc(m.scope)}</p><p>Native total tokens: <strong>${fmt(m.raw_total_tokens)} → ${fmt(m.compact_total_tokens)}</strong>. Registered gate: <strong>${m.acceptance_passed?'Passed':'Failed'}</strong>. Token reduction: ${fmt(m.token_reduction_fraction*100)}%. Trial inference is included per arm; analyst, implementation and evaluation overhead is separate.</p><div class="table-container evlv-table-scroll"><table class="evlv-table"><thead><tr><th>Case</th><th>Presentation</th><th>Total tokens</th><th>Wall time</th><th>Quality</th></tr></thead><tbody>${rows}</tbody></table></div>${evaluation.reviews.map(review=>`<h4>Analyst verdict: ${esc(review.verdict)}</h4><p>${esc(review.notes)}</p>`).join('')}<details><summary>Protocol and evidence references</summary><pre>${esc(JSON.stringify(evaluation,null,2))}</pre></details></section>`;
+    return `<section class="section"><h3>${esc(evaluation.protocol.id)}</h3><p>${esc(m.scope)}</p><p>Native total tokens: <strong>${fmt(m.raw_total_tokens)} → ${fmt(m.compact_total_tokens)}</strong>. Registered gate: <strong>${m.acceptance_passed?'Passed':'Failed'}</strong>. Token reduction: ${fmt(m.token_reduction_fraction*100)}%. Trial inference is included per arm; analyst, implementation and evaluation overhead is separate.</p><div class="table-container ui-table-scroll"><table class="ui-table"><thead><tr><th>Case</th><th>Presentation</th><th>Total tokens</th><th>Wall time</th><th>Quality</th></tr></thead><tbody>${rows}</tbody></table></div>${evaluation.reviews.map(review=>`<h4>Analyst verdict: ${esc(review.verdict)}</h4><p>${esc(review.notes)}</p>`).join('')}<details><summary>Protocol and evidence references</summary><pre>${esc(JSON.stringify(evaluation,null,2))}</pre></details></section>`;
   }).join('') || '<p>Proposal only; no measured trial results.</p>';
 }
 function showModal(title, body) {
@@ -108,18 +113,18 @@ function showModal(title, body) {
   if(!$('#modal').open) $('#modal').showModal();
 }
 function field(label, name, value='', {textarea=false,required=false,hint=''}={}) {
-  const control=textarea?`<textarea class="evlv-input" aria-label="${esc(label)}" name="${name}" ${required?'required':''}>${esc(value)}</textarea>`:`<input class="evlv-input" aria-label="${esc(label)}" name="${name}" value="${esc(value)}" ${required?'required':''}>`;
+  const control=textarea?`<textarea class="ui-input" aria-label="${esc(label)}" name="${name}" ${required?'required':''}>${esc(value)}</textarea>`:`<input class="ui-input" aria-label="${esc(label)}" name="${name}" value="${esc(value)}" ${required?'required':''}>`;
   return `<label>${esc(label)}${control}${hint?`<small>${esc(hint)}</small>`:''}</label>`;
 }
 function form(action, body, submit='Save') {return `<form data-form="${action}">${body}<div class="modal-actions">${button('Cancel','type="button" data-close')}${button(submit,'type="submit"',true)}</div></form>`;}
 function newProject() {showModal('Add project',form('project',field('Project name','name','',{required:true})+field('Repository / working folder','repo','',{required:true})+field('Analysis scope','scope','',{textarea:true}),'Add project'));}
 function newTask() {
   if(!data.projects.length) return newProject();
-  showModal('Add task',form('task',`<label>Project<select class="evlv-input evlv-select" aria-label="Project" name="project_id">${options(data.projects,'id','name',project)}</select></label>`+field('Task title','title','',{required:true})+field('Intended outcome','goal','',{textarea:true,required:true})+field('Acceptance / verification criteria','acceptance','',{textarea:true}),'Start task'));
+  showModal('Add task',form('task',`<label>Project<select class="ui-input" aria-label="Project" name="project_id">${options(data.projects,'id','name',project)}</select></label>`+field('Task title','title','',{required:true})+field('Intended outcome','goal','',{textarea:true,required:true})+field('Acceptance / verification criteria','acceptance','',{textarea:true}),'Start task'));
 }
 function assignTurn(turn) {
   if(!data.tasks.length) return toast('Create a task before assigning a turn.');
-  showModal('Assign collected turn',`<p>${esc((turn.prompt||'Prompt unavailable').slice(0,300))}</p>`+form('assign',`<input type="hidden" name="session_id" value="${esc(turn.session_id)}"><input type="hidden" name="turn_id" value="${esc(turn.turn_id)}"><label>Task<select class="evlv-input evlv-select" aria-label="Task" name="task_id" required>${options(data.tasks,'id','title',task)}</select></label>`,'Assign turn'));
+  showModal('Assign collected turn',`<p>${esc((turn.prompt||'Prompt unavailable').slice(0,300))}</p>`+form('assign',`<input type="hidden" name="session_id" value="${esc(turn.session_id)}"><input type="hidden" name="turn_id" value="${esc(turn.turn_id)}"><label>Task<select class="ui-input" aria-label="Task" name="task_id" required>${options(data.tasks,'id','title',task)}</select></label>`,'Assign turn'));
 }
 function taskDetails(row) {
   showModal(row.title,`<dl class="detail-grid"><dt>Status</dt><dd>${badge(row.status)}</dd><dt>Goal</dt><dd>${esc(row.goal)}</dd><dt>Acceptance</dt><dd>${esc(row.acceptance||'Not specified')}</dd><dt>Outcome evidence</dt><dd>${esc(row.outcome||'Not verified')}</dd><dt>Measured tokens</dt><dd>${fmt(row.usage?.total_tokens)}</dd></dl><div class="modal-actions">${button('Analyze / inspect subtasks',`data-history-task="${esc(row.id)}"`)}${button('Open task evidence',`data-open-task="${esc(row.id)}"`)}</div>`);
@@ -131,7 +136,7 @@ function ruleDialog(rule={}) {
     field('Category name','category',rule.category||'',{required:true})+
     field('Operation label contains — plain text','pattern',rule.pattern||'',{required:true,hint:'Case-insensitive literal text. No regex, wildcards, or LLM call. This checks the operation label, not the full command.'})+
     `<div class="rule-preview"><strong>Example:</strong> <code>tests</code> matches <code>shell / tests (pytest)</code>. <code>pytest|jest</code> is literal text, not an OR expression. Use separate rules for alternatives.<p class="muted">Codex-reviewed labels take precedence; these rules classify only unreviewed events.</p>${button('Preview matches','type="button" data-preview-rule')}<div id="rule-preview-result" aria-live="polite"></div></div>`+
-    `<label>Enabled<select class="evlv-input evlv-select" aria-label="Enabled" name="enabled"><option value="true" ${rule.enabled!==0?'selected':''}>Yes</option><option value="false" ${rule.enabled===0?'selected':''}>No</option></select></label>`));
+    `<label>Enabled<select class="ui-input" aria-label="Enabled" name="enabled"><option value="true" ${rule.enabled!==0?'selected':''}>Yes</option><option value="false" ${rule.enabled===0?'selected':''}>No</option></select></label>`));
 }
 async function previewRule() {
   const input=$('#modal [name="pattern"]');const pattern=input.value;
@@ -194,7 +199,7 @@ function tasksTable(rows) {
     ]);
 }
 function reviewOpportunity(row) {
-  const select=(label,name,values,current)=>`<label>${label}<select class="evlv-input evlv-select" aria-label="${esc(label)}" name="${name}">${values.map(v=>`<option ${v===current?'selected':''}>${v}</option>`).join('')}</select></label>`;
+  const select=(label,name,values,current)=>`<label>${label}<select class="ui-input" aria-label="${esc(label)}" name="${name}">${values.map(v=>`<option ${v===current?'selected':''}>${v}</option>`).join('')}</select></label>`;
   showModal('Review opportunity',`<p>${esc(row.observation)}</p><p>${esc(row.action)}</p><p class="muted">${esc(row.guardrail)}</p>`+form('decision',`<input name="id" type="hidden" value="${esc(row.id)}">`+
     select('Decision','decision',['review','declined','deferred'],row.state.decision)+
     select('Implementation','implementation',['not_started','prepared','applied','reverted'],row.state.implementation)+
@@ -215,7 +220,10 @@ function render() {
   if(!data) return;
   tableMenus=[];
   $('#title').textContent=config[view][0]; $('#subtitle').textContent=config[view][1];
-  $('#live').textContent=(data.sources.collection_enabled?'Collecting · ':'Paused · ')+date(data.at);
+  $('#live').textContent=data.sources.collection_enabled?'Collecting':'Paused';
+  $('#live').title='Last updated '+date(data.at);
+  $('#connection-dot').dataset.state=data.sources.collection_enabled?'collecting':'paused';
+  $('#breadcrumb').textContent=config[view][0];
   $('#inbox-count').textContent=data.inbox.length||'';
   $('#langfuse').href=data.langfuse_url;
   document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
@@ -225,7 +233,7 @@ function render() {
   $('#category').innerHTML='<option value="">All categories</option>'+categories.map(name=>`<option ${category===name?'selected':''}>${esc(name)}</option>`).join('');
   const scope=task?titleForTask(task):project?data.projects.find(p=>p.id===project)?.name:'All collected sources';
   $('#scope-summary').innerHTML=`<span>Scope: <strong>${esc(scope)}</strong>${category?' · '+esc(category):''}</span><span>Selected: <strong>${fmt(data.usage.total_tokens)}</strong> tokens</span><span>All sources: <strong>${fmt(data.usage_scope.all_sources.total_tokens)}</strong></span><button class="inline-link" data-reconcile>Why totals differ / reconcile</button>`;
-  $('#page-actions').innerHTML=view==='projects'?button('Add project','data-add-project',true):view==='tasks'?button('Add task','data-add-task',true):'';
+  $('#page-actions').innerHTML=view==='projects'?button('Add project','data-add-project',true,'plus'):view==='tasks'?button('Add task','data-add-task',true,'plus'):'';
   let html='';
   if(view==='overview') {
     const accounting=data.runtime_accounting;
@@ -256,7 +264,7 @@ function render() {
   if(view==='rules') {
     html='<div class="notice"><strong>Two separate mechanisms:</strong> Codex reads event evidence and assigns purpose labels with rationale/confidence. Unreviewed events use the plain-text rules below. Rules do not invoke an LLM, do not search full commands, and do not override Codex-reviewed labels.</div>'+
       section('Current categories',categoryTable('reviewed-categories'),'', 'Open an event to inspect who assigned its category and why. Category rows summarize the currently selected scope.')+
-      section('Fallback text rules',table('rules',[{key:'priority',label:'Order',numeric:true},{key:'category',label:'Category'},{key:'pattern',label:'Operation label contains (literal)',cell:r=>`<code>${esc(r.pattern)}</code>`},{key:'enabled',label:'Enabled',cell:r=>badge(r.enabled?'Yes':'No')},{key:'version',label:'Version',numeric:true},{key:'matches',label:'Matching labels',numeric:true},{key:'eligible',label:'Unreviewed matches',numeric:true}],data.rules.map((r,index)=>({...r,priority:index+1,matches:data.events.filter(e=>e.kind==='tool'&&e.name.toLowerCase().includes(r.pattern.toLowerCase())).length,eligible:data.events.filter(e=>e.kind==='tool'&&e.category_basis!=='Codex agent interpretation'&&e.name.toLowerCase().includes(r.pattern.toLowerCase())).length})),r=>[{id:'edit',label:'Edit rule and preview matches',onSelect:()=>ruleDialog(r)}]),button('Add rule','data-add-rule',true),'First enabled match wins in listed priority order. Matching is case-insensitive substring matching, not regex. Match counts use the current event window.');
+      section('Fallback text rules',table('rules',[{key:'priority',label:'Order',numeric:true},{key:'category',label:'Category'},{key:'pattern',label:'Operation label contains (literal)',cell:r=>`<code>${esc(r.pattern)}</code>`},{key:'enabled',label:'Enabled',cell:r=>badge(r.enabled?'Yes':'No')},{key:'version',label:'Version',numeric:true},{key:'matches',label:'Matching labels',numeric:true},{key:'eligible',label:'Unreviewed matches',numeric:true}],data.rules.map((r,index)=>({...r,priority:index+1,matches:data.events.filter(e=>e.kind==='tool'&&e.name.toLowerCase().includes(r.pattern.toLowerCase())).length,eligible:data.events.filter(e=>e.kind==='tool'&&e.category_basis!=='Codex agent interpretation'&&e.name.toLowerCase().includes(r.pattern.toLowerCase())).length})),r=>[{id:'edit',label:'Edit rule and preview matches',onSelect:()=>ruleDialog(r)}]),button('Add rule','data-add-rule',true,'plus'),'First enabled match wins in listed priority order. Matching is case-insensitive substring matching, not regex. Match counts use the current event window.');
   }
   if(view==='opportunities') html=section('Codex recommendations',findingsTable())+section('Additional detector signals',table('opportunities',[{key:'title',label:'Signal'},{key:'observation',label:'Evidence',cell:r=>clip(r.observation)},{key:'decision',label:'Decision',cell:r=>badge(r.state.decision)},{key:'implementation',label:'Implementation',cell:r=>badge(r.state.implementation)},{key:'evaluation',label:'Evaluation',cell:r=>badge(r.state.evaluation)}],data.opportunities,r=>[{id:'review',label:'Review proposal and record decision',onSelect:()=>reviewOpportunity(r)}]),'','Detectors flag large or repeated results. A signal is not proof of waste; measured savings require a controlled comparison.');
   if(view==='experiments') html=section('Experiment proposals',table('experiments',[
@@ -269,8 +277,9 @@ function render() {
       '<dl class="detail-grid">'+Object.entries(r.proposal).map(([key,value])=>'<dt>'+esc(key.replaceAll('_',' '))+'</dt><dd>'+esc(value)+'</dd>').join('')+
       '<dt>Frozen baseline</dt><dd>'+esc(r.baseline_sha256)+'</dd><dt>Evidence window</dt><dd>'+esc(r.baseline.first_at)+' — '+esc(r.baseline.last_at)+'; '+fmt(r.baseline.event_count)+' events</dd></dl><p>Protocol and results below apply only to the recorded evaluation scope. Actual charges and pure model latency remain unknown.</p>'+experimentResults(r))}
   ]),'','Agents create proposals using the MCP plan_experiment tool or analyst_cli.py. The baseline is frozen at proposal creation; live task totals may subsequently change.');
-  if(view==='setup') html=section('Collection',`<dl class="detail-grid"><dt>State</dt><dd>${badge(data.sources.collection_enabled?'Enabled':'Paused')}</dd><dt>Authorized source</dt><dd>${esc(data.sources.root)}</dd><dt>Retained files</dt><dd>${data.sources.files}</dd><dt>Model HTTP exchanges</dt><dd>${data.capture_coverage.total_model_exchanges}</dd><dt>Source errors</dt><dd>${data.sources.errors.length}</dd></dl><div class="modal-actions">${button(data.sources.collection_enabled?'Pause collection':'Resume collection',`data-collection="${!data.sources.collection_enabled}"`)}</div>`, '', 'Pausing stops new exports and rejects new capture-route calls. Existing data is retained.')+section('Coverage limits',`<ul>${data.limitations.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><p>Private setup and credentials: <code>work/security/langfuse-stack/</code>. The app uses the pinned private EVLV DOM design-system distribution.</p>`)+section('Audit log',table('audit',[{key:'at',label:'When',cell:r=>date(r.at)},{key:'action',label:'Action'},{key:'entity',label:'Entity',cell:r=>clip(r.entity)}],data.audit,null));
+  if(view==='setup') html=section('Collection',`<dl class="detail-grid"><dt>State</dt><dd>${badge(data.sources.collection_enabled?'Enabled':'Paused')}</dd><dt>Authorized source</dt><dd>${esc(data.sources.root)}</dd><dt>Retained files</dt><dd>${data.sources.files}</dd><dt>Model HTTP exchanges</dt><dd>${data.capture_coverage.total_model_exchanges}</dd><dt>Source errors</dt><dd>${data.sources.errors.length}</dd></dl><div class="modal-actions">${button(data.sources.collection_enabled?'Pause collection':'Resume collection',`data-collection="${!data.sources.collection_enabled}"`)}</div>`, '', 'Pausing stops new exports and rejects new capture-route calls. Existing data is retained.')+section('Coverage limits',`<ul>${data.limitations.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><p>Private setup and credentials: <code>work/security/langfuse-stack/</code>. Shared controls follow the workspace design system.</p>`)+section('Audit log',table('audit',[{key:'at',label:'When',cell:r=>date(r.at)},{key:'action',label:'Action'},{key:'entity',label:'Entity',cell:r=>clip(r.entity)}],data.audit,null));
   $('#content').innerHTML=html;
+  $('#content').setAttribute('aria-busy','false');
   if(view==='history') renderHistory($('#history-root'),{project,open:id=>openTaskHistory(id,showModal),onError:toast});
   for(const menu of tableMenus) {
     const target=document.querySelector(`[data-row-menu="${menu.key}"]`);
@@ -282,6 +291,7 @@ document.addEventListener('click',async event=>{
   const target=event.target.closest('button'); if(!target) return;
   try {
     if(target.hasAttribute('data-close')) return $('#modal').close();
+    if(target.hasAttribute('data-refresh')) return await load();
     if(target.dataset.view) return openView(target.dataset.view);
     if(target.hasAttribute('data-add-project')) return newProject();
     if(target.hasAttribute('data-add-task')) return newTask();
@@ -320,7 +330,18 @@ for(const name of ['project','task','category']) $('#'+name).addEventListener('c
   syncURL();await load();
 });
 $('#refresh').onclick=load;
-$('#theme').onclick=()=>{const value=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=value;localStorage.setItem('ttgl-theme',value);};
-try {const theme=localStorage.getItem('ttgl-theme');if(theme==='dark'||theme==='light')document.documentElement.dataset.theme=theme;}catch{}
+function setTheme(value) {
+  document.documentElement.dataset.theme=value;
+  const label=value==='dark'?'Switch to light theme':'Switch to dark theme';
+  $('#theme').innerHTML=icon(value==='dark'?'sun':'moon');
+  $('#theme').setAttribute('aria-label',label);$('#theme').title=label;
+}
+$('#theme').onclick=()=>{
+  const value=document.documentElement.dataset.theme==='dark'?'light':'dark';
+  setTheme(value);try {localStorage.setItem('ttgl-theme',value);}catch{}
+};
+for(const placeholder of document.querySelectorAll('[data-icon]')) placeholder.outerHTML=icon(placeholder.dataset.icon);
+try {const theme=localStorage.getItem('ttgl-theme');if(theme==='dark'||theme==='light')setTheme(theme);}catch{}
+$('#content').innerHTML=skeleton();
 load();
 setInterval(()=>{if(!document.hidden&&!$('#modal').open&&!document.activeElement?.matches('input,textarea,select')&&!busy)load();},10000);
