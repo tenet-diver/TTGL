@@ -519,6 +519,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(target.read_bytes(), content=design_assets[path.path])
         assets = {'/task-history.js': ('task-history.js', 'text/javascript; charset=utf-8'), '/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8'),
                   '/ui.js': ('ui.js', 'text/javascript; charset=utf-8'),
+                  '/theme-init.js': ('theme-init.js', 'text/javascript; charset=utf-8'),
                   '/ui.css': ('ui.css', 'text/css; charset=utf-8'),
                   '/ui/icons.js': ('ui/icons.js', 'text/javascript; charset=utf-8'),
                   '/ui/geist-latin.woff2': ('ui/geist-latin.woff2', 'font/woff2'),

@@ -29,8 +29,12 @@ CLI or npm dependency tree.
 
 The concrete radius tokens and shadcn control sizing take precedence over the
 template's conflicting prose about pill-shaped cards. Pills are used for badges;
-rectangular tables/forms keep usable corners. Light is the default. An existing
-saved dark preference and the theme toggle are retained.
+rectangular tables/forms keep usable corners. Light is the default. The top-bar theme toggle works at every viewport size;
+its local preference is applied before styles paint and synchronized across tabs.
+Tables share per-column filters and three-state sorting, including evaluation
+tables in dialogs. Filters combine before pagination, use displayed derived
+values, and support numeric comparisons. Table preferences are stored locally;
+Reset table clears search, filters and sorting.
 
 With already reviewed Playwright/Chromium available, opt-in workflow checks run
 against temporary stores (no real inference):
@@ -40,5 +44,5 @@ TTGL_BROWSER_QA=1 TTGL_CHROMIUM=/path/to/chromium \
   python3 -m unittest discover -s tools/usage-monitor/observability -p '*browser.py'
 ```
 
-The UI refresh passed the 40 workspace/history unit checks and both browser
+The UI refresh passed the 40 workspace/history unit checks and workspace/history browser
 workflows on 2026-11-12, including all 11 views at 1440, 768 and 390px widths.

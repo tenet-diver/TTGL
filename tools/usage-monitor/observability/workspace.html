@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <title>TTGL · Codex Observatory</title>
+  <script src="/theme-init.js"></script>
   <link rel="preload" href="/ui/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/ui.css">
   <link rel="stylesheet" href="/workspace.css">
@@ -33,12 +34,11 @@
     <a id="langfuse" target="_blank" rel="noopener">Open Langfuse <span data-icon="arrow-up-right"></span></a>
     <div class="sidebar-utilities">
       <div class="connection"><span id="connection-dot" class="status-dot" aria-hidden="true"></span><span id="live" role="status">Connecting…</span></div>
-      <button id="theme" class="ui-button ui-icon-button" data-slot="button" data-variant="ghost" aria-label="Switch to dark theme" title="Switch to dark theme"><span data-icon="moon"></span></button>
     </div>
   </footer>
 </aside>
 <main id="main" tabindex="-1">
-  <div class="workspace-bar"><span>Observatory</span><span data-icon="chevron-right"></span><strong id="breadcrumb">Overview</strong><span class="ui-badge">Native evidence</span></div>
+  <div class="workspace-bar"><span>Observatory</span><span data-icon="chevron-right"></span><strong id="breadcrumb">Overview</strong><div class="workspace-utilities"><span class="ui-badge">Native evidence</span><button id="theme" class="ui-button" data-slot="button" data-variant="ghost" aria-label="Switch to dark theme" title="Switch to dark theme"><span data-icon="moon"></span><span>Dark mode</span></button></div></div>
   <div class="page-body">
     <header class="page-header">
       <div><h1 id="title">Overview</h1><p id="subtitle"></p></div>

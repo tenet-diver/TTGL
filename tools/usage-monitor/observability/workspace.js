@@ -1,5 +1,5 @@
 import { renderHistory, openTaskHistory } from '/task-history.js';
-import { collectionPage } from '/design-system/collection.js';
+import { collectionPage, normalizeSearch } from '/design-system/collection.js';
 import { button, badge, icon, emptyState, skeleton, createActionMenu } from '/ui.js';
 
 const $ = selector => document.querySelector(selector);
@@ -28,7 +28,20 @@ const query = new URLSearchParams(location.search);
 let view = config[location.hash.slice(1)] ? location.hash.slice(1) : 'overview';
 let project = query.get('project') || '', task = query.get('task') || '', category = query.get('category') || '';
 let data = null, busy = false, tableMenus = [], toastTimer;
-const tables = {};
+const tables = Object.create(null), tableDefinitions = new Map();
+try {
+  const saved=JSON.parse(localStorage.getItem('ttgl-table-settings-v1')||'{}');
+  for(const [id,value] of Object.entries(saved||{})) {
+    if(!value||typeof value!=='object') continue;
+    tables[id]={search:typeof value.search==='string'?value.search:'',page:1,
+      sort:typeof value.sort==='string'?value.sort:null,direction:value.direction===-1?-1:1,
+      filters:Object.fromEntries(Object.entries(value.filters||{}).filter(([,v])=>typeof v==='string'))};
+  }
+} catch {}
+function saveTableSettings() {
+  try {localStorage.setItem('ttgl-table-settings-v1',JSON.stringify(Object.fromEntries(
+    Object.entries(tables).map(([id,{search,sort,direction,filters}])=>[id,{search,sort,direction,filters}]))));}catch{}
+}
 
 function toast(message) {
   $('#toast').textContent = message;
@@ -75,37 +88,91 @@ function openView(next) { view=next; syncURL(); render(); window.scrollTo(0,0); 
 async function openTask(id) {
   task=id; project=data.tasks.find(t=>t.id===id)?.project_id || ''; category=''; view='activity'; syncURL(); await load();
 }
+function columnValue(column,row) { return column.value?column.value(row):row[column.key]; }
+function columnText(column,row) {
+  const value=columnValue(column,row);
+  if(column.filterText) return column.filterText(row);
+  return value==null?'Unknown':typeof value==='number'?`${value} ${fmt(value)} ${compact(value)}`:String(value);
+}
+function matchesColumn(column,row,query) {
+  if(!query.trim()) return true;
+  const comparison=column.numeric&&query.trim().match(/^(<=|>=|!=|=|<|>)\s*(-?\d[\d,]*(?:\.\d+)?)$/);
+  if(comparison) {
+    const value=columnValue(column,row), limit=Number(comparison[2].replaceAll(',',''));
+    if(typeof value!=='number'||!Number.isFinite(value)) return false;
+    return {'<':value<limit,'>':value>limit,'<=':value<=limit,'>=':value>=limit,'=':value===limit,'!=':value!==limit}[comparison[1]];
+  }
+  return normalizeSearch(String(columnText(column,row))).includes(normalizeSearch(query));
+}
 function table(id, columns, rows, actions, searchable=true) {
-  const state=tables[id] ||= {search:'',page:1,sort:null,direction:1};
+  tableDefinitions.set(id,{columns,rows,actions,searchable});
+  const state=tables[id] ||= {search:'',page:1,sort:null,direction:1,filters:{}};
+  if(!columns.some(c=>c.key===state.sort)) state.sort=null;
+  const filtered=columns.some(c=>state.filters[c.key]?.trim());
+  const sortedColumn=columns.find(c=>c.key===state.sort);
   const result=collectionPage(rows, {
-    search:state.search, searchText:row=>Object.entries(row).filter(([k,v])=>typeof v==='string'||typeof v==='number').map(([,v])=>v).join(' '),
+    search:state.search, searchText:row=>columns.map(c=>columnText(c,row)).join(' '),
+    filter:row=>columns.every(c=>matchesColumn(c,row,state.filters[c.key]||'')),
     page:state.page,pageSize:id==='overview-categories'?10:20,
-    compare:state.sort?(a,b)=>{
-      const left=a[state.sort],right=b[state.sort];
-      return state.direction*(typeof left==='number'&&typeof right==='number'?left-right:String(left??'').localeCompare(String(right??'')));
+    compare:sortedColumn?(a,b)=>{
+      const left=columnValue(sortedColumn,a),right=columnValue(sortedColumn,b);
+      // Unknown values stay last in either direction rather than becoming zero.
+      if(left==null||right==null) return left==null?(right==null?0:1):-1;
+      return state.direction*(typeof left==='number'&&typeof right==='number'?left-right:
+        String(left).localeCompare(String(right),'en',{numeric:true,sensitivity:'base'}));
     }:undefined
   });
   state.page=result.page;
-  const toolbar=searchable?`<div class="list-toolbar"><div class="list-search ui-search"><input class="ui-input" data-search="${id}" value="${esc(state.search)}" placeholder="Search these rows" aria-label="Search ${esc(id)}"><button data-clear-search="${id}" aria-label="Clear search">×</button></div><span class="muted">${fmt(result.total)} rows</span></div>`:'';
-  const head=columns.map(column=>`<th scope="col" class="${column.numeric?'numeric':''}"><button data-sort="${id}" data-key="${column.key}">${esc(column.label)}${state.sort===column.key?(state.direction===1?' ↑':' ↓'):''}</button></th>`).join('');
+  const toolbar=`<div class="list-toolbar">${searchable?`<div class="list-search ui-search"><input class="ui-input" data-search="${id}" value="${esc(state.search)}" placeholder="Search these rows" aria-label="Search ${esc(id)}"><button data-clear-search="${id}" aria-label="Clear search">${icon('x')}</button></div>`:''}<div class="table-controls">${state.search||filtered||state.sort?button('Reset table',`data-reset-table="${id}"`):''}<span class="muted" role="status">${fmt(result.total)} of ${fmt(rows.length)} rows</span></div></div>`;
+  const head=columns.map(column=>`<th scope="col" aria-sort="${state.sort===column.key?(state.direction===1?'ascending':'descending'):'none'}" class="${column.numeric?'numeric':''}"><button data-sort="${id}" data-key="${column.key}" aria-label="Sort by ${esc(column.label)}">${esc(column.label)}<span aria-hidden="true" class="sort-indicator">${state.sort===column.key?(state.direction===1?'↑':'↓'):'↕'}</span></button></th>`).join('');
+  const filters=columns.map(column=>`<td><input type="search" class="ui-input column-filter" data-column-filter="${id}" data-key="${column.key}" value="${esc(state.filters[column.key]||'')}" aria-label="Filter ${esc(id)} by ${esc(column.label)}" placeholder="${column.numeric?'e.g. >= 100':'Filter…'}" ${column.numeric?'title="Filter by value, or use =, !=, <, <=, >, >= with a number"':''}></td>`).join('');
   const body=result.items.map((row,index)=>{
     const cells=columns.map(column=>`<td class="${column.numeric?'numeric':''}">${column.cell?column.cell(row):esc(row[column.key])}</td>`).join('');
     let menu='';
     if(actions) {const key=id+'-'+index; tableMenus.push({key,label:'Actions for '+(row.title||row.name||row.id||'row'),actions:actions(row).map(action=>({...action,onSelect:()=>{try{Promise.resolve(action.onSelect()).catch(error=>toast(error.message));}catch(error){toast(error.message);}}}))}); menu=`<td class="row-menu"><span data-row-menu="${key}"></span></td>`;}
     return `<tr>${cells}${menu}</tr>`;
   }).join('');
-  const emptyAction=state.search?button('Clear search',`data-clear-search="${id}"`):id==='projects'?button('Add project','data-add-project',true):id==='tasks'?button('Add task','data-add-task',true):'';
-  const empty=emptyState(state.search?'No matching rows':'Nothing here yet',state.search?'Try a different search or clear these terms.':'Rows will appear when evidence is available for this scope.',emptyAction);
-  return toolbar+`<div class="table-container ui-table-scroll" data-slot="table-container"><table class="ui-table" data-slot="table"><thead><tr>${head}${actions?'<th scope="col"><span class="sr-only">Actions</span></th>':''}</tr></thead><tbody>${body||`<tr><td colspan="${columns.length+(actions?1:0)}" class="table-empty">${empty}</td></tr>`}</tbody></table></div>`+
-    (result.pages>1?`<div class="pagination"><span>${(result.page-1)*result.pageSize+1}–${Math.min(result.page*result.pageSize,result.total)} of ${result.total}</span>${button('Previous',`data-page="${id}" data-delta="-1" ${result.page===1?'disabled':''}`)}<span>${result.page} / ${result.pages}</span>${button('Next',`data-page="${id}" data-delta="1" ${result.page===result.pages?'disabled':''}`)}</div>`:'');
+  const hasFilters=state.search||filtered;
+  const emptyAction=hasFilters?button('Clear search and filters',`data-reset-table="${id}"`):id==='projects'?button('Add project','data-add-project',true):id==='tasks'?button('Add task','data-add-task',true):'';
+  const empty=emptyState(hasFilters?'No matching rows':'Nothing here yet',hasFilters?'Try different terms or clear the column filters.':'Rows will appear when evidence is available for this scope.',emptyAction);
+  return `<div data-table="${esc(id)}">`+toolbar+`<div class="table-container ui-table-scroll" data-slot="table-container"><table class="ui-table" data-slot="table"><thead><tr>${head}${actions?'<th scope="col"><span class="sr-only">Actions</span></th>':''}</tr><tr class="column-filters">${filters}${actions?'<td></td>':''}</tr></thead><tbody>${body||`<tr><td colspan="${columns.length+(actions?1:0)}" class="table-empty">${empty}</td></tr>`}</tbody></table></div>`+
+    (result.pages>1?`<div class="pagination"><span>${(result.page-1)*result.pageSize+1}–${Math.min(result.page*result.pageSize,result.total)} of ${result.total}</span>${button('Previous',`data-page="${id}" data-delta="-1" ${result.page===1?'disabled':''}`)}<span>${result.page} / ${result.pages}</span>${button('Next',`data-page="${id}" data-delta="1" ${result.page===result.pages?'disabled':''}`)}</div>`:'')+'</div>';
 }
+function mountTableMenus() {
+  for(const menu of tableMenus) {
+    const target=document.querySelector(`[data-row-menu="${menu.key}"]`);
+    if(target&&!target.children.length) target.append(createActionMenu(document,menu.label,menu.actions));
+  }
+}
+function refreshTable(id) {
+  const target=document.querySelector(`[data-table="${CSS.escape(id)}"]`), definition=tableDefinitions.get(id);
+  if(!target||!definition) return;
+  const active=document.activeElement, scroll=target.querySelector('.table-container')?.scrollLeft||0;
+  const selector=active?.matches('[data-column-filter]')?`[data-column-filter][data-key="${CSS.escape(active.dataset.key)}"]`:
+    active?.matches('[data-search]')?'[data-search]':active?.matches('[data-sort]')?`[data-sort][data-key="${CSS.escape(active.dataset.key)}"]`:null;
+  const position=active?.selectionStart;
+  tableMenus=[];
+  target.outerHTML=table(id,definition.columns,definition.rows,definition.actions,definition.searchable);
+  mountTableMenus();
+  const replacement=document.querySelector(`[data-table="${CSS.escape(id)}"]`);
+  const field=selector&&replacement.querySelector(selector);
+  if(field) {field.focus({preventScroll:true});if(position!=null) field.setSelectionRange(position,position);}
+  replacement.querySelector('.table-container').scrollLeft=scroll;
+  saveTableSettings();
+}
+
 function experimentResults(experiment) {
   const accounting=experiment.accounting?.at(-1)?.payload;
   const cost=accounting?`<section class="section"><h3>Accrued research overhead</h3><p>${fmt(accounting.current_research_tokens)} native tokens through ${esc(accounting.as_of)}; ${fmt(accounting.illustrative_repetitions_to_recover_current_tokens)} similar ${esc(accounting.unit||'diagnostic cases')} to recover that token count at the observed mean saving. This is not cash break-even. First use has no net saving.</p><details><summary>Accounting scope and limitations</summary><p>${esc(accounting.limitations)}</p></details></section>`:'';
-  return cost+(experiment.evaluations||[]).map(evaluation=>{
+  return cost+(experiment.evaluations||[]).map((evaluation,index)=>{
     const m=evaluation.measurements;
-    const rows=m.cells.map(c=>`<tr><td>${esc(c.case)}</td><td>${esc(c.condition)}</td><td>${fmt(c.usage.total_tokens)}</td><td>${seconds(c.wall_seconds)}</td><td>${c.quality.passed?'Pass':'Fail'}</td></tr>`).join('');
-    return `<section class="section"><h3>${esc(evaluation.protocol.id)}</h3><p>${esc(m.scope)}</p><p>Native total tokens: <strong>${fmt(m.raw_total_tokens)} → ${fmt(m.compact_total_tokens)}</strong>. Registered gate: <strong>${m.acceptance_passed?'Passed':'Failed'}</strong>. Token reduction: ${fmt(m.token_reduction_fraction*100)}%. Trial inference is included per arm; analyst, implementation and evaluation overhead is separate.</p><div class="table-container ui-table-scroll"><table class="ui-table"><thead><tr><th>Case</th><th>Presentation</th><th>Total tokens</th><th>Wall time</th><th>Quality</th></tr></thead><tbody>${rows}</tbody></table></div>${evaluation.reviews.map(review=>`<h4>Analyst verdict: ${esc(review.verdict)}</h4><p>${esc(review.notes)}</p>`).join('')}<details><summary>Protocol and evidence references</summary><pre>${esc(JSON.stringify(evaluation,null,2))}</pre></details></section>`;
+    const resultsTable=table('evaluation-'+encodeURIComponent(experiment.id)+'-'+index,[
+      {key:'case',label:'Case'},{key:'condition',label:'Presentation'},
+      {key:'total_tokens',label:'Total tokens',numeric:true,cell:r=>fmt(r.total_tokens)},
+      {key:'wall_seconds',label:'Wall time',numeric:true,cell:r=>seconds(r.wall_seconds)},
+      {key:'quality',label:'Quality'}
+    ],m.cells.map(c=>({...c,total_tokens:c.usage.total_tokens,quality:c.quality.passed?'Pass':'Fail'})),null);
+    return `<section class="section"><h3>${esc(evaluation.protocol.id)}</h3><p>${esc(m.scope)}</p><p>Native total tokens: <strong>${fmt(m.raw_total_tokens)} → ${fmt(m.compact_total_tokens)}</strong>. Registered gate: <strong>${m.acceptance_passed?'Passed':'Failed'}</strong>. Token reduction: ${fmt(m.token_reduction_fraction*100)}%. Trial inference is included per arm; analyst, implementation and evaluation overhead is separate.</p>${resultsTable}${evaluation.reviews.map(review=>`<h4>Analyst verdict: ${esc(review.verdict)}</h4><p>${esc(review.notes)}</p>`).join('')}<details><summary>Protocol and evidence references</summary><pre>${esc(JSON.stringify(evaluation,null,2))}</pre></details></section>`;
   }).join('') || '<p>Proposal only; no measured trial results.</p>';
 }
 function showModal(title, body) {
@@ -174,23 +241,23 @@ function capturesTable() {
   let notice=`${coverage.matched_selection} exchanges match this task/project; ${coverage.total_model_exchanges} across all sources. Tool-category filters do not hide model HTTP exchanges.`;
   if(data.wire_captures.some(c=>!c.response_body_available)) notice+=' Historical parser failures retained requests and timings but lost response bodies. Those rows are explicitly marked; bodies cannot be recovered from the capture files.';
   return section('Captured model HTTP exchanges',table('captures',[
-    {key:'started_at',label:'When',cell:r=>date(r.started_at)},
-    {key:'task_id',label:'Task',cell:r=>clip(titleForTask(r.task_id))},
-    {key:'status',label:'HTTP',cell:r=>badge(r.status??r.state)},
+    {key:'started_at',label:'When',filterText:r=>date(r.started_at)+' '+(r.started_at||''),cell:r=>date(r.started_at)},
+    {key:'task_id',label:'Task',value:r=>titleForTask(r.task_id),cell:r=>clip(titleForTask(r.task_id))},
+    {key:'status',label:'HTTP',value:r=>r.status??r.state,cell:r=>badge(r.status??r.state)},
     {key:'response_body_state',label:'Response body',cell:r=>`<span class="${r.response_body_available?'':'danger'}">${esc(r.response_body_state)}</span>`},
     {key:'correlation',label:'Matched by'},
-    {key:'compression',label:'Live compression',cell:r=>r.compression?.changes?.length?external(r.compression_url,r.compression.policy+' · '+fmt(r.request_bytes)+' → '+fmt(r.forwarded_request_bytes)+' B'):esc(r.compression?.policy||'off')},
-    {key:'request_bytes',label:'Request / response bytes',numeric:true,cell:r=>compact(r.request_bytes)+' / '+compact(r.response_bytes)},
+    {key:'compression',label:'Live compression',value:r=>r.compression?.policy||'off',cell:r=>r.compression?.changes?.length?external(r.compression_url,r.compression.policy+' · '+fmt(r.request_bytes)+' → '+fmt(r.forwarded_request_bytes)+' B'):esc(r.compression?.policy||'off')},
+    {key:'request_bytes',label:'Request / response bytes',numeric:true,filterText:r=>`${r.request_bytes??'Unknown'} / ${r.response_bytes??'Unknown'} ${compact(r.request_bytes)} / ${compact(r.response_bytes)}`,cell:r=>compact(r.request_bytes)+' / '+compact(r.response_bytes)},
     {key:'elapsed_seconds',label:'HTTP duration',numeric:true,cell:r=>seconds(r.elapsed_seconds)},
     {key:'first_body_byte_seconds',label:'First body byte',numeric:true,cell:r=>seconds(r.first_body_byte_seconds)}
   ],data.wire_captures,r=>[{id:'open',label:'Inspect retained request / response',onSelect:()=>window.open(r.langfuse_url,'_blank','noopener')}]),'',esc(notice)+(data.wire_captures.length?'':' This selection may be transcript-only; clear task/project filters to see other captured exchanges.'));
 }
 function tasksTable(rows) {
   return table('tasks',[{key:'title',label:'Task',cell:r=>`<button class="inline-link" data-task-details="${esc(r.id)}">${esc(r.title)}</button>`},
-    {key:'project_id',label:'Project',cell:r=>esc(data.projects.find(p=>p.id===r.project_id)?.name||'Unknown')},
+    {key:'project_id',label:'Project',value:r=>data.projects.find(p=>p.id===r.project_id)?.name||'Unknown',cell:r=>esc(data.projects.find(p=>p.id===r.project_id)?.name||'Unknown')},
     {key:'status',label:'Status',cell:r=>badge(r.status)},
     {key:'total_tokens',label:'Measured tokens',numeric:true,cell:r=>compact(r.usage?.total_tokens)},
-    {key:'updated',label:'Updated',cell:r=>date(r.updated)}],rows.map(r=>({...r,total_tokens:r.usage?.total_tokens||0})),r=>[
+    {key:'updated',label:'Updated',filterText:r=>date(r.updated)+' '+(r.updated||''),cell:r=>date(r.updated)}],rows.map(r=>({...r,total_tokens:r.usage?.total_tokens??null})),r=>[
       {id:'open',label:'Open task evidence',onSelect:()=>openTask(r.id)},
       {id:'history',label:'Analyze / inspect subtasks',onSelect:()=>openTaskHistory(r.id,showModal)},
       {id:'details',label:'Goal and verification',onSelect:()=>taskDetails(r)},
@@ -245,46 +312,43 @@ function render() {
     html=section('Latest Codex review',findingsTable(),'',report?`${esc(report.model)} · snapshot ${date(report.snapshot_at)} · ${report.tool_events} reviewed tool events`:'');
     if(report) html+=section('Scope and analyst overhead',`<dl class="detail-grid"><dt>Source scope</dt><dd>${esc(report.scope)}</dd><dt>Analyst token overhead</dt><dd>${fmt(report.overhead.total_tokens)} total; ${fmt(report.overhead.cached_input_tokens)} cached input</dd><dt>Snapshot</dt><dd>${esc(report.snapshot_hash)}</dd></dl><details><summary>Limits of this review</summary><ul>${report.limitations.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></details><p class="muted">Subsequent reviews inspect unreviewed events by default. No scheduled model calls or savings claims.</p>`);
   }
-  if(view==='projects') html=section('Projects',table('projects',[{key:'name',label:'Project'},{key:'repo',label:'Repository',cell:r=>clip(r.repo)},{key:'scope',label:'Scope',cell:r=>clip(r.scope)},{key:'created',label:'Created',cell:r=>date(r.created)}],data.projects,r=>[{id:'open',label:'Open project',onSelect:async()=>{project=r.id;task='';category='';view='overview';syncURL();await load();}}]));
+  if(view==='projects') html=section('Projects',table('projects',[{key:'name',label:'Project'},{key:'repo',label:'Repository',cell:r=>clip(r.repo)},{key:'scope',label:'Scope',cell:r=>clip(r.scope)},{key:'created',label:'Created',filterText:r=>date(r.created)+' '+(r.created||''),cell:r=>date(r.created)}],data.projects,r=>[{id:'open',label:'Open project',onSelect:async()=>{project=r.id;task='';category='';view='overview';syncURL();await load();}}]));
   if(view==='history') html='<div id="history-root"></div>';
   if(view==='tasks') html=section('Defined tasks',tasksTable(data.tasks.filter(t=>!project||t.project_id===project)),button('Open unassigned inbox','data-view="inbox"'),'Tasks are explicit goals. Their measured usage comes from assigned turns, not automatically inferred boundaries.');
-  if(view==='inbox') html=section('Unassigned turns',table('inbox',[{key:'prompt',label:'Prompt / activity',cell:r=>clip((r.prompt||'Prompt unavailable').replace(/\s+/g,' '))},{key:'repo',label:'Working folder',cell:r=>clip(r.repo)},{key:'start',label:'Started',cell:r=>date(r.start)},{key:'tokens',label:'Measured tokens',numeric:true,cell:r=>compact(r.usage?.total_tokens)},{key:'completed',label:'Agent turn',cell:r=>badge(r.completed?'Completed':'Open')}],data.inbox.map(r=>({...r,id:r.session_id+':'+r.turn_id,tokens:r.usage?.total_tokens||0})),r=>[{id:'assign',label:'Assign to a task',onSelect:()=>assignTurn(r)},{id:'open',label:'Open transcript',onSelect:()=>window.open(r.langfuse_url,'_blank','noopener')}]),'', 'Unassigned usage is included in all-source totals, but excluded from project/task totals. Agent turn completion is not verified task success.');
+  if(view==='inbox') html=section('Unassigned turns',table('inbox',[{key:'prompt',label:'Prompt / activity',cell:r=>clip((r.prompt||'Prompt unavailable').replace(/\s+/g,' '))},{key:'repo',label:'Working folder',cell:r=>clip(r.repo)},{key:'start',label:'Started',filterText:r=>date(r.start)+' '+(r.start||''),cell:r=>date(r.start)},{key:'tokens',label:'Measured tokens',numeric:true,cell:r=>compact(r.usage?.total_tokens)},{key:'completed',label:'Agent turn',value:r=>r.completed?'Completed':'Open',cell:r=>badge(r.completed?'Completed':'Open')}],data.inbox.map(r=>({...r,id:r.session_id+':'+r.turn_id,tokens:r.usage?.total_tokens??null})),r=>[{id:'assign',label:'Assign to a task',onSelect:()=>assignTurn(r)},{id:'open',label:'Open transcript',onSelect:()=>window.open(r.langfuse_url,'_blank','noopener')}]),'', 'Unassigned usage is included in all-source totals, but excluded from project/task totals. Agent turn completion is not verified task success.');
   if(view==='activity') {
     html=statLine()+capturesTable()+section('Native event timeline',table('events',[
-      {key:'ts',label:'When',cell:r=>date(r.ts)},
+      {key:'ts',label:'When',filterText:r=>date(r.ts)+' '+(r.ts||''),cell:r=>date(r.ts)},
       {key:'name',label:'Operation',cell:r=>`<button class="inline-link clip" data-event="${esc(r.id)}">${esc(r.name)}</button>`},
       {key:'category',label:'Category',cell:r=>clip(r.category)},
-      {key:'category_basis',label:'Assigned by',cell:r=>r.category_basis==='Codex agent interpretation'?badge('Codex · '+r.category_confidence):badge(r.kind==='generation'?'Native usage':'Text rule / unmatched')},
-      {key:'runtime_role',label:'Runtime role',cell:r=>esc(r.kind==='generation'?'Model latency unknown':r.runtime_role)},
+      {key:'category_basis',label:'Assigned by',value:r=>r.category_basis==='Codex agent interpretation'?'Codex · '+r.category_confidence:r.kind==='generation'?'Native usage':'Text rule / unmatched',cell:r=>r.category_basis==='Codex agent interpretation'?badge('Codex · '+r.category_confidence):badge(r.kind==='generation'?'Native usage':'Text rule / unmatched')},
+      {key:'runtime_role',label:'Runtime role',value:r=>r.kind==='generation'?'Model latency unknown':r.runtime_role,cell:r=>esc(r.kind==='generation'?'Model latency unknown':r.runtime_role)},
       {key:'runtime',label:'Runtime',numeric:true,cell:r=>seconds(r.runtime)},
       {key:'tokens',label:'Tokens',numeric:true,cell:r=>r.usage?compact(r.usage.total_tokens):'—'},
       {key:'bytes',label:'Output bytes',numeric:true,cell:r=>r.bytes==null?'—':compact(r.bytes)}
-    ],data.events.slice().reverse().map(e=>({...e,tokens:e.usage?.total_tokens||0})),r=>[{id:'open',label:'Category rationale and event details',onSelect:()=>eventDetails(r)},{id:'trace',label:'Inspect in Langfuse',onSelect:()=>window.open(r.langfuse_url,'_blank','noopener')}]),'',`${data.event_count} matching events; latest ${data.events.length} available in this table. Search applies to these rows. Model tokens are not attributed to individual tools.`);
+    ],data.events.slice().reverse().map(e=>({...e,tokens:e.usage?.total_tokens??null})),r=>[{id:'open',label:'Category rationale and event details',onSelect:()=>eventDetails(r)},{id:'trace',label:'Inspect in Langfuse',onSelect:()=>window.open(r.langfuse_url,'_blank','noopener')}]),'',`${data.event_count} matching events; latest ${data.events.length} available in this table. Search applies to these rows. Model tokens are not attributed to individual tools.`);
   }
   if(view==='rules') {
     html='<div class="notice"><strong>Two separate mechanisms:</strong> Codex reads event evidence and assigns purpose labels with rationale/confidence. Unreviewed events use the plain-text rules below. Rules do not invoke an LLM, do not search full commands, and do not override Codex-reviewed labels.</div>'+
       section('Current categories',categoryTable('reviewed-categories'),'', 'Open an event to inspect who assigned its category and why. Category rows summarize the currently selected scope.')+
-      section('Fallback text rules',table('rules',[{key:'priority',label:'Order',numeric:true},{key:'category',label:'Category'},{key:'pattern',label:'Operation label contains (literal)',cell:r=>`<code>${esc(r.pattern)}</code>`},{key:'enabled',label:'Enabled',cell:r=>badge(r.enabled?'Yes':'No')},{key:'version',label:'Version',numeric:true},{key:'matches',label:'Matching labels',numeric:true},{key:'eligible',label:'Unreviewed matches',numeric:true}],data.rules.map((r,index)=>({...r,priority:index+1,matches:data.events.filter(e=>e.kind==='tool'&&e.name.toLowerCase().includes(r.pattern.toLowerCase())).length,eligible:data.events.filter(e=>e.kind==='tool'&&e.category_basis!=='Codex agent interpretation'&&e.name.toLowerCase().includes(r.pattern.toLowerCase())).length})),r=>[{id:'edit',label:'Edit rule and preview matches',onSelect:()=>ruleDialog(r)}]),button('Add rule','data-add-rule',true,'plus'),'First enabled match wins in listed priority order. Matching is case-insensitive substring matching, not regex. Match counts use the current event window.');
+      section('Fallback text rules',table('rules',[{key:'priority',label:'Order',numeric:true},{key:'category',label:'Category'},{key:'pattern',label:'Operation label contains (literal)',cell:r=>`<code>${esc(r.pattern)}</code>`},{key:'enabled',label:'Enabled',value:r=>r.enabled?'Yes':'No',cell:r=>badge(r.enabled?'Yes':'No')},{key:'version',label:'Version',numeric:true},{key:'matches',label:'Matching labels',numeric:true},{key:'eligible',label:'Unreviewed matches',numeric:true}],data.rules.map((r,index)=>({...r,priority:index+1,matches:data.events.filter(e=>e.kind==='tool'&&e.name.toLowerCase().includes(r.pattern.toLowerCase())).length,eligible:data.events.filter(e=>e.kind==='tool'&&e.category_basis!=='Codex agent interpretation'&&e.name.toLowerCase().includes(r.pattern.toLowerCase())).length})),r=>[{id:'edit',label:'Edit rule and preview matches',onSelect:()=>ruleDialog(r)}]),button('Add rule','data-add-rule',true,'plus'),'First enabled match wins in listed priority order. Matching is case-insensitive substring matching, not regex. Match counts use the current event window.');
   }
-  if(view==='opportunities') html=section('Codex recommendations',findingsTable())+section('Additional detector signals',table('opportunities',[{key:'title',label:'Signal'},{key:'observation',label:'Evidence',cell:r=>clip(r.observation)},{key:'decision',label:'Decision',cell:r=>badge(r.state.decision)},{key:'implementation',label:'Implementation',cell:r=>badge(r.state.implementation)},{key:'evaluation',label:'Evaluation',cell:r=>badge(r.state.evaluation)}],data.opportunities,r=>[{id:'review',label:'Review proposal and record decision',onSelect:()=>reviewOpportunity(r)}]),'','Detectors flag large or repeated results. A signal is not proof of waste; measured savings require a controlled comparison.');
+  if(view==='opportunities') html=section('Codex recommendations',findingsTable())+section('Additional detector signals',table('opportunities',[{key:'title',label:'Signal'},{key:'observation',label:'Evidence',cell:r=>clip(r.observation)},{key:'decision',label:'Decision',value:r=>r.state.decision,cell:r=>badge(r.state.decision)},{key:'implementation',label:'Implementation',value:r=>r.state.implementation,cell:r=>badge(r.state.implementation)},{key:'evaluation',label:'Evaluation',value:r=>r.state.evaluation,cell:r=>badge(r.state.evaluation)}],data.opportunities,r=>[{id:'review',label:'Review proposal and record decision',onSelect:()=>reviewOpportunity(r)}]),'','Detectors flag large or repeated results. A signal is not proof of waste; measured savings require a controlled comparison.');
   if(view==='experiments') html=section('Experiment proposals',table('experiments',[
-    {key:'title',label:'Experiment'}, {key:'task_id',label:'Baseline task',cell:r=>esc(titleForTask(r.task_id))},
+    {key:'title',label:'Experiment'}, {key:'task_id',label:'Baseline task',value:r=>titleForTask(r.task_id),cell:r=>esc(titleForTask(r.task_id))},
     {key:'tokens',label:'Historical task tokens',numeric:true,cell:r=>compact(r.tokens)},
     {key:'reduction',label:'Measured token reduction',numeric:true,cell:r=>r.reduction==null?'Not measured':fmt(r.reduction*100)+'%'},
-    {key:'created',label:'Proposed',cell:r=>date(r.created)}, {key:'state',label:'State',cell:r=>badge(r.state)}, {key:'verdict',label:'Latest verdict',cell:r=>esc(r.evaluations?.at(-1)?.reviews?.at(-1)?.verdict||'Not reviewed')}
+    {key:'created',label:'Proposed',filterText:r=>date(r.created)+' '+(r.created||''),cell:r=>date(r.created)}, {key:'state',label:'State',cell:r=>badge(r.state)}, {key:'verdict',label:'Latest verdict',value:r=>r.evaluations?.at(-1)?.reviews?.at(-1)?.verdict||'Not reviewed',cell:r=>esc(r.evaluations?.at(-1)?.reviews?.at(-1)?.verdict||'Not reviewed')}
   ],(data.experiments||[]).map(r=>({...r,title:r.proposal.title,tokens:r.baseline.usage.total_tokens,reduction:r.evaluations?.at(-1)?.measurements.token_reduction_fraction})),r=>[
     {id:'inspect',label:'Inspect protocol and baseline',onSelect:()=>showModal(r.title,
       '<dl class="detail-grid">'+Object.entries(r.proposal).map(([key,value])=>'<dt>'+esc(key.replaceAll('_',' '))+'</dt><dd>'+esc(value)+'</dd>').join('')+
       '<dt>Frozen baseline</dt><dd>'+esc(r.baseline_sha256)+'</dd><dt>Evidence window</dt><dd>'+esc(r.baseline.first_at)+' — '+esc(r.baseline.last_at)+'; '+fmt(r.baseline.event_count)+' events</dd></dl><p>Protocol and results below apply only to the recorded evaluation scope. Actual charges and pure model latency remain unknown.</p>'+experimentResults(r))}
   ]),'','Agents create proposals using the MCP plan_experiment tool or analyst_cli.py. The baseline is frozen at proposal creation; live task totals may subsequently change.');
-  if(view==='setup') html=section('Collection',`<dl class="detail-grid"><dt>State</dt><dd>${badge(data.sources.collection_enabled?'Enabled':'Paused')}</dd><dt>Authorized source</dt><dd>${esc(data.sources.root)}</dd><dt>Retained files</dt><dd>${data.sources.files}</dd><dt>Model HTTP exchanges</dt><dd>${data.capture_coverage.total_model_exchanges}</dd><dt>Source errors</dt><dd>${data.sources.errors.length}</dd></dl><div class="modal-actions">${button(data.sources.collection_enabled?'Pause collection':'Resume collection',`data-collection="${!data.sources.collection_enabled}"`)}</div>`, '', 'Pausing stops new exports and rejects new capture-route calls. Existing data is retained.')+section('Coverage limits',`<ul>${data.limitations.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><p>Private setup and credentials: <code>work/security/langfuse-stack/</code>. Shared controls follow the workspace design system.</p>`)+section('Audit log',table('audit',[{key:'at',label:'When',cell:r=>date(r.at)},{key:'action',label:'Action'},{key:'entity',label:'Entity',cell:r=>clip(r.entity)}],data.audit,null));
+  if(view==='setup') html=section('Collection',`<dl class="detail-grid"><dt>State</dt><dd>${badge(data.sources.collection_enabled?'Enabled':'Paused')}</dd><dt>Authorized source</dt><dd>${esc(data.sources.root)}</dd><dt>Retained files</dt><dd>${data.sources.files}</dd><dt>Model HTTP exchanges</dt><dd>${data.capture_coverage.total_model_exchanges}</dd><dt>Source errors</dt><dd>${data.sources.errors.length}</dd></dl><div class="modal-actions">${button(data.sources.collection_enabled?'Pause collection':'Resume collection',`data-collection="${!data.sources.collection_enabled}"`)}</div>`, '', 'Pausing stops new exports and rejects new capture-route calls. Existing data is retained.')+section('Coverage limits',`<ul>${data.limitations.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><p>Private setup and credentials: <code>work/security/langfuse-stack/</code>. Shared controls follow the workspace design system.</p>`)+section('Audit log',table('audit',[{key:'at',label:'When',filterText:r=>date(r.at)+' '+(r.at||''),cell:r=>date(r.at)},{key:'action',label:'Action'},{key:'entity',label:'Entity',cell:r=>clip(r.entity)}],data.audit,null));
   $('#content').innerHTML=html;
   $('#content').setAttribute('aria-busy','false');
   if(view==='history') renderHistory($('#history-root'),{project,open:id=>openTaskHistory(id,showModal),onError:toast});
-  for(const menu of tableMenus) {
-    const target=document.querySelector(`[data-row-menu="${menu.key}"]`);
-    if(target) target.append(createActionMenu(document,menu.label,menu.actions));
-  }
+  mountTableMenus();
 }
 
 document.addEventListener('click',async event=>{
@@ -303,17 +367,20 @@ document.addEventListener('click',async event=>{
     if(target.dataset.openTask) {$('#modal').close();return await openTask(target.dataset.openTask);}
     if(target.dataset.event) return eventDetails(data.events.find(e=>e.id===target.dataset.event));
     if(target.hasAttribute('data-finding')) {const report=data.agent_analyses[0];return findingDetails(report.findings[Number(target.dataset.finding)],report);}
-    if(target.dataset.page) {tables[target.dataset.page].page+=Number(target.dataset.delta);return render();}
-    if(target.dataset.sort) {const state=tables[target.dataset.sort];state.direction=state.sort===target.dataset.key?-state.direction:1;state.sort=target.dataset.key;return render();}
-    if(target.dataset.clearSearch) {tables[target.dataset.clearSearch].search='';tables[target.dataset.clearSearch].page=1;return render();}
+    if(target.dataset.page) {tables[target.dataset.page].page+=Number(target.dataset.delta);return refreshTable(target.dataset.page);}
+    if(target.dataset.sort) {const state=tables[target.dataset.sort];if(state.sort!==target.dataset.key){state.sort=target.dataset.key;state.direction=1;}else if(state.direction===1){state.direction=-1;}else{state.sort=null;state.direction=1;}state.page=1;return refreshTable(target.dataset.sort);}
+    if(target.dataset.clearSearch) {tables[target.dataset.clearSearch].search='';tables[target.dataset.clearSearch].page=1;return refreshTable(target.dataset.clearSearch);}
+    if(target.dataset.resetTable) {tables[target.dataset.resetTable]={search:'',page:1,sort:null,direction:1,filters:{}};return refreshTable(target.dataset.resetTable);}
     if(target.hasAttribute('data-clear-filters')) {project='';task='';category='';syncURL();return await load();}
     if(target.dataset.collection) {await post('collection',{enabled:target.dataset.collection==='true'});return await load();}
   } catch(error) {toast(error.message);}
 });
 document.addEventListener('input',event=>{
-  const id=event.target.dataset.search;if(!id) return;
-  const position=event.target.selectionStart;tables[id].search=event.target.value;tables[id].page=1;render();
-  const field=document.querySelector(`[data-search="${id}"]`);field?.focus();field?.setSelectionRange(position,position);
+  const id=event.target.dataset.columnFilter||event.target.dataset.search;if(!id) return;
+  const state=tables[id];
+  if(event.target.dataset.columnFilter) state.filters[event.target.dataset.key]=event.target.value;
+  else state.search=event.target.value;
+  state.page=1;refreshTable(id);
 });
 document.addEventListener('submit',async event=>{
   const element=event.target.closest('form[data-form]');if(!element)return;event.preventDefault();
@@ -333,7 +400,7 @@ $('#refresh').onclick=load;
 function setTheme(value) {
   document.documentElement.dataset.theme=value;
   const label=value==='dark'?'Switch to light theme':'Switch to dark theme';
-  $('#theme').innerHTML=icon(value==='dark'?'sun':'moon');
+  $('#theme').innerHTML=icon(value==='dark'?'sun':'moon')+`<span>${value==='dark'?'Light mode':'Dark mode'}</span>`;
   $('#theme').setAttribute('aria-label',label);$('#theme').title=label;
 }
 $('#theme').onclick=()=>{
@@ -341,7 +408,8 @@ $('#theme').onclick=()=>{
   setTheme(value);try {localStorage.setItem('ttgl-theme',value);}catch{}
 };
 for(const placeholder of document.querySelectorAll('[data-icon]')) placeholder.outerHTML=icon(placeholder.dataset.icon);
-try {const theme=localStorage.getItem('ttgl-theme');if(theme==='dark'||theme==='light')setTheme(theme);}catch{}
+setTheme(document.documentElement.dataset.theme==='dark'?'dark':'light');
+window.addEventListener('storage',event=>{if(event.key==='ttgl-theme')setTheme(event.newValue==='dark'?'dark':'light');});
 $('#content').innerHTML=skeleton();
 load();
 setInterval(()=>{if(!document.hidden&&!$('#modal').open&&!document.activeElement?.matches('input,textarea,select')&&!busy)load();},10000);

@@ -9,7 +9,19 @@ was rejected. Normal native-provider routing remains unchanged.
 ## Compact workspace and data coverage
 
 The workspace uses compact, searchable/sortable/paginated tables for tasks,
-unassigned turns, activity, categories, rules and opportunities. Add/edit forms
+unassigned turns, activity, categories, rules and opportunities. Each data column
+has a filter and an ascending/descending/unsorted header control. Column filters
+combine with global table search before pagination; numeric filters also accept
+comparisons such as `>= 100`. Derived columns use their displayed names or states.
+Table search, column filters and sorting persist per table in browser local
+storage; **Reset table** clears them. These filters cover the rows loaded for the
+current scope, not older events outside the server response window.
+
+The top-bar theme button is available on desktop and mobile. Light/dark choice
+is saved locally, restored before styles paint, and synchronized between tabs.
+If browser storage is unavailable, controls still work for the current page.
+
+Add/edit forms
 open native modal dialogs. Shared controls now use a native-DOM adaptation of
 shadcn/ui, following the repository `DESIGN.md`. Geist and JetBrains Mono fonts,
 Lucide icons, semantic tokens, and component styles are served locally. See
