@@ -204,3 +204,7 @@ code, pre { font-family: var(--font-mono); font-size: 11px; }
   .timeline-step > button { margin-left: 30px; }
   .timeline-group-fields { grid-template-columns: minmax(0, 1fr); }
 }
+
+.insight-card{border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-block:12px;background:var(--card)}.insight-card h3{margin-top:0}.insight-card pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:260px;overflow:auto;font-size:12px}.insight-card small{display:block;color:var(--muted-foreground);margin-top:8px}[data-add-task-proof]{display:grid;gap:12px;padding-block:16px}[data-add-task-proof] label{display:grid;gap:6px}[data-insights-project]{max-width:320px}
+
+.insight-card{min-width:0;overflow-wrap:anywhere}

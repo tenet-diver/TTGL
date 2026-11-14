@@ -387,7 +387,8 @@ def start(store, task_id, operation='subtasks'):
         if active:return dict(active)
         previous=None if operation=='title' else c.execute('SELECT a.id FROM task_history_analyses a JOIN task_history_jobs j ON j.id=a.job_id WHERE a.task_id=? AND a.snapshot_hash=? AND a.model=? AND j.engine=? AND j.operation=? ORDER BY a.created DESC LIMIT 1',(task_id,digest,model,engine,operation)).fetchone()
         if previous:return {'id':previous['id'],'status':'unchanged'}
-        if c.execute("SELECT count(*) FROM task_history_jobs WHERE status IN ('queued','running')").fetchone()[0]>=2:raise ValueError('Two task analyses are already running; wait for them to finish')
+        activity_busy=bool(c.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='activity_insight_jobs'").fetchone() and c.execute("SELECT 1 FROM activity_insight_jobs WHERE status IN ('queued','running') AND created>? LIMIT 1",(time.time()-240,)).fetchone())
+        if c.execute("SELECT count(*) FROM task_history_jobs WHERE status IN ('queued','running')").fetchone()[0]+int(activity_busy)>=2:raise ValueError('Two task analyses are already running; wait for them to finish')
         ident=uuid.uuid4().hex
         c.execute('INSERT INTO task_history_jobs(id,task_id,snapshot_hash,snapshot,status,created,model,engine,operation) VALUES(?,?,?,?,?,?,?,?,?)',(ident,task_id,digest,json.dumps(body),'queued',time.time(),model,engine,operation))
     threading.Thread(target=run_model,args=(store,ident),daemon=True).start()

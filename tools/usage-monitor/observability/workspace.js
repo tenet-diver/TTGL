@@ -1,3 +1,4 @@
+import {renderSuggestions,activityQuery} from '/activity-insights.js';
 import {renderExplorer,explorerParams} from '/work-explorer.js';
 import { renderStepTimeline } from '/step-timeline.js';
 import { renderHistory, openTaskHistory as showTaskHistory } from '/task-history.js';
@@ -14,6 +15,7 @@ const external = (url, title='Inspect in Langfuse') => `<a href="${esc(url)}" ta
 const section = (title, body, action='', note='') => `<section class="section"><div class="section-heading"><h2>${esc(title)}</h2>${action}</div>${note?`<p class="section-note">${note}</p>`:''}${body}</section>`;
 const clip = value => `<span class="clip" title="${esc(value)}">${esc(value)}</span>`;
 const config = {
+  suggestions:['Suggestions','Small-model activity analysis, proposed task boundaries, and evidence-backed improvements.'],
   analytics:['Analytics','Compare time, tokens, steps, and cost by task and subtask type.'],
   knowledge:['Knowledge','Reusable lessons and examples, with links to the work that supports them.'],
   settings:['Settings','Collection, task assignment, and cost scenarios.'],
@@ -72,6 +74,13 @@ async function load() {
   if (busy) return;
   try {
     const epoch=++loadEpoch;
+    if(view==='suggestions'){
+      const response=await fetch('/api/activity-insights?'+activityQuery(project));
+      const result=await response.json();if(!response.ok)throw Error(result.error||'Suggestions unavailable');if(epoch!==loadEpoch)return;
+      $('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;$('#title').textContent='Suggestions';$('#subtitle').textContent=config.suggestions[1];$('#breadcrumb').textContent='Suggestions';$('#page-actions').innerHTML='';$('#content').setAttribute('aria-busy','false');
+      document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
+      renderSuggestions($('#content'),result,{project,post,onRefresh:load,onError:toast,onProject:value=>{project=value;syncURL();load();},onTask:id=>{task=id;view='tasks';syncURL();load();}});return;
+    }
     if(primary()){
       const response=await fetch('/api/work-explorer?'+explorerParams(project));
       if(!response.ok)throw Error('Work explorer request failed');
@@ -479,4 +488,4 @@ setTheme(document.documentElement.dataset.theme==='dark'?'dark':'light');
 window.addEventListener('storage',event=>{if(event.key==='ttgl-theme')setTheme(event.newValue==='dark'?'dark':'light');});
 $('#content').innerHTML=skeleton();
 load();
-setInterval(()=>{if((!primary()||!task||document.querySelector('[data-mining-active="true"]'))&&!document.hidden&&!$('#modal').open&&!document.activeElement?.matches('input,textarea,select')&&!document.querySelector('[data-step-select]:checked')&&!document.querySelector('.column-picker[open]')&&!busy)load();},10000);
+setInterval(()=>{if((!primary()||!task||document.querySelector('[data-mining-active="true"]'))&&!document.hidden&&!$('#modal').open&&!document.activeElement?.matches('input,textarea,select')&&!document.querySelector('[data-step-select]:checked')&&!document.querySelector('.insight-card details[open]')&&!document.querySelector('.column-picker[open]')&&!busy)load();},10000);

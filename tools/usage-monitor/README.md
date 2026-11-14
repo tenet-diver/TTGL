@@ -273,10 +273,12 @@ The `ttgl-analyst` stdio MCP server is registered in the Codespace's Codex CLI.
 New Codex sessions can query filtered activity and bounded raw evidence, create
 projects/tasks, assign turns, revise rules, record verified outcomes and manage
 opportunity review states. Its entry point is `observability/analyst_mcp.py`.
-It does not run an autonomous background model or apply changes. Optional SLM
-summaries, screenshots, automatic task-boundary inference, optimization execution
-and controlled comparative trials are not implemented. Other-machine histories
-are not connected by this deployment.
+It does not run an autonomous background model or apply optimizations. On-demand
+small-model summaries and reviewable task-boundary proposals are now implemented
+in Suggestions, with screenshot references and task evidence inspection. Automatic
+screenshot capture and a general optimization executor remain unimplemented;
+registered comparative studies are separate. Other-machine histories are not
+connected automatically by this deployment.
 
 Checks: `python3 -m unittest discover -s tools/usage-monitor/observability -p
 'test_*.py'`, the Langfuse adapter tests, and `node --check
@@ -456,3 +458,18 @@ source inspection. See [configuration, storage choices and validation](../../doc
 No new dependencies or model downloads are required; a reachable configured
 small model is required to generate real analyses. Existing histories on other
 machines remain at their authorized source locations, not automatically imported.
+
+## Suggestions and evidence-backed activity review
+
+**Suggestions** now runs an explicit small-model review of recent or older
+activity windows. It proposes task boundaries, typed/tagged subtasks and up to
+five source-linked improvements with a risk and validation plan. Accepting a task
+grouping preserves explicit assignments and creates an unresolved task; accepting
+an improvement is only a trial decision, not an applied change or proven saving.
+
+Every task has **Evidence & outcomes** for retained changes, screenshot/image
+references, validation commands/results, explicit intervention records and neutral
+follow-up messages. Coverage gaps and unknown outcomes stay visible. Users/agents
+can add reference URLs and attributed evidence notes. The existing MCP exposes
+activity review, proposal decisions and paged evidence retrieval. See
+[workflow, boundaries and verification](../../docs/research/activity-suggestions-and-evidence.md).

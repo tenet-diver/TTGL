@@ -13,7 +13,7 @@ from analyst_experiments import list_experiments, plan_experiment, review_experi
 
 
 def schema(properties, required=()):
-    return dict(type='object', properties={k: {'type': ['string', 'integer'] if k in ('offset', 'limit') else 'string', 'description': v} for k, v in properties.items()},
+    return dict(type='object', properties={k: {'type': ['string', 'integer'] if k in ('offset', 'limit', 'position', 'window_offset') else 'string', 'description': v} for k, v in properties.items()},
                 required=list(required), additionalProperties=False)
 
 
@@ -44,8 +44,16 @@ TOOLS.extend([
     dict(name='get_task_history', description='Progressive history retrieval: task and latest subtask summaries, then bounded source steps for one subtask. Stale interpretations are labeled. Use read_evidence with a returned step ID for raw evidence.', inputSchema=schema(dict(task_id='Task ID', subtask_id='Optional subtask ID from this task', limit='1..100 steps, default 20', offset='Zero-based step offset'), ('task_id',))),
     dict(name='analyze_task_history', description='Explicitly start one on-demand small-model subtask analysis of an assigned task. Invokes inference; tracks overhead and failed attempts. Unchanged evidence reuses its analysis. No automatic retries or scheduled inference.', inputSchema=schema(dict(task_id='Task ID'), ('task_id',))),
 ])
+TOOLS.extend([
+ dict(name='get_task_evidence',description='Read bounded historical change, visual-reference, validation-command and explicit intervention evidence. Follow-ups are not automatically interventions; missing evidence remains unknown.',inputSchema=schema(dict(task_id='Task ID',kind='Optional change, visual_reference, validation or intervention; omitted returns coverage/counts only',limit='1..20 records, default 10',offset='Zero-based offset'),('task_id',))),
+ dict(name='record_task_evidence',description='Explicitly record a change/reference, validation result or human intervention. Stores an attributed record, not independent verification. Does not fetch URLs.',inputSchema=schema(dict(task_id='Task ID',kind='change, visual_reference, validation or intervention',title='Evidence title',detail='Evidence or explanation',reference='Optional HTTP(S) reference without credentials',outcome='unknown, passed, failed, confirmed or not_applicable'),('task_id','kind','title'))),
+ dict(name='analyze_recent_activity',description='Start one finite small-model review of up to 20 recent turns/400 tool steps. Proposes task boundaries, typed subtasks and up to five improvements. Does not change assignments or optimize code.',inputSchema=schema(dict(project='Optional project scope',window_offset='Source-history window offset: 0 for recent, 20 for next older batch'))),
+ dict(name='query_activity_suggestions',description='Read recent activity-review attempts, interpreted task proposals, evidence-backed improvement suggestions, shared analyst usage and saved decisions.',inputSchema=schema(dict(project='Optional project scope',section='summary (default), suggestions or tasks',window_offset='Source-history window offset, default 0',offset='Zero-based offset',limit='1..20 records, default 5'))),
+ dict(name='accept_activity_task',description='Explicitly accept one model-proposed task/subtask grouping. Preserves explicit assignments; only unassigned/provisional turns can move. New task success stays unverified.',inputSchema=schema(dict(job_id='Completed activity review ID',position='Zero-based task proposal index'),('job_id','position'))),
+ dict(name='review_activity_suggestion',description='Record later, declined or accepted_for_trial. This records a decision only; it applies no code and claims no improvement.',inputSchema=schema(dict(job_id='Completed activity review ID',position='Zero-based suggestion index',decision='later, declined or accepted_for_trial',note='Optional evidence/review note'),('job_id','position','decision'))),
+])
 for tool in TOOLS:
-    tool['annotations'] = dict(readOnlyHint=tool['name'] in ('query_activity', 'read_evidence', 'read_compression_source', 'search_task_history', 'get_task_history'), destructiveHint=False, openWorldHint=False)
+    tool['annotations'] = dict(readOnlyHint=tool['name'] in ('query_activity', 'read_evidence', 'read_compression_source', 'search_task_history', 'get_task_history', 'get_task_evidence', 'query_activity_suggestions'), destructiveHint=False, openWorldHint=False)
 
 ACTION = dict(create_project='project', create_task='task', assign_turn='assign', set_task_status='task_status',
               update_category_rule='rule', record_opportunity_review='decision')
@@ -58,7 +66,7 @@ def handle(store, request):
         supported = ['2024-11-05', '2025-03-26', '2025-06-18']
         version = params.get('protocolVersion')
         return dict(protocolVersion=version if version in supported else supported[-1],
-                    capabilities={'tools': {'listChanged': False}}, serverInfo=dict(name='ttgl-codex-analyst', version='1.2.0'))
+                    capabilities={'tools': {'listChanged': False}}, serverInfo=dict(name='ttgl-codex-analyst', version='1.3.0'))
     if method == 'ping':
         return {}
     if method == 'tools/list':
@@ -73,10 +81,36 @@ def handle(store, request):
                 raise ValueError('Unsupported arguments')
             if any(k not in arguments for k in definition['inputSchema']['required']):
                 raise ValueError('Missing required argument')
-            if any(not isinstance(v, str) and not (k in ('offset', 'limit') and type(v) is int) for k, v in arguments.items()):
+            if any(not isinstance(v, str) and not (k in ('offset', 'limit', 'position', 'window_offset') and type(v) is int) for k, v in arguments.items()):
                 raise ValueError('Arguments must be strings, or integers for offset/limit')
             arguments = {k: str(v) if type(v) is int else v for k, v in arguments.items()}
-            if name in ('search_task_history','get_task_history','analyze_task_history'):
+            if name in ('get_task_evidence','record_task_evidence'):
+                import task_evidence
+                if name=='record_task_evidence':result=task_evidence.add(store,**arguments)
+                else:
+                    evidence=task_evidence.packet(store,arguments['task_id']);kind=arguments.get('kind');limit=int(arguments.get('limit',10));offset=int(arguments.get('offset',0))
+                    if not 1<=limit<=20 or offset<0:raise ValueError('Evidence limit must be 1..20 and offset nonnegative')
+                    result={k:v for k,v in evidence.items() if k not in ('groups','user_follow_ups')}
+                    result['counts']={k:len(v) for k,v in evidence['groups'].items()};result['user_follow_up_count']=len(evidence['user_follow_ups'])
+                    if kind:
+                        if kind not in task_evidence.KINDS:raise ValueError('Unknown evidence kind')
+                        rows=evidence['groups'][kind];result['records']=[{**r,'detail':r.get('detail','')[:1200]} for r in rows[offset:offset+limit]];result['next_offset']=offset+limit if len(rows)>offset+limit else None
+                        result['display_limit']='1200 characters per record; use read_evidence for retained native detail'
+            elif name in ('analyze_recent_activity','query_activity_suggestions','accept_activity_task','review_activity_suggestion'):
+                import activity_insights
+                if name=='analyze_recent_activity':result=activity_insights.start(store,arguments.get('project'),int(arguments.get('window_offset',0)))
+                elif name=='query_activity_suggestions':
+                    state=activity_insights.state(store,arguments.get('project'),int(arguments.get('window_offset',0)));latest=state['latest'];section=arguments.get('section','summary');limit=int(arguments.get('limit',5));offset=int(arguments.get('offset',0))
+                    if section not in ('summary','suggestions','tasks') or not 1<=limit<=20 or offset<0:raise ValueError('Invalid suggestions page')
+                    result={'jobs':state['jobs'],'mode':state['mode'],'scope':state['scope'],'latest':None}
+                    if latest:
+                        result['latest']={k:latest[k] for k in ('id','model','snapshot_hash','usage','applied','decisions','stale')}
+                        result['latest'].update(summary=latest['result']['summary'],task_proposals=len(latest['result']['tasks']),suggestions=len(latest['result']['suggestions']))
+                        if section!='summary':
+                            rows=latest['result'][section];result['records']=rows[offset:offset+limit];result['next_offset']=offset+limit if len(rows)>offset+limit else None
+                elif name=='accept_activity_task':result=activity_insights.apply_task(store,arguments['job_id'],int(arguments['position']))
+                else:result=activity_insights.decide(store,arguments['job_id'],int(arguments['position']),arguments['decision'],arguments.get('note',''))
+            elif name in ('search_task_history','get_task_history','analyze_task_history'):
                 import task_history
                 if name == 'search_task_history':result = task_history.search(store, **arguments)
                 elif name == 'get_task_history':result = task_history.detail(store, **arguments)

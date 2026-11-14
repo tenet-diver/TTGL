@@ -538,6 +538,18 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send({'error': str(exc)}, 503)
             except (ValueError, TypeError, OSError, KeyError) as exc:
                 return self.send({'error': str(exc)}, 400)
+        if path.path in ('/api/activity-insights','/api/task-evidence'):
+            try:
+                query={k:v[0] for k,v in parse_qs(path.query).items()}
+                if path.path=='/api/task-evidence':
+                    import task_evidence
+                    result=task_evidence.packet(self.server.store,query.get('task_id',''))
+                else:
+                    import activity_insights
+                    result=activity_insights.state(self.server.store,query.get('project') or None,int(query.get('window_offset',0)))
+                    with self.server.store.connection() as c:result['projects']=[dict(r) for r in c.execute('SELECT id,name FROM projects ORDER BY name')]
+                return self.send(result)
+            except (ValueError,TypeError,sqlite3.Error) as exc:return self.send({'error':str(exc)},400)
         if path.path == '/api/task-step-evidence':
             import analyst_mcp
             ident = parse_qs(path.query).get('id',[''])[0]
@@ -564,7 +576,7 @@ class Handler(BaseHTTPRequestHandler):
             if not target.exists():
                 return self.send({'error': 'Private design-system distribution not synced; see sync_design_system.py'}, 503)
             return self.send(target.read_bytes(), content=design_assets[path.path])
-        assets = {'/task-history.js': ('task-history.js', 'text/javascript; charset=utf-8'), '/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8'),
+        assets = {'/activity-insights.js': ('activity-insights.js','text/javascript; charset=utf-8'), '/task-history.js': ('task-history.js', 'text/javascript; charset=utf-8'), '/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8'),
                   '/ui.js': ('ui.js', 'text/javascript; charset=utf-8'),
                   '/theme-init.js': ('theme-init.js', 'text/javascript; charset=utf-8'),
                   '/step-timeline.js': ('step-timeline.js', 'text/javascript; charset=utf-8'),
@@ -595,7 +607,15 @@ class Handler(BaseHTTPRequestHandler):
             values = json.loads(self.rfile.read(length))
             if not isinstance(values, dict):
                 raise ValueError('Expected an object')
-            if action == 'search-task-history':
+            if action in ('analyze-activity','accept-activity-task','review-activity-suggestion'):
+                import activity_insights
+                if action=='analyze-activity':result=activity_insights.start(self.server.store,values.get('project') or None,values.get('window_offset',0))
+                elif action=='accept-activity-task':result=activity_insights.apply_task(self.server.store,values.get('job_id'),values.get('position'))
+                else:result=activity_insights.decide(self.server.store,values.get('job_id'),values.get('position'),values.get('decision'),values.get('note',''))
+            elif action == 'record-task-evidence':
+                import task_evidence
+                result=task_evidence.add(self.server.store,**values)
+            elif action == 'search-task-history':
                 import task_history
                 if set(values)-{'query','project','status','activity','limit','offset','mode'}:raise ValueError('Unsupported search parameter')
                 result = task_history.search(self.server.store, **values)
