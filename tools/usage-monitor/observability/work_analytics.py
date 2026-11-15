@@ -193,7 +193,7 @@ def aggregate(rows, kind):
     return sorted(groups.values(),key=lambda r:r['steps'],reverse=True)
 
 
-def overview(store, project=None, query='', status=None, task_type=None, attribution='measured', offset=0, limit=40, review=None, result=None):
+def overview(store, project=None, query='', status=None, task_type=None, attribution='measured', offset=0, limit=40, review=None, result=None, table_query=None):
     import task_history as h
     import task_discovery
     h.init(store)
@@ -229,8 +229,13 @@ def overview(store, project=None, query='', status=None, task_type=None, attribu
               'subtasks':dict(Counter((g['process_result'] or {}).get('outcome','unreviewed') for g in subs)),
               'interventions':dict(Counter((t['process_result'] or {}).get('intervention','unreviewed') for t in tasks))}
     if all_records and len(knowledge_records)>10000:raise ValueError('Narrow the scope to at most 10,000 knowledge candidates')
-    summaries=[{k:v for k,v in t.items() if k not in ('subtasks','knowledge','jobs','goal','acceptance','outcome','repo','operation_search','tool_breakdown','model_breakdown')} for t in tasks[offset:offset+limit]]
-    return {'process_outcomes':outcomes,'tasks':summaries,'total':len(tasks),'offset':offset,'next_offset':offset+limit if offset+limit<len(tasks) else None,'projects':projects,'undiscovered':undiscovered,'collection_enabled':enabled,'discovery_enabled':discovery_enabled,'recent_review':recent_review,'review_scope':review,
+    import collection_query as cq
+    columns=cq.fields(['title','project_name','status','type','updated','summary'],dict(records='total_steps',steps='tool_calls',responses='responses',elapsed='elapsed_span_seconds',runtime='runtime_seconds',tokens='tokens',cost='cost'))
+    columns.update(processed=lambda r:'Reviewed' if r['classification_status']=='processed' else 'Reviewed · updated' if r['classification_status']=='partial' else 'Not classified',result=lambda r:(r['process_result'] or {}).get('outcome','unreviewed').replace('_',' '),intervention=lambda r:(r['process_result'] or {}).get('intervention','unreviewed').replace('_',' '))
+    visible=cq.apply(tasks,table_query,columns)
+    offset=min(offset,max(0,(len(visible)-1)//limit)*limit)
+    summaries=[{k:v for k,v in t.items() if k not in ('subtasks','knowledge','jobs','goal','acceptance','outcome','repo','operation_search','tool_breakdown','model_breakdown')} for t in visible[offset:offset+limit]]
+    return {'process_outcomes':outcomes,'tasks':summaries,'total':len(visible),'offset':offset,'next_offset':offset+limit if offset+limit<len(visible) else None,'projects':projects,'undiscovered':undiscovered,'collection_enabled':enabled,'discovery_enabled':discovery_enabled,'recent_review':recent_review,'review_scope':review,
             'totals':{'tasks':len(tasks),'subtasks':len(subs),'total_steps':sum(t['metrics']['total_steps'] for t in tasks),'steps':sum(t['metrics']['steps'] for t in tasks),'known_tokens':known,'tasks_missing_tokens':sum(t['metrics']['tokens'] is None for t in tasks),'runtime_seconds':sum(t['metrics']['runtime_seconds'] or 0 for t in tasks) if all(t['metrics']['runtime_seconds'] is not None for t in tasks) else None,
                       'known_cost':sum(t['metrics']['known_cost'] for t in tasks),'tasks_missing_cost':sum(t['metrics']['cost'] is None for t in tasks),
                       'cost':sum(t['metrics']['cost'] for t in tasks) if tasks and all(t['metrics']['cost'] is not None for t in tasks) else None,'mining_overhead_tokens':sum(t['mining_overhead_tokens'] for t in tasks)},
@@ -239,7 +244,7 @@ def overview(store, project=None, query='', status=None, task_type=None, attribu
             'measurement_note':'Recorded runtime excludes identified background service lifetimes; unreviewed operations may still contain them. Runtime sums can overlap and are not task elapsed time. Response tokens are measured at task scope. Step-share subtask attribution is an optional estimate. Model-rate scenarios are not actual cash charges. Mining overhead is separate.'}
 
 
-def source_steps(store, task_id, subtask_id=None, limit=100, offset=0):
+def source_steps(store, task_id, subtask_id=None, limit=100, offset=0, table_query=None):
     import task_history as h
     all_records=limit=='all'
     limit,offset=h.page(limit,offset)
@@ -255,7 +260,10 @@ def source_steps(store, task_id, subtask_id=None, limit=100, offset=0):
     events=[e for e in events if allowed is None or e['id'] in allowed]
     if all_records and len(events)>10000:raise ValueError('Select a subtask or narrower task for at most 10,000 source records')
     scenario=rates(store);rows=[]
-    for i,e in enumerate(events[offset:offset+limit],offset+1):
+    for i,e in enumerate(events,1):
         usage=json.loads(e['usage']) if e['usage'] else None
         rows.append({'id':e['id'],'sequence':i,'kind':e['kind'],'name':e['name'],'timestamp':e['ts'],'runtime':e['runtime'],'tokens':usage.get('total_tokens') if usage else None,'model':e['model'],'cost':cost(usage,e['model'],scenario),'failed':e['failed']})
-    return {'items':rows,'total':len(events),'offset':offset,'next_offset':offset+limit if offset+limit<len(events) else None}
+    import collection_query as cq
+    rows=cq.apply(rows,table_query,cq.fields(['sequence','kind','name','timestamp','runtime','tokens','model','cost']))
+    offset=min(offset,max(0,(len(rows)-1)//limit)*limit)
+    return {'items':rows[offset:offset+limit],'total':len(rows),'offset':offset,'next_offset':offset+limit if offset+limit<len(rows) else None}

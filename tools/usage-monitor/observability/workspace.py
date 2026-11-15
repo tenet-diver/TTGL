@@ -567,7 +567,7 @@ class Handler(BaseHTTPRequestHandler):
             import dashboard_views
             query={k:v[0] for k,v in parse_qs(path.query).items()}
             try:
-                result=dashboard_views.page(self.server.store,query.get('view','overview'),**{k:v for k,v in query.items() if k in ('project','workspace','range','zone','limit','turn_offset','task_offset','day')})
+                result=dashboard_views.page(self.server.store,query.get('view','overview'),**{k:v for k,v in query.items() if k in ('project','workspace','range','zone','limit','turn_offset','task_offset','day','turn_query','task_query')})
                 result['langfuse_url']=self.server.store.langfuse_url
                 return self.send(result)
             except (ValueError,TypeError,KeyError,sqlite3.Error) as exc:return self.send({'error':str(exc)},400)
@@ -614,14 +614,14 @@ class Handler(BaseHTTPRequestHandler):
                 import task_history
                 task_history.init(self.server.store)
                 if path.path=='/api/work-steps':
-                    result=work_analytics.source_steps(self.server.store,query.get('task_id'),query.get('subtask_id'),query.get('limit',100),query.get('offset',0))
+                    result=work_analytics.source_steps(self.server.store,query.get('task_id'),query.get('subtask_id'),query.get('limit',100),query.get('offset',0),query.get('table_query'))
                 elif path.path=='/api/work-task':
                     scenario=work_analytics.rates(self.server.store)
                     result=work_analytics.task_data(self.server.store,query.get('task_id'),query.get('attribution','measured'),scenario)
                     result['cost_scenario']=scenario
                     result['langfuse_url']=self.server.store.langfuse_url
                 else:
-                    result=work_analytics.overview(self.server.store,**{k:v for k,v in query.items() if k in ('project','query','status','task_type','attribution','limit','offset','review','result')})
+                    result=work_analytics.overview(self.server.store,**{k:v for k,v in query.items() if k in ('project','query','status','task_type','attribution','limit','offset','review','result','table_query')})
                     result['langfuse_url']=self.server.store.langfuse_url
                 return self.send(result)
             except (ValueError,TypeError,KeyError,sqlite3.OperationalError) as exc:

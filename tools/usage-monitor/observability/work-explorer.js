@@ -1,4 +1,4 @@
-import {sourceList} from '/data-list.js';
+import {sourceList,listQuery} from '/data-list.js';
 import {renderTaskReport} from '/task-report.js';
 import {openTaskEvidence} from '/activity-insights.js';
 import {button,badge,emptyState,escapeHTML as esc} from '/ui.js';
@@ -15,7 +15,7 @@ let prefs={query:'',status:'',task_type:'',attribution:'measured',metric:'total_
 try{prefs={...prefs,...JSON.parse(localStorage.getItem('ttgl-work-preferences')||'{}')};}catch{}
 if(reviewScope){prefs.query='';prefs.status='';prefs.task_type='';prefs.result='';prefs.offset=0;}
 function save(){try{localStorage.setItem('ttgl-work-preferences',JSON.stringify(prefs));}catch{}}
-export function explorerParams(project){return new URLSearchParams({...(project?{project}:{}),query:prefs.query,status:prefs.status,task_type:prefs.task_type,result:prefs.result||'',attribution:prefs.attribution,limit:prefs.limit||20,offset:prefs.offset||0,...(reviewScope?{review:reviewScope}:{})});}
+export function explorerParams(project){return new URLSearchParams({...(project?{project}:{}),query:prefs.query,status:prefs.status,task_type:prefs.task_type,result:prefs.result||'',attribution:prefs.attribution,limit:prefs.limit||20,offset:prefs.offset||0,table_query:JSON.stringify(listQuery('work-tasks')),...(reviewScope?{review:reviewScope}:{})});}
 const select=(name,label,values,value)=>`<label>${esc(label)}<select class="ui-input" data-work-filter="${name}" aria-label="${esc(label)}">${values.map(([id,text])=>`<option value="${esc(id)}" ${id===value?'selected':''}>${esc(text)}</option>`).join('')}</select></label>`;
 const metricValue=(metric,v,unit='USD')=>['runtime_seconds','elapsed_span_seconds'].includes(metric)?duration(v):metric==='cost'?v==null?'Unknown':price(v)+' '+unit:compact(v);
 function stats(m,estimate=false,unit='USD') {
@@ -68,7 +68,7 @@ export async function renderExplorer(root,{view,data,taskId,project,onProject,on
       {key:'project_name',hiddenByDefault:true,label:'Project'},{key:'status',label:'Recorded status',cell:r=>badge(r.status)},{key:'result',label:'Interpreted result',value:r=>r.process_result?.outcome,cell:r=>badge(r.process_result?.outcome?.replaceAll('_',' ')||'Unreviewed')},{key:'intervention',label:'User intervention',value:r=>r.process_result?.intervention,cell:r=>badge(r.process_result?.intervention?.replaceAll('_',' ')||'Unreviewed')},{key:'type',label:'Type'},
       {key:'updated',label:'Last activity',cell:r=>esc(r.updated?.slice(0,19).replace('T',' '))},
       {key:'summary',hiddenByDefault:true,label:'Summary',cell:r=>`<span class="table-prose">${esc(r.summary||'Recorded activity; semantic mining pending.')}</span>`}
-    ],data.tasks,r=>[{id:'open',label:'Explore task',onSelect:()=>onTask(r.id)}],true,{serverPage:{total:data.total,offset:data.offset,limit:data.limits.tasks_per_page,onPage:(offset,limit)=>{prefs.offset=offset;prefs.limit=limit;save();onRefresh();}}});
+    ],data.tasks,r=>[{id:'open',label:'Explore task',onSelect:()=>onTask(r.id)}],true,{serverPage:{total:data.total,offset:data.offset,limit:data.limits.tasks_per_page,onQuery:()=>{prefs.offset=0;save();onRefresh();},onPage:(offset,limit)=>{prefs.offset=offset;prefs.limit=limit;save();onRefresh();}}});
 
     if(data.undiscovered)html+=`<div class="work-callout"><div><strong>${n(data.undiscovered)} collected prompts await task assignment</strong><p>Prompt-based task boundaries are provisional. Group related turns before mining a long-running task.</p></div>${button('Review prompts','data-view="inbox"')}</div>`;
   }
@@ -157,7 +157,7 @@ export async function renderExplorer(root,{view,data,taskId,project,onProject,on
     };
     const renderSteps=async(target,subtaskId,offset=0,limit=20)=>{
       try{
-        const r=await fetch('/api/work-steps?'+new URLSearchParams({task_id:t.id,...(subtaskId?{subtask_id:subtaskId}:{}),limit,offset}));
+        const r=await fetch('/api/work-steps?'+new URLSearchParams({task_id:t.id,...(subtaskId?{subtask_id:subtaskId}:{}),limit,offset,table_query:JSON.stringify(listQuery('work-steps'))}));
         const result=await r.json();if(!r.ok)throw Error(result.error);if(!target.isConnected)return;
         target.innerHTML=table('work-steps',[
           {key:'sequence',label:'Sequence',numeric:true},
@@ -168,7 +168,7 @@ export async function renderExplorer(root,{view,data,taskId,project,onProject,on
           {key:'model',hiddenByDefault:true,label:'Model'},
           {key:'tokens',label:'Response tokens',numeric:true,cell:r=>r.kind==='tool'?'Not attributed':n(r.tokens)},
           {key:'cost',label:'API token estimate',numeric:true,cell:r=>r.kind==='tool'?'Not attributed':r.cost==null?'No matched rate':price(r.cost)+' '+unit}
-        ],result.items,null,false,{serverPage:{total:result.total,offset,limit,onPage:(next,size)=>renderSteps(target,subtaskId,next,size)}});
+        ],result.items,null,true,{serverPage:{total:result.total,offset:result.offset,limit,onQuery:()=>renderSteps(target,subtaskId,0,limit),onPage:(next,size)=>renderSteps(target,subtaskId,next,size)}});
         mountTableMenus();
       }catch(error){if(target.isConnected)target.innerHTML=emptyState('Steps unavailable',error.message);onError(error.message);}
     };show();

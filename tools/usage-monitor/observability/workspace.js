@@ -7,7 +7,7 @@ import {renderSuggestions,activityQuery} from '/activity-insights.js';
 import {renderExplorer,explorerParams} from '/work-explorer.js';
 import { renderStepTimeline } from '/step-timeline.js';
 import { renderHistory, openTaskHistory as showTaskHistory } from '/task-history.js';
-import {renderList as table,mountTableMenus,clearListFilters,setListErrorHandler} from '/data-list.js';
+import {renderList as table,mountTableMenus,clearListFilters,setListErrorHandler,listQuery} from '/data-list.js';
 import { button, badge, icon, emptyState, skeleton } from '/ui.js';
 
 const $ = selector => document.querySelector(selector);
@@ -99,7 +99,7 @@ async function load() {
     }
     if(['overview','taskactivity'].includes(view)){
       opsState.project=project;
-      const response=await request('/api/activity-dashboard?'+new URLSearchParams({...opsState,view}));
+      const response=await request('/api/activity-dashboard?'+new URLSearchParams({...opsState,view,turn_query:JSON.stringify(listQuery('activity-turns')),task_query:JSON.stringify(listQuery('marked-tasks'))}));
       const result=await response.json();if(!response.ok)throw Error(result.error||'Activity dashboard unavailable');if(epoch!==loadEpoch)return;
       $('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;$('#title').textContent=config[view][0];$('#subtitle').textContent=config[view][1];$('#breadcrumb').textContent=config[view][0];$('#page-actions').innerHTML='';$('#content').setAttribute('aria-busy','false');
       document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
