@@ -78,6 +78,7 @@ def add(store,task_id,kind,title,detail='',reference='',outcome='unknown'):
 def packet(store,task_id):
     from workspace import bridge
     from capture_proxy import sanitized
+    from work_analytics import timestamp
     init(store)
     with store.connection() as c:
         task=c.execute('SELECT * FROM tasks WHERE id=?',(task_id,)).fetchone()
@@ -94,7 +95,7 @@ def packet(store,task_id):
     selected={(r['session_id'],r['turn_id']) for r in turns};sessions={r['session_id'] for r in turns}
     matching=[path for path in paths if any(sid in __import__('pathlib').Path(path).name for sid in sessions)]
     if sessions and all(any(sid in __import__('pathlib').Path(path).name for path in matching) for sid in sessions):paths=matching
-    facts=[];seen=set();matched_steps=set();scanned=0;truncated=False;max_lines=50000
+    facts=[];last_message=None;seen=set();matched_steps=set();scanned=0;truncated=False;max_lines=50000
     for path in paths:
         session=None
         if scanned>=max_lines or len(facts)>=120:truncated=True;break
@@ -112,6 +113,13 @@ def packet(store,task_id):
                 if key in seen:continue
                 seen.add(key)
                 base={'id':hashlib.sha256((str(key)+task_id).encode()).hexdigest()[:24],'session_id':session,'turn_id':p.get('turn_id'),'source_line':line,'event_id':event_id if event_id in events else None,'recorded_at':record.get('timestamp'),'basis':'retained native record'}
+                if typ in ('AssistantMessage','assistant_message') and p.get('type')=='item_completed':
+                    content=item.get('content',[])
+                    text=content if isinstance(content,str) else '\n'.join(str(part.get('text','')) for part in content if isinstance(part,dict)) if isinstance(content,list) else ''
+                    if text:
+                        candidate={**base,'text':sanitized(text[:8000]),'truncated':len(text)>8000,'basis':'Retained assistant statement; claims are not independently verified'}
+                        message_key=lambda message:(timestamp(message.get('recorded_at')) if timestamp(message.get('recorded_at')) is not None else float('-inf'),message['source_line'])
+                        if last_message is None or message_key(candidate)>=message_key(last_message):last_message=candidate
                 if typ in ('FileChange','file_change'):
                     changes=item.get('changes',{})
                     if isinstance(changes,list):changes={str(i):v for i,v in enumerate(changes)}
@@ -139,7 +147,7 @@ def packet(store,task_id):
 
     groups={kind:[f for f in facts if f['kind']==kind] for kind in KINDS}
     for note in notes:groups[note['kind']].append({**note,'basis':'Explicit user/agent record; not independently verified'})
-    return {'story':story(task,groups,truncated),'activity_analysis_source':provenance,'task_id':task_id,'task_status':task['status'],'task_outcome':task['outcome'],'groups':groups,'user_follow_ups':followups[:40],
+    return {'last_message':last_message,'story':story(task,groups,truncated),'activity_analysis_source':provenance,'task_id':task_id,'task_status':task['status'],'task_outcome':task['outcome'],'groups':groups,'user_follow_ups':followups[:40],
         'coverage':{'retained_records_scanned':scanned,'matched_tool_steps':len(matched_steps),'task_tool_steps':sum(r['kind']=='tool' for r in events.values()),'bounded_or_truncated':truncated,'source_files':len(paths)},
         'gaps':{'visual_proof':'References recorded; inspect before/after coverage' if groups['visual_reference'] else 'No screenshot or visual reference recorded',
                 'validation':'Inspect recorded command and coverage; task acceptance remains separate' if groups['validation'] else 'No validation evidence recorded',

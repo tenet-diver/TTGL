@@ -1,3 +1,4 @@
+import {renderUsage} from '/usage-views.js';
 import {renderAnalysis} from '/activity-views.js';
 import {renderOperations,builtins,bindEvidence,filters as opsFiltersHTML} from '/optimization.js';
 import {renderSuggestions,activityQuery} from '/activity-insights.js';
@@ -17,6 +18,8 @@ const external = (url, title='Inspect in Langfuse') => `<a href="${esc(url)}" ta
 const section = (title, body, action='', note='') => `<section class="section"><div class="section-heading"><h2>${esc(title)}</h2>${action}</div>${note?`<p class="section-note">${note}</p>`:''}${body}</section>`;
 const clip = value => `<span class="clip" title="${esc(value)}">${esc(value)}</span>`;
 const config = {
+  costs:['Cost & tokens','Explore API-equivalent spend, native token counters and model usage.'],
+  tools:['Tool usage','Inspect native tools, shell actions, targets and recorded operation time.'],
   process:['Process map','Follow interpreted subtask paths, transitions and rework back to source tasks.'],
   agents:['Agents','Compare explicitly identified main sessions and subagent types.'],
   timeline:['Activity timeline','Inspect retained turns and response usage by weekday and local time.'],
@@ -41,13 +44,13 @@ const config = {
   setup:['Setup & coverage','Source permission, collector coverage, and configuration.']
 };
 const query = new URLSearchParams(location.search);
-const pathViews={'/process':'process','/agents':'agents','/timeline':'timeline','/live':'live','/live/rules':'steering','/impact':'impact','/outcomes':'outcomes','/suggestions':'suggestions'};
-const opsState={project:query.get('project')||'',workspace:query.get('workspace')||'',range:query.get('range')||'30d',zone:query.get('zone')||Intl.DateTimeFormat().resolvedOptions().timeZone||'Europe/Amsterdam',attribution:query.get('attribution')||'measured',measure:query.get('measure')||'cost',connections:query.get('connections')||'24'};
+const pathViews={'/costs':'costs','/tools':'tools','/process':'process','/agents':'agents','/timeline':'timeline','/live':'live','/live/rules':'steering','/impact':'impact','/outcomes':'outcomes','/suggestions':'suggestions'};
+const opsState={project:query.get('project')||'',workspace:query.get('workspace')||'',range:query.get('range')||'30d',zone:query.get('zone')||Intl.DateTimeFormat().resolvedOptions().timeZone||'Europe/Amsterdam',attribution:query.get('attribution')||'measured',measure:query.get('measure')||'cost',connections:query.get('connections')||'24',family:query.get('family')||'',action:query.get('action')||'',toolMeasure:query.get('toolMeasure')||'calls'};
 const aliases={overview:'tasks',history:'knowledge',activity:'tasks',setup:'settings'};
 let view=pathViews[location.pathname]&&!location.hash?pathViews[location.pathname]:aliases[location.hash.slice(1)]|| (config[location.hash.slice(1)]?location.hash.slice(1):'tasks');
 const primary=()=>['tasks','analytics','knowledge'].includes(view);
 let workData=null,loadEpoch=0;
-let project = query.get('project') || '', task = query.get('task') || '', category = query.get('category') || '';
+let project = query.get('project') || '', task = query.get('task') || (location.pathname.startsWith('/tasks/')?decodeURIComponent(location.pathname.slice(7)):''), category = query.get('category') || '';
 let data = null, busy = false, tableMenus = [], toastTimer;
 const tables = Object.create(null), tableDefinitions = new Map();
 try {
@@ -79,7 +82,7 @@ function syncURL() {
   if (task) params.set('task', task);
   if (category) params.set('category', category);
   const review=new URLSearchParams(location.search).get('review');if(review)params.set('review',review);
-  for(const name of ['zone','attribution','measure','connections'])if(opsState[name])params.set(name,opsState[name]);
+  for(const name of ['zone','attribution','measure','connections','family','action','toolMeasure'])if(opsState[name])params.set(name,opsState[name]);
   if(opsState.range)params.set('range',opsState.range);if(opsState.workspace)params.set('workspace',opsState.workspace);
   history.replaceState(null, '', location.pathname + (params.size?'?'+params:'') + '#' + view);
 }
@@ -89,6 +92,15 @@ async function load() {
   $('#content').setAttribute('aria-busy','true');
   try {
     const epoch=++loadEpoch;
+    if(['costs','tools'].includes(view)){
+      opsState.project=project;
+      const response=await fetch('/api/usage-pages?'+new URLSearchParams({...opsState,view}));
+      const result=await response.json();if(!response.ok)throw Error(result.error||'Usage unavailable');if(epoch!==loadEpoch)return;
+      $('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;$('#title').textContent=config[view][0];$('#subtitle').textContent=config[view][1];$('#breadcrumb').textContent=config[view][0];$('#page-actions').innerHTML='';$('#content').setAttribute('aria-busy','false');
+      document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
+      $('#live').textContent='Connected';$('#connection-dot').dataset.state='collecting';$('#langfuse').href=result.langfuse_url;
+      renderUsage($('#content'),{view,data:result,state:opsState,table,showModal,onError:toast,inspect:inspectOpsSource,onFilters:updateOpsFilters});return;
+    }
     if(['process','agents','timeline','outcomes'].includes(view)){
       opsState.project=project;
       const response=await fetch('/api/analysis-pages?'+new URLSearchParams({...opsState,view}));

@@ -6,6 +6,9 @@ No new packages, services, model calls or personal hook changes are needed to vi
 
 | Page | Route | Behavior |
 | --- | --- | --- |
+| Cost & tokens | `/costs` | Daily/model cost and tokens, cost bands, response and task drilldowns |
+| Tool usage | `/tools` | Treemap by calls/time/optional allocation, daily calls, family/action targets and source evidence |
+| Task report | `/tasks/<task-id>` | Inline story, evidence, outcomes, phase markers, model/tool timeline and source steps |
 | Process map | `/process` or `#process` | Interpretation/source coverage, rework KPIs, interactive flow map, connection slider, transitions, category cost/time, category statistics and path variants |
 | Agents | `/agents` or `#agents` | Main/subagent comparison by explicit source identity: models, runs, responses, tools, errors, recorded model time, tokens, API scenario cost, share and cost/run |
 | Activity timeline | `/timeline` or `#timeline` | Weekday/hour response heatmap, cost/token/response measures, daily turn tracks and a searchable turn table |
@@ -103,3 +106,70 @@ heatmap measures/timezones, signal drill-downs, explicit mocked job submission, 
 layouts at 1440, 768 and 390 pixels. Backend tests cover rework/counting, unknowns,
 source backfill/missing files, scoped cost allocation, midnight/DST and heuristic
 versus confirmed outcomes. Tests use temporary state and explicit model fixtures.
+
+## Cost, tokens and tool usage
+
+`/costs` adds native response KPIs, daily cost stacked by model, model spend,
+assigned-task cost bands (including unknown and 20+), daily tokens by type/model,
+and the model comparison table. Chart segments, models and cost bands open their
+source responses or assigned tasks. Unassigned responses remain in daily/model
+totals and are reported separately from task bands. A partially priced scope has
+an unknown total alongside its known priced portion. Cost bands are in the
+configured scenario unit and use half-open boundaries. Latency is shown only when
+native generation runtime exists.
+
+`/tools` adds an accessible, clickable treemap, daily calls by the top seven tool
+labels plus Other, and a searchable comparison table. Drilling into a tool family
+and action exposes retained command targets and source evidence. The selected
+measure (calls, recorded time, allocated API estimate or context cost), family and
+action persist in the URL. Shell actions use conservative lexical program labels;
+compound commands remain one call. No command is run to classify it. Existing
+agent category annotations and fallback name rules supply category colors.
+
+Tool costs are unknown in recorded-only mode. The explicit **Estimate by turn tool
+share** option allocates a full original turn's scenario cost equally among its
+tool calls, even if the date filter clips that turn. It is not measured inference
+per tool. Recorded output characters are shown as characters, never guessed token
+counts. Background service lifetimes are excluded from operation time. Unknown
+runtimes and outcomes remain unknown; failure rates use known outcomes only.
+Context-carry costs remain unknown because native records do not identify how
+later context tokens belong to individual tool results.
+
+Native input already includes cache-read tokens: token-type stacks partition it
+into cached and uncached input, then add output. Explicit cache-write tokens have
+a separate KPI because their overlap with input is source dependent. Missing
+cache-write counters are not zero. The existing Settings rate editor supplies the
+scenario; no new live quote or subscription expense is implied. Charts show the
+latest 365 observed dates, while totals and tables cover the full selected scope.
+
+## Inline task report
+
+`/tasks/<task-id>` and ordinary Work task navigation show Story, Evidence, Outcome,
+a model/tool step timeline, and an eleven-column step table above the existing
+subtask collection and full source explorer. Phase buttons and retained evidence
+markers filter the report's step table. Every source link uses the existing
+retained-record endpoint. The chart previews 100 events and the report table loads
+up to 1,000; the existing paginated explorer retains access beyond those limits.
+Agent-type summaries, timeline bounds and measurement totals use the full task, not preview limits. Bar starts are derived from completion timestamps and recorded runtime; unknown runtimes stay as points.
+
+The story reuses the existing bounded evidence packet and highlights failed checks,
+changes after validation, missing acceptance and incomplete scans. The last retained
+assistant statement is displayed as a claim, without assigning verification based
+on its wording. Image references display their retained paths and original source
+records; paths mentioned by a transcript are never opened and external images are
+not fetched automatically. An image reference does not establish before/after
+coverage or visual correctness. Task outcomes retain the confirmed-intervention
+versus heuristic-signal distinction used by the Outcomes page.
+
+Usage checks:
+
+```sh
+PYTHONPATH=tools/usage-monitor/observability python3 -m unittest test_usage_views
+PYTHONPATH=tools/usage-monitor/observability TTGL_BROWSER_QA=1 TTGL_CHROMIUM=/path/to/chromium python3 -m unittest test_usage_views_browser
+```
+
+Tests reconcile duplicate counters and token partitions, unknown prices/timing,
+unassigned work, exact band boundaries, native workspace/timezone filters, lexical
+actions, optional allocation conservation under clipped scopes, failed validation,
+phase filtering, source retrieval, URL persistence and light/dark responsive layouts.
+They use temporary native fixtures and make no real model calls.
