@@ -74,6 +74,17 @@ class WorkAnalyticsTests(unittest.TestCase):
         self.assertEqual(w.overview(self.store,task_type='feature')['total'],0)
         self.assertEqual(w.overview(self.store,project='unknown')['total'],0)
 
+    def test_paged_work_and_source_queries_keep_full_scope_and_native_sequences(self):
+        task=w.task_data(self.store,self.task)
+        for i in range(12):self.store.mutate('task',dict(project_id=task['project_id'],title=f'Work case {i:02}',goal='Fixture',acceptance=''))
+        result=w.overview(self.store,limit=2,offset=100,list_query=json.dumps(dict(search='Work case',sort='title',direction=-1)))
+        self.assertEqual(result['total'],12);self.assertEqual(result['totals']['tasks'],13)
+        self.assertEqual([r['title'] for r in result['tasks']],['Work case 01','Work case 00'])
+        sources=w.source_steps(self.store,self.task,limit=1,list_query=json.dumps(dict(filters={'sequence':'>= 2'},sort='sequence',direction=-1)))
+        self.assertEqual(sources['total'],2);self.assertEqual(sources['items'][0]['sequence'],3)
+        next_page=w.source_steps(self.store,self.task,limit=1,offset=100,list_query=json.dumps(dict(filters={'sequence':'>= 2'},sort='sequence',direction=-1)))
+        self.assertEqual(next_page['offset'],1);self.assertEqual(next_page['items'][0]['sequence'],2)
+
     def test_knowledge_must_cite_real_source_and_rates_are_validated(self):
         result=self.publish();result['knowledge'][0]['step_ids']=['foreign']
         job=self.fixture.job()

@@ -1,5 +1,9 @@
 /** Native collection behavior for the stdlib-served workspace; no runtime package. */
 export const normalizeSearch = value => String(value ?? '').normalize('NFKD').replace(/\p{M}/gu,'').toLocaleLowerCase().trim();
+export function serverCollectionPage(items, {total,offset=0,limit=20}) {
+  if(!Number.isInteger(total)||total<0||!Number.isInteger(offset)||offset<0||!Number.isInteger(limit)||limit<1||limit>100)throw Error('Invalid server page');
+  return {items,total,offset,pageSize:limit,page:Math.floor(offset/limit)+1,pages:Math.max(1,Math.ceil(total/limit))};
+}
 export function collectionPage(rows, options) {
   const terms=normalizeSearch(options.search).split(/\s+/).filter(Boolean);
   let items=rows.filter(row=>{if(options.filter&&!options.filter(row))return false;if(!terms.length)return true;const text=normalizeSearch(options.searchText(row));return terms.every(term=>text.includes(term));});

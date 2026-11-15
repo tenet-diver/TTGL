@@ -3,6 +3,7 @@
 import argparse
 import base64
 import collections
+import gzip
 import contextlib
 from datetime import datetime, timezone, timedelta
 import hashlib
@@ -524,14 +525,20 @@ class Handler(BaseHTTPRequestHandler):
 
     def send(self, value, status=200, content='application/json'):
         body = json.dumps(value).encode() if content == 'application/json' else value
+        compressed = len(body)>4096 and 'gzip' in self.headers.get('Accept-Encoding','')
+        if compressed:body=gzip.compress(body,compresslevel=3)
         self.send_response(status)
         self.send_header('Content-Type', content)
         self.send_header('Cache-Control', 'no-store')
+        self.send_header('Vary', 'Accept-Encoding')
+        self.send_header('Content-Length', str(len(body)))
+        if compressed:self.send_header('Content-Encoding','gzip')
         self.send_header('X-Content-Type-Options', 'nosniff')
         self.send_header('Cross-Origin-Resource-Policy', 'same-origin')
         self.send_header('Content-Security-Policy', "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-ancestors 'none'")
         self.end_headers()
-        self.wfile.write(body)
+        try:self.wfile.write(body)
+        except (BrokenPipeError,ConnectionResetError):pass
 
     def valid(self):
         return self.headers.get('Host') in self.server.allowed_hosts
@@ -540,6 +547,11 @@ class Handler(BaseHTTPRequestHandler):
         if not self.valid():
             return self.send({'error': 'Invalid host'}, 403)
         path = urlparse(self.path)
+        if path.path=='/api/bulk-analysis':
+            import bulk_analysis
+            query={k:v[0] for k,v in parse_qs(path.query).items()}
+            try:return self.send(bulk_analysis.state(self.server.store,**{k:v for k,v in query.items() if k in ('batch_id','offset','limit','list_query')}))
+            except (ValueError,TypeError,sqlite3.Error) as exc:return self.send({'error':str(exc)},400)
         if path.path == '/api/trace-index':
             import trace_index
             query = {k: v[0] for k, v in parse_qs(path.query).items()}
@@ -556,10 +568,15 @@ class Handler(BaseHTTPRequestHandler):
             import dashboard_views
             query={k:v[0] for k,v in parse_qs(path.query).items()}
             try:
-                result=dashboard_views.report(self.server.store,query.get('view','overview'),**{k:v for k,v in query.items() if k in ('project','workspace','range','zone')})
+                result=dashboard_views.page(self.server.store,query.get('view','overview'),**{k:v for k,v in query.items() if k in ('project','workspace','range','zone','limit','turn_offset','task_offset','day','turn_query','task_query')})
                 result['langfuse_url']=self.server.store.langfuse_url
                 return self.send(result)
             except (ValueError,TypeError,KeyError,sqlite3.Error) as exc:return self.send({'error':str(exc)},400)
+        if path.path=='/api/activity-turn':
+            import dashboard_views
+            query={k:v[0] for k,v in parse_qs(path.query).items()}
+            try:return self.send(dashboard_views.turn_prompt(self.server.store,query.get('session',''),query.get('turn','')))
+            except (ValueError,TypeError,sqlite3.Error) as exc:return self.send({'error':str(exc)},400)
         if path.path in ('/api/usage-pages','/api/task-report'):
             import usage_views
             query={k:v[0] for k,v in parse_qs(path.query).items()}
@@ -598,14 +615,14 @@ class Handler(BaseHTTPRequestHandler):
                 import task_history
                 task_history.init(self.server.store)
                 if path.path=='/api/work-steps':
-                    result=work_analytics.source_steps(self.server.store,query.get('task_id'),query.get('subtask_id'),query.get('limit',100),query.get('offset',0))
+                    result=work_analytics.source_steps(self.server.store,query.get('task_id'),query.get('subtask_id'),query.get('limit',100),query.get('offset',0),list_query=query.get('list_query',''))
                 elif path.path=='/api/work-task':
                     scenario=work_analytics.rates(self.server.store)
                     result=work_analytics.task_data(self.server.store,query.get('task_id'),query.get('attribution','measured'),scenario)
                     result['cost_scenario']=scenario
                     result['langfuse_url']=self.server.store.langfuse_url
                 else:
-                    result=work_analytics.overview(self.server.store,**{k:v for k,v in query.items() if k in ('project','query','status','task_type','attribution','limit','offset','review')})
+                    result=work_analytics.overview(self.server.store,**{k:v for k,v in query.items() if k in ('project','query','status','task_type','attribution','limit','offset','review','result','list_query')})
                     result['langfuse_url']=self.server.store.langfuse_url
                 return self.send(result)
             except (ValueError,TypeError,KeyError,sqlite3.OperationalError) as exc:
@@ -676,7 +693,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(target.read_bytes(), content=design_assets[path.path])
         if path.path in ('/investigate','/live','/live/rules','/impact','/outcomes','/suggestions','/process','/agents','/timeline','/costs','/tools','/overview','/tasks') or path.path.startswith('/tasks/'):
             return self.send((HERE/'workspace.html').read_bytes(),content='text/html; charset=utf-8')
-        if path.path in ('/trace-explorer.js','/trace-explorer.css','/optimization.js','/optimization.css','/collection.js','/activity-views.js','/activity-views.css','/usage-views.js','/usage-views.css','/task-report.js','/dashboard-views.js','/data-list.js','/design-language.css','/chart-theme.js', '/page-card.js'):
+        if path.path in ('/bulk-analysis.js','/trace-explorer.js','/trace-explorer.css','/optimization.js','/optimization.css','/collection.js','/activity-views.js','/activity-views.css','/usage-views.js','/usage-views.css','/task-report.js','/dashboard-views.js','/data-list.js','/design-language.css','/chart-theme.js','/page-card.js'):
             return self.send((HERE/path.path[1:]).read_bytes(),content='text/css; charset=utf-8' if path.path.endswith('.css') else 'text/javascript; charset=utf-8')
         assets = {'/activity-insights.js': ('activity-insights.js','text/javascript; charset=utf-8'), '/task-history.js': ('task-history.js', 'text/javascript; charset=utf-8'), '/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8'),
                   '/ui.js': ('ui.js', 'text/javascript; charset=utf-8'),
@@ -722,7 +739,12 @@ class Handler(BaseHTTPRequestHandler):
             values = json.loads(self.rfile.read(length))
             if not isinstance(values, dict):
                 raise ValueError('Expected an object')
-            if action=='analyze-process-tasks':
+            if action=='bulk-analysis':
+                import bulk_analysis
+                if values.get('action')=='start':result=bulk_analysis.start(self.server.store)
+                elif values.get('action')=='stop':result=bulk_analysis.stop(self.server.store,str(values.get('batch_id','')))
+                else:raise ValueError('Unknown bulk analysis action')
+            elif action=='analyze-process-tasks':
                 import activity_views
                 result=activity_views.analyze_selected(self.server.store,values.get('task_ids'))
             elif action in ('steering-rule','live-control','applied-change','optimization-models'):

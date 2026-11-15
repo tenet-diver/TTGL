@@ -58,7 +58,7 @@ def populated_fixture(test):
         record('event_msg',dict(type='item_completed',thread_id=sid,turn_id='t',item=dict(type='AssistantMessage',content=[dict(type='text',text='Changed the dashboard. Check the recorded validation before accepting.')])) ,125)
         record('event_msg',dict(type='task_complete',turn_id='t'),130)
         source=f.source.with_name(sid+'.jsonl');source.write_text(''.join(json.dumps(row)+'\n' for row in rows));f.store.scan()
-        task=f.store.mutate('task',dict(project_id=project,title=f'Acceptance task {day:02}',goal=f'Implement dashboard-case-{day:02} and verify the result',acceptance='Relevant checks pass'))['id']
+        task=f.store.mutate('task',dict(project_id=project,title=f'Acceptance task case-{day:02}',goal=f'Implement dashboard-case-{day:02} and verify the result',acceptance='Relevant checks pass'))['id']
         f.store.mutate('assign',dict(session_id=sid,turn_id='t',task_id=task));tasks.append(task)
         with f.store.connection() as c:
             c.execute("UPDATE events SET runtime=.8 WHERE session_id=? AND kind='generation'",(sid,))
@@ -135,6 +135,14 @@ class ReferenceAcceptanceBrowserTests(unittest.TestCase):
                 records.get_by_label('Search activity-turns',exact=True).fill('dashboard-case-00');expect(records.locator('tbody tr')).to_have_count(1)
                 records.get_by_role('button',name='Reset table',exact=True).click()
                 records.get_by_role('button',name='Sort by API estimate',exact=True).click();expect(records.locator('th[aria-sort="ascending"]')).to_contain_text('API estimate')
+                records.get_by_role('button',name='Filters',exact=True).click()
+                records.get_by_label('Filter activity-turns by API estimate',exact=True).fill('> 1')
+                # Eight Opus turns and one Sonnet turn exceed this fixture rate threshold.
+                expect(records.locator('tbody tr')).to_have_count(9)
+                expect(records.get_by_label('Page activity-turns',exact=True)).to_have_value('1')
+                for cell in records.locator('tbody tr td:nth-child(3)').all():self.assertGreater(float(cell.inner_text().split()[0]),1)
+                page.reload();expect(records.get_by_label('Filter activity-turns by API estimate',exact=True)).to_have_value('> 1');expect(records.locator('tbody tr')).to_have_count(9)
+                records.get_by_role('button',name='Reset table',exact=True).click()
                 # Tool-family view and the photographed inline area-measure tabs.
                 page.goto(origin+'/tools?range=all')
                 page.locator('.tool-treemap button[aria-label="Shell · cat"]').click()
@@ -150,7 +158,7 @@ class ReferenceAcceptanceBrowserTests(unittest.TestCase):
                 page.set_viewport_size({'width':1440,'height':1000});page.goto(origin+'/tasks/'+tasks[-1]+'?range=all')
                 steps=page.locator('[data-table="task-report-steps"]');expect(steps).to_be_visible()
                 image=page.locator('.report-screenshots img').first
-                expect(image).to_be_visible();page.wait_for_function("document.querySelector('.report-screenshots img').naturalWidth===1")
+                expect(image).to_be_visible();page.wait_for_function("() => document.querySelector('.report-screenshots img').naturalWidth===1")
                 source=page.request.get(origin+image.get_attribute('src'));self.assertEqual(source.status,200)
                 self.assertEqual(source.headers['content-type'],'image/png');self.assertEqual(source.headers['cross-origin-resource-policy'],'same-origin')
                 page.get_by_role('button',name='Open retained screenshot 1',exact=True).click();expect(page.locator('dialog .report-image-full')).to_be_visible()
@@ -160,6 +168,22 @@ class ReferenceAcceptanceBrowserTests(unittest.TestCase):
                 expect(page.locator('html')).to_have_attribute('data-theme','dark')
                 steps.scroll_into_view_if_needed();page.evaluate('document.activeElement?.blur()');page.screenshot(path=str(DEST/'steps-dark-1440.png'),animations='disabled')
                 screens.append(dict(page='steps',theme='dark',width=1440,file='steps-dark-1440.png',list='task-report-steps'))
+                # Other paginated lists use the same full-cohort query contract.
+                page.goto(origin+'/?range=all#tasks');work=page.locator('[data-table="work-tasks"]')
+                expect(work).to_be_visible()
+                work.get_by_label('Search work-tasks',exact=True).fill('case-00');expect(work.locator('tbody tr')).to_have_count(1)
+                expect(work.locator('tbody')).to_contain_text('Acceptance task case-00')
+                work.get_by_role('button',name='Reset table',exact=True).click()
+                page.goto(origin+'/tasks/'+tasks[-1]+'?range=all')
+                page.locator('.step-panel>summary').click();sources=page.locator('[data-table="work-steps"]')
+                expect(sources).to_be_visible();sources.get_by_label('Search work-steps',exact=True).fill('ImageView')
+                expect(sources.locator('tbody tr')).to_have_count(1);expect(sources.locator('tbody')).to_contain_text('ImageView')
+                import bulk_analysis
+                bulk_analysis.start(f.store,launch=False)
+                page.locator('#bulk-analysis').click();queue=page.locator('[data-table="bulk-analysis-items"]')
+                expect(queue).to_be_visible();queue.get_by_label('Search bulk-analysis-items',exact=True).fill('case-00')
+                expect(queue.locator('tbody tr')).to_have_count(1);expect(queue.locator('tbody')).to_contain_text('Acceptance task case-00')
+                page.get_by_role('button',name='Close',exact=True).click()
                 page.goto(origin+'/live?range=all')
                 with f.store.connection() as c:c.execute('UPDATE live_sessions SET last_seen=?',(time.time()-90000,))
                 page.reload();expect(page.locator('#content')).to_contain_text('No session reported in the last 24 hours')

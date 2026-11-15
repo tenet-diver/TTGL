@@ -77,7 +77,11 @@ def scope(store, project='', workspace='', range='30d', clock=None, task_id=None
         turns = [dict(r) for r in c.execute('SELECT t.*,a.task_id,k.title task_title,k.project_id FROM turns t LEFT JOIN assignments a USING(session_id,turn_id) LEFT JOIN tasks k ON k.id=a.task_id'+(' WHERE t.session_id IN (SELECT session_id FROM assignments WHERE task_id=?)' if task_id else '')+' ORDER BY t.start,t.session_id,t.turn_id',(task_id,) if task_id else ())
                  if not workspace or r['repo'] == workspace]
         roles={r['event_id']:r['runtime_role'] for r in c.execute('SELECT aa.* FROM agent_annotations aa JOIN analyses an ON an.id=aa.analysis_id ORDER BY an.created')}
-    for row in rows:row['runtime_role']=roles.get(row['id'])
+    import process_analysis
+    interpretations=process_analysis.labels(store,rows)
+    for row in rows:
+        row['process_label']=interpretations.get(row['id'])
+        row['runtime_role']=roles.get(row['id']) or (row['process_label'] or {}).get('runtime_role')
     selected_turns = [t for t in turns if analytics.timestamp(t['start']) is not None and analytics.timestamp(t['start']) <= now and (analytics.timestamp(t['end']) or analytics.timestamp(t['start'])) >= start and (not project or t['project_id']==project)]
     ids = {r['task_id'] for r in rows if r['task_id']} | {t['task_id'] for t in selected_turns if t['task_id']}
     if len(ids) > 10000:
@@ -163,7 +167,7 @@ def project_tasks(store, ids, rows, scenario, attribution='measured', prepared=N
                                'span': max(times)-min(times) if len(times) > 1 else None,
                                'metrics': m, 'usage_basis': g['usage_basis']})
             groups.sort(key=lambda g: (g['start'], g['end'], g['id']))
-            latest = c.execute("SELECT status FROM task_history_jobs WHERE task_id=? AND operation IN ('subtasks','overview') ORDER BY created DESC LIMIT 1", (ident,)).fetchone()
+            latest = c.execute("SELECT status FROM task_history_jobs WHERE task_id=? AND operation IN ('subtasks','overview','process') ORDER BY created DESC LIMIT 1", (ident,)).fetchone()
             state = 'pending' if latest and latest[0] in ('queued', 'running') else 'interpreted' if groups else 'stale' if task['analysis_stale'] else 'unclassified' if events else 'no_activity'
             sessions={r['session_id'] for r in events} or {r[0] for r in c.execute('SELECT DISTINCT session_id FROM assignments WHERE task_id=?',(ident,))}
             availability=source_state(sessions,known_sources)

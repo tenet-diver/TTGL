@@ -353,7 +353,23 @@ layout. Image preview tests cover cache eviction/reconstruction, task scope,
 raster bounds and refusal to read log-suggested paths or remote URLs. Last-message
 claim links are lexical matches to retained facts, not independent verification.
 
-Final validation: all 222 observability tests passed with browser QA enabled
+Before integrating concurrent pagination/bulk-analysis changes, all 222 observability tests passed with browser QA enabled
 (92.756 seconds). The 43-capture acceptance manifest records zero JavaScript
 errors and zero failed API responses. JavaScript syntax passed for all seven
 changed/new modules; `git diff --check` passed. No new dependencies or model calls.
+
+Paginated Task activity, marked-task, Work, source-step and bulk-analysis lists retain the same search, numeric/text
+column filters, natural sorting, reset and column controls. `record_collection.py`
+applies their query before slicing a bounded server response; full-cohort metrics
+remain unchanged. Dashboard queries and offsets survive reload in the page URL; Work preferences are saved locally. Shared list
+controls debounce remote search, retain focus/caret and preserve unknowns last in
+either sort direction. The acceptance test searches across a page boundary, filters
+API estimates, resets offsets and checks persistence after reload. No full-history
+browser payload is required to restore these controls.
+
+Merged validation: all 242 observability tests passed with browser QA enabled
+(99.298 seconds), including full-cohort queries for every paginated list introduced
+by the concurrent transport changes. The refreshed 43-capture manifest has zero
+JavaScript errors and failed API responses. Seven changed JavaScript modules pass
+syntax checking; `git diff --check` passes. Receipt: ignored
+`work/security/reference-acceptance-20261115/merged-final-tests.log`.
