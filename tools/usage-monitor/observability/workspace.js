@@ -49,7 +49,7 @@ const config = {
 };
 const query = new URLSearchParams(location.search);
 const pathViews={'/investigate':'investigate','/overview':'overview','/tasks':'taskactivity','/costs':'costs','/tools':'tools','/process':'process','/agents':'agents','/timeline':'timeline','/live':'live','/live/rules':'steering','/impact':'impact','/outcomes':'outcomes','/suggestions':'suggestions'};
-let traceState=Object.fromEntries(['view','query','project','task','session','turn','tool','model','status','since','until','signal','sort','pattern','kind','fingerprint','offset'].filter(key=>query.has('trace_'+key)).map(key=>[key,query.get('trace_'+key)]));
+let traceState=Object.fromEntries(['view','query','project','task','session','turn','tool','model','status','since','until','signal','sort','pattern','kind','fingerprint','operation','offset'].filter(key=>query.has('trace_'+key)).map(key=>[key,query.get('trace_'+key)]));
 if(!['turns','tools','patterns','steps'].includes(traceState.view))traceState.view='turns';
 const opsState={project:query.get('project')||'',workspace:query.get('workspace')||'',range:query.get('range')||'30d',zone:query.get('zone')||Intl.DateTimeFormat().resolvedOptions().timeZone||'Europe/Amsterdam',attribution:query.get('attribution')||'measured',measure:query.get('measure')||'cost',connections:query.get('connections')||'24',family:query.get('family')||'',action:query.get('action')||'',toolMeasure:query.get('toolMeasure')||'calls'};
 const aliases={history:'knowledge',activity:'tasks',setup:'settings'};
@@ -86,7 +86,7 @@ async function load() {
     loadController?.abort();loadController=new AbortController();
     const request=(url)=>fetch(url,{signal:loadController.signal});
     if(view==='investigate'){
-      const overviewParams=Object.fromEntries(Object.entries(traceState).filter(([key,value])=>!['view','offset','kind','fingerprint','sort','pattern'].includes(key)&&value!==''&&value!=null));
+      const overviewParams=Object.fromEntries(Object.entries(traceState).filter(([key,value])=>!['view','offset','kind','fingerprint','operation','sort','pattern'].includes(key)&&value!==''&&value!=null));
       const params=Object.fromEntries(Object.entries(traceState).filter(([,value])=>value!==''&&value!=null));
       const responses=await Promise.all([request('/api/trace-index?'+new URLSearchParams(params)),request('/api/trace-index?'+new URLSearchParams({...overviewParams,view:'overview'}))]);
       const [result,overview]=await Promise.all(responses.map(response=>response.json()));

@@ -12,7 +12,7 @@ export function renderTraceExplorer(root, {state, data, overview, onChange, show
   const metrics = data.metrics;
   const set = values => onChange({...state, offset:0, ...values});
   const facets = overview?.facets || {};
-  const scope = ['project','task','session','turn'].filter(key=>state[key]);
+  const scope = ['project','task','session','turn','operation','fingerprint'].filter(key=>state[key]);
   const summary = [field('Native turns', n(metrics.turns)), field('Measured tokens', n(metrics.total_tokens)),
     field('Tool calls',n(metrics.tool_calls)), field('Unsuccessful tools',n(metrics.tool_failures)),
     field('Unknown tool outcomes',n(metrics.unknown_tool_outcomes)), field('Metered responses',`${n(metrics.metered_responses)} / ${n(metrics.responses)}`)].join('');
@@ -49,17 +49,17 @@ export function renderTraceExplorer(root, {state, data, overview, onChange, show
     event.preventDefault(); set(Object.fromEntries(new FormData(event.currentTarget)));
   };
   root.querySelector('[data-trace-reset]').onclick = () => onChange({view:'turns',sort:'recent'});
-  root.querySelector('[data-trace-unscope]')?.addEventListener('click',()=>set({project:'',task:'',session:'',turn:'',fingerprint:''}));
+  root.querySelector('[data-trace-unscope]')?.addEventListener('click',()=>set({project:'',task:'',session:'',turn:'',fingerprint:'',operation:''}));
   root.querySelectorAll('[data-trace-tool]').forEach(node=>node.onclick=()=>set({tool:facets.tools.records[Number(node.dataset.traceTool)].value}));
   root.querySelectorAll('[data-trace-model]').forEach(node=>node.onclick=()=>set({model:facets.models.records.filter(r=>r.value)[Number(node.dataset.traceModel)].value}));
-  root.querySelectorAll('[data-trace-mode]').forEach(node=>node.onclick=()=>set({view:node.dataset.traceMode,kind:'',fingerprint:''}));
+  root.querySelectorAll('[data-trace-mode]').forEach(node=>node.onclick=()=>set({view:node.dataset.traceMode,kind:'',fingerprint:'',operation:''}));
   root.querySelectorAll('[data-trace-page]').forEach(node=>node.onclick=()=>onChange({...state,offset:Number(node.dataset.tracePage)}));
   root.querySelector('[name="pattern"]')?.addEventListener('change',event=>set({pattern:event.target.value}));
   root.querySelector('[name="kind"]')?.addEventListener('change',event=>set({kind:event.target.value}));
   root.querySelectorAll('[data-trace-open]').forEach(node=>node.onclick=()=>{
     const row=data.records[Number(node.dataset.traceOpen)];
-    if(data.view==='tools')set({view:'turns',tool:row.name,kind:'',fingerprint:''});
-    else set({view:'steps',session:row.session_id,turn:row.turn_id,kind:data.view==='patterns'?'tool':'',fingerprint:row.fingerprint||''});
+    if(data.view==='tools')set({view:'turns',tool:row.name,kind:'',fingerprint:'',operation:''});
+    else set({view:'steps',session:row.session_id,turn:row.turn_id,kind:data.view==='patterns'?'tool':'',fingerprint:row.fingerprint||'',operation:data.view==='patterns'?row.name:''});
   });
   root.querySelectorAll('[data-trace-raw]').forEach(node=>node.onclick=()=>readRaw(data.records[Number(node.dataset.traceRaw)].id,0,showModal,onError));
 }

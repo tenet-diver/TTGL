@@ -117,8 +117,21 @@ class TraceIndexTests(unittest.TestCase):
         self.assertIsNone(result['metrics']['total_tokens'])
         self.assertEqual(result['metrics']['unmetered_responses'],1)
 
+    def test_pattern_drilldown_excludes_other_operations_with_the_same_output(self):
+        with self.store.connection() as c:
+            c.execute("UPDATE events SET output_hash=? WHERE kind='tool'",('b'*64,))
+        self.clone()
+        self.clone('different-operation')
+        with self.store.connection() as c:
+            c.execute("UPDATE events SET name='Other tool' WHERE id='different-operation'")
+        group=trace_index.query(self.store,view='patterns',pattern='output')['records'][0]
+        result=trace_index.query(self.store,view='steps',session=group['session_id'],turn=group['turn_id'],
+                                 pattern='output',fingerprint=group['fingerprint'],operation=group['name'])
+        self.assertEqual(result['pagination']['total'],group['copies'])
+        self.assertEqual({r['name'] for r in result['records']},{group['name']})
+
     def test_invalid_filters_are_rejected(self):
-        for args in (dict(view='sql'),dict(sql='SELECT 1'),dict(limit=101),dict(offset=-1),
+        for args in (dict(view='sql'),dict(sql='SELECT 1'),dict(limit=101),dict(offset=-1),dict(operation='x'),
                      dict(kind='tool'),dict(signal='failed_task'),dict(since='2026-11-05'),
                      dict(since='2026-11-06T00:00:00Z',until='2026-11-05T00:00:00Z'),
                      dict(view='steps',fingerprint='bad'),dict(query='x'*501),dict(view='steps',kind='any')):

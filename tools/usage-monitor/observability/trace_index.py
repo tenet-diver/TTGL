@@ -104,7 +104,7 @@ def _page(c, base, sql, args, offset, limit, order):
 
 
 def query(store, view='overview', offset=0, limit=20, sort='recent', detail='summary', pattern='input', **filters):
-    allowed = {'project', 'task', 'session', 'turn', 'tool', 'model', 'status', 'since', 'until', 'signal', 'query', 'kind', 'fingerprint'}
+    allowed = {'project', 'task', 'session', 'turn', 'tool', 'model', 'status', 'since', 'until', 'signal', 'query', 'kind', 'fingerprint', 'operation'}
     if set(filters) - allowed:
         raise ValueError('Unsupported trace filter')
     if view not in VIEWS or sort not in ('recent', 'tokens', 'runtime', 'output', 'failures', 'count'):
@@ -113,8 +113,8 @@ def query(store, view='overview', offset=0, limit=20, sort='recent', detail='sum
         raise ValueError('Invalid detail or pattern')
     if filters.get('kind') not in (None, '', 'tool', 'generation'):
         raise ValueError('kind must be tool or generation')
-    if (filters.get('kind') or filters.get('fingerprint')) and view != 'steps':
-        raise ValueError('kind/fingerprint apply only to steps')
+    if any(filters.get(key) for key in ('kind','fingerprint','operation')) and view != 'steps':
+        raise ValueError('kind/fingerprint/operation apply only to steps')
     if filters.get('fingerprint') and not re.fullmatch('[0-9a-f]{64}', filters['fingerprint']):
         raise ValueError('Invalid fingerprint')
     offset, limit = int(offset), int(limit)
@@ -187,6 +187,8 @@ def query(store, view='overview', offset=0, limit=20, sort='recent', detail='sum
                 conditions.append('e.kind=?'); extras.append(filters['kind'])
             if filters.get('fingerprint'):
                 conditions.append(('f.signature' if pattern == 'input' else 'e.output_hash') + '=?'); extras.append(filters['fingerprint'])
+            if filters.get('operation'):
+                conditions.append('e.name=?'); extras.append(filters['operation'])
             sql = '''SELECT e.*,s.task_id,s.task_title,s.task_status,s.project_id,f.signature input_fingerprint
                 FROM evidence e JOIN selected s USING(session_id,turn_id)
                 LEFT JOIN optimization_facts f ON f.event_id=e.id WHERE ''' + ' AND '.join(conditions)

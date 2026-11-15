@@ -67,8 +67,9 @@ those turns. `status` is the recorded task status. Signals are `tool_failure`,
 timezone; `since` is inclusive and `until` exclusive, by **turn start**.
 
 For steps only, `kind` selects `tool` or `generation`; `fingerprint` plus
-`pattern=input|output` retrieves a repeated group's source operations. Combine with
-the group's session and turn to preserve its boundary. `detail=full` on turns adds
+`pattern=input|output` retrieves repeated source operations. Combine with the
+group's session, turn and exact `operation` name to reproduce precisely that group;
+different operations can emit the same output. `detail=full` on turns adds
 bounded redacted prompts and recorded task outcomes; compact results omit them.
 
 ## Measurement boundaries

@@ -3813,9 +3813,11 @@ support bounded character pagination. The retained corpus read-only smoke covere
 about 1,600 turns/13,800 events; individual query views took 0.15–0.37 seconds in
 that local check. This is query behavior, not an agent-performance improvement.
 
-Validation: 218 observability checks, 194 passed and 24 optional checks skipped;
+Validation: 219 observability checks, 195 passed and 24 optional checks skipped;
 JavaScript syntax/module-graph/four-renderer smoke passed. The new browser workflow
 is implemented but was not executed because reviewed Playwright/Chromium is absent
 here; no layout/browser-success claim. No benchmark/model trials or automatic
 optimization were launched. Frozen artifacts and paused research schedules remain
 unchanged. Existing MCP processes must reconnect to discover tool version 1.4.0.
+Final deployment review adds an exact operation filter for fingerprint drill-down,
+so different tools producing identical outputs cannot expand the selected group.
