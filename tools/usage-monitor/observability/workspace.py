@@ -6,6 +6,7 @@ import collections
 import contextlib
 from datetime import datetime, timezone, timedelta
 import hashlib
+import hmac
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import importlib.util
 import json
@@ -62,6 +63,9 @@ CREATE INDEX IF NOT EXISTS annotations_event ON agent_annotations(event_id,analy
                 c.execute('INSERT OR IGNORE INTO rules VALUES(?,?,?,?,?)', (f'default-{index}', category, pattern, 1, 1))
         import task_curation
         task_curation.init(self)
+        import optimization, steering
+        optimization.init(self)
+        steering.init(self)
 
     @contextlib.contextmanager
     def connection(self):
@@ -148,18 +152,20 @@ CREATE INDEX IF NOT EXISTS annotations_event ON agent_annotations(event_id,analy
                 return
         paths = list(self.root.joinpath('sessions').rglob('*.jsonl')) + list(self.root.joinpath('archived_sessions').rglob('*.jsonl'))
         for path in paths:
-            stat = path.stat()
-            with self.connection() as c:
-                old = c.execute('SELECT * FROM files WHERE path=?', (str(path),)).fetchone()
-                if old and old['size'] == stat.st_size and old['mtime'] == stat.st_mtime_ns and not old['error']:
-                    continue
+            stat = None
             try:
+                stat = path.stat()
+                with self.connection() as c:
+                    old = c.execute('SELECT * FROM files WHERE path=?', (str(path),)).fetchone()
+                    if old and old['size'] == stat.st_size and old['mtime'] == stat.st_mtime_ns and not old['error']:
+                        continue
                 self.ingest(path)
                 error = None
             except Exception as exc:
                 error = type(exc).__name__ + ': ' + str(exc)[:200]
             with self.connection() as c:
-                c.execute('INSERT OR REPLACE INTO files VALUES(?,?,?,?)', (str(path), stat.st_size, stat.st_mtime_ns, error))
+                c.execute('INSERT OR REPLACE INTO files VALUES(?,?,?,?)',
+                          (str(path), stat.st_size if stat else None, stat.st_mtime_ns if stat else None, error))
 
         import task_discovery
         task_discovery.sync(self)
@@ -202,6 +208,8 @@ CREATE INDEX IF NOT EXISTS annotations_event ON agent_annotations(event_id,analy
         tools = {tool['id']: tool for tool in tools}
         turns, events = {}, {}
         model = None
+        facts, answers, caches = {}, {}, {}
+        import optimization
         for line, record in bridge.monitor.lines(path):
             if not record:
                 continue
@@ -225,9 +233,14 @@ CREATE INDEX IF NOT EXISTS annotations_event ON agent_annotations(event_id,analy
                     for content in item.get('content') or []:
                         if isinstance(content, dict) and content.get('type') == 'text':
                             row['prompt'].append(content.get('text', '')[:4000])
+                if p.get('type')=='item_completed' and item.get('type') in ('AssistantMessage','assistant_message'):
+                    content=item.get('content')
+                    if isinstance(content,str):answers[turn]=len(content)
+                    elif isinstance(content,list) and all(isinstance(v,dict) and v.get('type') in ('text','output_text') and isinstance(v.get('text'),str) for v in content):answers[turn]=sum(len(v['text']) for v in content)
                 ident = item.get('id')
                 if p.get('type') == 'item_completed' and ident in tools:
                     tool = tools[ident]
+                    facts[sid + ':tool:' + ident] = optimization.native_fact(item)
                     output = item.get('aggregated_output', item.get('result'))
                     output_hash = hashlib.sha256(json.dumps(output, sort_keys=True).encode()).hexdigest() if output is not None else None
                     events[sid + ':tool:' + ident] = (sid + ':tool:' + ident, sid, turn, 'tool', tool['operation'], ts,
@@ -247,6 +260,9 @@ CREATE INDEX IF NOT EXISTS annotations_event ON agent_annotations(event_id,analy
                 if key in events and events[key][9] != event[9]:
                     raise ValueError('Conflicting response usage')
                 events[key] = event
+                writes=usage.get('cache_creation_input_tokens')
+                short=usage.get('cache_creation_5m_input_tokens')
+                if type(writes) is int and writes>=0 and (short is None or type(short) is int and 0<=short<=writes):caches[key]=(writes,short)
         with self.connection() as c:
             for turn, row in turns.items():
                 c.execute('INSERT OR REPLACE INTO turns VALUES(?,?,?,?,?,?,?)',
@@ -256,6 +272,17 @@ CREATE INDEX IF NOT EXISTS annotations_event ON agent_annotations(event_id,analy
                 if existing and existing['usage'] != event[9]:
                     raise ValueError('Response changed after ingestion; reconciliation required')
                 c.execute('INSERT OR IGNORE INTO events VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', event)
+            for ident, fact in facts.items():
+                c.execute('INSERT OR IGNORE INTO optimization_facts(event_id,command,signature,output_chars,operation,commits) VALUES(?,?,?,?,?,?)',(ident,*fact))
+            for ident, (writes,short) in caches.items():
+                c.execute('INSERT OR IGNORE INTO optimization_facts(event_id,cache_write,cache_5m) VALUES(?,?,?)',(ident,writes,short))
+            for turn, count in answers.items():
+                c.execute('INSERT OR REPLACE INTO optimization_turns VALUES(?,?,?)',(sid,turn,count))
+            source=meta.get('source');role=None;agent_type=None
+            if isinstance(source,str) and source in ('cli','vscode','exec'):role='main'
+            if isinstance(source,dict) and isinstance(source.get('subagent'),dict):
+                role='sub';details=source['subagent'].get('thread_spawn',{});agent_type=details.get('agent_role') if isinstance(details,dict) else None
+            c.execute('INSERT OR REPLACE INTO native_session_facts VALUES(?,?,?,?)',(sid,role,agent_type,optimization.analytics.timestamp(meta.get('timestamp'))))
 
     def report(self, project=None, task=None, category=None, event_limit=1000, session=None):
         with self.connection() as c:
@@ -502,6 +529,18 @@ class Handler(BaseHTTPRequestHandler):
             filters = {k: query[k][0] for k in ('project', 'task', 'category') if k in query}
             result = self.server.store.report(**filters)
             return self.send(result)
+        if path.path in ('/api/steering','/api/optimization'):
+            query={k:v[0] for k,v in parse_qs(path.query).items()}
+            try:
+                if path.path=='/api/steering':
+                    import steering
+                    result=steering.state(self.server.store,query.get('workspace',''))
+                else:
+                    import optimization
+                    result=optimization.dashboard(self.server.store,query.get('project',''),query.get('range','30d'),query.get('workspace',''))
+                result['langfuse_url']=self.server.store.langfuse_url
+                return self.send(result)
+            except (ValueError,TypeError,sqlite3.Error) as exc:return self.send({'error':str(exc)},400)
         if path.path=='/api/work-cost-rates':
             import work_analytics
             return self.send(work_analytics.rates(self.server.store))
@@ -576,6 +615,10 @@ class Handler(BaseHTTPRequestHandler):
             if not target.exists():
                 return self.send({'error': 'Private design-system distribution not synced; see sync_design_system.py'}, 503)
             return self.send(target.read_bytes(), content=design_assets[path.path])
+        if path.path in ('/live','/live/rules','/impact','/outcomes','/suggestions'):
+            return self.send((HERE/'workspace.html').read_bytes(),content='text/html; charset=utf-8')
+        if path.path in ('/optimization.js','/optimization.css','/collection.js'):
+            return self.send((HERE/path.path[1:]).read_bytes(),content='text/css; charset=utf-8' if path.path.endswith('.css') else 'text/javascript; charset=utf-8')
         assets = {'/activity-insights.js': ('activity-insights.js','text/javascript; charset=utf-8'), '/task-history.js': ('task-history.js', 'text/javascript; charset=utf-8'), '/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8'),
                   '/ui.js': ('ui.js', 'text/javascript; charset=utf-8'),
                   '/theme-init.js': ('theme-init.js', 'text/javascript; charset=utf-8'),
@@ -594,6 +637,19 @@ class Handler(BaseHTTPRequestHandler):
         self.send({'error': 'Not found'}, 404)
 
     def do_POST(self):
+        if self.path == '/api/steering-hook':
+            # Machine endpoint: browser-originated requests are always rejected.
+            token_path=self.server.store.data/'steering-token'
+            expected=token_path.read_text().strip() if token_path.exists() else ''
+            supplied=self.headers.get('Authorization','')
+            if not self.valid() or self.headers.get('Origin') is not None or not expected or not hmac.compare_digest(supplied.encode(),('Bearer '+expected).encode()):
+                return self.send({'error':'Authenticated non-browser hook required'},403)
+            try:
+                length=int(self.headers.get('Content-Length','0'))
+                if not 0<length<=32768:raise ValueError('Invalid hook size')
+                import steering
+                return self.send(steering.receive(self.server.store,json.loads(self.rfile.read(length))))
+            except (ValueError,TypeError,KeyError,sqlite3.Error) as exc:return self.send({'error':str(exc)},400)
         origin = self.headers.get('Origin')
         if not self.valid() or origin not in self.server.allowed_origins:
             return self.send({'error': 'Same-origin request required'}, 403)
@@ -607,7 +663,11 @@ class Handler(BaseHTTPRequestHandler):
             values = json.loads(self.rfile.read(length))
             if not isinstance(values, dict):
                 raise ValueError('Expected an object')
-            if action in ('analyze-activity','accept-activity-task','review-activity-suggestion'):
+            if action in ('steering-rule','live-control','applied-change','optimization-models'):
+                import steering, optimization
+                function={'steering-rule':steering.save_rule,'live-control':steering.control,'applied-change':optimization.change,'optimization-models':optimization.save_models}[action]
+                result=function(self.server.store,values)
+            elif action in ('analyze-activity','accept-activity-task','review-activity-suggestion'):
                 import activity_insights
                 if action=='analyze-activity':result=activity_insights.start(self.server.store,values.get('project') or None,values.get('window_offset',0))
                 elif action=='accept-activity-task':result=activity_insights.apply_task(self.server.store,values.get('job_id'),values.get('position'))

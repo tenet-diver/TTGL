@@ -1,0 +1,137 @@
+# Usage Observatory architecture
+
+TTGL applies the supplied Claude Mining references to its existing Observatory.
+The implementation is Python stdlib, SQLite and native DOM, with a separate
+Langfuse deployment. It does not require a Next.js rewrite, a second ClickHouse
+schema, Garage, or a new agent framework. Existing Langfuse components supply the
+trace backend; TTGL adds source reconciliation, task grouping and evidence review.
+
+## Parts and ownership
+
+| Part | Implementation | Responsibility |
+| --- | --- | --- |
+| Workspace | `tools/usage-monitor/observability/workspace.py` | Loopback HTTP server, local SQLite store, native ingestion, mutations and audit |
+| Native parsing | Existing monitor and Langfuse bridge | Native operation identities, recorded runtimes and deduplicated response usage |
+| Work views | `work-explorer.js`, `work_analytics.py` | Task → subtasks → source steps, measured usage, type analytics and knowledge candidates |
+| Evidence | `task_evidence.py`, `activity-insights.js` | Retained changes, validations, image references, explicit interventions and task story |
+| Interpretation | `task_history.py`, `activity_insights.py`, `agent_review.py` | On-demand model work, versioned outputs, source links, confidence and separate overhead |
+| Capture | Existing capture proxy and capture-object archive | Original/forwarded transport evidence and durable private records |
+| Backend | Existing Langfuse deployment | Traces, dashboards and maintained storage services; see its runbook |
+| Design | `ui.css`, `workspace.css`, `work-explorer.css`, `ui.js` | Shared semantic tokens, native controls and responsive layouts |
+
+Paths in this table are relative to `tools/usage-monitor/observability/` unless
+otherwise stated. Startup and private-state locations are in [SETUP](../SETUP.md).
+
+## Ingestion contract
+
+Collection scans the configured Codex `sessions` and `archived_sessions` roots.
+A file's size and nanosecond mtime are checked against the SQLite `files` ledger.
+Unchanged successful files are skipped. Changed files are parsed as a whole;
+native identities deduplicate replayed observations and responses. An unreadable
+or malformed session records an error without stopping other files, and is retried
+on the next scan. A failed stat has no successful signature.
+
+Database writes for one parsed file are transactional. Previously recorded model
+usage cannot silently change: reconciliation is required. TTGL preserves existing
+source evidence rather than adopting the reference's replace-old-rows behavior.
+SQLite is authoritative for workspace state; `FINAL` applies only to relevant
+ClickHouse tables in the separate backend, not to workspace SQL.
+
+Schema initialization and additive migrations must remain repeatable. Never edit
+frozen experiment sources or historical evidence to fit the current schema. New
+model work requires an explicit action; collection and styling must not invoke a
+model or resume paused schedules.
+
+## Task and data model
+
+| Reference concept | TTGL mapping |
+| --- | --- |
+| Trace / turn | Native session and turn, retaining source identity and project/repository |
+| Generation | Native response counters and model; cached input is a subset of input |
+| Tool span | Native tool event with recorded runtime, source line, output hash and outcome |
+| Task instance | Explicit or discovered task with assigned turns; one prompt is not assumed to equal one verified task |
+| Task annotations | Explicit task state/outcome and versioned assignments; model task boundaries are proposals |
+| Subtasks / steps | Versioned interpreted or manually collected groups linked to immutable source steps |
+| Categorization | Literal operation rules and separate agent interpretations with rationale/confidence |
+| Mining jobs | Source collection status and separately recorded interpretation jobs/attempts |
+
+A prompt follow-up is not automatically a correction or intervention. Completion
+of a command is not proof of task success. Keep unclassified activity inspectable.
+Task types, grouping, knowledge candidates and confidence are interpretations;
+source measurements remain unchanged. Do not copy the reference's `new_tasks`
+counting formula onto TTGL's explicit task assignments.
+
+## Task story and evidence
+
+The Evidence & outcomes action now starts with two cards: **Task story** and
+**What remains open**. They summarize the recorded request, acceptance criteria,
+native changed-file references, check count and latest unambiguous validation.
+They flag failed/unknown validation, edits after the last check, ambiguous ordering,
+missing task acceptance and bounded source coverage. All underlying facts remain
+available below, with original-step inspection.
+
+Manual evidence retains its explicit-record provenance. Screenshots are references,
+not automatically fetched files or proof of visual correctness. Tied or missing
+timestamps must not imply that a check covers an edit. The existing selectable
+step timeline supplies chronological drill-down; the reference's inferred
+explore/implement/verify/deliver phases and final-claim-to-proof mapping are not
+implemented by this change.
+
+## Cost and timing
+
+Editable rates are API-equivalent scenarios computed from measured model tokens.
+They are not subscription bills or cash savings. Preserve unknown rates/usage as
+unknown. Separate analysis/mining overhead from source task counters. Never add
+alternative daily/session aggregations, transport spans or allocations to native
+response totals.
+
+Per-tool call-cost shares and future context-cache costs from the reference are
+estimates, not currently measured TTGL per-tool costs. Keep them unattributed until
+a documented attribution method is implemented. Rate changes recalculate scenarios;
+they do not require reparsing native token counters. Recorded operation runtime,
+background-process lifetime, overlapping tool time and task elapsed span remain
+distinct. A nonzero operation is not by itself a failed task.
+
+## Suggestions and agent boundaries
+
+Reuse the on-demand review pipeline. Suggestions cite source steps and carry an
+action, risk and validation plan. Accepting a suggestion records a trial decision;
+it neither applies a code change nor claims savings. Preserve failed trials and
+immutable attempts. Keep decision, implementation and evaluation separate.
+
+TTGL's analyst tools expose bounded evidence queries and read-only review behavior.
+The reference's Claude runner, single SQL shell command, four-table ClickHouse
+principal and fixed 200-row/20-second settings are not TTGL interfaces. Do not
+advertise them as existing controls. Review actual tool capabilities and runtime
+isolation before expanding an agent's access.
+
+## Archive and live-steering boundaries
+
+TTGL reads retained native archived sessions and has private HTTP/capture archives.
+These do not establish a full transcript-retention service. The reference's
+archive-before-ingest, preserved pre-truncation versions, archive-only session
+reprocessing and archive-size dashboard remain additional product work. Do not
+claim a same-disk archive protects against disk loss. Preserve private originals,
+source hashes, delivery receipts, credentials and backend volumes.
+
+## Optimization and steering implementation
+
+`optimization.py` owns deterministic findings, source-linked outcome patterns,
+UTC daily/weighted seven-day trends, applied-change records and fixed-window hourly
+cluster comparisons. `optimization.js` renders their native tables and SVG charts.
+`steering.py` owns separate live-session/rule/event/note tables, authenticated
+machine decisions, idempotency and firing history. `steering_hook.py` provides an
+opt-in Claude Code adapter and generic client. These reuse SQLite transactions,
+the existing rate scenarios, native evidence reader and maintained browser
+popover/dialog/SVG primitives; Langfuse remains the trace backend. No additional
+framework, chart package or agent runtime is required for these local records.
+
+Log only / Warn / Ask / Block modes, budgets, pause/notes and a bounded fail-open
+adapter are implemented. They remain distinct from collection pause and category
+rules. The adapter is not automatically installed in personal settings; clients
+must support the returned decisions. Codex telemetry does not establish equivalent
+pre-tool enforcement. No research schedule is resumed. See [the operations guide](OPERATIONS.md)
+for supported source fields, approval semantics, statistical limits and installation.
+
+Native collection and keyboard-accessible popover behavior now ship in
+`collection.js`; private DOM assets are no longer required to start the workspace.

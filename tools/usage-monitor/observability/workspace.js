@@ -1,8 +1,9 @@
+import {renderOperations,builtins,bindEvidence,filters as opsFiltersHTML} from '/optimization.js';
 import {renderSuggestions,activityQuery} from '/activity-insights.js';
 import {renderExplorer,explorerParams} from '/work-explorer.js';
 import { renderStepTimeline } from '/step-timeline.js';
 import { renderHistory, openTaskHistory as showTaskHistory } from '/task-history.js';
-import { collectionPage, normalizeSearch } from '/design-system/collection.js';
+import { collectionPage, normalizeSearch } from '/collection.js';
 import { button, badge, icon, emptyState, skeleton, createActionMenu } from '/ui.js';
 
 const $ = selector => document.querySelector(selector);
@@ -15,6 +16,10 @@ const external = (url, title='Inspect in Langfuse') => `<a href="${esc(url)}" ta
 const section = (title, body, action='', note='') => `<section class="section"><div class="section-heading"><h2>${esc(title)}</h2>${action}</div>${note?`<p class="section-note">${note}</p>`:''}${body}</section>`;
 const clip = value => `<span class="clip" title="${esc(value)}">${esc(value)}</span>`;
 const config = {
+  live:['Live sessions','Connected sessions, delivered notes and hook decisions in the last 24 hours.'],
+  steering:['Steering rules','Configure log, warning, approval and blocking behavior for connected hooks.'],
+  impact:['Impact','Record applied changes and compare source metrics before and after.'],
+  outcomes:['Outcomes','Inspect repeated failure patterns, recorded commits and pull requests.'],
   suggestions:['Suggestions','Small-model activity analysis, proposed task boundaries, and evidence-backed improvements.'],
   analytics:['Analytics','Compare time, tokens, steps, and cost by task and subtask type.'],
   knowledge:['Knowledge','Reusable lessons and examples, with links to the work that supports them.'],
@@ -32,8 +37,10 @@ const config = {
   setup:['Setup & coverage','Source permission, collector coverage, and configuration.']
 };
 const query = new URLSearchParams(location.search);
+const pathViews={'/live':'live','/live/rules':'steering','/impact':'impact','/outcomes':'outcomes','/suggestions':'suggestions'};
+const opsState={project:query.get('project')||'',workspace:query.get('workspace')||'',range:query.get('range')||'30d'};
 const aliases={overview:'tasks',history:'knowledge',activity:'tasks',setup:'settings'};
-let view=aliases[location.hash.slice(1)]|| (config[location.hash.slice(1)]?location.hash.slice(1):'tasks');
+let view=pathViews[location.pathname]&&!location.hash?pathViews[location.pathname]:aliases[location.hash.slice(1)]|| (config[location.hash.slice(1)]?location.hash.slice(1):'tasks');
 const primary=()=>['tasks','analytics','knowledge'].includes(view);
 let workData=null,loadEpoch=0;
 let project = query.get('project') || '', task = query.get('task') || '', category = query.get('category') || '';
@@ -68,18 +75,35 @@ function syncURL() {
   if (task) params.set('task', task);
   if (category) params.set('category', category);
   const review=new URLSearchParams(location.search).get('review');if(review)params.set('review',review);
+  if(opsState.range)params.set('range',opsState.range);if(opsState.workspace)params.set('workspace',opsState.workspace);
   history.replaceState(null, '', location.pathname + (params.size?'?'+params:'') + '#' + view);
 }
 async function load() {
+  $('.page-header').dataset.overview=String(view==='tasks'&&!task);
   if (busy) return;
   try {
     const epoch=++loadEpoch;
+    if(['live','steering','impact','outcomes'].includes(view)){
+      opsState.project=project;
+      const params=new URLSearchParams(opsState);
+      const response=await fetch((['live','steering'].includes(view)?'/api/steering?':'/api/optimization?')+params);
+      const result=await response.json();if(!response.ok)throw Error(result.error||'Page unavailable');if(epoch!==loadEpoch)return;
+      $('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;$('#title').textContent=config[view][0];$('#subtitle').textContent=config[view][1];$('#breadcrumb').textContent=config[view][0];$('#page-actions').innerHTML='';$('#content').setAttribute('aria-busy','false');
+      document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
+      $('#live').textContent='Connected';$('#connection-dot').dataset.state='collecting';$('#langfuse').href=result.langfuse_url;
+      renderOperations($('#content'),{view,data:result,state:opsState,table,post,showModal,onRefresh:load,onError:toast,inspect:inspectOpsSource,onFilters:updateOpsFilters});return;
+    }
     if(view==='suggestions'){
-      const response=await fetch('/api/activity-insights?'+activityQuery(project));
-      const result=await response.json();if(!response.ok)throw Error(result.error||'Suggestions unavailable');if(epoch!==loadEpoch)return;
+      opsState.project=project;
+      const [response,optimized]=await Promise.all([fetch('/api/activity-insights?'+activityQuery(project)),fetch('/api/optimization?'+new URLSearchParams(opsState))]);
+      const [result,checks]=await Promise.all([response.json(),optimized.json()]);if(!response.ok||!optimized.ok)throw Error(result.error||checks.error||'Suggestions unavailable');if(epoch!==loadEpoch)return;
       $('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;$('#title').textContent='Suggestions';$('#subtitle').textContent=config.suggestions[1];$('#breadcrumb').textContent='Suggestions';$('#page-actions').innerHTML='';$('#content').setAttribute('aria-busy','false');
       document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
-      renderSuggestions($('#content'),result,{project,post,onRefresh:load,onError:toast,onProject:value=>{project=value;syncURL();load();},onTask:id=>{task=id;view='tasks';syncURL();load();}});return;
+      renderSuggestions($('#content'),result,{project,post,onRefresh:load,onError:toast,onProject:value=>{project=value;syncURL();load();},onTask:id=>{task=id;view='tasks';syncURL();load();}});
+      $('#content').insertAdjacentHTML('afterbegin',opsFiltersHTML(checks,opsState)+builtins(checks,table));
+      $('#content [data-ops-filters]').onsubmit=e=>{e.preventDefault();updateOpsFilters(Object.fromEntries(new FormData(e.currentTarget)));};
+      $('#live').textContent='Connected';$('#connection-dot').dataset.state='collecting';$('#langfuse').href=checks.langfuse_url;
+      bindEvidence($('#content'),checks,{showModal,inspect:inspectOpsSource,onError:toast});return;
     }
     if(primary()){
       const response=await fetch('/api/work-explorer?'+explorerParams(project));
@@ -100,6 +124,15 @@ async function load() {
     if(!data) $('#content').innerHTML=emptyState('Evidence is unavailable','Check the connection and try loading again.',button('Try again','data-refresh'),'database');
     toast(error.message);
   }
+}
+async function inspectOpsSource(id,target){
+  target.textContent='Loading retained source…';
+  const response=await fetch('/api/task-step-evidence?'+new URLSearchParams({id}));const value=await response.json();
+  if(!response.ok)throw Error(value.error||'Source unavailable');target.innerHTML='<pre>'+esc(JSON.stringify(value,null,2))+'</pre>';
+}
+function updateOpsFilters(values){
+  if(values.task){task=values.task;view='tasks';}else{Object.assign(opsState,values);project=opsState.project||'';}
+  syncURL();load();
 }
 async function post(action, values) {
   const response = await fetch('/api/'+action, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(values)});

@@ -1,7 +1,7 @@
 # Observatory components
 
 The workspace follows the repository's `DESIGN.md`: Geist, JetBrains Mono,
-neutral surfaces, restrained workflow color, shadow borders, 6/12/18px radii,
+neutral surfaces, restrained workflow color, shadow borders, 6/12/16px radii,
 responsive layouts, and reduced-motion support.
 
 `../ui.css` translates the pinned MIT-licensed **shadcn/ui New York** component
@@ -15,9 +15,8 @@ This is a **native-DOM adaptation**, not the official React/Radix runtime. The
 current Python-served application uses HTML templates and delegated events;
 shadcn's React components cannot mount directly into that structure. Translating
 these visual primitives avoids a second renderer, new build/runtime dependencies,
-and a rewrite of existing task workflows. Existing private EVLV collection and
-popover behavior remains in use; its CSS is no longer loaded. No private source
-is redistributed here.
+and a rewrite of existing task workflows. Collection filtering/pagination and keyboard-accessible native popover menus now
+live in `../collection.js`. No private distribution is required or redistributed.
 
 Upstream versions, source hashes, review scope and licenses are recorded in
 `sources.lock.json` and the adjacent license files. Fonts and the selected Lucide

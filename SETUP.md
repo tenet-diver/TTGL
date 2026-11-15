@@ -9,7 +9,7 @@ All commands below run from the repository root.
 - Python **3.11+** for the Observatory; research metadata requires **3.12+**.
 - Docker Engine with Compose for Langfuse; no Docker is needed for the workspace alone.
 - An existing authenticated Codex CLI for native history and explicit analyst/model work.
-- Authorized access to the private design-system distribution for the complete UI.
+- A current browser with native dialog/popover support. Shared UI assets ship in the repository.
 
 Recorded tested versions and service digests are in
 [deployment.lock.json](tools/usage-monitor/config/deployment.lock.json). They are
@@ -36,18 +36,10 @@ rollups and transport spans must not be added to native generation usage.
 
 ## UI assets
 
-The public repository includes its shared UI adaptation, but startup also uses
-three privately licensed DOM assets. From an authorized local source checkout:
-
-```sh
-python3 tools/usage-monitor/observability/sync_design_system.py --source /path/to/design-system
-python3 tools/usage-monitor/observability/sync_design_system.py --check
-```
-
-The sync reads the exact locked Git revision, checks artifact hashes and runs no
-producer build scripts. It writes only ignored private assets. A public clone
-without access to that source cannot reproduce the complete UI. See
-[the UI runbook](tools/usage-monitor/README.md#compact-workspace-and-data-coverage).
+The workspace serves its native collection/menu behavior, shadcn-inspired styles,
+Geist/JetBrains Mono fonts and Lucide icons from this checkout. No npm install,
+CDN or private design-system sync is needed. The legacy sync helper remains for
+older deployments but is not a startup prerequisite for the current UI.
 
 ## Workspace without Docker
 
@@ -191,3 +183,30 @@ For the native-team work, use the dedicated
 [reproduction/porting guide](docs/paper/codex-team-knowledge/REPRODUCING.md).
 Do not start a queued study, repeat an uncertain call, access reserved validation
 or enable a schedule as part of ordinary app setup.
+
+## Applying the Claude Mining references
+
+Use [the architecture mapping](docs/ARCHITECTURE.md) and [design system](DESIGN.md)
+for the current Python/native DOM workspace. The supplied project's `cm-task`,
+`cm-hook`, Next.js rebuild commands, private registry and Garage secrets are not
+TTGL commands. TTGL's token-rate scenarios recalculate from retained counters;
+they do not need the source project's pricing-triggered transcript reprocess.
+
+Focused source-ingestion and task-story checks (no model calls):
+
+```sh
+cd tools/usage-monitor/observability
+python3 -m unittest test_workspace test_task_evidence
+```
+
+Browser QA uses the existing Playwright/system browser installation; no model
+calls or dependency downloads are needed for the tests. From the Observatory directory:
+
+```sh
+TTGL_BROWSER_QA=1 TTGL_CHROMIUM=/path/to/chromium python3 -m unittest test_workspace_browser test_activity_insights_browser test_task_story_browser test_optimization_browser
+```
+
+See [Optimization and live steering](docs/OPERATIONS.md) for page behavior, the
+opt-in hook adapter and its install/status/uninstall commands. Reprocessing
+preserves explicit assignments, model attempts and private source history.
+Do not use destructive database/volume resets to refresh the UI.

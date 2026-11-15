@@ -5,8 +5,54 @@ import re
 import time
 from urllib.parse import urlparse
 import uuid
+from datetime import datetime
 
 KINDS=('change','visual_reference','validation','intervention')
+
+
+def story(task, groups, truncated=False):
+    """Summarize retained facts without promoting command success to task success."""
+    def timestamp(fact):
+        try:
+            value = datetime.fromisoformat(fact.get('recorded_at', '').replace('Z', '+00:00'))
+            return value.timestamp() if value.tzinfo else None
+        except (ValueError, TypeError, AttributeError):
+            return None
+
+    changes = [f for f in groups['change'] if f.get('event_id')]
+    checks = [f for f in groups['validation'] if f.get('event_id')]
+    dated_checks = [(timestamp(f), f) for f in checks if timestamp(f) is not None]
+    latest_time = max((t for t, _ in dated_checks), default=None)
+    latest = [f for t, f in dated_checks if t == latest_time]
+    last_check = latest[0] if len(latest) == 1 and len(dated_checks) == len(checks) else None
+    chronology_known = bool(last_check) and all(timestamp(f) is not None for f in changes + checks)
+    after = sum(timestamp(f) > latest_time for f in changes) if chronology_known else None
+    open_items = []
+    if not checks:
+        open_items.append('No retained validation command; verification is unknown.')
+    elif not chronology_known:
+        open_items.append('Latest validation or edit ordering is uncertain.')
+    if last_check and last_check['outcome'] == 'command_failed':
+        open_items.append('Last recorded validation command failed.')
+    elif last_check and last_check['outcome'] != 'command_passed':
+        open_items.append('Last recorded validation result is unknown.')
+    if after:
+        open_items.append(f'{after} recorded file changes followed the last validation command.')
+    if chronology_known and any(timestamp(f) == latest_time for f in changes):
+        open_items.append('An edit shares the last validation timestamp; their ordering is uncertain.')
+    if not task['outcome']:
+        open_items.append('Task acceptance has not been recorded.')
+    if truncated:
+        open_items.append('Evidence coverage is bounded or truncated; this summary may be incomplete.')
+    return {
+        'request': task['goal'], 'acceptance': task['acceptance'],
+        'changed_files': sorted({f['title'] for f in changes}),
+        'validation_commands': len(checks),
+        'last_validation': last_check,
+        'changes_after_last_validation': after,
+        'open_items': open_items,
+        'basis': 'Retained native facts and explicit task records; command success does not establish task acceptance.'
+    }
 
 def init(store):
     with store.connection() as c:
@@ -93,7 +139,7 @@ def packet(store,task_id):
 
     groups={kind:[f for f in facts if f['kind']==kind] for kind in KINDS}
     for note in notes:groups[note['kind']].append({**note,'basis':'Explicit user/agent record; not independently verified'})
-    return {'activity_analysis_source':provenance,'task_id':task_id,'task_status':task['status'],'task_outcome':task['outcome'],'groups':groups,'user_follow_ups':followups[:40],
+    return {'story':story(task,groups,truncated),'activity_analysis_source':provenance,'task_id':task_id,'task_status':task['status'],'task_outcome':task['outcome'],'groups':groups,'user_follow_ups':followups[:40],
         'coverage':{'retained_records_scanned':scanned,'matched_tool_steps':len(matched_steps),'task_tool_steps':sum(r['kind']=='tool' for r in events.values()),'bounded_or_truncated':truncated,'source_files':len(paths)},
         'gaps':{'visual_proof':'References recorded; inspect before/after coverage' if groups['visual_reference'] else 'No screenshot or visual reference recorded',
                 'validation':'Inspect recorded command and coverage; task acceptance remains separate' if groups['validation'] else 'No validation evidence recorded',

@@ -1,141 +1,90 @@
----
-version: "alpha"
-name: "Vercel Geist Minimal"
-description: "Vercel-inspired minimal landing page. Ideal for infraestrutura developer, plataformas de deploy, ferramentas frontend, ci/cd. AI-ready template."
-colors:
-  primary: "#171717"
-  secondary: "#ffffff"
-  tertiary: "#ebebeb"
-  neutral: "#fafafa"
-  surface: "#ff5b4f"
-  accent: "#de1d8d"
-typography:
-  h1:
-    fontFamily: Geist
-    fontSize: 2.5rem
-    fontWeight: 700
-  body-md:
-    fontFamily: Geist
-    fontSize: 1rem
-    fontWeight: 400
-rounded:
-  sm: 6px
-  md: 12px
-  lg: 18px
-components:
-  button-primary:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.neutral}"
-    rounded: "{rounded.sm}"
-    padding: 12px
----
+# TTGL design system
 
-## Overview
+Adapted from the supplied “Vercel Geist, applied to Claude Mining” reference. These standards apply to the Usage Observatory's native DOM controls and Python-served UI.
 
-Vercel-inspired minimal landing page. Ideal for infraestrutura developer, plataformas de deploy, ferramentas frontend, ci/cd. AI-ready template. Vercel didn't invent black-and-white interfaces, but they made them feel inevitable. When Guillermo Rauch's team released Geist in 2023 — a sans-serif and monospace pair designed specifically for code and UI — they weren't just shipping a typeface. They were codifying an aesthetic that had been brewing since Zeit's early days: the idea that developer tools should look like they were designed by someone who actually reads terminal output.
+## Principles
 
-The lineage traces back to Swiss modernism, obviously. Univers, Helvetica, the whole Zurich school obsession with grids and negative space. But Vercel's interpretation strips even that tradition down further. No warm grays. No subtle brand colors hiding in the background. Just pure black on white, monospace for data, sans-serif for hierarchy, and enough whitespace to make every element feel considered rather than decorated.
+Use a near-white canvas, near-black ink, 1px hairlines, tightly tracked headings at weight 600, and uppercase mono eyebrows. White cards sit in precise grids with a whisper of shadow. Color is reserved for links, focus, status, charts, and a faint hero mesh behind the overview title.
 
-What's remarkable is how this became the default. Linear adopted it. Raycast adopted it. Half the YC batch ships with black-and-white landing pages now. Geist made minimalism feel like a technical decision rather than an aesthetic one — as if color itself were technical debt.
-
-- Density: 3/10 — Airy
-- Variance: 2/10 — Structured
-- Motion: 4/10 — Subtle
-
-- **Style:** Extreme Minimalism, Shadow-as-Border, Geist Font, Compressed Typography
-- **Keywords:** vercel, geist, minimal, shadow-as-border, compressed typography, ligatures, workflow colors, multi-layer shadows, developer infrastructure
-- **Era:** 2024-2026 Developer Infrastructure
-- **Light/Dark:** ✓ Full / ✗ Not Recommended
+Use the app half of the system: 6px control corners, 12px cards, and mono section labels. Fully rounded marketing CTAs belong only on marketing surfaces. Do not fill ordinary surfaces with accent colors, stack decorative shadows, or introduce a second decorative system.
 
 ## Colors
 
-- **Quase Preto** (#171717) — Dark surface, primary background
-- **Branco** (#ffffff) — Light surface, card backgrounds
-- **Cinza 100** (#ebebeb) — Secondary text, borders, muted elements
-- **Cinza 50** (#fafafa) — Secondary text, borders, muted elements
-- **Ship Red** (#ff5b4f) — Error states, destructive actions
-- **Preview Pink** (#de1d8d) — Primary text color
-- **Develop Blue** (#0a72ef) — Secondary accent
-- **Cinza 600** (#4d4d4d) — Secondary text, borders, muted elements
+| Token | Light | Dark |
+| --- | --- | --- |
+| `ink`, `primary` | `#171717` | `#ededed` |
+| `on-primary` | `#ffffff` | `#0a0a0a` |
+| `body` | `#4d4d4d` | `#a1a1a1` |
+| `mute` | `#737373` | `#a1a1a1` |
+| `faint` | `#a1a1a1` | `#737373` |
+| `canvas` | `#fafafa` | `#0a0a0a` |
+| `canvas-elevated` | `#ffffff` | `#111111` |
+| `hairline-soft` | `#f2f2f2` | `#1a1a1a` |
+| `hairline` | `#ebebeb` | `#2e2e2e` |
+| `link` | `#0070f3` | `#3291ff` |
+| `link-deep` | `#0761d1` | choose explicitly with contrast validation |
+| `link-soft` | `#d3e5ff` | choose explicitly with contrast validation |
+| `error` | `#ee0000` | `#ff6166` |
+| `error-deep` | `#c50000` | choose explicitly with contrast validation |
+| `warning` | `#f5a623` | choose explicitly with contrast validation |
+| `warning-text` | `#a35200` | choose explicitly with contrast validation |
+| `success` | maps to `link` | maps to `link` |
 
+Choose dark colors by semantic role, never by automatic inversion. Validate text contrast for each actual foreground/background pair.
+
+The reference's original muted gray `#8f8f8f` has only about 3.3:1 contrast on white. Use `#737373` for small metadata text (about 4.7:1 on white); reserve faint gray for placeholders and decorative marks.
+
+Hero illustration accents: violet `#7928ca`, cyan `#50e3c2`, pink `#ff0080`, and magenta `#eb367f`. Reference gradient pairs: develop `#007cf0` to `#00dfd8`, preview `#7928ca` to `#ff0080`, ship `#ff4d4d` to `#f9cb28`. Keep the overview mesh faint and behind the title. Chart series may use a separate color-vision-deficiency-validated categorical palette; status colors stay distinct from series.
 
 ## Typography
 
-- **Display / Hero:** Geist — Weight 700, tight tracking, used for headline impact
-- **Body:** Geist — Weight 400, 16px/1.6 line-height, max 72ch per line
-- **UI Labels / Captions:** Geist — 0.875rem, weight 500, slight letter-spacing
-- **Monospace:** JetBrains Mono — Used for code, metadata, and technical values
+Prefer Geist Sans and Geist Mono. If unavailable through the project's approved dependency source, use Hanken Grotesk and JetBrains Mono, or system sans/mono fallbacks. Do not add a public registry dependency solely to obtain a font when the project uses an internal registry.
 
-Scale:
-- Hero: clamp(2.5rem, 5vw, 4rem)
-- H1: 2.25rem
-- H2: 1.5rem
-- Body: 1rem / 1.6
-- Small: 0.875rem
+| Token | Size / line height | Weight | Tracking | Use |
+| --- | --- | --- | --- | --- |
+| `display-xl` | 48 / 48px | 600 | -2.4px | Hero headline |
+| `heading-lg` | 32 / 40px | 600 | -1.28px | Page headings |
+| `heading-md` | 20 / 28px | 600 | -0.4px | Card headings; long page titles |
+| `label-sm` | 14 / 20px | 500 | -0.28px | Strong labels |
+| `mono-eyebrow` | 12 / 16px | 500 | 0 | Uppercase section, breadcrumb, filter, field, and KPI labels |
+| `body-lg` | 16 / 24px | 400 | 0 | Lead paragraphs |
+| `body-md` | 14 / 20px | 400 | 0 | Body and table cells |
+| `body-sm` | 12 / 16px | 400 | 0 | Captions and metadata |
+| `button-md` | 14 / 20px | 500 | 0 | Button labels |
+| `code` | 14 / 20px | 400 | 0 | Monospaced code |
 
+Use mono for code and eyebrows only. Headings use 600, buttons and labels 500, other text 400.
 
-## Layout
+## Layout and depth
 
-- **Grid:** CSS Grid primary. Max-width containment: 1280px centered with 1.5rem side padding.
-- **Spacing rhythm:** Balanced. Base unit: 0.5rem (8px).
-- **Section vertical gaps:** clamp(4rem, 8vw, 8rem).
-- **Hero layout:** Split-screen (text left, visual right).
-- **Feature sections:** Zig-zag alternating text+image rows. No 3-equal-columns.
-- **Mobile collapse:** All multi-column layouts collapse below 768px. No horizontal overflow.
-- **z-index contract:** base (0) / sticky-nav (100) / overlay (200) / modal (300) / toast (500).
+- Spacing uses a 4px base: 4, 8, 12, 16, 24, 32, 40, 64, 96, 128px.
+- Radii: controls 6px; cards/code blocks 12px; large panels 16px; badges/avatars fully rounded; marketing pills 100px.
+- Level 0: 1px hairline border.
+- Level 1: hairline plus `0 1px 1px rgba(0,0,0,.04)`.
+- Level 2: hairline plus `0 2px 2px rgba(0,0,0,.04), 0 8px 16px -4px rgba(0,0,0,.04)`; use for menus, drawers, popovers, and tooltips.
 
+## Component mapping
 
-## Elevation & Depth
+| App element | Treatment |
+| --- | --- |
+| Page title | `heading-lg`; long titles use `heading-md` |
+| Card | White/elevated surface, hairline, 12px radius, 24px padding, level 1 |
+| KPI strip | One card divided by hairlines; values 32px at 600 |
+| Primary button | Ink fill, on-primary text, 6px radius |
+| Secondary button | Elevated surface, ink text, hairline, 6px radius |
+| Input/select | Elevated surface, hairline, 6px radius; visible link-blue focus ring |
+| Range switch | Soft-fill track with elevated active segment |
+| Status badge | Full radius, soft wash; complete/success uses link blue |
+| Drawer/popover/tooltip | Elevated surface, hairline, level 2 |
+| Sidebar | Canvas, right hairline, body-gray links; active ink on soft fill |
+| Link | Semantic link blue |
+| Overview header | The app's sole decorative mesh gradient |
 
-Shadow-as-border: box-shadow 0px 0px 0px 1px rgba(0,0,0,0.08) substituindo bordas tradicionais. Multi-layer shadow stacks para cards (border + elevation + ambient + inner highlight). Geist Sans com letter-spacing extremo negativo (-2.4px a -2.88px em display). Ligatures (liga) habilitadas globalmente. Cores de workflow: Ship Red, Preview Pink, Develop Blue. Canvas quase branco puro com texto #171717.
+Semantic color and font tokens live in `tools/usage-monitor/observability/ui.css`; layout lives in `workspace.css` and `work-explorer.css`. The app uses the existing pinned Geist Sans and JetBrains Mono assets, with system fallbacks. It retains the native DOM adaptation of shadcn/ui and its accessible controls. No Next.js or new component dependency is needed. Preserve keyboard focus, accessible names, and readable contrast throughout.
 
-- **Physics:** Ease-out curves, 200-300ms duration. Smooth and predictable.
-- **Entry animations:** Fade + translate-Y (16px → 0) over 420ms ease-out. Staggered cascades for lists: 80ms between items.
-- **Hover states:** Subtle color shift + shadow adjustment over 200ms.
-- **Page transitions:** Fade only (200ms).
-- **Performance:** Only transform and opacity animated. No layout-triggering properties.
+The overview bloom is confined to the Work explorer header with no task selected. Chart and timeline colors encode data rather than decoration. Task KPI values share one hairline-divided surface. Completed/passed status badges use the semantic link wash; command completion alone does not establish task success.
 
-
-## Shapes
-
-Base corner radius: 6px. See rounded tokens in front matter for the full scale.
-
-
-## Components
-
-- **Primary Button:** Pill-shaped (9999px) shape. Accent color fill. Hover: 8% darken + subtle lift shadow. Active: -1px translate tactile press. Font weight 600. No outer glows.
-- **Secondary / Ghost Button:** Outline variant. 1.5px border in muted color. Text in primary color. Hover: subtle background fill.
-- **Cards:** Pill-shaped (9999px) corners. Surface background. Subtle shadow (0 2px 12px rgba(0,0,0,0.06)). 1px border stroke.
-- **Inputs:** Label above input. 1px border stroke. Focus ring: 2px accent color offset 2px. Error text below in semantic red. No floating labels.
-- **Navigation:** Primary surface background. Active item: accent color indicator. Font weight 500 when active.
-- **Skeletons:** Shimmer animation matching component dimensions. No circular spinners.
-- **Empty States:** Icon-based composition with descriptive text and action button.
-
-
-## Do's and Don'ts
-
-- No emojis in UI — use icon system only (Lucide, Heroicons)
-- No decorative gradients — flat color only
-- No shadows heavier than 0 2px 8px rgba(0,0,0,0.08)
-- No pure black (#000000) — use off-black or charcoal variants
-- No oversaturated accent colors (saturation cap: 80%)
-- No 3-column equal-width feature layouts — use zig-zag or asymmetric grid
-- No `h-screen` — use `min-h-[100dvh]`
-- No AI copywriting clichés: "Elevate", "Seamless", "Unleash", "Next-Gen"
-- No broken external image links — use picsum.photos or inline SVG
-- No generic lorem ipsum in demos
-
-- Do Shadow-as-border technique
-- Do Geist com tracking negativo extremo
-- Do Ligatures habilitadas
-- Do Multi-layer shadow stacks
-- Do Cores de workflow
-- Do Canvas branco com texto #171717
-- Do Pill badges
-- Do Responsivo
-
-
-## Use Case
-
-Infraestrutura developer, Platforms de deploy, Tools frontend, CI/CD
-i 
+For small links and status text, `--link-text` uses `#0761d1` in light mode.
+The supplied `#0070f3` has about 4.36:1 contrast on `#fafafa` and 3.56:1 on
+`#d3e5ff`; the deeper text color provides at least 4.5:1 on both. Link/focus
+accents remain `#0070f3`. Warning text uses deep amber rather than the warning fill.

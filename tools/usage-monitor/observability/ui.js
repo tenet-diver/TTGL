@@ -1,5 +1,5 @@
 /** Native-DOM adaptation of shadcn/ui. See ui/README.md and ui/LICENSE-shadcn. */
-import { createActionMenu as nativeActionMenu } from '/design-system/dom.js';
+import { nativeActionMenu } from '/collection.js';
 import { icons } from '/ui/icons.js';
 
 export const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
@@ -13,7 +13,8 @@ export function button(title, attributes='', primary=false, iconName='') {
 }
 
 export function badge(value) {
-  return `<span data-slot="badge" data-variant="secondary" class="ui-badge">${escapeHTML(value)}</span>`;
+  const status = ['complete','completed','passed','command_passed','confirmed'].includes(value)?'success':['failed','command_failed','cancelled'].includes(value)?'error':['waiting','unresolved'].includes(value)?'warning':'neutral';
+  return `<span data-status="${status}" data-slot="badge" data-variant="secondary" class="ui-badge">${escapeHTML(value)}</span>`;
 }
 
 export function emptyState(title, description='', action='', iconName='inbox') {

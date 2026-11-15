@@ -52,6 +52,26 @@ class WorkspaceTests(unittest.TestCase):
         self.assertEqual(report['categories'][0]['runtime_seconds'], 2)
         self.assertIsNone(next(e for e in report['events'] if e['kind'] == 'generation')['runtime'])
 
+    def test_unreadable_session_does_not_stop_scan_and_is_retried(self):
+        second = self.source.with_name('second.jsonl')
+        second.write_text(self.source.read_text().replace('"s"', '"second"'))
+        original_stat = Path.stat
+        def unreadable(path, *args, **kwargs):
+            if path == self.source:
+                raise PermissionError('Fixture file unavailable')
+            return original_stat(path, *args, **kwargs)
+        with patch.object(Path, 'stat', unreadable):
+            self.store.scan()
+        with self.store.connection() as c:
+            failed = c.execute('SELECT * FROM files WHERE path=?', (str(self.source),)).fetchone()
+            self.assertIn('PermissionError', failed['error'])
+            self.assertIsNone(failed['size'])
+            self.assertEqual(c.execute("SELECT count(*) FROM events WHERE session_id='second'").fetchone()[0], 2)
+        self.store.scan()
+        with self.store.connection() as c:
+            self.assertIsNone(c.execute('SELECT error FROM files WHERE path=?', (str(self.source),)).fetchone()[0])
+            self.assertEqual(c.execute("SELECT count(*) FROM events WHERE session_id='s'").fetchone()[0], 2)
+
     def test_assignment_and_project_task_category_filters(self):
         self.store.scan()
         project, task = self.define_task()

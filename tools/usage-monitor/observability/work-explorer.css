@@ -29,7 +29,7 @@
 .work-hierarchy > section { min-width: 0; }
 .work-hierarchy h2, .chart-card h2 { font-size: 16px; }
 .step-panel { min-width: 0; }
-.step-panel > summary { cursor: pointer; font-size: 15px; font-weight: 550; padding-block: 14px; border-block: 1px solid var(--border); }
+.step-panel > summary { cursor: pointer; font-size: 15px; font-weight: 500; padding-block: 14px; border-block: 1px solid var(--border); }
 .step-panel .timeline-chart { padding: 0; border: 0; }
 .timeline-collect-form { background: var(--muted); padding: 16px; border: 1px solid var(--border); border-radius: 8px; }
 .chart-controls { margin: 24px 0; flex-wrap: wrap; }
@@ -46,7 +46,7 @@
 #content > .stats .stat { box-shadow: none; background: transparent; border-radius: 0; border-bottom: 1px solid var(--border); padding: 12px 0; }
 .table-prose { display: block; min-width: 20ch; max-width: 44ch; white-space: normal; overflow-wrap: anywhere; line-height: 1.6; }
 .ui-table td .inline-link.table-prose { display: block; white-space: normal; text-align: left; }
-.ui-table td [data-subtask][aria-pressed='true'] { font-weight: 650; text-decoration: underline; text-underline-offset: 4px; }
+.ui-table td [data-subtask][aria-pressed='true'] { font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
 [data-explorer-link] { min-width: 240px; }
 [data-explorer-link] .ui-actions { margin-top: 8px; }
 .rate-editor { width: 100%; min-height: 210px; font-family: monospace; font-size: 12px; }
@@ -69,3 +69,29 @@
 .task-request { margin-block: 12px; font-size: 12px; color: var(--muted-foreground); }
 .task-request > summary { cursor: pointer; }
 .task-request p { white-space: pre-wrap; line-height: 1.7; }
+
+/* Hairline KPI strip: values remain comparable within a single surface. */
+.work-metrics { gap: 0; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--card); overflow: hidden; }
+.work-metrics > div { padding: 24px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); min-width: 0; }
+.work-metrics > div:nth-child(3n) { border-right: 0; }
+.work-metrics > div:nth-last-child(-n+3) { border-bottom: 0; }
+.work-metrics small, .eyebrow { font: 500 12px/16px var(--font-mono); text-transform: uppercase; letter-spacing: 0; }
+.work-metrics strong { font-size: 32px; line-height: 40px; font-weight: 600; letter-spacing: -1.28px; overflow-wrap: anywhere; }
+.detail-heading h2 { font-size: 20px; line-height: 28px; letter-spacing: -.4px; }
+.evidence-summary { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; margin-block: 24px; }
+.evidence-summary article { min-width: 0; padding: 24px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--card); box-shadow: 0 1px 1px rgb(0 0 0 / 4%); overflow-wrap: anywhere; }
+.evidence-summary h3 { margin: 0 0 16px; font-size: 20px; line-height: 28px; font-weight: 600; letter-spacing: -.4px; }
+.evidence-summary dl { margin: 0; display: grid; gap: 8px; }
+.evidence-summary dt { color: var(--muted-foreground); font: 500 12px/16px var(--font-mono); text-transform: uppercase; }
+.evidence-summary dd { margin: 0 0 8px; color: var(--body); }
+@media (max-width: 600px) {
+  .work-metrics > div { padding: 16px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .work-metrics > div:nth-child(3n) { border-right: 1px solid var(--border); }
+  .work-metrics > div:nth-child(2n) { border-right: 0; }
+  .work-metrics > div:nth-last-child(-n+3) { border-bottom: 1px solid var(--border); }
+  .work-metrics > div:nth-last-child(-n+2) { border-bottom: 0; }
+  .work-metrics strong { font-size: 24px; line-height: 32px; }
+  .evidence-summary { grid-template-columns: minmax(0,1fr); }
+}
+
+.detail-heading .ui-actions { max-width:100%; }

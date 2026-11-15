@@ -35,4 +35,33 @@ class EvidenceTests(unittest.TestCase):
  def test_foreign_task_and_unsupported_kind_rejected(self):
   with self.assertRaises(ValueError):e.packet(self.store,'foreign')
   with self.assertRaises(ValueError):e.add(self.store,self.task,'execute','Run command')
+ def test_story_reports_failed_last_check_and_later_edit(self):
+  groups={kind:[] for kind in e.KINDS}
+  groups['validation']=[dict(event_id='check',title='pytest',recorded_at='2026-11-05T00:00:03Z',outcome='command_failed')]
+  groups['change']=[dict(event_id='edit',title='page.css',recorded_at='2026-11-05T00:00:04Z')]
+  result=e.story(dict(goal='Fix layout',acceptance='Responsive at 390px',outcome=None),groups,True)
+  self.assertEqual(result['changes_after_last_validation'],1)
+  self.assertEqual(result['changed_files'],['page.css'])
+  self.assertIn('Last recorded validation command failed.',result['open_items'])
+  self.assertTrue(any('truncated' in gap for gap in result['open_items']))
+  self.assertTrue(any('acceptance' in gap for gap in result['open_items']))
+ def test_story_never_treats_passed_command_as_task_acceptance(self):
+  packet=e.packet(self.store,self.task)
+  self.assertEqual(packet['story']['request'],'Resolve failure')
+  self.assertEqual(packet['story']['validation_commands'],0)
+  groups={kind:[] for kind in e.KINDS}
+  groups['validation']=[dict(event_id='check',title='pytest',recorded_at='2026-11-05T00:00:03Z',outcome='command_passed')]
+  result=e.story(dict(goal='Fix',acceptance='',outcome=None),groups)
+  self.assertIn('Task acceptance has not been recorded.',result['open_items'])
+ def test_story_keeps_ambiguous_or_missing_timestamps_unknown(self):
+  groups={kind:[] for kind in e.KINDS}
+  groups['validation']=[dict(event_id='a',title='pytest',recorded_at='2026-11-05T00:00:03Z',outcome='command_passed'),dict(event_id='b',title='lint',recorded_at='2026-11-05T00:00:03Z',outcome='command_failed')]
+  task=dict(goal='Fix',acceptance='',outcome=None)
+  result=e.story(task,groups)
+  self.assertIsNone(result['last_validation'])
+  self.assertIsNone(result['changes_after_last_validation'])
+  groups['validation'][1]['recorded_at']='unknown'
+  result=e.story(task,groups)
+  self.assertIsNone(result['changes_after_last_validation'])
+  self.assertTrue(any('ordering is uncertain' in gap for gap in result['open_items']))
 if __name__=='__main__':unittest.main()

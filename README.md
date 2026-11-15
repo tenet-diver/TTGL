@@ -14,14 +14,16 @@ experiment decisions. The broader personal-agent frontier remains a research goa
 | [Setup and startup](SETUP.md) | Run the workspace, restore the observability stack, configure tools and verify the installation |
 | [Experiments and results](docs/EXPERIMENTS.md) | Completed comparisons, failed trials, mechanism checks and unfinished reservations |
 | [Papers and reading](docs/PAPERS.md) | Manuscripts, reports, bibliographies and reproduction guides |
+| [Optimization and live steering](docs/OPERATIONS.md) | Suggestions, Impact, Outcomes, live sessions, steering rules and hook setup |
+| [Architecture and reference mapping](docs/ARCHITECTURE.md) | Implemented components, ingestion, task evidence, and reference feature boundaries |
+| [Design system](DESIGN.md) | Geist tokens, typography, controls and dark theme |
 | [Observatory runbook](tools/usage-monitor/README.md) | Capture, reconciliation, analyst tools and UI behavior |
 | [Research handover](docs/research/HANDOVER.md) | Historical ownership, frozen protocols and continuation constraints |
 
 ## Run TTGL
 
 The workspace uses Python's standard library; it needs no Python/npm package
-installation or model call to start. Python 3.11+ and the pinned private UI
-assets are required. From an existing prepared checkout:
+installation or model call to start. Python 3.11+ is required. The native UI ships in the repository. From the checkout:
 
 ```sh
 python3 tools/usage-monitor/observability/workspace.py \
@@ -33,8 +35,7 @@ python3 tools/usage-monitor/observability/workspace.py \
 Open **http://127.0.0.1:8766** or forward port **8766** in Codespaces. This runs the
 task/evidence workspace and native-history collection. Langfuse dashboards and
 HTTP capture require the [full stack setup](SETUP.md#full-observability-stack).
-Private UI assets are deliberately excluded from Git; a fresh public clone needs
-an authorized source checkout before it can serve the complete UI.
+Tables and menus use native browser behavior and need no private distribution.
 
 For an already prepared full installation, use:
 
