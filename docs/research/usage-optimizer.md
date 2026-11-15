@@ -1,5 +1,13 @@
 # Measure existing usage, then automate improvement
 
+**15 November experimental direction:** use an out-of-the-box agent on registered
+benchmark tasks, collect its traces, use a cheaper model for evidence-linked
+tagging/diagnosis, test concrete reversible improvements, and repeat under a
+bounded search budget. Evaluate quality, total cost, wall time, failure detection,
+tool utility and sustainable concurrency. Read the proposed
+[benchmark → observe → improve study](observability-improvement-study.md).
+This direction does not launch tasks or resume prior studies/schedules.
+
 User direction adopted 4 November 2026. Tracking: [FAST-102](https://fastestswarm.atlassian.net/browse/FAST-102).
 
 TTGL's immediate product priority is to understand our existing coding-agent usage and then automate an evidence-backed improvement loop. Begin with ordinary usage measurement; model-routing, memory and distillation research are later inputs to this loop. Previous benchmark results remain historical evidence, with their quality failures and limitations intact.

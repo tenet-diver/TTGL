@@ -3745,3 +3745,27 @@ integration queues and evidence publication/retrieval/use. The proposed stepped
 study is not yet registered or launched. Existing frozen sources, failed runs,
 39/56 memory extension and reserved validation stay unchanged. No dependencies
 installed, new model trials started or schedules enabled by this review.
+
+## 15 November 2026 — benchmark-driven observability improvement loop
+
+The user proposes running an out-of-the-box agent on benchmark tasks, collecting
+logs, using a small model to tag/categorize/analyze its process, making and applying
+suggestions, and measuring improvement across repeated rounds: quality, cost,
+wall time, failure detection, tool utility and ability to run more work in parallel.
+This is now the central proposed experiment; swarm organization is a later
+intervention/scaling axis rather than the required starting point.
+
+Read [observability-improvement-study.md](observability-improvement-study.md).
+The design separates stock-agent baseline, passive monitoring, audited trace
+interpretations, concrete candidates, controlled trial measurements and decisions.
+It includes development/selection/final-evaluation boundaries, total optimizer
+expense, labeler audit, component controls and a staged concurrency comparison.
+GEPA/ACE/ADAS/AFlow are close precedents; no broad novelty claim or new optimizer
+implementation is assumed. Prior TTGL trial successes and failures remain prior
+development evidence, not newly run benchmark results.
+
+No task suite/split, inference/search budget or final acceptance rule is frozen by
+this design. No model trials, installations, global routing changes or scheduled
+work were started. Select fresh tasks only after auditing old reservations and
+queues; preserve frozen sources and uncertain attempts. Existing app lifecycle
+and failed/incomplete study artifacts remain unchanged.
