@@ -16,6 +16,7 @@ research goal.
 | [Experiments and results](docs/EXPERIMENTS.md) | Completed comparisons, failed trials, mechanism checks and unfinished reservations |
 | [Papers and reading](docs/PAPERS.md) | Manuscripts, reports, bibliographies and reproduction guides |
 | [Analysis pages](docs/ANALYSIS.md) | Overall/task activity, cost/token charts, tools, process map, timeline and task evidence |
+| [Evidence explorer](docs/EVIDENCE-EXPLORER.md) | Query native turns, error signals and repeated operations; drill into original records through UI, MCP or CLI |
 | [Scaling toward 100 concurrent agents](docs/research/agent-swarms-literature-review.md) | Literature review: swarm organization, knowledge sharing, communication, verification and monitoring |
 | [Optimization and live steering](docs/OPERATIONS.md) | Suggestions, Impact, Outcomes, live sessions, steering rules and hook setup |
 | [Architecture and reference mapping](docs/ARCHITECTURE.md) | Implemented components, ingestion, task evidence, and reference feature boundaries |

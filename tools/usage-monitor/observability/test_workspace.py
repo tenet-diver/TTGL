@@ -110,7 +110,7 @@ class WorkspaceTests(unittest.TestCase):
         self.store.scan()
         response = analyst_mcp.handle(self.store, dict(method='initialize', params={'protocolVersion': '2025-06-18'}))
         self.assertEqual(response['protocolVersion'], '2025-06-18')
-        self.assertEqual(len(analyst_mcp.handle(self.store, dict(method='tools/list'))['tools']), 20)
+        self.assertEqual(len(analyst_mcp.handle(self.store, dict(method='tools/list'))['tools']), 21)
         result = analyst_mcp.handle(self.store, dict(method='tools/call', params=dict(name='query_activity', arguments={'section': 'summary'})))
         self.assertFalse(result['isError'])
         data = json.loads(result['content'][0]['text'])

@@ -1,8 +1,10 @@
 # Measure existing usage, then automate improvement
 
 **15 November experimental direction:** use an out-of-the-box agent on registered
-benchmark tasks, collect its traces, use a cheaper model for evidence-linked
-tagging/diagnosis, test concrete reversible improvements, and repeat under a
+benchmark tasks, collect its traces, use deterministic processing and a cheaper
+model for evidence-linked organization, let a capable analyst (potentially a large
+model) query the evidence and propose improvements, test concrete reversible
+changes, and repeat under a
 bounded search budget. Evaluate quality, total cost, wall time, failure detection,
 tool utility and sustainable concurrency. Read the proposed
 [benchmark → observe → improve study](observability-improvement-study.md).

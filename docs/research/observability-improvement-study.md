@@ -1,12 +1,19 @@
 # Benchmark, observe, analyze, improve, repeat
 
-15 November 2026 · Proposed study · No new benchmark assignments launched
+15 November 2026 · Proposed study, role clarification · No new benchmark assignments launched
 
 ## Research question
 
-Can a low-cost model analyze the execution traces of an out-of-the-box coding
-agent, propose concrete improvements, and improve verified task performance after
-accounting for the observation, analysis, experimentation and deployment costs?
+Can deterministic trace processing and cheaper model-based organization give a
+capable analyst a queryable evidence base from which it can propose changes that
+improve an out-of-the-box agent's verified performance, after accounting for
+observation, processing, analysis, experimentation and deployment costs?
+
+The analyst may be a large model. The cheaper model's main job is to organize
+logs into tasks/subtasks, activities, candidate failure types and searchable
+summaries. Parsing, counters and recorded results belong to deterministic code.
+Deep diagnosis, prioritization and intervention design belong to the analyst.
+These roles and their inference costs are recorded separately.
 
 The intervention is an **evidence-backed optimization loop around an existing
 agent**. Agent weights remain fixed initially. Prompts, tool interfaces, context
@@ -30,8 +37,9 @@ paused.
 | --- | --- | --- |
 | Run | An existing agent attempts a fixed task batch | Pinned agent/model/configuration, isolated task state and exact task revision |
 | Monitor | Immutable native operations, usage, timing, artifacts and coverage | Capture/model counters remain distinct; missing evidence stays unknown |
-| Tag | Versioned activities, task types and candidate failure/opportunity labels | Every interpretation cites source IDs and records uncertainty |
-| Analyze | A small set of evidence-backed improvement hypotheses | Patterns and apparent waste are hypotheses, not causal conclusions |
+| Process | Deterministic facts plus cheaper-model task/subtask, activity and candidate failure labels | Facts and interpretations remain distinct; every label cites source IDs and records uncertainty |
+| Mine / query | Searchable task hierarchy, failure clusters, metrics and progressive source access | Aggregations expose coverage, unknowns and label versions |
+| Analyze | A capable, potentially large model investigates and produces a small set of improvement hypotheses | It can query summaries and inspect original evidence; patterns are not causal conclusions |
 | Propose | Reviewable patch/configuration change with predicted effect and rollback | One primary mechanism per initial candidate |
 | Trial | Fresh registered baseline/candidate attempts with independent grading | Same task information and controlled resource regimes; no hidden feedback to actors |
 | Decide | Keep, reject or inconclusive against a predeclared rule | Result records are immutable; interpretation is separate |
@@ -99,11 +107,31 @@ grades between runs; final hidden outcomes cannot guide live decisions or tuning
 Size the final panel from development variability, desired effect and acceptable
 regression margin; a convenient small sample cannot prove narrow noninferiority.
 
-## 4. Small-model tagging and process analysis
+## 4. Trace processing, querying and analyst roles
 
-Use a pinned cheaper analyst model; a low price does not establish its parameter
-count or local deployability. Start with the existing activity vocabulary and
-source IDs instead of inventing a competing trace format.
+Use deterministic code for source parsing, identities, counters, timestamps,
+recorded tool outcomes and evaluator receipts. Use a pinned cheaper model for
+semantic organization. Use a capable analyst model for cross-task investigation
+and recommendations; it need not be the same model. A low price does not establish
+parameter count or local deployability. Start with the existing activity
+vocabulary and source IDs instead of inventing a competing trace format.
+
+### 4.1 Preserve facts and interpretations separately
+
+A registered benchmark task ID is authoritative for the task allocation; native
+turn boundaries and model-interpreted subtasks are separate views of that work.
+Retain four distinct outcome fields:
+
+- **Operation outcome:** what the tool recorded, including expected nonzero exits.
+- **Agent assertion:** what the solving agent claimed it completed or verified.
+- **Visible verification:** which checks ran, on which revision, and their results.
+- **Independent task outcome:** the benchmark grader's recorded result after sealing.
+
+The cheaper model can mark candidate failure modes and summarize recorded
+successes, but cannot invent a pass/fail outcome or replace the grader. Missing,
+unavailable, unattempted and inconclusive evidence must remain distinguishable.
+Hidden final-evaluation outcomes remain unavailable to tuning and live agents;
+permitted development outcomes can be joined after generation for diagnosis.
 
 | Annotation | Example | Guardrail |
 | --- | --- | --- |
@@ -112,9 +140,9 @@ source IDs instead of inventing a competing trace format.
 | Candidate failure | Missing prerequisite, incorrect assumption, tool error, integration regression | Cite the decisive evidence; distinguish environment from solution failure |
 | Candidate inefficiency | Repeated unchanged reads, broad search, repeated unsuccessful approach | Repetition alone does not establish avoidable work |
 | Verification state | Check attempted, check blocked, relevant check passed, acceptance unverified | A command exit and final benchmark success are different facts |
-| Opportunity | Batch independent reads, improve result pagination, expose a missing capability | Must identify a concrete intervention and falsifiable expected effect |
+| Opportunity cue | Repeated broad output, missing tool, unresolved check | Processing can flag a cue; the analyst investigates and proposes an intervention |
 
-Tag bounded trace segments with overlap/identity deduplication, then analyze the
+Tag bounded trace segments with overlap/identity deduplication, then organize the
 ordered task trace. Preserve parser omissions and context bounds. Use original
 command/results where needed: the current task-history grouping path often sees
 operation labels/outcomes rather than full evidence, so those groups alone are
@@ -126,13 +154,47 @@ audit confidence before treating it as calibrated. Use the same frozen labeler t
 compare candidate traces, or reannotate both conditions under a documented version.
 Changing the labeler must not manufacture an improvement in reported failure rates.
 
+### 4.2 Make the evidence useful to query
+
+The analyst should start with a compact corpus inventory and progressively query:
+
+| Query layer | Example question | Returned evidence |
+| --- | --- | --- |
+| Cohort | Which task types have the highest cost or failure rate? | Task counts, denominators, source coverage and aggregate metrics |
+| Process | Which investigate/implement/test paths recur, including loops? | Ordered groups with label versions and underlying step IDs |
+| Failure | Which tasks share a candidate tool/environment/integration failure? | Cluster members, positive examples, uncertainties and counterexamples |
+| Tool use | Which available tools are unused, and where might they help? | Catalog exposure, actual calls/results and relevant task evidence |
+| Comparison | What differs between successful and unsuccessful matched attempts? | Matched task/revision/configuration, outcomes and measured buckets |
+| Source | What did the agent actually request and observe here? | Bounded exact commands/results, artifact references and truncation status |
+
+Keep source access available even when a summary is wrong or a cluster is empty.
+Support pagination and stable identities; expose query result totals and omitted
+coverage. Grouping, clustering and apparent rework are interpretations, not
+automatic defect verdicts or measured per-tool cost attribution.
+
+Existing MCP/CLI tools already provide activity queries, task-history search,
+subtask drilldown and raw evidence reads. The table above is the benchmark
+analyst's target query contract, not a claim that every cohort/cluster/comparison
+query is currently implemented. Extend only missing interfaces after evaluation.
+
+### 4.3 Let the analyst investigate and challenge the processing
+
+The analyst forms hypotheses, requests source evidence, checks counterexamples,
+identifies missing coverage and prioritizes changes. It may flag an incorrect
+label or boundary through a versioned correction rather than silently changing
+raw facts. Its proposal must cite the evidence and state competing explanations,
+expected mechanism, concrete change, trial and rollback. Summaries help navigation;
+the analyst must be able to verify decisive claims in the original records.
+
 Keep three claims separate:
 
-1. **Label quality:** the model identifies activities/problems correctly.
-2. **Proposal quality:** its diagnosis produces a useful intervention.
+1. **Processing quality:** deterministic facts reconcile and cheaper-model labels
+   identify activities/candidate problems accurately with source coverage.
+2. **Analyst effectiveness:** the queryable representation helps the analyst
+   investigate correctly and produce useful interventions.
 3. **Execution benefit:** the intervention improves independently checked tasks.
 
-A fluent diagnosis can succeed at neither of the latter two.
+A fluent diagnosis can succeed at neither analyst effectiveness nor execution benefit.
 
 ## 5. What can be changed
 
@@ -174,8 +236,15 @@ optimization. Additional controls answer why it improved:
 | Stock + passive collection | Baseline quality/cost/time on the same native agent |
 | Shadow analysis, no application | Label/diagnosis audit and analysis expense; reuse baseline logs where possible rather than rerun solely for labels |
 | Simple deterministic suggestions | Tests whether familiar rules or maintained tool options achieve the same benefit without a model analyst |
-| Small-model proposals + measured selection | Tests the proposed optimization loop |
-| Optional stronger analyst, matched search budget | Estimates whether cheap analysis retains useful proposal quality; not required for the first study |
+| Cheaper processing + capable analyst + measured selection | Main proposed loop; processor and analyst are separately pinned and metered |
+| Same capable analyst with raw/basic-index evidence | Tests whether the task/subtask and failure representation helps beyond giving the analyst original logs |
+| Optional analyst-size comparison, matched search budget | Measures whether a cheaper analyst can substitute; a large analyst is permitted in the main condition |
+
+First compare the same analyst and source corpus with basic deterministic indexes
+versus enriched organization, retaining equivalent access to raw evidence. Count
+preprocessing, query and analyst costs. Compare validated findings, proposal
+quality, investigation latency, missed evidence and eventual intervention results.
+This separates the benefit of the representation from changing analyst capability.
 
 Test single mechanisms before claiming a cumulative bundle effect. For a kept
 bundle, compare against the original stock baseline and the previous frozen
@@ -195,7 +264,7 @@ already-started invocation. Track parent/child sessions and auxiliary inference.
 | Task quality | Independent benchmark acceptance, paired successes lost/gained, partial scores separately |
 | Model cost | Rate-weighted input/cache/output for every solver, expert, analyst, memory and verification call; unknown totals remain unknown |
 | Deployment cost | Per assigned task and per verified resolution, including unsuccessful attempts and recurring runtime analysis |
-| Optimization expense | Trace analysis, proposals, implementation inference, all trials/rejections, selection and validation; disclosed separately |
+| Optimization expense | Deterministic processing/compute, cheaper-model organization, large-model analysis, proposals, implementation inference, all trials/rejections, selection and validation; disclosed separately |
 | Time | End-to-end task latency, p50/p95, makespan, queue waits and time to fixed verified quality |
 | Throughput | Independently verified resolutions per hour and per resource/cost budget |
 | Parallel capacity | Sustainable active work under declared quality/latency limits, not just configured agents or created sessions |
@@ -234,8 +303,9 @@ favorable example. Cost per resolution is undefined with zero resolutions.
 
 ## 8. Iteration and scaling
 
-Run a finite registered development loop: baseline batch → bounded diagnosis →
-candidate → paired trial → decision. Define iteration/search caps before launching.
+Run a finite registered development loop: baseline batch → processed/queryable
+traces → analyst investigation → candidate → paired trial → decision. Define
+iteration/search caps before launching.
 Keep an unchanged contemporaneous control to detect environmental/model drift.
 Do not continue testing final held-out cases until a preferred result appears.
 
@@ -257,7 +327,7 @@ the [separate scaling review](agent-swarms-literature-review.md).
 | Existing TTGL component | Reuse | Remaining work before this study can run |
 | --- | --- | --- |
 | Native reader, capture and metering | Source evidence, identities, cumulative-counter reconciliation | Validate capability/coverage for the selected agent and task runner |
-| `task_history.py`, `activity_insights.py`, `agent_review.py` | Source-linked task/activity interpretations and explicit analysis jobs | Benchmark trace adapter, full-evidence diagnosis, label audit and bounded analyst scope |
+| `task_history.py`, `activity_insights.py`, `agent_review.py` | Source-linked task/activity interpretations and explicit analysis jobs | Separate processing from capable analyst investigation; add benchmark evidence, label audit and bounded source/query scope |
 | `analyst_experiments.py` | Frozen proposals, runner-written measurements, keep/reject reviews, accounting | General benchmark trial/execution interface and complete lineage |
 | Optimization/Impact/Outcomes views | Inspect trends, source evidence and candidate records | Connect to controlled benchmark results; observational trends are not causal estimates |
 | Existing trial runners | Immutable attempts and bounded registered comparisons | Generalize only missing interfaces; do not reuse completed trials as new assignments |
@@ -270,9 +340,10 @@ these existing methods before implementing a new search algorithm. They are
 research precedents, not verified ready integrations or security-cleared installs.
 
 Frame TTGL as replication/controlled extension: native out-of-the-box agents,
-audited cheap trace analysis, general evidence-backed interventions, complete
+audited cheap trace organization plus capable analyst investigation, general
+evidence-backed interventions, complete
 optimization accounting, and measured quality/latency/concurrency transfer.
-Neither automatic self-improvement nor cheap-model adequacy is assumed.
+Neither automatic self-improvement nor processing/analyst adequacy is assumed.
 
 Earlier TTGL results already contain small parts of the loop:
 

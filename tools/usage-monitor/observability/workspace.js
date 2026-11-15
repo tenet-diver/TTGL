@@ -1,6 +1,7 @@
 import {renderDashboard} from '/dashboard-views.js';
 import {renderUsage} from '/usage-views.js';
 import {renderAnalysis} from '/activity-views.js';
+import {renderTraceExplorer} from '/trace-explorer.js';
 import {renderOperations,builtins,bindEvidence,filters as opsFiltersHTML} from '/optimization.js';
 import {renderSuggestions,activityQuery} from '/activity-insights.js';
 import {renderExplorer,explorerParams} from '/work-explorer.js';
@@ -19,6 +20,7 @@ const external = (url, title='Inspect in Langfuse') => `<a href="${esc(url)}" ta
 const section = (title, body, action='', note='') => `<section class="section"><div class="section-heading"><h2>${esc(title)}</h2>${action}</div>${note?`<p class="section-note">${note}</p>`:''}${body}</section>`;
 const clip = value => `<span class="clip" title="${esc(value)}">${esc(value)}</span>`;
 const config = {
+  investigate:['Evidence explorer','Find expensive turns, unsuccessful tools and repeated operations, then inspect the original evidence.'],
   costs:['Cost & tokens','Explore API-equivalent spend, native token counters and model usage.'],
   tools:['Tool usage','Inspect native tools, shell actions, targets and recorded operation time.'],
   process:['Process map','Follow interpreted subtask paths, transitions and rework back to source tasks.'],
@@ -46,7 +48,9 @@ const config = {
   setup:['Setup & coverage','Source permission, collector coverage, and configuration.']
 };
 const query = new URLSearchParams(location.search);
-const pathViews={'/overview':'overview','/tasks':'taskactivity','/costs':'costs','/tools':'tools','/process':'process','/agents':'agents','/timeline':'timeline','/live':'live','/live/rules':'steering','/impact':'impact','/outcomes':'outcomes','/suggestions':'suggestions'};
+const pathViews={'/investigate':'investigate','/overview':'overview','/tasks':'taskactivity','/costs':'costs','/tools':'tools','/process':'process','/agents':'agents','/timeline':'timeline','/live':'live','/live/rules':'steering','/impact':'impact','/outcomes':'outcomes','/suggestions':'suggestions'};
+let traceState=Object.fromEntries(['view','query','project','task','session','turn','tool','model','status','since','until','signal','sort','pattern','kind','fingerprint','operation','offset'].filter(key=>query.has('trace_'+key)).map(key=>[key,query.get('trace_'+key)]));
+if(!['turns','tools','patterns','steps'].includes(traceState.view))traceState.view='turns';
 const opsState={project:query.get('project')||'',workspace:query.get('workspace')||'',range:query.get('range')||'30d',zone:query.get('zone')||Intl.DateTimeFormat().resolvedOptions().timeZone||'Europe/Amsterdam',attribution:query.get('attribution')||'measured',measure:query.get('measure')||'cost',connections:query.get('connections')||'24',family:query.get('family')||'',action:query.get('action')||'',toolMeasure:query.get('toolMeasure')||'calls'};
 const aliases={history:'knowledge',activity:'tasks',setup:'settings'};
 let view=pathViews[location.pathname]&&!location.hash?pathViews[location.pathname]:aliases[location.hash.slice(1)]|| (config[location.hash.slice(1)]?location.hash.slice(1):(location.pathname.startsWith('/tasks/')||query.get('task')?'tasks':'overview'));
@@ -70,6 +74,7 @@ function syncURL() {
   const review=new URLSearchParams(location.search).get('review');if(review)params.set('review',review);
   for(const name of ['zone','attribution','measure','connections','family','action','toolMeasure'])if(opsState[name])params.set(name,opsState[name]);
   if(opsState.range)params.set('range',opsState.range);if(opsState.workspace)params.set('workspace',opsState.workspace);
+  for(const [key,value] of Object.entries(traceState))if(value!==''&&value!=null)params.set('trace_'+key,value);
   history.replaceState(null, '', location.pathname + (params.size?'?'+params:'') + '#' + view);
 }
 async function load() {
@@ -80,6 +85,17 @@ async function load() {
     const epoch=++loadEpoch;
     loadController?.abort();loadController=new AbortController();
     const request=(url)=>fetch(url,{signal:loadController.signal});
+    if(view==='investigate'){
+      const overviewParams=Object.fromEntries(Object.entries(traceState).filter(([key,value])=>!['view','offset','kind','fingerprint','operation','sort','pattern'].includes(key)&&value!==''&&value!=null));
+      const params=Object.fromEntries(Object.entries(traceState).filter(([,value])=>value!==''&&value!=null));
+      const responses=await Promise.all([request('/api/trace-index?'+new URLSearchParams(params)),request('/api/trace-index?'+new URLSearchParams({...overviewParams,view:'overview'}))]);
+      const [result,overview]=await Promise.all(responses.map(response=>response.json()));
+      if(!responses.every(response=>response.ok))throw Error(result.error||overview.error||'Evidence index unavailable');if(epoch!==loadEpoch)return;
+      $('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;$('#title').textContent=config[view][0];$('#subtitle').textContent=config[view][1];$('#breadcrumb').textContent=config[view][0];$('#page-actions').innerHTML='';$('#content').setAttribute('aria-busy','false');
+      document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
+      $('#live').textContent='Connected';$('#connection-dot').dataset.state='collecting';
+      renderTraceExplorer($('#content'),{state:traceState,data:result,overview,showModal,onError:toast,onChange:state=>{traceState=state;syncURL();load();}});return;
+    }
     if(['overview','taskactivity'].includes(view)){
       opsState.project=project;
       const response=await request('/api/activity-dashboard?'+new URLSearchParams({...opsState,view}));

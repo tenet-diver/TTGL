@@ -27,7 +27,7 @@ class WorkspaceBrowserTests(unittest.TestCase):
             page.goto(origin+'/#tasks');expect(page.locator('[data-table="work-tasks"] tbody tr')).to_have_count(1)
             expect(page).to_have_title('Observatory')
             expect(page.locator('.brand-name')).to_have_text('Observatory')
-            self.assertEqual(set(page.locator('nav [data-view]').evaluate_all('(nodes)=>nodes.map(n=>n.dataset.view)')),{'overview','taskactivity','tasks','analytics','costs','tools','timeline','agents','process','outcomes','impact','suggestions','knowledge','live','steering','settings'})
+            self.assertEqual(set(page.locator('nav [data-view]').evaluate_all('(nodes)=>nodes.map(n=>n.dataset.view)')),{'overview','taskactivity','tasks','analytics','costs','tools','timeline','agents','process','outcomes','investigate','impact','suggestions','knowledge','live','steering','settings'})
             page.screenshot(path=str(artifacts/'work-explorer-desktop.png'),full_page=True)
             page.locator('[data-table="work-tasks"] [data-work-task]').first.click();expect(page.locator('[data-table="work-subtasks"] [data-subtask]')).to_have_count(1)
             page.locator('.step-panel>summary').click()

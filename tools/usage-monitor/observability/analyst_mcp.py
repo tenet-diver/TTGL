@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Local stdio MCP access to task definitions, native evidence and review states."""
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import sys
@@ -18,6 +19,8 @@ def schema(properties, required=()):
 
 
 TOOLS = [
+    dict(name='query_trace_index', description='Investigate the complete indexed native history without inference: cohort inventory/facets, ranked turns, tool reliability, repeated exact input/output fingerprints and source steps. Repeats and tool errors are leads, not task failure or waste. Whole-turn filters preserve usage denominators; use read_evidence for original I/O and get_task_history for interpreted subtasks.',
+         inputSchema=schema(dict(view='overview (default), turns, tools, patterns or steps', project='Exact project ID', task='Exact assigned task ID', session='Exact native session ID', turn='Exact native turn ID; combine with session', tool='Exact operation name; selects turns containing that tool', model='Exact model name; selects turns containing that model', status='Exact recorded task status; not an independent grade', since='Inclusive turn start ISO timestamp with timezone', until='Exclusive turn start ISO timestamp with timezone', signal='tool_failure, unknown_tool_outcome, repeated_input or unassigned; selects turns', query='Literal substring of retained prompt, task title/goal/outcome or operation name; not raw outputs', sort='recent (default), tokens, runtime, output, failures or count; tokens uses count for tools/patterns', pattern='input (default) or output fingerprint for patterns/steps', kind='steps only: tool or generation', fingerprint='steps only: exact SHA256 from patterns', operation='steps only: exact operation name; combine with fingerprint/session/turn to reproduce one pattern group', detail='summary (default); full adds bounded redacted prompts and recorded outcomes to turns', offset='Zero-based page offset', limit='1..100, default 20'))),
     dict(name='query_activity', description='Query native Codex task/project evidence. Tokens are measured; model latency and cash charges unknown.',
          inputSchema=schema(dict(project='Optional project ID', task='Optional task ID', session='Optional exact native session ID; intersects project/task scope', refresh='true to scan authorized native sources incrementally before query; default false', category='Optional category', section='summary (compact), events, turns, projects, tasks, opportunities, rules, wire_captures, agent_analyses, runtime_accounting, experiments, experiment_accounting or sources', offset='Zero-based events offset (default 0)', limit='Events/turns/tasks page size 1..100 (default 20)', sort='Events sort: ts, runtime or bytes (descending)', kind='Events kind: tool or generation', search='Case-insensitive substring of operation name', detail='summary (default) or full. Turns omit prompts and tasks omit goal/acceptance in summary; full preserves them. Experiments full includes measured cells, sources and reviews'))),
     dict(name='create_project', description='Define a project and repository scope. Does not authorize collection from new sources.',
@@ -53,7 +56,7 @@ TOOLS.extend([
  dict(name='review_activity_suggestion',description='Record later, declined or accepted_for_trial. This records a decision only; it applies no code and claims no improvement.',inputSchema=schema(dict(job_id='Completed activity review ID',position='Zero-based suggestion index',decision='later, declined or accepted_for_trial',note='Optional evidence/review note'),('job_id','position','decision'))),
 ])
 for tool in TOOLS:
-    tool['annotations'] = dict(readOnlyHint=tool['name'] in ('query_activity', 'read_evidence', 'read_compression_source', 'search_task_history', 'get_task_history', 'get_task_evidence', 'query_activity_suggestions'), destructiveHint=False, openWorldHint=False)
+    tool['annotations'] = dict(readOnlyHint=tool['name'] in ('query_trace_index', 'query_activity', 'read_evidence', 'read_compression_source', 'search_task_history', 'get_task_history', 'get_task_evidence', 'query_activity_suggestions'), destructiveHint=False, openWorldHint=False)
 
 ACTION = dict(create_project='project', create_task='task', assign_turn='assign', set_task_status='task_status',
               update_category_rule='rule', record_opportunity_review='decision')
@@ -66,7 +69,7 @@ def handle(store, request):
         supported = ['2024-11-05', '2025-03-26', '2025-06-18']
         version = params.get('protocolVersion')
         return dict(protocolVersion=version if version in supported else supported[-1],
-                    capabilities={'tools': {'listChanged': False}}, serverInfo=dict(name='ttgl-codex-analyst', version='1.3.0'))
+                    capabilities={'tools': {'listChanged': False}}, serverInfo=dict(name='ttgl-codex-analyst', version='1.4.0'))
     if method == 'ping':
         return {}
     if method == 'tools/list':
@@ -84,7 +87,10 @@ def handle(store, request):
             if any(not isinstance(v, str) and not (k in ('offset', 'limit', 'position', 'window_offset') and type(v) is int) for k, v in arguments.items()):
                 raise ValueError('Arguments must be strings, or integers for offset/limit')
             arguments = {k: str(v) if type(v) is int else v for k, v in arguments.items()}
-            if name in ('get_task_evidence','record_task_evidence'):
+            if name == 'query_trace_index':
+                import trace_index
+                result = trace_index.query(store, **arguments)
+            elif name in ('get_task_evidence','record_task_evidence'):
                 import task_evidence
                 if name=='record_task_evidence':result=task_evidence.add(store,**arguments)
                 else:
@@ -131,7 +137,11 @@ def handle(store, request):
                 ident = arguments['id']
                 with store.connection() as c:
                     event = c.execute('SELECT * FROM events WHERE id=?', (ident,)).fetchone()
-                    paths = [Path(r['path']) for r in c.execute('SELECT path FROM files')]
+                    # Reuse the ingester's session/source index. Reading a single
+                    # operation must not stream every other retained transcript.
+                    paths = [Path(r['path']) for r in c.execute('SELECT f.path FROM files f JOIN activity_sources a ON a.path=f.path WHERE a.session_id=? ORDER BY f.path', (event['session_id'],))] if event else []
+                    if event and not paths:
+                        paths = [Path(r['path']) for r in c.execute('SELECT path FROM files ORDER BY path')]
                 result = None
                 if event:
                     for path in paths:
@@ -143,8 +153,20 @@ def handle(store, request):
                                 meta = record.get('payload') or {}
                             if meta and meta.get('id') == event['session_id'] and line == event['source_line']:
                                 payload = record.get('payload') or {}
+                                item = payload.get('item') or {}
+                                source_id = (event['session_id'] + ':tool:' + str(item.get('id')) if event['kind'] == 'tool'
+                                             else event['session_id'] + ':response:' + str(payload.get('response_id')))
+                                if source_id != event['id'] or payload.get('turn_id') != event['turn_id']:
+                                    # A moved/stale source line must never masquerade as this operation.
+                                    break
+                                if event['kind'] == 'tool' and event['output_hash']:
+                                    output = item.get('aggregated_output', item.get('result'))
+                                    if output is None or hashlib.sha256(json.dumps(output, sort_keys=True).encode()).hexdigest() != event['output_hash']:
+                                        break
+                                if event['kind'] == 'generation' and payload.get('usage') != json.loads(event['usage'] or 'null'):
+                                    break
                                 # Usage records contain no account balances; operation records use the native item only.
-                                result = sanitized(payload.get('item') if event['kind'] == 'tool' else payload.get('usage'))
+                                result = sanitized(item if event['kind'] == 'tool' else payload.get('usage'))
                                 break
                         if result is not None:
                             break
