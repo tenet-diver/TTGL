@@ -32,6 +32,8 @@ function columnText(column,row) {
 }
 function matchesColumn(column,row,query) {
   if(!query.trim()) return true;
+  const exact=query.match(/^is( not)? (.+)$/s);
+  if(exact){try{const expected=JSON.parse(exact[2]),value=columnValue(column,row)??null;const comparable=v=>Array.isArray(v)?v.join(', '):v;const equal=JSON.stringify(comparable(value))===JSON.stringify(comparable(expected));return exact[1]?!equal:equal;}catch{return false;}}
   const comparison=column.numeric&&query.trim().match(/^(<=|>=|!=|=|<|>)\s*(-?\d[\d,]*(?:\.\d+)?)$/);
   if(comparison) {
     const value=columnValue(column,row), limit=Number(comparison[2].replaceAll(',',''));
@@ -69,12 +71,12 @@ export function renderList(id, columns, rows, actions, searchable=true, options=
         String(left).localeCompare(String(right),'en',{numeric:true,sensitivity:'base'}));
     }:undefined
   });
-  state.page=result.page;
+  state.page=result.page;tableDefinitions.get(id).pageRows=result.items;
   const toolbar=`<div class="list-toolbar">${searchable?`<div class="list-search ui-search"><input class="ui-input" data-search="${id}" value="${esc(state.search)}" placeholder="Search these rows" aria-label="Search ${esc(id)}"><button type="button" data-clear-search="${id}" aria-label="Clear search">${icon('x')}</button></div>`:''}<div class="table-controls">${picker}${button('Filters',`data-toggle-filters="${id}" aria-expanded="${Boolean(state.filtersOpen||filtered)}"`)}${state.search||filtered||state.sort||state.hiddenColumns.length?button('Reset table',`data-reset-table="${id}"`):''}<span class="muted" role="status">${remote?fmt(rows.length)+' of '+fmt(result.total):fmt(result.total)+' of '+fmt(rows.length)} rows</span>${selection?`<span data-list-selection-count>${selectedIds(id).length} selected</span>`:''}</div></div>`;
   const head=columns.map(column=>`<th scope="col" aria-sort="${state.sort===column.key?(state.direction===1?'ascending':'descending'):'none'}" class="${column.numeric?'numeric':''}">${`<button type="button" data-sort="${id}" data-key="${column.key}" aria-label="Sort by ${esc(column.label)}">${esc(column.label)}<span aria-hidden="true" class="sort-indicator">${state.sort===column.key?(state.direction===1?'↑':'↓'):'↕'}</span></button>`}</th>`).join('');
   const filters=columns.map(column=>`<td><input type="search" class="ui-input column-filter" data-column-filter="${id}" data-key="${column.key}" value="${esc(state.filters[column.key]||'')}" aria-label="Filter ${esc(id)} by ${esc(column.label)}" placeholder="${column.numeric?'e.g. >= 100':'Filter…'}" ${column.numeric?'title="Filter by value, or use =, !=, <, <=, >, >= with a number"':''}></td>`).join('');
   const body=result.items.map((row,index)=>{
-    const cells=columns.map(column=>`<td class="${column.numeric?'numeric':''}">${column.cell?column.cell(row):esc(columnValue(column,row))}</td>`).join('');
+    const cells=columns.map(column=>`<td data-list-cell="${esc(column.key)}" data-list-row="${index}" class="${column.numeric?'numeric':''}">${column.cell?column.cell(row):esc(columnValue(column,row))}</td>`).join('');
     let menu='';
     if(actions) {const key=id+'-'+index; menus.push({key,label:'Actions for '+(row.title||row.name||row.id||'row'),actions:actions(row).map(action=>({...action,onSelect:()=>{try{Promise.resolve(action.onSelect()).catch(error=>reportError(error.message));}catch(error){reportError(error.message);}}}))}); menu=`<td class="row-menu"><span data-row-menu="${key}"></span></td>`;}
     return `<tr${options.rowClass?` class="${esc(options.rowClass)}"`: ''}>${cells}${menu}</tr>`;
@@ -167,6 +169,40 @@ document.addEventListener('input',event=>{
   if(event.target.dataset.columnFilter) state.filters[event.target.dataset.key]=event.target.value;
   else state.search=event.target.value;
   state.page=1;if(!queryRemote(id,200))refreshTable(id);
+});
+
+// Reuse the shared native popover and keyboard menu for value filters.
+let cellMenu=null;
+function openCellMenu(cell,x,y){
+ const root=cell.closest('[data-table]'),id=root?.dataset.table,definition=tableDefinitions.get(id);
+ const column=definition?.columns.find(c=>c.key===cell.dataset.listCell),row=definition?.pageRows[Number(cell.dataset.listRow)];
+ if(!column||!row||column.selectionKey||(!column.value&&!Object.hasOwn(row,column.key)))return false;
+ const value=columnValue(column,row)??null;
+ if(typeof value==='object'&&value!==null&&!Array.isArray(value))return false;
+ const encoded=JSON.stringify(value);if(!encoded||encoded.length>8000)return false;
+ const apply=exclude=>{
+   const state=tables[id];state.filters[column.key]=(exclude?'is not ':'is ')+encoded;state.filtersOpen=true;state.page=1;
+   if(!queryRemote(id))refreshTable(id);
+ };
+ if(cellMenu){cellMenu.remove();cellMenu=null;}
+ cell.tabIndex=-1;
+ const group=createActionMenu(document,'Filter '+column.label,[{label:'Show matching',onSelect:()=>apply(false)},{label:'Filter out',onSelect:()=>apply(true)}],{point:{x,y},returnFocus:()=>{if(cell.isConnected)cell.focus({preventScroll:true});}});
+ group.dataset.cellFilterMenu='';group.querySelector('button').hidden=true;group.querySelector('button').style.display='none';
+ // Popovers in a modal must belong to that modal to remain interactive.
+ (cell.closest('dialog')||document.body).append(group);cellMenu=group;
+ const menu=group.querySelector('[role="menu"]');menu.popover='manual';menu.addEventListener('toggle',e=>{if(e.newState==='closed'){group.remove();if(cellMenu===group)cellMenu=null;}});menu.showPopover();return true;
+}
+document.addEventListener('pointerdown',event=>{if(cellMenu&&!cellMenu.contains(event.target))cellMenu.querySelector('[role="menu"]').hidePopover();});
+document.addEventListener('contextmenu',event=>{
+ if(event.target.closest('input,textarea,select,[contenteditable="true"]'))return;
+ const cell=event.target.closest('td[data-list-cell]');if(!cell)return;
+ const rect=cell.getBoundingClientRect();if(openCellMenu(cell,event.clientX||rect.left,event.clientY||rect.bottom))event.preventDefault();
+});
+document.addEventListener('keydown',event=>{
+ if(event.key!=='ContextMenu'&&!(event.shiftKey&&event.key==='F10'))return;
+ if(event.target.closest('input,textarea,select,[contenteditable="true"]'))return;
+ const cell=event.target.closest('td[data-list-cell]');if(!cell)return;
+ const rect=cell.getBoundingClientRect();if(openCellMenu(cell,rect.left,rect.bottom))event.preventDefault();
 });
 
 /** Source buttons are ordinary searchable/paged records, including in dialogs. */

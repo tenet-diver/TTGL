@@ -3928,3 +3928,29 @@ and selected 768/390-pixel layouts passed. The start button remained disabled fo
 the existing active batch. Screenshots, timings and route records are in the same
 private validation receipt directory. Commit `81a0755` integrates the validated
 merged application; the original worker was not restarted.
+
+## 15 November 2026 — table value context filters
+
+Right-clicking a shared table's data value now offers **Show matching** and
+**Filter out**. This reuses the existing native menu, shared renderer and full-
+cohort server query implementation; no dependency was added. Exact typed filters
+keep null/unknown separate from numeric zero, boolean false and the literal text
+“Unknown”. Column filters expose the active expression for editing/clearing;
+other search/sort/filter state remains in place, with pagination reset to page one.
+Server-side filters apply before slicing and do not alter cohort measurements.
+
+The menu also works inside modal dialogs, uses the shared keyboard controls,
+restores focus on Escape, and can open through Shift+F10 from a focused cell.
+Editable controls retain their native context menu. A manual native popover avoids
+the original right-button release immediately dismissing the new menu; outside
+pointer interaction and Escape dismiss it explicitly.
+
+Validation: 258 checks discovered, 233 passed, 25 legacy optional Chromium checks
+skipped. All 15 Firefox workflows passed, including three new cases using actual
+right-button pointer actions, exact inclusion/exclusion, unknown/zero handling,
+keyboard dismissal/opening, local and full-cohort remote tables, persisted filters,
+and filtering inside a modal. Existing chart, tool, hierarchy, bulk, responsive,
+settings and mutation flows also passed. A test-driver timing race was corrected
+by waiting for select-triggered navigation before clicking the next control.
+Raw logs and screenshots remain private under the value-filter maintenance receipt.
+The active finite bulk queue and its frozen generation sources remain untouched.

@@ -158,6 +158,26 @@ class WorkspaceWebDriverTests(unittest.TestCase):
     def test_process_map_drilldown_opens_its_task(self):
         self.b.nav('process');self.b.click('[data-flow-node="implement"]');self.contains('#modal','Fix');self.b.click('[data-analysis-task]');self.contains('.task-detail','Fix');self.assert_clean()
 
+    def test_context_value_filters_local_exact_unknown_and_keyboard(self):
+        self.b.js('''return import('/data-list.js').then(({renderList})=>{document.querySelector('#content').innerHTML=renderList('context-fixture',[{key:'name',label:'Name'},{key:'value',label:'Value'},{key:'amount',label:'Amount',numeric:true}],[{name:'One',value:'alpha',amount:0},{name:'Two',value:'alphabet',amount:1},{name:'Three',value:'alpha',amount:0},{name:'Unknown row',value:null,amount:null}],null);})''')
+        cell='[data-table=context-fixture] tbody tr:first-child [data-list-cell=value]'
+        self.b.context_click(cell);self.b.button('Show matching','[data-cell-filter-menu]');self.assertEqual(self.b.count('[data-table=context-fixture] tbody tr'),2);self.assertNotIn('alphabet',self.b.text('[data-table=context-fixture] tbody'))
+        self.b.click('[data-reset-table=context-fixture]');self.b.context_click(cell);self.b.button('Filter out','[data-cell-filter-menu]');self.assertEqual(self.b.count('[data-table=context-fixture] tbody tr'),2);self.contains('[data-table=context-fixture] tbody','alphabet');self.contains('[data-table=context-fixture] tbody','Unknown row')
+        self.b.click('[data-reset-table=context-fixture]');self.b.context_click('[data-table=context-fixture] tbody tr:last-child [data-list-cell=amount]');self.b.button('Show matching','[data-cell-filter-menu]');self.assertEqual(self.b.count('[data-table=context-fixture] tbody tr'),1);self.contains('[data-table=context-fixture] tbody','Unknown row')
+        self.b.click('[data-reset-table=context-fixture]');self.b.context_click('[data-table=context-fixture] tbody tr:first-child [data-list-cell=amount]');self.b.button('Filter out','[data-cell-filter-menu]');self.assertEqual(self.b.count('[data-table=context-fixture] tbody tr'),2);self.contains('[data-table=context-fixture] tbody','Unknown row')
+        self.b.click('[data-reset-table=context-fixture]');self.b.context_click(cell);self.b.request('/element/'+self.b.element('[data-cell-filter-menu] [role=menuitem]')+'/value',{'text':'\ue00c'});self.b.wait('!document.querySelector("[data-cell-filter-menu]")');self.assertEqual(self.b.count('[data-table=context-fixture] tbody tr'),4)
+        self.b.request('/actions',{'actions':[{'type':'key','id':'context-keys','actions':[{'type':'keyDown','value':'\ue008'},{'type':'keyDown','value':'\ue03a'},{'type':'keyUp','value':'\ue03a'},{'type':'keyUp','value':'\ue008'}]}]});self.b.wait('document.querySelector("[data-cell-filter-menu] [role=menu]")?.matches(":popover-open")');self.b.click('h1');self.b.wait('!document.querySelector("[data-cell-filter-menu]")');self.assert_clean()
+
+    def test_context_value_filters_remote_full_scope_and_reload(self):
+        self.many_tasks();self.b.nav('tasks');table='[data-table=work-tasks]'
+        self.b.click('[data-page=work-tasks][data-delta="1"]');self.b.wait('document.querySelector("[data-list-jump=work-tasks]")?.value==="2"')
+        self.b.context_click(table+' tbody tr:first-child [data-list-cell=status]');self.b.button('Show matching','[data-cell-filter-menu]');self.b.wait('document.querySelector("[data-list-jump=work-tasks]")?.value==="1"');self.contains(table+' .list-pagination','of 44');self.assertEqual(self.b.count(table+' tbody tr'),20)
+        self.b.context_click(table+' tbody tr:first-child [data-list-cell=status]');self.b.button('Filter out','[data-cell-filter-menu]');self.contains(table,'No matching rows');self.contains(table+' .list-pagination','of 0');self.goto('/?range=all#tasks');self.contains(table,'No matching rows');self.assertEqual(self.b.js('return document.querySelector("[data-column-filter=work-tasks][data-key=status]").value'),'is not "active"')
+        self.b.click('[data-reset-table=work-tasks]');self.b.wait('document.querySelectorAll("[data-table=work-tasks] tbody tr").length===20');self.assert_clean()
+
+    def test_context_value_filters_inside_modal(self):
+        self.b.click('[data-usage-day]');self.b.wait('document.querySelector("#modal [data-list-cell=models]")');self.b.context_click('#modal [data-list-cell=models]');self.b.button('Show matching','[data-cell-filter-menu]');self.b.wait('document.querySelector("#modal [data-column-filter][data-key=models]")?.value==='+json.dumps('is "test-model"'));self.contains('#modal','Fix the problem');self.close();self.assert_clean()
+
     def test_live_notes_pause_resume_and_delivery(self):
         steering.receive(self.f.store,dict(session_id='qa-live',event_id='start',event='start',workspace='/repo',cost_usd=0))
         self.b.nav('live');self.b.button('Send note');self.b.fill('#modal [name=note]','Review the checks');self.b.button('Queue note');self.b.closed()

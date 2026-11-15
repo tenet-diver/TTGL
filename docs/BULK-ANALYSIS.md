@@ -124,3 +124,11 @@ use temporary stores and block real model execution. They cover navigation at
 analytics drill-downs, saved settings, live controls, and bulk start/stop/progress.
 Firefox BiDi sets the viewport explicitly to avoid the desktop window's minimum
 width being mistaken for a mobile test. Screenshots and receipts remain private.
+
+Right-click a data-cell value to **Show matching** or **Filter out** that exact
+value. The actions use the existing column filters, reset to the first page, and
+apply across the complete filtered collection for server-paged tables. Active
+filters remain visible and can be edited, cleared individually, or reset together.
+Unknown values are distinct from zero and from the literal text “Unknown”. The
+same menu works inside dialogs; Escape or clicking outside dismisses it, and
+Shift+F10 opens it from a focused cell. Input fields retain their native edit menu.

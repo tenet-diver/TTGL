@@ -48,11 +48,16 @@ class Browser:
   if self.js('return document.querySelector(arguments[0]).namespaceURI',css)=='http://www.w3.org/2000/svg':
    self.js('document.querySelector(arguments[0]).focus()',css);return self.request('/element/'+eid+'/value',{'text':'\ue007'})
   return self.request('/element/'+eid+'/click',{})
+ def context_click(self,css):
+  eid=self.element(css);self.js('document.querySelector(arguments[0]).scrollIntoView({block:"center",inline:"center"})',css)
+  self.request('/actions',{'actions':[{'type':'pointer','id':'context-mouse','parameters':{'pointerType':'mouse'},'actions':[{'type':'pointerMove','origin':{'element-6066-11e4-a52e-4f735466cecf':eid},'x':0,'y':0},{'type':'pointerDown','button':2},{'type':'pointerUp','button':2}]}]})
+  self.wait('document.querySelector("[data-cell-filter-menu] [role=menu]")?.matches(":popover-open")')
  def fill(self,css,text):
   # Atomic fill, like browser automation SDKs: typing can replace the input
   # node on every character in reactive tables, invalidating a cached element.
   self.js('const e=document.querySelector(arguments[0]);e.focus();Object.getOwnPropertyDescriptor(e.tagName==="TEXTAREA"?HTMLTextAreaElement.prototype:HTMLInputElement.prototype,"value").set.call(e,arguments[1]);e.dispatchEvent(new InputEvent("input",{bubbles:true,inputType:"insertText",data:arguments[1]}));',css,text)
- def select(self,css,value):return self.js('const e=document.querySelector(arguments[0]);e.value=arguments[1];e.dispatchEvent(new Event("change",{bubbles:true}));',css,value)
+ def select(self,css,value):
+  self.js('const e=document.querySelector(arguments[0]);e.value=arguments[1];e.dispatchEvent(new Event("change",{bubbles:true}));',css,value);self.ready()
  def size(self,w,h=1000):
   self.request('/window/rect',{'width':max(550,w),'height':h});self.bidi.call('browsingContext.setViewport',{'context':self.context,'viewport':{'width':w,'height':h}})
  def shot(self,path):
