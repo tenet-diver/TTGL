@@ -3871,3 +3871,52 @@ skips), plus focused accounting checks and an actual JavaScript module/event smo
 for server-page navigation and page-size changes. Real deployed queries, raw assets,
 worker progress, process publication and positive model metering were checked.
 Browser QA remains unexecuted here because reviewed Playwright/Chromium is absent.
+
+## 15 November 2026 — browser validation and merged pagination controls
+
+The user explicitly requires functional validation before declaring completion.
+The earlier browser-validation gap is now closed for the local Observatory flows:
+217 non-browser unit/API checks and 12 actual Firefox workflow cases pass on the
+merged sources. The 25 legacy optional Playwright/Chromium cases were not executed;
+Firefox covers the changed workflows, rather than treating those skips as passes.
+Coverage includes all 17 main navigation views at 1440/768/390 CSS pixels, global
+pagination/search/numeric filters/sorting, saved columns/theme/rates/knowledge links,
+task → subtask → source steps, raw evidence, chart drill-downs, process maps, live
+notes/pause/resume, project/rule/change mutations, and bulk start/stop/progress.
+An additional populated 28-task fixture exercises 13 reference routes on desktop
+and mobile and loads retained image bytes in the gallery and full-image dialog.
+Browser mutations use disposable stores; model invocation is blocked in fixtures.
+
+The first pass found removed table controls and progress polling that could stop
+permanently after table focus. Controls now apply to the full server collection
+before slicing, and polling resumes after focus leaves the table. Unknown numeric
+values stay last when sorting and never become zero in numeric filters. Global
+measurements remain independent of table filters. A foreign-input guard and focus
+restoration preserve shared-list interactions.
+
+Upstream `b2b06e4` arrived during validation. Its layout, retained-image and shared
+`record_collection.py` query changes are integrated; the temporary competing query
+implementation was removed. The running analyzer's three generation source files
+match the original batch manifest hashes. The new read-only
+`bulk_analysis_views.py` contains the upstream queue-table projection so adopting
+that UI does not change the frozen `bulk_analysis.py` generation module. Preserve
+this boundary while batch `73e6f3d334f6429daef5de6f3fc97065` is active.
+
+Firefox 160.0 and geckodriver 0.37.1 run in a separate unprivileged Alpine native
+runtime. All 142 pinned package signatures/control hashes/data hashes were checked
+before extraction; OSV and vendor security metadata showed no candidate findings.
+Maintainer scripts were retained and not executed. The pre-execution receipt and
+remaining provenance limitations are private under
+`work/security/maintenance/browser-validation-20261115/`. Confirmed findings blocked
+the considered Playwright bundles and host-library browser alternatives. No app
+runtime dependency or model configuration was installed/changed for browser QA.
+Absence of findings is not a guarantee of vulnerability-free software.
+
+The web process was restarted as PID 285140 after an SQLite online backup; original
+bulk worker PID 159045 continued. At the deployment checkpoint, 642 analyses had
+completed, one had failed, two were running and 601 were pending. The failed attempt
+used an unexpected tool: its result was rejected, its 31,355 reported tokens were
+retained and it was not retried. Inspect current queue state for later counts.
+The external Langfuse UI remains outside this validation: its previously restored
+Docker stack is unavailable, with database volumes preserved. Research schedules
+remain paused, and no extra model trials or duplicate workers were launched.

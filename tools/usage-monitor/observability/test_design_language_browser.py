@@ -94,7 +94,7 @@ class DesignLanguageBrowserTests(unittest.TestCase):
                     for view in ('overview','taskactivity','tools','costs'):
                         page.locator(f'nav [data-view="{view}"]').click()
                         expect(page.locator(f'nav [data-view="{view}"]')).to_have_attribute('aria-current','page')
-                        self.assertLessEqual(page.evaluate('document.documentElement.scrollWidth'),width)
+                        self.assertLessEqual(page.evaluate('document.documentElement.scrollWidth'),width,f'{theme} {width}px {view}: '+str(page.locator('#content').evaluate("root=>[...root.querySelectorAll('*')].filter(n=>n.getBoundingClientRect().right>innerWidth).slice(0,12).map(n=>n.outerHTML.slice(0,240))")))
                     if width in (370,1600):page.screenshot(path=str(artifacts/f'costs-{theme}-{width}.png'),full_page=True,animations='disabled')
             self.assertEqual(errors,[]);browser.close()
 

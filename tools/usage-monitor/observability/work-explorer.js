@@ -1,4 +1,4 @@
-import {sourceList,listQuery} from '/data-list.js';
+import {sourceList} from '/data-list.js';
 import {renderTaskReport} from '/task-report.js';
 import {openTaskEvidence} from '/activity-insights.js';
 import {button,badge,emptyState,escapeHTML as esc} from '/ui.js';
@@ -11,11 +11,11 @@ const types=['feature','bugfix','investigation','refactor','testing','documentat
 const selectedSubtasks=new Map();
 let reviewScope=new URLSearchParams(location.search).get('review')||'';
 function setReviewScope(value){reviewScope=value;const url=new URL(location.href);if(value)url.searchParams.set('review',value);else url.searchParams.delete('review');history.replaceState(null,'',url.pathname+url.search+url.hash);}
-let prefs={query:'',status:'',task_type:'',attribution:'measured',metric:'total_steps',offset:0,limit:20,result:''};
+let prefs={query:'',status:'',task_type:'',attribution:'measured',metric:'total_steps',offset:0,limit:20,result:'',list_query:''};
 try{prefs={...prefs,...JSON.parse(localStorage.getItem('ttgl-work-preferences')||'{}')};}catch{}
-if(reviewScope){prefs.query='';prefs.status='';prefs.task_type='';prefs.result='';prefs.offset=0;}
+if(reviewScope){prefs.query='';prefs.status='';prefs.task_type='';prefs.result='';prefs.list_query='';prefs.offset=0;}
 function save(){try{localStorage.setItem('ttgl-work-preferences',JSON.stringify(prefs));}catch{}}
-export function explorerParams(project){return new URLSearchParams({...(project?{project}:{}),query:prefs.query,status:prefs.status,task_type:prefs.task_type,result:prefs.result||'',attribution:prefs.attribution,limit:prefs.limit||20,offset:prefs.offset||0,table_query:JSON.stringify(listQuery('work-tasks')),...(reviewScope?{review:reviewScope}:{})});}
+export function explorerParams(project){return new URLSearchParams({...(project?{project}:{}),query:prefs.query,status:prefs.status,task_type:prefs.task_type,result:prefs.result||'',attribution:prefs.attribution,limit:prefs.limit||20,offset:prefs.offset||0,list_query:prefs.list_query||'',...(reviewScope?{review:reviewScope}:{})});}
 const select=(name,label,values,value)=>`<label>${esc(label)}<select class="ui-input" data-work-filter="${name}" aria-label="${esc(label)}">${values.map(([id,text])=>`<option value="${esc(id)}" ${id===value?'selected':''}>${esc(text)}</option>`).join('')}</select></label>`;
 const metricValue=(metric,v,unit='USD')=>['runtime_seconds','elapsed_span_seconds'].includes(metric)?duration(v):metric==='cost'?v==null?'Unknown':price(v)+' '+unit:compact(v);
 function stats(m,estimate=false,unit='USD') {
@@ -68,7 +68,7 @@ export async function renderExplorer(root,{view,data,taskId,project,onProject,on
       {key:'project_name',hiddenByDefault:true,label:'Project'},{key:'status',label:'Recorded status',cell:r=>badge(r.status)},{key:'result',label:'Interpreted result',value:r=>r.process_result?.outcome,cell:r=>badge(r.process_result?.outcome?.replaceAll('_',' ')||'Unreviewed')},{key:'intervention',label:'User intervention',value:r=>r.process_result?.intervention,cell:r=>badge(r.process_result?.intervention?.replaceAll('_',' ')||'Unreviewed')},{key:'type',label:'Type'},
       {key:'updated',label:'Last activity',cell:r=>esc(r.updated?.slice(0,19).replace('T',' '))},
       {key:'summary',hiddenByDefault:true,label:'Summary',cell:r=>`<span class="table-prose">${esc(r.summary||'Recorded activity; semantic mining pending.')}</span>`}
-    ],data.tasks,r=>[{id:'open',label:'Explore task',onSelect:()=>onTask(r.id)}],true,{serverPage:{total:data.total,offset:data.offset,limit:data.limits.tasks_per_page,onQuery:()=>{prefs.offset=0;save();onRefresh();},onPage:(offset,limit)=>{prefs.offset=offset;prefs.limit=limit;save();onRefresh();}}});
+    ],data.tasks,r=>[{id:'open',label:'Explore task',onSelect:()=>onTask(r.id)}],true,{serverPage:{total:data.total,offset:data.offset,limit:data.limits.tasks_per_page,query:data.list_query,onPage:(offset,limit,query)=>{prefs.offset=offset;prefs.limit=limit;prefs.list_query=JSON.stringify(query);save();return onRefresh();}}});
 
     if(data.undiscovered)html+=`<div class="work-callout"><div><strong>${n(data.undiscovered)} collected prompts await task assignment</strong><p>Prompt-based task boundaries are provisional. Group related turns before mining a long-running task.</p></div>${button('Review prompts','data-view="inbox"')}</div>`;
   }
@@ -96,12 +96,12 @@ export async function renderExplorer(root,{view,data,taskId,project,onProject,on
     search.setSelectionRange(draft.start,draft.end);
   }
   if(root.querySelector('[data-work-search]'))root.querySelector('[data-work-search]').onsubmit=e=>{e.preventDefault();prefs.query=new FormData(e.currentTarget).get('query').trim();prefs.offset=0;save();onRefresh();};
-  if(root.querySelector('[data-work-reset]'))root.querySelector('[data-work-reset]').onclick=()=>{prefs.query='';prefs.status='';prefs.task_type='';prefs.result='';prefs.offset=0;setReviewScope('');save();onProject('');};
+  if(root.querySelector('[data-work-reset]'))root.querySelector('[data-work-reset]').onclick=()=>{prefs.query='';prefs.status='';prefs.task_type='';prefs.result='';prefs.list_query='';prefs.offset=0;setReviewScope('');save();onProject('');};
   root.querySelectorAll('[data-work-filter]').forEach(el=>el.onchange=()=>{if(el.dataset.workFilter==='project'){prefs.offset=0;save();return onProject(el.value);}prefs.offset=0;prefs[el.dataset.workFilter]=el.value;save();onRefresh();});
   root.onclick=async event=>{
     const target=event.target.closest('[data-work-task],[data-knowledge-step],[data-discover-tasks],[data-review-scope]');if(!target)return;
     try{
-      if(target.hasAttribute('data-review-scope')){setReviewScope(reviewScope?'':data.recent_review.id);onReviewScope();prefs.offset=0;prefs.query='';prefs.status='';prefs.task_type='';prefs.result='';save();return onProject('');}
+      if(target.hasAttribute('data-review-scope')){setReviewScope(reviewScope?'':data.recent_review.id);onReviewScope();prefs.offset=0;prefs.query='';prefs.status='';prefs.task_type='';prefs.result='';prefs.list_query='';save();return onProject('');}
       if(target.hasAttribute('data-work-task'))return onTask(target.dataset.workTask);
       if(target.hasAttribute('data-discover-tasks')){target.disabled=true;await post('task-discovery',{enabled:true});return onRefresh();}
       const response=await fetch('/api/task-step-evidence?'+new URLSearchParams({id:target.dataset.knowledgeStep}));
@@ -155,9 +155,9 @@ export async function renderExplorer(root,{view,data,taskId,project,onProject,on
       renderSteps(detail.querySelector('[data-work-steps]'),selected);};
       const panel=detail.querySelector('.step-panel');panel.addEventListener('toggle',()=>{if(panel.open)mountSources();});if(panel.open)mountSources();
     };
-    const renderSteps=async(target,subtaskId,offset=0,limit=20)=>{
+    const renderSteps=async(target,subtaskId,offset=0,limit=20,query={})=>{
       try{
-        const r=await fetch('/api/work-steps?'+new URLSearchParams({task_id:t.id,...(subtaskId?{subtask_id:subtaskId}:{}),limit,offset,table_query:JSON.stringify(listQuery('work-steps'))}));
+        const r=await fetch('/api/work-steps?'+new URLSearchParams({task_id:t.id,...(subtaskId?{subtask_id:subtaskId}:{}),limit,offset,list_query:JSON.stringify(query)}));
         const result=await r.json();if(!r.ok)throw Error(result.error);if(!target.isConnected)return;
         target.innerHTML=table('work-steps',[
           {key:'sequence',label:'Sequence',numeric:true},
@@ -168,7 +168,7 @@ export async function renderExplorer(root,{view,data,taskId,project,onProject,on
           {key:'model',hiddenByDefault:true,label:'Model'},
           {key:'tokens',label:'Response tokens',numeric:true,cell:r=>r.kind==='tool'?'Not attributed':n(r.tokens)},
           {key:'cost',label:'API token estimate',numeric:true,cell:r=>r.kind==='tool'?'Not attributed':r.cost==null?'No matched rate':price(r.cost)+' '+unit}
-        ],result.items,null,true,{serverPage:{total:result.total,offset:result.offset,limit,onQuery:()=>renderSteps(target,subtaskId,0,limit),onPage:(next,size)=>renderSteps(target,subtaskId,next,size)}});
+        ],result.items,null,true,{serverPage:{total:result.total,offset:result.offset,limit,query:result.query,onPage:(next,size,query)=>renderSteps(target,subtaskId,next,size,query)}});
         mountTableMenus();
       }catch(error){if(target.isConnected)target.innerHTML=emptyState('Steps unavailable',error.message);onError(error.message);}
     };show();

@@ -77,7 +77,7 @@ class WorkspaceServerTests(unittest.TestCase):
             with self.subTest(path=path), urllib.request.urlopen(self.origin + path) as response:
                 self.assertIn(b'workspace.js', response.read())
                 self.assertIn("script-src 'self'", response.headers['Content-Security-Policy'])
-        for path in ('/workspace.js', '/ui.js', '/collection.js', '/optimization.js', '/optimization.css', '/activity-views.js', '/activity-views.css', '/usage-views.js', '/usage-views.css', '/task-report.js', '/dashboard-views.js', '/data-list.js', '/chart-theme.js', '/design-language.css'):
+        for path in ('/workspace.js', '/ui.js', '/collection.js', '/optimization.js', '/optimization.css', '/activity-views.js', '/activity-views.css', '/usage-views.js', '/usage-views.css', '/task-report.js', '/dashboard-views.js', '/data-list.js', '/chart-theme.js', '/page-card.js', '/design-language.css'):
             with self.subTest(asset=path), urllib.request.urlopen(self.origin + path) as response:
                 self.assertEqual(response.status, 200)
                 self.assertGreater(len(response.read()), 0)

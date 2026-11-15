@@ -47,6 +47,20 @@ class AppPerformanceTests(unittest.TestCase):
         self.assertEqual(day['turn_pagination']['total'],1)
         self.assertEqual(day['turns'][0]['turn_id'],'t')
 
+    def test_dashboard_queries_filter_before_paging_without_changing_measurements(self):
+        with self.store.connection() as c:
+            for i in range(12):
+                c.execute('INSERT INTO turns VALUES(?,?,?,?,?,?,?)',('s',f'query-{i}','/repo',f'Unique repair {i:02}','2026-11-05T00:00:02Z','2026-11-05T00:00:03Z',1))
+        baseline=dashboard_views.page(self.store,'taskactivity',range='all',limit=2)
+        result=dashboard_views.page(self.store,'taskactivity',range='all',limit=2,turn_offset=100,turn_query=json.dumps(dict(search='Unique repair',sort='title',direction=-1)))
+        self.assertEqual(result['metrics'],baseline['metrics'])
+        self.assertEqual(result['turn_pagination']['total'],12)
+        self.assertEqual(result['turn_pagination']['offset'],10)
+        self.assertEqual([r['title'] for r in result['turns']],['Unique repair 01','Unique repair 00'])
+        hidden=dashboard_views.page(self.store,'taskactivity',range='all',limit=2,turn_query=json.dumps(dict(search='repair /repo',filters={'responses':'= 0'})))
+        self.assertEqual(hidden['turn_pagination']['total'],12)
+        self.assertEqual(len(hidden['turns']),2)
+
     def test_http_compression_preserves_json_and_paging_validation(self):
         server=ThreadingHTTPServer(('127.0.0.1',0),Handler);server.store=self.store
         host=f'127.0.0.1:{server.server_port}';server.allowed_hosts={host}

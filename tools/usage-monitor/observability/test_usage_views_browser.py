@@ -85,7 +85,10 @@ class UsagePagesBrowserTests(unittest.TestCase):
             expect(report).to_contain_text('task success remains unverified')
             expect(report.locator('[data-table="task-report-steps"] tbody tr')).to_have_count(4)
             self.assertEqual(report.locator('.report-step-row').nth(1).locator('.report-step-track i').evaluate('(node)=>node.style.left'),'0%')
-            self.assertIn('50%',report.locator('.report-step-row').nth(1).locator('.report-step-track i').evaluate('(node)=>node.style.width'))
+            # The two-second tool spans one third of the six-second retained
+            # task/evidence range, including the later assistant message.
+            track=report.locator('.report-step-row').nth(1).locator('.report-step-track')
+            self.assertAlmostEqual(track.locator('i').bounding_box()['width']/track.bounding_box()['width'],1/3,delta=.02)
             page.get_by_role('button',name='Phase: Implement the fix',exact=True).click()
             expect(report.locator('[data-table="task-report-steps"] tbody tr')).to_have_count(1)
             expect(report.locator('[data-table="task-report-steps"]')).to_contain_text('FileChange')

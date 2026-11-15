@@ -64,4 +64,42 @@ class EvidenceTests(unittest.TestCase):
   result=e.story(task,groups)
   self.assertIsNone(result['changes_after_last_validation'])
   self.assertTrue(any('ordering is uncertain' in gap for gap in result['open_items']))
+ def test_retained_inline_images_are_raster_only_and_task_scoped(self):
+  import base64
+  png=base64.b64decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9ZlWQAAAAASUVORK5CYII=')
+  record=dict(timestamp='2026-11-05T00:00:04Z',type='event_msg',payload=dict(type='item_completed',thread_id='s',turn_id='t',item=dict(type='ImageView',id='image',path='/private/do-not-open.png',status='completed',content=[dict(type='image',source=dict(type='base64',media_type='image/png',data=base64.b64encode(png).decode()))])))
+  self.fixture.source.write_text(''.join(json.dumps(r)+'\n' for r in self.fixture.rows+[record]));self.store.ingest(self.fixture.source)
+  packet=e.packet(self.store,self.task);ident=packet['groups']['visual_reference'][0]['preview_id']
+  self.assertEqual(e.image(self.store,self.task,ident),('image/png',png))
+  del self.store._evidence_image_cache
+  self.assertEqual(e.image(self.store,self.task,ident),('image/png',png))
+  # More than the cache bound: the oldest reference must still reconstruct.
+  records=[]
+  for index in range(65):
+   copy=json.loads(json.dumps(record));copy['payload']['item']['id']='image-'+str(index)
+   copy['payload']['item']['content'][0]['source']['data']=base64.b64encode(png+bytes([index])).decode();records.append(copy)
+  self.fixture.source.write_text(''.join(json.dumps(r)+'\n' for r in self.fixture.rows+records));self.store.ingest(self.fixture.source)
+  packet=e.packet(self.store,self.task);first=packet['groups']['visual_reference'][0]['preview_id']
+  self.assertNotIn((self.task,first),self.store._evidence_image_cache)
+  self.assertEqual(e.image(self.store,self.task,first),('image/png',png+b'\x00'))
+  with self.assertRaises(ValueError):e.image(self.store,'other-task',ident)
+  with self.assertRaises(ValueError):e.image(self.store,self.task,'../../etc/passwd')
+  self.assertNotIn(base64.b64encode(png).decode(),json.dumps(packet))
+  self.assertEqual(list(e.inline_images({'content':[{'source':{'data':base64.b64encode(b'<svg onload="alert(1)"/>').decode()}}]})),[])
+  self.assertEqual(list(e.inline_images({'content':[{'image_url':'https://example.org/private.png'}]})),[])
+  self.assertEqual(list(e.inline_images({'image_data':'A'*1400001})),[])
+ def test_claim_links_use_last_check_without_claiming_whole_task_acceptance(self):
+  groups={kind:[] for kind in e.KINDS}
+  check=dict(event_id='check',title='pytest tests',recorded_at='2026-11-05T00:00:03Z',outcome='command_passed')
+  groups['validation']=[check];task=dict(goal='Fix',acceptance='',outcome=None)
+  story=e.story(task,groups);claims=e.claims({'text':'Tests passed. Screenshot checked.'},groups,story)
+  self.assertEqual(claims[0]['event_id'],'check');self.assertEqual(claims[0]['status'],'Recorded command passed')
+  self.assertEqual(claims[1]['status'],'Not backed')
+  self.assertIn('Task acceptance has not been recorded.',story['open_items'])
+  check['outcome']='command_failed';story=e.story(task,groups)
+  self.assertEqual(e.claims({'text':'Tests passed.'},groups,story)[0]['status'],'Last run failed')
+  check['outcome']='command_passed';groups['change']=[dict(event_id='edit',title='app.ts',recorded_at='2026-11-05T00:00:04Z')]
+  self.assertEqual(e.claims({'text':'Tests passed.'},groups,e.story(task,groups))[0]['status'],'Not backed')
+  self.assertEqual(e.claims({'text':'No tests were run.'},groups,story)[0]['status'],'No verified result claimed')
+  self.assertEqual(e.claims({'text':'Build passed.'},groups,story)[0]['status'],'Not backed')
 if __name__=='__main__':unittest.main()

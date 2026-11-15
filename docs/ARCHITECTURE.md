@@ -67,19 +67,24 @@ counting formula onto Observatory's explicit task assignments.
 
 ## Task story and evidence
 
-The Evidence & outcomes action now starts with two cards: **Task story** and
-**What remains open**. They summarize the recorded request, acceptance criteria,
-native changed-file references, check count and latest unambiguous validation.
-They flag failed/unknown validation, edits after the last check, ambiguous ordering,
-missing task acceptance and bounded source coverage. All underlying facts remain
-available below, with original-step inspection.
+The task detail includes collapsible Story, Evidence, Prompt and Outcome cards.
+Story summarizes the request, changed files, latest unambiguous validation and
+remaining gaps. Current interpreted subtasks provide colored phase markers;
+retained evidence markers and phases filter the shared Steps list. Unknown or tied
+check/edit ordering cannot establish that a check covers an edit.
 
-Manual evidence retains its explicit-record provenance. Screenshots are references,
-not automatically fetched files or proof of visual correctness. Tied or missing
-timestamps must not imply that a check covers an edit. The existing selectable
-step timeline supplies chronological drill-down; the reference's inferred
-explore/implement/verify/deliver phases and final-claim-to-proof mapping are not
-implemented by this change.
+Evidence preserves original-step inspection and explicit-record provenance.
+Conservative lexical links connect last-message validation claims to the last
+matching command, with passed, failed or unbacked labels. They do not independently
+verify the claim or establish task acceptance. Visual claims remain reference-only.
+
+Only inline PNG/JPEG/WebP bytes actually retained in native ImageView records have
+previews. The task-scoped `/api/task-image` endpoint rescans registered sources on
+a cache miss; it never opens paths or fetches URLs suggested by transcript text.
+Each image is bounded to 1 MiB, four per record; the private in-memory LRU is bounded
+to 64 images / 8 MiB. Responses are same-origin, no-store and nosniff. Path-only and
+manual URL references remain references, without a fabricated thumbnail. Viewing
+an image does not establish visual correctness.
 
 ## Cost and timing
 

@@ -26,6 +26,9 @@ class HistoryBrowserTests(unittest.TestCase):
         if 'assignments' in schema['properties']:
             result['assignments']={s['id']:0 for s in body['steps']}
             for group in result['subtasks']:group.pop('step_ids')
+        if 'outcome' in schema['properties']:
+            result.update(outcome='unknown',outcome_reason='Fixture evidence is not independent acceptance.',outcome_confidence=.5,outcome_step_ids=[body['steps'][0]['id']],intervention='none_observed',intervention_reason='No intervention is visible in the fixture.',intervention_turn_ids=[])
+            for group in result['subtasks']:group.update(outcome='unknown',outcome_reason='Fixture interpretation only.',runtime_role='finite_operation')
         pathlib.Path(sys.argv[sys.argv.index('--output-last-message')+1]).write_text(json.dumps(result))
         print(json.dumps({'type':'turn.completed','usage':{'input_tokens':20,'output_tokens':10,'total_tokens':30}}))
         '''.replace('\n        ','\n'));fake.chmod(0o700)

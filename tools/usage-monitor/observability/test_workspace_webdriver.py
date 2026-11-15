@@ -144,6 +144,17 @@ class WorkspaceWebDriverTests(unittest.TestCase):
         self.b.select('[data-list-size=qa-list]','100');self.b.click('[data-sort=qa-list][data-key=amount]');self.contains('[data-table=qa-list] tbody tr:last-child','Row 14');self.b.click('[data-sort=qa-list][data-key=amount]');self.contains('[data-table=qa-list] tbody tr:first-child','Row 54')
         self.b.fill('[data-search=qa-list]','resume marker');self.assertEqual(self.b.count('[data-table=qa-list] tbody tr'),1);self.contains('[data-table=qa-list] tbody','Row 42');self.assertEqual(self.b.js('return window.submits'),0);self.assert_clean()
 
+    def test_populated_reference_routes_and_retained_image(self):
+        from test_reference_acceptance_browser import populated_fixture
+        fixture,origin,tasks,project=populated_fixture(self)
+        routes=[('/?range=all','dashboard-tools'),('/tasks?range=all','activity-turns'),('/tasks/'+tasks[-1]+'?range=all','task-report-steps'),('/tools?range=all','usage-tools'),('/costs?range=all','cost-models'),('/timeline?range=all','timeline-turns'),('/agents?range=all','agent-comparison'),('/process?range=all','process-transitions'),('/outcomes?range=all','tasks-needing-fix'),('/suggestions?range=all','built-in-findings'),('/impact?range=all','impact-changes'),('/live/rules?range=all','steering-rules'),('/live?range=all','steering-log')]
+        for width in (1440,390):
+            self.b.size(width)
+            for path,table in routes:
+                with self.subTest(width=width,path=path):
+                    self.b.goto(origin+path);self.b.ready();self.b.wait('document.querySelector('+json.dumps('[data-table="'+table+'"]')+')');self.assertLessEqual(self.b.js('return document.documentElement.scrollWidth'),width)
+        self.b.goto(origin+'/tasks/'+tasks[-1]+'?range=all');self.b.ready();self.b.wait('document.querySelector("[data-report-image] img")?.complete && document.querySelector("[data-report-image] img")?.naturalWidth===1');self.b.click('[data-report-image]');self.b.wait('document.querySelector(".report-image-full")?.complete && document.querySelector(".report-image-full")?.naturalWidth===1');self.close()
+
     def test_process_map_drilldown_opens_its_task(self):
         self.b.nav('process');self.b.click('[data-flow-node="implement"]');self.contains('#modal','Fix');self.b.click('[data-analysis-task]');self.contains('.task-detail','Fix');self.assert_clean()
 

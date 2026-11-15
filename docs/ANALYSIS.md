@@ -299,3 +299,77 @@ Task detail loading and compact analysis layout (15 November 2026):
   not browser/network timings or a guarantee for a user's history. Private QA
   receipts and screenshots are in ignored `work/security/task-layout-validation-20261115`
   and `work/security/task-layout-qa`; no model calls were used.
+
+
+## Screenshot acceptance (15 November 2026)
+
+The supplied page photographs are the layout and interaction references. The
+populated acceptance fixture uses 28 days of generated native records, three
+models, explicit agent identities, interpreted groups, confirmed interventions,
+recorded changes and live hook firings. It makes no model calls and contains no
+private history. Photo amounts, provider names and inferred savings are not copied
+into native measurements. This is a structural/visual review, not a pixel-diff
+claim against perspective photographs.
+
+| Reference | Checked layout and behavior |
+| --- | --- |
+| Overall activity | Six KPIs, wider daily cost chart, activity breakdown, paired tools/categories, outcomes and suggestions links |
+| Task activity | Six KPIs, interpretation coverage, marked tasks and native turns; readable prompt width; shared paging/search/sort |
+| Task detail / Steps | Story and colored selectable phases, evidence source markers, checks, retained-image preview/modal, conservative claim links, outcomes, subtasks, runtime chart and one 11-column Steps list |
+| Tool usage / family detail | Treemap, inline area-measure segments, daily stacked calls, actions, filtered targets, source inspection and persistent scope |
+| Cost & tokens | Six counters, wider daily chart/model breakdown, blue task-count and orange spend bands, token-type/model stacks and model list |
+| Activity timeline | Weekday/hour heatmap, local timezone day rows, selectable native turn blocks and source list |
+| Agents | Explicit main/subagent identities, model markers and shared comparison columns |
+| Process map | Coverage and KPIs, compact category nodes with stable colors, visible edge counts, connection slider, transitions, category costs/time, categories and paths |
+| Outcomes | Four KPIs, paired fix-rate tables, tasks needing fixes, stuck patterns and commits/PRs with source links |
+| Suggestions | Four KPIs above findings, recommendations, affected estimates and expandable evidence; unknown savings stay unknown |
+| Impact | Applied-change descriptions beside compact Metric/Before/After/Change lists, sample denominators, intervals, uptake and numbered trend markers |
+| Steering rules | Human-readable triggers, mode selects, blue switches, edit/add/delete and shared record controls |
+| Live sessions | Four KPIs, session note/pause controls, retained rule log and 24-hour empty state |
+
+`test_reference_acceptance_browser.py` captures all 13 pages at desktop 1440px in
+dark and light themes and at 390px in dark mode (39 captures), plus tool detail at
+both widths, a focused Steps viewport and the Live empty state (43 total). It
+asserts no document overflow, accessible list controls, real card collapse and
+keyboard expansion, compact nested comparisons, persistent range/measure choices,
+turn paging/search/sort, phase filtering, actual raster loading and image modal,
+retained logs after session expiry, and no JavaScript errors or failed API responses.
+Existing page/browser tests additionally exercise rule mutations, hook decisions,
+note delivery/pause, source drilldowns, change recording/deletion, trend toggles,
+column filters/visibility/preferences, row actions and explicit analysis limits.
+
+Run with the existing Python/Playwright/Chromium setup:
+
+```sh
+PYTHONPATH=tools/usage-monitor/observability TTGL_BROWSER_QA=1 \
+  TTGL_CHROMIUM=/usr/bin/chromium python3 -m unittest \
+  discover -s tools/usage-monitor/observability -p 'test_*.py'
+```
+
+The generated gallery, manifest and full-suite receipt live in ignored
+`work/security/reference-acceptance-20261115/`. The gallery is reviewed for density,
+column clipping, readable labels, chart colors, card ordering and responsive
+layout. Image preview tests cover cache eviction/reconstruction, task scope,
+raster bounds and refusal to read log-suggested paths or remote URLs. Last-message
+claim links are lexical matches to retained facts, not independent verification.
+
+Before integrating concurrent pagination/bulk-analysis changes, all 222 observability tests passed with browser QA enabled
+(92.756 seconds). The 43-capture acceptance manifest records zero JavaScript
+errors and zero failed API responses. JavaScript syntax passed for all seven
+changed/new modules; `git diff --check` passed. No new dependencies or model calls.
+
+Paginated Task activity, marked-task, Work, source-step and bulk-analysis lists retain the same search, numeric/text
+column filters, natural sorting, reset and column controls. `record_collection.py`
+applies their query before slicing a bounded server response; full-cohort metrics
+remain unchanged. Dashboard queries and offsets survive reload in the page URL; Work preferences are saved locally. Shared list
+controls debounce remote search, retain focus/caret and preserve unknowns last in
+either sort direction. The acceptance test searches across a page boundary, filters
+API estimates, resets offsets and checks persistence after reload. No full-history
+browser payload is required to restore these controls.
+
+Merged validation: all 242 observability tests passed with browser QA enabled
+(99.298 seconds), including full-cohort queries for every paginated list introduced
+by the concurrent transport changes. The refreshed 43-capture manifest has zero
+JavaScript errors and failed API responses. Seven changed JavaScript modules pass
+syntax checking; `git diff --check` passes. Receipt: ignored
+`work/security/reference-acceptance-20261115/merged-final-tests.log`.

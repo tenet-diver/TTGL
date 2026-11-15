@@ -7,7 +7,7 @@ import {renderSuggestions,activityQuery} from '/activity-insights.js';
 import {renderExplorer,explorerParams} from '/work-explorer.js';
 import { renderStepTimeline } from '/step-timeline.js';
 import { renderHistory, openTaskHistory as showTaskHistory } from '/task-history.js';
-import {renderList as table,mountTableMenus,clearListFilters,setListErrorHandler,listQuery} from '/data-list.js';
+import {renderList as table,mountTableMenus,clearListFilters,setListErrorHandler} from '/data-list.js';
 import { button, badge, icon, emptyState, skeleton } from '/ui.js';
 
 const $ = selector => document.querySelector(selector);
@@ -52,7 +52,7 @@ const pathViews={'/investigate':'investigate','/overview':'overview','/tasks':'t
 let traceState=Object.fromEntries(['view','query','project','task','session','turn','tool','model','status','since','until','signal','sort','pattern','kind','fingerprint','operation','offset'].filter(key=>query.has('trace_'+key)).map(key=>[key,query.get('trace_'+key)]));
 if(!['turns','tools','patterns','steps'].includes(traceState.view))traceState.view='turns';
 const opsState={project:query.get('project')||'',workspace:query.get('workspace')||'',range:query.get('range')||'30d',zone:query.get('zone')||Intl.DateTimeFormat().resolvedOptions().timeZone||'Europe/Amsterdam',attribution:query.get('attribution')||'measured',measure:query.get('measure')||'cost',connections:query.get('connections')||'24',family:query.get('family')||'',action:query.get('action')||'',toolMeasure:query.get('toolMeasure')||'calls'};
-Object.assign(opsState,{turn_offset:query.get('turn_offset')||0,task_offset:query.get('task_offset')||0,limit:query.get('limit')||20});
+Object.assign(opsState,{turn_offset:query.get('turn_offset')||0,task_offset:query.get('task_offset')||0,limit:query.get('limit')||20,turn_query:query.get('turn_query')||'',task_query:query.get('task_query')||''});
 const aliases={history:'knowledge',activity:'tasks',setup:'settings'};
 let view=pathViews[location.pathname]&&!location.hash?pathViews[location.pathname]:aliases[location.hash.slice(1)]|| (config[location.hash.slice(1)]?location.hash.slice(1):(location.pathname.startsWith('/tasks/')||query.get('task')?'tasks':'overview'));
 const primary=()=>['tasks','analytics','knowledge'].includes(view);
@@ -73,7 +73,7 @@ function syncURL() {
   if (task) params.set('task', task);
   if (category) params.set('category', category);
   const review=new URLSearchParams(location.search).get('review');if(review)params.set('review',review);
-  for(const name of ['zone','attribution','measure','connections','family','action','toolMeasure','turn_offset','task_offset','limit'])if(opsState[name])params.set(name,opsState[name]);
+  for(const name of ['zone','attribution','measure','connections','family','action','toolMeasure','turn_offset','task_offset','limit','turn_query','task_query'])if(opsState[name])params.set(name,opsState[name]);
   if(opsState.range)params.set('range',opsState.range);if(opsState.workspace)params.set('workspace',opsState.workspace);
   for(const [key,value] of Object.entries(traceState))if(value!==''&&value!=null)params.set('trace_'+key,value);
   history.replaceState(null, '', location.pathname + (params.size?'?'+params:'') + '#' + view);
@@ -99,7 +99,7 @@ async function load() {
     }
     if(['overview','taskactivity'].includes(view)){
       opsState.project=project;
-      const response=await request('/api/activity-dashboard?'+new URLSearchParams({...opsState,view,turn_query:JSON.stringify(listQuery('activity-turns')),task_query:JSON.stringify(listQuery('marked-tasks'))}));
+      const response=await request('/api/activity-dashboard?'+new URLSearchParams({...opsState,view}));
       const result=await response.json();if(!response.ok)throw Error(result.error||'Activity dashboard unavailable');if(epoch!==loadEpoch)return;
       $('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;$('#title').textContent=config[view][0];$('#subtitle').textContent=config[view][1];$('#breadcrumb').textContent=config[view][0];$('#page-actions').innerHTML='';$('#content').setAttribute('aria-busy','false');
       document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
@@ -113,7 +113,8 @@ async function load() {
       $('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;$('#title').textContent=config[view][0];$('#subtitle').textContent=config[view][1];$('#breadcrumb').textContent=config[view][0];$('#page-actions').innerHTML='';$('#content').setAttribute('aria-busy','false');
       document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
       $('#live').textContent='Connected';$('#connection-dot').dataset.state='collecting';$('#langfuse').href=result.langfuse_url;
-      renderUsage($('#content'),{view,data:result,state:opsState,table,showModal,onError:toast,inspect:inspectOpsSource,onFilters:updateOpsFilters});return;
+      renderUsage($('#content'),{view,data:result,state:opsState,table,showModal,onError:toast,inspect:inspectOpsSource,onFilters:updateOpsFilters});
+      if(view==='tools'&&result.family){$('#title').textContent=result.family;$('#breadcrumb').textContent='Tool usage / '+result.family;}return;
     }
     if(['process','agents','timeline','outcomes'].includes(view)){
       opsState.project=project;
@@ -174,8 +175,8 @@ async function inspectOpsSource(id,target){
   if(!response.ok)throw Error(value.error||'Source unavailable');target.innerHTML='<pre>'+esc(JSON.stringify(value,null,2))+'</pre>';
 }
 function updateOpsFilters(values){
-  if(values.task){task=values.task;view='tasks';}else{if(!['turn_offset','task_offset','limit'].some(k=>k in values)){opsState.turn_offset=0;opsState.task_offset=0;}Object.assign(opsState,values);project=opsState.project||'';}
-  syncURL();load();
+  if(values.task){task=values.task;view='tasks';}else{if(!['turn_offset','task_offset','limit','turn_query','task_query'].some(k=>k in values)){opsState.turn_offset=0;opsState.task_offset=0;}Object.assign(opsState,values);project=opsState.project||'';}
+  syncURL();return load();
 }
 setListErrorHandler(toast);
 document.querySelector('#bulk-analysis').onclick=()=>import('/bulk-analysis.js').then(({openBulkAnalysis})=>openBulkAnalysis({showModal,post,onError:toast})).catch(error=>toast(error.message));

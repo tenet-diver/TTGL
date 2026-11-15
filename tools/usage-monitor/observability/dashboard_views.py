@@ -11,7 +11,18 @@ import usage_views as usage
 import work_analytics as analytics
 
 
-def page(store, view, limit=20, turn_offset=0, task_offset=0, day='', turn_query=None, task_query=None, **scope):
+def list_columns(marked=False):
+    plain=('title','categories','status') if marked else ('title','outcome','models','interpretation','categories','workspace','session_id','agents','source_state')
+    numeric=('started','span_sum','turns') if marked else ('started','span','loops','subtasks')
+    columns={key:(lambda row,key=key:row.get(key),False) for key in plain}
+    columns.update({key:(lambda row,key=key:row.get(key),True) for key in numeric})
+    metrics={'cost':'cost','tokens':'tokens','responses':'responses','tools':'tool_calls'}
+    if not marked:metrics.update(errors='errors',output='output')
+    columns.update({key:(lambda row,field=field:row['metrics'].get(field),True) for key,field in metrics.items()})
+    return columns
+
+
+def page(store, view, limit=20, turn_offset=0, task_offset=0, day='', turn_query='', task_query='', **scope):
     """Bound browser payloads without changing full-cohort measurements."""
     limit, turn_offset, task_offset = int(limit), int(turn_offset), int(task_offset)
     if not 1 <= limit <= 100 or min(turn_offset, task_offset) < 0:
@@ -24,19 +35,20 @@ def page(store, view, limit=20, turn_offset=0, task_offset=0, day='', turn_query
     if day:
         keys = {tuple(key) for item in data['days'] if item['date'] == day for key in item['turn_keys']}
         turns = [t for t in turns if (t['session_id'], t['turn_id']) in keys]
-    import collection_query as cq
-    metrics=dict(cost='cost',tokens='tokens',responses='responses',tools='tool_calls',errors='errors',output='output')
-    turns=cq.apply(turns,turn_query,cq.fields(['title','started','span','outcome','loops','models','interpretation','subtasks','categories','workspace','session_id','agents','source_state'],metrics))
-    data['marked_tasks']=cq.apply(data['marked_tasks'],task_query,cq.fields(['title','categories','status','started','span_sum','turns'],{k:v for k,v in metrics.items() if k in ('cost','tokens','responses','tools')}))
-    turn_offset=min(turn_offset,max(0,(len(turns)-1)//limit)*limit)
-    task_offset=min(task_offset,max(0,(len(data['marked_tasks'])-1)//limit)*limit)
-    def paging(rows, offset):
-        return dict(total=len(rows),offset=offset,limit=limit,next_offset=offset+limit if offset+limit<len(rows) else None)
-    data['turn_pagination'] = paging(turns, turn_offset)
-    data['task_pagination'] = paging(data['marked_tasks'], task_offset)
+    from record_collection import query_records
+    turns,tq=query_records(turns,list_columns(),turn_query)
+    marked,mq=query_records(data['marked_tasks'],list_columns(True),task_query)
+    def paging(rows, offset, query):
+        offset=min(offset,max(0,(len(rows)-1)//limit)*limit)
+        result=dict(total=len(rows),offset=offset,limit=limit,next_offset=offset+limit if offset+limit<len(rows) else None)
+        if query['search'] or query['sort'] or any(query['filters'].values()):result['query']=query
+        return result
+    data['turn_pagination'] = paging(turns, turn_offset, tq)
+    data['task_pagination'] = paging(marked, task_offset, mq)
+    turn_offset=data['turn_pagination']['offset'];task_offset=data['task_pagination']['offset']
     data['turns'] = [{k:v for k,v in t.items() if k not in ('prompt','signals')}
                      for t in turns[turn_offset:turn_offset+limit]] if view == 'taskactivity' or day else []
-    data['marked_tasks'] = data['marked_tasks'][task_offset:task_offset+limit] if view == 'taskactivity' else []
+    data['marked_tasks'] = marked[task_offset:task_offset+limit] if view == 'taskactivity' else []
     data['eligible_count'] = len(data['eligible'])
     data['eligible'] = data['eligible'][:100]
     data['outcomes'].pop('signal_tasks',None)
