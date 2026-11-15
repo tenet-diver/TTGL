@@ -13,6 +13,7 @@ trace backend; TTGL adds source reconciliation, task grouping and evidence revie
 | Workspace | `tools/usage-monitor/observability/workspace.py` | Loopback HTTP server, local SQLite store, native ingestion, mutations and audit |
 | Native parsing | Existing monitor and Langfuse bridge | Native operation identities, recorded runtimes and deduplicated response usage |
 | Work views | `work-explorer.js`, `work_analytics.py` | Task → subtasks → source steps, measured usage, type analytics and knowledge candidates |
+| Analysis pages | `activity_views.py`, `activity-views.js` | Process paths and rework, explicit agent identities, timezone-aware turns, task outcome signals and evidence drill-down |
 | Evidence | `task_evidence.py`, `activity-insights.js` | Retained changes, validations, image references, explicit interventions and task story |
 | Interpretation | `task_history.py`, `activity_insights.py`, `agent_review.py` | On-demand model work, versioned outputs, source links, confidence and separate overhead |
 | Capture | Existing capture proxy and capture-object archive | Original/forwarded transport evidence and durable private records |
@@ -135,3 +136,10 @@ for supported source fields, approval semantics, statistical limits and installa
 
 Native collection and keyboard-accessible popover behavior now ship in
 `collection.js`; private DOM assets are no longer required to start the workspace.
+
+`activity_sources`, `activity_signals` and `activity_files` are additive local
+projections. Their one-time rescan preserves measured events. Tool-identity v2
+also includes the native tool/server/name and file-change inputs so unrelated
+failed calls are not grouped into one loop; old identities are marked unknown
+until rebuilt from available sources. See [analysis semantics](ANALYSIS.md) for
+coverage, confirmed versus heuristic fixes, local time/DST, and bounded source previews.

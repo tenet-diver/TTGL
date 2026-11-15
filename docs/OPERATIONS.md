@@ -12,12 +12,12 @@ columns, pagination, light/dark themes and responsive layouts remain available.
 | --- | --- | --- |
 | Suggestions | `/suggestions` or `#suggestions` | Deterministic findings, affected source records and evidence drill-down, alongside the existing explicit small-model review/grouping workflow |
 | Impact | `/impact` or `#impact` | Record/delete applied changes, select metrics and workspace, choose immediate/new-session effect, compare fixed windows and inspect daily/7-day trends with numbered intervention markers |
-| Outcomes | `/outcomes` or `#outcomes` | Inspect repeated identical failures, repeated edit/check failures, many reads before an edit, context jumps, and commit/PR references from retained successful command output |
+| Outcomes | `/outcomes` or `#outcomes` | Confirmed-fix KPIs, workspace/category fix rates, task warning signals, repeated failures, context jumps and retained commit/PR references |
 | Live sessions | `/live` or `#live` | Connected sessions in the last 24 hours, working/waiting/idle status, queued notes, pause/resume, KPI strip and persistent rule log |
 | Steering rules | `/live/rules` or `#steering` | Eleven built-ins, editable mode/message/threshold, enable switch, custom command rules, firing counts, last firing, edit/delete |
 
-Analysis pages filter by project, workspace and 1/7/30/90 days or all retained
-history. Live pages filter by workspace. Filters persist in the URL. Graphs show
+These pages filter by project, workspace and 1/7/30/90 days or all retained
+history. Live pages filter by workspace. Filters persist in the URL. Impact graphs show
 UTC days; daily observations and weighted seven-calendar-day averages can be
 hidden independently. Each chart has a source-value table and accessible labels.
 Unsupported metrics show Unknown rather than synthetic observations.
@@ -185,3 +185,8 @@ skips**, including ten browser tests and actual server/adapter subprocess checks
 The tests use temporary state and explicit CLI/model fixtures; live provider
 behavior, production traffic and personal hook installation are outside that result.
 JavaScript syntax checks and `git diff --check` also passed.
+
+[Additional analysis pages](ANALYSIS.md) cover the interactive Process map,
+Agents and timezone-aware Activity timeline, together with expanded Outcomes.
+The Activity timeline uses a selected local timezone or explicit UTC; the Impact
+charts above retain UTC daily buckets.

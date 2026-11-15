@@ -13,7 +13,7 @@ export function button(title, attributes='', primary=false, iconName='') {
 }
 
 export function badge(value) {
-  const status = ['complete','completed','passed','command_passed','confirmed'].includes(value)?'success':['failed','command_failed','cancelled'].includes(value)?'error':['waiting','unresolved'].includes(value)?'warning':'neutral';
+  const status = ['complete','completed','passed','command_passed','confirmed'].includes(value)?'success':['failed','command_failed','cancelled','Needed a fix'].includes(value)?'error':['waiting','unresolved','Warning signs'].includes(value)?'warning':'neutral';
   return `<span data-status="${status}" data-slot="badge" data-variant="secondary" class="ui-badge">${escapeHTML(value)}</span>`;
 }
 

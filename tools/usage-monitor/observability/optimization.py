@@ -41,6 +41,10 @@ CREATE TABLE IF NOT EXISTS optimization_turns(session_id TEXT,turn_id TEXT,answe
 CREATE TABLE IF NOT EXISTS applied_changes(id TEXT PRIMARY KEY,title TEXT NOT NULL,at REAL NOT NULL,workspace TEXT NOT NULL,takes_effect TEXT NOT NULL,metrics TEXT NOT NULL,notes TEXT NOT NULL,created REAL NOT NULL);
 ''')
         if 'started' not in {r['name'] for r in c.execute('PRAGMA table_info(native_session_facts)')}:c.execute('ALTER TABLE native_session_facts ADD COLUMN started REAL')
+        if not c.execute("SELECT 1 FROM settings WHERE key='optimization_identity_v2'").fetchone():
+            c.execute('UPDATE optimization_facts SET signature=NULL')
+            c.execute('UPDATE files SET mtime=NULL')
+            c.execute("INSERT INTO settings VALUES('optimization_identity_v2','true')")
         if not c.execute("SELECT 1 FROM settings WHERE key='optimization_facts_v1'").fetchone():
             c.execute('UPDATE files SET mtime=NULL')
             c.execute("INSERT INTO settings VALUES('optimization_facts_v1','true')")
@@ -50,7 +54,8 @@ def native_fact(item):
     from capture_proxy import sanitized
     command=item.get('command','');command=command if isinstance(command,str) else ' '.join(str(v) for v in command or [])
     arguments=item.get('arguments',item.get('input',{}))
-    signature=hashlib.sha256(json.dumps([item.get('type'),command,arguments],sort_keys=True).encode()).hexdigest()
+    identity={key:item.get(key) for key in ('type','server','tool','name','kind','path','image_path','url','query','changes')}
+    signature=hashlib.sha256(json.dumps([identity,command,arguments],sort_keys=True).encode()).hexdigest()
     output=item.get('aggregated_output',item.get('result'))
     output=output if isinstance(output,str) else json.dumps(output) if output is not None else None
     typ=str(item.get('type','')).lower()

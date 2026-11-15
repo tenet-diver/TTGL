@@ -1,3 +1,4 @@
+import {renderAnalysis} from '/activity-views.js';
 import {renderOperations,builtins,bindEvidence,filters as opsFiltersHTML} from '/optimization.js';
 import {renderSuggestions,activityQuery} from '/activity-insights.js';
 import {renderExplorer,explorerParams} from '/work-explorer.js';
@@ -16,6 +17,9 @@ const external = (url, title='Inspect in Langfuse') => `<a href="${esc(url)}" ta
 const section = (title, body, action='', note='') => `<section class="section"><div class="section-heading"><h2>${esc(title)}</h2>${action}</div>${note?`<p class="section-note">${note}</p>`:''}${body}</section>`;
 const clip = value => `<span class="clip" title="${esc(value)}">${esc(value)}</span>`;
 const config = {
+  process:['Process map','Follow interpreted subtask paths, transitions and rework back to source tasks.'],
+  agents:['Agents','Compare explicitly identified main sessions and subagent types.'],
+  timeline:['Activity timeline','Inspect retained turns and response usage by weekday and local time.'],
   live:['Live sessions','Connected sessions, delivered notes and hook decisions in the last 24 hours.'],
   steering:['Steering rules','Configure log, warning, approval and blocking behavior for connected hooks.'],
   impact:['Impact','Record applied changes and compare source metrics before and after.'],
@@ -37,8 +41,8 @@ const config = {
   setup:['Setup & coverage','Source permission, collector coverage, and configuration.']
 };
 const query = new URLSearchParams(location.search);
-const pathViews={'/live':'live','/live/rules':'steering','/impact':'impact','/outcomes':'outcomes','/suggestions':'suggestions'};
-const opsState={project:query.get('project')||'',workspace:query.get('workspace')||'',range:query.get('range')||'30d'};
+const pathViews={'/process':'process','/agents':'agents','/timeline':'timeline','/live':'live','/live/rules':'steering','/impact':'impact','/outcomes':'outcomes','/suggestions':'suggestions'};
+const opsState={project:query.get('project')||'',workspace:query.get('workspace')||'',range:query.get('range')||'30d',zone:query.get('zone')||Intl.DateTimeFormat().resolvedOptions().timeZone||'Europe/Amsterdam',attribution:query.get('attribution')||'measured',measure:query.get('measure')||'cost',connections:query.get('connections')||'24'};
 const aliases={overview:'tasks',history:'knowledge',activity:'tasks',setup:'settings'};
 let view=pathViews[location.pathname]&&!location.hash?pathViews[location.pathname]:aliases[location.hash.slice(1)]|| (config[location.hash.slice(1)]?location.hash.slice(1):'tasks');
 const primary=()=>['tasks','analytics','knowledge'].includes(view);
@@ -75,6 +79,7 @@ function syncURL() {
   if (task) params.set('task', task);
   if (category) params.set('category', category);
   const review=new URLSearchParams(location.search).get('review');if(review)params.set('review',review);
+  for(const name of ['zone','attribution','measure','connections'])if(opsState[name])params.set(name,opsState[name]);
   if(opsState.range)params.set('range',opsState.range);if(opsState.workspace)params.set('workspace',opsState.workspace);
   history.replaceState(null, '', location.pathname + (params.size?'?'+params:'') + '#' + view);
 }
@@ -84,7 +89,16 @@ async function load() {
   $('#content').setAttribute('aria-busy','true');
   try {
     const epoch=++loadEpoch;
-    if(['live','steering','impact','outcomes'].includes(view)){
+    if(['process','agents','timeline','outcomes'].includes(view)){
+      opsState.project=project;
+      const response=await fetch('/api/analysis-pages?'+new URLSearchParams({...opsState,view}));
+      const result=await response.json();if(!response.ok)throw Error(result.error||'Analysis unavailable');if(epoch!==loadEpoch)return;
+      $('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;$('#title').textContent=config[view][0];$('#subtitle').textContent=config[view][1];$('#breadcrumb').textContent=config[view][0];$('#page-actions').innerHTML='';$('#content').setAttribute('aria-busy','false');
+      document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
+      $('#live').textContent='Connected';$('#connection-dot').dataset.state='collecting';$('#langfuse').href=result.langfuse_url;
+      renderAnalysis($('#content'),{view,data:result,state:opsState,table,post,showModal,onRefresh:load,onError:toast,inspect:inspectOpsSource,onFilters:updateOpsFilters});return;
+    }
+    if(['live','steering','impact'].includes(view)){
       opsState.project=project;
       const params=new URLSearchParams(opsState);
       const response=await fetch((['live','steering'].includes(view)?'/api/steering?':'/api/optimization?')+params);
@@ -193,7 +207,7 @@ function table(id, columns, rows, actions, searchable=true) {
   const head=columns.map(column=>`<th scope="col" aria-sort="${state.sort===column.key?(state.direction===1?'ascending':'descending'):'none'}" class="${column.numeric?'numeric':''}"><button data-sort="${id}" data-key="${column.key}" aria-label="Sort by ${esc(column.label)}">${esc(column.label)}<span aria-hidden="true" class="sort-indicator">${state.sort===column.key?(state.direction===1?'↑':'↓'):'↕'}</span></button></th>`).join('');
   const filters=columns.map(column=>`<td><input type="search" class="ui-input column-filter" data-column-filter="${id}" data-key="${column.key}" value="${esc(state.filters[column.key]||'')}" aria-label="Filter ${esc(id)} by ${esc(column.label)}" placeholder="${column.numeric?'e.g. >= 100':'Filter…'}" ${column.numeric?'title="Filter by value, or use =, !=, <, <=, >, >= with a number"':''}></td>`).join('');
   const body=result.items.map((row,index)=>{
-    const cells=columns.map(column=>`<td class="${column.numeric?'numeric':''}">${column.cell?column.cell(row):esc(row[column.key])}</td>`).join('');
+    const cells=columns.map(column=>`<td class="${column.numeric?'numeric':''}">${column.cell?column.cell(row):esc(columnValue(column,row))}</td>`).join('');
     let menu='';
     if(actions) {const key=id+'-'+index; tableMenus.push({key,label:'Actions for '+(row.title||row.name||row.id||'row'),actions:actions(row).map(action=>({...action,onSelect:()=>{try{Promise.resolve(action.onSelect()).catch(error=>toast(error.message));}catch(error){toast(error.message);}}}))}); menu=`<td class="row-menu"><span data-row-menu="${key}"></span></td>`;}
     return `<tr>${cells}${menu}</tr>`;

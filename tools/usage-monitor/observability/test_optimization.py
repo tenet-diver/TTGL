@@ -54,6 +54,27 @@ class OptimizationTests(unittest.TestCase):
         self.add_native([self.native('fail'+str(i),'pytest test_'+str(i),failed=True) for i in range(3)])
         self.assertFalse(any(l['kind']=='Same call keeps failing' for l in o.dashboard(self.store,range='all',clock=self.now)['loops']))
 
+    def test_tool_identity_includes_mcp_name_and_failed_edit_inputs(self):
+        first=o.native_fact(dict(type='McpToolCall',server='service',tool='read',arguments={'id':1},status='failed'))[1]
+        other=o.native_fact(dict(type='McpToolCall',server='service',tool='delete',arguments={'id':1},status='failed'))[1]
+        self.assertNotEqual(first,other)
+        one=o.native_fact(dict(type='FileChange',changes={'one.py':{'diff':'+x'}},status='failed'))[1]
+        two=o.native_fact(dict(type='FileChange',changes={'two.py':{'diff':'+x'}},status='failed'))[1]
+        self.assertNotEqual(one,two)
+        self.assertEqual(first,o.native_fact(dict(type='McpToolCall',server='service',tool='read',arguments={'id':1},status='completed',result='a different result'))[1])
+
+    def test_older_tool_identity_projection_backfills_without_changing_usage(self):
+        with self.store.connection() as c:
+            before=[tuple(r) for r in c.execute('SELECT * FROM events ORDER BY id')]
+            c.execute("DELETE FROM settings WHERE key='optimization_identity_v2'")
+            c.execute("UPDATE optimization_facts SET signature='legacy-input-only'")
+        o.init(self.store)
+        with self.store.connection() as c:self.assertIsNone(c.execute('SELECT signature FROM optimization_facts').fetchone()[0])
+        self.store.scan()
+        with self.store.connection() as c:
+            self.assertNotEqual(c.execute('SELECT signature FROM optimization_facts').fetchone()[0],'legacy-input-only')
+            self.assertEqual([tuple(r) for r in c.execute('SELECT * FROM events ORDER BY id')],before)
+
     def test_large_output_uses_actual_characters_not_bytes_as_tokens(self):
         self.add_native([self.native('large','cat file','é'*16000)])
         data=o.dashboard(self.store,range='all',clock=self.now)

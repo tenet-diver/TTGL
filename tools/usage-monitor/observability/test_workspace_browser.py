@@ -25,7 +25,7 @@ class WorkspaceBrowserTests(unittest.TestCase):
             browser=p.chromium.launch(executable_path=os.environ['TTGL_CHROMIUM'],args=['--no-sandbox'])
             page=browser.new_page(viewport={'width':1440,'height':1100});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
             page.goto(origin);expect(page.locator('[data-table="work-tasks"] tbody tr')).to_have_count(1)
-            self.assertEqual(set(page.locator('nav [data-view]').evaluate_all('(nodes)=>nodes.map(n=>n.dataset.view)')),{'tasks','analytics','outcomes','impact','suggestions','knowledge','live','steering','settings'})
+            self.assertEqual(set(page.locator('nav [data-view]').evaluate_all('(nodes)=>nodes.map(n=>n.dataset.view)')),{'tasks','analytics','timeline','agents','process','outcomes','impact','suggestions','knowledge','live','steering','settings'})
             page.screenshot(path=str(artifacts/'work-explorer-desktop.png'),full_page=True)
             page.locator('[data-table="work-tasks"] [data-work-task]').first.click();expect(page.locator('[data-table="work-subtasks"] [data-subtask]')).to_have_count(1)
             expect(page.locator('[data-work-timeline] .timeline-bar')).to_have_count(1)

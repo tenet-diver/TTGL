@@ -66,6 +66,8 @@ CREATE INDEX IF NOT EXISTS annotations_event ON agent_annotations(event_id,analy
         import optimization, steering
         optimization.init(self)
         steering.init(self)
+        import activity_views
+        activity_views.init(self)
 
     @contextlib.contextmanager
     def connection(self):
@@ -209,6 +211,8 @@ CREATE INDEX IF NOT EXISTS annotations_event ON agent_annotations(event_id,analy
         turns, events = {}, {}
         model = None
         facts, answers, caches = {}, {}, {}
+        signals, file_changes = [], {}
+        import activity_views
         import optimization
         for line, record in bridge.monitor.lines(path):
             if not record:
@@ -222,6 +226,8 @@ CREATE INDEX IF NOT EXISTS annotations_event ON agent_annotations(event_id,analy
             turn = p.get('turn_id')
             if not turn:
                 continue
+            signal=activity_views.native_signals(record,sid,turn,line)
+            if signal:signals.append(signal)
             row = turns.setdefault(turn, dict(prompt=[], start=ts, end=ts, completed=0))
             row['end'] = ts
             trace = bridge.digest('native-turn-v1:' + sid + ':' + turn)
@@ -241,6 +247,7 @@ CREATE INDEX IF NOT EXISTS annotations_event ON agent_annotations(event_id,analy
                 if p.get('type') == 'item_completed' and ident in tools:
                     tool = tools[ident]
                     facts[sid + ':tool:' + ident] = optimization.native_fact(item)
+                    file_changes[sid + ':tool:' + ident] = activity_views.changed_files(item,repo)
                     output = item.get('aggregated_output', item.get('result'))
                     output_hash = hashlib.sha256(json.dumps(output, sort_keys=True).encode()).hexdigest() if output is not None else None
                     events[sid + ':tool:' + ident] = (sid + ':tool:' + ident, sid, turn, 'tool', tool['operation'], ts,
@@ -274,8 +281,14 @@ CREATE INDEX IF NOT EXISTS annotations_event ON agent_annotations(event_id,analy
                 c.execute('INSERT OR IGNORE INTO events VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', event)
             for ident, fact in facts.items():
                 c.execute('INSERT OR IGNORE INTO optimization_facts(event_id,command,signature,output_chars,operation,commits) VALUES(?,?,?,?,?,?)',(ident,*fact))
+                c.execute('UPDATE optimization_facts SET signature=? WHERE event_id=? AND signature IS NULL',(fact[1],ident))
             for ident, (writes,short) in caches.items():
                 c.execute('INSERT OR IGNORE INTO optimization_facts(event_id,cache_write,cache_5m) VALUES(?,?,?)',(ident,writes,short))
+            c.execute('INSERT OR REPLACE INTO activity_sources VALUES(?,?)',(str(path),sid))
+            for signal in signals:
+                c.execute('INSERT OR IGNORE INTO activity_signals VALUES(?,?,?,?,?,?,?,?)',signal)
+            for ident, paths in file_changes.items():
+                c.executemany('INSERT OR IGNORE INTO activity_files VALUES(?,?)',[(ident,path) for path in paths])
             for turn, count in answers.items():
                 c.execute('INSERT OR REPLACE INTO optimization_turns VALUES(?,?,?)',(sid,turn,count))
             source=meta.get('source');role=None;agent_type=None
@@ -529,6 +542,14 @@ class Handler(BaseHTTPRequestHandler):
             filters = {k: query[k][0] for k in ('project', 'task', 'category') if k in query}
             result = self.server.store.report(**filters)
             return self.send(result)
+        if path.path in ('/api/analysis-pages','/api/analysis-signal'):
+            import activity_views
+            query={k:v[0] for k,v in parse_qs(path.query).items()}
+            try:
+                result=activity_views.signal_detail(self.server.store,query.get('id','')) if path.path=='/api/analysis-signal' else activity_views.report(self.server.store,query.get('view','process'),**{k:v for k,v in query.items() if k in ('project','workspace','range','attribution','zone')})
+                result['langfuse_url']=self.server.store.langfuse_url
+                return self.send(result)
+            except (ValueError,TypeError,KeyError,sqlite3.Error) as exc:return self.send({'error':str(exc)},400)
         if path.path in ('/api/steering','/api/optimization'):
             query={k:v[0] for k,v in parse_qs(path.query).items()}
             try:
@@ -615,9 +636,9 @@ class Handler(BaseHTTPRequestHandler):
             if not target.exists():
                 return self.send({'error': 'Private design-system distribution not synced; see sync_design_system.py'}, 503)
             return self.send(target.read_bytes(), content=design_assets[path.path])
-        if path.path in ('/live','/live/rules','/impact','/outcomes','/suggestions'):
+        if path.path in ('/live','/live/rules','/impact','/outcomes','/suggestions','/process','/agents','/timeline'):
             return self.send((HERE/'workspace.html').read_bytes(),content='text/html; charset=utf-8')
-        if path.path in ('/optimization.js','/optimization.css','/collection.js'):
+        if path.path in ('/optimization.js','/optimization.css','/collection.js','/activity-views.js','/activity-views.css'):
             return self.send((HERE/path.path[1:]).read_bytes(),content='text/css; charset=utf-8' if path.path.endswith('.css') else 'text/javascript; charset=utf-8')
         assets = {'/activity-insights.js': ('activity-insights.js','text/javascript; charset=utf-8'), '/task-history.js': ('task-history.js', 'text/javascript; charset=utf-8'), '/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8'),
                   '/ui.js': ('ui.js', 'text/javascript; charset=utf-8'),
@@ -663,7 +684,10 @@ class Handler(BaseHTTPRequestHandler):
             values = json.loads(self.rfile.read(length))
             if not isinstance(values, dict):
                 raise ValueError('Expected an object')
-            if action in ('steering-rule','live-control','applied-change','optimization-models'):
+            if action=='analyze-process-tasks':
+                import activity_views
+                result=activity_views.analyze_selected(self.server.store,values.get('task_ids'))
+            elif action in ('steering-rule','live-control','applied-change','optimization-models'):
                 import steering, optimization
                 function={'steering-rule':steering.save_rule,'live-control':steering.control,'applied-change':optimization.change,'optimization-models':optimization.save_models}[action]
                 result=function(self.server.store,values)
