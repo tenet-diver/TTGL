@@ -3720,3 +3720,28 @@ targets resolve, git whitespace check passes, and exact local credential values
 are absent from public changes. Native-model inference was not used for checks.
 The team source-port inventory is refreshed after the last paper edits; raw
 private state stays ignored. Research schedules remain paused.
+
+## 15 November 2026 — user objective: effective 100-agent swarms
+
+The user now explicitly wants to understand running 100 agents in parallel and
+which knowledge-sharing, monitoring and communication mechanisms improve scale.
+This authorizes the literature/research direction; it is not an instruction to
+launch 100 workers, install a harness or resume any old queue/schedule.
+
+Read [agent-swarms-literature-review.md](agent-swarms-literature-review.md) and
+[agent-swarms-sources.json](agent-swarms-sources.json). The focused review covers
+20 primary papers/first-party reports through15November, including Agensh's
+large shared-repository organization, November's parallel-small-team search
+result, CAID, native concurrency, ParallACT, DeLM, SEPM and monitoring/triage.
+Different workloads support different organizations; no universal topology or
+economical100-agent result is asserted. Current source licenses/activity are
+checked read-only; unavailable code and unresolved reuse permission are explicit.
+
+Recommended next research separates shared-artifact integration from competing
+solutions selected by an executable scorer. Compare decentralized workers,
+modular teams and independent attempts under matched information/resources;
+measure actual concurrent model/tool work, verified outcomes, total inference,
+integration queues and evidence publication/retrieval/use. The proposed stepped
+study is not yet registered or launched. Existing frozen sources, failed runs,
+39/56 memory extension and reserved validation stay unchanged. No dependencies
+installed, new model trials started or schedules enabled by this review.
