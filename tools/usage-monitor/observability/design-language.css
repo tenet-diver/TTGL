@@ -278,23 +278,23 @@ h2,.ops-chart>summary strong{font-size:16px;line-height:24px;font-weight:600;let
 }
 .page-body>.scope-toolbar{margin-bottom:16px;}
 #page-scope>form>label,.page-body>.scope-toolbar>label{display:flex;align-items:center;flex:0 0 auto;gap:6px;white-space:nowrap;font:500 11px/16px var(--font-sans);text-transform:none;}
-#page-scope .ui-input,.page-body>.scope-toolbar .ui-input{height:28px;padding:4px 8px;min-width:0;max-width:180px;font:400 12px/18px var(--font-sans);}
+#page-scope .ui-input,.page-body>.scope-toolbar .ui-input{flex:0 0 auto;height:28px;padding:4px 8px;min-width:0;max-width:180px;font:400 12px/18px var(--font-sans);}
 #page-scope select,.page-body>.scope-toolbar select{width:132px;}
 #page-scope [name='workspace']{width:180px;}
 #page-scope>form>.ui-button,.page-body>.scope-toolbar>.ui-button{flex:0 0 auto;min-height:28px;height:28px;padding:4px 8px;font-size:12px;white-space:nowrap;}
 #page-scope .scope-range{flex:0 0 auto;}
 #page-scope .range-native{display:none;}
-#page-scope .scope-range>label{display:flex;align-items:center;gap:6px;font:500 11px/16px var(--font-sans);text-transform:none;}
+#page-scope .scope-range>label{min-width:0;flex:0 0 auto;display:flex;align-items:center;gap:6px;font:500 11px/16px var(--font-sans);text-transform:none;}
 #page-scope .work-search{min-width:0;flex:0 0 auto;}
 #page-scope .work-search input{width:180px;}
 @media(max-width:767px){
  #page-scope>form,.page-body>.scope-toolbar{gap:6px;}
  #page-scope>form>label,.page-body>.scope-toolbar>label{font-size:0;gap:0;flex:0 0 auto;}
  #page-scope select,.page-body>.scope-toolbar select{width:96px;}
- #page-scope [name='workspace']{width:112px;}
+ #page-scope [name='workspace']{width:104px;}
  #page-scope .scope-range>label{font-size:0;line-height:0;gap:0;}
  #page-scope .range-native{display:block;position:static;width:72px;height:28px;padding:4px 8px;opacity:1;}
  #page-scope .scope-range .range-segments{display:none;}
- #page-scope [data-ops-filters]>.ui-button{font-size:0;}
+ #page-scope [data-ops-filters]>.ui-button{font-size:0;width:48px;padding-inline:6px;gap:0;}
  #page-scope [data-ops-filters]>.ui-button::after{content:'Apply';font-size:12px;}
 }

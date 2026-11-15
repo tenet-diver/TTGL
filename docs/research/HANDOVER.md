@@ -3974,3 +3974,8 @@ check also asserts compact row height and placement at 1440/768/390 CSS pixels.
 These are static HTML/JS/CSS updates served directly by the existing app. No new
 dependency, backend migration, web restart, model call or queue worker was needed.
 Research schedules and the active analyzer's generation source files stay unchanged.
+
+A final layout check removed an inherited 120-pixel range-label minimum and input
+flex growth that wasted mobile width. The three primary selectors and Apply now
+fit together at 390 pixels. Both layout/navigation and filter/draft workflows were
+rechecked after this CSS adjustment, including an explicit visible-Apply assertion.

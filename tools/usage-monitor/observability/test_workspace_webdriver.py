@@ -77,7 +77,7 @@ class WorkspaceWebDriverTests(unittest.TestCase):
         self.b.click('#page-scope [data-range="1d"]');self.b.ready();self.assertIn('range=1d',self.b.request('/url'))
         self.b.click('#page-scope [data-range="all"]');self.b.ready();self.b.select('#page-scope [name=project]',project);self.b.select('#page-scope [name=workspace]','/repo');self.b.button('Apply filters','#page-scope');self.b.ready();self.assertIn('workspace=%2Frepo',self.b.request('/url'))
         self.goto(self.b.request('/url').removeprefix(self.origin));self.assertEqual(self.b.js('return document.querySelector("#page-scope [name=project]").value'),project)
-        self.b.size(390);self.b.select('#page-scope [name=range]','7d');self.b.button('Apply filters','#page-scope');self.b.ready();self.assertIn('range=7d',self.b.request('/url'));self.assertLessEqual(self.b.js('return document.querySelector("#page-scope>form").getBoundingClientRect().height'),48)
+        self.b.size(390);self.assertTrue(self.b.js('const f=document.querySelector("#page-scope>form");return f.querySelector("button[type=submit]").getBoundingClientRect().right<=f.getBoundingClientRect().right'));self.b.select('#page-scope [name=range]','7d');self.b.button('Apply filters','#page-scope');self.b.ready();self.assertIn('range=7d',self.b.request('/url'));self.assertLessEqual(self.b.js('return document.querySelector("#page-scope>form").getBoundingClientRect().height'),48)
         self.b.size(1440);self.b.nav('tasks');self.b.fill('[data-work-search] [name=query]','Fix')
         original=work_analytics.overview;started=threading.Event();release=threading.Event();self.addCleanup(release.set)
         def delayed(*args,**kwargs):
