@@ -81,6 +81,7 @@ function syncURL() {
 async function load() {
   $('.page-header').dataset.overview=String(view==='tasks'&&!task);
   if (busy) return;
+  $('#content').setAttribute('aria-busy','true');
   try {
     const epoch=++loadEpoch;
     if(['live','steering','impact','outcomes'].includes(view)){

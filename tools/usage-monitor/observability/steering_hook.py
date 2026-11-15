@@ -31,13 +31,16 @@ def send(data,url,payload):
 
 
 def normalize(raw):
+    if not isinstance(raw,dict):raise ValueError('Expected a hook object')
     if raw.get('event') in ('start','prompt','pre_tool','post_tool','stop'):return raw
     name=raw.get('hook_event_name');event=NAMES.get(name)
     if event is None:raise ValueError('Unsupported Claude hook')
     inputs=raw.get('tool_input') or {};tool=raw.get('tool_name','');command=inputs.get('command','') if isinstance(inputs,dict) else ''
     import re
     operation='edit' if tool in ('Edit','Write','MultiEdit','NotebookEdit') else 'check' if re.search(r'\b(pytest|unittest|jest|vitest|playwright|tsc|eslint|test|lint|check|build)\b',command) else 'other'
-    payload={'event':event,'session_id':raw['session_id'],'event_id':raw.get('event_id') or uuid.uuid4().hex,'workspace':raw.get('cwd',''),'tool':tool,'command':command[:8000],'input_hash':hashlib.sha256(json.dumps(inputs,sort_keys=True).encode()).hexdigest(),'operation':operation}
+    # A pre/post pair shares the provider call ID, but represents two receipts.
+    stable_id=hashlib.sha256(json.dumps([raw['session_id'],name,raw['tool_use_id']],separators=(',',':')).encode()).hexdigest() if raw.get('tool_use_id') else None
+    payload={'event':event,'session_id':raw['session_id'],'event_id':raw.get('event_id') or stable_id or uuid.uuid4().hex,'workspace':raw.get('cwd',''),'tool':tool,'command':command[:8000],'input_hash':hashlib.sha256(json.dumps(inputs,sort_keys=True).encode()).hexdigest(),'operation':operation}
     if event=='post_tool':payload['failed']=name=='PostToolUseFailure'
     if raw.get('task_id'):payload['task_id']=raw['task_id']
     if 'main_folder' not in raw:

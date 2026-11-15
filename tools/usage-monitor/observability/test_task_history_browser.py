@@ -52,6 +52,7 @@ class HistoryBrowserTests(unittest.TestCase):
                 assert 'aggregated_output' in page.locator('[data-source-output]').inner_text()
                 page.get_by_role('button',name='Close',exact=True).click();page.get_by_role('button',name='All tasks',exact=True).click()
                 page.locator('[name=query]').fill('regression');page.locator('[data-work-search]').get_by_role('button',name='Search',exact=True).click()
+                expect(page.locator('#content')).to_have_attribute('aria-busy','false')
                 expect(page.locator('[data-table="work-tasks"] tbody tr')).to_have_count(1)
                 assert page.locator('[data-table="work-tasks"] tbody tr').count()==1
                 page.locator('[name=query]').fill('nothingmatches');page.locator('[data-work-search]').get_by_role('button',name='Search',exact=True).click();page.wait_for_selector('.ui-empty')

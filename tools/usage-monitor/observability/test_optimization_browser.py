@@ -1,5 +1,7 @@
 """Real native-page workflows against temporary local evidence, no model calls."""
+import json
 import os
+from urllib.parse import parse_qs, urlparse
 from pathlib import Path
 import unittest
 import test_workspace_browser as fixtures
@@ -12,7 +14,7 @@ class OptimizationBrowserTests(unittest.TestCase):
         from playwright.sync_api import sync_playwright,expect
         host=fixtures.WorkspaceBrowserTests();fixture,origin,task=host.fixture();self.addCleanup(host.doCleanups)
         steering.receive(fixture.store,dict(session_id='browser-live',event_id='start',event='start',workspace='/repo',cost_usd=0))
-        dest=Path('/workspace/TTGL/work/security/optimization-qa');dest.mkdir(parents=True,exist_ok=True)
+        dest=Path(__file__).resolve().parents[3]/'work/security/optimization-qa';dest.mkdir(parents=True,exist_ok=True)
         with sync_playwright() as p:
             browser=p.chromium.launch(executable_path=os.environ.get('TTGL_CHROMIUM','/usr/bin/chromium'),args=['--no-sandbox'])
             page=browser.new_page(viewport={'width':1440,'height':1100});page.set_default_timeout(5000);errors=[];page.on('pageerror',lambda error:errors.append(str(error)))
@@ -28,7 +30,9 @@ class OptimizationBrowserTests(unittest.TestCase):
             expect(page.locator('dialog')).not_to_be_visible()
             page.get_by_role('textbox',name='Search steering-rules',exact=True).fill('Browser safety rule')
             expect(page.locator('[data-table="steering-rules"] tbody tr')).to_have_count(1)
-            page.get_by_role('combobox',name='Mode for Browser safety rule',exact=True).select_option('ask')
+            with page.expect_response(lambda response:response.url.endswith('/api/steering-rule') and response.request.method=='POST') as saved:
+                page.get_by_role('combobox',name='Mode for Browser safety rule',exact=True).select_option('ask')
+            self.assertTrue(saved.value.ok)
             expect(page.get_by_role('combobox',name='Mode for Browser safety rule',exact=True)).to_have_value('ask')
             result=steering.receive(fixture.store,dict(session_id='browser-live',event_id='deploy',event='pre_tool',workspace='/repo',tool='Bash',command='deploy production'))
             self.assertEqual(result['decision'],'ask')
@@ -69,6 +73,71 @@ class OptimizationBrowserTests(unittest.TestCase):
             page.locator('.applied-change').get_by_role('button',name='Delete',exact=True).click()
             page.get_by_role('button',name='Delete change',exact=True).click();expect(page.locator('.applied-change')).to_have_count(0)
             page.reload();expect(page.locator('.applied-change')).to_have_count(0)
+            self.assertEqual(errors,[])
+            browser.close()
+
+    def test_outcome_sources_filter_persistence_chart_controls_and_rule_deletion(self):
+        from playwright.sync_api import sync_playwright,expect
+        host=fixtures.WorkspaceBrowserTests();fixture,origin,task=host.fixture();self.addCleanup(host.doCleanups)
+        records=[]
+        for i in range(3):
+            records.append(dict(timestamp=f'2026-11-05T00:00:0{i+2}Z',type='event_msg',payload=dict(type='item_completed',thread_id='s',turn_id='t',item=dict(type='CommandExecution',id=f'failure-{i}',command=['pytest','tests'],aggregated_output='Test fixture failed',exit_code=1))))
+        records.append(dict(timestamp='2026-11-05T00:00:08Z',type='event_msg',payload=dict(type='item_completed',thread_id='s',turn_id='t',item=dict(type='CommandExecution',id='commit',command=['git','commit','-m','Validate tested behavior'],aggregated_output='[work abc1234] Validate tested behavior',exit_code=0))))
+        fixture.source.write_text(''.join(json.dumps(r)+'\n' for r in fixture.rows+records));fixture.store.ingest(fixture.source)
+        with fixture.store.connection() as c:project=c.execute('SELECT project_id FROM tasks WHERE id=?',(task,)).fetchone()[0]
+        rule=steering.save_rule(fixture.store,dict(name='Removable rule',kind='command',mode='warn',message='Inspect the call',config={'tool':'Bash','pattern':'release'}))['id']
+        with sync_playwright() as p:
+            browser=p.chromium.launch(executable_path=os.environ.get('TTGL_CHROMIUM','/usr/bin/chromium'),args=['--no-sandbox'])
+            page=browser.new_page(viewport={'width':1280,'height':1000});page.set_default_timeout(5000)
+            errors=[];page.on('pageerror',lambda error:errors.append(str(error)))
+            page.goto(origin+'/outcomes?range=all')
+            expect(page.locator('[data-table="outcome-loops"]')).to_contain_text('Same call keeps failing')
+            page.get_by_role('button',name='Inspect 3 steps',exact=True).click()
+            page.locator('dialog').get_by_role('button',name='Step 1',exact=True).click()
+            expect(page.locator('[data-ops-output]')).to_contain_text('Test fixture failed')
+            page.get_by_role('button',name='Close',exact=True).click()
+            expect(page.locator('[data-table="outcome-commits"]')).to_contain_text('abc1234')
+            page.get_by_role('button',name='Original step',exact=True).click()
+            expect(page.locator('[data-ops-output]')).to_contain_text('Validate tested behavior')
+            page.get_by_role('button',name='Close',exact=True).click()
+            page.locator('nav [data-view="impact"]').click()
+            page.locator('[data-ops-filters]').get_by_label('Project',exact=True).select_option(project)
+            page.locator('[data-ops-filters]').get_by_label('Workspace',exact=True).select_option('/repo')
+            page.locator('[data-ops-filters]').get_by_label('Range',exact=True).select_option('all')
+            page.get_by_role('button',name='Apply filters',exact=True).click()
+            expect(page.locator('[data-ops-filters]').get_by_label('Project',exact=True)).to_have_value(project)
+            self.assertEqual(parse_qs(urlparse(page.url).query)['workspace'],['/repo'])
+            page.reload()
+            expect(page.locator('[data-ops-filters]').get_by_label('Project',exact=True)).to_have_value(project)
+            expect(page.locator('[data-ops-filters]').get_by_label('Workspace',exact=True)).to_have_value('/repo')
+            expect(page.locator('[data-ops-filters]').get_by_label('Range',exact=True)).to_have_value('all')
+            chart=page.locator('.ops-chart').filter(has=page.locator('summary > strong',has_text='Average context'))
+            chart.get_by_label('7-day average',exact=True).uncheck()
+            self.assertEqual(chart.locator('.chart-average').evaluate('(el)=>getComputedStyle(el).display'),'none')
+            chart.get_by_label('7-day average',exact=True).check()
+            self.assertNotEqual(chart.locator('.chart-average').evaluate('(el)=>getComputedStyle(el).display'),'none')
+            chart.get_by_text('Source values',exact=True).click()
+            expect(chart.locator('details table')).to_contain_text('100')
+            page.get_by_text('Model tier assumptions',exact=True).click()
+            page.get_by_label('Top-tier model-name fragments',exact=True).fill('test-model')
+            page.get_by_label('Small-tier model-name fragments',exact=True).fill('small-test-model')
+            page.get_by_role('button',name='Save model assumptions',exact=True).click()
+            expect(page.locator('[data-model-form]')).not_to_be_visible()
+            self.assertEqual(page.request.get(origin+'/api/optimization?range=all').json()['models']['top'],['test-model'])
+            page.reload();page.get_by_text('Model tier assumptions',exact=True).click()
+            expect(page.get_by_label('Top-tier model-name fragments',exact=True)).to_have_value('test-model')
+            page.locator('nav [data-view="steering"]').click()
+            page.get_by_role('textbox',name='Search steering-rules',exact=True).fill('Removable rule')
+            with page.expect_response(lambda response:response.url.endswith('/api/steering-rule') and response.request.method=='POST') as saved:
+                page.get_by_role('switch',name='Enable Removable rule',exact=True).uncheck()
+            self.assertTrue(saved.value.ok)
+            expect(page.get_by_role('switch',name='Enable Removable rule',exact=True)).not_to_be_checked()
+            page.reload()
+            expect(page.get_by_role('switch',name='Enable Removable rule',exact=True)).not_to_be_checked()
+            page.get_by_role('button',name='Delete',exact=True).click()
+            page.get_by_role('button',name='Delete rule',exact=True).click()
+            expect(page.locator('dialog')).not_to_be_visible()
+            self.assertFalse(any(r['id']==rule for r in page.request.get(origin+'/api/steering').json()['rules']))
             self.assertEqual(errors,[])
             browser.close()
 

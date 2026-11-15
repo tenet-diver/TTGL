@@ -83,7 +83,15 @@ export async function renderExplorer(root,{view,data,taskId,project,onProject,on
       {key:'explorer',label:'Explorer',cell:r=>`<form data-explorer-link="${r.id}"><input type="url" class="ui-input" name="url" aria-label="${r.title} explorer URL" placeholder="https://your-deployment/" value="${esc(r.saved||'')}"><div class="ui-actions">${button('Save link','type="submit"')}${r.saved?`<a class="ui-button" href="${esc(r.saved)}" target="_blank" rel="noopener">Open explorer ↗</a>`:''}</div></form>`}
     ],providers.map(([id,title,text,url])=>{const saved=safeURL(links()[id]);return {id,title,text,url,saved,status:saved?'Explorer link saved':'Not configured'};}),null)}<p class="section-note">Catalog reviewed 12 November 2026. Deployment, security review, and any managed plan selection are separate setup work.</p></section>`;
   }
+  // A prior result may arrive while the user is drafting the next search.
+  const previousSearch=root.querySelector('[data-work-search] [name="query"]');
+  const draft=previousSearch===document.activeElement?{value:previousSearch.value,start:previousSearch.selectionStart,end:previousSearch.selectionEnd}:null;
   root.innerHTML=html;mountTableMenus();
+  if(draft){
+    const search=root.querySelector('[data-work-search] [name="query"]');
+    search.value=draft.value;search.focus({preventScroll:true});
+    search.setSelectionRange(draft.start,draft.end);
+  }
   root.querySelector('[data-work-search]').onsubmit=e=>{e.preventDefault();prefs.query=new FormData(e.currentTarget).get('query').trim();prefs.offset=0;save();onRefresh();};
   root.querySelector('[data-work-reset]').onclick=()=>{prefs.query='';prefs.status='';prefs.task_type='';prefs.offset=0;setReviewScope('');save();onProject('');};
   root.querySelectorAll('[data-work-filter]').forEach(el=>el.onchange=()=>{if(el.dataset.workFilter==='project'){prefs.offset=0;save();return onProject(el.value);}prefs.offset=0;prefs[el.dataset.workFilter]=el.value;save();onRefresh();});

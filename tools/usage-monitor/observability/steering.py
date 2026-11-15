@@ -222,7 +222,7 @@ def state(store,workspace='',clock=None):
     init(store);now=time.time() if clock is None else clock
     with store.connection() as c:
         sessions=[dict(r) for r in c.execute('SELECT * FROM live_sessions WHERE last_seen>=? ORDER BY last_seen DESC',(now-86400,)) if not workspace or r['workspace']==workspace]
-        logs=[dict(r) for r in c.execute('SELECT * FROM steering_log ORDER BY at DESC LIMIT 2000') if not workspace or r['workspace']==workspace]
+        logs=[dict(r) for r in c.execute('SELECT * FROM steering_log WHERE (length(?)=0 OR workspace=?) ORDER BY at DESC LIMIT 2000',(workspace,workspace))]
         rules=[]
         for row in c.execute('SELECT * FROM steering_rules ORDER BY builtin DESC,name'):
             r=dict(row);r['config']=json.loads(r['config']);r['fired_7d']=c.execute('SELECT COUNT(*) FROM steering_log WHERE rule_id=? AND at>=? AND (length(?)=0 OR workspace=?)',(r['id'],now-7*86400,workspace,workspace)).fetchone()[0];r['last_fired']=c.execute('SELECT MAX(at) FROM steering_log WHERE rule_id=? AND (length(?)=0 OR workspace=?)',(r['id'],workspace,workspace)).fetchone()[0];rules.append(r)

@@ -152,9 +152,36 @@ for each subsequent pre-tool call. It does not terminate a running process.
 From `tools/usage-monitor/observability/`:
 
 ```sh
-python3 -m unittest test_steering test_optimization test_workspace test_task_evidence test_work_analytics test_activity_insights test_task_history test_task_curation
+python3 -m unittest test_steering test_workspace_server test_optimization test_workspace test_task_evidence test_work_analytics test_activity_insights test_task_history test_task_curation
 TTGL_BROWSER_QA=1 TTGL_CHROMIUM=/path/to/chromium python3 -m unittest test_workspace_browser test_activity_insights_browser test_task_story_browser test_optimization_browser
 ```
 
 Tests use temporary SQLite stores and retained-source fixtures. No live model,
 new package installation, personal settings mutation, or paid trial is required.
+
+To validate the entire Observatory from the repository root, including every
+browser workflow, use an existing Playwright/system Chromium installation:
+
+```sh
+PYTHONPATH=tools/usage-monitor/observability TTGL_BROWSER_QA=1 TTGL_CHROMIUM=/path/to/chromium python3 -m unittest discover -s tools/usage-monitor/observability -p 'test_*.py'
+```
+
+The server-entry-point tests launch the actual workspace process against disposable
+state, verify every new page and native asset, restart it to check persisted rules,
+notes and tokens, and invoke the hook CLI over HTTP. Additional regression cases
+cover concurrent duplicate receipts, stable Claude tool-event identities, UTC daily
+budget rollover, and workspace-filtered logs beyond the global display limit.
+Browser checks cover retained outcome sources, persisted URL filters, chart
+visibility and source values, model assumptions, and custom-rule disable/delete.
+They use explicit model fixtures; they do not validate a live provider installation
+or change personal hook settings.
+A delayed-response browser regression also verifies that an earlier search cannot
+replace a focused draft, move its caret, or prevent the next query from reaching
+the empty-results state. The content region exposes its pending state through
+`aria-busy` so both assistive technology and tests can observe completion.
+
+Validation on 15 November 2026: the full command above passed **154 tests with no
+skips**, including ten browser tests and actual server/adapter subprocess checks.
+The tests use temporary state and explicit CLI/model fixtures; live provider
+behavior, production traffic and personal hook installation are outside that result.
+JavaScript syntax checks and `git diff --check` also passed.

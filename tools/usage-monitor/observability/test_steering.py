@@ -1,4 +1,4 @@
-import copy
+import calendar
 import json
 from pathlib import Path
 import tempfile
@@ -97,6 +97,54 @@ class SteeringTests(unittest.TestCase):
         self.assertEqual(request('/api/steering-hook',payload,{'Authorization':'Bearer '+token})['decision'],'allow')
         self.assertTrue(request('/api/live-control',{'session_id':'live','paused':True},{'Origin':origin})['ok'])
         self.assertEqual(hook.send(self.store.data,origin,self.event(tool='Bash',command='true'))['decision'],'ask')
+
+    def test_workspace_log_filter_applies_before_global_row_limit(self):
+        self.receive('pre_tool',tool='Bash',command='cat selected-workspace.txt')
+        with self.store.connection() as c:
+            c.executemany('INSERT INTO steering_log VALUES(?,?,?,?,?,?,?,?,?,?)',[
+                (f'other-{i}','other',self.clock+i+1,'shell-exploration','Shell file exploration','warn','Other workspace','cat other','/other',str(i))
+                for i in range(2001)
+            ])
+        selected=live.state(self.store,workspace='/repo',clock=self.clock+3000)
+        self.assertEqual(selected['metrics']['fired'],1)
+        self.assertEqual(len(selected['log']),1)
+        self.assertEqual(selected['log'][0]['workspace'],'/repo')
+
+    def test_daily_budget_is_shared_and_resets_at_utc_midnight(self):
+        live.save_rule(self.store,{'id':'task-budget','enabled':False})
+        self.clock=calendar.timegm((2026,11,15,23,59,0))
+        def send(sid,cost):
+            payload=self.event(cost_usd=cost);payload['session_id']=sid
+            self.clock+=1
+            return live.receive(self.store,payload,self.clock)
+        self.assertEqual(send('one',60)['decision'],'allow')
+        self.assertEqual(send('two',45)['decision'],'warn')
+        self.assertEqual(send('one',61)['decision'],'allow')
+        self.clock+=120
+        self.assertEqual(send('two',46)['decision'],'allow')
+        self.assertEqual(send('one',63)['decision'],'allow')
+        self.assertEqual(send('two',143)['decision'],'warn')
+        rules=[r for r in live.state(self.store,clock=self.clock)['log'] if r['rule_id']=='daily-budget']
+        self.assertEqual(len(rules),2)
+
+    def test_concurrent_duplicate_receipts_deliver_one_note_and_one_log(self):
+        from concurrent.futures import ThreadPoolExecutor
+        self.receive('start')
+        live.control(self.store,{'session_id':'live','note':'Deliver exactly once'})
+        payload=self.event(tool='Bash',command='true')
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            results=list(pool.map(lambda _:live.receive(self.store,payload,self.clock),range(8)))
+        self.assertTrue(all(r==results[0] for r in results))
+        with self.store.connection() as c:
+            self.assertEqual(c.execute("SELECT COUNT(*) FROM steering_log WHERE rule_name='Session note'").fetchone()[0],1)
+            self.assertEqual(c.execute("SELECT COUNT(*) FROM steering_notes WHERE delivered IS NOT NULL").fetchone()[0],1)
+
+    def test_claude_tool_receipts_have_stable_distinct_event_identities(self):
+        raw={'hook_event_name':'PreToolUse','session_id':'s','tool_use_id':'call-1','tool_name':'Bash','tool_input':{'command':'pytest'},'cwd':'/repo'}
+        first=hook.normalize(raw)
+        self.assertEqual(hook.normalize(raw)['event_id'],first['event_id'])
+        self.assertNotEqual(hook.normalize({**raw,'hook_event_name':'PostToolUse'})['event_id'],first['event_id'])
+        self.assertNotEqual(hook.normalize({**raw,'tool_use_id':'call-2'})['event_id'],first['event_id'])
 
     def test_claude_install_backup_uninstall_and_mapping(self):
         settings=Path(self.fixture.root)/'claude/settings.json';settings.parent.mkdir();settings.write_text(json.dumps({'hooks':{'Stop':[{'hooks':[{'type':'command','command':'my-existing-hook'}]}]},'other':'keep'}))

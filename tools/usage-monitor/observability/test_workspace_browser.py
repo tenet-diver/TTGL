@@ -113,4 +113,38 @@ class WorkspaceBrowserTests(unittest.TestCase):
             expect(page.locator('[data-table="work-tasks"] tbody tr')).to_have_count(2)
             self.assertEqual(errors,[]);browser.close()
 
+    def test_search_draft_survives_a_delayed_previous_result(self):
+        from playwright.sync_api import sync_playwright,expect
+        fixture,origin,task=self.fixture()
+        with sync_playwright() as p:
+            browser=p.chromium.launch(executable_path=os.environ.get('TTGL_CHROMIUM','/usr/bin/chromium'),args=['--no-sandbox'])
+            page=browser.new_page(viewport={'width':1280,'height':1000})
+            page.goto(origin)
+            expect(page.locator('[data-table="work-tasks"] tbody tr')).to_have_count(1)
+            held=[]
+            def delay_previous(route):
+                from urllib.parse import parse_qs,urlparse
+                if parse_qs(urlparse(route.request.url).query).get('query')==['Fix']:
+                    held.append((route,route.fetch()))
+                    page.evaluate('window.previousSearchHeld=true')
+                else:
+                    route.continue_()
+            page.route('**/api/work-explorer?*',delay_previous)
+            search=page.get_by_role('textbox',name='Search work',exact=True)
+            search.fill('Fix')
+            page.locator('[data-work-search]').get_by_role('button',name='Search',exact=True).click()
+            page.wait_for_function('window.previousSearchHeld===true')
+            expect(page.locator('#content')).to_have_attribute('aria-busy','true')
+            search.fill('nothingmatches')
+            search.evaluate('(el)=>el.setSelectionRange(3,3)')
+            route,response=held.pop()
+            route.fulfill(response=response)
+            expect(page.locator('#content')).to_have_attribute('aria-busy','false')
+            expect(search).to_have_value('nothingmatches')
+            expect(search).to_be_focused()
+            self.assertEqual(search.evaluate('(el)=>el.selectionStart'),3)
+            page.locator('[data-work-search]').get_by_role('button',name='Search',exact=True).click()
+            expect(page.locator('[data-table="work-tasks"] .ui-empty')).to_be_visible()
+            browser.close()
+
 if __name__=='__main__':unittest.main()
