@@ -97,3 +97,12 @@ Story, Evidence, Prompt and Outcome use collapsible cards. Source collection is
 an additional tool that loads only when expanded. Inline evidence lists use the
 same record component with collapsed search/column controls; pagination appears
 when required. Full lists expose column filters through the Filters button.
+
+
+Analysis cards share `page-card.js`: native details/summary with visible chevrons,
+keyboard collapse and compact header actions. Scope bars use 1d/7d/30d/90d/All
+segments; Tools uses the same segmented treatment for area measure. Impact keeps
+change details on the left and compact four-column shared comparisons on the
+right. Half-width tables fit their card; full Steps and turn tables keep readable
+source/prompt widths and scroll internally when required. Retained inline images
+use a two-column thumbnail gallery with an original-size modal and source step.

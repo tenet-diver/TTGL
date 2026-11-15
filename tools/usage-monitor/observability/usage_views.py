@@ -189,6 +189,9 @@ def task_report(store, task_id):
     packet = task_evidence.packet(store, task_id)
     anchors = [r['time'] for r in rows]
     anchors += [r['time']-number(r['runtime']) for r in rows if r.get('runtime_role') != 'background_service_lifetime' and number(r['runtime']) is not None]
+    anchors += [analytics.timestamp(t.get(field)) for t in turns if t.get('task_id')==task_id for field in ('start','end')]
+    anchors += [analytics.timestamp(f.get('recorded_at')) for values in packet['groups'].values() for f in values]
+    anchors = [value for value in anchors if value is not None]
     timeline_range = {'start': min(anchors) if anchors else None, 'end': max(anchors) if anchors else None}
     events = []
     labeled = {r['id']: r for r in label_tools(store, rows)}

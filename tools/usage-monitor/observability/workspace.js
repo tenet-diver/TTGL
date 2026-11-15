@@ -112,7 +112,8 @@ async function load() {
       $('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;$('#title').textContent=config[view][0];$('#subtitle').textContent=config[view][1];$('#breadcrumb').textContent=config[view][0];$('#page-actions').innerHTML='';$('#content').setAttribute('aria-busy','false');
       document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
       $('#live').textContent='Connected';$('#connection-dot').dataset.state='collecting';$('#langfuse').href=result.langfuse_url;
-      renderUsage($('#content'),{view,data:result,state:opsState,table,showModal,onError:toast,inspect:inspectOpsSource,onFilters:updateOpsFilters});return;
+      renderUsage($('#content'),{view,data:result,state:opsState,table,showModal,onError:toast,inspect:inspectOpsSource,onFilters:updateOpsFilters});
+      if(view==='tools'&&result.family){$('#title').textContent=result.family;$('#breadcrumb').textContent='Tool usage / '+result.family;}return;
     }
     if(['process','agents','timeline','outcomes'].includes(view)){
       opsState.project=project;

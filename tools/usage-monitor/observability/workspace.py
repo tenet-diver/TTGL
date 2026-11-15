@@ -528,6 +528,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Content-Type', content)
         self.send_header('Cache-Control', 'no-store')
         self.send_header('X-Content-Type-Options', 'nosniff')
+        self.send_header('Cross-Origin-Resource-Policy', 'same-origin')
         self.send_header('Content-Security-Policy', "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-ancestors 'none'")
         self.end_headers()
         self.wfile.write(body)
@@ -638,6 +639,13 @@ class Handler(BaseHTTPRequestHandler):
                     with self.server.store.connection() as c:result['projects']=[dict(r) for r in c.execute('SELECT id,name FROM projects ORDER BY name')]
                 return self.send(result)
             except (ValueError,TypeError,sqlite3.Error) as exc:return self.send({'error':str(exc)},400)
+        if path.path == '/api/task-image':
+            import task_evidence
+            query=parse_qs(path.query)
+            try:
+                mime,raw=task_evidence.image(self.server.store,query.get('task_id',[''])[0],query.get('id',[''])[0])
+                return self.send(raw,content=mime)
+            except ValueError as exc:return self.send({'error':str(exc)},404)
         if path.path == '/api/task-step-evidence':
             import analyst_mcp
             query = parse_qs(path.query)
@@ -668,7 +676,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(target.read_bytes(), content=design_assets[path.path])
         if path.path in ('/investigate','/live','/live/rules','/impact','/outcomes','/suggestions','/process','/agents','/timeline','/costs','/tools','/overview','/tasks') or path.path.startswith('/tasks/'):
             return self.send((HERE/'workspace.html').read_bytes(),content='text/html; charset=utf-8')
-        if path.path in ('/trace-explorer.js','/trace-explorer.css','/optimization.js','/optimization.css','/collection.js','/activity-views.js','/activity-views.css','/usage-views.js','/usage-views.css','/task-report.js','/dashboard-views.js','/data-list.js','/design-language.css','/chart-theme.js'):
+        if path.path in ('/trace-explorer.js','/trace-explorer.css','/optimization.js','/optimization.css','/collection.js','/activity-views.js','/activity-views.css','/usage-views.js','/usage-views.css','/task-report.js','/dashboard-views.js','/data-list.js','/design-language.css','/chart-theme.js', '/page-card.js'):
             return self.send((HERE/path.path[1:]).read_bytes(),content='text/css; charset=utf-8' if path.path.endswith('.css') else 'text/javascript; charset=utf-8')
         assets = {'/activity-insights.js': ('activity-insights.js','text/javascript; charset=utf-8'), '/task-history.js': ('task-history.js', 'text/javascript; charset=utf-8'), '/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8'),
                   '/ui.js': ('ui.js', 'text/javascript; charset=utf-8'),

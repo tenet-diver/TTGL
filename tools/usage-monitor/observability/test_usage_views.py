@@ -103,7 +103,7 @@ class UsageViewTests(unittest.TestCase):
         self.assertEqual(d['packet']['last_message']['text'],'Tests failed; work remains.')
         self.assertIn('not independently verified',d['packet']['last_message']['basis'])
         self.assertEqual(d['timeline_range']['start'],work_analytics.timestamp('2026-11-04T23:59:59Z'))
-        self.assertEqual(d['timeline_range']['end'],work_analytics.timestamp('2026-11-05T00:00:02Z'))
+        self.assertEqual(d['timeline_range']['end'],work_analytics.timestamp('2026-11-05T00:00:06Z'))
         self.assertEqual(len(d['events']),4);self.assertEqual(d['metrics']['responses'],1)
         self.assertIsNone(next(e for e in d['events'] if e['kind']=='tool')['input'])
         with self.assertRaises(ValueError):usage.task_report(self.store,'unknown')
