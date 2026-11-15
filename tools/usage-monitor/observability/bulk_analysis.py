@@ -42,9 +42,9 @@ def state(store,batch_id=None,offset=0,limit=20):
             LEFT JOIN task_history_jobs j ON j.id=i.job_id WHERE i.batch_id=? ORDER BY i.position LIMIT ? OFFSET ?''',(ident,limit,offset))]
         coverage=c.execute('''SELECT coalesce(sum(json_array_length(i.snapshot,'$.steps')),0),
             coalesce(sum(CASE WHEN i.status IN ('completed','unchanged') THEN json_array_length(i.snapshot,'$.steps') ELSE 0 END),0),
-            coalesce(sum(json_extract(j.usage,'$.total_tokens')),0),
-            coalesce(sum(i.job_id IS NOT NULL AND j.usage IS NULL),0)
-            FROM bulk_analysis_items i LEFT JOIN task_history_jobs j ON j.id=i.job_id WHERE i.batch_id=?''',(ident,)).fetchone()
+            coalesce(sum(CASE WHEN j.created>=? THEN json_extract(j.usage,'$.total_tokens') END),0),
+            coalesce(sum(j.created>=? AND j.usage IS NULL),0)
+            FROM bulk_analysis_items i LEFT JOIN task_history_jobs j ON j.id=i.job_id WHERE i.batch_id=?''',(batch['created'],batch['created'],ident)).fetchone()
     for row in rows:row['usage']=json.loads(row['usage']) if row['usage'] else None
     total=sum(counts.values());finished=sum(counts.get(key,0) for key in TERMINAL)
     return dict(batch=batch,counts=counts,total=total,finished=finished,records=rows,

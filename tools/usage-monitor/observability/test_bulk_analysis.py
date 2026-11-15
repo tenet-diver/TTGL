@@ -35,7 +35,9 @@ class BulkAnalysisTests(unittest.TestCase):
         self.assertEqual(done['counts'],{'completed':1})
         self.assertEqual(done['coverage']['interpreted_events'],2)
         self.assertEqual(done['coverage']['known_analysis_tokens'],123)
-        self.assertEqual(bulk.start(self.store,launch=False)['counts'],{'unchanged':1})
+        reused=bulk.start(self.store,launch=False)
+        self.assertEqual(reused['counts'],{'unchanged':1})
+        self.assertEqual(reused['coverage']['known_analysis_tokens'],0)
 
     def test_failed_attempt_is_retained_without_automatic_retry_or_zero_usage(self):
         first=bulk.start(self.store,launch=False)
