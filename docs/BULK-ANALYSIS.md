@@ -97,3 +97,43 @@ are bounded application measurements, not coding-agent speed or cost savings.
 Tests use disposable databases and fixture model outputs. They exercise evidence
 validation, native metering, unchanged reuse, failed/uncertain attempts, source
 staleness, worker ownership, explicit HTTP launch, paging and transport compression.
+
+Server-paged work and native-turn tables retain search, numeric column filters,
+sorting, saved columns and page-size controls. Table queries run before slicing;
+summary measurements still cover the selected cohort. Source-step queries use the
+same controls. Empty or shortened result sets clamp stale offsets to a valid page.
+The existing shared renderer and stdlib server are reused: the missing behavior
+was applying those controls to the whole server-side collection, so a replacement
+grid or new runtime dependency is unnecessary.
+
+Browser validation can also use a separately reviewed Firefox/geckodriver runtime
+through the standard W3C WebDriver interface, without installing an automation SDK:
+
+```sh
+TTGL_WEBDRIVER_URL=http://127.0.0.1:4444 \
+TTGL_FIREFOX_BINARY=/usr/lib/firefox/firefox \
+PYTHONDONTWRITEBYTECODE=1 \
+python3 -m unittest discover -s tools/usage-monitor/observability \
+  -p test_workspace_webdriver.py -v
+```
+
+The binary path is inside the driver runtime. Provisioning that runtime is separate
+and subject to the dependency-security policy; the tests never install it. Fixtures
+use temporary stores and block real model execution. They cover navigation at
+1440/768/390 CSS pixels, hierarchy and raw evidence, global pagination and controls,
+analytics drill-downs, saved settings, live controls, and bulk start/stop/progress.
+Firefox BiDi sets the viewport explicitly to avoid the desktop window's minimum
+width being mistaken for a mobile test. Screenshots and receipts remain private.
+
+Right-click a data-cell value to **Show matching** or **Filter out** that exact
+value. The actions use the existing column filters, reset to the first page, and
+apply across the complete filtered collection for server-paged tables. Active
+filters remain visible and can be edited, cleared individually, or reset together.
+Unknown values are distinct from zero and from the literal text “Unknown”. The
+same menu works inside dialogs; Escape or clicking outside dismisses it, and
+Shift+F10 opens it from a focused cell. Input fields retain their native edit menu.
+
+Project, workspace and range controls live in a compact single row above the page
+title. On small screens, range uses a native dropdown; additional controls can be
+scrolled horizontally. Filters and search drafts keep their values and focus when
+results refresh.

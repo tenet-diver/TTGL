@@ -7,6 +7,7 @@ from http.server import ThreadingHTTPServer
 from unittest.mock import patch
 
 import bulk_analysis as bulk
+import bulk_analysis_views as bulk_views
 import task_history as history
 import test_process_analysis
 from workspace import Handler
@@ -41,12 +42,12 @@ class BulkAnalysisTests(unittest.TestCase):
 
     def test_list_query_does_not_change_queue_progress_or_coverage(self):
         initial=bulk.start(self.store,launch=False)
-        filtered=bulk.state(self.store,list_query=json.dumps(dict(search='does-not-match')))
+        filtered=bulk_views.state(self.store,list_query=json.dumps(dict(search='does-not-match')))
         self.assertEqual(filtered['records'],[]);self.assertEqual(filtered['pagination']['total'],0)
         self.assertEqual(filtered['total'],initial['total']);self.assertEqual(filtered['coverage'],initial['coverage'])
-        queued=bulk.state(self.store,list_query=json.dumps(dict(filters={'status':'pending'},sort='title')))
+        queued=bulk_views.state(self.store,list_query=json.dumps(dict(filters={'status':'pending'},sort='title')))
         self.assertEqual(queued['pagination']['total'],1)
-        unknown=bulk.state(self.store,list_query=json.dumps(dict(filters={'tokens':'> 0'})))
+        unknown=bulk_views.state(self.store,list_query=json.dumps(dict(filters={'tokens':'> 0'})))
         self.assertEqual(unknown['pagination']['total'],0)
 
     def test_failed_attempt_is_retained_without_automatic_retry_or_zero_usage(self):

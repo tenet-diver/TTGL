@@ -30,7 +30,7 @@ CREATE INDEX IF NOT EXISTS bulk_analysis_pending ON bulk_analysis_items(batch_id
 ''')
 
 
-def state(store,batch_id=None,offset=0,limit=20,list_query=''):
+def state(store,batch_id=None,offset=0,limit=20):
     init(store);offset,limit=int(offset),int(limit)
     if offset<0 or not 1<=limit<=100:raise ValueError('Invalid bulk analysis page')
     with store.connection() as c:
@@ -39,7 +39,7 @@ def state(store,batch_id=None,offset=0,limit=20,list_query=''):
         batch=dict(batch);ident=batch['id']
         counts={r['status']:r['n'] for r in c.execute('SELECT status,count(*) n FROM bulk_analysis_items WHERE batch_id=? GROUP BY status',(ident,))}
         rows=[dict(r) for r in c.execute('''SELECT i.task_id,t.title,i.status,i.job_id,i.error,j.usage,j.model FROM bulk_analysis_items i JOIN tasks t ON t.id=i.task_id
-            LEFT JOIN task_history_jobs j ON j.id=i.job_id WHERE i.batch_id=? ORDER BY i.position''',(ident,))]
+            LEFT JOIN task_history_jobs j ON j.id=i.job_id WHERE i.batch_id=? ORDER BY i.position LIMIT ? OFFSET ?''',(ident,limit,offset))]
         coverage=c.execute('''SELECT coalesce(sum(json_array_length(i.snapshot,'$.steps')),0),
             coalesce(sum(CASE WHEN i.status IN ('completed','unchanged') THEN json_array_length(i.snapshot,'$.steps') ELSE 0 END),0),
             coalesce(sum(CASE WHEN j.created>=? THEN json_extract(j.usage,'$.total_tokens') END),0),
@@ -47,13 +47,8 @@ def state(store,batch_id=None,offset=0,limit=20,list_query=''):
             FROM bulk_analysis_items i LEFT JOIN task_history_jobs j ON j.id=i.job_id WHERE i.batch_id=?''',(batch['created'],batch['created'],ident)).fetchone()
     for row in rows:row['usage']=json.loads(row['usage']) if row['usage'] else None
     total=sum(counts.values());finished=sum(counts.get(key,0) for key in TERMINAL)
-    from record_collection import query_records
-    columns={key:(lambda row,key=key:row.get(key),False) for key in ('title','status','error')}
-    columns['tokens']=(lambda row:(row.get('usage') or {}).get('total_tokens'),True)
-    rows,query=query_records(rows,columns,list_query);matched=len(rows)
-    offset=min(offset,max(0,(matched-1)//limit)*limit);rows=rows[offset:offset+limit]
     return dict(batch=batch,counts=counts,total=total,finished=finished,records=rows,
-                pagination=dict(total=matched,offset=offset,limit=limit,query=query,next_offset=offset+limit if offset+limit<matched else None),
+                pagination=dict(total=total,offset=offset,limit=limit,next_offset=offset+limit if offset+limit<total else None),
                 coverage=dict(frozen_events=coverage[0],interpreted_events=coverage[1],known_analysis_tokens=coverage[2],jobs_missing_usage=coverage[3]),
                 limitations=['One finite frozen corpus snapshot; newly arriving activity is separate. No scheduled inference or automatic retries.',
                 'Outcomes, categories and intervention labels are model interpretations of bounded visible evidence, not independent grades. Long tasks use chronological blocks and sampled I/O; coverage limits are retained.',

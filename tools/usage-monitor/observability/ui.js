@@ -26,8 +26,8 @@ export function skeleton(label='Loading collected evidence') {
 }
 
 /** Preserve the existing tested keyboard/popover behavior, apply shared components. */
-export function createActionMenu(document, label, actions) {
-  const group = nativeActionMenu(document, label, actions);
+export function createActionMenu(document, label, actions, options={}) {
+  const group = nativeActionMenu(document, label, actions, options);
   const trigger = group.querySelector('button');
   trigger.className = 'ui-button ui-icon-button';
   trigger.dataset.slot = 'dropdown-menu-trigger';

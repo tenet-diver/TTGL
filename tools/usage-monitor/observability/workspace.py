@@ -548,7 +548,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send({'error': 'Invalid host'}, 403)
         path = urlparse(self.path)
         if path.path=='/api/bulk-analysis':
-            import bulk_analysis
+            import bulk_analysis_views as bulk_analysis
             query={k:v[0] for k,v in parse_qs(path.query).items()}
             try:return self.send(bulk_analysis.state(self.server.store,**{k:v for k,v in query.items() if k in ('batch_id','offset','limit','list_query')}))
             except (ValueError,TypeError,sqlite3.Error) as exc:return self.send({'error':str(exc)},400)

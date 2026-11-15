@@ -54,16 +54,17 @@
 <main id="main" tabindex="-1">
   <div class="workspace-bar"><span>Observatory</span><span data-icon="chevron-right"></span><strong id="breadcrumb">Overview</strong><div class="workspace-utilities"><span class="ui-badge">Native evidence</span><button id="theme" class="ui-button" data-slot="button" data-variant="ghost" aria-label="Switch to dark theme" title="Switch to dark theme"><span data-icon="moon"></span><span>Dark mode</span></button></div></div>
   <div class="page-body">
-    <header class="page-header">
-      <div><h1 id="title">Overview</h1><p id="subtitle"></p></div>
-      <div class="ui-actions"><button id="bulk-analysis" class="ui-button" data-slot="button" data-variant="outline">Bulk analysis</button><button id="refresh" class="ui-button" data-slot="button" data-variant="outline"><span data-icon="refresh-cw"></span>Refresh</button><div id="page-actions"></div></div>
-    </header>
+    <div id="page-scope" hidden></div>
     <div class="scope-toolbar" role="group" aria-label="Evidence filters">
       <label>Project<select class="ui-input" data-slot="native-select" id="project"></select></label>
       <label>Task<select class="ui-input" data-slot="native-select" id="task"></select></label>
       <label>Category<select class="ui-input" data-slot="native-select" id="category"></select></label>
       <button data-clear-filters class="ui-button" data-slot="button" data-variant="ghost">Clear filters</button>
     </div>
+    <header class="page-header">
+      <div><h1 id="title">Overview</h1><p id="subtitle"></p></div>
+      <div class="ui-actions"><button id="bulk-analysis" class="ui-button" data-slot="button" data-variant="outline">Bulk analysis</button><button id="refresh" class="ui-button" data-slot="button" data-variant="outline"><span data-icon="refresh-cw"></span>Refresh</button><div id="page-actions"></div></div>
+    </header>
     <div id="scope-summary" class="scope-summary"></div>
     <div id="content" aria-live="polite" aria-busy="true">Loading collected evidence…</div>
     <footer class="page-footer"><span data-icon="circle-check"></span><span>Native usage counted once. Cached input is an input subset. Actual charges and savings remain unknown.</span></footer>

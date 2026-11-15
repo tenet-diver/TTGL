@@ -30,7 +30,7 @@ def query_records(rows,columns,query=''):
     if sort is not None and sort not in columns:raise ValueError('Unknown sort column')
     if direction not in (1,-1):raise ValueError('Invalid sort direction')
     for key,value in filters.items():
-        if key not in columns or not isinstance(value,str) or len(value)>200:raise ValueError('Invalid column filter')
+        if key not in columns or not isinstance(value,str) or len(value)>8000:raise ValueError('Invalid column filter')
     terms=normalize(search).split()
     def matches(row):
         values={key:columns[key][0](row) for key in (columns if terms else filters)}
@@ -38,7 +38,18 @@ def query_records(rows,columns,query=''):
         for key,needle in filters.items():
             needle=needle.strip()
             if not needle:continue
-            value=values[key];match=re.fullmatch(r'(<=|>=|!=|=|<|>)\s*(-?\d[\d,]*(?:\.\d+)?)',needle) if columns[key][1] else None
+            value=values[key]
+            exact=re.fullmatch(r'is( not)? (.+)',needle,re.S)
+            if exact:
+                try:expected=json.loads(exact.group(2))
+                except (ValueError,TypeError) as exc:raise ValueError('Invalid exact value filter') from exc
+                comparable=lambda v:', '.join(map(str,v)) if isinstance(v,(list,tuple)) else v
+                actual,expected=comparable(value),comparable(expected)
+                numbers=type(actual) in (int,float) and type(expected) in (int,float)
+                equal=(numbers or type(actual) is type(expected)) and actual==expected
+                if equal==bool(exact.group(1)):return False
+                continue
+            match=re.fullmatch(r'(<=|>=|!=|=|<|>)\s*(-?\d[\d,]*(?:\.\d+)?)',needle) if columns[key][1] else None
             if match:
                 if not isinstance(value,(int,float)) or not math.isfinite(value):return False
                 op,limit=match.group(1),float(match.group(2).replace(',',''))

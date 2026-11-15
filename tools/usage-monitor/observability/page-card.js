@@ -6,7 +6,7 @@ export function card(title,body,action=''){
 
 export function rangeControl(value){
  const ranges=[['1d','1d'],['7d','7d'],['30d','30d'],['90d','90d'],['all','All']];
- return `<div class="scope-range"><label>Range<select class="ui-input range-native" name="range" aria-label="Range" tabindex="-1">${ranges.map(([id,title])=>`<option value="${id}" ${value===id?'selected':''}>${title}</option>`).join('')}</select></label><div class="range-segments" role="group" aria-label="Date range">${ranges.map(([id,title])=>`<button type="button" data-range="${id}" aria-pressed="${value===id}">${title}</button>`).join('')}</div></div>`;
+ return `<div class="scope-range"><label>Range<select class="ui-input range-native" name="range" aria-label="Range">${ranges.map(([id,title])=>`<option value="${id}" ${value===id?'selected':''}>${title}</option>`).join('')}</select></label><div class="range-segments" role="group" aria-label="Date range">${ranges.map(([id,title])=>`<button type="button" data-range="${id}" aria-pressed="${value===id}">${title}</button>`).join('')}</div></div>`;
 }
 document.addEventListener('click',event=>{
  const button=event.target.closest('[data-range]');if(!button)return;

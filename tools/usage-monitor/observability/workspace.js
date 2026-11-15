@@ -78,12 +78,21 @@ function syncURL() {
   for(const [key,value] of Object.entries(traceState))if(value!==''&&value!=null)params.set('trace_'+key,value);
   history.replaceState(null, '', location.pathname + (params.size?'?'+params:'') + '#' + view);
 }
+function placeScopeFilters(){
+  if($('#content').getAttribute('aria-busy')==='true')return;
+  const slot=$('#page-scope'),form=$('#content [data-ops-filters],#content [data-work-search]');
+  if(!form){slot.replaceChildren();slot.hidden=true;return;}
+  const previous=slot.firstElementChild,scroll=previous?.matches('[data-ops-filters]')===form.matches('[data-ops-filters]')?previous?.scrollLeft||0:0;
+  const active=document.activeElement,focused=form.contains(active),selection=focused&&active.matches('input,textarea')?[active.selectionStart,active.selectionEnd]:null;
+  slot.replaceChildren(form);slot.hidden=false;form.scrollLeft=scroll;
+  if(focused){active.focus({preventScroll:true});if(selection?.[0]!=null)active.setSelectionRange(...selection);}
+}
 async function load() {
   $('.page-header').dataset.overview=String(view==='overview'||view==='tasks'&&!task);
   if (busy) return;
   $('#content').setAttribute('aria-busy','true');
+  const epoch=++loadEpoch;
   try {
-    const epoch=++loadEpoch;
     loadController?.abort();loadController=new AbortController();
     const request=(url)=>fetch(url,{signal:loadController.signal});
     if(view==='investigate'){
@@ -167,7 +176,7 @@ async function load() {
     $('#content').setAttribute('aria-busy','false');
     if(!data) $('#content').innerHTML=emptyState('Evidence is unavailable','Check the connection and try loading again.',button('Try again','data-refresh'),'database');
     toast(error.message);
-  }
+  } finally {if(epoch===loadEpoch)placeScopeFilters();}
 }
 async function inspectOpsSource(id,target){
   target.textContent='Loading retained source…';

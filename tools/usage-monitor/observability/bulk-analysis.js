@@ -20,7 +20,7 @@ export async function openBulkAnalysis({showModal,post,onError},offset=0,limit=2
         catch(error){document.querySelector('[data-bulk-message]').textContent=error.message;event.target.disabled=false;onError(error.message);}
       };
       document.querySelector('[data-bulk-stop]')?.addEventListener('click',async()=>{try{await post('bulk-analysis',{action:'stop',batch_id:batch.id});openBulkAnalysis({showModal,post,onError});}catch(error){onError(error.message);}});
-      if(active)setTimeout(()=>{if(current===epoch&&document.querySelector('#modal').open&&!document.activeElement?.closest('[data-table]'))render();},4000);
+      if(active){const poll=()=>{if(current!==epoch||!document.querySelector('#modal').open)return;if(document.activeElement?.closest('[data-table]'))setTimeout(poll,4000);else render();};setTimeout(poll,4000);}
     }catch(error){if(current===epoch){showModal('Bulk activity analysis',`<p role="alert">${esc(error.message)}</p>`);onError(error.message);}}
   };
   return render();

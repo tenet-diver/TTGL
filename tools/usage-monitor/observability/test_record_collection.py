@@ -1,5 +1,6 @@
 """Full-cohort list controls must survive bounded dashboard transport."""
 import unittest
+import json
 from record_collection import query_records
 
 
@@ -26,6 +27,18 @@ class RecordCollectionTests(unittest.TestCase):
         rows=[dict(title='Task 10'),dict(title='Task 2'),dict(title='Task 1')]
         rows,_=query_records(rows,{'title':(lambda row:row['title'],False)},dict(sort='title'))
         self.assertEqual([r['title'] for r in rows],['Task 1','Task 2','Task 10'])
+
+    def test_exact_context_filters_distinguish_prefixes_types_and_unknowns(self):
+        rows=[dict(value=v) for v in ['alpha','alphabet',None,'Unknown',0,'0',False,'a "quoted" \nvalue']]
+        columns={'value':(lambda r:r['value'],False)}
+        for value in [row['value'] for row in rows]:
+            matched,_=query_records(rows,columns,dict(filters={'value':'is '+json.dumps(value)}))
+            excluded,_=query_records(rows,columns,dict(filters={'value':'is not '+json.dumps(value)}))
+            self.assertEqual(len(matched),1,(value,matched));self.assertEqual(len(excluded),len(rows)-1)
+            self.assertEqual(type(matched[0]['value']),type(value))
+        models,_=query_records([{'value':['a','b']}],columns,dict(filters={'value':'is "a, b"'}));self.assertEqual(len(models),1)
+        with self.assertRaises(ValueError):query_records(rows,columns,dict(filters={'value':'is invalid JSON'}))
+        with self.assertRaises(ValueError):query_records(rows,columns,dict(filters={'value':'x'*8001}))
 
     def test_invalid_queries_are_bounded_and_rejected(self):
         for query in ('[]','{',dict(sort='not-a-column'),dict(filters={'unknown':'yes'}),dict(filters={'cost':123}),dict(search='x'*1001),dict(direction=7)):
