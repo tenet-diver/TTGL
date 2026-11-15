@@ -73,6 +73,7 @@ print(json.dumps({'type':'turn.completed','usage':{'input_tokens':20,'output_tok
             self.assertEqual(report['tasks'][0]['title_source'],'prompt')
             task=report['tasks'][0]['id']
             page.reload()
+            page.locator('.step-panel>summary').click()
             expect(page.locator('[data-work-timeline] .timeline-bar')).to_have_count(2)
             expect(page.locator('[data-work-timeline]')).to_contain_text('1 collected subtasks')
             page.screenshot(path='work/security/ui-review-20261112/screenshots/step-timeline-desktop.png',full_page=True,animations='disabled')

@@ -66,15 +66,15 @@ def changed_files(item, repo):
     return sorted({os.path.normpath(os.path.join(repo, p)) for p in paths if isinstance(p, str) and 0 < len(p) <= 4000})
 
 
-def scope(store, project='', workspace='', range='30d', clock=None):
+def scope(store, project='', workspace='', range='30d', clock=None, task_id=None):
     if range not in RANGES:
         raise ValueError('Invalid date range')
     now = time.time() if clock is None else clock
-    data = optimization.dataset(store, project)
+    data = optimization.dataset(store, project, task_id=task_id)
     start = now - int(range[:-1]) * 86400 if range != 'all' else float('-inf')
     rows = [r for r in data['rows'] if r['time'] is not None and start <= r['time'] <= now and (not workspace or r['workspace'] == workspace)]
     with store.connection() as c:
-        turns = [dict(r) for r in c.execute('SELECT t.*,a.task_id,k.title task_title,k.project_id FROM turns t LEFT JOIN assignments a USING(session_id,turn_id) LEFT JOIN tasks k ON k.id=a.task_id ORDER BY t.start,t.session_id,t.turn_id')
+        turns = [dict(r) for r in c.execute('SELECT t.*,a.task_id,k.title task_title,k.project_id FROM turns t LEFT JOIN assignments a USING(session_id,turn_id) LEFT JOIN tasks k ON k.id=a.task_id'+(' WHERE t.session_id IN (SELECT session_id FROM assignments WHERE task_id=?)' if task_id else '')+' ORDER BY t.start,t.session_id,t.turn_id',(task_id,) if task_id else ())
                  if not workspace or r['repo'] == workspace]
         roles={r['event_id']:r['runtime_role'] for r in c.execute('SELECT aa.* FROM agent_annotations aa JOIN analyses an ON an.id=aa.analysis_id ORDER BY an.created')}
     for row in rows:row['runtime_role']=roles.get(row['id'])
@@ -115,7 +115,7 @@ def source_state(sessions,known):
     return 'unknown'
 
 
-def project_tasks(store, ids, rows, scenario, attribution='measured'):
+def project_tasks(store, ids, rows, scenario, attribution='measured', prepared=None):
     import task_history
     task_history.init(store)
     by_task = defaultdict(list)
@@ -127,7 +127,7 @@ def project_tasks(store, ids, rows, scenario, attribution='measured'):
     with store.connection() as c:
         c.execute('BEGIN')
         for ident in sorted(ids):
-            task = analytics.task_data(store, ident, attribution, scenario, connection=c)
+            task = prepared[ident] if prepared and ident in prepared else analytics.task_data(store, ident, attribution, scenario, connection=c)
             events = by_task[ident]
             allowed = {r['id']: r for r in events}
             groups = []

@@ -51,7 +51,7 @@ const opsState={project:query.get('project')||'',workspace:query.get('workspace'
 const aliases={history:'knowledge',activity:'tasks',setup:'settings'};
 let view=pathViews[location.pathname]&&!location.hash?pathViews[location.pathname]:aliases[location.hash.slice(1)]|| (config[location.hash.slice(1)]?location.hash.slice(1):(location.pathname.startsWith('/tasks/')||query.get('task')?'tasks':'overview'));
 const primary=()=>['tasks','analytics','knowledge'].includes(view);
-let workData=null,loadEpoch=0;
+let workData=null,loadEpoch=0,loadController=null;
 let project = query.get('project') || '', task = query.get('task') || (location.pathname.startsWith('/tasks/')?decodeURIComponent(location.pathname.slice(7)):''), category = query.get('category') || '';
 let data = null, busy = false, toastTimer;
 if(query.get('review'))clearListFilters('work-tasks');
@@ -78,9 +78,11 @@ async function load() {
   $('#content').setAttribute('aria-busy','true');
   try {
     const epoch=++loadEpoch;
+    loadController?.abort();loadController=new AbortController();
+    const request=(url)=>fetch(url,{signal:loadController.signal});
     if(['overview','taskactivity'].includes(view)){
       opsState.project=project;
-      const response=await fetch('/api/activity-dashboard?'+new URLSearchParams({...opsState,view}));
+      const response=await request('/api/activity-dashboard?'+new URLSearchParams({...opsState,view}));
       const result=await response.json();if(!response.ok)throw Error(result.error||'Activity dashboard unavailable');if(epoch!==loadEpoch)return;
       $('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;$('#title').textContent=config[view][0];$('#subtitle').textContent=config[view][1];$('#breadcrumb').textContent=config[view][0];$('#page-actions').innerHTML='';$('#content').setAttribute('aria-busy','false');
       document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
@@ -89,7 +91,7 @@ async function load() {
     }
     if(['costs','tools'].includes(view)){
       opsState.project=project;
-      const response=await fetch('/api/usage-pages?'+new URLSearchParams({...opsState,view}));
+      const response=await request('/api/usage-pages?'+new URLSearchParams({...opsState,view}));
       const result=await response.json();if(!response.ok)throw Error(result.error||'Usage unavailable');if(epoch!==loadEpoch)return;
       $('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;$('#title').textContent=config[view][0];$('#subtitle').textContent=config[view][1];$('#breadcrumb').textContent=config[view][0];$('#page-actions').innerHTML='';$('#content').setAttribute('aria-busy','false');
       document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
@@ -98,7 +100,7 @@ async function load() {
     }
     if(['process','agents','timeline','outcomes'].includes(view)){
       opsState.project=project;
-      const response=await fetch('/api/analysis-pages?'+new URLSearchParams({...opsState,view}));
+      const response=await request('/api/analysis-pages?'+new URLSearchParams({...opsState,view}));
       const result=await response.json();if(!response.ok)throw Error(result.error||'Analysis unavailable');if(epoch!==loadEpoch)return;
       $('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;$('#title').textContent=config[view][0];$('#subtitle').textContent=config[view][1];$('#breadcrumb').textContent=config[view][0];$('#page-actions').innerHTML='';$('#content').setAttribute('aria-busy','false');
       document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
@@ -108,7 +110,7 @@ async function load() {
     if(['live','steering','impact'].includes(view)){
       opsState.project=project;
       const params=new URLSearchParams(opsState);
-      const response=await fetch((['live','steering'].includes(view)?'/api/steering?':'/api/optimization?')+params);
+      const response=await request((['live','steering'].includes(view)?'/api/steering?':'/api/optimization?')+params);
       const result=await response.json();if(!response.ok)throw Error(result.error||'Page unavailable');if(epoch!==loadEpoch)return;
       $('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;$('#title').textContent=config[view][0];$('#subtitle').textContent=config[view][1];$('#breadcrumb').textContent=config[view][0];$('#page-actions').innerHTML='';$('#content').setAttribute('aria-busy','false');
       document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
@@ -117,7 +119,7 @@ async function load() {
     }
     if(view==='suggestions'){
       opsState.project=project;
-      const [response,optimized]=await Promise.all([fetch('/api/activity-insights?'+activityQuery(project)),fetch('/api/optimization?'+new URLSearchParams(opsState))]);
+      const [response,optimized]=await Promise.all([request('/api/activity-insights?'+activityQuery(project)),request('/api/optimization?'+new URLSearchParams(opsState))]);
       const [result,checks]=await Promise.all([response.json(),optimized.json()]);if(!response.ok||!optimized.ok)throw Error(result.error||checks.error||'Suggestions unavailable');if(epoch!==loadEpoch)return;
       $('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;$('#title').textContent='Suggestions';$('#subtitle').textContent=config.suggestions[1];$('#breadcrumb').textContent='Suggestions';$('#page-actions').innerHTML='';$('#content').setAttribute('aria-busy','false');
       document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
@@ -128,19 +130,21 @@ async function load() {
       bindEvidence($('#content'),checks,{showModal,inspect:inspectOpsSource,onError:toast});return;
     }
     if(primary()){
-      const response=await fetch('/api/work-explorer?'+explorerParams(project));
+      const detailOnly=view==='tasks'&&task;
+      const response=await request(detailOnly?'/api/work-task?'+new URLSearchParams({task_id:task,attribution:explorerParams(project).get('attribution')}):'/api/work-explorer?'+explorerParams(project));
       if(!response.ok)throw Error('Work explorer request failed');
-      const result=await response.json();if(epoch!==loadEpoch)return;workData=result;renderWork();return;
+      const result=await response.json();if(epoch!==loadEpoch)return;workData=detailOnly?{task_data:result,totals:{},cost_scenario:result.cost_scenario,projects:[{id:result.project_id,name:result.project_name}],langfuse_url:result.langfuse_url}:result;renderWork();return;
     }
     const params = new URLSearchParams();
     if(project) params.set('project',project);
     if(task) params.set('task',task);
     if(category) params.set('category',category);
-    const response = await fetch('/api/workspace?' + params);
+    const response = await request('/api/workspace?' + params);
     if(!response.ok) throw Error('Workspace request failed');
     data = await response.json();
     render();
   } catch(error) {
+    if(error.name==='AbortError')return;
     $('#live').textContent='Disconnected'; $('#connection-dot').dataset.state='error';
     $('#content').setAttribute('aria-busy','false');
     if(!data) $('#content').innerHTML=emptyState('Evidence is unavailable','Check the connection and try loading again.',button('Try again','data-refresh'),'database');
@@ -299,11 +303,11 @@ function findingsTable() {
 function renderWork(){
   if(!workData)return;
 $('.scope-toolbar').hidden=true;$('#scope-summary').hidden=true;
-  $('#title').textContent=view==='tasks'?'Work explorer':config[view][0];$('#subtitle').textContent=view==='tasks'?'Understand the work. Follow a task into its subtasks and source steps.':config[view][1];
+  $('#title').textContent=workData.task_data?.title||(view==='tasks'?'Work explorer':config[view][0]);$('#subtitle').textContent=workData.task_data?[workData.task_data.repo,workData.task_data.updated?.slice(0,16).replace('T',' ')].filter(Boolean).join(' · '):view==='tasks'?'Understand the work. Follow a task into its subtasks and source steps.':config[view][1];
   $('#breadcrumb').textContent=view==='tasks'?'Work':config[view][0];
-  $('#live').textContent=workData.collection_enabled?'Collecting':'Paused';$('#connection-dot').dataset.state=workData.collection_enabled?'collecting':'paused';
+  $('#live').textContent=workData.task_data?'Connected':workData.collection_enabled?'Collecting':'Paused';$('#connection-dot').dataset.state=workData.task_data?'collecting':workData.collection_enabled?'collecting':'paused';
   $('#langfuse').href=workData.langfuse_url;
-  $('#page-actions').innerHTML=view==='tasks'?button('Add task','data-add-task',true,'plus'):'';
+  $('#page-actions').innerHTML=view==='tasks'&&!task?button('Add task','data-add-task',true,'plus'):'';
   document.querySelectorAll('nav [data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
   $('#content').setAttribute('aria-busy','false');
   renderExplorer($('#content'),{view,data:workData,taskId:task,project,table,mountTableMenus,post,onError:toast,onRefresh:load,
@@ -440,4 +444,4 @@ setTheme(document.documentElement.dataset.theme==='dark'?'dark':'light');
 window.addEventListener('storage',event=>{if(event.key==='ttgl-theme')setTheme(event.newValue==='dark'?'dark':'light');});
 $('#content').innerHTML=skeleton();
 load();
-setInterval(()=>{if((!primary()||!task||document.querySelector('[data-mining-active="true"]'))&&!document.hidden&&!$('#modal').open&&!document.activeElement?.matches('input,textarea,select')&&!document.querySelector('[data-step-select]:checked')&&!document.querySelector('[data-table] details[open]:not(.column-picker)')&&!document.querySelector('.column-picker[open]')&&!busy)load();},10000);
+setInterval(()=>{if((view==='live'||document.querySelector('[data-mining-active="true"]'))&&!document.hidden&&!$('#modal').open&&!document.activeElement?.matches('input,textarea,select')&&!document.querySelector('[data-step-select]:checked')&&!document.querySelector('[data-table] details[open]:not(.column-picker)')&&!document.querySelector('.column-picker[open]')&&!busy)load();},10000);

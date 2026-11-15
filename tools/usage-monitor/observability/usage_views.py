@@ -182,9 +182,9 @@ def task_report(store, task_id):
     import task_evidence
     task_history.init(store)
     task = analytics.task_data(store, task_id)
-    data, rows, turns, *_ = views.scope(store, project=task['project_id'], range='all')
+    data, rows, turns, *_ = views.scope(store, project=task['project_id'], range='all', task_id=task_id)
     rows = [r for r in rows if r['task_id'] == task_id]
-    tasks = views.project_tasks(store, {task_id}, rows, data['scenario'])
+    tasks = views.project_tasks(store, {task_id}, rows, data['scenario'], prepared={task_id: task})
     outcome = views.outcome_signals(store, tasks, data, rows, turns, float('-inf'), float('inf'), '')
     packet = task_evidence.packet(store, task_id)
     anchors = [r['time'] for r in rows]

@@ -280,3 +280,22 @@ search normalization and hidden fields, sorting with unknowns, pagination/reset,
 row actions on later pages, saved settings, cross-page selection, safe form behavior,
 HTML escaping, nested column pickers, and full-scope metadata beyond 100 records.
 An architecture test rejects table markup outside the shared component.
+
+
+Task detail loading and compact analysis layout (15 November 2026):
+
+- Opening a defined task requests its metadata directly, without building the
+  whole Work overview. Its story query restricts events to the task's sessions
+  in SQL, keeping adjacent turns for follow-up evidence, and reuses task analytics.
+- Subtask selection preserves the loaded Story/Evidence report. Source collection
+  queries run when its panel opens. Only Live sessions and active mining poll;
+  other pages refresh explicitly. Superseded navigation requests are aborted.
+- The shared list mounts row menus once per inserted list, caches search text
+  across edits, and shows column filters on demand. Inline evidence uses its
+  compact controls. The primary Steps list and chart retain source links.
+- A synthetic local fixture of 834 tasks / 13,332 events measured median summed
+  backend work for opening a task at 471ms before and 12ms after (three runs).
+  The Story request alone fell from 219ms to 9ms. These are local fixture timings,
+  not browser/network timings or a guarantee for a user's history. Private QA
+  receipts and screenshots are in ignored `work/security/task-layout-validation-20261115`
+  and `work/security/task-layout-qa`; no model calls were used.

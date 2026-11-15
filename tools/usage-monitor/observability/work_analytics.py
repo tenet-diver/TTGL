@@ -227,13 +227,15 @@ def overview(store, project=None, query='', status=None, task_type=None, attribu
 def source_steps(store, task_id, subtask_id=None, limit=100, offset=0):
     import task_history as h
     all_records=limit=='all'
-    limit,offset=h.page(limit,offset);task=task_data(store,task_id)
+    limit,offset=h.page(limit,offset)
     allowed=None
     if subtask_id:
+        task=task_data(store,task_id)
         group=next((g for g in task['subtasks'] if g['id']==subtask_id),None)
         if not group:raise ValueError('Unknown subtask')
         allowed=set(group['event_ids'])
     with store.connection() as c:
+        if not c.execute('SELECT 1 FROM tasks WHERE id=?',(task_id,)).fetchone():raise ValueError('Unknown task')
         events=[dict(r) for r in c.execute('SELECT e.* FROM events e JOIN assignments a USING(session_id,turn_id) WHERE a.task_id=? ORDER BY e.ts,e.id',(task_id,))]
     events=[e for e in events if allowed is None or e['id'] in allowed]
     if all_records and len(events)>10000:raise ValueError('Select a subtask or narrower task for at most 10,000 source records')

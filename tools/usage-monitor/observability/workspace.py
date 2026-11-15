@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS analyses(id TEXT PRIMARY KEY,created TEXT,model TEXT,
 CREATE TABLE IF NOT EXISTS agent_annotations(analysis_id TEXT REFERENCES analyses(id),event_id TEXT REFERENCES events(id),category TEXT,runtime_role TEXT,rationale TEXT,confidence TEXT,PRIMARY KEY(analysis_id,event_id));
 CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
 CREATE INDEX IF NOT EXISTS assignments_task ON assignments(task_id);
+CREATE INDEX IF NOT EXISTS annotations_event ON agent_annotations(event_id);
 CREATE INDEX IF NOT EXISTS annotations_event ON agent_annotations(event_id,analysis_id);
 ''')
             c.execute('INSERT OR IGNORE INTO settings VALUES(?,?)', ('collection_enabled', 'true'))
@@ -590,7 +591,10 @@ class Handler(BaseHTTPRequestHandler):
                 if path.path=='/api/work-steps':
                     result=work_analytics.source_steps(self.server.store,query.get('task_id'),query.get('subtask_id'),query.get('limit',100),query.get('offset',0))
                 elif path.path=='/api/work-task':
-                    result=work_analytics.task_data(self.server.store,query.get('task_id'),query.get('attribution','measured'))
+                    scenario=work_analytics.rates(self.server.store)
+                    result=work_analytics.task_data(self.server.store,query.get('task_id'),query.get('attribution','measured'),scenario)
+                    result['cost_scenario']=scenario
+                    result['langfuse_url']=self.server.store.langfuse_url
                 else:
                     result=work_analytics.overview(self.server.store,**{k:v for k,v in query.items() if k in ('project','query','status','task_type','attribution','limit','offset','review')})
                     result['langfuse_url']=self.server.store.langfuse_url

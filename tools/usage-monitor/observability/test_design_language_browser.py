@@ -38,7 +38,7 @@ class DesignLanguageBrowserTests(unittest.TestCase):
                 card=page.locator('.ops-card').first.evaluate('(node)=>{const s=getComputedStyle(node);return {border:s.borderTopWidth,shadow:s.boxShadow,radius:s.borderRadius}}')
                 self.assertEqual(card['border'],'0px');self.assertIn('1px',card['shadow']);self.assertEqual(card['radius'],'12px')
                 heading=page.locator('h1').evaluate('(node)=>{const s=getComputedStyle(node);return [s.fontSize,s.fontWeight,s.letterSpacing]}')
-                self.assertEqual(heading,['48px','600','-2.28px'])
+                self.assertEqual(heading,['32px','600','-1.28px'])
                 self.assertEqual(page.locator('.page-header').evaluate("node=>getComputedStyle(node,'::before').content"),'none')
                 for badge in page.locator('#style-fixture .ui-badge').all():
                     style=badge.evaluate("node=>{const s=getComputedStyle(node),dot=getComputedStyle(node,'::before');return {background:s.backgroundColor,color:s.color,dot:[dot.width,dot.height,dot.borderRadius]}}")
@@ -60,7 +60,7 @@ class DesignLanguageBrowserTests(unittest.TestCase):
                 self.assertEqual(page.evaluate("[...document.querySelectorAll('*')].some(node=>Number(getComputedStyle(node).fontWeight)>600)"),False)
             browser.close()
 
-    def test_neutral_data_fills_have_readable_labels_and_category_color_is_dot_sized(self):
+    def test_data_fills_have_readable_labels_and_category_color_is_dot_sized(self):
         from playwright.sync_api import sync_playwright,expect
         _,origin,_=self.fixture()
         with sync_playwright() as p:
@@ -71,7 +71,7 @@ class DesignLanguageBrowserTests(unittest.TestCase):
                 page.locator('html').evaluate('(node,theme)=>node.dataset.theme=theme',theme)
                 tiles=page.locator('.tool-treemap button').evaluate_all("nodes=>nodes.map(node=>{const s=getComputedStyle(node),rgb=v=>(v.match(/[\\d.]+/g)||[]).slice(0,3).map(Number);return {background:rgb(s.backgroundColor),color:rgb(s.color)}})")
                 for tile in tiles:
-                    self.assertEqual(len(set(tile['background'])),1)
+                    self.assertGreater(len(set(tile['background'])),1)
                     self.assertGreaterEqual(contrast(tile['background'],tile['color']),4.5)
             page.locator('nav [data-view="process"]').click()
             expect(page.locator('.category-chip')).not_to_have_count(0)

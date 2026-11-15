@@ -99,12 +99,18 @@ def change(store,v):
     return {'id':ident}
 
 
-def dataset(store,project=''):
+def dataset(store,project='', task_id=None):
     init(store)
     with store.connection() as c:
+        # Restrict task detail to its sessions in SQL, retaining neighboring turns
+        # for follow-up/loop evidence without loading unrelated project history.
+        conditions=[];args=[]
+        if project:conditions.append('t.project_id=?');args.append(project)
+        if task_id:conditions.append('e.session_id IN (SELECT session_id FROM assignments WHERE task_id=?)');args.append(task_id)
+        event_where=' WHERE '+' AND '.join(conditions) if conditions else ''
         rows=[dict(r) for r in c.execute('''SELECT e.*,a.task_id,t.title task_title,t.project_id,f.command,f.signature,f.output_chars,f.operation,f.commits,f.cache_write,f.cache_5m,s.role,s.agent_type,ot.answer_chars
-FROM events e LEFT JOIN assignments a USING(session_id,turn_id) LEFT JOIN tasks t ON t.id=a.task_id LEFT JOIN optimization_facts f ON f.event_id=e.id LEFT JOIN native_session_facts s ON s.session_id=e.session_id LEFT JOIN optimization_turns ot USING(session_id,turn_id) ORDER BY e.ts,e.id''') if not project or r['project_id']==project]
-        turns=[dict(r) for r in c.execute('SELECT * FROM turns')]
+FROM events e LEFT JOIN assignments a USING(session_id,turn_id) LEFT JOIN tasks t ON t.id=a.task_id LEFT JOIN optimization_facts f ON f.event_id=e.id LEFT JOIN native_session_facts s ON s.session_id=e.session_id LEFT JOIN optimization_turns ot USING(session_id,turn_id)'''+event_where+' ORDER BY e.ts,e.id',args)]
+        turns=[dict(r) for r in c.execute('SELECT * FROM turns'+(' WHERE session_id IN (SELECT session_id FROM assignments WHERE task_id=?)' if task_id else ''),(task_id,) if task_id else ())]
         known_starts={r['session_id']:r['started'] for r in c.execute('SELECT session_id,started FROM native_session_facts WHERE started IS NOT NULL')}
         projects=[dict(r) for r in c.execute('SELECT id,name,repo FROM projects ORDER BY name')]
         interventions=set()

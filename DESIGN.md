@@ -1,10 +1,10 @@
 # TTGL design system
 
-The supplied Vercel Design Language Reference governs the Usage Observatory's native DOM interface. Shared controls and layouts apply it across analysis, task evidence, optimization and steering pages.
+The supplied Vercel Design Language Reference informs controls and surfaces; the Claude Mining screenshots govern page structure, chart colors and analysis density. Shared controls and layouts apply it across analysis, task evidence, optimization and steering pages.
 
 ## Principles
 
-Use an achromatic canvas, restrained typography, consistent spacing and shadow boundaries. Blue identifies links and keyboard focus. Other chromatic colors appear only as small status or category dots. Avoid decorative gradients, colored panels, hatch patterns, entry animations and moving buttons.
+Use an achromatic canvas, restrained typography, consistent spacing and shadow boundaries. Blue identifies links and keyboard focus. Use blue, green, amber and the shared categorical palette for data charts, as in the screenshots. Keep ordinary surfaces neutral and status/category markers small. Avoid decorative gradients, hatch patterns, entry animations and moving buttons.
 
 Preserve the application's evidence semantics: unknown values remain unknown, estimates remain distinct from cash expense, and command completion does not establish task success. Styling must not change measurements or launch inference.
 
@@ -23,7 +23,7 @@ Preserve the application's evidence semantics: unknown values remain unknown, es
 
 Use the deeper light-mode blue for small links and readable gray for placeholders rather than the reference's faint gray. Validate actual foreground/background pairs rather than automatically inverting colors.
 
-Status dots use information blue `#0062d1`, success green `#398e4a`, warning amber `#ff990a` and error red `#e5484d`. Dots are 8px with neutral adjacent text; labels must carry the meaning independently of color. Charts use shared neutral tones, labels and interactive evidence. Treemap labels select a contrasting foreground for their fill. Unknown heatmap cells have a dashed outline; rework paths use dashed neutral strokes.
+Status dots use information blue `#0062d1`, success green `#398e4a`, warning amber `#ff990a` and error red `#e5484d`. Dots are 8px with neutral adjacent text; labels must carry the meaning independently of color. Charts use shared categorical tones, labels and interactive evidence. Treemap labels select a contrasting foreground for their fill. Unknown heatmap cells have a dashed outline; rework paths use dashed amber strokes.
 
 ## Typography
 
@@ -31,11 +31,12 @@ Use the existing bundled Geist Sans. Mono text prefers locally available Geist M
 
 | Element | Size / line height | Weight | Tracking |
 | --- | --- | --- | --- |
-| Overview heading | 48 / 48px | 600 | -2.28px |
+| Overview heading | 32 / 40px | 600 | -1.28px |
 | Page heading | 32 / 40px | 600 | -1.28px |
-| Section/card heading | 14 / 20px | 500 | -0.28px |
+| Section/card heading | 16 / 24px | 600 | -0.32px |
 | Lead/body | 16 / 24px | 400 | normal |
-| Controls/table cells | 14 / 20px | 400 | normal |
+| Controls | 14 / 20px | 400 | normal |
+| Dense table cells | 12 / 18px | 400 | normal |
 | Captions | 12 / 16px | 400 | normal |
 | Mono eyebrows | 12 / 16px | 500 | normal |
 | Code | 13 / 20px | 500 | normal |
@@ -44,8 +45,8 @@ Keep weights within 400, 500 and 600. Overview headings reduce to page-heading s
 
 ## Layout and depth
 
-- Use a 4px spacing base, 24px page margins, 32px section gaps and 16px content gaps. Narrow screens use 16px page/card padding.
-- The header is 64px high. Standard and wide width tokens are 1200px and 1400px; analysis pages use the wide layout.
+- Use a 4px spacing base, 24px page margins, 16px section gaps and compact table controls. Narrow screens use 16px page/card padding.
+- The desktop utility bar is 40px high and the sidebar is 192px wide; mobile navigation retains its horizontal layout. Standard and wide width tokens are 1200px and 1400px; analysis pages use the wide layout.
 - Controls have 6px corners, cards 12px, and badges fully rounded corners.
 - Surface boundaries use a 1px shadow ring rather than a CSS border. Row boundaries use inset shadows. Separate sections with whitespace.
 - Cards use the shared boundary plus a subtle 1px depth shadow. Menus and dialogs use layered elevation tokens.
@@ -54,20 +55,20 @@ Keep weights within 400, 500 and 600. Overview headings reduce to page-heading s
 
 | App element | Treatment |
 | --- | --- |
-| Card | Elevated neutral surface, shadow boundary, 12px radius, 24px padding |
+| Card | Elevated neutral surface, shadow boundary, 12px radius, 16px padding |
 | KPI strip | One shadow-bounded surface with inset dividers; values at weight 600 |
 | Ordinary button | Transparent ghost treatment, 40px default height, 6px radius |
 | Primary action | Ink fill with inverse text, including hover and active states |
-| Compact/icon control | 32px minimum height; existing large controls may use 48px |
+| Compact list control | 28px height; row links use their text height |
 | Input/select | Transparent surface, shadow boundary, 6px radius, thin blue focus outline |
 | Keyboard focus | Double ring: 2px surface-colored gap and 4px blue outer ring |
 | Status badge | Neutral text and transparent background; small colored dot |
 | Sidebar | Canvas with a shadow separator; neutral hover/active surfaces |
-| Chart | Shared grayscale fills and contrasting labels; colored category dots only |
+| Chart | Shared categorical fills with contrasting labels; neutral tracks and gridlines |
 
 Hover transitions change colors over 120ms. Buttons retain their position and size. Reduced-motion behavior and forced-color focus remain supported.
 
-Semantic tokens and native controls live in `tools/usage-monitor/observability/ui.css` and `ui.js`. `design-language.css` is loaded last to align all page modules; `chart-theme.js` provides shared chart fills, matching label colors and category dots. Page-specific layout remains in the existing stylesheets. This extends the existing native adaptation of shadcn/ui without adding a framework or dependency.
+Semantic tokens and native controls live in `tools/usage-monitor/observability/ui.css` and `ui.js`. `design-language.css` is loaded last to align all page modules with the screenshot density; `chart-theme.js` provides shared chart fills, matching label colors and category dots. Page-specific layout remains in the existing stylesheets. This extends the existing native adaptation of shadcn/ui without adding a framework or dependency.
 
 ## Record lists
 
@@ -87,3 +88,12 @@ kept by record ID across search, sort and page changes. List controls are button
 not form submissions. Native popovers keep column pickers accessible inside nested
 scrolling lists. Extend this component once when a new collection behavior is
 needed; keep one implementation for every page.
+
+
+Task detail uses a single full-width Steps list with short local timestamps,
+compact token counts and source links. Its runtime visualization sits beside the
+Tools list; a chart is a visualization, not a second paginated Steps table.
+Story, Evidence, Prompt and Outcome use collapsible cards. Source collection is
+an additional tool that loads only when expanded. Inline evidence lists use the
+same record component with collapsed search/column controls; pagination appears
+when required. Full lists expose column filters through the Filters button.

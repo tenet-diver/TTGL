@@ -38,6 +38,7 @@ class DataListBrowserTests(unittest.TestCase):
             expect(table.locator('tbody tr')).to_have_count(50)
             table.get_by_label('Page fixture-list',exact=True).fill('2');page.keyboard.press('Enter')
             expect(table.locator('tbody tr')).to_have_count(5)
+            table.get_by_role('button',name='Filters',exact=True).click()
             table.get_by_label('Filter fixture-list by Amount',exact=True).fill('>= 50')
             expect(table.locator('tbody tr')).to_have_count(5)
             expect(table.get_by_label('Page fixture-list',exact=True)).to_have_value('1')

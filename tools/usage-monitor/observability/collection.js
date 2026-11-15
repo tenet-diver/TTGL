@@ -2,7 +2,7 @@
 export const normalizeSearch = value => String(value ?? '').normalize('NFKD').replace(/\p{M}/gu,'').toLocaleLowerCase().trim();
 export function collectionPage(rows, options) {
   const terms=normalizeSearch(options.search).split(/\s+/).filter(Boolean);
-  let items=rows.filter(row=>(!options.filter||options.filter(row))&&terms.every(term=>normalizeSearch(options.searchText(row)).includes(term)));
+  let items=rows.filter(row=>{if(options.filter&&!options.filter(row))return false;if(!terms.length)return true;const text=normalizeSearch(options.searchText(row));return terms.every(term=>text.includes(term));});
   if(options.compare)items.sort(options.compare);
   const pageSize=Math.max(1,Math.min(500,Math.floor(options.pageSize)||20));
   const total=items.length,pages=Math.max(1,Math.ceil(total/pageSize)),page=Math.max(1,Math.min(pages,Math.floor(options.page)||1));

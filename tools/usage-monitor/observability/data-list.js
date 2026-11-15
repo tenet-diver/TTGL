@@ -40,19 +40,20 @@ function matchesColumn(column,row,query) {
   return normalizeSearch(String(columnText(column,row))).includes(normalizeSearch(query));
 }
 export function renderList(id, columns, rows, actions, searchable=true, options={}) {
-  const menus=[];tableDefinitions.set(id,{columns,rows,actions,searchable,menus,options});queueMicrotask(mountTableMenus);
+  const previous=tableDefinitions.get(id),searchIndex=previous?.rows===rows&&previous?.columns===columns?previous.searchIndex:new Map();
+  const menus=[];tableDefinitions.set(id,{columns,rows,actions,searchable,menus,options,searchIndex});queueMicrotask(mountTableMenus);
   const state=tables[id] ||= {search:'',page:1,pageSize:20,sort:null,direction:1,filters:{},hiddenColumns:columns.filter(c=>c.hiddenByDefault).map(c=>c.key)};
   const allColumns=columns;
   const selection=columns.find(c=>c.selectionKey);if(selection){const allowed=new Set(rows.map(r=>String(r[selection.selectionKey])));for(const key of selected.get(id)||[])if(!allowed.has(key))selected.get(id).delete(key);}
   state.hiddenColumns=(state.hiddenColumns||[]).filter(key=>allColumns.some(c=>c.key===key));
   columns=allColumns.filter(c=>!state.hiddenColumns.includes(c.key));
   if(!columns.length){columns=allColumns;state.hiddenColumns=[];}
-  const picker=`<details class="column-picker"><summary class="ui-button">Columns</summary><div class="column-options" popover="manual"><strong>Displayed columns</strong>${allColumns.map(c=>`<label><input type="checkbox" data-column-toggle="${id}" data-key="${c.key}" aria-label="Show ${esc(id)} column ${esc(c.label)}" ${state.hiddenColumns.includes(c.key)?'':'checked'} ${columns.length===1&&columns[0].key===c.key?'disabled':''}>${esc(c.label)}</label>`).join('')}<small>Keep at least one column visible.</small></div></details>`;
+  const picker=`<details class="column-picker"><summary class="ui-button">Columns ${columns.length}/${allColumns.length}</summary><div class="column-options" popover="manual"><strong>Displayed columns</strong>${allColumns.map(c=>`<label><input type="checkbox" data-column-toggle="${id}" data-key="${c.key}" aria-label="Show ${esc(id)} column ${esc(c.label)}" ${state.hiddenColumns.includes(c.key)?'':'checked'} ${columns.length===1&&columns[0].key===c.key?'disabled':''}>${esc(c.label)}</label>`).join('')}<small>Keep at least one column visible.</small></div></details>`;
   if(!columns.some(c=>c.key===state.sort)) state.sort=null;
   const filtered=columns.some(c=>state.filters[c.key]?.trim());
   const sortedColumn=columns.find(c=>c.key===state.sort);
   const result=collectionPage(rows, {
-    search:state.search, searchText:row=>allColumns.map(c=>columnText(c,row)).join(' '),
+    search:state.search, searchText:row=>{if(!searchIndex.has(row))searchIndex.set(row,allColumns.map(c=>columnText(c,row)).join(' '));return searchIndex.get(row);},
     filter:row=>columns.every(c=>matchesColumn(c,row,state.filters[c.key]||'')),
     page:state.page,pageSize:state.pageSize||20,
     compare:sortedColumn?(a,b)=>{
@@ -64,7 +65,7 @@ export function renderList(id, columns, rows, actions, searchable=true, options=
     }:undefined
   });
   state.page=result.page;
-  const toolbar=`<div class="list-toolbar">${searchable?`<div class="list-search ui-search"><input class="ui-input" data-search="${id}" value="${esc(state.search)}" placeholder="Search these rows" aria-label="Search ${esc(id)}"><button type="button" data-clear-search="${id}" aria-label="Clear search">${icon('x')}</button></div>`:''}<div class="table-controls">${picker}${state.search||filtered||state.sort||state.hiddenColumns.length?button('Reset table',`data-reset-table="${id}"`):''}<span class="muted" role="status">${fmt(result.total)} of ${fmt(rows.length)} rows</span>${selection?`<span data-list-selection-count>${selectedIds(id).length} selected</span>`:''}</div></div>`;
+  const toolbar=`<div class="list-toolbar">${searchable?`<div class="list-search ui-search"><input class="ui-input" data-search="${id}" value="${esc(state.search)}" placeholder="Search these rows" aria-label="Search ${esc(id)}"><button type="button" data-clear-search="${id}" aria-label="Clear search">${icon('x')}</button></div>`:''}<div class="table-controls">${picker}${button('Filters',`data-toggle-filters="${id}" aria-expanded="${Boolean(state.filtersOpen||filtered)}"`)}${state.search||filtered||state.sort||state.hiddenColumns.length?button('Reset table',`data-reset-table="${id}"`):''}<span class="muted" role="status">${fmt(result.total)} of ${fmt(rows.length)} rows</span>${selection?`<span data-list-selection-count>${selectedIds(id).length} selected</span>`:''}</div></div>`;
   const head=columns.map(column=>`<th scope="col" aria-sort="${state.sort===column.key?(state.direction===1?'ascending':'descending'):'none'}" class="${column.numeric?'numeric':''}"><button type="button" data-sort="${id}" data-key="${column.key}" aria-label="Sort by ${esc(column.label)}">${esc(column.label)}<span aria-hidden="true" class="sort-indicator">${state.sort===column.key?(state.direction===1?'↑':'↓'):'↕'}</span></button></th>`).join('');
   const filters=columns.map(column=>`<td><input type="search" class="ui-input column-filter" data-column-filter="${id}" data-key="${column.key}" value="${esc(state.filters[column.key]||'')}" aria-label="Filter ${esc(id)} by ${esc(column.label)}" placeholder="${column.numeric?'e.g. >= 100':'Filter…'}" ${column.numeric?'title="Filter by value, or use =, !=, <, <=, >, >= with a number"':''}></td>`).join('');
   const body=result.items.map((row,index)=>{
@@ -76,21 +77,25 @@ export function renderList(id, columns, rows, actions, searchable=true, options=
   const hasFilters=state.search||filtered;
   const emptyAction=hasFilters?button('Clear search and filters',`data-reset-table="${id}"`):id==='projects'?button('Add project','data-add-project',true):id==='tasks'?button('Add task','data-add-task',true):'';
   const empty=emptyState(hasFilters?'No matching rows':'Nothing here yet',hasFilters?'Try different terms or clear the column filters.':'Rows will appear when evidence is available for this scope.',emptyAction);
-  return `<div data-table="${esc(id)}">`+toolbar+`<div class="table-container ui-table-scroll" data-slot="table-container"><table class="ui-table" data-slot="table"><thead><tr>${head}${actions?'<th scope="col"><span class="sr-only">Actions</span></th>':''}</tr><tr class="column-filters">${filters}${actions?'<td></td>':''}</tr></thead><tbody>${body||`<tr><td colspan="${columns.length+(actions?1:0)}" class="table-empty">${empty}</td></tr>`}</tbody></table></div>`+
-    `<div class="pagination list-pagination"><span>${result.total?(result.page-1)*result.pageSize+1:0}–${Math.min(result.page*result.pageSize,result.total)} of ${result.total}</span><label>Rows per page<select class="ui-input" data-list-size="${esc(id)}" aria-label="Rows per page ${esc(id)}">${[10,20,50,100].map(size=>`<option value="${size}" ${size===result.pageSize?'selected':''}>${size}</option>`).join('')}</select></label>${button('Previous',`data-page="${id}" data-delta="-1" ${result.page===1?'disabled':''}`)}<label class="list-page-jump">Page<input class="ui-input" type="number" min="1" max="${result.pages}" value="${result.page}" data-list-jump="${esc(id)}" aria-label="Page ${esc(id)}"></label><span>of ${result.pages}</span>${button('Next',`data-page="${id}" data-delta="1" ${result.page===result.pages?'disabled':''}`)}</div><p data-list-error role="status"></p></div>`;
+  return `<div data-table="${esc(id)}" data-compact="${Boolean(options.compact)}">`+(options.compact?`<details class="list-inline-controls" ${state.search||filtered?'open':''}><summary>${fmt(result.total)} records · Search and columns</summary>${toolbar}</details>`:toolbar)+`<div class="table-container ui-table-scroll" data-slot="table-container"><table class="ui-table" data-slot="table"><thead><tr>${head}${actions?'<th scope="col"><span class="sr-only">Actions</span></th>':''}</tr><tr class="column-filters" ${state.filtersOpen||filtered?'':'hidden'}>${filters}${actions?'<td></td>':''}</tr></thead><tbody>${body||`<tr><td colspan="${columns.length+(actions?1:0)}" class="table-empty">${empty}</td></tr>`}</tbody></table></div>`+
+    `<div class="pagination list-pagination" data-single-page="${result.pages===1}"><span>${result.total?(result.page-1)*result.pageSize+1:0}–${Math.min(result.page*result.pageSize,result.total)} of ${result.total}</span><label>Rows per page<select class="ui-input" data-list-size="${esc(id)}" aria-label="Rows per page ${esc(id)}">${[10,20,50,100].map(size=>`<option value="${size}" ${size===result.pageSize?'selected':''}>${size}</option>`).join('')}</select></label>${button('Previous',`data-page="${id}" data-delta="-1" ${result.page===1?'disabled':''}`)}<label class="list-page-jump">Page<input class="ui-input" type="number" min="1" max="${result.pages}" value="${result.page}" data-list-jump="${esc(id)}" aria-label="Page ${esc(id)}"></label><span>of ${result.pages}</span>${button('Next',`data-page="${id}" data-delta="1" ${result.page===result.pages?'disabled':''}`)}</div><p data-list-error role="status"></p></div>`;
 }
 export function mountTableMenus() {
-  for(const [id,definition] of tableDefinitions){const root=document.querySelector(`[data-table="${CSS.escape(id)}"]`);if(root&&!mounted.has(root)){mounted.add(root);definition.options?.onMount?.(root);}}
-  for(const menu of [...tableDefinitions.values()].flatMap(d=>d.menus)) {
-    const target=document.querySelector(`[data-row-menu="${menu.key}"]`);
-    if(target&&!target.children.length) target.append(createActionMenu(document,menu.label,menu.actions));
+  // Mount only newly inserted lists. Revisiting old definitions on every keystroke
+  // previously queried the whole document once for every historical row action.
+  for(const root of document.querySelectorAll('[data-table]')){
+    if(mounted.has(root))continue;
+    const definition=tableDefinitions.get(root.dataset.table);if(!definition)continue;
+    mounted.add(root);definition.options?.onMount?.(root);
+    const targets=new Map([...root.querySelectorAll('[data-row-menu]')].map(node=>[node.dataset.rowMenu,node]));
+    for(const menu of definition.menus){const target=targets.get(menu.key);if(target&&!target.children.length)target.append(createActionMenu(document,menu.label,menu.actions));}
   }
 }
 function refreshTable(id) {
   const target=document.querySelector(`[data-table="${CSS.escape(id)}"]`), definition=tableDefinitions.get(id);
   if(!target||!definition||refreshing.has(id)) return;
   refreshing.add(id);try{
-  const pickerOpen=target.querySelector('.column-picker')?.open;
+  const pickerOpen=target.querySelector('.column-picker')?.open,controlsOpen=target.querySelector('.list-inline-controls')?.open;
   const active=document.activeElement, scroll=target.querySelector('.table-container')?.scrollLeft||0;
   const selector=active?.matches('[data-column-toggle]')?`[data-column-toggle][data-key="${CSS.escape(active.dataset.key)}"]`:active?.matches('[data-column-filter]')?`[data-column-filter][data-key="${CSS.escape(active.dataset.key)}"]`:
     active?.matches('[data-list-size]')?'[data-list-size]':active?.matches('[data-list-jump]')?'[data-list-jump]':active?.matches('[data-search]')?'[data-search]':active?.matches('[data-sort]')?`[data-sort][data-key="${CSS.escape(active.dataset.key)}"]`:null;
@@ -98,6 +103,7 @@ function refreshTable(id) {
   target.outerHTML=renderList(id,definition.columns,definition.rows,definition.actions,definition.searchable,definition.options);
   mountTableMenus();
   const replacement=document.querySelector(`[data-table="${CSS.escape(id)}"]`);
+  if(controlsOpen&&replacement.querySelector('.list-inline-controls'))replacement.querySelector('.list-inline-controls').open=true;
   if(pickerOpen){const picker=replacement.querySelector('.column-picker');picker.open=true;positionColumns(picker);}
   const field=selector&&replacement.querySelector(selector);
   if(field) {field.focus({preventScroll:true});if(position!=null) field.setSelectionRange(position,position);}
@@ -108,6 +114,7 @@ function refreshTable(id) {
 
 document.addEventListener('click',event=>{
  const target=event.target.closest('button');if(!target)return;
+ if(target.dataset.toggleFilters&&tables[target.dataset.toggleFilters]){const state=tables[target.dataset.toggleFilters];state.filtersOpen=!(state.filtersOpen||Object.values(state.filters).some(v=>v.trim()));if(!state.filtersOpen)state.filters={};refreshTable(target.dataset.toggleFilters);}
  if(target.dataset.page&&tables[target.dataset.page]){tables[target.dataset.page].page+=Number(target.dataset.delta);refreshTable(target.dataset.page);}
  if(target.dataset.sort&&tables[target.dataset.sort]){const state=tables[target.dataset.sort];if(state.sort!==target.dataset.key){state.sort=target.dataset.key;state.direction=1;}else if(state.direction===1)state.direction=-1;else{state.sort=null;state.direction=1;}state.page=1;refreshTable(target.dataset.sort);}
  if(target.dataset.clearSearch&&tables[target.dataset.clearSearch]){tables[target.dataset.clearSearch].search='';tables[target.dataset.clearSearch].page=1;refreshTable(target.dataset.clearSearch);}

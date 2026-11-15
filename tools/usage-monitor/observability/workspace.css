@@ -222,7 +222,7 @@ tr.applied-change>td{vertical-align:top;}
 [data-table^='impact-comparison-']{min-width:600px;}
 [data-table]{width:100%;min-width:0;max-width:100%;}
 [data-table] [data-table]{min-width:420px;}
-.report-evidence-grid:has([data-table]){grid-template-columns:minmax(0,1fr);}
+
 [data-table^='source-timeline-'] .timeline-step{min-width:600px;}
 [data-table] pre{white-space:pre-wrap;max-height:260px;overflow:auto;overflow-wrap:anywhere;}
 [data-table^='source-timeline-']>.table-container>table>tbody>tr>td:first-child{min-width:640px;max-width:none;}
