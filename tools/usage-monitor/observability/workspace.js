@@ -178,6 +178,7 @@ function updateOpsFilters(values){
   syncURL();load();
 }
 setListErrorHandler(toast);
+document.querySelector('#bulk-analysis').onclick=()=>import('/bulk-analysis.js').then(({openBulkAnalysis})=>openBulkAnalysis({showModal,post,onError:toast})).catch(error=>toast(error.message));
 async function post(action, values) {
   const response = await fetch('/api/'+action, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(values)});
   const result = await response.json();

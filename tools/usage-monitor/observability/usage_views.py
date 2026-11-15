@@ -95,6 +95,8 @@ def shell_action(command):
 
 
 def label_tools(store, rows):
+    import process_analysis
+    process_labels=process_analysis.labels(store,rows) if any('process_label' not in row for row in rows) else {}
     with store.connection() as c:
         annotations = {r['event_id']: dict(r) for r in c.execute('SELECT aa.* FROM agent_annotations aa JOIN analyses a ON a.id=aa.analysis_id ORDER BY a.created')}
         rules = [dict(r) for r in c.execute('SELECT * FROM rules WHERE enabled=1 ORDER BY id')]
@@ -105,10 +107,11 @@ def label_tools(store, rows):
         family = 'Shell' if shell else r['name'] or 'Unknown tool'
         action = shell_action(r['command'] or '') if shell else family
         annotation = annotations.get(r['id'])
-        category = annotation['category'] if annotation else next((rule['category'] for rule in rules if rule['pattern'].lower() in r['name'].lower()), 'other tools')
+        interpreted=r.get('process_label') or process_labels.get(r['id'])
+        category = annotation['category'] if annotation else interpreted['category'] if interpreted else next((rule['category'] for rule in rules if rule['pattern'].lower() in r['name'].lower()), 'other tools')
         result.append({**r, 'family': family, 'action': action, 'label': family+' · '+action if shell else family,
                        'target': r['command'] or 'Inspect retained source for arguments', 'category': category,
-                       'category_basis': 'Agent interpretation' if annotation else 'Fallback name rule'})
+                       'category_basis': 'Agent interpretation' if annotation else 'Task-process interpretation' if interpreted else 'Fallback name rule'})
     return result
 
 
@@ -172,6 +175,8 @@ def report(store, view, project='', workspace='', range='30d', attribution='meas
                          'Charts show up to 365 observed dates; all selected records contribute to totals and tables. Evidence previews show up to 100 records.']}
     result = costs(rows, data['scenario'], zone) if view == 'costs' else tools(store, rows, data['scenario'], attribution, data['rows'], zone, family, action)
     if view == 'tools':
+        labeled=label_tools(store,rows)
+        result['classification']={'tools':len(labeled),'interpreted':sum(r['category_basis']!='Fallback name rule' for r in labeled),'fallback':sum(r['category_basis']=='Fallback name rule' for r in labeled),'runtime_reviewed':sum(r.get('runtime_role') is not None for r in labeled)}
         grouped = defaultdict(list)
         for r in rows:
             if r['task_id']: grouped[r['task_id']].append(r)
@@ -200,7 +205,7 @@ def task_report(store, task_id):
                        'name': r['name'], 'model': r['model'], 'runtime': r['runtime'], 'runtime_role': r['runtime_role'],
                        'input': u.get('input_tokens'), 'output': u.get('output_tokens'), 'cached': u.get('cached_input_tokens'),
                        'cost': r['cost'], 'failed': r['failed'], 'agent': r['agent_type'] or r['role'] or 'Unknown agent',
-                       'detail': r['command'] or '', 'category': tool.get('category')})
+                       'detail': (r['command'] or '')[:200], 'category': tool.get('category')})
     return {'task_id': task_id, 'timeline_range': timeline_range, 'packet': packet, 'outcome': outcome, 'events': events, 'event_count': len(rows),
             'phases': [{k: g[k] for k in ('id','title','type','start','end','event_ids')} for g in tasks[0]['groups']] if tasks else [],
             'metrics': counters(rows, data['scenario']), 'tools': tools(store, rows, data['scenario'], 'measured', data['rows'], 'UTC')['tools'],

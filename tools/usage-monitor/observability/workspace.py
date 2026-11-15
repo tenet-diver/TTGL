@@ -546,6 +546,11 @@ class Handler(BaseHTTPRequestHandler):
         if not self.valid():
             return self.send({'error': 'Invalid host'}, 403)
         path = urlparse(self.path)
+        if path.path=='/api/bulk-analysis':
+            import bulk_analysis
+            query={k:v[0] for k,v in parse_qs(path.query).items()}
+            try:return self.send(bulk_analysis.state(self.server.store,**{k:v for k,v in query.items() if k in ('batch_id','offset','limit')}))
+            except (ValueError,TypeError,sqlite3.Error) as exc:return self.send({'error':str(exc)},400)
         if path.path == '/api/trace-index':
             import trace_index
             query = {k: v[0] for k, v in parse_qs(path.query).items()}
@@ -616,7 +621,7 @@ class Handler(BaseHTTPRequestHandler):
                     result['cost_scenario']=scenario
                     result['langfuse_url']=self.server.store.langfuse_url
                 else:
-                    result=work_analytics.overview(self.server.store,**{k:v for k,v in query.items() if k in ('project','query','status','task_type','attribution','limit','offset','review')})
+                    result=work_analytics.overview(self.server.store,**{k:v for k,v in query.items() if k in ('project','query','status','task_type','attribution','limit','offset','review','result')})
                     result['langfuse_url']=self.server.store.langfuse_url
                 return self.send(result)
             except (ValueError,TypeError,KeyError,sqlite3.OperationalError) as exc:
@@ -680,7 +685,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(target.read_bytes(), content=design_assets[path.path])
         if path.path in ('/investigate','/live','/live/rules','/impact','/outcomes','/suggestions','/process','/agents','/timeline','/costs','/tools','/overview','/tasks') or path.path.startswith('/tasks/'):
             return self.send((HERE/'workspace.html').read_bytes(),content='text/html; charset=utf-8')
-        if path.path in ('/trace-explorer.js','/trace-explorer.css','/optimization.js','/optimization.css','/collection.js','/activity-views.js','/activity-views.css','/usage-views.js','/usage-views.css','/task-report.js','/dashboard-views.js','/data-list.js','/design-language.css','/chart-theme.js'):
+        if path.path in ('/bulk-analysis.js','/trace-explorer.js','/trace-explorer.css','/optimization.js','/optimization.css','/collection.js','/activity-views.js','/activity-views.css','/usage-views.js','/usage-views.css','/task-report.js','/dashboard-views.js','/data-list.js','/design-language.css','/chart-theme.js'):
             return self.send((HERE/path.path[1:]).read_bytes(),content='text/css; charset=utf-8' if path.path.endswith('.css') else 'text/javascript; charset=utf-8')
         assets = {'/activity-insights.js': ('activity-insights.js','text/javascript; charset=utf-8'), '/task-history.js': ('task-history.js', 'text/javascript; charset=utf-8'), '/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8'),
                   '/ui.js': ('ui.js', 'text/javascript; charset=utf-8'),
@@ -726,7 +731,12 @@ class Handler(BaseHTTPRequestHandler):
             values = json.loads(self.rfile.read(length))
             if not isinstance(values, dict):
                 raise ValueError('Expected an object')
-            if action=='analyze-process-tasks':
+            if action=='bulk-analysis':
+                import bulk_analysis
+                if values.get('action')=='start':result=bulk_analysis.start(self.server.store)
+                elif values.get('action')=='stop':result=bulk_analysis.stop(self.server.store,str(values.get('batch_id','')))
+                else:raise ValueError('Unknown bulk analysis action')
+            elif action=='analyze-process-tasks':
                 import activity_views
                 result=activity_views.analyze_selected(self.server.store,values.get('task_ids'))
             elif action in ('steering-rule','live-control','applied-change','optimization-models'):
