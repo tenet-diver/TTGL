@@ -1,4 +1,4 @@
-# TTGL Usage Observatory
+# Observatory
 
 The [harness tool and experiment queue](studies/harness-optimization-backlog.md)
 records current candidates, security blocks, registered comparisons and measured

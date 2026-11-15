@@ -1,5 +1,7 @@
 # Project preferences
 
+- Current project name: **Observatory** (formerly TTGL / Usage Observatory). Use Observatory in the UI, current docs and project tracking. Legacy `ttgl` identifiers, source import paths, data locations and frozen research artifacts remain compatible.
+
 - Prefer existing open-source software and maintained integrations over custom tooling.
 - Paid managed tools are welcome, including tools with a free tier, when they reduce implementation and operational work.
 - Before building a component, evaluate existing software for the requirement. Build only the missing product-specific behavior, and explain why existing options do not suffice.

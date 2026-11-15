@@ -123,7 +123,7 @@ class WorkspaceServerTests(unittest.TestCase):
                 result = self.cli(payload)
                 self.assertEqual(result.returncode, 0)
                 self.assertEqual(result.stdout, '')
-                self.assertIn('TTGL advisory hook unavailable:', result.stderr)
+                self.assertIn('Observatory advisory hook unavailable:', result.stderr)
                 self.assertNotIn('private input', result.stderr)
         self.stop()
         result = self.cli({'session_id': 's', 'event_id': 'offline', 'event': 'start'})

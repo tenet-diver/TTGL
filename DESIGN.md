@@ -1,4 +1,4 @@
-# TTGL design system
+# Observatory design system
 
 The supplied Vercel Design Language Reference informs controls and surfaces; the Claude Mining screenshots govern page structure, chart colors and analysis density. Shared controls and layouts apply it across analysis, task evidence, optimization and steering pages.
 

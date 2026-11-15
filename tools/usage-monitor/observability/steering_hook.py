@@ -118,7 +118,7 @@ def main():
         print(json.dumps(claude_result(raw,result)))
     except (OSError,ValueError,KeyError,TypeError,urllib.error.URLError) as exc:
         # Never print credentials or hook input. Failure cannot trap the user's agent.
-        print('TTGL advisory hook unavailable: '+type(exc).__name__,file=sys.stderr)
+        print('Observatory advisory hook unavailable: '+type(exc).__name__,file=sys.stderr)
 
 
 if __name__=='__main__':main()

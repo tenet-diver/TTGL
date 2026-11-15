@@ -1,11 +1,12 @@
-# TTGL — We have to combine
+# Observatory
 
 **An affordable, user-controlled personal agent, built through measured collaboration.**
 
-TTGL researches small-model/expert collaboration, context and memory, and native
-coding-agent teams. Its working application is the **Usage Observatory**: a local
-workspace for inspecting real tasks, model usage, tool activity, evidence and
-experiment decisions. The broader personal-agent frontier remains a research goal.
+**Observatory** is a local workspace for inspecting real tasks, model usage, tool
+activity, evidence and experiment decisions. Formerly TTGL / Usage Observatory,
+the project also researches small-model/expert collaboration, context and memory,
+and native coding-agent teams. The broader personal-agent frontier remains a
+research goal.
 
 > Believe in me who believes in you.
 
@@ -22,7 +23,7 @@ experiment decisions. The broader personal-agent frontier remains a research goa
 | [Observatory runbook](tools/usage-monitor/README.md) | Capture, reconciliation, analyst tools and UI behavior |
 | [Research handover](docs/research/HANDOVER.md) | Historical ownership, frozen protocols and continuation constraints |
 
-## Run TTGL
+## Run Observatory
 
 The workspace uses Python's standard library; it needs no Python/npm package
 installation or model call to start. Python 3.11+ is required. The native UI ships in the repository. From the checkout:
@@ -87,3 +88,11 @@ Scheduled research monitoring remains paused. See the
 [dependency security policy](docs/security/dependency-security-policy.md) before
 installing or first executing downloaded software. Existing artifacts and private
 histories must be preserved during cleanup.
+
+## Project naming
+
+The project and application are named **Observatory**. The research distribution
+is `observatory-research`. Existing `ttgl` Python imports, CLI/profile names,
+local-storage keys, service IDs, database paths and trace IDs remain compatible
+with existing installations. Dated research artifacts retain their original
+identifiers.

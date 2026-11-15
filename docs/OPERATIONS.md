@@ -110,7 +110,7 @@ python3 tools/usage-monitor/observability/steering_hook.py uninstall --data work
 
 Use `--settings /path/to/settings.json` for another settings file and `--url` for
 another loopback port. Installation backs up the selected settings file, preserves
-other hooks and adds only TTGL's marked commands. Uninstall removes only TTGL
+other hooks and adds only Observatory's marked commands. Uninstall removes only Observatory
 commands. The request timeout is 1.8 seconds; the hook command has a 3-second client
 timeout. Transport/configuration errors fail open and report only the exception
 type to stderr, without echoing the hook input or credentials. Set
@@ -127,7 +127,7 @@ Main-folder detection distinguishes a discovered `.git` directory from a worktre
 structured input hash even when the displayed command is bounded.
 
 Claude's standard hook payload does not always include cost/context counters.
-Those rules need explicit counters or matching ingested native usage. TTGL's
+Those rules need explicit counters or matching ingested native usage. Observatory's
 current native-history reader is Codex-oriented; this adapter does not claim a new
 full Claude transcript importer. Codex clients may use the generic event protocol
 for telemetry, but current Codex hooks do not provide equivalent synchronous

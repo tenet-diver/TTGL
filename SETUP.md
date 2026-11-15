@@ -1,6 +1,6 @@
-# Set up and start TTGL
+# Set up and start Observatory
 
-Use branch **`work`**. The Usage Observatory and the research environment are
+Use branch **`work`**. The Observatory and the research environment are
 separate: starting the app does not require the full numerical/training stack.
 All commands below run from the repository root.
 
@@ -102,7 +102,7 @@ curl --fail http://127.0.0.1:3000/api/public/health
 
 | Port | Service | Access |
 | --- | --- | --- |
-| 8766 | TTGL workspace | Browser / forwarded Codespaces port |
+| 8766 | Observatory workspace | Browser / forwarded Codespaces port |
 | 3000 | Langfuse | Browser; private login instructions in `work/security/langfuse-stack/LOGIN.md` |
 | 8317 | Local capture adapter | Loopback only; keep unforwarded |
 | 9090 / 9091 | Object-storage API / console | Local stack infrastructure |
@@ -189,7 +189,7 @@ or enable a schedule as part of ordinary app setup.
 Use [the architecture mapping](docs/ARCHITECTURE.md) and [design system](DESIGN.md)
 for the current Python/native DOM workspace. The supplied project's `cm-task`,
 `cm-hook`, Next.js rebuild commands, private registry and Garage secrets are not
-TTGL commands. TTGL's token-rate scenarios recalculate from retained counters;
+Observatory commands. Observatory's token-rate scenarios recalculate from retained counters;
 they do not need the source project's pricing-triggered transcript reprocess.
 
 Focused source-ingestion and task-story checks (no model calls):

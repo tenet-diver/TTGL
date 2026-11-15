@@ -1,10 +1,10 @@
-# Usage Observatory architecture
+# Observatory architecture
 
-TTGL applies the supplied Claude Mining references to its existing Observatory.
+Observatory applies the supplied Claude Mining references to its native task and evidence workspace.
 The implementation is Python stdlib, SQLite and native DOM, with a separate
 Langfuse deployment. It does not require a Next.js rewrite, a second ClickHouse
 schema, Garage, or a new agent framework. Existing Langfuse components supply the
-trace backend; TTGL adds source reconciliation, task grouping and evidence review.
+trace backend; Observatory adds source reconciliation, task grouping and evidence review.
 
 ## Parts and ownership
 
@@ -36,7 +36,7 @@ or malformed session records an error without stopping other files, and is retri
 on the next scan. A failed stat has no successful signature.
 
 Database writes for one parsed file are transactional. Previously recorded model
-usage cannot silently change: reconciliation is required. TTGL preserves existing
+usage cannot silently change: reconciliation is required. Observatory preserves existing
 source evidence rather than adopting the reference's replace-old-rows behavior.
 SQLite is authoritative for workspace state; `FINAL` applies only to relevant
 ClickHouse tables in the separate backend, not to workspace SQL.
@@ -48,7 +48,7 @@ model or resume paused schedules.
 
 ## Task and data model
 
-| Reference concept | TTGL mapping |
+| Reference concept | Observatory mapping |
 | --- | --- |
 | Trace / turn | Native session and turn, retaining source identity and project/repository |
 | Generation | Native response counters and model; cached input is a subset of input |
@@ -63,7 +63,7 @@ A prompt follow-up is not automatically a correction or intervention. Completion
 of a command is not proof of task success. Keep unclassified activity inspectable.
 Task types, grouping, knowledge candidates and confidence are interpretations;
 source measurements remain unchanged. Do not copy the reference's `new_tasks`
-counting formula onto TTGL's explicit task assignments.
+counting formula onto Observatory's explicit task assignments.
 
 ## Task story and evidence
 
@@ -90,7 +90,7 @@ alternative daily/session aggregations, transport spans or allocations to native
 response totals.
 
 Per-tool call-cost shares and future context-cache costs from the reference are
-estimates, not currently measured TTGL per-tool costs. Keep them unattributed until
+estimates, not currently measured Observatory per-tool costs. Keep them unattributed until
 a documented attribution method is implemented. Rate changes recalculate scenarios;
 they do not require reparsing native token counters. Recorded operation runtime,
 background-process lifetime, overlapping tool time and task elapsed span remain
@@ -103,15 +103,15 @@ action, risk and validation plan. Accepting a suggestion records a trial decisio
 it neither applies a code change nor claims savings. Preserve failed trials and
 immutable attempts. Keep decision, implementation and evaluation separate.
 
-TTGL's analyst tools expose bounded evidence queries and read-only review behavior.
+Observatory's analyst tools expose bounded evidence queries and read-only review behavior.
 The reference's Claude runner, single SQL shell command, four-table ClickHouse
-principal and fixed 200-row/20-second settings are not TTGL interfaces. Do not
+principal and fixed 200-row/20-second settings are not Observatory interfaces. Do not
 advertise them as existing controls. Review actual tool capabilities and runtime
 isolation before expanding an agent's access.
 
 ## Archive and live-steering boundaries
 
-TTGL reads retained native archived sessions and has private HTTP/capture archives.
+Observatory reads retained native archived sessions and has private HTTP/capture archives.
 These do not establish a full transcript-retention service. The reference's
 archive-before-ingest, preserved pre-truncation versions, archive-only session
 reprocessing and archive-size dashboard remain additional product work. Do not

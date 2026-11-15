@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""TTGL analyst CLI: same tools and validation as the MCP, JSON in/out."""
+"""Observatory analyst CLI: same tools and validation as the MCP, JSON in/out."""
 import argparse
 import json
 from pathlib import Path

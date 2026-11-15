@@ -3,9 +3,9 @@ requires = ["setuptools>=75"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ttgl-research"
+name = "observatory-research"
 version = "0.1.0"
-description = "Reproducible experiments in conversational routing for agentic software engineering"
+description = "Observatory: coding-agent usage, task evidence and reproducible collaboration research"
 requires-python = ">=3.12"
 dependencies = [
   "numpy==2.5.4",
