@@ -132,3 +132,8 @@ filters remain visible and can be edited, cleared individually, or reset togethe
 Unknown values are distinct from zero and from the literal text “Unknown”. The
 same menu works inside dialogs; Escape or clicking outside dismisses it, and
 Shift+F10 opens it from a focused cell. Input fields retain their native edit menu.
+
+Project, workspace and range controls live in a compact single row above the page
+title. On small screens, range uses a native dropdown; additional controls can be
+scrolled horizontally. Filters and search drafts keep their values and focus when
+results refresh.

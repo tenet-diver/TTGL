@@ -3954,3 +3954,23 @@ settings and mutation flows also passed. A test-driver timing race was corrected
 by waiting for select-triggered navigation before clicking the next control.
 Raw logs and screenshots remain private under the value-filter maintenance receipt.
 The active finite bulk queue and its frozen generation sources remain untouched.
+
+## 15 November 2026 — compact top scope controls
+
+Project/workspace/range selectors now occupy one compact, horizontally scrollable
+row above the page title. The shared filter form is moved intact so its existing
+submit handlers stay attached. On mobile, the range segments become a keyboard-
+accessible native dropdown. Work-search filters and legacy scope selectors use the
+same top placement. Filter rows measure at most 48 CSS pixels at tested widths.
+
+The mount hook runs only for the current load epoch, clears obsolete scope forms
+on navigation, and preserves focused inputs/carets. A delayed-response fixture
+verifies that a draft search survives a prior request completing after the move.
+Range, project and workspace changes, URL persistence, and mobile filtering pass.
+Validation: 259 checks discovered; 234 pass, including all 16 Firefox workflows;
+25 legacy optional Chromium checks remain skipped. The existing 17-view navigation
+check also asserts compact row height and placement at 1440/768/390 CSS pixels.
+
+These are static HTML/JS/CSS updates served directly by the existing app. No new
+dependency, backend migration, web restart, model call or queue worker was needed.
+Research schedules and the active analyzer's generation source files stay unchanged.

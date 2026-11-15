@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 import time
+import threading
 import unittest
 from unittest.mock import patch
 import urllib.request
@@ -62,11 +63,28 @@ class WorkspaceWebDriverTests(unittest.TestCase):
             for view in views:
                 with self.subTest(width=width,view=view):
                     self.b.nav(view);self.assertLessEqual(self.b.js('return document.documentElement.scrollWidth'),width)
+                    geometry=self.b.js('const form=document.querySelector("#page-scope>form");if(!form)return null;const r=form.getBoundingClientRect();return {height:r.height,bottom:r.bottom,title:document.querySelector(".page-header").getBoundingClientRect().top};');
+                    if geometry:self.assertLessEqual(geometry['height'],48);self.assertLessEqual(geometry['bottom'],geometry['title'])
         self.b.size(1440);self.b.js('document.documentElement.dataset.theme="light"');self.b.click('#theme')
         self.goto('/?range=all#settings');self.assertEqual(self.b.js('return document.documentElement.dataset.theme'),'dark')
         self.b.fill('.rate-editor',json.dumps(dict(unit='USD',as_of='2026-11-15',models={})));self.b.button('Save rate scenario');self.contains('#toast','saved')
         self.assertEqual(json.load(urllib.request.urlopen(self.origin+'/api/work-cost-rates'))['models'],{})
         self.assert_clean()
+
+    def test_top_scope_controls_apply_persist_and_keep_search_drafts(self):
+        import work_analytics
+        with self.f.store.connection() as c:project=c.execute('SELECT project_id FROM tasks WHERE id=?',(self.task,)).fetchone()[0]
+        self.b.click('#page-scope [data-range="1d"]');self.b.ready();self.assertIn('range=1d',self.b.request('/url'))
+        self.b.click('#page-scope [data-range="all"]');self.b.ready();self.b.select('#page-scope [name=project]',project);self.b.select('#page-scope [name=workspace]','/repo');self.b.button('Apply filters','#page-scope');self.b.ready();self.assertIn('workspace=%2Frepo',self.b.request('/url'))
+        self.goto(self.b.request('/url').removeprefix(self.origin));self.assertEqual(self.b.js('return document.querySelector("#page-scope [name=project]").value'),project)
+        self.b.size(390);self.b.select('#page-scope [name=range]','7d');self.b.button('Apply filters','#page-scope');self.b.ready();self.assertIn('range=7d',self.b.request('/url'));self.assertLessEqual(self.b.js('return document.querySelector("#page-scope>form").getBoundingClientRect().height'),48)
+        self.b.size(1440);self.b.nav('tasks');self.b.fill('[data-work-search] [name=query]','Fix')
+        original=work_analytics.overview;started=threading.Event();release=threading.Event();self.addCleanup(release.set)
+        def delayed(*args,**kwargs):
+            started.set();release.wait(10);return original(*args,**kwargs)
+        with patch.object(work_analytics,'overview',side_effect=delayed):
+            self.b.button('Search','[data-work-search]');self.assertTrue(started.wait(3));self.b.fill('[data-work-search] [name=query]','Pending draft');self.b.js('document.activeElement.setSelectionRange(3,3)');release.set();self.b.ready()
+        self.assertEqual(self.b.js('return document.querySelector("[data-work-search] [name=query]").value'),'Pending draft');self.assertEqual(self.b.js('return document.activeElement.selectionStart'),3);self.assert_clean()
 
     def test_global_task_pagination_sort_filter_and_preferences(self):
         self.many_tasks();self.b.nav('tasks');self.assertEqual(self.b.count('[data-table=work-tasks] tbody tr'),20)

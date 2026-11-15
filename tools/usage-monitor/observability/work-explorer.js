@@ -87,7 +87,7 @@ export async function renderExplorer(root,{view,data,taskId,project,onProject,on
   }
   if(view==='tasks'&&taskId)html='<div data-work-detail><p role="status">Loading task hierarchy…</p></div>';
   // A prior result may arrive while the user is drafting the next search.
-  const previousSearch=root.querySelector('[data-work-search] [name="query"]');
+  const previousSearch=root.querySelector('[data-work-search] [name="query"]')||document.querySelector('#page-scope [data-work-search] [name="query"]');
   const draft=previousSearch===document.activeElement?{value:previousSearch.value,start:previousSearch.selectionStart,end:previousSearch.selectionEnd}:null;
   root.innerHTML=html;mountTableMenus();
   if(draft){
