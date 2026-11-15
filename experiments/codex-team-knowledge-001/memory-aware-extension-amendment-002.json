@@ -1,0 +1,22 @@
+{
+  "id": "memory-aware-extension-amendment-002",
+  "at": "2026-11-11T17:25:57.421881+00:00",
+  "phase": "development mechanism; no scored extension assignments yet",
+  "changes": [
+    {
+      "component": "Mem0 adapter",
+      "change": "Use supported filters user_id for search",
+      "prior_failure": "mem0-backend-001",
+      "corrected_check": "mem0-backend-002"
+    },
+    {
+      "component": "Graphiti retrieval",
+      "change": "Use stock COMBINED_HYBRID_SEARCH_RRF through search_ and expose original episode record IDs; fact-only search lost access to zero-edge episodes",
+      "prior_failure": "graphiti-native-001",
+      "new_candidate": "graphiti-native-002",
+      "no_task_specific_rule": true
+    }
+  ],
+  "preserves": "All model calls, failed checks, raw records and versioned source hashes/snapshots; no automatic retry",
+  "coding_generation": "still gated; no held-out policy tuning"
+}

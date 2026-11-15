@@ -1,0 +1,61 @@
+{
+  "at": "2026-11-11T19:39:23.350987+00:00",
+  "candidate": "Previously reviewed Cognee1.6.7/MCP dependency resolution; not a claim about every possible Cognee deployment",
+  "affected_component": "transformers==4.57.6",
+  "unique_ghsa_findings": [
+    {
+      "id": "GHSA-29pf-2h5f-8g72",
+      "summary": "HuggingFace transformers vulnerable to remote code execution",
+      "severity": "HIGH",
+      "source": "https://github.com/advisories/GHSA-29pf-2h5f-8g72",
+      "fix_references": [
+        "https://github.com/huggingface/transformers/commit/a7f8e7ff37d87d1a1a0c8cf607971c607741452f"
+      ]
+    },
+    {
+      "id": "GHSA-69w3-r845-3855",
+      "summary": "HuggingFace Transformers allows for arbitrary code execution in the `Trainer` class",
+      "severity": "MODERATE",
+      "source": "https://github.com/advisories/GHSA-69w3-r845-3855",
+      "fix_references": [
+        "https://github.com/huggingface/transformers/commit/03c8082ba4594c9b8d6fe190ca9bed0e5f8ca396"
+      ]
+    },
+    {
+      "id": "GHSA-fgcw-684q-jj6r",
+      "summary": "huggingface/transformers: Arbitrary Code Execution During Model Initialization in the LightGlue Model Loading Path",
+      "severity": "HIGH",
+      "source": "https://github.com/advisories/GHSA-fgcw-684q-jj6r",
+      "fix_references": [
+        "https://github.com/huggingface/transformers/commit/676559d5022b74aaa0cee1cee0842b7f27c5320e"
+      ]
+    },
+    {
+      "id": "GHSA-x9r9-c232-4q39",
+      "summary": "Hugging Face Transformers downloads custom generation code before trust consent",
+      "severity": "HIGH",
+      "source": "https://github.com/advisories/GHSA-x9r9-c232-4q39",
+      "fix_references": [
+        "https://github.com/huggingface/transformers/commit/cbc1651a032b923da7f4b44b3d0e6f68e6ba6b55"
+      ]
+    },
+    {
+      "id": "GHSA-xrqw-3rrv-vx5w",
+      "summary": "Transformers save_pretrained path traversal allows arbitrary file writes through chat template names",
+      "severity": "HIGH",
+      "source": "https://github.com/advisories/GHSA-xrqw-3rrv-vx5w",
+      "fix_references": [
+        "https://github.com/huggingface/transformers/commit/eaaaf8494dd5386634ae37d1d122212fdc315be5"
+      ]
+    }
+  ],
+  "decision": "Affected candidate blocked under user dependency policy; neither affected graph installed",
+  "exploited": false,
+  "reachability_in_selected_Cognee_MCP_configuration_established": false,
+  "coding_quality_score": null,
+  "qualifications": [
+    "Several findings concern specific model-loading, training or serialization paths. Version matches do not establish that this MCP configuration exposes every path.",
+    "Patched Transformers major-version requirements conflict with the reviewed Cognee huggingface-hub<1 constraint. A separately reviewed minimal/patched integration could differ.",
+    "Qwen Graphiti preparation failures are a different issue: output fidelity/provider compatibility. Luna Graphiti is now a scored condition; it is not silently substituted into the completed pilot."
+  ]
+}

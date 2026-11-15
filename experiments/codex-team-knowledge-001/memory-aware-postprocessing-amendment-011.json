@@ -1,0 +1,22 @@
+{
+  "id": "memory-aware-postprocessing-amendment-011",
+  "at": "2026-11-11T23:03:15.064577+00:00",
+  "registered_before_assignment": 33,
+  "confirmed_task_model_attempts": 32,
+  "remaining_uninvoked": 24,
+  "preserved_failure": "Cell32 TinyDB/Mem0/Luna at capacity8 stops on observed token threshold, with one of200 non-skipped prescribed tests failing. Original grade/source retained; no attempt, publication or grade repeated.",
+  "audit_stop": "Original audit refuses a still-active maintenance process. Once it ends, strict reconciliation finds completed provider responses absent from the stopped native transcript; both failed audit attempts are retained.",
+  "postprocessing": "Passive wait, maximum180 seconds, for already-started owned maintenance after coding and broker close. No signal, restart or new request; in-flight inference remains charged. Failure stops for independent audit.",
+  "accounting": "Versioned read-only auditor retains positive completed captures linked to an owned session/model even when its native record is missing. Deduplicate response IDs; validate token subsets and original/forwarded request hashes; mark native coverage gap and keep total unknown. Native-correlated and single-witness capture measurements stay separate.",
+  "runtime_recovery": "Daemon restart occurs after stopped cell32 and before33 preparation. Own capture/Neo4j services are restored from unchanged pinned artifacts, with existing source captures/database retained. No active cell repeated; no external service/normal routing/schedule changed.",
+  "unchanged": [
+    "coding and memory prompts",
+    "models",
+    "memory algorithms",
+    "task/inference budgets",
+    "assignment order",
+    "prescribed grader",
+    "earlier runtime and transport sources"
+  ],
+  "automatic_model_retries": 0
+}

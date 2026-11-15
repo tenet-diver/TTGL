@@ -2,13 +2,18 @@
 
 Rustam Ilgar Eynaliyev  
 Latest Advancements in Artificial Intelligence  
-Working study, 11 November 2026 · Draft 0.2 — completed development pilot
+Working study, 11 November 2026 · Draft 0.3 — completed pilot and registered extensions
 
 *Shared knowledge and the scalability of native Codex coding teams*
 
 **Status:** the 24-assignment development pilot is complete. The prospective
 draft preceded inference; its proposed broader service/evaluation panel remains
-separate from the executed pilot. An [80-assignment reserved-library extension](reserved-extension.md) is frozen; its model results are pending.
+separate from the executed pilot. The [80-assignment reserved-library extension](reserved-extension.md)
+has one verified completion and one uncertain started assignment at the latest
+inspection; its comparison is incomplete. A separate
+[56-cell memory-aware development extension](appendix.md#d-separate-registered-extensions)
+has its [current/final results reported separately](memory-aware-results.md)
+after backend/native access gates. These outcomes are not pooled.
 Earlier TTGL memory studies are preserved independently. See the
 [completed pilot report](pilot-results.md) and [preparation evidence](preparation-results.md).
 
@@ -28,8 +33,10 @@ completion gain. MCP agents publish 91 observations, but all four read queries
 return empty results: these runs do not demonstrate retrieval of peer findings.
 Seventeen cells have incomplete stream-usage records, so their cost totals
 remain lower bounds. One parent stream fails despite a passing sealed artifact.
-Local Graphiti readiness fails and a compatible Cognee dependency graph remains
-blocked by confirmed advisory matches; neither receives a coding score. The
+The tested local-Qwen Graphiti configuration fails readiness; a separately
+versioned Luna configuration subsequently passes mechanism checks. A compatible
+Cognee dependency graph remains blocked by confirmed advisory matches. Neither
+supplies a coding result in this completed pilot. The
 pilot identifies availability, adoption and measurement boundaries, not a general
 knowledge-driven acceleration effect. Larger reserved workloads and separately
 frozen knowledge-use controls remain to be evaluated.
@@ -112,6 +119,13 @@ evaluations do not by themselves establish benefits for coding teams. Cognee
 provides an existing self-hosted knowledge engine with a documented MCP
 interface [10]. Its behavior and dependencies must be pinned, rather than
 treating a product name as an immutable method.
+
+Park and colleagues' generative agents retain natural-language experiences,
+retrieve them and synthesize reflections in a social simulation [16]. Our
+Smallville condition adapts the published memory components for coding-team
+records; it does not reproduce the full simulation or evaluate believable human
+behavior. The searchable-log control uses SQLite's existing FTS5 full-text
+index [17], keeping lexical retrieval distinct from model-created graph facts.
 
 Commit0 supplies library implementation tasks with source skeletons,
 specifications and executable tests [11]. It is suitable for studying dependent
@@ -281,6 +295,59 @@ its explicit Codespace exception for incomplete evidence. Confirmed vulnerabilit
 findings block affected candidates. Existing services, credentials and historical
 study artifacts are preserved. No scheduled research is enabled.
 
+### 4.5 Memory-aware seven-arm extension
+
+A separate local registration crosses the same two development libraries with
+seven conditions and capacities one, two, four and eight: 56 cells, one attempt
+each. Native execution, a shared notebook and official MCP memory are matched
+controls for self-hosted Mem0/Luna, Graphiti/Luna, adapted Smallville/Luna and
+shared searchable visible logs. Sol low performs all coding; Luna supplies
+model-based memory extraction, importance and reflection. Offline pinned BGE
+supplies embeddings. The matrix, shuffled order, tool descriptions and common
+knowledge-use protocol were finalized before scored inference.
+
+Every parent and child receives the actual available tool names, scope and
+instructions to publish source-backed fallible findings, retrieve before
+dependent work, and revalidate after integration. All workers in a cell share
+one store, while stores are empty and isolated between cells. The log arm uses
+existing SQLite FTS5 over allowlisted visible messages, coordination events and
+repository tools, with original-record paging. Hidden reasoning, unavailable
+encrypted messages, credentials and evaluator records are excluded. This is
+within-task sharing, not accumulated experience across the 56 assignments.
+
+Graphiti uses its stock combined RRF interface, including original episodes;
+the failed fact-only candidate remains preparation evidence. Mem0 uses the
+disclosed dense configuration. Smallville reuses pinned author storage, ranking
+and reflection code through a compatibility adapter; its natural threshold is
+not forced to produce reflections. Each cell receives 30 minutes, 120 shared
+terminal calls and a four-million-observed-token stop threshold including
+memory maintenance, with in-flight overshoot retained. All parent, worker and
+maintenance responses are audited together.
+
+An additional native-dependency review after assignment12 identifies affected
+Pillow-bundled codecs. The original queue stops before assignment13 invokes a
+model. A prospective security amendment excludes Pillow and image APIs through
+an explicit text-only FastEmbed import derivative: 14 text source files and
+tokenizer function bodies remain unchanged, and eight recorded embedding
+vectors reproduce exactly. Original model-facing agent, broker and memory
+algorithm sources remain frozen. The dependency strata are labeled separately;
+this is not claimed to be one unchanged software artifact. A subsequent
+container-start timeout and recovery log collision are independently verified
+as preparation-only, before any model intent. Their whole preparation directory
+is preserved before fresh preparation is allowed. All preparation
+failures and the checkpoint-write reconstruction are retained.
+
+The [protocol](../../../experiments/codex-team-knowledge-001/memory-aware-extension-protocol-001.json),
+[security amendment](../../../experiments/codex-team-knowledge-001/memory-aware-security-amendment-004.json),
+[continuation record](../../../experiments/codex-team-knowledge-001/memory-aware-continuation-finalized-009.json)
+and [appendix](appendix.md) specify the executed variants.
+A [transport amendment](../../../experiments/codex-team-knowledge-001/memory-aware-transport-amendment-008.json)
+preserves two later native thread-start timeouts before task input as preparation
+failures. Their original records remain separate. Only pre-model setup gets a
+longer single-request wait; inference retries, prompts and budgets stay fixed. The extension is
+a development comparison with a disclosed runtime amendment, not held-out evidence
+or a pure comparison of graph and text representations.
+
 ## 5. Evaluation and analysis
 
 ### 5.1 Independent correctness
@@ -449,10 +516,12 @@ dependency graph contains confirmed advisory matches. All failures are retained.
 
 ### 6.5 Generalization
 
-**Held-out generalization was not measured.** The twelve reserved libraries
-have data/environment preparation only, not model-quality results. The pilot
-does not measure accumulation across distinct tasks, changes to model weights,
-or innovation new to the world.
+**The pilot does not measure held-out generalization.** The separate reserved
+extension has begun but is incomplete; its partial outcomes are documented in
+the appendix. The new multi-system comparison reuses development tasks and
+cannot establish held-out transfer. None of these pilot outcomes measures
+accumulation across distinct tasks, changes to model weights or innovation new
+to the world.
 
 ## 7. Discussion
 
@@ -466,7 +535,9 @@ A controlled extension should separate storage availability from a general
 knowledge-use protocol, including relevant retrieval before dependent work and
 verification after changes. A matched native communication-protocol control
 is necessary so that an improvement is not attributed to storage when it comes
-from clearer instructions. This is a proposed next comparison, not a result.
+from clearer instructions. The registered extensions test these deployment
+policies; their coverage and outcomes are reported separately from the completed
+pilot rather than pooled across policies.
 Larger reserved workloads are needed because short, familiar libraries and
 underused capacity leave limited scope for additional shared experience.
 
@@ -519,6 +590,8 @@ protocol rather than an assumption that storage causes learning.
 13. Zep maintainers. *Graphiti MCP Server*. https://help.getzep.com/graphiti/getting-started/mcp-server
 14. OpenAI. *Subagents*. https://learn.chatgpt.com/docs/agent-configuration/subagents
 15. OpenAI. *Codex App Server*. https://learn.chatgpt.com/docs/app-server
+16. Park, J. S., et al. (2023). *Generative Agents: Interactive Simulacra of Human Behavior*. https://arxiv.org/abs/2304.03442
+17. SQLite maintainers. *SQLite FTS5 Extension*. https://www.sqlite.org/fts5.html
 
 ## Reproducibility record
 
@@ -530,3 +603,10 @@ The [local frozen protocol and amendment chain](../../../experiments/codex-team-
 record execution and interpretation. This is local registration, not a claim of
 external preregistration. Raw receipt archives are losslessly retained locally.
 Private credentials and raw private captures remain outside tracked files.
+
+## Appendix
+
+The [experiment appendix](appendix.md) records setup, budgets, source-verified
+examples of actual publications and an empty retrieval, communication-coverage
+limits, and the separately registered memory-aware Mem0/Graphiti/Smallville/log
+extension. Preparation checks are distinct from completed coding results.

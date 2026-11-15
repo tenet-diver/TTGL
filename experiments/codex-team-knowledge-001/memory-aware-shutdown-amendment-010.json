@@ -1,0 +1,13 @@
+{
+  "id": "memory-aware-shutdown-amendment-010",
+  "at": "2026-11-11T22:02:15.917301+00:00",
+  "registered_before_assignment": 28,
+  "prior_task_model_calls": 27,
+  "remaining_uninvoked_assignments": 29,
+  "observed_failure": "Cell27 native parent completed and source container stopped successfully. Broker shutdown exceeded30 seconds, stopping orchestration before independent replay. A graph export exists; service exit code is unobserved and an unfinished publication is retained.",
+  "recovery": "Finish only independent grade, usage audit and lossless archive of the same saved source; no model, service or publication restart. Preserve prior stop and every unknown receipt.",
+  "prospective_change": "For uninvoked cells28\u201356 only, extend post-generation broker shutdown wait from30 to180 seconds. No inference deadline, coding/memory prompt, extraction algorithm, model, retry, store or budget changes.",
+  "future_failure": "Stop for independent audit if shutdown still fails. No automatic kill/retry, fallback or started-call repeat.",
+  "outcomes": "Normal native parent completion, source replay, memory-operation completion and service shutdown are separate outcomes. Passing source does not imply every publication finished or first-launch reliability.",
+  "automatic_model_retries": 0
+}

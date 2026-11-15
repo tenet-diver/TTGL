@@ -1,0 +1,70 @@
+--- a/fastembed/__init__.py
++++ b/fastembed/__init__.py
+@@ -1,8 +1,5 @@
+ import importlib.metadata
+ 
+-from fastembed.image import ImageEmbedding
+-from fastembed.late_interaction import LateInteractionTextEmbedding
+-from fastembed.late_interaction_multimodal import LateInteractionMultimodalEmbedding
+ from fastembed.sparse import SparseEmbedding, SparseTextEmbedding
+ from fastembed.text import TextEmbedding
+ 
+@@ -16,7 +13,4 @@
+     "TextEmbedding",
+     "SparseTextEmbedding",
+     "SparseEmbedding",
+-    "ImageEmbedding",
+-    "LateInteractionTextEmbedding",
+-    "LateInteractionMultimodalEmbedding",
+ ]
+--- a/fastembed/common/types.py
++++ b/fastembed/common/types.py
+@@ -4,7 +4,6 @@
+ 
+ import numpy as np
+ from numpy.typing import NDArray
+-from PIL import Image
+ 
+ 
+ class Device(str, Enum):
+@@ -14,7 +13,7 @@
+ 
+ 
+ PathInput: TypeAlias = str | Path
+-ImageInput: TypeAlias = PathInput | Image.Image
++ImageInput: TypeAlias = PathInput
+ 
+ OnnxProvider: TypeAlias = str | tuple[str, dict[Any, Any]]
+ NumpyArray: TypeAlias = (
+--- a/fastembed/common/preprocessor_utils.py
++++ b/fastembed/common/preprocessor_utils.py
+@@ -5,7 +5,6 @@
+ 
+ from tokenizers import AddedToken, Tokenizer
+ 
+-from fastembed.image.transform.operators import Compose
+ 
+ 
+ def load_special_tokens(model_dir: Path) -> dict[str, Any]:
+@@ -148,7 +147,8 @@
+     return tokenizer, special_token_to_id
+ 
+ 
+-def load_preprocessor(model_dir: Path) -> Compose:
++def load_preprocessor(model_dir: Path) -> Any:
++    raise NotImplementedError("Image preprocessing excluded from TTGL text-only derivative")
+     preprocessor_config_path = model_dir / "preprocessor_config.json"
+     if not preprocessor_config_path.exists():
+         raise ValueError(f"Could not find preprocessor_config.json in {model_dir}")
+--- a/fastembed-0.9.1.dist-info/METADATA
++++ b/fastembed-0.9.1.dist-info/METADATA
+@@ -28,9 +28,6 @@
+ Requires-Dist: tokenizers>=0.15,<1.0
+ Requires-Dist: huggingface-hub>=0.20,<2.0
+ Requires-Dist: loguru>=0.7.2,<0.8
+-Requires-Dist: pillow>=10.3.0,<14.0 ; python_full_version >= '3.10' and python_full_version < '3.13'
+-Requires-Dist: pillow>=11.0.0,<14.0 ; python_full_version == '3.13.*'
+-Requires-Dist: pillow>=12.0.0,<14.0 ; python_full_version >= '3.14'
+ Requires-Dist: mmh3>=4.1.0,<6.0.0
+ Requires-Dist: py-rust-stemmers>=0.1.0,<0.2
+ Requires-Python: >=3.10.0

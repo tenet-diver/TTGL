@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-11T19:23:39.578203+00:00",
+  "registered_before_assignment": 13,
+  "continued_assignments": 44,
+  "configuration_sha256": "bba994a2b5993e58e49102c0205db9b7eb72d34c8e746e140b8a057873b10279",
+  "per_cell_source_hashes": 139,
+  "once_at_launch_runtime_hashes": 11046,
+  "gates": 18,
+  "automatic_retries": 0,
+  "preparation_audit": "Whole failed013 preparation preserved outside the scored cell directory; exact absence of model intents/rollouts/maintenance proven. Fresh preparation from frozen source allowed once; no scored attempt repeated.",
+  "generation_sources_and_policy_unchanged": true
+}

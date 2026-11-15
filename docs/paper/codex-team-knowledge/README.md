@@ -1,5 +1,12 @@
 # Native Codex teams and shared knowledge
 
+**15 November status:** the separate memory-aware extension is incomplete:
+39 of 56 assignments are checkpointed, with 38 passing source artifacts and
+37 normal parent completions. The [public snapshot](memory-aware-results.md)
+was refreshed read-only; no generation or publication worker was observed.
+No model calls were repeated or resumed. The older handoff's running PIDs are
+historical. See the [consolidated experiment index](../../EXPERIMENTS.md).
+
 Read the [paper](paper.md) and [completed 24-run pilot](pilot-results.md), with
 [CSV](pilot-cells.csv), [sanitized results](pilot-results.json) and
 [standalone plots](figures/pilot-scaling.pdf). The prospective draft preceded
@@ -20,3 +27,10 @@ research schedules remain unchanged.
 The [reserved-library extension](reserved-extension.md) freezes 80 assignments on
 five admitted libraries, crossing native capacity, added MCP memory and explicit
 knowledge-use guidance. Its results remain pending.
+
+The [appendix](appendix.md) includes actual memory/coordination examples with
+[source hashes](appendix-evidence-001.json), setup details and the separately
+registered memory-aware Mem0/Graphiti/Smallville/searchable-log extension.
+
+[Current extension progress](memory-aware-results.md) is separate from the pilot;
+that report records the current/final state of the registered 56-cell matrix.

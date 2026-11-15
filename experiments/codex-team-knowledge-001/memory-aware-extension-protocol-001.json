@@ -1,0 +1,399 @@
+{
+  "id": "memory-aware-team-extension-001",
+  "registered_at": "2026-11-11T17:12:40.808802+00:00",
+  "registration": "Local prospective registration before new model invocation",
+  "state": "preparation_and_mechanism_gates_pending",
+  "scope": "Separate development extension; historical pilot and reserved-factorial-001 remain unchanged",
+  "tasks": [
+    "simpy",
+    "tinydb"
+  ],
+  "arms": [
+    "native",
+    "notebook",
+    "mcp_memory",
+    "mem0_luna",
+    "graphiti_luna",
+    "smallville_luna",
+    "searchable_logs"
+  ],
+  "capacities": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "planned_assignments": 56,
+  "assignments": [
+    {
+      "task": "simpy",
+      "arm": "notebook",
+      "total_agent_capacity": 1,
+      "directory": "001-simpy-notebook-1"
+    },
+    {
+      "task": "tinydb",
+      "arm": "notebook",
+      "total_agent_capacity": 4,
+      "directory": "002-tinydb-notebook-4"
+    },
+    {
+      "task": "simpy",
+      "arm": "searchable_logs",
+      "total_agent_capacity": 8,
+      "directory": "003-simpy-searchable_logs-8"
+    },
+    {
+      "task": "tinydb",
+      "arm": "native",
+      "total_agent_capacity": 1,
+      "directory": "004-tinydb-native-1"
+    },
+    {
+      "task": "simpy",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 4,
+      "directory": "005-simpy-mem0_luna-4"
+    },
+    {
+      "task": "tinydb",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 4,
+      "directory": "006-tinydb-smallville_luna-4"
+    },
+    {
+      "task": "simpy",
+      "arm": "notebook",
+      "total_agent_capacity": 8,
+      "directory": "007-simpy-notebook-8"
+    },
+    {
+      "task": "tinydb",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 1,
+      "directory": "008-tinydb-graphiti_luna-1"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 1,
+      "directory": "009-tinydb-mem0_luna-1"
+    },
+    {
+      "task": "tinydb",
+      "arm": "notebook",
+      "total_agent_capacity": 2,
+      "directory": "010-tinydb-notebook-2"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mcp_memory",
+      "total_agent_capacity": 4,
+      "directory": "011-tinydb-mcp_memory-4"
+    },
+    {
+      "task": "tinydb",
+      "arm": "searchable_logs",
+      "total_agent_capacity": 4,
+      "directory": "012-tinydb-searchable_logs-4"
+    },
+    {
+      "task": "simpy",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 1,
+      "directory": "013-simpy-graphiti_luna-1"
+    },
+    {
+      "task": "simpy",
+      "arm": "mcp_memory",
+      "total_agent_capacity": 2,
+      "directory": "014-simpy-mcp_memory-2"
+    },
+    {
+      "task": "tinydb",
+      "arm": "notebook",
+      "total_agent_capacity": 8,
+      "directory": "015-tinydb-notebook-8"
+    },
+    {
+      "task": "tinydb",
+      "arm": "native",
+      "total_agent_capacity": 2,
+      "directory": "016-tinydb-native-2"
+    },
+    {
+      "task": "tinydb",
+      "arm": "notebook",
+      "total_agent_capacity": 1,
+      "directory": "017-tinydb-notebook-1"
+    },
+    {
+      "task": "simpy",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 2,
+      "directory": "018-simpy-mem0_luna-2"
+    },
+    {
+      "task": "simpy",
+      "arm": "native",
+      "total_agent_capacity": 2,
+      "directory": "019-simpy-native-2"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mcp_memory",
+      "total_agent_capacity": 8,
+      "directory": "020-tinydb-mcp_memory-8"
+    },
+    {
+      "task": "tinydb",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 1,
+      "directory": "021-tinydb-smallville_luna-1"
+    },
+    {
+      "task": "simpy",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 8,
+      "directory": "022-simpy-mem0_luna-8"
+    },
+    {
+      "task": "tinydb",
+      "arm": "searchable_logs",
+      "total_agent_capacity": 1,
+      "directory": "023-tinydb-searchable_logs-1"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mcp_memory",
+      "total_agent_capacity": 2,
+      "directory": "024-tinydb-mcp_memory-2"
+    },
+    {
+      "task": "simpy",
+      "arm": "native",
+      "total_agent_capacity": 4,
+      "directory": "025-simpy-native-4"
+    },
+    {
+      "task": "simpy",
+      "arm": "searchable_logs",
+      "total_agent_capacity": 1,
+      "directory": "026-simpy-searchable_logs-1"
+    },
+    {
+      "task": "simpy",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 8,
+      "directory": "027-simpy-graphiti_luna-8"
+    },
+    {
+      "task": "simpy",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 1,
+      "directory": "028-simpy-mem0_luna-1"
+    },
+    {
+      "task": "simpy",
+      "arm": "native",
+      "total_agent_capacity": 8,
+      "directory": "029-simpy-native-8"
+    },
+    {
+      "task": "simpy",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 8,
+      "directory": "030-simpy-smallville_luna-8"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 2,
+      "directory": "031-tinydb-mem0_luna-2"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 8,
+      "directory": "032-tinydb-mem0_luna-8"
+    },
+    {
+      "task": "simpy",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 2,
+      "directory": "033-simpy-smallville_luna-2"
+    },
+    {
+      "task": "simpy",
+      "arm": "notebook",
+      "total_agent_capacity": 4,
+      "directory": "034-simpy-notebook-4"
+    },
+    {
+      "task": "simpy",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 4,
+      "directory": "035-simpy-graphiti_luna-4"
+    },
+    {
+      "task": "simpy",
+      "arm": "searchable_logs",
+      "total_agent_capacity": 4,
+      "directory": "036-simpy-searchable_logs-4"
+    },
+    {
+      "task": "simpy",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 4,
+      "directory": "037-simpy-smallville_luna-4"
+    },
+    {
+      "task": "tinydb",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 2,
+      "directory": "038-tinydb-graphiti_luna-2"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mcp_memory",
+      "total_agent_capacity": 1,
+      "directory": "039-tinydb-mcp_memory-1"
+    },
+    {
+      "task": "tinydb",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 4,
+      "directory": "040-tinydb-graphiti_luna-4"
+    },
+    {
+      "task": "tinydb",
+      "arm": "native",
+      "total_agent_capacity": 4,
+      "directory": "041-tinydb-native-4"
+    },
+    {
+      "task": "simpy",
+      "arm": "notebook",
+      "total_agent_capacity": 2,
+      "directory": "042-simpy-notebook-2"
+    },
+    {
+      "task": "simpy",
+      "arm": "mcp_memory",
+      "total_agent_capacity": 1,
+      "directory": "043-simpy-mcp_memory-1"
+    },
+    {
+      "task": "simpy",
+      "arm": "searchable_logs",
+      "total_agent_capacity": 2,
+      "directory": "044-simpy-searchable_logs-2"
+    },
+    {
+      "task": "tinydb",
+      "arm": "searchable_logs",
+      "total_agent_capacity": 2,
+      "directory": "045-tinydb-searchable_logs-2"
+    },
+    {
+      "task": "simpy",
+      "arm": "mcp_memory",
+      "total_agent_capacity": 8,
+      "directory": "046-simpy-mcp_memory-8"
+    },
+    {
+      "task": "tinydb",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 2,
+      "directory": "047-tinydb-smallville_luna-2"
+    },
+    {
+      "task": "tinydb",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 8,
+      "directory": "048-tinydb-graphiti_luna-8"
+    },
+    {
+      "task": "tinydb",
+      "arm": "native",
+      "total_agent_capacity": 8,
+      "directory": "049-tinydb-native-8"
+    },
+    {
+      "task": "tinydb",
+      "arm": "searchable_logs",
+      "total_agent_capacity": 8,
+      "directory": "050-tinydb-searchable_logs-8"
+    },
+    {
+      "task": "simpy",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 1,
+      "directory": "051-simpy-smallville_luna-1"
+    },
+    {
+      "task": "simpy",
+      "arm": "mcp_memory",
+      "total_agent_capacity": 4,
+      "directory": "052-simpy-mcp_memory-4"
+    },
+    {
+      "task": "simpy",
+      "arm": "native",
+      "total_agent_capacity": 1,
+      "directory": "053-simpy-native-1"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 4,
+      "directory": "054-tinydb-mem0_luna-4"
+    },
+    {
+      "task": "simpy",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 2,
+      "directory": "055-simpy-graphiti_luna-2"
+    },
+    {
+      "task": "tinydb",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 8,
+      "directory": "056-tinydb-smallville_luna-8"
+    }
+  ],
+  "randomization_seed": 2026111103,
+  "attempts_per_cell": 1,
+  "models": {
+    "coding": "gpt-6.1-sol",
+    "coding_reasoning": "low",
+    "model_based_memory_creation": "gpt-6-luna",
+    "embeddings": "Pinned offline BAAI/bge-small-en-v1.5"
+  },
+  "budgets": {
+    "minutes_per_cell": 30,
+    "shared_terminal_calls": 120,
+    "observed_coding_plus_memory_token_stop_threshold": 4000000,
+    "maintenance_call_cap": 128,
+    "inflight_overshoot_retained": true
+  },
+  "common_guidance": "Identical checked-publication/retrieval/revalidation protocol in every arm; each arm describes its actual tools to all parents and children. Native control uses native messages/shared files.",
+  "shared_scope": "Every parent/child in an assignment uses the same backend/store; empty isolated stores between assignments. No cross-arm or prior-study information.",
+  "log_arm": "SQLite FTS5 over allowlisted observable completed public messages, native coordination prompts and repository MCP inputs/results; exact records pageable. No hidden reasoning, encrypted-state reconstruction, credentials, graders or other assignments. Missing native fields are coverage gaps.",
+  "smallville": "Existing pinned author storage/ranking/reflection + documented CompatibleMemoryV4 modern triple wrapper; Luna importance/reflection. Reflection threshold natural, never forced in scored work.",
+  "mem0": "Existing stock self-hosted Mem0 + native Luna and offline BGE adapter",
+  "graphiti": "Existing stock Graphiti + native Luna/offline BGE + reviewed Neo4j server-only derivative; stock RRF, no reranker/repair fallback",
+  "gates": [
+    "Current package findings absent and exact reviewed artifacts",
+    "Untouched reference passes and skeleton fails under restored shared runtime",
+    "Native actor/evaluator/credential boundary",
+    "Actual per-backend publish/retrieve/fidelity/isolation",
+    "Actual native parent and child tools visibility and reciprocal retrieval",
+    "All parent/worker/maintenance inference captured and reconciled or explicitly unknown"
+  ],
+  "failure_policy": "Zero assignment/provider retries. Preserve started/uncertain calls and failures. No fallback to another memory algorithm. Backend errors remain visible. Any new candidate is separately versioned; no hidden-grade feedback.",
+  "analysis": "Task-paired quality and all-cell time; complete inference only where reconciled, lower bounds otherwise; actual threads, writes, queries, nonempty hits, exact peer exposure and verified subsequent actions separate. Small reused development sample, no held-out/general learning claim.",
+  "appendix": "Exact setup/prompt/tool versions and budgets; deterministic evidence-based snippets with source hashes, actor aliases, explicit source locations, privacy review and coverage limits. Include empty queries/failures and contradictory findings, not just success stories.",
+  "frozen_generation": "Freeze sources and runtime receipts after preflight, before scored generation; record finalized-source manifest separately. No existing frozen files modified.",
+  "scheduled_monitoring": "remains paused"
+}

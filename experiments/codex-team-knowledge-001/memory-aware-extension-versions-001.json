@@ -1,0 +1,590 @@
+{
+  "at": "2026-11-11T17:12:40.977516+00:00",
+  "installed_runtime_metadata": {
+    "memory-runtime": [
+      {
+        "name": "annotated-types",
+        "version": "0.8.0",
+        "metadata_sha256": "614985b278f601b8ef863f82783b991cc3ada4b89f592eb71c7c48c5f2ef2298"
+      },
+      {
+        "name": "anyio",
+        "version": "4.16.0",
+        "metadata_sha256": "b184ac9cd097e2bb7f90d42799346cc91c276095d000d95d7f7ddd407d0c887e"
+      },
+      {
+        "name": "backoff",
+        "version": "2.2.1",
+        "metadata_sha256": "5a07df92ccbe75c0c9e066a8a97ca373c5f1ac4d03433dc56d6c26ac3aa8fba5"
+      },
+      {
+        "name": "certifi",
+        "version": "2026.10.23",
+        "metadata_sha256": "e463e38f7fe7da36a11e6d3fecc5dfa5b97be8c8022620400750d79ae7d842bc"
+      },
+      {
+        "name": "charset-normalizer",
+        "version": "3.5.2",
+        "metadata_sha256": "89ce6362bb7be88558f4be99a98f5d1b4da93d19cd0323e5ee0bac05cf883dfb"
+      },
+      {
+        "name": "click",
+        "version": "8.5.1",
+        "metadata_sha256": "63d23e734a4c63191d956c85a399291729141377c9af847dcd2b4b450e0b81cc"
+      },
+      {
+        "name": "distro",
+        "version": "1.9.0",
+        "metadata_sha256": "31632ab2de5591131091b3397bdcdf797718579d85a75186f06839dd0c09e81d"
+      },
+      {
+        "name": "fastembed",
+        "version": "0.9.1",
+        "metadata_sha256": "90d4c8dc5eb54c1faef2e543edf2e4ee862a58113890ac45b4d64325e1f98e31"
+      },
+      {
+        "name": "filelock",
+        "version": "4.2.9",
+        "metadata_sha256": "53f9b39c11e83c1d6283f2150eb08dd66b9389921c664de90c185d20adfb5438"
+      },
+      {
+        "name": "flatbuffers",
+        "version": "25.12.19",
+        "metadata_sha256": "9f38239f96faa21522a6aadab6912e1e560708bbe9c9f696a0679c9403fa089e"
+      },
+      {
+        "name": "fsspec",
+        "version": "2026.9.0",
+        "metadata_sha256": "68f5a262767510638e9b1933b1493f2baadc9616fe1e696f62aedd59c8c0a37c"
+      },
+      {
+        "name": "grpcio",
+        "version": "1.85.1",
+        "metadata_sha256": "a444f1092daeb14fd997cb4a2ecc7fd92a5aa72d736b70c0d220ba1db8210ee5"
+      },
+      {
+        "name": "h11",
+        "version": "0.16.0",
+        "metadata_sha256": "28f326098ac09fcba79b8f180f96087c841fe2456215cb7b872a9c7d5cd19d64"
+      },
+      {
+        "name": "h2",
+        "version": "4.4.1",
+        "metadata_sha256": "b17f68f6127946c3b748ea5728a9b172589ede2b9cebfa353dd5f05263096c7f"
+      },
+      {
+        "name": "hf-xet",
+        "version": "1.8.0",
+        "metadata_sha256": "04d03dbf3d08734ec5a7cc8cfd7d93c05dda453a9ed0b20d83683ecdd64942e7"
+      },
+      {
+        "name": "hpack",
+        "version": "4.2.0",
+        "metadata_sha256": "d2408cbb7b7d2f4bd041a96a850300da45e1bf79b1a380148a5fc29dcd55255f"
+      },
+      {
+        "name": "httpcore",
+        "version": "1.0.9",
+        "metadata_sha256": "fe2d4fda6199128978779e0cf27f3c045c531863fcdd987eacc74f3a18d41c21"
+      },
+      {
+        "name": "httpcore2",
+        "version": "2.16.0",
+        "metadata_sha256": "c073bd68b2bd543fbc2bab3763b42ed1e70666536d32c1bf39ef2764fd50b0a4"
+      },
+      {
+        "name": "httpx",
+        "version": "0.28.1",
+        "metadata_sha256": "febb9b0f8f3e80d57c8199c304f35c4336e8581d1d18d7983c92766b82793b25"
+      },
+      {
+        "name": "httpx2",
+        "version": "2.16.0",
+        "metadata_sha256": "192f20046200ff50911a7278c21dfbee1e1a4c6fa7943227afe9231d28defc3f"
+      },
+      {
+        "name": "huggingface_hub",
+        "version": "1.33.0",
+        "metadata_sha256": "bee565776d66f486d224f74024b656a69ed42e2639d80b18811fca4365adc42e"
+      },
+      {
+        "name": "hyperframe",
+        "version": "6.1.0",
+        "metadata_sha256": "a29f5792b9459b47658804988520009156ef8c2dea66022c2969a145065bad69"
+      },
+      {
+        "name": "idna",
+        "version": "3.20",
+        "metadata_sha256": "dbd8c14c1e4ca1e0c9824a6dbc7cbbf78884f38eb52d91148cd3025f671e4b85"
+      },
+      {
+        "name": "jiter",
+        "version": "0.19.0",
+        "metadata_sha256": "a22290eab5db80d7ae66777f5bf3c994f0d8e5da30c21efee8d1ba4472309a87"
+      },
+      {
+        "name": "loguru",
+        "version": "0.7.3",
+        "metadata_sha256": "3a371f8b089014fdaee055edc440d448242847926ad67613621af402f9975fd9"
+      },
+      {
+        "name": "mem0ai",
+        "version": "2.2.1",
+        "metadata_sha256": "7dc92a31f8a2fe368909967f1eacf1ec59f3fa2e70edde0a769b0b3a0907315e"
+      },
+      {
+        "name": "mmh3",
+        "version": "5.3.1",
+        "metadata_sha256": "c0e9c9f193d0caa406ca8e603b9c937cd80aa90314da5a9f9b7b5a176ae25a52"
+      },
+      {
+        "name": "numpy",
+        "version": "2.5.4",
+        "metadata_sha256": "e2b909d6a37d76c2bc130f528d7fed0c517322bce16dc7846b6a6df30e200403"
+      },
+      {
+        "name": "onnxruntime",
+        "version": "1.31.1",
+        "metadata_sha256": "82f146c3aad08fd55eadf57e410022535697a858bd6bf760320b2328301d41cf"
+      },
+      {
+        "name": "openai",
+        "version": "3.46.0",
+        "metadata_sha256": "3d7ffaed0f058ce9b4f44c34a66960b9273779099465aabab98ec3ff4b5b9ab5"
+      },
+      {
+        "name": "packaging",
+        "version": "26.3",
+        "metadata_sha256": "70fdb89fc4d4a9a043bf7372b8972bcc883fddff34ab55e9cf80d73875384763"
+      },
+      {
+        "name": "pillow",
+        "version": "13.0.0",
+        "metadata_sha256": "dba7fdfe24e302f46bae562f55d66cc367c0618abae9894a1ebec93dc8f0e511"
+      },
+      {
+        "name": "portalocker",
+        "version": "4.4.2",
+        "metadata_sha256": "b6781e39a9cd00ec4e043d7bb20edf05ea70faf1a66cbe7c74fa09a9df419262"
+      },
+      {
+        "name": "posthog",
+        "version": "7.86.0",
+        "metadata_sha256": "a04fff194212f9b3a895553f16ea45cbc871a8b1333f652f97e0e38a0413fbd2"
+      },
+      {
+        "name": "protobuf",
+        "version": "6.33.6",
+        "metadata_sha256": "6f3b31fd64380f5e60ed10f5a2954699bcc1f6266eb74316f0ba96702d30546f"
+      },
+      {
+        "name": "py_rust_stemmers",
+        "version": "0.1.8",
+        "metadata_sha256": "d14a2a87776c8939a8ba4f858cae029df2e4f41cc6e2ad5403d1130a6ca708d9"
+      },
+      {
+        "name": "pydantic",
+        "version": "2.14.3",
+        "metadata_sha256": "c3eb8984172bedc8e056655e1419351f4497374a91b7b709dbc4a1340f50e1e9"
+      },
+      {
+        "name": "pydantic_core",
+        "version": "2.50.4",
+        "metadata_sha256": "bb1956097beb504f190f8ea20c859b5dfea567679a247ce252d7813dd73f361d"
+      },
+      {
+        "name": "pytz",
+        "version": "2026.6",
+        "metadata_sha256": "25de974e5d389a44fdedb89074f9ce19de3c7ab685b682e9a945d1ab36fc60a5"
+      },
+      {
+        "name": "PyYAML",
+        "version": "6.0.3",
+        "metadata_sha256": "03c3b415ed38d09faedc49360e930769b40c58f68585e6de00e2e4916a858d34"
+      },
+      {
+        "name": "qdrant-client",
+        "version": "1.20.0",
+        "metadata_sha256": "f12c54f1c40bfca714a97af6f7b8c829894ee48e2832d116a6e478416a8a33c9"
+      },
+      {
+        "name": "requests",
+        "version": "2.34.2",
+        "metadata_sha256": "8c384ba3e979480faae2859d3c5e6c1276dd2c3616e322e124d52c8cfc556f27"
+      },
+      {
+        "name": "sniffio",
+        "version": "1.3.1",
+        "metadata_sha256": "0b318b57098edeccf585e60a889a6b6a7b5c4086f3a9aa62eff76a1d3cee12d9"
+      },
+      {
+        "name": "SQLAlchemy",
+        "version": "2.1.8",
+        "metadata_sha256": "4021da83df8e701d78aecb1bd9929d926cf244b7f369b10c6d01d5c23555977b"
+      },
+      {
+        "name": "tokenizers",
+        "version": "0.23.3",
+        "metadata_sha256": "87032ea29ec14be956ce0f15d164a8f436d6f1adbe19b261d6c179d9184f5cba"
+      },
+      {
+        "name": "tqdm",
+        "version": "4.70.1",
+        "metadata_sha256": "a5da70b966afea3a759716041bad7187f2ece02c22348cf9e7c0a512bbf15f57"
+      },
+      {
+        "name": "truststore",
+        "version": "0.10.5",
+        "metadata_sha256": "1fd496f290853214e630d96f7163d2dd916f84ebe634b58aa827d6853e8f8610"
+      },
+      {
+        "name": "typing_extensions",
+        "version": "4.16.0",
+        "metadata_sha256": "b05084ca1d50879865178d9fff9fabeab61bdfb1f361bfbde95421ffc8f9be46"
+      },
+      {
+        "name": "typing-inspection",
+        "version": "0.4.5",
+        "metadata_sha256": "7306933907768b0098784e56dfd678242f52383ff3e35c10a4c150539393d6ec"
+      },
+      {
+        "name": "urllib3",
+        "version": "2.8.0",
+        "metadata_sha256": "10898c620e8007c030e07fa5622b68358a43010025dfbd78a1cb797699de2bb4"
+      }
+    ],
+    "graphiti-runtime": [
+      {
+        "name": "annotated-types",
+        "version": "0.8.0",
+        "metadata_sha256": "614985b278f601b8ef863f82783b991cc3ada4b89f592eb71c7c48c5f2ef2298"
+      },
+      {
+        "name": "anyio",
+        "version": "4.16.0",
+        "metadata_sha256": "b184ac9cd097e2bb7f90d42799346cc91c276095d000d95d7f7ddd407d0c887e"
+      },
+      {
+        "name": "backoff",
+        "version": "2.2.1",
+        "metadata_sha256": "5a07df92ccbe75c0c9e066a8a97ca373c5f1ac4d03433dc56d6c26ac3aa8fba5"
+      },
+      {
+        "name": "certifi",
+        "version": "2026.10.23",
+        "metadata_sha256": "e463e38f7fe7da36a11e6d3fecc5dfa5b97be8c8022620400750d79ae7d842bc"
+      },
+      {
+        "name": "charset-normalizer",
+        "version": "3.5.2",
+        "metadata_sha256": "89ce6362bb7be88558f4be99a98f5d1b4da93d19cd0323e5ee0bac05cf883dfb"
+      },
+      {
+        "name": "distro",
+        "version": "1.9.0",
+        "metadata_sha256": "31632ab2de5591131091b3397bdcdf797718579d85a75186f06839dd0c09e81d"
+      },
+      {
+        "name": "graphiti-core",
+        "version": "0.31.2",
+        "metadata_sha256": "2724768b6450f735fb7922a06af2888e52b37d9afca4db1a80a31c77c85ba6f5"
+      },
+      {
+        "name": "h11",
+        "version": "0.16.0",
+        "metadata_sha256": "28f326098ac09fcba79b8f180f96087c841fe2456215cb7b872a9c7d5cd19d64"
+      },
+      {
+        "name": "httpcore",
+        "version": "1.0.9",
+        "metadata_sha256": "fe2d4fda6199128978779e0cf27f3c045c531863fcdd987eacc74f3a18d41c21"
+      },
+      {
+        "name": "httpcore2",
+        "version": "2.16.0",
+        "metadata_sha256": "c073bd68b2bd543fbc2bab3763b42ed1e70666536d32c1bf39ef2764fd50b0a4"
+      },
+      {
+        "name": "httpx",
+        "version": "0.28.1",
+        "metadata_sha256": "febb9b0f8f3e80d57c8199c304f35c4336e8581d1d18d7983c92766b82793b25"
+      },
+      {
+        "name": "httpx2",
+        "version": "2.16.0",
+        "metadata_sha256": "192f20046200ff50911a7278c21dfbee1e1a4c6fa7943227afe9231d28defc3f"
+      },
+      {
+        "name": "idna",
+        "version": "3.20",
+        "metadata_sha256": "dbd8c14c1e4ca1e0c9824a6dbc7cbbf78884f38eb52d91148cd3025f671e4b85"
+      },
+      {
+        "name": "jiter",
+        "version": "0.19.0",
+        "metadata_sha256": "a22290eab5db80d7ae66777f5bf3c994f0d8e5da30c21efee8d1ba4472309a87"
+      },
+      {
+        "name": "neo4j",
+        "version": "6.4.1",
+        "metadata_sha256": "bc19b6fda6fd255b98695d9bdc1e129c57f8e8cc621ac376f4006996432632de"
+      },
+      {
+        "name": "numpy",
+        "version": "2.5.4",
+        "metadata_sha256": "e2b909d6a37d76c2bc130f528d7fed0c517322bce16dc7846b6a6df30e200403"
+      },
+      {
+        "name": "openai",
+        "version": "3.46.0",
+        "metadata_sha256": "3d7ffaed0f058ce9b4f44c34a66960b9273779099465aabab98ec3ff4b5b9ab5"
+      },
+      {
+        "name": "posthog",
+        "version": "7.86.0",
+        "metadata_sha256": "a04fff194212f9b3a895553f16ea45cbc871a8b1333f652f97e0e38a0413fbd2"
+      },
+      {
+        "name": "pydantic",
+        "version": "2.14.3",
+        "metadata_sha256": "c3eb8984172bedc8e056655e1419351f4497374a91b7b709dbc4a1340f50e1e9"
+      },
+      {
+        "name": "pydantic_core",
+        "version": "2.50.4",
+        "metadata_sha256": "bb1956097beb504f190f8ea20c859b5dfea567679a247ce252d7813dd73f361d"
+      },
+      {
+        "name": "python-dotenv",
+        "version": "1.2.4",
+        "metadata_sha256": "87cfee6042412d48df1100ea7822684988c3f2b79de7a250f4717f4df3026d6f"
+      },
+      {
+        "name": "pytz",
+        "version": "2026.6",
+        "metadata_sha256": "25de974e5d389a44fdedb89074f9ce19de3c7ab685b682e9a945d1ab36fc60a5"
+      },
+      {
+        "name": "requests",
+        "version": "2.34.2",
+        "metadata_sha256": "8c384ba3e979480faae2859d3c5e6c1276dd2c3616e322e124d52c8cfc556f27"
+      },
+      {
+        "name": "sniffio",
+        "version": "1.3.1",
+        "metadata_sha256": "0b318b57098edeccf585e60a889a6b6a7b5c4086f3a9aa62eff76a1d3cee12d9"
+      },
+      {
+        "name": "tenacity",
+        "version": "9.2.1",
+        "metadata_sha256": "1d30f0b4cd3cf1ad585400f9ea9c424e64c630ea63e57209a1f16fce72e68eb7"
+      },
+      {
+        "name": "truststore",
+        "version": "0.10.5",
+        "metadata_sha256": "1fd496f290853214e630d96f7163d2dd916f84ebe634b58aa827d6853e8f8610"
+      },
+      {
+        "name": "typing_extensions",
+        "version": "4.16.0",
+        "metadata_sha256": "b05084ca1d50879865178d9fff9fabeab61bdfb1f361bfbde95421ffc8f9be46"
+      },
+      {
+        "name": "typing-inspection",
+        "version": "0.4.5",
+        "metadata_sha256": "7306933907768b0098784e56dfd678242f52383ff3e35c10a4c150539393d6ec"
+      },
+      {
+        "name": "urllib3",
+        "version": "2.8.0",
+        "metadata_sha256": "10898c620e8007c030e07fa5622b68358a43010025dfbd78a1cb797699de2bb4"
+      }
+    ]
+  },
+  "smallville_source": {
+    "commit": "fe05a71d3e4ed7d10bf68aa4eda6dd995ec070f4",
+    "license": "Apache-2.0",
+    "origin": "https://github.com/joonspk-research/generative_agents",
+    "files": [
+      {
+        "file": "memory.py",
+        "upstream": "reverie/backend_server/persona/memory_structures/associative_memory.py",
+        "upstream_sha256": "bf05caf83661c1f870a26f80d326c104500763e77a54eee05368e56bd7daa791",
+        "vendored_sha256": "f5a9006d56400f35e868d67adda96b84a88bd513b930f1f591a4ff2b7ba5e6b6",
+        "definitions": [
+          {
+            "name": "ConceptNode",
+            "source_sha256": "3e000653b06c9ed612c5d68a2220ec541147b780869832e989f1ae6e66e8c7af"
+          },
+          {
+            "name": "AssociativeMemory",
+            "source_sha256": "6b52ba0fd2517ec4a5374c62d251e8b106f9c971bd1119725d396402b64e28c7"
+          }
+        ],
+        "changes": "Remove simulation/global/numpy/provider imports. Use standard-library math dot/norm; inject native/local callbacks. Function/class bodies unchanged."
+      },
+      {
+        "file": "retrieval.py",
+        "upstream": "reverie/backend_server/persona/cognitive_modules/retrieve.py",
+        "upstream_sha256": "a609d9ba431dd8cb0f3ec804d128ff9d1755719221127b45a248d20c51dc7120",
+        "vendored_sha256": "49774e2297f54abf2db416b1d3a96bf94b7d21226a9748759017a28b3c3d57ba",
+        "definitions": [
+          {
+            "name": "retrieve",
+            "source_sha256": "8181b825731a2f3657d017ffbf5a00e6f40f56a7646c90d93a77d6873b148cdd"
+          },
+          {
+            "name": "cos_sim",
+            "source_sha256": "c85e04be1723241e6c02ebc6be6d993af5b3e479558915834e15ae0fe86692dc"
+          },
+          {
+            "name": "normalize_dict_floats",
+            "source_sha256": "946db8169cd6d9847ac053d639804de251c030d651519d4797310142d4dcdc46"
+          },
+          {
+            "name": "top_highest_x_values",
+            "source_sha256": "07eca9cfcfd7d39a1d270bc4823edecaadf8e8dbea7ce50e1eb06b49eae33247"
+          },
+          {
+            "name": "extract_recency",
+            "source_sha256": "eafe4ae55ec3a0e305bc35968e6e3226d0f6dc2ec596dda81cf439fd22f8154f"
+          },
+          {
+            "name": "extract_importance",
+            "source_sha256": "261c4b4114965daf27023dbba153e1fd07ef4bee639a4790b3cdc087ed4ab96c"
+          },
+          {
+            "name": "extract_relevance",
+            "source_sha256": "a9af97bc234c186e3615aef6e8c3504d91896df3f207616a79c8f51a6d388be5"
+          },
+          {
+            "name": "new_retrieve",
+            "source_sha256": "76965aa068cae0d91be2d392a73d2a0261bcc77962f9e77e0aca863fe97af113"
+          }
+        ],
+        "changes": "Remove simulation/global/numpy/provider imports. Use standard-library math dot/norm; inject native/local callbacks. Function/class bodies unchanged."
+      },
+      {
+        "file": "reflection.py",
+        "upstream": "reverie/backend_server/persona/cognitive_modules/reflect.py",
+        "upstream_sha256": "5e2658a90f658ce4f42f6a7c3859fe47fd08925eb77c179a4c38e9233d1c205c",
+        "vendored_sha256": "ccd168112de3403e066afb0d5f7ffa5dd316cff0f4d3314e42cd1aee019347c4",
+        "definitions": [
+          {
+            "name": "generate_focal_points",
+            "source_sha256": "2a2081e7c38796d6ac8226dd5e41378d84d9fa0e8210a615cf1e0fbf40a9acae"
+          },
+          {
+            "name": "generate_insights_and_evidence",
+            "source_sha256": "70c8c7f35fca1bef7224717ad9aee1e2d541588e3fa21e3fde511afdbd39deb5"
+          },
+          {
+            "name": "generate_action_event_triple",
+            "source_sha256": "8f1e6d801c37fc8a188d1c158ce3538d6a7fa8639bf4ecc0d60083cfceda9ca9"
+          },
+          {
+            "name": "generate_poig_score",
+            "source_sha256": "0fba152610a881aa22b54ea7ddaf937d1c21d4fd99a40d29194856c8436b51cc"
+          },
+          {
+            "name": "run_reflect",
+            "source_sha256": "628f553cb1e6ee54090db9b9907622f42df6d594732c11e8a9845ce8497328b0"
+          },
+          {
+            "name": "reflection_trigger",
+            "source_sha256": "4029f9667f124ac0a9cb90c6378ee7e04931b4d1045dddb17c61b5ee11fa47b7"
+          },
+          {
+            "name": "reset_reflection_counter",
+            "source_sha256": "8c49c1f438bc74d807ed50ca1dc680632961eb69c88a002602a3749b4a51cea7"
+          }
+        ],
+        "changes": "Remove simulation/global/numpy/provider imports. Use standard-library math dot/norm; inject native/local callbacks. Function/class bodies unchanged."
+      },
+      {
+        "file": "prompts/v2/generate_focal_pt_v1.txt",
+        "upstream": "reverie/backend_server/persona/prompt_template/v2/generate_focal_pt_v1.txt",
+        "upstream_sha256": "3857c7d4549d8e044297b5dd166ab05fa006a16216052af589254ab5add266aa",
+        "vendored_sha256": "3857c7d4549d8e044297b5dd166ab05fa006a16216052af589254ab5add266aa",
+        "changes": "None; original prompt template bytes."
+      },
+      {
+        "file": "prompts/v2/poignancy_event_v1.txt",
+        "upstream": "reverie/backend_server/persona/prompt_template/v2/poignancy_event_v1.txt",
+        "upstream_sha256": "553edbf4cdf6878ea0ecea3ca04a92d1e9953068062e6de7557ce135df55d808",
+        "vendored_sha256": "553edbf4cdf6878ea0ecea3ca04a92d1e9953068062e6de7557ce135df55d808",
+        "changes": "None; original prompt template bytes."
+      },
+      {
+        "file": "prompts/v2/poignancy_thought_v1.txt",
+        "upstream": "reverie/backend_server/persona/prompt_template/v2/poignancy_thought_v1.txt",
+        "upstream_sha256": "05e4196bd6025f9610c27a99603ee1b6fbd96e60804b46fce07e917a57bb7a47",
+        "vendored_sha256": "05e4196bd6025f9610c27a99603ee1b6fbd96e60804b46fce07e917a57bb7a47",
+        "changes": "None; original prompt template bytes."
+      },
+      {
+        "file": "prompts/v2/poignancy_chat_v1.txt",
+        "upstream": "reverie/backend_server/persona/prompt_template/v2/poignancy_chat_v1.txt",
+        "upstream_sha256": "107a91dcbf7c8dce8d1a69cf7f7c1aaae4c840c9a2e991319862820f023d8b1a",
+        "vendored_sha256": "107a91dcbf7c8dce8d1a69cf7f7c1aaae4c840c9a2e991319862820f023d8b1a",
+        "changes": "None; original prompt template bytes."
+      },
+      {
+        "file": "prompts/v2/insight_and_evidence_v1.txt",
+        "upstream": "reverie/backend_server/persona/prompt_template/v2/insight_and_evidence_v1.txt",
+        "upstream_sha256": "712e56cfca41b27cbae946f6f6a6054b62ab7bf8faf7d8df008992da9470cbe2",
+        "vendored_sha256": "712e56cfca41b27cbae946f6f6a6054b62ab7bf8faf7d8df008992da9470cbe2",
+        "changes": "None; original prompt template bytes."
+      },
+      {
+        "file": "prompts/v2/generate_event_triple_v1.txt",
+        "upstream": "reverie/backend_server/persona/prompt_template/v2/generate_event_triple_v1.txt",
+        "upstream_sha256": "6ec467695305c3f977f0c882ef0a13c594b58034b5f21676ec6b1e6af3faed00",
+        "vendored_sha256": "6ec467695305c3f977f0c882ef0a13c594b58034b5f21676ec6b1e6af3faed00",
+        "changes": "None; original prompt template bytes."
+      },
+      {
+        "file": "prompts/v3_ChatGPT/generate_focal_pt_v1.txt",
+        "upstream": "reverie/backend_server/persona/prompt_template/v3_ChatGPT/generate_focal_pt_v1.txt",
+        "upstream_sha256": "40a5a54af1b84b9272dfa5486cf1d0a4494cdee3826b83994bb979daf9012ac8",
+        "vendored_sha256": "40a5a54af1b84b9272dfa5486cf1d0a4494cdee3826b83994bb979daf9012ac8",
+        "changes": "None; original prompt template bytes."
+      },
+      {
+        "file": "prompts/v3_ChatGPT/poignancy_event_v1.txt",
+        "upstream": "reverie/backend_server/persona/prompt_template/v3_ChatGPT/poignancy_event_v1.txt",
+        "upstream_sha256": "553edbf4cdf6878ea0ecea3ca04a92d1e9953068062e6de7557ce135df55d808",
+        "vendored_sha256": "553edbf4cdf6878ea0ecea3ca04a92d1e9953068062e6de7557ce135df55d808",
+        "changes": "None; original prompt template bytes."
+      },
+      {
+        "file": "prompts/v3_ChatGPT/poignancy_thought_v1.txt",
+        "upstream": "reverie/backend_server/persona/prompt_template/v3_ChatGPT/poignancy_thought_v1.txt",
+        "upstream_sha256": "05e4196bd6025f9610c27a99603ee1b6fbd96e60804b46fce07e917a57bb7a47",
+        "vendored_sha256": "05e4196bd6025f9610c27a99603ee1b6fbd96e60804b46fce07e917a57bb7a47",
+        "changes": "None; original prompt template bytes."
+      },
+      {
+        "file": "prompts/v3_ChatGPT/poignancy_chat_v1.txt",
+        "upstream": "reverie/backend_server/persona/prompt_template/v3_ChatGPT/poignancy_chat_v1.txt",
+        "upstream_sha256": "107a91dcbf7c8dce8d1a69cf7f7c1aaae4c840c9a2e991319862820f023d8b1a",
+        "vendored_sha256": "107a91dcbf7c8dce8d1a69cf7f7c1aaae4c840c9a2e991319862820f023d8b1a",
+        "changes": "None; original prompt template bytes."
+      },
+      {
+        "file": "prompts/v3_ChatGPT/insight_and_evidence_v1.txt",
+        "upstream": "reverie/backend_server/persona/prompt_template/v3_ChatGPT/insight_and_evidence_v1.txt",
+        "upstream_sha256": "712e56cfca41b27cbae946f6f6a6054b62ab7bf8faf7d8df008992da9470cbe2",
+        "vendored_sha256": "712e56cfca41b27cbae946f6f6a6054b62ab7bf8faf7d8df008992da9470cbe2",
+        "changes": "None; original prompt template bytes."
+      }
+    ]
+  },
+  "licenses": {
+    "mem0": "Apache-2.0",
+    "graphiti": "Apache-2.0",
+    "smallville": "Apache-2.0",
+    "sqlite": "Public domain; existing Python stdlib binding"
+  },
+  "services": "Self-hosted; no paid managed plan/free-tier assumption; Luna inference and local compute accounted separately"
+}

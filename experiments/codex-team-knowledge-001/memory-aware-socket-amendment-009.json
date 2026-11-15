@@ -1,0 +1,12 @@
+{
+  "id": "memory-aware-socket-amendment-009",
+  "at": "2026-11-11T21:06:53.026390+00:00",
+  "registered_before_first_model_invocation_of_assignment": 21,
+  "prior_confirmed_model_assignments": 20,
+  "remaining_assignments": 36,
+  "preserved": "Pre-model bind failure for21 at pre-model-service-history-009; prior20/21/22 metadata/preparation records remain in history008",
+  "change": "Versioned service bootstrap checks/removes only a provably dead socket owned by the same assignment before creating the same broker/backend. No store records, memory algorithm, prompt, models, budgets or inference retries changed.",
+  "checks": "Four software cases: dead socket removal, bound-but-not-listening endpoint preservation, ordinary file preservation, wrong namespace rejection.",
+  "quality_scope": "Coding quality is conditional on actual task-model invocation. Pre-model launch failures are separately retained as operational preparation evidence and overhead; do not interpret56 model cells as56 flawless first launches.",
+  "automatic_model_retries": 0
+}

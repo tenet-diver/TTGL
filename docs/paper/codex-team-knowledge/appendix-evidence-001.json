@@ -1,0 +1,78 @@
+{
+  "kind": "fixed qualitative pilot examples; not representative sampling or a mechanism effect estimate",
+  "selection": "Predeclared source cells/entities/observation indices in exporter; includes failure and empty retrieval",
+  "privacy": "Reviewed benchmark-only publications and one empty tool response. No raw private chat, reasoning or decoded communication.",
+  "examples": [
+    {
+      "category": "ownership",
+      "text": "Root owns core.py and integrated validation. events agent owns events.py; resources agent owns resources/*.py; utilities agent owns util.py rt.py exceptions.py __init__.py. All I/O uses repository terminal. 80 terminal-call total budget; agent budgets events 23 resources 23 utilities 13 root 21. Source contract: Event callbacks None marks processed, _value PENDING marks untriggered; core scheduler uses (time, priority, sequence, event) heap.",
+      "entity": "simpy-implementation-ownership",
+      "observation_index": 0,
+      "provenance": {
+        "assignment": "007-simpy-mcp_memory-4",
+        "archive_sha256": "8db4f79bb8c28f2257b68f5f17fc6e9254fd9451f7cfb5584ff2e69f57d9a7b1",
+        "member": "memory/knowledge.jsonl",
+        "member_sha256": "dd404b307bb1d57a00275b5fa25d7b884869ea1b49b2e1cb4f430b2c430533b5"
+      },
+      "interpretation": "Actual agent-authored publication. Check claims are self-reported here; this excerpt alone does not establish peer exposure, independent verification or causality."
+    },
+    {
+      "category": "interface_contract",
+      "text": "subscribe_at must reject processed events (callbacks is None), but allow triggered unprocessed timeout events; helper process waits event then interrupts captured active_process with (event, value) if still alive.",
+      "entity": "simpy-utilities",
+      "observation_index": 1,
+      "provenance": {
+        "assignment": "007-simpy-mcp_memory-4",
+        "archive_sha256": "8db4f79bb8c28f2257b68f5f17fc6e9254fd9451f7cfb5584ff2e69f57d9a7b1",
+        "member": "memory/knowledge.jsonl",
+        "member_sha256": "dd404b307bb1d57a00275b5fa25d7b884869ea1b49b2e1cb4f430b2c430533b5"
+      },
+      "interpretation": "Actual agent-authored publication. Check claims are self-reported here; this excerpt alone does not establish peer exposure, independent verification or causality."
+    },
+    {
+      "category": "claimed_check",
+      "text": "Verified after core/events integration: `PYTHONPATH=src:$PYTHONPATH python3 -m pytest -p no:cacheprovider -q tests/test_util.py tests/test_rt.py tests/test_version.py` -> 30 passed in 1.78s. `PYTHONPATH=src:$PYTHONPATH python3 -m doctest src/simpy/util.py` -> no output, exit 0.",
+      "entity": "simpy-utilities",
+      "observation_index": 3,
+      "provenance": {
+        "assignment": "007-simpy-mcp_memory-4",
+        "archive_sha256": "8db4f79bb8c28f2257b68f5f17fc6e9254fd9451f7cfb5584ff2e69f57d9a7b1",
+        "member": "memory/knowledge.jsonl",
+        "member_sha256": "dd404b307bb1d57a00275b5fa25d7b884869ea1b49b2e1cb4f430b2c430533b5"
+      },
+      "interpretation": "Actual agent-authored publication. Check claims are self-reported here; this excerpt alone does not establish peer exposure, independent verification or causality."
+    },
+    {
+      "category": "failed_check_or_environment_caveat",
+      "text": "Docs verification: pytest docs collection fails before tests because docs/conftest.py imports absent private `_pytest.assertion.util._diff_text`; no harness changes made.",
+      "entity": "simpy-utilities",
+      "observation_index": 6,
+      "provenance": {
+        "assignment": "007-simpy-mcp_memory-4",
+        "archive_sha256": "8db4f79bb8c28f2257b68f5f17fc6e9254fd9451f7cfb5584ff2e69f57d9a7b1",
+        "member": "memory/knowledge.jsonl",
+        "member_sha256": "dd404b307bb1d57a00275b5fa25d7b884869ea1b49b2e1cb4f430b2c430533b5"
+      },
+      "interpretation": "Actual agent-authored publication. Check claims are self-reported here; this excerpt alone does not establish peer exposure, independent verification or causality."
+    },
+    {
+      "category": "empty_retrieval",
+      "tool": "search_nodes",
+      "arguments": {
+        "query": "tinydb"
+      },
+      "result": {
+        "entities": [],
+        "relations": []
+      },
+      "provenance": {
+        "assignment": "006-tinydb-mcp_memory-2",
+        "archive_sha256": "a3b494ed95ed4c762a35567eac9c2094fc502402bb8ebe9c2f003db5d44256b7",
+        "member": "rpc.jsonl",
+        "member_sha256": "8429b5401046c2a93b08166e21e23700a509adaf494671e317ab90cf9edb97df",
+        "item_id": "exec-e1499b83-d2fe-45e8-a50a-fe9a80cf38bf"
+      },
+      "interpretation": "A completed search returned no stored entities; this call supplies no peer-observation exposure."
+    }
+  ]
+}

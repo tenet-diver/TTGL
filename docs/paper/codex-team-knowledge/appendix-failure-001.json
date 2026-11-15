@@ -1,0 +1,51 @@
+{
+  "selection_rule": "First failed independent source grade in the registered execution order; illustrative negative example, not representative sampling.",
+  "assignment": "032-tinydb-mem0_luna-8",
+  "source": "snapshot.tar.xz",
+  "xz_sha256": "533ad87cbc0b3877da3dc98d5e33709db88de2a5bff6e1a69825a0e197bf916a",
+  "member_sha256": {
+    "independent-grade/result.json": "33fcba940d0b10c284ffd4f3d92e7e23da5753d276d21d4eb7061cc8d8eea0df",
+    "independent-grade/stdout.log": "b4968b07235468b045e3bedcd718af83f09e0b39ee8220790e8e629c161d3256",
+    "stopped.json": "3bb4d0a75f1fa7de93a12690bd332b0c673c88c22b78899763b33eb14e5f9647"
+  },
+  "original_grade": {
+    "exit_code": 1,
+    "junit": {
+      "tests": 201,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 1
+    },
+    "reference_junit": {
+      "tests": 201,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1
+    },
+    "passed": false,
+    "observed_pass_fraction": 0.995,
+    "restored_test_dir": "tests",
+    "restored_resource_count": 0,
+    "artifact_policy_clean": true,
+    "excluded_changes": [
+      "AGENTS.md"
+    ],
+    "unexpected_changes": [],
+    "changed_preexisting_outside_source": [],
+    "additional_outside_source": [],
+    "scope": "Prescribed public tests/resources restored from sealed base; source-only replay; additions outside implementation excluded; preexisting test/config modifications flagged separately; no hidden-test claim",
+    "model_calls": 0
+  },
+  "ending": {
+    "error": "RuntimeError('Observed total team+maintenance token threshold; no retry')",
+    "wall_seconds": 488.04720889999953,
+    "no_retry": true
+  },
+  "excerpt": "FAILED tests/test_storages.py::test_read_once - assert 2 == 3",
+  "interpretation": "The prescribed storage test expects three reads at this point and observes two. No source repair, repeated model attempt, test modification or repeated grade.",
+  "recorded_token_lower_bound": 4104747,
+  "usage_complete": false,
+  "transport_only_completed_responses": 2,
+  "transport_only_recorded_tokens": 55228,
+  "scope": "Completed provider usage without native transcript corroboration is counted once and separately labeled; incomplete transports and native coverage gaps keep totals unknown."
+}

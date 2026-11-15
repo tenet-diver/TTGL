@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-11T19:09:40.804539+00:00",
+  "registered_before_assignment": 13,
+  "continued_assignments": 44,
+  "protocol": "/workspaces/TTGL/experiments/codex-team-knowledge-001/memory-aware-extension-protocol-001.json",
+  "configuration_sha256": "0d22632762423c48f8b3cb27033a38a7eb6e426646e3b9fc24eba042e5afbb1c",
+  "source_and_runtime_hash_count": 11121,
+  "gate_count": 17,
+  "automatic_retries": 0,
+  "prior_prefix_preserved": true,
+  "original_frozen_sources_changed": false,
+  "new_runtime": "text-only-002",
+  "remote_compatibility_calls": 0
+}

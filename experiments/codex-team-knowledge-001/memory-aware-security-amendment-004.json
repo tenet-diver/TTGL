@@ -1,0 +1,20 @@
+{
+  "id": "memory-aware-security-amendment-004",
+  "at": "2026-11-11T19:04:58.619313+00:00",
+  "registered_before_assignment": 13,
+  "prior_assignments": 12,
+  "remaining_assignments": 44,
+  "reason": "Additional native SBOM review identified affected Pillow bundled codecs in existing memory runtime. Queue held after completed generation/replay/audit of cell12. No started call repeated.",
+  "findings": [
+    "OSV-2026-1068",
+    "OSV-2025-219"
+  ],
+  "changed": "Separate text-only FastEmbed 0.9.1 import derivative excludes all Pillow artifacts/image routes. Original frozen generation, prompts, models, engine extraction/storage/ranking/text inference source and order/budgets unchanged.",
+  "patch": "fastembed-text-only-002.patch",
+  "compatibility": "14 text source files exact; tokenizer AST unchanged; eight recorded 384-dimensional vectors reproduce exactly. No PIL import or vulnerable codec loaded. Eight local embeddings and zero remote preflight calls.",
+  "scope": "Only original 44 verified unstarted cells, same directories/order. Prior12 retained as original runtime stratum; no outcome-based selection.",
+  "evidence_repair": "Security signal caught a zero-byte checkpoint12 creation; empty file preserved and JSON reconstructed only from already sealed generation/grade/audit. One-shot old publisher failure retained. No grade or usage changed.",
+  "invocation_policy": "Original queue terminated. Separately versioned continuation requires exact audited prefix, original process absent, no future cell directory, all source/security/equivalence gates. Exclusive continuation receipt and zero retries.",
+  "caveat": "Explicit software variant; do not describe full 56 as one completely unchanged dependency artifact. Text equivalence witnesses are not proof of all possible behavioral identity.",
+  "plotting": "Candidate Matplotlib/Pillow wheel graph remains blocked and unexecuted. New Pillow source/build-tool alternative also not executed. No general host OS upgrade/security-clearance claim."
+}

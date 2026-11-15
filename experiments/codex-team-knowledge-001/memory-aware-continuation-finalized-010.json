@@ -1,0 +1,13 @@
+{
+  "at": "2026-11-11T22:02:57.021853+00:00",
+  "registered_before_assignment": 28,
+  "continued_after_confirmed_models": 27,
+  "remaining_assignments": 29,
+  "configuration_sha256": "d4117c65e58d720160da25159cb2e2f2f41d50931b1f112e7c55fabf81871f7c",
+  "source_hashes_per_cell": 154,
+  "runtime_files_at_launch": 11046,
+  "gate_files": 23,
+  "automatic_retries": 0,
+  "task_model_calls_repeated": 0,
+  "metadata": "Future broker exit receipts added; shutdown wait occurs only after generation. Cell27 service exit remains unknown."
+}

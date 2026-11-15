@@ -1,0 +1,18 @@
+{
+  "source": "snapshot.tar.xz:rpc.jsonl",
+  "source_sha256": "c85b572bd42f997b5265290d19e576bf531f582f00409d493c42609e3fda3a43",
+  "partial_line_or_schema_gap": false,
+  "completed_memory_calls": 24,
+  "published_record_ids": 12,
+  "completed_searches": 12,
+  "nonempty_searches": 12,
+  "known_peer_search_calls": 11,
+  "original_record_reads": 0,
+  "known_peer_record_reads": 0,
+  "explicit_tool_errors": 0,
+  "limitation": "Observable exposure only. Self-reported publication authors are mapped through native call threads; unlinked records remain unattributed. No causal or useful-action claim.",
+  "assignment": "003-simpy-searchable_logs-8",
+  "interpretation": "Actual coding development cell, offered capacity8/actual4. Known peer exposure is not causal useful action.",
+  "audit_version": "deterministic-visible-tools-002",
+  "private_receipt_sha256": "c321aa8422bee60425619319c8b1331b735e7930cb9386ee02782e0c62c6a7f0"
+}

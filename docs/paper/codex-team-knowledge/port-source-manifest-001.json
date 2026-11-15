@@ -1,0 +1,903 @@
+{
+  "at": "2026-11-15T16:04:42.874081+00:00",
+  "kind": "Public source/report migration inventory; no model calls or file copies",
+  "based_on_scoring_config_sha256": "0f0ec76b445a39217019b8cbc42decb1ac9393284f75ec1bbd0b3afc2ce7185a",
+  "files": [
+    {
+      "path": "docs/paper/codex-team-knowledge/PORTING_PROMPT.md",
+      "sha256": "41f6ccb849271108337e64aea179bd3145941fd21e3ef13f9530998e5949b069",
+      "bytes": 6662
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/README.md",
+      "sha256": "802ec949497e6f77fea8d46344d079a422dc533b69970a3f4334ee527198bf84",
+      "bytes": 2126
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/REPRODUCING.md",
+      "sha256": "c328755b2b675997ab4a1e3804d53f22edae502c8f296be6c63d979b5e3551b4",
+      "bytes": 9681
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/appendix-communications-001.json",
+      "sha256": "d79be8413476037cff2cd1ec82f8780242b031ee16d0790544ee2f68c4b5db25",
+      "bytes": 42649
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/appendix-evidence-001.json",
+      "sha256": "e4281106e11f70aac80a1debf073e34a2d57a419f5e654f70b4856fb42c095fd",
+      "bytes": 4748
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/appendix-failure-001.json",
+      "sha256": "2bf0160f64a76cd41ba0e6daa314f8f637270b4f8e44d013a81682375fc4de3a",
+      "bytes": 2232
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/appendix-graphiti-001.json",
+      "sha256": "6070a9a01af6d54fb0cb97ba164931dfe01e72c00309454c7ff673a35538f97f",
+      "bytes": 1648
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/appendix-log-exposure-001.json",
+      "sha256": "f228d3d45d628e95dd7ca906d9182baa47f003c8bd49f741c19819db6281f828",
+      "bytes": 930
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/appendix-mechanisms-001.json",
+      "sha256": "a0bc4519d9621d2152636ab5fac9c1f58523249aa61ae22c23cfe85fc6d83bd2",
+      "bytes": 4867
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/appendix.md",
+      "sha256": "33ddda27edecadbb939c47c6c3d9ae05c3fc75fb36a862648789b05d8158d365",
+      "bytes": 20188
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/cognee-admission-summary-001.json",
+      "sha256": "3803b7d3698775e24aa43c308c57bdad0fecddce2407b648ec2c343136d378f6",
+      "bytes": 3012
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/figures/pilot-scaling-caption.txt",
+      "sha256": "6ece71e9296f73de2deeec5130592e3464a0e485dd2e6270a6a220a99e644b18",
+      "bytes": 630
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/figures/pilot-scaling.pdf",
+      "sha256": "34f64e7dde49aa911090ce947306b98878860ead739b3d15c10d512a158dc896",
+      "bytes": 27982
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/figures/pilot-scaling.png",
+      "sha256": "34f68035483e0e42da2c33fb91b17bc8a6c18230a1543503e0162779376e5658",
+      "bytes": 284515
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/figures/pilot-scaling.svg",
+      "sha256": "bc0a9623c35c7deb0677952e5fafd55eb6499b4fcd4346c0715da5400ab4256c",
+      "bytes": 133856
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/memory-aware-cells.csv",
+      "sha256": "67c5a4140c372dae0631812a1f94a9e7b4d5e82135cd50801ef1a5581fd03db2",
+      "bytes": 6155
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/memory-aware-results.json",
+      "sha256": "02a7b67badfa8b795645240d99a0f74b1166d9f8c7ee4a333875b0bcc27d43cc",
+      "bytes": 95190
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/memory-aware-results.md",
+      "sha256": "1ceb0dfd4d859901ca2ae1fe0d55ca79b5695c74a57b1f188af6f5f803f113bd",
+      "bytes": 3000
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/paper.md",
+      "sha256": "d725d26dc579fcd1d4fffae559f5c5ebe4d0f823c32b252ad11824ca471e1ddf",
+      "bytes": 36830
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/pilot-cells.csv",
+      "sha256": "97c33a3a59d89a9497f69bdc3b500f0a8ae7ee2f9ec5f0e63db8b8968ecb1bce",
+      "bytes": 2733
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/pilot-results.json",
+      "sha256": "27b710406328b6cf1b84f4122e6f4360471e8e1605acd49e36bd3e48f0ed23f1",
+      "bytes": 63429
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/pilot-results.md",
+      "sha256": "5509b725c9612ff094ef6e0aa144ab9bbd46f4fd73c5adf3018e9453fc53ad49",
+      "bytes": 5617
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/preparation-results.md",
+      "sha256": "f67b7b0883934b4ef255301c30f49db3142e88c1637ea9a6a9184a28a0647397",
+      "bytes": 11753
+    },
+    {
+      "path": "docs/paper/codex-team-knowledge/reserved-extension.md",
+      "sha256": "ba5c58363b2a098d4b310283f78e6ad91cefd76d6c8d8119130b42005933d8a0",
+      "bytes": 5168
+    },
+    {
+      "path": "docs/research/team-memory-extension.md",
+      "sha256": "33cdda467e884b0918b4749e9ca6548c1aaba79a15c0d065a1b62b21bd0a58d2",
+      "bytes": 13531
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/dataset-equivalence-001.json",
+      "sha256": "201af5fbf44b6cff8d9a892cdebb673c7e98e93554d7904cb3cbec8ce53b81d7",
+      "bytes": 427
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/fastembed-text-only-002.patch",
+      "sha256": "349077448b7f678d7ec714f5ad394a900558a22580ef6238cee4c1ff3a9db204",
+      "bytes": 2335
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-continuation-finalized-004.json",
+      "sha256": "bcce3eab0cf4633d529f8571b107a70aa1fa2d0c0fb60a1b5b6b8a556d914617",
+      "bytes": 557
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-continuation-finalized-005.json",
+      "sha256": "3387c46ff201def72950fb85a1c49d6b09376ddf52f929a0f48500df9cf481b3",
+      "bytes": 640
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-continuation-finalized-006.json",
+      "sha256": "283c1a292b15e095e499477a8abbe1166d9fda2b6336f5d62a1eb5d047ca1961",
+      "bytes": 625
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-continuation-finalized-007.json",
+      "sha256": "1898eabc37f713b423c248eb3be73edc6cc9cb3b7b1e8f2ae4f5f21bfc38906c",
+      "bytes": 615
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-continuation-finalized-008.json",
+      "sha256": "17c9a802ab690bd05549a3f6ae2657296b1d8f4bcbb7d51c0ad68613471d611d",
+      "bytes": 401
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-continuation-finalized-009.json",
+      "sha256": "39c706d217a37d454c0d908695a2eca94c98758291cbd322d5067fa8bec66b79",
+      "bytes": 401
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-continuation-finalized-010.json",
+      "sha256": "964540bc0d76ed10c94be78825de38e269f0f52bf8e8634d01032f2de2118ff9",
+      "bytes": 534
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-continuation-finalized-011.json",
+      "sha256": "3e9f93a8b91dc38b787d9a80f41ebf2c60a091081db1bc0405a77489a13c053d",
+      "bytes": 450
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-embedding-assets-001.json",
+      "sha256": "609eb2b82e77f72f787ebb4761f179b87432bd7723d27d66a76604d7e786e960",
+      "bytes": 1870
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-extension-amendment-002.json",
+      "sha256": "476db2a52f7d48ff457e9e7f4cb8c4c853c109cde99e7ec57f2270f06fa2de5c",
+      "bytes": 912
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-extension-finalized-003.json",
+      "sha256": "cc26e2c373d5a184fb44220f21a7dbc286527085d1e95b0e7e8f0c862e5bf058",
+      "bytes": 9922
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-extension-protocol-001.json",
+      "sha256": "4e7214d848dec5aac7712cbe2d05c8597abec72566da63ac6325fbff4c983d0f",
+      "bytes": 11741
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-extension-versions-001.json",
+      "sha256": "eb92b59fd33930cf5dcf7196f2d055685fd4b16050927f79449b7a5f95437f03",
+      "bytes": 22962
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-plot-runtime-001.lock",
+      "sha256": "9b59d0b28b3d3cc5f378de3193c57270a58bebb0f4b0ea204a3313bc171b965d",
+      "bytes": 2795
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-postprocessing-amendment-011.json",
+      "sha256": "b51926debcec5001b0d889f4905bf59593a4d9b2d58fd5870da5674c41b1a24a",
+      "bytes": 1809
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-security-amendment-004.json",
+      "sha256": "799741f668579faec5b5ef2dbbaad2b717a09d8d76125ae6c95002d3dbff990b",
+      "bytes": 2022
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-shutdown-amendment-010.json",
+      "sha256": "34c1213bf22e0abb85e896e3a6409edeed3b14a078c6362af9af5715810f325a",
+      "bytes": 1307
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-socket-amendment-009.json",
+      "sha256": "5f518352e33c237279b94bbaa41460bae29f0a9fa07e1d7bf49eb77d0a84620c",
+      "bytes": 1058
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-svg-runtime-002.lock",
+      "sha256": "086acf7f40e2a07fe6225f79e4775d452e0c6a79c909a586a72fa1995f90bc71",
+      "bytes": 449
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-task-runtime-001.lock",
+      "sha256": "c589e6d6621b0b82fcdca0ee0cc61a01964ae4195b8dd3b34a1fc1433111fd67",
+      "bytes": 2105
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/memory-aware-transport-amendment-008.json",
+      "sha256": "93b0c86dacdaa29e29a5cca8758789f16b1c602d9d810bf64f50b7bd9e72d5da",
+      "bytes": 1979
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/pricing-scenario-001.json",
+      "sha256": "ebe9fe2e1667fc091179497e4b179d2393da43b1d98320912899519d3e0ddbaf",
+      "bytes": 1149
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/reservation-001.json",
+      "sha256": "248167c592d456e1dab97265f69eb0c329287d014d5e249120520d225419014e",
+      "bytes": 13087
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/reserved-factorial-protocol-001.json",
+      "sha256": "2d2818fae28d8c3aafad1c1ad89a90fbe199f1382fd1087dfb0029323a7a05db",
+      "bytes": 27202
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/reserved-runtime-001.lock",
+      "sha256": "02d571893c41f89e6ae88e60fbc28b1b6fa184961cd51ff794326f47dfabca31",
+      "bytes": 2414
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/scaling-pilot-protocol-001.json",
+      "sha256": "d4c28c47904287303b7c2bac648413597e5eac7d1576393e88e26f38f3c74e02",
+      "bytes": 7039
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/scaling-pilot-protocol-002.json",
+      "sha256": "3718e019d8ed1dd301717df172bf0a0c0e92bd028a049d120cd8da86074016c5",
+      "bytes": 7367
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/scaling-pilot-protocol-003.json",
+      "sha256": "93fc453c2745a12f9a743e703245bca3b7b681209da11231f8c9c3804cf4de95",
+      "bytes": 7758
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/scaling-pilot-protocol-004.json",
+      "sha256": "3c820c360f4174999f1c55ba687a9b672020bcf9e2413ed9510bdc52be148312",
+      "bytes": 7852
+    },
+    {
+      "path": "experiments/codex-team-knowledge-001/scaling-pilot-protocol-005.json",
+      "sha256": "9610d6563e0c9b807ea59eae5c1a6f4d1212907e5913576d572e2a1b7d6f0336",
+      "bytes": 8459
+    },
+    {
+      "path": "tools/usage-monitor/config/defaults.json",
+      "sha256": "099836552e2fce4d6ba46af3821496e48ac741d0c60d5eeddcdc6549b148c359",
+      "bytes": 614
+    },
+    {
+      "path": "tools/usage-monitor/experiments/analyze_team_memory_extension.py",
+      "sha256": "5623a475f2a2c59105e765849a11910344a07d78ed7ba71cfe6fa903c426b1d9",
+      "bytes": 14405
+    },
+    {
+      "path": "tools/usage-monitor/experiments/audit_team_memory_usage.py",
+      "sha256": "527ac7f4078652f943751b56e0eccf091a7fa1c077b091683d5eea22f2dc4003",
+      "bytes": 10541
+    },
+    {
+      "path": "tools/usage-monitor/experiments/audit_team_memory_usage_v2.py",
+      "sha256": "2d33c213b2b02db58cba84bd9992b838fc74b79b688479a00f99cd82997be3f8",
+      "bytes": 12166
+    },
+    {
+      "path": "tools/usage-monitor/experiments/build_team_memory_port_manifest.py",
+      "sha256": "5e4cb0458cb35c51b7d098309a2ebde680333a611bf3fecdf623736b169e9765",
+      "bytes": 5154
+    },
+    {
+      "path": "tools/usage-monitor/experiments/codex_team_coding.py",
+      "sha256": "8525b28f5824acfcecb940b1eb41bccd8c92336053cbd2d3d3d9835e6843e2d2",
+      "bytes": 15683
+    },
+    {
+      "path": "tools/usage-monitor/experiments/codex_team_coding_v2.py",
+      "sha256": "0242784a0a9a05a0cfe5aeb8cdd6e45eb7c2531c3084e53d126625c9b1c766cf",
+      "bytes": 12837
+    },
+    {
+      "path": "tools/usage-monitor/experiments/codex_team_evidence.py",
+      "sha256": "bf65051928f5f2dbbe64a1c4811294731facfbb108641717551ebdbcdade0398",
+      "bytes": 7900
+    },
+    {
+      "path": "tools/usage-monitor/experiments/codex_team_grade.py",
+      "sha256": "471e2d40bfc454d86fa2182f921f6d0fc1ce1559cb794f3299a316a0aaa53e9b",
+      "bytes": 9696
+    },
+    {
+      "path": "tools/usage-monitor/experiments/codex_team_grade_v2.py",
+      "sha256": "4ef69d9334dc54df79ac9cad21596126e7a502160c53664618ca099beacd9238",
+      "bytes": 10899
+    },
+    {
+      "path": "tools/usage-monitor/experiments/codex_team_grade_v3.py",
+      "sha256": "78b468bf52f4ffa83def6acd0bcf5241a9f2c10bdcae9c08c98f85d48dee0ed9",
+      "bytes": 5064
+    },
+    {
+      "path": "tools/usage-monitor/experiments/codex_team_memory_extension.py",
+      "sha256": "d2beacbecb6a87522625a039e20d5b5e3cce469b087db69c6799ef38e4cb8c52",
+      "bytes": 12379
+    },
+    {
+      "path": "tools/usage-monitor/experiments/codex_team_memory_queue.py",
+      "sha256": "3b6ad2b9a983ee15afc9fbf3cf2949bfd0e1cbe0c0cc41c055bffdea80fb5248",
+      "bytes": 7643
+    },
+    {
+      "path": "tools/usage-monitor/experiments/codex_team_probe.py",
+      "sha256": "84e58e289c1f790e53455aa71608956acc20b113b1cb83d84ecb4799af77f0a9",
+      "bytes": 12087
+    },
+    {
+      "path": "tools/usage-monitor/experiments/codex_team_queue.py",
+      "sha256": "64eb85a14c09a6501d0493565ea3f8ee4c63a3f2f19b640ccb3de73fb45057e8",
+      "bytes": 5585
+    },
+    {
+      "path": "tools/usage-monitor/experiments/codex_team_terminal.py",
+      "sha256": "9399e98754b16e353f90255c12658b1beefa254e5c2162d6510762eacbc71e47",
+      "bytes": 5846
+    },
+    {
+      "path": "tools/usage-monitor/experiments/commit0_compatibility_controls.py",
+      "sha256": "b04c07cc9e586091a7a5b5e42c623c0fba69f1adfd047c75c4fa2940fe7e310e",
+      "bytes": 8522
+    },
+    {
+      "path": "tools/usage-monitor/experiments/commit0_team_controls.py",
+      "sha256": "c25a463c134b32b5031510d48a59de577c05b30b0a957712935e40b1aae30ee4",
+      "bytes": 4680
+    },
+    {
+      "path": "tools/usage-monitor/experiments/compact_team_memory_evidence.py",
+      "sha256": "dad8c50559cb7c86916117ce24c11c7faf50a2cd127552c7c5f70ba48cf088ed",
+      "bytes": 3834
+    },
+    {
+      "path": "tools/usage-monitor/experiments/continue_codex_team_scaling.py",
+      "sha256": "2aa74061ea79d3ee26cea5c2bdd17ada18abef8202b3e29638937055777f2eb0",
+      "bytes": 7043
+    },
+    {
+      "path": "tools/usage-monitor/experiments/continue_team_memory_text_runtime.py",
+      "sha256": "841f3be908da85347779a9c5c588ae7de09a698e0ed4839b191db15edc64ceda",
+      "bytes": 10121
+    },
+    {
+      "path": "tools/usage-monitor/experiments/continue_team_memory_text_runtime_v2.py",
+      "sha256": "d871208e15910ab9bf69910666dd7b2ef15f8c985254bc5750bc308b9d40630e",
+      "bytes": 10353
+    },
+    {
+      "path": "tools/usage-monitor/experiments/continue_team_memory_text_runtime_v4.py",
+      "sha256": "df6f723ad75638af1cd16e4464315e6f475fb58307771714ec15cc9f4558ccbe",
+      "bytes": 10732
+    },
+    {
+      "path": "tools/usage-monitor/experiments/continue_team_memory_text_runtime_v5.py",
+      "sha256": "feb3dc6d329c48ef777b6bce502a88e3831da49f245ae2d2ed571d9f1fd34c01",
+      "bytes": 11437
+    },
+    {
+      "path": "tools/usage-monitor/experiments/continue_team_memory_text_runtime_v6.py",
+      "sha256": "05a94ee1e6c4c0b5ba484d2d1ee09ecf62acfd7c6fd66037fb131930ddd7537f",
+      "bytes": 11440
+    },
+    {
+      "path": "tools/usage-monitor/experiments/continue_team_memory_text_runtime_v7.py",
+      "sha256": "f6762c05b88485820990473244f61c508e0edaa6c1ca53cfe1b670e986af4069",
+      "bytes": 11792
+    },
+    {
+      "path": "tools/usage-monitor/experiments/continue_team_memory_text_runtime_v8.py",
+      "sha256": "24aa533334e361406bd494477717ce4ee21b0d933509d2573d935cc1936f5bb4",
+      "bytes": 11910
+    },
+    {
+      "path": "tools/usage-monitor/experiments/cost_context_study.py",
+      "sha256": "b53a57c6d80d84404b09d49b6ce86c48bba905e19b633d8796cb2e1f9abc2b22",
+      "bytes": 6175
+    },
+    {
+      "path": "tools/usage-monitor/experiments/export_team_memory_appendix.py",
+      "sha256": "854700ae2d81bb42d7efc607eb1c7cd22f809e16185fbf549dc98bc8182c2afb",
+      "bytes": 3918
+    },
+    {
+      "path": "tools/usage-monitor/experiments/finalize_team_memory_results.py",
+      "sha256": "bd23f5ddc3c2095cb2e7213b0b6df8ae6a81c3e1f3d767e3218dc00c3c765831",
+      "bytes": 15945
+    },
+    {
+      "path": "tools/usage-monitor/experiments/finish_team_memory_post_generation.py",
+      "sha256": "33a99ccb1363684a559a5d8b81b5ffb62d287dbb1314fb0f16df2c6f2fa8ef22",
+      "bytes": 5015
+    },
+    {
+      "path": "tools/usage-monitor/experiments/finish_team_memory_stopped_post_generation.py",
+      "sha256": "fc05b9f6d452288fddca027161492bf7ef8de9e95978396a3ca3f03b4a886be8",
+      "bytes": 4804
+    },
+    {
+      "path": "tools/usage-monitor/experiments/finish_team_memory_stopped_post_generation_v2.py",
+      "sha256": "264a324840d98df9a92120fd725ea81df8cece36ecc5d9fba4d363453b26fb73",
+      "bytes": 4810
+    },
+    {
+      "path": "tools/usage-monitor/experiments/finish_team_memory_study.py",
+      "sha256": "cbf1ed006064c458a1201cafdff217678be4a89397cb14a024d916923ed131c5",
+      "bytes": 4760
+    },
+    {
+      "path": "tools/usage-monitor/experiments/inspect_team_memory_trace.py",
+      "sha256": "06dddbbac987b47cea2ac61450b5b8d99d1e1eda5fbc814328f46343aa929c54",
+      "bytes": 6143
+    },
+    {
+      "path": "tools/usage-monitor/experiments/inspect_team_official_memory.py",
+      "sha256": "627ff103f94f4cbc6f823567d9a0b772195c4abf42c5f9606c8b2f3f5a5f6aba",
+      "bytes": 4808
+    },
+    {
+      "path": "tools/usage-monitor/experiments/longitudinal_memory_trial.py",
+      "sha256": "2e144bdde79529ea4ffe2e348ac909293dfd242a3a6211155e135aa0f4cc8802",
+      "bytes": 20437
+    },
+    {
+      "path": "tools/usage-monitor/experiments/longmemeval_codex_trial.py",
+      "sha256": "49c45d9d813c10d64c73f3f394a93ced137202a2ebc075686f8e2d3273b13e0b",
+      "bytes": 16688
+    },
+    {
+      "path": "tools/usage-monitor/experiments/mcp_memory_probe.py",
+      "sha256": "2a088442a61175b0aea975e89f94b41ad4ed47df7569212cf0e8019931445706",
+      "bytes": 7215
+    },
+    {
+      "path": "tools/usage-monitor/experiments/memory_native_calls.py",
+      "sha256": "00edb5b32ead5216f0e4a7d9a0824780df8bd604b225ebab83d74696df2397eb",
+      "bytes": 3488
+    },
+    {
+      "path": "tools/usage-monitor/experiments/memory_retrieval.py",
+      "sha256": "8a0171d44d29fbdd776491e07d076e3a0e1ea61f18e713cc112fd83b51e6f840",
+      "bytes": 2499
+    },
+    {
+      "path": "tools/usage-monitor/experiments/native_jsonl.py",
+      "sha256": "0f4b7bff7bd7d2e85cbc6ca20b15c9e71c2066d9e806102dc54ec679dd7ad278",
+      "bytes": 1662
+    },
+    {
+      "path": "tools/usage-monitor/experiments/plot_team_memory_extension.py",
+      "sha256": "d6cf3889364d4c96a1957cfed717ddf3ec9ee106ad303b2b6303152fb0fc8735",
+      "bytes": 6425
+    },
+    {
+      "path": "tools/usage-monitor/experiments/prepare_team_text_runtime.py",
+      "sha256": "1e017e14a1f210290af8ffa43a94634c7abb8496dd6556e1d111182ef9f1245a",
+      "bytes": 5858
+    },
+    {
+      "path": "tools/usage-monitor/experiments/probe_team_memory_backends.py",
+      "sha256": "474c73db9d6832937a8bcebae84a9201017974182d8dcd404eb3ffbe049eeabf",
+      "bytes": 7231
+    },
+    {
+      "path": "tools/usage-monitor/experiments/probe_team_memory_native.py",
+      "sha256": "f27676bb52729fdd2b684dadf87f34958d370783c954a9fa6b4fee50aa5a5dfa",
+      "bytes": 8716
+    },
+    {
+      "path": "tools/usage-monitor/experiments/recompress_codex_team_archives.py",
+      "sha256": "cb13b1dc34b415dd21d061eba36cb4179f6ba058676a595126146e0e4c35442d",
+      "bytes": 2114
+    },
+    {
+      "path": "tools/usage-monitor/experiments/repository_graphiti_luna.py",
+      "sha256": "432c518162db2bd008f0311fdac3e5e7b82f3cf2809bc221b6165df32cf84b0e",
+      "bytes": 7884
+    },
+    {
+      "path": "tools/usage-monitor/experiments/repository_mem0_luna.py",
+      "sha256": "2f373826b8560a176a98ca08cbb6896f3e00f615195523520275dff9d6f0c936",
+      "bytes": 4080
+    },
+    {
+      "path": "tools/usage-monitor/experiments/repository_memory_native.py",
+      "sha256": "071ee4ad526eb707d490dfa6cbcf58f3e1d07d2b17e28f1d2694b83f1be0d2d5",
+      "bytes": 1595
+    },
+    {
+      "path": "tools/usage-monitor/experiments/resume_codex_team_scaling.py",
+      "sha256": "cd94f74d6e268c4764669ac83b7c19bb502e4b1e30745f1a9fd6fc7747cafb7b",
+      "bytes": 4095
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_compat.py",
+      "sha256": "04251eee1ede0474e59879ca25b9d0d7fcf0075603ef9a8d03ce5aeb1d2cd01b",
+      "bytes": 821
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_compat_v3.py",
+      "sha256": "97f9d7dfefdc68810a5cd07213d2e399372db9e042a378f5b85cd942e38cc857",
+      "bytes": 823
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_compat_v4.py",
+      "sha256": "dd83691398e347e137a2843a3b713074431fc343982769488f6f725dc95a465d",
+      "bytes": 1635
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_local_embeddings.py",
+      "sha256": "5c476c8152978085051539612e3c59467c6dff7527bb4199955836dd9723e1ef",
+      "bytes": 1210
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_memory.py",
+      "sha256": "e712fbe52d178383d2edfbfebcb095563e5ae84322c814f5f1e0837c3d4774af",
+      "bytes": 11804
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_native_mechanism.py",
+      "sha256": "fbe2349c62f2239f07e27718508d567fe4efccf870ab615e136aa6dc5099d1df",
+      "bytes": 7081
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/LICENSE",
+      "sha256": "171fd8201c63d379bccf5a770b26c6c535f33be98f541c02b5d069937070f32b",
+      "bytes": 11335
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/NOTICE",
+      "sha256": "a279c4526192070293fb79eae2b095aaa6b06aa3ff1f3727c07a44d58fa07e1e",
+      "bytes": 346
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/SOURCE_MAP.json",
+      "sha256": "f37b798d91419b2b1281fc030dce325528b18c49409dc97df0c8e0bfb0240dfb",
+      "bytes": 8870
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/__init__.py",
+      "sha256": "3b135dd54861a1c579e0a425ec3e946f4610fe3f7cd447c4173e7ea4e4a4e58a",
+      "bytes": 85
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/memory.py",
+      "sha256": "f5a9006d56400f35e868d67adda96b84a88bd513b930f1f591a4ff2b7ba5e6b6",
+      "bytes": 10597
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/prompts/v2/generate_event_triple_v1.txt",
+      "sha256": "6ec467695305c3f977f0c882ef0a13c594b58034b5f21676ec6b1e6af3faed00",
+      "bytes": 844
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/prompts/v2/generate_focal_pt_v1.txt",
+      "sha256": "3857c7d4549d8e044297b5dd166ab05fa006a16216052af589254ab5add266aa",
+      "bytes": 303
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/prompts/v2/insight_and_evidence_v1.txt",
+      "sha256": "712e56cfca41b27cbae946f6f6a6054b62ab7bf8faf7d8df008992da9470cbe2",
+      "bytes": 348
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/prompts/v2/poignancy_chat_v1.txt",
+      "sha256": "107a91dcbf7c8dce8d1a69cf7f7c1aaae4c840c9a2e991319862820f023d8b1a",
+      "bytes": 524
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/prompts/v2/poignancy_event_v1.txt",
+      "sha256": "553edbf4cdf6878ea0ecea3ca04a92d1e9953068062e6de7557ce135df55d808",
+      "bytes": 499
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/prompts/v2/poignancy_thought_v1.txt",
+      "sha256": "05e4196bd6025f9610c27a99603ee1b6fbd96e60804b46fce07e917a57bb7a47",
+      "bytes": 543
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/prompts/v3_ChatGPT/generate_focal_pt_v1.txt",
+      "sha256": "40a5a54af1b84b9272dfa5486cf1d0a4494cdee3826b83994bb979daf9012ac8",
+      "bytes": 312
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/prompts/v3_ChatGPT/insight_and_evidence_v1.txt",
+      "sha256": "712e56cfca41b27cbae946f6f6a6054b62ab7bf8faf7d8df008992da9470cbe2",
+      "bytes": 348
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/prompts/v3_ChatGPT/poignancy_chat_v1.txt",
+      "sha256": "107a91dcbf7c8dce8d1a69cf7f7c1aaae4c840c9a2e991319862820f023d8b1a",
+      "bytes": 524
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/prompts/v3_ChatGPT/poignancy_event_v1.txt",
+      "sha256": "553edbf4cdf6878ea0ecea3ca04a92d1e9953068062e6de7557ce135df55d808",
+      "bytes": 499
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/prompts/v3_ChatGPT/poignancy_thought_v1.txt",
+      "sha256": "05e4196bd6025f9610c27a99603ee1b6fbd96e60804b46fce07e917a57bb7a47",
+      "bytes": 543
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/reflection.py",
+      "sha256": "ccd168112de3403e066afb0d5f7ffa5dd316cff0f4d3314e42cd1aee019347c4",
+      "bytes": 4682
+    },
+    {
+      "path": "tools/usage-monitor/experiments/smallville_vendor/retrieval.py",
+      "sha256": "49774e2297f54abf2db416b1d3a96bf94b7d21226a9748759017a28b3c3d57ba",
+      "bytes": 10106
+    },
+    {
+      "path": "tools/usage-monitor/experiments/team_memory_backends.py",
+      "sha256": "bd3fc4a2c4f2f7fc2b7768e01d94212b82bf4245b0fcde404e125b867f330a6d",
+      "bytes": 7257
+    },
+    {
+      "path": "tools/usage-monitor/experiments/team_memory_post_generation_wait.py",
+      "sha256": "5329cdf15fae4395a41c64a29a2aa04db23be16a9f76dcf7468d49c4835ab63e",
+      "bytes": 1407
+    },
+    {
+      "path": "tools/usage-monitor/experiments/team_memory_service.py",
+      "sha256": "ffb795a64eabd018631dcd9735bdc259ef111fa058fe2d3d6cd35aa6bd66d7de",
+      "bytes": 10918
+    },
+    {
+      "path": "tools/usage-monitor/experiments/team_memory_socket_guard.py",
+      "sha256": "400d26925add83e9ef3970c6bc6151bd118a5a99906341997237aab20115b191",
+      "bytes": 1584
+    },
+    {
+      "path": "tools/usage-monitor/experiments/team_memory_startup_transport.py",
+      "sha256": "bbc4610c0c4b7612e54d920ecf4e5ac093125240b796386cfa7a930101776eb2",
+      "bytes": 1869
+    },
+    {
+      "path": "tools/usage-monitor/experiments/team_memory_store.py",
+      "sha256": "6b725e7d6d6ad506a5df6e2224bbc77dac8bfc5f0dcf54c0bca1b25b913992fe",
+      "bytes": 5614
+    },
+    {
+      "path": "tools/usage-monitor/experiments/team_memory_text_service.py",
+      "sha256": "21b7d674fda7d10c04670db5ed2ddf2d4eeed0d94004c3aa2b28ab2cc3d3912f",
+      "bytes": 1020
+    },
+    {
+      "path": "tools/usage-monitor/experiments/team_memory_text_service_v2.py",
+      "sha256": "304b695506a15ea7a873214bea8916e377a6e9ccb48fe54439888b74dcfe5626",
+      "bytes": 1192
+    },
+    {
+      "path": "tools/usage-monitor/experiments/test_team_capture_only_usage.py",
+      "sha256": "e72643ac9b320b1f7934616c5427121c24ae0c77c9995214b60654f9d6583e2b",
+      "bytes": 1896
+    },
+    {
+      "path": "tools/usage-monitor/experiments/test_team_memory_analysis.py",
+      "sha256": "e8169f612b78ea2f0c9367679573295666e48b3925726351d0c730221f3d3f33",
+      "bytes": 3565
+    },
+    {
+      "path": "tools/usage-monitor/experiments/test_team_memory_compaction.py",
+      "sha256": "f7d0a599a0b427ec3fcfc1c1df5e93d01b32e35dfdd5d8330b9b5a80706ee801",
+      "bytes": 2009
+    },
+    {
+      "path": "tools/usage-monitor/experiments/test_team_memory_continuation.py",
+      "sha256": "c9a3aacf9a11f9895ad0b4583af1116d953564f3c28852aaa58150a4de8e51a6",
+      "bytes": 3059
+    },
+    {
+      "path": "tools/usage-monitor/experiments/test_team_memory_extension.py",
+      "sha256": "539075b65fa2eaa2142ac9de32769124833bd5d17314efff8fb47c994b8f367e",
+      "bytes": 8537
+    },
+    {
+      "path": "tools/usage-monitor/experiments/test_team_memory_finalization.py",
+      "sha256": "11507bb56cda443586fb8e424b7709030039cda164dec57f230f2cc9360503cc",
+      "bytes": 3107
+    },
+    {
+      "path": "tools/usage-monitor/experiments/test_team_memory_paper.py",
+      "sha256": "a2e7c2f4535ef68dfe31b8380036e4012387dd096056a70428ce2f906043b4d8",
+      "bytes": 3043
+    },
+    {
+      "path": "tools/usage-monitor/experiments/test_team_memory_trace.py",
+      "sha256": "1438ee62a922e57424008ada6608b8cd6959396ef7bde70e1abd9e0835be3f3b",
+      "bytes": 2769
+    },
+    {
+      "path": "tools/usage-monitor/experiments/test_team_official_memory.py",
+      "sha256": "c333acb7778db7548d5e3d21d81df0a71717f0802da33e4924f6c6b8988161ee",
+      "bytes": 2213
+    },
+    {
+      "path": "tools/usage-monitor/experiments/test_team_post_generation_continuation.py",
+      "sha256": "ae52fe35fc1c83938bbd1598a2470cc39e5215af870fcffc10050cd774bf5e21",
+      "bytes": 3229
+    },
+    {
+      "path": "tools/usage-monitor/experiments/test_team_post_generation_continuation_v8.py",
+      "sha256": "44a9bef44f241fc5bfc2c013d532e7d40ffbb8c1f63fbe5d51e789f98dad9aed",
+      "bytes": 3229
+    },
+    {
+      "path": "tools/usage-monitor/experiments/test_team_post_generation_wait.py",
+      "sha256": "b87fdd96b91abe525a93bfca74f3f44fea91d3278d389c5a86fcbde71b27a511",
+      "bytes": 1926
+    },
+    {
+      "path": "tools/usage-monitor/experiments/test_team_socket_guard.py",
+      "sha256": "39f1a41c27126ede259be907c7d7d32903461275cce97fd42247d350a4e8be18",
+      "bytes": 1466
+    },
+    {
+      "path": "tools/usage-monitor/experiments/test_team_startup_transport.py",
+      "sha256": "9c2456c0cc0b6a0841c2b329667febc97a7c1cd99354f18ae1e45a94cf566473",
+      "bytes": 2103
+    },
+    {
+      "path": "tools/usage-monitor/experiments/tokeneconomizer_native_hooks.py",
+      "sha256": "614e47b9a83b813c70c8acd7abacb842587b43e060396ce00b637f3d5e2b7aa0",
+      "bytes": 6015
+    },
+    {
+      "path": "tools/usage-monitor/experiments/update_team_memory_paper.py",
+      "sha256": "efb04297169989cef148d9545826d2eedbfacdb23095e93017952eba9adf44cd",
+      "bytes": 24299
+    },
+    {
+      "path": "tools/usage-monitor/langfuse/bridge.py",
+      "sha256": "0c139958c715d5ad89e4c5a607cee08161b1fa439399251330dc5f441aa0c06d",
+      "bytes": 20259
+    },
+    {
+      "path": "tools/usage-monitor/langfuse/live_export.py",
+      "sha256": "4114bfee7118f487e3767b1ddac72566c856e2eeca78db2b3682dbab850bb03f",
+      "bytes": 12663
+    },
+    {
+      "path": "tools/usage-monitor/observability/activity_insights.py",
+      "sha256": "9f06d1e34b1471baff9680cb5808679ce3e92898e9bff826158325d06824918e",
+      "bytes": 23053
+    },
+    {
+      "path": "tools/usage-monitor/observability/analyst_experiments.py",
+      "sha256": "38a9532ac24eb5a3e60627ecea64032250b1c1be61350067d6c3261832b452f6",
+      "bytes": 8321
+    },
+    {
+      "path": "tools/usage-monitor/observability/analyst_mcp.py",
+      "sha256": "0ad50b832023d5dd7b97f0b054b4555cb832389e63a7bf9f9301a02f6972ab5d",
+      "bytes": 30367
+    },
+    {
+      "path": "tools/usage-monitor/observability/baseline.py",
+      "sha256": "349723b8747f9a434e2cb48d0ecf0d188f0b7e0af49d2824462a2d6daa4603e7",
+      "bytes": 6003
+    },
+    {
+      "path": "tools/usage-monitor/observability/capture_objects.py",
+      "sha256": "3ac3f265848e1e2b41033165ca01051420dd27b4528952b6a99e4efb16fc4bec",
+      "bytes": 4039
+    },
+    {
+      "path": "tools/usage-monitor/observability/capture_proxy.py",
+      "sha256": "e6eecf6def9828ba58851a696dc0e120a5c9de2e70330f97d5af30f3c298ed51",
+      "bytes": 18221
+    },
+    {
+      "path": "tools/usage-monitor/observability/capture_proxy_longhorizon.py",
+      "sha256": "370e7ad5abdcd82ae82e1fa7a92a9c2c085da99a302ca8feb2d4b8e23111e64b",
+      "bytes": 4263
+    },
+    {
+      "path": "tools/usage-monitor/observability/capture_proxy_native_routes.py",
+      "sha256": "e0c5bb2a0d8a33996a423884b43bf9050cd49443fae905c15216a3da99068b3b",
+      "bytes": 1107
+    },
+    {
+      "path": "tools/usage-monitor/observability/context_archive_policy.py",
+      "sha256": "b778cf4eeea5dd3724c93792112a5fa69bdb216736fd829f3031f29da9a2c0d1",
+      "bytes": 5762
+    },
+    {
+      "path": "tools/usage-monitor/observability/exact_source_archive.py",
+      "sha256": "e04d6e565075c1cdbb52f70aa64ab73e7feb70fb0244b728ccfb936c9aaefc38",
+      "bytes": 3006
+    },
+    {
+      "path": "tools/usage-monitor/observability/live_compression.py",
+      "sha256": "8a303d4971245ff7f5abc59bc2331930b4033d3f623d2b05636c65ffc662776f",
+      "bytes": 5853
+    },
+    {
+      "path": "tools/usage-monitor/observability/progress_output.py",
+      "sha256": "86d1c4d7c9cfdb37f35598cf959619b82a24ae03f8d75d2ebe4b045637ba4c1c",
+      "bytes": 1456
+    },
+    {
+      "path": "tools/usage-monitor/observability/task_curation.py",
+      "sha256": "b8de7b82692e7600f238d9dc0816bb0ee8e11e0d4f4f47e276b117a08a770d51",
+      "bytes": 7184
+    },
+    {
+      "path": "tools/usage-monitor/observability/task_discovery.py",
+      "sha256": "093a963b6441568a13486e95196e7b375c45e2cb269d828a8d5d7e6bc09d6a69",
+      "bytes": 4588
+    },
+    {
+      "path": "tools/usage-monitor/observability/task_evidence.py",
+      "sha256": "273ef7617edaa42457c731793d7fd39ba1630e97ca5cde738803c5c3e102657d",
+      "bytes": 9616
+    },
+    {
+      "path": "tools/usage-monitor/observability/task_history.py",
+      "sha256": "db3f71bd7f58691828b55718f638a900748df2f68821cb5b485d705142a12dee",
+      "bytes": 41894
+    },
+    {
+      "path": "tools/usage-monitor/observability/vendor/headroom/log_safety.py",
+      "sha256": "3b1ebd685bef3f324fdd17ce15ed9036089f63ed6fbfabfba640319f017c67e9",
+      "bytes": 190
+    },
+    {
+      "path": "tools/usage-monitor/observability/vendor/headroom/lossless_compaction.py",
+      "sha256": "8f2b1bce1223553fb604d51391f4a53fdb394cbf9301f403772d9242d1e3f7ae",
+      "bytes": 21577
+    },
+    {
+      "path": "tools/usage-monitor/observability/work_analytics.py",
+      "sha256": "43136e992525fedc9c579b3aa068139caa08aa45bbbba68aac439eaf6899c05e",
+      "bytes": 21113
+    },
+    {
+      "path": "tools/usage-monitor/observability/workspace.py",
+      "sha256": "f3f6691e3eb312f268fdd7e5c5afd11b47a81304850f6b46b5aebda956259ad0",
+      "bytes": 48075
+    }
+  ],
+  "unresolved_ambiguous_imports": {},
+  "caveats": [
+    "Static import closure cannot resolve every dynamic factory or package data reference. Review before creating a destination environment.",
+    "Current working-tree files included; source commit alone may omit them. Regenerate after final results/editorial changes.",
+    "Raw private evidence, OAuth, runtime binaries/weights and service volumes excluded. Destination security review required."
+  ]
+}

@@ -3213,6 +3213,21 @@ afterstable/fullresult, preservingprivateevidenceandallfailedcalls. Restore/expo
 normal8317capture inputafterfullmatrix via SAME native-exportledger. Study8370
 andallnativecapturecontinue; lastLangfusestatus18:11noerrors.
 
+### 8 November: user redirects to small tasks; memory inspected
+
+Supersedes the earlier instruction to finish all nine long assignments. User asked
+for smaller tasks and inspection of relevant memory. Long worker PID508386 stopped
+gracefully after call-04 completed (no interrupted model calls); stopped.json and
+operator-discontinued-001.json retained under the existing /tmp study root. Do not
+resume/retry this matrix. Completed control reward .9913793103448276, verifier1;
+partial memory arm has no final matched comparison. Five notes/68 tool results/one
+instruction now retained; all note source links exist and hashes verify. Notes
+retain useful public findings, corrections and uncertainties; all five remain
+active with supersedes empty. Search reuse observed, source reopening absent.
+See smallville-online-results.md and private memory-relevance-inspection-001.json.
+Smaller completion-driven matched trials remain outstanding; no new trial has
+been registered or run. Existing Langfuse/TTGL retained; schedules remain paused.
+
 ### 9 November: Luna Smallville / TokenEconomizer comparison complete
 
 User requested Luna-maintained Smallville versus Microsoft TokenEconomizer.
@@ -3330,3 +3345,378 @@ needs accounting; cash/quota unknown, local/parent overhead separate. Research
 schedules stay paused. Unique /tmp captures/Git/source artifacts require verified
 backup before cleanup; preserve services/volumes. Original user HANDOVER15lines,
 Smallville25lines and inspect_memory_artifacts.py remain untouched/unstaged.
+
+
+## Codex team knowledge scaling, 11 November 2026
+
+The user authorizes sustained active-chat research on native Codex teams and
+shared knowledge. Paper draft preceded inference in
+`docs/paper/codex-team-knowledge/paper.md`; dated controls and local-provider
+failures are in `preparation-results.md`. No schedules resumed. The supplied
+knowledge-innovation-agents GitHub URL is inaccessible through Git and connector;
+new work is in the existing TTGL `work` checkout.
+
+Private root: `work/security/codex-team-knowledge-20261110/`. TinyDB standalone
+feasibility passes independent source-only replay:200pass/1skip,244.42s,726995
+reconciled native tokens; excluded from comparison. Sealed SimPy reference140pass
+and base57fail; TinyDB reference200pass/1skip and baseimportfail. Runtime is a
+declared Python3.11variant. Pinned dataset parquet equals all54viewerrows exactly.
+
+The24-cell development scaling pilot is active:SimPy/TinyDB × native/notebook/
+officialMCPmemory × total capacities1/2/4/8. One attempt/cell, randomized order;
+30min,80sharedterminalcalls,4Mobservedordinarytoken threshold (in-flight/compaction
+can exceed). Twelve evaluation libraries remain reserved and untouched. Sources
+in `experiments/codex-team-knowledge-001/scaling-pilot-protocol-003.json` are frozen.
+Do not edit those generation/replay/queue sources, restart a queue, or duplicate
+started units. Current driver `continue_codex_team_scaling.py`, execsession80167,
+logs `scaling-pilot-001/continuation-001.log`. Inspect actual checkpoint/completion/
+continuation-stopped receipts before continuation. All original failures remain.
+
+First cell SimPy/notebook/cap2 passes140tests in157.89s,969516tokens. Second
+TinyDB/notebook/cap4 passes200/1skip in186.36s,1498884known tokens, but seven
+communication-interrupted streams lack usage. The original queue stopped; all
+per-thread account/usage/read estimates returnnull and read-only retrieval404
+with a positive authenticated catalog control. Amendment003 continues only the
+remaining22cells, preserving incomplete costs as lower bounds and total costs
+null. No inference is repeated. Do not claim complete cost/rank incomplete cells.
+
+Per-unit archives are lossless and byte-hash verified before owned raw files
+are removed; authentication remains untouched. Original capture frames and exact
+CAS objects are retained within units and archives. Use the new read-only
+`analyze_codex_team_scaling.py` for archived evidence; raw rpc/actor paths may have
+been archived. First analysis snapshot only covers the first complete cell.
+The capture-only proxy on8452(session9626) writes under/tmp/native-capture-001
+with full prefix `/tmp/ttgl-team-knowledge-20261110/`. Do not stop it during runs.
+No Headroom transformations or global routing changes apply to study homes.
+
+Local auxiliary services are stopped before comparison. Qwen0.6B schema
+extraction passed3formats but strict1/3identifiers; Graphiti ingestion attempts
+failed, including533.34s/9682localtokens in attempt002 with stock retries counted.
+Cognee's original lock has confirmed advisory matches; updated resolution not
+cleared/installed. Llama.cpp remains unexecuted/blocked. MCPmemory2.1.0 passes
+eight-process storage and native four-agent visibility; no auxiliary LLM calls.
+Existing services, credentials, historical studies and unrelated dirty files
+remain preserved. Raw/private/security artifacts stay ignored.
+
+Storage continuation: the pilot reached17completed assignments, then stopped
+before the next inference at the128MiBworkspace reserve. Exact archived SQLite
+WAL/SHM copies accounted for leftover space. Amendment004 verifies original
+archive hashes and each database file hash, removes only those backed-up copies,
+and continues the seven unstarted cells. Authentication remains untouched.
+Current driver is `resume_codex_team_scaling.py`, execsession28367, log
+`scaling-pilot-001/storage-continuation.log`; inspect its stopped/completion
+receipts before acting. Protocol004adds only this storage continuation source;
+generation/prompts/order/budgets/replay/accounting remain unchanged. All17database
+compactions verified; free space recovered to250MiBbefore the next cell. No
+model assignment was repeated. The installed native backend reportsv2 in child
+metadata and offers the registered slot count in server guidance, despite the
+CLIfeatureflagintent; report actual observed behavior rather than flag names.
+Read-only analysis now distinguishes exact peer observation exposure from mere
+memory writes; the first three MCPcoding cells have no observed peer reads.
+
+
+### 11 November — coding-team development pilot complete
+
+All 24 registered SimPy/TinyDB × native/notebook/official MCP memory × total
+capacity1/2/4/8 assignments are complete, once each. Independent source-only
+replay and artifact policy pass24/24; one parent turn fails despite a passing
+sealed artifact. Protocol005 records a native-only final usage response missing
+from the RPC delivery; auditv2 verifies the exact capture and cumulative prefix,
+without changing the frozen grader. No pilot worker remains active. Completion:
+`work/security/codex-team-knowledge-20261110/scaling-pilot-001/completion.json`.
+Authoritative analysis is `scaling-analysis-final-002/analysis.json`. Public paper,
+report, CSV, sanitized JSON and standalone figures live under
+`docs/paper/codex-team-knowledge/`. No reserved-library model trials have run.
+
+Native capacity8 uses four/five actual threads and averages31.323% less coding
+run time than native1 on these two development libraries. Known inference cost
+is already at least2.4458× the fully measured native1 controls. Quality is at a
+ceiling. Only7cells have complete usage;17remain lower bounds,98interrupted
+requests unknown. Known counters33,076,632tokens, >=260.226880Standard credits,
+>=$10.4090752API-equivalent; actual total/subscription cash unknown. MCP publishes
+91observations, but all4queries returnempty: no peer-observation retrieval is
+observed. Do not turn publication or timing differences into learning evidence.
+
+All24gzip archives were losslessly recompressed toXZ after exact uncompressed
+Tar-byte comparison. Original archive receipts remain; recompression receipts
+link old and new hashes. Reader supportsXZ; per-unit captures still present.
+Storage is about93MiB free on workspace; /tmp has20GiB but is not a durable
+replacement. A user storage-retention question is pending before larger runs.
+Original failures, raw archives, credentials and unrelated dirty files retained.
+Research schedules remain paused. Capture proxy8452 session9626 remains active.
+Auxiliary LLM/embedding/Neo4j are stopped except new provider006 dtype diagnostic:
+FP32 Qwen0.6B, unchanged second ingestion002 request and90s bound, session21373.
+No dependency install or memory-core changes; previous failed attempts preserved.
+
+
+### 11 November, 04:30 — reserved coding-team extension launched
+
+Pilot24 remains complete with published report/figures. Local-provider work is
+complete for the bounded candidates: Graphiti ingestion005 with Qwen0.6B
+FP32-sharded/dynamicINT8 + localBGE + Neo4j finishes in88.2908s/twoLLMrequests,
+3312input+212output=3524tokens but fails fact fidelity, returning an unrelated
+Alice/Bob promotion fact. UnquantizedFP32 diagnostic006 retains the command;
+startup failures007/008 have zero acceptedrequests and remain preserved. Cause
+of SIGTERM is unresolved; do not claim OOM. All auxiliary services now stopped.
+Cognee remains blocked, no coding score. See preparation-results.md updates.
+
+Five original reserved libraries pass untouched reference admission on declared
+AlpinePython3.11.18/25reviewedwheels (no lxml/Setuptools): WCWidth38pass1skip,
+Cachetools215pass, Voluptuous149pass, IMAPClient267pass, Babel6700pass6skip.
+Babel uses published2.14.0 CLDR data only,1014sealedfiles, no implementation.
+All blank controls fail. OriginalPython314 and failednewercontrols retained.
+MiniTorchreference fails211NotImplementedError; Chardet has a Hypothesis
+counterexample; Portalocker multiprocessing/coveragefails. Deprecated/Marshmallow/
+PyJWT security/dependencyblocked; Parsel XMLnativefindings unresolved. The
+XML-bearing Python314testvenv must not execute further pending patchreview.
+Raw review receipts/public-wheelassets live/tmp; compact admission receipts
+are private under reserved-readiness-001/002. No candidate outcomes used to
+select tasks. No replacements beyond original12reserved.
+
+Registered80cells: addedMCPmemoryoff/on × generalexplicitknowledgeuseoff/on ×
+capacity1/2/4/8 × fiveadmittedrepos, oneattempt each. Protocol/order/frozenhashes:
+experiments/codex-team-knowledge-001/reserved-factorial-protocol-001.json.
+Paperdesign: docs/paper/codex-team-knowledge/reserved-extension.md. Newprepare/
+boundary code codex_team_coding_v2.py reuses original native run. Newreplay
+codex_team_grade_v3.py restores in-package tests and immutabledata, requires
+referencecollectioncount/skipceiling; newtests/generatedoutputs are excluded,
+existingtest/config/data modifications separatelyflagged. Source-only quality
+and normalparentcompletion distinct.13softwarechecks and threeactualzero-
+inferencegrade witnesses pass (poisonedVoluptuoustests/Babeldata restored;
+blankVoluptuousfails). Allfive native/containerboundaries pass beforeinference.
+Do not edit frozen sources while queue active; originalpilot files unchanged.
+
+Current queue: tools/usage-monitor/experiments/codex_team_reserved_queue.py,
+execsession83749, root work/security/codex-team-knowledge-20261110/scaling-heldout-001.
+First randomcell Cachetools/MCP/standard/cap1. Inspect started/stopped/checkpoints
+before continuation, never restart a startedqueue or repeatuncertainmodelcalls.
+Cost gaps prospectively retained as lowerbounds, no retries. Driver seals and
+gradesended budget/stream artifacts; auditambiguity stops. Archives gzipverified,
+SQLiteWALcompacted, exacttarXZrecompressedpercell. Source bases/control assets
+in/tmp/ttgl-team-knowledge-20261110/reserved-sources-001 and manifest001.
+
+Captureproxy oldsession9626 had stopped143 afterpilot; restartedreviewed
+capture_proxy_native_routes.py on8452, execsession59028, NEWdestination
+/tmp/ttgl-team-knowledge-20261110/native-capture-002. Keepthisproxyalive during
+queue. Perunit captures durably retained by nativeaudit. No globalrouting/
+Headroomchanges. Workspacefree recovered from93MiB to615MiB independently;
+initialstoragequestion no longerblocks boundedrun. Hard128MiB gate before
+newunit. Do not delete privateevidence or use/tmpforuniqueonlyretention without
+userchoice if spacefailsagain. Researchschedules staypaused. No commits/pushyet;
+userunrelateddirtyfilespreserved, HANDOVER itself has prioruserdirtycontent.
+
+
+### 11 November — memory-aware multi-system team extension
+
+User requests Mem0, Smallville, Graphiti/Luna and shared searchable agent logs,
+with explicit memory awareness for every worker and a paper appendix. Read
+`docs/research/team-memory-extension.md`. Separate 56-cell development protocol
+is finalized before scored inference; original pilot/reserved sources untouched.
+All four new backends and native parent/child reciprocal checks pass after
+versioned Mem0 scoping, Graphiti episodic retrieval and Smallville empty-store
+fixes; failed attempts preserved. 23 software checks and 14 gate receipts pass.
+Queue `codex_team_memory_queue.py`, exec session73673, sole root
+`work/security/codex-team-memory-extension-20261111/scored-001`, is active.
+Inspect checkpoints/stopped/completion/processes; never restart/repeat a started
+cell or edit frozen generation/evaluation/adapter files. Configuration and 65
+source hashes: private `scoring-config-003.json`. First cell SimPy/notebook/cap1.
+Own capture8452 exec45454 and Neo4j17687 exec67772 must stay alive during run.
+Some mechanism transports have unknown usage; all completed native counters
+reconcile, totals remain lower bounds where needed. Paper appendix has actual
+hash-verified benchmark memory/failure/query excerpts and synthetic mechanism
+examples. No new comparative coding result yet. Sources/runtime restored from
+exact public pins in/tmp; durable private evidence stays workspace. 128MiB
+pre-inference reserve. Preserve unrelated user changes; schedules stay paused.
+
+Memory-extension scored checkpoint006: all six source-only artifacts pass;
+five parents complete normally, Mem0/SimPy/cap4 stops at shared token threshold
+with passing source. Sources/conditions unchanged. Actual log-arm cell003 has
+12 nonempty searches, 11 with identifiable peer exposure, no full-record reads.
+Mem0 cell005 has four full peer-record reads; Smallville006 has three and 11
+Luna importance calls, zero natural reflection. This is interim development
+mechanism evidence, not causal benefit or a matched-system conclusion. Unknown
+transport usage retained. Public current/final report: memory-aware-results.md;
+one zero-model completion publisher exec68722 waits on this exact queue PID.
+No schedule or extra inference worker. See dedicated continuation doc.
+
+Memory-extension continuation after security review: original queue102697/session73673
+ended143 after sealed12. Additional native SBOM findings OSV-2026-1068 and
+OSV-2025-219 match Pillow bundled codecs in original memory runtime. All12
+source artifacts pass;11 normal parents. Original checkpoint12 creation was
+signaled before write; zero-byte original preserved and record reconstructed
+from sealed generation/grade/audit, then losslessly archived. Old attached
+publisher68722 failed on partialcheckpoint; it is no longer active.
+
+Read memory-aware-security-amendment-004.json and continuation-finalized-007.json.
+Isolated FastEmbed0.9.1 text-only derivative under
+/tmp/ttgl-team-memory-20261111/text-only-global-002 excludes all Pillow/image
+artifacts. Fourteen text files exact, tokenizer AST unchanged, eight stored BGE
+vectors exactly reproduced; four actual service startup/close checks pass with
+zero remote calls. Original global runtime and frozen agent/engine sources
+remain untouched.78 existing Python version queries zero matches; no whole-stack
+clearance. New plotting/Pillow build candidates remain unexecuted.
+
+Continuation005 had Docker startup timeout before any model intent.006 adopted
+the owned sleep container and passed original boundaries, then hit an existing
+log collision, still pre-model. Complete original preparation now preserved in
+scored-001/preparation-history-013-005-006; both stop receipts and all absence
+proofs remain. No started model call was repeated. Latest sole continuation:
+continue_team_memory_text_runtime_v4.py, config scoring-config-007.json,
+exec62793; exact registered prefix12, only untouched remaining44 fromcell013.
+It writes continuation-003-started.json and cumulative checkpoints, with zero
+automatic retries. Inspect actual started/stopped/completion and processes first.
+146-or-fewer frozen source/import checks percell,11046 full runtime files checked
+at launch and required again at final audit. Do not edit frozen sources while
+active. Public docs/read-only nonfrozen finalization can change. Capture8452
+exec45454 and own Neo4j17687 exec67772 stay alive. Scheduled research stayspaused.
+
+Read-only analysis now verifies protocol prefix, sealed grades/audits, positive
+deduplicated responses and null unknown totals; six new analysis and six
+continuation checks pass,33 total team-memory checks. Public CSV includes
+runtime strata. Finish all56, independently audit archives/runtime, update main
+paper/appendix/results (not only progresslinks), then respond. Migration agent
+prompt is docs/paper/codex-team-knowledge/PORTING_PROMPT.md. Preserve unrelated
+user dirty files, especially earlier HANDOVER content and repository-memory work.
+
+Memory-extension latest transport continuation008:19 confirmed model assignments
+all pass prescribed source-only replay. Old controller268125/session62793 was
+held and ended143 after two pre-thread timeouts in20/21. Their RPC traces show
+only initialize and thread/start, with no turn/task input or owned model session;
+22 was prepared but no native model process started. All three preparations and
+old zero-counter checkpoint20/21 rows are preserved under
+scored-001/pre-model-transport-history-008. Independent preparation-audit-008
+proves the pre-model boundary from trace/source control flow, not zero counters.
+Original actual model order remains20,21,22,...56. No started model call repeated.
+
+Latest sole queue: continue_team_memory_text_runtime_v5.py, config
+work/security/codex-team-memory-extension-20261111/scoring-config-008.json,
+exec47320, PID384111, owner continuation-004-started.json. It retains prefix19
+and attempts only37 originally uninvoked cells. Native StartupClient allows
+120secs on ONE initialize/thread/start request; turn/start keeps original20s.
+No prompt/model/algorithm/budget extension or request retry. A future failure
+before recorded turn intent stops for audit instead of consuming later cells.
+One live empty-thread startup probe and three transport checks pass with zero
+task turns. Model invocation20 is now accepted; inspect live state for outcome.
+145 source hashes percell,11046 runtime files atlaunch,20 gate receipts. Frozen
+core sources and new analysis/client/queue source must not change while active.
+
+One zero-model publication phase now waits on this exact queue PID: exec20053,
+finish_team_memory_study.py, publication-phase-started-003.json. It cannot launch
+models/restart queue. On actual56 completion it runs independent full archive/
+runtime audit, five Pygal SVG figures and a factual main-paper/README/appendix
+update in fresh processes. Then do editorial review, JSON/link checks, final
+scope/commit review before responding. Prior publication phase002 canceled
+without output on oldqueue change; earlier68722 failure remains preserved.
+
+New read-only finalization code: finalize_team_memory_results.py (all archive
+file/link hashes, broker operation seconds, finite setup markers, roles and
+peer exposure), inspect_team_official_memory.py, update_team_memory_paper.py.
+Pygal3.1.3/importlib-metadata8.7.1/zipp3.23.0 reviewed as pure Python, installed
+only in/tmp/ttgl-team-memory-20261111/pygal-runtime-002 with no scripts/plugins/
+native/image extras. Five private SYNTHETIC render fixtures pass; no scored plot
+before all56. Reviewed lock memory-aware-svg-runtime-002.lock. Matplotlib/Pillow
+and new Pillow build alternatives still unexecuted/blocked. Raw original
+Pillow runtime left untouched; generation uses text-only FastEmbed002.
+
+Paper appendix now includes scored Graphiti baseline failure and retained MyPy
+verification caveat with original archived member hash, plus conditional Cognee
+RCE/advisory interpretation. Port prompt and REPRODUCING.md added. Main paper
+has methods4.5; substantive final abstract/results/discussion/conclusion are
+gated on completion/audit. Preserve original24pilot and interrupted80 separately.
+Capture8452 exec45454 and own Neo4j17687 exec67772 remain needed during models.
+No schedules resumed. Preserve unrelated dirty user files and prior HANDOVER
+content. Continue active-chat work until56 end and final publication/review.
+
+Latest memory extension009:20 CONFIRMED model assignments complete/pass. New21
+preparation failed on the old dead Unix socket from its preserved earlier
+startup, before native process/turn/maintenance intent. Whole failed preparation
+and rootstop are in pre-model-service-history-009. Socket guard removes only
+exact assignment-derived owned socket pathname with no kernel endpoint,
+ECONNREFUSED, unchanged inode; preserves active/bound endpoints and regularfiles.
+Four guard checks pass. Frozen original broker/algorithms/model policy untouched.
+
+Sole latest queue: continue_team_memory_text_runtime_v6.py, config
+scoring-config-009.json, exec31102, PID416899, owner continuation-005-started.json.
+Resumes prefix20 with36 originally uninvoked models. Actual task21 nowaccepted;
+no model turn ever repeated. Entry uses StartupClient120secs only on initialize/
+thread.start and new service bootstrapv2 dead-socket guard.150 frozen sources,
+11046 runtime files atlaunch,21 gates. Inspect current stopped/completion/
+checkpoints/processes; do not duplicate or edit frozen source. Earlier queue
+384111/47320 stopped pre-model21 and publisher20053 stopped003 accurately; no
+pending old worker. New attached zero-model publisher is publicationphase004,
+finish_team_memory_study.py, binds owner005/config009; see actual execsession
+from activechat. It must finish before final editorial edits to avoid overwrites.
+
+Public reports represent20 confirmed modelcells; historical pre-model rows20/21
+are separatelypreserved with source/RPC proof, not discarded coding failures.
+Quality is conditional on actual task-model start, not first-launch reliability.
+All pre-model overhead remains separate/unpriced; do not infer cashzero.
+A pending optional asynchronous scope question asks whether user also wants
+the separate older80-run reservation; current authorized continuation remains56
+unless usersteers. Scheduled work stillpaused; activechatcontinues.
+
+## 12 November 2026 — requested memory-study pickup record
+
+Read [team-memory-handoff-20261112.md](team-memory-handoff-20261112.md) first.
+The user explicitly selected only the active56-run comparison and paper; the
+older interrupted80-run reservation stays untouched. Snapshot00:03UTC:
+38 verified,37 passing source artifacts,36 normal parents; actual039 submitted.
+Existing queue598104 (`continue_team_memory_text_runtime_v8.py`, config011,
+owner007) and zero-model publication598863 (phase006) are left running.
+Do not duplicate them or repeat any started/uncertain call. Inspect actual
+processes/checkpoints/stop/completion receipts before acting.
+
+The handoff records all operational amendments, the retained Mem0/capacity8
+failure, two provider-only completions/native transcript gaps, restored own
+services after daemon restart, interim matched performance, frozen sources,
+private evidence boundaries and exact final publication/editorial/port-manifest
+steps. All81 focused software checks pass at handoff. Research schedules remain
+paused; no recurring work was created. Unrelated dirty files and prior HANDOVER
+content remain preserved. No commit/push yet; many required study files are
+untracked. The study and final paper update are not yet finished.
+
+## 15 November 2026 — repository documentation, startup and space recovery
+
+The user requested latest `work`, TTGL startup, setup/README, a complete research
+index, and commit/push of existing changes; later also authorized safe space
+cleanup. Pulled origin/work fast-forward to d777f62 without stashing or replacing
+local work. Added root SETUP.md, docs/EXPERIMENTS.md, docs/EXPERIMENT-ARTIFACTS.md
+and docs/PAPERS.md; replaced stale root README with app/research entry points.
+The artifact inventory links all 133 public usage-monitor study files, including
+41 result/analysis JSON files, plus routing collections and team-paper evidence.
+No new model trial, queue or scheduled monitoring was started.
+
+Memory study inspection found no generation/publication worker and no completion
+receipt. Actual latest checkpoint039 has 39 assignments, 38 passing sources and
+37 normal parents. The read-only analyzer validates those recorded cells and
+refreshes public JSON/CSV/Markdown as **incomplete, 39/56**. Earlier 38-cell public
+files are preserved privately under maintenance/memory-report-before-refresh-
+20261115. Failed Mem0 grade, lower cost bounds, historical amendments, the
+interrupted 80-cell reservation and untouched suffix remain preserved. Do not
+infer permission to repeat uncertain calls or resume the study from this startup.
+
+The standalone stdlib workspace is running on loopback8766 with the existing
+workspace database/native histories and saved capture root. Its HTTP root
+returns200. Private startup log: langfuse-stack/workspace-start-20261115.log.
+It does not start the capture proxy, model inference or Langfuse ingestion.
+Full stack could not start: restored Docker container records/named volumes
+remain, but image inventory is empty and existing container start returns
+`RWLayer ... is unexpectedly nil`. Doctor also reports CLI0.169.0 versus tested
+0.166.0. No images downloaded, containers removed, volumes pruned or normal
+provider configuration changed. Preserve all database volumes during recovery.
+
+Safe cleanup removed only five superseded, unreferenced Copilot binary cache
+versions1.0.105–109, retaining1.0.112 and the active VSCode runtime. `/proc`
+command/maps/exe/cwd checks found no references. Free space rose by1,307,615,232
+bytes (about1.22GiB), to about1.8GiB. Dated path/size/before/after receipt is
+private at work/security/maintenance/space-cleanup-20261115.json. Experiment
+evidence, native histories, credentials and database volumes were not deleted.
+
+Validation: 249 unique stdlib software tests pass, six optional tests skip
+(123 Observatory,74 team,24 Langfuse,11 original team,23 repository tests;
+123 includes the six skips). Two changed/relevant JS files pass node syntax
+checks. Changed Python ASTs and29 JSON documents parse, all local Markdown link
+targets resolve, git whitespace check passes, and exact local credential values
+are absent from public changes. Native-model inference was not used for checks.
+The team source-port inventory is refreshed after the last paper edits; raw
+private state stays ignored. Research schedules remain paused.

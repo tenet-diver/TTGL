@@ -146,3 +146,28 @@ on the dedicated study proxy while continuing to import all native sessions.
 Normal HTTP captures remain queued and will be flushed through the same ledger
 when the normal capture input is restored. Model counters are never summed with
 the proxy-span dataset.
+
+## 8 November: memory relevance inspection and scope change
+
+The user redirected testing to smaller, completion-driven tasks. The long matrix
+was operator-discontinued after the current native turn completed, with zero
+interrupted model calls. Its worker has stopped; do not resume the nine-assignment
+matrix. Preserve its completed control and partial memory arm as historical
+evidence. The completed control reward was 0.9913793103448276 (verifier exit 1),
+not a binary success. The partial memory arm has no matched final efficacy result.
+
+Read-only inspection found five agent notes, 68 recorded tool results and one task
+instruction. Every note's cited sources exists and matches its stored SHA-256.
+Notes retain concrete findings, unsuccessful approaches, explicitly marked guesses,
+public progress and submission identifiers. Useful examples include the correction
+of an initial batch-size guess from 128 to 256, and public probe evidence separating
+decimal disk `gb` from binary `gib`. The fifth note retains another unresolved
+unit hypothesis rather than presenting it as verified.
+
+Two weaknesses remain: all five notes are active, with no explicit supersession,
+so corrected guesses can still surface; and restarted sessions search summaries
+without using `read_record` to reopen cited sources. Provenance integrity does not
+establish that every summarized claim is correct. This demonstrates collection
+and reuse of relevant information, not a measured improvement in coding accuracy,
+total inference cost or parallel-agent efficiency. Private audit receipt:
+`work/security/context-memory-20261107/memory-relevance-inspection-001.json`.

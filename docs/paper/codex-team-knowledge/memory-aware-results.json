@@ -1,0 +1,2922 @@
+{
+  "at": "2026-11-15T16:02:26.794541+00:00",
+  "state": "incomplete",
+  "completed": 39,
+  "planned": 56,
+  "kind": "separate memory-aware development extension; interim until all registered assignments end",
+  "cells": [
+    {
+      "task": "simpy",
+      "arm": "notebook",
+      "total_agent_capacity": 1,
+      "directory": "001-simpy-notebook-1",
+      "runtime_variant": "original-reviewed-runtime",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 224.77061040300032,
+      "actual_coding_threads": 1,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": true,
+      "native_usage_lower_bound": {
+        "input_tokens": 642853,
+        "cached_input_tokens": 598528,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6390,
+        "reasoning_output_tokens": 289,
+        "total_tokens": 649243
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 642853,
+          "cached_input_tokens": 598528,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 6390,
+          "reasoning_output_tokens": 289,
+          "total_tokens": 649243
+        }
+      },
+      "total_inference_usage": {
+        "input_tokens": 642853,
+        "cached_input_tokens": 598528,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6390,
+        "reasoning_output_tokens": 289,
+        "total_tokens": 649243
+      },
+      "unknown_request_count": 0,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 5.31007,
+      "standard_credit_scenario_total": 5.31007,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "notebook",
+      "total_agent_capacity": 4,
+      "directory": "002-tinydb-notebook-4",
+      "runtime_variant": "original-reviewed-runtime",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 207.09509135000008,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 1777980,
+        "cached_input_tokens": 1651968,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 12432,
+        "reasoning_output_tokens": 1133,
+        "total_tokens": 1790412
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 1777980,
+          "cached_input_tokens": 1651968,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 12432,
+          "reasoning_output_tokens": 1133,
+          "total_tokens": 1790412
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 4,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 13.53852,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "searchable_logs",
+      "total_agent_capacity": 8,
+      "directory": "003-simpy-searchable_logs-8",
+      "runtime_variant": "original-reviewed-runtime",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 190.67804517600052,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 2342039,
+        "cached_input_tokens": 2175488,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 12323,
+        "reasoning_output_tokens": 541,
+        "total_tokens": 2354362
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 2342039,
+          "cached_input_tokens": 2175488,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 12323,
+          "reasoning_output_tokens": 541,
+          "total_tokens": 2354362
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 3,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 16.84702,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "native",
+      "total_agent_capacity": 1,
+      "directory": "004-tinydb-native-1",
+      "runtime_variant": "original-reviewed-runtime",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 263.2137885000002,
+      "actual_coding_threads": 1,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": true,
+      "native_usage_lower_bound": {
+        "input_tokens": 748257,
+        "cached_input_tokens": 692608,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7481,
+        "reasoning_output_tokens": 828,
+        "total_tokens": 755738
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 748257,
+          "cached_input_tokens": 692608,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7481,
+          "reasoning_output_tokens": 828,
+          "total_tokens": 755738
+        }
+      },
+      "total_inference_usage": {
+        "input_tokens": 748257,
+        "cached_input_tokens": 692608,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7481,
+        "reasoning_output_tokens": 828,
+        "total_tokens": 755738
+      },
+      "unknown_request_count": 0,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 6.38422,
+      "standard_credit_scenario_total": 6.38422,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 4,
+      "directory": "005-simpy-mem0_luna-4",
+      "runtime_variant": "original-reviewed-runtime",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "stopped",
+      "coding_run_seconds": 482.2771536330001,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 13,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 4003953,
+        "cached_input_tokens": 3695488,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 21673,
+        "reasoning_output_tokens": 1067,
+        "total_tokens": 4025626
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 3758658,
+          "cached_input_tokens": 3630208,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 18585,
+          "reasoning_output_tokens": 1067,
+          "total_tokens": 3777243
+        },
+        "gpt-6-luna": {
+          "input_tokens": 245295,
+          "cached_input_tokens": 65280,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3088,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 248383
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 6,
+      "observed_local_embedding_inferences": 52,
+      "summed_recorded_embedding_seconds": 26.679348528998162,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 20.6492275,
+      "standard_credit_scenario_total": null,
+      "end_category": "token_budget"
+    },
+    {
+      "task": "tinydb",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 4,
+      "directory": "006-tinydb-smallville_luna-4",
+      "runtime_variant": "original-reviewed-runtime",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 361.9182932650001,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 11,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 2794070,
+        "cached_input_tokens": 2601472,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 14368,
+        "reasoning_output_tokens": 1011,
+        "total_tokens": 2808438
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 2694822,
+          "cached_input_tokens": 2544768,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 14267,
+          "reasoning_output_tokens": 1011,
+          "total_tokens": 2709089
+        },
+        "gpt-6-luna": {
+          "input_tokens": 99248,
+          "cached_input_tokens": 56704,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 101,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 99349
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 3,
+      "observed_local_embedding_inferences": 16,
+      "summed_recorded_embedding_seconds": 3.301809785001751,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 17.5531685,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "notebook",
+      "total_agent_capacity": 8,
+      "directory": "007-simpy-notebook-8",
+      "runtime_variant": "original-reviewed-runtime",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 184.16714522499933,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 1997515,
+        "cached_input_tokens": 1801344,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 12125,
+        "reasoning_output_tokens": 484,
+        "total_tokens": 2009640
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 1997515,
+          "cached_input_tokens": 1801344,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 12125,
+          "reasoning_output_tokens": 484,
+          "total_tokens": 2009640
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 3,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 17.34316,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 1,
+      "directory": "008-tinydb-graphiti_luna-1",
+      "runtime_variant": "original-reviewed-runtime",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 633.9701425819994,
+      "actual_coding_threads": 1,
+      "maintenance_sessions": 9,
+      "inference_accounting_complete": true,
+      "native_usage_lower_bound": {
+        "input_tokens": 2260748,
+        "cached_input_tokens": 2137984,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10838,
+        "reasoning_output_tokens": 1782,
+        "total_tokens": 2271586
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 2158412,
+          "cached_input_tokens": 2090880,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 9701,
+          "reasoning_output_tokens": 1782,
+          "total_tokens": 2168113
+        },
+        "gpt-6-luna": {
+          "input_tokens": 102336,
+          "cached_input_tokens": 47104,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1137,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 103473
+        }
+      },
+      "total_inference_usage": {
+        "input_tokens": 2260748,
+        "cached_input_tokens": 2137984,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10838,
+        "reasoning_output_tokens": 1782,
+        "total_tokens": 2271586
+      },
+      "unknown_request_count": 0,
+      "observed_local_embedding_inferences": 37,
+      "summed_recorded_embedding_seconds": 7.375901013001567,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 11.1931185,
+      "standard_credit_scenario_total": 11.1931185,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 1,
+      "directory": "009-tinydb-mem0_luna-1",
+      "runtime_variant": "original-reviewed-runtime",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 494.87925995000023,
+      "actual_coding_threads": 1,
+      "maintenance_sessions": 3,
+      "inference_accounting_complete": true,
+      "native_usage_lower_bound": {
+        "input_tokens": 1514121,
+        "cached_input_tokens": 1403264,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8894,
+        "reasoning_output_tokens": 552,
+        "total_tokens": 1523015
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 1459972,
+          "cached_input_tokens": 1391232,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7600,
+          "reasoning_output_tokens": 552,
+          "total_tokens": 1467572
+        },
+        "gpt-6-luna": {
+          "input_tokens": 54149,
+          "cached_input_tokens": 12032,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1294,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 55443
+        }
+      },
+      "total_inference_usage": {
+        "input_tokens": 1514121,
+        "cached_input_tokens": 1403264,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8894,
+        "reasoning_output_tokens": 552,
+        "total_tokens": 1523015
+      },
+      "unknown_request_count": 0,
+      "observed_local_embedding_inferences": 21,
+      "summed_recorded_embedding_seconds": 10.991376054000284,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 8.9395555,
+      "standard_credit_scenario_total": 8.9395555,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "notebook",
+      "total_agent_capacity": 2,
+      "directory": "010-tinydb-notebook-2",
+      "runtime_variant": "original-reviewed-runtime",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 178.32827138599987,
+      "actual_coding_threads": 2,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": true,
+      "native_usage_lower_bound": {
+        "input_tokens": 773329,
+        "cached_input_tokens": 706560,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7775,
+        "reasoning_output_tokens": 505,
+        "total_tokens": 781104
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 773329,
+          "cached_input_tokens": 706560,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7775,
+          "reasoning_output_tokens": 505,
+          "total_tokens": 781104
+        }
+      },
+      "total_inference_usage": {
+        "input_tokens": 773329,
+        "cached_input_tokens": 706560,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7775,
+        "reasoning_output_tokens": 505,
+        "total_tokens": 781104
+      },
+      "unknown_request_count": 0,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 7.0486,
+      "standard_credit_scenario_total": 7.0486,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mcp_memory",
+      "total_agent_capacity": 4,
+      "directory": "011-tinydb-mcp_memory-4",
+      "runtime_variant": "original-reviewed-runtime",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 186.8149592159989,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 1821824,
+        "cached_input_tokens": 1632896,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 12406,
+        "reasoning_output_tokens": 1098,
+        "total_tokens": 1834230
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 1821824,
+          "cached_input_tokens": 1632896,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 12406,
+          "reasoning_output_tokens": 1098,
+          "total_tokens": 1834230
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 3,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 16.63014,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "searchable_logs",
+      "total_agent_capacity": 4,
+      "directory": "012-tinydb-searchable_logs-4",
+      "runtime_variant": "original-reviewed-runtime",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 200.57270643899938,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 2323382,
+        "cached_input_tokens": 2193920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 12131,
+        "reasoning_output_tokens": 962,
+        "total_tokens": 2335513
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 2323382,
+          "cached_input_tokens": 2193920,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 12131,
+          "reasoning_output_tokens": 962,
+          "total_tokens": 2335513
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 3,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 14.99065,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 1,
+      "directory": "013-simpy-graphiti_luna-1",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 475.91398488900086,
+      "actual_coding_threads": 1,
+      "maintenance_sessions": 7,
+      "inference_accounting_complete": true,
+      "native_usage_lower_bound": {
+        "input_tokens": 1748952,
+        "cached_input_tokens": 1644288,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7923,
+        "reasoning_output_tokens": 417,
+        "total_tokens": 1756875
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 1670013,
+          "cached_input_tokens": 1606656,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7079,
+          "reasoning_output_tokens": 417,
+          "total_tokens": 1677092
+        },
+        "gpt-6-luna": {
+          "input_tokens": 78939,
+          "cached_input_tokens": 37632,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 844,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 79783
+        }
+      },
+      "total_inference_usage": {
+        "input_tokens": 1748952,
+        "cached_input_tokens": 1644288,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7923,
+        "reasoning_output_tokens": 417,
+        "total_tokens": 1756875
+      },
+      "unknown_request_count": 0,
+      "observed_local_embedding_inferences": 23,
+      "summed_recorded_embedding_seconds": 3.852537543996732,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 9.0774655,
+      "standard_credit_scenario_total": 9.0774655,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "mcp_memory",
+      "total_agent_capacity": 2,
+      "directory": "014-simpy-mcp_memory-2",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 181.5628885900005,
+      "actual_coding_threads": 2,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 834470,
+        "cached_input_tokens": 766208,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8179,
+        "reasoning_output_tokens": 700,
+        "total_tokens": 842649
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 834470,
+          "cached_input_tokens": 766208,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8179,
+          "reasoning_output_tokens": 700,
+          "total_tokens": 842649
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 2,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 7.37337,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "notebook",
+      "total_agent_capacity": 8,
+      "directory": "015-tinydb-notebook-8",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 347.03447090699956,
+      "actual_coding_threads": 5,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 3436783,
+        "cached_input_tokens": 3241472,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 20077,
+        "reasoning_output_tokens": 1921,
+        "total_tokens": 3456860
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 3436783,
+          "cached_input_tokens": 3241472,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 20077,
+          "reasoning_output_tokens": 1921,
+          "total_tokens": 3456860
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 5,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 22.88848,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "native",
+      "total_agent_capacity": 2,
+      "directory": "016-tinydb-native-2",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 238.97759532499913,
+      "actual_coding_threads": 2,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 830415,
+        "cached_input_tokens": 717312,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8731,
+        "reasoning_output_tokens": 402,
+        "total_tokens": 839146
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 830415,
+          "cached_input_tokens": 717312,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8731,
+          "reasoning_output_tokens": 402,
+          "total_tokens": 839146
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 1,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 9.63118,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "notebook",
+      "total_agent_capacity": 1,
+      "directory": "017-tinydb-notebook-1",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 338.1037324199988,
+      "actual_coding_threads": 1,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": true,
+      "native_usage_lower_bound": {
+        "input_tokens": 717647,
+        "cached_input_tokens": 667264,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8751,
+        "reasoning_output_tokens": 1157,
+        "total_tokens": 726398
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 717647,
+          "cached_input_tokens": 667264,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8751,
+          "reasoning_output_tokens": 1157,
+          "total_tokens": 726398
+        }
+      },
+      "total_inference_usage": {
+        "input_tokens": 717647,
+        "cached_input_tokens": 667264,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8751,
+        "reasoning_output_tokens": 1157,
+        "total_tokens": 726398
+      },
+      "unknown_request_count": 0,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 6.37506,
+      "standard_credit_scenario_total": 6.37506,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 2,
+      "directory": "018-simpy-mem0_luna-2",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 659.8422505540002,
+      "actual_coding_threads": 2,
+      "maintenance_sessions": 5,
+      "inference_accounting_complete": true,
+      "native_usage_lower_bound": {
+        "input_tokens": 1856857,
+        "cached_input_tokens": 1653248,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 11933,
+        "reasoning_output_tokens": 405,
+        "total_tokens": 1868790
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 1767390,
+          "cached_input_tokens": 1629696,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 11071,
+          "reasoning_output_tokens": 405,
+          "total_tokens": 1778461
+        },
+        "gpt-6-luna": {
+          "input_tokens": 89467,
+          "cached_input_tokens": 23552,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 862,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 90329
+        }
+      },
+      "total_inference_usage": {
+        "input_tokens": 1856857,
+        "cached_input_tokens": 1653248,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 11933,
+        "reasoning_output_tokens": 405,
+        "total_tokens": 1868790
+      },
+      "unknown_request_count": 0,
+      "observed_local_embedding_inferences": 17,
+      "summed_recorded_embedding_seconds": 23.648776804999216,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 13.9081405,
+      "standard_credit_scenario_total": 13.9081405,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "native",
+      "total_agent_capacity": 2,
+      "directory": "019-simpy-native-2",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 20,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 185.65866802599885,
+      "actual_coding_threads": 2,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 886932,
+        "cached_input_tokens": 832512,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6919,
+        "reasoning_output_tokens": 187,
+        "total_tokens": 893851
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 886932,
+          "cached_input_tokens": 832512,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 6919,
+          "reasoning_output_tokens": 187,
+          "total_tokens": 893851
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 2,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 6.53203,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mcp_memory",
+      "total_agent_capacity": 8,
+      "directory": "020-tinydb-mcp_memory-8",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 290.3594328279996,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 2417866,
+        "cached_input_tokens": 2287232,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 14140,
+        "reasoning_output_tokens": 1522,
+        "total_tokens": 2432006
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 2417866,
+          "cached_input_tokens": 2287232,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 14140,
+          "reasoning_output_tokens": 1522,
+          "total_tokens": 2432006
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 3,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 15.78478,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 1,
+      "directory": "021-tinydb-smallville_luna-1",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 356.1498386489984,
+      "actual_coding_threads": 1,
+      "maintenance_sessions": 3,
+      "inference_accounting_complete": true,
+      "native_usage_lower_bound": {
+        "input_tokens": 778531,
+        "cached_input_tokens": 721536,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7305,
+        "reasoning_output_tokens": 971,
+        "total_tokens": 785836
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 751273,
+          "cached_input_tokens": 700416,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7276,
+          "reasoning_output_tokens": 971,
+          "total_tokens": 758549
+        },
+        "gpt-6-luna": {
+          "input_tokens": 27258,
+          "cached_input_tokens": 21120,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 29,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 27287
+        }
+      },
+      "total_inference_usage": {
+        "input_tokens": 778531,
+        "cached_input_tokens": 721536,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7305,
+        "reasoning_output_tokens": 971,
+        "total_tokens": 785836
+      },
+      "unknown_request_count": 0,
+      "observed_local_embedding_inferences": 5,
+      "summed_recorded_embedding_seconds": 2.1536110790002567,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 6.1338775000000005,
+      "standard_credit_scenario_total": 6.1338775000000005,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 8,
+      "directory": "022-simpy-mem0_luna-8",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 472.9022807929978,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 11,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 3997199,
+        "cached_input_tokens": 3630464,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 17558,
+        "reasoning_output_tokens": 1226,
+        "total_tokens": 4014757
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 3791890,
+          "cached_input_tokens": 3573760,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 15192,
+          "reasoning_output_tokens": 1226,
+          "total_tokens": 3807082
+        },
+        "gpt-6-luna": {
+          "input_tokens": 205309,
+          "cached_input_tokens": 56704,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2366,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 207675
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 5,
+      "observed_local_embedding_inferences": 42,
+      "summed_recorded_embedding_seconds": 25.870147925008496,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 24.0541635,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "searchable_logs",
+      "total_agent_capacity": 1,
+      "directory": "023-tinydb-searchable_logs-1",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 238.8569877020018,
+      "actual_coding_threads": 1,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": true,
+      "native_usage_lower_bound": {
+        "input_tokens": 841108,
+        "cached_input_tokens": 765056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6553,
+        "reasoning_output_tokens": 341,
+        "total_tokens": 847661
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 841108,
+          "cached_input_tokens": 765056,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 6553,
+          "reasoning_output_tokens": 341,
+          "total_tokens": 847661
+        }
+      },
+      "total_inference_usage": {
+        "input_tokens": 841108,
+        "cached_input_tokens": 765056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6553,
+        "reasoning_output_tokens": 341,
+        "total_tokens": 847661
+      },
+      "unknown_request_count": 0,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 7.35349,
+      "standard_credit_scenario_total": 7.35349,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mcp_memory",
+      "total_agent_capacity": 2,
+      "directory": "024-tinydb-mcp_memory-2",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 263.58151304900093,
+      "actual_coding_threads": 2,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 1156583,
+        "cached_input_tokens": 1063040,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8819,
+        "reasoning_output_tokens": 818,
+        "total_tokens": 1165402
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 1156583,
+          "cached_input_tokens": 1063040,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8819,
+          "reasoning_output_tokens": 818,
+          "total_tokens": 1165402
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 1,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 9.5395,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "native",
+      "total_agent_capacity": 4,
+      "directory": "025-simpy-native-4",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 170.87323718900006,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 1620581,
+        "cached_input_tokens": 1481984,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9783,
+        "reasoning_output_tokens": 298,
+        "total_tokens": 1630364
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 1620581,
+          "cached_input_tokens": 1481984,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 9783,
+          "reasoning_output_tokens": 298,
+          "total_tokens": 1630364
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 9,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 13.08056,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "searchable_logs",
+      "total_agent_capacity": 1,
+      "directory": "026-simpy-searchable_logs-1",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 197.86784448300023,
+      "actual_coding_threads": 1,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": true,
+      "native_usage_lower_bound": {
+        "input_tokens": 598448,
+        "cached_input_tokens": 537088,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6183,
+        "reasoning_output_tokens": 156,
+        "total_tokens": 604631
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 598448,
+          "cached_input_tokens": 537088,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 6183,
+          "reasoning_output_tokens": 156,
+          "total_tokens": 604631
+        }
+      },
+      "total_inference_usage": {
+        "input_tokens": 598448,
+        "cached_input_tokens": 537088,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6183,
+        "reasoning_output_tokens": 156,
+        "total_tokens": 604631
+      },
+      "unknown_request_count": 0,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 5.95647,
+      "standard_credit_scenario_total": 5.95647,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 8,
+      "directory": "027-simpy-graphiti_luna-8",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 509.13087333399744,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 5,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 3651979,
+        "cached_input_tokens": 3440896,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 15547,
+        "reasoning_output_tokens": 1567,
+        "total_tokens": 3667526
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 3597851,
+          "cached_input_tokens": 3417344,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 14748,
+          "reasoning_output_tokens": 1567,
+          "total_tokens": 3612599
+        },
+        "gpt-6-luna": {
+          "input_tokens": 54128,
+          "cached_input_tokens": 23552,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 799,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 54927
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 5,
+      "observed_local_embedding_inferences": 34,
+      "summed_recorded_embedding_seconds": 4.871855264991609,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 21.348025500000002,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 1,
+      "directory": "028-simpy-mem0_luna-1",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 372.35554046000107,
+      "actual_coding_threads": 1,
+      "maintenance_sessions": 3,
+      "inference_accounting_complete": true,
+      "native_usage_lower_bound": {
+        "input_tokens": 983864,
+        "cached_input_tokens": 896768,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7557,
+        "reasoning_output_tokens": 262,
+        "total_tokens": 991421
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 930294,
+          "cached_input_tokens": 875648,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 6528,
+          "reasoning_output_tokens": 262,
+          "total_tokens": 936822
+        },
+        "gpt-6-luna": {
+          "input_tokens": 53570,
+          "cached_input_tokens": 21120,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1029,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 54599
+        }
+      },
+      "total_inference_usage": {
+        "input_tokens": 983864,
+        "cached_input_tokens": 896768,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7557,
+        "reasoning_output_tokens": 262,
+        "total_tokens": 991421
+      },
+      "unknown_request_count": 0,
+      "observed_local_embedding_inferences": 16,
+      "summed_recorded_embedding_seconds": 9.73445087601067,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 6.6526875,
+      "standard_credit_scenario_total": 6.6526875,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "native",
+      "total_agent_capacity": 8,
+      "directory": "029-simpy-native-8",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 169.98440546499842,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 1739993,
+        "cached_input_tokens": 1621120,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9975,
+        "reasoning_output_tokens": 410,
+        "total_tokens": 1749968
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 1739993,
+          "cached_input_tokens": 1621120,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 9975,
+          "reasoning_output_tokens": 410,
+          "total_tokens": 1749968
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 6,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 12.4902,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 8,
+      "directory": "030-simpy-smallville_luna-8",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 521.6190326420001,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 8,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 3965421,
+        "cached_input_tokens": 3784192,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 15401,
+        "reasoning_output_tokens": 1547,
+        "total_tokens": 3980822
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 3893116,
+          "cached_input_tokens": 3752192,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 15328,
+          "reasoning_output_tokens": 1547,
+          "total_tokens": 3908444
+        },
+        "gpt-6-luna": {
+          "input_tokens": 72305,
+          "cached_input_tokens": 32000,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 73,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 72378
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 6,
+      "observed_local_embedding_inferences": 12,
+      "summed_recorded_embedding_seconds": 12.84616323400769,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 20.368354999999998,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 2,
+      "directory": "031-tinydb-mem0_luna-2",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 661.4281681220018,
+      "actual_coding_threads": 2,
+      "maintenance_sessions": 7,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 2830509,
+        "cached_input_tokens": 2607872,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 15961,
+        "reasoning_output_tokens": 1902,
+        "total_tokens": 2846470
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 2701333,
+          "cached_input_tokens": 2574592,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 14181,
+          "reasoning_output_tokens": 1902,
+          "total_tokens": 2715514
+        },
+        "gpt-6-luna": {
+          "input_tokens": 129176,
+          "cached_input_tokens": 33280,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1780,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 130956
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 2,
+      "observed_local_embedding_inferences": 30,
+      "summed_recorded_embedding_seconds": 30.13085368501197,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 16.58909,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 8,
+      "directory": "032-tinydb-mem0_luna-8",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": false,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 0.995,
+      "parent_status": "stopped",
+      "coding_run_seconds": 488.04720889999953,
+      "actual_coding_threads": 5,
+      "maintenance_sessions": 6,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 4087236,
+        "cached_input_tokens": 3817600,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 17511,
+        "reasoning_output_tokens": 2277,
+        "total_tokens": 4104747
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 3978529,
+          "cached_input_tokens": 3798528,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 16262,
+          "reasoning_output_tokens": 2277,
+          "total_tokens": 3994791
+        },
+        "gpt-6-luna": {
+          "input_tokens": 108707,
+          "cached_input_tokens": 19072,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1249,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 109956
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 10,
+      "observed_local_embedding_inferences": 25,
+      "summed_recorded_embedding_seconds": 15.1799596009987,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 22.806338,
+      "standard_credit_scenario_total": null,
+      "end_category": "token_budget"
+    },
+    {
+      "task": "simpy",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 2,
+      "directory": "033-simpy-smallville_luna-2",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 262.37481902500076,
+      "actual_coding_threads": 2,
+      "maintenance_sessions": 5,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 1022400,
+        "cached_input_tokens": 950912,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8220,
+        "reasoning_output_tokens": 461,
+        "total_tokens": 1030620
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 976790,
+          "cached_input_tokens": 915712,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8174,
+          "reasoning_output_tokens": 461,
+          "total_tokens": 984964
+        },
+        "gpt-6-luna": {
+          "input_tokens": 45610,
+          "cached_input_tokens": 35200,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 46,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 45656
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 3,
+      "observed_local_embedding_inferences": 8,
+      "summed_recorded_embedding_seconds": 2.5587305929948343,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 7.42208,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "notebook",
+      "total_agent_capacity": 4,
+      "directory": "034-simpy-notebook-4",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 184.8579500699998,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 1902523,
+        "cached_input_tokens": 1755008,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 11726,
+        "reasoning_output_tokens": 582,
+        "total_tokens": 1914249
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 1902523,
+          "cached_input_tokens": 1755008,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 11726,
+          "reasoning_output_tokens": 582,
+          "total_tokens": 1914249
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 3,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 14.69477,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 4,
+      "directory": "035-simpy-graphiti_luna-4",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 408.7899650340005,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 10,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 2978216,
+        "cached_input_tokens": 2739968,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 13970,
+        "reasoning_output_tokens": 1240,
+        "total_tokens": 2992186
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 2867023,
+          "cached_input_tokens": 2682240,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 13311,
+          "reasoning_output_tokens": 1240,
+          "total_tokens": 2880334
+        },
+        "gpt-6-luna": {
+          "input_tokens": 111193,
+          "cached_input_tokens": 57728,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 659,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 111852
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 1,
+      "observed_local_embedding_inferences": 24,
+      "summed_recorded_embedding_seconds": 4.420050737004203,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 19.428832,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "searchable_logs",
+      "total_agent_capacity": 4,
+      "directory": "036-simpy-searchable_logs-4",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 190.08716585000002,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 2088982,
+        "cached_input_tokens": 1889408,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 11949,
+        "reasoning_output_tokens": 740,
+        "total_tokens": 2100931
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 2088982,
+          "cached_input_tokens": 1889408,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 11949,
+          "reasoning_output_tokens": 740,
+          "total_tokens": 2100931
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 3,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 17.68947,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "simpy",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 4,
+      "directory": "037-simpy-smallville_luna-4",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 140,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 387.30636057599986,
+      "actual_coding_threads": 4,
+      "maintenance_sessions": 9,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 2855833,
+        "cached_input_tokens": 2635904,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 13427,
+        "reasoning_output_tokens": 777,
+        "total_tokens": 2869260
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 2774035,
+          "cached_input_tokens": 2588544,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 13345,
+          "reasoning_output_tokens": 777,
+          "total_tokens": 2787380
+        },
+        "gpt-6-luna": {
+          "input_tokens": 81798,
+          "cached_input_tokens": 47360,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 82,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 81880
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 3,
+      "observed_local_embedding_inferences": 13,
+      "summed_recorded_embedding_seconds": 8.818799005999608,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 19.18112,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 2,
+      "directory": "038-tinydb-graphiti_luna-2",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 552.7210148070008,
+      "actual_coding_threads": 2,
+      "maintenance_sessions": 5,
+      "inference_accounting_complete": false,
+      "native_usage_lower_bound": {
+        "input_tokens": 1513749,
+        "cached_input_tokens": 1432704,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9196,
+        "reasoning_output_tokens": 418,
+        "total_tokens": 1522945
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 1460846,
+          "cached_input_tokens": 1397504,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8822,
+          "reasoning_output_tokens": 418,
+          "total_tokens": 1469668
+        },
+        "gpt-6-luna": {
+          "input_tokens": 52903,
+          "cached_input_tokens": 35200,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 374,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 53277
+        }
+      },
+      "total_inference_usage": null,
+      "unknown_request_count": 1,
+      "observed_local_embedding_inferences": 16,
+      "summed_recorded_embedding_seconds": 17.8318264770096,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 8.9240925,
+      "standard_credit_scenario_total": null,
+      "end_category": "normal"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mcp_memory",
+      "total_agent_capacity": 1,
+      "directory": "039-tinydb-mcp_memory-1",
+      "runtime_variant": "security-amended-text-only-002",
+      "native_startup_timeout_seconds": 120,
+      "passed": true,
+      "artifact_policy_clean": true,
+      "junit": {
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "observed_pass_fraction": 1,
+      "parent_status": "completed",
+      "coding_run_seconds": 332.65958371300076,
+      "actual_coding_threads": 1,
+      "maintenance_sessions": 0,
+      "inference_accounting_complete": true,
+      "native_usage_lower_bound": {
+        "input_tokens": 779605,
+        "cached_input_tokens": 727808,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6654,
+        "reasoning_output_tokens": 223,
+        "total_tokens": 786259
+      },
+      "native_usage_by_model": {
+        "gpt-6.1-sol": {
+          "input_tokens": 779605,
+          "cached_input_tokens": 727808,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 6654,
+          "reasoning_output_tokens": 223,
+          "total_tokens": 786259
+        }
+      },
+      "total_inference_usage": {
+        "input_tokens": 779605,
+        "cached_input_tokens": 727808,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6654,
+        "reasoning_output_tokens": 223,
+        "total_tokens": 786259
+      },
+      "unknown_request_count": 0,
+      "observed_local_embedding_inferences": 0,
+      "summed_recorded_embedding_seconds": 0,
+      "local_embedding_cost": null,
+      "local_embedding_coverage": "adapter callback receipts; no-receipt count is not proof of zero service computation",
+      "standard_credit_scenario_lower_bound": 6.07287,
+      "standard_credit_scenario_total": 6.07287,
+      "end_category": "normal"
+    }
+  ],
+  "groups": [
+    {
+      "arm": "native",
+      "total_agent_capacity": 1,
+      "completed": 1,
+      "planned": 2,
+      "successes": 1,
+      "normal_parents": 1,
+      "clean_artifacts": 1,
+      "mean_seconds": 263.2137885000002,
+      "mean_coding_threads": 1,
+      "mean_credit_lower_bound": 6.38422,
+      "accounting_complete": true,
+      "accounting_complete_cells": 1,
+      "unknown_requests": 0
+    },
+    {
+      "arm": "native",
+      "total_agent_capacity": 2,
+      "completed": 2,
+      "planned": 2,
+      "successes": 2,
+      "normal_parents": 2,
+      "clean_artifacts": 2,
+      "mean_seconds": 212.318131675499,
+      "mean_coding_threads": 2,
+      "mean_credit_lower_bound": 8.081605,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 3
+    },
+    {
+      "arm": "native",
+      "total_agent_capacity": 4,
+      "completed": 1,
+      "planned": 2,
+      "successes": 1,
+      "normal_parents": 1,
+      "clean_artifacts": 1,
+      "mean_seconds": 170.87323718900006,
+      "mean_coding_threads": 4,
+      "mean_credit_lower_bound": 13.08056,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 9
+    },
+    {
+      "arm": "native",
+      "total_agent_capacity": 8,
+      "completed": 1,
+      "planned": 2,
+      "successes": 1,
+      "normal_parents": 1,
+      "clean_artifacts": 1,
+      "mean_seconds": 169.98440546499842,
+      "mean_coding_threads": 4,
+      "mean_credit_lower_bound": 12.4902,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 6
+    },
+    {
+      "arm": "notebook",
+      "total_agent_capacity": 1,
+      "completed": 2,
+      "planned": 2,
+      "successes": 2,
+      "normal_parents": 2,
+      "clean_artifacts": 2,
+      "mean_seconds": 281.43717141149955,
+      "mean_coding_threads": 1,
+      "mean_credit_lower_bound": 5.8425650000000005,
+      "accounting_complete": true,
+      "accounting_complete_cells": 2,
+      "unknown_requests": 0
+    },
+    {
+      "arm": "notebook",
+      "total_agent_capacity": 2,
+      "completed": 1,
+      "planned": 2,
+      "successes": 1,
+      "normal_parents": 1,
+      "clean_artifacts": 1,
+      "mean_seconds": 178.32827138599987,
+      "mean_coding_threads": 2,
+      "mean_credit_lower_bound": 7.0486,
+      "accounting_complete": true,
+      "accounting_complete_cells": 1,
+      "unknown_requests": 0
+    },
+    {
+      "arm": "notebook",
+      "total_agent_capacity": 4,
+      "completed": 2,
+      "planned": 2,
+      "successes": 2,
+      "normal_parents": 2,
+      "clean_artifacts": 2,
+      "mean_seconds": 195.97652070999993,
+      "mean_coding_threads": 4,
+      "mean_credit_lower_bound": 14.116645,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 7
+    },
+    {
+      "arm": "notebook",
+      "total_agent_capacity": 8,
+      "completed": 2,
+      "planned": 2,
+      "successes": 2,
+      "normal_parents": 2,
+      "clean_artifacts": 2,
+      "mean_seconds": 265.60080806599944,
+      "mean_coding_threads": 4.5,
+      "mean_credit_lower_bound": 20.11582,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 8
+    },
+    {
+      "arm": "mcp_memory",
+      "total_agent_capacity": 1,
+      "completed": 1,
+      "planned": 2,
+      "successes": 1,
+      "normal_parents": 1,
+      "clean_artifacts": 1,
+      "mean_seconds": 332.65958371300076,
+      "mean_coding_threads": 1,
+      "mean_credit_lower_bound": 6.07287,
+      "accounting_complete": true,
+      "accounting_complete_cells": 1,
+      "unknown_requests": 0
+    },
+    {
+      "arm": "mcp_memory",
+      "total_agent_capacity": 2,
+      "completed": 2,
+      "planned": 2,
+      "successes": 2,
+      "normal_parents": 2,
+      "clean_artifacts": 2,
+      "mean_seconds": 222.57220081950072,
+      "mean_coding_threads": 2,
+      "mean_credit_lower_bound": 8.456435,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 3
+    },
+    {
+      "arm": "mcp_memory",
+      "total_agent_capacity": 4,
+      "completed": 1,
+      "planned": 2,
+      "successes": 1,
+      "normal_parents": 1,
+      "clean_artifacts": 1,
+      "mean_seconds": 186.8149592159989,
+      "mean_coding_threads": 4,
+      "mean_credit_lower_bound": 16.63014,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 3
+    },
+    {
+      "arm": "mcp_memory",
+      "total_agent_capacity": 8,
+      "completed": 1,
+      "planned": 2,
+      "successes": 1,
+      "normal_parents": 1,
+      "clean_artifacts": 1,
+      "mean_seconds": 290.3594328279996,
+      "mean_coding_threads": 4,
+      "mean_credit_lower_bound": 15.78478,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 3
+    },
+    {
+      "arm": "mem0_luna",
+      "total_agent_capacity": 1,
+      "completed": 2,
+      "planned": 2,
+      "successes": 2,
+      "normal_parents": 2,
+      "clean_artifacts": 2,
+      "mean_seconds": 433.61740020500065,
+      "mean_coding_threads": 1,
+      "mean_credit_lower_bound": 7.7961215,
+      "accounting_complete": true,
+      "accounting_complete_cells": 2,
+      "unknown_requests": 0
+    },
+    {
+      "arm": "mem0_luna",
+      "total_agent_capacity": 2,
+      "completed": 2,
+      "planned": 2,
+      "successes": 2,
+      "normal_parents": 2,
+      "clean_artifacts": 2,
+      "mean_seconds": 660.635209338001,
+      "mean_coding_threads": 2,
+      "mean_credit_lower_bound": 15.24861525,
+      "accounting_complete": false,
+      "accounting_complete_cells": 1,
+      "unknown_requests": 2
+    },
+    {
+      "arm": "mem0_luna",
+      "total_agent_capacity": 4,
+      "completed": 1,
+      "planned": 2,
+      "successes": 1,
+      "normal_parents": 0,
+      "clean_artifacts": 1,
+      "mean_seconds": 482.2771536330001,
+      "mean_coding_threads": 4,
+      "mean_credit_lower_bound": 20.6492275,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 6
+    },
+    {
+      "arm": "mem0_luna",
+      "total_agent_capacity": 8,
+      "completed": 2,
+      "planned": 2,
+      "successes": 1,
+      "normal_parents": 1,
+      "clean_artifacts": 2,
+      "mean_seconds": 480.47474484649865,
+      "mean_coding_threads": 4.5,
+      "mean_credit_lower_bound": 23.43025075,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 15
+    },
+    {
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 1,
+      "completed": 2,
+      "planned": 2,
+      "successes": 2,
+      "normal_parents": 2,
+      "clean_artifacts": 2,
+      "mean_seconds": 554.9420637355001,
+      "mean_coding_threads": 1,
+      "mean_credit_lower_bound": 10.135292,
+      "accounting_complete": true,
+      "accounting_complete_cells": 2,
+      "unknown_requests": 0
+    },
+    {
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 2,
+      "completed": 1,
+      "planned": 2,
+      "successes": 1,
+      "normal_parents": 1,
+      "clean_artifacts": 1,
+      "mean_seconds": 552.7210148070008,
+      "mean_coding_threads": 2,
+      "mean_credit_lower_bound": 8.9240925,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 1
+    },
+    {
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 4,
+      "completed": 1,
+      "planned": 2,
+      "successes": 1,
+      "normal_parents": 1,
+      "clean_artifacts": 1,
+      "mean_seconds": 408.7899650340005,
+      "mean_coding_threads": 4,
+      "mean_credit_lower_bound": 19.428832,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 1
+    },
+    {
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 8,
+      "completed": 1,
+      "planned": 2,
+      "successes": 1,
+      "normal_parents": 1,
+      "clean_artifacts": 1,
+      "mean_seconds": 509.13087333399744,
+      "mean_coding_threads": 4,
+      "mean_credit_lower_bound": 21.348025500000002,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 5
+    },
+    {
+      "arm": "smallville_luna",
+      "total_agent_capacity": 1,
+      "completed": 1,
+      "planned": 2,
+      "successes": 1,
+      "normal_parents": 1,
+      "clean_artifacts": 1,
+      "mean_seconds": 356.1498386489984,
+      "mean_coding_threads": 1,
+      "mean_credit_lower_bound": 6.1338775000000005,
+      "accounting_complete": true,
+      "accounting_complete_cells": 1,
+      "unknown_requests": 0
+    },
+    {
+      "arm": "smallville_luna",
+      "total_agent_capacity": 2,
+      "completed": 1,
+      "planned": 2,
+      "successes": 1,
+      "normal_parents": 1,
+      "clean_artifacts": 1,
+      "mean_seconds": 262.37481902500076,
+      "mean_coding_threads": 2,
+      "mean_credit_lower_bound": 7.42208,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 3
+    },
+    {
+      "arm": "smallville_luna",
+      "total_agent_capacity": 4,
+      "completed": 2,
+      "planned": 2,
+      "successes": 2,
+      "normal_parents": 2,
+      "clean_artifacts": 2,
+      "mean_seconds": 374.6123269205,
+      "mean_coding_threads": 4,
+      "mean_credit_lower_bound": 18.367144250000003,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 6
+    },
+    {
+      "arm": "smallville_luna",
+      "total_agent_capacity": 8,
+      "completed": 1,
+      "planned": 2,
+      "successes": 1,
+      "normal_parents": 1,
+      "clean_artifacts": 1,
+      "mean_seconds": 521.6190326420001,
+      "mean_coding_threads": 4,
+      "mean_credit_lower_bound": 20.368354999999998,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 6
+    },
+    {
+      "arm": "searchable_logs",
+      "total_agent_capacity": 1,
+      "completed": 2,
+      "planned": 2,
+      "successes": 2,
+      "normal_parents": 2,
+      "clean_artifacts": 2,
+      "mean_seconds": 218.362416092501,
+      "mean_coding_threads": 1,
+      "mean_credit_lower_bound": 6.65498,
+      "accounting_complete": true,
+      "accounting_complete_cells": 2,
+      "unknown_requests": 0
+    },
+    {
+      "arm": "searchable_logs",
+      "total_agent_capacity": 4,
+      "completed": 2,
+      "planned": 2,
+      "successes": 2,
+      "normal_parents": 2,
+      "clean_artifacts": 2,
+      "mean_seconds": 195.3299361444997,
+      "mean_coding_threads": 4,
+      "mean_credit_lower_bound": 16.34006,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 6
+    },
+    {
+      "arm": "searchable_logs",
+      "total_agent_capacity": 8,
+      "completed": 1,
+      "planned": 2,
+      "successes": 1,
+      "normal_parents": 1,
+      "clean_artifacts": 1,
+      "mean_seconds": 190.67804517600052,
+      "mean_coding_threads": 4,
+      "mean_credit_lower_bound": 16.84702,
+      "accounting_complete": false,
+      "accounting_complete_cells": 0,
+      "unknown_requests": 3
+    }
+  ],
+  "arms": [
+    {
+      "arm": "native",
+      "completed": 5,
+      "planned": 8,
+      "successes": 5,
+      "normal_parents": 5,
+      "clean_artifacts": 5,
+      "mean_seconds": 205.74153890099933,
+      "mean_coding_threads": 2.6,
+      "mean_credit_lower_bound": 9.623638,
+      "accounting_complete": false,
+      "accounting_complete_cells": 1,
+      "unknown_requests": 18
+    },
+    {
+      "arm": "notebook",
+      "completed": 7,
+      "planned": 8,
+      "successes": 7,
+      "normal_parents": 7,
+      "clean_artifacts": 7,
+      "mean_seconds": 237.76532453728538,
+      "mean_coding_threads": 3,
+      "mean_credit_lower_bound": 12.45695142857143,
+      "accounting_complete": false,
+      "accounting_complete_cells": 3,
+      "unknown_requests": 15
+    },
+    {
+      "arm": "mcp_memory",
+      "completed": 5,
+      "planned": 8,
+      "successes": 5,
+      "normal_parents": 5,
+      "clean_artifacts": 5,
+      "mean_seconds": 250.99567547920014,
+      "mean_coding_threads": 2.6,
+      "mean_credit_lower_bound": 11.080132,
+      "accounting_complete": false,
+      "accounting_complete_cells": 1,
+      "unknown_requests": 9
+    },
+    {
+      "arm": "mem0_luna",
+      "completed": 7,
+      "planned": 8,
+      "successes": 6,
+      "normal_parents": 5,
+      "clean_artifacts": 7,
+      "mean_seconds": 518.8188374874287,
+      "mean_coding_threads": 2.7142857142857144,
+      "mean_credit_lower_bound": 16.2284575,
+      "accounting_complete": false,
+      "accounting_complete_cells": 3,
+      "unknown_requests": 23
+    },
+    {
+      "arm": "graphiti_luna",
+      "completed": 5,
+      "planned": 8,
+      "successes": 5,
+      "normal_parents": 5,
+      "clean_artifacts": 5,
+      "mean_seconds": 516.1051961291998,
+      "mean_coding_threads": 2.4,
+      "mean_credit_lower_bound": 13.9943068,
+      "accounting_complete": false,
+      "accounting_complete_cells": 2,
+      "unknown_requests": 7
+    },
+    {
+      "arm": "smallville_luna",
+      "completed": 5,
+      "planned": 8,
+      "successes": 5,
+      "normal_parents": 5,
+      "clean_artifacts": 5,
+      "mean_seconds": 377.87366883139987,
+      "mean_coding_threads": 3,
+      "mean_credit_lower_bound": 14.1317202,
+      "accounting_complete": false,
+      "accounting_complete_cells": 1,
+      "unknown_requests": 15
+    },
+    {
+      "arm": "searchable_logs",
+      "completed": 5,
+      "planned": 8,
+      "successes": 5,
+      "normal_parents": 5,
+      "clean_artifacts": 5,
+      "mean_seconds": 203.6125499300004,
+      "mean_coding_threads": 2.8,
+      "mean_credit_lower_bound": 12.56742,
+      "accounting_complete": false,
+      "accounting_complete_cells": 2,
+      "unknown_requests": 9
+    }
+  ],
+  "matched_native_comparisons": [
+    {
+      "task": "simpy",
+      "arm": "searchable_logs",
+      "total_agent_capacity": 8,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 1.121738459798085,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": null,
+      "scenario_ratio_kind": "unidentified"
+    },
+    {
+      "task": "simpy",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 4,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 2.822426504974336,
+      "both_parents_normal": false,
+      "scenario_credit_ratio": null,
+      "scenario_ratio_kind": "unidentified"
+    },
+    {
+      "task": "simpy",
+      "arm": "notebook",
+      "total_agent_capacity": 8,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 1.0834355346962772,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": null,
+      "scenario_ratio_kind": "unidentified"
+    },
+    {
+      "task": "tinydb",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 1,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 2.408574969399823,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": 1.7532476167801236,
+      "scenario_ratio_kind": "exact scenario ratio"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 1,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 1.8801418526370242,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": 1.4002580581496253,
+      "scenario_ratio_kind": "exact scenario ratio"
+    },
+    {
+      "task": "tinydb",
+      "arm": "notebook",
+      "total_agent_capacity": 2,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 0.746213347504318,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": 0.7318521718003401,
+      "scenario_ratio_kind": "upper bound"
+    },
+    {
+      "task": "simpy",
+      "arm": "mcp_memory",
+      "total_agent_capacity": 2,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 0.9779391962705195,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": null,
+      "scenario_ratio_kind": "unidentified"
+    },
+    {
+      "task": "tinydb",
+      "arm": "notebook",
+      "total_agent_capacity": 1,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 1.2845213556127912,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": 0.9985652123517047,
+      "scenario_ratio_kind": "exact scenario ratio"
+    },
+    {
+      "task": "simpy",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 2,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 3.5540611034740306,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": 2.1292217733231475,
+      "scenario_ratio_kind": "upper bound"
+    },
+    {
+      "task": "tinydb",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 1,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 1.353081997256379,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": 0.9607873005629506,
+      "scenario_ratio_kind": "exact scenario ratio"
+    },
+    {
+      "task": "simpy",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 8,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 2.782033325347444,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": null,
+      "scenario_ratio_kind": "unidentified"
+    },
+    {
+      "task": "tinydb",
+      "arm": "searchable_logs",
+      "total_agent_capacity": 1,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 0.9074638113116996,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": 1.1518227755309185,
+      "scenario_ratio_kind": "exact scenario ratio"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mcp_memory",
+      "total_agent_capacity": 2,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 1.1029549137882217,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": null,
+      "scenario_ratio_kind": "unidentified"
+    },
+    {
+      "task": "simpy",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 8,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 2.9951622440967554,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": null,
+      "scenario_ratio_kind": "unidentified"
+    },
+    {
+      "task": "simpy",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 8,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 3.06862874400209,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": null,
+      "scenario_ratio_kind": "unidentified"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mem0_luna",
+      "total_agent_capacity": 2,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 2.7677413324980873,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": null,
+      "scenario_ratio_kind": "unidentified"
+    },
+    {
+      "task": "simpy",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 2,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 1.4132107152048452,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": null,
+      "scenario_ratio_kind": "unidentified"
+    },
+    {
+      "task": "simpy",
+      "arm": "notebook",
+      "total_agent_capacity": 4,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 1.0818426168489537,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": null,
+      "scenario_ratio_kind": "unidentified"
+    },
+    {
+      "task": "simpy",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 4,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 2.392358053015901,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": null,
+      "scenario_ratio_kind": "unidentified"
+    },
+    {
+      "task": "simpy",
+      "arm": "searchable_logs",
+      "total_agent_capacity": 4,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 1.1124455121064263,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": null,
+      "scenario_ratio_kind": "unidentified"
+    },
+    {
+      "task": "simpy",
+      "arm": "smallville_luna",
+      "total_agent_capacity": 4,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 2.266629736449639,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": null,
+      "scenario_ratio_kind": "unidentified"
+    },
+    {
+      "task": "tinydb",
+      "arm": "graphiti_luna",
+      "total_agent_capacity": 2,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 2.3128570444242866,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": null,
+      "scenario_ratio_kind": "unidentified"
+    },
+    {
+      "task": "tinydb",
+      "arm": "mcp_memory",
+      "total_agent_capacity": 1,
+      "source_pass_difference": 0,
+      "run_end_time_ratio": 1.2638379835978863,
+      "both_parents_normal": true,
+      "scenario_credit_ratio": 0.951231317216512,
+      "scenario_ratio_kind": "exact scenario ratio"
+    }
+  ],
+  "audit": {
+    "distinct_completed_responses": 2347,
+    "ordered_protocol_membership_verified": true,
+    "sealed_grades_and_metering_verified": true,
+    "source_passes": 38,
+    "normal_parents": 37,
+    "complete_usage_cells": 13,
+    "unknown_requests": 96
+  },
+  "pricing": {
+    "unit": "Published Standard-rate scenario credits, not measured allowance or cash",
+    "rates_per_million": {
+      "gpt-6.1-sol": [
+        50,
+        2.5,
+        250
+      ],
+      "gpt-6-luna": [
+        2.5,
+        0.25,
+        12.5
+      ]
+    },
+    "sol_source": "experiments/codex-team-knowledge-001/pricing-scenario-001.json (11 November)",
+    "luna_source": "docs/research/repository-memory-wave-a-results.md (rates checked 10 November)",
+    "note": "Fixed dated scenarios, not new quotes. Cached input counted once; parent/workers/all maintenance included."
+  },
+  "subscription_cash_expense": null,
+  "quota_savings": null,
+  "limitations": [
+    "Reused two-library development sample, one attempt per cell; not held-out evidence.",
+    "Do not compare incomplete task subsets or pool with earlier differently instructed runs.",
+    "Unknown usage is null; overlapping lower cost bounds cannot rank unknown totals.",
+    "Coding-run time includes in-agent memory operations; setup/replay/local monetary costs and research overhead are separate.",
+    "Publication, exact peer exposure and useful checked action require separate trace evidence."
+  ]
+}

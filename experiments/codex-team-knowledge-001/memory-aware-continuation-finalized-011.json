@@ -1,0 +1,13 @@
+{
+  "at": "2026-11-11T23:05:46.645663+00:00",
+  "registered_before_assignment": 33,
+  "continued_after_confirmed_models": 32,
+  "remaining_assignments": 24,
+  "configuration_sha256": "0f0ec76b445a39217019b8cbc42decb1ac9393284f75ec1bbd0b3afc2ce7185a",
+  "source_hashes_per_cell": 163,
+  "runtime_files_at_launch": 11046,
+  "gate_files": 26,
+  "automatic_model_retries": 0,
+  "task_model_calls_repeated": 0,
+  "original_failing_grade_retained": true
+}

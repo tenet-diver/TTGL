@@ -1,138 +1,86 @@
-# We have to combine — A conversation is all you need
+# TTGL — We have to combine
 
-**Local Codex observability:** [setup, pinned versions, Langfuse Docker stack and project/task workspace](tools/usage-monitor/README.md#reproduce-this-deployment).
+**An affordable, user-controlled personal agent, built through measured collaboration.**
 
-**Context experiment update, 5 November 2026:** [Cloud continuation, offline adapter evidence and ten proposed experiments](docs/research/context-experiment-continuation-20261105.md). Live trials remain security/mechanism gated.
+TTGL researches small-model/expert collaboration, context and memory, and native
+coding-agent teams. Its working application is the **Usage Observatory**: a local
+workspace for inspecting real tasks, model usage, tool activity, evidence and
+experiment decisions. The broader personal-agent frontier remains a research goal.
 
-**Current priority, 4 November 2026:** [measure existing coding-agent usage, then automate evidence-backed improvements](docs/research/usage-optimizer.md). The original handoff is retained; a real usage baseline is the first milestone.
+> Believe in me who believes in you.
 
-Latest Pro development: **one voluntary Luna-router task passed initial and
-independent fresh grading, with zero Sol consultations**. Setup008 was audited
-and reused with no repeated model calls. This is one selected development task,
-not evidence of routing benefit or 95/95. See the
-[episode audit](results/router-development-010-analysis/README.md).
+| Start here | Contents |
+| --- | --- |
+| [Setup and startup](SETUP.md) | Run the workspace, restore the observability stack, configure tools and verify the installation |
+| [Experiments and results](docs/EXPERIMENTS.md) | Completed comparisons, failed trials, mechanism checks and unfinished reservations |
+| [Papers and reading](docs/PAPERS.md) | Manuscripts, reports, bibliographies and reproduction guides |
+| [Observatory runbook](tools/usage-monitor/README.md) | Capture, reconciliation, analyst tools and UI behavior |
+| [Research handover](docs/research/HANDOVER.md) | Historical ownership, frozen protocols and continuation constraints |
 
-**Using small language models as conversational routers for agentic software engineering.**
+## Run TTGL
 
-The hypothesis is lower **total cost** with minimal performance degradation through continuing small-model ↔ expert conversations: questions, clarification, challenge, revision and tested integration. Personal memory and learning are optional extensions. Closely related architectures already exist; this is a replication and controlled extension, not a first-architecture claim.
+The workspace uses Python's standard library; it needs no Python/npm package
+installation or model call to start. Python 3.11+ and the pinned private UI
+assets are required. From an existing prepared checkout:
 
-Read the **[paper](docs/paper/README.md)**: [PDF](docs/paper/paper.pdf), [Word](docs/paper/paper.docx), [HTML](docs/paper/paper.html). It contains the literature review, explicit prior-art comparison, experiment design, live pilot results and limitations. [ADR 0006](docs/adr/0006-personal-agent-replication.md) records the current scope.
-
-A fresh **12-task, six-condition metered SWE-bench study is complete** on the
-`work` branch. All 24 official environment controls and all 12 staged public
-worker checks pass. The [frozen study and current official grade index](results/codex-isolated-20261026/study-001/)
-and [completed task checkpoints](results/codex-isolated-20261026/study-001/checkpoints/)
-record the archived outcomes. The [final analysis](results/codex-isolated-20261026/analysis-001/)
-shows Luna 9/12, Sol 10/12 and pre-task routing 11/12. Native model
-tokens are measured; published token-rate scenarios, provider estimates and
-actual subscription charges are kept separate. [Host cleanup](results/host-cleanup-20261026/README.md)
-removed 106 rebuildable cache/dependency directories and one recoverable clean
-worktree while preserving source and local results.
-
-A separate [general delegation development study](experiments/delegation-development-001/README.md)
-tests stronger independent verification, adaptive consultation, cheap-first
-fallback and a compact context-only expert interface. The target is **95% lower
-model cost with at least 95% of matched Sol accuracy retained**. Three registered
-candidates completed 36 development assignments. Cheap-first reached 4/4 versus
-matched Luna's 3/4 and Sol's 4/4, with 89.1% lower model-cost scenario than Sol.
-See the [cost–performance graphs and evidence limits](results/prompt-comparison-001/README.md).
-One of 12 reserved validation cases has an invalid independent control; its
-explicit disposition preserves the evidence without replacement, leaving 11
-cases with all independent controls and public readiness checks now passing.
-The frozen 33-assignment continuation passed positive metering preflights and
-is running. Resource-only
-continuation preserves started/uncertain calls rather than repeating them.
-A separate [Pro V2 subset](experiments/swe-pro-prompt-001/README.md) reserves only
-12 development and 24 validation tasks, with no automatic 642-task run.
-Its [Harbor adapter](docs/research/pro-harbor-runner.md) is implemented and passes
-six transport/framework checks; first-task Pro controls are queued after the
-current study. No Pro accuracy result is claimed from those checks.
-The [compact-interface calibration](results/compact-expert-calibration-001/analysis.json)
-measured 39.0% fewer input tokens and 36.8% lower token-rate scenario cost on one
-fresh arithmetic call per interface. This is a mechanism result, not repository
-accuracy or complete-task savings. Scored outcomes and held-out selection remain
-separate from preflights and preparation.
-
-The live Codex feasibility pilot completed 16 paired task assignments. Functional regression success was Luna **3/4**, Sol **4/4**, prompt routing **4/4**, and the optional-conversation controller **3/4**. All optional controllers chose zero expert calls. A separately required two-round clarification exchange passed its 30 regression tests. Strict original-test-file rules rejected several otherwise functional patches; both outcomes are [recorded](results/codex-pilot-001/analysis/summary.json). These tiny historical-task results do **not** establish cost savings or noninferiority; token and dollar usage were unavailable.
-
-The new **[SWE-bench Verified replay](results/swe-replay-001/README.md)** analyzes all **500 tasks across ten published model runs**. The primary learned router saved **46.1% estimated inference cost**, but success fell from **72.8% to 64.2%**, failing the three-point quality tolerance. MiniMax-M2.5 alone reached **75.8% at $0.073/task**, versus a ten-model portfolio point at **76.2% and $0.115/task**. Those are historical published-run estimates, not fresh conversational-agent results or measured Codex plan savings.
-
-- **[Run and reproduce the metered study](docs/research/HANDOVER.md)**: complete handover, prerequisites, execution commands and evidence boundaries.
-- **[Use it in your own projects](docs/research/project-usage-guide.md)**: installation, bounded collaboration, token/credit accounting and cost scenarios.
-- [Metered six-arm SWE-bench runner](docs/research/swe-bench-runner.md), [frozen official task sample and executed evaluator controls](experiments/swe-bench-verified-001/README.md), [independent audit](docs/research/swe-replay-audit.md).
-- [Research contribution and sample-size design](docs/research/standard-benchmark-research.md), [ADR 0007](docs/adr/0007-standard-benchmark-and-metered-handover.md).
-- [Subscription-backed Codex metering](docs/research/codex-metering.md): official usage counters, provider-estimated credits and ccusage; separate API billing is unnecessary for token metering.
-- [Codex conversation harness](docs/research/personal-harness.md): persistent controller and expert threads, clarification/challenge responses, bounded turns, failure records and unknown-cost handling.
-- [Frozen pilot and restore instructions](experiments/codex-pilot-001/README.md), [full results](results/codex-pilot-001/analysis/), [live dialogue transcript](results/codex-pilot-001/dialogue-transcript.md).
-- [Closest prior work](docs/thesis/personal-agent-prior-art.md), [source register](docs/thesis/personal-agent-prior-art-sources.json), [communication protocols](docs/thesis/agent-communication.md).
-- [Earlier broad thesis](docs/thesis/README.md): supporting open-model, distillation, browser and economics reviews. Its older proposed study hierarchy is superseded by the current paper.
-
-Reproduce the recorded analysis without calling a model:
-
-```bash
-python scripts/analyze_codex_pilot.py --output-dir results/my-pilot-analysis
-python -m pytest -q
+```sh
+python3 tools/usage-monitor/observability/workspace.py \
+  --data work/security/workspace \
+  --codex-root "$HOME/.codex" \
+  --capture-root work/security/langfuse-stack/captures
 ```
 
-The research dependencies are pinned below. Latest full research validation:
-**172 passed, 2 optional tests skipped, 2 subtests passed**, including
-real Docker integration. Native authenticated model/token preflights pass on
-this desktop; the read-only failure described in older records belongs to the
-previous managed host. All 108 original/development assignments passed independent
-native-grade and token-counter audits. No assisted condition meets the joint
-95% cost-reduction / 95% accuracy-retention target; population noninferiority is
-not established. Runpod remains unprovisioned and its
-authorized US$100 budget unspent. No remote Jira/Confluence publication is
-claimed; [local task state](docs/research/task-state.json) and an
-[import CSV](docs/research/jira-import.csv) preserve progress.
+Open **http://127.0.0.1:8766** or forward port **8766** in Codespaces. This runs the
+task/evidence workspace and native-history collection. Langfuse dashboards and
+HTTP capture require the [full stack setup](SETUP.md#full-observability-stack).
+Private UI assets are deliberately excluded from Git; a fresh public clone needs
+an authorized source checkout before it can serve the complete UI.
 
-## Earlier coding-problem replay
+For an already prepared full installation, use:
 
-The first experiment is complete: published LiveCodeBench outcomes for **713 paired tasks** support a chronological routing replay. At a 50% remote-call budget the learned router achieved **29.93% pass@1**, versus **28.35%** for expected random routing. The difference, **+1.58 percentage points (95% CI −1.58 to +4.44)**, is inconclusive. Remote-only achieved **39.37%**. These are replay results, not fresh model inference or trained-student improvements.
-
-## Study documents
-
-- [Literature review and evidence limits](docs/research/literature-review.md), [20-reference bibliography](docs/research/references.bib).
-- [Frozen protocol](docs/research/protocol.md), [pre-outcome amendment](docs/research/protocol-amendments.md), [hash record](docs/research/protocol-freeze.json).
-- [Results and interpretation](docs/research/results.md), [independent audit](docs/research/independent-audit.md).
-- [Machine-readable results and plots](results/routing-pilot-001/), [fresh-download reproduction check](results/reproduction-verification.json).
-- [GPU training and held-out inference](docs/research/gpu-training.md), [Runpod plan](docs/research/runpod.md).
-- [Task state](docs/research/task-state.json). Local work item IDs are not Jira issue keys; Atlassian connection is pending.
-
-## Reproduce the routing experiment
-
-Python 3.12 is the tested runtime. From the checkout root:
-
-```bash
-python -m venv .venv
-.venv/bin/pip install -r requirements-research.lock
-.venv/bin/pip install --no-deps -e .
-.venv/bin/python -m ttgl.fetch
-.venv/bin/python -m ttgl.data
-MPLCONFIGDIR=/tmp/ttgl-matplotlib XDG_CACHE_HOME=/tmp/ttgl-cache \
-  .venv/bin/python -m ttgl.routing --output-dir results/my-reproduction
-.venv/bin/python -m pytest -q
+```sh
+python3 tools/usage-monitor/observability/setup_local.py doctor
+python3 tools/usage-monitor/observability/setup_local.py start
 ```
 
-Downloads are pinned by upstream commit and mandatory SHA-256. Dataset preparation preserves complete contests, checks metadata/sample alignment and records every split. Analysis refuses changed protocol, amendment or split hashes and refuses to overwrite existing result directories. Source artifacts and generated datasets are ignored by Git; the downloader reconstructs them. Preserve the upstream license retrieved with the data.
+## What the experiments show
 
-Expected split sizes: 429 train, 142 calibration, 142 test. The two models have ten published samples per task. Model difficulty labels and grading feedback never enter routing features. Full cost results are explicitly hypothetical normalized scenarios; no dollar savings or inference latency are measured in this replay.
+These are separate studies with different tasks, protocols and accounting.
+Percentages below retain their original dated model-rate scenarios; they are
+**not measured cash or subscription-quota savings**.
 
-In the managed cloud workspace, `bash scripts/setup_research.sh` installs the tested research environment under `/workspace/.tools/ttgl-research`. Use the existing checkout; each cloud task is already isolated.
+| Study | Recorded outcome |
+| --- | --- |
+| [500-task SWE-bench published-run replay](results/swe-replay-001/README.md) | 46.1% estimated inference saving, but 64.2% success versus 72.8% control: quality target fails |
+| [Fresh six-condition coding study](results/codex-isolated-20261026/analysis-001/README.md) | 72 assignments; Luna 9/12, Sol 10/12, pre-task router 11/12; personal condition 9/12 with zero expert calls |
+| [Held-out delegation](results/delegation-heldout-001/analysis-002/README.md) | Luna 7/11, Sol 9/11, assisted Luna 8/11; 91.45% scenario saving and 88.89% relative accuracy retention: 95/95 target fails |
+| [Adaptive target90 development](results/target90-development-20261031/README.md) | Sol 6/6 versus router 4/6; 96.4048% scenario saving with quality loss; all six router cases use zero experts |
+| [Progress-output representation](tools/usage-monitor/studies/progress-replay-results-002.md) | Revised trial uses 45.58% fewer native tokens on three matched log diagnoses; all six checks pass; failed predecessor retained |
+| [Live coding harness](tools/usage-monitor/studies/live-harness-results-001.md) | Four runs on two generated tasks; 10.075% fewer pooled tokens, all checks pass, no observed speedup |
+| [Long-history retrieval validation](docs/paper/context-memory/report.md) | Original grades: full history 24/24, files 24/24, FTS 23/24; cheaper FTS fails the no-loss gate; anonymous audit also finds quality loss |
+| [Native team pilot](docs/paper/codex-team-knowledge/pilot-results.md) | All 24 saved artifacts pass; native capacity eight averages 31.3% less coding time at at least 2.45× model-rate cost on two libraries |
+| [Memory-aware teams](docs/paper/codex-team-knowledge/memory-aware-results.md) | Partial 56-cell development comparison; use the linked dated snapshot, not a completed-study claim |
 
-## Prepare and run the GPU arm
+The goal of at least 90% lower total model-inference cost with no observed loss
+against matched Sol remains **unestablished**. Development improvements, successful
+mechanisms and held-out evidence are kept distinct. Training/distillation and
+AI-feedback learning have no demonstrated model-quality result here.
 
-```bash
-.venv/bin/python -m ttgl.train --dataset data/processed/train.jsonl \
-  --output-dir artifacts/my-sft-preflight --dry-run
-.venv/bin/python -m ttgl.generate --dataset data/processed/test.jsonl \
-  --output-dir artifacts/my-generation-preflight --dry-run
-```
+## Repository map
 
-Preparation selects one nonempty, upstream-verified teacher solution per eligible training task; the current run produces 334 examples. Source titles and starter interfaces are hash-verified and shared between training and generation. Test data are never used for fine-tuning. Dry runs explicitly record `prepared_not_trained` / `prepared_not_generated`.
+| Path | Purpose |
+| --- | --- |
+| `tools/usage-monitor/observability/` | Local workspace, native capture, analyst MCP/CLI and evidence-backed reviews |
+| `tools/usage-monitor/langfuse/` | Prepared Docker stack, export bridge and dashboards |
+| `tools/usage-monitor/experiments/`, `tools/usage-monitor/studies/` | Context/memory/team runners, registrations and sanitized measurements |
+| `src/ttgl/`, `scripts/`, `tests/` | Routing research, metered harnesses, analyses and software checks |
+| `experiments/`, `results/` | Frozen designs, grading records, audits and published research artifacts |
+| `docs/paper/`, `docs/thesis/`, `docs/research/` | Manuscripts, related work, methods and chronological reports |
+| `work/security/` | Ignored private logs, captures, credentials, databases and immutable attempt evidence |
 
-Follow the [GPU instructions](docs/research/gpu-training.md) for the exact Transformers/TRL/PEFT stack, LoRA training, immutable model revision, baseline/adapter generation and the official LiveCodeBench evaluator. Official test fixtures must be acquired separately. Sample code is never executed by the generation module.
-
-The approved Runpod ceiling is **US$100 total**, one 80 GB GPU. Authentication and runtime access remain required; no pod has been provisioned. Training, fresh held-out coding evaluation, logit distillation and RLAIF have **no model-quality results yet**.
-
-An optional integration test uses a tiny randomly initialized Qwen-architecture fixture to verify completion-only loss, real LoRA updates and adapter reload. It needs the training dependencies and can be run with `python -m pytest tests/test_sft_integration.py -q`; the core research environment skips it. This fixture is software validation, not pretrained-Qwen evaluation.
+The active research branch is **`work`**. Check current processes and immutable
+receipts before any continuation; never replay a started or uncertain model call.
+Scheduled research monitoring remains paused. See the
+[dependency security policy](docs/security/dependency-security-policy.md) before
+installing or first executing downloaded software. Existing artifacts and private
+histories must be preserved during cleanup.

@@ -1,0 +1,43 @@
+{
+  "id": "additional-history-001",
+  "at": "2026-11-10T02:29:32.790502+00:00",
+  "targets": [
+    "aws-cloudformation__cfn-lint-2387",
+    "aws-cloudformation__cfn-lint-3342"
+  ],
+  "backends": [
+    "smallville",
+    "tokeneconomizer"
+  ],
+  "purpose": "Historical Add preparation for a separately registered matched repository wave, not coding results",
+  "history": "Exact admitted complete-message views and full raw availability from WaveA. Current issue only enters later query; no target/gold/grade entersbuild.",
+  "smallville": {
+    "implementation": "CompatibleMemoryV4 plus existing maintained Stanford core; coding event adapter",
+    "max_actual_tool_observations": 64,
+    "selection": "latest64 completed tool-result messages in admitted history, originalorder",
+    "perception": "args2000/output2500chars, source hashes retained, unknown exits explicitlyunknown. Parentheses escaped losslessly in JSON to avoid upstream event parser truncation.",
+    "importance_model": "gpt-6-luna",
+    "reflection": "Original natural threshold150 only; no forced trigger or invented time. Actual UTC ingestion; full maintenance counted.",
+    "native_call_cap_per_target": 256
+  },
+  "tokeneconomizer": {
+    "commit": "264e7a7f32f0112a06aa83a97b9c2c4681563968",
+    "profile": "envfacts+distiller",
+    "propose_every": 3,
+    "cadence": "Native plugin stock setting, not offline stage default8",
+    "max_facts": 4,
+    "max_tokens": 150,
+    "model": "gpt-6-luna",
+    "native_call_cap_per_target": 32,
+    "interchange": "Explicitly labeled semantic OpenAI-to-Claude-compatible records; original callIDs/output/command exits preserved; no fabricated execution/token/timestamp records",
+    "resolved": null
+  },
+  "failure": "No invocation retries, no silent resets/constant ratings/repair. Preserve every started/failed call and stop on ambiguity.",
+  "cost": "All cheap/native maintenance, later solver and background calls counted, no net/cash/quota claim",
+  "frozen_sources": {
+    "tools/usage-monitor/experiments/repository_additional_backend.py": "6a50c394ed9dafe80daedaa609f285df0597a0b5347d686bdc01a4f4b665828a",
+    "tools/usage-monitor/experiments/repository_tokeneconomizer_hook.py": "f9bae03bf6bfdd88376da9393e76c288d997f98a5786a904c81dff0829b36780",
+    "tools/usage-monitor/experiments/smallville_compat_v4.py": "dd83691398e347e137a2843a3b713074431fc343982769488f6f725dc95a465d",
+    "tools/usage-monitor/experiments/smallville_memory.py": "e712fbe52d178383d2edfbfebcb095563e5ae84322c814f5f1e0837c3d4774af"
+  }
+}

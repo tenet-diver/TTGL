@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-11T19:20:01.077601+00:00",
+  "registered_before_assignment": 13,
+  "continued_assignments": 44,
+  "configuration_sha256": "30b71bcc7a3e599b144d8f7567f76b2cc601aa733fe1da1a8ae9622ce654e73a",
+  "per_cell_source_hashes": 146,
+  "once_at_launch_runtime_hashes": 11046,
+  "gates": 18,
+  "automatic_retries": 0,
+  "preparation_recovery": "Exactly cell013, verified no model intent/rollout/maintenance call; reuse owned created sleep container after actual original boundary checks. Original preparation failure/store/receipts preserved. No generation retry.",
+  "generation_sources_and_policy_unchanged": true
+}

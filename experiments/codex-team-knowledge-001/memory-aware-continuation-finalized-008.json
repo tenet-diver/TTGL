@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-11T20:43:51.468226+00:00",
+  "registered_before_assignment": 20,
+  "continued_after_confirmed_models": 19,
+  "remaining_assignments": 37,
+  "configuration_sha256": "b0beaeb76ce0d6aa47b62425facb01da051fd9b8f424a036df1d73d22193caf1",
+  "source_hashes_per_cell": 145,
+  "runtime_files_at_launch": 11046,
+  "gate_files": 20,
+  "automatic_retries": 0,
+  "task_model_calls_repeated": 0
+}

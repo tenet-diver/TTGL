@@ -1,0 +1,22 @@
+{
+  "selection": "First scored Graphiti cell, first Episodic node and first factual edge in retained export. Post-hoc illustrative selection, not representative sampling.",
+  "provenance": {
+    "assignment": "008-tinydb-graphiti_luna-1",
+    "member": "memory/backend/graph-snapshot.json",
+    "member_sha256": "6abd41a8e340700f709d715c21c4343daba827f2449ab669776566084d222e43",
+    "archive_sha256": "41298e1a6c86c29b0c220674e9c04d189cdf2bdf7428191aed905cbb7c8333e6"
+  },
+  "episode": {
+    "record_id": "e8ea452c2fed1ff250dc0dd445e2c54521104a6d281470098a87df89dbdc198f",
+    "associated_entity_edges": 0,
+    "baseline_excerpt": "Exact baseline command python3 -m pytest -p no:cacheprovider -q tests/ exits 4 importing utils.FrozenDict: NameError _immutable undefined; no tests run.",
+    "uncertainty_excerpt": "No peer findings returned by search. Uncertainty: hidden cases unverified; no implementation or test success yet.",
+    "source_body_sha256": "31458cef5665975122a5d0ab6ff7a127cc50a3654ab2a0c21516069aed961e93"
+  },
+  "extracted_fact": {
+    "text": "TinyDB's MyPy hook was syntax checked, but MyPy integration could not be verified because the MyPy package was unavailable.",
+    "edge_uuid": "45e9110d-e44b-44c4-8f11-67d83928f591"
+  },
+  "interpretation": "Actual stored observation/fact, not an independently verified claim about the cited baseline or MyPy. Capacity1 permits self-memory use, not peer learning. Preserved episode has zero associated entity edges; presence alone does not prove retrieval or useful integration.",
+  "privacy": "Reviewed benchmark-only excerpts; no reasoning, private user history or credentials."
+}

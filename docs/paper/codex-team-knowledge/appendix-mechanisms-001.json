@@ -1,0 +1,157 @@
+{
+  "kind": "Versioned synthetic mechanism examples; historical failed candidates preserved",
+  "examples": [
+    {
+      "attempt": "smallville-backend-001",
+      "passed": true,
+      "source_file": "result.json",
+      "source_sha256": "49e95a08402fdd50c2dbd3ce3592fce86b0277f51f655ebc60548c21193230e7",
+      "scope": "Synthetic mechanism only; not coding quality",
+      "automatic_retries": 0
+    },
+    {
+      "attempt": "mem0-backend-001",
+      "passed": false,
+      "source_file": "stopped.json",
+      "source_sha256": "0653e8d1c55e48f8760254f65251ecc1cf4b12293c915a7418837a1a2fc5565e",
+      "scope": "Synthetic mechanism only; not coding quality",
+      "automatic_retries": 0,
+      "failure": "Adapter used top-level user_id in search; current API requires filters. Completed Luna calls retained."
+    },
+    {
+      "attempt": "mem0-backend-002",
+      "passed": true,
+      "source_file": "result.json",
+      "source_sha256": "ee3459d8f7f969d4c510a930410987f1283be7ed599f0cff4ce1a5cb78e1895f",
+      "scope": "Synthetic mechanism only; not coding quality",
+      "automatic_retries": 0
+    },
+    {
+      "attempt": "graphiti-native-001",
+      "passed": false,
+      "source_file": "result.json",
+      "source_sha256": "3f8094d955b8d8982cd5412d285c3f0c66c827128ec84af0b4285ac924f7d28b",
+      "scope": "Synthetic mechanism only; not coding quality",
+      "automatic_retries": 0,
+      "tools_by_actor": {
+        "parent": [
+          "publish_finding",
+          "coverage",
+          "search_memory",
+          "search_memory"
+        ],
+        "child-1": [
+          "search_memory",
+          "search_memory",
+          "coverage",
+          "search_memory",
+          "search_memory",
+          "publish_finding",
+          "search_memory"
+        ]
+      },
+      "exact_witness": false,
+      "exact_exposure": false,
+      "failure": "Fact-only search returns no facts for opaque witness; no original episode retrieval exposed."
+    },
+    {
+      "attempt": "graphiti-native-002",
+      "passed": true,
+      "source_file": "result.json",
+      "source_sha256": "d6abea6786514dc180377fe1c1d20ae712e30ff4d42b5af88766a8037b7d7fa6",
+      "scope": "Synthetic mechanism only; not coding quality",
+      "automatic_retries": 0,
+      "tools_by_actor": {
+        "parent": [
+          "publish_finding",
+          "coverage",
+          "search_memory",
+          "read_record"
+        ],
+        "child-1": [
+          "search_memory",
+          "read_record",
+          "publish_finding"
+        ]
+      },
+      "exact_witness": true,
+      "exact_exposure": true,
+      "interface": "Stock combined RRF returns original episodes with record IDs; parent and child retrieve exact originals."
+    },
+    {
+      "attempt": "logs-native-001",
+      "passed": true,
+      "source_file": "result.json",
+      "source_sha256": "4c869870d5c7dc80cb02bb9271127640bd3faa5baac238b767aef05c4652ae9a",
+      "scope": "Synthetic mechanism only; not coding quality",
+      "automatic_retries": 0,
+      "tools_by_actor": {
+        "parent": [
+          "publish_finding",
+          "coverage",
+          "search_memory",
+          "read_record"
+        ],
+        "child-1": [
+          "search_memory",
+          "read_record",
+          "publish_finding",
+          "publish_finding"
+        ]
+      },
+      "exact_witness": true,
+      "exact_exposure": true
+    },
+    {
+      "attempt": "smallville-native-001",
+      "passed": true,
+      "source_file": "result.json",
+      "source_sha256": "6941912a795061d932a2013a8b217f1d6b5b220d9af3d5a04b6924ec9f37feb7",
+      "scope": "Synthetic mechanism only; not coding quality",
+      "automatic_retries": 0,
+      "tools_by_actor": {
+        "parent": [
+          "publish_finding",
+          "coverage",
+          "search_memory",
+          "read_record"
+        ],
+        "child-1": [
+          "search_memory",
+          "read_record",
+          "publish_finding",
+          "publish_finding"
+        ]
+      },
+      "exact_witness": true,
+      "exact_exposure": true
+    },
+    {
+      "attempt": "mem0-native-001",
+      "passed": true,
+      "source_file": "result.json",
+      "source_sha256": "f5246bdfceb0dac50e2e182ad9bc3266d9193979c20a9b56f4fe63fd77dcc0d0",
+      "scope": "Synthetic mechanism only; not coding quality",
+      "automatic_retries": 0,
+      "tools_by_actor": {
+        "parent": [
+          "publish_finding",
+          "coverage",
+          "search_memory",
+          "search_memory",
+          "read_record",
+          "search_memory"
+        ],
+        "child-1": [
+          "search_memory",
+          "read_record",
+          "publish_finding",
+          "publish_finding"
+        ]
+      },
+      "exact_witness": true,
+      "exact_exposure": true
+    }
+  ],
+  "privacy": "Actor aliases and reviewed aggregate statuses only; no private transcript or reasoning"
+}

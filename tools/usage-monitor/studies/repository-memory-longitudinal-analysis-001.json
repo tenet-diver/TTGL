@@ -1,0 +1,14 @@
+{
+  "id": "repository-memory-longitudinal-analysis-001",
+  "at": "2026-11-10T02:52:07.079006+00:00",
+  "registered_generations_finished": 13,
+  "model_hidden_grades_observed": 0,
+  "primary_unchanged": "Protocol001 prescribed-test pass metric and full native LLM inference scenario; no stop/tuning from interim costs or outcomes.",
+  "secondary_quality": "Report additional nonpassing tests and command exits; compare additional nonpassing test IDs with each independent reference control. Added passing tests never count as failure. A command nonzero alone is not task failure. Secondary flags do not rewrite primary scores.",
+  "accumulation": "Paired task-position differences versus fresh, cumulative verified successes and complete task scenario including all preparation/update/last-task maintenance. Persistent-vs-reset graph is the primary accumulation ablation; their own online evidence can diverge. Raw-history controls separate additional information from retrieval/abstraction. No same-facts graph/flat causal claim.",
+  "stratification": "Report each repository and lineage separately and pooled by equal task weight; cold first positions separately. Report descriptive leave-one-repository-out sensitivity. Three repositories/four dependent sequences, not216 independent tasks. No population significance/CI claim from this nonrandom development panel.",
+  "mechanism": "Counts of actual graph search/add/edit, source references and reused predecessor evidence. Exact repeated commands/nonzero outcomes are observations, not automatic waste labels. Qualitative interpretation requires cited raw sources and uncertainty; no hidden feedback to live memory.",
+  "inference_accounting": "Deduplicate per-response IDs. CLI/native/capture reconciliation; cached input subset. Separate failed/unknown attempts, partial lower bounds, total task inference, preflights/research overhead and unpriced local compute. Published rate scenario, not actual account credits/cash/quota.",
+  "timing": "Operation runtimes and CLI process wall times separate; concurrent diagnostics/preparation preclude clean causal speed claims.",
+  "failure": "Preserve every attempted condition, maintenance failure, policy flag and unknown call. No favorable subset replacing registered216. Native/Smallville/TE supplemental studies have own matched controls and must not be pooled as same-period baselines."
+}
