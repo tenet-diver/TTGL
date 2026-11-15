@@ -65,7 +65,7 @@ latency measurement. Scenario shares require known costs for the selected scope.
 
 Timeline timezone defaults to the browser's timezone and can be changed explicitly
 to UTC. Heatmap counters belong to response timestamps. Empty cells mean no retained
-observations; a patterned cell has observations with unknown cost. Multi-day turns
+observations; a outlined cell has observations with unknown cost. Multi-day turns
 are split at local midnight, without duplicating usage totals. Daylight-saving folds
 can place multiple observations in the same local hour; elapsed duration remains
 measured in real seconds. Local-hour tracks show wall time, not 24 guaranteed elapsed

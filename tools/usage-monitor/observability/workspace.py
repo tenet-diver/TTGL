@@ -654,7 +654,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(target.read_bytes(), content=design_assets[path.path])
         if path.path in ('/live','/live/rules','/impact','/outcomes','/suggestions','/process','/agents','/timeline','/costs','/tools','/overview','/tasks') or path.path.startswith('/tasks/'):
             return self.send((HERE/'workspace.html').read_bytes(),content='text/html; charset=utf-8')
-        if path.path in ('/optimization.js','/optimization.css','/collection.js','/activity-views.js','/activity-views.css','/usage-views.js','/usage-views.css','/task-report.js','/dashboard-views.js','/data-list.js'):
+        if path.path in ('/optimization.js','/optimization.css','/collection.js','/activity-views.js','/activity-views.css','/usage-views.js','/usage-views.css','/task-report.js','/dashboard-views.js','/data-list.js','/design-language.css','/chart-theme.js'):
             return self.send((HERE/path.path[1:]).read_bytes(),content='text/css; charset=utf-8' if path.path.endswith('.css') else 'text/javascript; charset=utf-8')
         assets = {'/activity-insights.js': ('activity-insights.js','text/javascript; charset=utf-8'), '/task-history.js': ('task-history.js', 'text/javascript; charset=utf-8'), '/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8'),
                   '/ui.js': ('ui.js', 'text/javascript; charset=utf-8'),

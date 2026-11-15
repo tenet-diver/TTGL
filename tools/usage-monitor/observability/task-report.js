@@ -1,9 +1,10 @@
+import {chartTones} from '/chart-theme.js';
 import {sourceList} from '/data-list.js';
 import {button,badge,escapeHTML as esc,emptyState} from '/ui.js';
 const n=v=>v==null?'Unknown':Number(v).toLocaleString('en',{maximumFractionDigits:3});
 const duration=v=>v==null?'Unknown':n(v)+' s';
 const money=(v,u)=>v==null?'Unknown':Number(v).toLocaleString('en',{maximumFractionDigits:Math.abs(v)<.01?6:3})+' '+u;
-const colors=['#56b4e9','#009e73','#f0e442','#d55e00','#cc79a7','#e69f00'];
+const colors=chartTones;
 const card=(title,body)=>`<section class="section ops-card"><h2>${title}</h2>${body}</section>`;
 export async function renderTaskReport(root,{taskId,table,showModal,onError}){
  root.innerHTML='<p role="status">Loading task story and evidence…</p>';

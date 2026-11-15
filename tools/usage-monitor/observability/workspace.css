@@ -117,11 +117,6 @@ code, pre { font-family: var(--font-mono); font-size: 11px; }
 .skeleton-table { display: grid; gap: 16px; padding: 24px; background: var(--card); border-radius: var(--radius-md); box-shadow: var(--shadow-border); }
 .skeleton-row { height: 24px; }
 .skeleton-row:first-child { width: 40%; }
-@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
-  #content > .section, #content > .stats, .history-card { animation: enter 420ms ease-out both; }
-  .history-card:nth-child(2) { animation-delay: 80ms; }
-  @keyframes enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-}
 @media (max-width: 1180px) {
   .sidebar { width: 208px; padding-inline: 12px; }
   main { margin-left: 208px; }
@@ -209,12 +204,11 @@ code, pre { font-family: var(--font-mono); font-size: 11px; }
 
 .insight-card{min-width:0;overflow-wrap:anywhere}
 
-/* Shared app typography and one restrained overview bloom. */
+/* Shared app typography. */
 .nav-label, .stat small, .eyebrow { font: 500 12px/16px var(--font-mono); text-transform: uppercase; letter-spacing: 0; }
 .stat strong { font-size: 32px; line-height: 40px; font-weight: 600; }
 .numeric { font-family: var(--font-sans); }
 .page-header[data-overview='true'] { position: relative; isolation: isolate; }
-.page-header[data-overview='true']::before { content: ''; position: absolute; inset: -20px 35% -12px -16px; z-index: -1; pointer-events: none; opacity: .08; mask-image: radial-gradient(ellipse, #000 20%, transparent 70%); background: radial-gradient(ellipse at 15% 40%, #50e3c2, transparent 65%), radial-gradient(ellipse at 55% 70%, #7928ca, transparent 65%), radial-gradient(ellipse at 85% 30%, #ff0080, transparent 65%); }
 /* Long column lists must scroll above later cards, including animated sections. */
 .section:has(.column-picker[open]) {position:relative;z-index:210;}
 .column-options {max-height:min(420px,60dvh);overflow-y:auto;overscroll-behavior:contain;}

@@ -21,7 +21,7 @@ trace backend; TTGL adds source reconciliation, task grouping and evidence revie
 | Interpretation | `task_history.py`, `activity_insights.py`, `agent_review.py` | On-demand model work, versioned outputs, source links, confidence and separate overhead |
 | Capture | Existing capture proxy and capture-object archive | Original/forwarded transport evidence and durable private records |
 | Backend | Existing Langfuse deployment | Traces, dashboards and maintained storage services; see its runbook |
-| Design | `ui.css`, `workspace.css`, `work-explorer.css`, `ui.js` | Shared semantic tokens, native controls and responsive layouts |
+| Design | `ui.css`, `design-language.css`, `chart-theme.js`, `workspace.css`, `work-explorer.css`, `ui.js` | Shared semantic tokens, native controls, neutral chart palettes with contrasting labels and responsive layouts |
 
 Paths in this table are relative to `tools/usage-monitor/observability/` unless
 otherwise stated. Startup and private-state locations are in [SETUP](../SETUP.md).

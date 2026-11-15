@@ -1,93 +1,73 @@
 # TTGL design system
 
-Adapted from the supplied “Vercel Geist, applied to Claude Mining” reference. These standards apply to the Usage Observatory's native DOM controls and Python-served UI.
+The supplied Vercel Design Language Reference governs the Usage Observatory's native DOM interface. Shared controls and layouts apply it across analysis, task evidence, optimization and steering pages.
 
 ## Principles
 
-Use a near-white canvas, near-black ink, 1px hairlines, tightly tracked headings at weight 600, and uppercase mono eyebrows. White cards sit in precise grids with a whisper of shadow. Color is reserved for links, focus, status, charts, and a faint hero mesh behind the overview title.
+Use an achromatic canvas, restrained typography, consistent spacing and shadow boundaries. Blue identifies links and keyboard focus. Other chromatic colors appear only as small status or category dots. Avoid decorative gradients, colored panels, hatch patterns, entry animations and moving buttons.
 
-Use the app half of the system: 6px control corners, 12px cards, and mono section labels. Fully rounded marketing CTAs belong only on marketing surfaces. Do not fill ordinary surfaces with accent colors, stack decorative shadows, or introduce a second decorative system.
+Preserve the application's evidence semantics: unknown values remain unknown, estimates remain distinct from cash expense, and command completion does not establish task success. Styling must not change measurements or launch inference.
 
 ## Colors
 
-| Token | Light | Dark |
+| Role | Light | Dark |
 | --- | --- | --- |
-| `ink`, `primary` | `#171717` | `#ededed` |
-| `on-primary` | `#ffffff` | `#0a0a0a` |
-| `body` | `#4d4d4d` | `#a1a1a1` |
-| `mute` | `#737373` | `#a1a1a1` |
-| `faint` | `#a1a1a1` | `#737373` |
-| `canvas` | `#fafafa` | `#0a0a0a` |
-| `canvas-elevated` | `#ffffff` | `#111111` |
-| `hairline-soft` | `#f2f2f2` | `#1a1a1a` |
-| `hairline` | `#ebebeb` | `#2e2e2e` |
-| `link` | `#0070f3` | `#3291ff` |
-| `link-deep` | `#0761d1` | choose explicitly with contrast validation |
-| `link-soft` | `#d3e5ff` | choose explicitly with contrast validation |
-| `error` | `#ee0000` | `#ff6166` |
-| `error-deep` | `#c50000` | choose explicitly with contrast validation |
-| `warning` | `#f5a623` | choose explicitly with contrast validation |
-| `warning-text` | `#a35200` | choose explicitly with contrast validation |
-| `success` | maps to `link` | maps to `link` |
+| Canvas | `#fafafa` | `#0a0a0a` |
+| Elevated surface | `#ffffff` | `#111111` |
+| Primary text | `#171717` | `#ededed` |
+| Secondary text | `#4d4d4d` | `#a1a1a1` |
+| Small metadata | `#737373` | `#a1a1a1` |
+| Interactive accent | `#0072f5` | `#3291ff` |
+| Small link text | `#005fcc` | `#3291ff` |
+| Input focus | `#005fcc` | `#70b5ff` |
 
-Choose dark colors by semantic role, never by automatic inversion. Validate text contrast for each actual foreground/background pair.
+Use the deeper light-mode blue for small links and readable gray for placeholders rather than the reference's faint gray. Validate actual foreground/background pairs rather than automatically inverting colors.
 
-The reference's original muted gray `#8f8f8f` has only about 3.3:1 contrast on white. Use `#737373` for small metadata text (about 4.7:1 on white); reserve faint gray for placeholders and decorative marks.
-
-Hero illustration accents: violet `#7928ca`, cyan `#50e3c2`, pink `#ff0080`, and magenta `#eb367f`. Reference gradient pairs: develop `#007cf0` to `#00dfd8`, preview `#7928ca` to `#ff0080`, ship `#ff4d4d` to `#f9cb28`. Keep the overview mesh faint and behind the title. Chart series may use a separate color-vision-deficiency-validated categorical palette; status colors stay distinct from series.
+Status dots use information blue `#0062d1`, success green `#398e4a`, warning amber `#ff990a` and error red `#e5484d`. Dots are 8px with neutral adjacent text; labels must carry the meaning independently of color. Charts use shared neutral tones, labels and interactive evidence. Treemap labels select a contrasting foreground for their fill. Unknown heatmap cells have a dashed outline; rework paths use dashed neutral strokes.
 
 ## Typography
 
-Prefer Geist Sans and Geist Mono. If unavailable through the project's approved dependency source, use Hanken Grotesk and JetBrains Mono, or system sans/mono fallbacks. Do not add a public registry dependency solely to obtain a font when the project uses an internal registry.
+Use the existing bundled Geist Sans. Mono text prefers locally available Geist Mono, then platform monospace fonts; no new font dependency is required. Use mono for code and uppercase eyebrows, sans for labels and numeric tables. Tabular figures align numeric columns.
 
-| Token | Size / line height | Weight | Tracking | Use |
-| --- | --- | --- | --- | --- |
-| `display-xl` | 48 / 48px | 600 | -2.4px | Hero headline |
-| `heading-lg` | 32 / 40px | 600 | -1.28px | Page headings |
-| `heading-md` | 20 / 28px | 600 | -0.4px | Card headings; long page titles |
-| `label-sm` | 14 / 20px | 500 | -0.28px | Strong labels |
-| `mono-eyebrow` | 12 / 16px | 500 | 0 | Uppercase section, breadcrumb, filter, field, and KPI labels |
-| `body-lg` | 16 / 24px | 400 | 0 | Lead paragraphs |
-| `body-md` | 14 / 20px | 400 | 0 | Body and table cells |
-| `body-sm` | 12 / 16px | 400 | 0 | Captions and metadata |
-| `button-md` | 14 / 20px | 500 | 0 | Button labels |
-| `code` | 14 / 20px | 400 | 0 | Monospaced code |
+| Element | Size / line height | Weight | Tracking |
+| --- | --- | --- | --- |
+| Overview heading | 48 / 48px | 600 | -2.28px |
+| Page heading | 32 / 40px | 600 | -1.28px |
+| Section/card heading | 14 / 20px | 500 | -0.28px |
+| Lead/body | 16 / 24px | 400 | normal |
+| Controls/table cells | 14 / 20px | 400 | normal |
+| Captions | 12 / 16px | 400 | normal |
+| Mono eyebrows | 12 / 16px | 500 | normal |
+| Code | 13 / 20px | 500 | normal |
 
-Use mono for code and eyebrows only. Headings use 600, buttons and labels 500, other text 400.
+Keep weights within 400, 500 and 600. Overview headings reduce to page-heading size on narrow screens.
 
 ## Layout and depth
 
-- Spacing uses a 4px base: 4, 8, 12, 16, 24, 32, 40, 64, 96, 128px.
-- Radii: controls 6px; cards/code blocks 12px; large panels 16px; badges/avatars fully rounded; marketing pills 100px.
-- Level 0: 1px hairline border.
-- Level 1: hairline plus `0 1px 1px rgba(0,0,0,.04)`.
-- Level 2: hairline plus `0 2px 2px rgba(0,0,0,.04), 0 8px 16px -4px rgba(0,0,0,.04)`; use for menus, drawers, popovers, and tooltips.
+- Use a 4px spacing base, 24px page margins, 32px section gaps and 16px content gaps. Narrow screens use 16px page/card padding.
+- The header is 64px high. Standard and wide width tokens are 1200px and 1400px; analysis pages use the wide layout.
+- Controls have 6px corners, cards 12px, and badges fully rounded corners.
+- Surface boundaries use a 1px shadow ring rather than a CSS border. Row boundaries use inset shadows. Separate sections with whitespace.
+- Cards use the shared boundary plus a subtle 1px depth shadow. Menus and dialogs use layered elevation tokens.
 
 ## Component mapping
 
 | App element | Treatment |
 | --- | --- |
-| Page title | `heading-lg`; long titles use `heading-md` |
-| Card | White/elevated surface, hairline, 12px radius, 24px padding, level 1 |
-| KPI strip | One card divided by hairlines; values 32px at 600 |
-| Primary button | Ink fill, on-primary text, 6px radius |
-| Secondary button | Elevated surface, ink text, hairline, 6px radius |
-| Input/select | Elevated surface, hairline, 6px radius; visible link-blue focus ring |
-| Range switch | Soft-fill track with elevated active segment |
-| Status badge | Full radius, soft wash; complete/success uses link blue |
-| Drawer/popover/tooltip | Elevated surface, hairline, level 2 |
-| Sidebar | Canvas, right hairline, body-gray links; active ink on soft fill |
-| Link | Semantic link blue |
-| Overview header | The app's sole decorative mesh gradient |
+| Card | Elevated neutral surface, shadow boundary, 12px radius, 24px padding |
+| KPI strip | One shadow-bounded surface with inset dividers; values at weight 600 |
+| Ordinary button | Transparent ghost treatment, 40px default height, 6px radius |
+| Primary action | Ink fill with inverse text, including hover and active states |
+| Compact/icon control | 32px minimum height; existing large controls may use 48px |
+| Input/select | Transparent surface, shadow boundary, 6px radius, thin blue focus outline |
+| Keyboard focus | Double ring: 2px surface-colored gap and 4px blue outer ring |
+| Status badge | Neutral text and transparent background; small colored dot |
+| Sidebar | Canvas with a shadow separator; neutral hover/active surfaces |
+| Chart | Shared grayscale fills and contrasting labels; colored category dots only |
 
-Semantic color and font tokens live in `tools/usage-monitor/observability/ui.css`; layout lives in `workspace.css` and `work-explorer.css`. The app uses the existing pinned Geist Sans and JetBrains Mono assets, with system fallbacks. It retains the native DOM adaptation of shadcn/ui and its accessible controls. No Next.js or new component dependency is needed. Preserve keyboard focus, accessible names, and readable contrast throughout.
+Hover transitions change colors over 120ms. Buttons retain their position and size. Reduced-motion behavior and forced-color focus remain supported.
 
-The overview bloom is confined to the Work explorer header with no task selected. Chart and timeline colors encode data rather than decoration. Task KPI values share one hairline-divided surface. Completed/passed status badges use the semantic link wash; command completion alone does not establish task success.
-
-For small links and status text, `--link-text` uses `#0761d1` in light mode.
-The supplied `#0070f3` has about 4.36:1 contrast on `#fafafa` and 3.56:1 on
-`#d3e5ff`; the deeper text color provides at least 4.5:1 on both. Link/focus
-accents remain `#0070f3`. Warning text uses deep amber rather than the warning fill.
+Semantic tokens and native controls live in `tools/usage-monitor/observability/ui.css` and `ui.js`. `design-language.css` is loaded last to align all page modules; `chart-theme.js` provides shared chart fills, matching label colors and category dots. Page-specific layout remains in the existing stylesheets. This extends the existing native adaptation of shadcn/ui without adding a framework or dependency.
 
 ## Record lists
 

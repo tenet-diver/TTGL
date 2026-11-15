@@ -29,13 +29,13 @@
 .heat-hour {text-align:center;color:var(--muted-foreground);}
 .heat-cell {display:block;min-width:0;min-height:20px;padding:0;border:1px solid var(--border);border-radius:3px;background:color-mix(in srgb,var(--link) calc(var(--heat)*100%),var(--muted));}
 .heat-cell:disabled {opacity:1;}
-.heat-unknown {background:repeating-linear-gradient(135deg,var(--muted),var(--muted) 3px,var(--border) 3px,var(--border) 5px);}
+.heat-unknown {background:var(--muted);outline:1px dashed var(--body);outline-offset:-2px;}
 .day-tracks {min-width:760px;}
 .day-row,.day-ruler {display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;align-items:center;margin-block:8px;font-size:11px;}
 .day-row strong {font-weight:400;}
 .day-track {position:relative;border-radius:4px;background:var(--muted);min-height:20px;}
 .turn-block {position:absolute;display:block;height:17px;min-width:2px;padding:0;border:1px solid var(--border);border-radius:3px;background:color-mix(in srgb,var(--link) calc(var(--heat)*100%),var(--muted));}
-.turn-block.heat-unknown {background:repeating-linear-gradient(135deg,var(--muted),var(--muted) 3px,var(--border) 3px,var(--border) 5px);}
+.turn-block.heat-unknown {background:var(--muted);outline:1px dashed var(--body);outline-offset:-2px;}
 .day-ruler {min-height:28px;color:var(--muted-foreground);}
 .day-ruler > div {position:relative;min-height:20px;margin-right:24px;}
 .day-ruler > div > span {position:absolute;}

@@ -1,3 +1,4 @@
+import {chartTones,categoryDot} from '/chart-theme.js';
 import {sourceList,renderList,selectionColumn,selectedIds,clearSelection} from '/data-list.js';
 import {button,badge,escapeHTML as esc,emptyState} from '/ui.js';
 import {filters} from '/optimization.js';
@@ -6,10 +7,10 @@ const pct=v=>v==null?'Unknown':n(v*100)+'%';
 const money=(v,unit)=>v==null?'Unknown':n(v)+' '+unit;
 const duration=v=>v==null?'Unknown':v>=3600?n(v/3600)+' h':v>=60?n(v/60)+' min':n(v)+' s';
 const label=s=>s?String(s).replaceAll('_',' ').replace(/^./,c=>c.toUpperCase()):'Unknown';
-const palette=['#56b4e9','#009e73','#f0e442','#d55e00','#cc79a7','#e69f00','#0072b2','#999999'];
+const palette=chartTones;
 const colors=new Map();
 const color=name=>{if(!colors.has(name))colors.set(name,palette[colors.size%palette.length]);return colors.get(name);};
-const chip=name=>`<span class="category-chip"><span style="background:${color(name)}" aria-hidden="true"></span>${esc(label(name))}</span>`;
+const chip=name=>`<span class="category-chip"><span style="background:${categoryDot(palette.indexOf(color(name)))}" aria-hidden="true"></span>${esc(label(name))}</span>`;
 const section=(title,body,action='')=>`<section class="section ops-card"><div class="section-heading"><h2>${esc(title)}</h2>${action}</div>${body}</section>`;
 const kpis=items=>`<div class="work-metrics ops-kpis">${items.map(([title,value,note])=>`<div><small>${esc(title)}</small><strong>${esc(value)}</strong><span class="muted">${esc(note||'')}</span></div>`).join('')}</div>`;
 function dropdown(name,title,options,value){return `<label>${title}<select class="ui-input" name="${name}" aria-label="${title}">${options.map(([v,l])=>`<option value="${esc(v)}" ${v===value?'selected':''}>${esc(l)}</option>`).join('')}</select></label>`;}
@@ -62,7 +63,7 @@ export function renderAnalysis(root,{view,data,state,table,post,showModal,onFilt
  }
  if(view==='timeline'){
   html+=`<div class="chart-controls">${dropdown('timeline-measure','Heatmap measure',[['cost','API estimate'],['tokens','Tokens'],['responses','Responses']], state.measure||'cost')}</div>`;
-  html+=section('When you use coding agents',`<p class="section-note">Response counters grouped by weekday/hour in ${esc(data.timezone)}. A patterned cell has observations with unknown cost. Select a cell for source records.</p><div class="heatmap-scroll"><div class="usage-heatmap" data-usage-heatmap></div></div><p class="section-note">Lower intensity → higher intensity. Empty cells mean no retained observations.</p>`);
+  html+=section('When you use coding agents',`<p class="section-note">Response counters grouped by weekday/hour in ${esc(data.timezone)}. An outlined cell has observations with unknown cost. Select a cell for source records.</p><div class="heatmap-scroll"><div class="usage-heatmap" data-usage-heatmap></div></div><p class="section-note">Lower intensity → higher intensity. Empty cells mean no retained observations.</p>`);
   html+=section('Turns by day',`<p class="section-note">${esc(data.limits)} Select a block for its task and evidence. The table below provides every retained turn in scope.</p><div data-turn-tracks></div>`);
   html+=section('Turn records',table('timeline-turns',[{key:'title',label:'Task / turn',cell:r=>button(r.title,`data-turn-detail="${esc(r.id)}"`)},{key:'date',label:'Local date'},{key:'span',label:'Elapsed span',numeric:true,cell:r=>duration(r.span)},{key:'responses',label:'Responses',numeric:true,value:r=>r.metrics.responses},{key:'tokens',label:'Tokens',numeric:true,value:r=>r.metrics.tokens,cell:r=>n(r.metrics.tokens)},{key:'cost',label:'API estimate',numeric:true,value:r=>r.metrics.cost,cell:r=>money(r.metrics.cost,data.unit)}],data.turns,null));
  }
