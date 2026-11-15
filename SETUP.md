@@ -130,6 +130,7 @@ the applicable dependency review and a data-preserving recovery plan.
 python3 tools/usage-monitor/observability/setup_local.py configure-cli
 ttgl tools
 ttgl query_activity --args '{"section":"experiments"}'
+ttgl query_trace_index --args '{"view":"turns","signal":"tool_failure","sort":"tokens","limit":10}'
 ```
 
 `configure-cli` writes an owned launcher under `~/.local/bin`; ensure that

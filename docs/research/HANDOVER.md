@@ -3789,3 +3789,33 @@ keeping raw access, and meter processing and analyst overhead separately. A
 small-versus-large analyst comparison is optional; large analysis is permitted
 in the main design. No new model trials or executable pipeline were started by
 this clarification; frozen studies and paused schedules remain unchanged.
+
+## 15 November 2026 — useful evidence tools before analyst experiments
+
+Latest steering is to build a useful tool, pull latest and deploy, before asking
+what the analyst can improve. The evidence explorer at `/investigate` and shared
+read-only `query_trace_index` MCP/CLI/HTTP query contract are implemented. See
+[the operating guide](../EVIDENCE-EXPLORER.md). They reuse the existing SQLite
+ledger and input/output fingerprints; no new dependencies, model calls or
+analytics service were added.
+
+Queries cover whole-turn cohorts, literal search, exact model/tool/status filters,
+time boundaries, unsuccessful/unknown tool signals, stable ranked pagination,
+repeated inputs/outputs and raw source-step drill-down. Existing interpreted
+task/subtask history remains separate, with its existing freshness contract.
+Native completion markers and task status are not independent grades. Repetition
+is an investigation lead, not inferred waste, retry count or task failure. Runtime
+stays recorded process/tool time, not blocking time or full-task latency.
+
+Raw retrieval now uses the ingester's session/source map and rejects mismatched
+native identity, changed output hashes and changed usage records. HTTP raw reads
+support bounded character pagination. The retained corpus read-only smoke covered
+about 1,600 turns/13,800 events; individual query views took 0.15–0.37 seconds in
+that local check. This is query behavior, not an agent-performance improvement.
+
+Validation: 218 observability checks, 194 passed and 24 optional checks skipped;
+JavaScript syntax/module-graph/four-renderer smoke passed. The new browser workflow
+is implemented but was not executed because reviewed Playwright/Chromium is absent
+here; no layout/browser-success claim. No benchmark/model trials or automatic
+optimization were launched. Frozen artifacts and paused research schedules remain
+unchanged. Existing MCP processes must reconnect to discover tool version 1.4.0.

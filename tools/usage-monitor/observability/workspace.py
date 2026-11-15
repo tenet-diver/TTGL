@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS settings(key TEXT PRIMARY KEY,value TEXT);
 CREATE TABLE IF NOT EXISTS analyses(id TEXT PRIMARY KEY,created TEXT,model TEXT,snapshot_hash TEXT,report TEXT,overhead TEXT);
 CREATE TABLE IF NOT EXISTS agent_annotations(analysis_id TEXT REFERENCES analyses(id),event_id TEXT REFERENCES events(id),category TEXT,runtime_role TEXT,rationale TEXT,confidence TEXT,PRIMARY KEY(analysis_id,event_id));
 CREATE INDEX IF NOT EXISTS event_turn ON events(session_id,turn_id);
+CREATE INDEX IF NOT EXISTS event_turn_kind_name ON events(session_id,turn_id,kind,name);
 CREATE INDEX IF NOT EXISTS assignments_task ON assignments(task_id);
 CREATE INDEX IF NOT EXISTS annotations_event ON agent_annotations(event_id);
 CREATE INDEX IF NOT EXISTS annotations_event ON agent_annotations(event_id,analysis_id);
@@ -538,6 +539,13 @@ class Handler(BaseHTTPRequestHandler):
         if not self.valid():
             return self.send({'error': 'Invalid host'}, 403)
         path = urlparse(self.path)
+        if path.path == '/api/trace-index':
+            import trace_index
+            query = {k: v[0] for k, v in parse_qs(path.query).items()}
+            try:
+                return self.send(trace_index.query(self.server.store, **query))
+            except (ValueError, TypeError, sqlite3.Error) as exc:
+                return self.send({'error': str(exc)}, 400)
         if path.path in ('/api/workspace', '/api/agent-context'):
             query = parse_qs(path.query)
             filters = {k: query[k][0] for k in ('project', 'task', 'category') if k in query}
@@ -632,8 +640,10 @@ class Handler(BaseHTTPRequestHandler):
             except (ValueError,TypeError,sqlite3.Error) as exc:return self.send({'error':str(exc)},400)
         if path.path == '/api/task-step-evidence':
             import analyst_mcp
-            ident = parse_qs(path.query).get('id',[''])[0]
-            result = analyst_mcp.handle(self.server.store, {'method':'tools/call','params':{'name':'read_evidence','arguments':{'id':ident,'limit':8000}}})
+            query = parse_qs(path.query)
+            arguments = {k:query[k][0] for k in ('id','offset','limit','view') if k in query}
+            arguments.setdefault('limit', '8000')
+            result = analyst_mcp.handle(self.server.store, {'method':'tools/call','params':{'name':'read_evidence','arguments':arguments}})
             return self.send(result, 400 if result.get('isError') else 200)
         if path.path == '/api/health':
             return self.send({'status': 'OK'})
@@ -656,9 +666,9 @@ class Handler(BaseHTTPRequestHandler):
             if not target.exists():
                 return self.send({'error': 'Private design-system distribution not synced; see sync_design_system.py'}, 503)
             return self.send(target.read_bytes(), content=design_assets[path.path])
-        if path.path in ('/live','/live/rules','/impact','/outcomes','/suggestions','/process','/agents','/timeline','/costs','/tools','/overview','/tasks') or path.path.startswith('/tasks/'):
+        if path.path in ('/investigate','/live','/live/rules','/impact','/outcomes','/suggestions','/process','/agents','/timeline','/costs','/tools','/overview','/tasks') or path.path.startswith('/tasks/'):
             return self.send((HERE/'workspace.html').read_bytes(),content='text/html; charset=utf-8')
-        if path.path in ('/optimization.js','/optimization.css','/collection.js','/activity-views.js','/activity-views.css','/usage-views.js','/usage-views.css','/task-report.js','/dashboard-views.js','/data-list.js','/design-language.css','/chart-theme.js'):
+        if path.path in ('/trace-explorer.js','/trace-explorer.css','/optimization.js','/optimization.css','/collection.js','/activity-views.js','/activity-views.css','/usage-views.js','/usage-views.css','/task-report.js','/dashboard-views.js','/data-list.js','/design-language.css','/chart-theme.js'):
             return self.send((HERE/path.path[1:]).read_bytes(),content='text/css; charset=utf-8' if path.path.endswith('.css') else 'text/javascript; charset=utf-8')
         assets = {'/activity-insights.js': ('activity-insights.js','text/javascript; charset=utf-8'), '/task-history.js': ('task-history.js', 'text/javascript; charset=utf-8'), '/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8'),
                   '/ui.js': ('ui.js', 'text/javascript; charset=utf-8'),

@@ -461,6 +461,12 @@ machines remain at their authorized source locations, not automatically imported
 
 ## Suggestions and evidence-backed activity review
 
+The [evidence explorer](../../docs/EVIDENCE-EXPLORER.md) at `/investigate` and the
+read-only `query_trace_index` MCP/CLI tool query the full indexed corpus without
+inference: rank turns, filter error signals and model/tool cohorts, inspect exact
+repeated inputs/outputs, then read original evidence. Native measurements and
+task/subtask interpretations retain their separate evidence contracts.
+
 **Suggestions** now runs an explicit small-model review of recent or older
 activity windows. It proposes task boundaries, typed/tagged subtasks and up to
 five source-linked improvements with a risk and validation plan. Accepting a task
