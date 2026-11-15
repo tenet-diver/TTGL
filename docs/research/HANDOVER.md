@@ -3920,3 +3920,11 @@ retained and it was not retried. Inspect current queue state for later counts.
 The external Langfuse UI remains outside this validation: its previously restored
 Docker stack is unavailable, with database volumes preserved. Research schedules
 remain paused, and no extra model trials or duplicate workers were launched.
+
+Post-restart read-only Firefox validation passed against the retained live history:
+all 17 main routes loaded without JavaScript errors or failed app/API resources,
+and deployed next-page/page-size/sort controls, the active bulk-progress dialog,
+and selected 768/390-pixel layouts passed. The start button remained disabled for
+the existing active batch. Screenshots, timings and route records are in the same
+private validation receipt directory. Commit `81a0755` integrates the validated
+merged application; the original worker was not restarted.
