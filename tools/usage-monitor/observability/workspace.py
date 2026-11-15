@@ -542,6 +542,14 @@ class Handler(BaseHTTPRequestHandler):
             filters = {k: query[k][0] for k in ('project', 'task', 'category') if k in query}
             result = self.server.store.report(**filters)
             return self.send(result)
+        if path.path=='/api/activity-dashboard':
+            import dashboard_views
+            query={k:v[0] for k,v in parse_qs(path.query).items()}
+            try:
+                result=dashboard_views.report(self.server.store,query.get('view','overview'),**{k:v for k,v in query.items() if k in ('project','workspace','range','zone')})
+                result['langfuse_url']=self.server.store.langfuse_url
+                return self.send(result)
+            except (ValueError,TypeError,KeyError,sqlite3.Error) as exc:return self.send({'error':str(exc)},400)
         if path.path in ('/api/usage-pages','/api/task-report'):
             import usage_views
             query={k:v[0] for k,v in parse_qs(path.query).items()}
@@ -644,9 +652,9 @@ class Handler(BaseHTTPRequestHandler):
             if not target.exists():
                 return self.send({'error': 'Private design-system distribution not synced; see sync_design_system.py'}, 503)
             return self.send(target.read_bytes(), content=design_assets[path.path])
-        if path.path in ('/live','/live/rules','/impact','/outcomes','/suggestions','/process','/agents','/timeline','/costs','/tools') or path.path.startswith('/tasks/'):
+        if path.path in ('/live','/live/rules','/impact','/outcomes','/suggestions','/process','/agents','/timeline','/costs','/tools','/overview','/tasks') or path.path.startswith('/tasks/'):
             return self.send((HERE/'workspace.html').read_bytes(),content='text/html; charset=utf-8')
-        if path.path in ('/optimization.js','/optimization.css','/collection.js','/activity-views.js','/activity-views.css','/usage-views.js','/usage-views.css','/task-report.js'):
+        if path.path in ('/optimization.js','/optimization.css','/collection.js','/activity-views.js','/activity-views.css','/usage-views.js','/usage-views.css','/task-report.js','/dashboard-views.js'):
             return self.send((HERE/path.path[1:]).read_bytes(),content='text/css; charset=utf-8' if path.path.endswith('.css') else 'text/javascript; charset=utf-8')
         assets = {'/activity-insights.js': ('activity-insights.js','text/javascript; charset=utf-8'), '/task-history.js': ('task-history.js', 'text/javascript; charset=utf-8'), '/': ('workspace.html', 'text/html; charset=utf-8'), '/workspace.js': ('workspace.js', 'text/javascript; charset=utf-8'), '/workspace.css': ('workspace.css', 'text/css; charset=utf-8'),
                   '/ui.js': ('ui.js', 'text/javascript; charset=utf-8'),

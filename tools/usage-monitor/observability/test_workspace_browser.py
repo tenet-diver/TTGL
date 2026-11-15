@@ -24,8 +24,8 @@ class WorkspaceBrowserTests(unittest.TestCase):
         with sync_playwright() as p:
             browser=p.chromium.launch(executable_path=os.environ['TTGL_CHROMIUM'],args=['--no-sandbox'])
             page=browser.new_page(viewport={'width':1440,'height':1100});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-            page.goto(origin);expect(page.locator('[data-table="work-tasks"] tbody tr')).to_have_count(1)
-            self.assertEqual(set(page.locator('nav [data-view]').evaluate_all('(nodes)=>nodes.map(n=>n.dataset.view)')),{'tasks','analytics','costs','tools','timeline','agents','process','outcomes','impact','suggestions','knowledge','live','steering','settings'})
+            page.goto(origin+'/#tasks');expect(page.locator('[data-table="work-tasks"] tbody tr')).to_have_count(1)
+            self.assertEqual(set(page.locator('nav [data-view]').evaluate_all('(nodes)=>nodes.map(n=>n.dataset.view)')),{'overview','taskactivity','tasks','analytics','costs','tools','timeline','agents','process','outcomes','impact','suggestions','knowledge','live','steering','settings'})
             page.screenshot(path=str(artifacts/'work-explorer-desktop.png'),full_page=True)
             page.locator('[data-table="work-tasks"] [data-work-task]').first.click();expect(page.locator('[data-table="work-subtasks"] [data-subtask]')).to_have_count(1)
             expect(page.locator('[data-work-timeline] .timeline-bar')).to_have_count(1)
@@ -59,7 +59,7 @@ class WorkspaceBrowserTests(unittest.TestCase):
         f,origin,task=self.fixture()
         with sync_playwright() as p:
             browser=p.chromium.launch(executable_path=os.environ['TTGL_CHROMIUM'],args=['--no-sandbox'])
-            page=browser.new_page(viewport={'width':1440,'height':1000});page.goto(origin)
+            page=browser.new_page(viewport={'width':1440,'height':1000});page.goto(origin+'/#tasks')
             page.get_by_role('button',name='Switch to dark theme').click();expect(page.locator('html')).to_have_attribute('data-theme','dark')
             expect(page.locator('[data-table="work-tasks"]')).to_be_visible()
             page.get_by_role('button',name='Sort by Tokens',exact=True).click();expect(page.locator('th[aria-sort="ascending"]')).to_contain_text('Tokens')
@@ -92,7 +92,7 @@ class WorkspaceBrowserTests(unittest.TestCase):
         with sync_playwright() as p:
             browser=p.chromium.launch(executable_path=os.environ['TTGL_CHROMIUM'],args=['--no-sandbox'])
             page=browser.new_page(viewport={'width':1440,'height':1000});errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-            page.goto(origin);expect(page.locator('[data-table="work-tasks"] tbody tr')).to_have_count(2)
+            page.goto(origin+'/#tasks');expect(page.locator('[data-table="work-tasks"] tbody tr')).to_have_count(2)
             page.get_by_role('button',name='Summarize context memory',exact=True).click()
             expect(page.locator('.work-metrics').first).to_contain_text('Total steps1')
             expect(page.locator('.work-metrics').first).to_contain_text('Tool calls0')
@@ -119,7 +119,7 @@ class WorkspaceBrowserTests(unittest.TestCase):
         with sync_playwright() as p:
             browser=p.chromium.launch(executable_path=os.environ.get('TTGL_CHROMIUM','/usr/bin/chromium'),args=['--no-sandbox'])
             page=browser.new_page(viewport={'width':1280,'height':1000})
-            page.goto(origin)
+            page.goto(origin+'/#tasks')
             expect(page.locator('[data-table="work-tasks"] tbody tr')).to_have_count(1)
             held=[]
             def delay_previous(route):

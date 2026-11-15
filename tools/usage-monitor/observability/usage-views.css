@@ -44,3 +44,10 @@
 .usage-kpis>div:last-child{border-right:0;}
 @media(max-width:1350px){.usage-kpis{grid-template-columns:repeat(3,minmax(0,1fr));}.usage-kpis>div:nth-child(n){border-bottom:1px solid var(--border);}.usage-kpis>div:nth-child(3n){border-right:0;}.usage-kpis>div:nth-last-child(-n+3){border-bottom:0;}}
 @media(max-width:700px){.usage-kpis{grid-template-columns:repeat(2,minmax(0,1fr));}.usage-kpis>div:nth-child(n){border-right:1px solid var(--border);border-bottom:1px solid var(--border);}.usage-kpis>div:nth-child(2n){border-right:0;}.usage-kpis>div:nth-last-child(-n+2){border-bottom:0;}}
+.dashboard-kpi-link{display:grid;text-align:left;border:0;background:transparent;color:var(--foreground);padding:0;gap:8px;}
+.dashboard-kpi-link:hover strong{text-decoration:underline;}
+.dashboard-finding{padding-block:12px;border-bottom:1px solid var(--border);font-size:13px;}
+.dashboard-review{display:flex;align-items:center;gap:10px;margin-block:12px;overflow-wrap:anywhere;}
+[data-dash-output] pre{max-height:420px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;}
+[data-dash-analysis-result]{white-space:pre-wrap;}
+.impact-uptake-row th{font:500 12px var(--font-mono);text-transform:uppercase;color:var(--muted-foreground);padding-top:20px;}

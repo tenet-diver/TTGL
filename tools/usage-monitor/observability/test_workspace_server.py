@@ -73,11 +73,11 @@ class WorkspaceServerTests(unittest.TestCase):
             text=True, capture_output=True, timeout=4)
 
     def test_fresh_checkout_serves_all_pages_and_native_assets(self):
-        for path in ('/', '/live', '/live/rules', '/impact', '/outcomes', '/suggestions', '/process', '/agents', '/timeline', '/costs', '/tools', '/tasks/fixture'):
+        for path in ('/', '/live', '/live/rules', '/impact', '/outcomes', '/suggestions', '/process', '/agents', '/timeline', '/costs', '/tools', '/tasks/fixture', '/tasks', '/overview'):
             with self.subTest(path=path), urllib.request.urlopen(self.origin + path) as response:
                 self.assertIn(b'workspace.js', response.read())
                 self.assertIn("script-src 'self'", response.headers['Content-Security-Policy'])
-        for path in ('/workspace.js', '/ui.js', '/collection.js', '/optimization.js', '/optimization.css', '/activity-views.js', '/activity-views.css', '/usage-views.js', '/usage-views.css', '/task-report.js'):
+        for path in ('/workspace.js', '/ui.js', '/collection.js', '/optimization.js', '/optimization.css', '/activity-views.js', '/activity-views.css', '/usage-views.js', '/usage-views.css', '/task-report.js', '/dashboard-views.js'):
             with self.subTest(asset=path), urllib.request.urlopen(self.origin + path) as response:
                 self.assertEqual(response.status, 200)
                 self.assertGreater(len(response.read()), 0)
@@ -87,6 +87,8 @@ class WorkspaceServerTests(unittest.TestCase):
             self.assertEqual(self.get('/api/analysis-pages?view='+view)['source_events'],0)
         for view in ('costs','tools'):
             self.assertEqual(self.get('/api/usage-pages?view='+view)['view'],view)
+        for view in ('overview','taskactivity'):
+            self.assertEqual(self.get('/api/activity-dashboard?view='+view)['counts']['turns'],0)
         with self.assertRaises(urllib.error.HTTPError) as error:
             self.get('/missing-page')
         self.assertEqual(error.exception.code, 404)

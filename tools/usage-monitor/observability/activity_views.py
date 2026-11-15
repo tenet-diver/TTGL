@@ -163,7 +163,7 @@ def project_tasks(store, ids, rows, scenario, attribution='measured'):
                                'span': max(times)-min(times) if len(times) > 1 else None,
                                'metrics': m, 'usage_basis': g['usage_basis']})
             groups.sort(key=lambda g: (g['start'], g['end'], g['id']))
-            latest = c.execute("SELECT status FROM task_history_jobs WHERE task_id=? ORDER BY created DESC LIMIT 1", (ident,)).fetchone()
+            latest = c.execute("SELECT status FROM task_history_jobs WHERE task_id=? AND operation IN ('subtasks','overview') ORDER BY created DESC LIMIT 1", (ident,)).fetchone()
             state = 'pending' if latest and latest[0] in ('queued', 'running') else 'interpreted' if groups else 'stale' if task['analysis_stale'] else 'unclassified' if events else 'no_activity'
             sessions={r['session_id'] for r in events} or {r[0] for r in c.execute('SELECT DISTINCT session_id FROM assignments WHERE task_id=?',(ident,))}
             availability=source_state(sessions,known_sources)

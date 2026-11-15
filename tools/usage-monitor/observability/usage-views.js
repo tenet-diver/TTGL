@@ -69,3 +69,4 @@ export function renderUsage(root,{view,data,state,table,showModal,inspect,onFilt
 }
 let modalController;
 function modalSignal(){modalController?.abort();modalController=new AbortController();return modalController.signal;}
+export {chart as usageChart};

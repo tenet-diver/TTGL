@@ -6,6 +6,8 @@ No new packages, services, model calls or personal hook changes are needed to vi
 
 | Page | Route | Behavior |
 | --- | --- | --- |
+| Overall activity | `/` or `/overview` | Linked native cost, time, tool/category, outcome and suggestion summary |
+| Task activity | `/tasks` | Native turn statistics, interpretation coverage, explicit marked tasks and a 19-column activity table |
 | Cost & tokens | `/costs` | Daily/model cost and tokens, cost bands, response and task drilldowns |
 | Tool usage | `/tools` | Treemap by calls/time/optional allocation, daily calls, family/action targets and source evidence |
 | Task report | `/tasks/<task-id>` | Inline story, evidence, outcomes, phase markers, model/tool timeline and source steps |
@@ -173,3 +175,64 @@ unassigned work, exact band boundaries, native workspace/timezone filters, lexic
 actions, optional allocation conservation under clipped scopes, failed validation,
 phase filtering, source retrieval, URL persistence and light/dark responsive layouts.
 They use temporary native fixtures and make no real model calls.
+
+## Overall activity and Task activity
+
+The home page (`/`, `/overview`, or `#overview`) is the Overall activity dashboard.
+Its cards link to the detailed cost, native-turn activity, timeline, tool and outcome
+pages. Daily cost bars open turns with response records on that date. Top tool and
+category selections open their actual tools/actions, while runtime-role and finding
+selections expose retained source records. The dashboard reuses existing native
+counters, findings, category annotations and fallback rules; it does not estimate
+savings. Runtime sums are labeled recorded time, exclude identified background
+service lifetimes, and do not claim active elapsed time.
+
+Task activity (`/tasks` or `#taskactivity`) has six summary metrics, interpretation
+and source coverage, an explicit marked-task table, and a native-turn table with
+19 configurable columns. Column visibility, filtering, sorting and search use the
+existing saved table controls. Date/project/workspace/timezone filters persist in
+the URL. The Work explorer remains available through **Work** / `#tasks`, and task
+detail routes remain `/tasks/<task-id>`.
+
+A native turn, an explicitly defined task and a model-interpreted subtask are
+separate counting units. Unassigned turns and separately recorded subagent turns
+remain visible. Explicit task assignments can combine multiple turns/sessions;
+no parent/subagent or task relationship is guessed. The marked-task table excludes
+provisional log-discovery and model-proposal boundaries. Its span sums can overlap
+and include idle gaps. Turn and marked-task spans are clipped to the date filter.
+Confirmed fix-rate denominators count assigned defined tasks, never duplicate a
+confirmed intervention across their native turns. Turn-row outcome badges describe
+the assigned task and do not establish an individual turn outcome.
+
+Average, median and 90th-percentile estimates use known turn observations only and
+show their sample sizes. Percentiles use linear interpolation between adjacent
+ordered observations. Missing cost/timing is not a zero sample. Interpreted turns
+have a current group touching their selected source events; complete event coverage
+is shown separately. Pending refreshes can retain current groups. Unavailable source
+files are not automatically called deleted. A turn with no retained events does not
+establish that no work occurred.
+
+**Review remaining tasks** lists up to 100 eligible unclassified/stale defined tasks
+in scope. The user explicitly selects one or two to start the existing analysis API;
+opening the page never starts model inference. Known unavailable sources and pending
+jobs remain excluded from eligible work. Results and analyst overhead keep the
+existing separate accounting.
+
+Impact now separates selected behavior indicators under **In use** and labels each
+before/after denominator with its actual unit and observed-hour count. These rows
+measure behavior, not proof of adoption. Fixed comparison windows, sample gates,
+new-session cohorts and the 95% hourly-cluster bootstrap remain unchanged.
+
+Checks:
+
+```sh
+PYTHONPATH=tools/usage-monitor/observability python3 -m unittest test_dashboard_views
+PYTHONPATH=tools/usage-monitor/observability TTGL_BROWSER_QA=1 TTGL_CHROMIUM=/path/to/chromium python3 -m unittest test_dashboard_views_browser
+```
+
+These tests cover distinct counting units and reconciliation, unknown samples,
+percentiles, clipped spans, pending/partial/source coverage, provisional task
+exclusion, task-level fix denominators, category-specific drilldown totals,
+background-time exclusion, explicit analysis bounds, navigation, saved columns,
+source retrieval, Impact sample units, and responsive light/dark layouts. Temporary
+native fixtures and mocked explicit job starts avoid real model inference.
