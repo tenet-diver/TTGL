@@ -3769,3 +3769,23 @@ this design. No model trials, installations, global routing changes or scheduled
 work were started. Select fresh tasks only after auditing old reservations and
 queues; preserve frozen sources and uncertain attempts. Existing app lifecycle
 and failed/incomplete study artifacts remain unchanged.
+
+## 15 November 2026 — processor and analyst are separate roles
+
+User clarification: the analyst can be a large model. Simple log processing,
+task/subtask organization, candidate failure tagging and data mining should make
+the logs easy for that analyst to query and understand. Do not require one small
+model to do both preprocessing and deep diagnosis/intervention design.
+
+The proposed study now separates deterministic measured facts, cheaper semantic
+organization, queryable evidence and capable analyst investigation. Tool exit,
+agent completion assertion, visible check result and independent task grade are
+different fields. Cheap labels are source-linked interpretations; missing data
+stay unknown and original evidence remains accessible. The analyst can challenge
+labels and inspect counterexamples before proposing changes.
+
+Evaluate the same analyst with basic indexes versus enriched representation,
+keeping raw access, and meter processing and analyst overhead separately. A
+small-versus-large analyst comparison is optional; large analysis is permitted
+in the main design. No new model trials or executable pipeline were started by
+this clarification; frozen studies and paused schedules remain unchanged.
