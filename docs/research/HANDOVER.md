@@ -3821,3 +3821,53 @@ optimization were launched. Frozen artifacts and paused research schedules remai
 unchanged. Existing MCP processes must reconnect to discover tool version 1.4.0.
 Final deployment review adds an exact operation filter for fingerprint drill-down,
 so different tools producing identical outputs cannot expand the selected group.
+
+## 15 November 2026 — app latency, process outcomes and bulk history analysis
+
+User reports app slowness and explicitly requests pagination, task → subtask → step
+hierarchy, categories/results (including failed/done/dead ends), user-intervention
+detection, tool-usage analytics and a button to analyze all retained activity.
+Read [BULK-ANALYSIS.md](../BULK-ANALYSIS.md). Upstream's Observatory branding and
+browser-cleanup fixes were rebased into this work; legacy identifiers stay compatible.
+
+Profiling identified repeated full shell parsing, duplicate tool classification
+and a roughly 9 MB initial overview response. Compound scripts now bypass full
+shell tokenization; an overview reuses tool labels. Dashboard/task/source-step/bulk
+lists use server pages, prompts load on drill-down, and HTTP supports gzip. Observed
+local overview: roughly 6.0 → 2.30–2.37 seconds, 454 KB JSON / 128 KB compressed.
+Task activity: about 2.03 seconds / 52 KB compressed / 20 turn rows. These are app
+measurements, not coding-task cost, accuracy or speed improvements.
+
+Process protocol `task-process-v1` reuses the existing small-model analyzer, native
+transport, source aliases, validation and metering. Versioned task/subtask outcomes,
+intervention evidence and runtime roles are interpretations, separate from native
+facts, independent grades and explicit recorded task acceptance. Current source-
+matching process labels feed tool categories; explicit prior agent annotations
+retain precedence. Unknown evidence stays unknown. Long-task excerpt/block limits
+are recorded; event coverage does not mean every raw character was read.
+
+The user-authorized finite batch is RUNNING:
+`73e6f3d334f6429daef5de6f3fc97065`, worker PID 159045, app PID 158547.
+It freezes 1,246 indexed tasks / 14,020 native events, with two concurrent Luna
+analyses and zero automatic retries. At an early checkpoint, 21 completed, 2 ran,
+1,223 remained pending, and no failed attempts were recorded. All observed completed
+calls report positive native token usage; accrued analysis overhead was 435,025
+known tokens, with the two active calls' usage still unknown. These counts are
+interim; inspect `/api/bulk-analysis` or private DB state for current progress.
+Do not duplicate or silently replay this queue. Frozen source hashes are in its
+private protocol manifest (`bulk_analysis.py`, `task_history.py`, `process_analysis.py`).
+
+The worker is separate from the web process and holds an exclusive owner lock.
+Its status and attempt pages are in the top-bar **Bulk analysis** dialog. Stop
+finishes active calls before leaving pending work. Failures/uncertain calls remain
+retained, and three consecutive failures stop further dispatch. New source activity
+after the frozen snapshot remains separate. Reused successful analyses add no new
+batch overhead; historical attempts and measurements remain intact. No research
+generation, benchmark reruns, installations or recurring inference were started.
+Research schedules remain paused.
+
+Validation: the merged observability suite passed 232 checks (208 passed, 24 optional
+skips), plus focused accounting checks and an actual JavaScript module/event smoke
+for server-page navigation and page-size changes. Real deployed queries, raw assets,
+worker progress, process publication and positive model metering were checked.
+Browser QA remains unexecuted here because reviewed Playwright/Chromium is absent.
