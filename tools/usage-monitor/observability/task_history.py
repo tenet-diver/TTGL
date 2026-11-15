@@ -396,6 +396,7 @@ def start(store, task_id, operation='subtasks'):
 
 
 def page(limit,offset):
+    if limit=='all' and int(offset)==0:return 10000,0
     limit,offset=int(limit),int(offset)
     if not 1<=limit<=100 or offset<0:raise ValueError('limit must be 1..100 and offset >= 0')
     return limit,offset

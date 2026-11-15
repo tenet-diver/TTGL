@@ -88,3 +88,22 @@ For small links and status text, `--link-text` uses `#0761d1` in light mode.
 The supplied `#0070f3` has about 4.36:1 contrast on `#fafafa` and 3.56:1 on
 `#d3e5ff`; the deeper text color provides at least 4.5:1 on both. Link/focus
 accents remain `#0070f3`. Warning text uses deep amber rather than the warning fill.
+
+## Record lists
+
+Every record list uses `tools/usage-monitor/observability/data-list.js`, including
+page tables, dialog evidence, history/subtasks, suggestions, Impact comparisons,
+chart source values and selectable analysis queues. Page modules supply column
+schemas, data and actions; they must not implement table markup, filtering,
+sorting or pagination. Charts, navigation and explanatory prose remain semantic
+visuals/text rather than record lists.
+
+The shared component owns global search, per-column text/numeric filters,
+three-state sorting with unknown values last, column visibility, saved preferences,
+10/20/50/100-row pages, page navigation, empty states and keyboard-accessible row
+actions. Use stable unique list IDs, including separate IDs for a page and an open
+dialog. `sourceList` and `selectionColumn` reuse the same renderer; selections are
+kept by record ID across search, sort and page changes. List controls are buttons,
+not form submissions. Native popovers keep column pickers accessible inside nested
+scrolling lists. Extend this component once when a new collection behavior is
+needed; keep one implementation for every page.

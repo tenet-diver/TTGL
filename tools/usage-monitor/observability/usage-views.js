@@ -1,3 +1,4 @@
+import {sourceList} from '/data-list.js';
 import {button,badge,escapeHTML as esc,emptyState} from '/ui.js';
 import {filters} from '/optimization.js';
 const n=v=>v==null?'Unknown':Number(v).toLocaleString('en',{maximumFractionDigits:3});
@@ -51,7 +52,7 @@ export function renderUsage(root,{view,data,state,table,showModal,inspect,onFilt
  root.innerHTML=html;
  root.querySelector('[data-ops-filters]').onsubmit=e=>{e.preventDefault();onFilters({...Object.fromEntries(new FormData(e.currentTarget)),action:''});};
  const tasks=(ids)=>table('usage-drill-tasks',[{key:'title',label:'Task',cell:r=>button(r.title,`data-usage-task="${esc(r.id)}"`)},{key:'cost',label:'API estimate',numeric:true,value:r=>r.metrics.cost,cell:r=>money(r.metrics.cost,data.unit)}],(data.tasks||[]).filter(t=>ids.includes(t.id)),null);
- const showSources=(item,title)=>showModal(title,`<p>${Math.min(100,item.event_ids.length)} of ${item.event_count} source records listed.</p>${tasks(item.task_ids)}<div class="ui-actions">${item.event_ids.map((id,i)=>button('Source '+(i+1),`data-usage-source="${esc(id)}"`)).join('')}</div><div data-usage-output></div>`);
+ const showSources=(item,title)=>showModal(title,`<p>${Math.min(100,item.event_ids.length)} of ${item.event_count} source records listed.</p>${tasks(item.task_ids)}<div class="ui-actions">${sourceList('usage-source-records',item.event_ids,'data-usage-source')}</div><div data-usage-output></div>`);
  const handler=async e=>{const el=e.target.closest('[data-usage-day],[data-model-drill],[data-cost-band],[data-tool-drill],[data-target-drill],[data-usage-source],[data-usage-task],[data-clear-tool],[data-clear-action]');if(!el)return;try{
   if(el.dataset.usageSource)return inspect(el.dataset.usageSource,document.querySelector('[data-usage-output]'));
   if(el.dataset.usageTask){document.querySelector('#modal').close();return onFilters({task:el.dataset.usageTask});}

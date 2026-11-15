@@ -1,3 +1,4 @@
+import {sourceList,renderList,selectionColumn,selectedIds,clearSelection} from '/data-list.js';
 import {button,badge,escapeHTML as esc,emptyState} from '/ui.js';
 import {filters} from '/optimization.js';
 const n=v=>v==null?'Unknown':Number(v).toLocaleString('en',{maximumFractionDigits:3});
@@ -13,7 +14,7 @@ const section=(title,body,action='')=>`<section class="section ops-card"><div cl
 const kpis=items=>`<div class="work-metrics ops-kpis">${items.map(([title,value,note])=>`<div><small>${esc(title)}</small><strong>${esc(value)}</strong><span class="muted">${esc(note||'')}</span></div>`).join('')}</div>`;
 function dropdown(name,title,options,value){return `<label>${title}<select class="ui-input" name="${name}" aria-label="${title}">${options.map(([v,l])=>`<option value="${esc(v)}" ${v===value?'selected':''}>${esc(l)}</option>`).join('')}</select></label>`;}
 function taskButton(title,id){return id?button(title,`data-analysis-task="${esc(id)}"`):esc(title);}
-function sourceButtons(ids,prefix='Source'){return ids.slice(0,100).map((id,i)=>button(prefix+' '+(i+1),`data-analysis-source="${esc(id)}"`)).join('');}
+function sourceButtons(ids,prefix='Source'){return sourceList('analysis-source-records',ids.slice(0,100),'data-analysis-source',prefix);}
 function taskTable(table,rows,unit,id='analysis-drill-tasks'){
  return table(id,[{key:'title',label:'Task',cell:r=>taskButton(r.title,r.id)},{key:'classification',label:'Interpretation',cell:r=>badge(label(r.classification))},{key:'cost',label:'API estimate',numeric:true,value:r=>r.metrics?.cost,cell:r=>money(r.metrics?.cost,unit)},{key:'steps',label:'Steps',numeric:true,value:r=>r.metrics?.total_steps}],rows,null);
 }
@@ -90,14 +91,15 @@ export function renderAnalysis(root,{view,data,state,table,post,showModal,onFilt
    if(el.dataset.agentDetail){const agent=data.agents.find(a=>a.name===el.dataset.agentDetail);return showSources(agent.event_ids,agent.name,agent.sessions.length+' of '+agent.runs+' native sessions: '+agent.sessions.join(', '),'Source',agent.event_count);}
    if(el.dataset.turnDetail)return showTurn(el.dataset.turnDetail);
    if(el.dataset.heatCell!=null){const cell=data.heatmap[Number(el.dataset.heatCell)];return showSources(cell.event_ids,'Weekday/hour evidence',`Weekday ${cell.weekday+1}, ${cell.hour}:00 · ${data.timezone}`,'Source',cell.event_count);}
-   if(el.dataset.fixSignals){const task=data.tasks.find(t=>t.task_id===el.dataset.fixSignals);return showModal('Task outcome signals',`<p>${esc(task.title)}</p>${taskButton('Open task',task.task_id)}${task.signals.map(s=>`<article class="insight-card"><h3>${esc(s.label)}</h3><p>${esc(s.basis)}</p><pre>${esc(s.detail)}</pre>${s.source_line?'<small>Native source line '+s.source_line+'</small>':''}</article>`).join('')}`);}
+   if(el.dataset.fixSignals){const task=data.tasks.find(t=>t.task_id===el.dataset.fixSignals);return showModal('Task outcome signals',`<p>${esc(task.title)}</p>${taskButton('Open task',task.task_id)}${renderList('task-outcome-signals',[{key:'label',label:'Signal'},{key:'basis',label:'Basis'},{key:'detail',label:'Evidence',cell:s=>`<pre>${esc(s.detail)}</pre>`},{key:'source_line',label:'Source line',numeric:true}],task.signals,null)}`);}
    if(el.dataset.rateTasks){const rows=el.dataset.rateKind==='workspace'?data.workspace_rates:data.category_rates;const ids=new Set(rows.find(r=>r.name===el.dataset.rateTasks).task_ids);return showModal('Tasks in '+label(el.dataset.rateTasks),table('fix-rate-tasks',[{key:'title',label:'Task',cell:r=>taskButton(r.title,r.task_id)},{key:'status',label:'Signal',cell:r=>badge(label(r.status))}],data.tasks.filter(t=>ids.has(t.task_id)),null));}
    if(el.dataset.loopDetail!=null){const loop=data.loops[Number(el.dataset.loopDetail)];return showSources(loop.event_ids,loop.kind,loop.message,'Step');}
    if(el.dataset.originalStep){showSources([el.dataset.originalStep],'Original retained step');return inspect(el.dataset.originalStep,document.querySelector('[data-analysis-output]'));}
    if(el.hasAttribute('data-review-remaining')){
-    const remaining=data.tasks.filter(t=>['unclassified','stale'].includes(t.classification)&&t.event_ids.length&&t.source_state!=='unavailable').slice(0,20);
-    showModal('Review remaining tasks',remaining.length?`<p>Select one or two tasks to analyze with the configured small model. This starts model work and records its usage separately.</p><form data-process-analyze>${remaining.map(t=>`<label class="ops-check"><input type="checkbox" name="task" value="${esc(t.id)}">${esc(t.title)}</label>`).join('')}${button('Analyze selected tasks','type="submit"',true)}<p role="status" data-analysis-result></p></form>`:'<p>No eligible unclassified tasks with retained activity in this scope.</p>');
-    const form=document.querySelector('[data-process-analyze]');if(form)form.onsubmit=async event=>{event.preventDefault();const output=document.querySelector('[data-analysis-result]');try{const result=await post('analyze-process-tasks',{task_ids:new FormData(event.currentTarget).getAll('task')});output.textContent=result.jobs.map(j=>`${data.tasks.find(t=>t.id===j.task_id)?.title||'Selected task'}: ${j.status}${j.error?' · '+j.error:''}`).join('\n');await onRefresh();}catch(error){output.textContent=error.message;}};
+    const remaining=data.tasks.filter(t=>['unclassified','stale'].includes(t.classification)&&t.event_ids.length&&t.source_state!=='unavailable');
+    clearSelection('process-analysis-selection');
+    showModal('Review remaining tasks',remaining.length?`<p>Select one or two tasks to analyze with the configured small model. This starts model work and records its usage separately.</p><form data-process-analyze>${renderList('process-analysis-selection',[selectionColumn('process-analysis-selection',{name:'task',limit:2}),{key:'title',label:'Task'},{key:'classification',label:'Interpretation'},{key:'source_state',label:'Source availability'}],remaining,null)}${button('Analyze selected tasks','type="submit"',true)}<p role="status" data-analysis-result></p></form>`:'<p>No eligible unclassified tasks with retained activity in this scope.</p>');
+    const form=document.querySelector('[data-process-analyze]');if(form)form.onsubmit=async event=>{event.preventDefault();const output=document.querySelector('[data-analysis-result]');try{const result=await post('analyze-process-tasks',{task_ids:selectedIds('process-analysis-selection')});output.textContent=result.jobs.map(j=>`${data.tasks.find(t=>t.id===j.task_id)?.title||'Selected task'}: ${j.status}${j.error?' · '+j.error:''}`).join('\n');await onRefresh();}catch(error){output.textContent=error.message;}};
    }
   }catch(error){onError(error.message);}
  };

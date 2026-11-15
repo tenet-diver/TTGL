@@ -1,3 +1,4 @@
+import {sourceList} from '/data-list.js';
 import {renderTaskReport} from '/task-report.js';
 import {openTaskEvidence} from '/activity-insights.js';
 import {button,badge,emptyState,escapeHTML as esc} from '/ui.js';
@@ -14,7 +15,7 @@ let prefs={query:'',status:'',task_type:'',attribution:'measured',metric:'total_
 try{prefs={...prefs,...JSON.parse(localStorage.getItem('ttgl-work-preferences')||'{}')};}catch{}
 if(reviewScope){prefs.query='';prefs.status='';prefs.task_type='';prefs.offset=0;}
 function save(){try{localStorage.setItem('ttgl-work-preferences',JSON.stringify(prefs));}catch{}}
-export function explorerParams(project){return new URLSearchParams({...(project?{project}:{}),query:prefs.query,status:prefs.status,task_type:prefs.task_type,attribution:prefs.attribution,limit:100,offset:prefs.offset||0,...(reviewScope?{review:reviewScope}:{})});}
+export function explorerParams(project){return new URLSearchParams({...(project?{project}:{}),query:prefs.query,status:prefs.status,task_type:prefs.task_type,attribution:prefs.attribution,limit:'all',offset:0,...(reviewScope?{review:reviewScope}:{})});}
 const select=(name,label,values,value)=>`<label>${esc(label)}<select class="ui-input" data-work-filter="${name}" aria-label="${esc(label)}">${values.map(([id,text])=>`<option value="${esc(id)}" ${id===value?'selected':''}>${esc(text)}</option>`).join('')}</select></label>`;
 const metricValue=(metric,v,unit='USD')=>['runtime_seconds','elapsed_span_seconds'].includes(metric)?duration(v):metric==='cost'?v==null?'Unknown':price(v)+' '+unit:compact(v);
 function stats(m,estimate=false,unit='USD') {
@@ -32,7 +33,7 @@ function knowledgeTable(table,id,items){
     {key:'task_title',label:'Source task',cell:r=>button(r.task_title,`data-work-task="${esc(r.task_id)}"`)},
     {key:'status',label:'Status',value:r=>r.stale?'Source changed':'Candidate',cell:r=>badge(r.stale?'Source changed':'Candidate')},
     {key:'confidence',label:'Model confidence',numeric:true,cell:r=>n(r.confidence)+' (uncalibrated)'},
-    {key:'evidence',label:'Evidence',value:r=>r.step_ids.length,cell:r=>`<details><summary>${r.step_ids.length} source steps</summary>${r.step_ids.map(id=>button('Inspect step',`data-knowledge-step="${esc(id)}"`)).join('')}</details>`}
+    {key:'evidence',label:'Evidence',value:r=>r.step_ids.length,cell:r=>`<details><summary>${r.step_ids.length} source steps</summary>${sourceList('knowledge-sources-'+r.id,r.step_ids,'data-knowledge-step','Inspect step')}</details>`}
   ],items,null);
 }
 function usageColumns(unit){return [
@@ -69,14 +70,14 @@ export async function renderExplorer(root,{view,data,taskId,project,onProject,on
       {key:'updated',label:'Last activity',cell:r=>esc(r.updated?.slice(0,19).replace('T',' '))},
       {key:'summary',hiddenByDefault:true,label:'Summary',cell:r=>`<span class="table-prose">${esc(r.summary||'Recorded activity; semantic mining pending.')}</span>`}
     ],data.tasks,r=>[{id:'open',label:'Explore task',onSelect:()=>onTask(r.id)}]);
-    if(!taskId&&(data.next_offset!=null||data.offset))html+=`<div class="pagination"><span>Tasks ${data.offset+1}–${Math.min(data.offset+data.tasks.length,data.total)} of ${data.total}. Table sorting and column filters apply to this batch.</span>${button('Previous tasks',`data-work-page="${Math.max(0,data.offset-100)}" ${!data.offset?'disabled':''}`)}${button('Next tasks',`data-work-page="${data.next_offset??0}" ${data.next_offset==null?'disabled':''}`)}</div>`;
+
     if(data.undiscovered)html+=`<div class="work-callout"><div><strong>${n(data.undiscovered)} collected prompts await task assignment</strong><p>Prompt-based task boundaries are provisional. Group related turns before mining a long-running task.</p></div>${button('Review prompts','data-view="inbox"')}</div>`;
   }
   if(view==='analytics'){
     html+=`<div class="stats"><div class="stat"><small>Tasks / subtasks</small><strong>${n(total.tasks)} / ${n(total.subtasks)}</strong></div><div class="stat"><small>Source steps</small><strong>${n(total.steps)}</strong></div><div class="stat"><small>Known native tokens</small><strong>${compact(total.known_tokens)}</strong><span>${n(total.tasks_missing_tokens)} tasks with incomplete counters</span></div><div class="stat"><small>Recorded runtime sum</small><strong>${duration(total.runtime_seconds)}</strong></div></div><div class="chart-controls">${select('metric','Measure',[['total_steps','Recorded steps'],['steps','Tool calls'],['elapsed_span_seconds','Sum of elapsed spans (with gaps)'],['runtime_seconds','Recorded tool time'],['tokens','Tokens'],['cost','Rate-scenario cost']],prefs.metric)}${select('attribution','Subtask attribution',[['measured','Measured only'],['step_share','Estimate by tool-step share']],prefs.attribution)}</div><div class="chart-grid"><section class="chart-card"><h2>By task type</h2>${bars(data.task_types,prefs.metric,unit)}</section><section class="chart-card"><h2>By subtask type ${prefs.attribution==='step_share'?badge('Estimated tokens / cost'):''}</h2>${bars(data.subtask_types,prefs.metric,unit)}</section></div><div class="work-callout"><div><strong>Measurement scope</strong><p>Known API token estimate: ${price(total.known_cost)} ${unit}; ${n(total.tasks_missing_cost)} tasks with missing counters or unmatched rates. This is a partial total when coverage is incomplete.</p>${safeURL(data.cost_scenario.source)?`<p><a href="${esc(safeURL(data.cost_scenario.source))}" target="_blank" rel="noopener">Rate source ↗</a></p>`:''}<p>${esc(data.cost_scenario.name||'Custom rate scenario')} · ${esc(data.cost_scenario.as_of)}. ${esc(data.cost_scenario.basis||'User-configured token rates; actual charges remain unknown.')}</p><p>${esc(data.measurement_note)}</p><p>Step-share distributes each turn’s tokens and scenario cost by its number of tool steps; it does not measure inference used by a subtask. Turns without tool steps remain unattributed.</p><p>Mining / naming overhead: ${n(total.mining_overhead_tokens)} known tokens, separate from source work. Unknown call usage may remain.</p></div>${button('Configure cost rates','data-view="settings"')}</div>`;
   }
   if(view==='knowledge'){
-    html+=`<section class="section"><div class="section-heading"><h2>Knowledge from completed activity</h2>${button('Explore work','data-view="tasks"')}</div><p class="section-note">Luna proposes reusable lessons with source evidence. Candidates remain unverified; they are not automatically added to model memory.</p>${knowledgeTable(table,'work-knowledge',data.knowledge)}${data.knowledge.length===100?'<p>First 100 candidates; narrow your search for more.</p>':''}</section><section class="section"><h2>Explore other knowledge systems</h2><p class="section-note">Save a link to an existing explorer. These links do not connect an API, export activity, install a service, or establish benchmark superiority.</p>${table('knowledge-systems',[
+    html+=`<section class="section"><div class="section-heading"><h2>Knowledge from completed activity</h2>${button('Explore work','data-view="tasks"')}</div><p class="section-note">Luna proposes reusable lessons with source evidence. Candidates remain unverified; they are not automatically added to model memory.</p>${knowledgeTable(table,'work-knowledge',data.knowledge)}<p class="section-note">${n(data.knowledge.length)} candidates in this scope.</p></section><section class="section"><h2>Explore other knowledge systems</h2><p class="section-note">Save a link to an existing explorer. These links do not connect an API, export activity, install a service, or establish benchmark superiority.</p>${table('knowledge-systems',[
       {key:'title',label:'System'},
       {key:'text',label:'Purpose',cell:r=>`<span class="table-prose">${esc(r.text)}</span>`},
       {key:'status',label:'Status'},
@@ -96,7 +97,6 @@ export async function renderExplorer(root,{view,data,taskId,project,onProject,on
   root.querySelector('[data-work-search]').onsubmit=e=>{e.preventDefault();prefs.query=new FormData(e.currentTarget).get('query').trim();prefs.offset=0;save();onRefresh();};
   root.querySelector('[data-work-reset]').onclick=()=>{prefs.query='';prefs.status='';prefs.task_type='';prefs.offset=0;setReviewScope('');save();onProject('');};
   root.querySelectorAll('[data-work-filter]').forEach(el=>el.onchange=()=>{if(el.dataset.workFilter==='project'){prefs.offset=0;save();return onProject(el.value);}prefs.offset=0;prefs[el.dataset.workFilter]=el.value;save();onRefresh();});
-  root.querySelectorAll('[data-work-page]').forEach(b=>b.onclick=()=>{prefs.offset=Number(b.dataset.workPage);save();onRefresh();});
   root.onclick=async event=>{
     const target=event.target.closest('[data-work-task],[data-knowledge-step],[data-discover-tasks],[data-review-scope]');if(!target)return;
     try{
@@ -146,7 +146,7 @@ export async function renderExplorer(root,{view,data,taskId,project,onProject,on
     };
     const renderSteps=async(target,subtaskId,offset=0)=>{
       try{
-        const r=await fetch('/api/work-steps?'+new URLSearchParams({task_id:t.id,...(subtaskId?{subtask_id:subtaskId}:{}),limit:100,offset}));
+        const r=await fetch('/api/work-steps?'+new URLSearchParams({task_id:t.id,...(subtaskId?{subtask_id:subtaskId}:{}),limit:'all',offset:0}));
         const result=await r.json();if(!r.ok)throw Error(result.error);if(!target.isConnected)return;
         target.innerHTML=table('work-steps',[
           {key:'sequence',label:'Sequence',numeric:true},
@@ -157,9 +157,7 @@ export async function renderExplorer(root,{view,data,taskId,project,onProject,on
           {key:'model',hiddenByDefault:true,label:'Model'},
           {key:'tokens',label:'Response tokens',numeric:true,cell:r=>r.kind==='tool'?'Not attributed':n(r.tokens)},
           {key:'cost',label:'API token estimate',numeric:true,cell:r=>r.kind==='tool'?'Not attributed':r.cost==null?'No matched rate':price(r.cost)+' '+unit}
-        ],result.items,null)+`<div class="pagination"><span>Records ${result.total?offset+1:0}–${Math.min(offset+result.items.length,result.total)} of ${result.total}</span>${offset?button('Previous records','data-records-prev'):''}${result.next_offset!=null?button('Next records','data-records-next'):''}</div>`;
-        const prev=target.querySelector('[data-records-prev]'),next=target.querySelector('[data-records-next]');
-        if(prev)prev.onclick=()=>renderSteps(target,subtaskId,Math.max(0,offset-100));if(next)next.onclick=()=>renderSteps(target,subtaskId,result.next_offset);
+        ],result.items,null);
         mountTableMenus();
       }catch(error){if(target.isConnected)target.innerHTML=emptyState('Steps unavailable',error.message);onError(error.message);}
     };show();

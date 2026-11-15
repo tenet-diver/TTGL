@@ -13,6 +13,7 @@ trace backend; TTGL adds source reconciliation, task grouping and evidence revie
 | Workspace | `tools/usage-monitor/observability/workspace.py` | Loopback HTTP server, local SQLite store, native ingestion, mutations and audit |
 | Native parsing | Existing monitor and Langfuse bridge | Native operation identities, recorded runtimes and deduplicated response usage |
 | Work views | `work-explorer.js`, `work_analytics.py` | Task → subtasks → source steps, measured usage, type analytics and knowledge candidates |
+| Shared record lists | `data-list.js`, `collection.js` | Single record renderer and controls for pages/dialogs, pagination, filters/search/sorting, persistent preferences, source lists and stable selections |
 | Activity dashboards | `dashboard_views.py`, `dashboard-views.js` | Overall summary and native-turn activity, separate defined tasks, coverage, source drilldowns and explicit bounded analysis |
 | Usage and task reports | `usage_views.py`, `usage-views.js`, `task-report.js` | Native cost/token reconciliation, tool/action/target drilldowns, optional turn-share estimates and inline task story/evidence |
 | Analysis pages | `activity_views.py`, `activity-views.js` | Process paths and rework, explicit agent identities, timezone-aware turns, task outcome signals and evidence drill-down |

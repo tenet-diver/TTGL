@@ -189,6 +189,7 @@ def overview(store, project=None, query='', status=None, task_type=None, attribu
     import task_discovery
     h.init(store)
     discovery_enabled=task_discovery.enabled(store)
+    all_records=limit=='all'
     limit,offset=h.page(limit,offset);scenario=rates(store)
     with store.connection() as c:
         ids=[r['id'] for r in c.execute('SELECT id FROM tasks'+(' WHERE project_id=?' if project else '')+' ORDER BY updated DESC',(project,) if project else ())]
@@ -211,18 +212,21 @@ def overview(store, project=None, query='', status=None, task_type=None, attribu
             if not all(w.casefold() in text.casefold() for w in query.split()):continue
             tasks.append(row)
     subs=[s for t in tasks for s in t['subtasks']];known=sum(t['metrics']['known_tokens'] for t in tasks)
+    knowledge_records=[k for t in tasks for k in t['knowledge']]
+    if all_records and len(knowledge_records)>10000:raise ValueError('Narrow the scope to at most 10,000 knowledge candidates')
     summaries=[{k:v for k,v in t.items() if k not in ('subtasks','knowledge','jobs','goal','acceptance','outcome','repo','operation_search','tool_breakdown','model_breakdown')} for t in tasks[offset:offset+limit]]
     return {'tasks':summaries,'total':len(tasks),'offset':offset,'next_offset':offset+limit if offset+limit<len(tasks) else None,'projects':projects,'undiscovered':undiscovered,'collection_enabled':enabled,'discovery_enabled':discovery_enabled,'recent_review':recent_review,'review_scope':review,
             'totals':{'tasks':len(tasks),'subtasks':len(subs),'total_steps':sum(t['metrics']['total_steps'] for t in tasks),'steps':sum(t['metrics']['steps'] for t in tasks),'known_tokens':known,'tasks_missing_tokens':sum(t['metrics']['tokens'] is None for t in tasks),'runtime_seconds':sum(t['metrics']['runtime_seconds'] or 0 for t in tasks) if all(t['metrics']['runtime_seconds'] is not None for t in tasks) else None,
                       'known_cost':sum(t['metrics']['known_cost'] for t in tasks),'tasks_missing_cost':sum(t['metrics']['cost'] is None for t in tasks),
                       'cost':sum(t['metrics']['cost'] for t in tasks) if tasks and all(t['metrics']['cost'] is not None for t in tasks) else None,'mining_overhead_tokens':sum(t['mining_overhead_tokens'] for t in tasks)},
-            'task_types':aggregate(tasks,'task'),'subtask_types':aggregate(subs,'subtask'),'knowledge':[k for t in tasks for k in t['knowledge']][:100],
-            'cost_scenario':scenario,'attribution':attribution,'limits':{'knowledge':100,'tasks_per_page':limit},
+            'task_types':aggregate(tasks,'task'),'subtask_types':aggregate(subs,'subtask'),'knowledge':knowledge_records[:10000 if all_records else 100],
+            'cost_scenario':scenario,'attribution':attribution,'limits':{'knowledge':10000 if all_records else 100,'tasks_per_page':limit},
             'measurement_note':'Recorded runtime excludes identified background service lifetimes; unreviewed operations may still contain them. Runtime sums can overlap and are not task elapsed time. Response tokens are measured at task scope. Step-share subtask attribution is an optional estimate. Model-rate scenarios are not actual cash charges. Mining overhead is separate.'}
 
 
 def source_steps(store, task_id, subtask_id=None, limit=100, offset=0):
     import task_history as h
+    all_records=limit=='all'
     limit,offset=h.page(limit,offset);task=task_data(store,task_id)
     allowed=None
     if subtask_id:
@@ -231,7 +235,9 @@ def source_steps(store, task_id, subtask_id=None, limit=100, offset=0):
         allowed=set(group['event_ids'])
     with store.connection() as c:
         events=[dict(r) for r in c.execute('SELECT e.* FROM events e JOIN assignments a USING(session_id,turn_id) WHERE a.task_id=? ORDER BY e.ts,e.id',(task_id,))]
-    events=[e for e in events if allowed is None or e['id'] in allowed];scenario=rates(store);rows=[]
+    events=[e for e in events if allowed is None or e['id'] in allowed]
+    if all_records and len(events)>10000:raise ValueError('Select a subtask or narrower task for at most 10,000 source records')
+    scenario=rates(store);rows=[]
     for i,e in enumerate(events[offset:offset+limit],offset+1):
         usage=json.loads(e['usage']) if e['usage'] else None
         rows.append({'id':e['id'],'sequence':i,'kind':e['kind'],'name':e['name'],'timestamp':e['ts'],'runtime':e['runtime'],'tokens':usage.get('total_tokens') if usage else None,'model':e['model'],'cost':cost(usage,e['model'],scenario),'failed':e['failed']})

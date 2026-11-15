@@ -236,3 +236,47 @@ exclusion, task-level fix denominators, category-specific drilldown totals,
 background-time exclusion, explicit analysis bounds, navigation, saved columns,
 source retrieval, Impact sample units, and responsive light/dark layouts. Temporary
 native fixtures and mocked explicit job starts avoid real model inference.
+
+## Shared record-list component
+
+All record collections now use `/data-list.js` independently of the workspace
+shell. This includes the former custom Impact tables and chart values, suggestions,
+task history, evidence/follow-ups, source references, task-report facts and timelines,
+and bounded analysis selections. Only this module emits table markup. Existing
+page renderers that accept `table` receive its `renderList` function.
+
+```js
+import {renderList, sourceList, selectionColumn, selectedIds} from '/data-list.js';
+root.innerHTML = renderList('stable-list-id', [
+  {key: 'title', label: 'Task'},
+  {key: 'tokens', label: 'Tokens', numeric: true},
+], records, row => [{id: 'open', label: 'Open task', onSelect: () => openTask(row.id)}]);
+```
+
+Columns may supply a `value` accessor for nested/computed values, an escaped `cell`
+renderer and explicit `filterText`. Search checks every configured column, including
+hidden columns. Numeric filters accept `=`, `!=`, `<`, `<=`, `>` and `>=`. Missing
+values sort last in either direction. The component preserves focus, caret position,
+horizontal scroll and saved column/search/sort/page-size preferences. Pagination and
+filtering update the same record collection, without a second page-specific pager.
+Column pickers use native popovers to escape nested scrolling containers.
+
+Work, source metadata and keyword-history lists request the bounded `limit=all`
+read mode so their controls operate over the complete selected scope rather than
+only the first API batch. Defined-task and history scopes retain the 10,000-task
+limit. Source metadata and knowledge candidates in all mode are bounded to 10,000
+records and require a narrower scope beyond that; existing analysis snapshot,
+semantic-search and model-concurrency limits remain unchanged. Evidence previews
+retain their documented source bounds and analyst overhead remains separate.
+
+`selectionColumn`/`selectedIds` preserve choices across paging and filtering.
+Selectable analysis queues still allow at most two explicit starts. Controls never
+submit a surrounding form. Page-specific evidence and mutation handlers use event
+delegation so actions keep working after the component redraws a list. No list
+interaction starts inference except an explicit analysis submission.
+
+Validation covers standalone lists without the workspace shell, numeric filters,
+search normalization and hidden fields, sorting with unknowns, pagination/reset,
+row actions on later pages, saved settings, cross-page selection, safe form behavior,
+HTML escaping, nested column pickers, and full-scope metadata beyond 100 records.
+An architecture test rejects table markup outside the shared component.
