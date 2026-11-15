@@ -3,6 +3,7 @@
 import argparse
 import base64
 import collections
+import gzip
 import contextlib
 from datetime import datetime, timezone, timedelta
 import hashlib
@@ -524,13 +525,19 @@ class Handler(BaseHTTPRequestHandler):
 
     def send(self, value, status=200, content='application/json'):
         body = json.dumps(value).encode() if content == 'application/json' else value
+        compressed = len(body)>4096 and 'gzip' in self.headers.get('Accept-Encoding','')
+        if compressed:body=gzip.compress(body,compresslevel=3)
         self.send_response(status)
         self.send_header('Content-Type', content)
         self.send_header('Cache-Control', 'no-store')
+        self.send_header('Vary', 'Accept-Encoding')
+        self.send_header('Content-Length', str(len(body)))
+        if compressed:self.send_header('Content-Encoding','gzip')
         self.send_header('X-Content-Type-Options', 'nosniff')
         self.send_header('Content-Security-Policy', "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; frame-ancestors 'none'")
         self.end_headers()
-        self.wfile.write(body)
+        try:self.wfile.write(body)
+        except (BrokenPipeError,ConnectionResetError):pass
 
     def valid(self):
         return self.headers.get('Host') in self.server.allowed_hosts
@@ -555,10 +562,15 @@ class Handler(BaseHTTPRequestHandler):
             import dashboard_views
             query={k:v[0] for k,v in parse_qs(path.query).items()}
             try:
-                result=dashboard_views.report(self.server.store,query.get('view','overview'),**{k:v for k,v in query.items() if k in ('project','workspace','range','zone')})
+                result=dashboard_views.page(self.server.store,query.get('view','overview'),**{k:v for k,v in query.items() if k in ('project','workspace','range','zone','limit','turn_offset','task_offset','day')})
                 result['langfuse_url']=self.server.store.langfuse_url
                 return self.send(result)
             except (ValueError,TypeError,KeyError,sqlite3.Error) as exc:return self.send({'error':str(exc)},400)
+        if path.path=='/api/activity-turn':
+            import dashboard_views
+            query={k:v[0] for k,v in parse_qs(path.query).items()}
+            try:return self.send(dashboard_views.turn_prompt(self.server.store,query.get('session',''),query.get('turn','')))
+            except (ValueError,TypeError,sqlite3.Error) as exc:return self.send({'error':str(exc)},400)
         if path.path in ('/api/usage-pages','/api/task-report'):
             import usage_views
             query={k:v[0] for k,v in parse_qs(path.query).items()}

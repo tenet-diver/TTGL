@@ -1,5 +1,5 @@
 /** Shared record collection: renderer, controls, persisted state and row actions. */
-import {collectionPage,normalizeSearch} from '/collection.js';
+import {collectionPage,serverCollectionPage,normalizeSearch} from '/collection.js';
 import {button as uiButton,icon,emptyState,createActionMenu,escapeHTML as esc} from '/ui.js';
 const button=(title,attributes='',primary=false,iconName='')=>uiButton(title,'type="button" '+attributes,primary,iconName);
 const fmt=value=>value==null?'Unknown':Number(value).toLocaleString('en',{maximumFractionDigits:2});
@@ -40,9 +40,12 @@ function matchesColumn(column,row,query) {
   return normalizeSearch(String(columnText(column,row))).includes(normalizeSearch(query));
 }
 export function renderList(id, columns, rows, actions, searchable=true, options={}) {
+  const remote=options.serverPage;
+  if(remote)searchable=false;
   const previous=tableDefinitions.get(id),searchIndex=previous?.rows===rows&&previous?.columns===columns?previous.searchIndex:new Map();
   const menus=[];tableDefinitions.set(id,{columns,rows,actions,searchable,menus,options,searchIndex});queueMicrotask(mountTableMenus);
   const state=tables[id] ||= {search:'',page:1,pageSize:20,sort:null,direction:1,filters:{},hiddenColumns:columns.filter(c=>c.hiddenByDefault).map(c=>c.key)};
+  if(remote)state.sort=null;
   const allColumns=columns;
   const selection=columns.find(c=>c.selectionKey);if(selection){const allowed=new Set(rows.map(r=>String(r[selection.selectionKey])));for(const key of selected.get(id)||[])if(!allowed.has(key))selected.get(id).delete(key);}
   state.hiddenColumns=(state.hiddenColumns||[]).filter(key=>allColumns.some(c=>c.key===key));
@@ -50,9 +53,9 @@ export function renderList(id, columns, rows, actions, searchable=true, options=
   if(!columns.length){columns=allColumns;state.hiddenColumns=[];}
   const picker=`<details class="column-picker"><summary class="ui-button">Columns ${columns.length}/${allColumns.length}</summary><div class="column-options" popover="manual"><strong>Displayed columns</strong>${allColumns.map(c=>`<label><input type="checkbox" data-column-toggle="${id}" data-key="${c.key}" aria-label="Show ${esc(id)} column ${esc(c.label)}" ${state.hiddenColumns.includes(c.key)?'':'checked'} ${columns.length===1&&columns[0].key===c.key?'disabled':''}>${esc(c.label)}</label>`).join('')}<small>Keep at least one column visible.</small></div></details>`;
   if(!columns.some(c=>c.key===state.sort)) state.sort=null;
-  const filtered=columns.some(c=>state.filters[c.key]?.trim());
+  const filtered=!remote&&columns.some(c=>state.filters[c.key]?.trim());
   const sortedColumn=columns.find(c=>c.key===state.sort);
-  const result=collectionPage(rows, {
+  const result=remote?serverCollectionPage(rows,remote):collectionPage(rows, {
     search:state.search, searchText:row=>{if(!searchIndex.has(row))searchIndex.set(row,allColumns.map(c=>columnText(c,row)).join(' '));return searchIndex.get(row);},
     filter:row=>columns.every(c=>matchesColumn(c,row,state.filters[c.key]||'')),
     page:state.page,pageSize:state.pageSize||20,
@@ -65,8 +68,8 @@ export function renderList(id, columns, rows, actions, searchable=true, options=
     }:undefined
   });
   state.page=result.page;
-  const toolbar=`<div class="list-toolbar">${searchable?`<div class="list-search ui-search"><input class="ui-input" data-search="${id}" value="${esc(state.search)}" placeholder="Search these rows" aria-label="Search ${esc(id)}"><button type="button" data-clear-search="${id}" aria-label="Clear search">${icon('x')}</button></div>`:''}<div class="table-controls">${picker}${button('Filters',`data-toggle-filters="${id}" aria-expanded="${Boolean(state.filtersOpen||filtered)}"`)}${state.search||filtered||state.sort||state.hiddenColumns.length?button('Reset table',`data-reset-table="${id}"`):''}<span class="muted" role="status">${fmt(result.total)} of ${fmt(rows.length)} rows</span>${selection?`<span data-list-selection-count>${selectedIds(id).length} selected</span>`:''}</div></div>`;
-  const head=columns.map(column=>`<th scope="col" aria-sort="${state.sort===column.key?(state.direction===1?'ascending':'descending'):'none'}" class="${column.numeric?'numeric':''}"><button type="button" data-sort="${id}" data-key="${column.key}" aria-label="Sort by ${esc(column.label)}">${esc(column.label)}<span aria-hidden="true" class="sort-indicator">${state.sort===column.key?(state.direction===1?'↑':'↓'):'↕'}</span></button></th>`).join('');
+  const toolbar=`<div class="list-toolbar">${searchable?`<div class="list-search ui-search"><input class="ui-input" data-search="${id}" value="${esc(state.search)}" placeholder="Search these rows" aria-label="Search ${esc(id)}"><button type="button" data-clear-search="${id}" aria-label="Clear search">${icon('x')}</button></div>`:''}<div class="table-controls">${picker}${remote?'':button('Filters',`data-toggle-filters="${id}" aria-expanded="${Boolean(state.filtersOpen||filtered)}"`)}${!remote&&(state.search||filtered||state.sort||state.hiddenColumns.length)?button('Reset table',`data-reset-table="${id}"`):''}<span class="muted" role="status">${remote?fmt(rows.length)+' of '+fmt(result.total):fmt(result.total)+' of '+fmt(rows.length)} rows</span>${selection?`<span data-list-selection-count>${selectedIds(id).length} selected</span>`:''}</div></div>`;
+  const head=columns.map(column=>`<th scope="col" aria-sort="${state.sort===column.key?(state.direction===1?'ascending':'descending'):'none'}" class="${column.numeric?'numeric':''}">${remote?esc(column.label):`<button type="button" data-sort="${id}" data-key="${column.key}" aria-label="Sort by ${esc(column.label)}">${esc(column.label)}<span aria-hidden="true" class="sort-indicator">${state.sort===column.key?(state.direction===1?'↑':'↓'):'↕'}</span></button>`}</th>`).join('');
   const filters=columns.map(column=>`<td><input type="search" class="ui-input column-filter" data-column-filter="${id}" data-key="${column.key}" value="${esc(state.filters[column.key]||'')}" aria-label="Filter ${esc(id)} by ${esc(column.label)}" placeholder="${column.numeric?'e.g. >= 100':'Filter…'}" ${column.numeric?'title="Filter by value, or use =, !=, <, <=, >, >= with a number"':''}></td>`).join('');
   const body=result.items.map((row,index)=>{
     const cells=columns.map(column=>`<td class="${column.numeric?'numeric':''}">${column.cell?column.cell(row):esc(columnValue(column,row))}</td>`).join('');
@@ -77,8 +80,8 @@ export function renderList(id, columns, rows, actions, searchable=true, options=
   const hasFilters=state.search||filtered;
   const emptyAction=hasFilters?button('Clear search and filters',`data-reset-table="${id}"`):id==='projects'?button('Add project','data-add-project',true):id==='tasks'?button('Add task','data-add-task',true):'';
   const empty=emptyState(hasFilters?'No matching rows':'Nothing here yet',hasFilters?'Try different terms or clear the column filters.':'Rows will appear when evidence is available for this scope.',emptyAction);
-  return `<div data-table="${esc(id)}" data-compact="${Boolean(options.compact)}">`+(options.compact?`<details class="list-inline-controls" ${state.search||filtered?'open':''}><summary>${fmt(result.total)} records · Search and columns</summary>${toolbar}</details>`:toolbar)+`<div class="table-container ui-table-scroll" data-slot="table-container"><table class="ui-table" data-slot="table"><thead><tr>${head}${actions?'<th scope="col"><span class="sr-only">Actions</span></th>':''}</tr><tr class="column-filters" ${state.filtersOpen||filtered?'':'hidden'}>${filters}${actions?'<td></td>':''}</tr></thead><tbody>${body||`<tr><td colspan="${columns.length+(actions?1:0)}" class="table-empty">${empty}</td></tr>`}</tbody></table></div>`+
-    `<div class="pagination list-pagination" data-single-page="${result.pages===1}"><span>${result.total?(result.page-1)*result.pageSize+1:0}–${Math.min(result.page*result.pageSize,result.total)} of ${result.total}</span><label>Rows per page<select class="ui-input" data-list-size="${esc(id)}" aria-label="Rows per page ${esc(id)}">${[10,20,50,100].map(size=>`<option value="${size}" ${size===result.pageSize?'selected':''}>${size}</option>`).join('')}</select></label>${button('Previous',`data-page="${id}" data-delta="-1" ${result.page===1?'disabled':''}`)}<label class="list-page-jump">Page<input class="ui-input" type="number" min="1" max="${result.pages}" value="${result.page}" data-list-jump="${esc(id)}" aria-label="Page ${esc(id)}"></label><span>of ${result.pages}</span>${button('Next',`data-page="${id}" data-delta="1" ${result.page===result.pages?'disabled':''}`)}</div><p data-list-error role="status"></p></div>`;
+  return `<div data-table="${esc(id)}" data-compact="${Boolean(options.compact)}">`+(options.compact?`<details class="list-inline-controls" ${state.search||filtered?'open':''}><summary>${fmt(result.total)} records · Search and columns</summary>${toolbar}</details>`:toolbar)+`<div class="table-container ui-table-scroll" data-slot="table-container"><table class="ui-table" data-slot="table"><thead><tr>${head}${actions?'<th scope="col"><span class="sr-only">Actions</span></th>':''}</tr><tr class="column-filters" ${!remote&&(state.filtersOpen||filtered)?'':'hidden'}>${filters}${actions?'<td></td>':''}</tr></thead><tbody>${body||`<tr><td colspan="${columns.length+(actions?1:0)}" class="table-empty">${empty}</td></tr>`}</tbody></table></div>`+
+    `<div class="pagination list-pagination" data-single-page="${result.pages===1}"><span>${result.total?(result.offset??(result.page-1)*result.pageSize)+1:0}–${Math.min((result.offset??(result.page-1)*result.pageSize)+result.items.length,result.total)} of ${result.total}</span><label>Rows per page<select class="ui-input" data-list-size="${esc(id)}" aria-label="Rows per page ${esc(id)}">${[10,20,50,100].map(size=>`<option value="${size}" ${size===result.pageSize?'selected':''}>${size}</option>`).join('')}</select></label>${button('Previous',`data-page="${id}" data-delta="-1" ${result.page===1?'disabled':''}`)}<label class="list-page-jump">Page<input class="ui-input" type="number" min="1" max="${result.pages}" value="${result.page}" data-list-jump="${esc(id)}" aria-label="Page ${esc(id)}"></label><span>of ${result.pages}</span>${button('Next',`data-page="${id}" data-delta="1" ${result.page===result.pages?'disabled':''}`)}</div><p data-list-error role="status"></p></div>`;
 }
 export function mountTableMenus() {
   // Mount only newly inserted lists. Revisiting old definitions on every keystroke
@@ -112,16 +115,20 @@ function refreshTable(id) {
   }finally{refreshing.delete(id);}
 }
 
+function remotePage(id,offset,limit){const remote=tableDefinitions.get(id)?.options.serverPage;if(!remote)return;offset=Math.max(0,Math.min(Math.max(0,Math.ceil(remote.total/limit)-1)*limit,Math.floor(offset/limit)*limit));Promise.resolve(remote.onPage(offset,limit)).catch(error=>reportError(error.message));}
+
 document.addEventListener('click',event=>{
  const target=event.target.closest('button');if(!target)return;
  if(target.dataset.toggleFilters&&tables[target.dataset.toggleFilters]){const state=tables[target.dataset.toggleFilters];state.filtersOpen=!(state.filtersOpen||Object.values(state.filters).some(v=>v.trim()));if(!state.filtersOpen)state.filters={};refreshTable(target.dataset.toggleFilters);}
- if(target.dataset.page&&tables[target.dataset.page]){tables[target.dataset.page].page+=Number(target.dataset.delta);refreshTable(target.dataset.page);}
+ if(target.dataset.page&&tables[target.dataset.page]){const id=target.dataset.page,remote=tableDefinitions.get(id)?.options.serverPage;if(remote){remotePage(id,remote.offset+Number(target.dataset.delta)*remote.limit,remote.limit);return;}tables[id].page+=Number(target.dataset.delta);refreshTable(id);}
  if(target.dataset.sort&&tables[target.dataset.sort]){const state=tables[target.dataset.sort];if(state.sort!==target.dataset.key){state.sort=target.dataset.key;state.direction=1;}else if(state.direction===1)state.direction=-1;else{state.sort=null;state.direction=1;}state.page=1;refreshTable(target.dataset.sort);}
  if(target.dataset.clearSearch&&tables[target.dataset.clearSearch]){tables[target.dataset.clearSearch].search='';tables[target.dataset.clearSearch].page=1;refreshTable(target.dataset.clearSearch);}
  if(target.dataset.resetTable&&tables[target.dataset.resetTable]){tables[target.dataset.resetTable]={search:'',page:1,pageSize:20,sort:null,direction:1,filters:{},hiddenColumns:[]};refreshTable(target.dataset.resetTable);}
 });
 document.addEventListener('change',event=>{
   const id=event.target.dataset.columnToggle||event.target.dataset.listSize||event.target.dataset.listJump;if(!id||!tables[id])return;
+  if(event.target.dataset.listSize&&tableDefinitions.get(id)?.options.serverPage){remotePage(id,0,Number(event.target.value));return;}
+  if(event.target.dataset.listJump&&tableDefinitions.get(id)?.options.serverPage){const p=tableDefinitions.get(id).options.serverPage;remotePage(id,(Number(event.target.value)-1)*p.limit,p.limit);return;}
   if(event.target.dataset.listSize){tables[id].pageSize=Number(event.target.value);tables[id].page=1;refreshTable(id);return;}
   if(event.target.dataset.listJump){tables[id].page=Number(event.target.value);refreshTable(id);return;}
   const state=tables[id], key=event.target.dataset.key;
@@ -133,7 +140,7 @@ document.addEventListener('click',event=>{
   if(!event.target.closest('.column-picker')) document.querySelectorAll('.column-picker[open]').forEach(p=>p.open=false);
 });
 document.addEventListener('keydown',event=>{
-  if(event.key==='Enter'&&event.target.matches('[data-search],[data-column-filter],[data-list-jump]')){event.preventDefault();if(event.target.dataset.listJump){const id=event.target.dataset.listJump;tables[id].page=Number(event.target.value);refreshTable(id);}return;}
+  if(event.key==='Enter'&&event.target.matches('[data-search],[data-column-filter],[data-list-jump]')){event.preventDefault();if(event.target.dataset.listJump){const id=event.target.dataset.listJump,remote=tableDefinitions.get(id)?.options.serverPage;if(remote)remotePage(id,(Number(event.target.value)-1)*remote.limit,remote.limit);else{tables[id].page=Number(event.target.value);refreshTable(id);}}return;}
   const picker=event.target.closest('.column-picker');
   if(event.key==='Escape'&&picker?.open){event.preventDefault();event.stopPropagation();picker.open=false;picker.querySelector('summary').focus();}
 });

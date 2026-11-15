@@ -80,10 +80,12 @@ def costs(rows, scenario, zone):
 
 def shell_action(command):
     """A conservative lexical primary-program label, never a shell evaluation."""
+    # Long multiline scripts are common in coding histories. Recognize compound
+    # commands before tokenizing their entire bodies just to discard the tokens.
+    if re.search(r'[;&|`\n]|\$\(', command): return 'Compound shell'
     try: words = shlex.split(command)
     except ValueError: return 'Unparsed shell'
     # Compound commands stay compound; do not count every word as a separate call.
-    if re.search(r'[;&|`\n]|\$\(', command): return 'Compound shell'
     while words and re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*=.*', words[0]): words.pop(0)
     if words and words[0] == 'env':
         words.pop(0)
@@ -123,8 +125,8 @@ def tool_metrics(items, scenario, allocations):
             'categories': sorted({r['category'] for r in items}), **preview(items)}
 
 
-def tools(store, rows, scenario, attribution, all_rows, zone, family='', action=''):
-    labeled = label_tools(store, rows)
+def tools(store, rows, scenario, attribution, all_rows, zone, family='', action='', labeled=None):
+    labeled = label_tools(store, rows) if labeled is None else labeled
     allocations = {}
     if attribution == 'step_share':
         # Use full native turns as denominator, even when a date filter clips them.

@@ -11,6 +11,50 @@ import usage_views as usage
 import work_analytics as analytics
 
 
+def page(store, view, limit=20, turn_offset=0, task_offset=0, day='', **scope):
+    """Bound browser payloads without changing full-cohort measurements."""
+    limit, turn_offset, task_offset = int(limit), int(turn_offset), int(task_offset)
+    if not 1 <= limit <= 100 or min(turn_offset, task_offset) < 0:
+        raise ValueError('limit must be 1..100 and offsets nonnegative')
+    if day:
+        from datetime import date
+        date.fromisoformat(day)
+    data = report(store, 'overview' if day else view, **scope)
+    turns = data['turns']
+    if day:
+        keys = {tuple(key) for item in data['days'] if item['date'] == day for key in item['turn_keys']}
+        turns = [t for t in turns if (t['session_id'], t['turn_id']) in keys]
+    def paging(rows, offset):
+        return dict(total=len(rows),offset=offset,limit=limit,next_offset=offset+limit if offset+limit<len(rows) else None)
+    data['turn_pagination'] = paging(turns, turn_offset)
+    data['task_pagination'] = paging(data['marked_tasks'], task_offset)
+    data['turns'] = [{k:v for k,v in t.items() if k not in ('prompt','signals')}
+                     for t in turns[turn_offset:turn_offset+limit]] if view == 'taskactivity' or day else []
+    data['marked_tasks'] = data['marked_tasks'][task_offset:task_offset+limit] if view == 'taskactivity' else []
+    data['eligible_count'] = len(data['eligible'])
+    data['eligible'] = data['eligible'][:100]
+    data['outcomes'].pop('signal_tasks',None)
+    # Initial charts need measurements, not hundreds of duplicate source-ID lists.
+    for item in data.get('days',[]):
+        for record in [item,*item.get('segments',[])]:
+            for key in ('event_ids','task_ids','turn_keys'):record.pop(key,None)
+    for category in data.get('top_categories',[]):
+        for item in category.get('tools',[]):
+            for key in ('event_ids','task_ids'):item.pop(key,None)
+    data['tools'] = [{k:item[k] for k in ('name','family','action')} for item in data.get('tools',[])]
+    return data
+
+
+def turn_prompt(store, session, turn):
+    if any(not isinstance(value,str) or not value or len(value)>200 for value in (session,turn)):
+        raise ValueError('Exact session and turn IDs required')
+    with store.connection() as c:
+        row = c.execute('SELECT prompt FROM turns WHERE session_id=? AND turn_id=?',(session,turn)).fetchone()
+    if row is None:raise ValueError('Unknown native turn')
+    from capture_proxy import sanitized
+    return {'prompt':sanitized(row['prompt'] or ''),'basis':'Retained user request; untrusted source text.'}
+
+
 def percentile(values, quantile):
     known = sorted(v for v in values if usage.number(v) is not None)
     if not known: return None
@@ -121,8 +165,8 @@ def report(store, view, project='', workspace='', range='30d', zone='Europe/Amst
     for r in rows:
         if r['kind']=='generation':day_turns[datetime.fromtimestamp(r['time'],ZoneInfo(zone)).date().isoformat()].add((r['session_id'],r['turn_id']))
     for day in cost['days']:day['turn_keys']=sorted(day_turns[day['date']])
-    tools=usage.tools(store,rows,data['scenario'],'measured',data['rows'],zone)
     labeled=usage.label_tools(store,rows)
+    tools=usage.tools(store,rows,data['scenario'],'measured',data['rows'],zone,labeled=labeled)
     by_category=defaultdict(list);by_role=defaultdict(list)
     for r in labeled:
         by_category[r['category']].append(r)
