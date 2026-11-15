@@ -1,8 +1,8 @@
 # Process, agent, timeline and outcome analysis
 
-Start the existing workspace using [SETUP](../SETUP.md). These native pages use
+Start the Next.js application using [SETUP](../SETUP.md). These native pages use
 retained source records, explicit assignments and current subtask interpretations.
-No new packages, services, model calls or personal hook changes are needed to view them.
+PostgreSQL and ClickHouse serve the pages; Garage retains raw logs. Browsing makes no model calls or personal hook changes.
 
 | Page | Route | Behavior |
 | --- | --- | --- |
@@ -17,11 +17,10 @@ No new packages, services, model calls or personal hook changes are needed to vi
 | Outcomes | `/outcomes` or `#outcomes` | Confirmed-fix KPIs, fix rates by actual workspace and interpreted category, task signals and follow-up prompts, friction patterns and commit/PR references |
 
 All pages share project/workspace/range filtering, saved table columns, sorting,
-search and pagination. Direct routes and hash navigation are supported. Category,
+search and pagination. The React application uses direct Next.js routes; hash navigation belongs to the preserved legacy app. Category,
 transition and path selections open their source tasks; agent/heatmap/turn
 selections expose retained evidence. The map supports keyboard activation and
-limits displayed connections without changing transition totals. Slider and
-heatmap preferences persist in the URL.
+limits displayed connections without changing transition totals. The display timezone and scope persist in the URL.
 
 ## Process semantics
 

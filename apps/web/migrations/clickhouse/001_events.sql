@@ -1,0 +1,35 @@
+CREATE DATABASE IF NOT EXISTS observatory;
+CREATE TABLE IF NOT EXISTS observatory.events (
+  id String,
+  version UInt64,
+  turn_key String,
+  session_id String,
+  turn_id String,
+  workspace String,
+  kind LowCardinality(String),
+  name String,
+  model LowCardinality(String),
+  event_time DateTime64(3, 'UTC'),
+  time_known UInt8,
+  runtime Nullable(Float64),
+  runtime_role LowCardinality(String),
+  failed Nullable(UInt8),
+  input_tokens Nullable(UInt64),
+  cached_tokens Nullable(UInt64),
+  output_tokens Nullable(UInt64),
+  total_tokens Nullable(UInt64),
+  cache_write_tokens Nullable(UInt64),
+  cache_5m_tokens Nullable(UInt64),
+  command String,
+  output_excerpt String,
+  output_chars Nullable(UInt64),
+  output_hash String,
+  signature String,
+  role LowCardinality(String),
+  agent_type String,
+  source_path String,
+  source_line UInt64,
+  payload String
+) ENGINE = ReplacingMergeTree(version)
+PARTITION BY toYYYYMM(event_time)
+ORDER BY (workspace, session_id, turn_key, id);

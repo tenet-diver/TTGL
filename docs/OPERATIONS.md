@@ -1,5 +1,11 @@
 # Optimization, outcomes and live steering
 
+The current application is the Next.js/PostgreSQL/ClickHouse/Garage implementation.
+Use [SETUP](../SETUP.md) for its startup, S3 retention, explicit analysis and canonical
+hook API. The Python commands and browser implementation details below describe
+the preserved legacy installation; they are not commands to start the new UI.
+
+
 Start the workspace as described in [SETUP](../SETUP.md). These pages use the
 existing local SQLite database, retained native evidence, editable rate scenarios
 and on-demand interpretation jobs. No new runtime packages or model calls are

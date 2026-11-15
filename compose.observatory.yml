@@ -1,0 +1,40 @@
+name: observatory-v1
+services:
+  postgres:
+    image: postgres@sha256:005c5c37db96c1e6652a79ea31f9886402fba81ac95dc2db897739121dd7f8f2
+    environment:
+      POSTGRES_USER: observatory
+      POSTGRES_DB: observatory
+      POSTGRES_PASSWORD: ${OBS_POSTGRES_PASSWORD:?Set OBS_POSTGRES_PASSWORD}
+    ports: ["127.0.0.1:15432:5432"]
+    volumes: ["postgres-data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U observatory -d observatory"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+  clickhouse:
+    image: clickhouse/clickhouse-server@sha256:b8b890386e3364d16c7d73a14f582e10033342fa722af943f78a0a7af6f171d3
+    environment:
+      CLICKHOUSE_DB: observatory
+      CLICKHOUSE_USER: observatory
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:?Set CLICKHOUSE_PASSWORD}
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "1"
+    ports: ["127.0.0.1:18123:8123"]
+    volumes: ["clickhouse-data:/var/lib/clickhouse"]
+    entrypoint:
+      - /bin/sh
+      - -c
+      - "printf '%s' '<clickhouse><listen_host>0.0.0.0</listen_host><listen_try>0</listen_try></clickhouse>' > /etc/clickhouse-server/config.d/docker_related_config.xml; exec /entrypoint.sh"
+    ulimits:
+      nofile: {soft: 262144, hard: 262144}
+    healthcheck:
+      test: ["CMD-SHELL", "clickhouse-client --user observatory --password \"$$CLICKHOUSE_PASSWORD\" --query 'SELECT 1'"]
+      interval: 5s
+      timeout: 3s
+      retries: 25
+    restart: unless-stopped
+volumes:
+  postgres-data:
+  clickhouse-data:

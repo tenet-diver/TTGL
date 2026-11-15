@@ -27,27 +27,20 @@ research goal.
 
 ## Run Observatory
 
-The workspace uses Python's standard library; it needs no Python/npm package
-installation or model call to start. Python 3.11+ is required. The native UI ships in the repository. From the checkout:
+The current app is **Next.js + React + TypeScript**, with actual **shadcn/ui**
+components, a shared **TanStack Table**, **PostgreSQL** for transactional state,
+**ClickHouse** for deduplicated analytics, and **Garage S3** for exact raw logs.
+Start with [SETUP.md](SETUP.md). The web app runs on **127.0.0.1:3333**.
 
-```sh
-python3 tools/usage-monitor/observability/workspace.py \
-  --data work/security/workspace \
-  --codex-root "$HOME/.codex" \
-  --capture-root work/security/langfuse-stack/captures
-```
+The earlier Python/SQLite app remains intact for compatibility and existing
+research queues. It is no longer the target UI. Import its history through the
+read-only migration rather than pointing the new app at SQLite. Research sources,
+active model attempts and private histories are not automatically changed.
 
-Open **http://127.0.0.1:8766** or forward port **8766** in Codespaces. This runs the
-task/evidence workspace and native-history collection. Langfuse dashboards and
-HTTP capture require the [full stack setup](SETUP.md#full-observability-stack).
-Tables and menus use native browser behavior and need no private distribution.
-
-For an already prepared full installation, use:
-
-```sh
-python3 tools/usage-monitor/observability/setup_local.py doctor
-python3 tools/usage-monitor/observability/setup_local.py start
-```
+The published Garage 2.5.0 image failed the dated dependency review and is not
+started by the supplied Compose files. Configure an approved patched Garage
+endpoint before enabling collection; raw retention fails closed. Tests using an
+S3 protocol fixture do not establish real Garage compatibility.
 
 ## What the experiments show
 

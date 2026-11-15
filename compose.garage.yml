@@ -1,0 +1,16 @@
+# Supply an explicitly reviewed patched image digest. The published v2.5.0
+# candidate failed the 2026-11-15 advisory review and is intentionally not a default.
+name: observatory-raw
+services:
+  garage:
+    image: ${GARAGE_IMAGE:?Supply an approved patched Garage image@sha256 digest}
+    command: ["/garage", "server"]
+    ports: ["127.0.0.1:13900:3900"]
+    volumes:
+      - ${GARAGE_CONFIG_FILE:?Absolute private Garage config path}:/etc/garage.toml:ro
+      - garage-metadata:/var/lib/garage/meta
+      - garage-data:/var/lib/garage/data
+    restart: unless-stopped
+volumes:
+  garage-metadata:
+  garage-data:

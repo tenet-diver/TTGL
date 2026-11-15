@@ -1,5 +1,12 @@
 # Observatory design system
 
+The current implementation uses actual shadcn/ui React components in
+`apps/web/src/components/ui`, with exact upstream source hashes and license in
+`apps/web/shadcn-sources.lock.json` and `LICENSE.shadcn`. Tailwind CSS and the shared
+`DataTable` provide one control system across pages and nested lists. The CSS in
+`apps/web/src/app/globals.css` implements compact photograph-reference layouts.
+Older DOM/CSS file references below describe the preserved legacy UI.
+
 The supplied Vercel Design Language Reference informs controls and surfaces; the Claude Mining screenshots govern page structure, chart colors and analysis density. Shared controls and layouts apply it across analysis, task evidence, optimization and steering pages.
 
 ## Principles

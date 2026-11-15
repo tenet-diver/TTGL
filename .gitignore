@@ -17,3 +17,10 @@ results/**/.lock
 
 # Local scratch, model attempts and private observability state
 /work/
+
+# Next.js output and private application configuration
+.next/
+*.tsbuildinfo
+.env
+.env.local
+.env.*.local
