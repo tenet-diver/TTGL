@@ -1,0 +1,279 @@
+{
+  "review_date": "2026-11-15",
+  "review": "agent-swarms-literature-review.md",
+  "method": "Targeted primary-source narrative review; not exhaustive or a meta-analysis",
+  "sources": [
+    {
+      "id": "agensh",
+      "title": "Agensh: Scaling Organizational Intelligence to 1,024 Agents",
+      "authors": "Zhan et al.",
+      "initial_publication_date": "2026-09-22",
+      "url": "https://arxiv.org/html/2609.26781v1",
+      "evidence_type": "preprint",
+      "version_reviewed": "v1",
+      "reading_depth": "Main text, implementation appendix, worker prompt and baseline details",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "parallel-teams",
+      "title": "Test-Time Compute Scales Better with Parallel Agent Teams",
+      "authors": "Wang et al.",
+      "initial_publication_date": "2026-11-06",
+      "url": "https://arxiv.org/html/2611.09798v1",
+      "evidence_type": "preprint",
+      "version_reviewed": "v1",
+      "reading_depth": "Main text, task table, communication analysis and limitations",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "caid",
+      "title": "Effective Strategies for Asynchronous Software Engineering Agents",
+      "authors": "Geng and Neubig",
+      "initial_publication_date": "2026-03-23",
+      "url": "https://arxiv.org/html/2603.21489v2",
+      "evidence_type": "preprint",
+      "version_reviewed": "v2, 2026-07-08",
+      "reading_depth": "Main text, isolation/delegation methods, comparisons and scaling analysis",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "native-concurrency",
+      "title": "When Sub-Agents Work in Parallel: The Promises and Pitfalls of Dynamic Concurrency in Long-Horizon Coding Tasks",
+      "authors": "Li et al.",
+      "initial_publication_date": "2026-10-07",
+      "url": "https://arxiv.org/html/2610.10263v1",
+      "evidence_type": "preprint",
+      "version_reviewed": "v1",
+      "reading_depth": "Main text, evaluation scope, actual concurrency definitions and results",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "parallact",
+      "title": "Decentralized Multi-Agent Coordination and Communication in Shared Codebases",
+      "authors": "Mediratta et al.",
+      "initial_publication_date": "2026-10-30",
+      "url": "https://arxiv.org/abs/2611.00314",
+      "evidence_type": "preprint",
+      "version_reviewed": "v1",
+      "reading_depth": "Abstract; conclusions limited to explicitly reported tasks and comparisons",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "delm",
+      "title": "Decentralized Multi-Agent Systems with Shared Context",
+      "authors": "Mao and Mirhoseini",
+      "initial_publication_date": "2026-06-09",
+      "url": "https://arxiv.org/html/2606.10662v1",
+      "evidence_type": "preprint",
+      "version_reviewed": "v1",
+      "reading_depth": "Main text, shared context/queue, admission and selective-unfolding methods",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "sepm",
+      "title": "SEPM: Self-Evolving Procedural Memory Grounded in Task Graphs for Multi-Agent Collaboration",
+      "authors": "Liu et al.",
+      "initial_publication_date": "2026-10-10",
+      "url": "https://arxiv.org/html/2610.14515v1",
+      "evidence_type": "preprint",
+      "version_reviewed": "v1",
+      "reading_depth": "Main text introduction/method overview and benchmark scope",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "scaling-science",
+      "title": "Towards a Science of Scaling Agent Systems",
+      "authors": "Kim et al.",
+      "initial_publication_date": "2025-12-09",
+      "url": "https://arxiv.org/html/2512.08296v1",
+      "evidence_type": "preprint",
+      "version_reviewed": "v1; accompanying Google research post dated 2026-01-28 also inspected",
+      "reading_depth": "Main text, architecture definitions, task dependence and limitations",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "cursor-scaling",
+      "title": "Scaling long-running autonomous coding",
+      "authors": "Wilson Lin",
+      "initial_publication_date": "2026-01-14",
+      "url": "https://cursor.com/blog/scaling-agents",
+      "evidence_type": "first-party engineering report",
+      "version_reviewed": null,
+      "reading_depth": "Full short report",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "cursor-self-driving",
+      "title": "Towards self-driving codebases",
+      "authors": "Wilson Lin",
+      "initial_publication_date": "2026-02-05",
+      "url": "https://cursor.com/blog/self-driving-codebases",
+      "evidence_type": "first-party engineering report",
+      "version_reviewed": null,
+      "reading_depth": "Report sections on observability, ownership, handoffs, integration and correctness tradeoffs",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "anthropic-compiler",
+      "title": "Building a C compiler with a team of parallel Claudes",
+      "authors": "Nicholas Carlini",
+      "initial_publication_date": "2026-02-05",
+      "url": "https://www.anthropic.com/research/building-c-compiler",
+      "evidence_type": "first-party engineering report",
+      "version_reviewed": null,
+      "reading_depth": "Full report, especially task claims, tests, duplicate blocker and differential harness",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "anthropic-research",
+      "title": "How we built our multi-agent research system",
+      "authors": "Anthropic Engineering",
+      "initial_publication_date": "2025-06-13",
+      "url": "https://www.anthropic.com/research/multi-agent-research-system",
+      "evidence_type": "first-party engineering report",
+      "version_reviewed": null,
+      "reading_depth": "Report on research decomposition, architecture, token comparators and limitations",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "mast",
+      "title": "Why Do Multi-Agent LLM Systems Fail?",
+      "authors": "Cemri et al.",
+      "initial_publication_date": "2025-03-17",
+      "url": "https://arxiv.org/abs/2503.13657v3",
+      "evidence_type": "research paper",
+      "version_reviewed": "v3, 2025-10-26",
+      "reading_depth": "Current abstract and earlier primary OpenReview failure-taxonomy text; current v3 scope retained",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "agentprune",
+      "title": "Cut the Crap: An Economical Communication Pipeline for LLM-based Multi-Agent Systems",
+      "authors": "Zhang et al.",
+      "initial_publication_date": "2024-10-03",
+      "url": "https://arxiv.org/abs/2410.02506",
+      "evidence_type": "research paper",
+      "version_reviewed": null,
+      "reading_depth": "Abstract and primary OpenReview methods excerpt; no broad coding-scaling claim",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "macnet",
+      "title": "Scaling Large Language Model-based Multi-Agent Collaboration",
+      "authors": "Qian et al.",
+      "initial_publication_date": "2024-06-11",
+      "url": "https://arxiv.org/html/2406.07155v2",
+      "evidence_type": "conference paper",
+      "version_reviewed": "v2, 2025-02-28; ICLR 2025 proceedings also located",
+      "reading_depth": "Main text topology, logical agent count, interaction order and artifact propagation",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "agent-forest",
+      "title": "More Agents Is All You Need",
+      "authors": "Li et al.",
+      "initial_publication_date": "2024-02-03",
+      "url": "https://arxiv.org/abs/2402.05120",
+      "evidence_type": "research paper",
+      "version_reviewed": null,
+      "reading_depth": "Abstract and TMLR primary proceedings excerpt; sampling/voting baseline only",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "agentsight",
+      "title": "AgentSight: System-Level Observability for AI Agents Using eBPF",
+      "authors": "Zheng et al.",
+      "initial_publication_date": "2025-08-02",
+      "url": "https://arxiv.org/abs/2508.02736",
+      "evidence_type": "research paper",
+      "version_reviewed": null,
+      "reading_depth": "Abstract-level screening; instrumentation findings not generalized to productivity",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "agentloupe",
+      "title": "AgentLoupe: Kernel-Resident Semantic Causal Labels for AI Agent Observability",
+      "authors": "Bao et al.",
+      "initial_publication_date": "2026-10-16",
+      "url": "https://arxiv.org/abs/2610.23233v2",
+      "evidence_type": "workshop paper",
+      "version_reviewed": "v2, 2026-10-19",
+      "reading_depth": "Abstract-level screening; accepted workshop venue reported by authors",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "signals",
+      "title": "Signals: Trajectory Sampling and Triage for Agentic Interactions",
+      "authors": "Chen et al.",
+      "initial_publication_date": "2026-04-01",
+      "url": "https://arxiv.org/abs/2604.00356",
+      "evidence_type": "preprint",
+      "version_reviewed": "v1",
+      "reading_depth": "Complete abstract, including controlled annotation study and triage scope",
+      "accessed": "2026-11-15"
+    },
+    {
+      "id": "anthropic-oversight",
+      "title": "Measurements for understanding the pace of AI development inside frontier labs",
+      "authors": "Anthropic",
+      "initial_publication_date": null,
+      "url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+      "evidence_type": "first-party operational report",
+      "version_reviewed": null,
+      "reading_depth": "Agent oversight methodology and August 2026 fleet metrics; no swarm-quality inference",
+      "accessed": "2026-11-15"
+    }
+  ],
+  "repository_checks": [
+    {
+      "repository": "microsoft/Agensh",
+      "metadata_url": "https://api.github.com/repos/microsoft/Agensh",
+      "archived": false,
+      "pushed_at": "2026-11-03T06:43:48Z",
+      "license_from_file": "MIT",
+      "license_url": "https://github.com/microsoft/Agensh/blob/main/LICENSE",
+      "license_blob_sha": "9e841e7a26e4eb057b24511e7b92d42b257a80e5",
+      "reproduction_url": "https://github.com/microsoft/Agensh/blob/main/REPRODUCE.md",
+      "reproduction_blob_sha": "bcc6d95c68b656443b1ad37e60bfcc9a6a6c579d"
+    },
+    {
+      "repository": "yuzhenmao/DeLM",
+      "metadata_url": "https://api.github.com/repos/yuzhenmao/DeLM",
+      "archived": false,
+      "pushed_at": "2026-10-09T01:05:13Z",
+      "github_license_classifier": "NOASSERTION",
+      "license_from_file": "MIT",
+      "license_url": "https://github.com/yuzhenmao/DeLM/blob/main/LICENSE",
+      "license_blob_sha": "25494897d58e3815bc3946963134d15aa861daee",
+      "readme_blob_sha": "0cc55d49babf6654a33b2a516efdcef0a14f3205"
+    },
+    {
+      "repository": "JiayiGeng/CAID",
+      "metadata_url": "https://api.github.com/repos/JiayiGeng/CAID",
+      "archived": false,
+      "pushed_at": "2026-04-02T00:24:39Z",
+      "github_license_classifier": null,
+      "license_from_file": null,
+      "note": "No license in root listing; reuse permission not assumed"
+    },
+    {
+      "repository": "modal-projects/parallel-agent-teams-scaling",
+      "metadata_url": "https://api.github.com/repos/modal-projects/parallel-agent-teams-scaling",
+      "availability": "404 from connected GitHub and public web inspection",
+      "license_from_file": null,
+      "note": "Paper code link, not verified available implementation"
+    }
+  ],
+  "execution": {
+    "model_trials_launched": 0,
+    "packages_or_images_installed": 0,
+    "research_schedules_resumed": false,
+    "existing_studies_modified": false
+  },
+  "limitations": [
+    "Source claims are author-reported; no independent replication was run.",
+    "Paper versions and current repositories may differ.",
+    "No complete dependency/security assessment, provider price quote or operational capacity certification.",
+    "Proposed architecture and evaluation are hypotheses, not registered experiments."
+  ]
+}
