@@ -1,3 +1,4 @@
+import { discoverTurn } from './discovery.ts';
 import { z } from 'zod';
 import { pg, ch } from './database.ts';
 import { hash, turnKey, iso } from './domain.ts';
@@ -11,6 +12,12 @@ export function normalizeEvent(raw: unknown): Omit<NativeEvent, 'version'> {
         throw Error('Cached tokens exceed native input');
     if (e.total_tokens != null && e.input_tokens != null && e.output_tokens != null && e.total_tokens !== e.input_tokens + e.output_tokens)
         throw Error('Native total does not match input and output');
+    if (e.kind === 'generation' && e.input_tokens === 0 && e.output_tokens === 0 && e.total_tokens === 0) {
+        e.input_tokens = null;
+        e.cached_tokens = null;
+        e.output_tokens = null;
+        e.total_tokens = null;
+    }
     const at = iso(e.event_time);
     if (e.event_time && !at)
         throw Error('Invalid event time');
@@ -20,6 +27,7 @@ export async function ingestEvents(raw: unknown[]) {
     if (raw.length > 10000)
         throw Error('Ingest at most 10,000 events per batch');
     let inserted = 0, unchanged = 0, conflicts = 0;
+    const discovered = new Set<string>();
     const normalized = raw.map(normalizeEvent);
     for (const e of normalized) {
         await pg().begin(async (tx) => {
@@ -28,6 +36,7 @@ export async function ingestEvents(raw: unknown[]) {
             const previous = (await tx `SELECT * FROM event_versions WHERE id=${e.id}`)[0];
             if (previous?.payload_hash === digest) {
                 unchanged++;
+                discovered.add(e.turn_key);
                 return;
             }
             if (previous && previous.routing_key !== routing) {
@@ -49,8 +58,11 @@ export async function ingestEvents(raw: unknown[]) {
             await tx `INSERT INTO turns(turn_key,session_id,turn_id,workspace,started_at) VALUES(${e.turn_key},${e.session_id},${e.turn_id},${e.workspace},${e.time_known ? e.event_time : null}) ON CONFLICT(turn_key) DO UPDATE SET started_at=least(turns.started_at,EXCLUDED.started_at)`;
             await tx `INSERT INTO event_outbox(event_id,version,payload) VALUES(${e.id},${event.version},${tx.json(event)}) ON CONFLICT(event_id) DO UPDATE SET version=EXCLUDED.version,payload=EXCLUDED.payload,delivered_at=NULL`;
             inserted++;
+            discovered.add(e.turn_key);
         });
     }
+    for (const key of discovered)
+        await discoverTurn(key);
     invalidate();
     return { inserted, unchanged, conflicts };
 }

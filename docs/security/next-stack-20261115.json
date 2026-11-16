@@ -6993,5 +6993,6 @@
         }
       ]
     }
-  }
+  },
+  "metadata_cli_note": "The preinstalled npm 11.9 CLI was used only for package-lock-only resolution and advisory metadata with ignore-scripts. No downloaded npm CLI or package lifecycle hook was executed. Installation uses the reviewed Python archive verifier and the separately reviewed patched Node runtime."
 }

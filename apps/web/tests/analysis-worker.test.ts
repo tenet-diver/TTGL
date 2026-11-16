@@ -41,6 +41,7 @@ print(json.dumps({'type':'turn.completed','usage':{'input_tokens':10,'cached_inp
         assert.equal((await db `SELECT status FROM analysis_jobs WHERE id=${String(job.id)}`)[0].status, 'completed');
         invalidate();
         assert.equal(taskFacts(await context(await taskScope(taskIds[0])), taskIds[0]).complete, true);
+        assert.ok((await db `SELECT source FROM analysis_jobs WHERE id=${String(job.id)}`)[0].source.raw_archives['events.jsonl']);
         assert.equal((await db `SELECT usage FROM analysis_jobs WHERE id=${String(job.id)}`)[0].usage.total_tokens, 12);
         await writeFile(stub, '#!/usr/bin/env python3\nimport sys\nsys.stdin.read()\nsys.exit(1)\n', { mode: 0o700 });
         const failed = await queue();

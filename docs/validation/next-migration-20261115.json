@@ -1,0 +1,284 @@
+{
+  "recorded_at": "2026-11-16T00:16:46.576946+00:00",
+  "acceptance_scope": "Desktop dark theme only, per user instruction",
+  "stack": {
+    "web": "Next.js 16.4.6, React 19.3.1, TypeScript 5.9.3",
+    "components": "shadcn/ui with source hashes, Radix primitives, TanStack Table 8.21.3, Recharts 3.10.1",
+    "state": "PostgreSQL 17.12",
+    "analytics": "ClickHouse 26.3.64.3",
+    "raw_storage": "Garage-compatible AWS S3 SDK; real Garage deployment blocked"
+  },
+  "checks": {
+    "typecheck": "pass",
+    "production_build": "pass",
+    "new_domain_integration_tests": {
+      "passed": 47,
+      "failed": 0,
+      "model_execution": "owned CLI test double only; no actual model invocation"
+    },
+    "legacy_regression": {
+      "run": 100,
+      "passed": 96,
+      "skipped": 4,
+      "failed": 0,
+      "skips": "opt-in legacy browser suites; the new Next.js browser suite ran separately"
+    },
+    "browser": {
+      "scope": "Desktop dark theme only",
+      "pages": [
+        {
+          "route": "/",
+          "seconds": 2.491,
+          "tables": 4
+        },
+        {
+          "route": "/tasks",
+          "seconds": 1.627,
+          "tables": 2
+        },
+        {
+          "route": "/grouping",
+          "seconds": 1.243,
+          "tables": 2
+        },
+        {
+          "route": "/tools",
+          "seconds": 1.185,
+          "tables": 1
+        },
+        {
+          "route": "/tools?family=Shell&action=cat",
+          "seconds": 0.891,
+          "tables": 2
+        },
+        {
+          "route": "/costs",
+          "seconds": 1.607,
+          "tables": 1
+        },
+        {
+          "route": "/timeline",
+          "seconds": 1.518,
+          "tables": 1
+        },
+        {
+          "route": "/agents",
+          "seconds": 0.846,
+          "tables": 1
+        },
+        {
+          "route": "/process",
+          "seconds": 1.214,
+          "tables": 3
+        },
+        {
+          "route": "/entities",
+          "seconds": 0.985,
+          "tables": 1
+        },
+        {
+          "route": "/outcomes",
+          "seconds": 1.772,
+          "tables": 5
+        },
+        {
+          "route": "/suggestions",
+          "seconds": 1.123,
+          "tables": 2
+        },
+        {
+          "route": "/impact",
+          "seconds": 3.008,
+          "tables": 7
+        },
+        {
+          "route": "/live",
+          "seconds": 0.943,
+          "tables": 2
+        },
+        {
+          "route": "/live/rules",
+          "seconds": 0.842,
+          "tables": 1
+        },
+        {
+          "route": "/categorization",
+          "seconds": 0.752,
+          "tables": 1
+        },
+        {
+          "route": "/data",
+          "seconds": 1.089,
+          "tables": 2
+        },
+        {
+          "route": "/jobs",
+          "seconds": 0.928,
+          "tables": 2
+        },
+        {
+          "route": "/pricing",
+          "seconds": 0.956,
+          "tables": 0
+        },
+        {
+          "route": "/knowledge",
+          "seconds": 0.858,
+          "tables": 1
+        },
+        {
+          "route": "/tasks/qa-task-0",
+          "seconds": 1.202,
+          "tables": 3
+        }
+      ],
+      "page_errors": [],
+      "checks": [
+        "21 desktop routes",
+        "shared search/filter/exact filter/sort/pagination/visibility persistence",
+        "rule mutation persistence",
+        "impact creation with immediate refresh",
+        "task acceptance validation and phase/source/image interactions",
+        "desktop dark theme only, as requested"
+      ],
+      "captures": [
+        "work/security/next-migration-20261115/browser/overview-dark.png",
+        "work/security/next-migration-20261115/browser/tasks-dark.png",
+        "work/security/next-migration-20261115/browser/grouping-dark.png",
+        "work/security/next-migration-20261115/browser/tools-dark.png",
+        "work/security/next-migration-20261115/browser/tools-family-Shell-action-cat-dark.png",
+        "work/security/next-migration-20261115/browser/costs-dark.png",
+        "work/security/next-migration-20261115/browser/timeline-dark.png",
+        "work/security/next-migration-20261115/browser/agents-dark.png",
+        "work/security/next-migration-20261115/browser/process-dark.png",
+        "work/security/next-migration-20261115/browser/entities-dark.png",
+        "work/security/next-migration-20261115/browser/outcomes-dark.png",
+        "work/security/next-migration-20261115/browser/suggestions-dark.png",
+        "work/security/next-migration-20261115/browser/impact-dark.png",
+        "work/security/next-migration-20261115/browser/live-dark.png",
+        "work/security/next-migration-20261115/browser/live-rules-dark.png",
+        "work/security/next-migration-20261115/browser/categorization-dark.png",
+        "work/security/next-migration-20261115/browser/data-dark.png",
+        "work/security/next-migration-20261115/browser/jobs-dark.png",
+        "work/security/next-migration-20261115/browser/pricing-dark.png",
+        "work/security/next-migration-20261115/browser/knowledge-dark.png",
+        "work/security/next-migration-20261115/browser/tasks-qa-task-0-dark.png"
+      ],
+      "backend": "real PostgreSQL and ClickHouse; S3 protocol fixture, not Garage"
+    },
+    "load": {
+      "fixture": "synthetic read model, not actual usage",
+      "turns": 1000,
+      "events": 12000,
+      "http_results": [
+        {
+          "route": "/?range=all&project=qa-load",
+          "milliseconds": [
+            417.12,
+            101.9,
+            106.71
+          ],
+          "response_bytes": 353030
+        },
+        {
+          "route": "/tasks?range=all&project=qa-load",
+          "milliseconds": [
+            66.05,
+            54.18,
+            60.64
+          ],
+          "response_bytes": 51072
+        },
+        {
+          "route": "/costs?range=all&project=qa-load",
+          "milliseconds": [
+            82.57,
+            76.49,
+            85.93
+          ],
+          "response_bytes": 193834
+        },
+        {
+          "route": "/process?range=all&project=qa-load",
+          "milliseconds": [
+            62.29,
+            54.86,
+            58.44
+          ],
+          "response_bytes": 68129
+        },
+        {
+          "route": "/api/records/tasks?range=all&project=qa-load",
+          "milliseconds": [
+            283.15,
+            27.21,
+            23.03
+          ],
+          "response_bytes": 14725
+        },
+        {
+          "route": "/api/records/steps?range=all&project=qa-load&task=qa-load-task-0",
+          "milliseconds": [
+            33.74,
+            3.02,
+            1.53
+          ],
+          "response_bytes": 3523
+        }
+      ],
+      "browser": {
+        "scope": "desktop dark",
+        "turns": 1000,
+        "events": 12000,
+        "pagination_rows": 20,
+        "global_phrase_search": "pass",
+        "step_rows": 12,
+        "page_errors": [],
+        "seconds": 3.019
+      }
+    },
+    "reference_review": {
+      "method": "Manual comparison of desktop dark captures to the supplied reference photographs; structural and interaction checks, not pixel equivalence.",
+      "coverage": [
+        "Sidebar, scope controls, metric strips and collapsible cards",
+        "Overall activity: daily costs, activity, tools, categories, outcomes and suggestions",
+        "Task list, marked tasks, explanation coverage and shared list controls",
+        "Task detail: Story, timed phases, image/Git markers, Evidence, Prompt, Outcome, Subtasks, operation timeline, Tools and Steps",
+        "Tools: treemap, tool family/action drill-down, targets and cost columns",
+        "Costs: daily/model/token stacks, cost bands and model records",
+        "Timeline: weekday/hour heatmap and turn spans; Agents: comparison records",
+        "Process: coverage, flow map, transitions, category charts, categories and paths",
+        "Outcomes: workspace/category rates, corrected tasks, loops and source change references",
+        "Suggestions: source-backed findings and evidence; Impact: recorded changes, before/after metrics and trends",
+        "Live sessions and steering rule management"
+      ],
+      "limits": "Synthetic data validates UI behavior; actual model analysis, real history migration and real Garage deployment remain separate."
+    },
+    "branding": {
+      "jira": "Verified existing Observatory issue titles, including FAST-102 and FAST-95",
+      "confluence": "Verified existing Observatory page titles; no unrelated content changed"
+    }
+  },
+  "deployment": {
+    "web_url": "http://127.0.0.1:3333",
+    "postgres": true,
+    "clickhouse": true,
+    "garage": false,
+    "history_migration": "No actual legacy SQLite database or native history was available here; migration tested with read-only synthetic sources only."
+  },
+  "limits": [
+    "S3 application behavior was tested against a labeled protocol fixture, not Garage.",
+    "The inspected Garage 2.5.0 image has dependency advisory matches and was not installed or executed. Supply an approved patched build or existing approved endpoint.",
+    "Reference photographs were compared for structure and interactions; perspective photographs are not pixel-diff baselines.",
+    "All load records are generated test metadata, not real usage, model-quality results, billing, or a measured before/after speedup."
+  ],
+  "dependency_lock_sha256": "8c8ad7b287d3b49b57d45e4ea6af95a53eb96316e7cba9af358a82a323f5e860",
+  "evidence_sha256": {
+    "tests-final.log": "c94f925ab3bf2aeb06bec608e98de37fcc03b72c48bc72638a33527d14857a60",
+    "build-final.log": "0445e1899cdb7a9eaf9f5bd4974140e657dbeff99b7977cfad15a162429b5ac9",
+    "browser-final.log": "d3007d0f5f8732afc17b6b63378212d498957cbb4be51e6bcdb034b3ddf5a351",
+    "legacy-regression.log": "7c5d4330a9f346c62d244e713d5ac8afb04c3eab7e3a0f1dc7a9ae5073cc1674",
+    "load-results.json": "1a4901bef570520daaf9c8b5c49361060d0bdb4d43294d45e8117b8a37275c1b",
+    "load-browser-final.log": "c11f910ac115f45d0128ef31dda68bc200eaa0a43b66326ef5f70c8a3b779dad"
+  }
+}

@@ -1,3 +1,4 @@
+import { friction } from './friction.ts';
 import { pg, queryCh } from './database.ts';
 import { finite, iso, price, turnKey, hash, failureLoops } from './domain.ts';
 import type { NativeEvent, Pricing, Scope, Row, Column } from './types.ts';
@@ -42,6 +43,10 @@ export interface Subtask extends Row {
     result: Record<string, unknown>;
 }
 export interface Context {
+    tiers?: {
+        top: string[];
+        small: string[];
+    };
     events: NativeEvent[];
     tasks: Task[];
     turns: Turn[];
@@ -58,10 +63,14 @@ export interface Context {
     workspaces: string[];
     categories: Map<string, string>;
 }
-const cache = new Map<string, {
+type ContextCache = Map<string, {
     expires: number;
     value: Promise<Context>;
-}>();
+}>;
+const globals = globalThis as typeof globalThis & {
+    observatoryContextCache?: ContextCache;
+};
+const cache = globals.observatoryContextCache ??= new Map();
 export function invalidate() { cache.clear(); }
 export async function metadata() { const db = pg(); const [projects, workspaces] = await Promise.all([db `SELECT id,name FROM projects ORDER BY name`, db `SELECT DISTINCT workspace FROM turns WHERE workspace<>'' ORDER BY workspace`]); return { projects: projects as unknown as Context['projects'], workspaces: workspaces.map(r => String(r.workspace)) }; }
 export async function context(scope: Scope): Promise<Context> {
@@ -89,7 +98,7 @@ async function load(scope: Scope): Promise<Context> {
         db `SELECT a.turn_key,a.task_id FROM assignments a JOIN tasks t ON t.id=a.task_id WHERE (${scope.project}='' OR t.project_id=${scope.project})`,
         db `SELECT DISTINCT ON (a.task_id) a.* FROM analyses a JOIN tasks t ON t.id=a.task_id WHERE (${scope.project}='' OR t.project_id=${scope.project}) ORDER BY a.task_id,a.created_at DESC,a.id DESC`,
         db `SELECT s.* FROM subtasks s JOIN (SELECT DISTINCT ON (task_id) id,task_id FROM analyses ORDER BY task_id,created_at DESC,id DESC) a ON a.id=s.analysis_id JOIN tasks t ON t.id=a.task_id WHERE (${scope.project}='' OR t.project_id=${scope.project}) ORDER BY s.analysis_id,s.position`,
-        db `SELECT value FROM settings WHERE key='pricing'`, db `SELECT * FROM categorization_rules WHERE enabled ORDER BY priority,id`, db `SELECT * FROM evidence_notes ORDER BY created_at`, metadata()
+        db `SELECT key,value FROM settings WHERE key IN ('pricing','model_tiers')`, db `SELECT * FROM categorization_rules WHERE enabled ORDER BY priority,id`, db `SELECT * FROM evidence_notes ORDER BY created_at`, metadata()
     ]);
     if (turns.length > 10000 || tasks.length > 10000)
         throw Error('Narrow the workspace/date scope to at most 10,000 tasks or turns.');
@@ -99,10 +108,15 @@ async function load(scope: Scope): Promise<Context> {
         throw Error('Narrow the date or workspace scope to at most 100,000 events for this analysis.');
     const visibleKeys = new Set(events.map(e => e.turn_key));
     const visibleTasks = new Set(assigned.filter(a => visibleKeys.has(String(a.turn_key))).map(a => String(a.task_id)));
-    return { categories: new Map(subtasks.flatMap(s => (s.event_ids as string[]).map(id => [id, String(s.category)] as [
-            string,
-            string
-        ]))), events: events.map(e => ({ ...e, event_time: iso(e.event_time.includes('T') ? e.event_time : e.event_time.replace(' ', 'T') + 'Z') || e.event_time, version: Number(e.version), input_tokens: finite(e.input_tokens == null ? null : Number(e.input_tokens)), cached_tokens: finite(e.cached_tokens == null ? null : Number(e.cached_tokens)), output_tokens: finite(e.output_tokens == null ? null : Number(e.output_tokens)), total_tokens: finite(e.total_tokens == null ? null : Number(e.total_tokens)) })), tasks: tasks.filter(t => scope.range === 'all' && !scope.workspace || visibleTasks.has(String(t.id))) as unknown as Task[], turns: turns as unknown as Turn[], assignments: new Map(assigned.map(a => [String(a.turn_key), String(a.task_id)])), analyses: analyses as unknown as Analysis[], subtasks: subtasks as unknown as Subtask[], pricing: (rates[0]?.value || { unit: 'USD', models: {} }) as Pricing, rules: rules as unknown as Row[], notes: notes as unknown as Row[], ...meta };
+    const result: Context = { categories: new Map(), events: events.map(e => ({ ...e, event_time: iso(e.event_time.includes('T') ? e.event_time : e.event_time.replace(' ', 'T') + 'Z') || e.event_time, version: Number(e.version), input_tokens: finite(e.input_tokens == null ? null : Number(e.input_tokens)), cached_tokens: finite(e.cached_tokens == null ? null : Number(e.cached_tokens)), output_tokens: finite(e.output_tokens == null ? null : Number(e.output_tokens)), total_tokens: finite(e.total_tokens == null ? null : Number(e.total_tokens)) })), tasks: tasks.filter(t => (scope.range === 'all' && !scope.workspace || visibleTasks.has(String(t.id))) && (!t.source?.native_turn || visibleTasks.has(String(t.id)))) as unknown as Task[], turns: turns as unknown as Turn[], assignments: new Map(assigned.map(a => [String(a.turn_key), String(a.task_id)])), analyses: analyses as unknown as Analysis[], subtasks: subtasks as unknown as Subtask[], tiers: rates.find(r => r.key === 'model_tiers')?.value || { top: [], small: [] }, pricing: (rates.find(r => r.key === 'pricing')?.value || { unit: 'USD', models: {} }) as Pricing, rules: rules as unknown as Row[], notes: notes as unknown as Row[], ...meta };
+    for (const task of result.tasks) {
+        const facts = taskFacts(result, task.id);
+        if (facts.complete)
+            for (const group of facts.groups)
+                for (const id of group.event_ids)
+                    result.categories.set(id, group.category);
+    }
+    return result;
 }
 export function metrics(events: NativeEvent[], pricing: Pricing) {
     const generations = events.filter(e => e.kind === 'generation'), tools = events.filter(e => e.kind === 'tool'), costs = generations.map(e => price(e, pricing));
@@ -166,8 +180,8 @@ function indexTasks(c: Context) {
 function computeFacts(c: Context, id: string, events: NativeEvent[], turns: Turn[]) {
     const task = c.tasks.find(t => t.id === id), analysis = c.analyses.find(a => a.task_id === id), groups = analysis ? c.subtasks.filter(s => s.analysis_id === analysis.id) : [], notes = c.notes.filter(n => n.task_id === id);
     const times = turns.flatMap(t => [t.started_at, t.finished_at]).filter(Boolean).map(t => +new Date(t!));
-    const checkedIds = new Set(groups.flatMap(g => g.event_ids)), versions = analysis?.result.source_versions as Record<string, number> | undefined, complete = events.length > 0 && events.every(e => checkedIds.has(e.id) && (!versions || versions[e.id] === e.version));
-    return { task, events, turns, analysis, groups, notes, metrics: metrics(events, c.pricing), duration: times.length ? (Math.max(...times) - Math.min(...times)) / 1000 : null, complete, loops: failureLoops(events) };
+    const checkedIds = new Set(groups.flatMap(g => g.event_ids)), versions = analysis?.result.source_versions as Record<string, number> | undefined, complete = events.length > 0 && checkedIds.size === events.length && events.every(e => checkedIds.has(e.id) && (!versions || versions[e.id] === e.version));
+    return { task, events, turns, analysis, groups, notes, metrics: metrics(events, c.pricing), duration: times.length ? (Math.max(...times) - Math.min(...times)) / 1000 : null, complete, loops: friction(events) };
 }
 export function taskFacts(c: Context, id: string) {
     const index = indexTasks(c);
@@ -178,7 +192,7 @@ export function taskFacts(c: Context, id: string) {
     }
     return facts;
 }
-export function turnRows(c: Context): Row[] { const grouped = groupEvents(c.events, e => e.turn_key); return c.turns.map(t => { const events = grouped.get(t.turn_key) || [], m = metrics(events, c.pricing), taskId = c.assignments.get(t.turn_key), a = c.analyses.find(a => a.task_id === taskId), groupIds = new Set(c.subtasks.filter(s => s.analysis_id === a?.id).flatMap(s => s.event_ids)); return { id: t.turn_key, title: t.prompt || 'No retained prompt', task_id: taskId || null, href: taskId ? '/tasks/' + taskId : null, started: t.started_at, workspace: t.workspace, session_id: t.session_id, turn_id: t.turn_id, cost: m.cost, tokens: m.tokens, duration: t.started_at && t.finished_at ? (+new Date(t.finished_at) - +new Date(t.started_at)) / 1000 : null, responses: m.responses, tools: m.tools, errors: m.errors, loops: failureLoops(events).length, models: [...new Set(events.map(e => e.model).filter(Boolean))].join(', '), agent: t.agent_type || t.role || 'Unknown', categories: [...new Set(c.subtasks.filter(s => s.analysis_id === a?.id).map(s => s.category))].join(', '), interpretation: events.length && events.every(e => groupIds.has(e.id)) ? 'Explained' : 'Unclassified' }; }); }
+export function turnRows(c: Context): Row[] { const grouped = groupEvents(c.events, e => e.turn_key); return c.turns.map(t => { const events = grouped.get(t.turn_key) || [], m = metrics(events, c.pricing), taskId = c.assignments.get(t.turn_key), a = c.analyses.find(a => a.task_id === taskId), groupIds = new Set(c.subtasks.filter(s => s.analysis_id === a?.id).flatMap(s => s.event_ids)); return { id: t.turn_key, event_ids: events.map(e => e.id), title: t.prompt || 'No retained prompt', task_id: taskId || null, href: taskId ? '/tasks/' + taskId : null, started: t.started_at, workspace: t.workspace, session_id: t.session_id, turn_id: t.turn_id, cost: m.cost, tokens: m.tokens, duration: t.started_at && t.finished_at ? (+new Date(t.finished_at) - +new Date(t.started_at)) / 1000 : null, responses: m.responses, tools: m.tools, errors: m.errors, loops: friction(events).length, models: [...new Set(events.map(e => e.model).filter(Boolean))].join(', '), agent: t.agent_type || t.role || 'Unknown', categories: [...new Set(c.subtasks.filter(s => s.analysis_id === a?.id).map(s => s.category))].join(', '), interpretation: taskId && taskFacts(c, taskId).complete ? 'Explained' : 'Unclassified' }; }); }
 export function taskRows(c: Context): Row[] { return c.tasks.map(task => { const f = taskFacts(c, task.id); return { ...task, href: '/tasks/' + task.id, started: f.turns.map(t => t.started_at).filter(Boolean).sort()[0] || null, duration: f.duration, turns: f.turns.length, cost: f.metrics.cost, tokens: f.metrics.tokens, responses: f.metrics.responses, tools: f.metrics.tools, errors: f.metrics.errors, loops: f.loops.length, categories: [...new Set(f.groups.map(s => s.category))].join(', '), interpretation: f.complete ? 'Explained' : 'Unclassified', outcome: task.outcome || 'Unknown' }; }); }
 export async function taskScope(id: string): Promise<Scope> {
     const rows = await pg() `SELECT t.project_id FROM tasks t WHERE t.id=${id}`;

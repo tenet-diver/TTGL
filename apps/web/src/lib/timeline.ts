@@ -24,3 +24,11 @@ export function turnSegments(start: string, end: string | null, timezone: string
     } while (cursor < until);
     return result;
 }
+/** Completed finite operations use retained duration; unknown durations remain points. */
+export function operationIntervals<T extends {
+    id: string;
+    at?: unknown;
+    runtime?: unknown;
+    runtime_role?: unknown;
+}>(events: T[]) { return events.flatMap(event => { const end = typeof event.at === 'string' ? Date.parse(event.at) : NaN; if (!Number.isFinite(end) || event.runtime_role === 'background_service_lifetime')
+    return []; const known = typeof event.runtime === 'number' && Number.isFinite(event.runtime) && event.runtime >= 0 && event.runtime_role !== 'mixed_or_unknown'; return [{ ...event, start: known ? end - Number(event.runtime) * 1000 : end, end, duration_known: known }]; }); }

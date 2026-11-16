@@ -1,3 +1,4 @@
+import { retainRasters } from '@/lib/raster';
 import { sameOrigin } from '@/lib/request-guards';
 import { rawHealth, retainRaw, restoreRaw } from '@/lib/raw-store';
 import { NextRequest, NextResponse } from 'next/server';
@@ -88,6 +89,9 @@ export async function POST(req: NextRequest, { params }: {
                 return json({ error: 'events array required' }, 400);
             await retainRaw(Buffer.from(original), 'http-ingest', String(data.source || 'authenticated-ingest'));
             const result = await ingestEvents(data.events);
+            if (result.conflicts)
+                return json({ ...result, error: 'Native identity conflicts require reconciliation' }, 409);
+            await retainRasters(data.events.map((e: Record<string, unknown>) => ({ ...e, payload: typeof e.payload === 'string' ? e.payload : JSON.stringify(e.payload || {}) })));
             await flushOutbox();
             return json(result);
         }

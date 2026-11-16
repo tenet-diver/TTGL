@@ -1,3 +1,5 @@
+import { appendFileSync } from 'node:fs';
+import { retainRaw, rawHealth } from './raw-store.ts';
 import { analystUsage } from './analyst-usage.ts';
 import { spawn } from 'node:child_process';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
@@ -26,6 +28,7 @@ export function validateAnalysis(raw: unknown, sourceIds: string[]) {
 export async function runOneAnalysis() {
     if (process.env.OBS_ALLOW_ANALYSIS !== '1')
         throw Error('Explicit OBS_ALLOW_ANALYSIS=1 is required to execute queued model work');
+    await rawHealth();
     const db = pg(), job = await db.begin(async (tx) => {
         await tx `SELECT pg_advisory_xact_lock(846205214)`;
         const active = await tx `SELECT id FROM analysis_jobs WHERE status IN ('running','uncertain','legacy_running','legacy_queued') LIMIT 1`;
@@ -44,27 +47,49 @@ export async function runOneAnalysis() {
     const schema = path.join(folder, 'schema.json'), answer = path.join(folder, 'answer.json');
     await writeFile(schema, JSON.stringify(analysisSchema), { mode: 0o600 });
     await writeFile(path.join(folder, 'snapshot.json'), JSON.stringify(job.snapshot), { mode: 0o600 });
+    const eventsFile = path.join(folder, 'events.jsonl'), stderrFile = path.join(folder, 'stderr.log');
+    await writeFile(eventsFile, '', { mode: 0o600 });
+    await writeFile(stderrFile, '', { mode: 0o600 });
+    const archives: Record<string, string> = {};
+    const archiveFiles = async (names: string[]) => {
+        for (const name of names) {
+            const file = path.join(folder, name);
+            try {
+                const bytes = await readFile(file);
+                archives[name] = (await retainRaw(bytes, 'analyst-' + name, file)).id;
+            }
+            catch (e) {
+                if ((e as NodeJS.ErrnoException).code === 'ENOENT')
+                    continue;
+                throw e;
+            }
+        }
+    };
     let stdout = '', stderr = '', invoked = false;
     try {
+        await archiveFiles(['schema.json', 'snapshot.json']);
         const args = ['exec', '--disable', 'shell_tool', '--disable', 'apps', '--disable', 'browser_use', '-c', 'web_search="disabled"', '-c', 'project_doc_max_bytes=0', '--ignore-user-config', '--skip-git-repo-check', '--ephemeral', '-s', 'read-only', '-C', folder, '-m', job.model, '-c', 'model_reasoning_effort="low"', '--output-schema', schema, '--output-last-message', answer, '--json', '-'];
         await new Promise<void>((resolve, reject) => {
             const child = spawn(process.env.OBS_CODEX_BIN || 'codex', args, { stdio: ['pipe', 'pipe', 'pipe'], detached: true });
             const timeout = setTimeout(() => { process.kill(-child.pid!, 'SIGTERM'); reject(Error('Analysis timeout; invocation is uncertain and will not be retried')); }, 600000);
             child.on('spawn', () => { invoked = true; });
             child.stdout.on('data', b => {
+                appendFileSync(eventsFile, b);
                 stdout += b;
                 if (stdout.length > 16e6)
                     child.kill('SIGTERM');
             });
             child.stderr.on('data', b => {
+                appendFileSync(stderrFile, b);
                 stderr += b;
                 if (stderr.length > 2e6)
                     child.kill('SIGTERM');
             });
             child.on('error', e => { clearTimeout(timeout); reject(e); });
-            child.on('exit', code => { clearTimeout(timeout); code === 0 ? resolve() : reject(Error('Analysis process exited ' + code)); });
+            child.on('close', code => { clearTimeout(timeout); code === 0 ? resolve() : reject(Error('Analysis process exited ' + code)); });
             child.stdin.end('Analyze only the supplied transcript evidence. Do not use tools or change files. Group each source ID exactly once in chronological subtasks. Separate measured facts, interpretations and unverified acceptance. Knowledge must cite source IDs.\n' + JSON.stringify(job.snapshot));
         });
+        await archiveFiles(['events.jsonl', 'stderr.log', 'answer.json']);
         const result = validateAnalysis(JSON.parse(await readFile(answer, 'utf8')), job.snapshot.steps.map((s: {
             id: string;
         }) => s.id));
@@ -85,15 +110,17 @@ export async function runOneAnalysis() {
             await tx `INSERT INTO analyses(id,task_id,job_id,snapshot_hash,summary,task_type,result) VALUES(${id},${job.task_id},${job.id},${job.snapshot_hash},${result.summary},${result.task_type},${tx.json(publication)})`;
             for (const [position, g] of result.subtasks.entries())
                 await tx `INSERT INTO subtasks(id,analysis_id,position,title,summary,category,confidence,event_ids,result) VALUES(${randomUUID()},${id},${position},${g.title},${g.summary},${g.category},${g.confidence},${g.event_ids},${tx.json(g)})`;
-            await tx `UPDATE analysis_jobs SET status='completed',result=${tx.json(result)},usage=${usage ? tx.json(usage) : null},finished_at=now() WHERE id=${job.id}`;
+            await tx `UPDATE analysis_jobs SET status='completed',result=${tx.json(result)},usage=${usage ? tx.json(usage) : null},source=${tx.json({ ...job.source, raw_archives: archives, artifact_directory: folder })},finished_at=now() WHERE id=${job.id}`;
         });
     }
     catch (e) {
-        await db `UPDATE analysis_jobs SET status=${invoked ? 'uncertain' : 'failed'},error=${e instanceof Error ? e.message : 'Analysis failed'},finished_at=now() WHERE id=${job.id}`;
+        try {
+            await archiveFiles(['events.jsonl', 'stderr.log', 'answer.json']);
+        }
+        catch { }
+        await db `UPDATE analysis_jobs SET status=${invoked ? 'uncertain' : 'failed'},error=${e instanceof Error ? e.message : 'Analysis failed'},source=${db.json({ ...job.source, raw_archives: archives, artifact_directory: folder })},finished_at=now() WHERE id=${job.id}`;
     }
     finally {
-        await writeFile(path.join(folder, 'events.jsonl'), stdout, { mode: 0o600 });
-        await writeFile(path.join(folder, 'stderr.log'), stderr, { mode: 0o600 });
         invalidate();
     }
     return true;

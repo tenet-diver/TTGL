@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
@@ -12,7 +13,7 @@ if (process.env.OBS_TESTING !== '1' || !process.env.CLICKHOUSE_DATABASE?.endsWit
     throw Error('Isolated test databases required');
 after(closeDatabases);
 test('legacy import preserves originals, archives every table, keeps native IDs and never replays active jobs', async () => {
-    const folder = await mkdtemp(path.join(tmpdir(), 'observatory-import-')), file = path.join(folder, 'legacy.sqlite');
+    const folder = await mkdtemp(path.join(tmpdir(), 'observatory-import-')), file = path.join(folder, 'legacy.sqlite'), legacyJob = 'legacy-active-' + randomUUID();
     try {
         const made = spawnSync('python3', ['-c', `import sqlite3,sys,json
 c=sqlite3.connect(sys.argv[1]);c.executescript('''
@@ -29,7 +30,7 @@ INSERT INTO tasks VALUES('legacy-task','legacy-project','Legacy task','Verify mi
 INSERT INTO turns VALUES('legacy-session','native-turn','/legacy','Retain raw evidence','2026-11-01T00:00:00Z','2026-11-01T00:00:10Z',1);
 INSERT INTO assignments VALUES('legacy-session','native-turn','legacy-task');
 INSERT INTO events VALUES('legacy-session:response:r1','legacy-session','native-turn','generation','Model response','2026-11-01T00:00:00Z',NULL,NULL,'{"input_tokens":10,"cached_input_tokens":5,"output_tokens":2,"total_tokens":12}','legacy-model',3,NULL);
-INSERT INTO task_history_jobs VALUES('legacy-active','legacy-task','old-hash','{}','running',1793491200,NULL,'old-model',NULL,NULL,NULL);
+INSERT INTO task_history_jobs VALUES('${legacyJob}','legacy-task','old-hash','{}','running',1793491200,NULL,'old-model',NULL,NULL,NULL);
 INSERT INTO unknown_legacy_extension VALUES('extension','Opaque preserved record');
 INSERT INTO steering_rules VALUES('break','Prompt after a break','break','warn',1,1,'{"threshold":3600}','Imported break rule');
 ''');c.commit();c.close()`, file], { encoding: 'utf8' });
@@ -37,7 +38,7 @@ INSERT INTO steering_rules VALUES('break','Prompt after a break','break','warn',
         const before = hash(await readFile(file)), a = await importLegacy(file), b = await importLegacy(file);
         assert.equal(b.status, 'already_imported');
         assert.equal(hash(await readFile(file)), before);
-        assert.equal((await pg() `SELECT status FROM analysis_jobs WHERE id='legacy-active'`)[0].status, 'legacy_running');
+        assert.equal((await pg() `SELECT status FROM analysis_jobs WHERE id=${legacyJob}`)[0].status, 'legacy_running');
         const archive = (await pg() `SELECT archive_id FROM migration_manifests WHERE id=${a.id}`)[0].archive_id;
         assert.ok((await restoreRaw(archive)).toString().includes('Opaque preserved record'));
         assert.equal((await pg() `SELECT count(*)::integer AS n FROM archived_records WHERE import_id=${a.id}`)[0].n, 8);
@@ -46,6 +47,12 @@ INSERT INTO steering_rules VALUES('break','Prompt after a break','break','warn',
         assert.equal((await queryCh<{
             n: number;
         }>("SELECT count() AS n FROM events FINAL WHERE id='legacy-session:response:r1'"))[0].n, 1);
+        const updated = spawnSync('python3', ['-c', "import sqlite3,sys;c=sqlite3.connect(sys.argv[1]);c.execute(\"UPDATE task_history_jobs SET status='completed',finished=1793491210 WHERE id=?\",(sys.argv[2],));c.commit();c.close()", file, legacyJob]);
+        assert.equal(updated.status, 0);
+        const finishedHash = hash(await readFile(file));
+        await importLegacy(file);
+        assert.equal(hash(await readFile(file)), finishedHash);
+        assert.equal((await pg() `SELECT status FROM analysis_jobs WHERE id=${legacyJob}`)[0].status, 'completed');
     }
     finally {
         await rm(folder, { recursive: true, force: true });

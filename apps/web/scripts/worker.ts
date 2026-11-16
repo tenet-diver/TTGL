@@ -1,3 +1,5 @@
+import { retainRasters } from '../src/lib/raster.ts';
+import { discoverTurn } from '../src/lib/discovery.ts';
 import { retainRaw } from '../src/lib/raw-store.ts';
 import { readdir, stat, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -54,6 +56,9 @@ export async function collect() {
                 }
                 for (const t of parsed.turns)
                     await pg() `INSERT INTO turns(turn_key,session_id,turn_id,workspace,prompt,started_at,finished_at,completed,role,agent_type,source) VALUES(${t.turn_key},${t.session_id},${t.turn_id},${t.workspace},${t.prompt},${t.started_at},${t.finished_at},${t.completed},${t.role},${t.agent_type},${pg().json(t.source)}) ON CONFLICT(turn_key) DO UPDATE SET prompt=EXCLUDED.prompt,started_at=EXCLUDED.started_at,finished_at=EXCLUDED.finished_at,completed=EXCLUDED.completed,source=EXCLUDED.source`;
+                for (const turn of parsed.turns)
+                    await discoverTurn(turn.turn_key);
+                await retainRasters(parsed.events as import('../src/lib/types.ts').NativeEvent[]);
                 await pg() `INSERT INTO source_files(path,bytes,mtime_ms,sha256,archive_id) VALUES(${file},${info.size},${Math.trunc(info.mtimeMs)},${hash(bytes)},${archive.id}) ON CONFLICT(path) DO UPDATE SET bytes=EXCLUDED.bytes,mtime_ms=EXCLUDED.mtime_ms,sha256=EXCLUDED.sha256,archive_id=EXCLUDED.archive_id,error=NULL,imported_at=now()`;
             }
             catch (e) {

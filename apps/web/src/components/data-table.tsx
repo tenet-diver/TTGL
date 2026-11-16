@@ -35,6 +35,7 @@ export function DataTable({ id, kind, rows: localRows, columns: localColumns, ex
         value: unknown;
         label: string;
     } | null>(null);
+    useEffect(() => { const reload = () => setRevision(r => r + 1); window.addEventListener('observatory-records-changed', reload); return () => window.removeEventListener('observatory-records-changed', reload); }, []);
     const scope = params.toString(), extraKey = JSON.stringify(extra), queryKey = JSON.stringify(query), localKey = JSON.stringify(localColumns), rowsKey = JSON.stringify(localRows);
     useEffect(() => {
         try {
@@ -177,22 +178,34 @@ export function DataTable({ id, kind, rows: localRows, columns: localColumns, ex
                 }
             }}>{String(column.columnDef.header)}</DropdownMenuCheckboxItem>)}</DropdownMenuContent></DropdownMenu><Button variant="outline" size="sm" aria-expanded={filtersOpen} onClick={() => setFiltersOpen(!filtersOpen)}>Filters</Button>{active && <Button variant="ghost" size="sm" onClick={() => { setQuery(initial); setVisibility(Object.fromEntries(data.columns.filter(c => c.hidden).map(c => [c.key, false]))); setFiltersOpen(false); }}>Reset</Button>}<div className="table-search"><Search size={13}/><Input aria-label={'Search ' + id} placeholder="Search" value={query.search} onChange={e => update({ search: e.target.value })}/>{query.search && <Button variant="ghost" size="icon" aria-label={'Clear search ' + id} onClick={() => update({ search: '' })}><X size={12}/></Button>}</div></div></div>
  {error && <p role="alert" className="error-message">{error}<Button variant="link" onClick={() => setRevision(r => r + 1)}>Retry</Button></p>}
- <Table><TableHeader>{table.getHeaderGroups().map(group => <TableRow key={group.id}>{group.headers.map(header => <TableHead key={header.id} className={data.columns.find(c => c.key === header.id)?.numeric ? 'numeric' : ''}>{header.isPlaceholder ? null : header.column.getCanSort() ? <Button variant="ghost" className="sort-button" aria-label={'Sort by ' + String(header.column.columnDef.header)} onClick={() => update(query.sort === header.id ? query.direction === 1 ? { direction: -1 } : { sort: null, direction: 1 } : { sort: header.id, direction: 1 })} aria-pressed={query.sort === header.id}>{flexRender(header.column.columnDef.header, header.getContext())}{query.sort === header.id ? query.direction === 1 ? <ArrowUp size={11}/> : <ArrowDown size={11}/> : <ArrowUpDown size={11}/>}</Button> : flexRender(header.column.columnDef.header, header.getContext())}</TableHead>)}</TableRow>)}{filtersOpen && <TableRow>{table.getVisibleLeafColumns().map(col => <TableHead key={col.id}>{col.getCanSort() && <Input aria-label={'Filter ' + id + ' by ' + String(col.columnDef.header)} placeholder={data.columns.find(c => c.key === col.id)?.numeric ? 'e.g. >= 100' : 'Filter…'} value={query.filters[col.id] || ''} onChange={e => update({ filters: { ...query.filters, [col.id]: e.target.value } })}/>}</TableHead>)}</TableRow>}</TableHeader><TableBody>{table.getRowModel().rows.length ? table.getRowModel().rows.map(row => <TableRow key={row.id}>{row.getVisibleCells().map(ctx => <TableCell key={ctx.id} onContextMenu={event => { if (ctx.column.id.startsWith('__'))
-        return; event.preventDefault(); setContextFilter({ key: ctx.column.id, value: ctx.getValue(), label: String(ctx.column.columnDef.header) }); }} className={data.columns.find(c => c.key === ctx.column.id)?.numeric ? 'numeric' : ''}>{flexRender(ctx.column.columnDef.cell, ctx.getContext())}</TableCell>)}</TableRow>) : <TableRow><TableCell colSpan={Math.max(1, table.getVisibleLeafColumns().length)} className="table-empty">{pending ? 'Loading records…' : active ? 'No matching records. Clear the filters to see the full scope.' : 'No records in this scope.'}</TableCell></TableRow>}</TableBody></Table>
+ <Table><TableHeader>{table.getHeaderGroups().map(group => <TableRow key={group.id}>{group.headers.map(header => <TableHead key={header.id} className={data.columns.find(c => c.key === header.id)?.numeric ? 'numeric' : ''}>{header.isPlaceholder ? null : header.column.getCanSort() ? <Button variant="ghost" className="sort-button" aria-label={'Sort by ' + String(header.column.columnDef.header)} onClick={() => update(query.sort === header.id ? query.direction === 1 ? { direction: -1 } : { sort: null, direction: 1 } : { sort: header.id, direction: 1 })} aria-pressed={query.sort === header.id}>{flexRender(header.column.columnDef.header, header.getContext())}{query.sort === header.id ? query.direction === 1 ? <ArrowUp size={11}/> : <ArrowDown size={11}/> : <ArrowUpDown size={11}/>}</Button> : flexRender(header.column.columnDef.header, header.getContext())}</TableHead>)}</TableRow>)}{filtersOpen && <TableRow>{table.getVisibleLeafColumns().map(col => <TableHead key={col.id}>{col.getCanSort() && <Input aria-label={'Filter ' + id + ' by ' + String(col.columnDef.header)} placeholder={data.columns.find(c => c.key === col.id)?.numeric ? 'e.g. >= 100' : 'Filter…'} value={query.filters[col.id] || ''} onChange={e => update({ filters: { ...query.filters, [col.id]: e.target.value } })}/>}</TableHead>)}</TableRow>}</TableHeader><TableBody>{table.getRowModel().rows.length ? table.getRowModel().rows.map(row => <TableRow key={row.id}>{row.getVisibleCells().map(ctx => <TableCell key={ctx.id} onContextMenu={event => {
+                    if (ctx.column.id.startsWith('__'))
+                        return;
+                    event.preventDefault();
+                    setContextFilter({ key: ctx.column.id, value: ctx.getValue(), label: String(ctx.column.columnDef.header) });
+                }} className={data.columns.find(c => c.key === ctx.column.id)?.numeric ? 'numeric' : ''}>{flexRender(ctx.column.columnDef.cell, ctx.getContext())}</TableCell>)}</TableRow>) : <TableRow><TableCell colSpan={Math.max(1, table.getVisibleLeafColumns().length)} className="table-empty">{pending ? 'Loading records…' : active ? 'No matching records. Clear the filters to see the full scope.' : 'No records in this scope.'}</TableCell></TableRow>}</TableBody></Table>
  {(!compact || data.total > query.limit) && <div className="list-pagination"><span>{data.total ? data.offset + 1 : 0}–{Math.min(data.offset + data.rows.length, data.total)} of {data.total}</span><label>Rows per page<Select value={String(query.limit)} onValueChange={value => update({ limit: Number(value) })}><SelectTrigger aria-label={'Rows per page ' + id}><SelectValue /></SelectTrigger><SelectContent>{[10, 20, 50, 100].map(n => <SelectItem key={n} value={String(n)}>{n}</SelectItem>)}</SelectContent></Select></label><div className="page-buttons"><Button variant="ghost" size="sm" aria-label={'Previous page ' + id} disabled={pending || page <= 1} onClick={() => update({ offset: Math.max(0, data.offset - query.limit) })}><ChevronLeft size={12}/>Previous</Button><label className="page-jump">Page<Input type="number" min="1" max={pages} aria-label={'Page ' + id} value={page} onChange={e => {
                 const target = Number(e.target.value);
                 if (target >= 1 && target <= pages)
                     update({ offset: (target - 1) * query.limit });
             }}/></label><span>of {pages}</span><Button variant="ghost" size="sm" aria-label={'Next page ' + id} disabled={pending || page >= pages} onClick={() => update({ offset: data.offset + query.limit })}>Next<ChevronRight size={12}/></Button></div></div>}
- <Dialog open={Boolean(contextFilter)} onOpenChange={open => { if (!open)
-        setContextFilter(null); }}><DialogContent><DialogHeader><DialogTitle>Filter exact value</DialogTitle><DialogDescription>{contextFilter?.label}: {format(contextFilter?.value)}</DialogDescription></DialogHeader><Button onClick={() => { if (contextFilter) {
-        update({ filters: { ...query.filters, [contextFilter.key]: '==' + JSON.stringify(contextFilter.value ?? null) } });
-        setFiltersOpen(true);
-    } setContextFilter(null); }}>Apply exact filter</Button><Button variant="outline" onClick={() => { if (contextFilter) {
-        const filters = { ...query.filters };
-        delete filters[contextFilter.key];
-        update({ filters });
-    } setContextFilter(null); }}>Clear column filter</Button></DialogContent></Dialog>
+ <Dialog open={Boolean(contextFilter)} onOpenChange={open => {
+            if (!open)
+                setContextFilter(null);
+        }}><DialogContent><DialogHeader><DialogTitle>Filter exact value</DialogTitle><DialogDescription>{contextFilter?.label}: {format(contextFilter?.value)}</DialogDescription></DialogHeader><Button onClick={() => {
+            if (contextFilter) {
+                update({ filters: { ...query.filters, [contextFilter.key]: '==' + JSON.stringify(contextFilter.value ?? null) } });
+                setFiltersOpen(true);
+            }
+            setContextFilter(null);
+        }}>Apply exact filter</Button><Button variant="outline" onClick={() => {
+            if (contextFilter) {
+                const filters = { ...query.filters };
+                delete filters[contextFilter.key];
+                update({ filters });
+            }
+            setContextFilter(null);
+        }}>Clear column filter</Button></DialogContent></Dialog>
         <Dialog open={Boolean(detail)} onOpenChange={next => {
             if (!next)
                 setDetail(null);

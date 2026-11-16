@@ -24,7 +24,7 @@ trace backend; Observatory adds source reconciliation, task grouping and evidenc
 | Design | `ui.css`, `design-language.css`, `chart-theme.js`, `workspace.css`, `work-explorer.css`, `ui.js` | Shared semantic tokens, native controls, categorical chart palettes with contrasting labels and responsive layouts |
 
 Paths in this table are relative to `tools/usage-monitor/observability/` unless
-otherwise stated. Startup and private-state locations are in [SETUP](../SETUP.md).
+otherwise stated. Startup and private-state locations are in [SETUP](../../SETUP.md).
 
 ## Ingestion contract
 
@@ -139,7 +139,7 @@ Log only / Warn / Ask / Block modes, budgets, pause/notes and a bounded fail-ope
 adapter are implemented. They remain distinct from collection pause and category
 rules. The adapter is not automatically installed in personal settings; clients
 must support the returned decisions. Codex telemetry does not establish equivalent
-pre-tool enforcement. No research schedule is resumed. See [the operations guide](OPERATIONS.md)
+pre-tool enforcement. No research schedule is resumed. See [the operations guide](../OPERATIONS.md)
 for supported source fields, approval semantics, statistical limits and installation.
 
 Native collection and keyboard-accessible popover behavior now ship in
@@ -149,5 +149,5 @@ Native collection and keyboard-accessible popover behavior now ship in
 projections. Their one-time rescan preserves measured events. Tool-identity v2
 also includes the native tool/server/name and file-change inputs so unrelated
 failed calls are not grouped into one loop; old identities are marked unknown
-until rebuilt from available sources. See [analysis semantics](ANALYSIS.md) for
+until rebuilt from available sources. See [analysis semantics](../ANALYSIS.md) for
 coverage, confirmed versus heuristic fixes, local time/DST, and bounded source previews.

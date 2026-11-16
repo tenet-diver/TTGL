@@ -3,10 +3,10 @@ import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { pg, queryCh, closeDatabases } from '../src/lib/database.ts';
 import { ingestEvents, flushOutbox } from '../src/lib/ingest.ts';
-import { retainRaw, restoreRaw, archivePlan, rawHealth } from '../src/lib/raw-store.ts';
+import { retainRaw, restoreRaw, archivePlan, rawHealth, readRaw } from '../src/lib/raw-store.ts';
 import { receiveHook } from '../src/lib/steering.ts';
 import { performAction } from '../src/lib/actions.ts';
-import { recordData } from '../src/lib/analytics.ts';
+import { recordData, daily, outcomes } from '../src/lib/analytics.ts';
 import { context, invalidate } from '../src/lib/repository.ts';
 import { pageData, routes } from '../src/lib/pages.ts';
 import { seedTest } from '../scripts/seed-test.ts';
@@ -16,7 +16,7 @@ if (process.env.OBS_TESTING !== '1' || !process.env.CLICKHOUSE_DATABASE?.endsWit
     throw Error('Integration tests require isolated test databases');
 after(closeDatabases);
 test('migrations are repeatable and checked before fixture reads', async () => { await migrate(); await migrate(); await seedTest(); });
-test('exact raw bytes restore and replay without duplicating identity', async () => { await rawHealth(); const bytes = Buffer.from('  {"raw":"évidence","secret":"preserved as original"}\r\n\x00'); const a = await retainRaw(bytes, 'integration', '/qa/exact.jsonl'), b = await retainRaw(bytes, 'integration', '/qa/exact.jsonl'); assert.equal(a.id, b.id); assert.deepEqual(await restoreRaw(a.id), bytes); });
+test('exact raw bytes restore and replay without duplicating identity', async () => { await rawHealth(); const bytes = Buffer.from('  {"raw":"évidence","secret":"preserved as original"}\r\n\x00'); const a = await retainRaw(bytes, 'integration', '/qa/exact.jsonl'), b = await retainRaw(bytes, 'integration', '/qa/exact.jsonl'); assert.equal(a.id, b.id); assert.deepEqual(await restoreRaw(a.id), bytes); await assert.rejects(readRaw(a.key, '0'.repeat(64)), /checksum/); });
 test('growing raw files share complete chunks and retain previous versions', async () => { const a = Buffer.alloc(4 * 1024 * 1024, 65), b = Buffer.concat([a, Buffer.from('appended')]); assert.equal(archivePlan(a).chunks[0].key, archivePlan(b).chunks[0].key); const original = await retainRaw(a, 'integration', '/qa/growing'), newer = await retainRaw(b, 'integration', '/qa/growing'); assert.notEqual(original.id, newer.id); assert.deepEqual(await restoreRaw(original.id), a); assert.deepEqual(await restoreRaw(newer.id), b); });
 test('native identity replay, durable outbox and FINAL reconciliation', async () => {
     const id = 'integration:' + randomUUID(), raw = { id, session_id: 'integration', turn_id: id, kind: 'generation', model: 'm', event_time: '2026-11-01T00:00:00Z', input_tokens: 10, cached_tokens: 2, output_tokens: 3, total_tokens: 13 };
@@ -56,9 +56,13 @@ test('hook replay latches budget, preserves notes and enforces pause', async () 
     await assert.rejects(receiveHook({ ...hook, command: 'changed' }));
 });
 test('shared record engine paginates and filters every collection', async () => {
-    for (const kind of ['tasks', 'marked', 'steps', 'tools', 'targets', 'models', 'agents', 'transitions', 'categories', 'paths', 'fixes', 'loops', 'commits', 'fix-workspaces', 'fix-categories', 'findings', 'timeline', 'rules', 'live', 'rule-log', 'changes', 'jobs', 'sources', 'categorization', 'knowledge']) {
+    for (const kind of ['tasks', 'marked', 'steps', 'tools', 'targets', 'models', 'agents', 'transitions', 'categories', 'paths', 'fixes', 'loops', 'commits', 'fix-workspaces', 'fix-categories', 'findings', 'timeline', 'rules', 'live', 'rule-log', 'changes', 'jobs', 'sources', 'categorization', 'knowledge', 'archives', 'outcome-summary']) {
         const page = await recordData(kind, scope, { ...q, limit: 2 }, new URLSearchParams());
         assert.ok(page.columns.length, kind);
+        for (const col of page.columns.filter(c => c.numeric))
+            for (const row of page.rows)
+                if (row[col.key] != null)
+                    assert.equal(typeof row[col.key], 'number', kind + '.' + col.key);
         assert.ok(page.rows.length <= 2, kind);
         const searched = await recordData(kind, scope, { ...q, search: 'no-such-needle-unique' }, new URLSearchParams());
         assert.equal(searched.total, 0, kind);
@@ -75,3 +79,12 @@ test('all dashboard pages return valid typed data without invoking a model', asy
     }
 });
 test('unsupported or missing cost counters stay unknown', async () => { invalidate(); const c = await context({ ...scope, task: 'qa-task-0' }); assert.equal(c.events.length, 8); assert.ok(c.events.every(e => e.turn_key === JSON.stringify(['qa-session-0', 'turn-0']))); });
+test('token-type stacks reconcile to native totals when all input partitions are observed', async () => {
+    invalidate();
+    const c = await context({ ...scope, project: 'qa-project' }), data = daily(c, 'tokens', 'type');
+    for (const point of data.points) {
+        const native = c.events.filter(e => e.kind === 'generation' && e.event_time.slice(0, 10) === point.date).reduce((sum, e) => sum + Number(e.total_tokens), 0);
+        assert.equal(data.keys.reduce((sum, key) => sum + Number(point[key]), 0), native);
+    }
+});
+test('confirmed interventions remain scoped to the selected project', async () => { const c = await context({ ...scope, project: 'no-matching-project' }); assert.equal(outcomes(c).confirmed, 0); });

@@ -28,7 +28,7 @@ export async function seedTest() {
     }
     await ingestEvents(events);
     while (await flushOutbox()) { }
-    await db `UPDATE settings SET value='{"unit":"USD","models":{"claude-opus-5-5":{"input":5,"cached":0.5,"output":25},"claude-sonnet-5-5":{"input":3,"cached":0.3,"output":15}}}' WHERE key='pricing'`;
+    await db `UPDATE settings SET value='{"unit":"USD","models":{"claude-opus-5-5":{"input":5,"cached":0.5,"output":25,"write_5m":6.25,"write_1h":10},"claude-sonnet-5-5":{"input":3,"cached":0.3,"output":15,"write_5m":3.75,"write_1h":6}}}' WHERE key='pricing'`;
     await db `INSERT INTO settings(key,value) VALUES('model_tiers','{"top":["claude-opus-5-5"],"small":["claude-sonnet-5-5"]}') ON CONFLICT(key) DO UPDATE SET value=EXCLUDED.value`;
     await db `INSERT INTO applied_changes(id,title,applied_at,workspace,metrics,notes) VALUES('qa-change','Shell exploration steering rule',now()-interval '4 days','/qa/observatory',ARRAY['cost_per_task','shell','shell_again'],'Synthetic change for screenshot validation') ON CONFLICT DO NOTHING`;
     const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI/ScLbtAAAAABJRU5ErkJggg==', 'base64');

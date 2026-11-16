@@ -99,6 +99,10 @@ Open **http://127.0.0.1:3333**. Forward port 3333 privately in Codespaces. Keep 
 loopback application behind authenticated access when using a remote deployment;
 it does not introduce a new public login system.
 
+The pricing editor accepts input/cached/output rates per million tokens and explicit
+`write_5m` / `write_1h` rates, or a flat `write` rate. A response with recorded
+cache writes stays unpriced if its required write rate is absent.
+
 In **Data list**, add an absolute Codex or Claude Code JSONL source folder. Then
 run the collector in another terminal:
 
@@ -111,8 +115,11 @@ identities and counters, and flushes the PostgreSQL outbox to ClickHouse. Symlin
 are not followed. Malformed sources are recorded as errors, not silently accepted.
 Limits are 10,000 source files, 256 MiB per file and 10,000 events per ingestion
 batch. Large valid sources are delivered in batches. Browsing and collection do
-not call a model. Use **Task grouping** to define projects/tasks and assign native
-turns; explicit task boundaries remain separate from source turns.
+not call a model. Native turns automatically receive browsable source-based task pages, without
+model calls or inferred acceptance. Use **Task grouping** to define larger tasks
+and group native turns; explicit task boundaries remain separate from source
+turns. Inline PNG/JPEG/WebP bytes up to 1 MiB can become previews. Transcript
+paths and remote image URLs are never opened to create a preview.
 
 `GET /api/health` checks PostgreSQL, ClickHouse and the configured S3 bucket.
 An absent Garage endpoint reports unhealthy raw storage; it is not silently
@@ -141,7 +148,8 @@ archive rather than being silently assigned new semantics.
 
 Active old jobs are imported as `legacy_running` / `legacy_queued`, never replayed.
 The old running worker remains the owner; this importer does not launch, terminate
-or resume it. Do not start a replacement model worker until those attempts have
+or resume it. Re-importing a later consistent source snapshot reconciles a retained
+legacy attempt to its explicitly recorded terminal status; it does not replay it. Do not start a replacement model worker until those attempts have
 been reconciled. Retained images require actual retained raster bytes; filesystem
 paths and historical screenshot claims are not fabricated into images.
 
@@ -158,7 +166,10 @@ OBS_ALLOW_ANALYSIS=1 "$OBS_NODE" --env-file=apps/web/.env.local \
 Only one invocation is claimed at a time. Existing legacy/uncertain/running attempts
 block replacements. No automatic model retry occurs. Failures after invocation
 remain uncertain; inspect the retained snapshot, events and stderr before any
-manual reconciliation. Analysis usage is stored separately from observed work.
+manual reconciliation. Analysis usage is stored separately from observed work. Snapshots, schema, original
+CLI event/stderr bytes and the answer are retained in S3. Output also streams to
+a private local spool so a storage outage cannot silently discard an invocation;
+uncertain attempts remain blocked from automatic replay.
 No paid invocation is needed for the test suite.
 
 Native agents can post canonical hook events to `/api/hooks`, authenticating with
@@ -191,5 +202,16 @@ python3 apps/web/tests/browser_validation.py
 
 The browser suite uses existing Playwright and Chromium; review them before a new
 installation. It checks production routes, shared tables, persisted mutations,
-source/image dialogs, phase filters, themes and phone layouts. The validation
+source/image dialogs and phase filters in the requested desktop dark theme. The validation
 report distinguishes protocol-fixture checks from actual Garage validation.
+
+An optional larger **synthetic read-model fixture** checks list responsiveness with
+1,000 turns and 12,000 events. Run it only against the isolated test stores above:
+
+```sh
+"$OBS_NODE" --env-file=apps/web/.env.test.local --experimental-strip-types apps/web/scripts/seed-load-test.ts
+python3 apps/web/tests/load_browser.py
+```
+
+This measures generated dashboard data, not collector throughput, actual usage,
+model quality, billing, or a before/after performance improvement.

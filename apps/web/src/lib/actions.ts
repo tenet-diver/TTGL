@@ -41,8 +41,13 @@ export async function performAction(input: unknown, receiptId: string) {
                 if (!(await tx `SELECT turn_key FROM turns WHERE turn_key=${key}`).length)
                     throw Error('Unknown native turn');
                 const assigned = (await tx `SELECT task_id FROM assignments WHERE turn_key=${key}`)[0];
-                if (assigned && assigned.task_id !== v.task_id)
-                    throw Error('A selected turn is already assigned to a different task. Reconcile its existing assignment first.');
+                if (assigned && assigned.task_id !== v.task_id) {
+                    const [previous] = await tx `SELECT source FROM tasks WHERE id=${assigned.task_id}`;
+                    if (!previous?.source?.native_turn)
+                        throw Error('A selected turn is already assigned to a different defined task. Reconcile its existing assignment first.');
+                    await tx `UPDATE assignments SET task_id=${v.task_id} WHERE turn_key=${key}`;
+                    await tx `INSERT INTO audit(action,entity,details) VALUES('native_turn_grouped',${key},${tx.json({ from: assigned.task_id, to: v.task_id })})`;
+                }
                 await tx `INSERT INTO assignments(turn_key,task_id) VALUES(${key},${v.task_id}) ON CONFLICT DO NOTHING`;
             }
             await tx `UPDATE tasks SET updated_at=now() WHERE id=${v.task_id}`;
@@ -118,7 +123,7 @@ export async function performAction(input: unknown, receiptId: string) {
             response = { paused: v.paused };
         }
         else if (head.action === 'pricing') {
-            const rate = z.object({ input: z.number().finite().nonnegative(), cached: z.number().finite().nonnegative(), output: z.number().finite().nonnegative() });
+            const rate = z.object({ input: z.number().finite().nonnegative(), cached: z.number().finite().nonnegative(), output: z.number().finite().nonnegative(), write: z.number().finite().nonnegative().optional(), write_5m: z.number().finite().nonnegative().optional(), write_1h: z.number().finite().nonnegative().optional() });
             const v = z.object({ pricing: z.object({ unit: z.literal('USD'), models: z.record(z.string().min(1).max(200), rate), as_of: z.string().max(100).optional() }), model_tiers: z.object({ top: z.array(z.string()).max(100), small: z.array(z.string()).max(100) }).default({ top: [], small: [] }) }).parse(body);
             await tx `INSERT INTO settings(key,value) VALUES('pricing',${tx.json(v.pricing)}),('model_tiers',${tx.json(v.model_tiers)}) ON CONFLICT(key) DO UPDATE SET value=EXCLUDED.value,updated_at=now()`;
             response = { saved: true };
@@ -150,6 +155,10 @@ export async function performAction(input: unknown, receiptId: string) {
             const v = z.object({ id, status: z.enum(['active', 'waiting', 'completed']), outcome: z.string().max(8000).optional() }).parse(body);
             if (v.status === 'completed' && !v.outcome?.trim())
                 throw Error('Record acceptance evidence before marking this task complete');
+            const [previous] = await tx `SELECT status,outcome FROM tasks WHERE id=${v.id} FOR UPDATE`;
+            if (!previous)
+                throw Error('Unknown task');
+            await tx `INSERT INTO audit(action,entity,details) VALUES('task_outcome_recorded',${v.id},${tx.json({ before: previous, after: { status: v.status, outcome: v.outcome || null }, basis: 'Explicit user record; not independently verified' })})`;
             await tx `UPDATE tasks SET status=${v.status},outcome=${v.outcome || null},updated_at=now() WHERE id=${v.id}`;
             entity = v.id;
             response = { saved: true };

@@ -17,11 +17,13 @@ export interface FormField {
         label: string;
     }[];
 }
+export function refreshRecords() { window.dispatchEvent(new Event('observatory-records-changed')); }
 export async function mutate(action: string, values: Record<string, unknown>) {
     const response = await fetch('/api/actions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Idempotency-Key': crypto.randomUUID() }, body: JSON.stringify({ action, ...values }) });
     const result = await response.json();
     if (!response.ok)
         throw Error(result.error || 'The change could not be saved.');
+    refreshRecords();
     return result as Record<string, unknown>;
 }
 export function MutationDialog({ action, title, description, fields = [], values = {}, children, onSaved, destructive = false }: {

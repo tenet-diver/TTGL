@@ -128,6 +128,9 @@ export interface Pricing {
         input: number;
         cached: number;
         output: number;
+        write?: number;
+        write_5m?: number;
+        write_1h?: number;
     }>;
     as_of?: string;
 }

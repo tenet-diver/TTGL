@@ -12,12 +12,12 @@ All commands below run from the repository root.
 - A current browser with native dialog/popover support. Shared UI assets ship in the repository.
 
 Recorded tested versions and service digests are in
-[deployment.lock.json](tools/usage-monitor/config/deployment.lock.json). They are
+[deployment.lock.json](../../tools/usage-monitor/config/deployment.lock.json). They are
 historical tested versions, not instructions to install a floating latest release.
 The Observatory itself uses no third-party Python or npm runtime packages.
 
 Before any download/install/upgrade/first execution, follow the
-[dependency security policy](docs/security/dependency-security-policy.md).
+[dependency security policy](../security/dependency-security-policy.md).
 The documented Codespace exception allows incomplete checks here; confirmed
 vulnerabilities still block affected artifacts. It is not a security clearance
 or a waiver for another machine. None of the setup helpers performs that review
@@ -145,7 +145,7 @@ The current installer keeps the built-in OpenAI provider as the normal route.
 Capture/compression is an explicit experimental profile or `codex_traced.py`
 operation. Earlier default-compression installation claims describe a historical
 configuration. Inspect actual local configuration and the
-[runbook](tools/usage-monitor/README.md) before routing new traffic. Starting the
+[runbook](../../tools/usage-monitor/README.md) before routing new traffic. Starting the
 workspace does not alter provider configuration or resume research schedules.
 
 ## Verification and research reproduction
@@ -161,10 +161,10 @@ node --check tools/usage-monitor/observability/workspace.js
 Browser checks are optional and need their already reviewed QA runtime. Do not
 auto-install a browser or package runner when it is absent.
 
-For research, first select a specific [experiment](docs/EXPERIMENTS.md) and read
+For research, first select a specific [experiment](../EXPERIMENTS.md) and read
 its frozen protocol. The numerical environment uses
-[requirements-research.lock](requirements-research.lock) and
-[pyproject.toml](pyproject.toml); review the entire resolved graph before creating
+[requirements-research.lock](../../requirements-research.lock) and
+[pyproject.toml](../../pyproject.toml); review the entire resolved graph before creating
 or populating a virtual environment. Do not automatically install it just to run
 the stdlib Observatory. With an already prepared research environment:
 
@@ -175,19 +175,19 @@ python scripts/analyze_codex_pilot.py --output-dir results/my-pilot-analysis
 
 Use a fresh output directory. The pilot analysis does not call a model. Dataset
 fetching and routing replay instructions are in
-[the original results](docs/research/results.md) and
-[reproduction guide](docs/paper/discussion-and-reproduction.md). GPU training
-instructions remain [prospective](docs/research/gpu-training.md); no completed
+[the original results](../research/results.md) and
+[reproduction guide](../paper/discussion-and-reproduction.md). GPU training
+instructions remain [prospective](../research/gpu-training.md); no completed
 training-quality result should be inferred from a dry run.
 
 For the native-team work, use the dedicated
-[reproduction/porting guide](docs/paper/codex-team-knowledge/REPRODUCING.md).
+[reproduction/porting guide](../paper/codex-team-knowledge/REPRODUCING.md).
 Do not start a queued study, repeat an uncertain call, access reserved validation
 or enable a schedule as part of ordinary app setup.
 
 ## Applying the Claude Mining references
 
-Use [the architecture mapping](docs/ARCHITECTURE.md) and [design system](DESIGN.md)
+Use [the architecture mapping](../ARCHITECTURE.md) and [design system](../../DESIGN.md)
 for the current Python/native DOM workspace. The supplied project's `cm-task`,
 `cm-hook`, Next.js rebuild commands, private registry and Garage secrets are not
 Observatory commands. Observatory's token-rate scenarios recalculate from retained counters;
@@ -207,7 +207,7 @@ calls or dependency downloads are needed for the tests. From the Observatory dir
 TTGL_BROWSER_QA=1 TTGL_CHROMIUM=/path/to/chromium python3 -m unittest test_workspace_browser test_activity_insights_browser test_task_story_browser test_optimization_browser
 ```
 
-See [Optimization and live steering](docs/OPERATIONS.md) for page behavior, the
+See [Optimization and live steering](../OPERATIONS.md) for page behavior, the
 opt-in hook adapter and its install/status/uninstall commands. Reprocessing
 preserves explicit assignments, model attempts and private source history.
 Do not use destructive database/volume resets to refresh the UI.

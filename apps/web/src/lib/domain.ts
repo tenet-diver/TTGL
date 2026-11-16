@@ -12,13 +12,25 @@ export function iso(value: unknown): string | null {
     const date = new Date(stamp);
     return Number.isNaN(+date) ? null : date.toISOString();
 }
-export function price(event: Pick<NativeEvent, 'kind' | 'model' | 'input_tokens' | 'cached_tokens' | 'output_tokens'>, pricing: Pricing): number | null {
+export function price(event: Pick<NativeEvent, 'kind' | 'model' | 'input_tokens' | 'cached_tokens' | 'output_tokens'> & Partial<Pick<NativeEvent, 'cache_write_tokens' | 'cache_5m_tokens'>>, pricing: Pricing): number | null {
     if (event.kind !== 'generation')
         return null;
     const rate = pricing.models[event.model];
     if (!rate || event.input_tokens == null || event.cached_tokens == null || event.output_tokens == null || event.cached_tokens > event.input_tokens)
         return null;
-    return ((event.input_tokens - event.cached_tokens) * rate.input + event.cached_tokens * rate.cached + event.output_tokens * rate.output) / 1e6;
+    const writes = Number(event.cache_write_tokens || 0), short = event.cache_5m_tokens == null ? null : Number(event.cache_5m_tokens);
+    let writeCost = 0;
+    if (writes > event.input_tokens - event.cached_tokens)
+        return null;
+    if (writes > 0) {
+        if (short != null && short <= writes && rate.write_5m != null && rate.write_1h != null)
+            writeCost = short * rate.write_5m + (writes - short) * rate.write_1h;
+        else if (rate.write != null)
+            writeCost = writes * rate.write;
+        else
+            return null;
+    }
+    return ((event.input_tokens - event.cached_tokens - writes) * rate.input + event.cached_tokens * rate.cached + event.output_tokens * rate.output + writeCost) / 1e6;
 }
 export function scopeFrom(params: URLSearchParams): Scope {
     const range = params.get('range') || '30d';
@@ -60,7 +72,7 @@ export function failureLoops(events: NativeEvent[]) {
     }[] = [];
     let chain: NativeEvent[] = [];
     for (const event of events.filter(e => e.kind === 'tool')) {
-        if (event.failed === 1 && chain.length && event.signature === chain.at(-1)?.signature)
+        if (event.failed === 1 && chain.length && event.turn_key === chain.at(-1)?.turn_key && event.signature === chain.at(-1)?.signature)
             chain.push(event);
         else {
             if (chain.length >= 3)

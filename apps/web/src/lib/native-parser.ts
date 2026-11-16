@@ -63,6 +63,11 @@ export function parseNative(text: string, provider: 'codex' | 'claude', source: 
             const t = ensure(turn, r.timestamp), item = p.item || {};
             if (item.type === 'UserMessage')
                 ensure(turn, r.timestamp, (item.content || []).filter((v: Obj) => v.type === 'text').map((v: Obj) => v.text || '').join('\n'));
+            const signal = ['turn_aborted', 'turn_cancelled', 'task_interrupted', 'interrupt'].includes(p.type) ? 'interrupt' : p.type === 'approval_rejected' || ['denied', 'rejected', 'approval_denied'].includes(item.status) ? 'rejected' : null;
+            if (signal) {
+                t.source.signals ??= [];
+                t.source.signals.push({ kind: signal, event_id: item.id ? sid + ':tool:' + item.id : null, detail: String(p.reason || item.error || item.status || p.type).slice(0, 2000) });
+            }
             if (p.type === 'task_complete')
                 t.completed = true;
             const base = { session_id: sid, turn_id: turn, workspace, event_time: iso(r.timestamp), role, agent_type: agent, source_path: source, source_line: r._line, payload: JSON.stringify(r) };
@@ -79,8 +84,16 @@ export function parseNative(text: string, provider: 'codex' | 'claude', source: 
                 const failed = typeof item.exit_code === 'number' ? (item.exit_code === 0 ? 0 : 1) : ['failed', 'error'].includes(item.status) ? 1 : ['completed', 'success'].includes(item.status) ? 0 : null;
                 events.push({ ...base, id: sid + ':tool:' + item.id, kind: 'tool', name, command: typeof item.command === 'string' ? item.command : Array.isArray(item.command) ? item.command.join(' ') : '', runtime, runtime_role: item.background ? 'background_service_lifetime' : 'operation', failed, output_excerpt: serialized.slice(0, 64000), output_chars: output == null ? null : serialized.length, output_hash: output == null ? '' : hash(serialized) });
             }
-            if (['AssistantMessage', 'AgentMessage', 'assistant_message'].includes(item.type) && p.type === 'item_completed')
+            if (['AssistantMessage', 'AgentMessage', 'assistant_message'].includes(item.type) && p.type === 'item_completed') {
                 t.source.last_message = item.content ?? item.text ?? '';
+                if (item.phase === 'final_answer') {
+                    const content = t.source.last_message;
+                    if (typeof content === 'string')
+                        t.source.answer_chars = content.length;
+                    else if (Array.isArray(content) && content.every(v => ['text', 'output_text'].includes(v.type) && typeof v.text === 'string'))
+                        t.source.answer_chars = content.reduce((n, v) => n + v.text.length, 0);
+                }
+            }
         }
     }
     else {
@@ -104,18 +117,23 @@ export function parseNative(text: string, provider: 'codex' | 'claude', source: 
             }
             if (!currentTurn)
                 currentTurn = 'unattributed';
-            const t = ensure(currentTurn, at), base = { session_id: sid, turn_id: currentTurn, workspace, event_time: at, role: r.agentId ? 'sub' : 'main', agent_type: r.agentId ? 'Unknown subagent' : '', source_path: source, source_line: r._line, payload: JSON.stringify(r) };
+            const t = ensure(currentTurn, at), base = { session_id: sid, turn_id: currentTurn, workspace, event_time: at, role: r.agentId || r.isSidechain === true ? 'sub' : r.isSidechain === false ? 'main' : '', agent_type: r.agentId ? 'Unknown subagent' : '', source_path: source, source_line: r._line, payload: JSON.stringify(r) };
             if (r.type === 'assistant' && message.id && message.usage) {
                 const u = message.stop_reason != null ? message.usage : {}, read = finite(u.cache_read_input_tokens), write = finite(u.cache_creation_input_tokens), input = finite(u.input_tokens), output = finite(u.output_tokens);
                 events.push({ ...base, id: sid + ':response:' + message.id, kind: 'generation', name: 'Model response', model: message.model || '', input_tokens: input != null && read != null && write != null ? input + read + write : null, cached_tokens: read, cache_write_tokens: write, cache_5m_tokens: finite(u.cache_creation?.ephemeral_5m_input_tokens), output_tokens: output, total_tokens: input != null && read != null && write != null && output != null ? input + read + write + output : null });
                 t.source.last_message = content.filter((v: Obj) => v.type === 'text').map((v: Obj) => v.text).join('\n');
+                if (message.stop_reason === 'end_turn') {
+                    t.completed = true;
+                    if (content.every((v: Obj) => v.type === 'text' && typeof v.text === 'string'))
+                        t.source.answer_chars = t.source.last_message.length;
+                }
             }
             for (const b of content) {
                 if (b.type === 'tool_use')
                     toolUses.set(b.id, { ...base, id: sid + ':tool:' + b.id, kind: 'tool', name: b.name, command: typeof b.input?.command === 'string' ? b.input.command : '', payload: JSON.stringify({ request: r, input: b.input }) });
                 if (b.type === 'tool_result' && toolUses.has(b.tool_use_id)) {
                     const use = toolUses.get(b.tool_use_id)!, output = typeof b.content === 'string' ? b.content : JSON.stringify(b.content);
-                    events.push({ ...use, failed: typeof b.is_error === 'boolean' ? Number(b.is_error) : null, output_excerpt: output?.slice(0, 64000) || '', output_chars: output?.length ?? null, output_hash: output == null ? '' : hash(output) });
+                    events.push({ ...use, payload: JSON.stringify({ request: JSON.parse(use.payload), result: r }), failed: typeof b.is_error === 'boolean' ? Number(b.is_error) : null, output_excerpt: output?.slice(0, 64000) || '', output_chars: output?.length ?? null, output_hash: output == null ? '' : hash(output) });
                 }
             }
         }

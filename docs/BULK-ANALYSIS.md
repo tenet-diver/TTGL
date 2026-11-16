@@ -1,5 +1,11 @@
 # Bulk activity analysis
 
+The Next.js migration uses PostgreSQL `analysis_jobs`, an explicitly enabled
+TypeScript worker, and the shared React lists. See [SETUP](../SETUP.md) for its
+commands and the retained-attempt policy. The transport, queue and Python commands
+below document the preserved legacy analyzer; active legacy jobs stay with their
+original owner and are imported without replay.
+
 Observatory's **Bulk analysis** control opens a persistent queue with progress,
 source-event coverage, analysis-token overhead and paginated attempt records.
 **Analyze all activity** explicitly starts one finite pass over all indexed tasks

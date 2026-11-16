@@ -44,7 +44,10 @@ Task evidence is loaded separately when requested.
 
 ## Evidence and interpretation
 
-Defined tasks and source turns are separate units. Assignments use an unambiguous
+Defined tasks and source turns are separate units. Each observed native turn gets
+a source-based detail page (`source.native_turn`), not a model-inferred task or
+an acceptance decision. The marked-task list contains explicit task definitions;
+grouping can move observed boundaries into one definition with an audit record. Assignments use an unambiguous
 native session/turn tuple. Model groups cite source event IDs. Process maps use
 complete source-linked interpretations; newly published groups retain source
 versions so later evidence invalidates their currency. Native tool-command checks

@@ -51,7 +51,7 @@ function TreemapCell(props: Record<string, unknown> & {
                 e.preventDefault();
                 pick();
             }
-        }} style={{ cursor: 'pointer' }}><title>{title}: {format(rest.value)}</title><rect width={w} height={h} fill={String(color || palette[0])} stroke="var(--card)" strokeWidth={1} rx={2}/>{w > 55 && h > 30 && <text x={6} y={17} fill="#111" fontSize={11}><tspan>{title.length > w / 6 ? title.slice(0, Math.max(5, Math.floor(w / 6) - 2)) + '…' : title}</tspan>{h > 45 && <tspan x={6} dy={15}>{format(rest.value)}</tspan>}</text>}</g>;
+        }} style={{ cursor: 'pointer' }}><title>{title + ': ' + format(rest.value)}</title><rect width={w} height={h} fill={String(color || palette[0])} stroke="var(--card)" strokeWidth={1} rx={2}/>{w > 55 && h > 30 && <text x={6} y={17} fill="#111" fontSize={11}><tspan>{title.length > w / 6 ? title.slice(0, Math.max(5, Math.floor(w / 6) - 2)) + '…' : title}</tspan>{h > 45 && <tspan x={6} dy={15}>{format(rest.value)}</tspan>}</text>}</g>;
 }
 function Heatmap({ chart, onPick }: {
     chart: ChartSpec;
@@ -83,7 +83,7 @@ function ProcessFlow({ chart, onPick }: {
             return <g key={i}><path d={path} fill="none" stroke={back ? palette[2] : 'var(--flow-edge)'} strokeWidth={1 + Math.sqrt(Number(edge.times) / max) * 3} strokeDasharray={back ? '4 3' : undefined} markerEnd={`url(#${marker})`} tabIndex={0} role="button" aria-label={`${edge.from} to ${edge.to}: ${edge.times} transitions`} onClick={() => onPick(edge)} onKeyDown={e => {
                     if (e.key === 'Enter')
                         onPick(edge);
-                }}><title>{String(edge.from)} → {String(edge.to)} · {String(edge.times)} moves</title></path><text x={adjacent ? 370 : side + (arc - side) * .7} y={(y1 + y2) / 2 - 4} className="flow-count">{String(edge.times)}</text></g>;
+                }}><title>{`${edge.from} → ${edge.to} · ${edge.times} moves`}</title></path><text x={adjacent ? 370 : side + (arc - side) * .7} y={(y1 + y2) / 2 - 4} className="flow-count">{String(edge.times)}</text></g>;
         })}{names.map((name, i) => {
             const node = nodes.find(n => n.name === name), y = i * 78 + 12;
             return <g key={name} role="button" tabIndex={0} aria-label={name + ': show tasks'} onClick={() => node && onPick(node)} onKeyDown={e => {
