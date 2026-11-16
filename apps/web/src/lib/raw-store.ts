@@ -1,12 +1,19 @@
+import { localGarageEndpoint } from './execution-policy.ts';
 import { S3Client, HeadObjectCommand, PutObjectCommand, GetObjectCommand, HeadBucketCommand } from '@aws-sdk/client-s3';
 import { createHash } from 'node:crypto';
 import { pg } from './database.ts';
 const sha = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex');
-let client: S3Client | undefined;
+let client: S3Client | undefined, clientIdentity = '';
 export function rawClient() {
     if (!process.env.S3_ENDPOINT || !process.env.S3_BUCKET || !process.env.S3_ACCESS_KEY_ID || !process.env.S3_SECRET_ACCESS_KEY)
         throw Error('Garage S3 endpoint, bucket and credentials are required for raw-log retention');
-    return client ??= new S3Client({ endpoint: process.env.S3_ENDPOINT, region: process.env.S3_REGION || 'garage', forcePathStyle: true, credentials: { accessKeyId: process.env.S3_ACCESS_KEY_ID, secretAccessKey: process.env.S3_SECRET_ACCESS_KEY }, maxAttempts: 3, requestChecksumCalculation: 'WHEN_REQUIRED', responseChecksumValidation: 'WHEN_REQUIRED' });
+    const endpoint = localGarageEndpoint(process.env.S3_ENDPOINT), identity = JSON.stringify([endpoint, process.env.S3_REGION, process.env.S3_ACCESS_KEY_ID, process.env.S3_SECRET_ACCESS_KEY]);
+    if (clientIdentity !== identity) {
+        client?.destroy();
+        client = undefined;
+        clientIdentity = identity;
+    }
+    return client ??= new S3Client({ endpoint, region: process.env.S3_REGION || 'garage', forcePathStyle: true, followRegionRedirects: false, credentials: { accessKeyId: process.env.S3_ACCESS_KEY_ID, secretAccessKey: process.env.S3_SECRET_ACCESS_KEY }, maxAttempts: 3, requestChecksumCalculation: 'WHEN_REQUIRED', responseChecksumValidation: 'WHEN_REQUIRED' });
 }
 const bucket = () => process.env.S3_BUCKET!;
 export async function rawHealth() { await rawClient().send(new HeadBucketCommand({ Bucket: bucket() })); return true; }

@@ -18,6 +18,8 @@ export function process(c: Context) {
         subtasks: number;
         spans: number[];
         positions: number[];
+        states: Record<string, number>;
+        failed: number;
     }>(), edges = new Map<string, {
         from: string;
         to: string;
@@ -39,10 +41,14 @@ export function process(c: Context) {
         for (const group of f.groups) {
             let item = categories.get(group.category);
             if (!item) {
-                item = { events: new Set(), tasks: new Set(), subtasks: 0, spans: [], positions: [] };
+                item = { events: new Set(), tasks: new Set(), subtasks: 0, spans: [], positions: [], states: {}, failed: 0 };
                 categories.set(group.category, item);
             }
             item.subtasks++;
+            const state = String(group.result.state || 'unknown');
+            item.states[state] = (item.states[state] || 0) + 1;
+            if (['failed', 'dead_end'].includes(String(group.result.outcome)))
+                item.failed++;
             item.positions.push(Number(group.position));
             item.tasks.add(task.id);
             group.event_ids.forEach(id => item.events.add(id));
@@ -73,7 +79,7 @@ export function process(c: Context) {
             paths.set(key, { path, ids: [] });
         paths.get(key)!.ids.push(task.id);
     }
-    const categoryRows = [...categories].map(([name, item]) => { const events = c.events.filter(e => item.events.has(e.id)), m = metrics(events, c.pricing); return { id: name, name, rank: item.positions.reduce((a, b) => a + b, 0) / item.positions.length, href: '/tasks?category=' + encodeURIComponent(name), subtasks: item.subtasks, tasks: item.tasks.size, steps: events.length, tools: m.tools, errors: m.errors, time: item.spans.length ? item.spans.reduce((a, b) => a + b, 0) : null, cost: m.cost, avg_cost: m.cost != null ? m.cost / item.subtasks : null, avg_time: item.spans.length ? item.spans.reduce((a, b) => a + b, 0) / item.spans.length : null, task_ids: [...item.tasks] }; }).sort((a, b) => a.rank - b.rank);
+    const categoryRows = [...categories].map(([name, item]) => { const events = c.events.filter(e => item.events.has(e.id)), m = metrics(events, c.pricing); return { id: name, name, rank: item.positions.reduce((a, b) => a + b, 0) / item.positions.length, href: '/tasks?category=' + encodeURIComponent(name), subtasks: item.subtasks, completed: item.states.completed || 0, working: item.states.working || 0, blocked: item.states.blocked || 0, unknown: item.states.unknown || 0, failed: item.failed, tasks: item.tasks.size, steps: events.length, tools: m.tools, errors: m.errors, time: item.spans.length ? item.spans.reduce((a, b) => a + b, 0) : null, cost: m.cost, avg_cost: m.cost != null ? m.cost / item.subtasks : null, avg_time: item.spans.length ? item.spans.reduce((a, b) => a + b, 0) / item.spans.length : null, task_ids: [...item.tasks] }; }).sort((a, b) => a.rank - b.rank);
     return { explained, reworked, categories: categoryRows, transitions: [...edges].map(([id, e]) => ({ id, from: e.from, to: e.to, times: e.times, tasks: e.taskIds.size, rework: e.rework, task_ids: [...e.taskIds] })).sort((a, b) => b.times - a.times), paths: [...paths].map(([id, p]) => { const events = c.events.filter(e => p.ids.includes(c.assignments.get(e.turn_key) || '')), m = metrics(events, c.pricing); return { id, path: p.path.join(' → '), length: p.path.length, tasks: p.ids.length, share: ratio(p.ids.length, explained), cost: m.cost, avg_cost: m.cost != null ? m.cost / p.ids.length : null, task_ids: p.ids }; }) };
 }
 export function outcomes(c: Context) {
@@ -249,7 +255,11 @@ export async function recordData(kind: string, scope: Scope, query: Query, extra
     else {
         const task = extra.get('task');
         const c = await context({ ...scope, ...(task ? { task, range: 'all' } : {}) });
-        const source = (task ? taskFacts(c, task).events : c.events).filter(e => (!extra.get('day') || e.event_time.slice(0, 10) === extra.get('day')) && (!extra.get('model') || e.model === extra.get('model')) && (!extra.get('tool') || toolName(e).name === extra.get('tool')));
+        const group = extra.get('subtask') ? c.subtasks.find(g => g.id === extra.get('subtask') && task && taskFacts(c, task).groups.some(s => s.id === g.id)) : null;
+        if (extra.get('subtask') && (!task || !group || !taskFacts(c, task).complete))
+            throw Error('Unknown or stale subtask for this task');
+        const memberIds = group ? new Set(group.event_ids) : null;
+        const source = (task ? taskFacts(c, task).events : c.events).filter(e => (!memberIds || memberIds.has(e.id)) && (!extra.get('day') || e.event_time.slice(0, 10) === extra.get('day')) && (!extra.get('model') || e.model === extra.get('model')) && (!extra.get('tool') || toolName(e).name === extra.get('tool')));
         if (kind === 'tasks' || kind === 'marked') {
             rows = kind === 'tasks' ? turnRows(c) : taskRows(c);
             if (kind === 'marked' && !extra.get('task_ids'))
@@ -294,7 +304,7 @@ export async function recordData(kind: string, scope: Scope, query: Query, extra
         if (['transitions', 'categories', 'paths'].includes(kind)) {
             const p = process(c);
             rows = p[kind as 'transitions' | 'categories' | 'paths'];
-            columns = kind === 'transitions' ? [text('from', 'From'), text('to', 'To'), numeric('times', 'Times'), numeric('tasks', 'Tasks'), numeric('rework', 'Rework')] : kind === 'paths' ? [text('path', 'Path'), numeric('length', 'Length'), numeric('tasks', 'Tasks'), numeric('share', 'Share of tasks', 'percent'), numeric('avg_cost', 'Avg cost', 'money'), numeric('cost', 'Total cost', 'money')] : [text('name', 'Category', 'link'), numeric('subtasks', 'Subtasks'), numeric('tasks', 'Tasks'), numeric('steps', 'Steps'), numeric('tools', 'Tool calls'), numeric('errors', 'Errors'), numeric('avg_time', 'Avg time', 'duration'), numeric('avg_cost', 'Avg cost', 'money')];
+            columns = kind === 'transitions' ? [text('from', 'From'), text('to', 'To'), numeric('times', 'Times'), numeric('tasks', 'Tasks'), numeric('rework', 'Rework')] : kind === 'paths' ? [text('path', 'Path'), numeric('length', 'Length'), numeric('tasks', 'Tasks'), numeric('share', 'Share of tasks', 'percent'), numeric('avg_cost', 'Avg cost', 'money'), numeric('cost', 'Total cost', 'money')] : [text('name', 'Category', 'link'), numeric('subtasks', 'Subtasks'), numeric('completed', 'Completed'), numeric('working', 'Working'), numeric('blocked', 'Blocked'), numeric('failed', 'Unsuccessful'), numeric('unknown', 'Unknown state'), numeric('tasks', 'Tasks'), numeric('steps', 'Steps'), numeric('tools', 'Tool calls'), numeric('errors', 'Errors'), numeric('avg_time', 'Avg time', 'duration'), numeric('avg_cost', 'Avg cost', 'money')];
         }
         if (['fixes', 'loops', 'commits', 'fix-workspaces', 'fix-categories'].includes(kind)) {
             const o = outcomes(c);

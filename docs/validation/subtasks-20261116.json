@@ -1,0 +1,280 @@
+{
+  "recorded_at": "2026-11-16T02:20:19.540642+00:00",
+  "scope": "Desktop dark theme; task/subtask navigation and local subscription-only interpretation",
+  "changes": [
+    "Task pages list typed subtasks; nested subtask routes show only owned steps, tool totals, images, checks and timeline",
+    "Encoded native task/subtask IDs resolve correctly; malformed or wrong-parent IDs are rejected",
+    "Luna schema v2 records activity type, lifecycle state, outcome, failure reason, confidence and source evidence",
+    "Prompt relationships classify new tasks, continuations, course corrections, interruptions and unknowns with earlier-turn references",
+    "Prompt labels and links are reviewable interpretations; existing assignments and explicit user acceptance are preserved",
+    "Only gpt-6-luna can execute, through the collector-bound local Codex ChatGPT subscription; API keys and endpoint overrides are excluded",
+    "Garage S3 accepts only literal local loopback endpoints; region redirects disabled; no remote fallback"
+  ],
+  "checks": {
+    "typescript": "pass",
+    "production_build": "pass",
+    "automated_tests": {
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0
+    },
+    "browser": {
+      "scope": "Desktop dark theme only",
+      "pages": [
+        {
+          "route": "/",
+          "seconds": 2.59,
+          "tables": 4
+        },
+        {
+          "route": "/tasks",
+          "seconds": 1.656,
+          "tables": 2
+        },
+        {
+          "route": "/grouping",
+          "seconds": 1.615,
+          "tables": 2
+        },
+        {
+          "route": "/tools",
+          "seconds": 1.131,
+          "tables": 1
+        },
+        {
+          "route": "/tools?family=Shell&action=cat",
+          "seconds": 1.236,
+          "tables": 2
+        },
+        {
+          "route": "/costs",
+          "seconds": 1.465,
+          "tables": 1
+        },
+        {
+          "route": "/timeline",
+          "seconds": 1.5,
+          "tables": 1
+        },
+        {
+          "route": "/agents",
+          "seconds": 0.888,
+          "tables": 1
+        },
+        {
+          "route": "/process",
+          "seconds": 1.312,
+          "tables": 3
+        },
+        {
+          "route": "/entities",
+          "seconds": 0.875,
+          "tables": 1
+        },
+        {
+          "route": "/outcomes",
+          "seconds": 1.368,
+          "tables": 5
+        },
+        {
+          "route": "/suggestions",
+          "seconds": 1.127,
+          "tables": 2
+        },
+        {
+          "route": "/impact",
+          "seconds": 3.527,
+          "tables": 9
+        },
+        {
+          "route": "/live",
+          "seconds": 1.106,
+          "tables": 2
+        },
+        {
+          "route": "/live/rules",
+          "seconds": 0.919,
+          "tables": 1
+        },
+        {
+          "route": "/categorization",
+          "seconds": 0.929,
+          "tables": 1
+        },
+        {
+          "route": "/data",
+          "seconds": 0.993,
+          "tables": 2
+        },
+        {
+          "route": "/jobs",
+          "seconds": 1.163,
+          "tables": 2
+        },
+        {
+          "route": "/pricing",
+          "seconds": 0.829,
+          "tables": 0
+        },
+        {
+          "route": "/knowledge",
+          "seconds": 0.896,
+          "tables": 1
+        },
+        {
+          "route": "/tasks/qa-task-0",
+          "seconds": 1.13,
+          "tables": 2
+        },
+        {
+          "route": "/tasks/qa-task-0/subtasks/qa-analysis-0%3A0",
+          "seconds": 0.863,
+          "tables": 2
+        },
+        {
+          "route": "/tasks/qa-load-task-923",
+          "seconds": 1.048,
+          "tables": 2
+        }
+      ],
+      "page_errors": [],
+      "checks": [
+        "23 desktop routes, including encoded native task and subtask IDs",
+        "shared search/filter/exact filter/sort/pagination/visibility persistence",
+        "rule mutation persistence",
+        "impact creation with immediate refresh",
+        "task acceptance validation, nested subtask navigation, typed outcomes, scoped phase/source/image interactions and server isolation",
+        "desktop dark theme only, as requested"
+      ],
+      "captures": [
+        {
+          "path": "work/security/subtasks-20261116/browser/overview-dark.png",
+          "sha256": "abc2680bdbc6a674a8f140772d111ce58b8fa17d17b92813d4aba7ccce0c3222"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/tasks-dark.png",
+          "sha256": "ff874cf20992468fb5f2ef9cc46afa81c47469f4a22359ac35dcbf3728497df2"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/grouping-dark.png",
+          "sha256": "e57d4d01a5d9d70a30fb8f3a2816d47a1f8c9128e7a1d56805c8d12249c0a940"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/tools-dark.png",
+          "sha256": "ec11cc51c4329ca3ff9674f70c6d661365b2b7d78fa18609084202f976803fc8"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/tools-family-Shell-action-cat-dark.png",
+          "sha256": "52cd7aa272c359e54183cefea89678ee1961b720adc6942dac6dec638a61c5b7"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/costs-dark.png",
+          "sha256": "7bd6f6f219c021b38c49ccb961248796bc45f0097752d069603b4af5dba0bf09"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/timeline-dark.png",
+          "sha256": "9dd287c30acbb42b672909471b6f7914a4953e4c7df74aa49dc4b46ba7427874"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/agents-dark.png",
+          "sha256": "3d5b64284790aa7555389c2d9f017c126bb448cf41af0d89a716cc9adb6b9b0b"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/process-dark.png",
+          "sha256": "05437e2cbe966eba86d773ded5ccb78bad3ec655f41ff8295b868c7ddbadbf71"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/entities-dark.png",
+          "sha256": "8eac8d65bf5f2d802bbc9786b74da7b2759969287b641feeb143366346acd7f5"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/outcomes-dark.png",
+          "sha256": "6962e29e4bb15a950b6bb57a9948376b11853d1b133d8de64a9dbfc516e109fa"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/suggestions-dark.png",
+          "sha256": "445b9402a8053588977b6d769bccf6db0d2a056c858124d35448fda7a20b4079"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/impact-dark.png",
+          "sha256": "594d26e34de934a5aed42c2a91524aa0c5f6ab99f90420909ff2c1f56f18765d"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/live-dark.png",
+          "sha256": "39d0d3d56b7a394a4ec3d9d3f17032242af55ddf56f71c4e2333954b6548709f"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/live-rules-dark.png",
+          "sha256": "793eda274bd879568c9292118d3d6b52638b52b268029b18dfccb759bbad019d"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/categorization-dark.png",
+          "sha256": "30b57d33659da8f3d227686fcb75b5ef8104e7f08e7d78c9ce10ccc9c207082a"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/data-dark.png",
+          "sha256": "e7617f8c6e4bcf3f3658868bb375dee202140526b0c1c7e2c4fc3dafb3139560"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/jobs-dark.png",
+          "sha256": "701e2ae6376729e7dfb855470202d2fec10d21b4e45d212b64fcd93726bdfd8e"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/pricing-dark.png",
+          "sha256": "9df12f5b433837efde793d1e8806920da9049090ac883a5975e22476e1ac7632"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/knowledge-dark.png",
+          "sha256": "4df33a99df04dce43b782070152b27e8b5d4d345fd8e5cad581dbca5a0092406"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/tasks-qa-task-0-dark.png",
+          "sha256": "9f568c09b725482a85d2ec297a2a7544b5fb33cb6958e5590faa5584b17fb8be"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/tasks-qa-task-0-subtasks-qa-analysis-0-3A0-dark.png",
+          "sha256": "57825db203d08a04824e09f492278f20c2d45e1e9cc935edde3c58e8aaeb73be"
+        },
+        {
+          "path": "work/security/subtasks-20261116/browser/tasks-qa-load-task-923-dark.png",
+          "sha256": "62e2e44aaa36cc74742f720c11291ab9683fa2a20cb928d5da5e4ba844eca8c4"
+        }
+      ],
+      "backend": "real PostgreSQL and ClickHouse; S3 protocol fixture, not Garage"
+    },
+    "synthetic_load": {
+      "scope": "desktop dark",
+      "turns": 1000,
+      "events": 12000,
+      "pagination_rows": 20,
+      "global_phrase_search": "pass",
+      "raw_step_records": 12,
+      "unclassified_task_has_no_unscoped_step_table": true,
+      "page_errors": [],
+      "seconds": 2.973
+    },
+    "worker_policy": "Test double verified Luna arguments, original Codex home, exclusion of API-key/endpoint variables, source-linked publication, rejection of a non-Luna job and changed-account job before invocation, and uncertainty without retry",
+    "model_execution": "CLI test double only; no real Luna invocation or model-quality claim"
+  },
+  "deployment": {
+    "web": "http://127.0.0.1:3333",
+    "postgres": true,
+    "clickhouse": true,
+    "garage": false,
+    "actual_user_task_count": 0,
+    "garage_blocker": "Latest registry release v2.5.0 still resolves to the exact previously reviewed amd64 image with known dependency advisory findings; not installed or executed. No secure replacement was verified.",
+    "security_receipt": "docs/security/garage-local-20261116.json"
+  },
+  "limitations": [
+    "S3 protocol fixture is local and test-only, not Garage compatibility evidence",
+    "Copied historical transcript ownership is not provable from JSONL alone; the source subscription must be selected explicitly",
+    "Synthetic states, prompt relationships and test-double output validate the data/UI contract, not actual Luna interpretation quality",
+    "Reference photographs inform desktop structure and interactions; they are not pixel-diff baselines"
+  ],
+  "evidence_sha256": {
+    "tests-final.log": "5b72fb00dfece33cb0b9ca95bd5e4e37dc7c246d94b6bc4a49cdc1cb49d4709f",
+    "build-final.log": "3a3c4b5bb25652cfb63ed6c6dc7d27eac9ff50a2b6b9523392d46df1f80783c2",
+    "browser-final.log": "eca782d3ef89867da963478b99cd6eedf0ecde6da67744e3fac94144cbde6023",
+    "load-browser-final.log": "7ef29a2541b6157f54508383e8a6e22a5a3d04338450d31604d7198ad8b3fe23"
+  }
+}

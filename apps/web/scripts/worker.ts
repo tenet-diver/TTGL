@@ -1,3 +1,4 @@
+import { subscriptionBinding } from '../src/lib/execution-policy.ts';
 import { retainRasters } from '../src/lib/raster.ts';
 import { discoverTurn } from '../src/lib/discovery.ts';
 import { retainRaw } from '../src/lib/raw-store.ts';
@@ -15,6 +16,14 @@ export async function collect() {
     if (!values.collection_enabled)
         return;
     for (const root of values.source_roots || []) {
+        let binding: Awaited<ReturnType<typeof subscriptionBinding>> | undefined;
+        const sessionsIndex = path.resolve(root.path).split(path.sep).lastIndexOf('sessions'), parts = path.resolve(root.path).split(path.sep);
+        const sourceHome = root.codex_home || (root.provider === 'codex' && sessionsIndex > 0 ? parts.slice(0, sessionsIndex).join(path.sep) : root.provider === 'codex' && path.basename(root.path) === '.codex' ? path.resolve(root.path) : undefined);
+        try {
+            if (sourceHome)
+                binding = await subscriptionBinding(sourceHome);
+        }
+        catch { /* Retain sources even when subscription analysis is unavailable. */ }
         const paths: string[] = [];
         async function walk(folder: string, depth = 0) {
             if (depth > 15)
@@ -41,8 +50,10 @@ export async function collect() {
         }
         for (const file of paths) {
             try {
-                const info = await stat(file), previous = (await pg() `SELECT bytes,mtime_ms FROM source_files WHERE path=${file}`)[0];
-                if (previous && Number(previous.bytes) === info.size && Number(previous.mtime_ms) === Math.trunc(info.mtimeMs))
+                const info = await stat(file), previous = (await pg() `SELECT bytes,mtime_ms,analysis_binding FROM source_files WHERE path=${file}`)[0];
+                if (previous?.analysis_binding && binding && JSON.stringify(previous.analysis_binding) !== JSON.stringify(binding) && (previous.analysis_binding.account_hash !== binding.account_hash || previous.analysis_binding.codex_home !== binding.codex_home))
+                    throw Error('Source subscription changed; existing source ownership was preserved');
+                if (previous && (!binding || previous.analysis_binding) && Number(previous.bytes) === info.size && Number(previous.mtime_ms) === Math.trunc(info.mtimeMs))
                     continue;
                 if (info.size > 268435456)
                     throw Error('Source exceeds 256 MB; split or archive before ingestion');
@@ -54,12 +65,15 @@ export async function collect() {
                     if (result.conflicts)
                         throw Error(`${result.conflicts} native identity conflicts require reconciliation`);
                 }
-                for (const t of parsed.turns)
+                for (const t of parsed.turns) {
+                    if (binding || previous?.analysis_binding)
+                        t.source.analysis_binding = binding || previous.analysis_binding;
                     await pg() `INSERT INTO turns(turn_key,session_id,turn_id,workspace,prompt,started_at,finished_at,completed,role,agent_type,source) VALUES(${t.turn_key},${t.session_id},${t.turn_id},${t.workspace},${t.prompt},${t.started_at},${t.finished_at},${t.completed},${t.role},${t.agent_type},${pg().json(t.source)}) ON CONFLICT(turn_key) DO UPDATE SET prompt=EXCLUDED.prompt,started_at=EXCLUDED.started_at,finished_at=EXCLUDED.finished_at,completed=EXCLUDED.completed,source=EXCLUDED.source`;
+                }
                 for (const turn of parsed.turns)
                     await discoverTurn(turn.turn_key);
                 await retainRasters(parsed.events as import('../src/lib/types.ts').NativeEvent[]);
-                await pg() `INSERT INTO source_files(path,bytes,mtime_ms,sha256,archive_id) VALUES(${file},${info.size},${Math.trunc(info.mtimeMs)},${hash(bytes)},${archive.id}) ON CONFLICT(path) DO UPDATE SET bytes=EXCLUDED.bytes,mtime_ms=EXCLUDED.mtime_ms,sha256=EXCLUDED.sha256,archive_id=EXCLUDED.archive_id,error=NULL,imported_at=now()`;
+                await pg() `INSERT INTO source_files(path,bytes,mtime_ms,sha256,archive_id,analysis_binding) VALUES(${file},${info.size},${Math.trunc(info.mtimeMs)},${hash(bytes)},${archive.id},${binding ? pg().json(binding) : null}) ON CONFLICT(path) DO UPDATE SET bytes=EXCLUDED.bytes,mtime_ms=EXCLUDED.mtime_ms,sha256=EXCLUDED.sha256,archive_id=EXCLUDED.archive_id,analysis_binding=coalesce(source_files.analysis_binding,EXCLUDED.analysis_binding),error=NULL,imported_at=now()`;
             }
             catch (e) {
                 await recordError(file, e);

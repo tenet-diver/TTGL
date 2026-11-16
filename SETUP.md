@@ -54,7 +54,9 @@ numbered migration instead. ClickHouse reads use `FINAL` for version reconciliat
 ## Garage raw-log storage
 
 Set `S3_ENDPOINT`, `S3_REGION=garage`, `S3_BUCKET`, `S3_ACCESS_KEY_ID` and
-`S3_SECRET_ACCESS_KEY` in `.env.local` for an approved Garage deployment. The S3
+`S3_SECRET_ACCESS_KEY` in `.env.local` for an approved **local Garage deployment**. `S3_ENDPOINT` must be a literal
+loopback URL, such as `http://127.0.0.1:13900` or `http://[::1]:13900`; remote
+hosts and DNS aliases are rejected. Region redirects are disabled. The S3
 client uses path-style requests and the maintained AWS SDK. The bucket must exist;
 it is not created implicitly by application requests.
 
@@ -156,12 +158,24 @@ paths and historical screenshot claims are not fabricated into images.
 ## Explicit analysis and steering
 
 The UI queues versioned, source-bound analysis. Execution is a separate explicit
-process using an already authenticated Codex CLI:
+process using **only `gpt-6-luna` through the source Codex subscription**:
 
 ```sh
 OBS_ALLOW_ANALYSIS=1 "$OBS_NODE" --env-file=apps/web/.env.local \
   --experimental-strip-types apps/web/scripts/worker.ts --analyze
 ```
+
+The model cannot be changed to another model. API-key billing is disabled: jobs
+require `auth_mode=chatgpt` in the source Codex home's local `auth.json`. The
+collector stores only the canonical home path and account hash, never tokens.
+For an ordinary Codex `sessions` folder its home is inferred; for copied history,
+Claude transcripts or another folder, set **Local Codex subscription home** when
+adding the source folder. A missing login permits retention but blocks analysis.
+Mixed or changed account bindings are rejected. The worker uses the bound home,
+forces the OpenAI/ChatGPT provider, ignores user provider configuration and removes
+inherited API keys and endpoint overrides. It neither falls back to API billing
+nor silently switches accounts. Historical file ownership cannot be proven from
+a copied transcript; choose its original local subscription explicitly.
 
 Only one invocation is claimed at a time. Existing legacy/uncertain/running attempts
 block replacements. No automatic model retry occurs. Failures after invocation
@@ -215,3 +229,18 @@ python3 apps/web/tests/load_browser.py
 
 This measures generated dashboard data, not collector throughput, actual usage,
 model quality, billing, or a before/after performance improvement.
+
+## Tasks, subtasks and prompt meaning
+
+Open a task to see its subtask list. Open a subtask to inspect only its retained
+steps, tool totals, native checks, timeline and screenshots. The server intersects
+all step filters with the subtask membership; changing an ID filter cannot include
+a sibling's steps. Stale source interpretations must be refreshed first.
+
+Luna supplies each subtask's activity type, lifecycle state, outcome, reason,
+failure explanation, confidence and evidence references. It also classifies each
+analyzed prompt as a separate task, continuation, course correction, interruption
+or unknown, using nearby retained prompts in the same session. Missing evidence
+stays unknown. Prompt links are interpretations for review; current grouping
+assignments and explicit user acceptance are preserved. No keyword rule or tool
+exit status is treated as a model's task-level success decision.

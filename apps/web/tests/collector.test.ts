@@ -17,12 +17,15 @@ test('collector archives exact bytes before derived ingestion and does not advan
     const records = [{ type: 'session_meta', payload: { id: sid, cwd: '/qa/collector', source: 'cli' } }, { type: 'token_usage_record', timestamp: '2026-11-15T10:00:00Z', payload: { turn_id: 't', response_id: 'r', usage: { input_tokens: 10, cached_input_tokens: 5, output_tokens: 2, total_tokens: 12 } } }, { type: 'event_msg', timestamp: '2026-11-15T10:00:01Z', payload: { turn_id: 't', type: 'item_completed', item: { id: 'screenshot', type: 'ImageView', status: 'completed', image_url: 'data:image/png;base64,' + png } } }];
     const bytes = Buffer.from(records.map(r => JSON.stringify(r)).join('\r\n') + '\r\n');
     try {
+        await writeFile(path.join(folder, 'auth.json'), JSON.stringify({ auth_mode: 'chatgpt', tokens: { account_id: 'collector-test', access_token: 'test', refresh_token: 'test' } }), { mode: 0o600 });
         await writeFile(file, bytes);
-        await db `INSERT INTO settings(key,value) VALUES('source_roots',${db.json([{ path: folder, provider: 'codex' }])}),('collection_enabled','true') ON CONFLICT(key) DO UPDATE SET value=EXCLUDED.value`;
+        await db `INSERT INTO settings(key,value) VALUES('source_roots',${db.json([{ path: folder, provider: 'codex', codex_home: folder }])}),('collection_enabled','true') ON CONFLICT(key) DO UPDATE SET value=EXCLUDED.value`;
         await collect();
         while (await flushOutbox()) { }
         const before = (await db `SELECT * FROM source_files WHERE path=${file}`)[0];
         assert.ok(before.archive_id);
+        assert.equal(before.analysis_binding.codex_home, folder);
+        assert.equal(before.analysis_binding.auth_mode, 'chatgpt');
         const [owner] = await db `SELECT t.* FROM assignments a JOIN tasks t ON t.id=a.task_id WHERE a.turn_key=${JSON.stringify([sid, 't'])}`;
         assert.equal(owner.source.native_turn, true);
         assert.equal(owner.status, 'observed');

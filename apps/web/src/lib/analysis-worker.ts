@@ -8,23 +8,9 @@ import { randomUUID } from 'node:crypto';
 import { pg } from './database.ts';
 import { analysisSchema } from './jobs.ts';
 import { invalidate } from './repository.ts';
-import { z } from 'zod';
-const resultSchema = z.object({ summary: z.string().max(4000), task_type: z.string(), outcome: z.enum(['done', 'failed', 'dead_end', 'in_progress', 'cancelled', 'unknown']), outcome_reason: z.string(), intervention: z.string(), intervention_reason: z.string(), subtasks: z.array(z.object({ title: z.string().min(1).max(200), summary: z.string().max(2000), category: z.enum(['explore', 'implement', 'verify', 'deliver', 'debug', 'coordinate', 'research', 'plan', 'other']), event_ids: z.array(z.string()).min(1), confidence: z.number().min(0).max(1), outcome: z.string() })).min(1).max(100), knowledge: z.array(z.object({ title: z.string(), statement: z.string(), event_ids: z.array(z.string()) })).max(20) });
-export function validateAnalysis(raw: unknown, sourceIds: string[]) {
-    const r = resultSchema.parse(raw), known = new Set(sourceIds), seen = new Set<string>();
-    for (const group of r.subtasks)
-        for (const id of group.event_ids) {
-            if (!known.has(id) || seen.has(id))
-                throw Error('Analysis contains unknown or duplicate source IDs');
-            seen.add(id);
-        }
-    if (seen.size !== known.size)
-        throw Error('Analysis does not cover every source event');
-    for (const k of r.knowledge)
-        if (!k.event_ids.length || k.event_ids.some(id => !known.has(id)))
-            throw Error('Knowledge requires valid source references');
-    return r;
-}
+import { LUNA_MODEL, subscriptionEnvironment } from './execution-policy.ts';
+import { validateAnalysis, analysisInstruction } from './analysis-contract.ts';
+export { validateAnalysis } from './analysis-contract.ts';
 export async function runOneAnalysis() {
     if (process.env.OBS_ALLOW_ANALYSIS !== '1')
         throw Error('Explicit OBS_ALLOW_ANALYSIS=1 is required to execute queued model work');
@@ -67,10 +53,13 @@ export async function runOneAnalysis() {
     };
     let stdout = '', stderr = '', invoked = false;
     try {
+        if (job.model !== LUNA_MODEL || job.snapshot.schema_version !== 2)
+            throw Error('Only Luna subscription analysis with the current evidence schema may execute');
+        const executionEnv = await subscriptionEnvironment(job.snapshot.subscription_binding);
         await archiveFiles(['schema.json', 'snapshot.json']);
-        const args = ['exec', '--disable', 'shell_tool', '--disable', 'apps', '--disable', 'browser_use', '-c', 'web_search="disabled"', '-c', 'project_doc_max_bytes=0', '--ignore-user-config', '--skip-git-repo-check', '--ephemeral', '-s', 'read-only', '-C', folder, '-m', job.model, '-c', 'model_reasoning_effort="low"', '--output-schema', schema, '--output-last-message', answer, '--json', '-'];
+        const args = ['exec', '--disable', 'shell_tool', '--disable', 'apps', '--disable', 'browser_use', '-c', 'web_search="disabled"', '-c', 'project_doc_max_bytes=0', '--ignore-user-config', '--skip-git-repo-check', '--ephemeral', '-s', 'read-only', '-C', folder, '-m', LUNA_MODEL, '-c', 'model_provider="openai"', '-c', 'forced_login_method="chatgpt"', '-c', 'model_providers.openai.request_max_retries=0', '-c', 'model_providers.openai.stream_max_retries=0', '-c', 'cli_auth_credentials_store="file"', '-c', 'model_reasoning_effort="low"', '--output-schema', schema, '--output-last-message', answer, '--json', '-'];
         await new Promise<void>((resolve, reject) => {
-            const child = spawn(process.env.OBS_CODEX_BIN || 'codex', args, { stdio: ['pipe', 'pipe', 'pipe'], detached: true });
+            const child = spawn(process.env.OBS_CODEX_BIN || 'codex', args, { stdio: ['pipe', 'pipe', 'pipe'], detached: true, env: executionEnv });
             const timeout = setTimeout(() => { process.kill(-child.pid!, 'SIGTERM'); reject(Error('Analysis timeout; invocation is uncertain and will not be retried')); }, 600000);
             child.on('spawn', () => { invoked = true; });
             child.stdout.on('data', b => {
@@ -87,12 +76,14 @@ export async function runOneAnalysis() {
             });
             child.on('error', e => { clearTimeout(timeout); reject(e); });
             child.on('close', code => { clearTimeout(timeout); code === 0 ? resolve() : reject(Error('Analysis process exited ' + code)); });
-            child.stdin.end('Analyze only the supplied transcript evidence. Do not use tools or change files. Group each source ID exactly once in chronological subtasks. Separate measured facts, interpretations and unverified acceptance. Knowledge must cite source IDs.\n' + JSON.stringify(job.snapshot));
+            child.stdin.end(analysisInstruction + '\n' + JSON.stringify(job.snapshot));
         });
         await archiveFiles(['events.jsonl', 'stderr.log', 'answer.json']);
         const result = validateAnalysis(JSON.parse(await readFile(answer, 'utf8')), job.snapshot.steps.map((s: {
             id: string;
-        }) => s.id));
+        }) => s.id), job.snapshot.turns.map((t: {
+            turn_key: string;
+        }) => t.turn_key), job.snapshot.prompt_context);
         const publication = { ...result, source_versions: Object.fromEntries(job.snapshot.steps.map((s: {
                 id: string;
                 source_version: number;

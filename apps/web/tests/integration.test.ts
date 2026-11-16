@@ -88,3 +88,26 @@ test('token-type stacks reconcile to native totals when all input partitions are
     }
 });
 test('confirmed interventions remain scoped to the selected project', async () => { const c = await context({ ...scope, project: 'no-matching-project' }); assert.equal(outcomes(c).confirmed, 0); });
+import { taskDetail } from '../src/lib/task-detail.ts';
+test('subtask detail and all step/tool queries exclude sibling and adjacent-task events', async () => {
+    invalidate();
+    const task = 'qa-task-0', subtask = 'qa-analysis-0:0';
+    const detail = await taskDetail(task, subtask);
+    assert.equal(detail.selected_subtask.id, subtask);
+    assert.equal(detail.selected_subtask.state, 'blocked');
+    assert.equal(detail.selected_subtask.failure_reason, 'Synthetic missing fixture permission');
+    assert.equal(detail.events.length, 2);
+    assert.ok(detail.events.every((e: any) => ['qa-task-0:0', 'qa-task-0:1'].includes(e.id)));
+    assert.equal(detail.images.length, 1);
+    const sibling = await taskDetail(task, 'qa-analysis-0:1');
+    assert.equal(sibling.images.length, 0);
+    const page = await recordData('steps', scope, q, new URLSearchParams({ task, subtask }));
+    assert.deepEqual(page.rows.map(r => r.id), ['qa-task-0:0', 'qa-task-0:1']);
+    const bypass = await recordData('steps', scope, q, new URLSearchParams({ task, subtask, ids: 'qa-task-0:5,qa-task-1:1' }));
+    assert.equal(bypass.total, 0);
+    const toolPage = await recordData('tools', scope, q, new URLSearchParams({ task, subtask }));
+    assert.equal(toolPage.rows.reduce((s, r) => s + Number(r.calls), 0), 1);
+    await assert.rejects(taskDetail('qa-task-1', subtask), /Unknown subtask/);
+    await assert.rejects(recordData('steps', scope, q, new URLSearchParams({ task: 'qa-task-1', subtask })), /Unknown or stale/);
+    await assert.rejects(recordData('steps', scope, q, new URLSearchParams({ subtask })), /Unknown or stale/);
+});

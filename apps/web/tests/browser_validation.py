@@ -8,6 +8,8 @@ import os
 from pathlib import Path
 import re
 import time
+import urllib.request
+from urllib.parse import quote
 from playwright.sync_api import sync_playwright, expect
 
 BASE = os.environ.get('OBS_TEST_URL', 'http://127.0.0.1:3433')
@@ -21,8 +23,12 @@ PAGES = {
     '/suggestions': 'Suggestions', '/impact': 'Impact', '/live': 'Live sessions',
     '/live/rules': 'Steering rules', '/categorization': 'Categorization',
     '/data': 'Data list', '/jobs': 'Mining jobs', '/pricing': 'Pricing',
-    '/knowledge': 'Knowledge', '/tasks/qa-task-0': 'Validate Observatory flow 00',
+    '/knowledge': 'Knowledge', '/tasks/qa-task-0': 'Validate Observatory flow 00', '/tasks/qa-task-0/subtasks/qa-analysis-0%3A0':'Explore',
 }
+native = json.load(urllib.request.urlopen(BASE+'/api/records/tasks?range=all&search=Retained%20native%20prompt'))
+assert native['rows'], 'Collector-created native task fixture is required for encoded-ID routing checks'
+row=native['rows'][0]
+PAGES[quote(row['href'],safe='/')]=row['title']
 results, errors, captures = [], [], []
 
 def visit(page, route):
@@ -116,11 +122,16 @@ with sync_playwright() as p:
     expect(outcome).not_to_be_visible()
     expect(page.locator('.page-header')).to_contain_text('completed')
     steps = page.locator('[data-list="task-steps"]')
-    expect(steps.locator('tbody tr')).to_have_count(8)
-    page.locator('.phase-track button').first.click()
+    expect(steps).to_have_count(0)
+    page.locator('[data-list="task-subtasks"]').get_by_role('link',name='Explore',exact=True).click()
+    expect(page).to_have_url(re.compile(r'/tasks/qa-task-0/subtasks/qa-analysis-0(?:%3A|:)0'))
     expect(steps.locator('tbody tr')).to_have_count(2)
-    page.get_by_role('button', name='Clear phase / step filter', exact=True).click()
-    expect(steps.locator('tbody tr')).to_have_count(8)
+    expect(page.locator('.page-header')).to_contain_text('blocked')
+    expect(page.locator('main')).to_contain_text('Synthetic missing fixture permission')
+    page.locator('.native-timeline button').first.click()
+    expect(steps.locator('tbody tr')).to_have_count(1)
+    page.get_by_role('button', name='Clear step filter', exact=True).click()
+    expect(steps.locator('tbody tr')).to_have_count(2)
     steps.get_by_role('button', name='Inspect', exact=False).first.click()
     expect(page.get_by_role('dialog')).to_contain_text('Synthetic browser validation')
     page.keyboard.press('Escape')
@@ -128,14 +139,25 @@ with sync_playwright() as p:
     expect(page.get_by_role('dialog').locator('img')).to_be_visible()
     assert page.get_by_role('dialog').locator('img').evaluate('(img)=>img.complete&&img.naturalWidth>0')
     page.keyboard.press('Escape')
-    print('Task phase, source and image flows passed', flush=True)
+    visit(page,'/tasks/qa-task-0/subtasks/qa-analysis-0%3A1')
+    expect(steps.locator('tbody tr')).to_have_count(2)
+    expect(page.locator('.screenshot-grid button')).to_have_count(0)
+    expect(steps.locator('tbody')).not_to_contain_text('qa-task-1')
+    forged=page.request.get(BASE+'/api/records/steps?range=all&task=qa-task-0&subtask=qa-analysis-0%3A0&ids=qa-task-0%3A7')
+    assert forged.ok and forged.json()['total']==0
+    rejected=page.request.get(BASE+'/api/records/steps?range=all&task=qa-task-1&subtask=qa-analysis-0%3A0')
+    assert rejected.status==400
+    visit(page,'/tasks/qa-task-0')
+    page.get_by_role('button',name='Open subtask Explore',exact=True).click()
+    expect(steps.locator('tbody tr')).to_have_count(2)
+    print('Task → subtask navigation, scoped source/image/tool flows and server isolation passed', flush=True)
 
     browser.close()
 assert not errors, errors
 report = {'scope':'Desktop dark theme only', 'pages': results, 'page_errors': errors,
-          'checks': ['21 desktop routes', 'shared search/filter/exact filter/sort/pagination/visibility persistence',
+          'checks': ['23 desktop routes, including encoded native task and subtask IDs', 'shared search/filter/exact filter/sort/pagination/visibility persistence',
                      'rule mutation persistence', 'impact creation with immediate refresh',
-                     'task acceptance validation and phase/source/image interactions', 'desktop dark theme only, as requested'],
+                     'task acceptance validation, nested subtask navigation, typed outcomes, scoped phase/source/image interactions and server isolation', 'desktop dark theme only, as requested'],
           'captures':captures,
           'backend': 'real PostgreSQL and ClickHouse; S3 protocol fixture, not Garage'}
 (OUT / 'results.json').write_text(json.dumps(report, indent=2))

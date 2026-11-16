@@ -129,9 +129,11 @@ export async function performAction(input: unknown, receiptId: string) {
             response = { saved: true };
         }
         else if (head.action === 'source-root') {
-            const v = z.object({ path: z.string().min(1).max(3000), provider: z.enum(['codex', 'claude']) }).parse(body);
+            const v = z.object({ path: z.string().min(1).max(3000), provider: z.enum(['codex', 'claude']), codex_home: z.string().max(3000).optional() }).parse(body);
             if (!path.isAbsolute(v.path))
                 throw Error('Choose an absolute source folder path');
+            if (v.codex_home && !path.isAbsolute(v.codex_home))
+                throw Error('Codex home must be an absolute local path');
             const previous = (await tx `SELECT value FROM settings WHERE key='source_roots' FOR UPDATE`)[0]?.value || [];
             if (previous.length >= 10)
                 throw Error('At most ten source folders are supported');

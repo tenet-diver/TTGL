@@ -68,7 +68,32 @@ validated payloads, UUID receipts and transactional audit. The local app binds
 loopback and expects authenticated access at any remote boundary.
 
 The Garage 2.5.0 candidate has known dependency findings and is not executed.
-Deployment needs a reviewed patched build or approved endpoint. S3 protocol-fixture
+Deployment needs a reviewed patched **local** build. Remote S3 endpoints and
+DNS aliases are rejected; only literal loopback addresses are accepted. S3 protocol-fixture
 tests validate application logic, not actual Garage compatibility or multi-node
 durability. See [SETUP](../SETUP.md) and the dated dependency receipt for exact
 runtime/image choices, migration, operation and validation commands.
+
+## Luna interpretation and drill-down
+
+Task pages list source-linked subtasks; `/tasks/:task/subtasks/:subtask` loads only
+that subtask's events, metrics, tools, checks and retained images. The API applies
+subtask membership before caller filters and rejects wrong-parent or stale IDs.
+All lists reuse the shared DataTable. Process categories include interpreted state
+and unsuccessful-outcome counts. Native tool errors remain separate.
+
+The version 2 Zod contract generates the CLI output JSON schema. Luna assigns
+types, lifecycle states, outcomes, source-backed reasons and prompt relationships.
+Every event is assigned exactly once. Outcome citations must belong to the same
+subtask; negative outcomes require a reason and evidence. Every analyzed prompt
+is classified exactly once, and relationship references must point to an earlier
+retained prompt in the same session. User acceptance remains independently recorded.
+Prompt relationships are labeled and linked without silently changing assignments.
+
+The collector binds each source to its canonical local Codex home and hashed
+ChatGPT account identity. Queued snapshots and worker preflight must agree. Only
+`gpt-6-luna` is allowed, with ChatGPT/file authentication and a filtered environment;
+API keys, custom endpoint variables and user provider configuration are excluded.
+The worker verifies the account immediately before invocation. Credentials remain
+in that home, outside raw archives and public job snapshots. Unbound, mixed,
+changed-account, API-authenticated and legacy-schema jobs cannot invoke a model.

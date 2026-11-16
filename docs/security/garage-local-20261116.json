@@ -1,0 +1,178 @@
+{
+  "recorded_at": "2026-11-16T02:10:19.332810+00:00",
+  "requirement": "Local Garage only; no remote storage endpoint fallback",
+  "latest_registry_release_tag": "v2.5.0",
+  "platform": "linux/amd64",
+  "digest": "sha256:23b16d34e0348d9aca9b960a7429a7e6d494974b5288bfb8f6c3ab856895f71e",
+  "decision": "blocked; not installed or executed",
+  "basis": "Fresh registry tags and manifest match the exact immutable image with the previously confirmed dependency findings. Upstream source and fresh external advisory endpoints are inaccessible from this environment; no newer secure candidate was verified.",
+  "confirmed_prior_findings": [
+    {
+      "package": "webpki-root-certs",
+      "version": "1.0.9",
+      "advisory": "RUSTSEC-2026-0383",
+      "title": "Bundled root certificates allow trust in distrusted emSign intermediates",
+      "patched": [
+        ">= 1.0.10",
+        "= 0.26.11"
+      ],
+      "informational": null
+    },
+    {
+      "package": "libsqlite3-sys",
+      "version": "0.36.0",
+      "advisory": "RUSTSEC-2026-0459",
+      "title": "`libsqlite3-sys` via C SQLite CVE-2026-119375",
+      "patched": [
+        ">= 0.39.0",
+        "< 0.6.0"
+      ],
+      "informational": null
+    },
+    {
+      "package": "rustls",
+      "version": "0.23.44",
+      "advisory": "RUSTSEC-2026-0285",
+      "title": "TLS 1.3 handshake messages incorrectly accepted across encryption level boundaries",
+      "patched": [
+        ">= 0.23.45",
+        "< 0.23.13"
+      ],
+      "informational": null
+    },
+    {
+      "package": "rustls",
+      "version": "0.23.44",
+      "advisory": "RUSTSEC-2026-0347",
+      "title": "Buffered application data sent to outer server after ECH rejection",
+      "patched": [
+        ">= 0.23.46",
+        "< 0.23.44"
+      ],
+      "informational": null
+    },
+    {
+      "package": "rustls",
+      "version": "0.23.44",
+      "advisory": "RUSTSEC-2026-0348",
+      "title": "Brotli certificate decompression can allocate up to 1 GiB before authentication",
+      "patched": [
+        ">= 0.23.46",
+        "< 0.23.9"
+      ],
+      "informational": null
+    },
+    {
+      "package": "rustls",
+      "version": "0.23.44",
+      "advisory": "RUSTSEC-2026-0349",
+      "title": "Unauthenticated ServerHello can downgrade later connections to classical key exchange",
+      "patched": [
+        ">= 0.23.46"
+      ],
+      "informational": null
+    },
+    {
+      "package": "rustls",
+      "version": "0.23.44",
+      "advisory": "RUSTSEC-2026-0346",
+      "title": "`Debug` impls for client session values expose TLS secrets",
+      "patched": [
+        ">= 0.23.46",
+        "< 0.21.0"
+      ],
+      "informational": null
+    },
+    {
+      "package": "ctutils",
+      "version": "0.4.2",
+      "advisory": "RUSTSEC-2026-0385",
+      "title": "Non-constant-time mask generation and `u128` comparisons",
+      "patched": [
+        ">= 0.4.4"
+      ],
+      "informational": null
+    },
+    {
+      "package": "rustls-webpki",
+      "version": "0.103.15",
+      "advisory": "RUSTSEC-2026-0382",
+      "title": "Certificate verification may accept distrusted intermediates",
+      "patched": [
+        ">= 0.103.16, < 0.104.0-alpha.1",
+        ">= 0.104.0-alpha.8"
+      ],
+      "informational": null
+    },
+    {
+      "package": "zstd",
+      "version": "0.14.0",
+      "advisory": "RUSTSEC-2026-0391",
+      "title": "Data from an abandoned stream leaks into the next stream on a reused context",
+      "patched": [
+        "^0.13.4",
+        ">= 0.14.3",
+        "< 0.13.2"
+      ],
+      "informational": null
+    },
+    {
+      "package": "quick-xml",
+      "version": "0.39.4",
+      "advisory": "RUSTSEC-2026-0194",
+      "title": "Quadratic run time when checking a start tag for duplicate attribute names",
+      "patched": [
+        ">= 0.41.0"
+      ],
+      "informational": null
+    },
+    {
+      "package": "quick-xml",
+      "version": "0.39.4",
+      "advisory": "RUSTSEC-2026-0195",
+      "title": "Unbounded namespace-declaration allocation in `NsReader` enables memory-exhaustion denial of service",
+      "patched": [
+        ">= 0.41.0"
+      ],
+      "informational": null
+    },
+    {
+      "package": "zstd-sys",
+      "version": "2.1.0+zstd.1.5.7",
+      "advisory": "RUSTSEC-2026-0410",
+      "title": "WebAssembly allocator shim corrupts memory on allocation failure",
+      "patched": [
+        ">= 2.1.2",
+        "< 2.0.9"
+      ],
+      "informational": null
+    },
+    {
+      "package": "zstd-safe",
+      "version": "8.0.0",
+      "advisory": "RUSTSEC-2026-0398",
+      "title": "`Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end",
+      "patched": [
+        "^7.4.0",
+        ">= 8.2.0",
+        "< 7.2.2"
+      ],
+      "informational": null
+    },
+    {
+      "package": "zstd-safe",
+      "version": "8.0.0",
+      "advisory": "RUSTSEC-2026-0403",
+      "title": "Uninitialized memory exposed when streaming decompression of a legacy frame fails",
+      "patched": [
+        "^7.4.0",
+        ">= 8.2.0",
+        "< 4.0.0"
+      ],
+      "informational": null
+    }
+  ],
+  "registry_tags_sha256": "dae90b3a709f42933d6e2a2a8643fd77a1e7752d5e723b70a273a23ec6dce9e1",
+  "registry_manifest_sha256": "677e5b758e4425a325b811c425c026bf35a4bf42f7ddbaa773de3f4fd779a5a5",
+  "application_policy": "Only http(s)://127.0.0.1:<port> or http(s)://[::1]:<port>; path-style S3; region redirects disabled. The protocol fixture remains test-only and is not Garage."
+}

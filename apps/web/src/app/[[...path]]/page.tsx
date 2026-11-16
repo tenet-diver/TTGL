@@ -11,9 +11,15 @@ export default async function Page({ params, searchParams }: {
     }>;
     searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-    const path = (await params).path || [], raw = await searchParams, search = new URLSearchParams(Object.entries(raw).flatMap(([k, v]) => typeof v === 'string' ? [[k, v]] : []));
-    if (path[0] === 'tasks' && path[1])
-        return <TaskDetail id={path[1]}/>;
+    const rawPath = (await params).path || [];
+    let path: string[];
+    try { path = rawPath.map(segment => decodeURIComponent(segment)); } catch { notFound(); }
+    const raw = await searchParams, search = new URLSearchParams(Object.entries(raw).flatMap(([k, v]) => typeof v === 'string' ? [[k, v]] : []));
+    if (path[0] === 'tasks' && path[1]) {
+        if (path.length !== 2 && !(path.length === 4 && path[2] === 'subtasks'))
+            notFound();
+        return <TaskDetail key={path.join('/')} id={path[1]} subtaskId={path[3]}/>;
+    }
     if (path.length > 1 && path.join('/') !== 'live/rules')
         notFound();
     const view = path.length ? path.join('/') === 'live/rules' ? 'rules' : path[0] : 'overview';

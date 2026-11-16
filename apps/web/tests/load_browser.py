@@ -19,8 +19,11 @@ with sync_playwright() as p:
     expect(table.locator('.record-count')).to_have_text('1 records')
     expect(table.locator('tbody')).to_contain_text('task 999')
     page.goto(base+'/tasks/qa-load-task-0',wait_until='networkidle')
-    expect(page.locator('[data-list="task-steps"] tbody tr')).to_have_count(12)
+    expect(page.locator('[data-list="task-steps"]')).to_have_count(0)
+    expect(page.get_by_role('button',name='Analyze with Luna',exact=True)).to_be_visible()
+    response=page.request.get(base+'/api/records/steps?range=all&project=qa-load&task=qa-load-task-0')
+    assert response.ok and response.json()['total']==12
     page.screenshot(path='work/security/next-migration-20261115/browser/load-task-desktop-dark.png',full_page=True)
     assert not errors,errors
-    print(json.dumps({'scope':'desktop dark','turns':1000,'events':12000,'pagination_rows':20,'global_phrase_search':'pass','step_rows':12,'page_errors':errors,'seconds':round(time.monotonic()-started,3)}))
+    print(json.dumps({'scope':'desktop dark','turns':1000,'events':12000,'pagination_rows':20,'global_phrase_search':'pass','raw_step_records':12,'unclassified_task_has_no_unscoped_step_table':True,'page_errors':errors,'seconds':round(time.monotonic()-started,3)}))
     browser.close()

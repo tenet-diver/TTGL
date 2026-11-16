@@ -39,7 +39,8 @@ active model attempts and private histories are not automatically changed.
 
 The published Garage 2.5.0 image failed the dated dependency review and is not
 started by the supplied Compose files. Configure an approved patched Garage
-endpoint before enabling collection; raw retention fails closed. Tests using an
+on loopback before enabling collection. Remote storage endpoints are rejected;
+raw retention fails closed. Tests using an
 S3 protocol fixture do not establish real Garage compatibility.
 
 ## What the experiments show

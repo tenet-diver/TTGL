@@ -21,8 +21,10 @@ export async function seedTest() {
         }
         const aid = 'qa-analysis-' + n;
         await db `INSERT INTO analyses(id,task_id,snapshot_hash,summary,task_type,result) VALUES(${aid},${id},'fixture','Synthetic validated process fixture','feature','{"knowledge":[{"title":"Fixture lesson","statement":"Inspect native source evidence","event_ids":[]}]}') ON CONFLICT DO NOTHING`;
-        for (let i = 0; i < 4; i++)
-            await db `INSERT INTO subtasks(id,analysis_id,position,title,summary,category,confidence,event_ids,result) VALUES(${aid + ':' + i},${aid},${i},${['Explore', 'Implement', 'Verify', 'Deliver'][i]},'Synthetic interpretation for reference validation',${['explore', 'implement', 'verify', 'deliver'][i]},0.9,${ids.slice(i * 2, i * 2 + 2)},'{}') ON CONFLICT DO NOTHING`;
+        for (let i = 0; i < 4; i++) {
+            const failure = n % 5 === 0, result = { state: failure ? 'blocked' : 'completed', outcome: failure ? 'failed' : 'done', outcome_reason: failure ? 'Synthetic check was unsuccessful' : 'Synthetic check completed', failure_reason: failure ? 'Synthetic missing fixture permission' : null, evidence_event_ids: [ids[i * 2 + 1]] };
+            await db `INSERT INTO subtasks(id,analysis_id,position,title,summary,category,confidence,event_ids,result) VALUES(${aid + ':' + i},${aid},${i},${['Explore', 'Implement', 'Verify', 'Deliver'][i]},'Synthetic interpretation for reference validation',${['explore', 'implement', 'verify', 'deliver'][i]},0.9,${ids.slice(i * 2, i * 2 + 2)},${db.json(result)}) ON CONFLICT(id) DO UPDATE SET result=EXCLUDED.result`;
+        }
         if (n % 6 === 0)
             await db `INSERT INTO evidence_notes(id,task_id,kind,title,detail,outcome) VALUES(${id + ':note'},${id},'intervention','Recorded correction','Confirmed synthetic intervention','confirmed') ON CONFLICT DO NOTHING`;
     }
