@@ -1,3 +1,4 @@
+import { experienceRows, experienceCollections } from './experience-views.ts';
 import { pg } from './database.ts';
 import { experimentHistory } from './experiment-history.ts';
 import { context, metrics, taskFacts, taskRows, turnRows, groupEvents, toolName, category, commonColumns, type Context } from './repository.ts';
@@ -206,7 +207,9 @@ export function daily(c: Context, measure: 'cost' | 'tokens' | 'calls' = 'cost',
 export async function recordData(kind: string, scope: Scope, query: Query, extra: URLSearchParams) {
     let rows: Row[] = [], columns: Column[] = [];
     const db = pg();
-    if (['experiments', 'experiment-evaluations', 'experiment-reviews', 'experiment-accounting', 'rules', 'live', 'rule-log', 'changes', 'jobs', 'sources', 'categorization', 'knowledge', 'archives'].includes(kind)) {
+    if (experienceCollections.includes(kind)) {
+        const data = await experienceRows(kind, scope, extra); rows = data.rows; columns = data.columns;
+    } else if (['experiments', 'experiment-evaluations', 'experiment-reviews', 'experiment-accounting', 'rules', 'live', 'rule-log', 'changes', 'jobs', 'sources', 'categorization', 'knowledge', 'archives'].includes(kind)) {
         if (kind === 'experiments' || kind.startsWith('experiment-')) {
             rows = (await experimentHistory(scope))[kind];
             columns = kind === 'experiments' ? [text('title', 'Proposal'), text('change', 'Change preview'), text('state', 'Evaluation state', 'badge'), text('decision', 'Decision'), text('implementation', 'Implementation'), numeric('evaluations', 'Evaluations'), text('created', 'Created', 'date')] :

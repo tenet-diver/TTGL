@@ -1,0 +1,22 @@
+{
+  "recorded_at": "2026-11-17",
+  "new_installs": 0,
+  "implementation": "existing Zod, PostgreSQL full text, AWS S3 SDK, ClickHouse client; installed jsonschema/PyYAML closure",
+  "python_runtime": {
+    "packages_reviewed": 7,
+    "fresh_osv_findings": 0,
+    "private_receipt_sha256": "246e617d230a62865355a0de5120be448e588d747894a79a980921a5b6b2fedd"
+  },
+  "vector": {
+    "enabled": false,
+    "reason": "pgvector and local embedding model not qualified; lexical is an explicit separate baseline"
+  },
+  "local_raw_storage": {
+    "running_provider": "approved PGSTY SILO",
+    "literal_loopback": true,
+    "garage_vendor_approved": true,
+    "garage_2_5_0": "confirmed advisory matches remain; not executed"
+  },
+  "actor_runtime": "no new image selected or downloaded; requires exact qualified image receipt",
+  "native_trial_ready": false
+}

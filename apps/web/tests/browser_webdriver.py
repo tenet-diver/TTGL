@@ -96,7 +96,7 @@ try:
     assert any(row['id'] == 'qa-task-0' for row in fixture['rows']), 'Isolated QA fixtures required'
     wd('POST', '/window/rect', {'width': 1440, 'height': 1040})
     routes = ['/', '/tasks', '/grouping', '/tools', '/costs', '/timeline', '/agents', '/process',
-              '/entities', '/outcomes', '/suggestions', '/impact', '/experiments', '/live', '/live/rules',
+              '/experiences', '/delegation', '/experience-results', '/entities', '/outcomes', '/suggestions', '/impact', '/experiments', '/live', '/live/rules',
               '/categorization', '/data', '/jobs', '/pricing', '/knowledge', '/tasks/qa-task-0',
               '/tasks/qa-task-0/subtasks/qa-analysis-0%3A0']
     for path in ([] if os.environ.get('OBS_BROWSER_SKIP_ROUTES') else routes):

@@ -31,7 +31,7 @@ export function Dashboard({ view, data, scope }: {
         }, 5000);
         return () => clearInterval(timer);
     }, [view, router]);
-    const extra = Object.fromEntries(['family', 'action', 'model', 'category', 'day'].flatMap(key => params.get(key) ? [[key, params.get(key)!]] : []));
+    const extra = Object.fromEntries(['family', 'action', 'model', 'category', 'day', 'study'].flatMap(key => params.get(key) ? [[key, params.get(key)!]] : []));
     const pick = (row: Row) => {
         if (row.chart_id === 'tool-treemap') {
             const query = new URLSearchParams(params);

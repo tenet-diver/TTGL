@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "status": "proposed; audited model/runtime capability pins must be resolved at freeze",
+  "annotator": {
+    "model_id": "gpt-6-luna",
+    "authentication": "source_local_chatgpt",
+    "tools_enabled": false,
+    "automatic_retries": 0
+  },
+  "small_executor": {
+    "model_id": "gpt-6-luna",
+    "runtime_revision": null,
+    "reasoning_effort": "medium"
+  },
+  "large_executor": {
+    "model_id": "gpt-6.1-sol",
+    "runtime_revision": null,
+    "reasoning_effort": "medium"
+  },
+  "price_scenario_revision": null,
+  "api_key_fallback": false
+}

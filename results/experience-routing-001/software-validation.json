@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "scope": "Software qualification only; no new model experiment results",
+  "web_unit_tests": {
+    "passed": 54,
+    "failed": 0
+  },
+  "database_integration_tests": {
+    "passed": 23,
+    "failed": 0
+  },
+  "python_experience_tests": {
+    "passed": 18,
+    "failed": 0
+  },
+  "desktop_dark_browser_checks": {
+    "passed": 33,
+    "failed": 0
+  },
+  "typescript_check": "passed",
+  "production_build": "passed",
+  "production_health": {
+    "postgres": true,
+    "clickhouse": true,
+    "raw_storage": true,
+    "raw_storage_kind": "local_s3"
+  },
+  "deterministic_mechanism_cases": {
+    "passed": 6,
+    "actual_model_calls": 0
+  },
+  "native_experiment_trials": 0,
+  "annotation_audit": "not run",
+  "target90_result": null,
+  "status": "unfinished implementation checkpoint; see implementation-status.md"
+}

@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "study_id": "experience-routing-001",
+  "status": "source inventory prepared; no eligible public provenance receipts or adjudicated corpus selected",
+  "assignments": [],
+  "maximum_assignments": 60,
+  "prompt_version": "experience-envelope-v3-001",
+  "model_calls": 0
+}

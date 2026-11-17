@@ -23,6 +23,9 @@ export const routes: Record<string, {
     outcomes: { title: 'Outcomes', description: 'Recorded fixes, repeated failures and changes. A missing signal does not establish success.', section: 'Analysis' },
     suggestions: { title: 'Suggestions', description: 'Ways to spend fewer tokens and less time, from source-linked checks and explicit analysis.', section: 'Optimize' },
     impact: { title: 'Impact', description: 'Record what you applied and when. Compare the 14 days before with up to 14 days after; lower is better.', section: 'Optimize' },
+    experiences: { title: 'Experiences', description: 'Source-linked procedures, interpreted outcomes and immutable memory snapshots. Interpretations and verified reuse stay separate.', section: 'Optimize' },
+    delegation: { title: 'Delegation', description: 'Plans, retrieval, executor choices and public verification. Inspect a receipt to trace its checkpoint and source evidence.', section: 'Optimize' },
+    'experience-results': { title: 'Experience results', description: 'Registered experience studies and separately recorded independent evaluations. Fixture checks are not model-quality results.', section: 'Optimize' },
     experiments: { title: 'Experiments', description: 'Retained proposals, registered evaluations, analyst verdicts and research overhead. Inspect a row for its original evidence.', section: 'Optimize' },
     live: { title: 'Live sessions', description: 'Sessions reported to the hooks in the last 24 hours. Send a note or pause a session.', section: 'Steer' },
     rules: { title: 'Steering rules', description: 'Hooks check these rules at tool calls, prompts and stops. Built-ins begin in Warn; change the mode when ready.', section: 'Steer' },
@@ -43,6 +46,10 @@ export async function pageData(view: string, scope: Scope, params: URLSearchPara
         throw Error('Unknown page');
     const meta = await metadata();
     const result: PageData = { ...info, ...meta, metrics: [], panels: [], actions: [] };
+    if (['experiences', 'delegation', 'experience-results'].includes(view)) {
+        result.panels = view === 'experiences' ? [list('experience-versions', 'Procedures and examples'), list('experience-predictions', 'Public outcome interpretations', 'Confidence is an interpretation until calibrated.'), list('experience-snapshots', 'Memory snapshots'), list('experience-jobs', 'Extraction attempts')] : view === 'delegation' ? [list('experience-plans', 'Plan revisions'), list('experience-retrievals', 'Retrieval receipts'), list('experience-routes', 'Routing decisions'), list('experience-attempts', 'Attempt transitions'), list('experience-verifications', 'Public verification')] : [list('experience-studies', 'Registered studies'), list('experience-results', 'Independent evaluation summaries', 'Hidden tests, reference patches and evaluator internals are not exposed here or through the runtime service.')];
+        return result;
+    }
     if (['experiments', 'rules', 'categorization', 'data', 'jobs', 'knowledge', 'pricing', 'live'].includes(view)) {
         if (view === 'experiments')
             result.panels = [list('experiments', 'Proposals', 'Evaluation, decision and implementation are separate. Unrecorded states remain unrecorded.'), list('experiment-evaluations', 'Measured evaluations', 'Inspect each row for its retained protocol, measurements and artifact hash. Failed trials remain visible.'), list('experiment-reviews', 'Analyst reviews', 'Keep, reject and inconclusive are interpretations of a specific evaluation, not new measurements.'), list('experiment-accounting', 'Research overhead snapshots', 'Snapshots can overlap. Do not add snapshots together or treat gross token reductions as net cash savings.')];

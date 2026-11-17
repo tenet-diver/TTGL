@@ -1,0 +1,40 @@
+schema_version: 1
+study_id: experience-routing-001
+project_id: observatory
+mode: frozen_memory
+allow_model_execution: false
+automatic_retries: 0
+active_workers: 1
+arms: [L0, S0, LP0, LPM, SFM, HRM]
+models:
+  annotator: gpt-6-luna
+  small: gpt-6-luna
+  large: gpt-6.1-sol
+order_seed: 17012026
+policy_version: retrieval-router-v1
+maximum_large_fallbacks_per_node: 1
+maximum_parent_replans: 1
+routing:
+  threshold: 0.90
+  minimum_independent_tasks: 3
+  exploration_probability: 0
+budgets:
+  maximum_parent_assignments: 48
+  maximum_invocations: null
+  maximum_model_tokens: null
+  maximum_elapsed_seconds: null
+per_parent:
+  maximum_invocations: null
+  maximum_model_tokens: null
+  maximum_elapsed_seconds: null
+pins:
+  source_commit: null
+  model_catalog: null
+  task_manifest: null
+  exclusion_registry: null
+  runtime_isolation_manifest: null
+  execution_fairness_manifest: null
+  readiness_manifest: null
+  rate_scenario: null
+  source_hashes: null
+  selection_rule: null

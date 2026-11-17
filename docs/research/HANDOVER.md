@@ -3979,3 +3979,15 @@ A final layout check removed an inherited 120-pixel range-label minimum and inpu
 flex growth that wasted mobile width. The three primary selectors and Apply now
 fit together at 390 pixels. Both layout/navigation and filter/draft workflows were
 rechecked after this CSS adjustment, including an explicit visible-Apply assertion.
+
+## 17 November 2026 — experience routing implementation checkpoint
+
+The new additive experience/delegation implementation is **unfinished**. Resume at
+[experience-routing-implementation-status.md](experience-routing-implementation-status.md)
+and the preserved [full user plan](experience-routing-plan.md). That checkpoint
+records completed modules, validation receipts, outstanding gaps, applied immutable
+migrations, processes, storage policy and exact next commands. New experiment
+registration: `experiments/experience-routing-001`; model execution remains disabled.
+No new scored model trials or benchmark reservations; scheduled monitoring stays paused.
+The user requested committing/pushing all work before pausing. Preserve this checkpoint
+and continue from it rather than restarting the feature or repeating any retained call.

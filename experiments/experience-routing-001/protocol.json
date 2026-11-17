@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "study_id": "experience-routing-001",
+  "registered_at": "2026-11-17",
+  "owner": "active user chat",
+  "status": "software qualification; model execution disabled",
+  "research_mode": "frozen_memory",
+  "arms": [
+    "L0",
+    "S0",
+    "LP0",
+    "LPM",
+    "SFM",
+    "HRM"
+  ],
+  "primary_contrast": [
+    "HRM",
+    "LPM"
+  ],
+  "product_reference": [
+    "HRM",
+    "L0"
+  ],
+  "target": {
+    "scenario_saving": 0.9,
+    "observed_quality_drop": 0,
+    "established": false
+  },
+  "automatic_retries": 0,
+  "frozen_legacy_sources_modified": false,
+  "native_trials": 0,
+  "maximum_parent_assignments_proposed": 48,
+  "research_schedules": "paused",
+  "source_inventory_policy": "exclude historical/reserved and incomplete provenance before selection",
+  "stage_gate": "Resolve finite invocation/token/time budgets, immutable pins, qualified actor environment and native/evaluator controls before freeze/run. Draft volumes are not authorizations to bypass gates."
+}

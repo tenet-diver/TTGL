@@ -1,0 +1,77 @@
+{
+  "actual_model_calls": 0,
+  "cases": [
+    {
+      "case": "success",
+      "fixture_only": true,
+      "independent_replay": {
+        "passed": true,
+        "score_label": "fixture control-flow verification, not benchmark/model quality",
+        "source_only_independent_replay": true,
+        "tests_collected": 2
+      },
+      "passed": true,
+      "public_state": "completed",
+      "simulated_backend_calls": 2
+    },
+    {
+      "case": "public_failure",
+      "fixture_only": true,
+      "independent_replay": {
+        "passed": true,
+        "score_label": "fixture control-flow verification, not benchmark/model quality",
+        "source_only_independent_replay": true,
+        "tests_collected": 2
+      },
+      "passed": true,
+      "public_state": "completed",
+      "simulated_backend_calls": 3
+    },
+    {
+      "case": "integration_failure",
+      "fixture_only": true,
+      "independent_replay": {
+        "passed": true,
+        "score_label": "fixture control-flow verification, not benchmark/model quality",
+        "source_only_independent_replay": true,
+        "tests_collected": 2
+      },
+      "passed": true,
+      "public_state": "completed",
+      "simulated_backend_calls": 3
+    },
+    {
+      "case": "protected_write",
+      "fixture_only": true,
+      "independent_replay": {
+        "passed": true,
+        "score_label": "fixture control-flow verification, not benchmark/model quality",
+        "source_only_independent_replay": true,
+        "tests_collected": 2
+      },
+      "passed": true,
+      "public_state": "completed",
+      "simulated_backend_calls": 3
+    },
+    {
+      "case": "uncertain",
+      "fixture_only": true,
+      "independent_replay": null,
+      "passed": true,
+      "public_state": "uncertain",
+      "simulated_backend_calls": 1
+    },
+    {
+      "case": "budget",
+      "fixture_only": true,
+      "independent_replay": null,
+      "passed": true,
+      "public_state": "budget_exhausted",
+      "simulated_backend_calls": 1
+    }
+  ],
+  "passed": true,
+  "schema_version": 1,
+  "scope": "Deterministic software mechanism checks with a synthetic backend. No Luna/Sol inference or economic result.",
+  "target90_result": null
+}

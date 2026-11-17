@@ -1,0 +1,25 @@
+{
+  "valid_draft": true,
+  "execution_ready": false,
+  "missing": [
+    "budget:maximum_elapsed_seconds",
+    "budget:maximum_invocations",
+    "budget:maximum_model_tokens",
+    "pin:exclusion_registry",
+    "pin:execution_fairness_manifest",
+    "pin:model_catalog",
+    "pin:rate_scenario",
+    "pin:readiness_manifest",
+    "pin:runtime_isolation_manifest",
+    "pin:selection_rule",
+    "pin:source_commit",
+    "pin:source_hashes",
+    "pin:task_manifest"
+  ],
+  "configuration_hash": "74a7bb22dc9845f7562353a50a3fc23ea823911868264a203fbd4c589c2c3235",
+  "model_calls": 0,
+  "stage": "model-free preparation",
+  "next_model_dependent_gates": [],
+  "automatic_retries": 0,
+  "execution_enabled": false
+}

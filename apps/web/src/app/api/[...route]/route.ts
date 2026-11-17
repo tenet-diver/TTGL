@@ -1,3 +1,4 @@
+import { experienceService } from '@/lib/experience-service';
 import { retainRasters } from '@/lib/raster';
 import { sameOrigin } from '@/lib/request-guards';
 import { rawHealth, retainRaw, restoreRaw } from '@/lib/raw-store';
@@ -78,6 +79,8 @@ export async function POST(req: NextRequest, { params }: {
 }) {
     const r = (await params).route;
     try {
+        if (r[0] === 'experience')
+            return json(await experienceService(req.headers.get('authorization'), await body(req)));
         if (r[0] === 'ingest') {
             if (!tokenMatches(req.headers.get('authorization')))
                 return json({ error: 'Authentication required' }, 401);
@@ -122,6 +125,6 @@ export async function POST(req: NextRequest, { params }: {
     catch (error) {
         const message = error instanceof ZodError ? error.issues.map(i => i.path.join('.') + ': ' + i.message).join('; ') : error instanceof Error ? error.message : 'Invalid request';
         console.error('Observatory mutation failed', message);
-        return json({ error: /password|postgres|SQL|syntax|connection|relation/i.test(message) ? 'Change could not be saved; check service health.' : message }, 400);
+        return json({ error: /password|postgres|SQL|syntax|connection|relation/i.test(message) ? 'Change could not be saved; check service health.' : message }, /authentication required/i.test(message) ? 401 : /access denied|Wrong experiment arm|Wrong task assignment/.test(message) ? 403 : 400);
     }
 }

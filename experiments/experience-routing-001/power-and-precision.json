@@ -1,0 +1,13 @@
+{
+  "status": "not registered; required before confirmatory launch",
+  "primary_contrast": [
+    "HRM",
+    "LPM"
+  ],
+  "quality_margin": null,
+  "eligible_fresh_tasks": null,
+  "required_task_count": null,
+  "development_discordance": null,
+  "model_calls": 0,
+  "noninferiority_claim_permitted": false
+}
