@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { price, iso, scopeFrom, queryFrom, rolling, turnKey, failureLoops } from './domain.ts';
-import { collection } from './record-query.ts';
+import { price, iso, scopeFrom, queryFrom, rolling, turnKey, failureLoops, hash } from './domain.ts';
+import { collection, exactFilter } from './record-query.ts';
 import { normalizeEvent } from './ingest.ts';
 import { parseNative } from './native-parser.ts';
 import { turnSegments } from './timeline.ts';
@@ -22,6 +22,33 @@ test('invalid query sizes, filters and timezone fail validation', () => {
         assert.throws(() => queryFrom(new URLSearchParams(p)));
     assert.throws(() => scopeFrom(new URLSearchParams('timezone=Invalid')));
     assert.throws(() => scopeFrom(new URLSearchParams('range=2d')));
+});
+test('malformed JSON and non-object query envelopes return a stable validation error', () => {
+    for (const value of ['{broken', 'null', '[]', '"model"', '{"filters":[]}', '{"offset":9007199254740992}'])
+        assert.throws(() => queryFrom(new URLSearchParams({ query: value })), /Invalid record (query|page)/, value);
+});
+test('model exclusion round-trips quoted names through URL and JSON and covers all pages', () => {
+    const name = 'provider/model "quoted" \\ cached', items = [{ id: '1', models: name }, { id: '2', models: 'other' }, { id: '3', models: null }];
+    for (const op of ['==', '!==']) {
+        const original = { ...query, filters: { models: op + JSON.stringify(name) }, limit: 1 };
+        const decoded = queryFrom(new URLSearchParams(new URLSearchParams({ query: JSON.stringify(original) }).toString()));
+        assert.deepEqual(decoded, original);
+        const result = collection(items, decoded, ['models']);
+        assert.equal(result.total, op === '==' ? 1 : 2);
+        assert.equal(result.rows[0].id, op === '==' ? '1' : '2');
+    }
+});
+test('large compound cell exclusion stays bounded and exact across pagination and scopes', () => {
+    const value = [{ model: 'a'.repeat(900), calls: 20 }], items = [{ id: '1', value }, { id: '2', value: [{ model: 'a'.repeat(900), calls: 21 }] }, { id: '3', value: null }];
+    const digest = (v: unknown) => hash(JSON.stringify(v ?? null));
+    const filter = exactFilter(value, true, digest(value));
+    const decoded = queryFrom(new URLSearchParams({ query: JSON.stringify({ ...query, filters: { value: filter }, limit: 1, offset: 1 }) }));
+    assert.ok(filter.length < 200);
+    assert.equal(collection(items, decoded, ['value'], digest).total, 2);
+    assert.equal(collection(items, decoded, ['value'], digest).rows[0].id, '3');
+    assert.equal(collection(items.slice(1), { ...decoded, offset: 0 }, ['value'], digest).total, 2);
+    assert.equal(collection(items, { ...decoded, filters: { value: exactFilter(value, false, digest(value)) } }, ['value'], digest).rows[0].id, '1');
+    assert.equal(collection(items, { ...decoded, filters: { value: '!==#invalid' } }, ['value'], digest).total, 0);
 });
 test('rolling average weights real denominators and calendar gaps', () => { const points = rolling([{ date: '2026-11-01', numerator: 1, denominator: 1 }, { date: '2026-11-02', numerator: 0, denominator: 9 }, { date: '2026-11-10', numerator: 1, denominator: 2 }]); assert.equal(points[1].average, .1); assert.equal(points[2].average, .5); });
 test('native response identities ignore cumulative token defaults', () => { const records = [{ type: 'session_meta', payload: { id: 's', cwd: '/w', source: 'cli' } }, { type: 'event_msg', timestamp: '2026-11-01T00:00:00Z', payload: { turn_id: 't', type: 'token_count', info: { total_token_usage: { total_tokens: 9000 } } } }, { type: 'token_usage_record', timestamp: '2026-11-01T00:00:01Z', payload: { turn_id: 't', response_id: 'r', usage: { input_tokens: 10, cached_input_tokens: 5, output_tokens: 2, total_tokens: 12 } } }]; const p = parseNative(records.map(r => JSON.stringify(r)).join('\n'), 'codex', 'fixture'); assert.equal(p.events.length, 1); assert.equal(p.events[0].id, 's:response:r'); });
@@ -45,7 +72,7 @@ test('verification evidence requires an executed command and rejects filename/qu
     for (const command of ['cat docs/build.md', 'echo "npm test passed"', 'grep test src/app.ts', 'git commit -m "build: changes"'])
         assert.equal(isValidationCommand(command), false, command);
 });
-test('exact context filters distinguish literal text and null across a complete collection', () => { const items = [{ id: '1', state: 'Needs a fix' }, { id: '2', state: 'Needs a fix later' }, { id: '3', state: null }]; assert.equal(collection(items, { ...query, filters: { state: '=="Needs a fix"' } }, ['state']).total, 1); assert.equal(collection(items, { ...query, filters: { state: '==null' } }, ['state']).rows[0].id, '3'); });
+test('exact context filters distinguish literal text and null across a complete collection', () => { const items = [{ id: '1', state: 'Needs a fix' }, { id: '2', state: 'Needs a fix later' }, { id: '3', state: null }]; assert.equal(collection(items, { ...query, filters: { state: '=="Needs a fix"' } }, ['state']).total, 1); assert.equal(collection(items, { ...query, filters: { state: '==null' } }, ['state']).rows[0].id, '3'); assert.deepEqual(collection(items, { ...query, filters: { state: '!==\"Needs a fix\"' } }, ['state']).rows.map(r => r.id), ['2', '3']); assert.equal(collection(items, { ...query, filters: { state: '!==null' } }, ['state']).total, 2); assert.equal(collection(items, { ...query, filters: { state: '!==invalid' } }, ['state']).total, 0); });
 import { friction } from './friction.ts';
 function measured(id: string, extra: Record<string, unknown> = {}) { return { ...normalizeEvent({ id, session_id: 's', turn_id: 't', kind: 'tool', name: 'Read', event_time: new Date(Date.parse('2026-11-15T10:00:00Z') + Number(id.replace(/\D/g, '')) * 1000).toISOString(), failed: 0, ...extra }), version: 1 }; }
 test('friction includes long exploration and native context jumps without cross-turn inference', () => { const reads = Array.from({ length: 22 }, (_, i) => measured('e' + i)); assert.ok(friction(reads).some(r => r.type === 'Long explore before the first edit')); const before = measured('e1', { kind: 'generation', input_tokens: 100000 }), after = measured('e2', { kind: 'generation', input_tokens: 150000 }); assert.ok(friction([before, after]).some(r => r.type === 'Context jumped')); assert.equal(friction([before, { ...after, turn_key: 'other-turn' }]).length, 0); });

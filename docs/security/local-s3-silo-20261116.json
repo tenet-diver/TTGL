@@ -1,0 +1,70 @@
+{
+  "recorded_on": "2026-11-16",
+  "scope": "This Codespace's local Observatory S3 deployment only",
+  "server": "PGSTY SILO",
+  "version": "RELEASE.2026-11-12T00-00-00Z",
+  "repository": "https://github.com/pgsty/silo",
+  "source_commit": "44e848fedf8cec3d8c0da4b1aa8422390a2b7a8b",
+  "license": "AGPL-3.0",
+  "archive_sha256": "378adce81515d31d48d8ac9b79effc62980e964c470fb06cc3ee8984786c2f4d",
+  "binary_sha256": "6d1a049d7d0ba547d9ab9901718e3d3adb6013268a03b39337a70b03e99d9714",
+  "provenance": {
+    "github_sigstore_attestation_verified": true,
+    "workflow": "https://github.com/pgsty/silo/.github/workflows/release.yml@refs/tags/RELEASE.2026-11-12T00-00-00Z",
+    "review_evidence": "work/security/s3-alternative-20261116",
+    "scope": "Pinned native binary and embedded dependency/browser closure; no container image or newly installed build toolchain"
+  },
+  "review": {
+    "effective_go_modules_scanned": 267,
+    "upstream_minio_findings": "Nine advisory IDs reconciled to verified ancestor fix commits of the exact source commit; raw matches and ancestry evidence preserved",
+    "console_production_closure": "315 resolved packages; three build-lock findings are outside that production closure; no npm/build packages installed or executed",
+    "remaining_known_finding": {
+      "id": "GO-2026-5970",
+      "component": "Go vendored golang.org/x/text/unicode/norm",
+      "class": "Denial of service through normalization looping on invalid input",
+      "basis": "Normalization routines are retained in the binary and the reviewed Go vendor implementation lacks upstream CL 794100"
+    },
+    "security_clearance": false
+  },
+  "explicit_user_exception": {
+    "approved": true,
+    "authority": "User replied yes after the specific SILO GO-2026-5970 exception and local S3 migration were disclosed",
+    "scope": "Exact pinned binary, loopback-only S3, independent random credentials, private persistent raw volume",
+    "other_candidates_or_hosts_approved": false,
+    "dependency_policy_general_waiver": false
+  },
+  "operation": {
+    "endpoint": "http://127.0.0.1:13900",
+    "region": "garage",
+    "region_note": "Compatibility configuration value; the server is SILO",
+    "console": "disabled",
+    "automatic_updates": "disabled",
+    "original_raw_bytes": "S3 only; PostgreSQL stores references and SHA-256 metadata, ClickHouse stores parsed events",
+    "retention": "Content-addressed chunks and manifests; conditional creation, exact read-back, no expiration",
+    "server_compression": "Enabled; original uncompressed bytes returned and SHA-256 checked",
+    "volume": "Private persistent sparse 2 GiB filesystem; shares host physical capacity, no multi-node durability claim",
+    "automatic_collection_or_research_schedules_started": false
+  },
+  "real_server_checks": {
+    "bucket_head": true,
+    "conditional_put_overwrite_rejected_412": true,
+    "crlf_nul_unicode_canary_exact": true,
+    "original_export_exact_readback": true,
+    "transcript_chunks_and_manifests_verified_during_retention": true,
+    "restart_canary_and_three_transcript_readbacks": true,
+    "http_raw_download_sha256_verified": true,
+    "retained_native_transcript_files": 1479,
+    "retained_native_transcript_bytes": 437625382,
+    "retained_archive_records_including_legacy_export": 1480,
+    "model_calls": 0
+  },
+  "private_runtime_receipt": "work/security/observatory-s3-20261116/runtime-review.json",
+  "private_migration_audits": "work/security/data-migration-20261116",
+  "historical_alternative_assessment": "docs/security/s3-alternatives-20261116.json",
+  "limitations": [
+    "The disclosed vulnerability remains; loopback and provenance are not asserted to fix it.",
+    "Checks exercise this actual single-node server and corpus, not every S3 API or crash-durability scenario.",
+    "Runtime binaries and package caches use temporary storage; original histories, databases, raw volume and credentials remain on persistent workspace storage.",
+    "Failed capacity-limited archival attempts and transient HTTP timeout measurements are preserved separately."
+  ]
+}

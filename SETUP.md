@@ -1,7 +1,7 @@
 # Set up Observatory
 
 The current web application lives in `apps/web` on branch `work`. It uses Next.js
-App Router, React, TypeScript, shadcn/ui, PostgreSQL, ClickHouse and Garage S3.
+App Router, React, TypeScript, shadcn/ui, PostgreSQL, ClickHouse and local S3.
 The preserved Python implementation has a [legacy runbook](docs/legacy/python-workspace-setup-20261115.md).
 Do not change frozen research workers or delete existing data volumes.
 
@@ -35,7 +35,7 @@ chmod 600 apps/web/.env.local
 ```
 
 Replace every secret placeholder with independent random credentials. Do not
-commit `.env.local`, Garage configuration, logs, source transcripts or credentials.
+commit `.env.local`, object-store configuration, logs, source transcripts or credentials.
 
 ## PostgreSQL and ClickHouse
 
@@ -51,14 +51,42 @@ PostgreSQL is on **15432**, ClickHouse HTTP on **18123**. Migrations are numbere
 checksum protected and repeatable. Never edit an applied migration; add the next
 numbered migration instead. ClickHouse reads use `FINAL` for version reconciliation.
 
-## Garage raw-log storage
+## Local S3 raw-log storage
 
 Set `S3_ENDPOINT`, `S3_REGION=garage`, `S3_BUCKET`, `S3_ACCESS_KEY_ID` and
-`S3_SECRET_ACCESS_KEY` in `.env.local` for an approved **local Garage deployment**. `S3_ENDPOINT` must be a literal
+`S3_SECRET_ACCESS_KEY` in `.env.local` for an explicitly approved **local S3 deployment**. `S3_ENDPOINT` must be a literal
 loopback URL, such as `http://127.0.0.1:13900` or `http://[::1]:13900`; remote
 hosts and DNS aliases are rejected. Region redirects are disabled. The S3
 client uses path-style requests and the maintained AWS SDK. The bucket must exist;
 it is not created implicitly by application requests.
+
+The current Codespace uses **PGSTY SILO RELEASE.2026-11-12T00-00-00Z** under the
+user's explicit, narrow exception for **GO-2026-5970**. It is not a clean security
+clearance or permission to execute another affected artifact. The
+[dated runtime receipt](docs/security/local-s3-silo-20261116.json) records the exact
+binary hash, provenance, exception and real-server checks. SILO is existing
+AGPL-3.0 S3 software; Observatory continues to use the AWS SDK and its existing
+chunk/manifest format rather than building an object server. The console is off,
+credentials are independent, and the S3 endpoint binds literal loopback only.
+The historical alternative assessment is [preserved separately](docs/security/s3-alternatives-20261116.json).
+
+On this already prepared Codespace, inspect or start the pinned server with:
+
+```sh
+python3 work/security/observatory-s3-20261116/start.py
+```
+
+This validates the recorded approval and binary hash and mounts only its private
+persistent S3 volume if needed. It does not download a replacement. The raw volume
+and credentials are persistent workspace files; reviewed runtime binaries and npm
+packages currently use temporary-disk caches. If those caches disappear, restore
+the exact reviewed artifacts before starting. Server-side compression preserves
+the original bytes returned by S3; retained files passed checksum read-back.
+The sparse 2 GiB volume shares physical workspace capacity. Check both filesystem
+and host free space before more collection; no continuous collector was activated.
+
+PostgreSQL stores archive references, not original log bytes. ClickHouse holds
+parsed events. Keep these roles when changing the local S3 provider.
 
 The published **Garage 2.5.0** candidate failed the 15 November advisory review,
 including Rustls, SQLite, XML and compression-library matches. It was downloaded
@@ -101,9 +129,23 @@ Open **http://127.0.0.1:3333**. Forward port 3333 privately in Codespaces. Keep 
 loopback application behind authenticated access when using a remote deployment;
 it does not introduce a new public login system.
 
+The **Experiments** page (`/experiments?range=all`) exposes retained historical
+proposals, evaluations, analyst reviews and overhead snapshots from the read-only
+legacy import. Inspect rows for protocols, measurements, hashes and provenance.
+Browsing does not run a trial. Decisions, implementation and evaluation remain
+separate; overhead snapshots can overlap and must not be summed. See the
+[experiment inventory](docs/research/experiment-inventory-20261117.md) for results
+and unfinished research boundaries.
+
 The pricing editor accepts input/cached/output rates per million tokens and explicit
 `write_5m` / `write_1h` rates, or a flat `write` rate. A response with recorded
 cache writes stays unpriced if its required write rate is absent.
+
+The dated [API-equivalent scenario](docs/observatory-pricing.md) seeds the empty
+setting for the recorded Sol/Luna models and accounts for cached input and Sol's
+long-context premium. Existing user rates are preserved. Missing cache-write
+counters remain unknown; unrecorded write surcharges are excluded from the base
+estimate. Cost bands distinguish Unmetered turns from Unpriced records.
 
 In **Data list**, add an absolute Codex or Claude Code JSONL source folder. Then
 run the collector in another terminal:
@@ -124,8 +166,8 @@ turns. Inline PNG/JPEG/WebP bytes up to 1 MiB can become previews. Transcript
 paths and remote image URLs are never opened to create a preview.
 
 `GET /api/health` checks PostgreSQL, ClickHouse and the configured S3 bucket.
-An absent Garage endpoint reports unhealthy raw storage; it is not silently
-replaced by local files or another object store.
+An absent S3 endpoint reports unhealthy `raw_storage`; health identifies its kind
+as `local_s3`. There is no automatic storage fallback.
 
 ## Read-only legacy import
 
@@ -154,6 +196,45 @@ or resume it. Re-importing a later consistent source snapshot reconciles a retai
 legacy attempt to its explicitly recorded terminal status; it does not replay it. Do not start a replacement model worker until those attempts have
 been reconciled. Retained images require actual retained raster bytes; filesystem
 paths and historical screenshot claims are not fabricated into images.
+
+The **16 November Codespace migration is complete**: 1,253 explicit tasks, 1,605
+native turns, 1,258 saved analyses, 1,930 subtasks and 14,664 reconciled native
+events (7,575 model records and 7,089 tool records). All 69,963 rows from the 54
+source tables are preserved, including legacy records without a dedicated new UI.
+The exact legacy export and all 1,479 locally referenced transcripts are retained
+in S3; the transcript files total 437,625,382 bytes. Event IDs and native counters
+reconcile exactly, with no ingest conflicts or pending deliveries. The original
+SQLite database is unchanged. Private source inventories, per-file SHA-256
+receipts, audit and observational HTTP benchmark results are in
+`work/security/data-migration-20261116/`. Use `?range=all` to inspect the full
+historical cohort. No historical model attempt was replayed.
+
+For a database imported before the process-result repair, preview and apply the
+retained outcome/state links and empty-setting pricing seed with:
+
+```sh
+"$OBS_NODE" --env-file=apps/web/.env.local --experimental-strip-types apps/web/scripts/repair-legacy-process.ts
+"$OBS_NODE" --env-file=apps/web/.env.local --experimental-strip-types apps/web/scripts/repair-legacy-process.ts --apply
+```
+
+This is idempotent, audit logged and performs no model inference. It preserves
+original outcome reasons/citations and genuine uncertainty; it never replaces
+missing evidence with success. New imports perform this repair automatically.
+
+During the user-requested disk cleanup, ten inactive pre-deployment backups in
+`work/security/maintenance` were compressed to `.sqlite.gz` with verified original
+SHA-256 hashes. Their restore command and receipts are in
+`work/security/disk-cleanup-20261116/README.md`. Current databases and native logs
+remain in place. Inactive experiment dependency/model caches now use checked
+temporary-disk copies behind their original paths; frozen study outputs remain
+persistent.
+
+The current built UI can be restarted manually with
+`python3 work/security/data-migration-20261116/activate-web.py`; this operates only
+on the owned Observatory server. When rebuilding the current external dependency
+cache, append `--webpack` to the build command above. See the
+[improvement study](docs/research/observability-improvement-study.md) for the
+read-only HTTP benchmark and the separately gated agent evaluation/analyst loop.
 
 ## Explicit analysis and steering
 
@@ -214,10 +295,17 @@ databases and an explicitly labeled **S3 protocol fixture**, never real user dat
 python3 apps/web/tests/browser_validation.py
 ```
 
-The browser suite uses existing Playwright and Chromium; review them before a new
-installation. It checks production routes, shared tables, persisted mutations,
+The original browser suite uses Playwright and Chromium; review them before a new
+installation. The currently reviewed isolated Firefox/WebDriver runtime can instead
+run `python3 apps/web/tests/browser_webdriver.py` using only Python’s standard
+library. It expects an existing driver on loopback port 14444 and the isolated
+fixture app on 3433; `OBS_WEBDRIVER_URL`, `OBS_TEST_URL` and `OBS_BROWSER_OUTPUT`
+configure these. It verifies synthetic fixtures before exercising mutations.
+It downloads or installs nothing. Keep the test S3 fixture running for its health
+and retention checks. The 17 November private runtime/advisory receipts are under
+`work/security/application-validation-20261117/`. It checks production routes, shared tables, persisted mutations,
 source/image dialogs and phase filters in the requested desktop dark theme. The validation
-report distinguishes protocol-fixture checks from actual Garage validation.
+report distinguishes protocol-fixture checks from actual S3-server validation.
 
 An optional larger **synthetic read-model fixture** checks list responsiveness with
 1,000 turns and 12,000 events. Run it only against the isolated test stores above:

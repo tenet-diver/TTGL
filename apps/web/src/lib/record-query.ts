@@ -1,6 +1,9 @@
 import type { Row, Query } from './types.ts';
 export const normalize = (value: unknown) => String(value ?? 'Unknown').normalize('NFKD').replace(/\p{M}/gu, '').toLocaleLowerCase().replace(/\s+/g, ' ').trim();
-export function collection(rows: Row[], query: Query, keys: string[]) {
+export function exactFilter(value: unknown, exclude: boolean, digest?: string) {
+    return (exclude ? '!==' : '==') + (digest && /^[a-f0-9]{64}$/.test(digest) ? '#' + digest : JSON.stringify(value ?? null));
+}
+export function collection(rows: Row[], query: Query, keys: string[], digest?: (value: unknown) => string) {
     if (query.sort && !keys.includes(query.sort) || Object.keys(query.filters).some(k => !keys.includes(k)))
         throw Error('Unknown record column');
     const needle = normalize(query.search);
@@ -9,9 +12,13 @@ export function collection(rows: Row[], query: Query, keys: string[]) {
         if (needle && !haystack.includes(needle))
             return false;
         return Object.entries(query.filters).every(([key, input]) => {
-            if (input.startsWith('==')) {
+            if (input.startsWith('==') || input.startsWith('!==')) {
                 try {
-                    return JSON.stringify(row[key] ?? null) === JSON.stringify(JSON.parse(input.slice(2)));
+                    const exclude = input.startsWith('!==');
+                    const encoded = input.slice(exclude ? 3 : 2);
+                    if (encoded.startsWith('#') && (!digest || !/^#[a-f0-9]{64}$/.test(encoded))) return false;
+                    const matches = encoded.startsWith('#') ? digest!(row[key] ?? null) === encoded.slice(1) : JSON.stringify(row[key] ?? null) === JSON.stringify(JSON.parse(encoded));
+                    return exclude ? !matches : matches;
                 }
                 catch {
                     return false;

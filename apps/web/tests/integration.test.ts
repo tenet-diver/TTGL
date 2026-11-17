@@ -8,9 +8,12 @@ import { receiveHook } from '../src/lib/steering.ts';
 import { performAction } from '../src/lib/actions.ts';
 import { recordData, daily, outcomes } from '../src/lib/analytics.ts';
 import { context, invalidate } from '../src/lib/repository.ts';
+import { queryFrom } from '../src/lib/domain.ts';
+import { exactFilter } from '../src/lib/record-query.ts';
 import { pageData, routes } from '../src/lib/pages.ts';
 import { seedTest } from '../scripts/seed-test.ts';
 import { migrate } from '../scripts/migrate.ts';
+import { experimentHistory } from '../src/lib/experiment-history.ts';
 const scope = { project: '', workspace: '', range: 'all', timezone: 'UTC' }, q = { search: '', filters: {}, sort: null, direction: 1 as const, offset: 0, limit: 20 };
 if (process.env.OBS_TESTING !== '1' || !process.env.CLICKHOUSE_DATABASE?.endsWith('_test'))
     throw Error('Integration tests require isolated test databases');
@@ -56,7 +59,7 @@ test('hook replay latches budget, preserves notes and enforces pause', async () 
     await assert.rejects(receiveHook({ ...hook, command: 'changed' }));
 });
 test('shared record engine paginates and filters every collection', async () => {
-    for (const kind of ['tasks', 'marked', 'steps', 'tools', 'targets', 'models', 'agents', 'transitions', 'categories', 'paths', 'fixes', 'loops', 'commits', 'fix-workspaces', 'fix-categories', 'findings', 'timeline', 'rules', 'live', 'rule-log', 'changes', 'jobs', 'sources', 'categorization', 'knowledge', 'archives', 'outcome-summary']) {
+    for (const kind of ['experiments', 'experiment-evaluations', 'experiment-reviews', 'experiment-accounting', 'tasks', 'marked', 'steps', 'tools', 'targets', 'models', 'agents', 'transitions', 'categories', 'paths', 'fixes', 'loops', 'commits', 'fix-workspaces', 'fix-categories', 'findings', 'timeline', 'rules', 'live', 'rule-log', 'changes', 'jobs', 'sources', 'categorization', 'knowledge', 'archives', 'outcome-summary']) {
         const page = await recordData(kind, scope, { ...q, limit: 2 }, new URLSearchParams());
         assert.ok(page.columns.length, kind);
         for (const col of page.columns.filter(c => c.numeric))
@@ -71,6 +74,45 @@ test('shared record engine paginates and filters every collection', async () => 
     }
 });
 test('task-scoped steps do not include adjacent tasks', async () => { const page = await recordData('steps', scope, q, new URLSearchParams('task=qa-task-0')); assert.equal(page.total, 8); assert.ok(page.rows.every(r => r.id.startsWith('qa-task-0:'))); });
+test('retained experiment history deduplicates snapshots and scopes all linked records', async () => {
+    const id = 'history-' + randomUUID(), imports = [id + '-old', id + '-new'];
+    const proposal = { id, task_id: 'qa-task-0', created: new Date().toISOString(), proposal: JSON.stringify({ title: id }), baseline: 'private historical baseline' };
+    for (const [i, importId] of imports.entries()) {
+        await pg()`INSERT INTO migration_manifests(id,source,finished_at,started_at) VALUES(${importId},'synthetic history',now(),now()+${i}*interval '1 second')`;
+        for (const [table, record] of [['experiments', proposal], ['experiment_evaluations', { id: id + '-e', experiment_id: id, measurements: '{"acceptance_passed":false}', protocol: '{}' }], ['experiment_reviews', { id: id + '-r', evaluation_id: id + '-e', verdict: 'reject' }], ['experiment_accounting', { id: id + '-a', experiment_id: id, payload: '{"tokens":5}' }]] as const)
+            await pg()`INSERT INTO archived_records(import_id,table_name,row_number,record) VALUES(${importId},${table},0,${pg().json(record)})`;
+    }
+    const history = await experimentHistory({ ...scope, task: 'qa-task-0' });
+    assert.equal(history.experiments.filter(r => r.id === id).length, 1);
+    assert.equal((history.experiments.find(r => r.id === id)!.source as Record<string, unknown>).import_id, imports[1]);
+    assert.equal(history['experiment-evaluations'].find(r => r.id === id + '-e')!.acceptance, false);
+    assert.equal(history.experiments.find(r => r.id === id)!.baseline, undefined);
+    const other = await experimentHistory({ ...scope, task: 'qa-task-1' });
+    assert.ok(Object.values(other).every(rows => rows.every(r => r.id !== id && !r.id.startsWith(id + '-'))));
+    const page = await recordData('experiments', scope, { ...q, search: id, sort: 'evaluations', direction: -1 }, new URLSearchParams());
+    assert.equal(page.total, 1);
+    assert.equal(page.rows[0].id, id);
+});
+test('every record column supports exact include/exclude and both sort directions', async () => {
+    for (const kind of ['experiments', 'experiment-evaluations', 'experiment-reviews', 'experiment-accounting', 'tasks', 'marked', 'steps', 'tools', 'targets', 'models', 'agents', 'transitions', 'categories', 'paths', 'fixes', 'loops', 'commits', 'fix-workspaces', 'fix-categories', 'findings', 'timeline', 'rules', 'live', 'rule-log', 'changes', 'jobs', 'sources', 'categorization', 'knowledge', 'archives', 'outcome-summary']) {
+        const page = await recordData(kind, scope, { ...q, limit: 2 }, new URLSearchParams());
+        for (const col of page.columns) {
+            for (const direction of [1, -1] as const)
+                await recordData(kind, scope, { ...q, sort: col.key, direction }, new URLSearchParams());
+            if (!page.rows.length) continue;
+            const expected = JSON.stringify(page.rows[0][col.key] ?? null), results = [];
+            for (const op of ['==', '!==']) {
+                const params = new URLSearchParams({ query: JSON.stringify({ ...q, filters: { [col.key]: exactFilter(page.rows[0][col.key], op === '!==', (page.rows[0].__filterDigests as Record<string, string>)[col.key]) } }) });
+                let decoded;
+                assert.doesNotThrow(() => { decoded = queryFrom(params); }, kind + '.' + col.key + ' encoded value length ' + expected.length);
+                const filtered = await recordData(kind, scope, decoded!, new URLSearchParams());
+                assert.ok(filtered.rows.every(row => (JSON.stringify(row[col.key] ?? null) === expected) === (op === '==')), kind + '.' + col.key + op);
+                results.push(filtered.total);
+            }
+            assert.equal(results[0] + results[1], page.total, kind + '.' + col.key);
+        }
+    }
+});
 test('all dashboard pages return valid typed data without invoking a model', async () => {
     for (const view of Object.keys(routes)) {
         const data = await pageData(view, scope, new URLSearchParams());

@@ -13,7 +13,7 @@ remains intact for migration compatibility and frozen research.
 | Shared React DataTable | Full-cohort phrase search, column filters/natural sorting, pagination, visibility/preferences and stable ID selection; all nested source lists reuse it |
 | PostgreSQL | Projects, defined tasks, native turns, assignments, transactional rules/live state, notes, analyses/jobs, evidence, pricing/settings, mutation/hook receipts, provenance and audit |
 | ClickHouse | Versioned native analytics events in `ReplacingMergeTree(version)`; scoped queries always use `FINAL` |
-| Garage S3 | Original JSONL/request bytes and read-only legacy export snapshots, content-addressed chunks and checked manifests |
+| Local S3 | Original JSONL/request bytes and read-only legacy export snapshots, content-addressed chunks and checked manifests |
 | Collector | Changed-file discovery, S3-first retention, native parsing, source reconciliation and transactional outbox delivery |
 | Explicit analysis worker | One retained attempt per source snapshot, schema and source-ID validation, separate analyst usage, no automatic model retries |
 | Preserved legacy capture / research | Existing source records, transport captures, independent study ownership and active queues; never silently replaced |
@@ -68,11 +68,14 @@ validated payloads, UUID receipts and transactional audit. The local app binds
 loopback and expects authenticated access at any remote boundary.
 
 The Garage 2.5.0 candidate has known dependency findings and is not executed.
-Deployment needs a reviewed patched **local** build. Remote S3 endpoints and
-DNS aliases are rejected; only literal loopback addresses are accepted. S3 protocol-fixture
-tests validate application logic, not actual Garage compatibility or multi-node
-durability. See [SETUP](../SETUP.md) and the dated dependency receipt for exact
-runtime/image choices, migration, operation and validation commands.
+This Codespace instead runs pinned PGSTY SILO under the user's explicit local
+exception for GO-2026-5970; see the [runtime receipt](security/local-s3-silo-20261116.json).
+This exception is specific to that artifact and deployment. Remote S3 endpoints
+and DNS aliases are rejected; only literal loopback addresses are accepted.
+Actual SILO conditional writes, original-byte read-back and restart persistence
+were exercised. Protocol-fixture tests alone establish neither server compatibility
+nor multi-node durability. See [SETUP](../SETUP.md) for runtime choices, completed
+historical migration counts and manual operation commands.
 
 ## Luna interpretation and drill-down
 

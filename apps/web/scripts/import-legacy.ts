@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 import { pg, closeDatabases } from '../src/lib/database.ts';
 import { ingestEvents, flushOutbox } from '../src/lib/ingest.ts';
 import { hash, iso, turnKey } from '../src/lib/domain.ts';
+import { repairLegacyProcess } from '../src/lib/legacy-process-store.ts';
+import { seedApiPricing } from '../src/lib/pricing.ts';
 type R = Record<string, any>;
 const ruleIds: Record<string, string> = { break: 'builtin-break', 'task-budget': 'builtin-task-budget', 'daily-budget': 'builtin-daily-budget', 'main-checkout': 'builtin-main-checkout', 'public-registry': 'builtin-public-registry', attribution: 'builtin-attribution', 'external-write': 'builtin-external-writes', 'shell-exploration': 'builtin-shell-exploration', context: 'builtin-context', 'failure-loop': 'builtin-failures', 'stop-check': 'builtin-checks' };
 const ruleId = (id: string) => ruleIds[id] || id;
@@ -55,8 +57,10 @@ export async function importLegacy(source: string) {
     await exited;
     const archive = await retainRaw(Buffer.concat(rawLines), 'legacy-sqlite-export', source);
     const importId = 'legacy:' + hash([...tables]), already = (await db `SELECT finished_at FROM migration_manifests WHERE id=${importId}`)[0];
-    if (already?.finished_at)
-        return { id: importId, status: 'already_imported', counts };
+    if (already?.finished_at) {
+        const process = await db.begin(async tx => { const repaired = await repairLegacyProcess(tx, true); await seedApiPricing(tx); return repaired; });
+        return { id: importId, status: 'already_imported', counts, process };
+    }
     await db.begin(async (tx) => {
         await tx `SELECT pg_advisory_xact_lock(846205215)`;
         await tx `INSERT INTO migration_manifests(id,source,manifest) VALUES(${importId},${source},${tx.json({ ...manifest, counts, policy: 'read-only export; archive all rows; active attempts never replay' })}) ON CONFLICT DO NOTHING`;
@@ -131,7 +135,7 @@ export async function importLegacy(source: string) {
     while (await flushOutbox()) { }
     if (conflicts)
         throw Error(`${conflicts} native identity conflicts require reconciliation; archive retained, import not marked complete`);
-    await db `UPDATE migration_manifests SET archive_id=${archive.id},finished_at=now() WHERE id=${importId}`;
+    await db.begin(async tx => { await repairLegacyProcess(tx, true); await seedApiPricing(tx); await tx`UPDATE migration_manifests SET archive_id=${archive.id},finished_at=now() WHERE id=${importId}`; });
     return { id: importId, status: 'imported', counts, events: events.length };
 }
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

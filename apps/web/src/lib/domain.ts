@@ -15,9 +15,10 @@ export function iso(value: unknown): string | null {
 export function price(event: Pick<NativeEvent, 'kind' | 'model' | 'input_tokens' | 'cached_tokens' | 'output_tokens'> & Partial<Pick<NativeEvent, 'cache_write_tokens' | 'cache_5m_tokens'>>, pricing: Pricing): number | null {
     if (event.kind !== 'generation')
         return null;
-    const rate = pricing.models[event.model];
-    if (!rate || event.input_tokens == null || event.cached_tokens == null || event.output_tokens == null || event.cached_tokens > event.input_tokens)
+    const base = pricing.models[event.model];
+    if (!base || event.input_tokens == null || event.cached_tokens == null || event.output_tokens == null || event.cached_tokens > event.input_tokens)
         return null;
+    const rate = base.long_context && event.input_tokens > base.long_context.above_tokens ? base.long_context : base;
     const writes = Number(event.cache_write_tokens || 0), short = event.cache_5m_tokens == null ? null : Number(event.cache_5m_tokens);
     let writeCost = 0;
     if (writes > event.input_tokens - event.cached_tokens)
@@ -46,13 +47,18 @@ export function scopeFrom(params: URLSearchParams): Scope {
     return { workspace: params.get('workspace') || '', project: params.get('project') || '', range, timezone };
 }
 export function queryFrom(params: URLSearchParams): Query {
-    const raw = params.get('query'), value = raw ? JSON.parse(raw) : {};
-    const limit = Number(params.get('limit') || value.limit || 20), offset = Number(params.get('offset') || value.offset || 0);
-    if (!Number.isInteger(limit) || limit < 1 || limit > 100 || !Number.isInteger(offset) || offset < 0)
-        throw Error('Invalid record page');
-    if (typeof (value.search ?? '') !== 'string' || (value.search || '').length > 1000 || typeof (value.filters ?? {}) !== 'object' || value.filters === null || Object.entries(value.filters ?? {}).some(([k, v]) => k.length > 80 || typeof v !== 'string' || v.length > 200) || Object.keys(value.filters ?? {}).length > 30)
+    const raw = params.get('query');
+    let value;
+    try { value = raw ? JSON.parse(raw) : {}; }
+    catch { throw Error('Invalid record query'); }
+    if (!value || typeof value !== 'object' || Array.isArray(value))
         throw Error('Invalid record query');
-    if (value.sort != null && typeof value.sort !== 'string')
+    const limit = Number(params.get('limit') || value.limit || 20), offset = Number(params.get('offset') || value.offset || 0);
+    if (!Number.isSafeInteger(limit) || limit < 1 || limit > 100 || !Number.isSafeInteger(offset) || offset < 0)
+        throw Error('Invalid record page');
+    if (typeof (value.search ?? '') !== 'string' || (value.search || '').length > 1000 || typeof (value.filters ?? {}) !== 'object' || value.filters === null || Array.isArray(value.filters) || Object.entries(value.filters ?? {}).some(([k, v]) => k.length > 80 || typeof v !== 'string' || v.length > 200) || Object.keys(value.filters ?? {}).length > 30)
+        throw Error('Invalid record query');
+    if (value.sort != null && (typeof value.sort !== 'string' || value.sort.length > 80))
         throw Error('Invalid sort');
     return { search: value.search || '', filters: value.filters || {}, sort: value.sort || null, direction: value.direction === -1 ? -1 : 1, limit, offset };
 }

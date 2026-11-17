@@ -1,0 +1,322 @@
+{
+  "schema_version": 1,
+  "study_id": "observatory-improvement-loop-001",
+  "registered_at": "2026-11-16T20:20:19.833243+00:00",
+  "status": "design_registered_not_ready_for_inference",
+  "purpose": "Measure whether source-backed analyst proposals improve a fixed coding agent on independently graded tasks after accounting for collection, labeling, analysis, implementation and trial overhead.",
+  "execution": {
+    "automatic_launch": false,
+    "scheduled_monitoring": false,
+    "automatic_model_retries": 0,
+    "preserve_uncertain_attempts": true,
+    "models_invoked": 0,
+    "existing_studies_changed": false
+  },
+  "software_choice": {
+    "harness": "Harbor, pinned exact source/release before execution",
+    "benchmark_candidate": "Terminal-Bench 4.1; select fresh tasks by metadata after reservation audit",
+    "grader": "Official task verifier in a separate evaluator environment; do not build a replacement grading framework",
+    "trace_exchange": "Harbor ATIF plus exact native Codex JSONL and original tool I/O",
+    "annotation": "Existing source-linked Luna analysis; audited versioned labels",
+    "proposal_tracking": "Reuse decision/implementation/evaluation/accounting separation in analyst_experiments.py; add only the missing PostgreSQL/UI integration",
+    "why_not_new_harness": "Harbor already provides task isolation, agent integration, native/ATIF artifacts, independent verification and regrading.",
+    "license": "Harbor Apache-2.0; task licenses and all dependency/image receipts must be checked individually",
+    "pricing": "No managed-provider pricing is assumed; initially use the local host and existing ChatGPT subscription. Actual cash/quota remains unknown."
+  },
+  "launch_requirements": {
+    "raw_storage_choice_confirmed": true,
+    "legacy_data_reconciled": true,
+    "capture_roundtrip_validated": false,
+    "label_audit_passed": false,
+    "native_subscription_and_metering_preflight": false,
+    "source_revision_and_environment_pinned": false,
+    "dependency_and_image_review_complete": false,
+    "task_reservation_and_prior_exposure_audit": false,
+    "empty_and_reference_controls_passed": false,
+    "actor_evaluator_boundary_passed": false,
+    "token_or_model_cost_budget_registered": false
+  },
+  "pins_required_before_freeze": {
+    "harbor_revision": null,
+    "benchmark_revision": null,
+    "agent_version_and_sha256": null,
+    "solver_model_and_reasoning": null,
+    "tool_catalog_sha256": null,
+    "actor_image_digest": null,
+    "grader_image_digest": null,
+    "pricing_scenario_version": null,
+    "label_prompt_and_schema_sha256": null,
+    "analyst_prompt_sha256": null,
+    "task_allocation_sha256": null
+  },
+  "allocation_proposal": {
+    "development_tasks": 6,
+    "selection_tasks": null,
+    "final_evaluation_tasks": null,
+    "task_ids": [],
+    "no_reserved_task_access": true,
+    "metadata_selection_only": true,
+    "development_repeats_disclosed": true,
+    "purpose": "Six-task pilot checks the mechanism and plumbing, not statistical noninferiority or a public leaderboard score. Size fresh selection/final panels from the observed development variance before reserving them."
+  },
+  "budget_proposal": {
+    "first_live_unit": "One development task after all controls, then inspect capture and metering before proceeding",
+    "maximum_candidate_mechanisms": 2,
+    "maximum_analyst_proposals_per_review": 3,
+    "initial_concurrency": 1,
+    "model_token_or_cost_limit": null,
+    "per_task_timeout_seconds": null,
+    "requires_budget_before_launch": true,
+    "scaling": "Only after a retained-quality result, register separate concurrency 1/2/4 comparisons; no automatic 100-agent launch."
+  },
+  "conditions": [
+    {
+      "id": "stock",
+      "description": "Pinned native agent/model/default tools plus passive collection; isolated task state and no optimization hints, prior task logs, personal memory or candidate changes."
+    },
+    {
+      "id": "candidate",
+      "description": "Same pinned agent/model, task information and total resource regime plus exactly one reviewed reversible intervention; fresh attempt, verified activation and rollback."
+    }
+  ],
+  "capture": {
+    "identity": [
+      "study_id",
+      "protocol_sha256",
+      "task_id",
+      "task_revision",
+      "split",
+      "condition",
+      "assignment_id",
+      "attempt_id",
+      "agent_session_id",
+      "turn_id",
+      "response_id",
+      "tool_call_id",
+      "parent_session_id",
+      "source_sha256"
+    ],
+    "artifacts": [
+      "agent/native JSONL",
+      "agent/trajectory.json where supported",
+      "exact request/response and tool input/result bytes where available",
+      "actual tool catalog and agent configuration",
+      "sealed patch/output artifact",
+      "verifier result and stdout/stderr",
+      "environment/control receipts",
+      "effective activation/preimage/rollback hashes"
+    ],
+    "rules": [
+      "Preserve exact bytes before derived ingestion; raw private artifacts stay local.",
+      "Native response IDs/cumulative-counter deltas own usage; never sum ATIF and native usage or parent wrappers and child operations.",
+      "Missing or all-zero upstream usage defaults remain unknown.",
+      "Timing records distinguish recorded operation runtime, background/service lifetime, queue wait, agent-blocking time and full task elapsed time.",
+      "Preserve retries, failed/uncertain calls and coverage gaps; no silent replacement attempt.",
+      "Collection does not alter model-facing inputs; any transform is a separate intervention."
+    ]
+  },
+  "labels": {
+    "facts": [
+      "operation outcome",
+      "recorded counters",
+      "native timing",
+      "executed visible checks",
+      "sealed independent verifier outcome"
+    ],
+    "interpretations": [
+      "activity",
+      "tool purpose",
+      "candidate failure mode",
+      "candidate inefficiency",
+      "verification state",
+      "possible improvement opportunity"
+    ],
+    "required_fields": [
+      "label_id",
+      "label_schema_version",
+      "prompt_sha256",
+      "source_snapshot_sha256",
+      "evidence_event_ids",
+      "labeler_model",
+      "confidence",
+      "unknown_reason",
+      "created_at",
+      "supersedes_label_id"
+    ],
+    "audit": "Audit all six development tasks at task level and a stratified step sample covering apparent success, failure and unknown. Report denominators, agreement, per-class precision/recall and disagreements; do not assume model confidence is calibrated.",
+    "leakage": "Grader outcomes are joined only after sealed generation. Never feed hidden grades, reference patches or future events into a solving agent or online failure detector.",
+    "model_policy": "Current Observatory processor/analyst execution remains gpt-6-luna through the source Codex ChatGPT subscription. A larger analyst is a separately declared study amendment, not a silent fallback."
+  },
+  "analyst": {
+    "mode": "On-demand incremental review of a frozen allowed-development cohort; no scheduled inference",
+    "inputs": [
+      "cohort inventory and missingness",
+      "audited versioned labels",
+      "native metrics",
+      "counterexamples",
+      "bounded exact evidence retrieval",
+      "permitted development grades after sealing"
+    ],
+    "proposal_fields": [
+      "proposal_id",
+      "source_snapshot_sha256",
+      "evidence_event_ids",
+      "diagnosis",
+      "alternative_explanations",
+      "one_mechanism",
+      "expected_effect",
+      "concrete_patch_or_configuration",
+      "preimage_sha256",
+      "quality_risk",
+      "activation_check",
+      "trial_plan",
+      "budget",
+      "stop_rule",
+      "rollback",
+      "confidence"
+    ],
+    "constraints": [
+      "At most three deduplicated proposals.",
+      "No edits to measured values, source logs or grader outcomes.",
+      "No raw final-evaluation data access during tuning.",
+      "Accepted for trial is not applied, verified, kept or measured saving.",
+      "Declined/later/rejected proposals persist and are suppressed until material evidence changes."
+    ]
+  },
+  "tracking": {
+    "decision": [
+      "proposed",
+      "accepted_for_trial",
+      "declined",
+      "later"
+    ],
+    "implementation": [
+      "not_applied",
+      "applied_in_experiment",
+      "activation_verified",
+      "rolled_back"
+    ],
+    "evaluation": [
+      "not_run",
+      "running",
+      "uncertain",
+      "passed",
+      "failed",
+      "inconclusive"
+    ],
+    "verdict": [
+      "keep",
+      "reject",
+      "inconclusive"
+    ],
+    "lineage": "source snapshot -> label version/audit -> analyst run -> proposal -> registered trial -> sealed artifacts -> independent measurements -> review -> subsequent protocol amendment",
+    "immutability": "Runner-written measurements and grader receipts are immutable; corrections/regrades create linked new records. Analyst decisions and implementation states are separate records.",
+    "existing_storage": "analyst_experiments.py already retains frozen baselines, proposals, runner-written evaluations, reviews and overhead. Preserve its old records; PostgreSQL/UI port is a declared delivery gap."
+  },
+  "measurements": {
+    "quality": [
+      "official task acceptance",
+      "paired successes lost/gained",
+      "environment/verifier failures separate from solution failures",
+      "all assigned tasks in denominators"
+    ],
+    "model": [
+      "input tokens",
+      "cached subset",
+      "output tokens",
+      "reported totals",
+      "versioned model-rate cost scenario",
+      "actual cash/quota only if recorded"
+    ],
+    "time": [
+      "whole-task elapsed seconds",
+      "recorded tool runtime",
+      "queue wait",
+      "p50/p95",
+      "makespan"
+    ],
+    "capture": [
+      "missing source records",
+      "duplicate IDs",
+      "reconciliation residuals",
+      "ingestion lag",
+      "capture overhead"
+    ],
+    "research_overhead": [
+      "labeler",
+      "analyst",
+      "implementation agent",
+      "failed/rejected trials",
+      "selection",
+      "evaluation",
+      "deterministic compute"
+    ]
+  },
+  "decision_rule": {
+    "quality_gate": "No observed loss of matched baseline successes; report paired losses/gains, sample size and uncertainty. A pilot is not proof of noninferiority.",
+    "economic_gate": "Lower total model-rate scenario cost across all assigned candidate tasks with complete counters; disclose optimization overhead separately and net cost including it. Unknown counters prevent a saving claim.",
+    "time_gate": "Latency is separate; no speedup claim without matched whole-task timing and resource regime.",
+    "verdict": "Keep only when all preregistered gates pass; otherwise reject or inconclusive. Preserve negative and mixed outcomes.",
+    "predeclared_target": "A useful minimum gain and any regression margin must be frozen before the first scored comparison; no 90% saving guarantee."
+  },
+  "application_monitor": {
+    "runner": "apps/web/scripts/benchmark_http.py",
+    "mode": "read-only sequential HTTP measurements, no model calls",
+    "minimum_turns_after_current_migration": 1605,
+    "expected_explicit_tasks_after_current_migration": 1253,
+    "baseline_status": "Not yet established; current app still has no migrated source data.",
+    "metrics": [
+      "first observed request separately",
+      "warm p50/p95 response latency",
+      "error count",
+      "response bytes",
+      "stable paginated record identities",
+      "health and nonempty-data gate"
+    ],
+    "not_equivalent_to": [
+      "browser paint",
+      "agent task performance",
+      "model latency",
+      "cash saving",
+      "causal application speedup"
+    ]
+  },
+  "next_actions": [
+    "Confirm raw storage and reconcile the real legacy import.",
+    "Validate native capture/reconciliation without changing normal routing.",
+    "Pin and review the harness, task/evaluator sources, images and environment.",
+    "Freeze fresh task allocation and a finite model budget.",
+    "Pass task-specific empty/reference and actor-boundary controls.",
+    "Run one stock development task, seal and independently grade it, audit the complete collected evidence.",
+    "Complete the bounded development baseline, label audit and one on-demand analyst review.",
+    "Register a one-mechanism matched trial, evaluate and retain keep/reject/inconclusive plus overhead.",
+    "Freeze policy before separately reserving and running fresh final evaluation."
+  ],
+  "references": [
+    {
+      "url": "https://www.tbench.ai/",
+      "checked_at": "2026-11-16",
+      "purpose": "Current benchmark candidate, 4.1; no task allocation made."
+    },
+    {
+      "url": "https://github.com/harbor-framework/harbor",
+      "checked_at": "2026-11-16",
+      "purpose": "Maintained Apache-2.0 evaluation harness; not newly installed."
+    },
+    {
+      "url": "https://docs.harborframework.com/agents/atif",
+      "checked_at": "2026-11-16",
+      "purpose": "Native/ATIF artifacts and schema capability boundaries."
+    },
+    {
+      "url": "https://docs.harborframework.com/jobs/regrade",
+      "checked_at": "2026-11-16",
+      "purpose": "New linked grader results from sealed artifacts without replaying actors."
+    },
+    {
+      "url": "https://langfuse.com/docs/evaluation/overview",
+      "checked_at": "2026-11-16",
+      "purpose": "Evaluate existing datasets, scores, annotation and experiment interfaces before implementing missing links."
+    }
+  ]
+}

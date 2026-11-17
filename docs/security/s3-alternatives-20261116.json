@@ -1,0 +1,53 @@
+{
+  "recorded_at": "2026-11-16T20:00:21.135062+00:00",
+  "scope": "Alternative local S3 storage for Observatory; no candidate installed or executed; no existing data or routing changed",
+  "compatibility": "The existing maintained AWS SDK uses path-style S3 with HeadBucket, HeadObject, conditional PutObject, GetObject and verified read-back; the literal-loopback endpoint guard is provider-independent despite its Garage name.",
+  "candidates": [
+    {
+      "name": "SeaweedFS",
+      "version": "4.54",
+      "license": "Apache-2.0",
+      "decision": "not started",
+      "reason": "Current vendor advisory feed includes open affected ranges with no patched version; retained complete 57-advisory feed."
+    },
+    {
+      "name": "RustFS",
+      "version": "1.0.6",
+      "license": "Apache-2.0",
+      "decision": "blocked",
+      "reason": "Pinned Cargo.lock and release SBOM include lru 0.16.4 / RUSTSEC-2026-0253 and rsa 0.9.10 plus 0.10.0-rc.18 / RUSTSEC-2023-0071; OSV batch covers 1093 registry dependencies."
+    },
+    {
+      "name": "MinIO upstream Community",
+      "decision": "not selected",
+      "reason": "Repository archived 2026-04-25; not a maintained new deployment candidate."
+    },
+    {
+      "name": "VersityGW",
+      "version": "1.11.0",
+      "license": "Apache-2.0",
+      "decision": "published binary blocked; source rebuild not completed",
+      "reason": "Exact linked module graph matches GO-2026-5932 at x/crypto v0.58.0 and GO-2026-6859 at Go 1.27.3. Symbol inspection confirms maxBytesReader.Read is retained. A new toolchain was downloaded only for inspection; no source build was executed."
+    },
+    {
+      "name": "PGSTY SILO",
+      "version": "RELEASE.2026-11-12T00-00-00Z",
+      "license": "AGPL-3.0",
+      "decision": "review progressed; not installed or executed",
+      "reason": "GitHub attestation verified. 267 effective Go modules plus stdlib scanned; nine upstream MinIO identifiers reconcile to fix commits that are ancestors of the exact binary commit. The three npm findings in its build lock are outside the resolved 315-package production browser closure (zero production findings); no npm packages were installed. Nested Go vendored-source coverage remains under review, and no end-to-end storage compatibility claim is made."
+    }
+  ],
+  "build_preparation": {
+    "toolchain": "go1.27.4 linux/amd64",
+    "archive_sha256": "7226736c2339719cda28fbf3a54d71aa63bcefe376e98cef00034268dab24840",
+    "executed": false,
+    "findings": "Full-distribution vendor scan includes GO-2026-5970 in x/text/unicode/norm; the inspected archive still contains the affected property-size implementation rather than the upstream CL 794100 fix. Several other vendor matches are absent packages or Go-backported fixes; all raw findings are retained. Do not execute this distribution as a clean build toolchain."
+  },
+  "private_evidence": "work/security/s3-alternative-20261116",
+  "next_required": "Resolve an exact patched server/build artifact and its complete shipped dependency graph, then test real conditional writes/read-back/restart persistence before importing the legacy database.",
+  "limitations": [
+    "Module/version matches are not silently waived for loopback or disabled features.",
+    "No installation, successful migration, security clearance or real-server compatibility result is claimed.",
+    "Original SQLite history and running UI services are unchanged."
+  ]
+}

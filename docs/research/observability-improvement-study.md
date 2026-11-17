@@ -369,3 +369,90 @@ first. Validate the actual environment and dependency security before execution.
 The first new result should answer: **did one proposal derived from audited real
 traces improve fresh matched task outcomes, after counting the cost of finding
 and applying it?** Only then expand the iterative search and concurrency panel.
+
+## 16 November: operational preparation
+
+The machine-readable [loop protocol](../../tools/usage-monitor/studies/observatory-improvement-loop-protocol-001.json)
+now records the proposed stages, evidence contracts, bounded pilot, labeling audit,
+proposal fields, decision states, overhead and launch gates. It is a registered
+design, **not a frozen task allocation or a completed benchmark**. No new model
+attempts, harness installation, task downloads or scheduled work were launched.
+The application-data gate now passes the reconciled legacy import described below.
+
+Use Harbor's maintained task environments and official verifiers rather than a
+new grading framework. Terminal-Bench's current site identifies 4.1; its exact
+task/evaluator revision, licenses, container digests and exposure exclusions remain
+to be pinned. The initial proposal is six development tasks at concurrency one,
+with one inspected task before expanding. Model/time budgets must be registered
+before execution. Existing development, Pro, Aider-derived and held-out reservations
+remain untouched. A six-task mechanism pilot cannot establish narrow quality
+noninferiority or a broad saving.
+
+Keep native Codex JSONL and tool input/result bytes as primary evidence. Harbor
+ATIF supplies the portable trajectory and evaluator linkage where supported; its
+usage is an alternative representation, never added to native counters. Retain
+sealed actor artifacts and separate grader results. A changed verifier produces a
+new linked grade of those artifacts, not a replacement actor attempt. Future
+hidden outcomes never enter a live actor or development analyst's inputs.
+
+Luna's current source-bound subscription path can organize task/subtask activity,
+candidate failure reasons and verification state. Labels cite event IDs and retain
+model, prompt/schema versions, snapshot hash and uncertainty. Audit all pilot
+tasks and a success/failure/unknown step sample before using labels in comparisons.
+Independent grades remain measurements; labels and diagnoses remain interpretations.
+The analyst starts with compact inventories, checks original evidence and
+counterexamples, and returns at most three deduplicated proposals. Each proposal
+needs a concrete change/preimage, activation check, quality risk, finite trial,
+stop rule and rollback. Current Observatory execution remains Luna-only; changing
+analyst model is a declared amendment.
+
+Reuse `analyst_experiments.py`'s frozen proposals, runner-written measurements,
+reviews and overhead records. Decision, implementation, evaluation and verdict
+remain independent. The port of those experiment records and controls into the
+new PostgreSQL-backed UI is still a delivery gap; the observational Impact chart
+does not substitute for a matched trial. Accepted-for-trial does not mean applied
+or beneficial. Keep rejected and inconclusive outcomes. Report the baseline and
+candidate on identical task information and resource limits, separately counting
+the labeler, analyst, implementation, failed trials and recurring monitoring.
+
+There is also a separate **read-only application benchmark**:
+
+```sh
+python3 apps/web/scripts/benchmark_http.py \
+  --base-url http://127.0.0.1:3333 --samples 10 --minimum-turns 1605 \
+  --output work/security/observatory-performance/baseline-001.json
+```
+
+It uses only the standard library, never invokes a model, and refuses to overwrite
+a previous result. It records the first observed request separately from sequential
+samples, p50/p95 HTTP response times, response bytes, health, pagination identities
+and errors. The completed import restored 1,605 native turns and 1,253 explicit
+tasks; these are distinct populations. An empty application, HTTP-200 error page,
+unhealthy retention store or changing record page cannot pass readiness. The
+first observed request is not claimed as a cold start. These measurements do not
+measure browser rendering, whole-agent task time, inference latency or causal
+speedup. The separate synthetic load fixture remains labeled as synthetic.
+
+Application readiness and the stock-agent pilot must pass before an improvement
+comparison is interpreted. New scheduled inference remains disabled. Raw reports
+and traces stay private; publish sanitized protocols, source hashes, aggregate
+results, limitations and a full proposal-to-verdict lineage in the study record.
+
+### Observed migration baseline
+
+The completed import reconciles all 14,664 event identities and native token
+counters, all 54 source-table counts (69,963 archived rows), 1,258 saved analyses
+and 1,930 subtasks. All 1,479 referenced transcript files (437,625,382 bytes) and
+the exact legacy JSONL export are retained in real local S3. The original SQLite
+source remains unchanged. This restores historical measurements and interpretations;
+it does not create new model-quality results or modernize old label semantics.
+
+Private reports remain in `work/security/data-migration-20261116/`. The empty
+pre-import benchmark fails readiness. The first post-import report preserves
+timeouts observed while archival/cache-copy I/O was active. After that work
+finished, `http-benchmark-after-migration-002.json` passes health, full-cohort
+counts, stable page identities and all HTTP checks, with three sequential samples
+per endpoint and zero model calls. Observed task-page p50/p95 is about 5.44/5.45 s;
+the native-turn record endpoint is 10.38/16.15 s. These small observational samples
+identify application responsiveness as a follow-up; they are not a causal speedup
+comparison or agent benchmark. Preserve both failed and successful reports.

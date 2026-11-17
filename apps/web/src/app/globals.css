@@ -1,4 +1,5 @@
 @import "tailwindcss" source("../");
+@import "../styles/semantic-colors.css";
 @custom-variant dark (&:is(.dark *));
 :root{--background:#fafafa;--foreground:#171717;--card:#fff;--card-foreground:#171717;--popover:#fff;--popover-foreground:#171717;--primary:#171717;--primary-foreground:#fff;--secondary:#f2f2f2;--secondary-foreground:#333;--muted:#f2f2f2;--muted-foreground:#747474;--accent:#ebebeb;--accent-foreground:#171717;--destructive:#cc3434;--border:#e3e3e3;--input:#dedede;--ring:#0072f5;--link:#0068d7;--radius:6px;--flow-edge:#9ca4ab;color-scheme:light;}
 .dark{--background:#080808;--foreground:#ededed;--card:#101010;--card-foreground:#ededed;--popover:#161616;--popover-foreground:#ededed;--primary:#ededed;--primary-foreground:#111;--secondary:#181818;--secondary-foreground:#ddd;--muted:#191919;--muted-foreground:#979797;--accent:#222;--accent-foreground:#fff;--destructive:#f06b65;--border:#303030;--input:#353535;--ring:#52a8ff;--link:#52a8ff;--flow-edge:#d4d2c6;color-scheme:dark;}

@@ -83,7 +83,7 @@ with sync_playwright() as p:
     page.reload(wait_until='networkidle')
     expect(table.get_by_role('button', name='Sort by Tokens', exact=True)).to_have_count(0)
     table.locator('tbody tr').first.locator('td').first.click(button='right')
-    page.get_by_role('button', name='Apply exact filter', exact=True).click()
+    page.get_by_role('button', name='Show matching', exact=True).click()
     expect(table.locator('.record-count')).to_have_text('1 records')
     table.get_by_role('button', name='Reset', exact=True).click()
     print('Shared table controls passed', flush=True)

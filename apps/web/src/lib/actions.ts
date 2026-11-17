@@ -6,6 +6,7 @@ import { invalidate } from './repository.ts';
 import { hash } from './domain.ts';
 import { queueTask, queueBatch } from './jobs.ts';
 import { metricDefinitions } from './impact.ts';
+import { pricingSchema } from './pricing.ts';
 const id = z.string().min(1).max(400), name = z.string().trim().min(1).max(200), message = z.string().trim().min(1).max(8000), config = z.record(z.string(), z.json());
 const scopeFields = { project: z.string().default(''), workspace: z.string().default(''), range: z.enum(['1d', '7d', '30d', '90d', 'all']).default('all') };
 export async function performAction(input: unknown, receiptId: string) {
@@ -123,8 +124,7 @@ export async function performAction(input: unknown, receiptId: string) {
             response = { paused: v.paused };
         }
         else if (head.action === 'pricing') {
-            const rate = z.object({ input: z.number().finite().nonnegative(), cached: z.number().finite().nonnegative(), output: z.number().finite().nonnegative(), write: z.number().finite().nonnegative().optional(), write_5m: z.number().finite().nonnegative().optional(), write_1h: z.number().finite().nonnegative().optional() });
-            const v = z.object({ pricing: z.object({ unit: z.literal('USD'), models: z.record(z.string().min(1).max(200), rate), as_of: z.string().max(100).optional() }), model_tiers: z.object({ top: z.array(z.string()).max(100), small: z.array(z.string()).max(100) }).default({ top: [], small: [] }) }).parse(body);
+            const v = z.object({ pricing: pricingSchema, model_tiers: z.object({ top: z.array(z.string()).max(100), small: z.array(z.string()).max(100) }).default({ top: [], small: [] }) }).parse(body);
             await tx `INSERT INTO settings(key,value) VALUES('pricing',${tx.json(v.pricing)}),('model_tiers',${tx.json(v.model_tiers)}) ON CONFLICT(key) DO UPDATE SET value=EXCLUDED.value,updated_at=now()`;
             response = { saved: true };
         }

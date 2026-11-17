@@ -16,7 +16,7 @@ export function ch() {
     if (!singleton.observatoryCh) {
         if (!process.env.CLICKHOUSE_URL)
             throw new Error('CLICKHOUSE_URL is required');
-        singleton.observatoryCh = createClient({ url: process.env.CLICKHOUSE_URL, username: process.env.CLICKHOUSE_USER || 'observatory', password: process.env.CLICKHOUSE_PASSWORD || '', database: process.env.CLICKHOUSE_DATABASE || 'observatory', request_timeout: 20000, compression: { request: true, response: true }, clickhouse_settings: { date_time_input_format: 'best_effort', max_execution_time: 15, max_result_rows: '100000', result_overflow_mode: 'throw' } });
+        singleton.observatoryCh = createClient({ url: process.env.CLICKHOUSE_URL, username: process.env.CLICKHOUSE_USER || 'observatory', password: process.env.CLICKHOUSE_PASSWORD || '', database: process.env.CLICKHOUSE_DATABASE || 'observatory', request_timeout: 20000, compression: { request: true, response: true }, clickhouse_settings: { date_time_input_format: 'best_effort', max_execution_time: 15, max_result_rows: '100000', result_overflow_mode: 'throw', max_threads: 2, max_block_size: '512' } });
     }
     return singleton.observatoryCh;
 }

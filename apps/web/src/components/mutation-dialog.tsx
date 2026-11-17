@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { apiJson } from '@/lib/api-response';
 export interface FormField {
     key: string;
     label: string;
@@ -20,9 +21,9 @@ export interface FormField {
 export function refreshRecords() { window.dispatchEvent(new Event('observatory-records-changed')); }
 export async function mutate(action: string, values: Record<string, unknown>) {
     const response = await fetch('/api/actions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Idempotency-Key': crypto.randomUUID() }, body: JSON.stringify({ action, ...values }) });
-    const result = await response.json();
+    const result = await apiJson<Record<string, unknown>>(response);
     if (!response.ok)
-        throw Error(result.error || 'The change could not be saved.');
+        throw Error(String(result.error || 'The change could not be saved.'));
     refreshRecords();
     return result as Record<string, unknown>;
 }

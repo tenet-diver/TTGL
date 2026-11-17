@@ -1,16 +1,16 @@
 import { pg } from './database.ts';
+import { experimentHistory } from './experiment-history.ts';
 import { context, metrics, taskFacts, taskRows, turnRows, groupEvents, toolName, category, commonColumns, type Context } from './repository.ts';
 import { collection, hash, rolling, iso, failureLoops } from './domain.ts';
-import { palette, categoryColors, type NativeEvent, type Row, type Column, type Query, type Scope, type ChartSpec, type PageData, type Panel, type Metric } from './types.ts';
+import { type NativeEvent, type Row, type Column, type Query, type Scope, type ChartSpec, type PageData, type Panel, type Metric } from './types.ts';
 const numeric = (key: string, label: string, type: Column['type'] = undefined): Column => ({ key, label, numeric: true, type });
 const text = (key: string, label: string, type: Column['type'] = undefined): Column => ({ key, label, type });
-const colors = (keys: string[]) => keys.map((key, i) => ({ key, name: key, color: categoryColors[key.toLowerCase()] || palette[i % palette.length] }));
 const ratio = (a: number, b: number) => b ? a / b : null;
 const date = (e: NativeEvent) => e.time_known ? e.event_time.slice(0, 10) : 'Unknown';
 const list = (id: string, title: string, description?: string): Panel => ({ id, title, list: id, description });
 const chart = (id: string, title: string, kind: ChartSpec['kind'], points: Record<string, unknown>[], series: ChartSpec['series'], description?: string): Panel => ({ id, title, chart: { id, title, kind, points, series, description } });
 export function tools(c: Context): Row[] { return [...groupEvents(c.events.filter(e => e.kind === 'tool'), e => toolName(e).name)].map(([name, events]) => { const m = metrics(events, c.pricing), identity = toolName(events[0]); return { id: hash(name), ...identity, href: '/tools?family=' + encodeURIComponent(identity.family) + '&action=' + encodeURIComponent(identity.action), category: [...new Set(events.map(e => category(e, c)))].join(', '), calls: events.length, errors: m.errors, failure_rate: ratio(m.errors, m.known_outcomes), runtime: m.runtime, known_runtime: m.known_runtime, call_cost: null, context_cost: null, output_chars: events.every(e => e.output_chars != null) ? events.reduce((s, e) => s + Number(e.output_chars), 0) : null, timed: m.timed }; }).sort((a, b) => b.calls - a.calls); }
-export function models(c: Context): Row[] { const total = metrics(c.events, c.pricing).known_cost; return [...groupEvents(c.events.filter(e => e.kind === 'generation'), e => e.model || 'Unknown')].map(([name, events]) => { const m = metrics(events, c.pricing); return { id: name, name, href: '/costs?model=' + encodeURIComponent(name), calls: events.length, cost: m.cost, share: m.cost != null ? ratio(m.cost, total) : null, input: m.input, uncached: m.input != null && m.cached != null && m.cache_write != null && m.input >= m.cached + m.cache_write ? m.input - m.cached - m.cache_write : null, cached: m.cached, cache_write: m.cache_write, output: m.output, cost_per_call: m.cost != null ? m.cost / events.length : null, latency: events.every(e => e.runtime != null) ? events.reduce((s, e) => s + Number(e.runtime), 0) / events.length : null }; }).sort((a, b) => Number(b.cost) - Number(a.cost)); }
+export function models(c: Context): Row[] { const total = metrics(c.events, c.pricing).known_cost; return [...groupEvents(c.events.filter(e => e.kind === 'generation'), e => e.model || 'Unknown')].map(([name, events]) => { const m = metrics(events, c.pricing); return { id: name, name, href: '/costs?model=' + encodeURIComponent(name), calls: events.length, cost: m.cost, share: m.cost != null ? ratio(m.cost, total) : null, input: m.input, uncached: m.input != null && m.cached != null ? m.input - m.cached : null, cache_hit: m.input && m.cached != null ? m.cached / m.input : null, cached: m.cached, cache_write: m.cache_write, output: m.output, cost_per_call: m.cost != null ? m.cost / events.length : null, latency: events.every(e => e.runtime != null) ? events.reduce((s, e) => s + Number(e.runtime), 0) / events.length : null }; }).sort((a, b) => Number(b.cost) - Number(a.cost)); }
 export function process(c: Context) {
     const categories = new Map<string, {
         events: Set<string>;
@@ -185,13 +185,13 @@ export function findings(c: Context): Row[] {
     });
 }
 export function daily(c: Context, measure: 'cost' | 'tokens' | 'calls' = 'cost', by: 'model' | 'tool' | 'type' = 'model') {
-    const keys = by === 'type' ? ['Cache read', 'Cache write', 'Uncached input', 'Output'] : [...new Set(c.events.filter(e => by === 'model' ? e.kind === 'generation' : e.kind === 'tool').map(e => by === 'model' ? e.model || 'Unknown' : toolName(e).name))].slice(0, 7);
+    const keys = by === 'type' ? ['Cache read', 'Cache write', 'Other input', 'Output'] : [...new Set(c.events.filter(e => by === 'model' ? e.kind === 'generation' : e.kind === 'tool').map(e => by === 'model' ? e.model || 'Unknown' : toolName(e).name))].slice(0, 7);
     const days = [...groupEvents(c.events.filter(e => e.time_known), date)].map(([date, events]) => {
         const point: Record<string, unknown> = { date };
         for (const key of keys) {
             if (by === 'type') {
                 const m = metrics(events, c.pricing);
-                point[key] = key === 'Cache read' ? m.cached : key === 'Cache write' ? m.cache_write : key === 'Output' ? m.output : m.input != null && m.cached != null && m.cache_write != null && m.input >= m.cached + m.cache_write ? m.input - m.cached - m.cache_write : null;
+                point[key] = key === 'Cache read' ? m.cached : key === 'Cache write' ? m.cache_write : key === 'Output' ? m.output : m.input != null && m.cached != null && m.input >= m.cached + (m.cache_write ?? 0) ? m.input - m.cached - (m.cache_write ?? 0) : null;
             }
             else {
                 const subset = events.filter(e => (by === 'model' ? e.model || 'Unknown' : toolName(e).name) === key && (by === 'model' ? e.kind === 'generation' : e.kind === 'tool'));
@@ -206,7 +206,14 @@ export function daily(c: Context, measure: 'cost' | 'tokens' | 'calls' = 'cost',
 export async function recordData(kind: string, scope: Scope, query: Query, extra: URLSearchParams) {
     let rows: Row[] = [], columns: Column[] = [];
     const db = pg();
-    if (['rules', 'live', 'rule-log', 'changes', 'jobs', 'sources', 'categorization', 'knowledge', 'archives'].includes(kind)) {
+    if (['experiments', 'experiment-evaluations', 'experiment-reviews', 'experiment-accounting', 'rules', 'live', 'rule-log', 'changes', 'jobs', 'sources', 'categorization', 'knowledge', 'archives'].includes(kind)) {
+        if (kind === 'experiments' || kind.startsWith('experiment-')) {
+            rows = (await experimentHistory(scope))[kind];
+            columns = kind === 'experiments' ? [text('title', 'Proposal'), text('change', 'Change preview'), text('state', 'Evaluation state', 'badge'), text('decision', 'Decision'), text('implementation', 'Implementation'), numeric('evaluations', 'Evaluations'), text('created', 'Created', 'date')] :
+                kind === 'experiment-evaluations' ? [text('title', 'Proposal'), text('protocol', 'Protocol'), text('acceptance', 'Registered gate passed'), text('created', 'Recorded', 'date'), text('artifact_sha256', 'Artifact SHA-256', 'code')] :
+                kind === 'experiment-reviews' ? [text('title', 'Proposal'), text('verdict', 'Verdict', 'badge'), text('notes', 'Review and limitations'), text('created', 'Recorded', 'date')] :
+                [text('title', 'Proposal'), text('created', 'Snapshot', 'date'), text('sha256', 'Payload SHA-256', 'code')];
+        }
         if (kind === 'rules') {
             const data = await db `SELECT r.*,count(l.id) FILTER(WHERE l.at>now()-interval '7 days')::integer AS fired,max(l.at) AS last_fired FROM steering_rules r LEFT JOIN steering_log l ON l.rule_id=r.id GROUP BY r.id ORDER BY r.builtin DESC,r.id`;
             rows = data.map(r => ({ ...r, id: String(r.id), fires_when: triggerDescription(r) }));
@@ -275,12 +282,12 @@ export async function recordData(kind: string, scope: Scope, query: Query, extra
                 columns = [...commonColumns().filter(col => !['models', 'session_id', 'workspace'].includes(col.key)), numeric('turns', 'Turns'), text('categories', 'Categories')];
         }
         if (kind === 'steps') {
-            rows = source.map((e, i) => ({ id: e.id, sequence: i + 1, at: e.time_known ? e.event_time : null, kind: e.kind === 'generation' ? 'API call' : e.kind === 'compaction' ? 'compaction' : e.failed === 1 ? 'tool · error' : 'tool', name: e.kind === 'generation' ? e.model : e.name, runtime: e.runtime, input: e.input_tokens, output: e.kind === 'tool' ? null : e.output_tokens, cost: metrics([e], c.pricing).cost, context_cost: null, agent: e.agent_type || e.role || 'Unknown', detail: e.command, event_id: e.id }));
+            rows = source.map((e, i) => ({ id: e.id, sequence: i + 1, at: e.time_known ? e.event_time : null, kind: e.kind === 'generation' ? 'API call' : e.kind === 'compaction' ? 'compaction' : e.failed === 1 ? 'tool · error' : 'tool', category: category(e, c), name: e.kind === 'generation' ? e.model : e.name, runtime: e.runtime, input: e.input_tokens, output: e.kind === 'tool' ? null : e.output_tokens, cost: metrics([e], c.pricing).cost, context_cost: null, agent: e.agent_type || e.role || 'Unknown', detail: e.command, event_id: e.id }));
             if (extra.get('ids')) {
                 const ids = new Set(extra.get('ids')!.split(','));
                 rows = rows.filter(r => ids.has(r.id));
             }
-            columns = [numeric('sequence', '#'), text('at', 'Time', 'date'), text('kind', 'Type', 'badge'), text('name', 'Step'), numeric('runtime', 'Duration', 'duration'), numeric('input', 'Tokens in', 'tokens'), numeric('output', 'Tokens out', 'tokens'), numeric('cost', 'Cost', 'money'), numeric('context_cost', 'Context cost', 'money'), text('agent', 'Agent'), text('detail', 'Detail', 'code')];
+            columns = [numeric('sequence', '#'), text('at', 'Time', 'date'), text('kind', 'Type', 'badge'), text('category', 'Activity', 'badge'), text('name', 'Step'), numeric('runtime', 'Duration', 'duration'), numeric('input', 'Tokens in', 'tokens'), numeric('output', 'Tokens out', 'tokens'), numeric('cost', 'Cost', 'money'), numeric('context_cost', 'Context cost', 'money'), text('agent', 'Agent'), text('detail', 'Detail', 'code')];
         }
         if (kind === 'tools') {
             rows = tools({ ...c, events: source });
@@ -294,7 +301,7 @@ export async function recordData(kind: string, scope: Scope, query: Query, extra
         }
         if (kind === 'models') {
             rows = models(c);
-            columns = [text('name', 'Model'), numeric('calls', 'API calls'), numeric('cost', 'Cost', 'money'), numeric('share', 'Share', 'percent'), numeric('uncached', 'Uncached input', 'tokens'), numeric('cached', 'Cache read', 'tokens'), numeric('cache_write', 'Cache write', 'tokens'), numeric('output', 'Output', 'tokens'), numeric('cost_per_call', 'Cost / call', 'money'), numeric('latency', 'Avg latency', 'duration')];
+            columns = [text('name', 'Model'), numeric('calls', 'API calls'), numeric('cost', 'Cost', 'money'), numeric('share', 'Share', 'percent'), numeric('uncached', 'Non-cached input', 'tokens'), numeric('cached', 'Cache read', 'tokens'), numeric('cache_hit', 'Cache hit', 'percent'), numeric('cache_write', 'Cache write', 'tokens'), numeric('output', 'Output', 'tokens'), numeric('cost_per_call', 'Cost / call', 'money'), numeric('latency', 'Avg latency', 'duration')];
         }
         if (kind === 'agents') {
             const total = metrics(c.events, c.pricing).known_cost;
@@ -364,6 +371,10 @@ export async function recordData(kind: string, scope: Scope, query: Query, extra
     rows = rows.map(row => ({ ...row, ...Object.fromEntries(columns.filter(c => c.numeric && typeof row[c.key] === 'string' && /^-?\d+(?:\.\d+)?$/.test(String(row[c.key]))).map(c => [c.key, Number(row[c.key])])) }));
     if (!columns.length)
         throw Error('Unknown record collection');
-    return { ...collection(rows, query, columns.map(c => c.key)), columns };
+    const valueDigest = (value: unknown) => hash(JSON.stringify(value ?? null));
+    const page = collection(rows, query, columns.map(c => c.key), valueDigest);
+    // Large cell values cannot safely fit in a URL or the bounded filter field.
+    // Return their exact-value fingerprints for compact include/exclude controls.
+    return { ...page, rows: page.rows.map((row): Row => ({ ...row, __filterDigests: Object.fromEntries(columns.filter(c => JSON.stringify(row[c.key] ?? null).length > 197).map(c => [c.key, valueDigest(row[c.key])])) })), columns };
 }
 export function triggerDescription(rule: Record<string, unknown>) { const config = rule.config as Record<string, unknown> || {}; return ({ break: `A prompt arrives after ${config.minutes || 60}+ minutes without activity`, task_budget: `Reported task cost reaches $${config.amount || 5}, then each further increment`, daily_budget: `Reported daily cost (UTC) reaches $${config.amount || 100}`, context: `Session context reaches ${Number(config.tokens || 200000).toLocaleString()} tokens; once per task`, failure_loop: `The same call fails ${config.count || 3} times in a row`, stop_check: 'The agent stops with edits after the last successful check', command: `Tool ${config.tool || 'any'} matches ${config.pattern || rule.name}` })[String(rule.kind)] || String(rule.name); }

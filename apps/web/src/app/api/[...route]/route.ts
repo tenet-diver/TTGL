@@ -44,7 +44,7 @@ export async function GET(req: NextRequest, { params }: {
     try {
         if (r[0] === 'health') {
             const checks = await Promise.allSettled([pg() `SELECT 1`, queryCh('SELECT 1'), rawHealth()]);
-            return json({ postgres: checks[0].status === 'fulfilled', clickhouse: checks[1].status === 'fulfilled', garage: checks[2].status === 'fulfilled' }, checks.every(c => c.status === 'fulfilled') ? 200 : 503);
+            return json({ postgres: checks[0].status === 'fulfilled', clickhouse: checks[1].status === 'fulfilled', raw_storage: checks[2].status === 'fulfilled', raw_storage_kind: 'local_s3' }, checks.every(c => c.status === 'fulfilled') ? 200 : 503);
         }
         if (r[0] === 'records' && r[1])
             return json(await recordData(r[1], scopeFrom(req.nextUrl.searchParams), queryFrom(req.nextUrl.searchParams), req.nextUrl.searchParams));
@@ -108,6 +108,13 @@ export async function POST(req: NextRequest, { params }: {
         const origin = req.headers.get('origin');
         if (!sameOrigin(origin, req.headers.get('host')))
             return json({ error: 'Same-origin request required' }, 403);
+        if (r[0] === 'records' && r[1]) {
+            const input = await body(req);
+            if (!input || typeof input !== 'object' || Array.isArray(input) || Object.keys(input).length > 40 || Object.values(input).some(value => typeof value !== 'string'))
+                return json({ error: 'Invalid record parameters' }, 400);
+            const search = new URLSearchParams(input);
+            return json(await recordData(r[1], scopeFrom(search), queryFrom(search), search));
+        }
         if (r[0] === 'actions')
             return json(await performAction(await body(req), req.headers.get('idempotency-key') || ''));
         return json({ error: 'Unknown endpoint' }, 404);

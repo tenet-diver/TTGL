@@ -84,7 +84,7 @@ export async function runOneAnalysis() {
         }) => s.id), job.snapshot.turns.map((t: {
             turn_key: string;
         }) => t.turn_key), job.snapshot.prompt_context);
-        const publication = { ...result, source_versions: Object.fromEntries(job.snapshot.steps.map((s: {
+        const publication = { ...result, analysis_version: 'task-process-v2', model: job.model, source_versions: Object.fromEntries(job.snapshot.steps.map((s: {
                 id: string;
                 source_version: number;
             }) => [s.id, s.source_version])) };

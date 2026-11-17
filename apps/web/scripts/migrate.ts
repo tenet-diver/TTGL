@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { createClient } from '@clickhouse/client';
 import { pg, closeDatabases } from '../src/lib/database.ts';
+import { seedApiPricing } from '../src/lib/pricing.ts';
 export async function migrate() {
     const chDatabase = process.env.CLICKHOUSE_DATABASE || 'observatory';
     if (!/^[a-z][a-z0-9_]{0,60}$/.test(chDatabase))
@@ -24,6 +25,7 @@ export async function migrate() {
             await tx `INSERT INTO observatory.schema_migrations(version,sha256) VALUES(${file},${sha})`;
         }
     });
+    await db.begin(async tx => { await seedApiPricing(tx); });
     const bootstrap = createClient({ url: process.env.CLICKHOUSE_URL, username: process.env.CLICKHOUSE_USER || 'observatory', password: process.env.CLICKHOUSE_PASSWORD || '', database: 'default', clickhouse_settings: { date_time_input_format: 'best_effort' } });
     try {
         await bootstrap.command({ query: 'CREATE DATABASE IF NOT EXISTS ' + chDatabase });

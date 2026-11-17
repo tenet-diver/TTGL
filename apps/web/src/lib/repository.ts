@@ -79,14 +79,18 @@ export async function context(scope: Scope): Promise<Context> {
     if (previous && previous.expires > Date.now())
         return previous.value;
     const value = load(scope);
-    cache.set(key, { expires: Date.now() + 2000, value });
+    // Keep one in-flight load even when it takes longer than the cache TTL.
+    const entry = { expires: Infinity, value };
+    cache.set(key, entry);
     if (cache.size > 4)
         cache.delete(cache.keys().next().value!);
     try {
-        return await value;
+        const result = await value;
+        entry.expires = Date.now() + 2000;
+        return result;
     }
     catch (error) {
-        cache.delete(key);
+        if (cache.get(key) === entry) cache.delete(key);
         throw error;
     }
 }
@@ -104,7 +108,10 @@ async function load(scope: Scope): Promise<Context> {
     if (turns.length > 10000 || tasks.length > 10000)
         throw Error('Narrow the workspace/date scope to at most 10,000 tasks or turns.');
     const keys = turns.map(t => String(t.turn_key));
-    const events = await queryCh<NativeEvent>(`SELECT * EXCEPT(payload,output_excerpt,command,source_path), '' AS payload, '' AS output_excerpt, substring(command,1,512) AS command, '' AS source_path FROM events FINAL WHERE ({workspace:String}='' OR workspace={workspace:String}) AND ({since:String}='' OR event_time>=parseDateTime64BestEffortOrNull({since:String})) AND ({project:String}='' OR turn_key IN {keys:Array(String)}) ORDER BY event_time,id LIMIT 100001`, { workspace: scope.workspace, since: since || '', project: scope.project || scope.task || '', keys });
+    // The unscoped query does not use turn identities. Sending the entire corpus
+    // anyway exceeds ClickHouse's HTTP form-field limit on real native histories.
+    const eventScope = scope.project || scope.task || '';
+    const events = await queryCh<NativeEvent>(`SELECT * EXCEPT(payload,output_excerpt,command,source_path), '' AS payload, '' AS output_excerpt, substring(command,1,512) AS command, '' AS source_path FROM events FINAL WHERE ({workspace:String}='' OR workspace={workspace:String}) AND ({since:String}='' OR event_time>=parseDateTime64BestEffortOrNull({since:String})) AND ({project:String}='' OR turn_key IN {keys:Array(String)}) ORDER BY event_time,id LIMIT 100001`, { workspace: scope.workspace, since: since || '', project: eventScope, keys: eventScope ? keys : [] });
     if (events.length > 100000)
         throw Error('Narrow the date or workspace scope to at most 100,000 events for this analysis.');
     const visibleKeys = new Set(events.map(e => e.turn_key));
@@ -194,7 +201,7 @@ export function taskFacts(c: Context, id: string) {
     return facts;
 }
 function interpretedFields(f: ReturnType<typeof computeFacts>, turn?: string) {
-    const result = f.complete && f.analysis?.result.schema_version === 2 ? f.analysis.result : undefined;
+    const result = f.complete && (f.analysis?.result.schema_version === 2 || f.analysis?.result.source_protocol === 'task-process-v1') ? f.analysis.result : undefined;
     const relations = Array.isArray(result?.prompt_relations) ? result.prompt_relations as Record<string, unknown>[] : [];
     return { luna_outcome: result?.outcome || 'unknown', luna_reason: result?.outcome_reason || '', prompt_relationship: relations.find(r => r.turn_key === turn)?.relationship || 'unknown' };
 }

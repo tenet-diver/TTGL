@@ -1,0 +1,29 @@
+{
+  "unit": "USD",
+  "as_of": "2026-11-16",
+  "scenario_id": "openai-standard-api-equivalent-20261116",
+  "kind": "api_equivalent",
+  "service_tier": "standard",
+  "source_urls": [
+    "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+    "https://developers.openai.com/api/docs/models/gpt-6-luna",
+    "https://developers.openai.com/api/docs/pricing"
+  ],
+  "assumptions": [
+    "Current dated Standard API rates applied to retained historical token counts; not historical invoices, subscription cash or quota charges.",
+    "Cached input is a subset of input. Unreported cache-write tokens remain unclassified input priced at the ordinary input rate; separate write surcharges cannot be measured and are excluded.",
+    "Flat explicit cache-write rates select the published 30-minute write scenario; no cache lifetime is inferred from missing logs.",
+    "GPT-6.1 Sol requests above 272000 input tokens use the published long-context input/cache and output premiums for the full request.",
+    "No Fast, Ultrafast, Batch, Flex or regional multiplier is inferred from absent service-tier metadata."
+  ],
+  "models": {
+    "gpt-6.1-sol": {
+      "input": 2,
+      "cached": 0.1,
+      "output": 10,
+      "write": 2.5,
+      "long_context": { "above_tokens": 272000, "input": 4, "cached": 0.2, "output": 15, "write": 5 }
+    },
+    "gpt-6-luna": { "input": 0.1, "cached": 0.01, "output": 0.5, "write": 0.125 }
+  }
+}

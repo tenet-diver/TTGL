@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useState, type ReactNode, type CSSProperties } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useReactTable, getCoreRowModel, flexRender, type ColumnDef, type VisibilityState } from '@tanstack/react-table';
@@ -10,14 +10,19 @@ import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
+import { SemanticBadge } from './semantic-badge';
+import { colorStyle, fieldColorKind } from '@/lib/semantic-colors';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuCheckboxItem } from '@/components/ui/dropdown-menu';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Select, SelectTrigger, SelectContent, SelectValue, SelectItem } from '@/components/ui/select';
 import { MutationDialog, mutate, type FormField } from './mutation-dialog';
 import { format } from '@/lib/format';
-import { collection } from '@/lib/record-query';
+import { collection, exactFilter } from '@/lib/record-query';
+import { readJson, writeLocal, savedTable, queryForColumns, tableDefaults } from '@/lib/view-preferences';
+import { apiJson } from '@/lib/api-response';
+import { requestRecords } from '@/lib/record-request';
 import type { Row, Column, RecordPage, Query } from '@/lib/types';
-const initial: Query = { search: '', filters: {}, sort: null, direction: 1, offset: 0, limit: 20 };
+const initial = tableDefaults;
 const modeOptions = ['log', 'warn', 'ask', 'block'].map(value => ({ value, label: { log: 'Log only', warn: 'Warn', ask: 'Ask you', block: 'Block' }[value]! }));
 export function DataTable({ id, kind, rows: localRows, columns: localColumns, extra = {}, compact = false, selection, onSelection }: {
     id: string;
@@ -29,31 +34,27 @@ export function DataTable({ id, kind, rows: localRows, columns: localColumns, ex
     selection?: Set<string>;
     onSelection?: (ids: Set<string>) => void;
 }) {
-    const params = useSearchParams(), router = useRouter(), [query, setQuery] = useState<Query>(initial), [visibility, setVisibility] = useState<VisibilityState>({}), [ready, setReady] = useState(false), [filtersOpen, setFiltersOpen] = useState(false), [data, setData] = useState<RecordPage>({ rows: [], total: 0, offset: 0, limit: 20, columns: [] }), [pending, setPending] = useState(true), [error, setError] = useState(''), [revision, setRevision] = useState(0), [detail, setDetail] = useState<Row | null>(null), [source, setSource] = useState<unknown>(null), [sourcePending, setSourcePending] = useState(false);
+    const params = useSearchParams(), router = useRouter(), [query, setQuery] = useState<Query>(initial), [visibility, setVisibility] = useState<VisibilityState>({}), [loadedKey, setLoadedKey] = useState<string | null>(null), [filtersOpen, setFiltersOpen] = useState(false), [data, setData] = useState<RecordPage>({ rows: [], total: 0, offset: 0, limit: 20, columns: [] }), [pending, setPending] = useState(true), [error, setError] = useState(''), [revision, setRevision] = useState(0), [detail, setDetail] = useState<Row | null>(null), [source, setSource] = useState<unknown>(null), [sourcePending, setSourcePending] = useState(false);
+    const preferenceKey = 'observatory-table:' + id + (kind ? ':' + kind : ''), ready = loadedKey === preferenceKey;
     const [contextFilter, setContextFilter] = useState<{
         key: string;
         value: unknown;
         label: string;
+        digest?: string;
     } | null>(null);
     useEffect(() => { const reload = () => setRevision(r => r + 1); window.addEventListener('observatory-records-changed', reload); return () => window.removeEventListener('observatory-records-changed', reload); }, []);
     const scope = params.toString(), extraKey = JSON.stringify(extra), queryKey = JSON.stringify(query), localKey = JSON.stringify(localColumns), rowsKey = JSON.stringify(localRows);
     useEffect(() => {
-        try {
-            const saved = JSON.parse(localStorage.getItem('observatory-table:' + id) || '{}');
-            if (saved.query)
-                setQuery({ ...initial, ...saved.query });
-            if (saved.visibility)
-                setVisibility(saved.visibility);
-            if (saved.filtersOpen)
-                setFiltersOpen(true);
-        }
-        catch { }
-        setReady(true);
-    }, [id]);
+        const saved = savedTable(readJson(preferenceKey) ?? readJson('observatory-table:' + id));
+        setQuery(localColumns ? queryForColumns(saved.query, localColumns.map(c => c.key)) : saved.query);
+        setVisibility(saved.visibility);
+        setFiltersOpen(saved.filtersOpen);
+        setLoadedKey(preferenceKey);
+    }, [preferenceKey]);
     useEffect(() => {
         if (ready)
-            localStorage.setItem('observatory-table:' + id, JSON.stringify({ query, visibility, filtersOpen }));
-    }, [id, ready, queryKey, visibility, filtersOpen]);
+            writeLocal(preferenceKey, JSON.stringify({ query, visibility, filtersOpen }));
+    }, [preferenceKey, ready, queryKey, visibility, filtersOpen]);
     useEffect(() => {
         if (!ready)
             return;
@@ -63,23 +64,41 @@ export function DataTable({ id, kind, rows: localRows, columns: localColumns, ex
             setError('');
             try {
                 let result: RecordPage;
-                if (localRows && localColumns)
+                if (localRows && localColumns) {
+                    const repaired = queryForColumns(query, localColumns.map(c => c.key));
+                    if (JSON.stringify(repaired) !== queryKey) { setQuery(repaired); return; }
                     result = { ...collection(localRows, query, localColumns.map(c => c.key)), columns: localColumns };
+                }
                 else {
                     const search = new URLSearchParams(scope);
                     Object.entries(JSON.parse(extraKey) as Record<string, string>).forEach(([k, v]) => search.set(k, v));
                     search.set('query', queryKey);
-                    const response = await fetch('/api/records/' + kind + '?' + search, { signal: controller.signal });
-                    result = await response.json();
-                    if (!response.ok)
+                    const response = await requestRecords(kind!, search, controller.signal);
+                    result = await apiJson<RecordPage>(response);
+                    if (!response.ok) {
+                        const message = (result as unknown as { error: string }).error;
+                        if (response.status === 400 && message === 'Unknown record column') {
+                            search.set('query', JSON.stringify(initial));
+                            const schemaResponse = await requestRecords(kind!, search, controller.signal);
+                            if (schemaResponse.ok) {
+                                const schema = await apiJson<RecordPage>(schemaResponse);
+                                const repaired = queryForColumns(query, schema.columns.map(c => c.key));
+                                if (JSON.stringify(repaired) !== queryKey) { setQuery(repaired); return; }
+                            }
+                        }
                         throw Error((result as unknown as {
                             error: string;
                         }).error || 'Records unavailable');
+                    }
                 }
                 if (controller.signal.aborted)
                     return;
                 setData(result);
-                setVisibility(previous => Object.keys(previous).length ? previous : Object.fromEntries(result.columns.filter(c => c.hidden).map(c => [c.key, false])));
+                setVisibility(previous => {
+                    const keys = new Set(result.columns.map(c => c.key));
+                    const next = { ...Object.fromEntries(result.columns.filter(c => c.hidden).map(c => [c.key, false])), ...Object.fromEntries(Object.entries(previous).filter(([key]) => keys.has(key))) };
+                    return JSON.stringify(next) === JSON.stringify(previous) ? previous : next;
+                });
                 if (result.offset !== query.offset)
                     setQuery(previous => ({ ...previous, offset: result.offset }));
             }
@@ -103,9 +122,9 @@ export function DataTable({ id, kind, rows: localRows, columns: localColumns, ex
             setSourcePending(true);
             try {
                 const response = await fetch('/api/events/' + encodeURIComponent(String(row.event_id)));
-                const body = await response.json();
+                const body = await apiJson<Record<string, unknown>>(response);
                 if (!response.ok)
-                    throw Error(body.error);
+                    throw Error(String(body.error || 'Source evidence unavailable'));
                 setSource(body);
             }
             catch (e) {
@@ -148,10 +167,14 @@ export function DataTable({ id, kind, rows: localRows, columns: localColumns, ex
             return <div>{format(value, String(row.format))}<small className="sample-note">{format(row[column.key + '_count'])} {String(row.sample_unit)} · {format(row[column.key + '_hours'])} hours</small></div>;
         if (column.key === 'change' && row.sample_unit)
             return <div><Badge variant="outline">{String(value)}</Badge>{row.low != null && <small className="sample-note">95% Δ {format(row.low, String(row.format))} to {format(row.high, String(row.format))}</small>}</div>;
+        const colorKind = fieldColorKind(column.key) || (column.key === 'name' && kind === 'models' ? 'model' : column.key === 'name' && kind === 'tools' ? 'tool' : column.key === 'name' && kind === 'categories' ? 'activity' : undefined);
+        const content = colorKind ? <span className="semantic-values">{(typeof value === 'string' && ['category', 'categories', 'models'].includes(column.key) ? value.split(/,\s*/) : [value]).map((part, i) => <SemanticBadge key={String(part) + i} value={part} kind={colorKind}/>)}</span> : format(value);
         if (column.type === 'link' && row.href)
-            return <Link href={String(row.href)} className="record-link">{format(value)}</Link>;
+            return <Link href={String(row.href)} className="record-link">{content}</Link>;
+        if (colorKind)
+            return content;
         if (column.type === 'badge')
-            return <Badge variant="outline"><i className={'badge-dot ' + (/fail|fix|error|block/i.test(String(value)) ? 'error' : /warn|ask|pending/i.test(String(value)) ? 'warning' : 'neutral')}/>{format(value)}</Badge>;
+            return <SemanticBadge value={value}/>;
         if (column.type === 'code')
             return <code title={String(value ?? '')}>{format(value)}</code>;
         if (typeof value === 'object' && value !== null)
@@ -168,6 +191,7 @@ export function DataTable({ id, kind, rows: localRows, columns: localColumns, ex
     }, [data.columns, kind, queryKey, selection, pending]);
     const table = useReactTable({ data: data.rows, columns: definitions, getRowId: row => row.id, getCoreRowModel: getCoreRowModel(), manualPagination: true, manualFiltering: true, manualSorting: true, state: { columnVisibility: visibility }, onColumnVisibilityChange: setVisibility });
     const pages = Math.max(1, Math.ceil(data.total / query.limit)), page = Math.floor(data.offset / query.limit) + 1, active = Boolean(query.search || query.sort || Object.values(query.filters).some(Boolean));
+    const customized = active || filtersOpen || query.limit !== initial.limit || query.offset !== 0 || data.columns.some(c => visibility[c.key] === undefined ? false : visibility[c.key] !== !c.hidden);
     return <div className={'record-list ' + (compact ? 'compact-list' : '')} data-list={id} aria-busy={pending}>
  <div className="list-toolbar"><span className="record-count">{data.total.toLocaleString()} records{selection?.size ? ` · ${selection.size} selected` : ''}</span><div className="list-controls"><DropdownMenu><DropdownMenuTrigger asChild><Button variant="outline" size="sm" aria-label={'Columns ' + id}><Columns3 size={13}/>Columns {table.getVisibleLeafColumns().filter(c => c.id !== '__actions' && c.id !== '__selection').length}/{data.columns.length}</Button></DropdownMenuTrigger><DropdownMenuContent align="end">{table.getAllColumns().filter(c => c.getCanHide()).map(column => <DropdownMenuCheckboxItem key={column.id} checked={column.getIsVisible()} onSelect={e => e.preventDefault()} onCheckedChange={checked => {
                 column.toggleVisibility(Boolean(checked));
@@ -176,13 +200,13 @@ export function DataTable({ id, kind, rows: localRows, columns: localColumns, ex
                     delete filters[column.id];
                     update({ filters, sort: query.sort === column.id ? null : query.sort });
                 }
-            }}>{String(column.columnDef.header)}</DropdownMenuCheckboxItem>)}</DropdownMenuContent></DropdownMenu><Button variant="outline" size="sm" aria-expanded={filtersOpen} onClick={() => setFiltersOpen(!filtersOpen)}>Filters</Button>{active && <Button variant="ghost" size="sm" onClick={() => { setQuery(initial); setVisibility(Object.fromEntries(data.columns.filter(c => c.hidden).map(c => [c.key, false]))); setFiltersOpen(false); }}>Reset</Button>}<div className="table-search"><Search size={13}/><Input aria-label={'Search ' + id} placeholder="Search" value={query.search} onChange={e => update({ search: e.target.value })}/>{query.search && <Button variant="ghost" size="icon" aria-label={'Clear search ' + id} onClick={() => update({ search: '' })}><X size={12}/></Button>}</div></div></div>
+            }}>{String(column.columnDef.header)}</DropdownMenuCheckboxItem>)}</DropdownMenuContent></DropdownMenu><Button variant="outline" size="sm" aria-expanded={filtersOpen} onClick={() => setFiltersOpen(!filtersOpen)}>Filters</Button>{customized && <Button variant="ghost" size="sm" onClick={() => { setQuery(initial); setVisibility(Object.fromEntries(data.columns.filter(c => c.hidden).map(c => [c.key, false]))); setFiltersOpen(false); }}>Reset</Button>}<div className="table-search"><Search size={13}/><Input aria-label={'Search ' + id} placeholder="Search" value={query.search} onChange={e => update({ search: e.target.value })}/>{query.search && <Button variant="ghost" size="icon" aria-label={'Clear search ' + id} onClick={() => update({ search: '' })}><X size={12}/></Button>}</div></div></div>
  {error && <p role="alert" className="error-message">{error}<Button variant="link" onClick={() => setRevision(r => r + 1)}>Retry</Button></p>}
- <Table><TableHeader>{table.getHeaderGroups().map(group => <TableRow key={group.id}>{group.headers.map(header => <TableHead key={header.id} className={data.columns.find(c => c.key === header.id)?.numeric ? 'numeric' : ''}>{header.isPlaceholder ? null : header.column.getCanSort() ? <Button variant="ghost" className="sort-button" aria-label={'Sort by ' + String(header.column.columnDef.header)} onClick={() => update(query.sort === header.id ? query.direction === 1 ? { direction: -1 } : { sort: null, direction: 1 } : { sort: header.id, direction: 1 })} aria-pressed={query.sort === header.id}>{flexRender(header.column.columnDef.header, header.getContext())}{query.sort === header.id ? query.direction === 1 ? <ArrowUp size={11}/> : <ArrowDown size={11}/> : <ArrowUpDown size={11}/>}</Button> : flexRender(header.column.columnDef.header, header.getContext())}</TableHead>)}</TableRow>)}{filtersOpen && <TableRow>{table.getVisibleLeafColumns().map(col => <TableHead key={col.id}>{col.getCanSort() && <Input aria-label={'Filter ' + id + ' by ' + String(col.columnDef.header)} placeholder={data.columns.find(c => c.key === col.id)?.numeric ? 'e.g. >= 100' : 'Filter…'} value={query.filters[col.id] || ''} onChange={e => update({ filters: { ...query.filters, [col.id]: e.target.value } })}/>}</TableHead>)}</TableRow>}</TableHeader><TableBody>{table.getRowModel().rows.length ? table.getRowModel().rows.map(row => <TableRow key={row.id}>{row.getVisibleCells().map(ctx => <TableCell key={ctx.id} onContextMenu={event => {
+ <Table><TableHeader>{table.getHeaderGroups().map(group => <TableRow key={group.id}>{group.headers.map(header => <TableHead key={header.id} className={data.columns.find(c => c.key === header.id)?.numeric ? 'numeric' : ''}>{header.isPlaceholder ? null : header.column.getCanSort() ? <Button variant="ghost" className="sort-button" aria-label={'Sort by ' + String(header.column.columnDef.header)} onClick={() => update(query.sort === header.id ? query.direction === 1 ? { direction: -1 } : { sort: null, direction: 1 } : { sort: header.id, direction: 1 })} aria-pressed={query.sort === header.id}>{flexRender(header.column.columnDef.header, header.getContext())}{query.sort === header.id ? query.direction === 1 ? <ArrowUp size={11}/> : <ArrowDown size={11}/> : <ArrowUpDown size={11}/>}</Button> : flexRender(header.column.columnDef.header, header.getContext())}</TableHead>)}</TableRow>)}{filtersOpen && <TableRow>{table.getVisibleLeafColumns().map(col => <TableHead key={col.id}>{col.getCanSort() && <Input aria-label={'Filter ' + id + ' by ' + String(col.columnDef.header)} placeholder={data.columns.find(c => c.key === col.id)?.numeric ? 'e.g. >= 100' : 'Filter…'} value={query.filters[col.id] || ''} onChange={e => update({ filters: { ...query.filters, [col.id]: e.target.value } })}/>}</TableHead>)}</TableRow>}</TableHeader><TableBody>{table.getRowModel().rows.length ? table.getRowModel().rows.map(row => <TableRow key={row.id} className={row.original.category ? 'semantic-row' : undefined} style={row.original.category ? colorStyle(row.original.category) as CSSProperties : undefined} data-activity={row.original.category ? String(row.original.category) : undefined}>{row.getVisibleCells().map(ctx => <TableCell key={ctx.id} onContextMenu={event => {
                     if (ctx.column.id.startsWith('__'))
                         return;
                     event.preventDefault();
-                    setContextFilter({ key: ctx.column.id, value: ctx.getValue(), label: String(ctx.column.columnDef.header) });
+                    setContextFilter({ key: ctx.column.id, value: ctx.getValue(), label: String(ctx.column.columnDef.header), digest: (row.original.__filterDigests as Record<string, string> | undefined)?.[ctx.column.id] });
                 }} className={data.columns.find(c => c.key === ctx.column.id)?.numeric ? 'numeric' : ''}>{flexRender(ctx.column.columnDef.cell, ctx.getContext())}</TableCell>)}</TableRow>) : <TableRow><TableCell colSpan={Math.max(1, table.getVisibleLeafColumns().length)} className="table-empty">{pending ? 'Loading records…' : active ? 'No matching records. Clear the filters to see the full scope.' : 'No records in this scope.'}</TableCell></TableRow>}</TableBody></Table>
  {(!compact || data.total > query.limit) && <div className="list-pagination"><span>{data.total ? data.offset + 1 : 0}–{Math.min(data.offset + data.rows.length, data.total)} of {data.total}</span><label>Rows per page<Select value={String(query.limit)} onValueChange={value => update({ limit: Number(value) })}><SelectTrigger aria-label={'Rows per page ' + id}><SelectValue /></SelectTrigger><SelectContent>{[10, 20, 50, 100].map(n => <SelectItem key={n} value={String(n)}>{n}</SelectItem>)}</SelectContent></Select></label><div className="page-buttons"><Button variant="ghost" size="sm" aria-label={'Previous page ' + id} disabled={pending || page <= 1} onClick={() => update({ offset: Math.max(0, data.offset - query.limit) })}><ChevronLeft size={12}/>Previous</Button><label className="page-jump">Page<Input type="number" min="1" max={pages} aria-label={'Page ' + id} value={page} onChange={e => {
                 const target = Number(e.target.value);
@@ -194,11 +218,17 @@ export function DataTable({ id, kind, rows: localRows, columns: localColumns, ex
                 setContextFilter(null);
         }}><DialogContent><DialogHeader><DialogTitle>Filter exact value</DialogTitle><DialogDescription>{contextFilter?.label}: {format(contextFilter?.value)}</DialogDescription></DialogHeader><Button onClick={() => {
             if (contextFilter) {
-                update({ filters: { ...query.filters, [contextFilter.key]: '==' + JSON.stringify(contextFilter.value ?? null) } });
+                update({ filters: { ...query.filters, [contextFilter.key]: exactFilter(contextFilter.value, false, contextFilter.digest) } });
                 setFiltersOpen(true);
             }
             setContextFilter(null);
-        }}>Apply exact filter</Button><Button variant="outline" onClick={() => {
+        }}>Show matching</Button><Button variant="outline" onClick={() => {
+            if (contextFilter) {
+                update({ filters: { ...query.filters, [contextFilter.key]: exactFilter(contextFilter.value, true, contextFilter.digest) } });
+                setFiltersOpen(true);
+            }
+            setContextFilter(null);
+        }}>Filter out</Button><Button variant="outline" onClick={() => {
             if (contextFilter) {
                 const filters = { ...query.filters };
                 delete filters[contextFilter.key];

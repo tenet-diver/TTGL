@@ -1,0 +1,39 @@
+/* EVLV reader/native semantic roles (tokens/design-tokens.json blob
+   ee2f7a1e2e382254cb4b57745d4b0974614368b5), with Observatory activity accents. */
+:root {
+  --tone-green: #28734a; --tone-teal: #176b75; --tone-error: #bd3434;
+  --tone-warning: #995600; --tone-neutral: #626262;
+  --tone-blue: #0068d7; --tone-yellow: #826200; --tone-orange: #a74600;
+  --tone-pink: #b93667; --tone-lime: #526b00; --tone-violet: #7743b4;
+}
+.dark {
+  --tone-green: #82d6a2; --tone-teal: #83d5df; --tone-error: #ff9494;
+  --tone-warning: #ff9f0a; --tone-neutral: #b5b5b5;
+  --tone-blue: #52a8ff; --tone-yellow: #ffdc43; --tone-orange: #ff922b;
+  --tone-pink: #f08ba8; --tone-lime: #a4e33d; --tone-violet: #c3a4ef;
+}
+.semantic-badge[data-slot=badge] {
+  color: var(--semantic-color);
+  background: color-mix(in srgb, var(--semantic-color) 10%, var(--card));
+  border-color: color-mix(in srgb, var(--semantic-color) 35%, var(--border));
+  gap: 5px; max-width: 100%;
+}
+.semantic-badge svg { flex: none; }
+.semantic-dot, .chart-swatch { display: inline-block; width: 7px; height: 7px; border-radius: 2px; flex: none; background: var(--semantic-color); }
+.semantic-label, .semantic-values { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 5px; max-width: 100%; }
+.semantic-label { color: var(--semantic-color); }
+.semantic-row { box-shadow: inset 2px 0 var(--semantic-color); }
+.semantic-row td:first-child { padding-left: 11px; }
+.chart-legend i { display: inline-block; width: 7px; height: 7px; border-radius: 2px; flex: none; }
+.chart-legend > button { color: var(--foreground); }
+.phase-track button { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--foreground) 15%, transparent); }
+.phase-track button:hover, .phase-track button:focus-visible { opacity: 1; filter: brightness(1.15); }
+.native-timeline button[data-failed=true] > div { outline: 1px solid var(--tone-error); }
+.timeline-error { color: var(--tone-error); font-weight: 600; }
+.turn-day button { border: 1px solid color-mix(in srgb, var(--foreground) 25%, transparent); }
+.turn-day button:hover, .turn-day button:focus-visible { z-index: 1; filter: brightness(1.2); }
+.analysis-card .coverage-track > span { background: var(--tone-green); }
+p .heat-gradient { background: linear-gradient(to right, color-mix(in srgb, var(--tone-blue) 20%, var(--muted)), var(--tone-blue)); }
+.active-view-filters { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: -6px 0 16px; }
+.active-view-filters .filter-chip { display: inline-flex; align-items: center; gap: 6px; }
+.active-view-filters button { border: 0; background: transparent; color: inherit; min-width: 22px; height: 22px; font-size: 14px; }

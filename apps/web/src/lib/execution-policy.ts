@@ -9,12 +9,14 @@ export interface SubscriptionBinding {
     auth_mode: 'chatgpt';
 }
 /** Literal loopback only: no DNS aliases, remote endpoints, credentials, paths or redirects. */
-export function localGarageEndpoint(value: string) {
+export function localS3Endpoint(value: string) {
     const url = new URL(value);
     if (!['http:', 'https:'].includes(url.protocol) || !['127.0.0.1', '[::1]'].includes(url.hostname) || url.username || url.password || url.pathname !== '/' || url.search || url.hash)
-        throw Error('Garage S3 must use a literal local loopback endpoint, such as http://127.0.0.1:13900');
+        throw Error('S3 must use a literal local loopback endpoint, such as http://127.0.0.1:13900');
     return url.origin;
 }
+// Compatibility for existing local clients; the endpoint policy is independent of S3 vendor.
+export const localGarageEndpoint = localS3Endpoint;
 export async function subscriptionBinding(home = process.env.CODEX_HOME || path.join(homedir(), '.codex')): Promise<SubscriptionBinding> {
     if (!path.isAbsolute(home))
         throw Error('Codex subscription home must be an absolute local path');

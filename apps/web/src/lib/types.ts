@@ -50,6 +50,7 @@ export interface ChartSpec {
     title: string;
     description?: string;
     kind: 'bar' | 'line' | 'horizontal' | 'treemap' | 'heatmap' | 'turns' | 'flow';
+    colorKind?: import('./semantic-colors.ts').ColorKind;
     points: Record<string, unknown>[];
     series: {
         key: string;
@@ -131,8 +132,13 @@ export interface Pricing {
         write?: number;
         write_5m?: number;
         write_1h?: number;
+        long_context?: { above_tokens: number; input: number; cached: number; output: number; write?: number; write_5m?: number; write_1h?: number };
     }>;
     as_of?: string;
+    scenario_id?: string;
+    kind?: 'api_equivalent';
+    service_tier?: string;
+    source_urls?: string[];
+    assumptions?: string[];
 }
-export const palette = ['#52a8ff', '#30d98a', '#ffdc43', '#ff922b', '#f08ba8', '#a4e33d', '#c3a4ef', '#9b9baf'];
-export const categoryColors: Record<string, string> = { explore: palette[0], investigate: palette[0], implement: palette[1], verify: palette[2], test: palette[2], review: palette[2], deliver: palette[3], operate: palette[3], document: palette[3], debug: palette[4], coordinate: palette[5], plan: palette[5], research: palette[6] };
+export { chartPalette as palette, activityColors as categoryColors } from './semantic-colors.ts';

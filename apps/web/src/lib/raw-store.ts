@@ -1,4 +1,4 @@
-import { localGarageEndpoint } from './execution-policy.ts';
+import { localS3Endpoint } from './execution-policy.ts';
 import { S3Client, HeadObjectCommand, PutObjectCommand, GetObjectCommand, HeadBucketCommand } from '@aws-sdk/client-s3';
 import { createHash } from 'node:crypto';
 import { pg } from './database.ts';
@@ -6,8 +6,8 @@ const sha = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('he
 let client: S3Client | undefined, clientIdentity = '';
 export function rawClient() {
     if (!process.env.S3_ENDPOINT || !process.env.S3_BUCKET || !process.env.S3_ACCESS_KEY_ID || !process.env.S3_SECRET_ACCESS_KEY)
-        throw Error('Garage S3 endpoint, bucket and credentials are required for raw-log retention');
-    const endpoint = localGarageEndpoint(process.env.S3_ENDPOINT), identity = JSON.stringify([endpoint, process.env.S3_REGION, process.env.S3_ACCESS_KEY_ID, process.env.S3_SECRET_ACCESS_KEY]);
+        throw Error('Local S3 endpoint, bucket and credentials are required for raw-log retention');
+    const endpoint = localS3Endpoint(process.env.S3_ENDPOINT), identity = JSON.stringify([endpoint, process.env.S3_REGION, process.env.S3_ACCESS_KEY_ID, process.env.S3_SECRET_ACCESS_KEY]);
     if (clientIdentity !== identity) {
         client?.destroy();
         client = undefined;
