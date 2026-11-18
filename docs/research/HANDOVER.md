@@ -4008,3 +4008,19 @@ and `results/experience-routing-001/software-validation-20261118.json`. Model
 execution stays disabled until native actor/MCP, corpus/audit, immutable source/model/
 rate pins, budgets and pristine control gates qualify. Keep source histories and
 uncertain attempts intact; scheduled monitoring remains paused.
+
+## 18 November 2026 — experiment summary and pnpm assessment
+
+Added a plain-language experiment summary to the current
+[implementation checkpoint](experience-routing-implementation-status.md).
+No native/model trials were started. Reviewed pnpm 10.34.9, 11.28.12, 12.21.0,
+11.28.13 and 12.22.0 without executing their code. All inspected candidates contain
+confirmed advisory matches; notably `picomatch` 4.0.7 in the current 11/12 packages
+is affected by high-severity GHSA-fc5q-39xc-vjpf. Registry archive integrity and
+registry signatures were verified, but this does not remove those findings.
+The [dated assessment](../security/pnpm-assessment-20261118.json) records coverage
+limits and the blocked migration. A fresh npm advisory API check of the existing
+220-entry application graph returned zero findings. Active package manifests,
+locks, installed dependencies, frozen workers and environment routing are unchanged.
+Review a patched pnpm graph before importing the lock and adopting pnpm; do not
+silently use the preinstalled manager or waive confirmed findings.

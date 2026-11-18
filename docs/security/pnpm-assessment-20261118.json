@@ -1,0 +1,308 @@
+{
+  "reviewed_at": "2026-11-18",
+  "purpose": "Requested pnpm migration; pre-execution package-manager assessment",
+  "decision": "Migration blocked by known vulnerabilities in every inspected candidate; active application manifests, npm lock, installed packages and frozen worker locks remain unchanged.",
+  "security_scope": "Codespace incomplete-evidence exception does not waive confirmed vulnerabilities. No new vulnerability exception requested or inferred.",
+  "sources": {
+    "registry_metadata": "https://registry.npmjs.org/pnpm",
+    "advisory_api": "https://registry.npmjs.org/-/npm/v1/security/advisories/bulk",
+    "signing_keys": "https://registry.npmjs.org/-/npm/v1/keys",
+    "blocked_sources": [
+      "https://api.osv.dev/v1/query",
+      "https://pnpm.io/settings",
+      "https://pnpm.io/supply-chain-security"
+    ],
+    "blocked_sources_reason": "Network proxy returned HTTP 403 during this review."
+  },
+  "method": "Python standard-library HTTP/archive/manifest inspection; SHA-512 registry-integrity comparison; OpenSSL registry ECDSA signature verification. No newly downloaded scanner or package-manager code executed. No container/OS dependency changed.",
+  "publisher_review": "Registry metadata points to pnpm/pnpm and maintainers zkochan/pnpmuser. Registry signatures verified against fetched registry keys; attestations retained. Independent recent incident review and full executable provenance are incomplete because known findings already block execution. No malware-free guarantee.",
+  "candidates": [
+    {
+      "name": "pnpm",
+      "version": "10.34.9",
+      "published_at": "2026-10-25T17:54:00.645Z",
+      "tarball": "https://registry.npmjs.org/pnpm/-/pnpm-10.34.9.tgz",
+      "integrity": "sha512-9JtajqD97bRLs8DB1ldQkqU8KVDZW3rRXfEfF5dId6LeOgHAfpNOmyjOcW5RwJqUlixzBtCb4uHksYqMh2L9Mg==",
+      "archive_sha256": "7e8a946108e7baab119e51d27c24d6178b46545422643dbc91e34e2f1ee32e0f",
+      "registry_signature": {
+        "version": "10.34.9",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "result": "Verified OK"
+      },
+      "attestation_url": "https://registry.npmjs.org/-/npm/v1/attestations/pnpm@10.34.9",
+      "attestation_sha256": "e7319f3cd82a112fabfd94f23d835461835303347f022710b1cbafe670e555cf",
+      "provenance_verification": "Registry attestation downloaded; SLSA/Rekor identity verification not completed after known-findings stop. Registry signature does not prove publisher compromise absent.",
+      "inspected_components": 490,
+      "graph_coverage": "10.x: packaged manifests plus bundle module-path version references. 11.x/12.x: packaged manifests only; compiled/optional executables not fully inventoried. Review stopped on confirmed packaged findings.",
+      "automatic_execution": "No tarball code, lifecycle hook, pnpm CLI or optional executable was run. 12.x root preinstall/postinstall invokes install.js; 10.x/11.x root has no install hooks. Bundled package hooks were inspected as data only.",
+      "findings": [
+        {
+          "package": "picomatch",
+          "inspected_versions": [
+            "2.3.2",
+            "4.0.4",
+            "4.0.7"
+          ],
+          "advisory": {
+            "id": 1247710,
+            "url": "https://github.com/advisories/GHSA-fc5q-39xc-vjpf",
+            "title": "picomatch vulnerable to ReDoS through single-branch repeated extglobs",
+            "severity": "high",
+            "vulnerable_versions": "<=4.0.7",
+            "cwe": [
+              "CWE-1333"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            }
+          }
+        },
+        {
+          "package": "minimatch",
+          "inspected_versions": [
+            "3.1.5",
+            "5.1.9",
+            "9.0.9"
+          ],
+          "advisory": {
+            "id": 1244623,
+            "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
+            "title": "minimatch has potential denial of service via globparts amplification",
+            "severity": "moderate",
+            "vulnerable_versions": ">=7.0.0 <11.0.1",
+            "cwe": [
+              "CWE-405"
+            ],
+            "cvss": {
+              "score": 0,
+              "vectorString": null
+            }
+          }
+        },
+        {
+          "package": "glob",
+          "inspected_versions": [
+            "10.5.0",
+            "7.2.3",
+            "8.1.0"
+          ],
+          "advisory": {
+            "id": 1244013,
+            "url": "https://github.com/advisories/GHSA-3g3m-2fjr-6pw4",
+            "title": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal",
+            "severity": "moderate",
+            "vulnerable_versions": ">=9.0.0 <=14.0.1",
+            "cwe": [
+              "CWE-400"
+            ],
+            "cvss": {
+              "score": 0,
+              "vectorString": null
+            }
+          }
+        },
+        {
+          "package": "uuid",
+          "inspected_versions": [
+            "9.0.1"
+          ],
+          "advisory": {
+            "id": 1119441,
+            "url": "https://github.com/advisories/GHSA-w5hq-g745-h8pq",
+            "title": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided",
+            "severity": "moderate",
+            "vulnerable_versions": "<11.1.1",
+            "cwe": [
+              "CWE-787",
+              "CWE-1285"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+            }
+          }
+        }
+      ],
+      "decision": "blocked; not installed or executed"
+    },
+    {
+      "name": "pnpm",
+      "version": "11.28.12",
+      "published_at": "2026-11-13T21:01:02.241Z",
+      "tarball": "https://registry.npmjs.org/pnpm/-/pnpm-11.28.12.tgz",
+      "integrity": "sha512-lIMzh+NdUD6K0QEEF83rgsEg5+abr98KnbBpBRW+rnFZJ0Vx5pK5arwqCF01Zv7FQ4Gv2Xj2X2SoU2Lf1+EI9w==",
+      "archive_sha256": "d0c42f9232c9685056b432f8b07631bbabd245d40ede9a982919c7a7ada40aa7",
+      "registry_signature": {
+        "version": "11.28.12",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "result": "Verified OK"
+      },
+      "attestation_url": "https://registry.npmjs.org/-/npm/v1/attestations/pnpm@11.28.12",
+      "attestation_sha256": "01450bcb02c7b170da080834dc934360d56753b4f25944142cfe00d15961137b",
+      "provenance_verification": "Registry attestation downloaded; SLSA/Rekor identity verification not completed after known-findings stop. Registry signature does not prove publisher compromise absent.",
+      "inspected_components": 27,
+      "graph_coverage": "10.x: packaged manifests plus bundle module-path version references. 11.x/12.x: packaged manifests only; compiled/optional executables not fully inventoried. Review stopped on confirmed packaged findings.",
+      "automatic_execution": "No tarball code, lifecycle hook, pnpm CLI or optional executable was run. 12.x root preinstall/postinstall invokes install.js; 10.x/11.x root has no install hooks. Bundled package hooks were inspected as data only.",
+      "findings": [
+        {
+          "package": "picomatch",
+          "inspected_versions": [
+            "4.0.7"
+          ],
+          "advisory": {
+            "id": 1247710,
+            "url": "https://github.com/advisories/GHSA-fc5q-39xc-vjpf",
+            "title": "picomatch vulnerable to ReDoS through single-branch repeated extglobs",
+            "severity": "high",
+            "vulnerable_versions": "<=4.0.7",
+            "cwe": [
+              "CWE-1333"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            }
+          }
+        }
+      ],
+      "decision": "blocked; not installed or executed"
+    },
+    {
+      "name": "pnpm",
+      "version": "12.21.0",
+      "published_at": "2026-11-13T21:01:11.515Z",
+      "tarball": "https://registry.npmjs.org/pnpm/-/pnpm-12.21.0.tgz",
+      "integrity": "sha512-Zv2CeO4ok1zpUXktNDZ/869cQyonVkRYIwKVM4NbjaUpu+C+UTCv1W7QcT+4eJ5Hutgtk71a4v5UsVVi1idu8A==",
+      "archive_sha256": "0791469382b579869c51827759876616bc3eae5296d8fa880bbc3c9c1e8cf6f7",
+      "registry_signature": {
+        "version": "12.21.0",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "result": "Verified OK"
+      },
+      "attestation_url": "https://registry.npmjs.org/-/npm/v1/attestations/pnpm@12.21.0",
+      "attestation_sha256": "04aacb3955e938f06ebfb32e3c52fdb9e0db9070212272e9e821d8a93a9eff66",
+      "provenance_verification": "Registry attestation downloaded; SLSA/Rekor identity verification not completed after known-findings stop. Registry signature does not prove publisher compromise absent.",
+      "inspected_components": 23,
+      "graph_coverage": "10.x: packaged manifests plus bundle module-path version references. 11.x/12.x: packaged manifests only; compiled/optional executables not fully inventoried. Review stopped on confirmed packaged findings.",
+      "automatic_execution": "No tarball code, lifecycle hook, pnpm CLI or optional executable was run. 12.x root preinstall/postinstall invokes install.js; 10.x/11.x root has no install hooks. Bundled package hooks were inspected as data only.",
+      "findings": [
+        {
+          "package": "picomatch",
+          "inspected_versions": [
+            "4.0.7"
+          ],
+          "advisory": {
+            "id": 1247710,
+            "url": "https://github.com/advisories/GHSA-fc5q-39xc-vjpf",
+            "title": "picomatch vulnerable to ReDoS through single-branch repeated extglobs",
+            "severity": "high",
+            "vulnerable_versions": "<=4.0.7",
+            "cwe": [
+              "CWE-1333"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            }
+          }
+        }
+      ],
+      "decision": "blocked; not installed or executed"
+    },
+    {
+      "name": "pnpm",
+      "version": "11.28.13",
+      "published_at": "2026-11-17T20:01:02.973Z",
+      "tarball": "https://registry.npmjs.org/pnpm/-/pnpm-11.28.13.tgz",
+      "integrity": "sha512-1cqpzc1gZ6wpAvn0TaoAsSiKc7q/Hpj083Wzp1g7GJS01J91J9qPXhUwGYuxDgOtujIaHwFUKdwpRs6KepqMZQ==",
+      "archive_sha256": "23b659d246003f84a98e9526cce39374754b321d2ba97aa40ae389978a49c3f4",
+      "registry_signature": {
+        "version": "11.28.13",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "result": "Verified OK"
+      },
+      "attestation_url": "https://registry.npmjs.org/-/npm/v1/attestations/pnpm@11.28.13",
+      "attestation_sha256": "77736b5d577a96d3bb4b6164c08023de16f9ccd31c1499b78906d3164f1a318f",
+      "provenance_verification": "Registry attestation downloaded; SLSA/Rekor identity verification not completed after known-findings stop. Registry signature does not prove publisher compromise absent.",
+      "inspected_components": 27,
+      "graph_coverage": "10.x: packaged manifests plus bundle module-path version references. 11.x/12.x: packaged manifests only; compiled/optional executables not fully inventoried. Review stopped on confirmed packaged findings.",
+      "automatic_execution": "No tarball code, lifecycle hook, pnpm CLI or optional executable was run. 12.x root preinstall/postinstall invokes install.js; 10.x/11.x root has no install hooks. Bundled package hooks were inspected as data only.",
+      "findings": [
+        {
+          "package": "picomatch",
+          "inspected_versions": [
+            "4.0.7"
+          ],
+          "advisory": {
+            "id": 1247710,
+            "url": "https://github.com/advisories/GHSA-fc5q-39xc-vjpf",
+            "title": "picomatch vulnerable to ReDoS through single-branch repeated extglobs",
+            "severity": "high",
+            "vulnerable_versions": "<=4.0.7",
+            "cwe": [
+              "CWE-1333"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            }
+          }
+        }
+      ],
+      "decision": "blocked; not installed or executed"
+    },
+    {
+      "name": "pnpm",
+      "version": "12.22.0",
+      "published_at": "2026-11-17T20:01:11.036Z",
+      "tarball": "https://registry.npmjs.org/pnpm/-/pnpm-12.22.0.tgz",
+      "integrity": "sha512-iUlAo9mlffpv03OZD7TkHgnC8tdtmC7R11J105Jn+Yj7Ti1AkAy+mSHGjZfGeqGhCW0nZjPbJI97NJJ6yd23pA==",
+      "archive_sha256": "aad29ce4c501d4618fe975fc949ce7f1d033c608a043fdcff4e6ef7a3736579e",
+      "registry_signature": {
+        "version": "12.22.0",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "result": "Verified OK"
+      },
+      "attestation_url": "https://registry.npmjs.org/-/npm/v1/attestations/pnpm@12.22.0",
+      "attestation_sha256": "b18f1e96420a4ae68220a0cbf3d314361737438afd0429e2136996a5a6178f1b",
+      "provenance_verification": "Registry attestation downloaded; SLSA/Rekor identity verification not completed after known-findings stop. Registry signature does not prove publisher compromise absent.",
+      "inspected_components": 23,
+      "graph_coverage": "10.x: packaged manifests plus bundle module-path version references. 11.x/12.x: packaged manifests only; compiled/optional executables not fully inventoried. Review stopped on confirmed packaged findings.",
+      "automatic_execution": "No tarball code, lifecycle hook, pnpm CLI or optional executable was run. 12.x root preinstall/postinstall invokes install.js; 10.x/11.x root has no install hooks. Bundled package hooks were inspected as data only.",
+      "findings": [
+        {
+          "package": "picomatch",
+          "inspected_versions": [
+            "4.0.7"
+          ],
+          "advisory": {
+            "id": 1247710,
+            "url": "https://github.com/advisories/GHSA-fc5q-39xc-vjpf",
+            "title": "picomatch vulnerable to ReDoS through single-branch repeated extglobs",
+            "severity": "high",
+            "vulnerable_versions": "<=4.0.7",
+            "cwe": [
+              "CWE-1333"
+            ],
+            "cvss": {
+              "score": 7.5,
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+            }
+          }
+        }
+      ],
+      "decision": "blocked; not installed or executed"
+    }
+  ],
+  "existing_application": {
+    "lockfile": "package-lock.json",
+    "sha256": "8c8ad7b287d3b49b57d45e4ea6af95a53eb96316e7cba9af358a82a323f5e860",
+    "registry_package_entries": 220,
+    "fresh_npm_advisory_findings": 0,
+    "scope": "Fresh advisory recheck of existing exact graph; earlier artifact/provenance receipt remains docs/security/next-stack-20261115.json. Not a new full supply-chain clearance.",
+    "changed": false
+  },
+  "private_raw_evidence": "work/security/pnpm-20261118/ (ignored)",
+  "next_step": "Review a patched maintained pnpm artifact and its full bundled/optional-executable graph, provenance, publisher incidents and hooks; then import the reviewed lock, compare exact versions/integrities, disable lifecycle scripts and validate frozen installation, typecheck, tests, build and desktop flows before switching."
+}

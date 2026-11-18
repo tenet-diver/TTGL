@@ -7,6 +7,35 @@ registration guide is [experience-routing-001](../../experiments/experience-rout
 
 **This is an unfinished implementation checkpoint, not a completed experiment.**
 
+## Experiment in brief
+
+The hypothesis is that reusable coding procedures and observed public verification
+outcomes let Luna solve more work while preserving quality and reducing total
+model-inference cost. A large Sol planner creates a bounded dependency graph;
+each subtask retrieves relevant prior experience, and a host policy selects Luna
+or Sol. Failed attempts remain in the record. A bounded Sol fallback restores the
+pre-subtask checkpoint, and Luna's later source-bound annotation extracts reusable
+experience from public traces. Independent grading stays outside live routing.
+
+The six controls separate model size, planning, memory and routing: large alone
+(L0), Luna alone (S0), planned large without memory (LP0), planned large with memory
+(LPM), cheap-first with memory and fallback (SFM), and outcome-aware mixed routing
+with memory (HRM). Controlled subtask replays compare no memory, raw traces and
+structured experience from the same checkpoint. A later online study measures
+experience accumulation with separate arm histories.
+
+Report matched task quality, failure modes, latency and all planning, annotation,
+verification, integration and fallback inference. The 90% scenario-cost saving is
+a hypothesis, not a result or a claim about subscription cash expense. Existing
+code and deterministic checks are preparation; native model trials remain disabled
+until the qualification gates below pass. No new model calls were made for this
+summary or the package-manager assessment.
+
+The requested pnpm migration was reviewed on 18 November and remains blocked by
+confirmed advisories in the inspected manager distributions. See
+[the receipt](../security/pnpm-assessment-20261118.json) and [setup](../../SETUP.md).
+Application and frozen research dependencies were not changed.
+
 The latest continuation is documented at the end of this file. It advances the
 runtime/replay implementation, resolves tested subscription-binding failure modes,
 and passes **48 Python tests plus 82 web/database tests**. The earlier 17 November

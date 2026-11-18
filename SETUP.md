@@ -14,6 +14,26 @@ application graph and reviewed database images. Follow the
 The runtime and npm bundled with an arbitrary Node distribution are separate
 candidates: the reviewed host Node 24.19 and npm distributions had known findings.
 
+**Package-manager update, 18 November:** pnpm is the requested migration target,
+but the switch is blocked by confirmed dependency advisories in all five inspected
+published candidates, including stable 12.21.0 and newer 12.22.0. Both package
+`picomatch` 4.0.7, affected by high-severity
+[GHSA-fc5q-39xc-vjpf](https://github.com/advisories/GHSA-fc5q-39xc-vjpf)
+(denial of service). These tools were inspected without executing them.
+See the [dated assessment](docs/security/pnpm-assessment-20261118.json).
+Do not use the environment's unreviewed pnpm/Corepack downloader as a workaround.
+The active manifests, lock, dependencies and installation method remain unchanged.
+
+pnpm can improve install-script control and dependency isolation; it still uses
+the npm registry and does not establish that imported packages are safe. After a
+patched manager passes review, pin its version/integrity, import the current lock
+without upgrades, compare every version and integrity, and configure isolated
+linking, disabled lifecycle scripts and frozen installs. Validate type checking,
+tests, production build and desktop flows before adopting the new layout. Preserve
+historical research workers and their frozen lock files. Today's advisory recheck
+of the existing application graph returned zero findings; this is not a new full
+supply-chain clearance.
+
 A reviewed runtime and an independently reviewed package manager can run the
 workspace's normal `npm` scripts. In this environment, the small checked installer
 materializes the audited lock without executing npm or lifecycle scripts:
