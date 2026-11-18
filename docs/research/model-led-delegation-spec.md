@@ -20,6 +20,13 @@ further requires typed-subtask similarity and model-specific outcome attribution
 Versioned, applicable grounded instructions support guided work; teacher examples
 remain distinct from observed successes by the cheaper executor.
 
+The latest topic framing is the
+[RSI-inspired knowledge-accumulation Codex study](knowledge-accumulation-codex-study.md):
+accumulated workflows are the main treatment, unseen-task transfer is the outcome,
+and routing/recency are mechanisms. Reuse this implementation and the official
+coding benchmark evaluators; preserve the strict per-action RSI reproduction
+as a separate possible comparison.
+
 ## 1. Model and host responsibilities
 
 Use a native Codex primary agent to understand the request, choose meaningful

@@ -4131,3 +4131,30 @@ New source hashes/receipt are separately versioned; earlier receipts and replay
 results are preserved. No dependency, frozen legacy source, native model call or
 fresh benchmark assignment changed. Original native account/actor/integration
 qualification gaps remain; do not declare the live experiment complete.
+
+## 18 November 2026 — connect the experiment to knowledge accumulation/generalization
+
+The user's topic is knowledge accumulation and generalization accelerating
+effective innovation outcomes. They favor an RSI-inspired study using templates,
+workflows and experience to improve cheaper-model capability, with the existing
+Codex harness and a subset of the paper's benchmarks. Start at
+[knowledge-accumulation-codex-study.md](knowledge-accumulation-codex-study.md) and
+[protocol-003.json](../../experiments/model-led-delegation-001/protocol-003.json).
+
+The main factor is nested construction knowledge (0/4/8/12 task prefixes), tested
+on unseen issue/fix lineages with Luna, Sol and the model-led routed system given
+matched library access. Proposed pilot: 12 construction, 12 development, 32 fresh
+SWE-bench Verified evaluation tasks; all IDs/budgets/precision remain unresolved.
+Thirty-two tasks at twelve system/snapshot cells imply 384 single-repeat episodes,
+plus construction and qualification, not an automatic launch. Recency is a small
+secondary comparison, not a replacement for measuring knowledge transfer.
+
+Keep frozen-prefix learning curves distinct from later online accumulation. All
+test cells freeze before test feedback; no evaluated result publishes into the
+construction library. Coding effectiveness/time/resource measures operationalize
+technical problem-solving, not verified originality or commercial innovation.
+Reuse native Codex/tool/official benchmark infrastructure; an official RSI code
+release remains unlocated. The separately inspected Apache-licensed SkillOrchestra
+source is an optional reuse candidate, not a change to QA benchmarks or a new
+executed dependency. No new model run/install/reservation occurred in this update;
+the existing native source-account, actor and parent integration gaps remain.

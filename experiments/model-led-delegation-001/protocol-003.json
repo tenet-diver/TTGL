@@ -1,0 +1,96 @@
+{
+  "schema_version": 3,
+  "study_id": "model-led-delegation-001",
+  "protocol_revision": "003",
+  "proposed_at": "2026-11-18",
+  "status": "proposed scientific schedule; not a frozen execution registration",
+  "allow_model_execution": false,
+  "automatic_retries": 0,
+  "extends": "protocol-002.json evidence, grounding and source-binding contracts; earlier protocols/results remain immutable",
+  "question": "Does accumulated verified workflow knowledge improve unseen-task capability and the total quality-cost frontier of native Codex agents?",
+  "basis": {
+    "paper": "https://arxiv.org/html/2609.34712v1",
+    "adaptation": "RSI-inspired; autonomous native Codex assignments instead of the paper's mini-SWE-agent per-action controller",
+    "official_rsi_code": "not located in current source review; no claim to reuse an official implementation",
+    "reuse": ["existing TTGL native Codex transport", "model-led delegation MCP tool", "isolated actors and usage retention", "official benchmark evaluator"],
+    "small_extension": "recency-aware selection of applicable verified experience"
+  },
+  "primary_benchmark": {
+    "name": "SWE-bench Verified",
+    "construction_tasks_proposed": 12,
+    "development_tasks_proposed": 12,
+    "heldout_tasks_proposed": 32,
+    "construction_ids": [],
+    "development_ids": [],
+    "heldout_ids": [],
+    "selection": "Freeze metadata-based order, prior-exposure audit and issue/fix/base-lineage exclusions before construction; cross-repository transfer requires a separate split.",
+    "evaluator": "official prescribed evaluator; exact source/image pins and pristine empty/reference controls pending"
+  },
+  "knowledge": {
+    "construction_task_prefixes": [0, 4, 8, 12],
+    "construction_executors": ["qualified Luna", "qualified Sol"],
+    "interpretation": "source-bound Luna interprets public traces; host-verified support and executor attribution required",
+    "records": ["bounded workflows and procedures", "typed subtask outcomes", "failure lessons", "preconditions and public acceptance checks", "actual model and assistance provenance"],
+    "teacher_rule": "Sol procedures may ground Luna but contribute zero observed Luna successes.",
+    "failure_rule": "Retain failures; a failed parent can supply verified local lessons only with explicit outcome scope.",
+    "snapshot_rule": "Nested immutable prefixes count all construction tasks, not only successes; publish eligible procedure and parent counts including zero.",
+    "no_hidden_material": "No hidden evaluator feedback, test patch or evaluated solution enters runtime knowledge."
+  },
+  "primary_matrix": {
+    "system_families": ["native Luna", "native Sol", "native Sol primary with Luna delegation tool"],
+    "snapshot_count": 4,
+    "heldout_tasks": 32,
+    "repeats": 1,
+    "cells": 12,
+    "episodes_proposed": 384,
+    "equal_information": "Every family has the same eligible snapshot and packet limits; log actual retrieved context.",
+    "resource_control": "Freeze tools, model/effort, actor, context policy and positive finite parent caps; primary/worker work shares those caps.",
+    "policy_selection": "Select routed policy on development only; freeze all cells before first test call.",
+    "launch": "Forecast only; feasibility and complete finite stage budgets must be resolved before launching the heldout matrix."
+  },
+  "secondary_recency": {
+    "snapshot": 12,
+    "comparators": ["similarity", "similarity_recency"],
+    "additional_episodes_maximum": 32,
+    "controls": "Same scope/library, packet order/budget and actor contracts. Development-select similarity coverage control. Neither condition receives hidden feedback.",
+    "age": "Verified execution timestamps; never import timestamps or fabricated aging.",
+    "gate": "Natural age variation and eligible support required; otherwise report recency effect unidentifiable."
+  },
+  "secondary_benchmark": {
+    "name": "Terminal-Bench coding/build/debug subset",
+    "version": null,
+    "ids": [],
+    "size": null,
+    "policy": "Register after primary qualification; pin paper version 2.0 or explicitly label 2.1 adaptation, exclude corresponding task versions and report separately."
+  },
+  "leakage_controls": {
+    "evaluation": "Frozen-prefix paired transfer; not chronological online learning.",
+    "test_feedback": "Seal all test grades until all predeclared cells finish; never tune or publish heldout traces into construction knowledge.",
+    "duplicates": "Exclude same issue/fix/base lineage, source aliases and prior exposed solutions; retain exclusions with provenance.",
+    "future_online_phase": "Separate registration: arm-owned earlier public experience only, publication watermarks, fixed stream, no future or cross-arm memory, hidden grading sealed."
+  },
+  "measurement": {
+    "primary": ["paired official completion", "total model resources per assigned task", "wall time per assigned task"],
+    "analysis": ["knowledge-size transfer curves", "resources per correct completion", "non-dominated quality-cost points", "task-cluster uncertainty", "construction amortization and break-even"],
+    "accounting": "Include primary, worker, annotation, extraction, checking, retrieval, failure and integration resources; distinguish non-inference host work.",
+    "cost_labels": "Native token/cache counters, provider estimates, rate scenarios and subscription cash are separate. Missing values stay unknown.",
+    "interpretation": "32 tasks and one repeat are exploratory; no guaranteed new frontier, tight noninferiority or direct innovation-originality claim."
+  },
+  "native_gates": {
+    "same_source_subscription_required": true,
+    "canonical_account_binding": "unresolved",
+    "reviewed_actor_and_runtime": "unresolved",
+    "live_parent_worker_integration": "unqualified",
+    "source_model_capability_freeze": null,
+    "budgets": null,
+    "task_reservations": "none created by this proposal",
+    "scheduled_inference": false
+  },
+  "implementation_status": {
+    "existing": "Typed routing, versioned grounding and MCP/native adapter software; 30 focused tests recorded separately. This is not native quality evidence.",
+    "missing": ["prefix snapshot builder", "equal-information standalone retrieval integration", "immutable campaign matrix", "fresh benchmark exclusions/reference controls", "finite-budget native qualification"],
+    "new_model_calls": 0,
+    "new_dependencies": 0,
+    "frozen_prior_studies_modified": false
+  }
+}
