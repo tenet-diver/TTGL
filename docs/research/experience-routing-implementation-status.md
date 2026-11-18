@@ -7,6 +7,13 @@ registration guide is [experience-routing-001](../../experiments/experience-rout
 
 **This is an unfinished implementation checkpoint, not a completed experiment.**
 
+The latest research handover is the separate
+[RSI-Router Luna/Sol reproduction specification](rsi-router-luna-sol-spec.md).
+It prioritizes a paper-based step-routing reproduction before adding Observatory
+retrieval as an extension. The existing implementation described here is retained
+for reuse and historical continuity; its node-delegation arms and frozen sources
+must not be relabelled as RSI-Router. The new spec has no launched native study.
+
 ## Experiment in brief
 
 The hypothesis is that reusable coding procedures and observed public verification

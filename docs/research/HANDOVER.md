@@ -4024,3 +4024,29 @@ limits and the blocked migration. A fresh npm advisory API check of the existing
 locks, installed dependencies, frozen workers and environment routing are unchanged.
 Review a patched pnpm graph before importing the lock and adopting pnpm; do not
 silently use the preinstalled manager or waive confirmed findings.
+
+## 18 November 2026 — RSI-Router Luna/Sol implementation handover
+
+The user requested a detailed coding-agent specification for reproducing
+RSI-Router with Luna/Sol, including benchmarks and a Pareto comparison. Start at
+[rsi-router-luna-sol-spec.md](rsi-router-luna-sol-spec.md). It defines a separate
+proposed `rsi-luna-sol-001` registration; no executable registration, new task
+reservation, dependency installation or model invocation was created in this step.
+
+The first gate is a host-owned one-action loop with pre-action Luna identification,
+qualified subscription-bound switching and common context across all conditions.
+The old large-plan/node delegation runner is not the same treatment. Reuse its
+transport, retention, accounting and evaluator boundaries without editing frozen
+generation sources. The proposed sequence is native microqualification, an 8/8
+development pilot, 32/32 main development and an eligibility/budget/precision-gated
+100-task held-out SWE-bench Verified study. Terminal-Bench 2.0 and corrected 2.1
+are separate profiles with cross-version exclusions. All volumes are planned,
+not automatic launch authorization or claims that enough eligible tasks remain.
+
+The spec includes eight conditions, validation-only representative selection,
+paired skill masking, optimizer and amortized accounting, unknown/failed-attempt
+retention, strict source/subscription identity, test-feedback isolation, proposed
+modules/CLI, required tests and milestone gates. Additional Observatory experience
+retrieval remains a later controlled extension. Implement model-free preparation
+first; resolve actual runtime/security/source/budget gates before enabling finite
+native stages. This handover does not change paused research schedules.

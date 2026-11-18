@@ -1,6 +1,6 @@
 # Experiments and recorded results
 
-Consolidated repository index, **15 November 2026**. This covers the research
+Consolidated repository index, **18 November 2026**. This covers the research
 families, their failed predecessors and operational diagnostics. The
 [artifact index](EXPERIMENT-ARTIFACTS.md) lists every public study result file
 and the protocol locations; it includes software/mechanism records as well as
@@ -17,6 +17,7 @@ Do not pool overlapping tasks, adaptive policy versions or incomplete subsets.
 
 | Experiment | Status / scope | Result and evidence |
 | --- | --- | --- |
+| RSI-Router Luna/Sol reproduction (`rsi-luna-sol-001`, proposed) | Implementation handover only; no native assignments | Step-routing reproduction, bounded candidate/skill evolution, SWE-bench Verified primary and Terminal-Bench secondary. Protocol design is separate from the existing node-delegation study. [Detailed coding-agent specification](research/rsi-router-luna-sol-spec.md) |
 | LiveCodeBench routing replay (`routing-pilot-001`) | Complete; 713 paired published tasks | At 50% remote-call budget, learned routing 29.93% pass@1 versus random 28.35%; difference +1.58 points, 95% CI −1.58 to +4.44. Inconclusive; remote-only 39.37%. [Results](research/results.md), [audit](research/independent-audit.md), [artifacts](../results/routing-pilot-001/) |
 | SWE-bench Verified published-run replay (`swe-replay-001`) | Complete; 500 tasks, ten historical model runs, five folds | 46.1% estimated inference saving; success 64.2% versus 72.8%, an 8.6-point loss. Target fails. Cheap strong MiniMax standalone control matters. [Report](../results/swe-replay-001/README.md), [audit](research/swe-replay-audit.md) |
 | Initial live Codex pilot (`codex-pilot-001`) | Complete; 16 assignments on four historical tasks | Functional passes Luna 3/4, Sol 4/4, task router 4/4, optional conversation 3/4. Strict artifact-policy acceptance 3/4, 4/4, 2/4, 0/4 respectively. All optional controllers used zero expert calls; usage/cash unknown. [Report](../results/codex-pilot-001/README.md), [summary](../results/codex-pilot-001/analysis/summary.json) |
