@@ -4050,3 +4050,19 @@ modules/CLI, required tests and milestone gates. Additional Observatory experien
 retrieval remains a later controlled extension. Implement model-free preparation
 first; resolve actual runtime/security/source/budget gates before enabling finite
 native stages. This handover does not change paused research schedules.
+
+## 18 November 2026 — prioritize model-led delegation
+
+The user prefers relying more on the model. The preferred implementation path is
+now [model-led Codex delegation](model-led-delegation-spec.md): a native primary
+chooses subtasks, context, delegation and integration; bounded workers execute
+their own tool loops. Experience and earlier outcomes inform model judgment.
+The host enforces scope, identity, budgets, isolation and retained evidence.
+Default Luna workers return needs-parent on failure; no hidden Sol fallback.
+
+Keep the per-action RSI specification as a separate comparison, rather than
+calling this a faithful RSI reproduction. The supplement defines the proposed
+MCP surface, autonomous worker lifecycle, cache considerations, native-harness
+controls and first fixture/native gates. It creates no executable registration,
+new dependency, model call or task reservation. Existing frozen sources,
+subscription binding, local S3 policy and paused schedules remain intact.

@@ -7,12 +7,13 @@ registration guide is [experience-routing-001](../../experiments/experience-rout
 
 **This is an unfinished implementation checkpoint, not a completed experiment.**
 
-The latest research handover is the separate
-[RSI-Router Luna/Sol reproduction specification](rsi-router-luna-sol-spec.md).
-It prioritizes a paper-based step-routing reproduction before adding Observatory
-retrieval as an extension. The existing implementation described here is retained
-for reuse and historical continuity; its node-delegation arms and frozen sources
-must not be relabelled as RSI-Router. The new spec has no launched native study.
+The latest preferred implementation direction is
+[model-led Codex delegation](model-led-delegation-spec.md): the primary plans,
+delegates and integrates, and bounded native workers choose their own actions.
+The [RSI-Router Luna/Sol reproduction](rsi-router-luna-sol-spec.md) remains a
+separate step-routing comparison. Reuse the implementation described here without
+relabeling its frozen studies or treating its host router as a new requirement.
+Neither new specification has a launched native study.
 
 ## Experiment in brief
 

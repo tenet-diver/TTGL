@@ -8,6 +8,11 @@ file alone**. Implement the software and prepare reviewable registrations. Nativ
 execution requires the existing readiness gates, source binding and resolved
 finite budgets. This document neither starts a study nor replaces a frozen study.
 
+**Later user steering, 18 November:** the preferred product implementation is
+[model-led Codex delegation](model-led-delegation-spec.md), giving the primary
+and workers more execution autonomy. Keep this stricter RSI reproduction as a
+separate research comparison; do not silently combine their policies or scores.
+
 ## 1. Decision and research question
 
 Implement a separate **paper-based reproduction of RSI-Router adapted to the
