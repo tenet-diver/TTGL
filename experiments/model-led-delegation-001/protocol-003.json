@@ -63,6 +63,26 @@
     "size": null,
     "policy": "Register after primary qualification; pin paper version 2.0 or explicitly label 2.1 adaptation, exclude corresponding task versions and report separately."
   },
+  "comparative_router_suite": {
+    "status": "required comparative extension; exact implementation/assignment freeze pending",
+    "snapshot": 12,
+    "simple_baselines": ["seeded task-level random and endpoint mixture envelope", "Luna-first public-check cascade with shared caps", "development-frozen typed-subtask mapping"],
+    "released_task_router_candidate": "RouteLLM actual method, trained/calibrated on disjoint Luna/Sol development observations; compatible reviewed local adapter required",
+    "closest_skill_aware_candidates": ["RSI-style native adaptation", "released SkillOrchestra native adaptation"],
+    "selection": "Resolve runnable implementations and register adaptations before test; missing baselines limit claims and cannot silently disappear.",
+    "fairness": "Same model pair, knowledge access, public tools/checks, evaluator and total caps; include baseline training/selection/inference costs.",
+    "operating_points": ["cost-oriented", "balanced", "quality-oriented"],
+    "operating_point_rule": "Select using development only and freeze before test; retain duplicate/infeasible points.",
+    "frontier": "Compare union of baseline points and endpoint mixture envelope with paired uncertainty and preregistered selection/multiplicity rules. Non-dominance is local to evaluated systems/tasks, not global optimality.",
+    "expanded_episode_total": null,
+    "budget_note": "384 covers core accumulation matrix only. Additional baseline, operating-point and ablation assignments require a complete finite manifest before any heldout inference."
+  },
+  "novelty": {
+    "prior_art": "RSI already combines accumulated experience, model-specific skills and Pareto selection; SkillOrchestra already models skill-conditioned agent competence.",
+    "not_claimed": ["first experience-based router", "new algorithm from substituting Luna/Sol or Codex", "new recency-weighting formula", "global state-of-the-art frontier"],
+    "candidate_contribution": "Controlled knowledge-size transfer curves with equal-information standalone and router comparisons, recency ablation, cache/handoff accounting and construction amortization.",
+    "claim_boundary": "Replication plus empirical extension until supported by broader literature comparison and heldout mechanism/transfer evidence."
+  },
   "leakage_controls": {
     "evaluation": "Frozen-prefix paired transfer; not chronological online learning.",
     "test_feedback": "Seal all test grades until all predeclared cells finish; never tune or publish heldout traces into construction knowledge.",

@@ -4158,3 +4158,15 @@ release remains unlocated. The separately inspected Apache-licensed SkillOrchest
 source is an optional reuse candidate, not a change to QA benchmarks or a new
 executed dependency. No new model run/install/reservation occurred in this update;
 the existing native source-account, actor and parent integration gaps remain.
+
+Follow-up: user explicitly requires Luna/Sol and other-router comparisons and
+asks about novelty. The same proposed (unfrozen) protocol003 now includes random/
+mixture, public-check cascade, static subtask mapping, a real released task-router
+candidate and close skill-aware prior-method adaptations. Select tradeoff points
+on development only; compare the union of baseline points including the endpoint
+mixture envelope. Missing/incompatible baselines limit claims. The 384 core
+episodes exclude this added comparison suite; expanded assignments/budgets remain
+unresolved before any test call. RSI and SkillOrchestra already cover experience/
+skill routing, so Luna/Sol/Codex substitution is replication, not automatic method
+novelty. Candidate contribution is controlled accumulation/transfer, recency and
+full amortized-cost evidence; no positive frontier result is promised.

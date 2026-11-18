@@ -135,6 +135,68 @@ Development-select a coverage-matched similarity control to distinguish improved
 selection from simply declining more cheap work. Natural experience age must
 vary; do not fabricate old timestamps to make this factor look effective.
 
+## Other routers and the frontier claim
+
+Luna-only and Sol-only are necessary endpoints, but beating those two endpoints
+does not establish superiority over other routing methods. At the final knowledge
+snapshot, add a separately costed comparison suite before claiming a router
+frontier improvement:
+
+| Comparator | Required interpretation |
+| --- | --- |
+| Seeded task-level random/mixture | Tests whether ordinary mixing of the standalone models explains the tradeoff; include the endpoint convex mixture envelope |
+| Luna-first public-check cascade | One bounded Sol fallback, with shared total caps; hidden grading never triggers fallback |
+| Static typed-subtask mapping | Learn exploration/implementation/verification assignments on development and freeze them; no experience-driven updating |
+| Released task-level router | RouteLLM is a candidate; use its actual method with Luna/Sol-specific development labels, compatible reviewed code and matched knowledge at execution, not an unrelated checkpoint or renamed heuristic |
+| Prior skill-aware method | RSI-style native adaptation and a released SkillOrchestra adaptation are the closest candidates; register which is runnable and all changes before evaluation |
+
+Fit/select every baseline on construction/development only. An incompatible or
+unrun baseline stays an explicit gap, and limits any claim about other routers.
+Task-level and subtask-level methods remain separately labelled. All systems use
+the same model pair, eligible knowledge, public task/check access, evaluator and
+total resource caps; charge their training, selection and runtime overhead.
+Faithful published harness comparisons can be reported separately, without
+attributing a harness advantage to the router. Third-party training/embedding
+requirements need their own compatible local, reviewed setup; no new remote
+provider or account is implicitly approved by naming a baseline.
+
+Preselect cost-oriented, balanced and quality-oriented operating points using
+development data and freeze them before test. Report duplicate or infeasible
+points rather than manufacture three distinct policies. Compare quality at
+matched cost and cost at matched quality against the union of baseline points,
+including mixtures; report paired uncertainty and multiplicity/selection rules.
+A non-dominated point can extend the observed frontier without improving every
+region. A noisy visual crossing is insufficient evidence of a robust improvement.
+
+The earlier **384 episodes cover the core accumulation matrix only**. Extra
+router baselines, tradeoff points and ablations require an explicit expanded
+assignment/budget manifest before the first held-out call. Do not quietly present
+384 as the cost of the complete comparative study or select extra baselines after
+seeing held-out outcomes.
+
+## What could be novel
+
+RSI already studies joint evolution of routing and model-specific skills from
+accumulated experience, including a better measured frontier. SkillOrchestra
+already studies learned skill-conditioned competence and transfer. Merely using
+Luna/Sol, moving their methods into Codex, or plotting a new frontier is an
+empirical replication/adaptation, not automatically a new algorithm.
+
+The proposed contribution is a controlled empirical extension: measure unseen-task
+capability as verified knowledge grows; distinguish knowledge benefit from model
+selection using equal-information standalone controls; test recency against
+similarity under naturally aged evidence; and include cache/handoff plus
+amortized construction costs. Recency weighting itself is established, so do not
+claim its formula is novel. A later controlled environment/version-shift study
+could test stale guidance directly, but needs its own registration.
+
+Use the claim “extends the observed quality–cost frontier for this model pair,
+harness and benchmark subset” only if results support it. Do not claim a global
+state of the art or that changing proprietary models establishes parameter-size
+generalization. This is a defensible thesis-scale replication and extension;
+stronger publication novelty needs a sharper literature comparison and robust
+transfer or mechanism evidence, not a promised positive result.
+
 ## Two kinds of accumulation evidence
 
 The first study uses nested **frozen construction snapshots** and measures transfer
