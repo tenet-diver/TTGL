@@ -3,8 +3,9 @@ from __future__ import annotations
 import json
 import sys
 
-REQUEST = {'type': 'object', 'additionalProperties': False, 'required': ['task_id', 'goal'],
+REQUEST = {'type': 'object', 'additionalProperties': False, 'required': ['task_id', 'goal', 'subtask_type'],
            'properties': {'task_id': {'type': 'string'}, 'goal': {'type': 'string'},
+                          'subtask_type': {'type': 'string'}, 'constraints': {'type': 'array', 'items': {'type': 'string'}},
                           'category': {'type': 'string'}, 'language': {'type': 'string'}, 'framework': {'type': 'string'},
                           'actions': {'type': 'array', 'items': {'type': 'string'}},
                           'required_capabilities': {'type': 'array', 'items': {'type': 'string'}}}}
@@ -30,6 +31,27 @@ for name, description in (
         'annotations': {'readOnlyHint': name == 'get_delegation', 'openWorldHint': False}})
 
 
+def compact_decision(decision):
+    """Keep full grounded procedures in the bounded worker packet, not parent context."""
+    candidates = []
+    for c in decision['candidates'][:16]:
+        row = {k: c.get(k) for k in ('model', 'qualifies', 'weighted_support', 'descriptive_success_estimate',
+            'independent_successful_parents', 'guided_successful_parents', 'failed_parents',
+            'grounding_fits_packet', 'guided_trial_available')}
+        row['grounding_version_count'] = len(c['guidance'])
+        row['evidence_count'] = len(c['evidence'])
+        row['evidence_ids'] = [str(e['id'])[:160] for e in c['evidence'][:3]]
+        reasons = {}
+        for r in c['rejected']:
+            reasons[r['reason']] = reasons.get(r['reason'], 0) + 1
+        row['rejected_counts'] = reasons
+        candidates.append(row)
+    return {**{k: decision[k] for k in ('decision_id', 'status', 'selected_model', 'as_of', 'automatic_large_fallback',
+        'query_hash', 'evidence_snapshot_hash', 'capability_snapshot_hash', 'score_interpretation')},
+        'candidates': candidates, 'candidate_count': len(decision['candidates']),
+        'excluded_models': decision['excluded_models'][:16], 'evidence_profile': decision['policy']['evidence_profile']}
+
+
 def handle(service, request):
     method, params = request.get('method'), request.get('params') or {}
     if method == 'initialize':
@@ -44,7 +66,7 @@ def handle(service, request):
         try:
             name, args = params['name'], params.get('arguments', {})
             if name == 'route_subtask':
-                result = service.decision(args)
+                result = compact_decision(service.decision(args))
             elif name == 'delegate_subtask':
                 result = service.submit(args)
             elif name in ('get_delegation', 'cancel_delegation'):

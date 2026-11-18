@@ -16,8 +16,9 @@ relabeling its frozen studies or treating its host router as a new requirement.
 Neither new specification has a launched native study. The latest
 [tool-routing implementation checkpoint](../../results/model-led-delegation-001/README.md)
 adds availability/similarity/recency admission, autonomous worker dispatch and a
-retrospective eleven-task policy diagnostic. It passes 22 new plus 48 shared
-Python checks. That diagnostic is not a fresh native delegation experiment.
+retrospective eleven-task policy diagnostic. The typed-subtask/grounding refinement
+passes 30 delegation tests; the preceding unchanged shared-runtime checkpoint
+passed 48 tests. That diagnostic is not a fresh native delegation experiment.
 
 ## Experiment in brief
 

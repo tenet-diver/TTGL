@@ -88,7 +88,7 @@ class DelegationService:
         self.pool.shutdown(wait=True)
 
     def decision(self, arguments):
-        if not isinstance(arguments, dict) or set(arguments) - {'task_id', 'goal', 'category', 'actions', 'language', 'framework', 'required_capabilities'}:
+        if not isinstance(arguments, dict) or set(arguments) - {'task_id', 'goal', 'subtask_type', 'constraints', 'category', 'actions', 'language', 'framework', 'required_capabilities'}:
             raise ValueError('Unsupported caller fields; source and scope belong to host')
         query = {**arguments, **self.context, 'now': self.clock()}
         return route(query, self.experiences, self.models, self.policy)

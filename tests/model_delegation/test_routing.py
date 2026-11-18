@@ -23,7 +23,8 @@ NOW = datetime(2026, 11, 18, 12, tzinfo=timezone.utc)
 def query():
     return {'task_id': 'current', 'goal': 'repair pagination cursor', 'project': 'p', 'study': 's', 'arm': 'a',
             'account_hash': 'source', 'parent_model': 'sol', 'rate_scenario': 'frozen', 'watermark': 100,
-            'now': NOW.isoformat(), 'category': 'implement', 'actions': ['edit', 'test'], 'language': 'python'}
+            'now': NOW.isoformat(), 'category': 'implement', 'subtask_type': 'implementation', 'constraints': [],
+            'actions': ['edit', 'test'], 'language': 'python'}
 
 
 def models():
@@ -36,11 +37,22 @@ def models():
 def experience(index, age=1, outcome='pass', **changes):
     q = query()
     t = (NOW-timedelta(days=age)).isoformat()
-    return {**{k: q[k] for k in ('project', 'study', 'arm', 'account_hash', 'goal', 'category', 'actions', 'language')},
+    return {**{k: q[k] for k in ('project', 'study', 'arm', 'account_hash', 'goal', 'category', 'subtask_type', 'constraints', 'actions', 'language')},
             'id': str(index), 'task_id': 'past-'+str(index), 'model': 'luna', 'visibility': 'runtime_public',
+            'granularity': 'subtask', 'executor_model': 'luna', 'assistance': 'none',
+            'outcome_target': 'public_integrated_completion',
+            'guidance_context_ref': 'retained-request-'+str(index) if changes.get('assistance') == 'retrieved_guidance' else None,
             'verified': True, 'verification_ref': 'check-'+str(index), 'source_current': True, 'outcome': outcome,
             'occurred_at': t, 'verified_at': t, 'available_at': t, 'available_sequence': index,
             'procedure': ['Read relevant code', 'Edit and verify'], **changes}
+
+
+def teacher_guidance():
+    return experience(99, model='sol', executor_model='sol', guidance={
+        'id': 'procedure-v1', 'supported': True, 'source_model': 'sol',
+        'procedure': ['Use a stable cursor comparison', 'Run pagination acceptance checks'],
+        'preconditions': [], 'acceptance_criteria': ['No missing or repeated rows'],
+        'evidence_refs': ['check-99'], 'target_models': ['luna']})
 
 
 class RoutingTests(unittest.TestCase):
@@ -48,6 +60,62 @@ class RoutingTests(unittest.TestCase):
         r = route(query(), [experience(i) for i in range(3)], models())
         self.assertEqual(r['selected_model'], 'luna')
         self.assertFalse(r['automatic_large_fallback'])
+
+    def test_parent_task_similarity_is_not_subtask_competence(self):
+        for changes in ({'granularity': 'task'}, {'subtask_type': 'exploration'}, {'outcome_target': 'model_self_report'}):
+            r = route(query(), [experience(i, **changes) for i in range(3)], models())
+            self.assertEqual(r['status'], 'needs_parent')
+        with self.assertRaises(ValueError):
+            route(query(), [], models(), Policy(evidence_profile='whole_task_proxy'))
+
+    def test_assisted_or_misattributed_success_is_not_independent_luna_success(self):
+        for changes in ({'assistance': 'expert'}, {'assistance': 'human'}, {'assistance': 'unknown'}, {'executor_model': 'sol'}):
+            r = route(query(), [experience(i, **changes) for i in range(3)], models())
+            self.assertEqual(r['status'], 'needs_parent')
+
+    def test_teacher_guidance_is_available_without_manufacturing_student_success(self):
+        xs = [teacher_guidance()]
+        r = route(query(), xs, models())
+        self.assertEqual(r['status'], 'needs_parent')
+        self.assertEqual(r['candidates'][0]['independent_parents'], 0)
+        self.assertTrue(r['candidates'][0]['guided_trial_available'])
+        trial = route(query(), xs, models(), Policy(mode='always_cheap'))
+        self.assertEqual(packet(trial, xs, 8000)['guidance'][0]['source_model'], 'sol')
+
+    def test_guided_small_model_success_requires_the_same_available_guidance_version(self):
+        xs = [experience(i, assistance='retrieved_guidance', guidance_used_ids=['procedure-v1']) for i in range(3)]
+        self.assertEqual(route(query(), xs, models())['status'], 'needs_parent')
+        xs.append(teacher_guidance())
+        r = route(query(), xs, models())
+        self.assertEqual(r['selected_model'], 'luna')
+        self.assertEqual(r['candidates'][0]['guided_execution_parents'], 3)
+        self.assertEqual(r['candidates'][0]['guided_successful_parents'], 3)
+        self.assertEqual(r['candidates'][0]['independent_execution_parents'], 0)
+        p = packet(r, xs, 8000)
+        self.assertEqual(p['guidance'][0]['id'], 'procedure-v1')
+        self.assertIn('acceptance_criteria', p['guidance'][0])
+        self.assertNotIn('procedure', p['experiences'][0])
+
+    def test_guidance_claim_without_retained_exposure_is_not_success_evidence(self):
+        xs = [experience(i, assistance='retrieved_guidance', guidance_used_ids=['procedure-v1'], guidance_context_ref=None) for i in range(3)]
+        self.assertEqual(route(query(), xs+[teacher_guidance()], models())['status'], 'needs_parent')
+
+    def test_inapplicable_unlinked_and_oversize_grounding_cannot_support_guided_route(self):
+        base = [experience(i, assistance='retrieved_guidance', guidance_used_ids=['procedure-v1']) for i in range(3)]
+        for change in ({'preconditions': ['unavailable-api']}, {'evidence_refs': ['unrelated-check']},
+                       {'source_model': 'different-model'}, {'target_models': ['other-student']}, {'supported': False}):
+            teacher = teacher_guidance(); teacher['guidance'].update(change)
+            self.assertEqual(route(query(), base+[teacher], models())['status'], 'needs_parent', change)
+        r = route(query(), base+[teacher_guidance()], models(), Policy(maximum_packet_bytes=80))
+        self.assertEqual(r['status'], 'needs_parent')
+        self.assertFalse(r['candidates'][0]['grounding_fits_packet'])
+
+    def test_missing_guidance_does_not_erase_known_student_failure(self):
+        xs = [experience(i) for i in range(3)]
+        xs.append(experience(4, outcome='fail', assistance='retrieved_guidance', guidance_used_ids=['unavailable']))
+        r = route(query(), xs, models())
+        self.assertTrue(any(e['id'] == '4' for e in r['candidates'][0]['evidence']))
+        self.assertEqual(r['candidates'][0]['required_guidance_ids'], [])
 
     def test_similarity_ablation_admits_old_evidence_recency_declines(self):
         xs = [experience(i, age=100) for i in range(3)]
@@ -126,13 +194,13 @@ class RoutingTests(unittest.TestCase):
 class ToolTests(unittest.TestCase):
     def service(self, folder, worker=None):
         q = query()
-        context = {k: v for k, v in q.items() if k not in ('task_id', 'goal', 'category', 'actions', 'language', 'now')}
+        context = {k: v for k, v in q.items() if k not in ('task_id', 'goal', 'subtask_type', 'constraints', 'category', 'actions', 'language', 'now')}
         return DelegationService(context=context, experiences=[experience(i) for i in range(3)], models=models(),
             output=folder, worker=worker, clock=lambda: NOW.isoformat())
 
     def arguments(self):
         q = query()
-        return {'idempotency_key': 'one', 'request': {k: q[k] for k in ('task_id', 'goal', 'category', 'actions', 'language')},
+        return {'idempotency_key': 'one', 'request': {k: q[k] for k in ('task_id', 'goal', 'category', 'subtask_type', 'constraints', 'actions', 'language')},
                 'contract': {'base_checkpoint': 'base', 'allowed_write_paths': ['src'], 'acceptance_checks': ['pagination']}}
 
     def test_delegate_worker_uses_selected_model_and_terminal_idempotency(self):
@@ -182,6 +250,16 @@ class ToolTests(unittest.TestCase):
             self.assertEqual([r['id'] for r in rows], [1, 2, 3])
             self.assertEqual(json.loads(rows[-1]['result']['content'][0]['text'])['selected_model'], 'luna')
             self.assertTrue(handle(s, {'method': 'tools/call', 'params': {'name': 'route_subtask', 'arguments': {'now': 'fake'}}})['isError'])
+
+    def test_parent_mcp_preview_keeps_full_guidance_out_of_parent_context(self):
+        with tempfile.TemporaryDirectory() as t:
+            s = self.service(t)
+            s.experiences = [experience(i, assistance='retrieved_guidance', guidance_used_ids=['procedure-v1']) for i in range(3)] + [teacher_guidance()]
+            result = handle(s, {'method': 'tools/call', 'params': {'name': 'route_subtask', 'arguments': self.arguments()['request']}})
+            preview = json.loads(result['content'][0]['text'])
+            self.assertEqual(preview['selected_model'], 'luna')
+            self.assertEqual(preview['candidates'][0]['guided_successful_parents'], 3)
+            self.assertNotIn('Use a stable cursor comparison', result['content'][0]['text'])
 
     def test_native_worker_cannot_bypass_execution_gate(self):
         from ttgl.model_delegation.native import NativeNodeWorker
@@ -258,10 +336,12 @@ class ToolTests(unittest.TestCase):
                 retained.append(str(path)); return {'artifactId': str(len(retained))}
         with tempfile.TemporaryDirectory() as t:
             workspace = Path(t)/'source'; workspace.mkdir(); (workspace/'value.py').write_text('def run(): return 0\n')
+            exposed_guidance = []
             class FakeBackend:
                 fixture_only = True
                 def __init__(self, **kwargs): pass
                 def complete(self, request):
+                    exposed_guidance.extend(g for g in json.loads(request.prompt)['experiences']['experiences'] if g.get('supportKind') == 'grounded_procedure')
                     (workspace/'value.py').write_text('def run(): return 42\n')
                     return Response(text=json.dumps({'summary': 'Synthetic source edit', 'changedArtifacts': ['value.py'],
                         'publicChecks': [], 'unresolved': [], 'usedExperienceIds': [], 'escalate': False}),
@@ -281,12 +361,16 @@ class ToolTests(unittest.TestCase):
                  patch('ttgl.experience_routing.backend.RecordedCodexBackend', FakeBackend), \
                  patch('ttgl.experience_routing.execution.DockerWorkspace', FakeActor):
                 worker = NativeNodeWorker(config=cfg, client=Client(), campaign_budget=Budget(4, 10000, 60))
-                result = self.service(Path(t)/'attempts', worker).delegate(args)
+                service = self.service(Path(t)/'attempts', worker)
+                service.experiences = [experience(i, assistance='retrieved_guidance', guidance_used_ids=['procedure-v1']) for i in range(3)] + [teacher_guidance()]
+                result = service.delegate(args)
             self.assertEqual(result['status'], 'public_checks_passed')
             self.assertEqual(result['accounting']['actual_invocations'], 1)
             self.assertIsNone(result['benchmark_grade'])
             self.assertTrue(any('source.tar' in name for name in retained))
             self.assertTrue(any('checks' in name for name in retained))
+            self.assertEqual(exposed_guidance[0]['sourceModel'], 'sol')
+            self.assertEqual(exposed_guidance[0]['versionId'], 'procedure-v1')
 
 
 if __name__ == '__main__': unittest.main()

@@ -12,6 +12,7 @@ import math
 import re
 
 from ..experience_routing.io import digest
+from .grounding import applicable_guidance, build_packet, string_list
 
 
 def timestamp(value):
@@ -36,14 +37,19 @@ def tokens(value):
     return set(re.findall(r'[a-z][a-z0-9_]{1,}', value.lower())) - STOP
 
 
-def similarity(query, evidence):
+def similarity(query, evidence, profile='subtask_v2'):
     a, b = tokens(query['goal']), tokens(evidence['goal'])
     lexical = len(a & b) / math.sqrt(len(a) * len(b)) if a and b else 0.0
     # Action/category is an input feature, not a claim that the tasks are identical.
     category = float(bool(query.get('category')) and query.get('category') == evidence.get('category'))
     qa, ea = set(query.get('actions', [])), set(evidence.get('actions', []))
     actions = len(qa & ea) / len(qa | ea) if qa | ea else 0.0
-    return .60 * lexical + .25 * category + .15 * actions
+    if profile == 'whole_task_proxy':
+        return .60 * lexical + .25 * category + .15 * actions
+    qc, ec = set(query.get('constraints', [])), set(evidence.get('constraints', []))
+    constraints = len(qc & ec) / len(qc | ec) if qc | ec else 0.0
+    kind = float(query.get('subtask_type') == evidence.get('subtask_type'))
+    return .40 * lexical + .25 * kind + .20 * constraints + .15 * actions
 
 
 @dataclass(frozen=True)
@@ -57,10 +63,13 @@ class Policy:
     maximum_age_days: float = 365.0
     maximum_records: int = 2000
     maximum_packet_bytes: int = 8000
+    evidence_profile: str = 'subtask_v2'
 
     def __post_init__(self):
         if self.mode not in ('always_cheap', 'similarity', 'similarity_recency'):
             raise ValueError('Unknown routing ablation')
+        if self.evidence_profile not in ('subtask_v2', 'whole_task_proxy'):
+            raise ValueError('Unknown evidence granularity profile')
         for field in ('half_life_days', 'minimum_similarity', 'minimum_weight', 'minimum_success_estimate', 'maximum_age_days'):
             number(getattr(self, field), field)
         if self.half_life_days <= 0 or self.maximum_age_days <= 0:
@@ -83,12 +92,16 @@ def route(query, experiences, models, policy=Policy()):
             raise ValueError('Missing routing field ' + key)
     if len(query['goal']) > 32000 or len(experiences) > policy.maximum_records:
         raise ValueError('Routing input exceeds declared bounds')
-    for field in ('actions', 'required_capabilities', 'excluded_task_ids', 'excluded_leakage_groups'):
+    for field in ('actions', 'constraints', 'required_capabilities', 'excluded_task_ids', 'excluded_leakage_groups'):
         if not isinstance(query.get(field, []), list) or any(not isinstance(x, str) for x in query.get(field, [])):
             raise ValueError('Invalid feature list ' + field)
-    for field in ('category', 'language', 'framework'):
+    for field in ('category', 'subtask_type', 'language', 'framework'):
         if field in query and not isinstance(query[field], str):
             raise ValueError('Invalid feature ' + field)
+    if policy.evidence_profile == 'subtask_v2' and not query.get('subtask_type'):
+        raise ValueError('Explicit subtask type required for live routing')
+    if policy.evidence_profile == 'whole_task_proxy' and query['account_hash'] != 'simulation-no-native-source-binding':
+        raise ValueError('Whole-task proxy evidence is restricted to retrospective simulation')
     if type(query.get('watermark')) is not int or query['watermark'] < 0:
         raise ValueError('Host publication watermark required')
     now = timestamp(query['now'])
@@ -121,10 +134,11 @@ def route(query, experiences, models, policy=Policy()):
         if reason:
             excluded.append({'model': model['model'], 'reason': reason})
             continue
-        rows, rejected = [], []
+        rows, rejected, guides, conflicts = [], [], {}, set()
         for e in experiences:
             why = None
-            if e.get('model') != model['model']:
+            own_history = e.get('model') == model['model']
+            if not own_history and (policy.evidence_profile == 'whole_task_proxy' or not e.get('guidance')):
                 continue
             if any(e.get(k) != query[k] for k in ('project', 'study', 'arm', 'account_hash')):
                 why = 'scope'
@@ -134,6 +148,8 @@ def route(query, experiences, models, policy=Policy()):
                 why = 'stale_source_or_missing_check'
             elif e.get('outcome') not in ('pass', 'fail'):
                 why = 'unresolved_outcome'
+            elif policy.evidence_profile == 'subtask_v2' and (e.get('granularity') != 'subtask' or e.get('subtask_type') != query['subtask_type']):
+                why = 'different_subtask_type_or_granularity'
             elif e.get('task_id') in {query['task_id'], *query.get('excluded_task_ids', [])}:
                 why = 'same_or_excluded_task'
             elif set(e.get('leakage_groups', [])) & set(query.get('excluded_leakage_groups', [])):
@@ -156,14 +172,50 @@ def route(query, experiences, models, policy=Policy()):
             if age > policy.maximum_age_days:
                 rejected.append({'id': e['id'], 'reason': 'beyond_maximum_age'})
                 continue
-            score = similarity(query, e)
+            score = similarity(query, e, policy.evidence_profile)
             if score < policy.minimum_similarity:
                 rejected.append({'id': e['id'], 'reason': 'low_similarity'})
                 continue
             decay = 2 ** (-age / policy.half_life_days) if policy.mode == 'similarity_recency' else 1.0
+            if policy.evidence_profile == 'subtask_v2':
+                guidance = applicable_guidance(e, query, model['model'])
+                if guidance:
+                    key = guidance['id']
+                    intrinsic = lambda g: {k: v for k, v in g.items() if k != 'source_experience_id'}
+                    if key in guides and intrinsic(guides[key]) != intrinsic(guidance):
+                        conflicts.add(key)
+                    elif key not in guides:
+                        guides[key] = guidance
+                if not own_history:
+                    continue  # teacher examples can ground a worker, not prove its competence
+                if e.get('outcome_target') != 'public_integrated_completion':
+                    rejected.append({'id': e['id'], 'reason': 'not_verified_integrated_subtask_completion'})
+                    continue
+                if e.get('executor_model') != model['model'] or e.get('assistance') not in ('none', 'retrieved_guidance'):
+                    rejected.append({'id': e['id'], 'reason': 'not_attributed_small_model_execution'})
+                    continue
+                if e.get('assistance') == 'retrieved_guidance' and (not string_list(e.get('guidance_used_ids'), nonempty=True) or not e.get('guidance_context_ref')):
+                    rejected.append({'id': e['id'], 'reason': 'guided_outcome_without_versioned_context'})
+                    continue
             rows.append({'id': e['id'], 'task_id': e['task_id'], 'similarity': score,
                          'age_days': age, 'recency_weight': decay, 'weight': score * decay,
-                         'outcome': e['outcome'], 'verification_ref': e['verification_ref']})
+                         'outcome': e['outcome'], 'verification_ref': e['verification_ref'],
+                         'assistance': e.get('assistance', 'whole_task_proxy'),
+                         'guidance_context_ref': e.get('guidance_context_ref'),
+                         'guidance_used_ids': e.get('guidance_used_ids', [])})
+        guides = {k: g for k, g in guides.items() if k not in conflicts}
+        supported = []
+        for row in rows:
+            if policy.evidence_profile == 'subtask_v2' and row['assistance'] == 'retrieved_guidance' and not set(row['guidance_used_ids']).issubset(guides):
+                if row['outcome'] == 'pass':
+                    rejected.append({'id': row['id'], 'reason': 'matching_grounding_missing_in_current_snapshot'})
+                else:
+                    # Missing old instructions must not erase a known model failure.
+                    row['guidance_context_unavailable'] = True
+                    supported.append(row)
+            else:
+                supported.append(row)
+        rows = supported
         parents = {}
         for row in rows:
             parents.setdefault(row['task_id'], []).append(row)
@@ -178,10 +230,23 @@ def route(query, experiences, models, policy=Policy()):
                      and success >= policy.minimum_success_estimate)
         if policy.mode == 'always_cheap':
             qualifies = True
-        candidate_rows.append({'model': model['model'], 'unit_cost': cost, 'qualifies': qualifies,
+        candidate = {'model': model['model'], 'unit_cost': cost, 'qualifies': qualifies,
                                'independent_parents': len(parents), 'weighted_support': support,
                                'descriptive_success_estimate': success, 'evidence': sorted(rows, key=lambda r: (-r['weight'], r['id'])),
-                               'rejected': rejected})
+                               'required_guidance_ids': sorted({g for row in rows if row['assistance'] == 'retrieved_guidance' and row['outcome'] == 'pass' and policy.mode != 'always_cheap' for g in row['guidance_used_ids']}),
+                               'guidance': [guides[k] for k in sorted(guides)],
+                               'independent_execution_parents': len({r['task_id'] for r in rows if r['assistance'] == 'none'}),
+                               'guided_execution_parents': len({r['task_id'] for r in rows if r['assistance'] == 'retrieved_guidance'}),
+                               'independent_successful_parents': len({key for key, values in parents.items() if all(r['outcome'] == 'pass' for r in values) and any(r['assistance'] == 'none' for r in values)}),
+                               'guided_successful_parents': len({key for key, values in parents.items() if all(r['outcome'] == 'pass' for r in values) and any(r['assistance'] == 'retrieved_guidance' for r in values)}),
+                               'failed_parents': sum(not x['passed'] for x in observations),
+                               'guided_trial_available': bool(guides) and not any(r['outcome'] == 'pass' for r in rows),
+                               'rejected': rejected}
+        grounding_packet = build_packet(candidate, experiences, policy.maximum_packet_bytes)
+        candidate['grounding_fits_packet'] = grounding_packet['fits_required']
+        if policy.evidence_profile == 'subtask_v2' and not grounding_packet['fits_required']:
+            candidate['qualifies'] = False
+        candidate_rows.append(candidate)
     eligible = sorted((c for c in candidate_rows if c['qualifies']), key=lambda c: (c['unit_cost'], -c['weighted_support'], c['model']))
     chosen = eligible[0] if eligible else None
     decision = {'schema_version': 1, 'policy': asdict(policy), 'query_hash': digest(query),
@@ -198,6 +263,8 @@ def packet(decision, experiences, maximum_bytes):
     """Bounded evidence for worker autonomy; no invented summaries or model call."""
     by_id = {e['id']: e for e in experiences}
     candidate = next((c for c in decision['candidates'] if c['model'] == decision['selected_model']), None)
+    if decision['policy'].get('evidence_profile') == 'subtask_v2':
+        return build_packet(candidate or {'evidence': []}, experiences, maximum_bytes)
     items, used = [], 2
     if candidate:
         import json

@@ -15,6 +15,10 @@ implementation and four-condition ablation protocol are in
 [model-led-delegation-001](../../experiments/model-led-delegation-001/README.md).
 The primary still decides what to delegate and integrates results; the tool
 decides whether the requested cheaper route has enough eligible evidence.
+The [revision 002 protocol](../../experiments/model-led-delegation-001/protocol-002.json)
+further requires typed-subtask similarity and model-specific outcome attribution.
+Versioned, applicable grounded instructions support guided work; teacher examples
+remain distinct from observed successes by the cheaper executor.
 
 ## 1. Model and host responsibilities
 

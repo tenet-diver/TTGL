@@ -114,7 +114,13 @@ class NativeNodeWorker:
                        'policy_version': 'tool-similarity-recency-v1', 'models': cfg['models'],
                        'maximum_large_fallbacks_per_node': 0, 'maximum_parent_replans': 0}
             memory = {'experiences': [{'versionId': e['id'], 'admission': 'publicly_supported',
-                'procedure': e.get('procedure', []), 'goal': e['goal'], 'outcome': e['outcome']} for e in evidence['experiences']]}
+                'procedure': [], 'goal': e['goal'], 'outcome': e['outcome'], 'supportKind': 'execution_outcome',
+                'sourceVerificationRef': e['verification_ref']} for e in evidence['experiences']]}
+            memory['experiences'] += [{'versionId': g['id'], 'admission': 'publicly_supported',
+                'procedure': g['procedure'], 'preconditions': g['preconditions'], 'acceptanceCriteria': g['acceptance_criteria'],
+                'sourceModel': g['source_model'], 'sourceAssistance': g['source_assistance'],
+                'evidenceRefs': g['evidence_refs'], 'supportKind': 'grounded_procedure'}
+                for g in evidence.get('guidance', [])]
             result = ParentRunner(task={'task_id': request['task_id'], 'prompt': request['goal']}, arm='tool-delegation',
                 workspace=source, checkpoints=checkpoints, verifier=verifier, invocations=calls, policy=policy,
                 memory=lambda *args: memory, output=folder/'worker', config=runtime,

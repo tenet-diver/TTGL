@@ -1,0 +1,15 @@
+{
+  "scope": "v2 software checkpoint, not enabled native freeze",
+  "sha256": {
+    "src/ttgl/model_delegation/__init__.py": "e5b60bb6101b4c2403c2cff35ac074216ca36d93ef0c0152dbba946afddf14f4",
+    "src/ttgl/model_delegation/__main__.py": "9e6370528c54d66e38fed2b14b93671f04e177b59a4ae66dba0d508964b6b325",
+    "src/ttgl/model_delegation/grounding.py": "e527020aa9dd0205e5170894c4cdcf3748b876942d7ac7dbb7b1a24085ab2502",
+    "src/ttgl/model_delegation/mcp.py": "6c8b361ab1c5ed54dbc47f8ddcab738b75d41e98b677a7bb555607eaabea2d8c",
+    "src/ttgl/model_delegation/native.py": "d4a93819c04246349e6f38d1bd8babb7bf4dd5b18bf861a509ae28d293d760a6",
+    "src/ttgl/model_delegation/replay.py": "237553f1d29d8ab38d5c391e62fc5d8f1e8d583382bff1603236396ad0ea722c",
+    "src/ttgl/model_delegation/routing.py": "2bb4a870f058bb999185ff941985993341c2dd02a68bd44156ce584064566b37",
+    "src/ttgl/model_delegation/service.py": "8f9454743ef463d1434ad9266c52797af62c441a0c58d078cc07751aefd2e839",
+    "tests/model_delegation/test_routing.py": "f7b4360ffe5e508329cdc931f3596315d13a7e45f792fbae25b27dc43805de96",
+    "experiments/model-led-delegation-001/protocol-002.json": "7710f88c54fd9b7156fdbe78eb210b47d34d1024a4f0ffadb1140b53d467cbc1"
+  }
+}

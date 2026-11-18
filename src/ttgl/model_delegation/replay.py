@@ -74,7 +74,7 @@ def historical_replay(root, output, *, as_of='2026-11-18T12:00:00+00:00'):
         rows = []
         for task_id, pair in sorted(by_task.items()):
             decision = None if mode == 'parent_only' else route({**context, 'task_id': task_id,
-                'goal': tasks[task_id]['problem_statement']}, experiences, models, Policy(mode=mode))
+                'goal': tasks[task_id]['problem_statement']}, experiences, models, Policy(mode=mode, evidence_profile='whole_task_proxy'))
             arm = 'small' if decision and decision['selected_model'] else 'large'
             r = pair[arm]
             rows.append({'task_id': task_id, 'selected_arm': arm, 'resolved': r['resolved'],

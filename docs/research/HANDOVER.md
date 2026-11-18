@@ -4105,3 +4105,29 @@ Continue on the registered authenticated collector host; preserve historical
 studies and keep unknown/started attempts unreplayed. Private evidence is in
 `work/security/model-led-delegation-20261118/`; public receipt records exact
 software source hashes and the remaining gaps. Research schedules remain paused.
+
+## 18 November 2026 — typed subtasks, grounding and model-specific successes
+
+The user adds subtask similarity, guiding/grounding experience and whether the
+cheaper model itself succeeded before. Current native registration is
+[protocol-002.json](../../experiments/model-led-delegation-001/protocol-002.json).
+V2 requires typed subtask/goal/constraint/action matching. Whole-task replay
+proxies are explicitly restricted to the retrospective simulation profile.
+
+Routing distinguishes independent cheaper-model completion, completion with
+versioned retrieved guidance, teacher examples and expert/human/unknown help.
+Only verified public integrated outcomes attributed to the actual cheaper
+executor support its competence estimate. Guided success requires a retained
+context reference and the matching currently applicable guidance fitting in the
+worker packet. Procedures contain preconditions, acceptance criteria and linked
+source checks. Teacher guidance can inform a bounded trial but never counts as
+student success; known guided failures are retained even if old guidance is absent.
+Raw exposure is not a causal claim that the worker used or benefited from advice.
+
+The autonomous adapter now delivers the grounded procedure and provenance; parent
+MCP previews stay compact. Thirty delegation tests pass, including a real source
+edit/check with synthetic transport verifying teacher guidance reaches the worker.
+New source hashes/receipt are separately versioned; earlier receipts and replay
+results are preserved. No dependency, frozen legacy source, native model call or
+fresh benchmark assignment changed. Original native account/actor/integration
+qualification gaps remain; do not declare the live experiment complete.

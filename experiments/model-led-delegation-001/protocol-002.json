@@ -1,0 +1,130 @@
+{
+  "schema_version": 2,
+  "study_id": "model-led-delegation-001",
+  "registered_at": "2026-11-18",
+  "status": "software_and_retrospective_diagnostic; native qualification pending",
+  "allow_model_execution": false,
+  "automatic_retries": 0,
+  "native_primary": "proposed gpt-6.1-sol; exact capability must be qualified",
+  "native_worker": "proposed gpt-6-luna; same source subscription required",
+  "hypothesis": "Cheaper-model routing using similar typed subtasks, recency, verified model-specific prior execution, and applicable grounded guidance improves the parent-plus-worker cost-quality frontier.",
+  "conditions": [
+    "parent_only",
+    "always_cheap",
+    "similarity",
+    "similarity_recency"
+  ],
+  "policy": {
+    "half_life_days": 30,
+    "minimum_similarity": 0.45,
+    "minimum_parents": 2,
+    "minimum_weight": 1.0,
+    "minimum_success_estimate": 0.7,
+    "maximum_age_days": 365,
+    "maximum_records": 2000,
+    "maximum_packet_bytes": 8000,
+    "evidence_profile": "subtask_v2"
+  },
+  "similarity": {
+    "implementation": "0.40 subtask-goal token-set cosine + 0.25 typed-subtask match + 0.20 constraint-tag Jaccard + 0.15 action-set Jaccard; mismatched type/granularity excluded before scoring",
+    "semantic_claim": false,
+    "parent_deduplication": "one observation per earlier task; relevant failure dominates correlated successes"
+  },
+  "recency": {
+    "weight": "2 ** (-age_days / half_life_days)",
+    "age_anchor": "verified execution/check timestamp, not import or publication time",
+    "hard_guards_all_arms": [
+      "publication watermark",
+      "same-account scope",
+      "current source version",
+      "no same/excluded task",
+      "no excluded lineage",
+      "known verified outcome",
+      "language/framework compatibility",
+      "maximum age"
+    ],
+    "estimate": "(1 + weighted_successes) / (2 + weighted_support); descriptive, not calibrated probability",
+    "worker_packet_control": "Fixed similarity order/byte budget across evidence-based arms; v1 changes age admission, not simultaneous worker prompt ordering.",
+    "age_variation_gate": {
+      "required_before_native_recency_claim": true,
+      "report_parent_counts_by_age_days": [
+        "<7",
+        "7-30",
+        ">30"
+      ],
+      "no_date_fabrication": true,
+      "missing_variation": "Report recency question unidentifiable; do not force an improvement."
+    },
+    "secondary_control": "Similarity-only comparator selected on development data for matched cheap coverage/cost; test selections remain frozen."
+  },
+  "availability": "qualified same-account unexpired capability receipt, required tools, strictly lower relative cost under one frozen rate scenario",
+  "fallback": "return needs_parent; no automatic Sol invocation",
+  "native_stages": {
+    "qualification_maximum_episodes": 6,
+    "development_training_tasks": 8,
+    "development_validation_tasks": 8,
+    "heldout_target_tasks": 100,
+    "heldout_repeats": 3,
+    "task_ids": [],
+    "native_budgets": null,
+    "qualification_required": true,
+    "launch_policy": "Each stage needs its own positive finite budgets and immutable source/model/evaluator/reservation freeze; task counts are proposed, not automatically launched."
+  },
+  "retrospective_replay": {
+    "source": "results/delegation-heldout-001/analysis-002/published-rate-records.json",
+    "eligible_arms": [
+      "small",
+      "large"
+    ],
+    "mode": "exploratory leave-one-task-out; all other historical evidence available as of replay time",
+    "exposure": "All 11 original tasks/results are previously exposed; no new holdout or prospective grade-publication chronology is claimed.",
+    "age_proxy": "native completion timestamps; actual historical grade publication time is not inferred",
+    "availability": "simulated same-source capability and relative cost ordering only; cannot authorize native execution",
+    "cost": "sum selected historical execution scenario costs; excludes unobserved new parent/delegation/lookup overhead",
+    "new_model_calls": 0,
+    "inference": "policy diagnostic only; not evidence of live subtask delegation savings or recency superiority",
+    "evidence_profile": "whole_task_proxy; allowed only with explicit simulation-no-native-source-binding context; cannot enable native execution"
+  },
+  "frozen_prior_studies_modified": false,
+  "protocol_revision": "002",
+  "supersedes": "protocol.json for new native subtask evidence; prior retrospective results remain under their original profile",
+  "evidence_admission": {
+    "granularity": "subtask; parent task similarity alone is insufficient",
+    "outcome_target": "public_integrated_completion, verified through owned checks; not model self-report or lifecycle completion",
+    "executor_attribution": "Record model and observed executor_model must both match the selected cheaper model.",
+    "assistance_classes": [
+      "none",
+      "retrieved_guidance",
+      "expert",
+      "human",
+      "unknown"
+    ],
+    "history_support": "Only none/retrieved_guidance are competence evidence. Expert/human/unknown assistance does not establish autonomous cheaper-model success.",
+    "independent_success": "Relevant integrated successes without retrieved guidance can support a route without a procedure packet.",
+    "guided_success": "Requires versioned guidance_used_ids and a retained guidance_context_ref; exposure is recorded, not claimed causal use. Current matching guidance must be eligible and fit in the worker packet.",
+    "teacher_examples": "Verified successful teacher procedures may ground the student. They contribute zero student competence observations.",
+    "failures": "Retain attributable failures, including guided failures whose old guidance is unavailable; do not erase negative evidence.",
+    "grounding_contract": [
+      "id",
+      "supported",
+      "source_model",
+      "procedure",
+      "preconditions",
+      "acceptance_criteria",
+      "evidence_refs"
+    ],
+    "grounding_compatibility": "Preconditions must be present in declared constraints; source executor, verification link, source scope and version must be supported. Preserve source assistance provenance.",
+    "budget": "Guided successes do not unlock a route if their required versioned guidance cannot fit in the packet."
+  },
+  "mechanism_comparison": {
+    "mode": "separate optional development replay, not a production routing bypass",
+    "conditions": [
+      "same Luna subtask/checkpoint with grounded procedure",
+      "same Luna subtask/checkpoint with guidance masked"
+    ],
+    "controls": "Hold contract, model, checkpoint, public checks and resource limits fixed. New attempt IDs and full costs; never retry uncertain calls.",
+    "purpose": "Separate the benefit of guidance from the admission decision. Do not infer benefit from citing an experience ID.",
+    "cold_start": "Teacher-only guidance may be exercised in the explicitly bounded always-cheap qualification/development arm; default evidence router abstains until student competence is observed.",
+    "implementation_status": "specification; native paired mechanism qualification not run"
+  }
+}

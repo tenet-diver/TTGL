@@ -4,6 +4,15 @@ The delegation routing/MCP software and autonomous worker adapter are implemente
 and software-tested. **The fresh native experiment has not run.** The current
 collector subscription binding and qualified coding runtime are unavailable.
 
+The [revision 002 protocol](../../experiments/model-led-delegation-001/protocol-002.json)
+adds explicit typed-subtask matching, grounded guidance and independent/guided
+cheaper-model success attribution. **30 delegation tests pass** at this later
+software checkpoint; the 22-test/48-shared-test receipt below remains historical.
+See [the new validation receipt](software-validation-002.json). No new native
+model call or fresh benchmark result was produced by this refinement. The
+eleven-task replay below remains a whole-task proxy diagnostic and cannot satisfy
+the stricter native evidence profile.
+
 Validation: **22 new delegation tests and 48 shared runtime regressions pass**.
 Checks cover availability/scope/chronology, independent-parent evidence, age
 decay, recent failures, stale re-imports, fixed worker packets, real stdio MCP

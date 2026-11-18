@@ -7,6 +7,11 @@ similar verified past actions and weights their age, then delegates or returns
 This refines the [model-led handover](../../docs/research/model-led-delegation-spec.md);
 it is a different treatment from per-action RSI routing.
 
+The current native design is [protocol revision 002](protocol-002.json): match
+**typed subtasks**, supply grounded procedures, and attribute prior success to
+the executor that actually performed the work. The original `protocol.json` and
+earlier whole-task retrospective replay remain historical, separate evidence.
+
 The Python implementation is `src/ttgl/model_delegation/` and adds no dependency.
 The stdio MCP server exposes `route_subtask`, asynchronous idempotent
 `delegate_subtask`, `get_delegation` and `cancel_delegation`. The queue is bounded
@@ -24,7 +29,7 @@ reset on server restart. A blocked/uncertain attempt is not a passing result.
 
 ## Experiment
 
-The [protocol](protocol.json) compares the same parent/executor harness under:
+The [current protocol](protocol-002.json) compares the same parent/executor harness under:
 
 1. Parent working alone.
 2. Always use an available qualified cheaper worker.
@@ -41,6 +46,52 @@ cannot make them new. Source-version invalidation, capability expiry and age
 decay are separate checks. Both verified successes and failures are included;
 repeated correlated steps cannot inflate the number of supporting parent tasks.
 The weighted estimate is descriptive, not a calibrated success probability.
+
+## Subtask similarity, guidance and past model success
+
+Live queries now require `subtask_type`; optional `constraints` describe current
+inputs/preconditions. The initial matcher weights subtask goal text, type,
+constraint tags and actions. A similar parent task, or a different type of
+subtask in the same project, cannot stand in for matching subtask evidence.
+This is a transparent lexical/structured baseline, not semantic embeddings.
+
+The tool distinguishes:
+
+- **Independent cheaper-model success:** the same observed executor completed
+  similar typed subtasks with verified public integration outcomes. No invented
+  procedure is required to use those prior outcomes as support.
+- **Success with retrieved guidance:** the same executor succeeded with specific
+  versioned instructions. Admission requires a retained request/context reference
+  and delivery of the matching applicable guidance versions within the packet
+  budget. Recorded exposure does not prove the model followed the instructions.
+- **Teacher examples:** successful Sol procedures can ground Luna's work but
+  contribute zero observations of Luna competence.
+- **Expert/human/unknown assistance:** keep provenance visible; do not count these
+  as independent cheaper-model execution. Model self-reports and lifecycle
+  completion are not verified integration outcomes.
+
+Grounding includes a stable version ID, concrete procedure, preconditions,
+acceptance criteria, source executor/assistance and linked verification evidence.
+Unsupported advice is not forwarded as a verified procedure. Preconditions must
+match declared constraints. Source visibility, chronology, version and lineage
+guards apply to guidance and execution history. Missing old guidance does not
+erase a known cheaper-model failure.
+
+When only teacher guidance exists, the default evidence router returns
+`needs_parent` and exposes that a guided trial is possible. The explicitly bounded
+always-cheap qualification/development arm can bootstrap such trials; this is
+exploration, not established model competence. Do not add an automatic unmetered
+trial or claim that teacher success transfers without testing it.
+
+A separate optional development mechanism comparison holds the Luna model,
+subtask contract, checkpoint, checks and budgets fixed while presenting or masking
+grounded guidance. It measures the value of instructions separately from the
+routing decision. That native comparison is specified but has not run.
+
+Parent MCP previews contain compact counts and evidence IDs. Detailed procedures
+go into the bounded worker packet, so parent context does not grow with the full
+experience library. Native host snapshot admission still must verify underlying
+executor identities and evidence/context references before those records qualify.
 
 V1 holds the worker packet's similarity ordering and byte budget fixed across
 the two evidence-based arms; age changes admission, not prompt ordering at the
