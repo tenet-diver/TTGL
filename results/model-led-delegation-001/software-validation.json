@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-18",
+  "status": "software_validated; native experiment blocked",
+  "tests": {
+    "new_delegation_tests": 22,
+    "shared_experience_regressions": 48,
+    "passed": 70,
+    "failed": 0
+  },
+  "evidence": {
+    "new_tests_log_sha256": "8078ef59cba50cbac0d1f91d58c08bcc0ba2d70dc2423cf7b5721dc004114db1",
+    "shared_tests_log_sha256": "d6b8b33e6681dd8b10a26fac57e284040e48e2292f9ec6e3ca2e1d7584351119"
+  },
+  "synthetic_transport": true,
+  "real_temporary_file_edits_and_public_checks": true,
+  "native_model_calls": 0,
+  "new_dependencies": 0,
+  "new_task_reservations": 0,
+  "historical_paired_tasks_replayed": 11,
+  "implementation_hashes": {
+    "src/ttgl/model_delegation/__init__.py": "e5b60bb6101b4c2403c2cff35ac074216ca36d93ef0c0152dbba946afddf14f4",
+    "src/ttgl/model_delegation/__main__.py": "9e6370528c54d66e38fed2b14b93671f04e177b59a4ae66dba0d508964b6b325",
+    "src/ttgl/model_delegation/mcp.py": "23b96a3e5c9d48e5db066ff13bf92b14fe7cbc8889097f8299f9a06129cbb20d",
+    "src/ttgl/model_delegation/native.py": "a03444a965ae6756cd184e4d6d84d60f08d396fa68e62bee457884c06571a35e",
+    "src/ttgl/model_delegation/replay.py": "998aabfdce9a40b514fc2b09010a7390f5e7c83c2ebd6089e08462225c0303f8",
+    "src/ttgl/model_delegation/routing.py": "c4e0e62bc1ff45b8fd28fa3bb44387f4150d9f5cdb8f0067019394066fadfd99",
+    "src/ttgl/model_delegation/service.py": "0993da8580c3a91406486b676cd23f4e859599a78f1442b14c5267fa6f0f453b",
+    "tests/model_delegation/test_routing.py": "cd4ce99fc12c9ab5a1eab62ffd4bf651db5003427a453751d5cc4b0d24f391ff",
+    "experiments/model-led-delegation-001/protocol.json": "a66c1564453f8e32348aa23ff0933afd378cd02ee912a4dbe600d0105b24f898"
+  },
+  "limitations": [
+    "Native source account ID is absent; collector binding cannot be established.",
+    "No qualified coding actor/worker freeze, capability corpus, native budgets or new benchmark controls.",
+    "No new UI wiring or desktop acceptance run was performed.",
+    "Running cancellation is cooperative/deferred; no immediate native process termination is claimed.",
+    "Current native adapter is software-tested with synthetic transport, not qualified against actual Luna/Sol."
+  ]
+}

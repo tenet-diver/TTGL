@@ -13,7 +13,11 @@ delegates and integrates, and bounded native workers choose their own actions.
 The [RSI-Router Luna/Sol reproduction](rsi-router-luna-sol-spec.md) remains a
 separate step-routing comparison. Reuse the implementation described here without
 relabeling its frozen studies or treating its host router as a new requirement.
-Neither new specification has a launched native study.
+Neither new specification has a launched native study. The latest
+[tool-routing implementation checkpoint](../../results/model-led-delegation-001/README.md)
+adds availability/similarity/recency admission, autonomous worker dispatch and a
+retrospective eleven-task policy diagnostic. It passes 22 new plus 48 shared
+Python checks. That diagnostic is not a fresh native delegation experiment.
 
 ## Experiment in brief
 

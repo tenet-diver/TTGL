@@ -4066,3 +4066,42 @@ MCP surface, autonomous worker lifecycle, cache considerations, native-harness
 controls and first fixture/native gates. It creates no executable registration,
 new dependency, model call or task reservation. Existing frozen sources,
 subscription binding, local S3 policy and paused schedules remain intact.
+
+## 18 November 2026 — implement tool routing with action similarity and recency
+
+Latest user steering authorizes implementation and a run, and specifies tool-owned
+routing based on cheaper-model availability, similar past actions and experience
+recency. The primary still chooses bounded work and integrates results. Start at
+[the registration](../../experiments/model-led-delegation-001/README.md) and
+[dated result/readiness checkpoint](../../results/model-led-delegation-001/README.md).
+
+New `src/ttgl/model_delegation/` adds strict source-scoped availability, lexical/
+category/action similarity, weighted positive/negative outcomes with independent
+parent deduplication, exponential verified-execution age decay, immutable decision
+receipts and fixed worker packets across age ablations. New MCP tools expose
+route, async delegate, poll and cancellation requests. One active worker/four-job
+queue; no implicit Sol fallback, uncertain retry or budget reset after restart.
+Active cancellation may complete the bounded native call; do not claim immediate
+termination. Native adapter reuses existing retained Codex/Docker/checkpoint/
+verification/accounting code through an exact enabled freeze; no old frozen
+generation module or dependency lock was changed. CLI route-only is the default.
+
+All **22 new tests and 48 shared experience tests pass**. The worker adapter was
+exercised with synthetic transport editing real temporary source and running
+public checks, not actual Luna/Sol. A registered retrospective leave-one-task-out
+replay ran over eleven retained paired outcomes, verifying both native manifest
+and official grade hashes: parent 9/11; always-cheap 7/11; both evidence policies
+retain all work with parent and therefore yield 9/11. No recency advantage or
+live delegation saving is established. Age uses completion-time proxies in this
+diagnostic and original grade-publication chronology is not inferred.
+
+Native preflight remains blocked: managed Codex auth has no account ID, so the
+required canonical collector subscription cannot be verified; no qualified
+coding actor/native stage/corpus/capability/budget/control freeze is installed.
+No new model call, task reservation, dependency install or UI change occurred.
+The user wants a real experiment; this is **not complete** until native gates
+qualify and finite parent-plus-worker attempts run with independent grading.
+Continue on the registered authenticated collector host; preserve historical
+studies and keep unknown/started attempts unreplayed. Private evidence is in
+`work/security/model-led-delegation-20261118/`; public receipt records exact
+software source hashes and the remaining gaps. Research schedules remain paused.

@@ -9,6 +9,13 @@ preferred product implementation path. The
 [RSI-Router reproduction](rsi-router-luna-sol-spec.md) remains a separately named
 controlled comparison, with its original method requirements preserved.
 
+Latest steering adds explicit **tool-owned cheap-model admission by availability,
+similarity to verified prior actions and experience recency**. The initial Python
+implementation and four-condition ablation protocol are in
+[model-led-delegation-001](../../experiments/model-led-delegation-001/README.md).
+The primary still decides what to delegate and integrates results; the tool
+decides whether the requested cheaper route has enough eligible evidence.
+
 ## 1. Model and host responsibilities
 
 Use a native Codex primary agent to understand the request, choose meaningful
@@ -31,11 +38,12 @@ boundaries: account identity, scope, artifact custody, budgets, isolation,
 idempotency, evidence references and terminal status. Model judgment cannot
 override these boundaries or manufacture a passing verification record.
 
-Do not quietly install the old host-calibrated routing rule as the primary
-decision-maker. Historical outcome summaries are advice to the primary/worker,
-not permission to label a similarity score as a success probability. A later
-model-based routing assessor is optional and must have its own measured cost;
-v1 needs no extra assessor call if the primary can make the decision itself.
+Do not quietly reuse the old DAG router. Implement the explicitly registered
+availability/similarity/recency tool rule, with its own decision receipts and
+ablation controls. Historical outcome summaries also inform the primary/worker;
+similarity and weighted past outcomes are not calibrated success probabilities.
+A later model-based routing assessor is optional and must have its own measured
+cost. V1 uses the transparent tool rule without an extra assessor invocation.
 
 ## 2. Tool interface and lifecycle
 

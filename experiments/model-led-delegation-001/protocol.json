@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "study_id": "model-led-delegation-001",
+  "registered_at": "2026-11-18",
+  "status": "software_and_retrospective_diagnostic; native qualification pending",
+  "allow_model_execution": false,
+  "automatic_retries": 0,
+  "native_primary": "proposed gpt-6.1-sol; exact capability must be qualified",
+  "native_worker": "proposed gpt-6-luna; same source subscription required",
+  "hypothesis": "Availability-gated subtask delegation using similar verified actions and experience recency improves the failure-inclusive parent-plus-worker accuracy-cost frontier.",
+  "conditions": [
+    "parent_only",
+    "always_cheap",
+    "similarity",
+    "similarity_recency"
+  ],
+  "policy": {
+    "half_life_days": 30,
+    "minimum_similarity": 0.45,
+    "minimum_parents": 2,
+    "minimum_weight": 1.0,
+    "minimum_success_estimate": 0.7,
+    "maximum_age_days": 365,
+    "maximum_records": 2000,
+    "maximum_packet_bytes": 8000
+  },
+  "similarity": {
+    "implementation": "0.60 lexical token-set cosine + 0.25 matching category + 0.15 action-set Jaccard",
+    "semantic_claim": false,
+    "parent_deduplication": "one observation per earlier task; relevant failure dominates correlated successes"
+  },
+  "recency": {
+    "weight": "2 ** (-age_days / half_life_days)",
+    "age_anchor": "verified execution/check timestamp, not import or publication time",
+    "hard_guards_all_arms": [
+      "publication watermark",
+      "same-account scope",
+      "current source version",
+      "no same/excluded task",
+      "no excluded lineage",
+      "known verified outcome",
+      "language/framework compatibility",
+      "maximum age"
+    ],
+    "estimate": "(1 + weighted_successes) / (2 + weighted_support); descriptive, not calibrated probability",
+    "worker_packet_control": "Fixed similarity order/byte budget across evidence-based arms; v1 changes age admission, not simultaneous worker prompt ordering.",
+    "age_variation_gate": {
+      "required_before_native_recency_claim": true,
+      "report_parent_counts_by_age_days": [
+        "<7",
+        "7-30",
+        ">30"
+      ],
+      "no_date_fabrication": true,
+      "missing_variation": "Report recency question unidentifiable; do not force an improvement."
+    },
+    "secondary_control": "Similarity-only comparator selected on development data for matched cheap coverage/cost; test selections remain frozen."
+  },
+  "availability": "qualified same-account unexpired capability receipt, required tools, strictly lower relative cost under one frozen rate scenario",
+  "fallback": "return needs_parent; no automatic Sol invocation",
+  "native_stages": {
+    "qualification_maximum_episodes": 6,
+    "development_training_tasks": 8,
+    "development_validation_tasks": 8,
+    "heldout_target_tasks": 100,
+    "heldout_repeats": 3,
+    "task_ids": [],
+    "native_budgets": null,
+    "qualification_required": true,
+    "launch_policy": "Each stage needs its own positive finite budgets and immutable source/model/evaluator/reservation freeze; task counts are proposed, not automatically launched."
+  },
+  "retrospective_replay": {
+    "source": "results/delegation-heldout-001/analysis-002/published-rate-records.json",
+    "eligible_arms": [
+      "small",
+      "large"
+    ],
+    "mode": "exploratory leave-one-task-out; all other historical evidence available as of replay time",
+    "exposure": "All 11 original tasks/results are previously exposed; no new holdout or prospective grade-publication chronology is claimed.",
+    "age_proxy": "native completion timestamps; actual historical grade publication time is not inferred",
+    "availability": "simulated same-source capability and relative cost ordering only; cannot authorize native execution",
+    "cost": "sum selected historical execution scenario costs; excludes unobserved new parent/delegation/lookup overhead",
+    "new_model_calls": 0,
+    "inference": "policy diagnostic only; not evidence of live subtask delegation savings or recency superiority"
+  },
+  "frozen_prior_studies_modified": false
+}
