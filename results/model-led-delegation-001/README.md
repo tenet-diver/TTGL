@@ -1,4 +1,32 @@
-# Similarity and recency tool routing: 18 November checkpoint
+# Observatory routing experiment results
+
+Current continuation, 18 November: the native accumulation/comparison harness is
+implemented. Transport, isolated coding actors and one required Sol→Luna handoff
+have run. The first matched benchmark qualification pair resolves **0/1 for Luna
+and 0/1 for Sol**; both public smoke checks pass, and Sol has two protected-test
+edit flags. Public extraction qualification returns two proposals with zero
+host-supported capability records. All failures remain preserved.
+
+- [Native transport/coding/handoff results](native-qualification-20261118/README.md)
+- [Matched benchmark qualification015](benchmark-qualification-015/README.md)
+- [Public extraction qualification018](annotation-qualification-018/README.md)
+
+Ten positive-metered native CLI invocations total784512measured tokens. An earlier
+startup receipt remains unknown; complete usage, managed analyst overhead and
+cash/quota saving remain unestablished.85focused delegation checks,48shared
+runtime checks,4web execution-policy checks and TypeScript pass.
+
+The full Luna/Sol/Observatory/FrugalGPT/RouteLLM transfer matrix remains unrun.
+Preparation017 is checking the71metadata-reserved candidates sequentially, before
+main construction. Source/version checks report no advisory matches; the reduced
+runtime's review coverage limits are retained. Scorer fixtures are synthetic;
+real disjoint native baseline calibration and sufficiency remain gates.
+Schedules stay paused. See the latest [handover](../../docs/research/HANDOVER.md).
+
+## Earlier software and replay checkpoint
+
+The following records preserve the earlier state, before this native continuation.
+
 
 The delegation routing/MCP software and autonomous worker adapter are implemented
 and software-tested. **The fresh native experiment has not run.** The current

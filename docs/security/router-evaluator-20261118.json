@@ -1,0 +1,180 @@
+{
+  "recorded_at": "2026-11-18T19:59:37.398749+00:00",
+  "decision": "blocked",
+  "scope": "Two complete official SWE-bench evaluator environment candidates; no install or execution",
+  "original_lock": "experiments/swe-bench-verified-001/requirements-evaluator.lock",
+  "original_lock_sha256": "759e971e3814dd8ca68e9ebef36c948576c7dfa54683d667108fcc97bb235bb5",
+  "original_direct_finding": {
+    "package": "soupsieve 3.0.4",
+    "advisory": "GHSA-mmhr-3c5m-f64f",
+    "fixed": "4.0.0"
+  },
+  "candidate_002": {
+    "soupsieve": "4.1.2",
+    "hf-xet": "1.8.0",
+    "virtualenv": "21.15.9",
+    "resolved_wheels": 76,
+    "direct_and_versioned_sbom_component_queries": 329,
+    "matched_component_records": [
+      {
+        "component": [
+          "crates.io",
+          "chrono",
+          "0.4.44"
+        ],
+        "wheel": "hf-xet",
+        "vulns": [
+          {
+            "id": "RUSTSEC-2026-0543",
+            "modified": "2026-11-17T10:15:02.344223Z"
+          }
+        ]
+      },
+      {
+        "component": [
+          "crates.io",
+          "humantime",
+          "2.3.0"
+        ],
+        "wheel": "hf-xet",
+        "vulns": [
+          {
+            "id": "RUSTSEC-2026-0542",
+            "modified": "2026-11-17T10:15:02.347148Z"
+          }
+        ]
+      },
+      {
+        "component": [
+          "crates.io",
+          "pin-utils",
+          "0.1.0"
+        ],
+        "wheel": "hf-xet",
+        "vulns": [
+          {
+            "id": "RUSTSEC-2026-0441",
+            "modified": "2026-11-05T09:00:02.627533Z"
+          }
+        ]
+      },
+      {
+        "component": [
+          "crates.io",
+          "quinn-udp",
+          "0.5.14"
+        ],
+        "wheel": "hf-xet",
+        "vulns": [
+          {
+            "id": "RUSTSEC-2026-0538",
+            "modified": "2026-11-13T12:45:08.844283Z"
+          }
+        ]
+      },
+      {
+        "component": [
+          "crates.io",
+          "rustix",
+          "1.1.4"
+        ],
+        "wheel": "hf-xet",
+        "vulns": [
+          {
+            "id": "RUSTSEC-2026-0486",
+            "modified": "2026-11-11T08:45:02.466292Z"
+          }
+        ]
+      },
+      {
+        "component": [
+          "PyPI",
+          "pip",
+          "26.0.1"
+        ],
+        "wheel": "virtualenv",
+        "vulns": [
+          {
+            "id": "GHSA-58qw-9mgm-455v",
+            "modified": "2026-09-10T03:50:42.838011Z"
+          },
+          {
+            "id": "GHSA-jp4c-xjxw-mgf9",
+            "modified": "2026-09-10T03:50:44.656580Z"
+          },
+          {
+            "id": "GHSA-qwm4-qh6w-59xr",
+            "modified": "2026-09-10T03:50:52.923367Z"
+          },
+          {
+            "id": "GHSA-wf93-45jw-7689",
+            "modified": "2026-09-10T03:51:09.636289Z"
+          },
+          {
+            "id": "PYSEC-2026-196",
+            "modified": "2026-07-13T16:45:04.859457Z"
+          },
+          {
+            "id": "PYSEC-2026-2875",
+            "modified": "2026-07-13T16:31:33.455648Z"
+          },
+          {
+            "id": "PYSEC-2026-2876",
+            "modified": "2026-07-13T16:32:57.447552Z"
+          },
+          {
+            "id": "PYSEC-2026-3721",
+            "modified": "2026-09-10T11:15:08.939447Z"
+          }
+        ]
+      },
+      {
+        "component": [
+          "PyPI",
+          "setuptools",
+          "82.0.1"
+        ],
+        "wheel": "virtualenv",
+        "vulns": [
+          {
+            "id": "GHSA-h35f-9h28-mq5c",
+            "modified": "2026-09-10T03:50:52.323347Z"
+          },
+          {
+            "id": "GHSA-xmj3-9gf7-h52w",
+            "modified": "2026-10-23T22:00:03.739009Z"
+          },
+          {
+            "id": "PYSEC-2026-3447",
+            "modified": "2026-07-14T10:56:37.948360Z"
+          }
+        ]
+      }
+    ]
+  },
+  "confirmed_block_examples": [
+    {
+      "package": "rustix 1.1.4 bundled in hf-xet 1.8.0",
+      "advisory": "RUSTSEC-2026-0486",
+      "fixed": "1.1.6",
+      "source": "https://osv.dev/vulnerability/RUSTSEC-2026-0486"
+    },
+    {
+      "package": "quinn-udp 0.5.14 bundled in hf-xet 1.8.0",
+      "advisory": "RUSTSEC-2026-0538",
+      "fixed": "0.5.16 / 0.6.3",
+      "source": "https://osv.dev/vulnerability/RUSTSEC-2026-0538"
+    },
+    {
+      "package": "pip 26.0.1 embedded in virtualenv 21.15.9; embedded archive metadata verified",
+      "advisory": "GHSA-58qw-9mgm-455v",
+      "fixed": "26.1",
+      "source": "https://osv.dev/vulnerability/GHSA-58qw-9mgm-455v"
+    }
+  ],
+  "versionless_filelock_match": "Unresolved version in earlier SBOM, not counted as a confirmed vulnerability",
+  "exceptions_granted": false,
+  "security_clearance": false,
+  "private_receipts": "work/security/model-led-delegation-20261118/continuation-001/evaluator-review-002",
+  "coverage": "Direct packages plus available versioned wheel SBOM components; not exhaustive native/host/publisher security clearance. New current supported or separately reviewed reduced graphs may qualify; none is claimed here."
+}

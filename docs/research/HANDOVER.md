@@ -4196,3 +4196,117 @@ mapping and public-check cascade remain controls; SkillOrchestra is optional.
 RSI is not a runnable comparator. No change to historical results, native gates,
 task reservations, paused schedules or zero new model-call status. Documentation
 and protocol validation do not establish adapter compatibility or model quality.
+
+## 18 November 2026 — native implementation and benchmark gates in progress
+
+Active-chat continuation pulled `work` to `d26b6dc`. New native accumulation,
+common-context campaign, source-bound isolated actor, released-baseline adapters,
+immutable invocation admission, exact loopback S3 retention/restoration and
+base-plus-delta candidate replay are implemented in `src/ttgl/model_delegation`.
+The existing source subscription is available. No schedules were resumed.
+
+Private evidence root:
+`work/security/model-led-delegation-20261118/continuation-001/`.
+Read actual completion/stopped records before continuation; never repeat started
+or uncertain assignments. Seven completed metered native CLI invocations precede
+the benchmark pair: transport006, coding007, failed handoff008 and successful
+required handoff009. Their measured token subtotal is355756, excluding unknown
+startup005 and this managed chat/implementation overhead. Required handoff009 is
+an empty-memory always-cheap mechanism diagnostic, not autonomous routing,
+benchmark quality or economic benefit. Original failures are preserved.
+
+Full original evaluator dependency graph remains blocked by confirmed findings.
+A reduced original grader/parser/TestSpec namespace subset with unidiff1.0.1,
+reviewed patched Alpine actor and pure mpmath1.4.1 is qualified instead. This is a
+patched runtime/host-test-setup adaptation, **not the full upstream Docker image
+or CLI**. Original scripts' test-command body and official parser are retained.
+See `docs/security/router-evaluator-20261118.json` and
+`docs/security/router-reduced-runtime-20261118.json`. Local classifier wheels'
+known bundled GCC runtime findings were replaced with reviewed fixed vendor
+payloads before import. Synthetic released RouteLLM/FrugalGPT core and persistent
+process fixtures pass; these are not trained benchmark baseline results.
+
+Benchmark preparation011–013 failed before model invocation (dependency/mode/
+noexec boundary). Preparation014 passes own empty/reference controls for the
+qualification-only case. Actor testbed explicitly permits tracked script
+execution, while remaining offline, unprivileged, read-only outside ephemeral
+source/tmp and without host/evaluator mounts. No frozen historical source changed.
+
+**Currently registered:** `benchmark-qualification-015.json`, at most two fresh
+native invocations, Luna then Sol, equal empty knowledge/public tools/caps,
+private `benchmark-pair-015`. Source hashes and exact frozen archive are retained
+before inference. Check `pair-completion.json` and per-model completion/stopped
+records. First Luna result has passing public check/scope and256607 native tokens;
+Sol and independent post-pair grading were still pending when this entry was
+written. Do not mistake this interim public check for an official score.
+Exclude this qualification task from subsequent transfer/calibration.
+
+`reservation-016.json` reserves12construction/12development/32heldout plus15
+metadata spares, all with identity/base/patch-lineage exclusions. It enables NO
+inference. Exact source/version advisory scans and each task's own controls remain
+gates. Any environment-only eligibility/split amendment must freeze before first
+construction inference; never replace model failures or tune heldout results.
+Protocol004's full640-point comparison remains unrun. Need real construction
+public-evidence extraction, native development labels, learned-baseline sufficiency
+and operating-point selection, then a complete finite heldout registration.
+Do not call the main study complete from software or generated-task fixtures.
+
+Verification at this preparation checkpoint:74 focused Python tests pass,48
+shared experience-routing tests and4 web execution-policy tests passed earlier;
+TypeScript check passes. Exact candidate base+delta replay also passes through
+real local S3 and raw restore, including byte/mode/link preservation. Raw logs and
+credentials stay private; current code/results are not yet committed.
+
+Qualification015 is now COMPLETE: Luna0/1, Sol0/1 on independent official grading;
+both public smoke checks pass, Sol has2protected-test edit flags. Native tokens
+are256607/151818, total408425. See
+`results/model-led-delegation-001/benchmark-qualification-015/` and private
+`benchmark-pair-015/pair-completion.json`. Preserve exact frozen source archive;
+no retry. Generic prompt subsequently clarifies existing-test protection and
+requires focused evidence of public requested behavior beyond smoke checks.
+No issue-specific or hidden test information was added.
+
+Preparation017 is RUNNING sequentially on71metadata candidates, zero model
+calls: `/tmp/observatory-router-benchmark-20261118/eligibility-017`, log
+`continuation-001/preparation-017.log`. It is an active-chat eligibility pass, not a
+scheduled worker. Exact83source commit/version advisory queries found0matches;
+reviewed runtime graph is separate and incomplete coverage is explicitly retained.
+Check its actual process/started/completion files before any continuation; no
+relaunch of started controls. Current protocol forbids retries. Main construction,
+calibration and heldout inference still have not started. Persistent numerical
+baseline fixture002 passes with actual upstream route/cascade methods and local
+scorer process, measuring training/prediction CPU/wall overhead; synthetic only.
+
+Further active-chat implementation: public-only `knowledge.py` uses native Luna
+interpretation with host differential assertions, preserving teacher provenance;
+`stages.py` collects finite construction/development endpoints and annotations
+before reading any sealed grades. `baseline_process.py` runs actual selected
+released methods in the separately reviewed numerical environment, with JSON-only
+transport and explicit setup/prediction CPU/wall accounting. `accounting.py`
+reconciles native receipts without adding parent aggregate counters to children
+or summing overlapping wall envelopes.81focused software checks now pass.
+
+Annotation qualification018 made ONE new native Luna CLI invocation,20331tokens,
+and returned two proposals. An invalid ledger purpose caused post-processing to
+stop after native completion. The exact response was reconciled without another
+call (`annotation/postprocessing-recovery.json`); both public assertions already
+passed on the original base, so ZERO support records were admitted. No hidden
+grades/patches were supplied. Corrected future ledger role/purpose are
+`extraction`/`seed_construction`. Original failed source archive is preserved.
+Results: `results/model-led-delegation-001/annotation-qualification-018/`.
+Positive-gate canary019 is only host replay of the retained generated009 fixture:
+base assertion17, integrated candidate0, zero new model calls or benchmark results.
+It creates no study knowledge. Keep this distinct from actual native extraction.
+
+Cumulative receipt audit003:11native ledger receipts,10positive-metered CLI
+invocations,784512measured-token lower bound. The startup005receipt remains
+unknown, so the complete total is null; managed analyst overhead is outside this
+subtotal. No actual cash/quota/net saving result. Native-only request IDs may
+repeat across separate local ledgers; reconcile using thread/raw-response identity,
+not request labels. No credentials remain in completed private client homes.
+
+Preparation017 remains the ONLY active queue, sequential environment controls,
+with no model invocation. At31of71candidates, inspect the latest log/completion
+records for current eligibility; do not relaunch. Existing generation/evaluation
+sources listed in017stay frozen. Full scientific splits/budgets and baseline
+training/sufficiency still need their final freeze before main inference.

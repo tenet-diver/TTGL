@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-18T21:33:52.672012+00:00",
+  "scope": "Reduced native-Codex experiment runtimes; full original evaluator environment remains blocked",
+  "security_clearance": false,
+  "authorization": "Codespace-specific permission allows incomplete evidence, confirmed findings still block affected candidates",
+  "actor": {
+    "approved": true,
+    "at": "2026-11-18T21:14:22.357273+00:00",
+    "basis": "Unchanged reviewed patched60-package OS closure plus reviewed pure-Python mpmath1.4.1. Data-only overlay; no RUN or hooks.",
+    "dependency_receipt": "work/security/model-led-delegation-20261118/continuation-001/mpmath-pre-install-review.json",
+    "findings": [],
+    "image_id": "sha256:3705eefe1b7f9cb180832743b059d69d1b4250c335c2cdb39e1c2b8f3d6731ee",
+    "installation_permissions": "Docker COPY --chmod=0755; data-only overlay, unchanged reviewed dependency bytes",
+    "parent_image_id": "sha256:3e43640aaf34bbdb4b36ee920506a7ba03cf71eeaa0936c2829d70e01b7cf15a",
+    "publisher_compromised": false,
+    "security_clearance": false
+  },
+  "mpmath": {
+    "at": "2026-11-18T20:48:00.217466+00:00",
+    "name": "mpmath",
+    "version": "1.4.1",
+    "requires_runtime": [],
+    "wheel_sha256": "dc4f0ea2304480d4a9a48a94c1020571558ade522b44a6912efac63a586e140f",
+    "osv": {},
+    "registry_hash_verified": true,
+    "automatic_hooks": [],
+    "license": "BSD-3-Clause",
+    "source_project": {
+      "Bug Tracker": "https://github.com/mpmath/mpmath/issues",
+      "Documentation": "http://mpmath.org/doc/current/",
+      "Homepage": "https://mpmath.org/",
+      "Source Code": "https://github.com/mpmath/mpmath"
+    },
+    "scope": "Pure Python dependency for a separately reviewed benchmark actor; no optional test/plotting/native extras",
+    "security_clearance": false,
+    "coverage_limits": "Codespace incomplete-evidence exception; independent registry attestation/publisher incident coverage incomplete"
+  },
+  "learned_baselines": {
+    "upstream_commits": {
+      "RouteLLM": "0b64fdafe049e596a3f5657c219329f24af24198",
+      "FrugalGPT": "2b23e6acbd4b39f71912816640dcc59e45aa4b5e"
+    },
+    "source_pins": {
+      "routellm_utils": {
+        "path": "/workspaces/TTGL/work/security/model-led-delegation-20261118/continuation-001/upstream/RouteLLM-similarity-utils.py",
+        "sha256": "1f5893b9d263897253788dced906b940c76dd8f87579982acad583c5eb343360"
+      },
+      "routellm_routers": {
+        "path": "/workspaces/TTGL/work/security/model-led-delegation-20261118/continuation-001/upstream/RouteLLM-routellm_routers_routers.py",
+        "sha256": "2393da77f9049970f57dd6d8eada3cc68e99506b2a547e7662e7d2d56b5065b8"
+      },
+      "frugalgpt_cascade": {
+        "path": "/workspaces/TTGL/work/security/model-led-delegation-20261118/continuation-001/upstream/FrugalGPT-src_FrugalGPT_llmcascade.py",
+        "sha256": "ce86403b47f0e113c36d97c3acc28f032f23ed9faeb093c70123d594966dc32b"
+      },
+      "frugalgpt_chain": {
+        "path": "/workspaces/TTGL/work/security/model-led-delegation-20261118/continuation-001/upstream/FrugalGPT-src_FrugalGPT_llmchain.py",
+        "sha256": "5ff4deebc83bda89dc29471c5d56ae46ad6d328f5342429df120ef896cbd8803"
+      }
+    },
+    "libraries": {
+      "libgcc": {
+        "path": "/tmp/observatory-router-baselines-20261118/patched-rpm-payload/libgcc/lib64/libgcc_s-8-20210514.so.1",
+        "sha256": "79dadb30ab969aef68c31199e313547cc5bf21720c4dde2cc77e0cd0d1c6d1c8",
+        "rpm": {
+          "name": "libgcc",
+          "version": "8.5.0-31.el8_10.alma.1",
+          "epoch": "0",
+          "sha256": "e8b074a637599d81db4886f28899394588024e56b03c9c2f43b1e8c519d725c4",
+          "url": "https://repo.almalinux.org/almalinux/8/BaseOS/x86_64/os/Packages/libgcc-8.5.0-31.el8_10.alma.1.x86_64.rpm",
+          "repo": "BaseOS"
+        }
+      },
+      "libgfortran": {
+        "path": "/tmp/observatory-router-baselines-20261118/patched-rpm-payload/libgfortran/usr/lib64/libgfortran.so.5.0.0",
+        "sha256": "5fb651e6ff156c1121cfaacb5fbcd950085d55b1f1b35c2a8020390b6e0e4e7a",
+        "rpm": {
+          "name": "libgfortran",
+          "version": "8.5.0-31.el8_10.alma.1",
+          "epoch": "0",
+          "sha256": "ba46a74b43b94409889cb5d8a6934ec86cddbc7f6f0ba401b366e309fc612dd8",
+          "url": "https://repo.almalinux.org/almalinux/8/BaseOS/x86_64/os/Packages/libgfortran-8.5.0-31.el8_10.alma.1.x86_64.rpm",
+          "repo": "BaseOS"
+        }
+      },
+      "libgomp": {
+        "path": "/tmp/observatory-router-baselines-20261118/patched-rpm-payload/libgomp/usr/lib64/libgomp.so.1.0.0",
+        "sha256": "cb35b7ff2b345c2f67cf56c093e2e47117dca44051c5602585c437d85f66a484",
+        "rpm": {
+          "name": "libgomp",
+          "version": "8.5.0-31.el8_10.alma.1",
+          "epoch": "0",
+          "sha256": "0c86d259eccd7c1b141d4a5d69faad894820899c52425d3a030b99778ea928f3",
+          "url": "https://repo.almalinux.org/almalinux/8/BaseOS/x86_64/os/Packages/libgomp-8.5.0-31.el8_10.alma.1.x86_64.rpm",
+          "repo": "BaseOS"
+        }
+      },
+      "libquadmath": {
+        "path": "/tmp/observatory-router-baselines-20261118/patched-rpm-payload/libquadmath/usr/lib64/libquadmath.so.0.0.0",
+        "sha256": "b74015607cf9b08e973ff1a4cc30c4adc84ab6d4eae399f96afbaf03fb554208",
+        "rpm": {
+          "name": "libquadmath",
+          "version": "8.5.0-31.el8_10.alma.1",
+          "epoch": "0",
+          "sha256": "023fdf38d0ac2f51c38af8b24eec46dca4d159d82dd0190d56f323f18ed89570",
+          "url": "https://repo.almalinux.org/almalinux/8/BaseOS/x86_64/os/Packages/libquadmath-8.5.0-31.el8_10.alma.1.x86_64.rpm",
+          "repo": "BaseOS"
+        }
+      },
+      "libstdc++": {
+        "path": "/tmp/observatory-router-baselines-20261118/patched-rpm-payload/libstdc++/usr/lib64/libstdc++.so.6.0.25",
+        "sha256": "d94de1bf72691756040c221c29e7f6250543383446be754955d8008cc3d9e134",
+        "rpm": {
+          "name": "libstdc++",
+          "version": "8.5.0-31.el8_10.alma.1",
+          "epoch": "0",
+          "sha256": "b41f7a2ee398970b73c3da8accf7973646b658a3ebdd0cc5f9a51e03a5f4a900",
+          "url": "https://repo.almalinux.org/almalinux/8/BaseOS/x86_64/os/Packages/libstdc++-8.5.0-31.el8_10.alma.1.x86_64.rpm",
+          "repo": "BaseOS"
+        }
+      }
+    },
+    "original_vulnerable_libraries_installed": false,
+    "loaded_runtime_audit": {
+      "all_five_loaded_runtime_files_match_reviewed_fixed_vendor_payloads": true,
+      "loaded_paths": [
+        "/tmp/observatory-router-baselines-20261118/native-libs-002/libgcc_s-8-20210514.so.1",
+        "/tmp/observatory-router-baselines-20261118/native-libs-002/libquadmath.so.0.0.0",
+        "/tmp/observatory-router-baselines-20261118/native-libs-002/libstdc++.so.6.0.25",
+        "/tmp/observatory-router-baselines-20261118/site/numpy.libs/libgfortran-83c28eba-468e71e5.so.5.0.0",
+        "/tmp/observatory-router-baselines-20261118/site/scikit_learn.libs/libgomp-e985bcbb.so.1.0.0"
+      ],
+      "model_calls": 0,
+      "old_vulnerable_runtime_payload_loaded": false
+    },
+    "adaptations": [
+      "RouteLLM released similarity-weighted ranking/Elo/tiering and route; native paired training data; local char hashing instead of external embeddings",
+      "FrugalGPT released learned-score/cascade/chain loop; local linear quality scorers instead of transformer; exhaustive two-model development optimizer",
+      "Only selected reviewed AST components, not full upstream provider server/packages"
+    ],
+    "runtime_remote_encoder": false,
+    "api_key_billing": false,
+    "native_benchmark_calibration_complete": false,
+    "qualification": "Synthetic numerical and persistent-process fixtures only; zero model-quality baseline results"
+  },
+  "evaluator": {
+    "upstream": "SWE-bench/SWE-bench",
+    "commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+    "dependency": "unidiff1.0.1",
+    "adaptation": "Original grader/parser/TestSpec namespace subset; host Git test setup, patched offline Python actor. Not full upstream Docker image/CLI."
+  },
+  "remaining_coverage_limits": [
+    "Independent vendor RPM GPG/attestation verification incomplete",
+    "Host/BLAS exhaustive binary graph coverage incomplete",
+    "Publisher incident review is bounded; absence of a detected incident is not security clearance"
+  ],
+  "private_receipts_root": "work/security/model-led-delegation-20261118/continuation-001"
+}

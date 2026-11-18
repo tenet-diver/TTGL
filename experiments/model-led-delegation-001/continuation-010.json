@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "revision": "010-post-qualification",
+  "allow_model_execution": false,
+  "status": "native qualification observed; full comparative benchmark blocked/unrun",
+  "source_hashes": {
+    "src/ttgl/model_delegation/__init__.py": "e5b60bb6101b4c2403c2cff35ac074216ca36d93ef0c0152dbba946afddf14f4",
+    "src/ttgl/model_delegation/__main__.py": "e65a5f43b3fd6437fa66d30d930cc294e5720de225d4e1514ef9c1e25e94aeee",
+    "src/ttgl/model_delegation/accumulation.py": "6890896229bc6b9836149f6b79bb59a03ecad73b83afe5616f72ba290cafb441",
+    "src/ttgl/model_delegation/actor.py": "0db6482d7bceb875fc021ab729cabdb54b4b9699138c30b8cc62da6ecd02ec1e",
+    "src/ttgl/model_delegation/admission.py": "3ee456db22090211322d43b2c86ef9ed0c36383ea044eaaf45cd62f1115fb4a9",
+    "src/ttgl/model_delegation/baselines.py": "6b8ef18fe7a2bc866c20e04f63aa0daed6111d694e86c305b715c43ed8352e24",
+    "src/ttgl/model_delegation/campaign.py": "b60ee92aed3c996f207eddd0836bd0c6f4a722ff99af6d2b924cb9d1c1852774",
+    "src/ttgl/model_delegation/episode.py": "2d9fc505019dfd187669a9d377d20bbf85e72cf140957f56ac144a5a40d1c3c6",
+    "src/ttgl/model_delegation/grounding.py": "e527020aa9dd0205e5170894c4cdcf3748b876942d7ac7dbb7b1a24085ab2502",
+    "src/ttgl/model_delegation/live_delegation.py": "b71022e31b5f24d148c21189289ab735f58d56cb115c6062303b201ae849f7ed",
+    "src/ttgl/model_delegation/mcp.py": "6c8b361ab1c5ed54dbc47f8ddcab738b75d41e98b677a7bb555607eaabea2d8c",
+    "src/ttgl/model_delegation/native.py": "d4a93819c04246349e6f38d1bd8babb7bf4dd5b18bf861a509ae28d293d760a6",
+    "src/ttgl/model_delegation/qualification.py": "8aeb7f964e936e0c7d9b2521aa0b1de5b8bb813d4018d9e827e07c54ce94ee48",
+    "src/ttgl/model_delegation/replay.py": "237553f1d29d8ab38d5c391e62fc5d8f1e8d583382bff1603236396ad0ea722c",
+    "src/ttgl/model_delegation/retention.py": "21f2bed3e5c42b99f9fb27a0f275657cde7184a80d53e2c77b8885b59b270ac8",
+    "src/ttgl/model_delegation/routing.py": "2bb4a870f058bb999185ff941985993341c2dd02a68bd44156ce584064566b37",
+    "src/ttgl/model_delegation/service.py": "8f9454743ef463d1434ad9266c52797af62c441a0c58d078cc07751aefd2e839",
+    "src/ttgl/model_delegation/transport.py": "50de2efdb6429a977cbcd4172ece34b52d5130a9aa9ffa2313bca8b839674c93",
+    "src/ttgl/model_delegation/worker_bridge.py": "b591ab117d7432a3c56833037f3879968c89ab707b65c58c2d915ee8d3ad32c5",
+    "tests/model_delegation/test_accumulation.py": "c623a01e99a1f586e43719a6f0a237eef25c8edc2e4cf8d2b599470acb403d22",
+    "tests/model_delegation/test_admission.py": "36e28d5b934caf9c5c5fbe54859a2fb3b76429176748b9b7c12839cea81e3f7c",
+    "tests/model_delegation/test_baselines.py": "a47511a6ac63d33f811b53b2ef87577bcba4fdada38f9a056924f711632ee61e",
+    "tests/model_delegation/test_campaign.py": "11db907734129ce6ce7443f27d335d01367b03f6b2a84caf32b3a979a7acfc11",
+    "tests/model_delegation/test_episode_retention.py": "daeed2c63f4027e5c22872b637b9fa2250fb88bb1946fe03e83a1d7256f5f797",
+    "tests/model_delegation/test_live_delegation.py": "b3624d043d97b51edef163d877f61970aee65e42b5ffca383ffc0a7201206ffc",
+    "tests/model_delegation/test_routing.py": "f7b4360ffe5e508329cdc931f3596315d13a7e45f792fbae25b27dc43805de96",
+    "tests/model_delegation/test_transport.py": "c72f80c1e44591ab9bfcbf7af84a3d6e9ec88802bbdc4dd0930725142d922353",
+    "apps/web/scripts/retain-experiment.ts": "3ae25fcea39e09328fb42b575e4d3d2413f11ef7a185e4020625395f6fc97c7f"
+  },
+  "live_generation_revisions": [
+    "005",
+    "006",
+    "007",
+    "008",
+    "009"
+  ],
+  "live_source_archives": [
+    "work/security/model-led-delegation-20261118/continuation-001/frozen-source-008.tar",
+    "work/security/model-led-delegation-20261118/continuation-001/frozen-source-009.tar"
+  ],
+  "automatic_retries": 0,
+  "next_gate": "Qualify a dependency-safe complete or reduced released-baseline/evaluator runtime; then register disjoint development fitting before a held-out campaign. Existing calls never repeated.",
+  "scheduled_inference": false
+}

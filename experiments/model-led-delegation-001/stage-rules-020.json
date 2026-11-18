@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "stage": "preconstruction_feasibility_and_selection_rules_020",
+  "allow_model_execution": false,
+  "automatic_retries": 0,
+  "schedules_paused": true,
+  "basis": "Protocol004 counts were proposals, reservation016 precedes construction. These rules freeze before any main construction/development/heldout inference. Qualification015/018 are excluded.",
+  "eligibility": "Only metadata-order candidates with exact-source advisory checks and own empty-fail/reference-pass controls. No replacement of model failures. All71control outcomes must finish or preparation stops; no duplication of started cases.",
+  "allocation": [
+    {
+      "eligible_count_at_least": 56,
+      "construction": 12,
+      "development": 12,
+      "heldout": 32,
+      "prefixes": [
+        0,
+        4,
+        8,
+        12
+      ]
+    },
+    {
+      "eligible_count_at_least": 32,
+      "eligible_count_below": 56,
+      "construction": 12,
+      "development": 12,
+      "heldout": "eligible_count minus24",
+      "prefixes": [
+        0,
+        4,
+        8,
+        12
+      ]
+    },
+    {
+      "eligible_count_at_least": 24,
+      "eligible_count_below": 32,
+      "construction": 8,
+      "development": 8,
+      "heldout": "eligible_count minus16",
+      "prefixes": [
+        0,
+        4,
+        8
+      ]
+    }
+  ],
+  "minimum_viable_eligible_tasks": 24,
+  "order": "Retain original metadata order after environment exclusions; first construction, next development, then heldout. Leave any remainder beyond56 as unused development-expansion reserve. Freeze full resulting split before first construction call.",
+  "scope": "Qualified SymPy-only patched-runtime subset; exploratory and no cross-repository or full benchmark generalization. Counts/exclusions and uncertainty must be reported.",
+  "construction_gate": "If all post-zero snapshots have zero supported public records, report failed knowledge-construction feasibility; do not spend a heldout matrix claiming a knowledge treatment occurred. Retain every construction task/failure and zero counts.",
+  "baseline_sufficiency": {
+    "minimum_native_pairs": 6,
+    "minimum_each_outcome_per_model": 2,
+    "validation": "leave-one-task-out, retaining both classes per training fold",
+    "quality_scorer_gate": "Each local learned scorer OOF Brier <= its task-OOF constant-prior Brier plus0.02",
+    "interpretation": "Feasibility floor only, not adequate statistical calibration established by small samples",
+    "operating_point_budgets_relative_to_mean_development_Sol_scenario": [
+      0.1,
+      0.5,
+      1.0
+    ],
+    "optimization": "Maximize development protocol-admissible official completions within each scenario budget, then lower cost; preserve infeasible/duplicate points. Never use test grades."
+  },
+  "additional_development": "If insufficient, at most all originally unused eligible metadata reserves, matched endpoints once each, separately registered before inference. Never reassign heldout tasks based on development outcomes or inspect heldout model grades. If still insufficient, report baseline feasibility failure; required baselines cannot silently disappear.",
+  "quality": "Report raw official completion and protocol-compliant completion separately. Invalid scope is not silently dropped. Runtime knowledge never receives official outcomes or private tests/solutions.",
+  "costs": "Charge all native primary/worker/candidate/annotation failures and local scorer setup/prediction work. Token-rate and host-CPU scenarios are separate from unknown actual subscription cash. Do not add parent+worker overlap as wall time."
+}

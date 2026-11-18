@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-18T19:59:37.398749+00:00",
+  "study_id": "model-led-delegation-001",
+  "stage": "native_transport_actor_and_required_handoff_qualification",
+  "full_comparative_study_complete": false,
+  "fresh_benchmark_assignments": 0,
+  "official_benchmark_scores": null,
+  "native_cli_processes": 8,
+  "completed_positive_metered_cli_invocations": 7,
+  "startup_rejections": 1,
+  "automatic_process_retries": 0,
+  "measured_token_subtotal": 355756,
+  "unmeasured_startup_usage": null,
+  "cash_expense": null,
+  "subscription_quota_saving": null,
+  "net_saving_established": false,
+  "target90_evaluable": false,
+  "target90_met": null,
+  "coding_qualification": {
+    "native_invocations": 2,
+    "original_scope_checks": "failed due to actor umask normalization; originals preserved",
+    "post_generation_replay": "work/security/model-led-delegation-20261118/continuation-001/coding-qualification/integration-audit/completion.json",
+    "both_retained_candidates_pass_pristine_checks": true
+  },
+  "failed_handoff": {
+    "native_parent_invocations": 1,
+    "attempted_delegation_tool_requests": 1,
+    "completed_worker_consultations": 0,
+    "native_usage": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 67072,
+      "input_tokens": 81038,
+      "output_tokens": 1208,
+      "reasoning_output_tokens": 14,
+      "total_tokens": 82246
+    },
+    "reason": "missing per-tool approval_mode; native CLI rejected before dispatch"
+  },
+  "successful_handoff": {
+    "condition": "required_handoff_always_cheap_diagnostic_empty_memory",
+    "parent_model": "gpt-6.1-sol",
+    "worker_model": "gpt-6-luna",
+    "attempted_requests": 1,
+    "completed_worker_consultations": 1,
+    "integrated": true,
+    "parent_public_check_passed": true,
+    "protected_write_scope_passed": true,
+    "parent_usage": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 80256,
+      "input_tokens": 95159,
+      "output_tokens": 1095,
+      "reasoning_output_tokens": 8,
+      "total_tokens": 96254
+    },
+    "worker_usage": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 38016,
+      "input_tokens": 50017,
+      "output_tokens": 585,
+      "reasoning_output_tokens": 69,
+      "total_tokens": 50602
+    },
+    "combined_usage": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 118272,
+      "input_tokens": 145176,
+      "output_tokens": 1680,
+      "reasoning_output_tokens": 77,
+      "total_tokens": 146856
+    },
+    "elapsed_task_envelope_seconds": 92.53086829700032,
+    "timing_note": "Parent envelope includes worker time; do not add nested process lifetimes to obtain task latency.",
+    "post_generation_independent_checks": true,
+    "post_generation_checks_predeclared": false,
+    "not_autonomous_routing_evidence": true,
+    "not_independent_student_competence": true
+  },
+  "actor": {
+    "image_id": "sha256:3e43640aaf34bbdb4b36ee920506a7ba03cf71eeaa0936c2829d70e01b7cf15a",
+    "base_image_blocked_by_fresh_krb5_findings": true,
+    "patched_package": "krb5-libs 1.22.3-r0",
+    "official_apk_signature_and_payload_hash_verified": true,
+    "resolved_os_packages_scanned": 60,
+    "patched_graph_matches": 0,
+    "security_clearance": false
+  },
+  "source_retention": "Exact requests/events/native rollouts/tool inputs/outputs/candidates in existing verified literal-loopback S3; private spool and immutable delivery receipts retained. No credential archival.",
+  "main_blockers": [
+    "Inspected complete evaluator candidates, including latest hf-xet/virtualenv, contain confirmed bundled dependency advisories. No candidate was installed or executed.",
+    "Actual released FrugalGPT/RouteLLM learned instances, source-bound native development fitting and training-sufficiency audit remain unqualified. Adapter fixtures are not baseline-quality evidence.",
+    "Fresh audited benchmark partitions, full actor/evaluator empty/reference qualification, construction records and final finite comparison freeze remain unregistered."
+  ],
+  "software": {
+    "model_delegation_tests": 68,
+    "shared_runtime_tests": 48,
+    "web_subscription_policy_tests": 4,
+    "typescript_check": "pass",
+    "later_admission_and_failure_preservation_hardening": "software-tested after live009; no further model invocations"
+  },
+  "earlier_attempts_preserved": true,
+  "research_schedules": "paused",
+  "overhead_note": "355756 is the seven measured native invocation subtotal only; startup unknowns and this managed chat/implementation overhead are not set to zero. No first-use/net/cash saving claim.",
+  "accounting_receipts": [
+    {
+      "receipt_path": "work/security/model-led-delegation-20261118/continuation-001/coding-qualification/luna/run/accounting/usage-ledger.jsonl",
+      "receipt_sha256": "3cd72c634992a3a1bd6e6f700ccf5fbad0036584c05c01fb71aa98705bee6ad3",
+      "model": "gpt-6-luna",
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 18816,
+        "input_tokens": 39213,
+        "output_tokens": 648,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 39861
+      },
+      "role": "small_execution",
+      "purpose": "research_measurement",
+      "accounting_issues": [],
+      "native_artifact_sha256": "d4554e36b0c3c71914bf8f548267b0f8d68fc5e2442f22ddae9066bbc613275c",
+      "actual_cash": null
+    },
+    {
+      "receipt_path": "work/security/model-led-delegation-20261118/continuation-001/coding-qualification/sol/run/accounting/usage-ledger.jsonl",
+      "receipt_sha256": "9d82173d9049de859af7a5843e6a586ae9cb15883d9731636c7105db26b3bf5e",
+      "model": "gpt-6.1-sol",
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 53248,
+        "input_tokens": 66532,
+        "output_tokens": 970,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 67502
+      },
+      "role": "large_execution",
+      "purpose": "research_measurement",
+      "accounting_issues": [],
+      "native_artifact_sha256": "3a539c228c254b3dfb67257e7aa62fe24f4d701bc5298508ed9db62fe1383821",
+      "actual_cash": null
+    },
+    {
+      "receipt_path": "work/security/model-led-delegation-20261118/continuation-001/handoff-008/parent/run/accounting/usage-ledger.jsonl",
+      "receipt_sha256": "1da6d16fb568c80e49eff54d058260d0d09f162589a2188241c2953282c30e0c",
+      "model": "gpt-6.1-sol",
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 67072,
+        "input_tokens": 81038,
+        "output_tokens": 1208,
+        "reasoning_output_tokens": 14,
+        "total_tokens": 82246
+      },
+      "role": "large_execution",
+      "purpose": "research_measurement",
+      "accounting_issues": [],
+      "native_artifact_sha256": "602d0808f27f790b6f27ab0da458a810d9de01016d4142219ff4394c512eadab",
+      "actual_cash": null
+    },
+    {
+      "receipt_path": "work/security/model-led-delegation-20261118/continuation-001/handoff-009/parent/run/accounting/usage-ledger.jsonl",
+      "receipt_sha256": "ffd3b9c93dd7a626176586a465d04ca6168b14d130ca2c3e336827a864049c3c",
+      "model": "gpt-6.1-sol",
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 80256,
+        "input_tokens": 95159,
+        "output_tokens": 1095,
+        "reasoning_output_tokens": 8,
+        "total_tokens": 96254
+      },
+      "role": "large_execution",
+      "purpose": "research_measurement",
+      "accounting_issues": [],
+      "native_artifact_sha256": "f82ca90dc7df861d80effc6c57e777c4fba606b3f115349e8d61bd0fe27908f1",
+      "actual_cash": null
+    },
+    {
+      "receipt_path": "work/security/model-led-delegation-20261118/continuation-001/handoff-009/parent/run/tools/delegations/61696db7965ecf6ccb2461f80f45fd573e1a482e06fa8aa4aacd0f6c604da7f4/worker/accounting/usage-ledger.jsonl",
+      "receipt_sha256": "c2cd2f71bd678079c25d28729e896930547000c259711c71d9002e970cd2fe53",
+      "model": "gpt-6-luna",
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 38016,
+        "input_tokens": 50017,
+        "output_tokens": 585,
+        "reasoning_output_tokens": 69,
+        "total_tokens": 50602
+      },
+      "role": "small_execution",
+      "purpose": "research_measurement",
+      "accounting_issues": [],
+      "native_artifact_sha256": "333632e0cb226992025480d697a506b9b617f76fa8b71be5d1f10ca7ba5cdf27",
+      "actual_cash": null
+    },
+    {
+      "receipt_path": "work/security/model-led-delegation-20261118/continuation-001/transport/accounting/usage-ledger.jsonl",
+      "receipt_sha256": "37ef15266e83625d1d21a792db493f82c88fc9f8faf2ea3ddf84aa1f708d8c90",
+      "model": "gpt-6-luna",
+      "usage": {
+        "cache_write_input_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": null,
+        "output_tokens": null,
+        "reasoning_output_tokens": null,
+        "total_tokens": null
+      },
+      "role": "research_audit",
+      "purpose": "research_measurement",
+      "accounting_issues": [
+        {
+          "fields": [
+            "input_tokens",
+            "cached_input_tokens",
+            "cache_write_input_tokens",
+            "output_tokens",
+            "reasoning_output_tokens"
+          ],
+          "reason": "cumulative_usage_without_thread"
+        }
+      ],
+      "native_artifact_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual_cash": null
+    },
+    {
+      "receipt_path": "work/security/model-led-delegation-20261118/continuation-001/transport-006/accounting/usage-ledger.jsonl",
+      "receipt_sha256": "00d39775da7e7f78d711afb4cf589c57f131f23c391c2873c102991dcf476a3a",
+      "model": "gpt-6-luna",
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 9281,
+        "output_tokens": 19,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 9300
+      },
+      "role": "research_audit",
+      "purpose": "research_measurement",
+      "accounting_issues": [],
+      "native_artifact_sha256": "6f89756a4fec27277e46f307ea282b339c8b7f07308bc03a4f5b68d60b1c4751",
+      "actual_cash": null
+    },
+    {
+      "receipt_path": "work/security/model-led-delegation-20261118/continuation-001/transport-006/accounting/usage-ledger.jsonl",
+      "receipt_sha256": "00d39775da7e7f78d711afb4cf589c57f131f23c391c2873c102991dcf476a3a",
+      "model": "gpt-6.1-sol",
+      "usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 9972,
+        "output_tokens": 19,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 9991
+      },
+      "role": "research_audit",
+      "purpose": "research_measurement",
+      "accounting_issues": [],
+      "native_artifact_sha256": "6050adac7a5f1da928b566f334361fe518ef0f74f296e0b88a1e2965647deecb",
+      "actual_cash": null
+    }
+  ]
+}

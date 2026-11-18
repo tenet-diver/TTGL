@@ -17,7 +17,7 @@ scientific schedule is [protocol 004](protocol-004.json) and its
 [Codex accumulation study](../../docs/research/knowledge-accumulation-codex-study.md).
 It reuses this tool and native harness, adds nested knowledge snapshots and
 same-memory Luna/Sol controls, and keeps recency as a small secondary extension.
-The snapshot/campaign extension is specified, not a new completed native run.
+The snapshot/campaign extension is implemented; the main transfer run remains unlaunched.
 Latest steering requires our independently implemented router against Luna,
 Sol, FrugalGPT and RouteLLM; RSI is related work only. Earlier protocol003 is
 preserved as a superseded proposal. Named released baselines need real compatible
@@ -164,3 +164,28 @@ The current collector account ID is absent in the managed credentials. No
 qualified coding actor is installed, and there is no frozen native stage yet.
 See the dated result/readiness artifacts for actual progress; fixture transport
 and historical replay must not be presented as live Luna/Sol inference.
+
+
+## Active native continuation
+
+Finite qualification registrations005–018 preserve transport, actor, required
+handoff, benchmark and public-annotation attempts, including failures. Results
+are indexed in [the results directory](../../results/model-led-delegation-001/README.md).
+The actual canonical subscription works. A patched offline Python actor and
+reduced original official grader/parser namespace qualify the benchmark runtime;
+full upstream evaluator dependencies remain blocked. Scope and security limits
+are in [the reduced-runtime review](../../docs/security/router-reduced-runtime-20261118.json).
+
+`reservation-016.json` reserves metadata/lineage-audited tasks without inference.
+`preparation-017.json` owns the one sequential71-candidate empty/reference control
+pass. Check its private actual state before continuation, never relaunch started
+assignments. `stage-rules-020.json` freezes compatibility-based allocation and
+baseline sufficiency/selection before main construction. The final scientific
+split, source pins, finite native budgets and full test manifest must still be
+registered before their respective stages. No heldout model calls have occurred.
+
+Native released-method adapters use reviewed local hashing/linear features in a
+separate numerical process. This is an explicit adaptation with real native
+calibration still pending. Standard-library orchestration uses the existing native
+Codex and local S3/PostgreSQL integration; the optional numerical runtime has its
+own pinned graph and security receipts. Research schedules remain paused.

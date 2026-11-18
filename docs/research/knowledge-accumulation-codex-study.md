@@ -266,3 +266,23 @@ delegates are informative results to retain.
 Existing source-account/actor/live-integration gates are unresolved. This plan
 adds no new model invocation, reservation, dependency installation or automatic
 inference schedule, and it does not alter frozen earlier experiments.
+
+
+## Native continuation checkpoint, 18 November
+
+The prefix builder, equal-context native campaign runner, finite source-bound
+admission, exact S3 candidate replay, public construction interpreter and
+released-method local-feature adapters are implemented. Native subscription,
+isolated coding and required parent/worker handoff qualification have executed.
+The first matched benchmark qualification has two official failures; public
+extraction qualification admits zero supported records. These are preserved in
+[the result index](../../results/model-led-delegation-001/README.md).
+
+The main accumulation comparison remains unrun. Preparation017 is qualifying the
+metadata-reserved sources. Stage rules020 freeze compatibility-based allocation,
+public-evidence and disjoint baseline-sufficiency gates before main inference.
+The provisional counts may shrink with environment eligibility, with explicit
+scope/uncertainty reporting. Native baseline training, operating-point selection
+and the complete heldout manifest remain required. Earlier unresolved-gate prose
+above describes the proposal stage; it does not supersede actual continuation
+receipts or authorize repeats. Scheduled research remains paused.
