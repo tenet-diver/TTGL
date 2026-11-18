@@ -5,9 +5,10 @@
 Status: implementation handover supplement; proposed study
 `model-led-delegation-001`, no new model execution or benchmark reservation.
 The user's latest preference is to rely more on the model. This becomes the
-preferred product implementation path. The
-[RSI-Router reproduction](rsi-router-luna-sol-spec.md) remains a separately named
-controlled comparison, with its original method requirements preserved.
+preferred product implementation path. Latest steering selects our independently
+implemented Observatory router, with Luna/Sol, FrugalGPT and RouteLLM comparisons.
+RSI is related work only; its [earlier proposed reproduction](rsi-router-luna-sol-spec.md)
+is superseded and is not an active implementation or runnable baseline.
 
 Latest steering adds explicit **tool-owned cheap-model admission by availability,
 similarity to verified prior actions and experience recency**. The initial Python
@@ -21,11 +22,12 @@ Versioned, applicable grounded instructions support guided work; teacher example
 remain distinct from observed successes by the cheaper executor.
 
 The latest topic framing is the
-[RSI-inspired knowledge-accumulation Codex study](knowledge-accumulation-codex-study.md):
+[Observatory knowledge-accumulation Codex study](knowledge-accumulation-codex-study.md):
 accumulated workflows are the main treatment, unseen-task transfer is the outcome,
 and routing/recency are mechanisms. Reuse this implementation and the official
-coding benchmark evaluators; preserve the strict per-action RSI reproduction
-as a separate possible comparison.
+coding benchmark evaluators, with the
+[released-baseline contracts](router-baselines-codex.md). No RSI reproduction is
+scheduled; the former design remains historical.
 
 ## 1. Model and host responsibilities
 
@@ -148,28 +150,29 @@ software receipts are historical rather than evidence that new tools already wor
 
 ## 5. Research comparison
 
-Register separate conditions with matched primary model, tools, public task
+Register separate conditions with matched executor models, tools, public task
 information, execution environment and overall resource limits:
 
-1. Sol primary working alone in the same native harness.
-2. Model-led Sol/Luna delegation with experience retrieval disabled.
-3. The same delegation surface with eligible experience retrieval enabled.
+1. Luna working alone in the native harness.
+2. Sol working alone in the native harness.
+3. FrugalGPT's learned cascade, explicitly adapted to native coding episodes.
+4. A released RouteLLM variant with pair-specific development calibration.
+5. Our model-led Sol/Luna delegation with eligible experience retrieval.
 
-Condition 2 measures delegation itself; condition 3 isolates the additional
-experience component. Replacing the primary with Luna, adding an automatic
-routing assessor, or comparing per-action RSI requires separately named arms.
-Use different registration IDs from `rsi-luna-sol-001`, and do not pool scores
-across native and mini-SWE-style harnesses as if only routing changed.
+Separate no-experience/no-recency ablations isolate the knowledge component.
+Standalone and baseline executors receive the same eligible knowledge access.
+Use the [baseline contracts](router-baselines-codex.md) and current proposed
+protocol004; RSI is related work only, and `rsi-luna-sol-001` is inactive.
+Do not pool native and other harness scores as if only routing changed.
 
-Reuse the RSI spec's benchmark eligibility, independent grading, leakage controls,
-failure-inclusive task-level analysis and budget preparation. Start with synthetic
-tool/worker fixtures and native microqualification, then an explicitly frozen
-small SWE-bench Verified development pilot. Do not automatically inherit its
-100-task reservation or large evolution campaign: this method does not require
-that optimizer, and actual task IDs/budgets remain to be registered.
+Require benchmark eligibility, independent grading, leakage controls,
+failure-inclusive task-level analysis and finite budget preparation. Start with
+synthetic tool/worker fixtures and native microqualification, then an explicitly
+frozen small SWE-bench Verified development pilot. Actual task IDs, training
+sufficiency and complete baseline/operating-point budgets remain to be registered.
 
-Primary question: does the full parent-plus-worker system improve the held-out
-accuracy–cost frontier against Sol alone? Record lost solo successes, successful
+Primary question: does our full system improve the held-out accuracy–cost frontier
+against the union of standalone and router baselines? Record lost solo successes, successful
 cheap subtasks, integration failures and occasions where the primary declined
 delegation. Include unsuccessful worker attempts and all parent coordination,
 retrieval, interpretation and verification inference. Final official grades

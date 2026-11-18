@@ -4170,3 +4170,29 @@ unresolved before any test call. RSI and SkillOrchestra already cover experience
 skill routing, so Luna/Sol/Codex substitution is replication, not automatic method
 novelty. Candidate contribution is controlled accumulation/transfer, recency and
 full amortized-cost evidence; no positive frontier result is promised.
+
+## 18 November 2026 — our router against released baselines; RSI related work only
+
+Latest explicit user decision supersedes the RSI reproduction direction: implement
+our own Observatory router and compare it with Luna, Sol, FrugalGPT and RouteLLM.
+The current proposal is
+[protocol004](../../experiments/model-led-delegation-001/protocol-004.json);
+protocol003 is preserved. The former RSI handover has an explicit inactive notice,
+and the current study/index/implementation handover follow the new direction.
+
+[Baseline contracts](router-baselines-codex.md) distinguish FrugalGPT's learned
+quality cascade from a simple public-check fallback and require a real released
+RouteLLM variant with Luna/Sol development calibration. Read-only source/README
+inspection confirms public Apache-2.0 repositories for both; upstream last pushes
+reported February2025 and August2024 respectively. No package/model/encoder was
+installed or executed. API-key/default embedding paths are not authorized by the
+baseline choice; qualify a compatible reviewed local feature path and document
+all coding-episode/native transport adaptations. Small proposed training sets may
+be insufficient; assess on development before freezing the complete campaign.
+
+Luna/Sol-only, both required named routers and our method need equal eligible
+knowledge, tools, total caps and grading. Simple random/mixture, fixed subtask
+mapping and public-check cascade remain controls; SkillOrchestra is optional.
+RSI is not a runnable comparator. No change to historical results, native gates,
+task reservations, paused schedules or zero new model-call status. Documentation
+and protocol validation do not establish adapter compatibility or model quality.

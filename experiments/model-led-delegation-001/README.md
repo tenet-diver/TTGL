@@ -13,11 +13,15 @@ the executor that actually performed the work. The original `protocol.json` and
 earlier whole-task retrospective replay remain historical, separate evidence.
 
 For the research topic on knowledge accumulation/generalization, the preferred
-scientific schedule is [protocol 003](protocol-003.json) and its
+scientific schedule is [protocol 004](protocol-004.json) and its
 [Codex accumulation study](../../docs/research/knowledge-accumulation-codex-study.md).
 It reuses this tool and native harness, adds nested knowledge snapshots and
 same-memory Luna/Sol controls, and keeps recency as a small secondary extension.
 The snapshot/campaign extension is specified, not a new completed native run.
+Latest steering requires our independently implemented router against Luna,
+Sol, FrugalGPT and RouteLLM; RSI is related work only. Earlier protocol003 is
+preserved as a superseded proposal. Named released baselines need real compatible
+adapters and development calibration; a public-check fallback is not FrugalGPT.
 
 The Python implementation is `src/ttgl/model_delegation/` and adds no dependency.
 The stdio MCP server exposes `route_subtask`, asynchronous idempotent

@@ -31,16 +31,18 @@ knowledge; routing is one mechanism through which that knowledge can change
 effective capability and resource allocation. Static lookup and chronological
 learning must remain distinguishable.
 
-## Published basis and software reuse
+## Our router and published related work
 
-Use [RSI-Router](https://arxiv.org/html/2609.34712v1) as the methodological basis:
-experience informs reusable subtasks, execution skills and model allocation.
-The paper's coding benchmarks include SWE-bench Verified and Terminal-Bench 2.0.
-Its actual execution harness is based on mini-SWE-agent. An official RSI-Router
-code release was not located in the current paper/repository review.
+Latest user decision: build **our own Observatory experience router** and compare
+it against Luna, Sol and released routing methods. Keep
+[RSI-Router](https://arxiv.org/html/2609.34712v1) as related work only. An official
+source release was not located; no RSI implementation or reproduction is part of
+the active study. The earlier RSI specification is a superseded design record.
+SWE-bench Verified and Terminal-Bench remain useful public benchmarks regardless
+of whether RSI code is available.
 
-Our study is therefore an **RSI-inspired native-Codex adaptation**, not an exact
-reproduction of the paper's code or per-action control loop. Reuse the existing
+Our independently implemented router uses typed-subtask similarity, versioned
+verified workflows, actual model-specific outcomes and experience recency. Reuse the existing
 TTGL Codex transport, model-led MCP delegation tool, isolated workers, source
 retention, checkpointing, usage reconciliation and independent benchmark grading.
 Native models retain autonomous tool loops within bounded assignments.
@@ -50,7 +52,15 @@ Do not simultaneously introduce a new planner, model trainer, embedding service,
 agent framework or benchmark. Availability, subtask compatibility and actual
 executor success already have explicit tool contracts in
 [protocol 002](../../experiments/model-led-delegation-001/protocol-002.json).
-The new accumulation schedule is [protocol 003](../../experiments/model-led-delegation-001/protocol-003.json).
+The current accumulation/comparison proposal is [protocol 004](../../experiments/model-led-delegation-001/protocol-004.json).
+Earlier proposals remain historical; none authorizes native execution.
+
+Required released baselines are
+[FrugalGPT](https://github.com/stanford-futuredata/FrugalGPT) and
+[RouteLLM](https://github.com/lm-sys/RouteLLM). Both repositories report Apache-2.0
+licensing. Their APIs/embeddings and answer-level methods need explicit native
+Codex adaptations; public source availability is not security or compatibility
+qualification. See the [baseline implementation contract](router-baselines-codex.md).
 
 Released [SkillOrchestra code](https://github.com/jiayuww/SkillOrchestra) remains
 an optional baseline/integration source if an implementation compatible with the
@@ -147,11 +157,14 @@ frontier improvement:
 | Seeded task-level random/mixture | Tests whether ordinary mixing of the standalone models explains the tradeoff; include the endpoint convex mixture envelope |
 | Luna-first public-check cascade | One bounded Sol fallback, with shared total caps; hidden grading never triggers fallback |
 | Static typed-subtask mapping | Learn exploration/implementation/verification assignments on development and freeze them; no experience-driven updating |
-| Released task-level router | RouteLLM is a candidate; use its actual method with Luna/Sol-specific development labels, compatible reviewed code and matched knowledge at execution, not an unrelated checkpoint or renamed heuristic |
-| Prior skill-aware method | RSI-style native adaptation and a released SkillOrchestra adaptation are the closest candidates; register which is runnable and all changes before evaluation |
+| FrugalGPT | Required learned confidence/quality cascade adapted to native coding episodes; fit scorers and cascade thresholds on development, and charge every candidate/scorer/executor call |
+| RouteLLM | Required released routing method with Luna/Sol development calibration; freeze the variant and disclose any encoder/training changes |
+| Additional skill-aware method | A released SkillOrchestra adaptation is optional; RSI is related work only and is excluded from the runnable baseline suite |
 
 Fit/select every baseline on construction/development only. An incompatible or
 unrun baseline stays an explicit gap, and limits any claim about other routers.
+The required named comparison is our router versus Luna, Sol, FrugalGPT and
+RouteLLM. Neither required router is silently replaced by the simpler controls.
 Task-level and subtask-level methods remain separately labelled. All systems use
 the same model pair, eligible knowledge, public task/check access, evaluator and
 total resource caps; charge their training, selection and runtime overhead.

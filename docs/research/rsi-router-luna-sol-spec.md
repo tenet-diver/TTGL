@@ -1,5 +1,12 @@
 # RSI-Router with Luna and Sol: coding-agent implementation handover
 
+**Superseded, 18 November 2026:** the user selected our own Observatory router
+against Luna, Sol, FrugalGPT and RouteLLM. No official RSI source release was
+located. This document preserves an earlier proposal; its implementation/run
+instructions below are inactive. RSI remains related work only. Continue from
+[the current study](knowledge-accumulation-codex-study.md) and
+[protocol 004](../../experiments/model-led-delegation-001/protocol-004.json).
+
 Date: 18 November 2026. Project: **Observatory**, repository/package namespace
 **TTGL / `ttgl`**, branch **`work`**.
 
