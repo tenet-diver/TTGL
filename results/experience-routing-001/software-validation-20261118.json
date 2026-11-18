@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-18T00:14:18.525480+00:00",
+  "base_commit": "cdd00e2",
+  "scope": "Software implementation and deterministic qualification; no new model experiment results",
+  "python_experience_tests": {
+    "passed": 48,
+    "failed": 0,
+    "baseline_passed": 18,
+    "native_replay_conditions_checked": 4
+  },
+  "web_unit_and_database_suites": {
+    "passed": 82,
+    "failed": 0,
+    "skipped": 0,
+    "database_backend": "isolated PostgreSQL/ClickHouse; local test S3 protocol fixture"
+  },
+  "followup_subscription_regression": {
+    "passed": 5,
+    "failed": 0
+  },
+  "typescript": "passed",
+  "production_build": "passed",
+  "new_dependency_installs": 0,
+  "actual_model_calls": 0,
+  "native_experiment_trials": 0,
+  "execution_ready": false,
+  "execution_enabled": false,
+  "annotation_audit": "not run",
+  "target90_result": null,
+  "changes": [
+    "Campaign and per-parent accounting/caps remain distinct from logical shared-plan charges",
+    "Partial usage, cancellations and last-assignment uncertainty have durable receipts without automatic replay",
+    "Shared planner tokens, scenario cost and model latency enter policy totals exactly once",
+    "Material replans preserve consumed budgets, accepted dependencies, failed/cancelled state and public contracts",
+    "Replay adapter restores exact source/node contract and runs one registered condition without fresh planning or memory publication",
+    "Verification provenance is tied to the analyzed runtime attempt and work item",
+    "Incomplete/unpaired assignments cannot disappear from primary report costs or satisfy target90",
+    "Collector reconciles missing bindings from retained exact source bytes; matching accounts can use different collected homes",
+    "The primary target requires a registered task denominator, including parents missing from both reported arms"
+  ],
+  "remaining_gates": [
+    "budget:maximum_elapsed_seconds",
+    "budget:maximum_invocations",
+    "budget:maximum_model_tokens",
+    "per_parent_budget:maximum_elapsed_seconds",
+    "per_parent_budget:maximum_invocations",
+    "per_parent_budget:maximum_model_tokens",
+    "pin:exclusion_registry",
+    "pin:execution_fairness_manifest",
+    "pin:model_catalog",
+    "pin:rate_scenario",
+    "pin:readiness_manifest",
+    "pin:runtime_isolation_manifest",
+    "pin:selection_rule",
+    "pin:source_commit",
+    "pin:source_hashes",
+    "pin:task_manifest"
+  ],
+  "qualifications": [
+    "Synthetic transport validates software behavior, not Luna/Sol quality, economic benefit, or native actor isolation",
+    "Actual native actor/MCP deployment, source/model/rate pins, corpus audit, replay/benchmark controls and budgets remain unresolved",
+    "Earlier checkpoint browser/deployment receipts were not rerun or claimed as current-host evidence; this continuation changes server/experiment behavior, not UI layout"
+  ],
+  "evidence_sha256": {
+    "baseline.log": "d5fdd4a83b658feaa6a8ba70b18b97afb4c87f9ac3a60845e0877e7de55fb4d4",
+    "python-final.log": "4fc17747f733ce337fa3b8bfa9e03d0085d15609b48e9a09429f0e8728b9f4bb",
+    "full-web-tests-001.log": "a0edab7a2c00e14e45348dcb7977f8d7b7ca2284b8fff527351cda11a528a3bd",
+    "binding-final.log": "bd19c693a08254ddb9516f0e6b42f290e5ccedbccf54a08993962f96aacf5315",
+    "typecheck-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "web-build.log": "670d5401d8103fb4bffde5bc0919ec2a0f9ee17f4de388f4d62968f81326733d",
+    "readiness-final.json": "0e96f8d888bc4991067f503a64328faa1207560c5229e6d34f435e0bef751d48"
+  }
+}

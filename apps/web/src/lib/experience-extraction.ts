@@ -26,7 +26,7 @@ export async function queueExtraction(scope: ExperienceScope, input: { analysisI
     const [job] = await db`SELECT snapshot FROM analysis_jobs WHERE id=(SELECT job_id FROM analyses WHERE id=${input.analysisId})`;
     const prepared = { baseAnalysisId: source.analysisId, sourceSnapshotHash: source.snapshotHash, baseAnalysis: source.analysis,
         sourceTaskId: source.taskId, subtaskOwners: source.subtaskOwners, publicDependencyEventIds: source.publicDependencies,
-        publicVerificationIds: source.verificationIds, coverage: source.coverage, steps: job.snapshot.steps, task: job.snapshot.task, metadata };
+        publicVerificationIds: source.verificationIds, publicVerificationContext: source.publicVerifications || {}, coverage: source.coverage, steps: job.snapshot.steps, task: job.snapshot.task, metadata };
     if (Buffer.byteLength(JSON.stringify(prepared)) > 1000000 || source.eventIds.length > 10000) throw Error('Extraction input exceeds the bounded source contract');
     const configurationHash = fingerprint([input.promptVersion, extractionInstruction, metadata, jsonSchemas.envelope]);
     const id = randomUUID(), invocationId = id + ':luna';

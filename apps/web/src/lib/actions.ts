@@ -1,3 +1,4 @@
+import { subscriptionBinding } from './execution-policy.ts';
 import { z } from 'zod';
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
@@ -134,6 +135,7 @@ export async function performAction(input: unknown, receiptId: string) {
                 throw Error('Choose an absolute source folder path');
             if (v.codex_home && !path.isAbsolute(v.codex_home))
                 throw Error('Codex home must be an absolute local path');
+            if (v.codex_home) v.codex_home = (await subscriptionBinding(v.codex_home)).codex_home;
             const previous = (await tx `SELECT value FROM settings WHERE key='source_roots' FOR UPDATE`)[0]?.value || [];
             if (previous.length >= 10)
                 throw Error('At most ten source folders are supported');

@@ -41,6 +41,14 @@ def validate_config(config, *, root=None,execution=False):
     for key in ('maximum_parent_assignments','maximum_invocations','maximum_model_tokens','maximum_elapsed_seconds'):
         n=budgets.get(key)
         if isinstance(n,bool) or not isinstance(n,(int,float)) or not math.isfinite(n) or n<=0:missing.append('budget:'+key)
+        elif key!='maximum_elapsed_seconds' and type(n) is not int:missing.append('integer_budget:'+key)
+    for key in ('maximum_invocations','maximum_model_tokens','maximum_elapsed_seconds'):
+        n=config.get('per_parent',{}).get(key)
+        if isinstance(n,bool) or not isinstance(n,(int,float)) or not math.isfinite(n) or n<=0 or (key!='maximum_elapsed_seconds' and type(n) is not int):missing.append('per_parent_budget:'+key)
+    for limits in (budgets,config.get('per_parent',{})):
+        cost=limits.get('maximum_scenario_cost')
+        if cost is not None and (isinstance(cost,bool) or not isinstance(cost,(int,float)) or not math.isfinite(cost) or cost<=0):missing.append('invalid_scenario_cost_cap')
+    if config.get('maximum_large_fallbacks_per_node',1) not in (0,1) or config.get('maximum_parent_replans',1) not in (0,1):raise ValueError('Reference policy allows at most one fallback and one replan')
     if config.get('active_workers',1) not in (1,2,4,8):raise ValueError('Unsupported worker capacity')
     if root and isinstance(pins.get('readiness_manifest'),dict):
         p=Path(pins['readiness_manifest'].get('path',''))
@@ -75,7 +83,11 @@ def validate_config(config, *, root=None,execution=False):
 def freeze(config_path,output):
     config=load(config_path);root=Path(config_path).resolve().parent
     validate_config(config,root=root,execution=True)
-    source_hashes={str(p):file_digest(p) for p in Path(__file__).parent.glob('*.py')}
+    repository=Path(__file__).resolve().parents[3]
+    sources=[*Path(__file__).parent.glob('*.py'),repository/'src/ttgl/personal.py',
+             repository/'tools/worker-mcp/server.mjs',repository/'tools/worker-mcp/package-lock.json',
+             repository/'experiments/experience-routing-001/contracts.schema.json']
+    source_hashes={str(p):file_digest(p) for p in sources}
     receipt={'schema_version':1,'study_id':config['study_id'],'config':config,'configuration_hash':digest(config),
              'configuration_file_sha256':file_digest(config_path),'implementation_hashes':source_hashes,'root':str(root),
              'automatic_retries':0,'model_calls':0}

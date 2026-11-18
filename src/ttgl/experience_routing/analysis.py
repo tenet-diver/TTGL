@@ -6,20 +6,29 @@ import statistics
 from .io import read
 
 
-def paired(records,control='LPM',candidate='HRM',seed=0,bootstrap=2000):
+def paired(records,control='LPM',candidate='HRM',seed=0,bootstrap=2000,expected_task_ids=None):
     indexed={}
     for row in records:
+        if row.get('grade_valid') is True and type(row.get('passed')) is not bool:raise ValueError('Valid grades require an explicit boolean result')
+        cost=row.get('scenario_cost')
+        if cost is not None and (isinstance(cost,bool) or not isinstance(cost,(int,float)) or not math.isfinite(cost) or cost<0):raise ValueError('Scenario costs must be finite nonnegative measurements')
         key=(row['task_id'],row['arm'])
         if key in indexed:raise ValueError('Repeated attempts require an explicit separate repetition identity')
         indexed[key]=row
-    tasks=sorted({t for t,a in indexed if a==control}&{t for t,a in indexed if a==candidate})
-    if not tasks:return {'matched_tasks':0,'target90_met':False,'reason':'No paired independent grades'}
+    control_ids={t for t,a in indexed if a==control};candidate_ids={t for t,a in indexed if a==candidate}
+    tasks=sorted(control_ids&candidate_ids);assigned=control_ids|candidate_ids
+    if expected_task_ids is not None:
+        expected=set(expected_task_ids)
+        if not expected or len(expected)!=len(expected_task_ids) or not assigned<=expected:raise ValueError('Invalid registered assignment denominator')
+        assigned=expected
+    unpaired=sorted(assigned-set(tasks))
+    if not tasks:return {'matched_tasks':0,'assigned_comparison_tasks':len(assigned),'unpaired_task_ids':unpaired,'target90_met':False,'reason':'No paired independent grades'}
     pairs=[(indexed[t,control],indexed[t,candidate]) for t in tasks]
     valid=[(a,b) for a,b in pairs if a.get('grade_valid') is True and b.get('grade_valid') is True]
     successes=[sum(bool(r.get('passed')) for r in arm) for arm in zip(*valid)] if valid else [0,0]
     lost=[a['task_id'] for a,b in valid if a.get('passed') and not b.get('passed')]
     gained=[a['task_id'] for a,b in valid if b.get('passed') and not a.get('passed')]
-    complete_cost=all(r.get('scenario_cost') is not None for pair in pairs for r in pair)
+    complete_cost=not unpaired and all(r.get('scenario_cost') is not None for pair in pairs for r in pair)
     costs=[sum(r['scenario_cost'] for r in arm) for arm in zip(*pairs)] if complete_cost else [None,None]
     saving=1-costs[1]/costs[0] if complete_cost and costs[0]>0 else None
     retention=successes[1]/successes[0] if successes[0] else None
@@ -33,11 +42,11 @@ def paired(records,control='LPM',candidate='HRM',seed=0,bootstrap=2000):
         samples.sort()
     interval=[samples[int(.025*(len(samples)-1))],samples[int(.975*(len(samples)-1))]] if samples else None
     fixture=any(r.get('fixture_only') for pair in pairs for r in pair)
-    return {'matched_tasks':len(tasks),'valid_evaluation_pairs':len(valid),'invalid_or_unresolved_pairs':len(tasks)-len(valid),
+    return {'matched_tasks':len(tasks),'assigned_comparison_tasks':len(assigned),'unpaired_task_ids':unpaired,'valid_evaluation_pairs':len(valid),'invalid_or_unresolved_pairs':len(assigned)-len(valid),
         'control_successes':successes[0],'candidate_successes':successes[1],'success_difference':difference,
         'relative_retention':retention,'paired_losses':lost,'paired_gains':gained,'scenario_costs':{control:costs[0],candidate:costs[1]},
         'scenario_saving':saving,'quality_interval':interval,'interval_method':'repository-cluster paired percentile bootstrap; exploratory with few clusters',
-        'fixture_only':fixture,'target90_met':False if fixture else saving is not None and saving>=.9 and successes[0]>0 and not lost and len(valid)==len(tasks) and successes[1]>=successes[0],
+        'fixture_only':fixture,'assignment_denominator_registered':expected_task_ids is not None,'target90_met':False if fixture or expected_task_ids is None else saving is not None and saving>=.9 and successes[0]>0 and not lost and len(valid)==len(tasks) and successes[1]>=successes[0],
         'cash_saving':None,'population_noninferiority_established':False}
 
 

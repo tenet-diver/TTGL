@@ -39,6 +39,16 @@ def query_for(config,scope,task,arm,snapshot,phase,node=None,error=None):
       'excludedTaskIds':[task['task_id']],'mode':config['mode'],'retrievalMode':'lexical'}
 
 
+def planner_context(workspace,qualified,task):
+    context={}
+    for relative in qualified.get('context_files',{}).get(task['task_id'],[]):
+        p=inside(workspace,relative)
+        if '.git' in Path(relative).parts:raise ValueError('Planner context may not include Git history')
+        context[relative]=p.read_text()[:8000]
+    if len(json.dumps(context).encode())>64000:raise ValueError('Prepared planner context exceeds frozen bound')
+    return context
+
+
 def standalone_plan(task,arm):
     catalog=task['public_check_catalog'];node='whole-task:'+arm+':'+task['task_id'];revision=digest([node,'standalone'])
     return {'planRevisionId':revision,'taskInstanceId':task['task_id'],'previousRevisionId':None,
@@ -51,6 +61,7 @@ def standalone_plan(task,arm):
 
 def run_campaign(freeze_path,output):
     frozen=read(freeze_path);config=verify_freeze(frozen);root=frozen['root'];output=Path(output)
+    if config.get('replay'):raise ValueError('Native replay must use an exact checkpoint/node adapter; fresh parent planning is prohibited')
     if (output/'campaign-started.json').exists():raise ValueError('Campaign already started; retain assignments and reconcile, never rerun')
     tasks=pinned(config,'task_manifest',root)['tasks'];exclusions=pinned(config,'exclusion_registry',root)
     catalogue=pinned(config,'model_catalog',root);rates=pinned(config,'rate_scenario',root)
@@ -68,40 +79,47 @@ def run_campaign(freeze_path,output):
     assignments=[(by_id[a['task_id']],a['arm']) for a in order]
     if len(assignments)>config['budgets']['maximum_parent_assignments']:raise ValueError('Assignment cap exceeded before launch')
     write_new(output/'campaign-started.json',{'study_id':config['study_id'],'configuration_hash':digest(config),'assignments':len(assignments),'started_at':now(),'automatic_retries':0})
-    client=ExperienceClient(config['project_id'],config['study_id'],config.get('service_endpoint','http://127.0.0.1:3333/api/experience'))
+    try:client=ExperienceClient(config['project_id'],config['study_id'],config.get('service_endpoint','http://127.0.0.1:3333/api/experience'))
+    except Exception as error:
+        write_new(output/'stopped.json',{'complete':False,'reason':str(error)[:1000],'observed_actual_invocations':0,'automatic_retry':False})
+        raise
     results=[];shared_plans={};started=time.monotonic();total_tokens=0;total_invocations=0
+    campaign_budget=Budget(config['budgets']['maximum_invocations'],config['budgets']['maximum_model_tokens'],config['budgets']['maximum_elapsed_seconds'],maximum_scenario_cost=config['budgets'].get('maximum_scenario_cost'))
     for task_record,arm in assignments:
-        verify_freeze(frozen)
-        remaining=config['budgets']['maximum_elapsed_seconds']-(time.monotonic()-started)
-        if remaining<=0 or total_tokens>=config['budgets']['maximum_model_tokens'] or total_invocations>=config['budgets']['maximum_invocations']:break
-        task=public_task(task_record);assert_exposure(task,exclusions)
-        assignment=digest([task['task_id'],arm]);unit=output/'assignments'/assignment
-        source=Path(qualified['workspaces'][task['task_id']]).resolve()
-        from .checkpoints import manifest
-        if manifest(source)['state_hash']!=qualified['source_hashes'][task['task_id']]:raise ValueError('Prepared source differs from the qualified checkpoint')
-        workspace=unit/'source';shutil.copytree(source,workspace,ignore=shutil.ignore_patterns('.git'))
-        # Host-only Git identity permits ordinary binary patch export, while the
-        # actor and planner only see the audited source projection.
-        for args in (['init','-q'],['config','user.name','Observatory replay'],['config','user.email','replay@localhost'],['add','--all'],['commit','-qm','Public base checkpoint']):
-            subprocess.run(['git','-C',str(workspace),*args],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE)
-        worker=DockerWorkspace(image=qualified['image_id'],review=qualified['image_review'],root=unit/'worker',identity=[config['study_id'],assignment],
-            base_commit=task['base_commit'],memory_bytes=qualified['memory_bytes'],cpus=qualified['cpus'])
-        ledger=None
+        assignment=digest([task_record['task_id'],arm]);unit=output/'assignments'/assignment
+        ledger=None;worker=None;budget=None;assignment_started=time.monotonic()
         try:
+            verify_freeze(frozen)
+            campaign_budget.check()
+            remaining=config['budgets']['maximum_elapsed_seconds']-(time.monotonic()-started)
+            if remaining<=0 or total_tokens>=config['budgets']['maximum_model_tokens'] or total_invocations>=config['budgets']['maximum_invocations']:break
+            task=public_task(task_record);assert_exposure(task,exclusions)
+            assignment=digest([task['task_id'],arm]);unit=output/'assignments'/assignment
+            source=Path(qualified['workspaces'][task['task_id']]).resolve()
+            from .checkpoints import manifest
+            if manifest(source)['state_hash']!=qualified['source_hashes'][task['task_id']]:raise ValueError('Prepared source differs from the qualified checkpoint')
+            workspace=unit/'source';shutil.copytree(source,workspace,ignore=shutil.ignore_patterns('.git'))
+            # Host-only Git identity permits ordinary binary patch export, while the
+            # actor and planner only see the audited source projection.
+            for args in (['init','-q'],['config','user.name','Observatory replay'],['config','user.email','replay@localhost'],['add','--all'],['commit','-qm','Public base checkpoint']):
+                subprocess.run(['git','-C',str(workspace),*args],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE)
+            worker=DockerWorkspace(image=qualified['image_id'],review=qualified['image_review'],root=unit/'worker',identity=[config['study_id'],assignment],
+                base_commit=task['base_commit'],memory_bytes=qualified['memory_bytes'],cpus=qualified['cpus'])
             container=worker.start(workspace)
             backend=RecordedCodexBackend(executable=catalogue['codex_executable'],executable_sha256=catalogue['codex_sha256'],
                 source_home=config['source_home'],source_account_hash=config['source_account_hash'],output=unit/'native',client=client,
                 container=container,node_executable=catalogue['node_executable'])
-            budget=Budget(min(config['per_parent']['maximum_invocations'],config['budgets']['maximum_invocations']-total_invocations),
-                min(config['per_parent']['maximum_model_tokens'],config['budgets']['maximum_model_tokens']-total_tokens),
-                min(config['per_parent']['maximum_elapsed_seconds'],remaining))
-            ledger=UsageLedger(unit/'accounting',rates['models']);calls=Invocations(unit/'invocations',backend,ledger,budget,client=client)
+            budget=Budget(config['per_parent']['maximum_invocations'],config['per_parent']['maximum_model_tokens'],
+                min(config['per_parent']['maximum_elapsed_seconds']-(time.monotonic()-assignment_started),config['budgets']['maximum_elapsed_seconds']-(time.monotonic()-started)),
+                maximum_scenario_cost=config['per_parent'].get('maximum_scenario_cost'))
+            ledger=UsageLedger(unit/'accounting',rates['models']);calls=Invocations(unit/'invocations',backend,ledger,budget,client=client,campaign_budget=campaign_budget,origin='fixture' if getattr(backend,'fixture_only',False) else 'native')
             snapshot=config['snapshots'][arm];local={**config,'watermark':config.get('watermark',0),'repository_state_hash':manifest(workspace)['state_hash'],
                 'memory_snapshot_id':snapshot,'models':catalogue['models']}
             memory_enabled=arm in ('LPM','SFM','HRM')
             def memory(node,phase,history):
                 if not memory_enabled:return {'experiences':[]}
                 error=json.dumps(history[-1]['publicVerification'])[:2000] if history else None
+                local['repository_state_hash']=manifest(workspace)['state_hash']
                 q=query_for(local,client.scope,task,arm,snapshot,phase,node,error)
                 return client.search(q)['packet']
             shared_measurement=None
@@ -110,12 +128,7 @@ def run_campaign(freeze_path,output):
                 plan,shared_measurement=shared_plans[task['task_id']]
             else:
                 initial=client.search(query_for(local,client.scope,task,arm,snapshot,'user_task'))['packet'] if memory_enabled else {'experiences':[]}
-                context={}
-                for relative in qualified.get('context_files',{}).get(task['task_id'],[]):
-                    p=inside(workspace,relative)
-                    if '.git' in Path(relative).parts:raise ValueError('Planner context may not include Git history')
-                    context[relative]=p.read_text()[:8000]
-                if len(json.dumps(context).encode())>64000:raise ValueError('Prepared planner context exceeds frozen bound')
+                context=planner_context(workspace,qualified,task)
                 identity=digest([assignment,'initial-plan'])
                 instruction={'task':task,'publicContext':context,'experiences':initial,
                   'instruction':'Create at most eight independently checkable deliverables. Use only the supplied host acceptance criterion IDs, relative allowed write paths and source context. Return the registered plan schema. Do not use tools.',
@@ -133,8 +146,25 @@ def run_campaign(freeze_path,output):
                 exploration_probability=config['routing'].get('exploration_probability',0),seed=config['order_seed'])
             verifier=PublicVerifier(task['public_check_catalog'],task.get('protected_paths',[]),unit/'verification',executor=worker.public_check)
             store=CheckpointStore(unit/'checkpoints',workspace,base_commit=task['base_commit'],environment_digest=qualified['image_id'])
+            def revise(state,history,parent_budget):
+                identity=digest([assignment,'material-replan',len(state.revisions)])
+                required={'taskInstanceId':task['task_id'],'previousRevisionId':state.plan['planRevisionId'],
+                          'planRevisionId':digest([assignment,'revision',len(state.revisions)]),'plannerInvocationId':identity}
+                instruction={'task':task,'priorPlan':state.plan,'nodeStates':state.states,'publicAttemptHistory':history,
+                    'publicContext':planner_context(workspace,qualified,task),'remainingBudget':parent_budget.receipt(),
+                    'requiredIds':required,'instruction':'One bounded material replan after completed public failure. Preserve all host criterion IDs and accepted node contracts; use new IDs for materially changed unsuccessful nodes and link supersedesNodeIds. Never reset attempts or accepted dependencies. Use public evidence only.'}
+                from ..personal import Request
+                req=Request(identity,config['models']['large'],'planning',json.dumps(instruction),unit,read(SCHEMAS)['plan'],
+                    max(.01,parent_budget.remaining_seconds),read_only=True,reasoning_effort=catalogue['models'][config['models']['large']]['reasoning_effort'])
+                revised,_=calls.call(req,'recovery');validate('plan',revised)
+                if any(revised[k]!=v for k,v in required.items()):raise ValueError('Replanner changed a registered revision identity')
+                return revised
             runner=ParentRunner(task=task,arm=arm,workspace=workspace,checkpoints=store,verifier=verifier,invocations=calls,policy=policy,
-                memory=memory,output=unit/'parent',config=local,client=client,execution_context=worker)
+                memory=memory,output=unit/'parent',config=local,client=client,execution_context=worker,
+                replan=revise if arm not in ('L0','S0') and config.get('maximum_parent_replans',1) else None)
+            if shared_measurement and shared_measurement['invocation_id'] not in ledger.records:
+                ledger.logical_shared_charge(shared_measurement['invocation_id'],arm,receipt=shared_measurement)
+                budget.charge_shared(shared_measurement)
             result=runner.run(plan)
             # Exact final source plus a portable binary Git patch are both sealed.
             subprocess.run(['git','-C',str(workspace),'add','--intent-to-add','--all'],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE)
@@ -150,26 +180,29 @@ def run_campaign(freeze_path,output):
                     'title':task['task_id']+' '+arm,'goal':task['prompt'][:8000],'acceptance':'; '.join(task['public_check_catalog'])[:8000],
                     'accountHash':config['source_account_hash'],'isolationReceiptHash':file_digest(unit/'worker'/'runtime-isolation.json')}))
             write_new(unit/'annotation-preparation.json',{'source_jobs':trace_jobs,'model_calls':0,'instruction':'Execute only registered exact job IDs under the separate annotation budget; then queue envelope extraction.'})
-            if shared_measurement and shared_measurement['invocation_id'] not in ledger.records:
-                write_new(unit/'shared-plan-charge.json',{'kind':'logical_policy_charge','source_invocation_id':shared_measurement['invocation_id'],
-                    'source_receipt_hash':digest(shared_measurement),'scenario_cost':shared_measurement['scenario_cost'],'additional_actual_spending':False})
-                cost=result['usage']['scenario_cost'];plan_cost=shared_measurement['scenario_cost']
-                result['deployment_scenario_cost']=cost+plan_cost if cost is not None and plan_cost is not None else None
-            else:result['deployment_scenario_cost']=result['usage']['scenario_cost']
+            result['deployment_usage']=ledger.deployment_totals()
+            result['deployment_scenario_cost']=result['deployment_usage']['scenario_cost']
             result['shared_planner_reused']=shared_measurement is not None and shared_measurement['invocation_id'] not in ledger.records
             write_new(unit/'deployment-accounting.json',result)
-            results.append(result);total_invocations+=budget.used_invocations;total_tokens+=budget.used_tokens
-            if result['public_state']=='uncertain' or budget.unknown_usage:break
+            results.append(result);total_invocations+=result['usage']['actual_invocations'];total_tokens+=result['usage']['observed_partial_tokens']
+            if result['public_state'] not in ('completed','unsuccessful') or budget.unknown_usage:break
         except BaseException as error:
             observed=ledger.totals() if ledger is not None else None
             stopped={'study_id':config['study_id'],'complete':False,'completed':len(results),'assigned':len(assignments),
                 'stopped_assignment':assignment,'reason':str(error)[:1000],'error':type(error).__name__,
-                'current_usage':observed,'automatic_retry':False,'reconciliation_required':True,'target90_result':None}
+                'current_usage':observed,'observed_actual_invocations':total_invocations+(observed['actual_invocations'] if observed else 0),
+                'observed_partial_tokens':total_tokens+(observed['observed_partial_tokens'] if observed else 0),'automatic_retry':False,'reconciliation_required':True,'target90_result':None}
             write_new(output/'stopped.json',stopped)
             raise
-        finally:worker.close()
-    complete=len(results)==len(assignments)
+        finally:
+            if worker is not None:
+                try:worker.close()
+                except Exception as cleanup_error:
+                    write_new(unit/'cleanup-error.json',{'error':type(cleanup_error).__name__,'reason':str(cleanup_error)[:1000]})
+                    if not (output/'stopped.json').exists():write_new(output/'stopped.json',{'complete':False,'reason':'Owned actor cleanup failed','assignment':assignment,'automatic_retry':False,'reconciliation_required':True})
+                    raise
+    complete=len(results)==len(assignments) and all(r['public_state'] in ('completed','unsuccessful') and not r['budget']['unknown_usage'] for r in results)
     receipt={'study_id':config['study_id'],'complete':complete,'assigned':len(assignments),'completed':len(results),'results':results,
-             'observed_actual_invocations':total_invocations,'observed_actual_tokens':total_tokens,
+             'observed_actual_invocations':total_invocations,'observed_actual_tokens':total_tokens,'campaign_budget':campaign_budget.receipt(),
              'end_to_end_seconds':time.monotonic()-started,'independent_grades':'pending separate evaluator','target90_result':None}
     write_new(output/('completion.json' if complete else 'stopped.json'),receipt);return receipt

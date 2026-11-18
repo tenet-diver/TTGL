@@ -71,16 +71,31 @@ class UsageLedger:
         append(self.path,row);self.records[request.request_id]=row
         return row
 
-    def logical_shared_charge(self, invocation_id, arm, reason='shared_initial_plan'):
-        if invocation_id not in self.records:
+    def logical_shared_charge(self, invocation_id, arm, reason='shared_initial_plan', receipt=None):
+        source=self.records.get(invocation_id) or receipt
+        if not source or source.get('kind')!='native' or source.get('invocation_id')!=invocation_id:
             raise ValueError('Logical charge must cite one measured actual invocation')
         row={'kind':'logical_policy_charge','invocation_id':invocation_id,'arm':arm,'reason':reason,
-             'scenario_cost':self.records[invocation_id]['scenario_cost'],'additional_actual_spending':False}
+             'source_receipt_hash':digest(source),'scenario_cost':source['scenario_cost'],
+             'delta':source['delta'],'elapsed_seconds':source['elapsed_seconds'],'additional_actual_spending':False}
         path=self.root/'logical-policy-ledger.jsonl'
         import json
         prior=[json.loads(x) for x in path.read_text().splitlines()] if path.exists() else []
-        if not any(x['invocation_id']==invocation_id and x['arm']==arm for x in prior):append(path,row)
+        existing=next((x for x in prior if x['invocation_id']==invocation_id and x['arm']==arm),None)
+        if existing and existing!=row:raise ValueError('Immutable shared planner charge changed')
+        if not existing:append(path,row)
         return row
+
+    def deployment_totals(self):
+        import json
+        path=self.root/'logical-policy-ledger.jsonl'
+        shared=[json.loads(x) for x in path.read_text().splitlines()] if path.exists() else []
+        shared=[r for r in shared if r['invocation_id'] not in self.records]
+        rows=[*self.records.values(),*shared]
+        return {'logical_invocations':len(rows),'tokens':sum(r['delta']['total_tokens'] for r in rows) if all(r['delta']['total_tokens'] is not None for r in rows) else None,
+                'scenario_cost':sum(r['scenario_cost'] for r in rows) if all(r['scenario_cost'] is not None for r in rows) else None,
+                'model_seconds':sum(r['elapsed_seconds'] for r in rows),'shared_planner_replays':len(shared),
+                'additional_actual_spending':False}
 
     def totals(self):
         rows=list(self.records.values());costs=[r['scenario_cost'] for r in rows]
@@ -102,28 +117,48 @@ class Budget:
     used_invocations:int=0
     used_tokens:int=0
     unknown_usage:bool=False
+    maximum_scenario_cost:float|None=None
 
     def __post_init__(self):
         if type(self.maximum_invocations) is not int or self.maximum_invocations<=0 or type(self.maximum_tokens) is not int or self.maximum_tokens<=0 or not math.isfinite(self.maximum_elapsed_seconds) or self.maximum_elapsed_seconds<=0:
             raise ValueError('Every stage needs finite positive invocation, token and elapsed budgets')
         self.started=time.monotonic()
+        if self.maximum_scenario_cost is not None and (not math.isfinite(self.maximum_scenario_cost) or self.maximum_scenario_cost<=0):
+            raise ValueError('Scenario cost cap must be finite and positive')
+        self.used_scenario_cost=0.;self.unpriced=False;self.logical_elapsed=0.;self.shared_invocations=0;self.shared_tokens=0
+
+    def check(self):
+        if self.unknown_usage or self.used_invocations>=self.maximum_invocations or self.used_tokens>=self.maximum_tokens or self.remaining_seconds<=0 or (self.maximum_scenario_cost is not None and (self.unpriced or self.used_scenario_cost>=self.maximum_scenario_cost)):
+            raise BudgetExhausted('Parent budget exhausted or inference usage uncertain')
 
     def reserve(self):
-        if self.unknown_usage or self.used_invocations>=self.maximum_invocations or self.used_tokens>=self.maximum_tokens or self.remaining_seconds<=0:
-            raise BudgetExhausted('Parent budget exhausted or inference usage uncertain')
+        self.check()
         self.used_invocations+=1
 
     def charge(self, row):
         tokens=row['delta']['total_tokens']
         if tokens is None:self.unknown_usage=True
         else:self.used_tokens+=tokens
+        cost=row.get('scenario_cost')
+        if cost is None:self.unpriced=True
+        else:self.used_scenario_cost+=cost
+
+    def charge_shared(self,row):
+        self.reserve();self.charge(row);self.shared_invocations+=1
+        self.shared_tokens+=row['delta']['total_tokens'] or 0
+        elapsed=row['elapsed_seconds']
+        if not isinstance(elapsed,(int,float)) or not math.isfinite(elapsed) or elapsed<0:raise ValueError('Invalid measured shared planner latency')
+        self.logical_elapsed+=elapsed
 
     @property
     def remaining_seconds(self):
-        return max(0,self.maximum_elapsed_seconds-(time.monotonic()-self.started))
+        return max(0,self.maximum_elapsed_seconds-(time.monotonic()-self.started)-self.logical_elapsed)
 
     def receipt(self):
         return {'maximum_invocations':self.maximum_invocations,'used_invocations':self.used_invocations,
                 'maximum_tokens':self.maximum_tokens,'observed_tokens':self.used_tokens,'unknown_usage':self.unknown_usage,
                 'maximum_elapsed_seconds':self.maximum_elapsed_seconds,'elapsed_seconds':time.monotonic()-self.started,
+                'logical_shared_invocations':self.shared_invocations,'logical_shared_tokens':self.shared_tokens,
+                'logical_shared_model_seconds':self.logical_elapsed,'maximum_scenario_cost':self.maximum_scenario_cost,
+                'observed_scenario_cost':self.used_scenario_cost,'unpriced_usage':self.unpriced,
                 'token_overshoot':max(0,self.used_tokens-self.maximum_tokens),'enforcement':'before-call checks plus per-call timeout; in-flight token overshoot retained'}

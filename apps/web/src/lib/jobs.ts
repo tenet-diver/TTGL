@@ -1,4 +1,4 @@
-import { LUNA_MODEL, sharedSubscription } from './execution-policy.ts';
+import { LUNA_MODEL, resolveSubscription } from './execution-policy.ts';
 export { analysisSchema } from './analysis-contract.ts';
 import { randomUUID } from 'node:crypto';
 import type postgres from 'postgres';
@@ -23,7 +23,7 @@ export async function queueTask(tx: postgres.TransactionSql, taskId: string, sco
     if (f.turns.length > 200) throw Error('Select a task containing at most 200 native prompts');
     const nearby = await tx `SELECT DISTINCT ON (t.turn_key) t.turn_key,t.session_id,t.prompt,t.started_at,t.finished_at,t.completed,t.source FROM turns anchor CROSS JOIN LATERAL (SELECT n.* FROM turns n WHERE n.session_id=anchor.session_id ORDER BY abs(extract(epoch FROM (n.started_at-anchor.started_at))) NULLS LAST,n.turn_key LIMIT 17) t WHERE anchor.turn_key=ANY(${f.turns.map(t=>t.turn_key)}::text[]) ORDER BY t.turn_key LIMIT 3400`;
     const ownKeys = new Set(f.turns.map(t=>t.turn_key)), neighbors = [...f.turns, ...nearby.filter(t=>!ownKeys.has(t.turn_key))].slice(0,200).toSorted((a,b)=>String(a.started_at || '').localeCompare(String(b.started_at || '')) || a.turn_key.localeCompare(b.turn_key));
-    const snapshot = { ...base, subscription_binding: sharedSubscription(f.turns), prompt_context: neighbors.map(t => ({ turn_key: t.turn_key, session_id: t.session_id, prompt: String(t.prompt).slice(0, 4000), started_at: t.started_at, finished_at: t.finished_at, completed: t.completed, signals: t.source?.signals || [], last_message: JSON.stringify(t.source?.last_message || '').slice(0, 4000) })) }, digest = hash(snapshot);
+    const snapshot = { ...base, subscription_binding: await resolveSubscription(f.turns), prompt_context: neighbors.map(t => ({ turn_key: t.turn_key, session_id: t.session_id, prompt: String(t.prompt).slice(0, 4000), started_at: t.started_at, finished_at: t.finished_at, completed: t.completed, signals: t.source?.signals || [], last_message: JSON.stringify(t.source?.last_message || '').slice(0, 4000) })) }, digest = hash(snapshot);
     if (Buffer.byteLength(JSON.stringify(snapshot)) > 1000000)
         throw Error('Task analysis snapshot exceeds 1 MB; split the task into smaller explicit assignments');
     await tx `SELECT pg_advisory_xact_lock(hashtext(${taskId}))`;

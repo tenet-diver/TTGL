@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtemp, writeFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { tmpdir } from 'node:os';
-import { localGarageEndpoint, subscriptionBinding, sharedSubscription, subscriptionEnvironment } from './execution-policy.ts';
+import { localGarageEndpoint, subscriptionBinding, sharedSubscription, subscriptionEnvironment, resolveSubscription } from './execution-policy.ts';
 import { validateAnalysis } from './analysis-contract.ts';
 test('raw storage rejects remote, DNS and credential-bearing endpoints', () => {
     for (const url of ['https://s3.amazonaws.com', 'http://garage.local:3900', 'http://localhost:3900', 'http://127.0.0.1.evil.test', 'http://user:secret@127.0.0.1:3900', 'http://127.0.0.1:3900/bucket', 'http://127.0.0.1:3900?redirect=remote', 'file:///tmp/raw'])
@@ -58,4 +58,18 @@ test('Luna contract retains typed failure reasons and explicit prompt relationsh
     assert.throws(() => validateAnalysis(base, ['e1'], ['t2'], [turns[0], { ...turns[1], session_id: 'other' }]), /same session/);
     assert.throws(() => validateAnalysis({ ...base, subtasks: [{ ...base.subtasks[0], failure_reason: null }] }, ['e1'], ['t2'], turns), /failure reason/);
     assert.throws(() => validateAnalysis({ ...base, subtasks: [{ ...base.subtasks[0], evidence_event_ids: ['sibling-step'] }] }, ['e1'], ['t2'], turns), /belong/);
+});
+
+test('one subscription may use multiple collected homes and missing bindings are actionable',async()=>{
+ const home=await mkdtemp(path.join(tmpdir(),'observatory-binding-'));
+ try {
+  await writeFile(path.join(home,'auth.json'),JSON.stringify({auth_mode:'chatgpt',tokens:{account_id:'same-account',access_token:'synthetic',refresh_token:'synthetic'}}),{mode:0o600});
+  const binding=await subscriptionBinding(home), missing={...binding,codex_home:path.join(home,'removed-home')};
+  const turns=[{source:{analysis_binding:missing}},{source:{analysis_binding:binding}}];
+  assert.equal((await resolveSubscription(turns)).codex_home,home);
+  assert.doesNotThrow(()=>sharedSubscription(turns));
+  assert.throws(()=>sharedSubscription([{source:{}}]),/Data list/);
+  assert.throws(()=>sharedSubscription([{source:{analysis_binding:{auth_mode:'chatgpt'}}}]),/invalid/);
+  assert.throws(()=>sharedSubscription([...turns,{source:{analysis_binding:{...binding,account_hash:'0'.repeat(64)}}}]),/different Codex subscription accounts/);
+ }finally{await rm(home,{recursive:true,force:true});}
 });

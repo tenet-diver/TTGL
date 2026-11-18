@@ -38,6 +38,12 @@ test('collector archives exact bytes before derived ingestion and does not advan
         assert.equal((await queryCh<{
             n: number;
         }>('SELECT count() AS n FROM events FINAL WHERE session_id={sid:String}', { sid }))[0].n, 2);
+        await db `UPDATE turns SET source=(source - 'analysis_binding') || '{"retained_marker":true}'::jsonb WHERE turn_key=${JSON.stringify([sid,'t'])}`;
+        await collect();
+        const [repaired] = await db `SELECT source FROM turns WHERE turn_key=${JSON.stringify([sid,'t'])}`;
+        assert.equal(repaired.source.analysis_binding.account_hash,before.analysis_binding.account_hash);
+        assert.equal(repaired.source.retained_marker,true);
+        assert.equal((await db `SELECT archive_id FROM source_files WHERE path=${file}`)[0].archive_id,before.archive_id);
         const originalBucket = process.env.S3_BUCKET;
         await writeFile(file, Buffer.concat([bytes, Buffer.from(JSON.stringify({ type: 'event_msg', payload: { turn_id: 't', type: 'task_complete' } }) + '\n')]));
         try {

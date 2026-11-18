@@ -38,7 +38,7 @@ class CheckpointStore:
             raise ValueError('Refuse to checkpoint/restore a shared project or home')
         if self.root.is_relative_to(self.workspace):raise ValueError('Checkpoint evidence cannot live inside actor workspace')
         self.base=base_commit;self.environment=environment_digest;self.maximum_bytes=maximum_bytes
-        self.root.mkdir(parents=True,exist_ok=True)
+        self.root.mkdir(parents=True,exist_ok=True,mode=0o700)
         owner=self.root/'workspace-owner.json'
         value={'workspace':str(self.workspace),'base_commit':base_commit,'environment':environment_digest}
         if owner.exists():
@@ -53,7 +53,7 @@ class CheckpointStore:
             saved=read(folder/'manifest.json')
             if saved['repositoryStateHash']!=before['state_hash']:raise ValueError('Checkpoint identity conflict')
             return saved
-        folder.mkdir()
+        folder.mkdir(mode=0o700)
         archive=folder/'source.tar'
         with tarfile.open(archive,'x') as tar:
             for key,row in before['files'].items():
@@ -61,6 +61,7 @@ class CheckpointStore:
                 if row['type']=='symlink':info.type=tarfile.SYMTYPE;info.linkname=row['target'];tar.addfile(info)
                 else:
                     data=(self.workspace/key).read_bytes();info.size=len(data);tar.addfile(info,io.BytesIO(data))
+        archive.chmod(0o600)
         after=manifest(self.workspace,self.maximum_bytes)
         if after!=before:raise ValueError('Source changed during checkpoint capture')
         value={'checkpointId':identity,'taskInstanceId':task,'planNodeId':node,'baseCommit':self.base,

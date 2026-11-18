@@ -36,10 +36,21 @@ export function sharedSubscription(turns: {
     source?: Record<string, unknown>;
 }[]): SubscriptionBinding {
     const bindings = turns.map(t => t.source?.analysis_binding as SubscriptionBinding | undefined);
+    const missing = bindings.filter(b => !b).length;
+    if (missing) throw Error(`${missing} of ${turns.length} turns have no Codex subscription binding. In Data list, configure their original transcript folder and local Codex subscription home, then run the collector to reconcile them.`);
     const first = bindings[0];
-    if (!first || first.auth_mode !== 'chatgpt' || !path.isAbsolute(first.codex_home) || !/^[a-f0-9]{64}$/.test(first.account_hash) || bindings.some(b => !b || b.codex_home !== first.codex_home || b.account_hash !== first.account_hash || b.auth_mode !== 'chatgpt'))
-        throw Error('All analyzed turns must be bound by the local collector to the same Codex subscription');
+    if (!first || bindings.some(b => !b || b.auth_mode !== 'chatgpt' || typeof b.codex_home !== 'string' || !path.isAbsolute(b.codex_home) || !/^[a-f0-9]{64}$/.test(b.account_hash)))
+        throw Error('A collected Codex subscription binding is invalid. Reconcile the original source folder in Data list.');
+    if (bindings.some(b => b!.account_hash !== first.account_hash)) throw Error('This task includes different Codex subscription accounts. Group its turns by their source subscription before analyzing.');
     return first;
+}
+export async function resolveSubscription(turns: {source?: Record<string, unknown>}[]) {
+    const expected = sharedSubscription(turns), homes = [...new Set(turns.map(t => (t.source!.analysis_binding as SubscriptionBinding).codex_home))];
+    for (const home of homes) {
+        try { const current = await subscriptionBinding(home); if (current.account_hash === expected.account_hash) return current; }
+        catch { /* Try another collected home belonging to the same account. */ }
+    }
+    throw Error('No collected Codex home is signed in to the source subscription. Sign in with Codex in that home, then run the collector again. API-key billing remains disabled.');
 }
 export async function subscriptionEnvironment(binding: SubscriptionBinding) {
     if (!binding || binding.auth_mode !== 'chatgpt')

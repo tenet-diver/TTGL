@@ -82,12 +82,16 @@ class DockerWorkspace:
           '--tmpfs','/tmp:rw,nosuid,nodev,size=134217728,uid=1000,gid=1000',
           '--env','HOME=/tmp/home','--workdir','/testbed','--label','observatory.experience=true',
           '--entrypoint','sleep',self.image,'infinity')
-        docker('start',name)
-        info=json.loads(docker('inspect',name))[0]
-        if info['HostConfig']['NetworkMode']!='none' or info['Mounts']:
-            # Docker lists tmpfs in HostConfig.Tmpfs, not host-backed Mounts.
-            raise ValueError('Actor has unexpected network or host-backed mounts')
-        return info
+        try:
+            docker('start',name)
+            info=json.loads(docker('inspect',name))[0]
+            if info['HostConfig']['NetworkMode']!='none' or info['Mounts']:
+                # Docker lists tmpfs in HostConfig.Tmpfs, not host-backed Mounts.
+                raise ValueError('Actor has unexpected network or host-backed mounts')
+            return info
+        except BaseException:
+            docker('rm','-f',name)
+            raise
 
     def start(self,workspace):
         write_new(self.root/'actor-started.json',{'container':self.name,'image':self.image,'base_commit':self.base})

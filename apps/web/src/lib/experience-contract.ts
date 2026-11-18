@@ -117,6 +117,7 @@ export interface EnvelopeSource {
     subtaskOwners: Record<string, string[]>; publicDependencies: string[]; verificationIds: string[];
     coverage?: { sourceComplete: boolean; excerpted: boolean };
     analyzedTurns?: string[]; promptContext?: Parameters<typeof validateAnalysis>[3];
+    publicVerifications?: Record<string, { workItemId: string; attemptId: string }>;
 }
 export function validateEnvelope(raw: unknown, source: EnvelopeSource) {
     validateAnalysis(source.analysis, source.eventIds, source.analyzedTurns || [], source.promptContext || []);
@@ -145,6 +146,10 @@ export function validateEnvelope(raw: unknown, source: EnvelopeSource) {
         const item = items.get(p.workItemId);
         if (!item || predicted.has(p.workItemId) || p.annotationInvocationId !== e.annotationInvocationId || p.asOfSequence > e.availableBeforeSequence || p.primaryEvidenceEventIds.some(id => !item.primaryEventIds.includes(id)) || p.supportLinkIds.some(id => links.get(id)?.targetWorkItemId !== p.workItemId) || p.publicVerificationIds.some(id => !source.verificationIds.includes(id))) throw Error('Invalid public outcome evidence');
         if (p.label !== 'abstain' && !p.primaryEvidenceEventIds.length && !p.supportLinkIds.length && !p.publicVerificationIds.length) throw Error('Unsupported outcome requires abstention');
+        if (source.publicVerifications && p.publicVerificationIds.some(id => {
+            const proof = source.publicVerifications![id];
+            return !proof || proof.workItemId !== p.workItemId || proof.attemptId !== p.attemptId;
+        })) throw Error('Public outcome verification must belong to this work item and attempt');
         predicted.add(p.workItemId);
     }
     if (predicted.size !== items.size) throw Error('Every work item requires an outcome interpretation or abstention');

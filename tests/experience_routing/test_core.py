@@ -122,7 +122,7 @@ class FreezeAndReplayTests(unittest.TestCase):
     if not path.exists():write_new(path,{'fixture':key})
     pins[key]={'path':path.name,'sha256':file_digest(path)}
    cfg={'schema_version':1,'study_id':'fixture','mode':'frozen_memory','automatic_retries':0,'models':{'annotator':'gpt-6-luna'},'arms':['HRM'],'allow_model_execution':True,'pins':pins,
-        'budgets':{'maximum_parent_assignments':1,'maximum_invocations':1,'maximum_model_tokens':100,'maximum_elapsed_seconds':60}}
+        'budgets':{'maximum_parent_assignments':1,'maximum_invocations':1,'maximum_model_tokens':100,'maximum_elapsed_seconds':60},'per_parent':{'maximum_invocations':1,'maximum_model_tokens':100,'maximum_elapsed_seconds':60}}
    path=root/'config.json';write_new(path,cfg);receipt=freeze(path,root/'freeze.json');verify_freeze(receipt)
    prompt.write_text('changed public instructions')
    with self.assertRaises(ValueError):verify_freeze(receipt)

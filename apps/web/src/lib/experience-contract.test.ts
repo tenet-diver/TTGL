@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { validateEnvelope, validateVerification, jsonSchemas } from './experience-contract.ts';
+import { validateEnvelope, validateVerification, jsonSchemas, envelopeSchema } from './experience-contract.ts';
 import { experienceFixture } from './experience-fixture.ts';
 import { ineligible, fuse, packetFor } from './experience-retrieval.ts';
 import { querySchema, experienceSchema } from './experience-contract.ts';
@@ -63,4 +63,14 @@ test('chronological blocks own each event once and keep overlap context-only', (
     assert.deepEqual(blocks.flatMap(b => b.primaryIds), steps.map(s => s.id));
     assert.deepEqual(blocks[1].contextOnlyIds, ['1', '2']);
     assert.throws(() => traceBlocks([steps[0], steps[0]]), /Duplicate/);
+});
+test('public outcome claims cannot borrow another work item or attempt verification', () => {
+    const {source,envelope: raw}=experienceFixture('proof-ownership');
+    const envelope=envelopeSchema.parse(raw);
+    const prediction=envelope.extensions.outcomePredictions[1];
+    prediction.attemptId='owned-attempt';prediction.publicVerificationIds=['proof'];
+    const context={...source,verificationIds:['proof'],publicVerifications:{proof:{workItemId:prediction.workItemId,attemptId:'owned-attempt'}}};
+    assert.doesNotThrow(()=>validateEnvelope(envelope,context));
+    assert.throws(()=>validateEnvelope(envelope,{...context,publicVerifications:{proof:{workItemId:'unrelated-work',attemptId:'owned-attempt'}}}),/this work item and attempt/);
+    assert.throws(()=>validateEnvelope(envelope,{...context,publicVerifications:{proof:{workItemId:prediction.workItemId,attemptId:'another-attempt'}}}),/this work item and attempt/);
 });

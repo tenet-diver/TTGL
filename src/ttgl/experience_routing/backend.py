@@ -15,6 +15,10 @@ from dataclasses import replace
 from ..personal import CodexBackend,parse_codex_events
 from .io import file_digest,read,write_new,digest
 
+class NativeCallFailure(RuntimeError):
+    def __init__(self,error,response):
+        super().__init__(str(error));self.response=response
+
 
 def source_binding(home):
     home=Path(home).resolve(strict=True);auth=read(home/'auth.json')
@@ -30,10 +34,20 @@ class RecordedCodexBackend(CodexBackend):
         super().__init__(executable)
         if file_digest(Path(executable).resolve())!=executable_sha256:
             raise ValueError('Codex executable differs from the audited pin')
+        self.executable_sha256=executable_sha256
         self.binding=source_binding(source_home)
         if self.binding['account_hash']!=source_account_hash:raise ValueError('Source subscription identity changed')
         self.output=Path(output);self.client=client;self.container=container;self.node_executable=node_executable
         self.artifacts={};self.last_response_ids=[];self.rollout_artifacts=[]
+
+    def preflight(self,request):
+        if request.thread_id is not None:raise ValueError('Each registered attempt starts a fresh model thread')
+        if file_digest(Path(self.executable).resolve())!=self.executable_sha256:raise ValueError('Codex executable changed after qualification')
+        if source_binding(self.binding['codex_home'])!=self.binding:raise ValueError('Canonical source authentication changed')
+        if not request.read_only:
+            server=Path(__file__).resolve().parents[3]/'tools/worker-mcp/server.mjs'
+            if not self.container or not self.node_executable or not Path(self.node_executable).is_file() or not (server.parent/'node_modules/@modelcontextprotocol/sdk').exists():
+                raise ValueError('Qualified installed worker MCP runtime required before invoking an executor')
 
     def command(self,request,schema):
         if not request.read_only:
@@ -68,6 +82,8 @@ class RecordedCodexBackend(CodexBackend):
         return command+['-']
 
     def complete(self,request):
+        self.artifacts={};self.last_response_ids=[];self.last_native_artifact_hash=None
+        self.preflight(request)
         if request.thread_id is not None:raise ValueError('Each registered attempt starts a fresh model thread')
         current=source_binding(self.binding['codex_home'])
         if current!=self.binding:raise ValueError('Canonical source authentication changed')
@@ -82,7 +98,7 @@ class RecordedCodexBackend(CodexBackend):
         self.client.retain_file(prompt_file,kind='model-request',identity=request.request_id+':prompt')
         allowed=('PATH','LANG','LC_ALL','SSL_CERT_FILE','SSL_CERT_DIR','HTTPS_PROXY','HTTP_PROXY','ALL_PROXY','NO_PROXY','https_proxy','http_proxy','all_proxy','no_proxy')
         env={k:os.environ[k] for k in allowed if k in os.environ};env.update(CODEX_HOME=str(home),HOME=str(home))
-        stdout=folder/'events.jsonl';stderr=folder/'stderr.log';started=time.monotonic();timed_out=False
+        stdout=folder/'events.jsonl';stderr=folder/'stderr.log';started=time.monotonic();timed_out=False;process=None
         try:
             with stdout.open('xb') as out,stderr.open('xb') as err:
                 os.chmod(stdout,0o600);os.chmod(stderr,0o600)
@@ -116,6 +132,16 @@ class RecordedCodexBackend(CodexBackend):
             response.elapsed_seconds=time.monotonic()-started
             if timed_out:response.status='timeout';response.error_type='deadline'
             return response
+        except BaseException as error:
+            if process is not None:
+                from ..personal import Response
+                try:observed=parse_codex_events(stdout.read_text(errors='replace').splitlines(),returncode=process.returncode or 1)
+                except Exception:observed=Response(status='uncertain')
+                observed.elapsed_seconds=time.monotonic()-started;observed.status='uncertain';observed.error_type=type(error).__name__
+                if stdout.is_file():self.last_native_artifact_hash=file_digest(stdout)
+                if isinstance(error,(KeyboardInterrupt,SystemExit)):raise
+                raise NativeCallFailure(error,observed) from error
+            raise
         finally:
             # Private spool remains on archival failure; never discard uncertain
             # evidence. Auth is credential material and is never archived.

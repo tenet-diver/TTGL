@@ -36,11 +36,13 @@ export async function acceptedSource(scope: ExperienceScope, analysisId: string)
     if (!versions || !Object.keys(versions).length) throw Error('Accepted source versions are unavailable');
     const current = await db`SELECT id,version FROM event_versions WHERE id=ANY(${Object.keys(versions)}::text[])`;
     if (current.length !== Object.keys(versions).length || current.some(r => Number(r.version) !== versions[r.id])) throw Error('Stale source versions cannot publish or retrieve experience');
-    const verifications = await db`SELECT id FROM experience_records WHERE project_id=${scope.projectId} AND experiment_id=${scope.experimentId} AND kind='verification' AND payload->>'verdict'='pass'`;
+    const turns = await db`SELECT source FROM turns WHERE turn_key=ANY(${a.snapshot.turns.map((t: { turn_key: string }) => t.turn_key)}::text[])`;
+    const attempts = turns.flatMap(t => typeof t.source?.experience_attempt?.attemptId === 'string' ? [t.source.experience_attempt.attemptId] : []);
+    const verifications = await db`SELECT id,payload FROM experience_records WHERE project_id=${scope.projectId} AND experiment_id=${scope.experimentId} AND kind='verification' AND payload->>'verdict'='pass' AND payload->>'attemptId'=ANY(${attempts}::text[])`;
     const config = studyConfigSchema.parse((await study(scope)).config);
     return { analysisId, taskId: a.task_id, snapshotHash: a.snapshot_hash, analysis: a.result, eventIds: Object.keys(versions),
         subtaskOwners: Object.fromEntries(groups.map(g => [g.id, g.event_ids])), publicDependencies: config.publicDependencyEventIds,
-        verificationIds: verifications.map(v => v.id), analyzedTurns: a.snapshot.turns.map((t: { turn_key: string }) => t.turn_key),
+        verificationIds: verifications.map(v => v.id), publicVerifications: Object.fromEntries(verifications.map(v => [v.id, {workItemId: v.payload.workItemId, attemptId: v.payload.attemptId}])), analyzedTurns: a.snapshot.turns.map((t: { turn_key: string }) => t.turn_key),
         promptContext: a.snapshot.prompt_context || [], coverage: a.snapshot.coverage || { sourceComplete: false, excerpted: true }, sourceVersions: versions, binding: a.snapshot.subscription_binding };
 }
 async function verifyPublicSupport(scope: ExperienceScope, x: Experience) {

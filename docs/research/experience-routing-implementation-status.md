@@ -1,11 +1,18 @@
 # Observatory experience routing: implementation checkpoint
 
-Updated 17 November 2026. Resume from this file and the current `AGENTS.md` before
+Updated 18 November 2026. Resume from this file and the current `AGENTS.md` before
 editing. The complete user-supplied specification is preserved in
 [experience-routing-plan.md](experience-routing-plan.md). The implementation and
 registration guide is [experience-routing-001](../../experiments/experience-routing-001/README.md).
 
 **This is an unfinished implementation checkpoint, not a completed experiment.**
+
+The latest continuation is documented at the end of this file. It advances the
+runtime/replay implementation, resolves tested subscription-binding failure modes,
+and passes **48 Python tests plus 82 web/database tests**. The earlier 17 November
+counts and process paths below remain historical receipts. No new model calls,
+benchmark grades or economic results have been produced.
+
 The user requests continued implementation and eventual evidence-backed results,
 and requested this checkpoint before pausing. All new model execution remains
 disabled. No new scored Luna/Sol trials, annotation audit, transfer experiment,
@@ -174,3 +181,117 @@ servers first, then run the pinned Node webpack build and reactivate using
 `work/security/data-migration-20261116/activate-web.py`. Keep private runtime logs
 under ignored `work/security`; public repository artifacts contain sanitized
 manifests and aggregate software results only.
+
+## Active continuation — 18 November 2026
+
+Pulled `cdd00e2` on `work`; the pre-change Python experience suite passes 18/18.
+This continuation is implementing and testing the checkpoint's remaining runtime
+and accounting gaps. No model invocation, benchmark reservation, dependency install
+or change to frozen historical generation sources has occurred. Execution stays
+disabled while native readiness gates remain unresolved. Detailed validation and
+remaining limitations will be recorded below as implementation progresses.
+
+### Implemented and qualified in this continuation
+
+- Native backend preflight checks the source account, executable pin and installed
+  worker MCP runtime before an executor invocation. Every attempt resets its
+  stream-retention state. Archival failures preserve parsed partial usage, private
+  stdout/stderr and credential cleanup; no failed call is silently retried.
+- Invocation deadlines are capped by both parent and campaign time. Actual campaign
+  invocation/token/cost caps are separate from per-policy shared planner charges.
+  Logical planner replay now includes its measured tokens, scenario cost and model
+  seconds exactly once. Missing usage or pricing cannot satisfy an enabled cap.
+- Campaign preparation, actor startup, last-assignment uncertainty and owned cleanup
+  errors leave stop receipts. Uncertain or incomplete assignments do not become a
+  completed campaign just because they are last in the assignment list.
+- Parent attempts retain terminal records on cancellation, verification failure and
+  ambiguity. Unknown public-check infrastructure does not trigger a model fallback.
+  A final whole-task public failure is terminal in the reference policy and never
+  overridden by successful node checks.
+- Material node-failure replanning is wired into the delegated native campaign, with
+  a measured large-model recovery invocation. The one-replan limit, original public
+  criteria, accepted dependencies, failed/cancelled node states, lineage and consumed
+  budget are preserved. Standalone arms do not acquire an extra planner.
+- The controlled replay CLI now calls an exact-node adapter rather than the fresh
+  parent-task planner. It restores cumulative source/dependency state and the exact
+  original node contract. Empty, raw, structured-small and structured-large paths
+  each execute one retained attempt; they neither replan nor publish shadow memory.
+  Nonempty packets are rechecked against an authorized current snapshot. Raw packets
+  also require a pinned audited public-provenance receipt. All four native adapter
+  paths were exercised **with synthetic transport and actors**, not actual models.
+- Source, shared parser, MCP bridge/lock and schema implementation hashes are captured
+  by study freeze. Parent budgets are required alongside campaign budgets. Missing
+  readiness manifests now expose their qualification gates in the preparation report.
+- Native trace ingestion requires its registered invocation/task/arm identity.
+  Outcome verification is restricted to the analyzed source attempts and exact work
+  item. Matching evidence ownership is required; unrelated passing study checks are
+  not a substitute for public support. Canonical ID mapping on real traces still
+  needs native integration qualification before admitting a real supported corpus.
+- Primary reporting retains unpaired/missing assignments in unresolved denominators;
+  missing costs and invalid grades cannot produce a target90 success claim.
+- Source archives use private checkpoint permissions. Failed actor startup removes
+  the newly owned container. Existing frozen studies and generation files are intact.
+
+### Subscription-binding repair
+
+The reported generic binding failure had two reproducible implementation causes:
+matching accounts stored under different collected Codex homes were rejected, and
+unchanged source files could skip repair of missing turn binding metadata. Jobs now
+resolve one available signed-in collected home for the **same account**. Different
+accounts, API-key login and unknown ownership remain blocked. Unbound turns show an
+instruction to configure their original source folder/home in Data list.
+
+For an unchanged, previously retained source, the collector can reconcile missing
+binding metadata after verifying its exact bytes against the retained archive hash
+and parsing its native turn identities. It preserves prompts and unrelated metadata,
+refuses cross-account reassignment, and invalidates cached task context. Already
+healthy files do not get reparsed on every collection cycle. Migration **008** adds
+the partial index supporting this lookup; apply it before restarting collection.
+Explicit Codex homes are checked when saved, and collector login failures are visible.
+This repair was tested with isolated retained sources; it is not evidence that a
+separate user's running deployment has already been restarted or repaired.
+
+### Current validation and next gates
+
+Public receipt: `results/experience-routing-001/software-validation-20261118.json`.
+Private logs: `work/security/experience-routing-001/continuation-20261118/`.
+
+- Python experience tests: **48/48 pass**, including four replay subconditions,
+  synthetic campaign execution, shared planning, uncertainty, real source editing,
+  public verification, independent restoration, cancellation and bounded replanning.
+- All current web unit/database suites: **82/82 pass**, no skips; an additional
+  targeted binding regression run passes **5/5** after the final collector refinement.
+- TypeScript and production webpack build: **pass**. Database tests use isolated
+  PostgreSQL/ClickHouse plus the labeled local S3 protocol fixture.
+- New dependency installations: **0**. Actual model invocations and new scored
+  benchmark assignments: **0**. Scheduled research monitoring remains paused.
+- No UI layout changed; earlier browser/deployment receipts are preserved and are
+  not presented as current-host browser or real SILO/Garage compatibility checks.
+
+Execution remains disabled. Remaining work is genuine native qualification and
+experimental preparation: reviewed actor image and MCP graph, native source/model
+capability and metering checks, exact replay pins, fresh public source/reservation
+and 60-trace annotation audits, corpus/selection/rate manifests, positive finite
+stage/parent budgets, and pristine empty/reference/evaluator controls. Optional
+vectors/reranking remain disabled. The online watermark/publication scheduler and
+per-arm annotation barrier flow still need integration qualification; do not call
+this a completed longitudinal experiment or infer a savings/quality result.
+
+A replay freeze's `replay` object must pin `checkpoint_manifest`, `node_contract`,
+`original_plan`, and (for nonempty conditions) `experience_packet` and
+`retrieval_query`, each as `{path, sha256}`. It also fixes condition, checkpoint ID,
+contract hash, arm and `shadow_memory_publication: false`. Raw conditions pin
+`raw_packet_provenance` with reviewed runtime-public visibility, exact raw evidence
+hash and authorized source version IDs. The qualified runtime manifest must include
+`replay_checkpoint_hashes` and the same checkpoint environment image digest.
+
+This checkout uses the previously reviewed Node executable at
+`work/security/next-migration-20261115/runtime/node-v24.22.2-linux-x64/bin/node`.
+The earlier host's `/usr/local/share/nvm` and temporary symlinks are not portable;
+verify the available reviewed runtime and owned processes on each environment.
+
+Controlled replay should use its own registered study and distinct condition arms
+for each checkpoint. Existing attempt ownership is immutable; a checkpoint/arm/node
+slot already used in the parent study cannot be silently reused. Qualify the
+replay study's eligible memory lineage and first-party source mapping before a
+native run, rather than copying a primary-study token or bypassing its scope.

@@ -15,8 +15,15 @@ class PublicVerifier:
 
     def verify(self,node,attempt,workspace,*,scope='subtask',timeout=60,contract_hash=None):
         started=time.monotonic();checks=[];outputs=[]
+        if timeout<=0:raise ValueError('Public verification needs positive remaining time')
         if not node['acceptanceCriteria']:raise ValueError('No public acceptance contract')
         for criterion in node['acceptanceCriteria']:
+            remaining=timeout-(time.monotonic()-started)
+            if remaining<=0:
+                artifact=digest([attempt,scope,criterion['id'],'verification-deadline'])
+                write_new(self.root/(artifact+'.json'),{'criterion':criterion['id'],'infrastructure_error':True,'reason':'Aggregate public-check deadline exhausted'})
+                checks.append({'criterionId':criterion['id'],'verdict':'unknown','evidenceArtifactRefs':[artifact]})
+                continue
             definition=self.catalog.get(criterion['id'])
             if not definition:
                 artifact=digest([attempt,scope,criterion['id'],'missing-host-check'])
@@ -26,12 +33,12 @@ class PublicVerifier:
             command=definition['argv']
             if not isinstance(command,list) or not command or any(not isinstance(x,str) for x in command):raise ValueError('Host checks require pinned argv arrays')
             if self.executor:
-                result=self.executor(command,workspace,min(timeout,definition.get('timeout_seconds',timeout)))
+                result=self.executor(command,workspace,min(remaining,definition.get('timeout_seconds',remaining)))
             else:
                 # Only fixture workspaces use a host subprocess. Live adapters
                 # run these definitions in a pristine, independently owned worker.
                 try:
-                    p=subprocess.run(command,cwd=workspace,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=min(timeout,definition.get('timeout_seconds',timeout)))
+                    p=subprocess.run(command,cwd=workspace,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=min(remaining,definition.get('timeout_seconds',remaining)))
                     result={'returncode':p.returncode,'output':p.stdout.decode(errors='replace'),'infrastructure_error':False}
                 except (OSError,subprocess.TimeoutExpired) as exc:
                     result={'returncode':None,'output':type(exc).__name__,'infrastructure_error':True}

@@ -3991,3 +3991,20 @@ registration: `experiments/experience-routing-001`; model execution remains disa
 No new scored model trials or benchmark reservations; scheduled monitoring stays paused.
 The user requested committing/pushing all work before pausing. Preserve this checkpoint
 and continue from it rather than restarting the feature or repeating any retained call.
+
+## 18 November 2026 — experience routing continuation
+
+Pulled `cdd00e2` and continued the implementation without model execution or new
+installs. Runtime failure retention, partial usage accounting, separate actual and
+shared-planner budgets, bounded replanning, first-party verification ownership,
+source-bound subscription reconciliation and exact-node replay were strengthened.
+All four replay adapter conditions run through synthetic transport. Validation:
+48 Python tests, 82 web/database tests, 5 targeted subscription regressions,
+TypeScript and production build pass. Native calls and new benchmark grades remain
+zero. Migration 008 is additive; prior migrations/studies remain unchanged.
+
+Resume at [the updated implementation status](experience-routing-implementation-status.md)
+and `results/experience-routing-001/software-validation-20261118.json`. Model
+execution stays disabled until native actor/MCP, corpus/audit, immutable source/model/
+rate pins, budgets and pristine control gates qualify. Keep source histories and
+uncertain attempts intact; scheduled monitoring remains paused.

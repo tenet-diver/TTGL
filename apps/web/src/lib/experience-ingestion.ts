@@ -17,6 +17,10 @@ export async function ingestExperienceTrace(scope: ExperienceScope, raw: unknown
     const binding = await subscriptionBinding(process.env.OBS_EXPERIENCE_SOURCE_HOME);
     if (p.accountHash !== binding.account_hash) throw Error('Native trace source does not match the canonical local subscription');
     const manifest = await scopedRecord(scope, 'artifact-manifest', p.artifactId);
+    const attemptId = String(manifest.identity).match(/^([a-f0-9]{64}):/)?.[1];
+    if (manifest.kind !== 'native-rollout' || !attemptId) throw Error('Native trace requires its retained runtime invocation identity');
+    const attempt = await scopedRecord(scope, 'attempt', attemptId);
+    if (p.taskInstanceId !== attempt.taskInstanceId + '@' + attempt.arm) throw Error('Native trace crosses the registered task or arm');
     const chunks = manifest.chunks as Array<{ archiveId: string; sha256: string }>;
     const parts: Buffer[] = [];
     for (const c of chunks) parts.push(await restoreRaw(c.archiveId));
@@ -40,7 +44,8 @@ export async function ingestExperienceTrace(scope: ExperienceScope, raw: unknown
                 const [task] = await tx`SELECT source FROM tasks WHERE id=${existing.task_id}`;
                 if (!task?.source?.native_turn) throw Error('Native turn belongs to another explicit task');
             }
-            await tx`UPDATE turns SET prompt=${t.prompt},source=${tx.json({ ...t.source, analysis_binding: binding })},completed=${t.completed},finished_at=${t.finished_at} WHERE turn_key=${t.turn_key}`;
+            await tx`UPDATE turns SET prompt=${t.prompt},source=${tx.json({ ...t.source, analysis_binding: binding,
+                experience_attempt: { attemptId, workItemId: attempt.planNodeId, taskInstanceId: attempt.taskInstanceId, arm: attempt.arm } })},completed=${t.completed},finished_at=${t.finished_at} WHERE turn_key=${t.turn_key}`;
             await tx`INSERT INTO assignments(turn_key,task_id) VALUES(${t.turn_key},${taskId}) ON CONFLICT(turn_key) DO UPDATE SET task_id=EXCLUDED.task_id`;
         });
     }

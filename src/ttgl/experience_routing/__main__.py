@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import sys
 from .io import read,write_new,digest,file_digest
-from .config import load,validate_config,freeze,verify_freeze
+from .config import load,validate_config,freeze,verify_freeze,REQUIRED_GATES
 
 
 def parser():
@@ -26,7 +26,7 @@ def parser():
 def prepare(path):
     config=load(path);result=validate_config(config,root=Path(path).resolve().parent)
     result.update(stage='model-free preparation',model_calls=0,
-      next_model_dependent_gates=[x for x in result['missing'] if x.startswith('gate:')],
+      next_model_dependent_gates=(['gate:'+g for g in REQUIRED_GATES] if 'pin:readiness_manifest' in result['missing'] else [x for x in result['missing'] if x.startswith('gate:')]),
       automatic_retries=0,execution_enabled=config.get('allow_model_execution',False))
     return result
 
@@ -50,7 +50,7 @@ def annotate(manifest,output):
 
 def replay(manifest,output):
     from .replay import replay_registered,CONDITIONS
-    from .campaign import run_campaign
+    from .native_replay import run_native_replay
     groups={}
     for a in manifest['assignments']:groups.setdefault(a['checkpoint_id'],[]).append(a)
     for checkpoint,rows in groups.items():
@@ -59,7 +59,7 @@ def replay(manifest,output):
     def execute(a):
         frozen=read(a['freeze_path']);config=verify_freeze(frozen)
         if config.get('replay',{}).get('checkpoint_id')!=a['checkpoint_id'] or config['replay'].get('condition')!=a['condition'] or config['replay'].get('contract_hash')!=a['contract_hash']:raise ValueError('Replay freeze does not pin its condition and checkpoint contract')
-        result=run_campaign(a['freeze_path'],Path(output)/a['assignment_id']/'campaign')
+        result=run_native_replay(a['freeze_path'],a,Path(output)/a['assignment_id']/'native-replay')
         return {**result,'uncertain':not result['complete'],'assignment':a}
     return replay_registered(manifest,execute,output)
 
@@ -104,7 +104,7 @@ def main(argv=None):
     elif name=='grade':result=grade(read(a.manifest),a.output)
     elif name=='report':
         from .analysis import paired
-        study=read(a.study);result=paired(study.get('grades',study.get('records',[])),a.control,a.candidate);write_new(a.output,result)
+        study=read(a.study);result=paired(study.get('grades',study.get('records',[])),a.control,a.candidate,expected_task_ids=study.get('assigned_task_ids'));write_new(a.output,result)
     print(json.dumps(result,indent=2,default=str));return 0
 
 

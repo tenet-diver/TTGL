@@ -3,11 +3,13 @@ from __future__ import annotations
 import json
 import time
 from pathlib import Path
-from ..personal import Request
+from ..personal import Request,Response
+from dataclasses import replace
 from .contracts import validate
 from .io import digest,write_new,read,append,now
 from .plans import PlanState
 from .ledger import BudgetExhausted
+from .checkpoints import manifest
 
 WORKER_SCHEMA={'type':'object','additionalProperties':False,'required':['summary','changedArtifacts','publicChecks','unresolved','usedExperienceIds','escalate'],
  'properties':{'summary':{'type':'string'},'changedArtifacts':{'type':'array','items':{'type':'string'}},
@@ -17,16 +19,25 @@ WORKER_SCHEMA={'type':'object','additionalProperties':False,'required':['summary
 
 class RetainedInvocation(RuntimeError):pass
 class UncertainInvocation(RuntimeError):pass
+class PreparationFailure(RuntimeError):pass
 
 
 class Invocations:
-    def __init__(self,root,backend,ledger,budget,*,client=None,origin='native'):
+    def __init__(self,root,backend,ledger,budget,*,client=None,origin='native',campaign_budget=None):
         self.root=Path(root);self.backend=backend;self.ledger=ledger;self.budget=budget;self.client=client;self.origin=origin
+        self.campaign_budget=campaign_budget
 
     def call(self,request,role,purpose='operational'):
         folder=self.root/request.request_id
         if folder.exists():raise RetainedInvocation('Started/retained invocation cannot be replayed: '+request.request_id)
+        try:
+            if hasattr(self.backend,'preflight'):self.backend.preflight(request)
+        except Exception as error:raise PreparationFailure(str(error)) from error
+        self.budget.check()
+        if self.campaign_budget:self.campaign_budget.check()
+        request=replace(request,timeout_seconds=min(request.timeout_seconds,self.budget.remaining_seconds,self.campaign_budget.remaining_seconds if self.campaign_budget else request.timeout_seconds))
         self.budget.reserve();folder.mkdir(parents=True,exist_ok=False)
+        if self.campaign_budget:self.campaign_budget.reserve()
         write_new(folder/'started.json',{'invocation_id':request.request_id,'model':request.model,'role':role,'purpose':purpose,
                   'request_hash':digest(request.prompt),'schema_hash':digest(request.schema),'started_at':now(),'automatic_retries':0})
         try:
@@ -39,6 +50,7 @@ class Invocations:
             usage=self.ledger.record(request,response,role,purpose,artifact,origin=self.origin,
                                      response_ids=getattr(self.backend,'last_response_ids',()))
             self.budget.charge(usage)
+            if self.campaign_budget:self.campaign_budget.charge(usage)
             if response.status!='completed':raise UncertainInvocation('Invocation did not complete; preserve and reconcile')
             result=json.loads(response.text)
             from jsonschema import Draft202012Validator
@@ -47,8 +59,14 @@ class Invocations:
                                                'usage_receipt':request.request_id,'completed_at':now()})
             return result,usage
         except BaseException as error:
+            if request.request_id not in self.ledger.records:
+                observed=getattr(error,'response',None) or Response(status='uncertain',error_type=type(error).__name__)
+                row=self.ledger.record(request,observed,role,purpose,getattr(self.backend,'last_native_artifact_hash',None) or digest({'invocation':request.request_id,'error':type(error).__name__}),origin=self.origin,response_ids=getattr(self.backend,'last_response_ids',()))
+                self.budget.charge(row)
+                if self.campaign_budget:self.campaign_budget.charge(row)
             write_new(folder/'uncertain.json',{'invocation_id':request.request_id,'error':type(error).__name__,
                                               'reason':str(error)[:1000],'automatic_retry':False,'recorded_at':now()})
+            if isinstance(error,(KeyboardInterrupt,SystemExit)):raise
             raise UncertainInvocation(str(error)) from error
 
 
@@ -84,10 +102,10 @@ class ParentRunner:
         start=time.monotonic();write_new(self.output/'assignment-started.json',{'task':self.task['task_id'],'arm':self.arm,'started_at':now(),
             'plan_hash':digest(plan),'configuration_hash':digest(self.config),'fixture_only':getattr(self.calls.backend,'fixture_only',False)})
         state=PlanState(plan,self.calls.budget);replans=0;accepted_artifacts=[]
-        if plan_usage_id:self.calls.ledger.logical_shared_charge(plan_usage_id,self.arm)
-        self.emit('plan',plan)
-        uncertain=None
+        uncertain=None;whole=None;active=None;checkpoint=None;attempt=None
         try:
+            if plan_usage_id:self.calls.ledger.logical_shared_charge(plan_usage_id,self.arm)
+            self.emit('plan',plan)
             while ready:=state.ready():
                 node=ready[0];checkpoint=self.checkpoints.capture(self.task['task_id'],node['nodeId'],node,accepted_artifacts)
                 public_checkpoint={k:v for k,v in checkpoint.items() if k not in ('source_manifest','archive_path')}
@@ -114,6 +132,7 @@ class ParentRunner:
                       'checkpoint':public_checkpoint,'completedDependencies':accepted_artifacts,'experiences':packet,
                       'priorAttempts':history,'remainingBudget':self.calls.budget.receipt(),
                       'instructions':'Build on the supplied public evidence; do not repeat failed approaches without new evidence. Respect allowed write paths. Normally make two or three meaningfully different checked repair attempts before requesting help; request help earlier only when no credible useful independent attempt remains, and state the concrete reason. Preserve integration budget. Verify your work and explicitly report unresolved criteria or escalation.'})
+                    active={'attemptId':attempt,'taskInstanceId':self.task['task_id'],'arm':self.arm,'node':node['nodeId']}
                     self.emit('attempt',{'attemptId':attempt,'taskInstanceId':self.task['task_id'],'planNodeId':node['nodeId'],
                                         'planRevisionId':plan['planRevisionId'],'checkpointId':checkpoint['checkpointId'],'executorId':executor,'arm':self.arm,'ordinal':ordinal})
                     request=self.request(attempt,executor,'coding',prompt,WORKER_SCHEMA)
@@ -125,12 +144,15 @@ class ParentRunner:
                     artifact_id=candidate_archive['artifactId'] if candidate_archive else candidate['checkpointId']
                     artifact_check=self.checkpoints.admissible(checkpoint,node['allowedWritePaths'],self.verifier.protected)
                     verification,timing=self.verifier.verify(node,attempt,self.workspace,timeout=min(60,self.calls.budget.remaining_seconds))
-                    self.emit('verification',verification);append(self.output/'timing-ledger.jsonl',{'kind':'public_verification','attempt':attempt,**timing})
+                    self.emit('verification',verification)
+                    if verification['verdict']=='infrastructure_error':raise RuntimeError('Public verification infrastructure is unavailable; no model fallback')
+                    append(self.output/'timing-ledger.jsonl',{'kind':'public_verification','attempt':attempt,**timing})
                     integration=None
                     if artifact_check['passed'] and verification['verdict']=='pass' and not result['unresolved'] and not result['escalate']:
                         if self.integrate:integration=self.integrate(node,attempt,self.workspace)
                         else:integration,_=self.verifier.verify(node,attempt,self.workspace,scope='integration',timeout=min(60,self.calls.budget.remaining_seconds))
                         self.emit('verification',integration)
+                        if integration['verdict']=='infrastructure_error':raise RuntimeError('Public integration infrastructure is unavailable; no model fallback')
                         accepted=integration['verdict']=='pass'
                     trigger='accepted' if accepted else 'out_of_scope_artifact' if not artifact_check['passed'] else 'integration_failure' if integration else 'model_requested' if result['escalate'] else 'unresolved_requirement' if result['unresolved'] else 'public_contract_failure'
                     outcome={'attemptId':attempt,'taskInstanceId':self.task['task_id'],'arm':self.arm,'status':'accepted' if accepted else 'public_failure',
@@ -138,37 +160,54 @@ class ParentRunner:
                              'integrationId':integration['verificationId'] if integration else None,'trigger':trigger,
                              'artifactCheck':artifact_check,'completionReport':result,'usageInvocationId':usage['invocation_id']}
                     self.emit('attempt-event',outcome)
+                    write_new(self.output/'attempts'/(attempt+'.json'),outcome);active=None
                     if self.client and integration:
                         self.emit('reuse',{'reuseId':digest([attempt,'reuse']),'attemptId':attempt,'experienceVersionIds':decision['experienceVersionIds'],
                           'publicVerificationIds':[verification['verificationId']],'integrationVerificationId':integration['verificationId'],
                           'outcome':'pass' if accepted else 'fail','predictionTarget':'public_integrated_completion','executorId':executor,
                           'taskInstanceId':self.task['task_id'],'family':self.task.get('family','unknown'),'arm':self.arm,
                           'terminalSequence':self.config['watermark']+1,'censoring':'observed','assignmentProbability':decision['assignmentProbability']})
-                    history.append({'executor':executor,'completion':result,'artifactCheck':artifact_check,'publicVerification':verification,
+                    history.append({'attemptId':attempt,'executor':executor,'completion':result,'artifactCheck':artifact_check,'publicVerification':verification,
                                     'integration':integration,'trigger':trigger,'candidateArtifactId':candidate['checkpointId']})
                     if accepted:
                         accepted_artifacts.append(artifact_id);state.finish(node['nodeId'],attempt,True);break
                     self.checkpoints.restore(checkpoint)
                     if ordinal==0 and len(sequence)>1:packet=self.memory(node,'recovery',history)
                 if not accepted:
-                    state.finish(node['nodeId'],history[-1]['candidateArtifactId'],False)
+                    state.finish(node['nodeId'],history[-1]['attemptId'],False)
                     if self.replan and replans<self.config.get('maximum_parent_replans',1):
                         revised=self.replan(state,history,self.calls.budget)
                         state=PlanState(revised,self.calls.budget,previous=state);plan=revised;replans+=1;self.emit('plan',revised)
                     else:break
-        except (UncertainInvocation,RetainedInvocation,RuntimeError) as error:
-            uncertain={'type':type(error).__name__,'reason':str(error),'reconciliation_required':isinstance(error,(UncertainInvocation,RetainedInvocation))}
-        whole=None
-        if not uncertain and state.completed:
-            criteria={c['id']:c for n in plan['nodes'] for c in n['acceptanceCriteria']}
-            whole_node={'nodeId':self.task['task_id'],'acceptanceCriteria':list(criteria.values())}
-            whole,_=self.verifier.verify(whole_node,attempt,self.workspace,scope='whole_task',timeout=min(60,max(.01,self.calls.budget.remaining_seconds)),contract_hash=digest(plan))
-            self.emit('verification',whole)
+            if state.completed:
+                if self.calls.budget.remaining_seconds<=0:raise BudgetExhausted('No time remains for final public verification')
+                criteria={c['id']:c for n in plan['nodes'] for c in n['acceptanceCriteria']}
+                whole_node={'nodeId':self.task['task_id'],'acceptanceCriteria':list(criteria.values())}
+                whole,timing=self.verifier.verify(whole_node,attempt,self.workspace,scope='whole_task',timeout=min(60,self.calls.budget.remaining_seconds),contract_hash=digest(plan))
+                self.emit('verification',whole)
+                append(self.output/'timing-ledger.jsonl',{'kind':'whole_task_public_verification',**timing})
+                # A failed whole-task contract is terminal in this reference
+                # policy. Node-local acceptance never overrides that failure.
+        except BaseException as error:
+            uncertain={'type':type(error).__name__,'reason':str(error)[:1000],
+                       'reconciliation_required':isinstance(error,(UncertainInvocation,RetainedInvocation,KeyboardInterrupt,SystemExit))}
+            if active:
+                terminal={k:v for k,v in active.items() if k!='node'}
+                terminal.update(status='uncertain',artifactId=public_checkpoint['artifactArchiveId'],verificationId=None,integrationId=None,
+                    trigger=type(error).__name__,artifactCheck={'passed':False,'changed_paths':[],'invalid_paths':[],
+                    'repository_state_hash':checkpoint['repositoryStateHash'],'includes_adds_deletes_modes_and_links':True},
+                    completionReport=None,usageInvocationId=attempt)
+                write_new(self.output/'attempts'/(attempt+'.json'),terminal)
+                state.states[active['node']]='uncertain' if uncertain['reconciliation_required'] else 'blocked'
+                try:self.emit('attempt-event',terminal)
+                except Exception as publication_error:
+                    write_new(self.output/'terminal-publication-error.json',{'error':type(publication_error).__name__,'reason':str(publication_error)[:1000]})
+            write_new(self.output/'stop-reason.json',uncertain)
         final=self.checkpoints.capture(self.task['task_id'],'final',{'plan':plan},accepted_artifacts)
         retained_final=self.client.retain_file(final['archive_path'],kind='final-source',identity=self.task['task_id']+':'+self.arm+':final') if self.client else None
         receipt={'retained_final_artifact':retained_final,'task_id':self.task['task_id'],'arm':self.arm,'public_state':('uncertain' if uncertain['reconciliation_required'] else 'budget_exhausted' if uncertain['type']=='BudgetExhausted' else 'infrastructure_error') if uncertain else 'completed' if state.completed and whole and whole['verdict']=='pass' else 'unsuccessful',
                  'independent_grade':None,'whole_task_public_verification':whole,'node_states':state.states,'artifact':final,'budget':self.calls.budget.receipt(),
-                 'end_to_end_seconds':time.monotonic()-start,'usage':self.calls.ledger.totals(),'uncertainty':uncertain,
+                 'end_to_end_seconds':time.monotonic()-start,'usage':self.calls.ledger.totals(),'deployment_usage':self.calls.ledger.deployment_totals(),'uncertainty':uncertain,
                  'replans':replans,'study_mode':self.config['mode'],'fixture_only':getattr(self.calls.backend,'fixture_only',False)}
         write_new(self.output/'completion.json',receipt)
         # Public trace preparation is queued by the driver only after exact raw

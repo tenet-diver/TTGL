@@ -5,6 +5,9 @@
     "budget:maximum_elapsed_seconds",
     "budget:maximum_invocations",
     "budget:maximum_model_tokens",
+    "per_parent_budget:maximum_elapsed_seconds",
+    "per_parent_budget:maximum_invocations",
+    "per_parent_budget:maximum_model_tokens",
     "pin:exclusion_registry",
     "pin:execution_fairness_manifest",
     "pin:model_catalog",
@@ -19,7 +22,17 @@
   "configuration_hash": "74a7bb22dc9845f7562353a50a3fc23ea823911868264a203fbd4c589c2c3235",
   "model_calls": 0,
   "stage": "model-free preparation",
-  "next_model_dependent_gates": [],
+  "next_model_dependent_gates": [
+    "gate:dependency_review",
+    "gate:source_binding",
+    "gate:capture_roundtrip",
+    "gate:native_metering",
+    "gate:actor_boundary",
+    "gate:empty_control",
+    "gate:reference_control",
+    "gate:pristine_replay",
+    "gate:reservation_audit"
+  ],
   "automatic_retries": 0,
   "execution_enabled": false
 }

@@ -96,3 +96,17 @@ calibration, model availability pins, fresh benchmark reservations, native actor
 canary qualification, reference/empty controls, a price scenario, or statistical
 power. Those records remain unresolved, so scored execution stays disabled.
 No fixture outcome establishes model quality, transfer, latency savings or cash savings.
+
+## 18 November implementation continuation
+
+See the [updated checkpoint](../../docs/research/experience-routing-implementation-status.md)
+and [software receipt](../../results/experience-routing-001/software-validation-20261118.json).
+The exact-node replay adapter now runs the frozen checkpoint/contract directly,
+without an initial parent planner or shadow memory publication. Its four condition
+paths pass with synthetic actors/transport. Shared planner charges include tokens,
+model latency and scenario cost; actual campaign caps remain separate. Native
+execution and empirical results remain behind the unresolved qualification gates.
+
+Primary `report` input must include the frozen `assigned_task_ids` denominator.
+Missing parents in either or both arms remain unresolved; without a registered
+denominator, cost summaries are descriptive and cannot declare target90 met.

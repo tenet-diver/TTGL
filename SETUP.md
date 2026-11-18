@@ -332,3 +332,21 @@ or unknown, using nearby retained prompts in the same session. Missing evidence
 stays unknown. Prompt links are interpretations for review; current grouping
 assignments and explicit user acceptance are preserved. No keyword rule or tool
 exit status is treated as a model's task-level success decision.
+
+## Repairing a missing Codex subscription binding
+
+In **Data list**, configure the original transcript folder and its local signed-in
+Codex subscription home. Explicit homes are validated when saved; login failures
+appear in source status. Apply new migrations and run collection without model work:
+
+```sh
+"$OBS_NODE" --env-file=apps/web/.env.local --experimental-strip-types apps/web/scripts/migrate.ts
+"$OBS_NODE" --env-file=apps/web/.env.local --experimental-strip-types apps/web/scripts/worker.ts --once
+```
+
+The collector can repair missing metadata on unchanged sources only after checking
+exact bytes against their already retained archive. It preserves unrelated turn
+metadata and rejects account conflicts. Jobs accept multiple collected homes for
+one account and select an available signed-in home. Missing or mixed-account data
+still requires source reconciliation; there is no arbitrary-account or API-key fallback.
+This collection command does not start analysis or retry any retained invocation.
