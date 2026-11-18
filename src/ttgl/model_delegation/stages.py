@@ -21,6 +21,14 @@ def run(config_path):
         raise ValueError('Explicit endpoint collection stage required')
     root=Path(config['root']);output=Path(config['private_output_root'])
     if (output/'stage-started.json').exists():raise ValueError('Started phase requires audit, never automatic replay')
+    if config.get('require_source_archive') is not True:
+        raise ValueError('Endpoint stages require acknowledged exact source archival')
+    archived=read(output/'source-archive-ready.json')
+    if archived['protocol_sha256']!=file_digest(config_path) or not archived['archive'].get('artifactId'):
+        raise ValueError('Exact source archive must be acknowledged before inference')
+    for pin in config.get('grader_source_pins',[]):
+        if file_digest(Path(config['grader_subset'])/pin['path'])!=pin['sha256']:
+            raise ValueError('Original grader source drift')
     review=read(config['image_review']);sources={}
     for task in config['tasks']:
         folder=Path(config['eligibility_root'])/task['task_id']

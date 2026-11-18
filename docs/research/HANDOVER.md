@@ -4310,3 +4310,23 @@ with no model invocation. At31of71candidates, inspect the latest log/completion
 records for current eligibility; do not relaunch. Existing generation/evaluation
 sources listed in017stay frozen. Full scientific splits/budgets and baseline
 training/sufficiency still need their final freeze before main inference.
+
+Preparation017 is now COMPLETE:71candidates checked,46eligible and25excluded
+before main model use. Original metadata order and stage-rules020 allocate
+12construction/12development/22heldout, with no unused eligible reserve. Exact
+split: `qualified-split-022.json`; projected full point matrix440assignments.
+No main generation has started at this entry. Calibration amendment021 was
+registered before main data: genuinely single-class executor labels use a
+Beta(1,1) empirical prior, explicitly marked as nondiscriminative; no opposite
+labels are invented. Mixed classes still need at least2examples per class and
+all OOF Brier/heldout-exclusion rules remain. The synthetic numerical fixture
+executes this path but fails its small-sample OOF gate; that failure is preserved,
+not a real development baseline result.88focused software checks pass.
+
+Construction source archive/readiness and finite native registration are being
+prepared. Require its actual archive acknowledgement before inference. If it is
+running, freeze ALL sources listed in that registration until generation and
+independent grading finish; do not start another worker or repeat assignments.
+Public construction records can support bounded implementation outcomes only;
+posthoc annotator/host verification must not be credited as unaided verification
+by the original executor. Other capabilities require their own evidence.

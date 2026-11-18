@@ -6,6 +6,7 @@ prediction CPU/wall time. Native Codex/Node never inherits its loader overrides.
 from __future__ import annotations
 import json
 import abc
+import math
 import os
 from pathlib import Path
 import subprocess
@@ -109,6 +110,8 @@ def serve(config_path):
             if request['operation']=='route_score': score=float(router.calculate_strong_win_rate(request['text']))
             elif request['operation']=='quality': score=scorers[request['model']].get_score(request['text'])
             else: raise ValueError('Unsupported operation')
+            if not math.isfinite(score) or not 0<=score<=1:
+                raise ValueError('Nonfinite or unbounded learned score')
             print(json.dumps({'score':score,'timing':elapsed(started)}),flush=True)
         except Exception as error:
             print(json.dumps({'error':type(error).__name__}),flush=True)

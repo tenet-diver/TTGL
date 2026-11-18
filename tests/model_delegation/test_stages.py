@@ -18,7 +18,19 @@ class StageTests(unittest.TestCase):
              'maximum_elapsed_seconds':600,'models':['gpt-6-luna','gpt-6.1-sol'],'order_seed':'frozen',
              'candidate_root':str(p/'candidates'),'source_home':str(p),'maximum_tool_calls':4,
              'knowledge_scope':{'project':'Observatory'},'evaluation_root':str(p/'evaluation'),'grader_subset':str(p/'grader')}
-        return write_new(p/'registration.json',cfg)
+        cfg['require_source_archive']=True
+        path=write_new(p/'registration.json',cfg)
+        write_new(p/'output/source-archive-ready.json',{'protocol_sha256':file_digest(path),'archive':{'artifactId':'fixture'}})
+        return path
+
+    def test_missing_source_archive_stops_before_model_or_started_assignment(self):
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d);config=self.fixture(p)
+            (p/'output/source-archive-ready.json').unlink()
+            with patch('ttgl.model_delegation.stages.run_episode') as model:
+                with self.assertRaises(FileNotFoundError):run(config)
+                model.assert_not_called()
+            self.assertFalse((p/'output/stage-started.json').exists())
 
     def test_no_grading_until_every_public_endpoint_and_annotation_finishes(self):
         with tempfile.TemporaryDirectory() as d:

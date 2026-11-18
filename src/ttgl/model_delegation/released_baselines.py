@@ -108,6 +108,19 @@ class LinearQuality:
         return float(probabilities[list(self.model.classes_).index(1)])
 
 
+class SingleClassQuality:
+    """Beta(1,1) posterior mean; no fabricated opposite-class examples.
+
+    This has no discriminative feature learning. Report that explicitly rather
+    than interpreting an observed all-pass/all-fail sample as certainty.
+    """
+    def __init__(self, labels):
+        self.value = (sum(labels)+1)/(len(labels)+2)
+
+    def get_score(self, text):
+        return self.value
+
+
 def train_quality(cores, records):
     from sklearn.linear_model import LogisticRegression
     _, cascade, _ = cores
@@ -116,13 +129,19 @@ def train_quality(cores, records):
     for model in ('gpt-6-luna', 'gpt-6.1-sol'):
         rows = [r for r in records if r['model'] == model]
         labels = [int(r['resolved']) for r in rows if type(r.get('resolved')) is bool]
-        if len(labels) != len(rows) or len(set(labels)) != 2:
-            raise ValueError('Local linear scorer needs both observed native outcome classes; do not fabricate labels or a learned baseline')
+        if len(labels) != len(rows) or not labels:
+            raise ValueError('Known observed native labels required; do not fabricate training examples')
+        if len(set(labels)) == 1:
+            scorers[model] = SingleClassQuality(labels)
+            statistics[model] = {'tasks':len(rows),'successes':sum(labels),'training_only':True,
+                                'scorer_kind':'beta_1_1_single_class_prior','discriminative_learning':False}
+            continue
         inputs = [cascade['scorer_text'](r['public_input']+' '+r['candidate_text']) for r in rows]
         classifier = LogisticRegression(C=1.0, max_iter=500, random_state=17012026)
         classifier.fit(encoder.transform(inputs), labels)
         scorers[model] = LinearQuality(classifier, encoder)
-        statistics[model] = {'tasks': len(rows), 'successes': sum(labels), 'training_only': True}
+        statistics[model] = {'tasks': len(rows), 'successes': sum(labels), 'training_only': True,
+                             'scorer_kind':'local_logistic','discriminative_learning':True}
     return scorers, statistics
 
 

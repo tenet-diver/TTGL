@@ -114,6 +114,28 @@ class AccumulationTests(unittest.TestCase):
             self.limits['maximum_tokens'] = value
             with self.assertRaises(ValueError): self.campaign()
 
+    def test_infeasible_points_stay_registered_without_inference_or_invented_quality(self):
+        from ttgl.model_delegation.accumulation import build_comparison_campaign
+        from ttgl.experience_routing.io import read
+        pins = {k: {'qualified': True, 'implementation_sha256': 'b'*64, 'calibration_sha256': 'c'*64,
+                    'training_partition': 'development', 'sufficiency_passed': True,
+                    'point_feasibility': {'cost': False}}
+                for k in ('frugalgpt_native', 'routellm_native')}
+        c = build_comparison_campaign(self.partitions, self.snapshots()['snapshots'], limits=self.limits,
+            source_pins=self.pins, baseline_pins=pins, stage='heldout')
+        calls=[]
+        def execute(a,_):calls.append(a);return {'status':'public_failure','usage':a['limits']}
+        q={'campaign_id':c['campaign_id'],'source_pins':c['source_pins'],'execution_ready':True}
+        with tempfile.TemporaryDirectory() as d:
+            run_campaign(c,d,execute,qualification=q)
+            summary=read(Path(d)/'completion.json')
+            self.assertEqual(summary['assignments_unrun_infeasible'],4)
+            self.assertEqual(summary['assignments_completed'],len(c['assignments'])-4)
+            for a in c['assignments']:
+                if a.get('execution_disposition'):
+                    result=read(Path(d)/a['assignment_id']/'completion.json')
+                    self.assertIsNone(result['quality']);self.assertIsNone(result['scenario_cost'])
+
     def test_native_campaign_requires_exact_qualification(self):
         with tempfile.TemporaryDirectory() as d:
             with self.assertRaises(ValueError): run_campaign(self.campaign(), d, lambda *_: None, qualification={})

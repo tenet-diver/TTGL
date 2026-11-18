@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "stage": "single_class_scorer_amendment_021",
+  "allow_model_execution": false,
+  "native_calls": 0,
+  "parent_sha256": "1b6cd99d1d8867bf578bdcef1bc81f1141456501d26d24f35c7807dd99342b42",
+  "timing": "Before any main construction, development or heldout inference",
+  "reason": "The local logistic implementation requires two classes, while an observed all-pass/all-fail executor is a legitimate possible development outcome. Do not invent opposite-class examples.",
+  "single_class_rule": "Use Beta(1,1) posterior mean (successes+1)/(tasks+2), same training rows, no discriminative feature learning; explicitly report scorer kind and unavailable discrimination. Retain all same-model counters and failures.",
+  "mixed_class_rule": "Keep logistic scorer and at least2examples of each observed class for task-OOF fitting. A rare class with only1example remains insufficient.",
+  "unchanged": [
+    "Minimum6matched native development pairs",
+    "Task-disjoint OOF Brier gate against constant prior plus0.02",
+    "Same heldout exclusion, operating-point budgets, full-native accounting and finite registrations",
+    "No changes to eligibility allocation or runtime knowledge gates"
+  ],
+  "limitations": "Single-class priors do not establish calibrated rare-error probabilities or learned feature discrimination; small-sample sufficiency remains a feasibility floor."
+}

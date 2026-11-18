@@ -32,10 +32,10 @@ def calibrate(config):
         group[record['model']]=record
     if any(set(rows)!=set(models) for rows in by_task.values()):raise ValueError('Complete native pairs required')
     counts={model:{str(label):sum(r['resolved']==label for r in records if r['model']==model) for label in (False,True)} for model in models}
-    # Two examples of each outcome per executor allow every leave-one-task-out
-    # fold to retain both classes. This is a feasibility floor, not a guarantee
-    # of statistical adequacy for a learned router.
-    if len(by_task)<6 or any(min(c.values())<2 for c in counts.values()):
+    # Mixed outcomes need two examples of each class for task-OOF fitting.
+    # A genuinely single-class sample uses an explicitly labelled empirical
+    # prior. This is a feasibility floor, not statistical adequacy established.
+    if len(by_task)<6 or any(0<min(c.values())<2 for c in counts.values()):
         return {'sufficiency_passed':False,'reason':'Insufficient native outcome classes for honest task-disjoint scorer fitting',
                 'class_counts':counts,'training_tasks':len(by_task),'heldout_used':False,'points':None}
     started=time.process_time();wall=time.monotonic();cores=load_cores(config['pins'])

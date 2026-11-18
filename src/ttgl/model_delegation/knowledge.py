@@ -96,7 +96,7 @@ def extract(*,root,output,base,candidate,episode,task,source_home,image_review,r
             'public_tools':evidence,'public_pristine_check_passed':parent['public_check_passed']}
     payload=json.dumps(public)
     if len(payload.encode())>80000:raise ValueError('Public annotation evidence exceeds finite budget')
-    prompt=('Interpret only this public construction attempt. Propose at most three bounded reusable subtask procedures supported by its observable attempts. Do not claim success, use private expected solutions or invent unseen checks. For each, supply a small standalone Python assertion reproduction of a behavior explicitly required by the public request, using SymPy/standard arithmetic imports only. The host will check it on the original base and final candidate. Use only subtask types implementation, exploration, verification, integration or planning. Procedures should explain transferable decisions and checks, without copying the candidate solution or embedding task identities. Return an empty records list if unsupported.\n'+payload)
+    prompt=('Interpret only this public construction attempt. Propose at most three bounded reusable implementation procedures supported by its observable source changes. Do not claim success, use private expected solutions or invent observed checks. For each, supply a small standalone Python assertion reproduction of a changed behavior explicitly required by the public request, using SymPy/standard arithmetic imports only. Prefer recorded public reproductions; a newly proposed check must be labelled by its code and will be independently replayed on the original base and final candidate. Use subtask type implementation: this source-differential gate does not verify planning, exploration or unaided verification skills. Each procedure/criterion should be a short single-line prose sentence of at most512characters, without code blocks, copied candidate solutions or task identities. Return an empty records list if unsupported.\n'+payload)
     workspace=output/'empty-workspace';workspace.mkdir(parents=True,mode=0o700)
     backend=SubscriptionBackend(executable=executable,executable_sha256=file_digest(executable),source_home=source_home,
         source_account_hash=binding['account_hash'],output=output/'native',client=client)
@@ -113,8 +113,15 @@ def extract(*,root,output,base,candidate,episode,task,source_home,image_review,r
     admitted=[];excluded=[]
     for i,proposal in enumerate(proposals):
         try:
-            if proposal['subtask_type'] not in ('implementation','exploration','verification','integration','planning'):
-                raise ValueError('Unknown public subtask type')
+            if proposal['subtask_type'] != 'implementation':
+                raise ValueError('Source differential supports implementation only; other capabilities need separate evidence')
+            for field in ('procedure','acceptance_criteria'):
+                items=proposal[field]
+                if not items or len(items)>16 or any(not isinstance(s,str) or not s.strip() or len(s)>512
+                    or '\n' in s or '```' in s or task['task_id'] in s for s in items):
+                    raise ValueError('Bounded prose without source identity or copied solution blocks required')
+            if task['task_id'] in proposal['goal']:
+                raise ValueError('Benchmark identity is not runtime guidance')
             proof=verify_public_reproduction(proposal['check_code'],base=base,candidate=candidate,
                 output=output/('proof-'+str(i)),image_review=image_review)
             receipt=write_new(output/('proof-'+str(i))/'verification.json',proof)
@@ -132,6 +139,8 @@ def extract(*,root,output,base,candidate,episode,task,source_home,image_review,r
                 'outcome':'pass' if proof['supported_positive'] else 'fail','occurred_at':occurred,'verified_at':stamp,
                 'available_at':stamp,'available_sequence':scope['available_sequence'],
                 'interpretation':'Luna proposed public assertion; host differential replay supports only this check scope, not full task success',
+                'verification_author':'posthoc Luna annotator and host; separate from original executor',
+                'executor_unaided_verification_established':False,
                 'guidance':{'id':identifier+'-procedure','supported':proof['supported_positive'],'source_model':model,
                     'procedure':proposal['procedure'],'preconditions':[],'acceptance_criteria':proposal['acceptance_criteria'],
                     'evidence_refs':[ref],'target_models':[]}}

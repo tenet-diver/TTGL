@@ -67,8 +67,9 @@ def delegate(bridge, args):
         raise ValueError('Insufficient shared time for worker plus parent integration')
     write_new(folder/'started.json', {'arguments_hash': digest(args), 'decision': selection})
     raw = docker('exec', bridge.container, 'tar', '-cf', '-', '-C', '/testbed', '.')
-    source = folder/'source'
-    source.mkdir(mode=0o700)
+    scratch = Path(config['worker_scratch_root'])/digest(key) if config.get('worker_scratch_root') else folder
+    source = scratch/'source'
+    source.mkdir(parents=True, mode=0o700)
     unpack_public_source(raw, source)
     initial = manifest(source)
     task = {**config['task'], 'prompt': args['goal'], 'allowed_write_paths': requested}
@@ -82,7 +83,7 @@ def delegate(bridge, args):
     if result['status'] == 'completed':
         # Parent state must still equal the handed-off state. No clobbering a
         # concurrent accepted edit while the native worker was running.
-        current = folder/'parent-current'
+        current = scratch/'parent-current'
         current.mkdir()
         unpack_public_source(docker('exec', bridge.container, 'tar', '-cf', '-', '-C', '/testbed', '.'), current)
         if manifest(current) != initial:

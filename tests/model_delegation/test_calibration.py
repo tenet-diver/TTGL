@@ -4,11 +4,11 @@ from ttgl.model_delegation.calibration import calibrate,select_routes
 
 
 class CalibrationTests(unittest.TestCase):
-    def test_missing_failure_class_stops_before_fitting_or_baseline_claim(self):
+    def test_one_rare_failure_stops_before_fitting_or_baseline_claim(self):
         records=[]
         for i in range(6):
             for model in ('gpt-6-luna','gpt-6.1-sol'):
-                records.append({'task_id':str(i),'model':model,'resolved':True if model.endswith('sol') else i%2==0,'scenario_cost':1})
+                records.append({'task_id':str(i),'model':model,'resolved':i!=0 if model.endswith('sol') else i%2==0,'scenario_cost':1})
         with patch('ttgl.model_delegation.calibration.load_cores') as fit:
             result=calibrate({'partition':'development','records':records,'evaluation_ids':['unseen']})
             fit.assert_not_called()

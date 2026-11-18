@@ -10,7 +10,7 @@ import shutil
 import time
 from pathlib import Path
 from ..experience_routing.checkpoints import manifest
-from ..experience_routing.io import digest, write_new, read, file_digest
+from ..experience_routing.io import digest, write_new, read, file_digest, now
 from .accumulation import retrieve
 from .episode import run_episode
 
@@ -99,7 +99,9 @@ class NativeCampaignRunner:
                     raise ValueError('Frozen Observatory configuration required for this operating point')
                 point_config = config['delegation']
             cfg = {**point_config, 'task': task, 'experiences': snapshot['experiences'],
-                   'registration': config['registration']}
+                   'registration': config['registration'], 'now': now()}
+            if config.get('candidate_root'):
+                cfg['worker_scratch_root'] = str(Path(config['candidate_root'])/digest(assignment)/'workers')
             # The tool uses the same immutable snapshot. Public attribution,
             # source/time exclusions and evidence routing still precede dispatch.
             cfg['context'] = {**cfg['context'], 'watermark': config['publication_watermark']}

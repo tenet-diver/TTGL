@@ -166,10 +166,17 @@ def run_campaign(campaign, output, execute, *, qualification):
     output = Path(output)
     # An existing owner is a reconciliation case, never a fresh invocation.
     write_new(output/'owner.json', {'campaign_id': campaign['campaign_id']})
+    executed = unrun = 0
     for assignment in campaign['assignments']:
         folder = output/assignment['assignment_id']
         write_new(folder/'started.json', assignment)
         try:
+            if assignment.get('execution_disposition') == 'infeasible_before_heldout':
+                write_new(folder/'completion.json', {'status':'unrun_infeasible',
+                    'native_invocations':0,'quality':None,'scenario_cost':None,
+                    'reason':'No qualified policy meets the frozen development operating-point budget'})
+                unrun += 1
+                continue
             result = execute(deepcopy(assignment), folder)
             if result.get('status') not in ('completed', 'public_failure'):
                 raise ValueError('Uncertain native assignment; stop without retry')
@@ -181,11 +188,13 @@ def run_campaign(campaign, output, execute, *, qualification):
             if any(k in result for k in ('grade', 'resolved', 'hidden_feedback')):
                 raise ValueError('Live adapter must not receive hidden grades')
             write_new(folder/'completion.json', result)
+            executed += 1
         except BaseException as error:
             write_new(folder/'stopped.json', {'error': type(error).__name__, 'automatic_retry': False})
             raise
     write_new(output/'completion.json', {'campaign_id': campaign['campaign_id'],
-              'assignments_completed': len(campaign['assignments']), 'grades_sealed': True})
+              'assignments_completed': executed, 'assignments_unrun_infeasible': unrun,
+              'assignments_registered': len(campaign['assignments']), 'grades_sealed': True})
 
 
 def build_comparison_campaign(partitions, snapshots, *, limits, source_pins, baseline_pins,
@@ -206,6 +215,10 @@ def build_comparison_campaign(partitions, snapshots, *, limits, source_pins, bas
         points=points, limits=limits, source_pins=source_pins, baseline_pins=baseline_pins, stage=stage)
     by_id = {a['assignment_id']: a for a in [*core['assignments'], *comparative['assignments']]}
     rows = list(by_id.values())
+    for row in rows:
+        feasibility = baseline_pins.get(row['system'], {}).get('point_feasibility', {})
+        if feasibility.get(row['point']) is False:
+            row['execution_disposition'] = 'infeasible_before_heldout'
     body = {k: v for k, v in core.items() if k not in ('campaign_id', 'assignments', 'maximum_totals')}
     body.update(assignments=rows, maximum_totals={k: v*len(rows) for k, v in limits.items()},
                 matrix_kind='core_accumulation_plus_final_snapshot_required_baselines',
