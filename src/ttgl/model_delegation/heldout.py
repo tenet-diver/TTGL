@@ -60,7 +60,10 @@ def recorded_parent_deadline(folder):
 
 
 def run(config_path):
-    config_path=Path(config_path).resolve();config=read(config_path)
+    config_path = Path(config_path).resolve()
+    config = read(config_path)
+    if config.get('allow_model_execution') is not True or config.get('automatic_retries') != 0:
+        raise ValueError('An enabled held-out registration with zero retries is required')
     root=Path(config['root']);output=Path(config['private_output_root'])
     if (output/'heldout-started.json').exists():raise ValueError('Started heldout unit cannot be repeated')
     ready=read(output/'source-archive-ready.json')
