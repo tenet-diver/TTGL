@@ -213,6 +213,29 @@ class AccumulationTests(unittest.TestCase):
             self.assertEqual(summary['assignments_native_timeout'], 1)
             self.assertEqual(summary['assignments_completed'], len(seen) - 1)
 
+    def test_metered_elapsed_overrun_keeps_usage_and_allows_next_assignment(self):
+        from ttgl.experience_routing.io import read
+        campaign = self.campaign()
+        qualification = {'campaign_id': campaign['campaign_id'], 'execution_ready': True,
+                         'source_pins': campaign['source_pins'], 'retain_metered_wall_overruns': True}
+        seen = []
+
+        def execute(assignment, _):
+            seen.append(assignment['assignment_id'])
+            usage = dict(assignment['limits'])
+            if len(seen) == 1:
+                usage['maximum_elapsed_seconds'] += 1
+            return {'status': 'completed', 'usage': usage}
+
+        with tempfile.TemporaryDirectory() as directory:
+            run_campaign(campaign, directory, execute, qualification=qualification)
+            self.assertEqual(len(seen), len(campaign['assignments']))
+            result = read(Path(directory) / seen[0] / 'completion.json')
+            self.assertEqual(result['status'], 'budget_rejected')
+            cap = campaign['assignments'][0]['limits']['maximum_elapsed_seconds']
+            self.assertEqual(result['usage']['maximum_elapsed_seconds'], cap + 1)
+            self.assertEqual(read(Path(directory) / 'completion.json')['assignments_budget_rejected'], 1)
+
     def test_complete_campaign_retains_public_failures_without_grading(self):
         c = self.campaign()
         q = {'campaign_id': c['campaign_id'], 'source_pins': c['source_pins'], 'execution_ready': True}

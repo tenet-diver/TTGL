@@ -166,7 +166,7 @@ def run_campaign(campaign, output, execute, *, qualification, after_completion=N
     output = Path(output)
     # An existing owner is a reconciliation case, never a fresh invocation.
     write_new(output/'owner.json', {'campaign_id': campaign['campaign_id']})
-    executed = unrun = shared = deadlines = 0
+    executed = unrun = shared = deadlines = wall_rejections = 0
     terminal_ids = set()
     for assignment in campaign['assignments']:
         folder = output/assignment['assignment_id']
@@ -202,10 +202,20 @@ def run_campaign(campaign, output, execute, *, qualification, after_completion=N
             if result.get('status') not in ('completed', 'public_failure'):
                 raise ValueError('Uncertain native assignment; stop without retry')
             usage = result.get('usage', {})
-            for k, cap in assignment['limits'].items():
-                observed = usage.get(k)
-                if type(observed) not in (int, float) or not 0 <= observed <= cap:
-                    raise ValueError('Missing usage or exceeded assignment limit: ' + k)
+            wall_rejected = False
+            for key, cap in assignment['limits'].items():
+                observed = usage.get(key)
+                if type(observed) not in (int, float) or not 0 <= observed < float('inf'):
+                    raise ValueError('Missing or nonfinite assignment usage: ' + key)
+                if observed <= cap:
+                    continue
+                if key == 'maximum_elapsed_seconds' and qualification.get('retain_metered_wall_overruns') is True:
+                    wall_rejected = True
+                    continue
+                raise ValueError('Exceeded assignment limit: ' + key)
+            if wall_rejected:
+                result = {**result, 'status': 'budget_rejected', 'budget_failure': 'full_assignment_wall_time'}
+                wall_rejections += 1
             write_new(folder/'completion.json', result)
             terminal_ids.add(assignment['assignment_id'])
             executed += 1
@@ -217,6 +227,7 @@ def run_campaign(campaign, output, execute, *, qualification, after_completion=N
     write_new(output/'completion.json', {'campaign_id': campaign['campaign_id'],
               'assignments_completed': executed, 'assignments_unrun_infeasible': unrun,
               'assignments_shared_duplicate_policy': shared, 'assignments_native_timeout': deadlines,
+              'assignments_budget_rejected': wall_rejections,
               'assignments_registered': len(campaign['assignments']), 'grades_sealed': True})
 
 

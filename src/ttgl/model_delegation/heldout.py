@@ -207,6 +207,9 @@ def run(config_path):
                     'scope_flags': last['invalid_paths'], 'public_check_passed': last['public_check_passed'],
                     'grade_sha256': file_digest(evaluation / 'grade.json'), 'grade_archives': artifacts,
                 }
+            if result['status'] == 'budget_rejected':
+                grades[ident].update(status='budget_rejected', protocol_resolved=False,
+                                     budget_failure='full_assignment_wall_time')
     final = {'campaign_id': campaign['campaign_id'], 'grades': list(grades.values()),
              'all_native_generation_finished_before_grading': True, 'cash_expense': None, 'automatic_retries': 0}
     completion = write_new(output / 'completion.json', final)
