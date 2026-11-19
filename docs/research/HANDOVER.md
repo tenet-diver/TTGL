@@ -4562,3 +4562,31 @@ duplicate references before any Observatory operating-point disposition.
 Apply the prepared code only after 038 closes. The private registration
 helper for 039 requires the actual combined generation seal, grades and
 development selection before it can freeze an execution manifest.
+
+038 then finished four more assignments. Its fifth model response was
+complete and metered at 171,556 tokens, with a retained candidate. The
+assigned 420-second full envelope was breached. The start-to-stop receipt
+window is 432.1 seconds, and the exact outer monotonic value was lost when
+the guard stopped. Preserve this as a wall-budget failure, with its actual
+usage and full candidate independent of its eventual official grade.
+
+[Continuation 040](../../experiments/model-led-delegation-001/observatory-development-continuation-040.json)
+admits only the remaining 28 untouched assignments under the original
+model, policy, actor and per-assignment caps. It preserves the six already
+admitted completions, the original timeout with unknown native usage and
+the fully metered wall-cap failure. A fully metered elapsed cap breach
+retains its usage and candidate, with a false protocol-admissible outcome
+and separate official grade. Other ambiguities still stop. The exact
+archive was acknowledged before native admission. Active owner at launch
+was PID 278011, exec session 54462. The private output is
+`work/security/model-led-delegation-20261118/continuation-001/observatory-finite-continuation-040`.
+The active-chat scoring supervisor waits for the combined generation
+and grading receipts. Inspect actual claims and processes before any
+continuation. Research schedules stay paused.
+
+The isolated held-out preparation branch now points to `1574c19` and
+passes all 101 focused tests. It also preserves fully metered wall-cap
+failures, behind the future qualification. Preserve the 040 source pins
+until its combined independent grading finishes. SILO free extents were
+trimmed in place, and exact continuation archive read-back still passed.
+No application dependency paths changed.
