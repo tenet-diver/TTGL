@@ -32,6 +32,15 @@ runtime's review coverage limits are retained. Scorer fixtures are synthetic;
 real disjoint native baseline calibration and sufficiency remain gates.
 Schedules stay paused. See the latest [handover](../../docs/research/HANDOVER.md).
 
+## Construction recovery and matched development
+
+The interrupted clean construction stage has 11 complete Luna/Sol pairs.
+Independent preserved-candidate grading resolves 8/11 for Luna and 9/11 for
+Sol. The final planned prefix contains 14 supported public records from seven
+parents. Matched development uses this frozen snapshot and the original 12
+development tasks. See [recovery 030](construction-recovery-030/README.md) and
+[registration 031](../../experiments/model-led-delegation-001/matched-development-031.json).
+
 ## Earlier software and replay checkpoint
 
 The following records preserve the earlier state, before this native continuation.

@@ -4448,3 +4448,42 @@ curves, voluntary routing gains and native FrugalGPT/RouteLLM comparisons remain
 unrun. Main development12/heldout22 are unchanged; six fresh unused candidates
 are reserved for development expansion.96focused tests passed; do not report
 software fixtures as model-quality, cash/quota or net-saving evidence.
+
+## 19 November continuation — construction recovered, matched development active
+
+The Codespace stopped midway through the last construction parent. Recovery030
+accounts for 44 completed invocations, one started-only Sol call and three
+unrun slots. Preserve the started call with unknown usage and grade. The
+remaining Luna endpoint and both annotations for that parent stay unrun.
+
+Recovery restored all 22 completed candidates from local SILO and matched
+their recorded source hashes. All 22 coding rollouts passed the recorded
+environment identity check. Ephemeral annotations preserved their prompts and
+CLI events, with no rollout environment-message coverage. Their captured
+prompts passed the identity scan. All 44 event streams independently reconcile
+to 3,636,846 native tokens, a construction lower bound. On the pinned grader
+Luna resolves 8/11 and Sol 9/11, with 6/11 and 7/11 respectively under public
+check and edit-scope rules. The four planned prefixes hold 0, 6, 9 and 14 public
+records. The final prefix has 11 completed pairs out of 12 registered parents.
+See [recovery 030](../../results/model-led-delegation-001/construction-recovery-030/README.md).
+
+[Matched development 031](../../experiments/model-led-delegation-001/matched-development-031.json)
+has entered generation with the original 12 development tasks, exact restored
+base states and historical control records, and the same frozen final packet
+scope in both arms. The source/archive acknowledgement precedes inference.
+Owner PID 35099 at launch, original exec session 36158. The private output is
+`work/security/model-led-delegation-20261118/continuation-001/matched-development-031`
+with a sibling log. Inspect actual manifests, claims and processes before
+continuing. Preserve the pins and never repeat a started or uncertain model
+call. The 22 held-out tasks have zero new inference. Schedules remain paused.
+
+The exact reduced grader, original Codex CLI 0.169.0, previously approved local
+SILO and patched numerical runtime were recovered. The paired numerical model
+fixture passed after restore, and all 96 focused Python checks passed. The
+private `run-development-calibration-032.sh` audits all paired endpoints and
+then fits the released-method adaptations on disjoint development labels.
+Require actual stage completion before invoking it. If sufficiency fails,
+inspect the frozen rule before using up to six prespecified development
+reserves. Held-out launch additionally needs the Observatory policy selection,
+bounded scratch replay, exact full assignment and budget freeze, and the
+original controls. No further native stage is queued.

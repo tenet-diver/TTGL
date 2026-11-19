@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "study_id": "model-led-delegation-001",
+  "stage": "post-interruption construction reconciliation and grading",
+  "previous_registration": "clean-construction-029.json",
+  "split": "clean-split-028.json",
+  "allow_model_execution": false,
+  "automatic_retries": 0,
+  "schedules_paused": true,
+  "interruption": {
+    "completed_coding": 22,
+    "completed_annotations": 22,
+    "uncertain_coding": {"task_id": "sympy__sympy-23191", "model": "gpt-6.1-sol"},
+    "unrun_coding": {"task_id": "sympy__sympy-23191", "model": "gpt-6-luna"},
+    "unrun_annotations": 2,
+    "disposition": "Preserve the started call as uncertain with unknown usage. Close the registered phase without repeating it, invoking its unmatched endpoint, or replacing its parent."
+  },
+  "grades": {
+    "source": "Restore byte-exact completed coding artifacts from loopback S3 and run the identical pinned independent grader and actor. Restore the pinned task assets and verify the archived candidate and pristine base state hashes against the original construction records.",
+    "denominators": "Report both the 12 assigned parents per model and the 11 complete pairs. Preserve unknown grades for the missing pair.",
+    "seal": "Recorded before reading any construction grade. No benchmark grades enter knowledge or model inputs."
+  },
+  "snapshots": {
+    "planned_parent_prefixes": [0, 4, 8, 12],
+    "completed_pair_counts": [0, 4, 8, 11],
+    "rule": "Preserve original order and count the interrupted parent at the final registered prefix with zero admitted records. Include only supported public records from the 22 completed annotations, after trace and proof reconciliation."
+  },
+  "development_and_heldout": "Development and heldout memberships remain exactly those in split028. The final knowledge snapshot is frozen before development inference. Restore lost scratch independently of inference. Continue under the original training sufficiency and heldout launch gates."
+}

@@ -1,0 +1,640 @@
+{
+  "actual_cash": null,
+  "admissible_resolves": {
+    "gpt-6-luna": 6,
+    "gpt-6.1-sol": 7
+  },
+  "annotation_environment_coverage_gaps": 22,
+  "assigned_per_model": 12,
+  "code_software_tests_passed": 96,
+  "complete_matched_pairs": 11,
+  "completed_parent_population": {
+    "swe_bench_full_outside_verified": 5,
+    "swe_bench_verified": 6
+  },
+  "control_scope": "Official prescribed tests and parser on exact reviewed offline actor with host test setup.",
+  "grades_supplied_to_models": false,
+  "heldout_model_calls": 0,
+  "measured_usage_lower_bound": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 2809984,
+    "input_tokens": 3602337,
+    "output_tokens": 34509,
+    "reasoning_output_tokens": 638,
+    "total_tokens": 3636846
+  },
+  "native_model_calls_this_recovery": 0,
+  "native_tokens_by_role": {
+    "extraction": 350563,
+    "large_execution": 1671506,
+    "small_execution": 1614777
+  },
+  "native_user_overhead_included": false,
+  "new_grades": 22,
+  "official_grades": [
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 14433,
+        "output_tokens": 135,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 14568
+      },
+      "candidate_hash": "6e5ad38011dcdde346042c99148cee27a8103f9562dc0b5a50a95f9f7601f182",
+      "grade_source_hash": "7bbe311be5978fdf9e0d91bec35ecbee6db434fed860781bf7faaee167d876a8",
+      "model": "gpt-6-luna",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 135936,
+        "input_tokens": 157470,
+        "output_tokens": 1128,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 158598
+      },
+      "public_check_passed": true,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-20590"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 12757,
+        "output_tokens": 209,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 12966
+      },
+      "candidate_hash": "d56cfc18cf017c61605d1bf201567a3666931a69d1383d7d0d46eb86a2a895f3",
+      "grade_source_hash": "52f7a34a95ae3d30835533e53da0e7014fb29fef4eebeda491cfdd097be6c5ce",
+      "model": "gpt-6.1-sol",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 82816,
+        "input_tokens": 130272,
+        "output_tokens": 1306,
+        "reasoning_output_tokens": 8,
+        "total_tokens": 131578
+      },
+      "public_check_passed": true,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-20590"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 13912,
+        "output_tokens": 340,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 14252
+      },
+      "candidate_hash": "bde4c5054cdf2d3772ca736d4f079559fd27964399c9e9bf81306cd9141e4031",
+      "grade_source_hash": "2bcca2fbdfc6840f71eee891e50bd214b538a0233603369eb4e7f922d74070d8",
+      "model": "gpt-6-luna",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 105984,
+        "input_tokens": 117811,
+        "output_tokens": 1503,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 119314
+      },
+      "public_check_passed": true,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-20154"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 14034,
+        "output_tokens": 249,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 14283
+      },
+      "candidate_hash": "4a43232055a4ea76d7b80d4cedb5bb36c366fbecabd72db647ea18c8b273530a",
+      "grade_source_hash": "2e9efce15d9531c1b7aaa3050c5e49011673c948a390bdabc4ae53527705b4bb",
+      "model": "gpt-6.1-sol",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 104064,
+        "input_tokens": 142266,
+        "output_tokens": 1391,
+        "reasoning_output_tokens": 7,
+        "total_tokens": 143657
+      },
+      "public_check_passed": true,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-20154"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 13214,
+        "output_tokens": 156,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 13370
+      },
+      "candidate_hash": "3e5a38e4929302d11ba327e512905d5679b7df08d660c32bdaad59641295aa41",
+      "grade_source_hash": "d0a9e2a1554bd5ea112be02b2eccca3a318757f06dfd0997022d7018213f0a6a",
+      "model": "gpt-6-luna",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 102400,
+        "input_tokens": 113377,
+        "output_tokens": 1010,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 114387
+      },
+      "public_check_passed": true,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-19637"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 14636,
+        "output_tokens": 142,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 14778
+      },
+      "candidate_hash": "18809fd84390b76045ad84dd988fe6af06a1b119189a6f7d73c3462c2d868a0a",
+      "grade_source_hash": "4a5adaff3bccd0f94e770d8feed13b0ed38f9f5c987d52d4f4dbe6282ca9a356",
+      "model": "gpt-6.1-sol",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 103168,
+        "input_tokens": 122142,
+        "output_tokens": 1442,
+        "reasoning_output_tokens": 29,
+        "total_tokens": 123584
+      },
+      "public_check_passed": true,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-19637"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 7680,
+        "input_tokens": 12777,
+        "output_tokens": 126,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 12903
+      },
+      "candidate_hash": "7459efd657886489d1307f254c37d5efe72240846a55a95e40089033ff306c85",
+      "grade_source_hash": "61f6102eb5d699da96c887f1c153e8a6f06061fbfdbb17fafe24be1b29b57c00",
+      "model": "gpt-6-luna",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 65792,
+        "input_tokens": 82032,
+        "output_tokens": 708,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 82740
+      },
+      "public_check_passed": false,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-16766"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 15013,
+        "output_tokens": 233,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 15246
+      },
+      "candidate_hash": "55876a46e1c39dd20176201a241c50f8cfe57f4130c27257e2de5de8df674646",
+      "grade_source_hash": "157b627e5b5235a4dcde65275f473e76e5a951285dbccc0ac40233141b286caa",
+      "model": "gpt-6.1-sol",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 115456,
+        "input_tokens": 129957,
+        "output_tokens": 1179,
+        "reasoning_output_tokens": 28,
+        "total_tokens": 131136
+      },
+      "public_check_passed": false,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-16766"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 14396,
+        "output_tokens": 303,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 14699
+      },
+      "candidate_hash": "782ed698ae52568444a44f95e0894aa1aa01ddf197e8fa9dd3f5705126c7a374",
+      "grade_source_hash": "e77f577fe181554da734cb3e01dbbed5441fb6576ab31f60bed2da0c9133fa55",
+      "model": "gpt-6-luna",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 139392,
+        "input_tokens": 160839,
+        "output_tokens": 1166,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 162005
+      },
+      "public_check_passed": false,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-18189"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 13600,
+        "output_tokens": 228,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 13828
+      },
+      "candidate_hash": "52f2377e55ec38e648f654d8fdccae2d8d8637b0515fc75fead047c9138d8c32",
+      "grade_source_hash": "7e9c03b04542007d3bcdfb86f5282767a8edcffdeaa6cffa420c00a39f675744",
+      "model": "gpt-6.1-sol",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 139136,
+        "input_tokens": 160148,
+        "output_tokens": 1256,
+        "reasoning_output_tokens": 15,
+        "total_tokens": 161404
+      },
+      "public_check_passed": false,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-18189"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 7680,
+        "input_tokens": 13647,
+        "output_tokens": 14,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 13661
+      },
+      "candidate_hash": "19d212edd80b0b33674b9ce646cab79fec1366f4318f7bb296c2986fe17f4392",
+      "grade_source_hash": "8c9e0c0d2bc392230e5df09cf1b8a3e2b190ed78a118ebc9b13d66255e8d03d4",
+      "model": "gpt-6-luna",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 106880,
+        "input_tokens": 138178,
+        "output_tokens": 1161,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 139339
+      },
+      "public_check_passed": true,
+      "resolved": false,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-21379"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 37504,
+        "input_tokens": 46763,
+        "output_tokens": 129,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 46892
+      },
+      "candidate_hash": "569c1f9c7bdc1de41e2d550a9ae1d53102c78b083a2ff21497905e03355a800e",
+      "grade_source_hash": "1d1aa9b11347e3f76e23651def75ed3f239fce225979b6a39d88a06ba22f2bbf",
+      "model": "gpt-6.1-sol",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 127232,
+        "input_tokens": 169905,
+        "output_tokens": 1466,
+        "reasoning_output_tokens": 29,
+        "total_tokens": 171371
+      },
+      "public_check_passed": true,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-21379"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 7680,
+        "input_tokens": 12249,
+        "output_tokens": 157,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 12406
+      },
+      "candidate_hash": "218364a58ce9fc1bee36648f62c3692191a9dec1a5730f54b2cdd68de20911d1",
+      "grade_source_hash": "5808aefa1350066fdc9433eecb6dc5415cf827a2777a91c3aed82ec7a58a0bd1",
+      "model": "gpt-6-luna",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 107904,
+        "input_tokens": 125613,
+        "output_tokens": 1128,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 126741
+      },
+      "public_check_passed": true,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-22706"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 7680,
+        "input_tokens": 14000,
+        "output_tokens": 147,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 14147
+      },
+      "candidate_hash": "da4c530b74878390755d36d55612470d65a04583a22751d3b181d46040a57cb6",
+      "grade_source_hash": "3e91d66f146baa708e122b662c9070b16e711188734ad2968576f8bf68cfb5ae",
+      "model": "gpt-6.1-sol",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 100480,
+        "input_tokens": 122010,
+        "output_tokens": 1169,
+        "reasoning_output_tokens": 15,
+        "total_tokens": 123179
+      },
+      "public_check_passed": true,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-22706"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 18180,
+        "output_tokens": 238,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 18418
+      },
+      "candidate_hash": "aab60317822b2551cd35c16889ebd765eea5f613ef3c075ff9c9a0e19f327e30",
+      "grade_source_hash": "3a9144bf7b2c3fb7fef7c246e3a1d2796e600e4e457e7d4bfffc0abf4d10d950",
+      "model": "gpt-6-luna",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 306944,
+        "input_tokens": 337268,
+        "output_tokens": 2747,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 340015
+      },
+      "public_check_passed": true,
+      "resolved": false,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-23560"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 16159,
+        "output_tokens": 180,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 16339
+      },
+      "candidate_hash": "c7dd7c262e9a476011d6ec3673fad88c7d268beb2afa194fb8ac5cf548565b27",
+      "grade_source_hash": "78314dd4697adb28d4da21e3364fb895acd56353b394e8bb5fa510426f608690",
+      "model": "gpt-6.1-sol",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 270464,
+        "input_tokens": 288105,
+        "output_tokens": 3063,
+        "reasoning_output_tokens": 403,
+        "total_tokens": 291168
+      },
+      "public_check_passed": true,
+      "resolved": false,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-23560"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 13602,
+        "output_tokens": 185,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 13787
+      },
+      "candidate_hash": "aaf8a563107a77ebea5b0c959c9fab3608b1b54517b538d18df70872b8767b3d",
+      "grade_source_hash": "e0267bcefd72ed457759504ee981bceace482a8e2b68c9696671769ac9a928a7",
+      "model": "gpt-6-luna",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 82048,
+        "input_tokens": 116340,
+        "output_tokens": 1013,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 117353
+      },
+      "public_check_passed": true,
+      "resolved": false,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-22773"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 7680,
+        "input_tokens": 13949,
+        "output_tokens": 252,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 14201
+      },
+      "candidate_hash": "0cd9e341dd6f20b6ec55dd72ec1ec6c76826c465d067e544a129f2f413c188f1",
+      "grade_source_hash": "6a016c783d84bdbd7e389d5bbb33ca5bbcd0f64f7df2e77b3148bd70caabc1c5",
+      "model": "gpt-6.1-sol",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 100992,
+        "input_tokens": 123761,
+        "output_tokens": 1419,
+        "reasoning_output_tokens": 28,
+        "total_tokens": 125180
+      },
+      "public_check_passed": true,
+      "resolved": false,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-22773"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 15513,
+        "output_tokens": 197,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 15710
+      },
+      "candidate_hash": "bf22e534f95cf7844b8906c1f758eb45be3729d5ee32105240743029b4b14efe",
+      "grade_source_hash": "f0e7db6488d58cb54fa330eddeb52a214d6236bfb485d2d281de336402deb18c",
+      "model": "gpt-6-luna",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 102272,
+        "input_tokens": 143834,
+        "output_tokens": 795,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 144629
+      },
+      "public_check_passed": true,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-24325"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 7680,
+        "input_tokens": 15105,
+        "output_tokens": 238,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 15343
+      },
+      "candidate_hash": "0d410f9d90e5f0cd677445c0b56a4107c08e7954a0625f5f4ee8cad213bc457b",
+      "grade_source_hash": "64f94589742f8a402f01cb32a6c30e017a708905fdc2f83ba40650d9fcad028a",
+      "model": "gpt-6.1-sol",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 95616,
+        "input_tokens": 125948,
+        "output_tokens": 1611,
+        "reasoning_output_tokens": 68,
+        "total_tokens": 127559
+      },
+      "public_check_passed": true,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-24325"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 7680,
+        "input_tokens": 13413,
+        "output_tokens": 158,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 13571
+      },
+      "candidate_hash": "321e79b88b38bf3267d824d4a337d62121cdf21417761c42dd2e9ec214668e31",
+      "grade_source_hash": "e06a0891b26886fa1bce07ca41d16fb4c8ca6307ec670771dac8da5c9a026862",
+      "model": "gpt-6-luna",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 88320,
+        "input_tokens": 108782,
+        "output_tokens": 874,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 109656
+      },
+      "public_check_passed": true,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-24152"
+    },
+    {
+      "annotation_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 7680,
+        "input_tokens": 14995,
+        "output_tokens": 200,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 15195
+      },
+      "candidate_hash": "83468ea082ee5a1313935cfbcf918846f394e0df0c0c96a3acc6720a0032d04d",
+      "grade_source_hash": "95d91e3338ba402c161a4461646e52441cf55c05973bdfb798738c7467ca06d4",
+      "model": "gpt-6.1-sol",
+      "native_usage": {
+        "cache_write_input_tokens": 0,
+        "cached_input_tokens": 127744,
+        "input_tokens": 139932,
+        "output_tokens": 1758,
+        "reasoning_output_tokens": 8,
+        "total_tokens": 141690
+      },
+      "public_check_passed": true,
+      "resolved": true,
+      "scope_flags": [],
+      "task_id": "sympy__sympy-24152"
+    }
+  ],
+  "official_resolves": {
+    "gpt-6-luna": 8,
+    "gpt-6.1-sol": 9
+  },
+  "phase": {
+    "annotations_completed": 22,
+    "annotations_unrun": 2,
+    "coding_completed": 22,
+    "coding_uncertain": 1,
+    "coding_unrun": 1,
+    "total_metered_calls": 44
+  },
+  "prefixes": [
+    {
+      "completed_pairs": 0,
+      "evidence_count": 0,
+      "planned_parents": 0,
+      "snapshot_id": "ddd678378c7f8367ba1b1c6ad868eab74871add659388ff1107352c086e44128",
+      "supporting_parents": 0
+    },
+    {
+      "completed_pairs": 4,
+      "evidence_count": 6,
+      "planned_parents": 4,
+      "snapshot_id": "6aa5def8822561ec9cb54294dfd7050ea3de905eb43d68f355a5405091af7862",
+      "supporting_parents": 2
+    },
+    {
+      "completed_pairs": 8,
+      "evidence_count": 9,
+      "planned_parents": 8,
+      "snapshot_id": "4c4dc63a8fd4836fb504d726033c9b93a345d41c797b16d587600336bcb7f839",
+      "supporting_parents": 4
+    },
+    {
+      "completed_pairs": 11,
+      "evidence_count": 14,
+      "planned_parents": 12,
+      "snapshot_id": "7ee6f6bd343588abfeac49ef5ccb67914719bd2c3f2c97b5bb456155ddb2d3d7",
+      "supporting_parents": 7
+    }
+  ],
+  "private_completion_sha256": "c23dd9af9174751a4fa4cd0160f8fca930b0a679f9eacd48a2847cd3bd355b39",
+  "protocol_sha256": "4ba784d8fb1848170d8efeb8b9d21db1b762c9381787529e90b3f77b1158d0e7",
+  "raw_client_archive_readbacks": 44,
+  "recorded_environment_audits_passed": 22,
+  "schema_version": 1,
+  "status": "reconciled_partial_construction",
+  "supported_public_outcomes": {
+    "fail": 2,
+    "pass": 12
+  },
+  "unknown_grades_per_model": 1,
+  "whole_construction_usage": null
+}

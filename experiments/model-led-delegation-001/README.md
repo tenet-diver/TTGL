@@ -189,3 +189,12 @@ separate numerical process. This is an explicit adaptation with real native
 calibration still pending. Standard-library orchestration uses the existing native
 Codex and local S3/PostgreSQL integration; the optional numerical runtime has its
 own pinned graph and security receipts. Research schedules remain paused.
+
+## Interruption recovery
+
+[Recovery 030](construction-recovery-030.json) reconciles the completed
+construction candidates from the original registration. The final registered
+parent has an uncertain Sol invocation and an unrun Luna assignment. It stays
+in the denominator and contributes zero records to the final planned prefix.
+Development and held-out task memberships come from
+[split 028](clean-split-028.json).
