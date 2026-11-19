@@ -5,12 +5,13 @@ assignments finish. Infeasible development points remain explicitly unrun.
 """
 from pathlib import Path
 from tempfile import TemporaryDirectory
+import time
 from .accumulation import run_campaign
 from .campaign import NativeCampaignRunner
 from .baseline_process import LocalBaselineProcess
 from .baselines import RouteLLMNative,FrugalGPTNative
 from .retention import LocalS3Retention
-from .artifacts import restore_delta
+from .artifacts import restore_delta, retain_base
 from .scratch import release_candidate
 from .native_swe import public_contract,grade_candidate
 from ..experience_routing.io import read,write_new,file_digest,digest
@@ -104,9 +105,28 @@ def run(config_path):
     scratch.mkdir(parents=True, exist_ok=True)
     if any(scratch.iterdir()):
         raise ValueError('Held-out scratch must be empty before the first admission')
+    client = LocalS3Retention(root, output / 'retention')
+    base_receipt = output / 'retained-pristine-bases.json'
+    if base_receipt.exists():
+        material = read(base_receipt)
+        base_artifacts = material['artifacts']
+        if material['campaign_id'] != campaign['campaign_id'] or set(base_artifacts) != set(tasks):
+            raise ValueError('Retained pristine base set differs from the held-out campaign')
+    else:
+        elapsed = time.monotonic()
+        base_artifacts = {}
+        with TemporaryDirectory(prefix='pristine-bases-', dir=scratch) as directory:
+            for task_id, public in tasks.items():
+                base = retain_base(public['source'], directory, client)
+                base_artifacts[task_id] = base
+        write_new(base_receipt, {'campaign_id':campaign['campaign_id'], 'artifacts':base_artifacts,
+                                'model_calls':0, 'public_preparation_seconds':time.monotonic() - elapsed})
+    for task_id, public in tasks.items():
+        if base_artifacts[task_id]['state_hash'] != public['source_state_hash']:
+            raise ValueError('Retained pristine base differs from the frozen task source')
+    client.retain_file(base_receipt, kind='heldout-pristine-base-receipts', identity=campaign['campaign_id'])
     write_new(output/'heldout-started.json',{'registration_sha256':file_digest(config_path),'campaign_id':campaign['campaign_id'],
         'grades_sealed':True,'automatic_retries':0})
-    client=LocalS3Retention(root,output/'retention')
     process=RecordedBaselineProcess(config['baseline_parameters'],config_sha256=config['baseline_parameters_sha256'],
         site=config['numeric_site'],native_libraries=config['native_libraries'],root=root,evidence=output/'local-baseline',client=client)
     try:
@@ -117,7 +137,7 @@ def run(config_path):
             if strategy is None:raise ValueError('Development-infeasible point cannot invoke a model')
             return FrugalGPTNative(process.cascade(pins,strategy),receipts['frugalgpt_native'],evaluation_ids=evaluation_ids)
         runtime={**config['runtime'],'registration':str(config_path),'source_home':config['source_home'],
-                 'image_review':read(config['image_review'])}
+                 'image_review':read(config['image_review']), 'base_artifacts':base_artifacts}
         runner=NativeCampaignRunner(root=root,tasks=tasks,snapshots=snapshots,config=runtime,
                                    routellm=router,frugalgpt_factory=cascade)
         def execute(assignment, folder):

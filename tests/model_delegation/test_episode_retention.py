@@ -3,6 +3,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 from ttgl.personal import Response
+from ttgl.experience_routing.checkpoints import manifest
 from ttgl.experience_routing.io import read, file_digest
 from ttgl.model_delegation.episode import run_episode
 
@@ -35,9 +36,15 @@ class EpisodeRetentionTests(unittest.TestCase):
                  patch('ttgl.model_delegation.episode.ActorSubscriptionBackend',Backend), \
                  patch('ttgl.model_delegation.episode.LocalS3Retention') as archive:
                 archive.return_value.retain_file.return_value={'artifactId':'retained'}
+                retained_base = {'format': 'base-tar-gzip-v1', 'state_hash': manifest(source)['state_hash'],
+                                 'archive': {'artifactId': 'previously-retained', 'sha256': 'base-archive'}}
                 result=run_episode(root=root,output=root/'attempt',source=source,source_home=root,
                     model='gpt-6-luna',image_review={'image_id':'actor'},task={'task_id':'task','prompt':'repair',
-                    'allowed_write_paths':['app.py'],'public_check':['python3','check.py']},packet={})
+                    'allowed_write_paths':['app.py'],'public_check':['python3','check.py']},packet={},
+                    retained_base=retained_base)
+            archives = [call.kwargs['kind'] for call in archive.return_value.retain_file.call_args_list]
+            self.assertNotIn('base-source', archives)
+            self.assertEqual(result['candidate_archive']['base'], retained_base)
             self.assertFalse(result['actor_tools_used']);self.assertEqual(result['native_usage']['total_tokens'],110)
             self.assertEqual(result['changed_paths'],[]);self.assertFalse(result['model_report']['complete'])
             self.assertIsNone(result['benchmark_grade'])

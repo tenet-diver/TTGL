@@ -79,7 +79,7 @@ class NativeCampaignRunner:
                 source_home=config['source_home'], model=model, image_review=config['image_review'],
                 task=task, packet=common, timeout_seconds=min(limits['maximum_elapsed_seconds'], config['per_call_timeout']),
                 maximum_tool_calls=config['maximum_tool_calls'], delegation=delegation,
-                registration=config['registration'])
+                registration=config['registration'], retained_base=config.get('base_artifacts', {}).get(task['task_id']))
             results.append(result)
             sources.append(source)
             episodes.append(episode)

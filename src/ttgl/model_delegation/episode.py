@@ -29,7 +29,7 @@ SCHEMA = {'type': 'object', 'additionalProperties': False,
 
 
 def run_episode(*, root, output, source, source_home, model, image_review, task,
-                packet, timeout_seconds=180, maximum_tool_calls=12, delegation=None, registration=None):
+                packet, timeout_seconds=180, maximum_tool_calls=12, delegation=None, registration=None, retained_base=None):
     root, output, source = Path(root).resolve(), Path(output).resolve(), Path(source).resolve()
     if model not in ('gpt-6-luna', 'gpt-6.1-sol') or not 0 < timeout_seconds <= 900:
         raise ValueError('Registered finite Luna/Sol episode required')
@@ -42,6 +42,12 @@ def run_episode(*, root, output, source, source_home, model, image_review, task,
     if not 0 < maximum_tool_calls <= frozen.get('maximum_tool_calls', 0):
         raise ValueError('Episode tool cap exceeds registration')
     before = manifest(source)
+    if retained_base is not None and (
+        retained_base.get('format') != 'base-tar-gzip-v1'
+        or retained_base.get('state_hash') != before['state_hash']
+        or not retained_base.get('archive', {}).get('artifactId')
+    ):
+        raise ValueError('Retained pristine base differs from the episode source')
     write_new(output/'started.json', {'task_id': task['task_id'], 'model': model,
         'started_at': now(),
         'source_state': before['state_hash'], 'packet_hash': digest(packet),
@@ -51,11 +57,12 @@ def run_episode(*, root, output, source, source_home, model, image_review, task,
     client.retain_file(output/'started.json', kind='episode-registration', identity=task['task_id']+':'+model)
     actor = ExactModeActor(image=image_review['image_id'], review=image_review, root=output/'actor',
                             identity=str(output), base_commit=before['state_hash'])
-    base_artifact = None
+    base_artifact = retained_base
     budget_start = time.monotonic()
     ledger = UsageLedger(output/'accounting')
     try:
-        base_artifact = retain_base(source, output, client)
+        if base_artifact is None:
+            base_artifact = retain_base(source, output, client)
         container = actor.start(source)
         remaining = timeout_seconds-(time.monotonic()-budget_start)
         if remaining <= 20:
