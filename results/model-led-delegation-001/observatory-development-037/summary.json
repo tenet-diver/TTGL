@@ -1,0 +1,169 @@
+{
+  "actual_public_routing_tool_calls": {
+    "delegate_subtask": 0,
+    "route_subtask": 0
+  },
+  "admitted_worker_invocations": 0,
+  "all_policy_results": {
+    "success_threshold_065": {
+      "assigned": 12,
+      "common_quality_tasks": 11,
+      "common_resolved": 6,
+      "known_official_resolutions": 9,
+      "mean_all_assigned_model_scenario_usd": 0.08792440000000001,
+      "minimum_success_estimate": 0.65,
+      "point": "success_threshold_065",
+      "unknown_official_grades": 0,
+      "versus_matched_sol_development": {
+        "actual_cash_saving": null,
+        "evaluable": true,
+        "matched_tasks": 11,
+        "observed_quality_difference": 0.0,
+        "observed_scenario_saving": 0.13359573721603368,
+        "relative_quality_retention": 1.0,
+        "target_met": false,
+        "task_bootstrap_95_percent": {
+          "quality_difference": [
+            -0.2727272727272727,
+            0.2727272727272727
+          ],
+          "relative_retention": [
+            0.5714285714285714,
+            1.75
+          ],
+          "saving": [
+            -0.031160955914241173,
+            0.2669609315056539
+          ]
+        },
+        "uncertainty_scope": "Task-cluster resampling of one registered attempt per cell; conditional on this compatibility subset and model aliases, not inference-repeat or population noninferiority proof"
+      }
+    },
+    "success_threshold_070": {
+      "assigned": 12,
+      "common_quality_tasks": 11,
+      "common_resolved": 4,
+      "known_official_resolutions": 8,
+      "mean_all_assigned_model_scenario_usd": 0.08926486666666666,
+      "minimum_success_estimate": 0.7,
+      "point": "success_threshold_070",
+      "unknown_official_grades": 0,
+      "versus_matched_sol_development": {
+        "actual_cash_saving": null,
+        "evaluable": true,
+        "matched_tasks": 11,
+        "observed_quality_difference": -0.18181818181818182,
+        "observed_scenario_saving": 0.12540389779051653,
+        "relative_quality_retention": 0.6666666666666666,
+        "target_met": false,
+        "task_bootstrap_95_percent": {
+          "quality_difference": [
+            -0.5454545454545454,
+            0.18181818181818182
+          ],
+          "relative_retention": [
+            0.16666666666666666,
+            1.5
+          ],
+          "saving": [
+            -0.036787899385551714,
+            0.2582649145639504
+          ]
+        },
+        "uncertainty_scope": "Task-cluster resampling of one registered attempt per cell; conditional on this compatibility subset and model aliases, not inference-repeat or population noninferiority proof"
+      }
+    },
+    "success_threshold_075": {
+      "assigned": 12,
+      "common_quality_tasks": 11,
+      "common_resolved": null,
+      "known_official_resolutions": 7,
+      "mean_all_assigned_model_scenario_usd": null,
+      "minimum_success_estimate": 0.75,
+      "point": "success_threshold_075",
+      "unknown_official_grades": 1,
+      "versus_matched_sol_development": {
+        "evaluable": false,
+        "reason": "Unknown matched quality or full model-inference scenario",
+        "target_met": null
+      }
+    }
+  },
+  "assigned_slots": 36,
+  "automatic_retries": 0,
+  "cash_expense": null,
+  "certified_completed_environment_audits": 35,
+  "complete_in_cap": 28,
+  "grade_completion_sha256": "0ed4a19813179bc3c80c2e17de47717534338ffc5fb91400e2fc024fe35c3011",
+  "heldout_calls": 0,
+  "known_official_grades": 35,
+  "matched_admissible_quality_tasks": 11,
+  "matched_standalone_sol_admissible": 6,
+  "metered_wall_cap_failures": 7,
+  "native_metered_positive": 35,
+  "native_timeouts": 1,
+  "native_usage_lower_bound": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 5589504,
+    "input_tokens": 6652465,
+    "output_tokens": 53076,
+    "reasoning_output_tokens": 3948,
+    "total_tokens": 6705541
+  },
+  "none_repeated": true,
+  "operating_point_budgets": {
+    "balanced": 0.050291300000000004,
+    "cost": 0.010058260000000001,
+    "quality": 0.10058260000000001
+  },
+  "schema_version": 1,
+  "selection": {
+    "balanced": null,
+    "cost": null,
+    "quality": {
+      "assigned": 12,
+      "common_quality_tasks": 11,
+      "common_resolved": 6,
+      "known_official_resolutions": 9,
+      "mean_all_assigned_model_scenario_usd": 0.08792440000000001,
+      "minimum_success_estimate": 0.65,
+      "point": "success_threshold_065",
+      "unknown_official_grades": 0,
+      "versus_matched_sol_development": {
+        "actual_cash_saving": null,
+        "evaluable": true,
+        "matched_tasks": 11,
+        "observed_quality_difference": 0.0,
+        "observed_scenario_saving": 0.13359573721603368,
+        "relative_quality_retention": 1.0,
+        "target_met": false,
+        "task_bootstrap_95_percent": {
+          "quality_difference": [
+            -0.2727272727272727,
+            0.2727272727272727
+          ],
+          "relative_retention": [
+            0.5714285714285714,
+            1.75
+          ],
+          "saving": [
+            -0.031160955914241173,
+            0.2669609315056539
+          ]
+        },
+        "uncertainty_scope": "Task-cluster resampling of one registered attempt per cell; conditional on this compatibility subset and model aliases, not inference-repeat or population noninferiority proof"
+      }
+    }
+  },
+  "selection_sha256": "07cc3f6a4102c27bcf18032be1e605f03e71ef9476ae2dbb552b069c2b20e3b9",
+  "source_task_count": 12,
+  "status": "complete_routing_development",
+  "whole_phase_native_usage": {
+    "cache_write_input_tokens": null,
+    "cached_input_tokens": null,
+    "input_tokens": null,
+    "output_tokens": null,
+    "reasoning_output_tokens": null,
+    "total_tokens": null
+  }
+}

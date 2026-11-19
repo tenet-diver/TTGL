@@ -45,6 +45,15 @@ development tasks. See [recovery 030](construction-recovery-030/README.md) and
 metered endpoint calls and 11 fully graded pairs. Both baseline adaptations
 passed the development calibration gate. Held-out comparisons remain pending.
 
+[Observatory routing development](observatory-development-037/README.md)
+reconciles all 36 assigned slots. The quality point selected threshold 0.65,
+with 6/11 matched admissible resolutions and 13.4% lower inference cost in the
+historical-rate scenario. The recorded worker count was zero.
+
+[Held-out registration 039](heldout-comparison-039/README.md) freezes all
+440 slots and reports the measured persistent storage blocker. It remains
+disabled with zero held-out inference.
+
 ## Earlier software and replay checkpoint
 
 The following records preserve the earlier state, before this native continuation.

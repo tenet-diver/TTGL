@@ -4604,3 +4604,35 @@ installing a package. Exact SILO read-back passed again. The private
 `capacity-maintenance-20261119/restore-cache.py` rehydrates the optional
 cache after a temporary filesystem reset. Check durable physical capacity
 before the 039 base preparation and held-out admissions.
+
+## Routing development complete and held-out matrix archived
+
+The 037, 038 and 040 stages closed every one of the 36 assigned routing slots
+without repeats. Twenty-eight completed within cap, seven had recorded
+usage and wall-cap failure, and one native deadline left its usage unknown.
+Independent replay produced 35 official grades. The selection rule chose
+threshold 0.65 at the quality point. The cost and balanced points were
+infeasible. On the fixed 11 common tasks the selected point matched Sol at
+6/11 admissible resolutions, with 13.4% lower historical-rate scenario cost.
+All 36 primary calls used Sol and the retained traces show zero route
+requests, delegation requests or Luna worker admissions. The target
+remains unmet. See [routing development](../../results/model-led-delegation-001/observatory-development-037/README.md).
+
+The held-out runtime is integrated on `work` and all 102 focused software
+checks pass. Registration039 is frozen and disabled with the 440 assigned
+slots, including 242 independent native slots, 88 identical-policy
+references and 110 infeasible Observatory slots. Its exact source,
+numerical parameters, selection records and manifest passed S3 read-back.
+The disabled runner rejects the registration before storage preparation.
+Zero held-out calls or grades exist. See [readiness](../../results/model-led-delegation-001/heldout-comparison-039/README.md).
+
+The current blocker is durable local capacity. The model-free sizing probe
+found 160,841,590 missing compressed pristine payload bytes and 95,289,344
+available workspace bytes, before future raw traces and grades. Retain 039
+as immutable evidence. When adequate persistent local capacity is available,
+recheck readiness and register an enabled continuation against the same
+sealed matrix, sources, policies and task memberships. Research schedules
+remain paused. The optional musl backup now resolves to its verified copy
+on the separate local shared filesystem, recorded in
+`capacity-maintenance-20261119/overflow-location.json`. Exact cache and
+archive reads passed after that transfer.

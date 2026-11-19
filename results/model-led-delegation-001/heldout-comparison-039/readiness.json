@@ -1,0 +1,31 @@
+{
+  "assigned_heldout_tasks": 22,
+  "assigned_slots": 440,
+  "campaign_id": "049bfce820f21beab222e224e227b828ce5876bd86ba52a2efed861fa487e76b",
+  "capacity_at_probe": {
+    "already_retained_base_chunks": 0,
+    "compressed_base_bytes": 160841590,
+    "heldout_inference": 0,
+    "missing_base_chunk_payload_bytes": 160841590,
+    "raw_archive_writes": 0,
+    "recorded_at": "2026-11-19T23:55:40.549434+00:00",
+    "registered_base_tasks": 22,
+    "scope": "Exact existing compression and object-key algorithm. Head requests to approved literal-loopback S3 only. Includes pristine bases before candidate, raw trace and grade delivery overhead.",
+    "unique_chunk_bytes": 160841590,
+    "workspace_available_bytes": 95289344
+  },
+  "disabled_registration_verification_passed": true,
+  "exact_frozen_archive_replayed": true,
+  "frozen_assignment_dispositions": {
+    "duplicate_policy": 88,
+    "independent_native": 242,
+    "infeasible_before_heldout": 110
+  },
+  "heldout_grades": 0,
+  "native_calls_started": 0,
+  "registration_sha256": "2ee2c91128c4216e0a073f6dd2fc067a2f78d5c914f78c7a951d3bb4edd821b1",
+  "schedules_paused": true,
+  "schema_version": 1,
+  "software_checks_passed": 102,
+  "status": "archived_capacity_blocked"
+}
