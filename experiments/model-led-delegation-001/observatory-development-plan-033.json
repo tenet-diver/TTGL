@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "study_id": "model-led-delegation-001",
+  "stage": "Prespecified Observatory operating-point selection design",
+  "allow_model_execution": false,
+  "automatic_retries": 0,
+  "schedules_paused": true,
+  "split": "clean-split-028.json",
+  "matched_endpoints": "matched-development-031.json",
+  "selection_rules": "stage-rules-020.json",
+  "requires": [
+    "Complete and audit the matched native development endpoints.",
+    "Apply the registered released-baseline sufficiency gates and bounded reserve rule.",
+    "Freeze exact candidate assignments, source archive, replay budget, capability receipts and approved actor before routing development inference."
+  ],
+  "development_cohort": "The original twelve matched development tasks. If released-baseline labels require the prespecified reserves, use these same original twelve for Observatory selection and compute matched Sol budgets on those twelve.",
+  "common_treatment": "The final frozen public construction snapshot and the same public retrieval and test access as the matched endpoints. Sol remains the controller and can request one bounded Luna implementation subtask, with time reserved for integration. Only runtime public evidence can inform decisions.",
+  "policies": {
+    "success_threshold_065": {
+      "minimum_success_estimate": 0.65
+    },
+    "success_threshold_070": {
+      "minimum_success_estimate": 0.70
+    },
+    "success_threshold_075": {
+      "minimum_success_estimate": 0.75
+    }
+  },
+  "common_policy": {
+    "mode": "similarity_recency",
+    "evidence_profile": "subtask_v2",
+    "half_life_days": 30,
+    "minimum_similarity": 0.45,
+    "minimum_parents": 2,
+    "minimum_weight": 1.0,
+    "maximum_age_days": 365,
+    "maximum_records": 2000,
+    "maximum_packet_bytes": 8000
+  },
+  "operating_point_budget_fractions_of_matched_mean_sol": {
+    "cost": 0.1,
+    "balanced": 0.5,
+    "quality": 1.0
+  },
+  "selection": "After all registered development generations close, score each policy on the same twelve independent grades and full parent/worker inference. Among policies within each budget, maximize protocol-admissible official completions, then minimize total inference scenario cost. Break remaining ties by decreasing evidence threshold. Preserve duplicate and infeasible points, require known measurement coverage, and keep held-out outcomes sealed.",
+  "maximum_new_development_assignments": 36,
+  "maximum_native_invocations": 72,
+  "heldout_inference": false
+}

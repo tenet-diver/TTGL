@@ -198,3 +198,8 @@ parent has an uncertain Sol invocation and an unrun Luna assignment. It stays
 in the denominator and contributes zero records to the final planned prefix.
 Development and held-out task memberships come from
 [split 028](clean-split-028.json).
+
+[Plan 033](observatory-development-plan-033.json) freezes three Observatory
+evidence thresholds and the development selection rule before paired
+development grades. It leaves execution behind the existing registration and
+baseline sufficiency gates.
