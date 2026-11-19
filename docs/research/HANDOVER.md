@@ -4523,3 +4523,29 @@ cost. Track assigned unknowns and meter every parent and worker. Active PID
 and the sibling log. Preserve its source pins until generation and sealed
 grading finish. No parallel stage or retries are authorized by registration.
 Research schedules remain paused.
+
+### Observatory development continued after a bounded timeout
+
+037 stopped on its third assignment. The first two completions reconcile
+to 309,278 measured native tokens. The third started call reached its parent
+deadline with no worker admission and unknown usage. Its partial candidate,
+ledger receipt and native event stream remain retained. The original three
+assignments will be used only as immutable evidence, with the timeout grade
+remaining unknown.
+
+[Continuation 038](../../experiments/model-led-delegation-001/observatory-development-continuation-038.json)
+registers exactly the 33 previously unstarted identities. All original
+per-assignment model, policy, actor, source, cap and public check settings
+are pinned. A verified parent deadline with zero worker admission remains
+an unknown assignment and allows the next independent identity to start.
+Other ambiguities stop admission. The private output is
+`work/security/model-led-delegation-20261118/continuation-001/observatory-continuation-038`
+with a sibling log, PID 230591 at launch and exec session 5200. Inspect actual
+receipts before acting. Grade exact completed artifacts after combined native
+generation closes, and select only from the frozen sufficient development
+evidence. Schedules remain paused.
+
+Model-free held-out preparation reconstituted the 22 original pristine base
+states and recorded control receipts from the frozen split. One real managed
+candidate replay established bounded scratch release for a new redundant
+local copy. Held-out model inference and grades remain untouched.
