@@ -4549,3 +4549,16 @@ Model-free held-out preparation reconstituted the 22 original pristine base
 states and recorded control receipts from the frozen split. One real managed
 candidate replay established bounded scratch release for a new redundant
 local copy. Held-out model inference and grades remain untouched.
+
+Held-out runtime preparation is isolated on local branch
+`observatory-heldout-runtime-prep` at `6dbfbe1`. The live 038 source pins
+remain on `work`. The isolated change verifies point policy identities,
+links identical policies within a task/system/snapshot, releases only
+verified redundant candidate copies, and retains exact sealed grade
+archives. It can preserve verified parent deadlines as unknown under the
+frozen holdout qualification. All 100 focused tests pass there. A model-free
+440-slot fixture from actual released-baseline calibration verifies 88
+duplicate references before any Observatory operating-point disposition.
+Apply the prepared code only after 038 closes. The private registration
+helper for 039 requires the actual combined generation seal, grades and
+development selection before it can freeze an execution manifest.
