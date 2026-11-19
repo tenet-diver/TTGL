@@ -8,7 +8,7 @@ import shutil
 import time
 from .episode import run_episode
 from .knowledge import extract
-from .native_swe import public_contract,grade_candidate
+from .native_swe import EvaluationInfrastructureFailure, grade_candidate, public_contract
 from .accumulation import retrieve
 from .retention import LocalS3Retention
 from ..experience_routing.checkpoints import manifest
@@ -85,9 +85,23 @@ def run(config_path):
         graded=[]
         for result in results:
             _,folder=sources[result['task_id']]
-            grade=grade_candidate(task_directory=folder/'private-task',base_source=folder/'base',candidate_source=result['source'],
-                output=Path(config['evaluation_root'])/result['task_id']/result['model'],image_review=review,grader_subset=config['grader_subset'])
-            graded.append({**result,'resolved':grade['resolved'],'official_grade_sha256':file_digest(Path(config['evaluation_root'])/result['task_id']/result['model']/'grade.json')})
+            evaluation = Path(config['evaluation_root']) / result['task_id'] / result['model']
+            try:
+                grade = grade_candidate(
+                    task_directory=folder / 'private-task', base_source=folder / 'base',
+                    candidate_source=result['source'], output=evaluation,
+                    image_review=review, grader_subset=config['grader_subset'],
+                )
+            except EvaluationInfrastructureFailure as error:
+                graded.append({
+                    **result, 'resolved': None, 'official_grade_sha256': None,
+                    'grade_issue': type(error).__name__,
+                })
+            else:
+                graded.append({
+                    **result, 'resolved': grade['resolved'],
+                    'official_grade_sha256': file_digest(evaluation / 'grade.json'),
+                })
         final={'stage':config['stage'],'results':graded,'public_records':records,'native_tokens':tokens,
                'elapsed_seconds':time.monotonic()-started,'grades_supplied_to_models':False,'automatic_retries':0}
         write_new(output/'completion.json',final);return final

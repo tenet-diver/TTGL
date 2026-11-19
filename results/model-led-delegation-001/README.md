@@ -41,6 +41,10 @@ parents. Matched development uses this frozen snapshot and the original 12
 development tasks. See [recovery 030](construction-recovery-030/README.md) and
 [registration 031](../../experiments/model-led-delegation-001/matched-development-031.json).
 
+[Matched development results](matched-development-031/README.md) contain 24
+metered endpoint calls and 11 fully graded pairs. Both baseline adaptations
+passed the development calibration gate. Held-out comparisons remain pending.
+
 ## Earlier software and replay checkpoint
 
 The following records preserve the earlier state, before this native continuation.

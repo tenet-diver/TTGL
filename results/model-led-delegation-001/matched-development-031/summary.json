@@ -1,0 +1,146 @@
+{
+  "actual_cash": null,
+  "all_assigned_quality_status": "unknown",
+  "assigned_per_model": 12,
+  "calibration": {
+    "frugalgpt_points": {
+      "balanced": {
+        "mean_scenario_cost": 0.004730312727272728,
+        "models": [
+          "gpt-6-luna"
+        ],
+        "quality_thresholds": [
+          0
+        ],
+        "resolved": 5,
+        "tasks": 11
+      },
+      "cost": {
+        "mean_scenario_cost": 0.004730312727272728,
+        "models": [
+          "gpt-6-luna"
+        ],
+        "quality_thresholds": [
+          0
+        ],
+        "resolved": 5,
+        "tasks": 11
+      },
+      "quality": {
+        "mean_scenario_cost": 0.004730312727272728,
+        "models": [
+          "gpt-6-luna"
+        ],
+        "quality_thresholds": [
+          0
+        ],
+        "resolved": 5,
+        "tasks": 11
+      }
+    },
+    "nominal_rate_reference": {
+      "assigned_sol_candidates": 12,
+      "mean_sol_usd_all_assigned": 0.10058260000000001,
+      "nominal_fractions": {
+        "balanced": 0.5,
+        "cost": 0.1,
+        "quality": 1.0
+      }
+    },
+    "portable_out_of_fold": {
+      "gpt-6-luna": {
+        "oof_brier": 0.2977611256435393,
+        "oof_constant_prior_brier": 0.3
+      },
+      "gpt-6.1-sol": {
+        "oof_brier": 0.2999148846912946,
+        "oof_constant_prior_brier": 0.3
+      }
+    },
+    "routellm_points": {
+      "balanced": {
+        "mean_scenario_cost": 0.004730312727272728,
+        "resolved": 5,
+        "tasks": 11,
+        "threshold": 0.6
+      },
+      "cost": {
+        "mean_scenario_cost": 0.004730312727272728,
+        "resolved": 5,
+        "tasks": 11,
+        "threshold": 0.6
+      },
+      "quality": {
+        "mean_scenario_cost": 0.004730312727272728,
+        "resolved": 5,
+        "tasks": 11,
+        "threshold": 0.6
+      }
+    },
+    "setup_cpu_seconds": 13.373838557000001,
+    "setup_wall_seconds": 17.95381899200038,
+    "sufficiency_passed_original": true,
+    "sufficiency_passed_portable": true,
+    "training_pairs": 11
+  },
+  "complete_pairs": 11,
+  "grade_recovery_sha256": "2277d4fb9ecdfdaed4e93390235acabd20aca04d0c27b17942d7687639873259",
+  "heldout_calls": 0,
+  "known_pair_endpoint_rate_scenario": {
+    "actual_cash_saving": null,
+    "evaluable": true,
+    "matched_tasks": 11,
+    "observed_quality_difference": -0.09090909090909091,
+    "observed_scenario_saving": 0.9539925756371116,
+    "relative_quality_retention": 0.8333333333333334,
+    "target_met": false,
+    "task_bootstrap_95_percent": {
+      "quality_difference": [
+        -0.36363636363636365,
+        0.18181818181818182
+      ],
+      "relative_retention": [
+        0.375,
+        1.6666666666666667
+      ],
+      "saving": [
+        0.9456258998314628,
+        0.9610615332399468
+      ]
+    },
+    "uncertainty_scope": "Task-cluster resampling of one registered attempt per cell; conditional on this compatibility subset and model aliases, not inference-repeat or population noninferiority proof"
+  },
+  "models": {
+    "gpt-6-luna": {
+      "official_grade_unknown": 1,
+      "official_resolved": 6,
+      "original_protocol_resolved": 3,
+      "portable_protocol_resolved": 5,
+      "portable_public_check_passed": 12
+    },
+    "gpt-6.1-sol": {
+      "official_grade_unknown": 1,
+      "official_resolved": 6,
+      "original_protocol_resolved": 3,
+      "portable_protocol_resolved": 6,
+      "portable_public_check_passed": 12
+    }
+  },
+  "native_model_calls": 24,
+  "official_grades_known": 22,
+  "official_grades_unknown": 2,
+  "portable_calibration_sha256": "8e2dcb7e543fb1e348be3658e0cc9f020bdb200e83b5b4165157429ed6cc2893",
+  "portable_replay_sha256": "1fe2dc65261f78c9c578982f7eabfc7dbc9a1207c1390258fffacf4eeaf60c38",
+  "released_baseline_native_benchmark_runs": 0,
+  "schema_version": 1,
+  "status": "reconciled_and_calibrated",
+  "tests_passed_after_correcting_smoke_check_and_grade_handling": 97,
+  "usage": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 3392128,
+    "input_tokens": 4142131,
+    "output_tokens": 33882,
+    "reasoning_output_tokens": 1776,
+    "total_tokens": 4176013
+  }
+}

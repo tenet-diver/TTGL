@@ -4487,3 +4487,39 @@ inspect the frozen rule before using up to six prespecified development
 reserves. Held-out launch additionally needs the Observatory policy selection,
 bounded scratch replay, exact full assignment and budget freeze, and the
 original controls. No further native stage is queued.
+
+### Matched development reconciled and Observatory development registered
+
+All 24 matched031 native calls completed and audited to 4,176,013 tokens.
+The independent evaluator reached its deadline on both candidates for one
+task. Recovery036 left their grades unknown and finished the remaining
+unstarted grades without native inference. The two null grades remain in
+the assigned denominator. The 11 complete pairs resolve 6/11 for each model
+on the official outcomes.
+
+Public check amendment034 removes the unsupported quiet option on older
+SymPy versions. An exact pristine witness and all four affected construction
+candidates passed the same suite with the option omitted. Reporting preserves
+the original 031 outcomes and adds 24 model-free portable replays. The
+portable outcome with valid edit scope is Luna 5/11, Sol 6/11. Luna's matched
+historical-rate scenario is 95.4% lower, with one fewer resolution. Both
+released-method adaptations pass the frozen local numerical calibration
+floor. They each select duplicate points across the three budgets. No
+new native released-baseline trials or held-out calls have occurred.
+See [the matched development results](../../results/model-led-delegation-001/matched-development-031/README.md).
+
+The command is portable in new registrations. The endpoint collector now
+preserves independent evaluator infrastructure errors as unknown and
+continues later first-time grades. All 97 focused tests pass.
+
+[Observatory development 037](../../experiments/model-led-delegation-001/observatory-development-037.json)
+has an acknowledged exact frozen archive and has entered its finite native
+stage. It covers 36 assignments across the three prespecified thresholds and
+12 development tasks, with a cap of 72 native invocations. Use the fixed 11
+fully graded comparison tasks for policy quality selection and all 12 for
+cost. Track assigned unknowns and meter every parent and worker. Active PID
+203838 at launch, exec session 49009, with private
+`work/security/model-led-delegation-20261118/continuation-001/observatory-development-037`
+and the sibling log. Preserve its source pins until generation and sealed
+grading finish. No parallel stage or retries are authorized by registration.
+Research schedules remain paused.

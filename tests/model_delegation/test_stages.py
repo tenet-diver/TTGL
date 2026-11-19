@@ -3,6 +3,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 from ttgl.experience_routing.io import read,write_new,file_digest
+from ttgl.model_delegation.native_swe import EvaluationInfrastructureFailure
 from ttgl.model_delegation.stages import run
 
 
@@ -64,3 +65,34 @@ class StageTests(unittest.TestCase):
                 with self.assertRaises(ValueError):run(config)
             self.assertEqual(model.call_count,1);annotation.assert_not_called();grader.assert_not_called()
             self.assertEqual(read(p/'output/stopped.json')['native_tokens_lower_bound'],10)
+
+    def test_evaluation_infrastructure_failure_preserves_later_grade(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            config = self.fixture(root)
+            episode = {'status': 'completed', 'invalid_paths': [],
+                       'total_native_usage': {'total_tokens': 10}, 'packet_hash': 'common'}
+            seen = []
+
+            def grade(**kwargs):
+                seen.append(kwargs['output'])
+                if len(seen) == 1:
+                    raise EvaluationInfrastructureFailure('deadline')
+                write_new(kwargs['output'] / 'grade.json', {'resolved': True})
+                return {'resolved': True}
+
+            with (
+                patch('ttgl.model_delegation.stages.public_contract',
+                      return_value={'task_id': 'task', 'source_state_hash': 'base'}),
+                patch('ttgl.model_delegation.stages.LocalS3Retention'),
+                patch('ttgl.model_delegation.stages.run_episode', return_value=episode),
+                patch('ttgl.model_delegation.stages.extract',
+                      return_value={'records': [], 'native_usage': {'total_tokens': 5}}),
+                patch('ttgl.model_delegation.stages.grade_candidate', side_effect=grade),
+            ):
+                result = run(config)
+
+            self.assertEqual(len(seen), 2)
+            self.assertIsNone(result['results'][0]['resolved'])
+            self.assertIsNone(result['results'][0]['official_grade_sha256'])
+            self.assertTrue(result['results'][1]['resolved'])

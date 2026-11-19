@@ -23,6 +23,10 @@ START = '>>>>> Start Test Output'
 END = '>>>>> End Test Output'
 
 
+class EvaluationInfrastructureFailure(ValueError):
+    """The prescribed check could not finish reliably in the evaluator."""
+
+
 def git(args, cwd, *, timeout=120):
     env = dict(os.environ, GIT_CONFIG_GLOBAL='/dev/null', GIT_CONFIG_SYSTEM='/dev/null',
                GIT_TERMINAL_PROMPT='0', GIT_LFS_SKIP_SMUDGE='1')
@@ -94,7 +98,7 @@ def public_contract(task_directory, source):
                          'constraints': ['python', 'preserve public tests'], 'actions': ['read', 'edit', 'verify']},
             'allowed_write_paths': ['sympy'],
             'protected_paths': ['sympy/testing']+[k for k in manifest(source)['files'] if '/tests/' in k],
-            'public_check': ['python3', '-B', 'bin/test', '-q', 'sympy/core/tests/test_basic.py']}
+            'public_check': ['python3', '-B', 'bin/test', 'sympy/core/tests/test_basic.py']}
 
 
 def _test_body(script):
@@ -162,7 +166,7 @@ def grade_candidate(*, task_directory, base_source, candidate_source, output, im
         write_new(output/'execution.json', {k: v for k, v in executed.items() if k != 'output'})
         write_new(output/'raw-retention.json', archive)
         if executed['infrastructure_error']:
-            raise ValueError('Prescribed tests did not execute reliably')
+            raise EvaluationInfrastructureFailure('Prescribed tests did not execute reliably')
         tests = read(directory/'tests.json')
         specification = {k: meta[k] for k in ('instance_id', 'repo', 'version', 'log_parser', 'eval_type')}
         specification.update(image=image_review['image_id'], eval_script_list=[],

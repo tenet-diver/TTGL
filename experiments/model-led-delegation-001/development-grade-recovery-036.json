@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "study_id": "model-led-delegation-001",
+  "stage": "Continue unstarted independent development grades",
+  "original_registration": "matched-development-031.json",
+  "allow_model_execution": false,
+  "automatic_retries": 0,
+  "schedules_paused": true,
+  "recorded_before_outcome_review": true,
+  "generation": {
+    "completed_native_assignments": 24,
+    "native_tokens": 4176013,
+    "status": "All model generation sealed before the first grade."
+  },
+  "grading": {
+    "completed_existing_grades": 18,
+    "started_unknown": {"task_id": "sympy__sympy-16450", "model": "gpt-6.1-sol", "reason": "Prescribed offline replay reached its frozen deadline. Preserve its original started and partial-output records."},
+    "unstarted_to_continue": [
+      {"task_id": "sympy__sympy-16450", "model": "gpt-6-luna"},
+      {"task_id": "sympy__sympy-17318", "model": "gpt-6.1-sol"},
+      {"task_id": "sympy__sympy-17318", "model": "gpt-6-luna"},
+      {"task_id": "sympy__sympy-18698", "model": "gpt-6.1-sol"},
+      {"task_id": "sympy__sympy-18698", "model": "gpt-6-luna"}
+    ],
+    "method": "Grade the never-started identities once using the same reviewed actor, frozen grader and deadline, after exact S3 source read-back. Reconcile prior finite grades by their source hashes. Keep the original stage stop and all 24 assigned outcomes."
+  },
+  "calibration_missingness": "Require known official grades for both endpoints of a development training pair. Retain missing grades as null in all assigned denominators, and preserve the known measurement for any unmatched endpoint. Use only the original disjoint development pair labels meeting this rule. Apply the frozen sufficiency floor and existing reserve rule.",
+  "heldout_inference": false
+}
