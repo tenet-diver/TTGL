@@ -4584,9 +4584,12 @@ The active-chat scoring supervisor waits for the combined generation
 and grading receipts. Inspect actual claims and processes before any
 continuation. Research schedules stay paused.
 
-The isolated held-out preparation branch now points to `1574c19` and
-passes all 101 focused tests. It also preserves fully metered wall-cap
-failures, behind the future qualification. Preserve the 040 source pins
-until its combined independent grading finishes. SILO free extents were
-trimmed in place, and exact continuation archive read-back still passed.
-No application dependency paths changed.
+The isolated held-out preparation branch now points to `559527a` and
+passes all 101 focused tests. It preserves fully metered wall-cap failures
+behind the future qualification and retains one immutable pristine base
+per task before model execution. The private 039 reporting helper verifies
+the full seal and reports paired comparisons, the baseline mixture
+envelope and explicit local CPU rate sensitivity separately from measured
+native tokens. Preserve the 040 source pins until its combined independent
+grading finishes. SILO free extents were trimmed in place, and exact
+continuation archive read-back still passed.
