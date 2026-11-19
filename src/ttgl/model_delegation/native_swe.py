@@ -128,13 +128,13 @@ def _patch_paths(patch):
 
 
 def grade_candidate(*, task_directory, base_source, candidate_source, output, image_review,
-                    grader_subset, reference=False, timeout=180):
+                    grader_subset, reference=False, timeout=180, scratch_source=None):
     """Run after generation, or as a pristine empty/reference eligibility control."""
     import yaml
     directory, output = Path(task_directory), Path(output)
     meta = yaml.safe_load((directory/'task.yaml').read_text())
     output.mkdir(parents=True, exist_ok=False, mode=0o700)
-    source = output/'source'
+    source = Path(scratch_source) if scratch_source is not None else output / 'source'
     shutil.copytree(candidate_source, source, ignore=shutil.ignore_patterns('.git'))
     before_grading = manifest(source)
     write_new(output/'started.json', {'task_id': meta['instance_id'], 'candidate_state_hash': before_grading['state_hash'],

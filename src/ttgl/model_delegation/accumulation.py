@@ -149,7 +149,7 @@ def build_campaign(partitions, snapshots, *, systems=SYSTEMS, points=('balanced'
     return {**body, 'campaign_id': digest(body)}
 
 
-def run_campaign(campaign, output, execute, *, qualification):
+def run_campaign(campaign, output, execute, *, qualification, after_completion=None):
     """Single-owner finite execution; any uncertain/start-only assignment stops.
 
     The supplied host adapter must enforce invocation/token/time limits internally.
@@ -166,7 +166,8 @@ def run_campaign(campaign, output, execute, *, qualification):
     output = Path(output)
     # An existing owner is a reconciliation case, never a fresh invocation.
     write_new(output/'owner.json', {'campaign_id': campaign['campaign_id']})
-    executed = unrun = 0
+    executed = unrun = shared = deadlines = 0
+    terminal_ids = set()
     for assignment in campaign['assignments']:
         folder = output/assignment['assignment_id']
         write_new(folder/'started.json', assignment)
@@ -177,7 +178,27 @@ def run_campaign(campaign, output, execute, *, qualification):
                     'reason':'No qualified policy meets the frozen development operating-point budget'})
                 unrun += 1
                 continue
+            if assignment.get('execution_disposition') == 'duplicate_policy':
+                reference_id = assignment['shared_assignment_id']
+                if reference_id not in terminal_ids:
+                    raise ValueError('A duplicate policy needs a closed source assignment')
+                write_new(folder / 'completion.json', {
+                    'status': 'duplicate_policy',
+                    'shared_assignment_id': reference_id,
+                    'native_invocations': 0,
+                })
+                shared += 1
+                continue
             result = execute(deepcopy(assignment), folder)
+            if any(k in result for k in ('grade', 'resolved', 'hidden_feedback')):
+                raise ValueError('Live adapter must not receive hidden grades')
+            if (qualification.get('retain_recorded_timeouts') is True
+                    and result.get('status') == 'native_timeout'
+                    and result.get('verified_parent_deadline') is True and result.get('usage') is None):
+                write_new(folder / 'completion.json', result)
+                terminal_ids.add(assignment['assignment_id'])
+                deadlines += 1
+                continue
             if result.get('status') not in ('completed', 'public_failure'):
                 raise ValueError('Uncertain native assignment; stop without retry')
             usage = result.get('usage', {})
@@ -185,15 +206,17 @@ def run_campaign(campaign, output, execute, *, qualification):
                 observed = usage.get(k)
                 if type(observed) not in (int, float) or not 0 <= observed <= cap:
                     raise ValueError('Missing usage or exceeded assignment limit: ' + k)
-            if any(k in result for k in ('grade', 'resolved', 'hidden_feedback')):
-                raise ValueError('Live adapter must not receive hidden grades')
             write_new(folder/'completion.json', result)
+            terminal_ids.add(assignment['assignment_id'])
             executed += 1
+            if after_completion is not None:
+                after_completion(assignment, folder, result)
         except BaseException as error:
             write_new(folder/'stopped.json', {'error': type(error).__name__, 'automatic_retry': False})
             raise
     write_new(output/'completion.json', {'campaign_id': campaign['campaign_id'],
               'assignments_completed': executed, 'assignments_unrun_infeasible': unrun,
+              'assignments_shared_duplicate_policy': shared, 'assignments_native_timeout': deadlines,
               'assignments_registered': len(campaign['assignments']), 'grades_sealed': True})
 
 
@@ -215,12 +238,26 @@ def build_comparison_campaign(partitions, snapshots, *, limits, source_pins, bas
         points=points, limits=limits, source_pins=source_pins, baseline_pins=baseline_pins, stage=stage)
     by_id = {a['assignment_id']: a for a in [*core['assignments'], *comparative['assignments']]}
     rows = list(by_id.values())
+    shared_policies = {}
     for row in rows:
-        feasibility = baseline_pins.get(row['system'], {}).get('point_feasibility', {})
-        if feasibility.get(row['point']) is False:
+        pins = baseline_pins.get(row['system'], {})
+        point = row['point']
+        if pins.get('point_feasibility', {}).get(point) is False:
             row['execution_disposition'] = 'infeasible_before_heldout'
+            continue
+        policy = pins.get('point_policy_sha256', {}).get(point)
+        if policy is None:
+            continue
+        if not isinstance(policy, str) or len(policy) != 64 or any(c not in '0123456789abcdef' for c in policy):
+            raise ValueError('Duplicate-policy identity must be an exact SHA-256 digest')
+        key = (row['task_id'], row['snapshot_id'], row['system'], policy)
+        reference = shared_policies.setdefault(key, row['assignment_id'])
+        if reference != row['assignment_id']:
+            row.update(execution_disposition='duplicate_policy', shared_assignment_id=reference)
+    runnable = sum('execution_disposition' not in row for row in rows)
     body = {k: v for k, v in core.items() if k not in ('campaign_id', 'assignments', 'maximum_totals')}
-    body.update(assignments=rows, maximum_totals={k: v*len(rows) for k, v in limits.items()},
+    body.update(assignments=rows, maximum_totals={k: v*runnable for k, v in limits.items()},
+                assignments_scheduled_for_native_execution=runnable,
                 matrix_kind='core_accumulation_plus_final_snapshot_required_baselines',
                 simple_controls_included=False, recency_ablation_included=False)
     return {**body, 'campaign_id': digest(body)}

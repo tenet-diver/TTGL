@@ -46,6 +46,12 @@ class NativeCampaignRunner:
         self.root, self.tasks, self.snapshots, self.config = Path(root), tasks, snapshots, config
         self.routellm, self.frugalgpt_factory = routellm, frugalgpt_factory
 
+    def candidate_source(self, assignment, folder, index):
+        scratch = self.config.get('candidate_root')
+        if scratch:
+            return Path(scratch) / digest(assignment) / str(index) / 'source'
+        return Path(folder) / ('candidate-' + str(index)) / 'source'
+
     def __call__(self, assignment, folder):
         config = self.config
         task = self.tasks[assignment['task_id']]
@@ -60,8 +66,7 @@ class NativeCampaignRunner:
 
         def solve(model, *, delegation=None, remaining=None):
             candidate_folder = Path(folder)/('candidate-'+str(len(results)))
-            source = (Path(config['candidate_root'])/digest(assignment)/str(len(results))/'source'
-                      if config.get('candidate_root') else candidate_folder/'source')
+            source = self.candidate_source(assignment, folder, len(results))
             original = Path(task['source'])
             if manifest(original)['state_hash'] != task['source_state_hash']:
                 raise ValueError('Frozen public task source drift')

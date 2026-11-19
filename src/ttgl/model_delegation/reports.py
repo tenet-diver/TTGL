@@ -8,25 +8,43 @@ from ..experience_routing.io import read
 
 
 def assignment_rows(campaign,grades,generation,rates,*,cpu_usd_per_core_hour):
-    by_id={g['assignment_id']:g for g in grades};rows=[]
+    by_id = {g['assignment_id']: g for g in grades}
+    rows = {}
     for assignment in campaign['assignments']:
         ident=assignment['assignment_id'];folder=Path(generation)/ident
         result=read(folder/'completion.json');grade=by_id[ident]
         row={**assignment,**grade,'native_token_scenario_usd':None,'local_model_cpu_scenario_usd':None,
              'total_model_scenario_usd':None,'actual_cash':None}
-        if result['status']=='unrun_infeasible':rows.append(row);continue
+        rows[ident] = row
+        if result['status'] == 'unrun_infeasible':
+            continue
+        if result['status'] == 'native_timeout':
+            row['accounting_gap'] = 'Native deadline reached with incomplete inference usage'
+            continue
+        if result['status'] == 'duplicate_policy':
+            reference = result['shared_assignment_id']
+            original = rows[reference]
+            if grade['shared_assignment_id'] != reference or any(
+                grade[field] != original[field] for field in ('official_resolved', 'protocol_resolved')
+            ):
+                raise ValueError('Duplicate point does not match its independent source grade')
+            rows[ident] = {**original, **assignment, **grade, 'native_invocations': 0,
+                           'reference_native_invocations': original.get('native_invocations')}
+            continue
         paths=list(folder.rglob('usage-ledger.jsonl'))
         if not paths:
-            row['accounting_gap']='No native receipts; do not infer zero inference';rows.append(row);continue
+            row['accounting_gap'] = 'No native receipts; do not infer zero inference'
+            continue
         accounted=reconcile(paths)
         expected=result['usage']['maximum_invocations']
         if accounted['native_receipts']!=expected or accounted['issues']:
             row['accounting_gap']=accounted['issues'] or ['Native invocation count differs']
-            rows.append(row);continue
+            continue
         costs=[scenario_cost(usage,rates[model]) for model,usage in accounted['models'].items()]
         operations=result.get('local_scorer_operations')
         if operations is None:
-            row['accounting_gap']='Local-model accounting absent';rows.append(row);continue
+            row['accounting_gap'] = 'Local-model accounting absent'
+            continue
         seconds=sum(op['cpu_seconds'] for op in operations)
         if not math.isfinite(seconds) or seconds<0:raise ValueError('Invalid finite local model CPU runtime')
         row['local_model_cpu_seconds']=seconds
@@ -36,8 +54,7 @@ def assignment_rows(campaign,grades,generation,rates,*,cpu_usd_per_core_hour):
             row['native_token_scenario_usd']=sum(costs)
             row['total_model_scenario_usd']=sum(costs)+row['local_model_cpu_scenario_usd']
         row['agent_and_public_check_envelope_seconds']=result['usage']['maximum_elapsed_seconds']
-        rows.append(row)
-    return rows
+    return list(rows.values())
 
 
 def groups(rows):
@@ -50,7 +67,11 @@ def groups(rows):
         known=[r for r in items if type(r['protocol_resolved']) is bool]
         success=sum(r['protocol_resolved'] for r in known);unknown=len(items)-len(known)
         costs=[r.get('total_model_scenario_usd') for r in items]
-        usage_unknown=sum('native_invocations' not in r and r['status']!='unrun_infeasible' for r in items)
+        usage_unknown = sum(
+            ('native_invocations' not in r and r['status'] != 'unrun_infeasible')
+            or (r['status'] == 'duplicate_policy' and r['reference_native_invocations'] is None)
+            for r in items
+        )
         result.append({'system':system,'snapshot_id':snapshot,'point':point,'registered_tasks':len(items),
             'protocol_successes_known':success,'quality_unknown':unknown,
             'protocol_accuracy':success/len(items) if not unknown else None,
@@ -59,6 +80,7 @@ def groups(rows):
             'official_unknown':sum(r['official_resolved'] is None for r in items),
             'mean_model_scenario_usd':sum(costs)/len(costs) if all(c is not None for c in costs) else None,
             'usage_unknown_tasks':usage_unknown,
+            'shared_policy_tasks':sum(r['status'] == 'duplicate_policy' for r in items),
             'native_invocations':None if usage_unknown else sum(r.get('native_invocations',0) for r in items),
             'actual_cash':None})
     return result

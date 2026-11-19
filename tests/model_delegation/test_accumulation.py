@@ -136,6 +136,42 @@ class AccumulationTests(unittest.TestCase):
                     result=read(Path(d)/a['assignment_id']/'completion.json')
                     self.assertIsNone(result['quality']);self.assertIsNone(result['scenario_cost'])
 
+    def test_identical_points_reference_one_native_assignment_per_task(self):
+        from ttgl.model_delegation.accumulation import build_comparison_campaign
+        from ttgl.experience_routing.io import read
+        pins = {system: {'qualified': True, 'implementation_sha256': 'b' * 64,
+                         'calibration_sha256': 'c' * 64, 'training_partition': 'development',
+                         'sufficiency_passed': True,
+                         'point_policy_sha256': {point: 'd' * 64 for point in ('cost', 'balanced', 'quality')}}
+                for system in ('frugalgpt_native', 'routellm_native')}
+        campaign = build_comparison_campaign(
+            self.partitions, self.snapshots()['snapshots'], limits=self.limits,
+            source_pins=self.pins, baseline_pins=pins, stage='heldout',
+        )
+        by_id = {row['assignment_id']: row for row in campaign['assignments']}
+        shared = [row for row in by_id.values() if row.get('execution_disposition') == 'duplicate_policy']
+        self.assertEqual(len(by_id), 34)
+        self.assertEqual(len(shared), 8)
+        self.assertEqual(campaign['assignments_scheduled_for_native_execution'], 26)
+        for row in shared:
+            original = by_id[row['shared_assignment_id']]
+            self.assertNotIn('execution_disposition', original)
+            fields = ('task_id', 'snapshot_id', 'system')
+            self.assertEqual([row[field] for field in fields], [original[field] for field in fields])
+        with tempfile.TemporaryDirectory() as directory:
+            calls = []
+            def execute(assignment, _):
+                calls.append(assignment['assignment_id'])
+                return {'status': 'completed', 'usage': assignment['limits']}
+            run_campaign(campaign, directory, execute, qualification={
+                'execution_ready': True, 'campaign_id': campaign['campaign_id'], 'source_pins': campaign['source_pins'],
+            })
+            self.assertEqual(len(calls), 26)
+            for row in shared:
+                result = read(Path(directory) / row['assignment_id'] / 'completion.json')
+                self.assertEqual(result['shared_assignment_id'], row['shared_assignment_id'])
+                self.assertEqual(result['native_invocations'], 0)
+
     def test_native_campaign_requires_exact_qualification(self):
         with tempfile.TemporaryDirectory() as d:
             with self.assertRaises(ValueError): run_campaign(self.campaign(), d, lambda *_: None, qualification={})
@@ -153,6 +189,29 @@ class AccumulationTests(unittest.TestCase):
             with self.assertRaises(FileExistsError): run_campaign(c, d, uncertain, qualification=q)
             self.assertEqual(len(calls), 1)
             self.assertEqual(len(list(Path(d).glob('*/stopped.json'))), 1)
+
+    def test_registered_recorded_deadline_leaves_later_assignments_runnable(self):
+        from ttgl.experience_routing.io import read
+        campaign = self.campaign()
+        qualification = {'campaign_id': campaign['campaign_id'], 'execution_ready': True,
+                         'source_pins': campaign['source_pins'], 'retain_recorded_timeouts': True}
+        seen = []
+
+        def execute(assignment, _):
+            seen.append(assignment['assignment_id'])
+            if len(seen) == 1:
+                return {'status': 'native_timeout', 'verified_parent_deadline': True, 'usage': None}
+            return {'status': 'completed', 'usage': assignment['limits']}
+
+        with tempfile.TemporaryDirectory() as directory:
+            run_campaign(campaign, directory, execute, qualification=qualification)
+            self.assertEqual(len(seen), len(campaign['assignments']))
+            self.assertEqual(len(seen), len(set(seen)))
+            first = read(Path(directory) / seen[0] / 'completion.json')
+            self.assertIsNone(first['usage'])
+            summary = read(Path(directory) / 'completion.json')
+            self.assertEqual(summary['assignments_native_timeout'], 1)
+            self.assertEqual(summary['assignments_completed'], len(seen) - 1)
 
     def test_complete_campaign_retains_public_failures_without_grading(self):
         c = self.campaign()

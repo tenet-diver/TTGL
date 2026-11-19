@@ -1,5 +1,10 @@
+from pathlib import Path
+import tempfile
 import unittest
-from ttgl.model_delegation.reports import paired_target,groups,baseline_mixture_envelope
+from unittest.mock import patch
+
+from ttgl.experience_routing.io import write_new
+from ttgl.model_delegation.reports import assignment_rows, paired_target, groups, baseline_mixture_envelope
 
 
 class ReportTests(unittest.TestCase):
@@ -26,3 +31,33 @@ class ReportTests(unittest.TestCase):
                 {'mean_model_scenario_usd':3,'protocol_accuracy':1}]
         self.assertEqual(baseline_mixture_envelope(points,2),.75)
         self.assertIsNone(baseline_mixture_envelope(points,.5))
+
+    def test_shared_policy_reports_measured_cost_without_a_second_invocation(self):
+        shared = {'task_id': 'task', 'system': 'routellm_native', 'snapshot_id': 'frozen'}
+        assignments = [{**shared, 'assignment_id': 'original', 'point': 'cost'},
+                       {**shared, 'assignment_id': 'alias', 'point': 'quality'}]
+        verdict = {'official_resolved': True, 'protocol_resolved': True}
+        grades = [{**verdict, 'assignment_id': 'original', 'status': 'graded'},
+                  {**verdict, 'assignment_id': 'alias', 'status': 'duplicate_policy',
+                   'shared_assignment_id': 'original'}]
+        counters = {'input_tokens': 100, 'cached_input_tokens': 10, 'output_tokens': 20, 'total_tokens': 120}
+        reconciled = {'native_receipts': 1, 'issues': [], 'models': {'luna': counters}, 'native_usage': counters}
+        rates = {'luna': {'input': 2, 'cached': 0.1, 'output': 10}}
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            write_new(root / 'original' / 'completion.json', {
+                'status': 'completed', 'usage': {'maximum_invocations': 1, 'maximum_elapsed_seconds': 20},
+                'local_scorer_operations': [],
+            })
+            (root / 'original' / 'usage-ledger.jsonl').touch()
+            write_new(root / 'alias' / 'completion.json', {
+                'status': 'duplicate_policy', 'shared_assignment_id': 'original', 'native_invocations': 0,
+            })
+            with patch('ttgl.model_delegation.reports.reconcile', return_value=reconciled) as reconcile:
+                original, alias = assignment_rows({'assignments': assignments}, grades, root, rates, cpu_usd_per_core_hour=0)
+            reconcile.assert_called_once()
+            self.assertEqual(alias['total_model_scenario_usd'], original['total_model_scenario_usd'])
+            self.assertEqual(alias['protocol_resolved'], original['protocol_resolved'])
+            self.assertEqual(alias['native_invocations'], 0)
+            self.assertEqual(alias['reference_native_invocations'], 1)
+            self.assertEqual(groups([alias])[0]['shared_policy_tasks'], 1)

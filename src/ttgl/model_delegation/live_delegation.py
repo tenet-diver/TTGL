@@ -8,6 +8,7 @@ import json
 import time
 from copy import deepcopy
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from ..experience_routing.checkpoints import manifest
 from ..experience_routing.execution import docker, unpack_public_source, source_tar
 from ..experience_routing.io import digest, read, write_new
@@ -94,11 +95,11 @@ def delegate(bridge, args):
     if result['status'] == 'completed':
         # Parent state must still equal the handed-off state. No clobbering a
         # concurrent accepted edit while the native worker was running.
-        current = scratch/'parent-current'
-        current.mkdir()
-        unpack_public_source(docker('exec', bridge.container, 'tar', '-cf', '-', '-C', '/testbed', '.'), current)
-        if manifest(current) != initial:
-            raise ValueError('Parent changed during handoff; integration refused')
+        with TemporaryDirectory(prefix='parent-check-', dir=scratch) as directory:
+            current = Path(directory)
+            unpack_public_source(docker('exec', bridge.container, 'tar', '-cf', '-', '-C', '/testbed', '.'), current)
+            if manifest(current) != initial:
+                raise ValueError('Parent changed during handoff; integration refused')
         docker('exec', bridge.container, 'sh', '-c', 'find /testbed -mindepth 1 -maxdepth 1 -exec rm -rf {} +')
         docker('exec', '-i', bridge.container, 'sh', '-c', 'umask 000; tar -xpf - -C /testbed', input=source_tar(source))
         integrated = True
