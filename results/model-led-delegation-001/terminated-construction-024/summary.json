@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "status": "terminated_protocol_exposure",
+  "completed_pairs": 6,
+  "coding_attempts": 12,
+  "native_cli_invocations_including_annotations": 24,
+  "native_token_subtotal": 2656372,
+  "official_resolved": {
+    "gpt-6-luna": 2,
+    "gpt-6.1-sol": 5
+  },
+  "benchmark_identity_exposed_in_native_environment": true,
+  "clean_main_study_eligible": false,
+  "clean_library_records": 0,
+  "native_retries": 0,
+  "termination_selected_using_model_grades": false,
+  "cash_expense": null,
+  "full_comparison_complete": false
+}

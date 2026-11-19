@@ -4330,3 +4330,78 @@ independent grading finish; do not start another worker or repeat assignments.
 Public construction records can support bounded implementation outcomes only;
 posthoc annotator/host verification must not be credited as unaided verification
 by the original executor. Other capabilities require their own evidence.
+
+## 19 November 2026 — context-identity protocol correction before clean transfer
+
+Construction023 was deliberately terminated after6pairs/24native calls, before
+another admission and with no model call in flight. A recorded environment
+message revealed benchmark identity through the CLI cwd path. The explicit user
+prompt had no ID. The stop decision preceded model-grade inspection. All12coding
+candidates were then graded once with frozen original sources: Luna2/6, Sol5/6.
+All9public support records and all failed/successful attempts remain preserved,
+but NONE enter the clean knowledge library. See `protocol-termination-024.json`
+and `results/model-led-delegation-001/terminated-construction-024/`. One following
+case had preparation only and no model invocation. Never repeat affected calls.
+
+Fix: `anonymity.py` gives each CLI a random physical cwd/home under private /tmp,
+with private host-side symlink/index paths. Source account/auth remains original;
+no API key/fallback or normal-routing change. Canary026 made2fresh generated-task
+coding calls; both repairs and recorded environment audits pass with zero tested
+identity exposures. Captured complete credential-free client state also passes
+real S3 retention. Model-facing route evidence now replaces parent task IDs with
+opaque hashes; raw host provenance remains intact. Public proof copies now use
+owned /tmp scratch instead of filling the persistent volume. Completed old proof
+exports were relocated with exact manifest checks and original paths preserved;
+raw logs and original source archives remain unchanged.95focused tests pass.
+
+Replacement selection025 was frozen from full-SWE SymPy metadata outside Verified,
+version>=1.10 for existing actor compatibility, with prior ID/base/exact+normalized
+fix exclusions. All12fresh candidates pass advisory queries and own independent
+empty/reference controls in preparation027, zero model calls. `clean-split-028.json`
+keeps original development12/heldout22 intact: clean construction is6uninvoked
+original Verified cases plus first6qualified fresh full-SWE cases; remaining6are
+unused development reserve. This population change must be explicit in reports.
+No affected model attempt is repeated and no model outcome selects replacements.
+
+The original construction023 is STOPPED and independently graded; its admission
+lock guard has been released. Current clean construction registration/source
+archive is being prepared next. Inspect actual subsequent manifests/processes
+before any continuation. Keep schedules PAUSED and do not restart old workers.
+
+### Active clean collection029 — inspect before continuation
+
+`clean-construction-029.json` is RUNNING through
+`python3 -m ttgl.model_delegation.stages`, private output
+`work/security/model-led-delegation-20261118/continuation-001/clean-construction-029`,
+log `clean-construction-029.log`, original exec session52705. Exact source archive
+and `source-archive-ready.json` are acknowledged. ALL source files listed in029
+must remain unchanged until its generation/annotation and independent grading
+finish. Do not duplicate or restart this phase. No scheduled work was resumed.
+
+This is the clean12-task construction cohort from split028, max48native calls,
+12M observed native tokens and6hours. It uses anonymous physical client cwd/home,
+private symlink indexes, /tmp public-proof copies, full credential-free client
+state backups to loopback S3, and opaque parent references in model-facing route
+results. No-action completed responses are retained/metered for independent
+scoring rather than discarded as infrastructure failure.96focused tests pass.
+First clean coding attempt completed public checks/scope with131578tokens; its
+recorded model-visible environment has1message and ZERO task/study ID exposures.
+No clean official grade, transfer curve, voluntary-routing benefit or baseline
+comparison is yet available. Grades stay sealed until collection finishes.
+
+User explicitly asked for knowledge/routing research progress: report the actual
+required Sol→Luna→Sol mechanism trial, rejected unsupported extraction proposals,
+flagged/retired6-pair cohort (Luna2/6, Sol5/6), and distinguish these from the
+still-unrun clean accumulation/FrugalGPT/RouteLLM comparisons. Software checks and
+working mechanisms do not establish economic or capability improvement.
+
+After029 finishes, build immutable0/4/8/12 prefixes from ONLY clean public records
+and split028; retain all construction parents/failures. Then register matched
+12-task development with common final-prefix knowledge, collect disjoint labels,
+apply sufficiency rules020+021, use at most the6unused fresh development reserves
+if required. Preserve heldout22 unchanged. Freeze the full440-assignment manifest
+and native budgets before any heldout model call. Numerical baseline fixtures are
+not native calibration. Existing `heldout.py`, `scratch.py`, `reports.py` provide
+further orchestration/reporting glue but still require review/qualification before
+main use; avoid uncontrolled scratch expansion. Restore retained exact candidate
+artifacts for independent grading, never use hidden outcomes in live decisions.

@@ -31,7 +31,7 @@ def run(config_path):
             raise ValueError('Original grader source drift')
     review=read(config['image_review']);sources={}
     for task in config['tasks']:
-        folder=Path(config['eligibility_root'])/task['task_id']
+        folder=Path(task.get('control_root',config['eligibility_root']))/task['task_id']
         receipt=read(folder/'completion.json')
         if receipt['eligible'] is not True or file_digest(folder/'completion.json')!=task['control_sha256']:
             raise ValueError('Own frozen controls required')

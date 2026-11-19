@@ -6,6 +6,7 @@ identity, clock and finite caps. No host-selected escalation or hidden feedback.
 from __future__ import annotations
 import json
 import time
+from copy import deepcopy
 from pathlib import Path
 from ..experience_routing.checkpoints import manifest
 from ..experience_routing.execution import docker, unpack_public_source, source_tar
@@ -25,6 +26,16 @@ TOOLS = [
                      'properties': {**FEATURES, 'idempotency_key': {'type': 'string'},
                                     'allowed_write_paths': {'type': 'array', 'description': 'Repository-relative paths inside /testbed; must be within the parent write scope.', 'items': {'type': 'string'}}},
                      'required': ['goal', 'subtask_type', 'idempotency_key', 'allowed_write_paths']}}]
+
+
+def model_decision_view(value):
+    """Keep exact host provenance while exposing opaque parent references."""
+    public=deepcopy(value)
+    for candidate in public.get('candidates',[]):
+        for row in candidate.get('evidence',[]):
+            if 'task_id' in row:
+                row['source_parent_ref']=digest(row.pop('task_id'))
+    return public
 
 
 def decision(config, args):

@@ -95,10 +95,10 @@ def run(config, source, sink):
                     tools += delegation_tools
                 result = {'tools': tools}
             elif method == 'tools/call' and request['params']['name'] in ('route_subtask', 'delegate_subtask') and bridge.config.get('delegation'):
-                from .live_delegation import decision, delegate
+                from .live_delegation import decision, delegate, model_decision_view
                 try:
                     args = request['params'].get('arguments', {})
-                    value = decision(bridge.config['delegation'], args) if request['params']['name'] == 'route_subtask' else delegate(bridge, args)
+                    value = model_decision_view(decision(bridge.config['delegation'], args)) if request['params']['name'] == 'route_subtask' else delegate(bridge, args)
                     result = {'content': [{'type': 'text', 'text': json.dumps(value)}], 'isError': False}
                 except Exception as error:
                     result = {'content': [{'type': 'text', 'text': type(error).__name__+': '+str(error)[:300]}], 'isError': True}

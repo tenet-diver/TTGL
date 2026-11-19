@@ -8,12 +8,14 @@ from __future__ import annotations
 import ast
 import json
 import shutil
+import tempfile
 from dataclasses import asdict
 from pathlib import Path
 from .transport import SubscriptionBackend
 from .actor import ExactModeActor
 from .retention import LocalS3Retention
 from .admission import admit, claim
+from .anonymity import client_paths,archive_client_state
 from ..experience_routing.backend import source_binding
 from ..experience_routing.checkpoints import manifest
 from ..experience_routing.io import read,write_new,file_digest,digest,now
@@ -57,11 +59,14 @@ def validate_check(code, *, project_modules=('sympy',)):
 
 def verify_public_reproduction(code,*,base,candidate,output,image_review,project_modules=('sympy',)):
     code=validate_check(code,project_modules=project_modules);output=Path(output);output.mkdir(parents=True,exist_ok=False)
+    scratch=Path(tempfile.mkdtemp(prefix='observatory-public-proof-',dir='/tmp'))
+    write_new(output/'scratch-location.json',{'source_root':str(scratch),'kind':'owned public reproduction copies'})
     wrapper="try:\n"+'\n'.join('    '+line for line in code.splitlines())+"\nexcept AssertionError:\n    raise SystemExit(17)\n"
     outcomes={}
     for label,original in [('base',base),('candidate',candidate)]:
-        source=output/label
+        source=scratch/label
         shutil.copytree(original,source,ignore=shutil.ignore_patterns('.git'))
+        (output/label).symlink_to(source,target_is_directory=True)
         check=source/'__observatory_public_proof__.py';check.write_text(wrapper);check.chmod(0o644)
         before=manifest(source)
         actor=ExactModeActor(image=image_review['image_id'],review=image_review,root=output/(label+'-actor'),identity=str(source),base_commit=before['state_hash'])
@@ -97,9 +102,9 @@ def extract(*,root,output,base,candidate,episode,task,source_home,image_review,r
     payload=json.dumps(public)
     if len(payload.encode())>80000:raise ValueError('Public annotation evidence exceeds finite budget')
     prompt=('Interpret only this public construction attempt. Propose at most three bounded reusable implementation procedures supported by its observable source changes. Do not claim success, use private expected solutions or invent observed checks. For each, supply a small standalone Python assertion reproduction of a changed behavior explicitly required by the public request, using SymPy/standard arithmetic imports only. Prefer recorded public reproductions; a newly proposed check must be labelled by its code and will be independently replayed on the original base and final candidate. Use subtask type implementation: this source-differential gate does not verify planning, exploration or unaided verification skills. Each procedure/criterion should be a short single-line prose sentence of at most512characters, without code blocks, copied candidate solutions or task identities. Return an empty records list if unsupported.\n'+payload)
-    workspace=output/'empty-workspace';workspace.mkdir(parents=True,mode=0o700)
+    native_output,workspace=client_paths(output)
     backend=SubscriptionBackend(executable=executable,executable_sha256=file_digest(executable),source_home=source_home,
-        source_account_hash=binding['account_hash'],output=output/'native',client=client)
+        source_account_hash=binding['account_hash'],output=native_output,client=client)
     request=Request('public-annotation','gpt-6-luna','knowledge_construction',prompt,workspace,SCHEMA,120,read_only=True,reasoning_effort='low')
     client.retain_file(registration,kind='annotation-registration',identity=str(output))
     claim(spool,pin,str(output),frozen['maximum_invocations'])
@@ -147,4 +152,7 @@ def extract(*,root,output,base,candidate,episode,task,source_home,image_review,r
             admitted.append(record)
         except ValueError as error:excluded.append({'index':i,'reason':str(error)})
     result={'records':admitted,'excluded':excluded,'native_usage':usage['delta'],'official_grades_used':False}
+    try:result['native_client_state_archive']=archive_client_state(native_output,output,client)
+    except Exception as error:
+        result['native_client_state_archive']=None;result['native_client_state_capture_gap']=type(error).__name__
     write_new(output/'completion.json',result);return result

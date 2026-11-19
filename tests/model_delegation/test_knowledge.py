@@ -17,12 +17,13 @@ class KnowledgeTests(unittest.TestCase):
                  patch('ttgl.model_delegation.knowledge.admit',return_value=({'codex_executable_sha256':file_digest(__file__),'maximum_invocations':1},p,'registration')), \
                  patch('ttgl.model_delegation.knowledge.claim'), \
                  patch('ttgl.model_delegation.knowledge.shutil.which',return_value=__file__), \
-                 patch('ttgl.model_delegation.knowledge.LocalS3Retention'), \
+                 patch('ttgl.model_delegation.knowledge.LocalS3Retention') as archive, \
                  patch('ttgl.model_delegation.knowledge.SubscriptionBackend') as backend:
                 backend.return_value.complete.return_value=Response(status='completed',text='{"records":[]}',
                     thread_id='fresh',usage={'input_tokens':100,'cached_input_tokens':0,'output_tokens':10})
                 backend.return_value.last_native_artifact_hash='native'
                 backend.return_value.last_response_ids=['response']
+                archive.return_value.retain_file.return_value={'artifactId':'fixture'}
                 result=extract(root=p,output=p/'out',base=p,candidate=p,episode=episode,
                     task={'task_id':'task','prompt':'public request'},source_home=p,image_review={'image_id':'image'},
                     registration=p/'registration.json',scope={})
