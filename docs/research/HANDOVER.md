@@ -4593,3 +4593,14 @@ envelope and explicit local CPU rate sensitivity separately from measured
 native tokens. Preserve the 040 source pins until its combined independent
 grading finishes. SILO free extents were trimmed in place, and exact
 continuation archive read-back still passed.
+
+Persistent workspace free space briefly reached 33 MiB during 040. The
+installed optional Next SWC musl binary had no open users on this glibc
+host. Its original bytes are now referenced through a temporary copy,
+with a verified compressed archive on the persistent workspace and a
+second verified local buffer. This released 61,007,494 bytes net without
+installing a package. Exact SILO read-back passed again. The private
+`capacity-maintenance-20261119/completion.json` records both hashes and
+`capacity-maintenance-20261119/restore-cache.py` rehydrates the optional
+cache after a temporary filesystem reset. Check durable physical capacity
+before the 039 base preparation and held-out admissions.
