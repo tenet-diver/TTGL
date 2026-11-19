@@ -31,6 +31,11 @@ environment identity audit. The ephemeral annotation client preserved its
 prompts and events but omitted rollout environment messages for all 22
 annotation calls. The retained prompts passed the identity scan.
 
+The four public-check failures were exit-code-2 option errors at two parents.
+An exact pristine base rejected the quiet option and passed the same test
+target with the option omitted. The table preserves the registered scoring.
+See [public check amendment 034](../../../experiments/model-led-delegation-001/public-check-amendment-034.json).
+
 The registered development pairs use the final frozen snapshot. The held-out
 transfer and router comparisons are pending.
 

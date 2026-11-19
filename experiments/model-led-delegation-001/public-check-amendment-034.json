@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "study_id": "model-led-delegation-001",
+  "stage": "public smoke check command compatibility",
+  "allow_model_execution": false,
+  "automatic_retries": 0,
+  "schedules_paused": true,
+  "recorded_before": "The matched-development-031 generation seal and all development official grades.",
+  "trigger": "Four construction candidates across two recorded parents exited with code 2 because their public test CLI rejected its quiet option. The same failure was reproduced on an exact pristine construction base, where the same test target passed with the quiet option omitted.",
+  "original_command": ["python3", "-B", "bin/test", "-q", "sympy/core/tests/test_basic.py"],
+  "portable_command": ["python3", "-B", "bin/test", "sympy/core/tests/test_basic.py"],
+  "design": [
+    "Preserve every original model response, artifact, grade, public-check outcome and registered result. Leave the active generation and evaluator source frozen.",
+    "After matched development generation finishes, replay the portable public check for every completed development candidate with the same reviewed offline actor. Restore the retained exact candidate when local scratch is unavailable. Keep the full original and portable check records, finite runtime, failures and hashes.",
+    "Report both the originally registered protocol-admissible outcome and the portable-check outcome alongside the original official grades. Run the registered calibration rule on the original view and report its disposition. Use the portable-check view for the corrected future harness only after it independently meets the same calibration gates. Record the two views separately and handle insufficient data through the existing bounded reserve rule.",
+    "Retain the same suite and official grade rule. Apply the portable check uniformly across systems in future separately registered phases, including local scorer features. If the portable check remains incompatible, document the affected results and retain their unknown or failed statuses under the applicable contract."
+  ],
+  "heldout_inference": false
+}
