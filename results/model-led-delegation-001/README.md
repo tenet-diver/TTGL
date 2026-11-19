@@ -1,5 +1,14 @@
 # Observatory routing experiment results
 
+Saved checkpoint, **19 November 2026, 01:03 UTC**: clean construction029 is
+running, with20/24coding attempts,20annotations and13supported local records
+complete. Its official grades remain sealed until collection finishes. See
+[the saved snapshot](checkpoint-20261119/summary.json) and the latest
+[handover](../../docs/research/HANDOVER.md) before continuation. No next stage is
+queued; schedules remain paused. The protocol-exposed cohort is preserved
+[separately](terminated-construction-024/README.md). Earlier checkpoints below
+remain historical and do not describe current cumulative usage.
+
 Current continuation, 18 November: the native accumulation/comparison harness is
 implemented. Transport, isolated coding actors and one required Sol→Luna handoff
 have run. The first matched benchmark qualification pair resolves **0/1 for Luna

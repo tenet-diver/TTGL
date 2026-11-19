@@ -4405,3 +4405,46 @@ not native calibration. Existing `heldout.py`, `scratch.py`, `reports.py` provid
 further orchestration/reporting glue but still require review/qualification before
 main use; avoid uncontrolled scratch expansion. Restore retained exact candidate
 artifacts for independent grading, never use hidden outcomes in live decisions.
+
+## Saved for tomorrow — 19 November 2026, 01:03 UTC
+
+User requested: write current state, commit and push; pick up tomorrow. The
+already registered bounded clean construction029 is left running to finish.
+No development/heldout stage is queued and no scheduled monitoring is enabled.
+
+Observed snapshot: 20 of 24 coding attempts and 20 annotations complete; 13
+supported local implementation records; 3,356,734 native tokens across completed
+calls in this clean phase. These are public-check outcomes, not official task
+success or demonstrated knowledge/routing benefit. No phase stopped/completion
+record existed at observation. Official grading follows the entire collection.
+Snapshot: `results/model-led-delegation-001/checkpoint-20261119/summary.json`.
+
+Active owner PID579001, parent579000, started with:
+`PYTHONPATH=src python3 -m ttgl.model_delegation.stages experiments/model-led-delegation-001/clean-construction-029.json`.
+Private output/log remain under
+`work/security/model-led-delegation-20261118/continuation-001/`.
+Read `clean-construction-029/completion.json`, `stopped.json`,
+`generation-complete.json`, `native-claims.jsonl`, per-invocation response and
+completion records, and actual processes BEFORE doing anything. Do not rerun the
+command: its owner guard intentionally rejects re-entry. Never repeat a started
+or uncertain call. If still running, leave every source pin in029 unchanged.
+If complete, audit grades/usage and then proceed with the development gates above.
+If stopped, distinguish completed calls from verified pre-invocation failures;
+audit recovery explicitly without discarding evidence or repeating inference.
+
+Source generation/evaluation and contexts are frozen in the acknowledged exact
+source archive for029; current Git commit alone does not replace that receipt.
+Raw private evidence, credentials, native client state and exact candidate
+archives remain local/loopback-S3 and ignored by Git. /tmp contains active owned
+workspaces, reviewed numerical libraries, grader subset and benchmark inputs;
+inspect and restore retained artifacts if scratch is lost, never infer that a
+missing scratch directory means an assignment was unrun. Preserve database/S3
+volumes, other active processes and every historical/frozen study.
+
+Current research boundary: one required Sol→Luna→Sol mechanism diagnostic works;
+unsupported extraction checks were rejected; the protocol-exposed six-pair cohort
+is preserved at Luna2/6 versus Sol5/6 and excluded uniformly. Clean knowledge-size
+curves, voluntary routing gains and native FrugalGPT/RouteLLM comparisons remain
+unrun. Main development12/heldout22 are unchanged; six fresh unused candidates
+are reserved for development expansion.96focused tests passed; do not report
+software fixtures as model-quality, cash/quota or net-saving evidence.
