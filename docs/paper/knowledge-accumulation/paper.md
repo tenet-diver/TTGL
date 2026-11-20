@@ -1,47 +1,28 @@
-# Investigate how knowledge accumulation and generalization frameworks accelerate effective innovation outcomes.
+# Knowledge accumulation across fresh coding sessions
 
-**Observatory research working paper · 20 November 2026 · Version 0.3**  
-**Empirical scope.** Completed diagnostics and an adapted two-target repository-memory comparison. The SlopCodeBench pilot tests transfer across fresh sessions on dependent requirements. Its final paired outcomes and the separate longitudinal development study's quality outcomes remain pending.
-
-## 10 November empirical update
-
-The first adapted same-repository wave is complete: two cfn-lint targets and
-four arms (fresh, raw history, Mem0/Luna, Graphiti/Luna). All arms receive the
-same solver model and execution budget. Each arm passes all prescribed tests
-on one target and fails them on the other. The registered strict upstream
-exact-set matcher instead records0/2 per arm because every successful-target
-candidate adds passing regression tests. The prescribed-tests assessment is
-explicitly post-hoc and does not replace the registered outcome.
-
-Including maintenance, Mem0 costs5.63% and Graphiti46.35% more than fresh context
-in the published model-rate scenario; raw history costs6.96% more. Across84
-completed processes,200 distinct responses and5,038,090 tokens reconcile across
-native/CLI/capture evidence. These are bounded development findings, not evidence
-of learning over time or a broad benchmark score. The separate native-memory
-probe has an unknown-cost cancelled background request, so full research cost
-is incomplete. [Detailed results and limitations](../../research/repository-memory-wave-a-results.md).
-
-A metadata-only extension reserves12 tasks each in cfn-lint, Click and attrs,
-partitioned into verified monotonic source lineages (12,10+2,12 tasks). It starts with empty per-arm repository/lineage stores;
-only earlier own public experience may accumulate. Matched per-position
-controls are required to distinguish memory effects from changing task difficulty
-and cache trends. This is nonparametric knowledge accumulation, not model-weight
-training. Its216 registered solver assignments have started; no longitudinal quality result is available at this update.
-
-An isolated native-memory diagnostic now demonstrates actual phase1 extraction,
-settled phase2 consolidation and automatic injection into a fresh thread. The
-original request contains the exact generated summary, and the agent recalls
-a documented workflow without supplied facts or file tools. This clears a
-mechanism gate only; native coding efficacy and complete background cost remain
-pending, with the earlier cancelled background request retained as unknown.
+**A matched study of project decisions on dependent software requirements**  
+**Observatory research manuscript · 20 November 2026 · Version 1.0**
 
 ## Abstract
 
-Persistent memory can make a personal coding agent more useful if experience from one task reduces the effort required to complete later tasks. However, storing information, recalling it, and generalizing it into successful action are different achievements. We investigate the relationship through a focused literature review, completed instrumented development experiments, and a prospective evaluation of repeated work in the same repository. The comparison covers ordinary source retrieval, continued conversation, Generative Agents–style memory with cheap-model maintenance, Mem0, Zep's open-source Graphiti engine, TokenEconomizer, native coding-agent memory, and a proposed editable challenge graph. In an eight-function native-interface diagnostic, all conditions pass all checks. Luna-maintained Smallville memory costs 18.43% more than source search in a published-rate model-inference scenario. A TokenEconomizer memory condition costs 12.05% less, but injects no skills and performs no pruning or redirection; the difference cannot establish a memory benefit. Separately, adapted Mem0 passes twelve generated recall checks but costs 271.81% more than continued context, including extraction. These experiments establish neither generalization nor accelerated innovation. We therefore specify a longitudinal extension of VibeMemBench with matched information access, executable verification, memory-on/off controls, graph-versus-flat ablations, and full maintenance accounting. Our conclusion is conditional: accumulated knowledge accelerates useful outcomes only when its reuse changes behavior enough to offset preparation, retrieval, verification, and correction costs without reducing quality.
-
-The four-pair SlopCodeBench pilot directly tests whether access to predecessor
-decisions helps a fresh coding agent implement a dependent requirement. Final
-paired results are pending.
+Persistent project memory could help a fresh coding agent extend earlier work
+by preserving the reasoning behind the code. We test whether access to that
+reasoning improves verified completion, preserves earlier behavior, or reduces
+effort. We use decision records that state when a choice applies and point to
+the exact public check that supports it. On two dependent Python tasks, fresh
+Luna sessions receive matched code and specifications with one of three memory
+conditions. They receive code only, optional predecessor summaries and decision
+records, or those same records plus optional conversation access. All six
+continuations pass every new and earlier check. None of the four history-enabled
+sessions requests retrieval. A registered diagnostic supplies a predecessor
+excerpt directly in one additional matched pair. Both sessions pass every
+check, with no observed quality difference. The prior SlopCodeBench follow-up
+demonstrates live retrieval of individual decisions, while the main comparison
+demonstrates that a capable code-only baseline can leave little opportunity
+for memory to help. Together with earlier recall and maintenance experiments,
+these findings motivate longer repository sequences that measure how often
+agents use retained evidence and whether reuse offsets its cost. The present
+evidence supports a retrieval mechanism and descriptive development outcomes.
 
 **Keywords:** agent memory; knowledge accumulation; generalization; coding agents; temporal knowledge graphs; software maintenance; inference economics; innovation measurement.
 
@@ -61,7 +42,11 @@ The research questions are:
 4. **Division of labor:** Can a cheap model prepare and maintain useful knowledge while a larger model solves and verifies the task economically?
 5. **Mechanism:** Do improvements coincide with observable avoidance of repeated exploration or mistakes, rather than only changes in cache use or response length?
 
-The contribution of this draft is an evidence audit and an explicit evaluation design. Combining models, reflection, retrieval, graphs, and persistent memory is established prior art. We make no first-invention claim for that combination.
+We contribute an executable comparison of fresh-session handoffs, a record
+format that links engineering decisions to their applicability and public
+verification, and an audit of where retrieval and verified outcomes diverge.
+The proposed longitudinal graph comparison extends this design to repeated
+work in real repositories.
 
 ## 2. Literature review
 
@@ -113,21 +98,31 @@ SWE-Bench-CL explicitly proposes repository issue sequences and continual-learni
 
 VibeMemBench directly tests memory for executable repository work: 111 targets, 90 repositories, and 3,634 historical trajectories. Its authors select targets where history improves a reference setting; transferred useful experience helps four of five held-out solvers, while eleven of twelve evaluated memory-system/solver pairings do not beat memory-off. These are **the authors' results**, not our measurements. The selection supplies evidence of learnability in a reference setting, while introducing selection bias and leaving transfer to our solver uncertain. [Fan et al., 2026](https://arxiv.org/abs/2609.23570).
 
-This review is a focused primary-source review, updated on 9 November 2026, not a systematic review or meta-analysis. We selected work that implements persistent retrieval, reflection, temporal or editable memory, procedural reuse, or executable longitudinal evaluation. We do not pool accuracy or cost figures across their incompatible benchmarks.
+SlopCodeBench supplies dependent checkpoints within a project, including the
+document conversion and configuration tasks used in our first pilot. A
+matched handoff starts each agent from the same predecessor implementation.
+That keeps starting code fixed while varying access to the session that
+produced it. [SlopCodeBench problem catalog](https://www.scbench.ai/problems).
+
+This focused primary-source review selects work on persistent retrieval,
+reflection, editable memory, procedural reuse, and executable longitudinal
+evaluation. The studies use different tasks, solvers, and cost denominators,
+so their accuracy and cost figures are reported individually.
 
 ## 3. Systems and comparison boundaries
 
-Table 1 separates mechanisms, implementation status, and evidence. It is not a ranking.
+Table 1 summarizes the mechanisms and evidence available for each system.
 
 | System or control | Mechanism and proposed role | Local evidence at this draft |
 |---|---|---|
 | Fresh Sol; durable memory off | Current issue/source/public checks; no earlier private experience | Source-search coding diagnostic complete; no new repository-sequence result |
 | Continued Sol thread | Retained conversation and cache reuse | Generated repeated-recall diagnostic complete; not durable-memory on |
-| Native Codex memory | Product's own extraction, consolidation, and injection | Documentation/source inspected; isolated on/off efficacy comparison pending |
+| Native Codex memory | Product's own extraction, consolidation, and injection | Isolated extraction and fresh-thread injection observed; coding efficacy open |
 | Exact history files / lexical retrieval | Searchable raw experience without model extraction | Completed recall and small coding controls |
 | Smallville with Luna maintenance | Observation importance, retrieval, and reflection architecture | Coding diagnostic complete; no natural reflections in those assignments |
-| Mem0 OSS, adapted dense configuration | Stock extraction/consolidation/storage/search with local embedding and native Codex transport | Repeated-recall diagnostic complete; coding comparison pending |
-| Graphiti OSS, Zep comparison | Temporal graph construction and retrieval | Client import/protocol preparation only; server and efficacy comparison pending |
+| Mem0 OSS, adapted dense configuration | Stock extraction/consolidation/storage/search with local embedding and native Codex transport | Repeated-recall diagnostic and two-target cfn-lint comparison completed |
+| Graphiti OSS, Zep comparison | Temporal graph construction and retrieval | Two-target cfn-lint comparison completed |
+| Observatory decision records | Applicability and exact public verification, with optional searchable history | SlopCodeBench retrieval follow-up and matched three-arm study completed |
 | TokenEconomizer default / Luna memory enabled | Operational skill selection, tool pruning, loop redirection | Small coding comparison complete; no observed interventions |
 | Challenge graph, task only | Luna prepares current-problem graph; Sol can inspect/update; reset after task | Proposed; no model-quality result |
 | Persistent challenge/repository graph | Same task graph plus admissible prior experience and retained edits | Proposed; no model-quality result |
@@ -213,14 +208,14 @@ This audit establishes that a repeated-repository comparison can be specified fr
 
 ### 4.5 Experiment D on decision history across fresh coding sessions
 
-The SlopCodeBench pilot is our first direct test of whether project knowledge
-survives a fresh agent session and helps the agent implement a new requirement
-that builds on its predecessor's code. Four paired handoffs span checkpoints 2
-and 3 in two project lineages, `l2m` and `cfgpipe`. At each handoff, two fresh
-Luna sessions start from the same Git snapshot and public specifications. One
-also receives optional, read-only access to predecessor history through
-Observatory MCP. Both checkpoint 3 sessions start from the checkpoint 2
-baseline's code, as fixed before inference.
+The SlopCodeBench pilot registered four matched handoffs over checkpoints 2
+and 3 in `l2m` and `cfgpipe`. One fresh Luna arm was offered optional,
+read-only access to predecessor history through Observatory MCP. The design
+fixed the checkpoint 2 baseline source as the checkpoint 3 parent. Two
+invocations reached terminal receipts, one stopped with a gradeable snapshot
+and incomplete terminal evidence, and seven remained unstarted. The original
+matrix supplies partial execution evidence and zero finalized matched pairs.
+[Registered pilot and scoring protocol](../../../experiments/decision-history-scb-001/README.md).
 
 Each frozen history entry is a session-sized decision record. It contains the
 predecessor ID and checkpoint, a report of decisions, alternatives and checks,
@@ -231,15 +226,6 @@ in a decision reflected in the patch. Retrieval receipts and the patch support
 that mechanism analysis. The paired comparison measures the effect of offering
 history whether or not the agent chooses to use it.
 
-The independent grader measures completion of the new requirement and
-regressions in earlier behavior. We report elapsed invocation time alongside
-quality for each pair. The four pairs are descriptive cases from two dependent
-lineages. The pilot evaluates access to summaries and conversations together.
-The follow-up adds a summary-only arm with the same searchable summaries and
-decision records to measure the added value of opening conversation pages.
-Final paired results from the original pilot are pending.
-[Registered pilot and scoring protocol](../../../experiments/decision-history-scb-001/README.md).
-
 One follow-up pair on `l2m` checkpoint 2 completed after a transport diagnostic.
 Both agents retrieved the predecessor summary and a decision record. The
 summary-only agent made two invalid worker calls and produced no edit (0/20
@@ -247,6 +233,75 @@ target checks). The full-history agent passed 7/20 target checks and opened zero
 conversation pages. The pair demonstrates live retrieval of individual decisions.
 The incremental value of reading conversations remains unresolved.
 [Follow-up outcomes and audit](../../../experiments/decision-history-scb-001/README.md#completed-follow-up-002).
+
+### 4.6 Experiment E on optional decision and conversation access
+
+We constructed two dependent Python lineages, seat allocation with order-preserving
+rename and layered flags with order-sensitive reset. A native Luna predecessor
+passes all four independent checks in each lineage. We seal that source and the
+predecessor's visible summary and decision. Each decision states its
+applicability and links to a successful public check by event ID and trace
+hash. The seat predecessor combined the write and test in a single shell call.
+The initial standalone-check rule excluded it. A versioned amendment admitted
+the three previously unstarted seat sessions after the retained write matched
+the sealed source byte for byte and the test result was independently checked.
+
+Fresh sessions receive either the common Git snapshot and public materials,
+those inputs plus optional summaries and decision records, or those inputs
+plus the same searchable records and conversation pages. We compare code-only,
+summary-only, and full-history arms in that order on seats and reverse the
+order on flags. The model, public inputs, prompt, offline actor, verification
+tools, and 120-second cap match within each handoff. The grader measures both
+the new requirement and earlier behavior independently. A model-free test
+verifies that the worker explains the valid timeout range and that default
+settings allow a read, edit and public test. Four reference and empty-patch
+control pairs pass their respective requirements, and both continuation
+references pass the earlier checks. [Protocol and controls](../../../experiments/decision-history-three-arm-001/README.md).
+
+| Arm | Complete handoffs | Target checks | Earlier checks | Native tokens |
+|---|---:|---:|---:|---:|
+| Code only | 2/2 | 8/8 | 8/8 | 97,036 |
+| Summary only | 2/2 | 8/8 | 8/8 | 110,041 |
+| Full history | 2/2 | 8/8 | 8/8 | 97,643 |
+
+All six sessions finish within 15.00–31.35 recorded seconds, including local
+archival. None of the four history-enabled sessions invokes the history tools.
+No session sends an invalid timeout. The optional-access comparison thus
+observes equal quality and leaves actual reuse unexercised in these cases.
+
+The registration required a separate direct-exposure comparison on seats if
+optional conversation reads totaled zero. Both fresh sessions receive the
+same optional summary and decision access. One also receives a bounded
+excerpt from the predecessor's visible transcript in its actual request.
+Both pass 4/4 target and 4/4 earlier checks. The excerpt arm uses 39,536 native
+tokens versus 38,357 in its matched control. Recorded elapsed times are
+17.52 and 18.77 seconds, respectively. This one pair and the ceiling scores
+leave an efficiency or quality effect unresolved. Across the complete study,
+two predecessor calls, six main calls, and two exposure calls total 468,118
+native tokens. All ten native outcomes and reproducible grades reconcile.
+[Per-run outcomes and audit](../../../experiments/decision-history-three-arm-001/README.md#results).
+
+### 4.7 Historical repository-memory comparisons
+
+The adapted cfn-lint wave compared fresh context, raw history, Mem0 with Luna
+maintenance, and Graphiti with Luna maintenance on two common targets. Each
+arm receives 0/2 under the registered exact-set matcher. A post-hoc assessment
+counts 1/2 prescribed-test passes in each arm, because the successful-target
+submissions also added passing regression tests. Including maintenance, Mem0
+used 5.63% more scenario cost than fresh context, Graphiti 46.35% more, and raw
+history 6.96% more. The capture reconciles 84 processes, 200 distinct responses,
+and 5,038,090 tokens. One cancelled native background call with unknown usage
+keeps full research overhead incomplete.
+[Detailed wave results](../../research/repository-memory-wave-a-results.md).
+
+Separate native-memory instrumentation observed extraction, consolidation and
+injection of an eligible summary into a fresh thread. The agent recalled a
+recorded workflow. This measurement establishes the memory mechanism in that
+configuration. Coding efficacy and complete background cost remain unresolved.
+The historical longitudinal run retains 20 generation receipts out of 216
+registered assignments and has no official grades in its retained record.
+[Continuation record](../../research/knowledge-accumulation-study.md) ·
+[Retained longitudinal evidence](../../research/observability-improvement-study.md).
 
 ## 5. Proposed system: an editable challenge and repository graph
 
@@ -364,7 +419,12 @@ Separately registered ablations should remove prior history, reset memory betwee
 
 ### 7.1 What the evidence currently supports
 
-The completed studies support three limited conclusions. First, model choice for maintenance matters economically: Luna is much cheaper than Sol in the observed Smallville maintenance control. Second, memory can cost more than source retrieval or retained conversation even when every answer is correct. Third, numerical savings are not sufficient evidence of a mechanism: an intervention that never activates cannot explain its arm's apparent advantage without further investigation.
+The two fresh lineages show a quality ceiling and zero optional retrieval.
+The earlier `l2m` follow-up shows that an agent can open a specific decision
+and that the receipt can identify the exact check it saw. The two observations
+motivate measuring use and independently graded outcomes together. Model
+choice changed maintenance expense in Smallville, and Mem0's generated recall
+used more scenario cost than retained conversation despite equal accuracy.
 
 No completed result in this paper establishes that Mem0, Graphiti, Smallville, TokenEconomizer, native memory, or the proposed graph accelerates verified follow-up repository work. There is no local Mem0-versus-Graphiti coding ranking. Conversational recall claims from other papers do not fill that gap.
 
@@ -378,7 +438,15 @@ A benchmark where no treatment uses memory is a poor test of this hypothesis. Co
 
 All current local efficacy evidence is development evidence. The eight public coding functions are easy, reused across conditions, and vulnerable to training contamination. The recall corpora are generated and do not represent engineering work. Small samples with all-success outcomes cannot establish quality equivalence. The later maintenance-model control has order and cache confounds. Historical scenarios use frozen rates and exclude unpriced local infrastructure.
 
-The new benchmark is public and could overlap model training data. Its history-usefulness screening and issue-number chronology limit external validity. Temporal ordering must not be claimed more strongly than the released metadata supports. Current infrastructure has not passed all repository, graph-backend, native-memory, and capture gates. A corrected environment may differ from the released image and must be labeled an adapted run, with evaluator and control equivalence tested.
+The two Python lineages are new, short development tasks with complete public
+specifications and only one invocation per arm per lineage. The seat eligibility
+amendment follows observation of a predecessor receipt and precedes all seat
+continuations. The excerpt diagnostic has one case, one selected passage, and
+one invocation per arm. These choices limit inferences about broader retrieval,
+cost and quality. VibeMemBench uses public tasks and its usefulness screening
+and issue-number chronology also constrain external validity. The larger
+longitudinal, graph and native-memory comparisons still require their own
+qualified environments and complete grades.
 
 Model-generated memory can preserve prompt injection, false causality, stale rules, and private information. Provenance, namespace checks, evidence retention, and fallible-memory instructions reduce some risks but do not establish semantic truth. No automated abstraction should be treated as verified solely because a model assigned high confidence.
 
@@ -386,15 +454,15 @@ Finally, this paper does not measure broader innovation. It studies productive r
 
 ## 8. Conclusions
 
-Knowledge accumulation is a plausible way to reduce repeated work, but stored knowledge is not automatically useful knowledge, and useful recall is not automatically generalization. Our completed development experiments reveal maintenance overhead and cache sensitivity rather than a demonstrated acceleration of repository innovation. Cheap maintenance reduces one cost component; it does not guarantee a cheaper or better complete agent.
-
-The SlopCodeBench pilot tests whether prior project decisions help fresh agents
-extend the same code under matched starting conditions. A larger comparison
-would test repeated verified repository work with native-memory controls,
-existing systems and a graph-versus-flat ablation. A cheap model should prepare
-a revisable problem representation, and a stronger solver should use,
-challenge and update it. The comparison should account for every inference
-stage and measure whether accumulated experience improves later verified work.
+Project decisions can be carried across fresh coding sessions as inspectable
+records with applicability and observed verification. On the two matched
+development handoffs, code alone was sufficient for full quality, and giving
+agents access to decision history changed neither completion nor earlier
+behavior. A direct excerpt produced the same scores in one additional pair.
+Acceleration remains an open question for repeated repository work where
+rediscovering earlier decisions is consequential. A longitudinal comparison
+should track those opportunities, actual use, verified gains, and complete
+maintenance and execution costs over time.
 
 ## References
 
@@ -419,11 +487,14 @@ stage and measure whether accumulated experience improves later verified work.
 19. Fan, L., et al. (2026). *VibeMemBench: Evaluating Memory Systems for Coding Agents on Real Repository Coding Tasks.* [Paper](https://arxiv.org/abs/2609.23570); [pinned integration contract](https://github.com/AlibabaResearch/DAMO-ConvAI/blob/7152cf96809b45343ccc1caf7115a7d3fa43f956/VibeMemBench/scripts/CONTRACT.md); [dataset](https://huggingface.co/datasets/Tongyi-ConvAI/VibeMemBench/tree/11164976b4f920cdb0d0cd570ca572e49acea1e8).
 20. OpenAI (accessed 9 November 2026). *Memories.* [Documentation](https://learn.chatgpt.com/docs/customization/memories). Source-inspection snapshot: [Codex memory startup](https://github.com/openai/codex/blob/0598a96e9361485fd4cd02f9c287aca627ad6ee1/codex-rs/memories/write/src/start.rs). Snapshot inspection is not proof that an installed binary implements every current-source detail.
 21. Python Software Foundation (2026). *Python 3.10.20 security release.* [Release notes](https://www.python.org/downloads/release/python-31020/).
+22. SlopCodeBench. *Problem catalog, v1.0.* [Benchmark catalog](https://www.scbench.ai/problems).
 
 ## Appendix A. Reproducibility and evidence availability
 
 Completed results are machine-readable and versioned:
 
+* [Matched three-arm outcomes, exposure diagnostic and report hashes](../../../experiments/decision-history-three-arm-001/results.json).
+* [Decision-history source, audit commands and controls](../../../experiments/decision-history-three-arm-001/README.md).
 * [Native coding/maintenance accounting](../../../tools/usage-monitor/studies/luna-memory-tokeneconomizer-final-results-001.json).
 * [Repeated recall/cache comparison](../../../tools/usage-monitor/studies/cache-memory-reuse-results-001.json).
 * [Repository metadata audit and reservation](../../../tools/usage-monitor/studies/repository-memory-metadata-audit-001.json).
@@ -433,4 +504,5 @@ Completed results are machine-readable and versioned:
 
 Private source captures, native logs, dataset grading material, and security artifacts remain in ignored `work/security/` directories; they are not republished in this paper. Public receipts do not constitute independently audited security clearance. The new metadata audit invokes no models. Native/global agent configuration, personal memory, running observability services, and paused research schedules remain unchanged.
 
-The manuscript must be revised after the registered longitudinal experiment. Missing results must remain missing until measurements exist; literature results, software checks, metadata counts, and prospective methods must not be substituted for that experiment.
+The longitudinal protocol remains a separate research question. The available
+records support the reported diagnostic and handoff comparisons.

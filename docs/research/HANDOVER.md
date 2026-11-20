@@ -4758,3 +4758,24 @@ claims, terminal slot receipts, log and stop/completion markers in
 This is parent-serial and projected to take over eight hours plus grading.
 Do not duplicate the owner, edit the frozen sources or repeat a claimed call.
 Research schedules are still paused.
+
+## 20 November decision-history comparison complete
+
+The timed worker now returns actionable timeout feedback. Four reference and
+empty-patch control pairs pass, and model-free worker qualification verifies a
+real read, edit and public check. Both native predecessors pass 4/4 independent
+checks. The seats predecessor's original admission failed because its public
+test followed the write in the same shell call. Continuation 002 verified the
+exact candidate bytes and passing result, then admitted only its three
+unstarted continuation arms.
+
+All six matched continuations pass four target and four earlier checks. The
+four history-enabled sessions make zero retrieval requests. The registered
+fallback exposes one fresh seats session to a predecessor excerpt with a
+matched control; both pass every check. All ten native calls, 468,118 tokens,
+and grades reconcile. The earlier four-pair SlopCodeBench matrix retains its
+interrupted and unstarted assignments. The two reports and their audit hashes
+are published as aggregates, with raw evidence private. Research schedules
+remain paused.
+[Experiment record](../../experiments/decision-history-three-arm-001/README.md) ·
+[Research manuscript](../paper/knowledge-accumulation/paper.md).

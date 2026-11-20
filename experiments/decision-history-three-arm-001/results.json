@@ -1,0 +1,130 @@
+{
+  "study": "decision-history-three-arm-001",
+  "continuation": "decision-history-three-arm-continuation-002",
+  "completed_native_invocations": 10,
+  "independent_grade_replay_agreed": true,
+  "source_reports_sha256": {
+    "decision-history-three-arm-001": "ea6b2b8f0a3fec2cd11adb3d04a1ae8593f6a5009cdbaa122550ea21daffba23",
+    "decision-history-three-arm-continuation-002": "227ca68b5793ccd4bb920111d8a8408e3b07487c064f196cd6e472dbde80cce2"
+  },
+  "predecessors": {
+    "flags": {
+      "passed_checks": 4,
+      "total_checks": 4,
+      "native_tokens": 47642
+    },
+    "seats": {
+      "passed_checks": 4,
+      "total_checks": 4,
+      "native_tokens": 37863
+    }
+  },
+  "main": [
+    {
+      "case": "flags",
+      "arm": "full-history",
+      "target_checks": 4,
+      "target_total": 4,
+      "earlier_checks": 4,
+      "earlier_total": 4,
+      "elapsed_seconds": 17.09,
+      "native_tokens": 48744,
+      "native_history_calls": 0,
+      "rejected_timeouts": 0
+    },
+    {
+      "case": "flags",
+      "arm": "summary-only",
+      "target_checks": 4,
+      "target_total": 4,
+      "earlier_checks": 4,
+      "earlier_total": 4,
+      "elapsed_seconds": 17.96,
+      "native_tokens": 48832,
+      "native_history_calls": 0,
+      "rejected_timeouts": 0
+    },
+    {
+      "case": "flags",
+      "arm": "code-only",
+      "target_checks": 4,
+      "target_total": 4,
+      "earlier_checks": 4,
+      "earlier_total": 4,
+      "elapsed_seconds": 15.0,
+      "native_tokens": 48127,
+      "native_history_calls": 0,
+      "rejected_timeouts": 0
+    },
+    {
+      "case": "seats",
+      "arm": "code-only",
+      "target_checks": 4,
+      "target_total": 4,
+      "earlier_checks": 4,
+      "earlier_total": 4,
+      "elapsed_seconds": 20.13,
+      "native_tokens": 48909,
+      "native_history_calls": 0,
+      "rejected_timeouts": 0
+    },
+    {
+      "case": "seats",
+      "arm": "summary-only",
+      "target_checks": 4,
+      "target_total": 4,
+      "earlier_checks": 4,
+      "earlier_total": 4,
+      "elapsed_seconds": 31.35,
+      "native_tokens": 61209,
+      "native_history_calls": 0,
+      "rejected_timeouts": 0
+    },
+    {
+      "case": "seats",
+      "arm": "full-history",
+      "target_checks": 4,
+      "target_total": 4,
+      "earlier_checks": 4,
+      "earlier_total": 4,
+      "elapsed_seconds": 18.96,
+      "native_tokens": 48899,
+      "native_history_calls": 0,
+      "rejected_timeouts": 0
+    }
+  ],
+  "optional_conversation_pages": 0,
+  "excerpt_diagnostic": [
+    {
+      "case": "seats",
+      "arm": "shared-records",
+      "target_checks": 4,
+      "target_total": 4,
+      "earlier_checks": 4,
+      "earlier_total": 4,
+      "elapsed_seconds": 18.77,
+      "native_tokens": 38357,
+      "native_history_calls": 0,
+      "rejected_timeouts": 0
+    },
+    {
+      "case": "seats",
+      "arm": "shared-records-and-excerpt",
+      "target_checks": 4,
+      "target_total": 4,
+      "earlier_checks": 4,
+      "earlier_total": 4,
+      "elapsed_seconds": 17.52,
+      "native_tokens": 39536,
+      "native_history_calls": 0,
+      "rejected_timeouts": 0
+    }
+  ],
+  "exact_excerpt_delivery_verified": true,
+  "native_tokens": {
+    "predecessors": 85505,
+    "main": 304720,
+    "excerpt_diagnostic": 77893,
+    "total": 468118
+  }
+}

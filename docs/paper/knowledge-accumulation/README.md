@@ -1,17 +1,15 @@
-# Knowledge accumulation and generalization
+# Knowledge accumulation across fresh coding sessions
 
-Read the [Markdown working paper](paper.md).
+Read the [research manuscript](paper.md), version 1.0 from 20 November 2026.
 
-The SlopCodeBench pilot is our first direct test of whether project knowledge
-from an earlier coding session helps a fresh agent implement a dependent
-requirement in the same code. Final results from the four paired handoffs are
-pending. [Pilot design](paper.md#45-experiment-d-on-decision-history-across-fresh-coding-sessions).
+Six matched Luna continuations on two fresh dependent Python tasks all passed
+every target and earlier check. None of the four history-enabled sessions used
+retrieval. A separate matched pair received optional access to the same records,
+with a predecessor excerpt supplied directly to one session. Both passed all
+checks. The audit reconciled ten native calls, including the predecessors.
+[Results and reproducibility](../../../experiments/decision-history-three-arm-001/README.md#results).
 
-The draft reviews memory systems, reports completed local experiments, and
-specifies an editable challenge-graph comparison over repeated repository work.
-It does **not** contain completed same-repository Mem0/Graphiti/native-memory
-scores. The new metadata reservation has zero model trials; the first original
-task image is blocked by a confirmed vulnerable base component.
-
-The [continuation record](../../research/knowledge-accumulation-study.md) identifies
-the remaining gates. Existing routing and context/memory papers remain separate.
+The manuscript also reports the interrupted SlopCodeBench matrix, its completed
+retrieval follow-up, and the earlier memory-system diagnostics. The proposed
+larger longitudinal and editable-graph comparisons are described as future
+research. [Experimental evidence](paper.md#4-experimental-methods-and-evidence).
