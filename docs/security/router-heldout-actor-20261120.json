@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-11-20T16:55:56.116180+00:00",
+  "scope": "One signed OpenSSL patch revision in the existing offline SymPy routing experiment actor.",
+  "original_image_id": "sha256:3705eefe1b7f9cb180832743b059d69d1b4250c335c2cdb39e1c2b8f3d6731ee",
+  "replacement_image_id": "sha256:274c4bc0b7a3d9b37ef8b9516d068c11970beebbbc20a8011db325a8a3e12e9c",
+  "additional_reported_image_bytes": 9858413,
+  "findings_on_original_actor": [
+    {
+      "findings": [
+        {
+          "id": "ALPINE-CVE-2026-107496",
+          "modified": "2026-11-19T00:30:02.890018Z"
+        },
+        {
+          "id": "ALPINE-CVE-2026-88822",
+          "modified": "2026-11-19T00:30:02.819168Z"
+        },
+        {
+          "id": "ALPINE-CVE-2026-88823",
+          "modified": "2026-11-19T00:30:02.819178Z"
+        },
+        {
+          "id": "ALPINE-CVE-2026-95691",
+          "modified": "2026-11-19T00:30:02.816805Z"
+        },
+        {
+          "id": "ALPINE-CVE-2026-95692",
+          "modified": "2026-11-19T00:30:02.813755Z"
+        }
+      ],
+      "query": {
+        "package": {
+          "ecosystem": "Alpine:v3.24",
+          "name": "openssl"
+        },
+        "version": "3.5.9-r0"
+      }
+    }
+  ],
+  "findings_in_reviewed_replacement_scope": [],
+  "original_actor_started_during_restoration": false,
+  "official_advisory_source": "https://secdb.alpinelinux.org/v3.24/main.json",
+  "advisory_fixes": [
+    "CVE-2026-107496",
+    "CVE-2026-88822",
+    "CVE-2026-88823",
+    "CVE-2026-95691",
+    "CVE-2026-95692"
+  ],
+  "reviewed_package_count": 60,
+  "reviewed_mpmath": "1.4.1",
+  "packages": [
+    {
+      "control_sha256": "4a93d535b9f14e2d9ce7b82be353bb261bc0f916b7e71268bd1a3d9b13fd72ff",
+      "depends": [
+        "so:libc.musl-x86_64.so.1"
+      ],
+      "license": "Apache-2.0",
+      "name": "libcrypto3",
+      "payload_files": {
+        "etc/ssl/ct_log_list.cnf": "f1c1803d13d1d0b755b13b23c28bd4e20e07baf9f2b744c9337ba5866aa0ec3b",
+        "etc/ssl/ct_log_list.cnf.dist": "f1c1803d13d1d0b755b13b23c28bd4e20e07baf9f2b744c9337ba5866aa0ec3b",
+        "etc/ssl/openssl.cnf": "a65a2cb9f4ee8ffdc7ef4f0ac600c0bdafb95b7b1ab457188ac610a62f5ad6b3",
+        "etc/ssl/openssl.cnf.dist": "a65a2cb9f4ee8ffdc7ef4f0ac600c0bdafb95b7b1ab457188ac610a62f5ad6b3",
+        "usr/lib/engines-3/afalg.so": "b565e6935269d679a5b8d45bb1ae60559f9621d2c7fe47b8a70cbc90334259e1",
+        "usr/lib/engines-3/capi.so": "9e4328d873b167552bf4c807dab303a5a7a0c36e9a9f3bb1f1d84d864776bd2e",
+        "usr/lib/engines-3/loader_attic.so": "9b9c26db1b0f4a99c106a99ed01cc7c84a3c2bbc14df362517b24b4f18b900d7",
+        "usr/lib/engines-3/padlock.so": "3327f942be17b9f856cc7f56db23d2f3cff14e90688a00af2aeb970655843e8c",
+        "usr/lib/libcrypto.so.3": "d3170451aed163f70460726a08bfadd8c899d0ca43ea9b6105eaa45d3d1aa5c0",
+        "usr/lib/ossl-modules/legacy.so": "d28ac2184b2b39177578b4cabccee6d178c2b0e6f2ae0ccc8f354267d808ed83"
+      },
+      "sha256": "042026082cc9bc7872d1baa81755c50efa70b05f03b5369fdc5f0a1303009720",
+      "signed_index_commit": "0f4c7e8d0f5f7cebbdc2156eca4391080b732bf2",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libcrypto3-3.5.9-r1.apk",
+      "version": "3.5.9-r1"
+    },
+    {
+      "control_sha256": "4d2f2a9ec58d32110340ef1f03a91ef49d43612ce83b04ac7a41eeb5259d683a",
+      "depends": [
+        "libcrypto3=3.5.9-r1",
+        "so:libc.musl-x86_64.so.1",
+        "so:libcrypto.so.3"
+      ],
+      "license": "Apache-2.0",
+      "name": "libssl3",
+      "payload_files": {
+        "usr/lib/libssl.so.3": "6f35d9d1edb0f75228af331a88d740a891753a4fed32a1fccdbf8bf9183cd3cd"
+      },
+      "sha256": "18c5778cbe52e1991303f8531970b05d4e6e036ea08349322f7422f42a689dc7",
+      "signed_index_commit": "0f4c7e8d0f5f7cebbdc2156eca4391080b732bf2",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/libssl3-3.5.9-r1.apk",
+      "version": "3.5.9-r1"
+    },
+    {
+      "control_sha256": "3c24e55dc6761be4f329243af479afd96b01780c355974a758335ac2dc9ba726",
+      "depends": [
+        "libssl3=3.5.9-r1",
+        "libcrypto3=3.5.9-r1",
+        "so:libc.musl-x86_64.so.1",
+        "so:libcrypto.so.3",
+        "so:libssl.so.3"
+      ],
+      "license": "Apache-2.0",
+      "name": "openssl",
+      "payload_files": {
+        "usr/bin/openssl": "28def3c5ebd2a6e3a6e5e7d11ec629ae92769b518feb18193b0745620bbda7ab"
+      },
+      "sha256": "ed11241475e5757ce8eb9788b18116a804a579395d4813605df12989a2acbabf",
+      "signed_index_commit": "0f4c7e8d0f5f7cebbdc2156eca4391080b732bf2",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/main/x86_64/openssl-3.5.9-r1.apk",
+      "version": "3.5.9-r1"
+    }
+  ],
+  "signed_alpine_index_sha256": "ae03f96f1be094b225ee3fe6d0e25046b2e36b606d066b5458a5e9aa8bf85eb5",
+  "alpine_signing_key_sha256": "207e4696d3c05f7cb05966aee557307151f1f00217af4143c1bcaf33b8df733f",
+  "verification": "Official Alpine index and control signature verified with retained trusted key; signed control SHA256 matches package data segment.",
+  "coverage": "Includes resolved Alpine package families, disclosed host coverage limitations. Reuses existing signed key and exact parent layers without running the affected image.",
+  "automatic_scripts": [],
+  "new_image_pulls": 0,
+  "build_run_commands": 0,
+  "security_clearance": false,
+  "confirmed_findings_exceptions_added": 0,
+  "fresh_control_grade_pairs": 22,
+  "live_inference_during_actor_requalification": 0
+}
