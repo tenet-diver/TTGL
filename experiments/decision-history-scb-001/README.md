@@ -172,5 +172,120 @@ launches only calls without a prior admission.
 PYTHONPATH=src python -m ttgl.decision_history run --continue-002
 ```
 
-The 20 November 2026 pilot is active. Final paired outcomes will be added
-after the runner and grade receipts reconcile.
+The continuation stopped during `l2m-c2-history`. Its saved candidate hashes
+to the retained snapshot and passes 5/20 target checks and 35/52 earlier
+checks in an independent replay. The paired baseline candidate passes 14/20
+and 41/52. The interrupted history arm lacks a terminal receipt and complete
+usage evidence. Preserve the snapshot grade as partial evidence and keep the
+original paired outcome pending.
+
+## Follow-up on individual decisions and conversation access
+
+The follow-up memory server prepares a matched pair from a frozen handoff
+bundle. Both arms can search and read the same session summaries and individual
+decision records. The full-history arm can also open conversation pages. Search
+uses the common summaries and decisions in both arms. Compare fresh Luna
+sessions under the same parent snapshot, public specs, prompt, effort, tools,
+time cap and independent grader. The original pilot estimates the effect of
+offering history as a package. This pair tests the added value of opening the
+conversation.
+
+Save optional decision declarations as a JSON object under `work/security`,
+keyed by eligible predecessor ID. This example shows an unverified decision.
+
+```json
+{
+  "l2m-c1-source": [
+    {
+      "decision": "Preserve output order",
+      "rationale": "Order is visible to callers",
+      "alternatives": ["Sort output by key"],
+      "applies_when": "The public format preserves source order",
+      "check_item_id": null
+    }
+  ]
+}
+```
+
+Use the `item.id` of a completed public `worker.shell` check from the cited
+predecessor's retained `events.jsonl`, or leave it null for an unverified
+decision. Preparation checks the trace digest and records the exact event line,
+command and result digests, exit code, timeout state and bounded output
+previews. The link establishes what ran and what it returned. The decision's
+rationale and applicability remain attributed judgments. Legacy bundles can be
+served with their session summaries and an empty decision list.
+
+```sh
+PYTHONPATH=src python -m ttgl.decision_history_followup prepare \
+  work/security/decision-history-scb-001 \
+  work/security/decision-history-followup/l2m-c2-002 l2m 2 \
+  --decisions work/security/decision-history-followup/l2m-c2-002/decisions.json
+PYTHONPATH=src python -m ttgl.decision_history_followup codex-config \
+  work/security/decision-history-followup/l2m-c2-002 summary-only
+```
+
+Omit `--decisions` when preparing a new bundle with only session summaries. Use
+`full-history` in the second command for its matched configuration. Each
+`codex-config` result is a JSON array of `--config` arguments for the isolated
+Codex launcher. Preparation seals the two arm files and their common search
+input in a private manifest. The summary-only process loads its own projection,
+whose data contains no conversation field. Each MCP process writes its own
+immutable search/read receipts under `retrieval/`. These commands prepare
+inputs and configuration for a follow-up. They make zero model calls.
+
+The trial runner uses the prepared views to run one fresh pair. Put the pilot's
+registered Codex executable first on `PATH` and use its source subscription.
+The runner checks both pins, qualifies the grader with empty and reference
+controls, and uses the same Git snapshot in both arms. The workspace shell runs
+inside the existing offline actor. The pair has a 165-second cap per invocation
+and zero automatic retries.
+
+```sh
+PYTHONPATH=src python -m ttgl.decision_history_followup_trial \
+  work/security/decision-history-scb-001 \
+  work/security/decision-history-followup/l2m-c2-002
+```
+
+Read `trial/report.json` after both arms finish. It links each native outcome
+to the exact candidate, independent target and earlier check results, usage,
+elapsed time and retrieval receipts. A started call without a terminal receipt
+blocks replay. Keep this follow-up separate from the original pilot outcomes.
+
+### Transport diagnostic 001
+
+Both native sessions finished and attempted one history search. Codex blocked
+both searches at its approval gate before they reached the MCP server. The
+summary-only assignment passed 8/20 target and 45/52 earlier checks using
+78,131 native tokens. The full-history assignment passed 14/20 and 45/52 using
+170,893 tokens. Those scores are a transport diagnostic. Trial 002 explicitly
+approves the two read-only MCP tools and uses byte-identical history views
+under a separate registration. Both diagnostic attempts, exact source and
+reports are retained locally.
+
+### Completed follow-up 002
+
+The fresh Luna sessions started from the same Git snapshot. The independent
+checkpoint 2 reference passed 20/20 checks and the empty control passed 0/20.
+Both native calls reached terminal completion. Recorded elapsed time includes
+local archival work in the native transport.
+
+| Arm | Target checks | Earlier checks | Recorded elapsed time | Native tokens | Searches | Summary reads | Decision reads | Conversation pages |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Summary only | 0/20 | 0/52 | 23.66 s | 71,887 | 2 | 1 | 1 | 0 |
+| Full history | 7/20 | 37/52 | 151.02 s | 266,005 | 1 | 1 | 1 | 0 |
+
+Both sessions opened the same predecessor summary and chose different decision
+records. The summary-only session read a check-linked record, then twice sent
+`timeout_seconds: 10000` to a worker that accepts 1–30 seconds. The worker
+rejected both calls and the session ended with the original stub. The
+full-history session read the unverified decision about processing order and
+reported using it alongside the public specification. It produced a partial
+implementation and opened zero conversation pages. Both assignments failed
+full checkpoint completion. This pair establishes that live decision retrieval
+works and leaves the value of opening conversations unresolved.
+
+The audit reconciled terminal native token counts, retrieval receipts, candidate
+hashes and independent replay of both target and earlier checks. The matched
+report is retained in local S3 with the private artifacts under
+`work/security/decision-history-followup/l2m-c2-002/trial`. Its SHA-256 is
+`67b74ccffa46ee89f955c2349773edce398738736ecc7727b8540441e166d710`.

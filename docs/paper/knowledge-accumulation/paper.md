@@ -1,7 +1,7 @@
 # Investigate how knowledge accumulation and generalization frameworks accelerate effective innovation outcomes.
 
-**TTGL research working paper · 10 November 2026 · Version 0.2**  
-**Empirical scope:** completed historical diagnostics and an adapted two-target repository-memory comparison. A36-task, six-condition longitudinal development study is running; its quality outcomes remain pending. Native generation/injection diagnostics and Smallville/TokenEconomizer supplemental repository comparisons are separate gates. This is an interim paper, not a completed comparative benchmark report.
+**Observatory research working paper · 20 November 2026 · Version 0.3**  
+**Empirical scope.** Completed diagnostics and an adapted two-target repository-memory comparison. The SlopCodeBench pilot tests transfer across fresh sessions on dependent requirements. Its final paired outcomes and the separate longitudinal development study's quality outcomes remain pending.
 
 ## 10 November empirical update
 
@@ -38,6 +38,10 @@ pending, with the earlier cancelled background request retained as unknown.
 ## Abstract
 
 Persistent memory can make a personal coding agent more useful if experience from one task reduces the effort required to complete later tasks. However, storing information, recalling it, and generalizing it into successful action are different achievements. We investigate the relationship through a focused literature review, completed instrumented development experiments, and a prospective evaluation of repeated work in the same repository. The comparison covers ordinary source retrieval, continued conversation, Generative Agents–style memory with cheap-model maintenance, Mem0, Zep's open-source Graphiti engine, TokenEconomizer, native coding-agent memory, and a proposed editable challenge graph. In an eight-function native-interface diagnostic, all conditions pass all checks. Luna-maintained Smallville memory costs 18.43% more than source search in a published-rate model-inference scenario. A TokenEconomizer memory condition costs 12.05% less, but injects no skills and performs no pruning or redirection; the difference cannot establish a memory benefit. Separately, adapted Mem0 passes twelve generated recall checks but costs 271.81% more than continued context, including extraction. These experiments establish neither generalization nor accelerated innovation. We therefore specify a longitudinal extension of VibeMemBench with matched information access, executable verification, memory-on/off controls, graph-versus-flat ablations, and full maintenance accounting. Our conclusion is conditional: accumulated knowledge accelerates useful outcomes only when its reuse changes behavior enough to offset preparation, retrieval, verification, and correction costs without reducing quality.
+
+The four-pair SlopCodeBench pilot directly tests whether access to predecessor
+decisions helps a fresh coding agent implement a dependent requirement. Final
+paired results are pending.
 
 **Keywords:** agent memory; knowledge accumulation; generalization; coding agents; temporal knowledge graphs; software maintenance; inference economics; innovation measurement.
 
@@ -135,7 +139,7 @@ Existing engines should supply storage, extraction, search, and graph operations
 
 The November 9 [source audit](../../../tools/usage-monitor/studies/repository-memory-source-audit-001.json) confirms recent repository activity and non-archived status for Mem0, Graphiti, and TokenEconomizer, and records their licenses. Fresh OSV queries for the already resolved 50/29/4-package Mem0/Graphiti/MCP graph configurations return no matches. That is not a complete runtime/OS or supply-chain clearance. Luna and Sol are opaque hosted model labels; we do not infer parameter counts, open weights, or local deployability from their relative prices.
 
-## 4. Experimental methods and completed results
+## 4. Experimental methods and evidence
 
 ### 4.1 Evidence levels and accounting
 
@@ -207,6 +211,43 @@ The first development image was inspected without installation or execution. Its
 
 This audit establishes that a repeated-repository comparison can be specified from existing data. It establishes neither useful-memory transfer to Sol nor success of any memory system. Its concrete execution gaps are retained in the [prospective protocol](../../../tools/usage-monitor/studies/repository-memory-protocol-001.json).
 
+### 4.5 Experiment D on decision history across fresh coding sessions
+
+The SlopCodeBench pilot is our first direct test of whether project knowledge
+survives a fresh agent session and helps the agent implement a new requirement
+that builds on its predecessor's code. Four paired handoffs span checkpoints 2
+and 3 in two project lineages, `l2m` and `cfgpipe`. At each handoff, two fresh
+Luna sessions start from the same Git snapshot and public specifications. One
+also receives optional, read-only access to predecessor history through
+Observatory MCP. Both checkpoint 3 sessions start from the checkpoint 2
+baseline's code, as fixed before inference.
+
+Each frozen history entry is a session-sized decision record. It contains the
+predecessor ID and checkpoint, a report of decisions, alternatives and checks,
+a pageable conversation with shell actions and results, and a digest linking
+the entry to the original trace. The analysis measures whether the agent
+searched, opened the summary or conversation, and used the retrieved evidence
+in a decision reflected in the patch. Retrieval receipts and the patch support
+that mechanism analysis. The paired comparison measures the effect of offering
+history whether or not the agent chooses to use it.
+
+The independent grader measures completion of the new requirement and
+regressions in earlier behavior. We report elapsed invocation time alongside
+quality for each pair. The four pairs are descriptive cases from two dependent
+lineages. The pilot evaluates access to summaries and conversations together.
+The follow-up adds a summary-only arm with the same searchable summaries and
+decision records to measure the added value of opening conversation pages.
+Final paired results from the original pilot are pending.
+[Registered pilot and scoring protocol](../../../experiments/decision-history-scb-001/README.md).
+
+One follow-up pair on `l2m` checkpoint 2 completed after a transport diagnostic.
+Both agents retrieved the predecessor summary and a decision record. The
+summary-only agent made two invalid worker calls and produced no edit (0/20
+target checks). The full-history agent passed 7/20 target checks and opened zero
+conversation pages. The pair demonstrates live retrieval of individual decisions.
+The incremental value of reading conversations remains unresolved.
+[Follow-up outcomes and audit](../../../experiments/decision-history-scb-001/README.md#completed-follow-up-002).
+
 ## 5. Proposed system: an editable challenge and repository graph
 
 ### 5.1 Representation
@@ -216,6 +257,16 @@ We propose a two-layer representation using an existing graph engine. A **challe
 Each claim carries a repository namespace, source task, source revision, creation sequence, evidence identifiers, status, and any supersession relationship. Suggested relation types include `depends_on`, `constrained_by`, `attempted_in`, `supported_by`, `contradicted_by`, `checked_by`, and `supersedes`. Graph structure is a hypothesis about useful organization, not proof of factual accuracy.
 
 An observation records what happened: command, exit status, output excerpt, environment, and relevant source hashes. A hypothesis records an explanation. A reusable procedure records its preconditions and the evidence that it worked. A failed command alone does not prove an approach is wrong or the task failed. A passing narrow check does not prove the entire task succeeded. Confidence is an attributed model judgment until calibrated against independent evidence.
+
+An individual decision record should state **when the decision applies** and
+**which exact check supports it**.
+
+- **Applicability.** Identify the public requirement or invariant, relevant
+  component and code or environment assumptions. Record what change would
+  trigger a recheck.
+- **Supporting check.** Point to the specific retained command or test and its
+  result in the source session, with the revision or candidate checked. When
+  the record has no supporting check, mark the decision unverified.
 
 ### 5.2 Cheap-model preparation
 
@@ -337,7 +388,13 @@ Finally, this paper does not measure broader innovation. It studies productive r
 
 Knowledge accumulation is a plausible way to reduce repeated work, but stored knowledge is not automatically useful knowledge, and useful recall is not automatically generalization. Our completed development experiments reveal maintenance overhead and cache sensitivity rather than a demonstrated acceleration of repository innovation. Cheap maintenance reduces one cost component; it does not guarantee a cheaper or better complete agent.
 
-The next decisive comparison is repeated verified work in the same repository, with equal information access, actual native-memory controls, independently implemented existing systems, and a graph-versus-flat ablation. A cheap model should prepare a revisable problem representation; a stronger solver should use, challenge, and update it; every inference stage should be charged. The proposed representation earns support only if the resulting accumulated experience improves later verified work under those controls. The requested head-to-head remains pending, and this draft makes no claim that the hypothesis has been confirmed.
+The SlopCodeBench pilot tests whether prior project decisions help fresh agents
+extend the same code under matched starting conditions. A larger comparison
+would test repeated verified repository work with native-memory controls,
+existing systems and a graph-versus-flat ablation. A cheap model should prepare
+a revisable problem representation, and a stronger solver should use,
+challenge and update it. The comparison should account for every inference
+stage and measure whether accumulated experience improves later verified work.
 
 ## References
 
