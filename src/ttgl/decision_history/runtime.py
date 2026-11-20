@@ -9,7 +9,7 @@ from ..experience_routing.backend import NativeCallFailure
 from ..experience_routing.io import digest, file_digest, now, read, write_new
 from ..personal import Request
 from ..sim_ablation.runtime import (AmbiguousInvocation, MODEL, NativeRuntime,
-    _SandboxSubscriptionBackend, _candidate, _decode_answer, _worktree, qualify_sandbox)
+    _SandboxSubscriptionBackend, _candidate, _decode_answer, _git, _regular_bytes, _worktree, qualify_sandbox)
 
 
 class HistoryBackend(_SandboxSubscriptionBackend):
@@ -80,6 +80,23 @@ class DecisionRuntime(NativeRuntime):
                 response = error.response
             usage = self._record_usage(request, response, backend, stage)
             candidate, integrity, diff = _candidate(worktree, files, editable)
+            extras = sorted(x.name for x in worktree.iterdir() if x.name not in {".git", *files})
+            # The scored deliverable is the single registered source. Temporary
+            # test products remain outside it. Protected inputs must still match.
+            if not integrity and extras:
+                try:
+                    verified = all(_regular_bytes(worktree / name) == contents.encode()
+                                   for name, contents in files.items() if name != editable)
+                    if verified:
+                        candidate = _regular_bytes(worktree / editable).decode()
+                        diff = _git(worktree, "diff", "--no-ext-diff", "HEAD", "--", editable).decode()
+                        integrity = True
+                except (OSError, UnicodeError, ValueError):
+                    pass
+            if candidate is not None:
+                snapshot = write_new(folder / "candidate-source.json", {"source": candidate,
+                                     "extra_paths_excluded": extras, "candidate_sha256": digest(candidate.encode())})
+                self.retention.retain_file(snapshot, kind="decision-history-candidate", identity=call_id)
             self._retain_tools(folder, call_id)
             history_rows = []
             for path in sorted(spool.glob("*.json"), key=lambda item: item.stat().st_mtime_ns):
@@ -93,7 +110,7 @@ class DecisionRuntime(NativeRuntime):
             result = {**identity, "status": response.status, "error_type": response.error_type, "base_commit": base,
                       "thread_id": response.thread_id, "elapsed_seconds": response.elapsed_seconds, "finished_at": now(),
                       "answer": _decode_answer(response.text), "candidate": candidate, "candidate_integrity": integrity,
-                      "diff": diff, "usage": usage["delta"], "scenario_cost": usage["scenario_cost"],
+                      "diff": diff, "extra_paths_excluded": extras, "usage": usage["delta"], "scenario_cost": usage["scenario_cost"],
                       "events_sha256": backend.last_native_artifact_hash, "events_ref": backend.artifacts.get("events.jsonl"),
                       "rollout_refs": backend.rollout_artifacts, "history_requests": history_rows}
             write_new(completed, result)
