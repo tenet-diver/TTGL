@@ -1,8 +1,13 @@
 # Decision history across coding handoffs
 
-Does giving a fresh coding agent access to earlier engineering decisions
-improve its ability to extend existing code? This pilot measures both the
-effect of offering history and how agents find, open and apply it.
+The research question is **how knowledge accumulation and generalization
+frameworks accelerate effective innovation outcomes**. This pilot asks
+whether a fresh coding agent can use earlier engineering decisions to extend
+existing code more effectively. Prior decisions are the knowledge, later
+dependent checkpoints test transfer, and elapsed time alongside independently
+verified progress measures acceleration. The pilot covers technical
+problem-solving within the same project. It leaves cross-repository transfer
+and broader innovation outcomes to later studies.
 
 ## Hypothesis
 
@@ -15,6 +20,15 @@ can check against the present code and specification.
 The intervention is access to predecessor history within a fixed task
 sequence. One model and harness run throughout. A Luna-versus-Sol transfer
 comparison and inference cost optimization are separate research questions.
+
+## Related evidence
+
+VibeMemBench finds that directly supplying verified earlier experience can
+help some solvers, while most evaluated end-to-end memory-system pairings
+did not beat their memory-off baseline. This makes it important to measure
+retrieval behavior as well as benchmark outcomes. Here the history is the
+actual earlier native session on the same checkpoint sequence and the model
+chooses whether to retrieve it. [VibeMemBench](https://arxiv.org/abs/2609.23570)
 
 ## Benchmark
 
@@ -137,6 +151,26 @@ receipt requires reconciliation. The runner never automatically retries it.
 Raw traces, retrieved content, grades and checksums have separate provenance.
 The checked-in manifests contain only public fixture metadata and aggregate
 evidence.
+
+## Execution notes
+
+The original run stopped after two calls because the collection boundary
+rejected a candidate workspace after a syntax check generated a bytecode cache.
+The retained tool receipts record two successful source edits. The recovery
+reconstructed the source by applying the recorded literal text splice to the
+recorded heredoc and independently graded the resulting exact bytes. This
+recovery made zero new model calls. The original stop and terminal call
+receipts are preserved.
+
+Continuation 002 keeps the original prompt, actor, tasks, arm order, budgets
+and grader. It verifies protected inputs and snapshots the designated Python
+source, recording other workspace paths excluded from the submission. The
+continuation uses the recovered source for its assigned baseline grade and
+launches only calls without a prior admission.
+
+```sh
+PYTHONPATH=src python -m ttgl.decision_history run --continue-002
+```
 
 The 20 November 2026 pilot is active. Final paired outcomes will be added
 after the runner and grade receipts reconcile.
