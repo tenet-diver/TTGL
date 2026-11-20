@@ -264,6 +264,37 @@ def _chart(output, summary):
     (output / "performance.svg").write_text("\n".join(elements) + "\n")
 
 
+def _resource_chart(output, summary):
+    complete = [r for r in summary["per_run"] if r["completed"]]
+    metrics = (
+        ("Optimization and evaluation tokens", lambda r: r["total_metering"]["native_tokens"], ",d"),
+        ("Optimization wall time (seconds)", lambda r: r["optimization_wall_seconds"], ".1f"),
+    )
+    drawing = ['<svg xmlns="http://www.w3.org/2000/svg" width="790" height="266" viewBox="0 0 790 266" role="img" aria-labelledby="resources">',
+               '<title id="resources">Measured resources by condition</title>',
+               '<rect width="100%" height="100%" fill="#111725"/>',
+               '<g font-family="sans-serif" fill="#eef4fc">']
+    for index, (title, value, fmt) in enumerate(metrics):
+        left = 22 + 390 * index
+        drawing.append(f'<text x="{left}" y="32" font-size="16">{title}</text>')
+        arm_values = []
+        for arm in CONDITIONS:
+            values = [value(r) for r in complete if r["condition"] == arm and value(r) is not None]
+            arm_values.append(mean(values) if values else None)
+        bound = max((v for v in arm_values if v is not None), default=0)
+        for position, (arm, measured) in enumerate(zip(CONDITIONS, arm_values)):
+            y = 68 + 46 * position
+            drawing.append(f'<text x="{left}" y="{y+13}" font-size="13">{arm}</text>')
+            if measured is None:
+                continue
+            width = (232 * measured / bound) if bound else 0
+            drawing.append(f'<rect x="{left+30}" y="{y}" width="{width}" height="18" fill="#5ba9f7"/>')
+            formatted = format(int(round(measured)) if fmt == ",d" else measured, fmt)
+            drawing.append(f'<text x="{left+38+width}" y="{y+13}" font-size="13">{formatted}</text>')
+    drawing.append("</g></svg>")
+    (output / "resources.svg").write_text("\n".join(drawing) + "\n")
+
+
 def report(run, output, *, reproduce=False):
     output.mkdir(exist_ok=True, parents=True)
     summary = summarize(run)
@@ -282,6 +313,7 @@ def report(run, output, *, reproduce=False):
          "assigned": row["optimization_assigned"], "regressions": len(r["regressions"]),
          **row["memory_cost_evidence"][r["round"]]} for row in summary["per_run"] for r in row["rounds"]])
     _chart(output, summary)
+    _resource_chart(output, summary)
     if reproduce:
         # Retain trace receipts and content digests. Raw native bytes stay in local S3.
         paths = [run / "registration.json", *run.glob("heldout-freeze.json"),

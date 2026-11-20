@@ -4699,3 +4699,33 @@ This proposal starts with Luna alone versus Luna with Sol-derived procedures.
 It has zero registered assignments and zero model calls. Matrix 039 remains
 archived and disabled. Preserve prior evidence and leave research schedules
 paused.
+
+## 20 November Observatory SIM ablation and routing holdout recovery
+
+The user requested completion of the archived routing holdout and an actual
+Observatory self-improvement memory ablation, followed by a question about
+closely reproducing the SIM paper. The design and appendix review are documented
+in [the SIM report](../experiments/sim-memory-ablation/report.md). The active
+pilot is an adaptation. It uses a common initial prompt harness, four fixed
+historical projections, new private stdlib coding tasks, and native Luna for
+both proposal and execution. It does not stand in for the original paper's
+ten independently evolved source harnesses and cross-benchmark continuations.
+
+Pilot 001 is running under this chat at
+`work/security/sim-memory-ablation/pilot-001`. Inspect `matrix.log`,
+`registration.json`, `invocations/*/started.json` and terminal receipts before
+attempting to resume. The out-of-suite live smoke passed independent checks,
+metered 65,013 tokens and verified loopback retention. Eleven model-free empty
+and reference pairs passed. The frozen bank contains three already observed
+Observatory experiments (two accepted, one rejected). All study source hashes
+were sealed before pilot inference. Do not expose held-out evidence to the
+proposer, repeat an admitted call or tune the active pilot. Five repetitions
+are conditional on the measured pilot budget.
+
+The routing capacity blocker is resolved. Restored bases, fresh controls,
+patched actor security evidence, historical-rate sizing, and continuation 043
+commands are in [the routing restoration record](../../results/model-led-delegation-001/heldout-comparison-039/RESTORATION-20261120.md).
+The original 039 registration stays disabled. The active chat owns restoration
+and activation of 043. Avoid overlapping the authorized source account with
+the SIM pilot and inspect actual claims and stop/completion markers first.
+Research schedules remain paused.
