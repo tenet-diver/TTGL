@@ -117,3 +117,7 @@ SUMMARY="$(realpath "$RUN/analysis/summary.json")"
 
 See the [research report](report.md) for the relationship to the original paper,
 observed results and limits on interpretation.
+
+The completed pilot contains one run per condition and 100 measured native
+invocations. [Read the results](report.md#7-results) or open
+[Observatory Experiments](http://127.0.0.1:3333/experiments?range=all&project=observatory-sim-memory-research).

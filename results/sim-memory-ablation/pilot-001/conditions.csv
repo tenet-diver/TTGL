@@ -1,0 +1,5 @@
+rep,condition,completed,starting_passed,benchmark_passed,benchmark_assigned,gain,candidates_tested,candidates_accepted,candidate_regressions,optimization_wall_seconds,heldout_wall_seconds,gain_per_million_optimization_tokens,gain_per_optimization_hour,gain_per_optimization_scenario_usd,optimization_tokens,heldout_tokens,scenario_usd
+1,C0,True,3,3,4,0.0,5,0,2,287.889023,36.686298,0.0,0.0,0.0,1148757,190269,0.04666596
+1,C1,True,3,2,4,-0.25,4,0,3,251.606005,34.827279,-0.25766528455008036,-3.5770211446264963,-7.759757895553658,970251,179453,0.0367016
+1,C2,True,3,4,4,0.25,5,0,0,264.364438,62.504518,0.22164358470375561,3.404391327399338,7.095060759262318,1127937,350063,0.044164880000000004
+1,C3,True,3,2,4,-0.25,5,1,2,334.343054,45.170042,-0.2064273210687981,-2.69184596250054,-5.634579912767688,1211080,180007,0.04883102

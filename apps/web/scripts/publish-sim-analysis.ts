@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { basename, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { closeDatabases, pg } from '../src/lib/database.ts';
-import { rawClient, rawHealth, restoreRaw, retainRaw } from '../src/lib/raw-store.ts';
+import { rawHealth, restoreRaw, retainRaw } from '../src/lib/raw-store.ts';
 
 const CONDITIONS = ['C0', 'C1', 'C2', 'C3'] as const;
 const PROJECT_ID = 'observatory-sim-memory-research';
@@ -58,6 +58,10 @@ export async function publish(file: string, expectedSha256: string) {
         await tx `SELECT pg_advisory_xact_lock(hashtext(${importId}))`;
         const [prior] = await tx`SELECT archive_id, manifest, finished_at FROM migration_manifests WHERE id=${importId}`;
         if (prior) {
+            const rows = await tx`SELECT table_name,jsonb_typeof(record) AS value_type
+                FROM archived_records WHERE import_id=${importId} ORDER BY table_name`;
+            if (rows.length !== 2 || rows.some(row => row.value_type !== 'object'))
+                throw Error('SIM publication projection needs repair');
             if (!prior.finished_at || !prior.archive_id || prior.manifest?.sha256 !== expectedSha256
                 || !(await restoreRaw(prior.archive_id)).equals(bytes))
                 throw Error('Immutable SIM publication conflicts with the approved summary');
@@ -89,7 +93,7 @@ export async function publish(file: string, expectedSha256: string) {
             VALUES(${importId},${source},now(),${tx.json(manifest)},${artifact.id})`;
         for (const [table, record] of [['experiments', proposal], ['experiment_evaluations', evaluation]] as const)
             await tx `INSERT INTO archived_records(import_id,table_name,row_number,record)
-                VALUES(${importId},${table},0,${JSON.stringify(record)}::jsonb)`;
+                VALUES(${importId},${table},0,${tx.json(record)})`;
         await tx `INSERT INTO audit(action,entity,details)
             VALUES('publish-native-experiment',${experimentId},${tx.json(manifest)})`;
         return { status: 'published', experimentId, evaluationId, projectId: PROJECT_ID, link,

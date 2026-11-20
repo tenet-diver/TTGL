@@ -4729,3 +4729,32 @@ The original 039 registration stays disabled. The active chat owns restoration
 and activation of 043. Avoid overlapping the authorized source account with
 the SIM pilot and inspect actual claims and stop/completion markers first.
 Research schedules remain paused.
+
+### SIM pilot completed and routing continuation activated
+
+SIM pilot 001 completed all four arms and 100 native calls. All 80 independent
+coding grade replays agreed. C0/C1/C2/C3 passed 3/4, 2/4, 4/4 and 2/4, with the
+first three arms retaining identical final prompt settings. Total 5,859,729
+tokens, $0.19191098 in the API-equivalent scenario and 23m50s wall. The observed
+differences are descriptive. No independent repetitions were started. The
+user shifted research priority to a small sequence of dependent repository
+tasks, comparing code-only with access to past decisions via MCP. Keep model
+size and cost comparisons as follow-up. Read the
+[SIM results](../../results/sim-memory-ablation/pilot-001/README.md) and the
+[coding-agent MCP direction](observability-improvement-study.md). The SIM
+aggregate passed exact local S3 read-back and appears in the Observatory
+Experiments API.
+
+The new bounded harness-trial MCP interface is `python -m ttgl.experiment_mcp`.
+The real stdio exchange verified planning, readback and execution disabled
+under the default host configuration. No native model trial was invoked
+through this MCP prototype. The separate dependent repository task benchmark
+has no registered assignments or scores yet.
+
+After the SIM pilot fully finished, the ready 043 activation was sealed and
+started from this chat. The exact old 039 file is still disabled. Check native
+claims, terminal slot receipts, log and stop/completion markers in
+`work/security/model-led-delegation-20261118/continuation-001/heldout-comparison-continuation-043`.
+This is parent-serial and projected to take over eight hours plus grading.
+Do not duplicate the owner, edit the frozen sources or repeat a claimed call.
+Research schedules are still paused.

@@ -8,7 +8,9 @@ The Observatory pilot compares four historical-memory projections from the
 same starting harness with equal round and candidate budgets. Optimization
 and final assessment use disjoint Python repair tasks and deterministic
 independent checks. We measure held-out repair success and the resource cost
-of optimization. Native usage is retained through Observatory.
+of optimization. Native usage is retained through Observatory. The four arms
+finished at 3/4, 2/4, 4/4 and 2/4. Three arms used identical final settings,
+so this one-block pilot does not establish a memory benefit.
 
 ## 2. Research questions
 
@@ -104,7 +106,45 @@ independent checks passing. It recorded 65,013 native tokens and about
 validates transport, actor isolation and evidence retention and is excluded
 from the pilot scores and pilot costs.
 
-The four-arm evaluation is in progress.
+All four arms completed five optimization rounds. The common starting
+harness passed 3/4 held-out tasks in separate baseline attempts. The table
+excludes those shared baseline evaluations from arm-level resource costs.
+
+| Arm | Runs | Held-out passes | Optimization tokens | Held-out tokens | API-equivalent USD | Optimization wall seconds |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| C0 | 1 | 3/4 | 1,148,757 | 190,269 | 0.04667 | 287.9 |
+| C1 | 1 | 2/4 | 970,251 | 179,453 | 0.03670 | 251.6 |
+| C2 | 1 | 4/4 | 1,127,937 | 350,063 | 0.04416 | 264.4 |
+| C3 | 1 | 2/4 | 1,211,080 | 180,007 | 0.04883 | 334.3 |
+
+The pilot finished 100 native invocations using 5,859,729 tokens and
+$0.19191 at the pinned API-equivalent rates. Optimization accounted for
+4,613,007 tokens and held-out evaluation used 1,246,722. Wall clock was
+23 minutes 50 seconds. Sum of native invocation envelopes was 41 minutes
+13 seconds because task calls overlapped. The ledger reconciles all native
+receipts, and independent grade replay matched all 80 coding submissions.
+The preflight smoke added 65,013 tokens separately. No new model calls
+were used to generate the historical bank. Original trial costs remain in
+the bank, and implementation and supervision are outside the pilot total.
+
+The retained harness scored 3/3 at every optimization round in every
+condition. The round record contains 19 evaluated candidates, one accepted change and
+one no-op proposal. C3's accepted
+verification checklist retained 3/3 development passes at 135,158 tokens
+versus the common incumbent's 154,982, a 12.8% reduction for that comparison.
+It then passed 2/4 held-out tasks. C0, C1 and C2 all retained the same seed.
+Their distinct scores therefore include execution variation under identical
+harness settings.
+
+At round one, projected history used 0, 894, 1,349 and 2,739 UTF-8 bytes.
+Measured first-request input was 9,302, 9,507, 9,604 and 9,856 tokens,
+respectively. These first-request counts include shared native context.
+Relative to C0 the increments were 205, 302 and 554 input tokens.
+
+[Machine-readable measurements](../../../results/sim-memory-ablation/pilot-001/summary.json) ·
+[Rounds](../../../results/sim-memory-ablation/pilot-001/rounds.csv) ·
+[Performance chart](../../../results/sim-memory-ablation/pilot-001/performance.svg) ·
+[Resource chart](../../../results/sim-memory-ablation/pilot-001/resources.svg)
 
 ## 8. Statistical analysis
 
@@ -114,8 +154,13 @@ analysis reports paired mean differences and standard deviations, standardized
 paired effects where defined, paired bootstrap intervals over repetitions and
 an exact two-sided sign-flip test. All contrasts are prespecified. A single
 block yields observed differences with no replicate-level confidence interval
-or p-value. The report does not treat exploratory p-values from four contrasts
-as confirmatory evidence.
+or p-value. The observed differences were C1–C0 −25, C2–C1 +50, C3–C2 −50 and
+C3–C0 −25 percentage points. Their single matched block cannot estimate
+across-run variance. The most favorable raw contrast, C2–C1, compares
+identical final harness settings. The pilot gives no reliable support for
+H1–H4. Relative to the separate common baseline, gain per million
+optimization tokens was 0.00, −25.77, +22.16 and −20.64 percentage points.
+The apparent efficiency differences inherit the same rollout variability.
 
 ## 9. Discussion
 
@@ -125,7 +170,14 @@ execution boundaries differ from the current task. The case analysis looks
 for cited observations in proposal receipts and follows the independent
 evaluation and selection decision for each intended reuse. Citations
 establish that memory was referenced, without isolating its causal effect on
-any individual choice.
+any individual choice. In C3 round four the proposer cited the failed
+progress-replay gate and preferred scoped reads with an explicit way to
+expand incomplete output. The candidate showed no material improvement.
+C1 round one proposed grouped tool use and lost an incumbent passing task.
+The proposer later observed that historical reversible compression is a
+different intervention from requesting grouped commands. These examples
+illustrate useful qualifications and the risk of transferring a seemingly
+similar tweak. They do not establish the benefit or harm of any record.
 
 ## 10. Threats to validity
 
@@ -141,8 +193,9 @@ sessions and common budgets reduce exposure to unrelated agent history.
 
 ## 11. Conclusions
 
-The pilot tests whether the experimental mechanism is observable within
-Observatory. Estimating an effect near the paper's requires a larger held-out
+The pilot verifies that Observatory can measure the four treatments end
+to end. It found no supported generalization benefit from this fixed bank
+and tiny prompt-harness search. Estimating an effect near the paper's requires a larger held-out
 suite and independent paired source histories. In a closer replication,
 evolve each source harness once, then initialize the corresponding C0 and C3
 target arms from that exact source snapshot and extend the benchmark across
@@ -156,3 +209,10 @@ protocol and bank, raw retention rules and the output formats. Exact source
 and provider versions are recorded with each invocation. Measured estimates
 are API-equivalent inference scenarios. Provider quota consumption and
 subscription cash are unknown.
+
+The completed aggregate was retained and read back byte for byte from
+local SILO. Observatory's evaluation endpoint returned the single scoped
+record. An initial publication encoded its two index rows as JSON strings.
+The publisher and those two derived rows were corrected against the same
+verified aggregate, and the original archived bytes and native evidence
+were preserved.

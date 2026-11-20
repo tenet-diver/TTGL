@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="790" height="266" viewBox="0 0 790 266" role="img" aria-labelledby="resources">
+<title id="resources">Measured resources by condition</title>
+<rect width="100%" height="100%" fill="#111725"/>
+<g font-family="sans-serif" fill="#eef4fc">
+<text x="22" y="32" font-size="16">Optimization and evaluation tokens</text>
+<text x="22" y="81" font-size="13">C0</text>
+<rect x="52" y="68" width="210.18540730717186" height="18" fill="#5ba9f7"/>
+<text x="270.1854073071719" y="81" font-size="13">1,339,026</text>
+<text x="22" y="127" font-size="13">C1</text>
+<rect x="52" y="114" width="180.46774560216508" height="18" fill="#5ba9f7"/>
+<text x="240.46774560216508" y="127" font-size="13">1,149,704</text>
+<text x="22" y="173" font-size="13">C2</text>
+<rect x="52" y="160" width="232.0" height="18" fill="#5ba9f7"/>
+<text x="292.0" y="173" font-size="13">1,478,000</text>
+<text x="22" y="219" font-size="13">C3</text>
+<rect x="52" y="206" width="218.35736400541273" height="18" fill="#5ba9f7"/>
+<text x="278.3573640054127" y="219" font-size="13">1,391,087</text>
+<text x="412" y="32" font-size="16">Optimization wall time (seconds)</text>
+<text x="412" y="81" font-size="13">C0</text>
+<rect x="442" y="68" width="199.76563752988872" height="18" fill="#5ba9f7"/>
+<text x="649.7656375298887" y="81" font-size="13">287.9</text>
+<text x="412" y="127" font-size="13">C1</text>
+<rect x="442" y="114" width="174.58892135381404" height="18" fill="#5ba9f7"/>
+<text x="624.588921353814" y="127" font-size="13">251.6</text>
+<text x="412" y="173" font-size="13">C2</text>
+<rect x="442" y="160" width="183.44197339299294" height="18" fill="#5ba9f7"/>
+<text x="633.441973392993" y="173" font-size="13">264.4</text>
+<text x="412" y="219" font-size="13">C3</text>
+<rect x="442" y="206" width="231.99999999999997" height="18" fill="#5ba9f7"/>
+<text x="682.0" y="219" font-size="13">334.3</text>
+</g></svg>

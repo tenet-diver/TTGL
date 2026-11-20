@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="790" height="345" viewBox="0 0 790 345" role="img" aria-labelledby="title">
+<title id="title">Retained harness optimization pass rates and held-out performance</title>
+<rect width="100%" height="100%" fill="#111725"/>
+<g font-family="sans-serif" fill="#eef4fc">
+<text x="25" y="32" font-size="21">Retained harness performance</text>
+<text x="70" y="61" font-size="13">Optimization tasks</text>
+<text x="549" y="61" font-size="13">Held-out tasks</text>
+<line x1="65" x2="735" y1="272.0" y2="272.0" stroke="#344056"/>
+<text x="20" y="276.0" font-size="12">0%</text>
+<line x1="65" x2="735" y1="225.25" y2="225.25" stroke="#344056"/>
+<text x="20" y="229.25" font-size="12">25%</text>
+<line x1="65" x2="735" y1="178.5" y2="178.5" stroke="#344056"/>
+<text x="20" y="182.5" font-size="12">50%</text>
+<line x1="65" x2="735" y1="131.75" y2="131.75" stroke="#344056"/>
+<text x="20" y="135.75" font-size="12">75%</text>
+<line x1="65" x2="735" y1="85.0" y2="85.0" stroke="#344056"/>
+<text x="20" y="89.0" font-size="12">100%</text>
+<text x="76" y="299" font-size="12">0</text>
+<text x="144" y="299" font-size="12">1</text>
+<text x="212" y="299" font-size="12">2</text>
+<text x="280" y="299" font-size="12">3</text>
+<text x="348" y="299" font-size="12">4</text>
+<text x="416" y="299" font-size="12">5</text>
+<text x="216" y="325" font-size="12">Optimization round</text>
+<path d="M500 70V305" stroke="#344056" fill="none"/>
+<polyline points="80,85.0 148,85.0 216,85.0 284,85.0 352,85.0 420,85.0" fill="none" stroke="#5ba9f7" stroke-width="2" stroke-dasharray="0"/>
+<rect x="550" y="131.75" width="23" height="140.25" fill="#5ba9f7"/>
+<text x="550" y="299" font-size="12" fill="#5ba9f7">C0</text>
+<polyline points="80,85.0 148,85.0 216,85.0 284,85.0 352,85.0 420,85.0" fill="none" stroke="#c59afc" stroke-width="2" stroke-dasharray="8 3"/>
+<rect x="594" y="178.5" width="23" height="93.5" fill="#c59afc"/>
+<text x="594" y="299" font-size="12" fill="#c59afc">C1</text>
+<polyline points="80,85.0 148,85.0 216,85.0 284,85.0 352,85.0 420,85.0" fill="none" stroke="#55cd96" stroke-width="2" stroke-dasharray="4 4"/>
+<rect x="638" y="85.0" width="23" height="187.0" fill="#55cd96"/>
+<text x="638" y="299" font-size="12" fill="#55cd96">C2</text>
+<polyline points="80,85.0 148,85.0 216,85.0 284,85.0 352,85.0 420,85.0" fill="none" stroke="#ffb959" stroke-width="2" stroke-dasharray="1 5"/>
+<rect x="682" y="178.5" width="23" height="93.5" fill="#ffb959"/>
+<text x="682" y="299" font-size="12" fill="#ffb959">C3</text>
+</g></svg>
