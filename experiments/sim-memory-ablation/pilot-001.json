@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "id": "sim-memory-ablation-pilot-001",
+  "benchmark": "observatory-python-repair-001",
+  "model": "gpt-6-luna",
+  "effort": "low",
+  "starting_harness": {
+    "planning": "standard",
+    "verification": "public",
+    "tool_use": "ordinary",
+    "completion": "brief"
+  },
+  "repetitions": 1,
+  "rounds": 5,
+  "candidate_limit": 1,
+  "workers": 3,
+  "seed": 261118856,
+  "timeout_seconds": 100,
+  "automatic_retries": 0,
+  "rates": {"input": 0.10, "cached": 0.01, "output": 0.50},
+  "price_unit": "historical API-equivalent USD per million, excluding unmeasured cache write surcharge. Native ChatGPT subscription only",
+  "pricing_reference": "apps/web/config/api-pricing-20261116.json",
+  "selection": "Never lose an incumbent passing task. Otherwise accept a higher count of passing tasks, or the same count at 10% or greater total native token reduction.",
+  "pilot_budget": "At most 103 fresh calls in one complete block, including 20 proposal calls, 60 candidate coding runs, 3 common initial optimization runs and 20 final and baseline held-out runs. Five rounds per arm. No retries.",
+  "primary": "Held-out pass proportion for the frozen final harness, one independent call per assigned task",
+  "paired_contrasts": ["C1-C0", "C2-C1", "C3-C2", "C3-C0"]
+}
