@@ -5,20 +5,32 @@ import { context, metadata, metrics, taskFacts, taskRows, turnRows, groupEvents,
 import { tools, models, process as processMap, outcomes, findings, daily } from './analytics.ts';
 import { metricDefinitions, measure, compareChange } from './impact.ts';
 import { rolling } from './domain.ts';
+import { dailyRows, eventRows, mcpRows, pullRequestOperation, sessionRows, signatureRows } from './project-analytics.ts';
 import { palette, type Row, type Scope, type PageData, type Panel, type Metric, type ChartSpec } from './types.ts';
 export const routes: Record<string, {
     title: string;
     description: string;
     section: string;
 }> = {
-    overview: { title: 'Overall activity', description: 'Where coding agents spend time and tokens, and how the work turned out.', section: 'Analysis' },
+    overview: { title: 'Overview', description: 'Agent activity, spend, and tool usage across the selected work.', section: 'Activity' },
+    sessions: { title: 'Sessions', description: 'Compare native sessions by harness or workspace and open the turns behind each row.', section: 'Work' },
+    turns: { title: 'Turns', description: 'Inspect agent turns, their outcomes, and the work they contributed to.', section: 'Work' },
+    subtasks: { title: 'Subtasks', description: 'Review analyzed work by category and open the source tasks.', section: 'Work' },
+    delivery: { title: 'Delivery', description: 'Follow work items, commits, and pull request operations back to agent evidence.', section: 'Work' },
+    errors: { title: 'Errors', description: 'Find recurring failure signatures and inspect the recorded source calls.', section: 'Quality' },
+    logs: { title: 'Logs', description: 'Browse native events and open their source evidence.', section: 'Quality' },
+    metrics: { title: 'Metrics', description: 'Review usage, latency, and observed tool outcomes.', section: 'Quality' },
+    alerts: { title: 'Alerts', description: 'Review configured rules and their recorded firing history.', section: 'Improve' },
+    settings: { title: 'Settings', description: 'Manage source collection, scope, and the rules used to interpret data.', section: 'Configure' },
+    'agent-context': { title: 'Agent context', description: 'Inspect recorded model context and compaction events.', section: 'Behavior' },
+    memory: { title: 'Memory', description: 'Review source-linked procedures, saved snapshots, and recorded retrieval.', section: 'Improve' },
     tasks: { title: 'Task activity', description: 'One row per native turn: a prompt and the work recorded for it, subagents included.', section: 'Analysis' },
     grouping: { title: 'Task grouping', description: 'Explicit tasks, assigned native turns, and source-linked interpretations.', section: 'Analysis' },
-    tools: { title: 'Tool usage', description: 'Native tools, actions, targets and recorded operation time. Unknown per-tool model costs stay unknown.', section: 'Analysis' },
-    costs: { title: 'Cost & tokens', description: 'API list-price scenarios calculated from recorded counters; subscription cash charges remain unknown.', section: 'Analysis' },
+    tools: { title: 'Tools', description: 'Inspect native tools, repeated targets, and recorded operation time.', section: 'Behavior' },
+    costs: { title: 'Cost', description: 'API-equivalent cost and token usage calculated from recorded model counters.', section: 'Spend' },
     timeline: { title: 'Activity timeline', description: 'Each block is a native turn placed at its local time of day. Turn spans include idle gaps.', section: 'Analysis' },
-    agents: { title: 'Agents', description: 'The main session and explicitly identified subagent types. Runs count distinct native sessions.', section: 'Analysis' },
-    process: { title: 'Process map', description: 'How tasks move between interpreted subtask categories. Each explained task is one case.', section: 'Analysis' },
+    agents: { title: 'Agents & models', description: 'Compare native sessions, model usage, and explicitly identified agents.', section: 'Spend' },
+    process: { title: 'Process', description: 'How tasks move between interpreted subtask categories. Each explained task is one case.', section: 'Work' },
     entities: { title: 'Entities', description: 'Recorded command targets and their native source evidence.', section: 'Analysis' },
     outcomes: { title: 'Outcomes', description: 'Recorded fixes, repeated failures and changes. A missing signal does not establish success.', section: 'Analysis' },
     suggestions: { title: 'Suggestions', description: 'Ways to spend fewer tokens and less time, from source-linked checks and explicit analysis.', section: 'Optimize' },
@@ -46,13 +58,33 @@ export async function pageData(view: string, scope: Scope, params: URLSearchPara
         throw Error('Unknown page');
     const meta = await metadata();
     const result: PageData = { ...info, ...meta, metrics: [], panels: [], actions: [] };
+    const tab = params.get('tab');
+    if (view === 'settings') {
+        result.panels = [list('sources', 'Source files'), list('archives', 'Raw log archives')];
+        result.actions = ['source-root', 'project'];
+        return result;
+    }
+    if (view === 'alerts') {
+        result.panels = tab === 'history' ? [list('rule-log', 'Firing history')] : [list('rules', 'Alert rules'), list('rule-log', 'Recent firings')];
+        result.actions = ['rule'];
+        return result;
+    }
+    if (view === 'memory') {
+        result.panels = tab === 'usage' ? [list('experience-retrievals', 'Retrieval receipts'), list('experience-attempts', 'Related attempts')]
+            : [list('experience-versions', 'Learned procedures and examples'), list('experience-snapshots', 'Memory snapshots')];
+        result.links = [{ href: '/agent-context', label: 'Inspect agent context' }, { href: '/experiences', label: 'Open experience registry' }];
+        return result;
+    }
     if (['experiences', 'delegation', 'experience-results'].includes(view)) {
         result.panels = view === 'experiences' ? [list('experience-versions', 'Procedures and examples'), list('experience-predictions', 'Public outcome interpretations', 'Confidence is an interpretation until calibrated.'), list('experience-snapshots', 'Memory snapshots'), list('experience-jobs', 'Extraction attempts')] : view === 'delegation' ? [list('experience-plans', 'Plan revisions'), list('experience-retrievals', 'Retrieval receipts'), list('experience-routes', 'Routing decisions'), list('experience-attempts', 'Attempt transitions'), list('experience-verifications', 'Public verification')] : [list('experience-studies', 'Registered studies'), list('experience-results', 'Independent evaluation summaries', 'Hidden tests, reference patches and evaluator internals are not exposed here or through the runtime service.')];
         return result;
     }
     if (['experiments', 'rules', 'categorization', 'data', 'jobs', 'knowledge', 'pricing', 'live'].includes(view)) {
-        if (view === 'experiments')
+        if (view === 'experiments') {
             result.panels = [list('experiments', 'Proposals', 'Evaluation, decision and implementation are separate. Unrecorded states remain unrecorded.'), list('experiment-evaluations', 'Measured evaluations', 'Inspect each row for its retained protocol, measurements and artifact hash. Failed trials remain visible.'), list('experiment-reviews', 'Analyst reviews', 'Keep, reject and inconclusive are interpretations of a specific evaluation, not new measurements.'), list('experiment-accounting', 'Research overhead snapshots', 'Snapshots can overlap. Do not add snapshots together or treat gross token reductions as net cash savings.')];
+            if (tab === 'comparison') result.panels = result.panels.slice(1, 3);
+            if (tab === 'overhead') result.panels = result.panels.slice(3);
+        }
         if (view === 'rules') {
             result.panels = [list('rules', 'Steering rules')];
             result.actions = ['rule'];
@@ -83,7 +115,9 @@ export async function pageData(view: string, scope: Scope, params: URLSearchPara
         }
         return result;
     }
-    const c = await context(scope), m = metrics(c.events, c.pricing), p = processMap(c), o = outcomes(c), f = findings(c), turns = turnRows(c), tasks = taskRows(c), cost = daily(c), toolRows = tools(c), modelRows = models(c);
+    const session = view === 'sessions' ? params.get('session') : null;
+    const c = await context({ ...scope, ...(session ? { session } : {}) }), m = metrics(c.events, c.pricing), p = processMap(c), o = outcomes(c), f = findings(c), turns = turnRows(c), tasks = taskRows(c), cost = daily(c), toolRows = tools(c), modelRows = models(c);
+    result.filters = c.filters;
     const knownCosts = turns.map(t => t.cost).filter((v): v is number => typeof v === 'number').sort((a, b) => a - b), spans = turns.map(t => t.duration).filter((v): v is number => typeof v === 'number').sort((a, b) => a - b);
     const mean = (values: number[]) => values.length ? values.reduce((s, v) => s + v, 0) / values.length : null;
     const quantile = (values: number[], q: number) => {
@@ -93,10 +127,70 @@ export async function pageData(view: string, scope: Scope, params: URLSearchPara
         return values[lo] + (values[hi] - values[lo]) * (x - lo);
     };
     result.coverage = { complete: p.explained, total: c.tasks.length, pending: 0, unclassified: Math.max(0, c.tasks.length - p.explained) };
+    const perDay = (id: string, title: string, rows: Row[], stamp: string, field: string, label: string, group?: string) => {
+        const values = dailyRows(rows, stamp, field, scope.timezone, group);
+        return chart(id, title, 'bar', values.points, group ? series(values.keys) : [{ key: 'value', name: label, color: palette[0] }]);
+    };
     if (view === 'overview') {
-        result.actions = ['project'];
-        result.metrics = [metric('Cost', m.cost, 'money', `${m.priced}/${m.responses} responses priced`, '/costs'), metric('Tasks', turns.length, undefined, `${c.tasks.length} explicitly assigned tasks`, '/tasks'), metric('Recorded time', m.runtime, 'duration', m.runtime == null ? 'Some runtimes are unrecorded; overlaps remain' : 'Runtime sum, including overlaps', '/timeline'), metric('Tool calls', m.tools, undefined, `${m.errors} known unsuccessful calls`, '/tools'), metric('Cache hit rate', m.input != null && m.cached != null && m.input ? m.cached / m.input : null, 'percent', 'Cache reads are an input subset', '/costs'), metric('Needed a fix', c.tasks.length ? o.confirmed / c.tasks.length : null, 'percent', `${o.confirmed} confirmed task interventions`, '/outcomes')];
-        result.panels = [chart('overview-cost', 'Cost per day', 'bar', cost.points, series(cost.keys, 'model'), 'Click a day to see its tasks'), chart('activity', 'Time by activity', 'horizontal', [...groupEvents(c.events, e => e.kind === 'generation' ? 'Model' : e.runtime_role || 'Unreviewed')].map(([name, events]) => ({ name, value: metrics(events, c.pricing).timed ? metrics(events, c.pricing).known_runtime : null, event_ids: events.map(e => e.id) })), [{ key: 'value', name: 'Recorded seconds', color: palette[0] }], 'Model and tool runtime sums; service lifetimes remain separate'), list('tools', 'Top tools'), list('categories', 'Top categories'), list('outcome-summary', 'Outcomes'), list('findings', 'Top suggestions')];
+        result.metrics = [metric('Estimated cost', m.priced ? m.known_cost : null, 'money', m.responses > m.priced ? `${m.priced.toLocaleString()} of ${m.responses.toLocaleString()} responses priced` : 'API list price', '/costs'), metric('Sessions', new Set(c.turns.map(turn => turn.session_id)).size, undefined, 'Distinct native sessions', '/sessions'), metric('Agent turns', turns.length, undefined, 'Recorded native turns', '/turns'), metric('Failed calls', m.known_outcomes ? m.errors / m.known_outcomes : null, 'percent', 'Of tool calls with observed outcomes', '/errors')];
+        result.panels = [chart('overview-model-cost', 'Estimated cost by model', 'horizontal', modelRows.filter(row => row.cost != null).slice(0, 4).map(row => ({ name: row.name, value: row.cost, href: '/costs?scopeModel=' + encodeURIComponent(String(row.name)) })), [{ key: 'value', name: 'Estimated cost', color: palette[0] }], 'API list price estimate for the selected range'), { ...perDay('overview-turns', 'Agent turns per day', turns, 'started', 'count', 'Agent turns'), description: 'Recorded turns across the selected work' }, { ...list('top-tools', 'Top tools', 'Ranked by number of observed calls'), wide: true, compact: true }];
+        result.links = [{ href: '/delivery', label: 'Open delivery' }, { href: '/tools', label: 'Explore tools' }];
+    }
+    if (view === 'sessions') {
+        const sessions = sessionRows(c), withCost = sessions.map(row => row.cost).filter((value): value is number => typeof value === 'number'), runtime = sessions.map(row => row.runtime).filter((value): value is number => typeof value === 'number');
+        result.metrics = [metric('Sessions', sessions.length, undefined, 'Distinct native sessions'), metric('Estimated cost', m.priced ? m.known_cost : null, 'money', 'API list price'), metric('Prompts / session', sessions.length ? sumKnown(sessions, 'prompts') / sessions.length : null), metric('Recorded time / session', mean(runtime), 'duration'), metric('Most expensive', withCost.length ? Math.max(...withCost) : null, 'money'), metric('With a commit', sessions.filter(row => Number(row.commits) > 0).length)];
+        const fields = { count: 'Sessions', cost: 'Estimated cost', runtime: 'Recorded time', prompts: 'Prompts', tools: 'Tool calls', commits: 'Commits' };
+        const measure = Object.hasOwn(fields, params.get('measure') || '') ? params.get('measure') as keyof typeof fields : 'count';
+        result.panels = [{ ...perDay('sessions-daily-' + measure, fields[measure] + ' by session start day', sessions, 'started', measure, fields[measure], params.get('by') === 'workspace' ? 'workspace' : 'harness'), wide: true }, list('sessions', 'Sessions')];
+        if (session) {
+            result.title = 'Session detail';
+            result.description = String(sessions[0]?.title || 'No retained activity for this session in the selected range.');
+            result.panels = [{ ...list('native-turns', 'Session turns'), extras: { session } }, { ...list('logs', 'Session evidence'), extras: { session } }];
+            result.links = [{ href: '/sessions', label: 'Back to sessions' }];
+        }
+        if (!session && tab === 'timeline') result.panels = [{ ...perDay('sessions-timeline', 'Sessions started per day', sessions, 'started', 'count', 'Sessions', 'harness'), wide: true }, list('native-turns', 'Turns across sessions')];
+    }
+    if (view === 'turns') {
+        result.metrics = [metric('Turns', turns.length), metric('Avg cost', mean(knownCosts), 'money'), metric('Median duration', quantile(spans, .5), 'duration'), metric('P90 duration', quantile(spans, .9), 'duration'), metric('Avg tool calls', turns.length ? m.tools / turns.length : null)];
+        const fields = { count: 'Turns', cost: 'Cost', duration: 'Observed time', tools: 'Tool calls', errors: 'Errors', tokens: 'Tokens', loops: 'Loops' };
+        const measure = Object.hasOwn(fields, params.get('measure') || '') ? params.get('measure') as keyof typeof fields : 'count';
+        result.panels = [{ id: 'coverage', title: 'Subtask extraction' }, { ...perDay('turns-daily-' + measure, fields[measure] + ' per day', turns, 'started', measure, fields[measure], params.get('by') === 'outcome' ? 'outcome' : undefined), wide: true }, list('native-turns', 'Turns')];
+    }
+    if (view === 'subtasks') {
+        result.metrics = [metric('Interpreted tasks', p.explained), metric('Subtasks', p.categories.reduce((n, row) => n + Number(row.subtasks), 0)), metric('Categories', p.categories.length)];
+        result.panels = [{ id: 'coverage', title: 'Subtask extraction' }, { ...chart('category-count', 'Subtasks by category', 'horizontal', p.categories.map(row => ({ name: row.name, value: row.subtasks, task_ids: row.task_ids })), [{ key: 'value', name: 'Subtasks', color: palette[0] }]), wide: true }, list('categories', 'Subtask categories'), list('marked', 'Analyzed work items')];
+    }
+    if (view === 'delivery') {
+        const work = tasks.filter(row => !(row.source as Record<string, unknown>)?.native_turn), pr = c.events.filter(event => pullRequestOperation(event)), commits = c.events.filter(e => e.kind === 'tool' && e.failed === 0 && /\bgit\s+commit\b/.test(e.command));
+        const linked = new Set(work.map(row => row.id));
+        const workTurns = turns.filter(row => linked.has(String(row.task_id)));
+        const cost = metrics(c.events.filter(event => linked.has(c.assignments.get(event.turn_key) || '')), c.pricing);
+        result.metrics = [metric('Work items', work.length), metric('Work item cost', cost.priced ? cost.known_cost : null, 'money', 'Priced linked responses'), metric('Linked turns', workTurns.length, undefined, `Of ${turns.length.toLocaleString()} recorded turns`)];
+        result.panels = [list('delivery-work', 'Work item records'), { ...perDay('delivery-commits', 'Commit calls per day', eventRows(commits, c), 'at', 'count', 'Commit calls'), wide: true }, list('commits', 'Commits and pull request commands', 'Operations retained in native transcripts.')];
+        if (tab === 'pull-requests' || tab === 'flow' || tab === 'bottlenecks') {
+            const operations = eventRows(pr, c).map(row => ({ ...row, operation: /\bgh\s+pr\s+(\w+)/.exec(String(row.detail))?.[1] || 'Other' }));
+            result.metrics = [metric('Observed PR operations', pr.length), metric('Failed commands', pr.filter(event => event.failed === 1).length), metric('Sessions', new Set(pr.map(event => event.session_id)).size)];
+            result.panels = [{ ...perDay('delivery-operations', 'Pull request operations per day', operations, 'at', 'count', 'Operations', 'operation'), wide: true }, tab === 'bottlenecks' ? list('delivery-failures', 'Failed pull request operations') : list('pull-request-events', 'Pull request evidence', 'Status describes the recorded command. Remote review and merge status are unavailable.')];
+            if (tab === 'flow') result.panels.splice(1, 0, list('delivery-transitions', 'Observed operation transitions', 'Consecutive pull request commands in the same native session.'));
+        }
+        result.links = [{ href: '/grouping', label: 'Inspect task mappings' }, { href: '/outcomes', label: 'Review outcomes' }];
+    }
+    if (view === 'logs' || view === 'errors' || view === 'agent-context') {
+        const failures = c.events.filter(event => event.kind === 'tool' && event.failed === 1), rows = eventRows(view === 'errors' ? failures : c.events, c);
+        if (view === 'errors') {
+            result.metrics = [metric('Failed calls', failures.length), metric('Signatures', signatureRows(failures).length), metric('Sessions affected', new Set(failures.map(event => event.session_id)).size), metric('Failure rate', m.known_outcomes ? m.errors / m.known_outcomes : null, 'percent')];
+            result.panels = [{ ...perDay('failures-day', 'Failures per day', rows, 'at', 'count', 'Failures'), wide: true }, tab === 'all' ? list('failures', 'All failures') : list('error-signatures', 'Most common failure signatures')];
+        } else if (view === 'logs') {
+            result.metrics = [metric('Entries', rows.length), metric('Sessions', new Set(c.events.map(event => event.session_id)).size), metric('Failed calls', failures.length)];
+            result.panels = [{ ...perDay('log-entries-day', 'Entries per day', rows, 'at', 'count', 'Entries', 'kind'), wide: true }, list('logs', 'Log entries')];
+        } else {
+            result.metrics = [metric('Model responses', m.responses), metric('Input tokens', m.input, 'tokens'), metric('Cached input', m.cached, 'tokens'), metric('Compactions', c.events.filter(event => event.kind === 'compaction').length)];
+            result.panels = [{ ...chart('context-tokens', 'Model tokens per day', 'bar', daily(c, 'tokens', 'type').points, series(daily(c, 'tokens', 'type').keys)), wide: true }, list('context-events', 'Context evidence', 'Open a row for the native event.')];
+        }
+    }
+    if (view === 'metrics') {
+        result.metrics = [metric('Model responses', m.responses), metric('Tokens', m.tokens, 'tokens'), metric('Tool calls', m.tools), metric('Failed calls', m.errors), metric('Timed operations', m.timed)];
+        result.panels = [perDay('metrics-turns', 'Turns per day', turns, 'started', 'count', 'Turns'), perDay('metrics-tools', 'Tool calls per day', turns, 'started', 'tools', 'Tool calls'), list('models', 'Model metrics'), list('tools', 'Tool metrics')];
     }
     if (view === 'tasks' || view === 'grouping') {
         result.metrics = [metric('Tasks (turns)', turns.length), metric('Avg cost per task', mean(knownCosts), 'money', 'Known estimates only'), metric('90th pct cost', quantile(knownCosts, .9), 'money'), metric('Avg duration', mean(spans), 'duration'), metric('90th pct duration', quantile(spans, .9), 'duration'), metric('Avg tool calls', turns.length ? m.tools / turns.length : null)];
@@ -110,6 +204,12 @@ export async function pageData(view: string, scope: Scope, params: URLSearchPara
             result.title = family;
         const calls = daily(c, 'calls', 'tool');
         result.panels = [chart('tool-treemap', family ? 'Actions' : 'Tools', 'treemap', filtered.map(r => ({ ...r, value: r[measure], name: r.name })), [{ key: 'value', name: measure, color: palette[0] }], 'Area follows the selected measure; click to drill in'), family ? list('targets', 'Targets') : chart('daily-tools', 'Tool calls per day', 'bar', calls.points, series(calls.keys, 'tool'), 'Top tool identities; inspect the complete table below'), list('tools', family ? family + ' actions' : 'All tools', 'Call and context costs stay unknown unless an explicit supported allocation is selected.')];
+        if (tab === 'targets') result.panels = [{ ...list('targets', 'Targets and repeated context'), wide: true }];
+        if (tab === 'mcp') {
+            const rows = mcpRows(c.events, c);
+            result.metrics = [metric('MCP tools', rows.length), metric('Calls', sumKnown(rows, 'calls')), metric('Errors', sumKnown(rows, 'errors'))];
+            result.panels = [list('mcp-tools', 'MCP usage', 'Tool identities come from recorded native calls.')];
+        }
     }
     if (view === 'costs') {
         result.description = `Estimated API-equivalent cost at ${c.pricing.service_tier || 'configured'} rates${c.pricing.as_of ? ' dated ' + c.pricing.as_of : ''}; actual subscription cash and unrecorded cache-write surcharges remain unknown.`;
@@ -121,7 +221,7 @@ export async function pageData(view: string, scope: Scope, params: URLSearchPara
         result.panels = [chart('daily-cost', 'Cost by day', 'bar', cost.points, series(cost.keys, 'model'), 'Observed input/cache/output at dated API rates, including configured long-context premiums. Unreported writes use the ordinary input rate; their separate surcharges are excluded.'), chart('model-cost', 'Cost by model', 'horizontal', modelRows.map(r => ({ name: r.name, value: r.cost, event_ids: c.events.filter(e => e.kind === 'generation' && e.model === r.name).map(e => e.id) })), [{ key: 'value', name: 'Cost', color: palette[0] }]), chart('count-bands', 'Tasks by estimated cost', 'bar', bands.map(r => ({ ...r, date: r.name })), [{ key: 'count', name: 'Tasks', color: palette[0] }]), chart('spend-bands', 'Spend by cost band', 'bar', bands.map(r => ({ ...r, date: r.name })), [{ key: 'cost', name: 'Spend', color: palette[3] }]), chart('token-types', 'Tokens by type', 'bar', tokenTypes.points, series(tokenTypes.keys), 'Input partitions into cache read, recorded cache write and other input. Unreported cache writes remain in other input; no missing counter is treated as measured zero.'), chart('model-tokens', 'Tokens by model', 'bar', modelTokens.points, series(modelTokens.keys, 'model')), list('models', 'Models')];
     }
     if (view === 'agents')
-        result.panels = [list('agents', 'Agent comparison', 'Unknown identities remain separate; run counts are explicit native sessions.')];
+        result.panels = [list('agents', 'Agent comparison', 'Run counts represent distinct native sessions.'), list('models', 'Model comparison')];
     if (view === 'process') {
         result.metrics = [metric('Subtasks', p.categories.reduce((s, r) => s + Number(r.subtasks), 0)), metric('Paths', p.paths.length), metric('Tasks with rework', p.explained ? p.reworked / p.explained : null, 'percent'), metric('Cost of rework', null, 'money', 'No causal/per-step cost allocation is recorded')];
         result.panels = [{ id: 'coverage', title: 'Explained tasks' }, chart('flow', 'How tasks flow', 'flow', [...p.categories.map(r => ({ ...r, kind: 'node' })), ...p.transitions.map(r => ({ ...r, kind: 'edge' }))], series(p.categories.map(r => r.name)), 'Click a category or connection to list related tasks'), list('transitions', 'Transitions'), chart('category-cost', 'Cost by subtask category', 'horizontal', p.categories.map(r => ({ name: r.name, value: r.cost, task_ids: r.task_ids })), [{ key: 'value', name: 'Cost', color: palette[0] }]), chart('category-time', 'Time by subtask category', 'horizontal', p.categories.map(r => ({ name: r.name, value: r.time, task_ids: r.task_ids })), [{ key: 'value', name: 'Elapsed seconds', color: palette[1] }]), list('categories', 'Subtask categories'), list('paths', 'Paths')];
@@ -157,6 +257,7 @@ export async function pageData(view: string, scope: Scope, params: URLSearchPara
         result.metrics = [metric('Spend in range', m.cost, 'money'), metric('Findings', f.length), metric('Estimated savings', null, 'money', 'Requires a quality-preserving comparison'), metric('Agent runs', c.analyses.length, undefined, 'Recorded, not started by browsing')];
         result.panels = [list('findings', 'Built-in findings'), list('jobs', 'Agent runs')];
         result.actions = ['analysis-batch'];
+        result.links = [{ href: '/knowledge', label: 'Review reusable findings' }, { href: '/memory', label: 'Inspect memory' }];
     }
     if (view === 'impact') {
         const db = pg();

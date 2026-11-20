@@ -1,7 +1,7 @@
 import { friction } from './friction.ts';
 import { pg, queryCh } from './database.ts';
 import { finite, iso, price, turnKey, hash, failureLoops } from './domain.ts';
-import type { NativeEvent, Pricing, Scope, Row, Column } from './types.ts';
+import type { DashboardFilters, NativeEvent, Pricing, Scope, Row, Column } from './types.ts';
 export interface Task extends Row {
     project_id: string;
     title: string;
@@ -24,6 +24,7 @@ export interface Turn extends Row {
     role: string | null;
     agent_type: string | null;
     source: Record<string, unknown>;
+    harness?: string;
 }
 export interface Analysis extends Row {
     task_id: string;
@@ -63,6 +64,7 @@ export interface Context {
     }[];
     workspaces: string[];
     categories: Map<string, string>;
+    filters?: DashboardFilters;
 }
 type ContextCache = Map<string, {
     expires: number;
@@ -73,7 +75,13 @@ const globals = globalThis as typeof globalThis & {
 };
 const cache = globals.observatoryContextCache ??= new Map();
 export function invalidate() { cache.clear(); }
-export async function metadata() { const db = pg(); const [projects, workspaces] = await Promise.all([db `SELECT id,name FROM projects ORDER BY name`, db `SELECT DISTINCT workspace FROM turns WHERE workspace<>'' ORDER BY workspace`]); return { projects: projects as unknown as Context['projects'], workspaces: workspaces.map(r => String(r.workspace)) }; }
+export async function metadata() { const db = pg(); const [projects, workspaces, work] = await Promise.all([db `SELECT id,name FROM projects ORDER BY name`, db `SELECT DISTINCT workspace FROM turns WHERE workspace<>'' ORDER BY workspace`, db `SELECT id,title FROM tasks WHERE NOT coalesce(source ? 'native_turn',false) ORDER BY updated_at DESC LIMIT 150`]); return { projects: projects as unknown as Context['projects'], workspaces: workspaces.map(r => String(r.workspace)), work: work.map(row => ({ id: String(row.id), title: String(row.title) })) }; }
+export function harnessName(value: unknown) {
+    const source = String(value || '').toLowerCase();
+    if (source === 'codex' || source === 'codex-native') return 'Codex';
+    if (source === 'claude' || source === 'claude-code') return 'Claude Code';
+    return 'Unknown';
+}
 export async function context(scope: Scope): Promise<Context> {
     const key = JSON.stringify(scope), previous = cache.get(key);
     if (previous && previous.expires > Date.now())
@@ -99,7 +107,19 @@ async function load(scope: Scope): Promise<Context> {
     const since = scope.range === 'all' ? null : new Date(Date.now() - Number.parseInt(scope.range) * 86400000).toISOString();
     const [tasks, turns, assigned, analyses, subtasks, rates, rules, notes, meta] = await Promise.all([
         db `SELECT * FROM tasks WHERE (${scope.project}='' OR project_id=${scope.project}) AND (${scope.task || ''}='' OR id=${scope.task || ''}) ORDER BY updated_at DESC LIMIT 10001`,
-        db `SELECT t.* FROM turns t LEFT JOIN assignments a USING(turn_key) LEFT JOIN tasks task ON task.id=a.task_id WHERE (${scope.project}='' OR task.project_id=${scope.project}) AND (${scope.task || ''}='' OR a.task_id=${scope.task || ''}) AND (${scope.workspace}='' OR t.workspace=${scope.workspace}) AND (${since}::timestamptz IS NULL OR t.finished_at>=${since}::timestamptz OR t.started_at>=${since}::timestamptz) ORDER BY t.started_at DESC NULLS LAST LIMIT 10001`,
+        db `WITH codex_history AS (
+            SELECT DISTINCT substring(source_path from '([[:xdigit:]]{8}-[[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{12})\\.jsonl$') AS session_id
+            FROM raw_archives WHERE provider='historical-native-transcript' AND status='retained' AND source_path LIKE '%/.codex/%rollout-%'
+        )
+        SELECT t.*, coalesce(nullif(t.source->>'provider',''), CASE WHEN archive.provider IN ('codex','claude') THEN archive.provider END,
+            CASE WHEN t.source->>'path' LIKE '%/.codex/%' OR hist.session_id IS NOT NULL THEN 'codex' WHEN t.source->>'path' LIKE '%/.claude/%' THEN 'claude' END) AS harness
+        FROM turns t LEFT JOIN assignments a USING(turn_key) LEFT JOIN tasks task ON task.id=a.task_id
+        LEFT JOIN source_files sf ON sf.path=t.source->>'path' LEFT JOIN raw_archives archive ON archive.id=sf.archive_id
+        LEFT JOIN codex_history hist ON hist.session_id=t.session_id
+        WHERE (${scope.project}='' OR task.project_id=${scope.project}) AND (${scope.task || ''}='' OR a.task_id=${scope.task || ''})
+            AND (${scope.session || ''}='' OR t.session_id=${scope.session || ''}) AND (${scope.workspace}='' OR t.workspace=${scope.workspace})
+            AND (${since}::timestamptz IS NULL OR t.finished_at>=${since}::timestamptz OR t.started_at>=${since}::timestamptz)
+        ORDER BY t.started_at DESC NULLS LAST LIMIT 10001`,
         db `SELECT a.turn_key,a.task_id FROM assignments a JOIN tasks t ON t.id=a.task_id WHERE (${scope.project}='' OR t.project_id=${scope.project})`,
         db `SELECT DISTINCT ON (a.task_id) a.* FROM analyses a JOIN tasks t ON t.id=a.task_id WHERE (${scope.project}='' OR t.project_id=${scope.project}) ORDER BY a.task_id,a.created_at DESC,a.id DESC`,
         db `SELECT s.* FROM subtasks s JOIN (SELECT DISTINCT ON (task_id) id,task_id FROM analyses ORDER BY task_id,created_at DESC,id DESC) a ON a.id=s.analysis_id JOIN tasks t ON t.id=a.task_id WHERE (${scope.project}='' OR t.project_id=${scope.project}) ORDER BY s.analysis_id,s.position`,
@@ -111,12 +131,24 @@ async function load(scope: Scope): Promise<Context> {
     // The unscoped query does not use turn identities. Sending the entire corpus
     // anyway exceeds ClickHouse's HTTP form-field limit on real native histories.
     const eventScope = scope.project || scope.task || '';
-    const events = await queryCh<NativeEvent>(`SELECT * EXCEPT(payload,output_excerpt,command,source_path), '' AS payload, '' AS output_excerpt, substring(command,1,512) AS command, '' AS source_path FROM events FINAL WHERE ({workspace:String}='' OR workspace={workspace:String}) AND ({since:String}='' OR event_time>=parseDateTime64BestEffortOrNull({since:String})) AND ({project:String}='' OR turn_key IN {keys:Array(String)}) ORDER BY event_time,id LIMIT 100001`, { workspace: scope.workspace, since: since || '', project: eventScope, keys: eventScope ? keys : [] });
+    const events = await queryCh<NativeEvent>(`SELECT * EXCEPT(payload,output_excerpt,command,source_path), '' AS payload, '' AS output_excerpt, substring(command,1,512) AS command, '' AS source_path FROM events FINAL WHERE ({workspace:String}='' OR workspace={workspace:String}) AND ({since:String}='' OR event_time>=parseDateTime64BestEffortOrNull({since:String})) AND ({project:String}='' OR turn_key IN {keys:Array(String)}) AND ({session:String}='' OR session_id={session:String}) ORDER BY event_time,id LIMIT 100001`, { workspace: scope.workspace, since: since || '', project: eventScope, keys: eventScope ? keys : [], session: scope.session || '' });
     if (events.length > 100000)
         throw Error('Narrow the date or workspace scope to at most 100,000 events for this analysis.');
-    const visibleKeys = new Set(events.map(e => e.turn_key));
+    const normalizedTurns = turns.map(t => ({ ...t, harness: harnessName(t.harness) })) as unknown as Turn[];
+    const modelKeys = scope.model ? new Set(events.filter(e => e.kind === 'generation' && e.model === scope.model).map(e => e.turn_key)) : null;
+    const scopedTurns = normalizedTurns.filter(t => (!modelKeys || modelKeys.has(t.turn_key)) && (!scope.harness || t.harness === scope.harness));
+    const scopedKeys = new Set(scopedTurns.map(t => t.turn_key));
+    const scopedEvents = scope.model || scope.harness ? events.filter(e => scopedKeys.has(e.turn_key) && (!scope.model || e.kind !== 'generation' || e.model === scope.model)) : events;
+    const harnesses = new Map<string, Set<string>>();
+    for (const turn of normalizedTurns) {
+        const label = turn.harness || 'Unknown';
+        if (!harnesses.has(label)) harnesses.set(label, new Set());
+        harnesses.get(label)!.add(turn.session_id);
+    }
+    const filters = { models: [...new Set(events.filter(e => e.model && e.kind === 'generation').map(e => e.model))].sort(), harnesses: [...harnesses].map(([name, sessions]) => ({ name, sessions: sessions.size })).sort((a, b) => b.sessions - a.sessions || a.name.localeCompare(b.name)), work: meta.work };
+    const visibleKeys = new Set(scopedEvents.map(e => e.turn_key));
     const visibleTasks = new Set(assigned.filter(a => visibleKeys.has(String(a.turn_key))).map(a => String(a.task_id)));
-    const result: Context = { categories: new Map(), events: events.map(e => ({ ...e, event_time: iso(e.event_time.includes('T') ? e.event_time : e.event_time.replace(' ', 'T') + 'Z') || e.event_time, version: Number(e.version), input_tokens: finite(e.input_tokens == null ? null : Number(e.input_tokens)), cached_tokens: finite(e.cached_tokens == null ? null : Number(e.cached_tokens)), output_tokens: finite(e.output_tokens == null ? null : Number(e.output_tokens)), total_tokens: finite(e.total_tokens == null ? null : Number(e.total_tokens)) })), tasks: tasks.filter(t => (scope.range === 'all' && !scope.workspace || visibleTasks.has(String(t.id))) && (!t.source?.native_turn || visibleTasks.has(String(t.id)))) as unknown as Task[], turns: turns as unknown as Turn[], assignments: new Map(assigned.map(a => [String(a.turn_key), String(a.task_id)])), analyses: analyses as unknown as Analysis[], subtasks: subtasks as unknown as Subtask[], tiers: rates.find(r => r.key === 'model_tiers')?.value || { top: [], small: [] }, pricing: (rates.find(r => r.key === 'pricing')?.value || { unit: 'USD', models: {} }) as Pricing, rules: rules as unknown as Row[], notes: notes as unknown as Row[], ...meta };
+    const result: Context = { categories: new Map(), events: scopedEvents.map(e => ({ ...e, event_time: iso(e.event_time.includes('T') ? e.event_time : e.event_time.replace(' ', 'T') + 'Z') || e.event_time, version: Number(e.version), input_tokens: finite(e.input_tokens == null ? null : Number(e.input_tokens)), cached_tokens: finite(e.cached_tokens == null ? null : Number(e.cached_tokens)), output_tokens: finite(e.output_tokens == null ? null : Number(e.output_tokens)), total_tokens: finite(e.total_tokens == null ? null : Number(e.total_tokens)) })), tasks: tasks.filter(t => (scope.range === 'all' && !scope.workspace && !scope.model && !scope.harness && !scope.session || visibleTasks.has(String(t.id))) && (!t.source?.native_turn || visibleTasks.has(String(t.id)))) as unknown as Task[], turns: scopedTurns, assignments: new Map(assigned.map(a => [String(a.turn_key), String(a.task_id)])), analyses: analyses as unknown as Analysis[], subtasks: subtasks as unknown as Subtask[], tiers: rates.find(r => r.key === 'model_tiers')?.value || { top: [], small: [] }, pricing: (rates.find(r => r.key === 'pricing')?.value || { unit: 'USD', models: {} }) as Pricing, rules: rules as unknown as Row[], notes: notes as unknown as Row[], filters, ...meta };
     for (const task of result.tasks) {
         const facts = taskFacts(result, task.id);
         if (facts.complete)

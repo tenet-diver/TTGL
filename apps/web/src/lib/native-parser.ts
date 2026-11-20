@@ -28,7 +28,7 @@ export function parseNative(text: string, provider: 'codex' | 'claude', source: 
         const key = turnKey(sid, turn), time = iso(at);
         let t = turns.get(key);
         if (!t) {
-            t = { turn_key: key, session_id: sid, turn_id: turn, workspace, prompt: '', started_at: time, finished_at: time, completed: false, role, agent_type: agent, source: { path: source } };
+            t = { turn_key: key, session_id: sid, turn_id: turn, workspace, prompt: '', started_at: time, finished_at: time, completed: false, role, agent_type: agent, source: { path: source, provider } };
             turns.set(key, t);
         }
         if (time) {

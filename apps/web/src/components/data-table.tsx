@@ -21,6 +21,7 @@ import { collection, exactFilter } from '@/lib/record-query';
 import { readJson, writeLocal, savedTable, queryForColumns, tableDefaults } from '@/lib/view-preferences';
 import { apiJson } from '@/lib/api-response';
 import { requestRecords } from '@/lib/record-request';
+import { scopedHref } from './dashboard-tabs';
 import type { Row, Column, RecordPage, Query } from '@/lib/types';
 const initial = tableDefaults;
 const modeOptions = ['log', 'warn', 'ask', 'block'].map(value => ({ value, label: { log: 'Log only', warn: 'Warn', ask: 'Ask you', block: 'Block' }[value]! }));
@@ -167,10 +168,10 @@ export function DataTable({ id, kind, rows: localRows, columns: localColumns, ex
             return <div>{format(value, String(row.format))}<small className="sample-note">{format(row[column.key + '_count'])} {String(row.sample_unit)} · {format(row[column.key + '_hours'])} hours</small></div>;
         if (column.key === 'change' && row.sample_unit)
             return <div><Badge variant="outline">{String(value)}</Badge>{row.low != null && <small className="sample-note">95% Δ {format(row.low, String(row.format))} to {format(row.high, String(row.format))}</small>}</div>;
-        const colorKind = fieldColorKind(column.key) || (column.key === 'name' && kind === 'models' ? 'model' : column.key === 'name' && kind === 'tools' ? 'tool' : column.key === 'name' && kind === 'categories' ? 'activity' : undefined);
+        const colorKind = kind === 'top-tools' ? undefined : fieldColorKind(column.key) || (column.key === 'name' && kind === 'models' ? 'model' : column.key === 'name' && kind === 'tools' ? 'tool' : column.key === 'name' && kind === 'categories' ? 'activity' : undefined);
         const content = colorKind ? <span className="semantic-values">{(typeof value === 'string' && ['category', 'categories', 'models'].includes(column.key) ? value.split(/,\s*/) : [value]).map((part, i) => <SemanticBadge key={String(part) + i} value={part} kind={colorKind}/>)}</span> : format(value);
         if (column.type === 'link' && row.href)
-            return <Link href={String(row.href)} className="record-link">{content}</Link>;
+            return <Link href={scopedHref(String(row.href), params)} className="record-link">{content}</Link>;
         if (colorKind)
             return content;
         if (column.type === 'badge')
@@ -185,7 +186,7 @@ export function DataTable({ id, kind, rows: localRows, columns: localColumns, ex
         const defs: ColumnDef<Row>[] = data.columns.map(column => ({ id: column.key, accessorFn: row => row[column.key], header: column.label, cell: ctx => cell(ctx.row.original, column), enableSorting: true }));
         if (onSelection)
             defs.unshift({ id: '__selection', header: () => <Checkbox aria-label={'Select this page ' + id} checked={data.rows.length > 0 && data.rows.every(r => selection?.has(r.id))} onCheckedChange={checked => { const next = new Set(selection); data.rows.forEach(r => checked ? next.add(r.id) : next.delete(r.id)); onSelection(next); }}/>, cell: ctx => <Checkbox aria-label={'Select ' + String(ctx.row.original.title || ctx.row.id)} checked={Boolean(selection?.has(ctx.row.original.id))} onCheckedChange={checked => { const next = new Set(selection); checked ? next.add(ctx.row.original.id) : next.delete(ctx.row.original.id); onSelection(next); }}/>, enableSorting: false, enableHiding: false });
-        if (kind)
+        if (kind && kind !== 'top-tools')
             defs.push({ id: '__actions', header: '', enableSorting: false, enableHiding: false, cell: ctx => <RowActions kind={kind} row={ctx.row.original} onSaved={refresh} onInspect={() => void open(ctx.row.original)}/> });
         return defs;
     }, [data.columns, kind, queryKey, selection, pending]);

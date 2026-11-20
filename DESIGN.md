@@ -3,9 +3,17 @@
 The current implementation uses actual shadcn/ui React components in
 `apps/web/src/components/ui`, with exact upstream source hashes and license in
 `apps/web/shadcn-sources.lock.json` and `LICENSE.shadcn`. Tailwind CSS and the shared
-`DataTable` provide one control system across pages and nested lists. The CSS in
-`apps/web/src/app/globals.css` implements compact photograph-reference layouts.
+`DataTable` provide one control system across pages and nested lists. The Penpot
+**Observatory · Project dashboards** boards guide the desktop navigation, filter
+rail, panels, and trace views in `apps/web/src/app/project-dashboard.css`. The app
+loads Geist and Geist Mono from the reviewed Next.js installation.
 Older DOM/CSS file references below describe the preserved legacy UI.
+
+Dashboard filters apply to retained workspaces, projects, models, work items,
+harnesses, and time ranges. Session drill-downs and trace views use exact native
+IDs. Delivery transitions describe recorded commands within a session. Remote
+review and merge states require explicit source associations. The Memory view
+uses recorded procedures, snapshots, and retrieval receipts.
 
 The supplied Vercel Design Language Reference informs controls and surfaces; the Claude Mining screenshots govern page structure, chart colors and analysis density. Shared controls and layouts apply it across analysis, task evidence, optimization and steering pages.
 

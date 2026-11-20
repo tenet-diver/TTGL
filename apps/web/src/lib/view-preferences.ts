@@ -1,6 +1,6 @@
 import type { Query } from './types.ts';
 export const scopeKey = 'observatory-scope:v1';
-export const scopeDefaults = { project: '', workspace: '', range: '30d', timezone: 'UTC' };
+export const scopeDefaults = { project: '', workspace: '', range: '30d', timezone: 'UTC', scopeModel: '', harness: '', work: '' };
 export const scopeKeys = Object.keys(scopeDefaults) as (keyof typeof scopeDefaults)[];
 const fallback = new Map<string, string>();
 const unsaved = new Set<string>();
@@ -20,7 +20,7 @@ export function readJson(key: string): unknown {
 const object = (value: unknown): Record<string, unknown> => value && typeof value === 'object' && !Array.isArray(value) ? value as Record<string, unknown> : {};
 export function savedScope(raw: unknown): typeof scopeDefaults {
     const value = object(raw), result = { ...scopeDefaults };
-    for (const key of ['project', 'workspace'] as const)
+    for (const key of ['project', 'workspace', 'scopeModel', 'harness', 'work'] as const)
         if (typeof value[key] === 'string' && value[key].length <= (key === 'project' ? 400 : 3000)) result[key] = value[key];
     if (typeof value.range === 'string' && ['1d', '7d', '30d', '90d', 'all'].includes(value.range)) result.range = value.range;
     if (typeof value.timezone === 'string' && value.timezone.length <= 100) {

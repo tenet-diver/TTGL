@@ -3,6 +3,7 @@ import { pg } from './database.ts';
 import { experimentHistory } from './experiment-history.ts';
 import { context, metrics, taskFacts, taskRows, turnRows, groupEvents, toolName, category, commonColumns, type Context } from './repository.ts';
 import { collection, hash, rolling, iso, failureLoops } from './domain.ts';
+import { deliveryTransitions, eventRows, mcpRows, pullRequestOperation, sessionRows, signatureRows, localDay } from './project-analytics.ts';
 import { type NativeEvent, type Row, type Column, type Query, type Scope, type ChartSpec, type PageData, type Panel, type Metric } from './types.ts';
 const numeric = (key: string, label: string, type: Column['type'] = undefined): Column => ({ key, label, numeric: true, type });
 const text = (key: string, label: string, type: Column['type'] = undefined): Column => ({ key, label, type });
@@ -10,7 +11,16 @@ const ratio = (a: number, b: number) => b ? a / b : null;
 const date = (e: NativeEvent) => e.time_known ? e.event_time.slice(0, 10) : 'Unknown';
 const list = (id: string, title: string, description?: string): Panel => ({ id, title, list: id, description });
 const chart = (id: string, title: string, kind: ChartSpec['kind'], points: Record<string, unknown>[], series: ChartSpec['series'], description?: string): Panel => ({ id, title, chart: { id, title, kind, points, series, description } });
-export function tools(c: Context): Row[] { return [...groupEvents(c.events.filter(e => e.kind === 'tool'), e => toolName(e).name)].map(([name, events]) => { const m = metrics(events, c.pricing), identity = toolName(events[0]); return { id: hash(name), ...identity, href: '/tools?family=' + encodeURIComponent(identity.family) + '&action=' + encodeURIComponent(identity.action), category: [...new Set(events.map(e => category(e, c)))].join(', '), calls: events.length, errors: m.errors, failure_rate: ratio(m.errors, m.known_outcomes), runtime: m.runtime, known_runtime: m.known_runtime, call_cost: null, context_cost: null, output_chars: events.every(e => e.output_chars != null) ? events.reduce((s, e) => s + Number(e.output_chars), 0) : null, timed: m.timed }; }).sort((a, b) => b.calls - a.calls); }
+export function tools(c: Context): Row[] {
+    return [...groupEvents(c.events.filter(e => e.kind === 'tool'), e => toolName(e).name)].map(([name, events]) => {
+        const m = metrics(events, c.pricing), identity = toolName(events[0]);
+        const categories = [...groupEvents(events, event => category(event, c))].sort((a, b) => b[1].length - a[1].length);
+        return { id: hash(name), ...identity, href: '/tools?family=' + encodeURIComponent(identity.family) + '&action=' + encodeURIComponent(identity.action),
+            category: categories.map(([name]) => name).join(', '), primary_category: categories[0][0], calls: events.length, errors: m.errors,
+            failure_rate: ratio(m.errors, m.known_outcomes), runtime: m.runtime, known_runtime: m.known_runtime, call_cost: null, context_cost: null,
+            output_chars: events.every(e => e.output_chars != null) ? events.reduce((s, e) => s + Number(e.output_chars), 0) : null, timed: m.timed };
+    }).sort((a, b) => b.calls - a.calls);
+}
 export function models(c: Context): Row[] { const total = metrics(c.events, c.pricing).known_cost; return [...groupEvents(c.events.filter(e => e.kind === 'generation'), e => e.model || 'Unknown')].map(([name, events]) => { const m = metrics(events, c.pricing); return { id: name, name, href: '/costs?model=' + encodeURIComponent(name), calls: events.length, cost: m.cost, share: m.cost != null ? ratio(m.cost, total) : null, input: m.input, uncached: m.input != null && m.cached != null ? m.input - m.cached : null, cache_hit: m.input && m.cached != null ? m.cached / m.input : null, cached: m.cached, cache_write: m.cache_write, output: m.output, cost_per_call: m.cost != null ? m.cost / events.length : null, latency: events.every(e => e.runtime != null) ? events.reduce((s, e) => s + Number(e.runtime), 0) / events.length : null }; }).sort((a, b) => Number(b.cost) - Number(a.cost)); }
 export function process(c: Context) {
     const categories = new Map<string, {
@@ -264,12 +274,58 @@ export async function recordData(kind: string, scope: Scope, query: Query, extra
     }
     else {
         const task = extra.get('task');
-        const c = await context({ ...scope, ...(task ? { task, range: 'all' } : {}) });
+        const session = extra.get('session');
+        const c = await context({ ...scope, ...(task ? { task, range: 'all' } : {}), ...(session ? { session } : {}) });
         const group = extra.get('subtask') ? c.subtasks.find(g => g.id === extra.get('subtask') && task && taskFacts(c, task).groups.some(s => s.id === g.id)) : null;
         if (extra.get('subtask') && (!task || !group || !taskFacts(c, task).complete))
             throw Error('Unknown or stale subtask for this task');
         const memberIds = group ? new Set(group.event_ids) : null;
-        const source = (task ? taskFacts(c, task).events : c.events).filter(e => (!memberIds || memberIds.has(e.id)) && (!extra.get('day') || e.event_time.slice(0, 10) === extra.get('day')) && (!extra.get('model') || e.model === extra.get('model')) && (!extra.get('tool') || toolName(e).name === extra.get('tool')));
+        const source = (task ? taskFacts(c, task).events : c.events).filter(e => (!memberIds || memberIds.has(e.id)) && (!extra.get('day') || !['steps', 'tools', 'targets', 'tasks', 'marked'].includes(kind) || e.event_time.slice(0, 10) === extra.get('day')) && (!extra.get('model') || e.model === extra.get('model')) && (!extra.get('tool') || toolName(e).name === extra.get('tool')) && (!extra.get('native_turn') || e.turn_key === extra.get('native_turn')));
+        if (kind === 'sessions') {
+            rows = sessionRows(c);
+            columns = [text('title', 'Session', 'link'), text('started', 'Started', 'date'), text('harness', 'Harness'), text('project', 'Project'), text('work', 'Work item'), numeric('prompts', 'Prompts'), numeric('runtime', 'Recorded time', 'duration'), numeric('cost', 'Cost', 'money'), { ...text('workspace', 'Workspace'), hidden: true }, { ...numeric('tools', 'Tool calls'), hidden: true }, { ...numeric('tokens', 'Tokens', 'tokens'), hidden: true }];
+        }
+        if (kind === 'native-turns') {
+            const work = new Map(c.tasks.map(task => [task.id, task.title]));
+            rows = turnRows(c).map(row => ({ ...row, work: work.get(String(row.task_id)) || null, href: '/trace?turn=' + encodeURIComponent(row.id) }));
+            columns = [text('title', 'Turn', 'link'), text('work', 'Work item'), text('started', 'Started', 'date'), numeric('cost', 'Cost', 'money'), numeric('duration', 'Observed span', 'duration'), text('outcome', 'Outcome', 'badge'), { ...text('models', 'Models'), hidden: true }, { ...numeric('tools', 'Tool calls'), hidden: true }, { ...numeric('tokens', 'Tokens', 'tokens'), hidden: true }];
+        }
+        if (['logs', 'failures', 'context-events'].includes(kind)) {
+            const events = kind === 'failures' ? source.filter(event => event.kind === 'tool' && event.failed === 1)
+                : kind === 'context-events' ? source.filter(event => event.kind === 'generation' || event.kind === 'compaction') : source;
+            rows = eventRows(events, c);
+            columns = [text('at', 'Time', 'date'), text('kind', 'Type', 'badge'), text('name', 'Source event'), text('status', 'Status', 'badge'), text('detail', 'Recorded operation', 'code'), numeric('runtime', 'Duration', 'duration'), { ...text('session_id', 'Session'), hidden: true }, { ...text('workspace', 'Workspace'), hidden: true }, { ...numeric('tokens', 'Tokens', 'tokens'), hidden: true }];
+        }
+        if (kind === 'error-signatures') {
+            rows = signatureRows(source.filter(event => event.kind === 'tool' && event.failed === 1));
+            columns = [text('name', 'Tool'), text('detail', 'Operation', 'code'), numeric('calls', 'Failures'), numeric('sessions', 'Sessions'), text('last_seen', 'Last seen', 'date'), { ...text('signature', 'Signature', 'code'), hidden: true }];
+        }
+        if (kind === 'mcp-tools') {
+            rows = mcpRows(source, c);
+            columns = [text('name', 'MCP tool'), numeric('calls', 'Calls'), numeric('sessions', 'Sessions'), numeric('failure_rate', 'Failed', 'percent'), numeric('runtime', 'Time', 'duration')];
+        }
+        if (kind === 'pull-request-events' || kind === 'delivery-failures') {
+            const taskIndex = new Map(c.tasks.map(task => [task.id, task.title]));
+            const events = source.filter(event => pullRequestOperation(event) && (kind !== 'delivery-failures' || event.failed === 1));
+            rows = eventRows(events, c).map(row => ({ ...row, work: taskIndex.get(c.assignments.get(String(row.turn_key)) || '') || null }));
+            columns = [text('at', 'Observed', 'date'), text('detail', 'Pull request command', 'code'), text('status', 'Command status', 'badge'), text('work', 'Work item'), text('workspace', 'Workspace'), numeric('runtime', 'Duration', 'duration')];
+        }
+        if (kind === 'delivery-transitions') {
+            rows = deliveryTransitions(source);
+            columns = [text('from', 'Previous operation'), text('to', 'Next operation'), numeric('calls', 'Transitions'), numeric('sessions', 'Sessions')];
+        }
+        if (kind === 'delivery-work') {
+            const commits = new Map<string, number>();
+            const prs = new Map<string, number>();
+            for (const event of source) {
+                const owner = c.assignments.get(event.turn_key);
+                if (!owner || event.kind !== 'tool') continue;
+                if (pullRequestOperation(event)) prs.set(owner, (prs.get(owner) || 0) + 1);
+                if (event.failed === 0 && /\bgit\s+commit\b/.test(event.command)) commits.set(owner, (commits.get(owner) || 0) + 1);
+            }
+            rows = taskRows(c).filter(row => !(row.source as Record<string, unknown>)?.native_turn).map(row => ({ ...row, commit_count: commits.get(row.id) || 0, pr_operations: prs.get(row.id) || 0 }));
+            columns = [text('title', 'Work item', 'link'), text('status', 'State', 'badge'), numeric('pr_operations', 'PR operations'), numeric('turns', 'Turns'), numeric('commit_count', 'Commit calls'), numeric('duration', 'Observed span', 'duration'), numeric('cost', 'Agent cost', 'money'), text('updated_at', 'Last updated', 'date')];
+        }
         if (kind === 'tasks' || kind === 'marked') {
             rows = kind === 'tasks' ? turnRows(c) : taskRows(c);
             if (kind === 'marked' && !extra.get('task_ids'))
@@ -292,11 +348,15 @@ export async function recordData(kind: string, scope: Scope, query: Query, extra
             }
             columns = [numeric('sequence', '#'), text('at', 'Time', 'date'), text('kind', 'Type', 'badge'), text('category', 'Activity', 'badge'), text('name', 'Step'), numeric('runtime', 'Duration', 'duration'), numeric('input', 'Tokens in', 'tokens'), numeric('output', 'Tokens out', 'tokens'), numeric('cost', 'Cost', 'money'), numeric('context_cost', 'Context cost', 'money'), text('agent', 'Agent'), text('detail', 'Detail', 'code')];
         }
-        if (kind === 'tools') {
+        if (kind === 'tools' || kind === 'top-tools') {
             rows = tools({ ...c, events: source });
             if (extra.get('family'))
                 rows = rows.filter(r => r.family === extra.get('family'));
             columns = [text('name', extra.get('family') ? 'Action' : 'Tool', 'link'), text('category', 'Category'), numeric('calls', 'Calls'), numeric('failure_rate', 'Failed', 'percent'), numeric('runtime', 'Total time', 'duration'), numeric('call_cost', 'Call cost', 'money'), numeric('context_cost', 'Context cost', 'money'), numeric('output_chars', 'Result characters', 'tokens'), numeric('timed', 'Calls with timing')];
+            if (kind === 'top-tools') {
+                rows = rows.slice(0, 5).map(row => ({ ...row, category: row.primary_category }));
+                columns = columns.slice(0, 5).map(column => column.key === 'runtime' ? { ...column, label: 'Time' } : column);
+            }
         }
         if (kind === 'targets') {
             rows = [...groupEvents(source.filter(e => e.kind === 'tool' && (!extra.get('family') || toolName(e).family === extra.get('family')) && (!extra.get('action') || toolName(e).action === extra.get('action'))), e => e.command || e.name)].map(([target, events]) => ({ id: hash(target), target, action: toolName(events[0]).action, calls: events.length, errors: events.filter(e => e.failed === 1).length, event_ids: events.map(e => e.id) }));
@@ -367,8 +427,8 @@ export async function recordData(kind: string, scope: Scope, query: Query, extra
         const ids = new Set(extra.get('task_ids')!.split(','));
         rows = rows.filter(r => ids.has(String(r.task_id || r.id)));
     }
-    if (extra.get('day') && !['tasks', 'marked', 'steps', 'tools', 'targets'].includes(kind))
-        rows = rows.filter(r => String(r.started || r.at || '').slice(0, 10) === extra.get('day'));
+    if (extra.get('day') && !['tasks', 'marked', 'steps', 'tools', 'targets', 'error-signatures'].includes(kind))
+        rows = rows.filter(r => localDay(r.started || r.at, scope.timezone) === extra.get('day'));
     if (extra.get('model'))
         rows = rows.filter(r => String(r.models || r.name || '').includes(extra.get('model')!));
     rows = rows.map(row => ({ ...row, ...Object.fromEntries(columns.filter(c => c.numeric && typeof row[c.key] === 'string' && /^-?\d+(?:\.\d+)?$/.test(String(row[c.key]))).map(c => [c.key, Number(row[c.key])])) }));

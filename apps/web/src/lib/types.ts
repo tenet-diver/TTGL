@@ -10,6 +10,9 @@ export interface Scope {
     range: string;
     timezone: string;
     task?: string;
+    model?: string;
+    harness?: string;
+    session?: string;
 }
 export interface Column {
     key: string;
@@ -71,6 +74,14 @@ export interface Panel {
     list?: string;
     chart?: ChartSpec;
     text?: string;
+    wide?: boolean;
+    compact?: boolean;
+    extras?: Record<string, string>;
+}
+export interface DashboardFilters {
+    models: string[];
+    harnesses: { name: string; sessions: number }[];
+    work: { id: string; title: string }[];
 }
 export interface PageData {
     title: string;
@@ -90,6 +101,8 @@ export interface PageData {
         unclassified: number;
     };
     actions?: string[];
+    filters?: DashboardFilters;
+    links?: { href: string; label: string }[];
 }
 export interface NativeEvent {
     id: string;

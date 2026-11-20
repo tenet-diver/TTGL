@@ -44,7 +44,10 @@ export function scopeFrom(params: URLSearchParams): Scope {
     catch {
         throw Error('Invalid display timezone');
     }
-    return { workspace: params.get('workspace') || '', project: params.get('project') || '', range, timezone };
+    return { workspace: params.get('workspace') || '', project: params.get('project') || '', range, timezone,
+        ...(params.get('scopeModel') ? { model: params.get('scopeModel')! } : {}),
+        ...(params.get('harness') ? { harness: params.get('harness')! } : {}),
+        ...(params.get('work') ? { task: params.get('work')! } : {}) };
 }
 export function queryFrom(params: URLSearchParams): Query {
     const raw = params.get('query');
