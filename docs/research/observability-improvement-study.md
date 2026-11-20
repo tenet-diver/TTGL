@@ -456,3 +456,59 @@ per endpoint and zero model calls. Observed task-page p50/p95 is about 5.44/5.45
 the native-turn record endpoint is 10.38/16.15 s. These small observational samples
 identify application responsiveness as a follow-up; they are not a causal speedup
 comparison or agent benchmark. Preserve both failed and successful reports.
+
+## Coding agents are the primary Observatory users
+
+The agent uses MCP to inspect source-linked history, design a reversible harness
+change, run a matched comparison and review the operator-measured result. The
+dashboard gives people the same experiment record. A useful evidence item links
+the task, verified source event, configuration version and change that made the
+decision relevant. Preserve full authorized native sessions locally and present
+bounded summaries first. Include explicit rationale, rejected options,
+verification and uncertainty. A summary is an attributed interpretation with
+links to the retained evidence. Hidden model reasoning is outside this record.
+
+The existing analyst MCP provides task lookup, evidence drill-down, proposal
+registration and decisions. Its plan tool records a proposal and its review tool
+can interpret a measurement. The new local
+`python -m ttgl.experiment_mcp` prototype adds an execution surface for one
+versioned prompt-harness setting at a time. Its registered comparison uses the
+three existing Observatory Python Repair development tasks, both policies on
+the same tasks, a separate offline actor for each attempt, independent grading
+and immutable local S3 retention. It records the exact settings and diff,
+model and source versions, hypothesis, cited evidence IDs, outcomes and review.
+Only a candidate that passes the frozen quality/efficiency rule can receive
+a keep decision. The current coding agent's settings are outside the isolated
+trial. Start without `--execute` for planning and readback, or use
+`--execute` on the host to authorize at most six native calls per requested
+trial. Result inspection and repeated launch requests do not start additional
+calls. This prototype supports registered planning, verification, tool-use and
+completion prompts. Arbitrary plugin installation, tool permissions and
+user-wide configuration changes are outside this initial test.
+
+The next coding-memory comparison tests use of past decisions during work
+rather than historical feedback in the SIM optimizer. Reserve two small
+three-step repository changes with real predecessor sessions and fixed Git
+checkpoints. A later step must extend the accepted earlier contract or rule out
+an alternative that the earlier work already tested. Use the same issue brief,
+source tree, Git history, public checks, model and effort in both arms. One
+agent starts with the repository. Its counterpart can use Observatory MCP to
+read source-backed summaries by repository, task, commit or PR and open the
+relevant transcript evidence. Store exact canonical session and turn IDs,
+immutable commit and parent, project-scoped PR number if one exists, and the
+visible decision/check references. Admit only records from the registered
+predecessors, before the target cutoff. Both arms can discover requirements
+through normal repository work. Earlier conversations should explain why an
+approach was chosen, without containing the target solution or hidden grader.
+
+Freeze the source sessions and identical base state before the paired
+continuations. Use independent tests for verified completion and regressions,
+report clock time jointly with success and retain the actual retrieval calls.
+Four paired checkpoints are an initial mechanism pilot. Use an additional
+summary-only arm later if we need to distinguish summary benefit from trace
+access. Model comparisons and cost reduction are a separate follow-up. The
+earlier repository-memory development wave gives a related comparison with
+two standalone tasks and equal quality. The larger historical longitudinal
+run has 20 retained generation receipts of 216 assignments and no official
+grades in the retained root. Keep those attempts as historical evidence. They
+do not score the new decision-history design.
