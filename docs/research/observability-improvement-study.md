@@ -512,3 +512,8 @@ two standalone tasks and equal quality. The larger historical longitudinal
 run has 20 retained generation receipts of 216 assignments and no official
 grades in the retained root. Keep those attempts as historical evidence. They
 do not score the new decision-history design.
+
+The active local pilot uses checkpoints 1–3 of two published SlopCodeBench
+problems. The [decision history experiment record](../../experiments/decision-history-scb-001/README.md)
+documents the scope, matched assignment order, frozen memory format,
+retrieval receipts, controls and independent scoring.

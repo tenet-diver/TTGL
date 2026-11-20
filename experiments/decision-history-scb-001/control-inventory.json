@@ -1,0 +1,32 @@
+[
+  {
+    "checkpoint": 1,
+    "checks": 52,
+    "problem": "l2m"
+  },
+  {
+    "checkpoint": 2,
+    "checks": 20,
+    "problem": "l2m"
+  },
+  {
+    "checkpoint": 3,
+    "checks": 49,
+    "problem": "l2m"
+  },
+  {
+    "checkpoint": 1,
+    "checks": 37,
+    "problem": "cfgpipe"
+  },
+  {
+    "checkpoint": 2,
+    "checks": 31,
+    "problem": "cfgpipe"
+  },
+  {
+    "checkpoint": 3,
+    "checks": 39,
+    "problem": "cfgpipe"
+  }
+]

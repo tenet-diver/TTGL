@@ -1,0 +1,92 @@
+{
+  "date": "2026-11-20T17:33:53.736136+00:00",
+  "existing_pytest_graph": [
+    {
+      "name": "pytest",
+      "requires": [
+        "colorama>=0.4; sys_platform == \"win32\"",
+        "exceptiongroup>=1; python_version < \"3.11\"",
+        "iniconfig>=2",
+        "packaging>=24",
+        "pluggy<2,>=1.6",
+        "pygments>=2.15",
+        "tomli>=2; python_version < \"3.11\"",
+        "argcomplete; extra == \"dev\"",
+        "asynctest; python_version < \"3.11\" and extra == \"dev\"",
+        "attrs>=23.1; extra == \"dev\"",
+        "coverage>=7.5; extra == \"dev\"",
+        "hypothesis>=6.75; extra == \"dev\"",
+        "mock; extra == \"dev\"",
+        "numpy>=1.26; extra == \"dev\"",
+        "pexpect>=4.9; extra == \"dev\"",
+        "pytest-xdist>=3.5; extra == \"dev\"",
+        "pyyaml; extra == \"dev\"",
+        "requests; extra == \"dev\"",
+        "setuptools; extra == \"dev\"",
+        "xmlschema; extra == \"dev\""
+      ],
+      "version": "9.2.0"
+    },
+    {
+      "name": "iniconfig",
+      "requires": null,
+      "version": "2.3.1"
+    },
+    {
+      "name": "packaging",
+      "requires": null,
+      "version": "26.3"
+    },
+    {
+      "name": "pluggy",
+      "requires": null,
+      "version": "1.7.0"
+    },
+    {
+      "name": "Pygments",
+      "requires": [
+        "colorama>=0.4.6; extra == 'windows-terminal'"
+      ],
+      "version": "2.21.0"
+    }
+  ],
+  "files": {
+    "cfgpipe/checkpoint_1.md": "04fc083bcf0d4ee1335326912cd623be6bf21faed1dbb09b6bf01c1600ba67a2",
+    "cfgpipe/checkpoint_2.md": "823ba075eb71f83740de9bf07f1ba62f61c5025b4e1506006e88c6388c83985e",
+    "cfgpipe/checkpoint_3.md": "d4a7ad084b26f97e04e8a670235881c3aa2dd7a1a71309f3422515ae7a03f366",
+    "cfgpipe/config.yaml": "5a27ac37b54e6fe0fee3402d7f2017c0db0ed318122725afcb2ce2e24ea15432",
+    "cfgpipe/solutions/checkpoint_1/cfgpipe.py": "7cff6f78922b3f3a171ec683358ec035650cc9101855edbcd588da4849d7e259",
+    "cfgpipe/solutions/checkpoint_2/cfgpipe.py": "297c2e9875c3dd46bf665a4e9ec3ef80f9a172c464b0b607b35ec8c882f558ac",
+    "cfgpipe/solutions/checkpoint_3/cfgpipe.py": "4b8a3ef643d744502e12dc05b4ac156e183d5ace3e07c1fbc3568a7feb7bf59a",
+    "cfgpipe/tests/conftest.py": "12e59e0c707da2d4375ecedf8200df9a75cb0a40c2c017d588fdb08ed29ab5ca",
+    "cfgpipe/tests/test_checkpoint_1.py": "3a639a3fb60584b0bb477bf097cfffbb8dc5489a61b688eca60650e0a8f4e998",
+    "cfgpipe/tests/test_checkpoint_2.py": "b57499ebb8b7a1bf0d034ae3f0cfb835283f7e7f9fcd2fd4eb64381b34659e29",
+    "cfgpipe/tests/test_checkpoint_3.py": "c32b2ba5f7d5519b69cf99101d09c74a3d9b10c26e9fc139d984269064507ce5",
+    "cfgpipe/tests/utils.py": "4c78b4d322b237e012141623e5e49c6a96e5623dfb873274b0469dad9b6ff383",
+    "l2m/checkpoint_1.md": "ef4ed597390f338b54e5ca84750b2c83f7ab428b26a9b6904cfd97ba82d5994a",
+    "l2m/checkpoint_2.md": "b07fb70db5f5eca9e5a3ddc8d43a4866c805bd92b90488e925b7417a2976fd7d",
+    "l2m/checkpoint_3.md": "79424bf05fd2be3308417a3609b1d136baddc8f745072d25c4feaa3c6180cfff",
+    "l2m/config.yaml": "d26d4791feb62a01051776282d4bca14ff0d68583acf26c3202a44addd43c78a",
+    "l2m/solutions/checkpoint_1/l2m.py": "2b3fc9d2e342ce08332a56cb79baddf9d5283a1e78e615aec0add22483d38c79",
+    "l2m/solutions/checkpoint_2/l2m.py": "8a1804d0a90cff638d198e659eb013a12bba32ca3115cca2c427af323a3e2242",
+    "l2m/solutions/checkpoint_3/l2m.py": "86e26dee018babd7f15017482f0d6c368ec9633e021f7a8845eb899fcece660f",
+    "l2m/tests/conftest.py": "e3d2003891d45187cf3b3cf67f11ae498535398b6ff65edfda543b38ac13b091",
+    "l2m/tests/helpers.py": "dbf5f42592e5f97423dc13f20a789fb3e6ad7d8e3c27a7e3b9127b2304c133fa",
+    "l2m/tests/test_checkpoint_1.py": "185778e5f0356070d60f47d4cdaba8b04df2b3685b8123bc7751d65035888b33",
+    "l2m/tests/test_checkpoint_2.py": "cc0fef7ae502192774a8b3541d774a8ee2b01442677d51ffae3d0550cb745ee1",
+    "l2m/tests/test_checkpoint_3.py": "21dd30008bf074e2032429db6555d53bb31a70096a535a9518151a69c3ec8d84"
+  },
+  "license": "Apache-2.0",
+  "limitations": "Run selected pinned fixture/test source only. No external installer, full benchmark runner, container, automatic plugin or new package. Current Codespace approval tolerates incomplete evidence; confirmed applicable findings remain blocking.",
+  "osv": {
+    "results": [
+      {},
+      {},
+      {},
+      {},
+      {}
+    ]
+  },
+  "revision": "ba1f7fec544dae4ff274d2447d9b65aebfbc5196",
+  "source_verified": "All selected files matched pinned Git tree blob SHA-1"
+}
