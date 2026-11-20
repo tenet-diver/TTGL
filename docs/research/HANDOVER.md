@@ -4668,3 +4668,34 @@ The archived held-out matrix 039 still has zero model calls and requires
 additional persistent local storage before activation. The 22 pristine
 bases alone need about 153 MiB. Research schedules remain paused.
 [Held-out readiness](../../results/model-led-delegation-001/heldout-comparison-039/README.md)
+
+## 20 November proposal for a direct Sol-to-Luna transfer experiment
+
+The question is whether Luna solves more unseen tasks when it receives
+experience from Sol. Use the existing native Codex runner and independent
+grader. Defer Observatory routing until the direct transfer effect has been
+measured.
+
+1. **Build the teaching set.** Compare independent Sol and Luna attempts on
+   the same development tasks. Reuse audited paired results where the
+   configuration and evidence match. Keep cases where Sol passed and Luna
+   failed. Extract reusable procedures from the successful Sol attempts and
+   retain the corresponding worked examples. Use independent grades for
+   offline selection and public traces for the teaching material.
+2. **Test on fresh tasks.** Freeze the library and retrieval rules before
+   inference. Exclude shared issue, base and fix lineages between teaching
+   and evaluation. Run two independent Luna attempts per held-out task:
+   the usual prompt and the same prompt with relevant Sol-derived
+   procedures. Hold the model, tools, resource caps and grader fixed.
+   If comparing extraction with direct examples, add a third Luna arm
+   using worked examples from the same Sol attempts.
+3. **Measure paired outcomes and costs.** Report failures rescued, successes
+   lost, verified completion, and the inference and latency difference
+   from adding guidance. Report Sol and Luna teaching-set runs and any
+   extraction inference as one-time construction costs. Preserve assigned
+   denominators and unknown outcomes.
+
+This proposal starts with Luna alone versus Luna with Sol-derived procedures.
+It has zero registered assignments and zero model calls. Matrix 039 remains
+archived and disabled. Preserve prior evidence and leave research schedules
+paused.
