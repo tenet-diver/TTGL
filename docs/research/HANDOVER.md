@@ -4636,3 +4636,35 @@ remain paused. The optional musl backup now resolves to its verified copy
 on the separate local shared filesystem, recorded in
 `capacity-maintenance-20261119/overflow-location.json`. Exact cache and
 archive reads passed after that transfer.
+
+## 20 November clarification of the small-model experiment
+
+The hypothesis is that Luna can use verified experience from Sol to complete
+new, bounded subtasks and reduce the amount of work Sol has to do while
+preserving quality. The frozen library contains public-check-supported records
+from both models. Sol-derived procedures can guide Luna. Observed Luna
+competence comes from Luna's own attempts. The library is runtime context and
+both models' weights stay fixed.
+
+In the registered design, Sol is the controller. It can choose a subtask,
+delegate it to Luna with relevant guidance, then verify and integrate the
+result. Across all 36 routing-development slots, Sol made zero routing or
+delegation requests. Luna received zero worker assignments, leaving the
+handoff step untested. Luna's ability to use Sol-derived
+guidance on a delegated subtask remains unmeasured in this development
+cohort. The earlier required handoff was a separate mechanism diagnostic.
+
+The selected Sol-controller point matched standalone Sol at 6/11 admissible
+resolutions and had a 13.4% lower historical-rate inference cost. The observed
+cost difference is between Sol-only attempts.
+In separate standalone runs with the same final library, Luna achieved
+5/11 admissible resolutions and Sol achieved 6/11. Those scores measure
+whole-task performance with shared context. The contribution of Sol-derived
+guidance and the effect of growing the library remain open.
+[Routing results](../../results/model-led-delegation-001/observatory-development-037/README.md) ·
+[Standalone results](../../results/model-led-delegation-001/matched-development-031/README.md)
+
+The archived held-out matrix 039 still has zero model calls and requires
+additional persistent local storage before activation. The 22 pristine
+bases alone need about 153 MiB. Research schedules remain paused.
+[Held-out readiness](../../results/model-led-delegation-001/heldout-comparison-039/README.md)
